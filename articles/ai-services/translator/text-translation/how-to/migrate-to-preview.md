@@ -41,7 +41,7 @@ The following list compares available Azure AI Translator `2025-05-01-preview` m
 |**`targets`**<br>&bullet; Array containing user-specified values for the translated text|&bullet; *The targets array isn't included with the Translator v3.0 schema.*|
 |**`language`**<br>&bullet; The language code for the translated (target) text *specified in the `targets` array*. <br> &bullet; Values are [supported language](../../language-support.md) codes for the translation operation.|**`to`**<br>&bullet; Specifies the language of the output text.<br>&bullet; The target language must be one of the [supported languages](../../language-support.md#translation) included in the translation scope.|
 
-For more information on **`targets array`** values, *see* [Translate text](../reference/latest/translate-api.md).
+For more information on **`targets array`** values, *see* [Translate text](../reference/preview/translate-api.md).
 
 ## API compatibility
 
@@ -49,9 +49,9 @@ The following table compares Translator `2025-05-01-preview` and Translator v3 A
 
 |Translator 2025-05-01-preview method|Translator v3 compatibility|
 |---|---|
-|[Translate text](../reference/latest/translate-api.md)|[Translate text](../reference/v3/translate.md)|
-|[Transliterate](../reference/latest/transliterate-api.md)|[Transliterate](../reference/v3/transliterate.md)|
-|[Languages](../reference/latest/get-languages.md)|[Languages](../reference/v3/languages.md)|
+|[Translate text](../reference/preview/translate-api.md)|[Translate text](../reference/v3/translate.md)|
+|[Transliterate](../reference/preview/transliterate-api.md)|[Transliterate](../reference/v3/transliterate.md)|
+|[Languages](../reference/preview/get-languages.md)|[Languages](../reference/v3/languages.md)|
 [BreakSentence](../reference/v3/break-sentence.md)|Feature no longer supported.<br>Use sentence delimiters function or a Natural Language Processing (NLP) library supported for your programming language.|
 [Dictionary Lookup](../reference/v3/dictionary-lookup.md)|Feature no longer supported|
 |[Dictionary Examples](../reference/v3/dictionary-examples.md)|Feature no longer supported|
@@ -60,4 +60,4 @@ The following table compares Translator `2025-05-01-preview` and Translator v3 A
 ## Next Steps
 
 > [!div class="nextstepaction"]
-> [View 2025-05-01-preview Translate method](../reference/latest/translate-api.md)
+> [View 2025-05-01-preview Translate method](../reference/preview/translate-api.md)
