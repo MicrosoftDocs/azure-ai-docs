@@ -7,12 +7,12 @@ items:
       - name: What is Azure AI Content Understanding?
         displayName: document, text, images, video, audio, multimodal, visual, structured, content, field, extraction, content filtering, filter
         href: overview.md
-      - name: Create an Azure AI Services resource
-        displayName: extract, text, images, OCR, optical character recognition
-        href: how-to/create-multi-service-resource.md
       - name: What's new
         displayName: changelog, release, updates, previews
         href: whats-new.md
+      - name: Create an Azure AI Services resource
+        displayName: extract, text, images, OCR, optical character recognition
+        href: how-to/create-multi-service-resource.md
       - name: Service quotas and limits
         displayName: quota, tiers, throttle, max, adjustments, requests, support, ocr
         href: service-limits.md
@@ -96,7 +96,7 @@ items:
         href: tutorial/build-person-directory.md
   - name: Azure AI Foundry
     items:
-      - name: "Quickstart: Content Understanding with Azure AI Foundry"
+      - name: Quickstart
         displayName: quickstart, extract, text, images, OCR, optical character recognition
         href: quickstart/use-ai-foundry.md
       - name: Analyzer templates
