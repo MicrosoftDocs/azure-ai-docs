@@ -15,7 +15,7 @@ ms.date: 05/10/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-This article describes an approach or pattern for building a solution that uses Azure AI Search for data retrieval and how to integrate the retrieval into a custom solution that includes Azure AI Agent.
+This article describes an approach or pattern for building a solution that uses Azure AI Search for knowledge retrieval, and how to integrate knowledge retrieval into a custom solution that includes Azure AI Agent.
 
 This article supports the [agentic-retrieval-pipeline-example](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example) Python sample on GitHub.
 
@@ -47,7 +47,7 @@ Use Azure OpenAI or an equivalent open source model:
 
 Development tasks on the Azure AI Search side include:
 
-+ Create a search agent on Azure AI Search that maps to your deployed model in Azure AI Foundry Model.
++ Create a knowledge agent on Azure AI Search that maps to your deployed model in Azure AI Foundry Model.
 + Call the retriever and provide a query, conversation, and override parameters.
 + Parse the response for the parts you want to include in your chat application. For many scenarios, just the content portion of the response is sufficient. 
 
@@ -101,7 +101,7 @@ If you don't have an Azure OpenAI resource in your Foundry project, revisit the 
 
 ### Add an agentic retrieval tool to AI Agent
 
-An end-to-end pipeline needs an orchestration mechanism for coordinating calls to the retriever and agent. You can use a [tool](/azure/ai-services/agents/how-to/tools/function-calling) for this task. The tool calls the Azure AI Search knowledge retrieval client and the Azure AI agent, and it drives the conversations with the user.
+An end-to-end pipeline needs an orchestration mechanism for coordinating calls to the retriever and knowledge agent. You can use a [tool](/azure/ai-services/agents/how-to/tools/function-calling) for this task. The tool calls the Azure AI Search knowledge retrieval client and the Azure AI agent, and it drives the conversations with the user.
 
 ## How to design a prompt
 
@@ -135,7 +135,7 @@ def agentic_retrieval() -> str:
     return retrieval_result.response[0].content[0].text
 ```
 
-To provide instructions used for building the query plan and the subqueries used to get the grounding data, set the message in the search agent:
+To provide instructions used for building the query plan and the subqueries used to get the grounding data, set the message in the knowledge agent:
 
 ```python
 project_client = AIProjectClient.from_connection_string(project_conn_str, credential=credential)
@@ -160,7 +160,7 @@ The LLM determines the quantity of subqueries based on these factors:
 + Chat history
 + Semantic ranker input constraints
 
-As the developer, the best way to control the number of subqueries is by setting the `defaultMaxDocsForReranker` in either the agent definition or as an override on the retrieve action. 
+As the developer, the best way to control the number of subqueries is by setting the `defaultMaxDocsForReranker` in either the knowledge agent definition or as an override on the retrieve action. 
 
 The semantic ranker processes up to 50 documents as an input, and the system creates subqueries to accommodate all of the inputs to semantic ranker. For example, if you only wanted two subqueries, you could set `defaultMaxDocsForReranker` to 100 to accommodate all documents in two batches.
 
@@ -168,7 +168,7 @@ The [semantic configuration](semantic-how-to-configure.md) in the index determin
 
 ## Control the number of threads in chat history
 
-An agent object in Azure AI Search acquires chat history through API calls to the Azure Evaluations SDK, which maintains the thread history. You can filter this list to get a subset of the messages, for example, the last five conversation turns.
+A knowledge agent object in Azure AI Search acquires chat history through API calls to the Azure Evaluations SDK, which maintains the thread history. You can filter this list to get a subset of the messages, for example, the last five conversation turns.
 
 ## Control costs and limit operations
 
@@ -180,7 +180,7 @@ Look at output tokens in the [activity array](search-agentic-retrieval-how-to-re
 
 + Use `gpt mini`.
 
-+ Set `maxOutputSize` in the [search agent](search-agentic-retrieval-how-to-create.md) to govern the size of the response, or `maxRuntimeInSeconds` for time-bound processing.
++ Set `maxOutputSize` in the [knowledge agent](search-agentic-retrieval-how-to-create.md) to govern the size of the response, or `maxRuntimeInSeconds` for time-bound processing.
 
 ## Related content
 

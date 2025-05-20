@@ -227,9 +227,9 @@ with SearchIndexingBufferedSender(endpoint=endpoint, index_name=index_name, cred
 print(f"Documents uploaded to index '{index_name}'")
 ```
 
-## Create a search agent
+## Create a knowledge agent
 
-To connect Azure AI Search to your `gpt-4o-mini` deployment and target the `earth_at_night` index at query time, you need a search agent. The following code defines an agent named `earth-search-agent`, which you specified using the `agent_name` variable in a previous section.
+To connect Azure AI Search to your `gpt-4o-mini` deployment and target the `earth_at_night` index at query time, you need a knowledge agent. The following code defines a knowledge agent named `earth-search-agent`, which you specified using the `agent_name` variable in a previous section.
 
 To ensure relevant and semantically meaningful responses, `default_reranker_threshold` is set to exclude responses with a reranker score of `2.5` or lower.
 
@@ -261,7 +261,7 @@ print(f"Knowledge agent '{agent_name}' created or updated successfully")
 
 ## Set up messages
 
-The next step is to define the agent instructions and conversation context using the `messages` array. Each message includes a `role`, such as `user` or `assistant`, and `content` in natural language. A user message represents the query to be processed, while an assistant message guides the agent on how to respond. During the retrieval process, these messages are sent to an LLM to extract relevant responses from indexed documents.
+The next step is to define the knowledge agent instructions and conversation context using the `messages` array. Each message includes a `role`, such as `user` or `assistant`, and `content` in natural language. A user message represents the query to be processed, while an assistant message guides the knowledge agent on how to respond. During the retrieval process, these messages are sent to an LLM to extract relevant responses from indexed documents.
 
 For now, create the following assistant message, which instructs `earth-search-agent` to answer questions about the Earth at night, cite sources using their `ref_id`, and respond with "I don't know" when answers are unavailable.
 
