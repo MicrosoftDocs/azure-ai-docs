@@ -33,7 +33,7 @@ items:
   - name: Text translation SDK overview
     displayName: get started,sdk,keys,endpoint
     href: text-sdk-overview.md
-  - name: Reference
+  - name: Text translation reference
     expanded: true
     items:
     - name: 🆕 Azure AI Translator 2025-05-01-preview
