@@ -1,12 +1,12 @@
 ---
 title: "Quickstart: Multimodal Search in the Azure portal"
 titleSuffix: Azure AI Search
-description: Learn how to search for multimodal content on an Azure AI Search index in the Azure portal. Run a wizard to vectorize text and images, and then use Search Explorer to provide multimodal content as your query input.
+description: Learn how to search for multimodal content on an Azure AI Search index in the Azure portal. Run a wizard to vectorize text and images, and then use Search Explorer to provide an image as your query input.
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 05/12/2025
+ms.date: 05/20/2025
 ms.custom:
   - references_regions
 ---
@@ -21,13 +21,13 @@ The sample data consists of a multimodal PDF in the [azure-search-sample-data](h
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
-+ An [Azure Storage account](/azure/storage/common/storage-account-create) to store files as blobs. Use Azure Blob Storage or Azure Data Lake Storage Gen2 (a storage account with a hierarchical namespace) on a standard performance (general-purpose v2) account. Access tiers can be hot, cool, or cold.
++ An [Azure Storage account](/azure/storage/common/storage-account-create). Use Azure Blob Storage or Azure Data Lake Storage Gen2 (storage account with a hierarchical namespace) on a standard performance (general-purpose v2) account. Access tiers can be hot, cool, or cold.
 
-+ An [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills) for image vectorization, which requires the Azure AI Vision multimodal embeddings. For regional availability, see the [Azure AI Vision documentation](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
++ An [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills) in East US, West Europe, or North Central US.
 
-+ An [Azure AI Search service](search-create-service-portal.md) for indexing and queries. Your service can be on any tier, but it must be in the [same region as your Azure AI multi-service account](search-create-service-portal.md#regions-with-the-most-overlap).
++ An [Azure AI Search service](search-create-service-portal.md) in the same region as your Azure AI multi-service account. You can use any pricing tier.
 
-  + The pricing tier determines how many blobs you can index. We used the free tier to create this quickstart and limited the content to one PDF.
++ An [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource).
 
 + Familiarity with the wizard. See [Import data wizards in the Azure portal](search-import-data-portal.md).
 
@@ -55,7 +55,7 @@ This quickstart uses a sample multimodal PDF, but you can also use your own file
 
 To prepare the sample data for this quickstart:
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and go to your Azure Storage account.
+1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure Storage account.
 
 1. From the left pane, select **Data storage** > **Containers**.
 
@@ -63,13 +63,27 @@ To prepare the sample data for this quickstart:
 
 1. Create another container to store images extracted from the PDF.
 
+## Prepare models
+
+The wizard requires a large language model (LLM) to verbalize images and an embedding model to generate vector representations of text and images. Both models are available through Azure OpenAI.
+
+Multimodal search supports several models, but this quickstart assumes `gpt-4o` for the LLM and `text-embedding-3-large` for the embedding model.
+
+To prepare the models for this quickstart:
+
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com) and select your Azure OpenAI resource.
+
+1. From the left pane, select **Model catalog**.
+
+1. Deploy `gpt-4o` and `text-embedding-3-large`.
+
 ## Start the wizard
 
-If your Azure AI Search service and Azure AI multi-service account are in the [same region](/azure/ai-services/computer-vision/how-to/image-retrieval) and tenant, and if your Azure Storage blob container has the default configuration, you're ready to proceed.
+If your Azure Storage blob container has the default configuration, and if your Azure AI Search service and Azure AI multi-service account are in the [same supported region](cognitive-search-skill-document-intelligence-layout.md) and tenant, you're ready to proceed.
 
 To start the wizard for multimodal search:
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and go to your Azure AI Search service.
+1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure AI Search service.
 
 1. On the **Overview** page, select **Import and vectorize data**.
 
@@ -77,19 +91,23 @@ To start the wizard for multimodal search:
 
 1. Select your data source: **Azure Blob Storage** or **Azure Data Lake Storage Gen2**.
 
-1. Select the **Multimodal RAG** tile.
+   :::image type="content" source="media/search-get-started-portal-images/select-data-source.png" alt-text="Screenshot of the options for selecting a data source in the wizard." border="true" lightbox="media/search-get-started-portal-images/select-data-source.png":::
+
+1. Select **Multimodal RAG**.
 
    :::image type="content" source="media/search-get-started-portal-images/wizard-scenarios-multimodal-rag.png" alt-text="Screenshot of the Multimodal RAG tile in the wizard." border="true" lightbox="media/search-get-started-portal-images/wizard-scenarios-multimodal-rag.png":::
 
 ## Connect to your data
 
-Azure AI Search requires a connection to the data source that contains the sample data. In this case, the data source is an Azure Storage account.
+Azure AI Search requires a connection to a data source for content ingestion and indexing. In this case, the data source is your Azure Storage account.
 
-To connect to your data source:
+To connect to your data:
 
-1. On the **Connect to your data** page, specify the Azure subscription.
+1. On the **Connect to your data** page, specify your Azure subscription.
 
-1. Select the storage account and container that provide the data. Use the default values for the remaining boxes.
+1. Select the storage account and container to which you uploaded the sample data.
+
+1. Select the **Authenticate using managed identity** checkbox. Leave the identity type as **System-assigned**.
 
    :::image type="content" source="media/search-get-started-portal-images/connect-to-your-data.png" alt-text="Screenshot of the wizard page for setting up a data connection." border="true" lightbox="media/search-get-started-portal-images/connect-to-your-data.png":::
 
@@ -97,11 +115,19 @@ To connect to your data source:
 
 ## Extract your content
 
-The next step is to select a method for document cracking and chunking. The default method uses the [Document Extraction skill](cognitive-search-skill-document-extraction.md) to extract content and metadata from documents, which includes generating normalized images. The [Text Split skill](cognitive-search-skill-textsplit.md) is then used to split the extracted content into pages.
+The next step is to select a method for document cracking and chunking.
 
-To use the default extraction method:
+Your Azure AI multi-service account provides access to the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md), which extracts page numbers, bounding polygons, and other location metadata from both text and images. The Document Layout skill also breaks large documents into smaller, more manageable chunks.
 
-1. On the **Content extraction** page, select the **Default** tile.
+To use the Document Layout skill:
+
+1. On the **Content extraction** page, select **AI Document Intelligence**.
+
+1. Specify your Azure subscription and Azure AI multi-service account.
+
+1. For the authentication type, select **System assigned identity**.
+
+1. Select the checkbox that acknowledges the billing effects of using these resources.
 
    :::image type="content" source="media/search-get-started-portal-images/extract-your-content.png" alt-text="Screenshot of the wizard page for selecting a content extraction method." border="true" lightbox="media/search-get-started-portal-images/extract-your-content.png":::
 
@@ -109,21 +135,41 @@ To use the default extraction method:
 
 ## Embed your content
 
-If the raw content includes text, or if the Document Extraction skill produces text, the wizard calls the [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) to vectorize the text. The same embedding skill is used to generate vector representations of images.
+During this step, the wizard calls two skills to generate both descriptive text for images (image verbalization) and vector embeddings for text and images.
 
-The wizard also calls the [Shaper skill](cognitive-search-skill-shaper.md) to enrich the output with metadata, such as page numbers. This metadata is useful for associating vectorized content with its original context in the document.
+For image verbalization, the [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) uses the LLM you deployed to analyze each extracted image and produce a natural-language description.
 
-To generate embeddings for your text and images:
+For text and image embeddings, the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) uses the embedding model you deployed to convert the text chunks and verbalized descriptions into high-dimensional vectors. These vectors enable similarity and hybrid retrieval.
 
-1. On the **Content embedding** page, select the **Multimodal Embedding** tile.
+To use the GenAI Prompt skill and Azure OpenAI Embedding skill:
 
-1. Select **AI Vision vectorization** for the embedding kind. If it's unavailable, make sure your Azure AI Search service and Azure AI multi-service account are both in a region that [supports the AI Vision multimodal APIs](/azure/ai-services/computer-vision/how-to/image-retrieval).
+1. On the **Content embedding** page, select **Image Verbalization**.
 
-1. Specify the subscription, multi-service account, and authentication type.
+   :::image type="content" source="media/search-get-started-portal-images/image-verbalization-tile.png" alt-text="Screenshot of the Image Verbalization tile in the wizard." border="true" lightbox="media/search-get-started-portal-images/image-verbalization-tile.png":::
 
-1. Select the checkbox that acknowledges the billing effects of using this resource.
+1. On the **Image Verbalization** tab:
 
-   :::image type="content" source="media/search-get-started-portal-images/vectorize-your-text.png" alt-text="Screenshot of the wizard page for vectorizing text and images." border="true" lightbox="media/search-get-started-portal-images/vectorize-your-text.png":::
+   1. For the kind, select **Azure OpenAI**.
+
+   1. Specify your Azure subscription, Azure OpenAI resource, and LLM deployment. This quickstart assumes `gpt-4o`.
+
+   1. For the authentication type, select **System assigned identity**.
+
+   1. Select the checkbox that acknowledges the billing effects of using these resources.
+
+      :::image type="content" source="media/search-get-started-portal-images/image-verbalization-tab.png" alt-text="Screenshot of the wizard page for verbalizing images." border="true" lightbox="media/search-get-started-portal-images/image-verbalization-tab.png":::
+
+1. On the **Text Vectorization** tab:
+
+   1. For the kind, select **Azure OpenAI**.
+
+   1. Specify your Azure subscription, Azure OpenAI resource, and embedding model deployment. This quickstart assumes `text-embedding-3-large`.
+
+   1. For the authentication type, select **System assigned identity**.
+
+   1. Select the checkbox that acknowledges the billing effects of using these resources.
+
+      :::image type="content" source="media/search-get-started-portal-images/text-vectorization-tab.png" alt-text="Screenshot of the wizard page for vectorizing text and images." border="true" lightbox="media/search-get-started-portal-images/text-vectorization-tab.png":::
 
 1. Select **Next**.
 
@@ -133,9 +179,11 @@ The next step is to save any images extracted from your documents in Azure Stora
 
 To store the extracted images:
 
-1. On the **Image output** page, specify the subscription.
+1. On the **Image output** page, specify your Azure subscription.
 
 1. Select the storage account and blob container you created to store the images.
+
+1. Select the **Authenticate using managed identity** checkbox. Leave the identity type as **System-assigned**.
 
    :::image type="content" source="media/search-get-started-portal-images/store-images.png" alt-text="Screenshot of the wizard page for storing the extracting images." border="true" lightbox="media/search-get-started-portal-images/store-images.png":::
 
@@ -160,21 +208,24 @@ You can't modify the generated fields or their attributes, but you can add field
 
 To add fields to the index schema:
 
-1. Select **Add new**.
+1. Under **Index fields**, select **Preview and edit**.
 
-1. Select a source field from the list of available fields, provide a field name for the index, and accept the default data type or override as needed.
+1. Select **Add field**.
 
-   + Metadata fields are searchable but not retrievable, filterable, facetable, or sortable.
+1. Select a source field from the available fields, enter a field name for the index, and accept (or override) the default data type.
+
+   > [!NOTE]
+   > Metadata fields are searchable but not retrievable, filterable, facetable, or sortable.
 
 1. Select **Reset** if you want to restore the schema to its original version.
 
 ## Schedule indexing
 
-For data sources where the underlying data is volatile, you can schedule indexing to capture changes at specific intervals or specific dates and times.
+For data sources where the underlying data is volatile, you can [schedule indexing](search-howto-schedule-indexers.md) to capture changes at specific intervals or specific dates and times.
 
 To schedule indexing:
 
-1. On the **Advanced settings** page, under **Schedule indexing**, specify a [run schedule](search-howto-schedule-indexers.md) for the indexer. We recommend **Once** for this quickstart.
+1. On the **Advanced settings** page, under **Schedule indexing**, specify a run schedule for the indexer. We recommend **Once** for this quickstart.
 
    :::image type="content" source="media/search-get-started-portal-images/run-once.png" alt-text="Screenshot of the wizard page for scheduling indexing." border="true" lightbox="media/search-get-started-portal-images/run-once.png":::
 
@@ -202,15 +253,18 @@ When the wizard completes the configuration, it creates the following objects:
 
 + A skillset with the following skills:
 
-  + The [Document Extraction skill](cognitive-search-skill-document-extraction.md) extracts both text and images from the documents.
+  + The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) splits documents into text chunks and extracts images with location data.
 
-  + The [Text Split skill](cognitive-search-skill-textsplit.md) adds data chunking.
+  + The [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) generates natural-language descriptions (verbalizations) of images.
 
-  + The [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) vectorizes text produced by the Document Extraction skill.
+  + The [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) vectorizes each text chunk.
 
-  + The [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) is called again to vectorize images.
+  + The [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) is called again to vectorize each image verbalization.
 
   + The [Shaper skill](cognitive-search-skill-shaper.md) enriches the output with metadata and creates new images with contextual information.
+
+> [!TIP]
+> Wizard-created objects have configurable JSON definitions. To view or modify these definitions, select **Search management** from the left pane, where you can view your indexes, indexers, data sources, and skillsets.
 
 ## Check results
 
@@ -220,9 +274,9 @@ The following steps assume that you're searching for images. For the other two q
 
 To use Search Explorer for image search:
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and go to your Azure AI Search service.
+1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure AI Search service.
 
-1. From the left pane, select **Search management** > **Indexes**, and then select the index you created.
+1. From the left pane, select **Search management** > **Indexes**, and then select your index.
 
 1. Select the **Search explorer** tab.
 
@@ -250,4 +304,4 @@ This quickstart uses billable Azure resources. If you no longer need the resourc
 
 ## Next step
 
-This quickstart introduced you to the **Import and vectorize data wizard**, which creates all of the necessary objects for multimodal search. To explore each step in detail, see [Tutorial: Index mixed content using multimodal embeddings and the Document Extraction skill](tutorial-multimodal-indexing-with-embedding-and-doc-extraction.md).
+This quickstart introduced you to the **Import and vectorize data wizard**, which creates all of the necessary objects for multimodal search. To explore each step in detail, see [Tutorial: Index mixed content using image verbalizations and the Document Layout skill](tutorial-multimodal-index-image-verbalization-skill.md).
