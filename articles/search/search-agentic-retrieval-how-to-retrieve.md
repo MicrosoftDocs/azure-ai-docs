@@ -11,7 +11,7 @@ ms.topic: how-to
 ms.date: 05/05/2025
 ---
 
-# Retrieve data using aknowledge agent in Azure AI Search
+# Retrieve data using a knowledge agent in Azure AI Search
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
