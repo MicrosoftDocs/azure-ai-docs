@@ -11,11 +11,14 @@ ms.author: jboback
 ms.custom: language-service-clu
 ---
 
-# Label your utterances in Language Studio
+# Label your utterances in AI Foundry
 
-Once you have [built a schema](build-schema.md) for your project, you should add training utterances to your project. The utterances should be similar to what your users use when interacting with the project. When you add an utterance, you have to assign which intent it belongs to. After the utterance is added, label the words within your utterance that you want to extract as entities. 
+Once you have [built a schema](build-schema.md) for your fine-tuning task, you should add training utterances to your project. The utterances should be similar to what your users use when interacting with the project. When you add an utterance, you have to assign which intent it belongs to. After the utterance is added, label the words within your utterance that you want to extract as entities. 
 
-Data labeling is a crucial step in development lifecycle; this data are used in the next step when training your model so that your model can learn from the labeled data. If you already have labeled utterances, you can directly [import it into your project](create-project.md#import-project), but you need to make sure that your data follows the [accepted data format](../concepts/data-formats.md). See [create project](create-project.md#import-project) to learn more about importing labeled data into your project. Labeled data informs the model how to interpret text, and is used for training and evaluation.
+Data labeling is a crucial step in the CLU trained development lifecycle; this data are used in the next step when training your model so that your model can learn from the labeled data. If you already have labeled utterances, you can directly [import it into your project](create-project.md#import-project), provided that your data follows the [accepted data format](../concepts/data-formats.md). See [create fine-tuning task](create-project.md#import-project) to learn more about importing labeled data. Labeled data informs the model how to interpret text and is used for training and evaluation.
+
+   > [!TIP]
+    > Use the **Quick Deploy** option to implement custom CLU intent routing, powered by your own LLM model deployment without adding or labeling any training data.
 
 ## Prerequisites
 
@@ -23,11 +26,11 @@ Before you can label your data, you need:
 
 * A successfully [created project](create-project.md).
 
-See the [project development lifecycle](../overview.md#project-development-lifecycle) for more information.
+See the [CLU development lifecycle](../overview.md#project-development-lifecycle) for more information.
 
 ## Data labeling guidelines
 
-After [building your schema](build-schema.md) and [creating your project](create-project.md), you need to label your data. Labeling your data is important so your model knows which words and sentences are associated with the intents and entities in your project. Spend time labeling your utterances - introducing and refining the data that is used in training your models.
+After [building your schema](build-schema.md) and [creating your project](create-project.md), you need to label your data. Labeling your data is important so your model knows which sentences and words are associated with the intents and entities in your project. Spend time labeling your utterances - introducing and refining the data that is used in training your models.
 
 As you add utterances and label them, keep in mind:
 
@@ -51,9 +54,9 @@ As you add utterances and label them, keep in mind:
 
 Use the following steps to label your utterances:
 
-1. Go to your project page in [Language Studio](https://aka.ms/languageStudio).
+1. Go to your project page in [AI Foundry](https://ai.azure.com).
 
-2. From the left side menu, select **Data labeling**. In this page, you can start adding your utterance and labeling them. You can also upload your utterance directly by clicking on **Upload utterance file** from the top menu, make sure it follows the [accepted format](../concepts/data-formats.md#utterance-file-format).
+2. From the left side menu, select **Manage data**. In this page, you can start adding your utterances and labeling them. You can also upload your utterances directly by clicking on **Upload utterance file** from the top menu, make sure it follows the [accepted format](../concepts/data-formats.md#utterance-file-format).
 
 3. From the top pivots, you can change the view to be **training set** or **testing set**.  Learn more about [training and testing sets](train-model.md#data-splitting) and how they're used for model training and evaluation.
     
@@ -83,19 +86,22 @@ Use the following steps to label your utterances:
 
 
   > [!NOTE]
-  > List and prebuilt components are not shown in the data labeling page, and all labels here only apply to the **learned component**.
+  > List, regex, and prebuilt components are not shown in the data labeling page, and all labels here only apply to the **learned component**.
 
 To remove a label:
   1. From within your utterance, select the entity you want to remove a label from.
   3. Scroll through the menu that appears, and select **Remove label**.
 
 To delete an entity:
-  1. Select the entity you want to edit in the right side pane.
-  2. Select the three dots next to the entity, and select the option you want from the drop-down menu.
+  1. Select the garbage bin icon next to the entity you want to edit in the right side pane. Then select **Delete** to confirm. 
 
 ## Suggest utterances with Azure OpenAI
 
-In CLU, use Azure OpenAI to suggest utterances to add to your project using GPT models. You first need to get access and create a resource in Azure OpenAI. You'll then need to create a deployment for the GPT models. Follow the pre-requisite steps [here](../../../openai/how-to/create-resource.md).
+In CLU, use Azure OpenAI to suggest utterances to add to your project using generative language models. It is recommended to use an AI Foundry resource while using CLU, so you do not need to connect multiple resources. In order to use the AI Foundry resource, you'll need to provide your AI Foundry resource with elevated access. To do this, access the Azure Portal. Within your Azure AI resource, provide access as a *Cognitive Services User* to itself. This ensures that all parts of your resource are communicating correctly. 
+
+###Connecting with separate Language and AOAI Resources
+
+You first need to get access and create a resource in Azure OpenAI. Next, you'll create a connection to the Azure OpenAI resource within the same AI Foundry project in the **Management center** in the left panel of the Azure AI Foundry page. You'll then need to create a deployment for the AOAI models within the connected AOAI resource. Follow the pre-requisite steps [here](../../../openai/how-to/create-resource.md) to create a new resource.
 
 Before you get started, the suggest utterances feature is only available if your Language resource is in the following regions:
 * East US
@@ -116,11 +122,9 @@ Using this feature entails a charge to your Azure OpenAI resource for a similar 
 
 ### Add required configurations to Azure OpenAI resource
 
-If connecting your Language resource to an Azure OpenAI resource fails, follow these steps:
-
 Enable identity management for your Language resource using the following options:
 
-### [Azure portal](#tab/portal)
+#### [Azure portal](#tab/portal)
 
 Your Language resource must have identity management, to enable it using the [Azure portal](https://portal.azure.com):
 
@@ -128,7 +132,7 @@ Your Language resource must have identity management, to enable it using the [Az
 2. From left hand menu, under **Resource Management** section, select **Identity**
 3. From **System assigned** tab, make sure to set **Status** to **On**
 
-### [Language Studio](#tab/studio)
+#### [Language Studio](#tab/studio)
 
 Your Language resource must have identity management, to enable it using [Language Studio](https://aka.ms/languageStudio):
 
@@ -152,7 +156,7 @@ After enabling managed identity, assign the role `Cognitive Services User` to yo
 
 :::image type="content" source="../media/add-role-azure-openai.gif" alt-text="Multiple screenshots showing the steps to add the required role to your Azure OpenAI resource." lightbox="../media/add-role-azure-openai.gif":::
 
-After a few minutes, refresh the Language Studio and you are able to successfully connect to Azure OpenAI.
+After a few minutes, refresh the AI Foundry, and you can successfully connect to Azure OpenAI.
 
 ## Next Steps
 * [Train Model](./train-model.md)
