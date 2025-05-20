@@ -6,7 +6,7 @@ services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 01/30/2025
+ms.date: 05/20/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
@@ -15,7 +15,7 @@ zone_pivot_groups: selection-azure-functions-samples
 
 # How to use Azure Functions with Azure AI Agents 
 
-Azure AI Agents supports function calling, which allows you to describe the structure of functions to an Assistant and then return the functions that need to be called along with their arguments. These examples show how to use Azure Functions to process the function calls through queue messages in Azure Storage. You can see a complete working sample on [GitHub](https://github.com/Azure-Samples/azure-functions-ai-services-agent-python)
+Azure AI Agents supports function calling, which allows you to describe the structure of functions to an Assistant and then return the functions that need to be called along with their arguments. These examples show how to use Azure Functions to process the function calls through queue messages in Azure Storage.
 
 
 ## Prerequisites
@@ -25,6 +25,8 @@ Azure AI Agents supports function calling, which allows you to describe the stru
 
 ::: zone pivot="python"
 
+> [!TIP]
+> You can find a complete working sample on [GitHub](https://github.com/Azure-Samples/azure-functions-ai-services-agent-python)
 
 ## Define a function for your agent to call
 
@@ -311,6 +313,9 @@ For any issues with the TypeScript code, create an issue on the [sample code rep
 ::: zone-end
 -->
 ::: zone pivot="csharp"
+
+> [!TIP]
+> You can find a complete working sample on [GitHub](https://github.com/Azure-Samples/azure-functions-ai-services-agent-dotnet)
 
 ## Prerequisites for .NET Azure Function Sample
 To make a function call, we need to create and deploy the Azure function. In the code snippet, we have an example of function on C# which can be used by the earlier code.
