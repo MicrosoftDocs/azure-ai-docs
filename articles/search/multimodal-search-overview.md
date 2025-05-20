@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn what multimodal search is, how Azure AI Search supports it for text + image content, and where to find detailed concepts, tutorials, and samples.
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 05/12/2025
+ms.date: 05/19/2025
 author: gmndrg
 ms.author: gimondra
 ---
@@ -27,7 +27,7 @@ Azure AI Search simplifies the construction of a multimodal pipeline through a g
 
 The functionality behind the **Import and vectorize data** wizard's multimodality option is powered by managed, configurable AI skills and the Azure Search knowledge store:
 
-+ [Document Intelligence layout skill](cognitive-search-skill-document-intelligence-layout.md) and [document extraction skill](cognitive-search-skill-document-extraction.md) obtain page text, inline images, and structural metadata. The Document Extraction skill doesn't support polygon extraction or page number extraction. Also, the range of supported file types may vary. To ensure optimal alignment with your specific use case, check each skill documentation for detailed information on compatibility and capabilities.
++ [Document Intelligence layout skill](cognitive-search-skill-document-intelligence-layout.md) and [document extraction skill](cognitive-search-skill-document-extraction.md) obtain page text, inline images, and structural metadata. The Document Extraction skill doesn't support polygon extraction or page number extraction. Also, the range of supported file types may vary. To ensure optimal alignment with your specific use case, check each skill documentation for detailed information on compatibility and capabilities. The native document parsing mechanisms (document layout or document extraction skills) don't have support for table recognition or its structure preservation. If table extraction and its structure preservation support is required, it's recommended that a [Web API custom skill](cognitive-search-custom-skill-web-api.md) is built and call [Azure AI Content Understanding service](/azure/ai-services/content-understanding/tutorial/build-rag-solution) for content extraction (including tables). 
 + [Split skill](cognitive-search-skill-textsplit.md) chunks the extracted text for utilization in the remaining pipeline functionality (such as embedding skills). 
 + [Gen AI prompt skill](cognitive-search-skill-genai-prompt.md) verbalizes images, producing concise natural-language descriptions suitable for text search and embedding using a Large Language Model (LLM). 
 + Text/image (or multimodal) embedding skills create embeddings for text and images, enabling similarity and hybrid retrieval. You can call [Azure OpenAI](cognitive-search-skill-azure-openai-embedding.md), [AI Foundry](cognitive-search-aml-skill.md), or [AI Vision](cognitive-search-skill-vision-vectorize.md) embedding models natively.
@@ -39,7 +39,8 @@ A multimodal pipeline begins by cracking each source document into chunks of tex
 
 | Characteristic | Document Intelligence layout skill | Document extraction skill |
 |----------------|------------------------------------|---------------------------|
-| Location metadata extraction (page, bounding polygon) | Yes | No |
+| Text location metadata extraction (page, bounding polygon) | Yes | No |
+| Image location metadata extraction (page, bounding polygon) | Yes | Yes |
 | Data-extraction billing | Billed according to [Document Intelligence layout-model pricing](https://azure.microsoft.com/pricing/details/ai-document-intelligence/). | Image extraction is billed as outlined in the [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search/). |
 | Recommended scenarios | RAG pipelines and agent workflows that need precise page numbers, on-page highlights, or diagram overlays in client apps. | Rapid prototyping or production pipelines where the exact position or detailed layout information isn't required. |
 
