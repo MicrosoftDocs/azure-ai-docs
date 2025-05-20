@@ -43,15 +43,36 @@ Azure AI Search dynamically constructs security filters based on the user permis
 
 For Azure RBAC, permissions are list of resource ID strings, and there must an Azure role assignment (Storage Blob Data Reader) on the data the source that grants access to the security principal token in the authorization header. The filter excludes documents if there's no role assignment for the principal behind the access token on the request.
 
-### 3. Results filtering  
+### 3. Results filtering
+  
 The security filter efficiently matches the userIds, groupIds, and rbacScope from the user against each list of ACLs in every document in the search index to limit the results returned to ones the user has access to. It's important to note that each filter is applied independently and a document is considered authorized if any filter succeeds. For example, if a user has access to a document through userIds but not through groupIds, the document is still considered valid and returned to the user.
 
 ## Limitations
+
 - If ACL evaluation fails (for example, Graph API is unavailable), the service returns **5xx** and does **not** return a partially filtered result set.
 - Document visibility requires both:
   - the calling application’s RBAC role (Authorization header), and  
   - the user identity carried by **x-ms-query-source-authorization**.
 
-## Next steps
-* [How to Index Permission Information](tutorial-adls-gen2-indexer-acls.md) provides a detailed walkthrough of how to set up an index with ACLs using Azure Search indexers.
-* [Indexing ACLs and RBAC using Push API in Azure AI Search](search-index-access-control-lists-and-rbac-push-api.md) provides a walkthrough of how to set up an index with ACLs using the push API.
+## Query example
+
+Here's an example of a query request. The query token is passed in the request header.
+
+```http
+POST  {{endpoint}}/indexes/stateparks/docs/search?api-version=2025-05-01-preview
+Authorization: Bearer {{search-token}}
+x-ms-query-source-authorization: {{search-token}}
+Content-Type: application/json
+
+{
+    "search": "*",
+    "select": "name,description,location,GroupIds",
+    "orderby": "name asc"
+}
+```
+
+## Related content
+
+- [Tutorial: Index ADLS Gen2 permission metadata](tutorial-adls-gen2-indexer-acls.md) provides a detailed walkthrough of how to set up an index with ACLs using Azure Search indexers.
+
+- [Indexing ACLs and RBAC using Push API in Azure AI Search](search-index-access-control-lists-and-rbac-push-api.md) provides a walkthrough of how to set up an index with ACLs using the push indexing approach with the REST APIs.
