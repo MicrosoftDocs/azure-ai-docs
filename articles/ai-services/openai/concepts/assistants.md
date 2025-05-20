@@ -3,7 +3,7 @@ title: Azure OpenAI in Azure AI Foundry Models Assistants API concepts
 titleSuffix: Azure OpenAI
 description: Learn about the concepts behind the Azure OpenAI Assistants API.
 ms.topic: conceptual
-ms.date: 02/04/2025
+ms.date: 05/20/2025
 ms.service: azure-ai-openai
 manager: nitinme
 author: aahill
@@ -12,6 +12,9 @@ recommendations: false
 ---
 
 # Azure OpenAI Assistants API (Preview)
+
+> [NOTE]
+> The [Azure AI Foundry Agent Service](../../agents/overview.md) is now Generally Available, which provides more tools and better enterprise features. We recommend migrating your workloads to the new service for the latest feature updates and improvements.
 
 Assistants, a feature of Azure OpenAI in Azure AI Foundry Models, is available in public preview starting in the `2024-02-15-preview` API version. Assistants API makes it easier for developers to create applications with sophisticated copilot-like experiences that can sift through data, suggest solutions, and automate tasks.
 
@@ -38,11 +41,25 @@ Assistants API is built on the same capabilities that power OpenAI’s GPT produ
 > [!IMPORTANT]
 > Retrieving untrusted data using Function calling, Code Interpreter or File Search with file input, and Assistant Threads functionalities could compromise the security of your Assistant, or the application that uses the Assistant. Learn about mitigation approaches [here](https://aka.ms/oai/assistant-rai).
 
+### Using assistants
+
+For information on using assistants, see the following reference documentation. 
+* [C#](/dotnet/api/overview/azure/ai.openai.assistants-readme?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext)
+* [Java](/java/api/overview/azure/ai-openai-assistants-readme?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext)
+* [JavaScript](../how-to/migration-javascript.md?tabs=javascript-new#assistants)
+* [Python](https://platform.openai.com/docs/api-reference/assistants)
+* [REST API](../reference-preview.md#list---assistants)
+
 ## Available models
 
 To see a list of Azure OpenAI models that you can use with assitants, see the [Models](./models.md#assistants-preview) article.
 
 ## Assistants playground
+
+Before using assistants, you need:
+
+- A [compatable model](../concepts/models.md#assistants-preview) deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
+- An [Azure AI project](../../../ai-foundry/how-to/create-projects.md) in Azure AI Foundry portal.
 
 We provide a walkthrough of the Assistants playground in our [quickstart guide](../assistants-quickstart.md). This provides a no-code environment to test out the capabilities of assistants.
 
