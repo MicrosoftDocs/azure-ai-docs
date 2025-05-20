@@ -122,10 +122,17 @@ You can create a new Azure AI Foundry project from the Azure AI Foundry Extensio
 1. Select the **plus** icon next to **Resources** in the **Resources** section of the Azure AI Foundry Extension view.
 
 1. In the top center, enter the Azure AI Foundry Project name to use in the **Enter project name** textbox and press Enter.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/enter-project-name.png" alt-text="Screenshot of the Enter project name textbox." lightbox="../../media/how-to/get-started-projects-vs-code/enter-project-name.png":::
+
 You can either create a new resource group or select an existing one.
 - To create a new resource group:
     1. In the top center, select **Create new resource group** and press Enter.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-resource-group.png" alt-text="Screenshot of the Choose resource group dropdown with the reate new resource group item highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/select-resource-group.png":::  
+    
     1. In the top center, enter the Azure Resource Group name to use in the **Enter new resource group** textbox and press Enter.
+
     1. In the top center, select the location you want to use from the list of available locations and press Enter.
 
 - To use an existing resource group:
@@ -133,7 +140,7 @@ You can either create a new resource group or select an existing one.
 
 After project deployment, a popup appears with the message **Project deployed successfully**.
 
-:::image type="content" source="../../media/how-to/get-started-projects-vs-code/project-deployed.png" alt-text="A screenshot of the Project deployed successfully popup withe the Deploy a model button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/project-deployed.png":::
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/project-deployed.png" alt-text="A screenshot of the Project deployed successfully popup with the Deploy a model button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/project-deployed.png":::
 
 To deploy a model to the newly created project, select the **Deploy a model** button in the popup.
 This action opens the **Model Catalog** page in the Azure AI Foundry Extension view to select the desired model to [deploy.](#deploy-a-model-from-the-model-catalog) 
@@ -151,7 +158,6 @@ Switch your default project by following these steps:
 Your selected project will now display **Default** after the project name.
 
 :::image type="content" source="../../media/how-to/get-started-projects-vs-code/default-project.png" alt-text="A screenshot of the designated default project." lightbox="../../media/how-to/get-started-projects-vs-code/default-project.png"::: 
-
 
 ## Work with models
 
@@ -208,7 +214,7 @@ Deploy a selected model in the model catalog using the following steps:
 
 1. In the top center, select the AI service to use in the **Choose an AI service** dropdown and press Enter.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/choose-ai-service.png" alt-text="Screenshot of the Chosen AI service dropdown." lightbox="../../media/how-to/get-started-projects-vs-code/choose-ai-service.png":::
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/choose-ai-service.png" alt-text="Screenshot of the Choose an AI service dropdown." lightbox="../../media/how-to/get-started-projects-vs-code/choose-ai-service.png":::
 
 1. In the top center, select the model version to use in the **Choose model version** dropdown and press Enter.
 
