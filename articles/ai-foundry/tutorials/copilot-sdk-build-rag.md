@@ -5,7 +5,7 @@ description:  Learn how to build a RAG-based chat app using the Azure AI Foundry
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: tutorial
-ms.date: 02/12/2025
+ms.date: 04/07/2025
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
@@ -28,11 +28,16 @@ This tutorial is part two of a three-part tutorial.
 
 ## Prerequisites
 
+[!INCLUDE [hub-only-tutorial](../includes/hub-only-tutorial.md)]
+
 * Complete [Tutorial:  Part 1 - Create resources for building a custom chat application with the Azure AI SDK](copilot-sdk-create-resources.md) to:
 
     * Create a project with a connected Azure AI Search index
     * Install the Azure CLI, Python, and required packages
     * Configure your environment variables
+
+* Use the same **[!INCLUDE [hub](../includes/hub-project-name.md)]** you created in part 1. 
+
 
 ## Create example data for your chat app
 

@@ -1149,6 +1149,22 @@
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-async-meeting-transcription.md",
       "redirect_url": "/azure/ai-services/speech-service/multi-device-conversation",
       "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/content-understanding/concepts/capabilities.md",
+      "redirect_url": "/azure/ai-services/content-understanding/concepts/analyzer-templates",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/content-understanding/concepts/retrieval-augmented-generation.md",
+      "redirect_url": "/azure/ai-services/content-understanding/tutorial/build-rag-solution",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/content-understanding/concepts/accuracy-confidence.md",
+      "redirect_url": "/azure/ai-services/content-understanding/concepts/best-practices",
+      "redirect_document_id": true
     }
+
   ]
 }

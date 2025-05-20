@@ -24,7 +24,7 @@ Training a model is typically an iterative process. You first select a base mode
 You can use a custom model for a limited time after it was trained. You must periodically recreate and adapt your custom model from the latest base model to take advantage of the improved accuracy and quality. For more information, see [Model and endpoint lifecycle](./how-to-custom-speech-model-and-endpoint-lifecycle.md).
 
 > [!IMPORTANT]
-> If you train a custom model with audio data, select a service resource in a region with dedicated hardware for training audio data. After a model is trained, you can [copy it to an AI Services resource for Speech](#copy-a-model) in another region as needed. 
+> If you train a custom model with audio data, select a service resource in a region with dedicated hardware for training audio data. After a model is trained, you can [copy it to an AI Foundry resource for Speech](#copy-a-model) in another region as needed. 
 > 
 > In regions with dedicated hardware for custom speech training, the Speech service will use up to 100 hours of your audio training data, and can process about 10 hours of data per day. See footnotes in the [regions](regions.md#regions) table for more information.  
 
@@ -242,7 +242,7 @@ The top-level `self` property in the response body is the model's URI. Use this 
 
 ## Copy a model
 
-You can copy a model to another project that uses the same locale. For example, after a model is trained with audio data in a [region](regions.md#regions) with dedicated hardware for training, you can copy it to an AI Services resource for Speech in another region as needed. 
+You can copy a model to another project that uses the same locale. For example, after a model is trained with audio data in a [region](regions.md#regions) with dedicated hardware for training, you can copy it to an AI Foundry resource for Speech in another region as needed. 
 
 ::: zone pivot="ai-foundry-portal"
 
@@ -259,7 +259,7 @@ Follow these instructions to copy a model to a project in another region:
 1. Select **Copy to**.
 1. On the **Copy speech model** page, select a target region where you want to copy the model.
     :::image type="content" source="./media/custom-speech/custom-speech-copy-to-zoom.png" alt-text="Screenshot of a phrase list applied in Speech Studio." lightbox="./media/custom-speech/custom-speech-copy-to-full.png":::
-1. Select an AI Services resource for Speech in the target region, or create a new Speech resource.
+1. Select an AI Foundry resource for Speech in the target region, or create a new Speech resource.
 1. Select a project where you want to copy the model, or create a new project.
 1. Select **Copy**. 
 

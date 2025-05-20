@@ -24,7 +24,11 @@ ms.author: jboback
 
     :::image type="content" source="../../../media/azure-portal-resource-credentials.png" alt-text="A screenshot showing the key and endpoint page in the Azure portal" lightbox="../../../media/azure-portal-resource-credentials.png":::
 
+## Import a new CLU fine-tuning project
 
+Once you have a Language resource or an Azure AI resource created, create a fine-tuning task and select Azure AI language and select Conversational language understanding as the task type. A task is a work area for building your custom models based on your data. Your task can only be accessed by you and others who have access to the resource being used. 
+
+For this quickstart, you can download [this sample](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/language-service/CLU/EmailAppDemo.json) and import it. This task can predict the intended commands from user input, such as: reading emails, deleting emails, and attaching a document to an email. 
 
 ## Import a new CLU sample project
 

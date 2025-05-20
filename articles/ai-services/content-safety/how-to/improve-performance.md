@@ -26,8 +26,8 @@ False positives occur when the system incorrectly flags non-harmful content as h
 
 Conduct an initial assessment to confirm that you really have a false positive or false negative. This can involve: 
 - Checking the context of the flagged content.  
-- Comparing the flagged content against the content safety risk categories and severity definitions:
-    - If you're using content safety in Azure OpenAI, see the [Azure OpenAI content filtering doc](/azure/ai-services/openai/concepts/content-filter).
+- Comparing the flagged content against the content risk categories and severity definitions:
+    - If you're using Guardrails & controls in Azure OpenAI, see the [Azure OpenAI content filtering doc](/azure/ai-services/openai/concepts/content-filter).
     - If you're using the Azure AI Content Safety standalone API, see the [Harm categories doc](/azure/ai-services/content-safety/concepts/harm-categories?tabs=warning) or the [Prompt Shields doc](/azure/ai-services/content-safety/concepts/jailbreak-detection), depending on which API you're using.
 
 ## Customize your severity settings
@@ -45,9 +45,9 @@ In addition to adjusting the severity levels for false negatives, you can also u
 
 Read the [Configurability](/en-us/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cuser-prompt%2Cpython-new#configurability-preview) documentation, as some content filtering configurations may require approval through the process mentioned there.
 
-Follow the steps in the documentation to update configurations to handle false positives or negatives: [How to use content filters (preview) with Azure OpenAI Service](/azure/ai-services/openai/how-to/content-filters). 
+Follow the steps in the documentation to update configurations to handle false positives or negatives: [How to use content filters (preview) with Azure OpenAI in Azure AI Foundry Models](/azure/ai-services/openai/how-to/content-filters). 
 
-In addition to adjusting the severity levels for false negatives, you can also use blocklists. Detailed instruction can be found in [How to use blocklists with Azure OpenAI Service](/azure/ai-services/openai/how-to/use-blocklists).
+In addition to adjusting the severity levels for false negatives, you can also use blocklists. Detailed instruction can be found in [How to use blocklists with Azure OpenAI](/azure/ai-services/openai/how-to/use-blocklists).
 
 #### [Azure AI Foundry](#tab/azure-ai-studio)
 

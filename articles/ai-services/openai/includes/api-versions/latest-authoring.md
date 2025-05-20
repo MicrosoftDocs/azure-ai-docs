@@ -1,6 +1,6 @@
 ---
 title: Azure OpenAI latest preview authoring API documentation
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Latest preview data plane authoring documentation generated from OpenAPI 3.0 spec
 manager: nitinme
 ms.service: azure-ai-openai

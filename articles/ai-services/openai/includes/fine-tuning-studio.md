@@ -1,7 +1,7 @@
 ---
-title: 'Customize a model with Azure OpenAI Service and Azure AI Foundry portal'
+title: 'Customize a model with Azure OpenAI in Azure AI Foundry Models and Azure AI Foundry portal'
 titleSuffix: Azure OpenAI
-description: Learn how to create your own custom model with Azure OpenAI Service by using the Azure AI Foundry portal.
+description: Learn how to create your own custom model with Azure OpenAI by using the Azure AI Foundry portal.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
@@ -20,30 +20,23 @@ ms.author: mbullwin
 
 ### Supported models
 
-The following models support fine-tuning:
-
-- `gpt-35-turbo` (1106)
-- `gpt-35-turbo` (0125)
-- `gpt-4o` (2024-08-06)
-- `gpt-4o-mini` (2024-07-18)
-- `gpt-4.1` (2024-04-14)
-- `gpt-4.1-mini`(2025-04-14)
+Consult the [models page](../concepts/models.md#fine-tuning-models) to check which regions currently support fine-tuning.
 
 Or you can fine tune a previously fine-tuned model, formatted as base-model.ft-{jobid}.
-
-
-Consult the [models page](../concepts/models.md#fine-tuning-models) to check which regions currently support fine-tuning.
 
 ## Review the workflow for Azure AI Foundry portal
 
 Take a moment to review the fine-tuning workflow for using Azure AI Foundry portal:
 
 1. Prepare your training and validation data.
-1. Use the **Create custom model** wizard in Azure AI Foundry portal to train your custom model.
+1. Use the **Create a fine-tuned model** dialog in Azure AI Foundry portal to train your custom model.
+    1. Select a training method.
     1. Select a base model.
+    1. [Choose your training type](#choose-your-training-type)
     1. [Choose your training data](#choose-your-training-data).
-    1. Optionally, [choose your validation data](#choose-your-validation-data).
-    1. Optionally, [configure task parameters](#configure-task-parameters) for your fine-tuning job.
+    1. Optionally, [choose your validation data](#choose-your-validation-data-optional).
+    1. Optionally, [configure task parameters](#configure-training-parameters-optional) for your fine-tuning job.
+    1. Optionally, [enable auto-deployment](#enable-auto-deployment-optional) for the resulting custom model.
     1. [Review your choices and train your new custom model](#review-your-choices-and-train-your-model).
 1. Check the status of your custom fine-tuned model.
 1. Deploy your custom model for use.
@@ -98,9 +91,9 @@ The more training examples you have, the better. Fine-tuning jobs will not proce
 
 In general, doubling the dataset size can lead to a linear increase in model quality. But keep in mind, low quality examples can negatively impact performance. If you train the model on a large amount of internal data, without first pruning the dataset for only the highest quality examples you could end up with a model that performs much worse than expected.
 
-## Use the Create custom model wizard
+## Creating a fine-tuned model
 
-Azure AI Foundry portal provides the **Create custom model** wizard, so you can interactively create and train a fine-tuned model for your Azure resource.
+Azure AI Foundry portal provides the **Create a fine-tuned model** dialog, so in one place you can easily create and train a fine-tuned model for your Azure resource.
 
 1. Go to the Azure AI Foundry portal at <a href="https://ai.azure.com/" target="_blank">https://ai.azure.com/</a> and sign in with credentials that have access to your Azure OpenAI resource. During the sign-in workflow, select the appropriate directory, Azure subscription, and Azure OpenAI resource.
 
@@ -108,22 +101,48 @@ Azure AI Foundry portal provides the **Create custom model** wizard, so you can 
 
    :::image type="content" source="../media/fine-tuning/studio-create-custom-model.png" alt-text="Screenshot that shows how to access the Create custom model wizard in Azure AI Foundry portal." lightbox="../media/fine-tuning/studio-create-custom-model.png":::
 
-1. Select a base model to fine-tune, and then select **Next** to continue.
+1. Select a model to fine-tune, and then select **Next** to continue.
+
+   :::image type="content" source="../media/fine-tuning/studio-model-selection.png" alt-text="Screenshot of the model selection dialog in Azure AI Foundry portal.":::
+
+You should now see the **Create a fine-tuned model** dialog.
+
+:::image type="content" source="../media/fine-tuning/studio-create-fine-tuned-model.png" alt-text="Screenshot of the Create a fine-tuned model dialog." lightbox="../media/fine-tuning/studio-create-fine-tuned-model.png":::
+
+### Choose your training method
+
+The first step is to confirm you model choice and the training method. Not all models support all training methods.
+
+- **Supervised Fine Tuning** (SFT): supported by all non-reasoning models.
+- **Direct Preference Optimization (Preview)** ([DPO](../how-to/fine-tuning-direct-preference-optimization.md)): supported by GPT-4o.
+- **Reinforcement Fine Tuning (Preview)** (RFT): supported by reasoning models, like o4-mini.
+
+When selecting the model, you may also select a [previously fine-tuned model](#continuous-fine-tuning).
+
+### Choose your training type
+
+Select the training tier you'd like to use for your fine-tuning job:
+
+- **Standard**: training occurs in the current Azure OpenAI resource's region, providing data residency.
+- **Global (Preview)**: [more affordable](https://aka.ms/aoai-pricing) training per-token, does not offer [data residency](https://aka.ms/data-residency).
+
+If you have no data residency requirements, **Global** is a good choice to take advantage of training capacity beyond your current region. While in public preview, **Global** may not be available within your current region. Consult
+
+In some cases, **Standard** may not be available within your current region. If you require data residency, consult regions listed on the [model availability](../concepts/models.md#fine-tuning-models) for your chosen model.
 
 ### Choose your training data
 
-The next step is to either choose existing prepared training data or upload new prepared training data to use when customizing your model. The **Training data** pane displays any existing, previously uploaded datasets and also provides options to upload new training data.
+The next step is to either choose existing prepared training data or upload new prepared training data to use when customizing your model by selecting **Add training data**.
 
-:::image type="content" source="../media/fine-tuning/studio-training-data.png" alt-text="Screenshot of the Training data pane for the Create custom model wizard in Azure AI Foundry portal." lightbox="../media/fine-tuning/studio-training-data.png":::
+The **Training data** dialog displays any existing, previously uploaded datasets and also provides options to upload new training data.
 
-- If your training data is already uploaded to the service, select **Files from Azure OpenAI Connection**.
+:::image type="content" source="../media/fine-tuning/studio-training-data.png" alt-text="Screenshot of the Training data pane for the Create custom model wizard in Azure AI Foundry portal.":::
 
+- If your training data is already uploaded to the service, select **Files from Connected AI resource**.
    - Select the file from the dropdown list shown.
 
 - To upload new training data, use one of the following options:
-
-   - Select **Local file** to upload training data from a local file.
-
+   - Select **Upload files** to upload training data from a local file.
    - Select **Azure blob or other shared web locations** to import training data from Azure Blob or another shared web location.
 
 For large data files, we recommend that you import from an Azure Blob store. Large files can become unstable when uploaded through multipart forms because the requests are atomic and can't be retried or resumed. For more information about Azure Blob Storage, see [What is Azure Blob Storage](/azure/storage/blobs/storage-blobs-overview)?
@@ -131,22 +150,19 @@ For large data files, we recommend that you import from an Azure Blob store. Lar
 > [!NOTE]
 > Training data files must be formatted as JSONL files, encoded in UTF-8 with a byte-order mark (BOM). The file must be less than 512 MB in size.
 
-### Choose your validation data
+### Choose your validation data (optional)
 
-The next step provides options to configure the model to use validation data in the training process. If you don't want to use validation data, you can choose **Next** to continue to the advanced options for the model. Otherwise, if you have a validation dataset, you can either choose existing prepared validation data or upload new prepared validation data to use when customizing your model.
+If you have a validation dataset, select **Add training data**. You can either choose existing prepared validation data or upload new prepared validation data to use when customizing your model.
 
-The **Validation data** pane displays any existing, previously uploaded training and validation datasets and provides options by which you can upload new validation data. 
+The **Validation data** dialog displays any existing, previously uploaded training and validation datasets and provides options by which you can upload new validation data. 
 
-:::image type="content" source="../media/fine-tuning/studio-validation-data.png" alt-text="Screenshot of the Validation data pane for the Create custom model wizard in Azure AI Foundry portal." lightbox="../media/fine-tuning/studio-validation-data.png":::
+:::image type="content" source="../media/fine-tuning/studio-validation-data.png" alt-text="Screenshot of the Validation data pane for the Create custom model wizard in Azure AI Foundry portal.":::
 
 - If your validation data is already uploaded to the service, select **Choose dataset**.
-
    - Select the file from the list shown in the **Validation data** pane.
 
 - To upload new validation data, use one of the following options:
-
    - Select **Local file** to upload validation data from a local file.
-   
    - Select **Azure blob or other shared web locations** to import validation data from Azure Blob or another shared web location.
 
 For large data files, we recommend that you import from an Azure Blob store. Large files can become unstable when uploaded through multipart forms because the requests are atomic and can't be retried or resumed.
@@ -154,26 +170,34 @@ For large data files, we recommend that you import from an Azure Blob store. Lar
 > [!NOTE]
 > Similar to training data files, validation data files must be formatted as JSONL files, encoded in UTF-8 with a byte-order mark (BOM). The file must be less than 512 MB in size.
 
-### Configure task parameters
+### Make your model identifiable (optional)
 
-The **Create custom model** wizard shows the parameters for training your fine-tuned model on the **Task parameters** pane. The following parameters are available:
+We also recommend including a `suffix` parameter to make it easier to distinguish between different iterations of your fine-tuned model. A `suffix` takes a string of up to 18 characters and is used when naming the resulting fine-tuned model.
 
+### Configure training parameters (optional)
+
+You may provide an optional **seed** and tune additional hyperparameters.
+
+The **seed** controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed isn't specified, one will be randomly generated for you.
+
+:::image type="content" source="../media/fine-tuning/studio-create-hyperparams.png" alt-text="Close up screenshot of the parameters section of the Create custom model wizard in Azure AI Foundry portal.":::
+
+The following hyperparameters are available for tuning via the Azure AI Foundry portal:
 
 |**Name**| **Type**| **Description**|
 |---|---|---|
-|`batch_size` |integer | The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass. In general, we've found that larger batch sizes tend to work better for larger datasets. The default value as well as the maximum value for this property are specific to a base model. A larger batch size means that model parameters are updated less frequently, but with lower variance. |
-| `learning_rate_multiplier` | number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pre-training multiplied by this value. Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best results. A smaller learning rate may be useful to avoid overfitting. |
-|`n_epochs` | integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. |
-| `seed` | integer | The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed isn't specified, one will be generated for you|
-| `Beta`| integer | Temperature parameter for the dpo loss, typically in the range 0.1 to 0.5. This controls how much attention we pay to the reference model. The smaller the beta, the more we allow the model to drift away from the reference model. As beta gets smaller the more, we ignore the reference model.  |
+|**Batch Size** | integer | The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass. In general, we've found that larger batch sizes tend to work better for larger datasets. The default value as well as the maximum value for this property are specific to a base model. A larger batch size means that model parameters are updated less frequently, but with lower variance. |
+|**Learning Rate Multiplier** | number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pre-training multiplied by this value. Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best results. A smaller learning rate may be useful to avoid overfitting. |
+|**Number of Epochs** | integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. |
 
+### Enable auto deployment (optional)
 
+To save time, you can optionally enable auto-deployment for your resulting model. If training completes successfully, the model will be deployed using the selected [deployment type](../how-to/deployment-types.md). The deployment will be named based on the unique name generated for your custom model and the optional **suffix** you may have provided [earlier](#make-your-model-identifiable-optional).
 
-:::image type="content" source="../media/fine-tuning/studio-advanced-options.png" alt-text="Screenshot of the Advanced options pane for the Create custom model wizard, with default options selected." lightbox="../media/fine-tuning/studio-advanced-options.png":::
+:::image type="content" source="../media/fine-tuning/studio-create-auto-deploy.png" alt-text="Screenshot of the auto-deployment toggle in the Create custom model wizard in Azure AI Foundry portal.":::
 
-Select **Default** to use the default values for the fine-tuning job, or select **Custom** to display and edit the hyperparameter values. When defaults are selected, we determine the correct value algorithmically based on your training data.
-
-After you configure the advanced options, select **Next** to [review your choices and train your fine-tuned model](#review-your-choices-and-train-your-model).
+> [!NOTE]
+> Only Global Standard and Developer deployments are currently supported for auto-deployment. Neither of these options provide [data residency](https://aka.ms/data-residency). Consult the [deployment type](../how-to/deployment-types.md) documentation for more details.
 
 ### Review your choices and train your model
 
@@ -211,15 +235,11 @@ Look for your loss to decrease over time, and your accuracy to increase. If you 
 
 ## Deploy a fine-tuned model
 
-When the fine-tuning job succeeds, you can deploy the custom model from the **Models** pane. You must deploy your custom model to make it available for use with completion calls.
+Once you're satisified with the metrics from your fine-tuning job, or you just want to move onto inference, you must deploy the model.
 
-[!INCLUDE [Fine-tuning deletion](fine-tune.md)]
+If you're deploying for further validation, consider deploying for [testing](../how-to/fine-tune-test.md?tabs=portal) using a Developer deployment.
 
-To deploy your custom model, select the custom model to deploy, and then select **Deploy**.
-
-The **Deploy model** dialog box opens. In the dialog box, enter your **Deployment name** and then select **Create** to start the deployment of your custom model.
-
-You can monitor the progress of your deployment on the **Deployments** pane in Azure AI Foundry portal.
+If you're ready to deploy for production or have particular data residency needs, follow our [deployment guide](../how-to/fine-tuning-deploy.md?tabs=portal).
 
 ### Use a deployed fine-tuned model
 
@@ -232,11 +252,9 @@ After your fine-tuned model deploys, you can use it like any other deployed mode
 
 Once you have created a fine-tuned model you may wish to continue to refine the model over time through further fine-tuning. Continuous fine-tuning is the iterative process of selecting an already fine-tuned model as a base model and fine-tuning it further on new sets of training examples.
 
-To perform fine-tuning on a model that you have previously fine-tuned you would use the same process as described in [create a customized model](#use-the-create-custom-model-wizard) but instead of specifying the name of a generic base model you would specify your already fine-tuned model. A custom fine-tuned model would look like `gpt-35-turbo-0125.ft-5fd1918ee65d4cd38a5dcf6835066ed7`
+To perform fine-tuning on a model that you have previously fine-tuned you would use the same process as described in [creating a fine-tuned model](#creating-a-fine-tuned-model) but instead of specifying the name of a generic base model you would specify your already fine-tuned model. A custom fine-tuned model would look like `gpt-4o-2024-08-06.ft-d93dda6110004b4da3472d96f4dd4777-ft`
 
 :::image type="content" source="../media/fine-tuning/studio-continuous.png" alt-text="Screenshot of the Create a custom model UI with a fine-tuned model highlighted." lightbox="../media/fine-tuning/studio-continuous.png":::
-
-We also recommend including the `suffix` parameter to make it easier to distinguish between different iterations of your fine-tuned model. `suffix` takes a string, and is set to identify the fine-tuned model. With the OpenAI Python API a string of up to 18 characters is supported that will be added to your fine-tuned model name.
 
 ## Clean up your deployments, custom models, and training files
 

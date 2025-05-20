@@ -54,6 +54,8 @@ Follow these steps to upload datasets for training (fine-tuning) your custom spe
 
 1. Repeat the steps to upload testing datasets (such as **Audio** only) that you need [later when you create a test](./how-to-custom-speech-inspect-data.md). You can upload multiple datasets for training and testing.
 
+1. Repeat the previous steps to upload audio data [that you use later for testing](./how-to-custom-speech-inspect-data.md). In the **Add data** wizard, select **Audio** for the type of data you want to add. 
+
 ::: zone-end
 
 ::: zone pivot="speech-studio"
