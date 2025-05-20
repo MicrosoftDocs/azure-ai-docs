@@ -57,11 +57,12 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 
 To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)] in [Azure AI Foundry](https://ai.azure.com), follow these steps:
 
-1. Go to [Azure AI Foundry](https://ai.azure.com). If you are in a project, select **Azure AI Foundry** at the top left of the page to go to the **Home** page.
-1. In the middle of the page, select **Create an agent**. This creates a project and also include steps to start working with a basic agent.
-1. Or select **+ Create project** in the top right corner of the page if you have existing projects. This creates the project alone, without extra steps to start working with an agent.
-1. Enter a name for the project.
-1. Select **Create**. Or, if you want to customize your settings, follow the steps in the next section.
+1. Go to [Azure AI Foundry](https://ai.azure.com).
+1. If you don't already have a project, choose from one of the following main actions. These flows will help create you the project you need to start working.
+    * Build a new agent! If you want to explore Azure AI Foundry's new agent capabilities, get started by selecting **Create an agent**.
+    * If you know what model you want to work with, select it and then choose **Use this model**. Once you complete the steps, you will be taken to your new project!
+ 
+1. If you already have a project, you can select it from the list to pick up where you left off. You can also select **Create project** to create a new one directly, or follow the previously mentioned steps.
 
 ### Advanced options
 
