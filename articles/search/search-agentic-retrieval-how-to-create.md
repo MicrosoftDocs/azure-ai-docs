@@ -1,7 +1,7 @@
 ---
-title: Create an agent
+title: Create a knowledge agent
 titleSuffix: Azure AI Search
-description: Learn how to create an agent for agentic retrieval workloads in Azure AI Search.
+description: Learn how to create a knowledge agent for agentic retrieval workloads in Azure AI Search.
 
 manager: nitinme
 author: HeidiSteen
@@ -11,13 +11,13 @@ ms.topic: how-to
 ms.date: 05/05/2025
 ---
 
-# Create an agent in Azure AI Search
+# Create a knowledge agent in Azure AI Search
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In Azure AI Search, an *agent* is a top-level resource representing a connection to a conversational language model for use in agentic retrieval workloads. It specifies a model that provides reasoning capabilities, and it identifies the search index used at query time.
+In Azure AI Search, a *knowledge agent* is a top-level resource representing a connection to a conversational language model for use in agentic retrieval workloads. It specifies a model that provides reasoning capabilities, and it identifies the search index used at query time.
 
-After you can create an agent, you can update its properties at any time. If the agent is in use, updates take effect on the next job.
+After you can create a knowledge agent, you can update its properties at any time. If the knowledge agent is in use, updates take effect on the next job.
 
 ## Prerequisites
 
@@ -27,11 +27,11 @@ After you can create an agent, you can update its properties at any time. If the
 
 + Azure AI Search, in any [region that provides semantic ranker](search-region-support.md), on basic tier and above. Your search service must have a [managed identity](search-howto-managed-identities-data-sources.md) for role-based access to a chat model.
 
-+ Permission requirements on Azure AI Search. An **Owner/Contributor** or **Search Service Contributor** can create and manage an agent. **Search Index Data Contributor** uploads and indexes document. **Search Index Data Reader** runs queries. Instructions are provided in this article.
++ Permission requirements on Azure AI Search. An **Owner/Contributor** or **Search Service Contributor** can create and manage a knowledge agent. **Search Index Data Contributor** uploads and indexes document. **Search Index Data Reader** runs queries. Instructions are provided in this article.
 
 + A search index containing plain text or vectors. The index must [meet requirements for agentic retrieval](search-agentic-retrieval-how-to-index.md), including a [semantic configuration](semantic-how-to-configure.md) with the `defaultConfiguration` specified.
 
-+ API requirements. To create or use an agent, use 2025-05-01-preview data plane REST API or a prerelease package of an Azure SDK that provides Agent APIs.
++ API requirements. To create or use a knowledge agent, use 2025-05-01-preview data plane REST API or a prerelease package of an Azure SDK that provides knowledge agent APIs.
 
 To follow the steps in this guide, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending REST API calls to Azure AI Search. There's no portal support at this time.
 
@@ -100,14 +100,14 @@ You can use API keys if you don't have permission to create role assignments.
    api-key: {{search-api-key}}
    ```
 
-## Check for existing agents
+## Check for existing knowledge agents
 
-The following request lists agents by name. Within the agents collection, all agents must be uniquely named. It's helpful for knowing about existing agents for reuse or  naming purposes.
+The following request lists knowledge agents by name. Within the knowledge agents collection, all knowledge agents must be uniquely named. It's helpful for knowing about existing knowledge agents for reuse or  naming purposes.
 
 <!-- ### [**REST APIs**](#tab/rest-get) -->
 
 ```http
-# List Agents
+# List knowledge agents
 GET https://{{search-url}}/agents?api-version=2025-05-01-preview
 api-key: {{search-api-key}}
 ```
@@ -115,16 +115,16 @@ api-key: {{search-api-key}}
 You can also return a single agent by name.
 
 ```http
-# Get Agent
+# Get knowledge agent
 GET https://{{search-url}}/agents/{{agent-name}}?api-version=2025-05-01-preview
 api-key: {{search-api-key}}
 ```
 
 <!-- --- -->
 
-## Create an agent
+## Create a knowledge agent
 
-An agent represents a connection to a model that you've deployed. Parameters on the model establish the connection.
+A knowledge agent represents a connection to a model that you've deployed. Parameters on the model establish the connection.
 
 <!-- ### [**REST APIs**](#tab/rest-create) -->
 
@@ -138,7 +138,7 @@ To create an agent, use the 2025-05-01-preview data plane REST API or an Azure S
 @model-provider-url=<YOUR AZURE OPENAI RESOURCE URI>
 @model-api-key=<YOUR AZURE OPENAI API KEY>
 
-# Create Agent
+# Create knowledge agent
 PUT https://{{search-url}}/agents/{{agent-name}}?api-version=2025-05-01-preview
 api-key: {{search-api-key}}
 Content-Type: application/json
@@ -174,9 +174,9 @@ Content-Type: application/json
 
 **Key points**:
 
-+ `name` must be unique within the agents collection it must adhere to [naming rules](/rest/api/searchservice/naming-rules) for objects on Azure AI Search.
++ `name` must be unique within the knowledge agents collection it must adhere to [naming rules](/rest/api/searchservice/naming-rules) for objects on Azure AI Search.
 
-+ `targetIndexes` is required for agent creation. It lists the search indexes that can use the agent. Currently in this preview release, the `targetIndexes` array can contain only one index. *It must have a default semantic configuration* (`defaultConfiguration`). For more information, see [Design an index for agentic retrieval](search-agentic-retrieval-how-to-index.md).
++ `targetIndexes` is required for knowledge agent creation. It lists the search indexes that can use the knowledge agent. Currently in this preview release, the `targetIndexes` array can contain only one index. *It must have a default semantic configuration* (`defaultConfiguration`). For more information, see [Design an index for agentic retrieval](search-agentic-retrieval-how-to-index.md).
 
     ```json
     "semantic": {
@@ -204,9 +204,9 @@ Content-Type: application/json
 
 <!-- --- -->
 
-## Confirm agent operations
+## Confirm knowledge agent operations
 
-Call the **retrieve** action on the agent object to confirm the model connection and return a response. Use the [2025-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) data plane REST API or an Azure SDK prerelease package that provides equivalent functionality for this task.
+Call the **retrieve** action on the knowledge agent object to confirm the model connection and return a response. Use the [2025-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) data plane REST API or an Azure SDK prerelease package that provides equivalent functionality for this task.
 
 Replace "What are my vision benefits?" with a query string that's valid for your search index.
 
@@ -243,7 +243,7 @@ Content-Type: application/json
 }
 ```
 
-For more information about the **retrieve** API and the shape of the response, see [Retrieve data using an agent in Azure AI Search](search-agentic-retrieval-how-to-retrieve.md).
+For more information about the **retrieve** API and the shape of the response, see [Retrieve data using a knowledge agent in Azure AI Search](search-agentic-retrieval-how-to-retrieve.md).
 
 ## Delete an agent
 

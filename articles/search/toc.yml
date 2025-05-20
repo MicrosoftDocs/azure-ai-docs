@@ -373,9 +373,9 @@ items:
           href: cognitive-search-create-custom-skill-example.md
   - name: Agentic retrieval
     items:
-    - name: Create an agent
+    - name: Create a knowledge agent
       href: search-agentic-retrieval-how-to-create.md
-    - name: Use an agent to retrieve data
+    - name: Use a knowledge agent to retrieve data
       href: search-agentic-retrieval-how-to-retrieve.md
     - name: Define an index for agentic retrieval
       href: search-agentic-retrieval-how-to-index.md
