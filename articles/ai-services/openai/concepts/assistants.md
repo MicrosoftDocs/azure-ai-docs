@@ -13,8 +13,8 @@ recommendations: false
 
 # Azure OpenAI Assistants API (Preview)
 
-> [NOTE]
-> The [Azure AI Foundry Agent Service](../../agents/overview.md) is now Generally Available, which provides more tools and better enterprise features. We recommend migrating your workloads to the new service for the latest feature updates and improvements.
+> [!NOTE]
+> The [Azure AI Foundry Agent Service](../../agents/overview.md) is now Generally Available, which provides more tools and better enterprise features. We recommend using the new service for the latest feature updates and improvements.
 
 Assistants, a feature of Azure OpenAI in Azure AI Foundry Models, is available in public preview starting in the `2024-02-15-preview` API version. Assistants API makes it easier for developers to create applications with sophisticated copilot-like experiences that can sift through data, suggest solutions, and automate tasks.
 
