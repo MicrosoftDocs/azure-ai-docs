@@ -41,6 +41,7 @@ A multimodal pipeline begins by cracking each source document into chunks of tex
 |----------------|------------------------------------|---------------------------|
 | Text location metadata extraction (page, bounding polygon) | Yes | No |
 | Image location metadata extraction (page, bounding polygon) | Yes | Yes |
+| Location metadata extraction based on file type  | Multiple file support according to [Azure AI Document Intelligence layout model (preview)](azure/ai-services/document-intelligence/prebuilt/layout)  | PDF only |
 | Data-extraction billing | Billed according to [Document Intelligence layout-model pricing](https://azure.microsoft.com/pricing/details/ai-document-intelligence/). | Image extraction is billed as outlined in the [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search/). |
 | Recommended scenarios | RAG pipelines and agent workflows that need precise page numbers, on-page highlights, or diagram overlays in client apps. | Rapid prototyping or production pipelines where the exact position or detailed layout information isn't required. |
 
