@@ -9,7 +9,7 @@ author: admayber
 ms.author: admayber  
 ---  
 
-# Indexing Access Control Lists (ACLs) and Role-Based Access Control (RBAC) using REST API in Azure AI Search  
+# Indexing Access Control Lists (ACLs) and Role-Based Access Control (RBAC) using REST APIs in Azure AI Search  
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
