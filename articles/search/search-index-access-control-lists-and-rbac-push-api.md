@@ -107,8 +107,8 @@ This example illustrates how the document access rules are resolved based on the
 | 3 | ["none"] | ["group1", "group2"] | Empty | Members of group1 or group2 | |
 | 4 | ["all"] | ["none"] | Empty | Any user | Any querying user matches the ACL filter "all", so all users have access |
 | 5 | ["all"] | ["group1", "group2"] | scope/to/container1 | Any user | Since all users match the "all" filter for userID, the groupID and RBAC filters don't have any impact |
-| 5 | ["user1", "user2"] | ["group1"] | Empty | User1, user2, or any member of group1 | |
-| 5 | ["user1", "user2"] | [] | Empty | User1, user2, or any user with RBAC permissions to container1 | |
+| 6 | ["user1", "user2"] | ["group1"] | Empty | User1, user2, or any member of group1 | |
+| 7 | ["user1", "user2"] | [] | Empty | User1, user2, or any user with RBAC permissions to container1 | |
 
 ## Next steps
 - [How to query the index using end user ENTRA-token to enforce document-level permissions](search-query-access-control-rbac-enforcement.md)
