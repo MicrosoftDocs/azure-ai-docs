@@ -30,11 +30,56 @@ items:
   - name: What is Text translation?
     displayName: features,develop,development,free
     href: text-translation/overview.md
-  - name: 🆕 Text translation SDK overview
+  - name: Text translation SDK overview
     displayName: get started,sdk,keys,endpoint
     href: text-sdk-overview.md
-  - name: Text translation REST API guide
-    href:  text-translation/reference/rest-api-guide.md
+  - name: Reference
+    expanded: true
+    items:
+    - name: 🆕 Azure AI Translator 2025-05-01-preview
+      items:
+      - name: 2025-05-01-preview overview
+        displayName: gpt, adaptive, tone, gender
+        href: text-translation/reference/preview/reference-overview.md
+      - name: Languages
+        href: text-translation/reference/preview/get-languages.md
+      - name: Translate
+        displayName: detection,detect
+        href: text-translation/reference/preview/translate-api.md
+      - name: Transliterate
+        href: text-translation/reference/preview/transliterate-api.md
+    - name: Authentication and authorization
+      displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
+      href: text-translation/reference/authentication.md
+    - name: Status codes
+      displayName: 401000,405000,400000
+      href: text-translation/reference/status-response-codes.md
+    - name: Azure AI Translator v3
+      items:
+      - name: v3 overview
+        displayName: 401000,405000,400000
+        href: text-translation/reference/v3/reference.md
+      - name: Text Translation v3 REST APIs
+        href:  text-translation/reference/rest-api-guide.md
+      - name: Languages
+        href: text-translation/reference/v3/languages.md
+      - name: Translate
+        displayName: detection,detect
+        href: text-translation/reference/v3/translate.md
+      - name: Transliterate
+        href: text-translation/reference/v3/transliterate.md
+      - name: Detect
+        href: text-translation/reference/v3/detect.md
+      - name: BreakSentence
+        displayName: detection,detect
+        href: text-translation/reference/v3/break-sentence.md
+      - name: Dictionary Lookup
+        href: text-translation/reference/v3/dictionary-lookup.md
+      - name: Dictionary Examples
+        href: text-translation/reference/v3/dictionary-examples.md
+      - name: Migrate to v3 Text translation API
+      displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
+      href: text-translation/how-to/migrate-to-v3.md  
   - name: Quickstarts
     items:
     - name: Translator Text SDK
@@ -68,7 +113,7 @@ items:
       href: text-translation/how-to/use-rest-api.md
     - name: Migrate to 2025-05-01-preview
       displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
-      href: text-translation/how-to/migrate-to-latest.md
+      href: text-translation/how-to/migrate-to-preview.md
     - name: Enable Microsoft Entra ID authentication
       href: how-to/microsoft-entra-id-auth.md
     - name: Add profanity filtering
@@ -85,52 +130,7 @@ items:
     - name: Translate behind firewalls
       displayName: domain,IP,filtering,tag,endpoints,CognitiveServicesManagement
       href: firewalls.md
-  - name: Reference
-    items:
-    - name: 🆕 Azure AI Translator 2025-05-01-preview (latest)
-      items:
-      - name: 2025-05-01-preview overview
-        displayName: gpt, adaptive, tone, gender
-        href: text-translation/reference/latest/reference-overview.md
-      - name: Languages
-        href: text-translation/reference/latest/get-languages.md
-      - name: Translate
-        displayName: detection,detect
-        href: text-translation/reference/latest/translate-api.md
-      - name: Transliterate
-        href: text-translation/reference/latest/transliterate-api.md
-    - name: Authentication and authorization
-      displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
-      href: text-translation/reference/authentication.md
-    - name: Status codes
-      displayName: 401000,405000,400000
-      href: text-translation/reference/status-response-codes.md
-    - name: Azure AI Translator v3 (legacy)
-      items:
-      - name: v3 overview
-        displayName: 401000,405000,400000
-        href: text-translation/reference/v3/reference.md
-      - name: Text Translation v3 REST APIs
-        href:  text-translation/reference/rest-api-guide.md
-      - name: Languages
-        href: text-translation/reference/v3/languages.md
-      - name: Translate
-        displayName: detection,detect
-        href: text-translation/reference/v3/translate.md
-      - name: Transliterate
-        href: text-translation/reference/v3/transliterate.md
-      - name: Detect
-        href: text-translation/reference/v3/detect.md
-      - name: BreakSentence
-        displayName: detection,detect
-        href: text-translation/reference/v3/break-sentence.md
-      - name: Dictionary Lookup
-        href: text-translation/reference/v3/dictionary-lookup.md
-      - name: Dictionary Examples
-        href: text-translation/reference/v3/dictionary-examples.md
-      - name: Migrate to v3 Text translation API
-      displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
-      href: text-translation/how-to/migrate-to-v3.md
+  
 - name: Document translation
   items:
   - name: What is Document translation?
