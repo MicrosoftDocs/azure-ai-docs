@@ -289,6 +289,11 @@
       "source_path": "articles/ai-services/index.yml",
       "redirect_url": "/azure/ai-foundry",
       "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/text-to-speech-avatar/custom-avatar-endpoint.md",
+      "redirect_url": "/azure/ai-services/speech-service/custom-avatar-create",
+      "redirect_document_id": false
     }
   ]
 }
