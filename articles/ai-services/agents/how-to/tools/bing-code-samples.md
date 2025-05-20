@@ -166,11 +166,17 @@ PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCreden
 To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/).
 
 ```csharp
+BingGroundingSearchConfiguration searchConfig = new BingGroundingSearchConfiguration(bingConnectionId)
+{ 
+    Count = 5,
+    Freshness = "Week"
+};
+
 // Create the BingGroundingToolDefinition object used when creating the agent
 BingGroundingToolDefinition bingGroundingTool = new BingGroundingToolDefinition(
     new BingGroundingSearchToolParameters(
         [
-            new BingGroundingSearchConfiguration(bingConnectionId)
+            searchConfig
         ]
     )
 );
