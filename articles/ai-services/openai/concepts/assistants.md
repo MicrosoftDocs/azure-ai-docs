@@ -3,7 +3,7 @@ title: Azure OpenAI in Azure AI Foundry Models Assistants API concepts
 titleSuffix: Azure OpenAI
 description: Learn about the concepts behind the Azure OpenAI Assistants API.
 ms.topic: conceptual
-ms.date: 02/04/2025
+ms.date: 05/20/2025
 ms.service: azure-ai-openai
 manager: nitinme
 author: aahill
@@ -13,11 +13,14 @@ recommendations: false
 
 # Azure OpenAI Assistants API (Preview)
 
+> [!NOTE]
+> The [Azure AI Foundry Agent Service](../../agents/overview.md) is now Generally Available, which provides more tools and better enterprise features. We recommend using the new service for the latest feature updates and improvements.
+
 Assistants, a feature of Azure OpenAI in Azure AI Foundry Models, is available in public preview starting in the `2024-02-15-preview` API version. Assistants API makes it easier for developers to create applications with sophisticated copilot-like experiences that can sift through data, suggest solutions, and automate tasks.
 
 * Assistants can call Azure OpenAI’s [models](../concepts/models.md) with specific instructions to tune their personality and capabilities.
 * Assistants can access **multiple tools in parallel**. These can be both Azure OpenAI-hosted tools like [code interpreter](../how-to/code-interpreter.md) and [file search](../how-to/file-search.md), or tools you build, host, and access through [function calling](../how-to/function-calling.md).
-* Assistants can access **persistent Threads**. Threads simplify AI application development by storing message history and truncating it when the conversation gets too long for the model's context length. You create a Thread once, and simply append Messages to it as your users reply.
+* Assistants can access **persistent Threads**. Threads simplify AI application development by storing message history and truncating it when the conversation gets too long for the model's context length. You create a Thread once, and append Messages to it as your users reply.
 * Assistants can access files in several formats. Either as part of their creation or as part of Threads between Assistants and users. When using tools, Assistants can also create files (such as images or spreadsheets) and cite files they reference in the Messages they create.
 
 ## Overview
@@ -25,7 +28,7 @@ Assistants, a feature of Azure OpenAI in Azure AI Foundry Models, is available i
 Previously, building custom AI assistants needed heavy lifting even for experienced developers. While the chat completions API is lightweight and powerful, it's inherently stateless, which means that developers had to manage conversation state and chat threads, tool integrations, retrieval documents and indexes, and execute code manually.
 
 The Assistants API, as the stateful evolution of the chat completion API, provides a solution for these challenges.
-Assistants API supports persistent automatically managed threads. This means that as a developer you no longer need to develop conversation state management systems and work around a model’s context window constraints. The Assistants API will automatically handle the optimizations to keep the thread below the max context window of your chosen model. Once you create a Thread, you can simply append new messages to it as users respond. Assistants can also access multiple tools in parallel, if needed. These tools include:
+Assistants API supports persistent automatically managed threads. This means that as a developer you no longer need to develop conversation state management systems and work around a model’s context window constraints. The Assistants API will automatically handle the optimizations to keep the thread below the max context window of your chosen model. Once you create a Thread, you can append new messages to it as users respond. Assistants can also access multiple tools in parallel, if needed. These tools include:
 
 - [Code Interpreter](../how-to/code-interpreter.md)
 - [Function calling](../how-to/assistant-functions.md)
@@ -38,11 +41,25 @@ Assistants API is built on the same capabilities that power OpenAI’s GPT produ
 > [!IMPORTANT]
 > Retrieving untrusted data using Function calling, Code Interpreter or File Search with file input, and Assistant Threads functionalities could compromise the security of your Assistant, or the application that uses the Assistant. Learn about mitigation approaches [here](https://aka.ms/oai/assistant-rai).
 
+### Using assistants
+
+For information on using assistants, see the following reference documentation. 
+* [C#](/dotnet/api/overview/azure/ai.openai.assistants-readme?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext)
+* [Java](/java/api/overview/azure/ai-openai-assistants-readme?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext)
+* [JavaScript](../how-to/migration-javascript.md?tabs=javascript-new#assistants)
+* [Python](https://platform.openai.com/docs/api-reference/assistants)
+* [REST API](../reference-preview.md#list---assistants)
+
 ## Available models
 
-To see a list of Azure OpenAI models that you can use with assitants, see the [Models](./models.md#assistants-preview) article.
+To see a list of Azure OpenAI models that you can use with assistants, see the [Models](./models.md#assistants-preview) article.
 
 ## Assistants playground
+
+Before using assistants, you need:
+
+- A [compatible model](../concepts/models.md#assistants-preview) deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
+- An [Azure AI project](../../../ai-foundry/how-to/create-projects.md) in Azure AI Foundry portal.
 
 We provide a walkthrough of the Assistants playground in our [quickstart guide](../assistants-quickstart.md). This provides a no-code environment to test out the capabilities of assistants.
 
