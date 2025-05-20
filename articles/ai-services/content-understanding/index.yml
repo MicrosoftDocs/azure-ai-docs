@@ -44,7 +44,7 @@ conceptualContent:
           url: quickstart/use-rest-api.md
         - itemType: concept
           text: "Modes: standard and pro"
-          url: concepts/modes-standard-pro.md
+          url: concepts/standard-pro-modes.md
         - itemType: concept
           text: Prebuilt analyzers
           url: concepts/prebuilt-analyzers.md
@@ -55,7 +55,7 @@ conceptualContent:
       links:
         - itemType: overview
           text: Overview
-          url: classifiers/overview.md
+          url: concepts/classifier.md
     - title: Face and person directories
       links:
         - itemType: overview
