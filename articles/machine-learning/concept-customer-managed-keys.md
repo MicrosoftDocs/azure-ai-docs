@@ -15,7 +15,7 @@ monikerRange: 'azureml-api-2 || azureml-api-1'
 ---
 # Customer-managed keys for Azure Machine Learning
 
-Azure Machine Learning is built on top of multiple Azure services. Although the stored data is encrypted through encryption keys that Microsoft provides, you can enhance security by also providing your own (customer-managed) keys. The keys that you provide are stored in Azure Key Vault. Your data is can be stored on a set of other resources that you manage in your Azure subscription, or [service-side on Microsoft managed resources](#service-side-encryption-of-metadata).
+Azure Machine Learning is built on top of multiple Azure services. Although the stored data is encrypted through encryption keys that Microsoft provides, you can enhance security by also providing your own (customer-managed) keys. The keys that you provide are stored in Azure Key Vault. Your data can be stored on a set of other resources that you manage in your Azure subscription, or [service-side on Microsoft managed resources](#service-side-encryption-of-metadata).
 
 In addition to customer-managed keys (CMK), Azure Machine Learning provides an [high business impact configuration](/python/api/azure-ai-ml/azure.ai.ml.entities.workspace) for highly sensitive data workloads. Enabling this configuration reduces the amount of data that Microsoft collects for diagnostic purposes and enables [extra encryption in Microsoft-managed environments](/azure/security/fundamentals/encryption-atrest). 
 
