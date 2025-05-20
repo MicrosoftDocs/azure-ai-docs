@@ -68,7 +68,7 @@ items:
       href: text-translation/how-to/use-rest-api.md
     - name: Migrate to 2025-05-01-preview
       displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
-      href: text-translation/how-to/migrate-to-v4.md
+      href: text-translation/how-to/migrate-to-latest.md
     - name: Enable Microsoft Entra ID authentication
       href: how-to/microsoft-entra-id-auth.md
     - name: Add profanity filtering
@@ -87,7 +87,7 @@ items:
       href: firewalls.md
   - name: Reference
     items:
-    - name: 🆕 Azure AI Translator 2025-05-01-preview
+    - name: 🆕 Azure AI Translator 2025-05-01-preview (latest)
       items:
       - name: 2025-05-01-preview overview
         displayName: gpt, adaptive, tone, gender
@@ -99,7 +99,13 @@ items:
         href: text-translation/reference/latest/translate-api.md
       - name: Transliterate
         href: text-translation/reference/latest/transliterate-api.md
-    - name: Azure AI Translator v3
+    - name: Authentication and authorization
+      displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
+      href: text-translation/reference/authentication.md
+    - name: Status codes
+      displayName: 401000,405000,400000
+      href: text-translation/reference/status-response-codes.md
+    - name: Azure AI Translator v3 (legacy)
       items:
       - name: v3 overview
         displayName: 401000,405000,400000
@@ -125,12 +131,6 @@ items:
       - name: Migrate to v3 Text translation API
       displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
       href: text-translation/how-to/migrate-to-v3.md
-    - name: Authentication and authorization
-      displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
-      href: text-translation/reference/authentication.md
-    - name: Status codes
-      displayName: 401000,405000,400000
-      href: text-translation/reference/status-response-codes.md
 - name: Document translation
   items:
   - name: What is Document translation?
