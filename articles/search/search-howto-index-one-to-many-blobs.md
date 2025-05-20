@@ -139,7 +139,7 @@ Similar to the previous example, this mapping doesn't result in four documents s
 
 ## Limitations
 
-When a document entry in the index is created from a line in a file, as explained in this article, deleting that line from the file does not automatically remove the corresponding entry from the index. To delete the document entry, you must manually submit a deletion request to the index using the [REST API deletion operation](addupdate-or-delete-documents.md).
+When a document entry in the index is created from a line in a file, as explained in this article, deleting that line from the file does not automatically remove the corresponding entry from the index. To delete the document entry, you must manually submit a deletion request to the index using the [REST API deletion operation](/rest/api/searchservice/addupdate-or-delete-documents).
 
 ## Next steps
 
