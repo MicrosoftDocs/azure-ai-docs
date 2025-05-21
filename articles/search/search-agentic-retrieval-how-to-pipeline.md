@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/20/2025
+ms.date: 05/21/2025
 ---
 
 # Build an agent-to-agent retrieval solution using Azure AI Search
@@ -19,7 +19,7 @@ This article describes an approach or pattern for building a solution that uses 
 
 This article supports the [agentic-retrieval-pipeline-example](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example) Python sample on GitHub.
 
-This exercise differs from the [Agentic Retrieval Quickstart](search-get-started-agentic-retrieval.md) in how it uses Azure AI Agent to retrieve data from the index, and how it uses an agent tool for orchestration.
+This exercise differs from the [Agentic Retrieval Quickstart](search-get-started-agentic-retrieval.md) in how it uses Azure AI Agent to retrieve data from the index, and how it uses an agent tool for orchestration. If you want to understand the retrieval pipeline in its simplest form, begin with the quickstart.
 
 ## Prerequisites
 
@@ -29,13 +29,15 @@ The following resources are required for this design pattern:
 
 + A search index that satisfies the [index criteria for agentic retrieval](search-agentic-retrieval-how-to-index.md).
 
-+ A project in Azure AI Foundry, with a deployment of a supported large language model and an Azure AI Agent in a Basic setup.
++ A project in Azure AI Foundry, with an Azure AI Agent in a Basic setup.
 
-  Follow the steps in [Create a project for Azure AI Foundry](/azure/ai-foundry/how-to/create-projects). Deploy one of the chat completion models listed below. We recommend a minimum of 100,000 token capacity for your model. You can find capacity and the rate limit in the model deployments list in the Azure AI Foundry portal.
+  Follow the steps in [Create a project for Azure AI Foundry](/azure/ai-foundry/how-to/create-projects). Creating the project also creates the Azure AI Foundry resource in your Azure subscription.
+
++ Azure OpenAI with a deployment of one of the chat completion models listed below. We recommend a minimum of 100,000 token capacity for your model. You can find capacity and the rate limit in the model deployments list in the Azure AI Foundry portal. You can also deploy text embedding models if you want [vectorization at query time](vector-search-integrated-vectorization.md#using-integrated-vectorization-in-queries).
 
 ### Supported large language models
 
-Use Azure OpenAI or an equivalent open source model:
+Use one of the following chat completion models with your AI agent:
 
 + `gpt-4o`
 + `gpt-4o-mini`
@@ -59,13 +61,17 @@ On Azure AI Search:
 
 On Azure AI Foundry:
 
-+ You must be an **Owner** of your Azure subscription to create and use the project.
++ You must be an **Owner** of your Azure subscription to create the project and resource.
+
++ For local testing, you must be an **Azure AI User** to access chat completion models deployed to the Foundry resource. This assignment is conferred automatically for **Owners** when you create the resource. Other users need a specific role assignment. For more information, see [Role-based access control in Azure AI Foundry portal](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
+
++ For integrated operations, ensure your [search service identity](search-howto-managed-identities-data-sources.md) has an **Azure AI User** role assignment on the Foundry resource.
 
 On Azure OpenAI:
 
-1. For local testing, ensure that you have a **Cognitive Services User** role assignment to access the chat completion model.
+1. For local testing, ensure that you have a **Cognitive Services User** role assignment to access the chat completion model and embedding models (if using).
 
-1. For integrated operations, ensure your [search service identity](search-howto-managed-identities-data-sources.md) has a **Cognitive Services User** role assignment for chat completion model access.
+1. For integrated operations, ensure your [search service identity](search-howto-managed-identities-data-sources.md) has a **Cognitive Services User** role assignment for model access.
 
 ## Development tasks
 
@@ -79,11 +85,11 @@ Development tasks on the Azure AI Search side include:
 
 Your custom application makes API calls to Azure AI Search and an Azure SDK.
 
-+ External data from anywhere
-+ Azure AI Search, hosting indexed data and the agentic data retrieval engine
-+ Azure AI Foundry Model, providing a chat model (an LLM) for user interaction
-+ Azure SDK with a Foundry project, providing programmatic access to chat and chat history
-+ Azure AI Agent, with an agent for handling the conversation, and a tool for orchestration
++ External data from anywhere, although we recommend [data sources used for integrated indexing](search-data-sources-gallery.md).
++ Azure AI Search, hosting indexed data and the agentic data retrieval engine.
++ Azure AI Foundry, hosting the AI agent and tool.
++ Azure SDK with a Foundry project, providing programmatic access to Azure AI Foundry.
++ Azure OpenAI, hosting a chat completion model used by the knowledge agent and any embedding models used by vectorizers for vector search.
 
 ## Set up your environment
 
@@ -97,7 +103,7 @@ You need endpoints for:
 + Azure OpenAI
 + Azure AI Foundry project
 
-You can find endpoints for Azure AI Search and Azure OpenAI in the [Azure portal](https://portal.azure.com).
+You can find endpoints for Azure AI Search and Azure OpenAI in the [Azure portal](https://portal.azure.com), in the **Overview** pages for each resource.
 
 You can find the project endpoint in the Azure AI Foundry portal:
 
@@ -193,7 +199,7 @@ def agentic_retrieval() -> str:
 
 ## How to improve data quality
 
-Search results are consolidating into a large unified string that you can pass to a conversational language model for a grounded answer. The following indexing and relevance tuning features in Azure AI Search are available to help you generate high quality results. You can implement these features in the search index, and the improvements in search relevance are evident in the quality of the response returned during retrieval.
+Search results are consolidated into a large unified string that you can pass to a chat completion model for a grounded answer. The following indexing and relevance tuning features in Azure AI Search are available to help you generate high quality results. You can implement these features in the search index, and the improvements in search relevance are evident in the quality of the response returned during retrieval.
 
 + [Scoring profiles](index-add-scoring-profiles.md) (added to your search index) provide built-in boosting criteria. Your index must specify a default scoring profile, and that's the one used by the retrieval engine when queries include fields associated with that profile.
 
