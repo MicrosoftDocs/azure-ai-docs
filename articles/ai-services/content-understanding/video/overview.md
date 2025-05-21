@@ -54,7 +54,7 @@ With the prebuilt video analyzer (prebuilt-videoAnalyzer), you can upload a vide
 
 * For example, creating the base `prebuilt-videoAnalyzer` as follows:
 
-  ```jsonc
+  ```json
   {
     "config": {},
     "BaseAnalyzerId": "prebuilt-videoAnalyzer",
@@ -76,7 +76,7 @@ With the prebuilt video analyzer (prebuilt-videoAnalyzer), you can upload a vide
      WEBVTT
 
      00:03.600 --> 00:06.000
-     <Speaker 1 Speaker>Get new years ready.
+     <Speaker 1>Get new years ready.
 
      Key Frames
      - 00:00.600 ![](keyFrame.600.jpg)
@@ -90,7 +90,7 @@ With the prebuilt video analyzer (prebuilt-videoAnalyzer), you can upload a vide
      WEBVTT
 
      00:03.600 --> 00:06.000
-     <Speaker 1 Speaker>Go team!
+     <Speaker 1>Go team!
 
      Key Frames
      - 00:06.200 ![](keyFrame.6200.jpg)
@@ -154,7 +154,7 @@ Shape the output to match your business vocabulary. Use a `fieldSchema` object w
 
 **Example:**
 
-```jsonc
+```json
 
 "fieldSchema": {
   "description": "Extract brand presence and sentiment per scene",
@@ -187,34 +187,34 @@ Shape the output to match your business vocabulary. Use a `fieldSchema` object w
 
 Content Understanding offers three ways to slice a video, letting you get the output you need for whole videos or short clips. You can use these options by setting the `SegmentationMode` property on a custom analyzer.
 
-* **Whole-video** – `SegmentationMode = NoSegmentation`
+* **Whole-video** – `segmentationMode : noSegmentation`
   The service treats the entire video file as a single segment and extracts metadata across its full duration.
 
   **Example:**
     * Compliance checks that look for specific brand-safety issues anywhere in an ad
     * full-length descriptive summaries
 
-* **Automatic segmentation** – `SegmentationMode = Auto`
+* **Automatic segmentation** – `segmentationMode = auto`
   The service analyzes the timeline and breaks it up for you. Groups successive shots into coherent scenes, capped at one minute each.
 
   **Example:**
     * Create storyboards from a show
     * Inserting mid-roll ads at logical pauses.
 
-* **Custom segmentation** – `SegmentationMode = Custom`
+* **Custom segmentation** – `segmentationMode : custom`
   You describe the logic in natural language and the model creates segments to match. Set `segmentationDefinition` with a string describing how you'd like the video to be segmented. Custom allows segments of varying length from seconds to minutes depending on the prompt.
 
   **Example:**
     * Break a news broadcast up into stories.
 
-    ```jsonc
+    ```json
     {
       "segmentationMode": "custom",
       "segmentationDefinition": "news broadcasts divided by individual stories"
     }
     ```
 
-## Face identification description add-on
+## Face identification and description add-on
 
 > [!NOTE]
 >
@@ -231,7 +231,7 @@ The face add-on enables grouping and identification as output from the content e
 
 ### Field Extraction – Face description
 
- The field extraction capability is enhanced by providing detailed descriptions of identified faces in the video. This capability includes attributes such as facial hair, emotions, and the presence of celebrities, which can be crucial for various analytical and indexing purposes. To enable face capabilities set `disableFaceBlurring=true` in the analyzer configuration.
+ The field extraction capability is enhanced by providing detailed descriptions of identified faces in the video. This capability includes attributes such as facial hair, emotions, and the presence of celebrities, which can be crucial for various analytical and indexing purposes. To enable face description capabilities set `disableFaceBlurring : true` in the analyzer configuration.
 
 **Examples:**
 
