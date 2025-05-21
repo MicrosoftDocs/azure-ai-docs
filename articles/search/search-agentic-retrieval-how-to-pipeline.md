@@ -45,6 +45,16 @@ Use one of the following chat completion models with your AI agent:
 + `gpt-4.1-nano`
 + `gpt-4.1-mini`
 
+### Package version requirements
+
+We recommend the following package versions during this preview period. See the [`requirements.txt`](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/agentic-retrieval-pipeline-example/requirements.txt) file for more packages used in the example solution.
+
+```
+azure-ai-projects==1.0.0b11
+azure-ai-agents==1.0.0
+azure-search-documents==11.6.0b12
+```
+
 ### Configure access
 
 Before you begin, make sure you have permissions to access content and operations. We recommend Microsoft Entra ID authentication and role-based access for authorization. You must be an **Owner** or **User Access Administrator** to assign roles. If roles aren't feasible, you can use [key-based authentication](search-security-api-keys.md) instead.
@@ -159,7 +169,7 @@ agent_client = KnowledgeAgentRetrievalClient(endpoint=endpoint, agent_name=agent
 thread = project_client.agents.threads.create()
 retrieval_results = {}
 
-# AGENTIC RETRIEVAL DEFINITION OMITTED
+# AGENTIC RETRIEVAL DEFINITION DEFERRED TO NEXT SECTION
 
 functions = FunctionTool({ agentic_retrieval })
 toolset = ToolSet()
