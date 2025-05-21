@@ -51,9 +51,16 @@ You can manage the users and their individual roles here:
 
    :::image type="content" source="../media/quickstarts/cu-management-center.png" alt-text="Screenshot of Project users section of management center.":::
 
-## Build your first analyzer
+## Create your first task and analyzer
 
-Now that everything is configured to get started, we can walk through, step-by-step, how to build your first analyzer, starting with building the schema. The schema is the customizable framework that allows the analyzer to extract insights from your data. In this example, the schema is created to extract key data from an invoice document, but you can bring in any type of data and the steps remain the same. For a complete list of supported file types, see [input file limits](../service-limits.md#input-file-limits).
+Now that everything is configured to get started, we can walk through, step-by-step, how to create a task and build your first analyzer. The type of task that you create depends on what data you plan to bring in. 
+
+* **Single-file task:** A single-file task utilizes Content Understanding Standard mode and allows you to bring in one file to create your analyzer.
+* **Multi-file task:** A multi-file task utilizes Content Understandning Pro mode and allows you to bring in multiple files to create your analyzer. You can also bring in a set of reference data that the service can use to perform multi-step reasoning and make conclusions about your data. To learn more about the difference between Content Understanding Standard and Pro mode, check out [Azure AI Content Understanding pro and standard modes](../concepts/standard-pro-modes.md).
+
+# [Single-file task (Standard mode)](#tab/standard)
+
+When you create a single-file Content Understanding task, you'll start by building your field schema. The schema is the customizable framework that allows the analyzer to extract insights from your data. In this example, the schema is created to extract key data from an invoice document, but you can bring in any type of data and the steps remain the same. For a complete list of supported file types, see [input file limits](../service-limits.md#input-file-limits).
 
 1. Upload a sample file of an invoice document or any other data relevant to your scenario.
 
@@ -88,6 +95,11 @@ Now that everything is configured to get started, we can walk through, step-by-s
    :::image type="content" source="../media/analyzer-template/build-analyzer.png" alt-text="Screenshot of built analyzer.":::
 
 Now you successfully built your first Content Understanding analyzer, and are ready to start extracting insights from your data. Check out [Quickstart: Azure AI Content Understanding REST APIs](./use-rest-api.md) to utilize the REST API to call your analyzer.
+
+# [Multi-file task (Pro mode)](#tab/pro)
+
+When you create a multi-file Content Understanding task, you'll start by building your field schema. The schema is the customizable framework that allows the analyzer to extract insights from your data. In this example, the schema is created to extract key data from an invoice document, but you can bring in any document based data and the steps remain the same. For a complete list of supported file types, see [input file limits](../service-limits.md#input-file-limits).
+
 
 
 ## Next steps
