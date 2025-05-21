@@ -25,11 +25,9 @@ This exercise differs from the [Agentic Retrieval Quickstart](search-get-started
 
 The following resources are required for this design pattern:
 
-+ Azure AI Search, basic tier or higher, in a [region that provides semantic ranker](search-region-support.md).
++ Azure AI Search, basic tier or higher, in a [region that provides semantic ranking](search-region-support.md).
 
 + A search index that satisfies the [index criteria for agentic retrieval](search-agentic-retrieval-how-to-index.md).
-
-+ Azure OpenAI, and you should have an **Azure AI Developer** role assignment to create a Foundry project.
 
 + A project in Azure AI Foundry, with a deployment of a supported large language model and an Azure AI Agent in a Basic setup.
 
@@ -44,6 +42,30 @@ Use Azure OpenAI or an equivalent open source model:
 + `gpt-4.1`
 + `gpt-4.1-nano`
 + `gpt-4.1-mini`
+
+### Configure access
+
+Before you begin, make sure you have permissions to access content and operations. We recommend Microsoft Entra ID authentication and role-based access for authorization. If roles aren't feasible, you can use [key-based authentication](search-security-api-keys.md) instead.
+
+On Azure AI Search:
+
+1. [Enable role-based access](search-security-enable-roles.md).
+1. [Configure a managed identity](search-howto-managed-identities-data-sources.md).
+1. [Assign roles](search-security-rbac.md):
+
+   + For local testing, you must have **Search Service Contributor**, **Search Index Data Contributor**, and **Search Index Data Reader** role assignments to create, load, and retrieve on Azure AI Search.
+
+   + For integrated operations, ensure that all clients using the retrieval pipeline (agent and tool) have **Search Index Data Reader** role assignments for sending retrieval requests.
+
+On Azure AI Foundry:
+
++ You must be an **Owner** of your Azure subscription to create and use the project.
+
+On Azure OpenAI:
+
+1. For local testing, ensure that you have a **Cognitive Services User** role assignment to access the chat completion model.
+
+1. For integrated operations, ensure your [search service identity](search-howto-managed-identities-data-sources.md) has a **Cognitive Services User** role assignment for chat completion model access.
 
 ## Development tasks
 
