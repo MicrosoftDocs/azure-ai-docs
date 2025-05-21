@@ -18,7 +18,7 @@ ms.custom: include
 * This project type gives you the best support for:
 
     * Agents
-    * AI Model Inference including Azure Open AI	
+    * AI Model Inference including Azure OpenAI	
     * AI Foundry API that works with agents and across models	
     * Project files (directly upload files and start experimenting)
     * Evaluations
@@ -62,7 +62,7 @@ To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)] in [Azure AI Foun
 2. What you do next depends on where you are:
 
     * **If you don't have any existing projects**: Follow the steps in [Quickstart: Get started with Azure AI Foundry](../quickstarts/get-started-code.md) to create your first project.
-    
+
     * **If you're in a project**: Select the project breadcrumb, then select **Create new resource**.
     
         :::image type="content" source="../media/how-to/projects/create-new-resource.png" alt-text="Screenshot shows creating a new project from a breadcrumb.":::
@@ -119,7 +119,7 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
         account_name=resource_name,
         account={
             "location": location,
-            "kind": "AI Foundry",
+            "kind": "AIServices",
             "sku": {"name": "S0",},
             "identity": {"type": "SystemAssigned"},
             "properties": {"allowProjectManagement": True}
@@ -174,7 +174,7 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
     [!INCLUDE [cli-create-project](cli-create-project.md)]
  -->
 
-CLI comannds not currently available for creating a [!INCLUDE [fdp-project-name](fdp-project-name.md)].
+CLI commands not currently available for creating a [!INCLUDE [fdp-project-name](fdp-project-name.md)].
 
 ---
 

@@ -133,7 +133,7 @@ Agents have powerful capabilities through the use of tools. Start by chatting wi
  
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
-After the preceeding steps, you're now in the agents playground. 
+After the preceding steps, you're now in the agents playground. 
 
 1. Add instructions, such as, "You are a helpful writing assistant."
 1. Start chatting with your agent, for example, "Write me a poem about flowers."

@@ -72,7 +72,7 @@ Your first project (default project) plays a special role and has access to more
      az cognitiveservices account project create --resource-group {my_resource_group} --name {my_project_name} --account-name {foundry_resource_name} 
     ```
      -->
-    CLI comannds not currently available for creating a [!INCLUDE [fdp-project-name](fdp-project-name.md)].
+    CLI commands not currently available for creating a [!INCLUDE [fdp-project-name](fdp-project-name.md)].
 
     ---
 
