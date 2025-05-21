@@ -47,7 +47,7 @@ Use one of the following chat completion models with your AI agent:
 
 ### Package version requirements
 
-We recommend the following package versions during this preview period. See the [`requirements.txt`](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/agentic-retrieval-pipeline-example/requirements.txt) file for more packages used in the example solution.
+Use a package version that provides preview functionality. See the [`requirements.txt`](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/agentic-retrieval-pipeline-example/requirements.txt) file for more packages used in the example solution.
 
 ```
 azure-ai-projects==1.0.0b11
@@ -59,7 +59,11 @@ azure-search-documents==11.6.0b12
 
 Before you begin, make sure you have permissions to access content and operations. We recommend Microsoft Entra ID authentication and role-based access for authorization. You must be an **Owner** or **User Access Administrator** to assign roles. If roles aren't feasible, you can use [key-based authentication](search-security-api-keys.md) instead.
 
-On Azure AI Search:
+Configure access to each resource identified in this section.
+
+### [**Azure AI Search**](#tab/search-perms)
+
+Azure AI Search provides the agentic retrieval pipeline. Configure access for yourself, your app, and your search service for downstream access to models.
 
 1. [Enable role-based access](search-security-enable-roles.md).
 1. [Configure a managed identity](search-howto-managed-identities-data-sources.md).
@@ -69,7 +73,9 @@ On Azure AI Search:
 
    + For integrated operations, ensure that all clients using the retrieval pipeline (agent and tool) have **Search Index Data Reader** role assignments for sending retrieval requests.
 
-On Azure AI Foundry:
+### [**Azure AI Foundry**](#tab/foundry-perms)
+
+Azure AI Foundry hosts the AI agent and tool. Permissions are needed to create and use the resource.
 
 + You must be an **Owner** of your Azure subscription to create the project and resource.
 
@@ -77,11 +83,15 @@ On Azure AI Foundry:
 
 + For integrated operations, ensure your [search service identity](search-howto-managed-identities-data-sources.md) has an **Azure AI User** role assignment on the Foundry resource.
 
-On Azure OpenAI:
+### [**Azure OpenAI**](#tab/openai-perms)
 
-1. For local testing, ensure that you have a **Cognitive Services User** role assignment to access the chat completion model and embedding models (if using).
+Azure OpenAI hosts the models used by the agentic retrieval pipeline. Configure access for yourself and for the search service.
 
-1. For integrated operations, ensure your [search service identity](search-howto-managed-identities-data-sources.md) has a **Cognitive Services User** role assignment for model access.
++ For local testing, ensure that you have a **Cognitive Services User** role assignment to access the chat completion model and embedding models (if using).
+
++ For integrated operations, ensure your [search service identity](search-howto-managed-identities-data-sources.md) has a **Cognitive Services User** role assignment for model access.
+
+---
 
 ## Development tasks
 
