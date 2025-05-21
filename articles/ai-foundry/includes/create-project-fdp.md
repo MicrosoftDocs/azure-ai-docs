@@ -18,7 +18,7 @@ ms.custom: include
 * This project type gives you the best support for:
 
     * Agents
-    * AI Model Inference including Azure Open AI	
+    * AI Model Inference including Azure OpenAI	
     * AI Foundry API that works with agents and across models	
     * Project files (directly upload files and start experimenting)
     * Evaluations
@@ -51,21 +51,29 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 
 ---
 
-## Create a project
+## Create a [!INCLUDE [fdp-project-name](fdp-project-name.md)]
 
 # [Azure AI Foundry portal](#tab/ai-foundry)
 
 To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)] in [Azure AI Foundry](https://ai.azure.com), follow these steps:
 
-1. Go to [Azure AI Foundry](https://ai.azure.com). If you are in a project, select **Azure AI Foundry** at the top left of the page to go to the **Home** page.
-1. In the middle of the page, select **Start building**. This creates a project and also include steps to start working with a basic agent.
-1. Or select **+ Create project** in the top right corner of the page if you have existing projects. This creates the project alone, without extra steps to start working with an agent.
-1. Enter a name for the project.
-1. Select **Create**. Or, if you want to customize your settings, follow the steps in the next section.
+1. Go to [Azure AI Foundry](https://ai.azure.com).
+
+2. What you do next depends on where you are:
+
+    * **If you don't have any existing projects**: Follow the steps in [Quickstart: Get started with Azure AI Foundry](../quickstarts/get-started-code.md) to create your first project.
+
+    * **If you're in a project**: Select the project breadcrumb, then select **Create new resource**.
+    
+        :::image type="content" source="../media/how-to/projects/create-new-resource.png" alt-text="Screenshot shows creating a new project from a breadcrumb.":::
+    
+    * **If you're not in a project**: Select **Create new** in the top right to create a new [!INCLUDE [fdp-project-name-plural](fdp-project-name.md)]
+    
+        :::image type="content" source="../media/how-to/projects/create-new.png" alt-text="Screenshot shows how to create a new project in Azure AI Foundry.":::
 
 ### Advanced options
 
-A [!INCLUDE [fdp-project-name](fdp-project-name.md)] is created on an `AIServices` resource. This resource is created for you automatically when you create the project. 
+A [!INCLUDE [fdp-project-name](fdp-project-name.md)] is created on an `AI Foundry` resource. This resource is created for you automatically when you create the project. 
 
 To customize the settings for your project, follow these steps:
 
@@ -166,9 +174,9 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
     [!INCLUDE [cli-create-project](cli-create-project.md)]
  -->
 
----
+CLI commands not currently available for creating a [!INCLUDE [fdp-project-name](fdp-project-name.md)].
 
-CLI comannds not currently available for creating a [!INCLUDE [fdp-project-name](fdp-project-name.md)].
+---
 
 ## Create multiple projects on the same resource
 
@@ -180,7 +188,7 @@ CLI comannds not currently available for creating a [!INCLUDE [fdp-project-name]
 
 On the project **Home** page, you can find information about the project.
 
-- Name: The name of the project appears in the top left corner. You can rename the project using the edit tool.
+- Name: The name of the project appears in the top left corner. 
 - Subscription: The subscription that hosts the hub that hosts the project.
 - Resource group: The resource group that hosts the hub that hosts the project.
 
