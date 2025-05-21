@@ -780,17 +780,9 @@ items:
     href: https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=search
   - name: Compliance and certification
     href: /azure/compliance/
-  - name: Demos, tools, and training
+  - name: Tools and training
     items:
-    - name: Demo sites
-      href: resource-demo-sites.md
     - name: Tools and accelerators
       href: resource-tools.md
     - name: Training
       href: resource-training.md
-  - name: Partner solutions
-    items:
-    - name: Partner spotlight
-      href: resource-partners-knowledge-mining.md
-    - name: Partner data sources (Terms of Use)
-      href: search-data-sources-terms-of-use.md

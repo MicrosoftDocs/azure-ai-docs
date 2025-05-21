@@ -380,6 +380,21 @@
             "source_path_from_root": "/articles/search/security-baseline.md",
             "redirect_url": "/security/benchmark/azure/baselines/cognitive-search-security-baseline",
             "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/resource-demo-sites.md",
+            "redirect_url": "/azure/search/whats-new",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/resource-partners-knowledge-mining.md",
+            "redirect_url": "https://partner.microsoft.com/partnership/find-a-partner",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/search-data-sources-terms-of-use.md",
+            "redirect_url": "https://partner.microsoft.com/partnership/find-a-partner",
+            "redirect_document_id": false
         }
     ]
   }
