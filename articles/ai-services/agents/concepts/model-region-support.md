@@ -63,7 +63,7 @@ agent = project_client.agents.create_agent( model="llama-3", name="my-agent", in
 
 ### Models with tool-calling 
 
-To best support agentic scenarios, we recommend using models that support tool-calling. The Azure AI Agent Service currently supports all agent-compatible models from the Azure AI Foundry model catalog. 
+To best support agentic scenarios, we recommend using models that support tool-calling. The Azure AI Foundry Agent Service currently supports all agent-compatible models from the Azure AI Foundry model catalog. 
 
 To use these models, use the [Azure AI Foundry portal](https://ai.azure.com/) to make a model deployment, then reference the deployment name in your agent. For example: 
 

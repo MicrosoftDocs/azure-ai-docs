@@ -34,7 +34,7 @@ Start by defining an Azure Function queue trigger function that will process fun
 
 ```python
 # Function to get the weather from an Azure Storage queue where the AI Agent will send function call information
-# It returns the mock weather to an output queue with the correlation id for the AI Agent Service to pick up the result of the function call
+# It returns the mock weather to an output queue with the correlation id for the Foundry Agent Service to pick up the result of the function call
 @app.function_name(name="GetWeather")
 @app.queue_trigger(arg_name="msg", queue_name="input", connection="STORAGE_CONNECTION")  
 def process_queue_message(msg: func.QueueMessage) -> None:

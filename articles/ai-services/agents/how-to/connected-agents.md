@@ -1,7 +1,7 @@
 ---
 title: 'How to use connected agents'
 titleSuffix: Azure AI Foundry
-description: Learn how to create multi-agentic systems using connected agents in  AI Agent Service.
+description: Learn how to create multi-agentic systems using connected agents in the Azure AI Foundry Agent Service.
 services: cognitive-services
 manager: nitinme
 ms.service: azure
@@ -16,7 +16,7 @@ zone_pivot_groups: selection-connected-agents
 
 # Build collaborative, multi-agent systems with Connected Agents
 
-Connected agents in Azure AI Agent Service let you break down complex tasks into coordinated, specialized roles—without the need for a custom orchestrator or hand-coded routing logic. With this capability, you can design systems where a primary agent intelligently delegates to purpose-built sub-agents, streamlining workflows like customer support, market research, legal summarization, and financial analysis.
+Connected agents in Azure AI Foundry Agent Service let you break down complex tasks into coordinated, specialized roles—without the need for a custom orchestrator or hand-coded routing logic. With this capability, you can design systems where a primary agent intelligently delegates to purpose-built sub-agents, streamlining workflows like customer support, market research, legal summarization, and financial analysis.
 
 Rather than overloading one agent with too many skills, you can build focused, reusable agents that collaborate seamlessly—scaling both performance and maintainability.
 
