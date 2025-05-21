@@ -45,7 +45,7 @@ Use Azure OpenAI or an equivalent open source model:
 
 ### Configure access
 
-Before you begin, make sure you have permissions to access content and operations. We recommend Microsoft Entra ID authentication and role-based access for authorization. If roles aren't feasible, you can use [key-based authentication](search-security-api-keys.md) instead.
+Before you begin, make sure you have permissions to access content and operations. We recommend Microsoft Entra ID authentication and role-based access for authorization. You must be an **Owner** or **User Access Administrator** to assign roles. If roles aren't feasible, you can use [key-based authentication](search-security-api-keys.md) instead.
 
 On Azure AI Search:
 
