@@ -101,8 +101,8 @@ You can create an Azure AI Search service in any of the following Azure public r
 | Southeast Asia​​ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Central India | ✅ | ✅ | ✅ | ✅ |  |
 | Jio India West​​ | ✅ |  | ✅ | ✅ |  |
-| South India <sup>1</sup> |  | ✅ |  |  |  |
-| Japan East | ✅ | ✅ | ✅ | ✅ |  |
+| South India |  | ✅ |  |  |  |
+| Japan East <sup>1</sup> | ✅ | ✅ | ✅ | ✅ |  |
 | Japan West​ | ✅ |  | ✅ | ✅ |  |
 | Korea Central | ✅ | ✅ | ✅ | ✅ |  |
 | Korea South​​ |  |  | ✅ | ✅ |  |
