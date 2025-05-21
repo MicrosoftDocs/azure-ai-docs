@@ -855,8 +855,33 @@ When you create a private endpoint for hub dependency resources, such as Azure S
 
 A private endpoint is automatically created for a connection if the target resource is an Azure resource listed previously. A valid target ID is expected for the private endpoint. A valid target ID for the connection can be the Azure Resource Manager ID of a parent resource. The target ID is also expected in the target of the connection or in `metadata.resourceid`. For more on connections, see [How to add a new connection in Azure AI Foundry portal](connections-add.md).
 
-> [!IMPORTANT]
-> As of April 30th 2025, the Azure AI Enterprise Network Connection Approver role must be assigned to the Azure AI Foundry hub's managed identity to approve private endpoints to securely access your Azure resources from the managed virtual network. This doesn't impact existing resources with approved private endpoints as the role is correctly assigned by the service. For new resources, ensure the role is assigned to the hub's managed identity. For Azure Data Factory, Azure Databricks, and Azure Function Apps, the Contributor role should instead be assigned to your hub's managed identity. This role assignment is applicable to both User-assigned identity and System-assigned identity workspaces. 
+### Approval of Private Endpoints
+
+To establish Private Endpoint connections in managed virtual networks using Azure AI Foundry, the workspace managed identity, whether system-assigned or user-assigned, must have permissions to approve the Private Endpoint connections on the target resources. Previously, this was done through automatic role assignments by the Azure AI Foundry service. However, there are security concerns about the automatic role assignment. To improve security, starting April 30th, 2025, we will discontinue this automatic permission grant logic. We recommend assigning the [Azure AI Enterprise Network Connection Approver role](/azure/role-based-access-control/built-in-roles/ai-machine-learning) or a custom role with the necessary Private Endpoint connection permissions on the target resource types and grant this role to the Azure Machine Learning workspace's managed identity to allow Azure AI Foundry services to approve Private Endpoint connections to the target Azure resources.
+
+Here's the list of private endpoint target resource types covered by covered by the Azure AI Enterprise Network Connection Approver role:
+
+* Azure Application Gateway
+* Azure Monitor
+* Azure AI Search
+* Event Hubs
+* Azure SQL Database
+* Azure Storage
+* Azure Machine Learning workspace
+* Azure Machine Learning registry
+* Azure AI Foundry
+* Azure Key Vault
+* Azure CosmosDB
+* Azure Database for MySQL
+* Azure Database for PostgreSQL
+* Azure AI Services
+* Azure Cache for Redis
+* Container Registry
+* API Management
+
+For creating Private Endpoint outbound rules to target resource types not covered by the Azure AI Enterprise Network Connection Approver role, such as Azure Data Factory, Azure Databricks, and Azure Function Apps, a custom scoped-down role is recommended, defined only by the actions necessary to approve private endpoint connections on the target resource types.
+
+For creating Private Endpoint outbound rules to default workspace resources, the required permissions are automatically covered by the role assignments granted during workspace creation, so no additional action is needed.
 
 ## Select an Azure Firewall version for allowed only approved outbound
 
