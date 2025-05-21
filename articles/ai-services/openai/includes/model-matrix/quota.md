@@ -1,6 +1,6 @@
 ---
 title: Azure OpenAI Autogen quota
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Azure OpenAI model quota
 manager: nitinme
 ms.service: azure-ai-openai

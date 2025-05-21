@@ -32,7 +32,7 @@ Pronunciation assessment supports uninterrupted streaming mode. The recording ti
 
 For information about availability of pronunciation assessment, see [supported languages](language-support.md?tabs=pronunciation-assessment) and [available regions](regions.md?tabs=scenarios#regions).
 
-As a baseline, usage of pronunciation assessment costs the same as speech to text for pay-as-you-go or commitment tier [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services). If you [purchase a commitment tier](../commitment-tier.md) for speech to text, the spend for pronunciation assessment goes towards meeting the commitment. For more information, see [Pricing](./pronunciation-assessment-tool.md#pricing).
+As a baseline, usage of pronunciation assessment costs the same as speech to text for Standard or commitment tier [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services). If you [purchase a commitment tier](../commitment-tier.md) for speech to text, the spend for pronunciation assessment goes towards meeting the commitment. For more information, see [Pricing](./pronunciation-assessment-tool.md#pricing).
 
 ::: zone pivot="programming-language-csharp"
 
@@ -1106,9 +1106,9 @@ This formula provides a weighted calculation based on the importance of each sco
 ## Content assessment
 
 > [!IMPORTANT]
-> Content assessment (preview) via the Speech SDK will be retired in July 2025. Instead, you can use the Azure OpenAI Service to get content assessment results as described in this section.
+> Content assessment (preview) via the Speech SDK will be retired in July 2025. Instead, you can use the Azure OpenAI in Azure AI Foundry Models to get content assessment results as described in this section.
 
-For some recognized speech, you might also want to get content assessment results for vocabulary, grammar, and topic relevance. You can use a chat model such as Azure OpenAI `gpt-4o` to get the content assessment results. For more information about using chat models, see [Azure OpenAI Service models](../openai/concepts/models.md) and the Azure AI Model Inference API [chat completions reference documentation](/rest/api/aifoundry/model-inference/get-chat-completions/get-chat-completions).
+For some recognized speech, you might also want to get content assessment results for vocabulary, grammar, and topic relevance. You can use a chat model such as Azure OpenAI `gpt-4o` to get the content assessment results. For more information about using chat models, see [Azure OpenAI models](../openai/concepts/models.md) and the Azure AI Model Inference API [chat completions reference documentation](/rest/api/aifoundry/model-inference/get-chat-completions/get-chat-completions).
 
 The user and system messages are used to set the context for the chat model. In the following example, the user message contains the essay to be assessed, and the system message provides instructions on how to evaluate the essay.
 

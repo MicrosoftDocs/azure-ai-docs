@@ -36,7 +36,7 @@ var response = await client.path("/chat/completions").post({
     }
 });
 
-console.log(response.choices[0].message.content)
+console.log(response.body.choices[0].message.content)
 ```
 
 # [C#](#tab/csharp)

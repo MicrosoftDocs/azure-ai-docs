@@ -437,6 +437,8 @@ items:
       - name: Redact PII from native documents
         href: personally-identifiable-information/how-to/redact-document-pii.md
       - name: Use containers
+        href: personally-identifiable-information/how-to/adapt-to-domain-pii.md
+      - name: Adapt PII to your domain
         items:
           - name: Use Docker containers
             href: personally-identifiable-information/how-to/use-containers.md
@@ -838,7 +840,7 @@ items:
       items:
       - name: Virtual networks
         href: ../cognitive-services-virtual-networks.md?context=/azure/ai-services/language-service/context/context
-      - name: Azure AI services security
+      - name: Azure AI Foundry security
         href: ../security-features.md?context=/azure/ai-services/language-service/context/context
       - name: Encryption of data at rest
         href: concepts/encryption-data-at-rest.md

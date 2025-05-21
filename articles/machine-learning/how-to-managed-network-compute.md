@@ -176,7 +176,7 @@ You can't create a compute cluster or compute instance from the Azure portal. In
 
 ### Migration of compute resources
 
-If you have an existing workspace and want to enable managed virtual network for it, there's currently no supported migration path for existing manged compute resources. You'll need to delete all existing managed compute resources and recreate them after enabling the managed virtual network. The following list contains the compute resources that must be deleted and recreated:
+If you have an existing workspace and want to enable managed virtual network for it, there's currently no supported migration path for existing managed compute resources. You'll need to delete all existing managed compute resources and recreate them after enabling the managed virtual network. The following list contains the compute resources that must be deleted and recreated:
 
 * Compute cluster
 * Compute instance

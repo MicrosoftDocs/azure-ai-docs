@@ -1,18 +1,18 @@
 ---
- title: include file
- description: include file
- author: eric-urban
- ms.author: eur
- ms.service: azure-ai-speech
- ms.topic: include
- ms.date: 2/18/2024
- ms.custom: include
+title: include file
+description: include file
+author: eric-urban
+ms.author: eur
+ms.service: azure-ai-speech
+ms.topic: include
+ms.date: 5/19/2025
+ms.custom: include
 ---
 
 In this article, you learn how to train a custom neural voice through the Speech Studio portal.
 
 > [!IMPORTANT]
-> Custom neural voice training is currently only available in some regions. After your voice model is trained in a supported region, you can [copy](#copy-your-voice-model-to-another-project) it to an AI Services resource for Speech in another region as needed. For more information, see the footnotes in the [Speech service table](../../../../regions.md#regions).
+> Custom neural voice training is currently only available in some regions. After your voice model is trained in a supported region, you can [copy](#copy-your-voice-model-to-another-project) it to an AI Foundry resource for Speech in another region as needed. For more information, see the footnotes in the [Speech service table](../../../../regions.md#regions).
 
 Training duration varies depending on how much data you use. It takes about 40 compute hours on average to train a custom neural voice. Standard subscription (S0) users can train four voices simultaneously. If you reach the limit, wait until at least one of your voice models finishes training, and then try again.
 
@@ -36,6 +36,8 @@ After you validate your data files, use them to build your custom neural voice m
 - [Neural - multi lingual (preview)](?tabs=multilingual#train-your-custom-neural-voice-model): Create a voice that speaks multiple languages using the single-language training data. For example, with the `en-US` primary training data, you can create a voice that speaks `en-US`, `de-DE`, `zh-CN` etc. secondary languages.
 
   The primary language of the training data and the secondary languages must be in the [languages that are supported](../../../../language-support.md?tabs=tts#custom-neural-voice) for multi lingual voice training. You don't need to prepare training data in the secondary languages.
+  
+- [Neural - HD Voice (preview)](?tabs=hdvoice#train-your-custom-neural-voice-model): Create a HD voice in the same language of your training data. Azure neural HD voices are LLM-based, optimized for dynamic conversations. Learn more about neural HD voices [here](../../../../high-definition-voices.md).
 
 The language of the training data must be one of the [languages that are supported](../../../../language-support.md?tabs=tts) for custom neural voice, cross-lingual, or multiple style training.
 
@@ -47,14 +49,11 @@ To create a custom neural voice in Speech Studio, follow these steps for one of 
 
 1. Sign in to the [Speech Studio](https://aka.ms/speechstudio/customvoice).
 1. Select **Custom voice** > *\<Your project name>* > **Train model** > **Train a new model**.
-1. Select **Neural** as the [training method](#choose-a-training-method) for your model and then select **Next**. To use a different training method, see [Neural - cross lingual](?tabs=crosslingual#train-your-custom-neural-voice-model) or [Neural - multi style](?tabs=multistyle#train-your-custom-neural-voice-model) or [Neural - multi lingual (preview)](?tabs=multilingual#train-your-custom-neural-voice-model).
+1. Select **Neural** as the [training method](#choose-a-training-method) for your model and then select **Next**. To use a different training method, see [Neural - cross lingual](?tabs=crosslingual#train-your-custom-neural-voice-model) or [Neural - multi style](?tabs=multistyle#train-your-custom-neural-voice-model) or [Neural - multi lingual (preview)](?tabs=multilingual#train-your-custom-neural-voice-model) or [Neural - HD Voice (preview)](?tabs=hdvoice#train-your-custom-neural-voice-model).
 
    :::image type="content" source="../../../../media/custom-voice/cnv-train-neural.png" alt-text="Screenshot that shows how to select neural training.":::
 
 1. Select a version of the training recipe for your model. The latest version is selected by default. The supported features and training time can vary by version. Normally, we recommend the latest version. In some cases, you can choose an earlier version to reduce training time. See [Bilingual training](#bilingual-training) for more information about bilingual training and differences between locales.
-
-   > [!NOTE]
-   > Model versions `V2.2021.07`, `V4.2021.10`, `V5.2022.05`, `V6.2022.11`, and `V9.2023.10` will be retired by October 1, 2024. The voice models already created on these retired versions won't be affected.
    
 1. Select the data that you want to use for training. Duplicate audio names are removed from the training. Make sure that the data you select doesn't contain the same audio names across multiple *.zip* files.
 
@@ -72,11 +71,15 @@ To create a custom neural voice in Speech Studio, follow these steps for one of 
 1. Review the settings and select the box to accept the terms of use.
 1. Select **Submit** to start training the model.
 
+### Bilingual training
+
+[!INCLUDE [Bilingual training](./bilingual-training.md)]
+
 # [Neural - cross lingual](#tab/crosslingual)
 
 1. Sign in to the [Speech Studio](https://aka.ms/speechstudio/customvoice).
 1. Select **Custom voice** > *\<Your project name>* > **Train model** > **Train a new model**.
-1. Select **Neural - cross lingual** as the [training method](#choose-a-training-method) for your model. To use a different training method, see [Neural](?tabs=neural#train-your-custom-neural-voice-model) or [Neural - multi style](?tabs=multistyle#train-your-custom-neural-voice-model) or [Neural - multi lingual (preview)](?tabs=multilingual#train-your-custom-neural-voice-model).
+1. Select **Neural - cross lingual** as the [training method](#choose-a-training-method) for your model. To use a different training method, see [Neural](?tabs=neural#train-your-custom-neural-voice-model) or [Neural - multi style](?tabs=multistyle#train-your-custom-neural-voice-model) or [Neural - multi lingual (preview)](?tabs=multilingual#train-your-custom-neural-voice-model) or [Neural - HD Voice (preview)](?tabs=hdvoice#train-your-custom-neural-voice-model).
 
    :::image type="content" source="../../../../media/custom-voice/cnv-train-neural-cross-lingual.png" alt-text="Screenshot that shows how to select neural cross lingual training.":::
 
@@ -101,7 +104,7 @@ To create a custom neural voice in Speech Studio, follow these steps for one of 
 
 1. Sign in to the [Speech Studio](https://aka.ms/speechstudio/customvoice).
 1. Select **Custom voice** > *\<Your project name>* > **Train model** > **Train a new model**.
-1. Select **Neural - multi style** as the [training method](#choose-a-training-method) for your model. To use a different training method, see [Neural](?tabs=neural#train-your-custom-neural-voice-model) or [Neural - cross lingual](?tabs=crosslingual#train-your-custom-neural-voice-model) or [Neural - multi lingual (preview)](?tabs=multilingual#train-your-custom-neural-voice-model).
+1. Select **Neural - multi style** as the [training method](#choose-a-training-method) for your model. To use a different training method, see [Neural](?tabs=neural#train-your-custom-neural-voice-model) or [Neural - cross lingual](?tabs=crosslingual#train-your-custom-neural-voice-model) or [Neural - multi lingual (preview)](?tabs=multilingual#train-your-custom-neural-voice-model) or [Neural - HD Voice (preview)](?tabs=hdvoice#train-your-custom-neural-voice-model).
 
    :::image type="content" source="../../../../media/custom-voice/cnv-train-neural-multi-style.png" alt-text="Screenshot that shows how to select neural multi style training.":::
 
@@ -130,11 +133,17 @@ Optionally, you can also select **Add my own test script** and provide your own 
 1. Review the settings and select the box to accept the terms of use.
 1. Select **Submit** to start training the model.
 
+### Available preset styles across different languages
+
+The following table summarizes the different preset styles according to different languages.
+
+[!INCLUDE [Speaking styles](./voice-styles-by-locale.md)]
+
 # [Neural - multi lingual (preview)](#tab/multilingual)
 
 1. Sign in to the [Speech Studio](https://aka.ms/speechstudio/customvoice).
 1. Select **Custom voice** > *\<Your project name>* > **Train model** > **Train a new model**.
-1. Select **Neural - multi lingual** as the [training method](#choose-a-training-method) for your model. To use a different training method, see [Neural](?tabs=neural#train-your-custom-neural-voice-model) or [Neural - cross lingual](?tabs=crosslingual#train-your-custom-neural-voice-model) or [Neural - multi style](?tabs=multistyle#train-your-custom-neural-voice-model).
+1. Select **Neural - multi lingual** as the [training method](#choose-a-training-method) for your model. To use a different training method, see [Neural](?tabs=neural#train-your-custom-neural-voice-model) or [Neural - cross lingual](?tabs=crosslingual#train-your-custom-neural-voice-model) or [Neural - multi style](?tabs=multistyle#train-your-custom-neural-voice-model) or [Neural - HD Voice (preview)](?tabs=hdvoice#train-your-custom-neural-voice-model).
 
    :::image type="content" source="../../../../media/custom-voice/cnv-train-neural-multi-lingual.png" alt-text="Screenshot that shows how to select neural multi lingual training.":::
 
@@ -152,19 +161,34 @@ Optionally, you can also select **Add my own test script** and provide your own 
 1. Review the settings and select the box to accept the terms of use.
 1. Select **Submit** to start training the model.
 
+# [Neural - HD Voice (preview)](#tab/hdvoice)
+
+1. Sign in to the [Speech Studio](https://aka.ms/speechstudio/customvoice).
+1. Select **Custom voice** > *\<Your project name>* > **Train model** > **Train a new model**.
+1. Select **Neural - HD Voice (preview)** as the [training method](#choose-a-training-method) for your model. To use a different training method, see [Neural](?tabs=neural#train-your-custom-neural-voice-model), [Neural - cross lingual](?tabs=crosslingual#train-your-custom-neural-voice-model), [Neural - multi style](?tabs=multistyle#train-your-custom-neural-voice-model), or [Neural - multi lingual](?tabs=multilingual#train-your-custom-neural-voice-model).
+
+   :::image type="content" source="../../../../media/custom-voice/cnv-train-neural-hd-voice.png" alt-text="Screenshot that shows how to select neural HD voice training.":::
+
+1. Select the data that you want to use for training. Duplicate audio names are removed from the training. Make sure that the data you select doesn't contain the same audio names across multiple *.zip* files.
+
+   You can select only successfully processed datasets for training. Check your data processing status if you don't see your training set in the list.
+   Prefer to select training data processed as **Contextual**.
+
+1. Select a speaker file with the voice talent statement that corresponds to the speaker in your training data.
+1. Select **Next**.
+1. Each training generates 100 primary language sample audio files automatically to help you test the model with a default script.
+
+Optionally, you can also select **Add my own test script** and provide your own test script with up to 100 utterances to test the default style at no extra cost. The generated audio files are a combination of the automatic test scripts and custom test scripts. For more information, see [test script requirements](#test-script-requirements).
+
+1. Enter a **Name** to help you identify the model. Choose a name carefully. The model name is used as the voice name in your [speech synthesis request](../../../../professional-voice-deploy-endpoint.md#use-your-custom-voice) by the SDK and SSML input. Only letters, numbers, and a few punctuation characters are allowed. Use different names for different neural voice models. The text ':DragonHDLatestNeural' will be automatically added as a suffix to your model name.
+1. Optionally, enter the **Description** to help you identify the model. A common use of the description is to record the names of the data that you used to create the model.
+1. Select **Next**.
+1. Review the settings and select the box to accept the terms of use.
+1. Select **Submit** to start training the model.
+
 ---
 
-### Bilingual training
-
-[!INCLUDE [Bilingual training](./bilingual-training.md)]
-
-## Available preset styles across different languages
-
-The following table summarizes the different preset styles according to different languages.
-
-[!INCLUDE [Speaking styles](./voice-styles-by-locale.md)]
-
----
+## Monitor the training process
 
 The **Train model** table displays a new entry that corresponds to this newly created model. The status reflects the process of converting your data to a voice model, as described in this table:
 
@@ -183,7 +207,7 @@ After you finish training the model successfully, you can review the model detai
 
 You can use the [Audio Content Creation](../../../../how-to-audio-content-creation.md) tool in Speech Studio to create audio and fine-tune your deployed voice. If applicable for your voice, you can select one of multiple styles.
 
-### Rename your model
+## Rename your model
 
 1. If you want to rename the model you built, select **Clone model** to create a clone of the model with a new name in the current project.
 
@@ -193,9 +217,12 @@ You can use the [Audio Content Creation](../../../../how-to-audio-content-creati
 
    :::image type="content" source="../../../../media/custom-voice/cnv-clone-model-rename.png" alt-text="Screenshot of cloning a model with a new name.":::
 
-### Test your voice model
+## Test your voice model
 
 After your voice model is successfully built, you can use the generated sample audio files to test it before you deploy it.
+
+> [!NOTE]
+> [Neural - multi lingual (preview)](?tabs=multilingual#train-your-custom-neural-voice-model) and [Neural - HD Voice (preview)](?tabs=hdvoice#train-your-custom-neural-voice-model) do not support this type of testing.
 
 The quality of the voice depends on many factors, such as:
 
@@ -237,7 +264,7 @@ Each paragraph of the utterance results in a separate audio. If you want to comb
 > [!NOTE]
 > The generated audio files are a combination of the automatic test scripts and custom test scripts.
 
-### Update engine version for your voice model
+## Update engine version for your voice model
 
 Azure text to speech engines are updated from time to time to capture the latest language model that defines the pronunciation of the language. After you train your voice, you can apply your voice to the new language model by updating to the latest engine version.
 

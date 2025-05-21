@@ -166,7 +166,7 @@ All text to speech locales [here](language-support.md?tabs=tts) (except fa-IR, P
 
 ## Embedded speech configuration
 
-For cloud connected applications, as shown in most Speech SDK samples, you use the `SpeechConfig` object with an API key and endpoint. For embedded speech, you don't use an AI Services resource for Speech. Instead of a cloud resource, you use the [models and voices](#models-and-voices) that you download to your local device.
+For cloud connected applications, as shown in most Speech SDK samples, you use the `SpeechConfig` object with an API key and endpoint. For embedded speech, you don't use an AI Foundry resource for Speech. Instead of a cloud resource, you use the [models and voices](#models-and-voices) that you download to your local device.
 
 Use the `EmbeddedSpeechConfig` object to set the location of the models or voices. If your application is used for both speech to text and text to speech, you can use the same `EmbeddedSpeechConfig` object to set the location of the models and voices.
 

@@ -1,6 +1,6 @@
 ---
 title: Azure OpenAI Global Batch Studio
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Azure OpenAI model global batch Studio
 manager: nitinme
 ms.service: azure-ai-openai
@@ -69,7 +69,8 @@ For this article, we'll create a file named `test.jsonl` and will copy the conte
 
 ## Upload batch file
 
-Once your input file is prepared, you first need to upload the file to then be able to kick off a batch job. File upload can be done both programmatically or via the Studio.
+Once your input file is prepared, you first need to upload the file to then be able to initiate a batch job. File upload can be done both programmatically or via the Azure AI Foundry portal. This example demonstrates uploading a file directly to your Azure OpenAI resource. Alternatively, you can [configure Azure Blob Storage for Azure OpenAI Batch](../../how-to/batch-blob-storage.md). 
+
 
 1. Sign in to [Azure AI Foundry portal](https://ai.azure.com).
 2. Select the Azure OpenAI resource where you have a global batch model deployment available.
@@ -80,6 +81,7 @@ Once your input file is prepared, you first need to upload the file to then be a
 4. From the dropdown under **Batch data** > **Upload files** > select **Upload file** and provide the path for the `test.jsonl` file created in the previous step > **Next**.
 
     :::image type="content" source="../../media/how-to/global-batch/upload-file.png" alt-text="Screenshot that shows upload file experience." lightbox="../../media/how-to/global-batch/upload-file.png":::
+
 
 ## Create batch job
 

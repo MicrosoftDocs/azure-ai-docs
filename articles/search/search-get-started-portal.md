@@ -29,7 +29,7 @@ The wizard creates multiple objects on your search service, including a [searcha
 
 + An Azure AI Search service. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. You can use a free service for this quickstart.
 
-+ Familiarity with the wizard. See [Import data wizards in the Azure portal](search-import-data-portal.md) for details.
++ Familiarity with the wizard. See [Import data wizards in the Azure portal](search-import-data-portal.md).
 
 ### Check for network access
 

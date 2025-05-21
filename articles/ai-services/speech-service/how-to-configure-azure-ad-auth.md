@@ -14,21 +14,21 @@ ms.custom: devx-track-azurepowershell, devx-track-extended-java, devx-track-pyth
 
 # Microsoft Entra authentication with the Speech SDK
 
-When using the Speech SDK to access the Speech service, there are three authentication methods available: service keys, a key-based token, and Microsoft Entra ID. This article describes how to configure an AI Services resource for Speech and create a Speech SDK configuration object to use Microsoft Entra ID for authentication.
+When using the Speech SDK to access the Speech service, there are three authentication methods available: service keys, a key-based token, and Microsoft Entra ID. This article describes how to configure an AI Foundry resource for Speech and create a Speech SDK configuration object to use Microsoft Entra ID for authentication.
 
 This article shows how to use Microsoft Entra authentication with the Speech SDK. You learn how to:
 
 > [!div class="checklist"]
 >
-> - Create an AI Services resource for Speech
+> - Create an AI Foundry resource for Speech
 > - Configure the Speech resource for Microsoft Entra authentication
 > - Get a Microsoft Entra access token
 > - Create the appropriate SDK configuration object.
 
 To learn more about Microsoft Entra access tokens, including token lifetime, visit [Access tokens in the Microsoft identity platform](/azure/active-directory/develop/access-tokens).
 
-## Create an AI Services resource for Speech
-To create an AI Services resource for Speech in the [Azure portal](https://portal.azure.com), see [this quickstart](~/articles/ai-services/multi-service-resource.md?pivots=azportal).
+## Create an AI Foundry resource for Speech
+To create an AI Foundry resource for Speech in the [Azure portal](https://portal.azure.com), see [this quickstart](~/articles/ai-services/multi-service-resource.md?pivots=azportal).
 
 <a name='configure-the-speech-resource-for-azure-ad-authentication'></a>
 
@@ -128,7 +128,7 @@ You need your Speech resource ID to make SDK calls using Microsoft Entra authent
 To get the resource ID in the Azure portal:
 
 1. Go to the [Azure portal](https://portal.azure.com/) and sign in to your Azure account.
-1. Select an AI Services resource for Speech.
+1. Select an AI Foundry resource for Speech.
 1. In the **Resource Management** group on the left pane, select **Properties**.
 1. Copy the **Resource ID**
 

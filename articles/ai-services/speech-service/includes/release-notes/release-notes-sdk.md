@@ -2,14 +2,14 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 03/17/2025
+ms.date: 5/21/2025
 ms.author: eur
 ---
 
 > [!IMPORTANT]
 > Content assessment (preview) via the Speech SDK is being retired in July 2025. Instead, you can use Azure OpenAI models to get content assessment results as described in the [content assessment documentation](../../how-to-pronunciation-assessment.md#content-assessment).
 
-### Speech SDK 1.44: 2025-April release
+### Speech SDK 1.44: 2025-May release
 
 > [!IMPORTANT]
 > Support for target platforms is changing:
@@ -65,6 +65,7 @@ ms.author: eur
   
 ##### Bug fixes
   * Fixed non-working semicolon-separated input URLs and input file/URL lists from a file.
+
 
 ### Speech SDK 1.43: 2025-March release
 

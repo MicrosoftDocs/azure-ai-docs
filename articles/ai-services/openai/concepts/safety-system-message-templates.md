@@ -1,6 +1,6 @@
 ---
 title: Safety system message templates 
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: This article contains recommended safety system messages for your generative AI systems, to help reduce the propensity of harm in various concern areas.
 ms.service: azure-ai-openai
 ms.topic: conceptual

@@ -200,14 +200,11 @@ items:
         items:
         - name: Custom text to speech avatar overview
           href: text-to-speech-avatar/what-is-custom-text-to-speech-avatar.md
+        - name: How to record video samples
+          href: text-to-speech-avatar/custom-avatar-record-video-samples.md
           displayName: custom-tts-avatar
         - name: Create a custom text to speech avatar
           href: text-to-speech-avatar/custom-avatar-create.md
-        - name: How to record video samples
-          href: text-to-speech-avatar/custom-avatar-record-video-samples.md
-          displayName: avatar
-        - name: Deploy your custom text to speech avatar model as an endpoint
-          href: text-to-speech-avatar/custom-avatar-endpoint.md
           displayName: avatar
     - name: Audio content creation
       href: how-to-audio-content-creation.md
@@ -234,6 +231,16 @@ items:
          href: video-translation-overview.md
        - name: How to use video translation
          href: video-translation-get-started.md
+- name: Voice Live API (preview)
+  items:
+    - name: Voice Live API overview
+      href: voice-live.md
+    - name: Voice Live API quickstart
+      href: voice-live-quickstart.md
+    - name: How to use Voice Live API
+      href: voice-live-how-to.md
+    - name: Realtime API events reference documentation
+      href: /azure/ai-services/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context
 - name: Intent recognition
   items:
     - name: Intent recognition overview
@@ -287,12 +294,12 @@ items:
         href: language-learning-overview.md
       - name: Pronunciation Assessment with speech to text
         items:
-        - name: Reading and speaking assessment in Azure AI Foundry
+        - name: Pronunciation assessment in Azure AI Foundry
           href: pronunciation-assessment-tool.md
           displayName: pronounce, learn language, assess pron
         - name: Interactive language learning with pronunciation assessment
           href: language-learning-with-pronunciation-assessment.md
-          displayName: pronounce, learn language, assess pron, chatting 
+          displayName: pronounce, learn language, assess pron, chatting
     - name: Azure OpenAI speech to speech chat
       href: openai-speech.md
     - name: Multi-device conversation
@@ -313,7 +320,7 @@ items:
   items:
     - name: Access control and authentication
       items:
-      - name: Role-based access with Microsoft Entra ID 
+      - name: Role-based access with Microsoft Entra ID
         href: role-based-access-control.md
       - name: Use Microsoft Entra authentication
         href: how-to-configure-azure-ad-auth.md
@@ -412,7 +419,7 @@ items:
           items:
             - name: Migration overview
               href: migration-overview-neural-voice.md
-            - name: Migrate to custom neural voice 
+            - name: Migrate to custom neural voice
               href: how-to-migrate-to-custom-neural-voice.md
             - name: Migrate to prebuilt neural voice
               href: how-to-migrate-to-prebuilt-neural-voice.md
@@ -498,13 +505,13 @@ items:
           displayName: Python SDK,Python dev kit,reference,reference docs,ref documentation
           href: /python/api/azure-cognitiveservices-speech/
     - name: REST API reference
-      items: 
+      items:
         - name: Speech to text REST API
           href: rest-speech-to-text.md
-          displayName: reference 
+          displayName: reference
         - name: Speech to text REST API for short audio
-          href: rest-speech-to-text-short.md    
-          displayName: reference       
+          href: rest-speech-to-text-short.md
+          displayName: reference
         - name: Text to speech REST API
           href: rest-text-to-speech.md
           displayName: reference, tts output, output format
@@ -557,7 +564,7 @@ items:
     - name: Embedded speech
       href: /legal/cognitive-services/speech-service/embedded-speech/limited-access-embedded-speech?context=/azure/ai-services/speech-service/context/context
     - name: Speaker Recognition
-      items: 
+      items:
       - name: Transparency note
         items:
         - name: Use cases for Speaker Recognition

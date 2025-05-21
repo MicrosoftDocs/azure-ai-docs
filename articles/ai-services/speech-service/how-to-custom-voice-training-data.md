@@ -22,20 +22,22 @@ When you're ready to create a custom Text to speech voice for your application, 
 
 A voice training dataset includes audio recordings, and a text file with the associated transcriptions. Each audio file should contain a single utterance (a single sentence or a single turn for a dialog system), and be less than 15 seconds long.
 
-In some cases, you might not have the right dataset ready. You can test the custom neural voice training with available audio files, short or long, with or without transcripts. 
+In some cases, you might not have the right dataset ready. You can test the custom neural voice training with available audio files, short or long, with or without transcripts.
 
 This table lists data types and how each is used to create a custom Text to speech voice model.
 
-| Data type | Description | When to use | Extra processing required |
-| --------- | ----------- | ----------- | ------------------------------ |
-| [Individual utterances + matching transcript](#individual-utterances--matching-transcript) | A collection (.zip) of audio files (.wav) as individual utterances. Each audio file should be 15 seconds or less in length, paired with a formatted transcript (.txt). | Professional recordings with matching transcripts | Ready for training. |
-| [Long audio + transcript](#long-audio--transcript-preview) | A collection (.zip) of long, unsegmented audio files (.wav or .mp3, longer than 20 seconds, at most 1,000 audio files), paired with a collection (.zip) of transcripts that contains all spoken words. | You have audio files and matching transcripts, but they aren't segmented into utterances. | Segmentation (using batch transcription).<br>Audio format transformation wherever required. |
-| [Audio only (Preview)](#audio-only-preview) | A collection (.zip) of audio files (.wav or .mp3, at most 1,000 audio files) without a transcript. | You only have audio files available, without transcripts. | Segmentation + transcript generation (using batch transcription).<br>Audio format transformation wherever required.|
+| Data type | Description | When to use | Extra processing required | Processed as |
+| --------- | ----------- | ----------- | ------------------------------ | ---------------- |
+| [Individual utterances + matching transcript](#individual-utterances--matching-transcript) | A collection (.zip) of audio files (.wav) as individual utterances. Each audio file should be 15 seconds or less in length, paired with a formatted transcript (.txt). | Professional recordings with matching transcripts | Ready for training. | Segmented |
+| [Long audio + transcript](#long-audio--transcript-preview) | A collection (.zip) of long, unsegmented audio files (.wav or .mp3, longer than 20 seconds, at most 1,000 audio files), paired with a collection (.zip) of transcripts that contains all spoken words. | You have audio files and matching transcripts, but they aren't segmented into utterances. | Segmentation (using batch transcription).<br>Audio format transformation wherever required. | Segmented, Contextual |
+| [Audio only (Preview)](#audio-only-preview) | A collection (.zip) of audio files (.wav or .mp3, at most 1,000 audio files) without a transcript. | You only have audio files available, without transcripts. | Segmentation + transcript generation (using batch transcription).<br>Audio format transformation wherever required.| Segmented, Contextual |
 
 Files should be grouped by type into a dataset and uploaded as a zip file. Each dataset can only contain a single data type.
 
 > [!NOTE]
 > The maximum number of datasets allowed to be imported per subscription is 500 zip files for standard subscription (S0) users.
+>
+> Processed as Contextual would retain the audio as a whole to keep the contextual information for more natural intonations.
 
 ## Individual utterances + matching transcript
 
@@ -87,9 +89,15 @@ It's important that the transcripts are 100% accurate transcriptions of the corr
 ## Long audio + transcript (Preview)
 
 > [!NOTE]
-> For **Long audio + transcript (Preview)**, only these languages are supported: Chinese (Mandarin, Simplified), Chinese (Cantonese, Traditional), Chinese (Taiwanese Mandarin), English (India), English (United Kingdom), English (United States), French (France), German (Germany), Italian (Italy), Japanese (Japan), Portuguese (Brazil), Spanish (Spain) and Spanish (Mexico).
+> For **Long audio + transcript (Preview)**, only these languages are supported: Chinese (Mandarin, Simplified), Chinese (Cantonese, Traditional), Chinese (Taiwanese Mandarin), English (India), English (United Kingdom), English (United States), French (France), German (Germany), Hindi (India), Italian (Italy), Japanese (Japan), Portuguese (Brazil), Spanish (Spain) and Spanish (Mexico).
+>
+> Processed as Contextual is currently only available for Chinese (Mandarin, Simplified) and English (United States).
 
 In some cases, you might not have segmented audio available. The Speech Studio can help you segment long audio files and create transcriptions. The long-audio segmentation service uses the [Batch Transcription API](batch-transcription.md) feature of speech to text.
+
+The service offers two processing modes:
+- **Segmented**: The default processing mode that works with all supported languages
+- **Contextual**: An enhanced mode that retains the audio as a whole to keep the contextual information for more natural intonations.
 
 During the processing of the segmentation, your audio files and the transcripts are also sent to the custom speech service to refine the recognition model so the accuracy can be improved for your data. No data is retained during this process. After the segmentation is done, only the utterances segmented and their mapping transcripts will be stored for your downloading and training.
 
@@ -103,7 +111,7 @@ Follow these guidelines when preparing audio for segmentation.
 | File name	|  File name characters supported by Windows OS, with .wav extension. <br>The characters `\ / : * ? " < > \|` aren't allowed. <br>It can't start or end with a space, and can't start with a dot. <br>No duplicate file names allowed. |
 | Sampling rate	| 24 KHz and higher required when creating a custom neural voice. |
 | Sample format |RIFF(.wav): PCM, at least 16-bit.<br/><br/>mp3: At least 256 KBps bit rate.|
-| Audio length | Longer than 20 seconds |
+| Audio length | Longer than 30 seconds |
 | Archive format | .zip |
 | Maximum archive size | 2048 MB, at most 1,000 audio files included |
 
@@ -133,9 +141,15 @@ After your dataset is successfully uploaded, we'll help you segment the audio fi
 ## Audio only (Preview)
 
 > [!NOTE]
-> For **Audio only (Preview)**, only these languages are supported: Chinese (Mandarin, Simplified), Chinese (Cantonese, Traditional), Chinese (Taiwanese Mandarin), English (India), English (United Kingdom), English (United States), French (France), German (Germany), Italian (Italy), Japanese (Japan), Portuguese (Brazil), Spanish (Spain) and Spanish (Mexico). 
+> For **Audio only (Preview)**, only these languages are supported: Chinese (Mandarin, Simplified), Chinese (Cantonese, Traditional), Chinese (Taiwanese Mandarin), English (India), English (United Kingdom), English (United States), French (France), German (Germany), Hindi (India), Italian (Italy), Japanese (Japan), Portuguese (Brazil), Spanish (Spain) and Spanish (Mexico).
+>
+> Processed as Contextual is currently only available for Chinese (Mandarin, Simplified) and English (United States).
 
-If you don't have transcriptions for your audio recordings, use the **Audio only** option to upload your data. Our system can help you segment and transcribe your audio files. Keep in mind, this service is charged toward your speech to text subscription usage.
+If you don't have transcriptions for your audio recordings, use the **Audio only** option to upload your data. Our system can help you segment and transcribe your audio files.
+
+The service offers two processing modes:
+- **Segmented**: The default processing mode that works with all supported languages
+- **Contextual**: An enhanced mode that retains the audio as a whole to keep the contextual information for more natural intonations.
 
 Follow these guidelines when preparing audio.
 
@@ -154,7 +168,7 @@ Follow these guidelines when preparing audio.
 >
 > Segmented utterances should ideally be between 5 and 15 seconds long. For optimal segmentation results, it is recommended to include natural pauses of 0.5 to 1 second every 5 to 15 seconds of speech, preferably at the end of phrases or sentences.
 
-All audio files should be grouped into a zip file. Once your dataset is successfully uploaded, the Speech service helps you segment the audio file into utterances based on our speech batch transcription service. Unique IDs are assigned to the segmented utterances automatically. Matching transcripts are generated through speech recognition. All .mp3 files will be transformed into the .wav format after processing. You can check the segmented utterances and the matching transcripts by downloading the dataset.
+All audio files should be grouped into a zip file. Once your dataset is successfully uploaded, the Speech service helps you segment the audio file into utterances based on our speech batch transcription service. You can select either the Standard or Contextual processing mode, depending on your language and requirements. Unique IDs are assigned to the segmented utterances automatically. Matching transcripts are generated through speech recognition. All .mp3 files will be transformed into the .wav format after processing. You can check the segmented utterances and the matching transcripts by downloading the dataset.
 
 ## Next steps
 

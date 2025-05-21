@@ -16,7 +16,7 @@ ms.date: 11/02/2023
 
 # LLM tool
 
-The large language model (LLM) tool in prompt flow enables you to take advantage of widely used large language models like [OpenAI](https://platform.openai.com/), or [Azure OpenAI Service](../../../ai-services/openai/overview.md), or any language model supported by the [Azure AI model inference API](https://aka.ms/azureai/modelinference) for natural language processing.
+The large language model (LLM) tool in prompt flow enables you to take advantage of widely used large language models like [OpenAI](https://platform.openai.com/), or [Azure OpenAI in Azure AI Foundry Models](../../../ai-services/openai/overview.md), or any language model supported by the [Azure AI model inference API](https://aka.ms/azureai/modelinference) for natural language processing.
 
 Prompt flow provides a few different large language model APIs:
 
@@ -41,10 +41,10 @@ Create OpenAI resources:
 
     - Create Azure OpenAI resources with [these instructions](../../../ai-services/openai/how-to/create-resource.md).
 
-- **Models deployed to Serverless API endpoints**
+- **Models deployed to standard deployments**
 
-  - Create an endpoint with the model from the catalog you are interested [and deploy it with a serverless API endpoint](../../how-to-deploy-models-serverless.md).
-  - To use models deployed to serverless API endpoints supported by the [Azure AI model inference API](https://aka.ms/azureai/modelinference), like Mistral, Cohere, Meta Llama, or Microsoft family of models (among others), you need to [create a connection in your project to your endpoint](../../how-to-connect-models-serverless.md?#create-a-serverless-api-endpoint-connection)
+  - Create an endpoint with the model from the catalog you are interested [and deploy it with a standard deployment](../../how-to-deploy-models-serverless.md).
+  - To use models deployed to standard deployment supported by the [Azure AI model inference API](https://aka.ms/azureai/modelinference), like Mistral, Cohere, Meta Llama, or Microsoft family of models (among others), you need to [create a connection in your project to your endpoint](../../how-to-connect-models-serverless.md?#create-a-standard-deployment-connection)
 
 ## Connections
 
@@ -60,7 +60,7 @@ Set up connections to provisioned resources in prompt flow.
   > [!TIP]
   > - To use Microsoft Entra ID auth type for Azure OpenAI connection, you need assign either the `Cognitive Services OpenAI User` or `Cognitive Services OpenAI Contributor role` to user or user assigned managed identity.
   > - Learn more about [how to specify to use user identity to submit flow run](../how-to-create-manage-runtime.md#create-an-automatic-runtime-preview-on-a-flow-page).
-  > - Learn more about [How to configure Azure OpenAI Service with managed identities](../../../ai-services/openai/how-to/managed-identity.md).
+  > - Learn more about [How to configure Azure OpenAI with managed identities](../../../ai-services/openai/how-to/managed-identity.md).
 
 ## Inputs
 
@@ -89,7 +89,7 @@ The following sections show various inputs.
 | Name                   | Type        | Description                                                                                    | Required |
 |------------------------|-------------|------------------------------------------------------------------------------------------------|----------|
 | prompt                 | string      | Text prompt that the language model uses for a response.                                              | Yes      |
-| model, deployment_name | string      | Language model to use. This parameter is not required if the model is deployed to a serverless API endpoint.  | Yes*      |
+| model, deployment_name | string      | Language model to use. This parameter is not required if the model is deployed to a standard deployment.  | Yes*      |
 | max\_tokens            | integer     | Maximum number of tokens to generate in the response. Default is inf.                      | No       |
 | temperature            | float       | Randomness of the generated text. Default is 1.                                            | No       |
 | stop                   | list        | Stopping sequence for the generated text. Default is null.                                 | No       |
@@ -107,6 +107,6 @@ The following sections show various inputs.
 
 ## Use the LLM tool
 
-1. Set up and select the connections to OpenAI resources or to a serverless API endpoint.
+1. Set up and select the connections to OpenAI resources or to a standard deployment.
 1. Configure the large language model API and its parameters.
 1. Prepare the prompt with [guidance](prompt-tool.md#write-a-prompt).
