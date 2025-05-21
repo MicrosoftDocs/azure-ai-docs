@@ -54,7 +54,7 @@ With the prebuilt video analyzer (prebuilt-videoAnalyzer), you can upload a vide
 
 * For example, creating the base `prebuilt-videoAnalyzer` as follows:
 
-  ```jsonc
+  ```json
   {
     "config": {},
     "BaseAnalyzerId": "prebuilt-videoAnalyzer",
@@ -154,8 +154,7 @@ Shape the output to match your business vocabulary. Use a `fieldSchema` object w
 
 **Example:**
 
-```jsonc
-
+```json
 "fieldSchema": {
   "description": "Extract brand presence and sentiment per scene",
   "fields": {
@@ -207,7 +206,7 @@ Content Understanding offers three ways to slice a video, letting you get the ou
   **Example:**
     * Break a news broadcast up into stories.
 
-    ```jsonc
+    ```json
     {
       "segmentationMode": "custom",
       "segmentationDefinition": "news broadcasts divided by individual stories"
