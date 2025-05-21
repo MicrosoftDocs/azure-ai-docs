@@ -29,7 +29,7 @@ To complete this tutorial, you need:
 
 First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
 
-# [OpenAI](#tab/openai)
+# [OpenAI API](#tab/openai)
 
 ```python
 import os
@@ -42,7 +42,7 @@ client = AzureOpenAI(
 )
 ```
 
-# [Model Inference (preview)](#tab/inference)
+# [Model Inference API (preview)](#tab/inference)
 
 ```python
 import os
@@ -59,7 +59,7 @@ client = ChatCompletionsClient(
 
 If you have configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
 
-# [OpenAI](#tab/openai)
+# [OpenAI API](#tab/openai)
 
 ```python
 import os
@@ -77,7 +77,7 @@ client = AzureOpenAI(
 )
 ```
 
-# [Model Inference (preview)](#tab/inference)
+# [Model Inference API (preview)](#tab/inference)
 
 ```python
 import os
@@ -99,7 +99,7 @@ client = ChatCompletionsClient(
 
 The following example shows how you can create a basic chat request to the model.
 
-# [OpenAI](#tab/openai)
+# [OpenAI API](#tab/openai)
 
 ```python
 response = client.chat.completions.create(
@@ -112,7 +112,7 @@ response = client.chat.completions.create(
 print(response.model_dump_json(indent=2)
 ```
 
-# [Model Inference (preview)](#tab/inference)
+# [Model Inference API (preview)](#tab/inference)
 
 ```python
 from azure.ai.inference.models import SystemMessage, UserMessage
@@ -129,7 +129,7 @@ response = client.complete(
 
 The response is as follows, where you can see the model's usage statistics:
 
-# [OpenAI](#tab/openai)
+# [OpenAI API](#tab/openai)
 
 ```python
 print("Response:", response.choices[0].message.content)
@@ -149,7 +149,7 @@ Usage:
   Completion tokens: 886
 ```
 
-# [Model Inference (preview)](#tab/inference)
+# [Model Inference API (preview)](#tab/inference)
 
 ```python
 print("Response:", response.choices[0].message.content)
@@ -174,7 +174,7 @@ Usage:
 
 Some reasoning models, like DeepSeek-R1, generate completions and include the reasoning behind it. 
 
-# [OpenAI](#tab/openai)
+# [OpenAI API](#tab/openai)
 
 The reasoning associated with the completion is included in the field `reasoning_content`. The model may select on which scenearios to generate reasoning content. 
 
@@ -186,7 +186,7 @@ print("Thinking:", response.choices[0].message.reasoning_content)
 Thinking: Okay, the user is asking how many languages exist in the world. I need to provide a clear and accurate answer...
 ```
 
-# [Model Inference (preview)](#tab/inference)
+# [Model Inference API (preview)](#tab/inference)
 
 The reasoning associated with the completion is included in the response's content within the tags `<think>` and `</think>`. The model may select on which scenarios to generate reasoning content. You can extract the reasoning content from the response to understand the model's thought process as follows:
 
@@ -216,7 +216,7 @@ You can _stream_ the content to get it as it's being generated. Streaming conten
 
 To stream completions, set `stream=True` when you call the model.
 
-# [OpenAI](#tab/openai)
+# [OpenAI API](#tab/openai)
 
 ```python
 response = client.chat.completions.create(
@@ -228,7 +228,7 @@ response = client.chat.completions.create(
 )
 ```
 
-# [Model Inference (preview)](#tab/inference)
+# [Model Inference API (preview)](#tab/inference)
 
 ```python
 response = client.complete(
@@ -244,7 +244,7 @@ response = client.complete(
 
 To visualize the output, define a helper function to print the stream. The following example implements a routing that stream only the answer without the reasoning content:
 
-# [OpenAI](#tab/openai)
+# [OpenAI API](#tab/openai)
 
 Reasoning content is also included inside of the delta pieces of the response, in the key `reasoning_content`.
 
@@ -268,7 +268,7 @@ def print_stream(completion):
                 print(content, end="", flush=True)
 ```
 
-# [Model Inference (preview)](#tab/inference)
+# [Model Inference API (preview)](#tab/inference)
 
 When streaming, pay closer attention to the `<think>` tag that may be included inside of the `content` field.
 
@@ -316,7 +316,7 @@ The Azure AI Model Inference API supports [Azure AI Content Safety](https://aka.
 
 The following example shows how to handle events when the model detects harmful content in the input prompt.
 
-# [OpenAI](#tab/openai)
+# [OpenAI API](#tab/openai)
 
 ```python
 try:
@@ -339,7 +339,7 @@ except HttpResponseError as ex:
     raise
 ```
 
-# [Model Inference (preview)](#tab/inference)
+# [Model Inference API (preview)](#tab/inference)
 
 ```python
 from azure.ai.inference.models import AssistantMessage, UserMessage
