@@ -76,7 +76,7 @@ With the prebuilt video analyzer (prebuilt-videoAnalyzer), you can upload a vide
      WEBVTT
 
      00:03.600 --> 00:06.000
-     <Speaker 1 Speaker>Get new years ready.
+     <Speaker 1>Get new years ready.
 
      Key Frames
      - 00:00.600 ![](keyFrame.600.jpg)
@@ -90,7 +90,7 @@ With the prebuilt video analyzer (prebuilt-videoAnalyzer), you can upload a vide
      WEBVTT
 
      00:03.600 --> 00:06.000
-     <Speaker 1 Speaker>Go team!
+     <Speaker 1>Go team!
 
      Key Frames
      - 00:06.200 ![](keyFrame.6200.jpg)
