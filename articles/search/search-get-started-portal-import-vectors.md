@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Vector Search in the Azure Portal"
+title: "Quickstart: Vector Search in the Azure portal"
 titleSuffix: Azure AI Search
 description: Learn how to use a wizard to automate data chunking and vectorization in a search index.
 author: haileytap
