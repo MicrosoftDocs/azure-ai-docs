@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/10/2025
+ms.date: 05/20/2025
 ---
 
 # Build an agent-to-agent retrieval solution using Azure AI Search
@@ -31,7 +31,9 @@ The following resources are required for this design pattern:
 
 + Azure OpenAI, and you should have an **Azure AI Developer** role assignment to create a Foundry project.
 
-+ A project in Azure AI Foundry, with a deployment of a supported large language model and an Azure AI Agent in a basic setup. To meet this requirement, follow the steps in [Quickstart: Create a new agent (Preview)](/azure/ai-services/agents/quickstart?pivots=ai-foundry-portal). We recommend 100,000 token capacity for your model. You can find capacity and the rate limit in the model deployments list in the Azure AI Foundry portal.
++ A project in Azure AI Foundry, with a deployment of a supported large language model and an Azure AI Agent in a Basic setup.
+
+  Follow the steps in [Create a project for Azure AI Foundry](/azure/ai-foundry/how-to/create-project). Deploy one of the chat completion models listed below. We recommend a minimum of 100,000 token capacity for your model. You can find capacity and the rate limit in the model deployments list in the Azure AI Foundry portal.
 
 ### Supported large language models
 
@@ -61,19 +63,7 @@ Your custom application makes API calls to Azure AI Search and an Azure SDK.
 + Azure SDK with a Foundry project, providing programmatic access to chat and chat history
 + Azure AI Agent, with an agent for handling the conversation, and a tool for orchestration
 
-## How to customize grounding data
-
-Search results are consolidating into a large unified string that you can pass to a conversational language model for a grounded answer. The following indexing and relevance tuning features in Azure AI Search are available to help you generate high quality results:
-
-+ Scoring profiles (added to your search index) provide built-in boosting criteria. Your index must specify a default scoring profile, and that's the one used by the retrieval engine when queries include fields associated with that profile.
-
-+ Semantic configuration is required, but you determine which fields are prioritized and used for ranking.
-
-+ For plain text content, you can use analyzers to control tokenization during indexing.
-
-+ For multimodal or image content, you can use image verbalization for LLM-generated descriptions of your images, or classic OCR and image analysis via skillsets during indexing.
-
-## Create the project
+## Set up your environment
 
 The canonical use case for agentic retrieval is through the Azure AI Agent service. We recommend it because it's the easiest way to create a chatbot.
 
@@ -87,27 +77,52 @@ You need endpoints for:
 
 You can find endpoints for Azure AI Search and Azure OpenAI in the [Azure portal](https://portal.azure.com).
 
-You can find the project connection string in the Azure AI Foundry portal:
+You can find the project endpoint in the Azure AI Foundry portal:
 
 1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com) and open your project. 
 
-1. In the **Project details** tile, find and copy the **Project connection string**. 
+1. In the **Overview** tile, find and copy the Azure AI Foundry project endpoint.
 
-   A hypothetical connection string might look like this: `eastus2.api.azureml.ms;00000000-0000-0000-0000-0000000000;rg-my-resource-group-name;my-foundry-project-name`
-
-1. Check the authentication type for your Azure OpenAI resource and make sure it uses an API key shared to all projects. Still in **Project details**, expand the **Connected resources** tile to view the authentication type for your Azure OpenAI resource.
+   A hypothetical endpoint might look like this: https://your-foundry-resource.services.ai.azure.com/api/projects/your-foundry-project
 
 If you don't have an Azure OpenAI resource in your Foundry project, revisit the model deployment prerequisite. A connection to the resource is created when you deploy a model.
+
+### Set up an AI project client and create an agent
+
+Use [AIProjectClient](/python/api/azure-ai-projects/azure.ai.projects.aiprojectclient?view=azure-python-preview&preserve-view=true) to create your AI agent.
+
+```python
+from azure.ai.projects import AIProjectClient
+
+project_client = AIProjectClient(endpoint=project_endpoint, credential=credential)
+
+list(project_client.agents.list_agents())
+```
+
+Your agent is backed by a supported language model and instructions inform the agent of its scope.
+
+```python
+instructions = """
+A Q&A agent that can answer questions about the Earth at night.
+Sources have a JSON format with a ref_id that must be cited in the answer using the format [ref_id].
+If you do not have the answer, respond with "I don't know".
+"""
+agent = project_client.agents.create_agent(
+    model=agent_model,
+    name=agent_name,
+    instructions=instructions
+)
+
+print(f"AI agent '{agent_name}' created or updated successfully")
+```
 
 ### Add an agentic retrieval tool to AI Agent
 
 An end-to-end pipeline needs an orchestration mechanism for coordinating calls to the retriever and knowledge agent. You can use a [tool](/azure/ai-services/agents/how-to/tools/function-calling) for this task. The tool calls the Azure AI Search knowledge retrieval client and the Azure AI agent, and it drives the conversations with the user.
 
-## How to design a prompt
+## How to structure messages
 
-The prompt sent to the LLM includes instructions for working with the grounding data, which is passed as a large single string with no serialization or structure.
-
-The tool or function that you use to drive the pipeline provides the instructions to the LLM for the conversation.
+The prompt sent to the LLM includes instructions for including chat history and results obtained during retrieval on Azure AI Search. The response is passed as a large single string with no serialization or structure.
 
 ```python
 def agentic_retrieval() -> str:
@@ -135,22 +150,17 @@ def agentic_retrieval() -> str:
     return retrieval_result.response[0].content[0].text
 ```
 
-To provide instructions used for building the query plan and the subqueries used to get the grounding data, set the message in the knowledge agent:
+## How to improve data quality
 
-```python
-project_client = AIProjectClient.from_connection_string(project_conn_str, credential=credential)
+Search results are consolidating into a large unified string that you can pass to a conversational language model for a grounded answer. The following indexing and relevance tuning features in Azure AI Search are available to help you generate high quality results. You can implement these features in the search index, and the improvements in search relevance are evident in the quality of the response returned during retrieval.
 
-instructions = """
-An Q&A agent that can answer questions about the Earth at night.
-Sources have a JSON format with a ref_id that must be cited in the answer.
-If you do not have the answer, respond with "I don't know".
-"""
-agent = project_client.agents.create_agent(
-    model=agent_model,
-    name=agent_name,
-    instructions=instructions
-)
-```
++ [Scoring profiles](index-add-scoring-profiles.md) (added to your search index) provide built-in boosting criteria. Your index must specify a default scoring profile, and that's the one used by the retrieval engine when queries include fields associated with that profile.
+
++ [Semantic configuration](semantic-how-to-configure.md) is required, but you determine which fields are prioritized and used for ranking.
+
++ For plain text content, you can use [analyzers](index-add-custom-analyzers.md) to control tokenization during indexing.
+
++ For [multimodal or image content](multimodal-search-overview.md), you can use image verbalization for LLM-generated descriptions of your images, or classic OCR and image analysis via skillsets during indexing.
 
 ## Control the number of subqueries
 
@@ -178,7 +188,7 @@ Look at output tokens in the [activity array](search-agentic-retrieval-how-to-re
 
 + Summarize message threads.
 
-+ Use `gpt mini`.
++ Use `gpt mini` or a smaller model that performs faster.
 
 + Set `maxOutputSize` in the [knowledge agent](search-agentic-retrieval-how-to-create.md) to govern the size of the response, or `maxRuntimeInSeconds` for time-bound processing.
 
