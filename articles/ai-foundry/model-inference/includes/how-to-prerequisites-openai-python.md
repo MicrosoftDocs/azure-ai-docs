@@ -11,12 +11,12 @@ author: santiagxf
 
     # [OpenAI](#tab/openai)
     
-      ```bash
-      pip install -U openai
-      ```
+    ```bash
+    pip install -U openai
+    ```
     
     # [Model Inference (preview)](#tab/inference)
     
-      ```bash
-      pip install -U azure-ai-inference
-      ```
+    ```bash
+    pip install -U azure-ai-inference
+    ```
