@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 04/11/2025
+ms.date: 05/20/2025
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
@@ -19,7 +19,7 @@ zone_pivot_groups: project-type
 
 # Create a project for Azure AI Foundry
 
-This article describes how to create an [Azure AI Foundry](https://ai.azure.com) project. Projects are folders that let you organize your work for exploring new ideas, and as you're prototyping on a particular use cases.
+This article describes how to create an [Azure AI Foundry](https://ai.azure.com) project. Projects let you organize your work for exploring new ideas and as you prototype on a particular use cases.
 
 Azure AI Foundry supports two types of projects: a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** and a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. For more information about the differences between these two project types, see [Types of projects](../what-is-azure-ai-foundry.md#project-types).
 
@@ -70,7 +70,7 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 
 ---
 
-## Create a project
+## Create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]
 
 # [Azure AI Foundry portal](#tab/ai-foundry)
 
@@ -129,7 +129,7 @@ On the project **Overview** page, you can find information about the project.
 
 :::image type="content" source="../media/how-to/projects/project-settings.png" alt-text="Screenshot of an Azure AI Foundry project settings page." lightbox = "../media/how-to/projects/project-settings.png":::
 
-- Name: The name of the project appears in the top left corner. You can rename the project using the edit tool.
+- Name: The name of the project appears in the top left corner.
 - Subscription: The subscription that hosts the hub that hosts the project.
 - Resource group: The resource group that hosts the hub that hosts the project.
 

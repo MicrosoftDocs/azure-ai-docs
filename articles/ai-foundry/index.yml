@@ -168,6 +168,8 @@ additionalContent:
               url: https://aka.ms/azureaifoundry/vscode
         - title: Explore more Azure AI
           links:
+            - text: What are Azure AI services?
+              url: ../ai-services/what-are-ai-services.md
             - text: Semantic Kernel
               url: /semantic-kernel/
             - text: Document Intelligence
