@@ -12,7 +12,7 @@ ms.author: eur
 
 ## Prerequisites
 
-[!INCLUDE [Prerequisites](../../common/azure-prerequisites.md)]
+[!INCLUDE [Prerequisites](../../common/azure-prerequisites-resourcekey-endpoint.md)]
 
 ## Set up the environment
 
@@ -59,7 +59,7 @@ To set up your environment, [install the Speech SDK](~/articles/ai-services/spee
 
 ### Set environment variables
 
-[!INCLUDE [Environment variables](../../common/environment-variables.md)]
+[!INCLUDE [Environment variables](../../common/environment-variables-resourcekey-endpoint.md)]
 
 ## Implement diarization from file with conversation transcription
 
@@ -79,13 +79,13 @@ Follow these steps to create a console application for conversation transcriptio
     import java.util.concurrent.Future;
     
     public class ConversationTranscription {
-        // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
+        // This example requires environment variables named "SPEECH_KEY" and "ENDPOINT"
         private static String speechKey = System.getenv("SPEECH_KEY");
-        private static String speechRegion = System.getenv("SPEECH_REGION");
+        private static String endpoint = System.getenv("ENDPOINT");
     
         public static void main(String[] args) throws InterruptedException, ExecutionException {
             
-            SpeechConfig speechConfig = SpeechConfig.fromSubscription(speechKey, speechRegion);
+            SpeechConfig speechConfig = SpeechConfig.fromEndpoint(speechKey, endpoint);
             speechConfig.setSpeechRecognitionLanguage("en-US");
             AudioConfig audioInput = AudioConfig.fromWavFileInput("katiesteve.wav");
             speechConfig.setProperty(PropertyId.SpeechServiceResponse_DiarizeIntermediateResults, "true");
@@ -161,7 +161,7 @@ Follow these steps to create a console application for conversation transcriptio
    ```
 
 > [!IMPORTANT]
-> Make sure that you set the `SPEECH_KEY` and `SPEECH_REGION` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
+> Make sure that you set the `SPEECH_KEY` and `ENDPOINT` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
 
 The transcribed conversation should be output as text:
 
@@ -252,7 +252,7 @@ TRANSCRIBED: Text=That's exciting. Let me try it right now. Speaker ID=Guest-2
 Speakers are identified as Guest-1, Guest-2, and so on, depending on the number of speakers in the conversation.
 
 > [!NOTE]
-> You might see `Speaker ID=Unknown` in some of the early intermediate results when the speaker is not yet identified. Without intermediate diarization results (if you don't set the `PropertyId.SpeechServiceResponse_DiarizeIntermediateResults` property to "true"), the speaker ID is always "Unknown".
+> You might see `Speaker ID=Unknown` in some of the early intermediate results when the speaker isn't yet identified. Without intermediate diarization results (if you don't set the `PropertyId.SpeechServiceResponse_DiarizeIntermediateResults` property to "true"), the speaker ID is always "Unknown."
 
 ## Clean up resources
 
