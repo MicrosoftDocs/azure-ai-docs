@@ -87,7 +87,7 @@ Content Understanding now supports modified content filtering for approved custo
 
 ## Face capabilities
 
-Face capabilities in Content Understanding is a Limited Access service and registration is required for access to it. Face grouping and identification feature in Content Understanding is limited based on eligibility and usage criteria. Face service is only available to Microsoft managed customers and partners. Use the [Face Recognition intake form](https://aka.ms/facerecognition) to apply for access. For more information, see [Microsoft's Limited Access Policy](https://learn.microsoft.com/en-us/azure/ai-services/cognitive-services-limited-access).
+The Face capabilities feature in Content Understanding is a limited Access service and registration is required for access. Face grouping and identification feature in Content Understanding is limited based on eligibility and usage criteria. Face service is only available to Microsoft managed customers and partners. Use the [Face Recognition intake form](https://aka.ms/facerecognition) to apply for access. For more information, see [Microsoft's Limited Access Policy](https://learn.microsoft.com/en-us/azure/ai-services/cognitive-services-limited-access).
 
 
 ## Data privacy and security

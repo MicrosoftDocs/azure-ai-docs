@@ -108,7 +108,7 @@ We recently published a walk-through for RAG on Video using Content Understandin
 
 1. [Content extraction](#content-extraction-capabilities)
 1. [Field extraction](#field-extraction-and-segmentation)
-1. [Face identification](#face-identification-description-add-on)
+1. [Face identification](#face-identification-and-description-add-on)
 
 Under the hood, two stages transform raw pixels into business-ready insights. The diagram below shows how extraction feeds generation, ensuring each downstream step has the context it needs.
 
