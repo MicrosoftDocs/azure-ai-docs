@@ -19,7 +19,7 @@ This article describes an approach or pattern for building a solution that uses 
 
 This article supports the [agentic-retrieval-pipeline-example](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example) Python sample on GitHub.
 
-This exercise differs from the [Agentic Retrieval Quickstart](search-get-started-agentic-retrieval.md) in how it uses Azure AI Agent to determine whether to retrieve data from the index, and how it uses an agent tool for orchestration.
+This exercise differs from the [Agentic Retrieval Quickstart](search-get-started-agentic-retrieval.md) in how it uses Azure AI Agent to retrieve data from the index, and how it uses an agent tool for orchestration.
 
 ## Prerequisites
 
@@ -33,7 +33,7 @@ The following resources are required for this design pattern:
 
 + A project in Azure AI Foundry, with a deployment of a supported large language model and an Azure AI Agent in a Basic setup.
 
-  Follow the steps in [Create a project for Azure AI Foundry](/azure/ai-foundry/how-to/create-project). Deploy one of the chat completion models listed below. We recommend a minimum of 100,000 token capacity for your model. You can find capacity and the rate limit in the model deployments list in the Azure AI Foundry portal.
+  Follow the steps in [Create a project for Azure AI Foundry](/azure/ai-foundry/how-to/create-projects). Deploy one of the chat completion models listed below. We recommend a minimum of 100,000 token capacity for your model. You can find capacity and the rate limit in the model deployments list in the Azure AI Foundry portal.
 
 ### Supported large language models
 
@@ -83,7 +83,7 @@ You can find the project endpoint in the Azure AI Foundry portal:
 
 1. In the **Overview** tile, find and copy the Azure AI Foundry project endpoint.
 
-   A hypothetical endpoint might look like this: https://your-foundry-resource.services.ai.azure.com/api/projects/your-foundry-project
+   A hypothetical endpoint might look like this: `https://your-foundry-resource.services.ai.azure.com/api/projects/your-foundry-project`
 
 If you don't have an Azure OpenAI resource in your Foundry project, revisit the model deployment prerequisite. A connection to the resource is created when you deploy a model.
 
@@ -120,9 +120,28 @@ print(f"AI agent '{agent_name}' created or updated successfully")
 
 An end-to-end pipeline needs an orchestration mechanism for coordinating calls to the retriever and knowledge agent. You can use a [tool](/azure/ai-services/agents/how-to/tools/function-calling) for this task. The tool calls the Azure AI Search knowledge retrieval client and the Azure AI agent, and it drives the conversations with the user.
 
+```python
+from azure.ai.agents.models import FunctionTool, ToolSet, ListSortOrder
+
+from azure.search.documents.agent import KnowledgeAgentRetrievalClient
+from azure.search.documents.agent.models import KnowledgeAgentRetrievalRequest, KnowledgeAgentMessage, KnowledgeAgentMessageTextContent, KnowledgeAgentIndexParams
+
+agent_client = KnowledgeAgentRetrievalClient(endpoint=endpoint, agent_name=agent_name, credential=credential)
+
+thread = project_client.agents.threads.create()
+retrieval_results = {}
+
+# AGENTIC RETRIEVAL DEFINITION OMITTED
+
+functions = FunctionTool({ agentic_retrieval })
+toolset = ToolSet()
+toolset.add(functions)
+project_client.agents.enable_auto_function_calls(toolset)
+```
+
 ## How to structure messages
 
-The prompt sent to the LLM includes instructions for including chat history and results obtained during retrieval on Azure AI Search. The response is passed as a large single string with no serialization or structure.
+The messages sent to the agent tool include instructions for chat history and using the results obtained from [knowledge retrieval](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-05-01-preview&preserve-view=true) on Azure AI Search. The response is passed as a large single string with no serialization or structure.
 
 ```python
 def agentic_retrieval() -> str:
