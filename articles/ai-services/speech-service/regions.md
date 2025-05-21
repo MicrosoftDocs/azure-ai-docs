@@ -249,38 +249,38 @@ The regions in these tables support most of the core features of the Speech serv
 
 # [Scenarios](#tab/scenarios)
 
-| **Region** | **Pronunciation assessment** | **Speaker recognition** | **Voice assistants** |
+| **Region** | **Pronunciation assessment** | **Speaker recognition** | **Voice assistants** | **Voice Live API** |
 |-----|-----|-----|-----|
-| australiaeast      | ✅ | ✅ |  |
-| brazilsouth        | ✅ |  |  |
-| canadacentral      | ✅ | ✅ | ✅ |
-| centralindia       | ✅ | ✅ |  |
-| centralus          | ✅ | ✅ |  |
-| eastasia           | ✅ | ✅ | ✅ |
-| eastus             | ✅ | ✅ | ✅ |
-| eastus2            | ✅ | ✅ | ✅ |
-| francecentral      | ✅ | ✅ |  |
-| germanywestcentral | ✅ | ✅ |  |
-| japaneast          | ✅ | ✅ |  |
-| japanwest          | ✅ | ✅ |  |
-| koreacentral       | ✅ | ✅ |  |
-| northcentralus     | ✅ |  |  |
-| northeurope        | ✅ | ✅ | ✅ |
-| norwayeast         | ✅ | ✅ |  |
-| qatarcentral       | ✅ | ✅ |  |
-| southafricanorth   | ✅ |  |  |
-| southcentralus     | ✅ |  | ✅ |
-| southeastasia      | ✅ | ✅ | ✅ |
-| swedencentral      | ✅ | ✅ |  |
-| switzerlandnorth   | ✅ |  |  |
-| switzerlandwest    | ✅ | ✅ |  |
-| uaenorth           | ✅ |  |  |
-| uksouth            | ✅ | ✅ |  |
-| westcentralus      | ✅ | ✅ | ✅ |
-| westeurope         | ✅ | ✅ | ✅ |
-| westus             | ✅ | ✅ | ✅ |
-| westus2            | ✅ | ✅ | ✅ |
-| westus3            | ✅ | ✅ |  |
+| australiaeast      | ✅ | ✅ |  |  |
+| brazilsouth        | ✅ |  |  |  |
+| canadacentral      | ✅ | ✅ | ✅ |  |
+| centralindia       | ✅ | ✅ |  |  |
+| centralus          | ✅ | ✅ |  |  |
+| eastasia           | ✅ | ✅ | ✅ |  |
+| eastus             | ✅ | ✅ | ✅ |  |
+| eastus2            | ✅ | ✅ | ✅ | ✅ |
+| francecentral      | ✅ | ✅ |  |  |
+| germanywestcentral | ✅ | ✅ |  |  |
+| japaneast          | ✅ | ✅ |  |  |
+| japanwest          | ✅ | ✅ |  |  |
+| koreacentral       | ✅ | ✅ |  |  |
+| northcentralus     | ✅ |  |  |  |
+| northeurope        | ✅ | ✅ | ✅ |  |
+| norwayeast         | ✅ | ✅ |  |  |
+| qatarcentral       | ✅ | ✅ |  |  |
+| southafricanorth   | ✅ |  |  |  |
+| southcentralus     | ✅ |  | ✅ |  |
+| southeastasia      | ✅ | ✅ | ✅ |  |
+| swedencentral      | ✅ | ✅ |  | ✅ |
+| switzerlandnorth   | ✅ |  |  |  |
+| switzerlandwest    | ✅ | ✅ |  |  |
+| uaenorth           | ✅ |  |  |  |
+| uksouth            | ✅ | ✅ |  |  |
+| westcentralus      | ✅ | ✅ | ✅ |  |
+| westeurope         | ✅ | ✅ | ✅ |  |
+| westus             | ✅ | ✅ | ✅ |  |
+| westus2            | ✅ | ✅ | ✅ |  |
+| westus3            | ✅ | ✅ |  |  |
 
 > [!NOTE]
 > The [Speech SDK](speech-sdk.md) supports voice assistant capabilities through Direct Line Speech.
