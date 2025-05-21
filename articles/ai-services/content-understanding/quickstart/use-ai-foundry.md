@@ -35,7 +35,7 @@ To create a project in [Azure AI Foundry](https://ai.azure.com), follow these st
 1. Go to the **Home** page of [Azure AI Foundry](https://ai.azure.com).
 1. Select **+ Create project**.
 1. Enter a name for the project. Keep all the other settings as default.
-1. Select **Customize** to specify properties of the hub.
+1. Select **Advanced options** to specify properties of the hub.
 1. For **Region**. You must choose `westus`, `swedencentral`, or `australiaeast`.
 1. Select **Next**.
 1. Select **Create project**.
@@ -56,11 +56,13 @@ You can manage the users and their individual roles here:
 Now that everything is configured to get started, we can walk through, step-by-step, how to create a task and build your first analyzer. The type of task that you create depends on what data you plan to bring in. 
 
 * **Single-file task:** A single-file task utilizes Content Understanding Standard mode and allows you to bring in one file to create your analyzer.
-* **Multi-file task:** A multi-file task utilizes Content Understandning Pro mode and allows you to bring in multiple files to create your analyzer. You can also bring in a set of reference data that the service can use to perform multi-step reasoning and make conclusions about your data. To learn more about the difference between Content Understanding Standard and Pro mode, check out [Azure AI Content Understanding pro and standard modes](../concepts/standard-pro-modes.md).
+* **Multi-file task:** A multi-file task utilizes Content Understandning Pro mode and allows you to bring in multiple files to create your analyzer. You can also bring in a set of reference data that the service can use to perform multi-step reasoning and make conclusions about your data.
+
+To learn more about the difference between Content Understanding Standard and Pro mode, check out [Azure AI Content Understanding pro and standard modes](../concepts/standard-pro-modes.md).
 
 # [Single-file task (Standard mode)](#tab/standard)
 
-When you create a single-file Content Understanding task, you'll start by building your field schema. The schema is the customizable framework that allows the analyzer to extract insights from your data. In this example, the schema is created to extract key data from an invoice document, but you can bring in any type of data and the steps remain the same. For a complete list of supported file types, see [input file limits](../service-limits.md#input-file-limits).
+When you create a single-file Content Understanding task, you'll start by building your field schema. The schema is the customizable framework that allows the analyzer to extract insights from your data. In this example, the schema is created to extract key data from an invoice document, but you can bring in any type of data and the steps remain the same. [Compare the output of this invoice analysis use case to the output of a Content Understanding Pro invoice analysis scenario](). For a complete list of supported file types, see [input file limits](../service-limits.md#input-file-limits).
 
 1. Upload a sample file of an invoice document or any other data relevant to your scenario.
 
@@ -98,9 +100,31 @@ Now you successfully built your first Content Understanding analyzer, and are re
 
 # [Multi-file task (Pro mode)](#tab/pro)
 
-When you create a multi-file Content Understanding task, you'll start by building your field schema. The schema is the customizable framework that allows the analyzer to extract insights from your data. In this example, the schema is created to extract key data from an invoice document, but you can bring in any document based data and the steps remain the same. For a complete list of supported file types, see [input file limits](../service-limits.md#input-file-limits).
+When you create a multi-file Content Understanding task, you'll start by building your field schema. The schema is the customizable framework that guides the analyzer to extract the preferred insights from your data.
 
+In this example, the schema is created to extract key fields from an invoice document, but you can bring in any document based data and the steps remain the same. For a complete list of supported file types, see [input file limits](../service-limits.md#input-file-limits).
 
+1. Upload one or multiple sample files of invoice documents or any other document data relevant to your scenario.
+
+   :::image type="content" source="../media/analyzer-template/define-schema-upload.png" alt-text="Screenshot of upload step in user experience.":::
+
+2. Add fields to your schema:
+
+    * Specify clear and simple field names. Some example fields might include **vendorName**, **items**, **price**.
+
+    * Indicate the value type for each field (strings, dates, numbers, lists, groups). To learn more, *see* [supported field types](../service-limits.md#field-schema-limits).
+
+    * *[Optional]* Provide field descriptions to explain the desired behavior, including any exceptions or rules.
+
+    * Specify the method to generate the value for each field.
+  
+3. Select **Save**.
+
+   :::image type="content" source="../media/analyzer-template/define-schema.png" alt-text="Screenshot of completed schema.":::
+
+4. Upload one or more pieces of reference data for the service to analyze. Adding reference data allows the model to compare and apply multi-step reasoning to your test data in order to infer conclusions about that data.
+
+5.  Run analysis on your data. Kicking off analysis generates an output on your test files based on the schema that you just created, and applies predictions by comparing that output to your reference data. 
 
 ## Next steps
 
