@@ -29,32 +29,32 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     ```shell
     mkdir voice-live-quickstart && cd voice-live-quickstart
     ```
-    
+
 1. Create a virtual environment. If you already have Python 3.10 or higher installed, you can create a virtual environment using the following commands:
-    
+
     # [Windows](#tab/windows)
-    
+
     ```bash
     py -3 -m venv .venv
     .venv\scripts\activate
     ```
-    
+
     # [Linux](#tab/linux)
-    
+
     ```bash
     python3 -m venv .venv
     source .venv/bin/activate
     ```
-    
+
     # [macOS](#tab/macos)
-    
+
     ```bash
     python3 -m venv .venv
     source .venv/bin/activate
     ```
-    
+
     ---
-    
+
     Activating the Python environment means that when you run ```python``` or ```pip``` from the command line, you then use the Python interpreter contained in the ```.venv``` folder of your application. You can use the ```deactivate``` command to exit the python virtual environment, and can later reactivate it when needed.
 
     > [!TIP]
@@ -102,7 +102,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
     ```python
     from __future__ import annotations
-    
+
     import os
     import uuid
     import json
@@ -112,7 +112,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     import threading
     import numpy as np
     import sounddevice as sd
-    
+
     from collections import deque
     from dotenv import load_dotenv
     from azure.identity import DefaultAzureCredential
@@ -125,22 +125,22 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     from websockets.asyncio.client import HeadersLike
     from websockets.typing import Data
     from websockets.exceptions import WebSocketException
-    
+
     # This is the main function to run the Voice Live API client.
-    
+
     async def main() -> None:
         # Set environment variables or edit the corresponding values here.
         endpoint = os.environ.get("AZURE_VOICE_LIVE_ENDPOINT") or "https://your-endpoint.azure.com/"
         model = os.environ.get("VOICE_LIVE_MODEL") or "gpt-4o"
         api_version = os.environ.get("AZURE_VOICE_LIVE_API_VERSION") or "2025-05-01-preview"
         api_key = os.environ.get("AZURE_VOICE_LIVE_API_KEY") or "your_api_key"
-    
-        # For the recommended keyless authentication, get and 
+
+        # For the recommended keyless authentication, get and
         # use the Microsoft Entra token instead of api_key:
         scopes = "https://cognitiveservices.azure.com/.default"
         credential = DefaultAzureCredential()
         token = await credential.get_token(scopes)
-    
+
         client = AsyncAzureVoiceLive(
             azure_endpoint = endpoint,
             api_version = api_version,
@@ -149,7 +149,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
         )
         async with client.connect(model = model) as connection:
             session_update = {
-                "type": "session.update", 
+                "type": "session.update",
                 "session": {
                     "turn_detection": {
                         "type": "azure_semantic_vad",
@@ -179,59 +179,59 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
             }
             await connection.send(json.dumps(session_update))
             print("Session created: ", json.dumps(session_update))
-    
+
             send_task = asyncio.create_task(listen_and_send_audio(connection))
             receive_task = asyncio.create_task(receive_audio_and_playback(connection))
             keyboard_task = asyncio.create_task(read_keyboard_and_quit())
-    
+
             print("Starting the chat ...")
             await asyncio.wait([send_task, receive_task, keyboard_task], return_when=asyncio.FIRST_COMPLETED)
-    
+
             send_task.cancel()
             receive_task.cancel()
             print("Chat done.")
-    
+
     # --- End of Main Function ---
-    
+
     logger = logging.getLogger(__name__)
     AUDIO_SAMPLE_RATE = 24000
-        
+
     class AsyncVoiceLiveConnection:
         _connection: AsyncWebsocket
-    
+
         def __init__(self, url: str, additional_headers: HeadersLike) -> None:
             self._url = url
             self._additional_headers = additional_headers
             self._connection = None
-    
+
         async def __aenter__(self) -> AsyncVoiceLiveConnection:
             try:
                 self._connection = await ws_connect(self._url, additional_headers=self._additional_headers)
             except WebSocketException as e:
                 raise ValueError(f"Failed to establish a WebSocket connection: {e}")
             return self
-    
+
         async def __aexit__(self, exc_type, exc_value, traceback) -> None:
             if self._connection:
                 await self._connection.close()
                 self._connection = None
-        
+
         enter = __aenter__
         close = __aexit__
-    
+
         async def __aiter__(self) -> AsyncIterator[Data]:
              async for data in self._connection:
                  yield data
-    
+
         async def recv(self) -> Data:
             return await self._connection.recv()
-        
+
         async def recv_bytes(self) -> bytes:
             return await self._connection.recv()
-    
+
         async def send(self, message: Data) -> None:
             await self._connection.send(message)
-    
+
     class AsyncAzureVoiceLive:
         def __init__(
             self,
@@ -241,32 +241,32 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
             token: str | None = None,
             api_key: str | None = None,
         ) -> None:
-            
+
             self._azure_endpoint = azure_endpoint
             self._api_version = api_version
             self._token = token
             self._api_key = api_key
             self._connection = None
-    
+
         def connect(self, model: str) -> AsyncVoiceLiveConnection:
             if self._connection is not None:
                 raise ValueError("Already connected to the Voice Live API.")
             if not model:
                 raise ValueError("Model name is required.")
-            
-            url = f"{self._azure_endpoint.rstrip('/')}/voice-agent/realtime?api-version={self._api_version}&model={model}"
+
+            url = f"{self._azure_endpoint.rstrip('/')}/voice-live/realtime?api-version={self._api_version}&model={model}"
             url = url.replace("https://", "wss://")
-    
+
             auth_header = {"Authorization": f"Bearer {self._token}"} if self._token else {"api-key": self._api_key}
             request_id = uuid.uuid4()
             headers = {"x-ms-client-request-id": str(request_id), **auth_header}
-    
+
             self._connection = AsyncVoiceLiveConnection(
                 url,
                 additional_headers=headers,
             )
             return self._connection
-    
+
     class AudioPlayerAsync:
         def __init__(self):
             self.queue = deque()
@@ -279,7 +279,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
                 blocksize=2400,
             )
             self.playing = False
-    
+
         def callback(self, outdata, frames, time, status):
             if status:
                 logger.warning(f"Stream status: {status}")
@@ -294,34 +294,34 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
                 if len(data) < frames:
                     data = np.concatenate((data, np.zeros(frames - len(data), dtype=np.int16)))
             outdata[:] = data.reshape(-1, 1)
-    
+
         def add_data(self, data: bytes):
             with self.lock:
                 np_data = np.frombuffer(data, dtype=np.int16)
                 self.queue.append(np_data)
                 if not self.playing and len(self.queue) > 10:
                     self.start()
-    
+
         def start(self):
             if not self.playing:
                 self.playing = True
                 self.stream.start()
-    
+
         def stop(self):
             with self.lock:
                 self.queue.clear()
             self.playing = False
             self.stream.stop()
-    
+
         def terminate(self):
             with self.lock:
-                self.queue.clear() 
+                self.queue.clear()
             self.stream.stop()
             self.stream.close()
-    
+
     async def listen_and_send_audio(connection: AsyncVoiceLiveConnection) -> None:
         logger.info("Starting audio stream ...")
-    
+
         stream = sd.InputStream(channels=1, samplerate=AUDIO_SAMPLE_RATE, dtype="int16")
         try:
             stream.start()
@@ -339,56 +339,56 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
             stream.stop()
             stream.close()
             logger.info("Audio stream closed.")
-    
+
     async def receive_audio_and_playback(connection: AsyncVoiceLiveConnection) -> None:
         last_audio_item_id = None
         audio_player = AudioPlayerAsync()
-    
+
         logger.info("Starting audio playback ...")
         try:
             while True:
                 async for raw_event in connection:
                     event = json.loads(raw_event)
                     print(f"Received event:", {event.get("type")})
-    
+
                     if event.get("type") == "session.created":
                         session = event.get("session")
                         logger.info(f"Session created: {session.get("id")}")
-    
+
                     elif event.get("type") == "response.audio.delta":
                         if event.get("item_id") != last_audio_item_id:
                             last_audio_item_id = event.get("item_id")
-    
+
                         bytes_data = base64.b64decode(event.get("delta", ""))
                         audio_player.add_data(bytes_data)
-    
+
                     elif event.get("type") == "error":
                         error_details = event.get("error", {})
                         error_type = error_details.get("type", "Unknown")
                         error_code = error_details.get("code", "Unknown")
                         error_message = error_details.get("message", "No message provided")
                         raise ValueError(f"Error received: Type={error_type}, Code={error_code}, Message={error_message}")
-    
+
         except Exception as e:
             logger.error(f"Error in audio playback: {e}")
         finally:
             audio_player.terminate()
             logger.info("Playback done.")
-    
+
     async def read_keyboard_and_quit() -> None:
         print("Press 'q' and Enter to quit the chat.")
         while True:
             # Run input() in a thread to avoid blocking the event loop
-            user_input = await asyncio.to_thread(input) 
+            user_input = await asyncio.to_thread(input)
             if user_input.strip().lower() == 'q':
                 print("Quitting the chat...")
                 break
-    
+
     if __name__ == "__main__":
         try:
             logging.basicConfig(
-                filename='voicelive.log', 
-                filemode="w", 
+                filename='voicelive.log',
+                filemode="w",
                 level=logging.DEBUG,
                 format='%(asctime)s:%(name)s:%(levelname)s:%(message)s'
             )
@@ -453,12 +453,12 @@ Received event: {'response.audio.delta'}
 Chat done.
 ```
 
-The script that you ran creates a log file named `voicelive.log` in the same directory as the script. 
+The script that you ran creates a log file named `voicelive.log` in the same directory as the script.
 
 ```python
 logging.basicConfig(
-    filename='voicelive.log', 
-    filemode="w", 
+    filename='voicelive.log',
+    filemode="w",
     level=logging.DEBUG,
     format='%(asctime)s:%(name)s:%(levelname)s:%(message)s'
 )
@@ -468,7 +468,7 @@ The log file contains information about the connection to the Voice Live API, in
 
 ```text
 2025-05-09 06:56:06,821:websockets.client:DEBUG:= connection is CONNECTING
-2025-05-09 06:56:07,101:websockets.client:DEBUG:> GET /voice-agent/realtime?api-version=2025-05-01-preview&model=gpt-4o HTTP/1.1
+2025-05-09 06:56:07,101:websockets.client:DEBUG:> GET /voice-live/realtime?api-version=2025-05-01-preview&model=gpt-4o HTTP/1.1
 <REDACTED FOR BREVITY>
 2025-05-09 06:56:07,551:websockets.client:DEBUG:= connection is OPEN
 2025-05-09 06:56:07,551:websockets.client:DEBUG:< TEXT '{"event_id":"event_5a7NVdtNBVX9JZVuPc9nYK","typ...es":null,"agent":null}}' [1475 bytes]
