@@ -9,13 +9,13 @@ author: santiagxf
 
 * Install the SDK with the following command:
 
-    # [OpenAI](#tab/openai)
+    # [OpenAI API](#tab/openai)
     
     ```bash
     pip install -U openai
     ```
     
-    # [Model Inference (preview)](#tab/inference)
+    # [Model Inference API (preview)](#tab/inference)
     
     ```bash
     pip install -U azure-ai-inference
