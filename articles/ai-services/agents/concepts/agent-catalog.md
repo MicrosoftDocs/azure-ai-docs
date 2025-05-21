@@ -49,7 +49,7 @@ The README also includes information about the application, such as the use case
 
 ## View all available code samples
 
-A full list of agent samples in the catalog can be found on the Azure AI Foundry. There are several templates available that are authored by Microsoft and partners across different domains such as: travel, finance, insurance, business intelligence, healthcare, and more. 
+A full list of agent samples in the catalog can be found on the Azure AI Foundry portal and the list below. There are several templates available that are authored by Microsoft and partners across different domains such as: travel, finance, insurance, business intelligence, healthcare, and more. 
 
 **Azure AI Foundry Agent Service agent catalog**
 
