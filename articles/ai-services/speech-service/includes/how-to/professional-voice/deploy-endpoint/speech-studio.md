@@ -5,7 +5,7 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 12/1/2023
+ms.date: 5/19/2025
 ms.custom: include
 ---
 
@@ -70,7 +70,7 @@ Once you've updated your voice model to the latest engine version, or if you wan
 You can suspend or resume an endpoint, to limit spend and conserve resources that aren't in use. You won't be charged while the endpoint is suspended. When you resume an endpoint, you can continue to use the same endpoint URL in your application to synthesize speech. 
 
 > [!NOTE]
-> The suspend operation will complete almost immediately. The resume operation completes in about the same amount of time as a new deployment. 
+> The suspend operation completes almost immediately. The resume operation completes in about the same amount of time as a new deployment. 
 
 This section describes how to suspend or resume a custom neural voice endpoint in the Speech Studio portal.
 

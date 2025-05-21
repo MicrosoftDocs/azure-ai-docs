@@ -6,7 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: build-2025
 ms.topic: how-to
-ms.date: 02/12/2025
+ms.date: 05/20/2025
 ms.author: samkemp
 zone_pivot_groups: foundry-local-sdk
 author: samuel100

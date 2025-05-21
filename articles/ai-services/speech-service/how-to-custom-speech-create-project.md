@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 2/25/2025
+ms.date: 5/19/2025
 ms.author: eur
 zone_pivot_groups: foundry-speech-studio
 #Customer intent: As a developer, I want to learn how to customize speech models with fine-tuning so that I can train and deploy a custom model.
@@ -35,9 +35,9 @@ In the [Azure AI Foundry portal](https://ai.azure.com), you can fine-tune some A
 1. Select **Fine-tuning** from the left pane.
 1. Select **AI Service fine-tuning** > **+ Fine-tune**.
 
-    :::image type="content" source="./media/ai-foundry/custom-speech/fine-tune-azure-ai-services.png" alt-text="Screenshot of the page to select fine-tuning of Azure AI Services models." lightbox="./media/ai-foundry/custom-speech/fine-tune-azure-ai-services.png":::
+    :::image type="content" source="./media/custom-speech/ai-foundry/fine-tune-azure-ai-services.png" alt-text="Screenshot of the page to select fine-tuning of Azure AI Services models." lightbox="./media/custom-speech/ai-foundry/fine-tune-azure-ai-services.png":::
  
-1. In the wizard, select **Speech to text (speech recognition)** for custom speech. Then select **Next**.
+1. In the wizard, select **Custom Speech (speech to text fine-tuning)** for custom speech. Then select **Next**.
 
 1. Enter the language, name, and description for the fine-tuning job. Then select **Create**.
 
@@ -48,6 +48,16 @@ Go to the Azure AI Speech documentation to learn how to continue fine-tuning you
 * [Train a model](how-to-custom-speech-train-model.md)
 * [Test model quantitatively](how-to-custom-speech-evaluate-data.md) and [test model qualitatively](./how-to-custom-speech-inspect-data.md)
 * [Deploy a model](how-to-custom-speech-deploy-model.md)
+
+## View fine-tuned models
+
+After fine-tuning, you can access your custom speech models and deployments from the **Fine-tuning** page. 
+
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Select **Fine-tuning** from the left pane.
+1. Select **AI Service fine-tuning**.
+
+    :::image type="content" source="./media/custom-speech/ai-foundry/fine-tune-succeeded-list.png" alt-text="Screenshot of the page where you can view fine-tuned AI services models." lightbox="./media/custom-speech/ai-foundry/fine-tune-succeeded-list.png":::
 
 ::: zone-end
 

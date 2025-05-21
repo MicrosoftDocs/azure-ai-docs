@@ -1,7 +1,7 @@
 ---
 title: "Quickstart: Agentic Retrieval Using Python or REST APIs"
 titleSuffix: Azure AI Search
-description: Learn how to create a search agent that processes multi-turn conversations, retrieves relevant information from an Azure AI Search index, and extracts answers using an Azure OpenAI chat model.
+description: Learn how to create a knowledge agent that processes multi-turn conversations, retrieves relevant information from an Azure AI Search index, and extracts answers using an Azure OpenAI chat model.
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
@@ -33,6 +33,6 @@ In the Azure portal, you can find and manage resources by selecting **All resour
 ## Related content
 
 + [Agentic retrieval in Azure AI Search](search-agentic-retrieval-concept.md)
-+ [Create a search agent](search-agentic-retrieval-how-to-create.md)
-+ [Use a search agent to retrieve data](search-agentic-retrieval-how-to-retrieve.md)
++ [Create a knowledge agent](search-agentic-retrieval-how-to-create.md)
++ [Use a knowledge agent to retrieve data](search-agentic-retrieval-how-to-retrieve.md)
 + [Build an agent-to-agent retrieval solution](search-agentic-retrieval-how-to-pipeline.md)
