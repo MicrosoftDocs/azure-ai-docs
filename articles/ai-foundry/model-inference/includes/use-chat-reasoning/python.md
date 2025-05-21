@@ -75,8 +75,6 @@ response = client.complete(
 )
 ```
 
-[!INCLUDE [best-practices](best-practices.md)]
-
 The response is as follows, where you can see the model's usage statistics:
 
 ```python
