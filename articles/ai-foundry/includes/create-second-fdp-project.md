@@ -11,7 +11,7 @@ ms.custom: include, build-2024, ignite-2024
 ---
 
 
-Create multiple [!INCLUDE [fdp-project-name-plural](fdp-project-name-plural.md)] on an existing `AI Services` resource, so you can share your environment with your team for collaboration. 
+Create multiple [!INCLUDE [fdp-project-name-plural](fdp-project-name-plural.md)] on an existing `AI Foundry` resource, so you can share your environment with your team for collaboration. 
 
 [!INCLUDE [fdp-project-name-plural](fdp-project-name-plural.md)] as Azure child resources may get assigned their own access controls, but share common settings such as network security, deployments, and Azure tool integration from their parent resource.
 
