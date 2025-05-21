@@ -1,19 +1,19 @@
 ---
 title: "Quickstart: Multimodal Search in the Azure portal"
 titleSuffix: Azure AI Search
-description: Learn how to search for multimodal content on an Azure AI Search index in the Azure portal. Run a wizard to vectorize text and images, and then use Search Explorer to provide an image as your query input.
+description: Learn how to search for multimodal content on an Azure AI Search index in the Azure portal. Run a wizard to generate natural-language descriptions of images and vectorize both text and images, and then use Search Explorer to query your multimodal index.
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 05/20/2025
+ms.date: 05/21/2025
 ms.custom:
   - references_regions
 ---
 
 # Quickstart: Search for multimodal content in the Azure portal
 
-In this quickstart, you use the **Import and vectorize data wizard** in the Azure portal to get started with [multimodal search](multimodal-search-overview.md). Multimodality refers to the ability to process and query over multiple types of data, such as text and images.
+In this quickstart, you use the **Import and vectorize data** wizard in the Azure portal to get started with [multimodal search](multimodal-search-overview.md). The wizard simplifies the process of extracting page text and inline images from documents, describing images in natural language, vectorizing both text and image descriptions, and storing images for later retrieval.
 
 The sample data consists of a multimodal PDF in the [azure-search-sample-data](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/sustainable-ai-pdf) repo, but you can use different files and still follow this quickstart.
 
@@ -25,7 +25,7 @@ The sample data consists of a multimodal PDF in the [azure-search-sample-data](h
 
 + An [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills) in East US, West Europe, or North Central US.
 
-+ An [Azure AI Search service](search-create-service-portal.md) in the same region as your Azure AI multi-service account. You can use any pricing tier.
++ An [Azure AI Search service](search-create-service-portal.md) in the same region as your Azure AI multi-service account.
 
 + An [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource).
 
@@ -63,23 +63,31 @@ To prepare the sample data for this quickstart:
 
 1. Create another container to store images extracted from the PDF.
 
-## Prepare models
+## Deploy models
 
-The wizard requires a large language model (LLM) to verbalize images and an embedding model to generate vector representations of text and images. Both models are available through Azure OpenAI.
+The wizard requires a large language model (LLM) to verbalize images and an embedding model to generate vector representations of text and verbalized text content. Both models are available through Azure OpenAI.
 
-Multimodal search supports several models, but this quickstart assumes `gpt-4o` for the LLM and `text-embedding-3-large` for the embedding model.
-
-To prepare the models for this quickstart:
+To deploy the models for this quickstart:
 
 1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com) and select your Azure OpenAI resource.
 
 1. From the left pane, select **Model catalog**.
 
-1. Deploy `gpt-4o` and `text-embedding-3-large`.
+1. Deploy one of the following LLMs:
+
+   + gpt-4o
+
+   + gpt-4o-mini
+
+1. Deploy one of the following embedding models:
+
+   + text-embedding-ada-002
+
+   + text-embedding-3-small
+
+   + text-embedding-3-large
 
 ## Start the wizard
-
-If your Azure Storage blob container has the default configuration, and if your Azure AI Search service and Azure AI multi-service account are in the [same supported region](cognitive-search-skill-document-intelligence-layout.md) and tenant, you're ready to proceed.
 
 To start the wizard for multimodal search:
 
@@ -151,7 +159,7 @@ To use the GenAI Prompt skill and Azure OpenAI Embedding skill:
 
    1. For the kind, select **Azure OpenAI**.
 
-   1. Specify your Azure subscription, Azure OpenAI resource, and LLM deployment. This quickstart assumes `gpt-4o`.
+   1. Specify your Azure subscription, Azure OpenAI resource, and LLM deployment.
 
    1. For the authentication type, select **System assigned identity**.
 
@@ -163,7 +171,7 @@ To use the GenAI Prompt skill and Azure OpenAI Embedding skill:
 
    1. For the kind, select **Azure OpenAI**.
 
-   1. Specify your Azure subscription, Azure OpenAI resource, and embedding model deployment. This quickstart assumes `text-embedding-3-large`.
+   1. Specify your Azure subscription, Azure OpenAI resource, and embedding model deployment.
 
    1. For the authentication type, select **System assigned identity**.
 
@@ -198,9 +206,9 @@ On the **Advanced settings** page, you can optionally add fields to the index sc
 | content_id | Text and image vectors | String field. Document key for the index. | Searchable, retrievable, sortable, filterable, and facetable. |
 | document_title | Text and image vectors | String field. Human-readable document title, page title, or page number. | Searchable, retrievable, sortable, filterable, and facetable. |
 | text_document_id | Text vectors | String field. Identifies the parent document from which the text chunk originates. | Retrievable and filterable. |
-| image_document_id | Image vectors | String field. Identifies the parent document from which the image chunk originates. | Searchable, retrievable, sortable, filterable, and facetable. |
+| image_document_id | Image vectors | String field. Identifies the parent document from which the image originates. | Searchable, retrievable, sortable, filterable, and facetable. |
 | content_text | Text vectors | String field. Human-readable version of the text chunk. | Searchable, retrievable, sortable, filterable, and facetable. |
-| content_embedding | Image vectors | Collection(Edm.Single). Vector representation of the image chunk. | Searchable and retrievable. |
+| content_embedding | Image vectors | Collection(Edm.Single). Vector representation of the image verbalization. | Searchable and retrievable. |
 | content_path | Text and image vectors | String field. Path to the content in the storage container. | Retrievable, sortable, filterable, and facetable. |
 | locationMetadata | Text and image vectors | Edm.ComplexType. Contains metadata about the content's location. | Varies by field. |
 
@@ -217,7 +225,7 @@ To add fields to the index schema:
    > [!NOTE]
    > Metadata fields are searchable but not retrievable, filterable, facetable, or sortable.
 
-1. Select **Reset** if you want to restore the schema to its original version.
+1. If you want to restore the schema to its original version, select **Reset**.
 
 ## Schedule indexing
 
@@ -233,7 +241,7 @@ To schedule indexing:
 
 ## Finish the wizard
 
-The final step is to review your configuration and create the objects required for multimodal search. If necessary, return to previous pages in the wizard to adjust your configuration.
+The final step is to review your configuration and create the necessary objects for multimodal search. If necessary, return to the previous pages in the wizard to adjust your configuration.
 
 To finish the wizard:
 
@@ -268,35 +276,29 @@ When the wizard completes the configuration, it creates the following objects:
 
 ## Check results
 
-Search Explorer accepts text, images, and vectors as query inputs. For images, Search Explorer vectorizes the image and sends the vector as a query input to the search engine. Image vectorization assumes that your index has a vectorizer definition, which the **Import and vectorize data wizard** creates based on your embedding model inputs.
+This quickstart creates a multimodal index that supports [hybrid search](hybrid-search-overview.md) over both text and verbalized images. However, it doesn't support images as query inputs, which requires integrated vectorization using an embedding skill and an equivalent vectorizer. For more information, see [Query with Search explorer](search-explorer.md).
 
-The following steps assume that you're searching for images. For the other two query types, see [Quickstart: Keyword search](search-get-started-portal.md#query-with-search-explorer) and [Quickstart: Vector search](search-get-started-portal-import-vectors.md#check-results).
+Hybrid search is a combination of full-text queries and vector queries. When you issue a hybrid query, the search engine computes the semantic similarity between your query and the indexed vectors and ranks the results accordingly. For the index created in this quickstart, the results surface content from the `content_text` field that closely aligns with your query.
 
-To use Search Explorer for image search:
+To query your multimodal index:
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure AI Search service.
 
-1. From the left pane, select **Search management** > **Indexes**, and then select your index.
+1. From the left pane, select **Search management** > **Indexes**.
 
-1. Select the **Search explorer** tab.
+1. Select your index.
 
-1. From the **View** menu, select **Image view**.
+1. Select **Query options**, and then select **Hide vector values in search results**. This step makes the results more readable.
 
-   :::image type="content" source="media/search-get-started-portal-images/select-image-view.png" alt-text="Screenshot of the command for selecting image view." border="true" lightbox="media/search-get-started-portal-images/select-image-view.png":::
+   :::image type="content" source="media/search-get-started-portal-images/query-options.png" alt-text="Screenshot of the Query Options menu in Search Explorer." border="true" lightbox="media/search-get-started-portal-images/query-options.png":::
 
-1. Drag or select a [sample PNG](https://github.com/Azure-Samples/azure-search-sample-data/blob/main/sustainable-ai-pdf) from your local folder. The PNGs come directly from the sample PDF used in this quickstart.
+1. Enter text for which you want to search. Our example uses `energy`.
 
-1. Select **Search** to run the query.
+1. To run the query, select **Search**.
 
-   The top match should be the image for which you searched. Because a [vector search](vector-search-overview.md) matches on similar vectors, the search engine returns any document that's sufficiently similar to the query input, up to the `k` number of results. For more advanced queries that include relevance tuning, switch to the JSON view.
+   :::image type="content" source="media/search-get-started-portal-images/search-button.png" alt-text="Screenshot of the Search button in Search Explorer." border="true" lightbox="media/search-get-started-portal-images/search-button.png":::
 
-   :::image type="content" source="media/search-get-started-portal-images/image-search.png" alt-text="Screenshot of the search results for image search." border="true" lightbox="media/search-get-started-portal-images/image-search.png":::
-
-1. Try other query options to compare search outcomes:
-
-   + (Recommended) Hide vectors for more readable results.
-
-   + Select a vector field to query over. The default is text vectors, but you can specify the image vector to exclude text vectors from query execution.
+   The results should include text and image content related to `energy` in your index. Highlights from relevant passages and image verbalizations appear in `@search.captions`, helping you quickly identify matches to your query.
 
 ## Clean up resources
 
