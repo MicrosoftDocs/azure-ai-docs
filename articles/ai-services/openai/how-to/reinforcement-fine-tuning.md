@@ -1,5 +1,5 @@
 ---
-title: 'Customize o4-mini model with Azure OpenAI and reinforcement fine-tuning'
+title: 'Customize o4-mini model with Azure OpenAI and reinforcement fine-tuning (Preview)'
 description: Learn how to use reinforcement fine-tuning with Azure OpenAI
 manager: nitinme
 ms.service: azure-ai-openai
@@ -10,7 +10,7 @@ author: mrbullwinkle
 ms.author: mbullwin
 ---
 
-# Reinforcement fine-tuning (RFT) with Azure OpenAI o4-mini
+# Reinforcement fine-tuning (RFT) with Azure OpenAI o4-mini (Preview)
 
 Reinforcement fine-tuning (RFT) is a technique for improving reasoning models like o4-mini by training them through a reward-based process, rather than relying only on labeled data. By using feedback or "rewards" to guide learning, RFT helps models develop better reasoning and problem-solving skills, especially in cases where labeled examples are limited or complex behaviors are desired.
 
