@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Vector Search in the Azure Portal"
+title: "Quickstart: Vector Search in the Azure portal"
 titleSuffix: Azure AI Search
 description: Learn how to use a wizard to automate data chunking and vectorization in a search index.
 author: haileytap
@@ -9,12 +9,12 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: quickstart
-ms.date: 05/12/2025
+ms.date: 05/21/2025
 ---
 
 # Quickstart: Vectorize text in the Azure portal
 
-In this quickstart, you use the **Import and vectorize data wizard** in the Azure portal to get started with [integrated vectorization](vector-search-integrated-vectorization.md). The wizard chunks your content and calls an embedding model to vectorize content during indexing and for queries.
+In this quickstart, you use the **Import and vectorize data** wizard in the Azure portal to get started with [integrated vectorization](vector-search-integrated-vectorization.md). The wizard chunks your content and calls an embedding model to vectorize content during indexing and for queries.
 
 The sample data for this quickstart consists of text-based PDFs, but you can also use images and follow this quickstart to vectorize them.
 
@@ -257,7 +257,7 @@ For the model catalog, you should have an [Azure AI Foundry project](/azure/ai-f
 
 ## Start the wizard
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and go to your Azure AI Search service.
+1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure AI Search service.
 
 1. On the **Overview** page, select **Import and vectorize data**.
 
@@ -271,7 +271,7 @@ For the model catalog, you should have an [Azure AI Foundry project](/azure/ai-f
 
    + OneLake
 
-1. Select the **RAG** tile.
+1. Select **RAG**.
 
    :::image type="content" source="media/search-get-started-portal-import-vectors/wizard-scenarios-rag.png" alt-text="Screenshot of the RAG tile in the wizard." border="true" lightbox="media/search-get-started-portal-import-vectors/wizard-scenarios-rag.png":::
 
@@ -447,11 +447,12 @@ You can't modify the generated fields or their attributes, but you can add new f
 
 1. Select **Add field**.
 
-1. Select a source field from the list of available fields, provide a field name for the index, and accept the default data type or override as needed.
+1. Select a source field from the available fields, enter a field name for the index, and accept (or override) the default data type.
 
-   + Metadata fields are searchable but not retrievable, filterable, facetable, or sortable.
+   > [!NOTE]
+   > Metadata fields are searchable but not retrievable, filterable, facetable, or sortable.
 
-1. Select **Reset** if you want to restore the schema to its original version.
+1. If you want to restore the schema to its original version, select **Reset**.
 
 ## Schedule indexing
 
@@ -473,13 +474,16 @@ When the wizard completes the configuration, it creates the following objects:
 
 + An indexer with field mappings and output field mappings (if applicable).
 
+> [!TIP]
+> Wizard-created objects have configurable JSON definitions. To view or modify these definitions, select **Search management** from the left pane, where you can view your indexes, indexers, data sources, and skillsets.
+
 ## Check results
 
 Search Explorer accepts text strings as input and then vectorizes the text for vector query execution.
 
-1. In the Azure portal, go to **Search Management** > **Indexes**, and then select the index that you created.
+1. In the Azure portal, go to **Search Management** > **Indexes**, and then select your index.
 
-1. Select **Query options** and hide vector values in search results. This step makes your search results easier to read.
+1. Select **Query options**, and then select **Hide vector values in search results**. This step makes the results more readable.
 
    :::image type="content" source="media/search-get-started-portal-import-vectors/query-options.png" alt-text="Screenshot of the button for query options.":::
 
