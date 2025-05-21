@@ -6,7 +6,7 @@ manager: scottpolly
 keywords: Azure AI services, cognitive
 ms.service: azure-ai-foundry
 ms.topic: overview
-ms.date: 02/20/2025
+ms.date: 05/20/2025
 ms.reviewer: samkemp
 ms.author: samkemp
 author: samuel100
