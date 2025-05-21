@@ -70,7 +70,7 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 
 ---
 
-## Create a project
+## Create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]
 
 # [Azure AI Foundry portal](#tab/ai-foundry)
 
