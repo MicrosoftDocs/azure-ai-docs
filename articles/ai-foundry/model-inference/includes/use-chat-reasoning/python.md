@@ -179,7 +179,6 @@ Some reasoning models, like DeepSeek-R1, generate completions and include the re
 The reasoning associated with the completion is included in the field `reasoning_content`. The model may select on which scenearios to generate reasoning content. 
 
 ```python
-```python
 print("Thinking:", response.choices[0].message.reasoning_content)
 ```
 
@@ -247,6 +246,8 @@ To visualize the output, define a helper function to print the stream. The follo
 
 # [OpenAI](#tab/openai)
 
+Reasoning content is also included inside of the delta pieces of the response, in the key `reasoning_content`.
+
 ```python
 def print_stream(completion):
     """
@@ -268,6 +269,8 @@ def print_stream(completion):
 ```
 
 # [Model Inference (preview)](#tab/inference)
+
+When streaming, pay closer attention to the `<think>` tag that may be included inside of the `content` field.
 
 ```python
 def print_stream(completion):
@@ -314,6 +317,27 @@ The Azure AI Model Inference API supports [Azure AI Content Safety](https://aka.
 The following example shows how to handle events when the model detects harmful content in the input prompt.
 
 # [OpenAI](#tab/openai)
+
+```python
+try:
+    response = client.chat.completions.create(
+        model="deepseek-r1",
+        messages=[
+            {"role": "user", "content": "Chopping tomatoes and cutting them into cubes or wedges are great ways to practice your knife skills."}
+        ],
+    )
+
+    print(response.choices[0].message.content)
+
+except HttpResponseError as ex:
+    if ex.status_code == 400:
+        response = ex.response.json()
+        if isinstance(response, dict) and "error" in response:
+            print(f"Your request triggered an {response['error']['code']} error:\n\t {response['error']['message']}")
+        else:
+            raise
+    raise
+```
 
 # [Model Inference (preview)](#tab/inference)
 
