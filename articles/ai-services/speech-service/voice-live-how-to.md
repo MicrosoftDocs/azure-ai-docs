@@ -30,10 +30,10 @@ An [Azure AI Foundry resource](../multi-service-resource.md) is required to acce
 
 ### WebSocket endpoint
 
-The WebSocket endpoint for the Voice Live API is `wss://<your-ai-foundry-resource-name>.cognitiveservices.azure.com/voice-agent/realtime?api-version=2025-05-01-preview`.
+The WebSocket endpoint for the Voice Live API is `wss://<your-ai-foundry-resource-name>.cognitiveservices.azure.com/voice-live/realtime?api-version=2025-05-01-preview`.
 The endpoint is the same for all models. The only difference is the required `model` query parameter.
 
-For example, an endpoint for a resource with a custom domain would be `wss://<your-ai-foundry-resource-name>.cognitiveservices.azure.com/voice-agent/realtime?api-version=2025-05-01-preview&model=gpt-4o-mini-realtime-preview`
+For example, an endpoint for a resource with a custom domain would be `wss://<your-ai-foundry-resource-name>.cognitiveservices.azure.com/voice-live/realtime?api-version=2025-05-01-preview&model=gpt-4o-mini-realtime-preview`
 
 ### Credentials
 
