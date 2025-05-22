@@ -95,7 +95,7 @@ These models are currently available for use in Azure OpenAI.
 | --------------------------|-----------------|------------------------------------|--------------------------------------|
 | `computer-use-preview`    | 2025-03-11      | No earlier than June 11, 2025      |                                      |
 | `dall-e-3`                | 3               | No earlier than June 30, 2025      |                                      |
-| `gpt-35-turbo-16k`        | 0613            | April, 30, 2025                    | `gpt-4.1-mini` version: `2025-04-14` |
+| `gpt-35-turbo-16k`        | 0613            | April  30, 2025                    | `gpt-4.1-mini` version: `2025-04-14` |
 | `gpt-35-turbo`            | 1106            | No earlier than July 16, 2025      | `gpt-4.1-mini` version: `2025-04-14` |
 | `gpt-35-turbo`            | 0125            | No earlier than July 16, 2025      | `gpt-4.1-mini` version: `2025-04-14` |
 | `gpt-4`<br>`gpt-4-32k`    | 0314            | June 6, 2025                       | `gpt-4o` version: `2024-11-20`       |
@@ -130,7 +130,7 @@ We'll notify all customers with these preview deployments at least 30 days befor
 > [!TIP]
 > **Will a model upgrade happen if the new model version is not yet available in that region?**
 >
-> Yes, even in cases where the latest model version is not yet available in a region, we will automatically upgrade deployments during the scheduled upgrade window. For more information, see [Azure OpenAI model versions](/azure/ai-services/openai/concepts/model-versions#will-a-model-upgrade-happen-if-the-new-model-version-is-not-yet-available-in-that-region).
+> Yes, even in cases where the latest model version is not yet available in a region, we'll automatically upgrade deployments during the scheduled upgrade window. For more information, see [Azure OpenAI model versions](/azure/ai-services/openai/concepts/model-versions#will-a-model-upgrade-happen-if-the-new-model-version-is-not-yet-available-in-that-region).
 
 > [!IMPORTANT]
 > Vision enhancements preview features including Optical Character Recognition (OCR), object grounding, video prompts will be retired and no longer available once `gpt-4` Version: `vision-preview` is upgraded to `turbo-2024-04-09`. If you're currently relying on any of these preview features, this automatic model upgrade will be a breaking change.
@@ -147,12 +147,12 @@ For fine-tuned models made generally available since `gpt-4o-2024-08-06`, **depl
 | -----------------|-------------|---------------------------|----------------------------------|
 | `gpt-35-turbo`   | 1106        | At base model retirement  | At training retirement           |
 | `gpt-35-turbo`   | 0125        | At base model retirement  | At training retirement           |
-| `gpt-4o`         | 2024-08-06  | At base model retirement  | 1 year after training retirement |
-| `gpt-4o-mini`    | 2024-07-18  | At base model retirement  | 1 year after training retirement |
-| `gpt-4.1`        | 2025-04-14  | At base model retirement  | 1 year after training retirement |
-| `gpt-4.1-mini`   | 2025-04-14  | At base model retirement  | 1 year after training retirement |
-| `gpt-4.1-nano`   | 2025-04-14  | At base model retirement  | 1 year after training retirement |
-| `o4-mini`        | 2025-04-16  | At base model retirement  | 1 year after training retirement |
+| `gpt-4o`         | 2024-08-06  | At base model retirement  | One year after training retirement |
+| `gpt-4o-mini`    | 2024-07-18  | At base model retirement  | One year after training retirement |
+| `gpt-4.1`        | 2025-04-14  | At base model retirement  | One year after training retirement |
+| `gpt-4.1-mini`   | 2025-04-14  | At base model retirement  | One year after training retirement |
+| `gpt-4.1-nano`   | 2025-04-14  | At base model retirement  | One year after training retirement |
+| `o4-mini`        | 2025-04-16  | At base model retirement  | One year after training retirement |
 
 ## Default model versions
 
