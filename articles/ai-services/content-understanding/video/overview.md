@@ -155,7 +155,6 @@ Shape the output to match your business vocabulary. Use a `fieldSchema` object w
 **Example:**
 
 ```json
-
 "fieldSchema": {
   "description": "Extract brand presence and sentiment per scene",
   "fields": {

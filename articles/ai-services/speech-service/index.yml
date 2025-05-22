@@ -113,9 +113,6 @@ conceptualContent:
     - title: Migration
       links:
         - itemType: how-to-guide
-          text: Migrate to neural voice
-          url: migration-overview-neural-voice.md
-        - itemType: how-to-guide
           text: Migrate to speech to text REST API version 2024-11-15
           url: migrate-2024-11-15.md
         - itemType: how-to-guide

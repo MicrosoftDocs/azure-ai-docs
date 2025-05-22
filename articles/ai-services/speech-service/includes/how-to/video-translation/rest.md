@@ -41,7 +41,7 @@ To create a video translation, you need to construct an HTTP PUT request path an
 - Specify `description`: A brief description of the translation. This is optional but can be helpful for documentation purposes.
 - Specify the `sourceLocale`: The language of the original video. This is the language spoken in the video file.
 - Specify the `targetLocale`: The language you want to translate the video into. This is the target language for the translation.
-- Specify `voiceKind`: The type of voice you want to use for the translation. You can choose between `PlatformVoice` and `PersonalVoice`. For `PlatformVoice`, the system automatically selects the most suitable prebuilt voice by matching the speaker's voice in the video with prebuilt voices. For `PersonalVoice`, the system offers a model that generates high-quality voice replication in a few seconds.
+- Specify `voiceKind`: The type of voice you want to use for the translation. You can choose between `PlatformVoice` and `PersonalVoice`. For `PlatformVoice`, the system automatically selects the most suitable standard voice by matching the speaker's voice in the video with standard voices. For `PersonalVoice`, the system offers a model that generates high-quality voice replication in a few seconds.
 
    > [!NOTE]
    > To use personal voice, you need to apply for [access](https://aka.ms/customneural).

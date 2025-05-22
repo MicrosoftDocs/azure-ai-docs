@@ -27,6 +27,10 @@ To use Azure AI Content Understanding, create your Azure AI Service resource in 
 
 † Australia East doesn't support data zone as a processing location.
 
+> [!NOTE]
+>
+> [Pro mode](concepts/standard-pro-modes.md) currently only supports data zone and global as processing location.
+
 ## Language support
 
 Azure AI Content Understanding enables you to process data in multiple languages simultaneously. Our language support capabilities enable users to communicate with your applications in natural ways and empower global outreach.
