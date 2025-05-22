@@ -19,7 +19,7 @@ zone_pivot_groups: project-type
 
 # Create a project for Azure AI Foundry
 
-This article describes how to create an [Azure AI Foundry](https://ai.azure.com) project. Projects let you organize your work for exploring new ideas and as you prototype on a particular use cases.
+This article describes how to create an [Azure AI Foundry](https://ai.azure.com) project. Projects let you organize your work for exploring new ideas and as you prototype on a particular use case.
 
 Azure AI Foundry supports two types of projects: a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** and a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. For more information about the differences between these two project types, see [Types of projects](../what-is-azure-ai-foundry.md#project-types).
 
@@ -43,7 +43,6 @@ Azure AI Foundry supports two types of projects: a **[!INCLUDE [fdp](../includes
     * Project-level isolation of files and outputs
     * Evaluations
     * Playgrounds
-
 
 ## Prerequisites
 
@@ -176,9 +175,7 @@ In addition, many resources are only accessible by users in your project workspa
 
 ## Related content
 
-- [Quickstart: Get started with Azure AI Foundry](../quickstarts/get-started-code.md?pivots=hub-project)
-
-- [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
+- [Quickstart: Use the chat playground in Azure AI Foundry portal](../quickstarts/get-started-playground.md)
 
 - [Learn more about hubs](../concepts/ai-resources.md)
 

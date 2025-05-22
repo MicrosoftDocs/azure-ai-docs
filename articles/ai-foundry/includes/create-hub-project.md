@@ -20,7 +20,8 @@ A [!INCLUDE [hub-project-name](hub-project-name.md)] exists inside a hub. A hub 
 
 When you create a new hub, you must have **Owner** or **Contributor** permissions on the selected resource group. If you're part of a team and don't have these permissions, your administrator should create a hub for you.
 
-While you can create a hub as part of the project creation, you have more control and can set more advanced settings for the hub if you create it separately. For example, you can customize network security or the underlying Azure Storage account. For more information, see [How to create and manage an Azure AI Foundry hub](../how-to/create-azure-ai-resource.md).
+> [!TIP]
+> While you can create a hub as part of the project creation, you have more control and can set more advanced settings for the hub if you create it separately. For example, you can customize network security or the underlying Azure Storage account. For more information, see [How to create and manage an Azure AI Foundry hub](../how-to/create-azure-ai-resource.md).
 
 When you create a new hub as part of the project creation, default settings are provided. If you want to customize these settings, do so before you create the project:
 
