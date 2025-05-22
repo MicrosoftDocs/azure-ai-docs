@@ -24,6 +24,16 @@ This article guides you through the process of
 - Creating an AI Red Teaming Agent locally
 - Running automated scans locally and viewing the results
 
+## Prerequisites
+
+- An Azure AI Foundry project or hubs based project. To learn more, see [Create a project](/how-to/create-projects.md)
+
+    If this is your first time running evaluations or AI red teaming runs on your Azure AI Foundry project, you might need to do a few additional setup steps.
+    
+    1. [Create and connect your storage account](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/01-connections/connection-storage-account.bicep) to your Azure AI Foundry project at the resource level. This bicep template provisions and connects a storage account to your Foundry project with key authentication.
+    2. Make sure the connected storage account has access to all projects.
+    3. If you connected your storage account with Microsoft Entra ID, make sure to give MSI (Microsoft Identity) permissions for Storage Blob Data Owner to both your account and Foundry project resource in Azure portal.
+
 ## Getting started
 
 First install the `redteam` package as an extra from Azure AI Evaluation SDK, this provides the PyRIT functionality:
@@ -34,14 +44,6 @@ uv install azure-ai-evaluation[redteam]
 
 > [!NOTE]
 > PyRIT only works with Python 3.10, 3.11, 3.12 but doesn't support Python 3.9. If you're using Python 3.9, you must upgrade your Python version to use this feature.
-
-### Prerequisite set up steps for Azure AI Foundry Projects
-
-If this is your first time running evaluations or AI red teaming runs on your Azure AI Foundry project, you might need to do a few additional setup steps.
-
-1. [Create and connect your storage account](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/01-connections/connection-storage-account.bicep) to your Azure AI Foundry project at the resource level. This bicep template provisions and connects a storage account to your Foundry project with key authentication.
-2. Make sure the connected storage account has access to all projects.
-3. If you connected your storage account with Microsoft Entra ID, make sure to give MSI (Microsoft Identity) permissions for Storage Blob Data Owner to both your account and Foundry project resource in Azure portal.
 
 ## Create and run an AI Red Teaming Agent
 

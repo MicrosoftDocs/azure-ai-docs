@@ -35,7 +35,7 @@ Or by attack complexity classification:
 
 Drilling down further into the data tab provides a row-level view of each attack-response pair, enabling deeper insights into system issues and behaviors. For each attack-response pair, you can see additional information such as whether or not the attack was successful, what attack strategy was used and its attack complexity. There's also an option for a human in the loop reviewer to provide human feedback by selecting the thumbs up or thumbs down icon.
 
-:::image type="content" source="../../media/evaluations/red-teaming-agent/ai-red-team-data.png" alt-text="Screenshot of AI Red Teaming data page in Azure AI Foundry." lightbox="../media/evaluations/red-teaming-agent/ai-red-team-data.png":::
+:::image type="content" source="../media/evaluations/red-teaming-agent/ai-red-team-data.png" alt-text="Screenshot of AI Red Teaming data page in Azure AI Foundry." lightbox="../media/evaluations/red-teaming-agent/ai-red-team-data.png":::
 
 To view each conversation, selecting **View more** opens up the full conversation for more detailed analysis of the AI system's response.
 
