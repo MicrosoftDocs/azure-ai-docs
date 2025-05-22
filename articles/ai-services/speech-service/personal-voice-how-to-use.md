@@ -48,7 +48,7 @@ You can use the SSML via the [Speech SDK](./get-started-text-to-speech.md) or [R
 
 * **Real-time speech synthesis**: Use the [Speech SDK](./get-started-text-to-speech.md) or [REST API](rest-text-to-speech.md) to convert text to speech.
     * When you use Speech SDK, don't set Endpoint ID, just like prebuild voice.
-    * When you use REST API, please use prebuilt neural voices endpoint.
+    * When you use REST API, please use standard voices endpoint.
 
 ## Supported and unsupported SSML elements for personal voice
 

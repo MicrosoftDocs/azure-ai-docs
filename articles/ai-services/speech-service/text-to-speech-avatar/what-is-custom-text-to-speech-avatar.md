@@ -33,7 +33,7 @@ Before you get started, here are some considerations:
 
 **The look of the avatar:** The custom text to speech avatar looks the same as the avatar talent in the training data, and we don't support customizing the appearance of the avatar model, such as clothes, hairstyle, etc. So if your application requires multiple styles of the same avatar, you should prepare training data for each style, as each style of an avatar is considered as a single avatar model.
 
-**The voice of the avatar:** The custom text to speech avatar can work with prebuilt neural voice, custom neural voice, and voice sync for avatar. 
+**The voice of the avatar:** The custom text to speech avatar can work with standard voice, custom neural voice, and voice sync for avatar. 
 - Voice sync for avatar: A synthetic voice resembling the avatar talent’s voice is trained alongside the custom avatar utilizing audio from the training video.
 - Custom neural voice: Develop a professional custom neural voice with more training data, providing a premium voice experience for your avatar, including natural conversations, multi-style, and multilingual support.
 
@@ -56,7 +56,7 @@ The custom text to speech avatar model contains three components: text analyzer,
 
 :::image type="content" source="./media/custom-avatar-workflow.png" alt-text="Screenshot of displaying an overview of the custom text to speech avatar workflow." lightbox="./media/custom-avatar-workflow.png":::
 
-The neural text to speech avatar models are trained using deep neural networks based on the recording samples of human videos in different languages. All languages of prebuilt voices and custom neural voices can be supported.
+The neural text to speech avatar models are trained using deep neural networks based on the recording samples of human videos in different languages. All languages of standard voices and custom neural voices can be supported.
 
 ## Available locations
 
@@ -66,7 +66,7 @@ Custom avatar *training* is only available in the following service regions: Sou
 
 [Custom voice](../custom-neural-voice.md) and custom text to speech avatar are separate features. You can use them independently or together. If you're also creating a custom neural voice (CNV) for the actor, the avatar can be highly realistic. 
 
-The custom text to speech avatar can work with a prebuilt neural voice or custom voice as the avatar's voice. For more information, see [Avatar voice and language](./what-is-text-to-speech-avatar.md#avatar-voice-and-language).
+The custom text to speech avatar can work with a standard voice or custom voice as the avatar's voice. For more information, see [Avatar voice and language](./what-is-text-to-speech-avatar.md#avatar-voice-and-language).
 
 There are two kinds of custom voice for a custom avatar:
 - **Voice sync for avatar**: When you enable the voice sync for avatar option during custom avatar training, a synthetic voice model using the likeness of the avatar talent is simultaneously trained with the avatar. This voice is exclusively associated with the custom avatar and can't be independently used. Voice sync for avatar is currently supported in the Southeast Asia, West Europe, and West US 2 regions.

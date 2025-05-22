@@ -42,7 +42,7 @@ The Speech service offers the following features that can be used for call cente
 - [Speaker identification](./speaker-recognition-overview.md): Helps you determine an unknown speaker’s identity within a group of enrolled speakers and is typically used for call center customer verification scenarios or fraud detection.
 - [Language Identification](./language-identification.md): Identify languages spoken in audio and can be used in real-time and post-call analysis for insights or to control the environment (such as output language of a virtual agent).
 
-The Speech service works well with prebuilt models. However, you might want to further customize and tune the experience for your product or environment. Typical examples for Speech customization include:
+You might want to further customize and fine-tune the experience for your product or environment. Typical examples for Speech fine-tuning include:
 
 | Speech customization | Description |
 | -------------- | ----------- |
@@ -57,7 +57,7 @@ The Language service offers the following features that can be used for call cen
 - [Conversation summarization](../language-service/summarization/overview.md?tabs=conversation-summarization): Summarize in abstract text what each conversation participant said about the issues and resolutions. For example, a call center can group product issues that have a high volume.
 - [Sentiment analysis and opinion mining](../language-service/sentiment-opinion-mining/overview.md): Analyze transcriptions and associate positive, neutral, or negative sentiment at the utterance and conversation-level.
 
-While the Language service works well with prebuilt models, you might want to further customize and tune models to extract more information from your data. Typical examples for Language customization include:
+You might want to further customize and fine-tune models to extract more information from your data. Typical examples for Language customization include:
 
 | Language customization | Description |
 | -------------- | ----------- |
