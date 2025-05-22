@@ -17,11 +17,13 @@ author: lgayhardt
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-Though the AI Red Teaming Agent (preview) can be run [locally](./develop/run-scans-ai-red-teaming-agent.md) during prototyping and development to help identify safety risks, running them in the cloud allows for pre-deployment AI red teaming runs on larger combinations of attack strategies and risk categories for a fuller analysis.
+Though the AI Red Teaming Agent (preview) can be run [locally](run-scans-ai-red-teaming-agent.md) during prototyping and development to help identify safety risks, running them in the cloud allows for pre-deployment AI red teaming runs on larger combinations of attack strategies and risk categories for a fuller analysis.
 
 ## Prerequisites
 
 [!INCLUDE [uses-fdp-only](../../includes/uses-fdp-only.md)]
+
+- An Azure AI Foundry project. To learn more, see [Create a project](../create-projects.md).
 
 If this is your first time running evaluations or AI red teaming runs on your Azure AI Foundry project, you might need to do a few additional setup steps.
 
