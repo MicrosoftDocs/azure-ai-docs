@@ -51,8 +51,11 @@ To use LLMs deployed in Azure AI Foundry portal, you need the endpoint and crede
 [!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
 1. Go to the [Azure AI Foundry](https://ai.azure.com/).
+
 1. Open the project where the model is deployed, if it isn't already open.
+
 1. Go to **Models + endpoints** and select the model you deployed as indicated in the prerequisites.
+
 1. Copy the endpoint URL and the key.
 
     :::image type="content" source="../../media/how-to/inference/serverless-endpoint-url-keys.png" alt-text="Screenshot of the option to copy endpoint URI and keys from an endpoint." lightbox="../../media/how-to/inference/serverless-endpoint-url-keys.png":::
@@ -63,11 +66,19 @@ To use LLMs deployed in Azure AI Foundry portal, you need the endpoint and crede
 In this scenario, we placed both the endpoint URL and key in the following environment variables:
 
 ```bash
-export AZURE_INFERENCE_ENDPOINT="<your-model-endpoint-goes-here>"
+export AZURE_INFERENCE_ENDPOINT="https://<resource>.services.ai.azure.com/models"
 export AZURE_INFERENCE_CREDENTIAL="<your-key-goes-here>"
 ```
 
-Once configured, create a client to connect to the endpoint. In this case, we're working with a chat completions model hence we import the class `AzureAIChatCompletionsModel`.
+Once configured, create a client to connect with the chat model by using the `init_chat_model`. For Azure OpenAI models, configure the client as indicated at [Using Azure OpenAI models](#using-azure-openai-models).
+
+```python
+from langchain.chat_models import init_chat_model
+
+llm = init_chat_model(model="mistral-large-2407", model_provider="azure_ai")
+```
+
+You can also use the class `AzureAIChatCompletionsModel` directly.
 
 ```python
 import os
@@ -80,8 +91,8 @@ model = AzureAIChatCompletionsModel(
 )
 ```
 
-> [!TIP]
-> For Azure OpenAI models, configure the client as indicated at [Using Azure OpenAI models](#using-azure-openai-models).
+> [!CAUTION]
+> **Breaking change:** Parameter `model_name` was renamed `model` in version `0.1.3`.
 
 You can use the following code to create the client if your endpoint supports Microsoft Entra ID:
 
@@ -93,7 +104,7 @@ from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 model = AzureAIChatCompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=DefaultAzureCredential(),
-    model_name="mistral-large-2407",
+    model="mistral-large-2407",
 )
 ```
 
@@ -111,7 +122,7 @@ from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 model = AzureAIChatCompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=DefaultAzureCredentialAsync(),
-    model_name="mistral-large-2407",
+    model="mistral-large-2407",
 )
 ```
 
@@ -188,13 +199,13 @@ from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 producer = AzureAIChatCompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
-    model_name="mistral-large-2407",
+    model="mistral-large-2407",
 )
 
 verifier = AzureAIChatCompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
-    model_name="mistral-small",
+    model="mistral-small",
 )
 ```
 
@@ -271,7 +282,7 @@ from langchain_azure_ai.embeddings import AzureAIEmbeddingsModel
 embed_model = AzureAIEmbeddingsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=os.environ['AZURE_INFERENCE_CREDENTIAL'],
-    model_name="text-embedding-3-large",
+    model="text-embedding-3-large",
 )
 ```
 
@@ -328,7 +339,7 @@ from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 llm = AzureAIChatCompletionsModel(
     endpoint="https://<resource>.services.ai.azure.com/models",
     credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
-    model_name="<model-name>",
+    model="<model-name>",
     api_version="2024-05-01-preview",
 )
 ```
@@ -370,7 +381,7 @@ from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 model = AzureAIChatCompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
-    model_name="mistral-large-2407",
+    model="mistral-large-2407",
     client_kwargs={"logging_enable": True},
 )
 ```
