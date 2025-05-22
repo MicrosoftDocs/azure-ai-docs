@@ -12,7 +12,7 @@ ms.date: 05/22/2025
 
 # Quickstart: Generate a video with Sora (preview)
 
-In this Quickstart, you generate video clips using the Azure OpenAI service. The example uses the Sora model, which is a video generation model that creates realistic and imaginative video scenes from text instructions. This guide shows how to create a video generation job, poll for its status, and retrieve the generated video.
+In this Quickstart, you generate video clips using the Azure OpenAI service. The example uses the Sora model, which is a video generation model that creates realistic and imaginative video scenes from text instructions. This guide shows you how to create a video generation job, poll for its status, and retrieve the generated video.
 
 
 ## Prerequisites
@@ -21,6 +21,7 @@ In this Quickstart, you generate video clips using the Azure OpenAI service. The
 - <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>.
 - An Azure OpenAI resource created in a supported region. See [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability).
 - Then, you need to deploy a `sora` model with your Azure resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](./how-to/create-resource.md).
+- [Python 3.8 or later version](https://www.python.org/).
 
 
 ## Setup
@@ -38,49 +39,75 @@ Go to your resource in the Azure portal. On the navigation pane, select **Keys a
 
 :::image type="content" source="./media/quickstarts/endpoint.png" alt-text="Screenshot that shows the Keys and Endpoint page for an Azure OpenAI resource in the Azure portal." lightbox="../media/quickstarts/endpoint.png":::
 
+
+
 [!INCLUDE [environment-variables](./includes/environment-variables.md)]
 
 
 
+## Create a new Python application
 
-## Create a video generation job
+Create a new Python file named `quickstart.py`. Open the new file in your preferred editor or IDE.
+1. Replace the contents of `quickstart.py` with the following code. Change the value of `prompt` to your preferred text.
+    
+    ```python
+    import os
+    import time
+    import requests
+    
+    # Set these variables with your values
+    endpoint = os.environ["AZURE_OPENAI_ENDPOINT"]  # e.g., "https://docs-test-001.openai.azure.com"
+    api_key = os.environ["AZURE_OPENAI_KEY"]
+    access_token = os.environ.get("AZURE_OPENAI_TOKEN")  # Optional: if using Azure AD auth
+    
+    headers = {
+        "Content-Type": "application/json",
+        "api-key": api_key,
+    }
+    if access_token:
+        headers["Authorization"] = f"Bearer {access_token}"
+    
+    # 1. Create a video generation job
+    create_url = f"{endpoint}/openai/v1/video/generations/jobs?api-version=preview"
+    payload = {
+        "prompt": "A cat playing piano in a jazz bar.",
+        "model": "sora"
+    }
+    response = requests.post(create_url, headers=headers, json=payload)
+    response.raise_for_status()
+    job_id = response.json()["body"]["id"]
+    print(f"Job created: {job_id}")
+    
+    # 2. Poll for job status
+    status_url = f"{endpoint}/openai/v1/video/generations/jobs/{job_id}?api-version=preview"
+    while True:
+        status_response = requests.get(status_url, headers=headers)
+        status_response.raise_for_status()
+        status = status_response.json()["body"]["status"]
+        print(f"Job status: {status}")
+        if status == "succeeded":
+            generations = status_response.json()["body"].get("generations", [])
+            if not generations:
+                raise Exception("No generations found in job result.")
+            generation_id = generations[0]["id"]
+            break
+        elif status in ("failed", "cancelled"):
+            raise Exception(f"Job did not succeed. Status: {status}")
+        time.sleep(5)  # Wait before polling again
+    
+    # 3. Retrieve the generated video
+    get_video_url = f"{endpoint}/openai/v1/video/generations/{generation_id}?api-version=preview"
+    video_response = requests.get(get_video_url, headers=headers)
+    video_response.raise_for_status()
+    download_url = video_response.json()["body"]["generations"]
+    print(f"Download your video at: {download_url}")
+    ```
+1. Run the application with the `python` command:
 
-Send a POST request to create a new video generation job.
+    ```console
+    python quickstart.py
+    ```
 
-```bash
-curl -X POST "{endpoint}/openai/v1/video/generations/jobs?api-version=preview" ^
-  -H "Content-Type: application/json" ^
-  -H "Authorization: Bearer {Azure_OpenAI_Auth_Token}" ^
-  -H "api-key: {Your-API-Key}" ^
-  -d "{
-    \"prompt\": \"A cat playing piano in a jazz bar.\",
-    \"model\": \"sora\"
-  }"
-```
+    Wait a few moments to get the response.
 
-
-
-## Poll for job status
-
-Send a GET request with the `job-id` from the previous step to check the job status.
-
-```bash
-curl -X GET "{endpoint}/openai/v1/video/generations/jobs/{job-id}?api-version=preview" ^
-  -H "Authorization: Bearer {Azure_OpenAI_Auth_Token}" ^
-  -H "api-key: {Your-API-Key}"
-```
-
-Repeat this step until the status is `succeeded`. Then you can retrieve the generated video ID from the `"generations"` field.
-
-## Retrieve the generated video
-
-Once the job status is `succeeded`, use the generation ID from the job result to get the generated video.
-
-```bash
-curl -X GET "{endpoint}/openai/v1/video/generations/{generation-id}?api-version=preview" ^
-  -H "Authorization: Bearer {Azure_OpenAI_Auth_Token}" ^
-  -H "api-key: {Your-API-Key}"
-```
-
-The response contains the download URL for your generated video.
-
+---
