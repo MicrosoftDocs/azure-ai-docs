@@ -26,7 +26,7 @@ The text to speech REST API supports neural text to speech voices in many locale
 - For Azure Government and Microsoft Azure operated by 21Vianet endpoints, see [this article about sovereign clouds](sovereign-clouds.md).
 
 > [!IMPORTANT]
-> Costs vary for prebuilt neural voices (called *Neural* on the pricing page) and custom neural voices (called *Custom Neural* on the pricing page). For more information, see [Speech service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
+> Costs vary for standard voices (called *Neural* on the pricing page) and custom neural voices (called *Custom Neural* on the pricing page). For more information, see [Speech service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
 
 Before you use the text to speech REST API, understand that you need to complete a token exchange as part of authentication to access the service. For more information, see [Authentication](#authentication).
 
@@ -264,7 +264,7 @@ If the HTTP status is `200 OK`, the body of the response contains an audio file 
 
 ## Audio outputs
 
-The supported streaming and nonstreaming audio formats are sent in each request as the `X-Microsoft-OutputFormat` header. Each format incorporates a bit rate and encoding type. The Speech service supports 48-kHz, 24-kHz, 16-kHz, and 8-kHz audio outputs. Each prebuilt neural voice model is available at 24kHz and high-fidelity 48kHz.
+The supported streaming and nonstreaming audio formats are sent in each request as the `X-Microsoft-OutputFormat` header. Each format incorporates a bit rate and encoding type. The Speech service supports 48-kHz, 24-kHz, 16-kHz, and 8-kHz audio outputs. Each standard voice model is available at 24kHz and high-fidelity 48kHz.
 
 #### [Streaming](#tab/streaming)
 

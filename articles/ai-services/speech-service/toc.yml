@@ -415,16 +415,6 @@ items:
         href: resiliency-and-recovery-plan.md
     - name: Migration
       items:
-        - name: Neural voice migration
-          items:
-            - name: Migration overview
-              href: migration-overview-neural-voice.md
-            - name: Migrate to custom neural voice
-              href: how-to-migrate-to-custom-neural-voice.md
-            - name: Migrate to prebuilt neural voice
-              href: how-to-migrate-to-prebuilt-neural-voice.md
-            - name: Migrate to custom voice API
-              href: migrate-to-custom-voice-api.md
         - name: Speech to text REST API migration
           items:
           - name: From Speech to text v3.2 to 2024-11-15
@@ -438,6 +428,8 @@ items:
             displayName: migrate,migration,deprecate,retire,sunset
         - name: From Long Audio API to Batch synthesis API
           href: migrate-to-batch-synthesis.md
+        - name: Migrate to custom voice API
+          href: migrate-to-custom-voice-api.md
 - name: Speech CLI
   items:
     - name: Speech CLI overview

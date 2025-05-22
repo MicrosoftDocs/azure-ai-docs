@@ -194,7 +194,7 @@ Fix the `tr-TR` capitalization issue
 
 Upgrade the speech to text `en-US` display models
 
-Add support for prebuilt neural Neural text to speech locale voice `ar-AE-HamdanNeural`
+Add support for the `ar-AE-HamdanNeural` standard voice.
 
 ### 2023-February release
 
@@ -305,7 +305,7 @@ Regular monthly updates including security upgrades and vulnerability fixes.
 
 #### Neural text to speech v2.5.0
 
-Add support for these [prebuilt neural voices](../../language-support.md?tabs=tts):
+Add support for these [standard voices](../../language-support.md?tabs=tts):
    * `az-az-babekneural`
    * `az-az-banuneural`
    * `fa-ir-dilaraneural`
@@ -341,7 +341,7 @@ Add support for using containers in [disconnected environments](../../../contain
 Regular monthly updates including security upgrades and vulnerability fixes.
 
 #### Neural-Neural text to speech Container v1.12.0
-Add support for these prebuilt neural voices: `am-et-amehaneural`, `am-et-mekdesneural`, `so-so-muuseneural`, and `so-so-ubaxneural`.
+Add support for these standard voices: `am-et-amehaneural`, `am-et-mekdesneural`, `so-so-muuseneural`, and `so-so-ubaxneural`.
 
 Regular monthly updates including security upgrades and vulnerability fixes.
 
