@@ -17,7 +17,7 @@ author: lgayhardt
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-Though the AI Red Teaming Agent (preview) can be run [locally](link/to/run-airedteaming-local.md) during prototyping and development to help identify safety risks, running them in the cloud allows for pre-deployment AI red teaming runs on larger combinations of attack strategies and risk categories for a fuller analysis.
+Though the AI Red Teaming Agent (preview) can be run [locally](./develop/run-scans-ai-red-teaming-agent) during prototyping and development to help identify safety risks, running them in the cloud allows for pre-deployment AI red teaming runs on larger combinations of attack strategies and risk categories for a fuller analysis.
 
 ## Prerequisites
 
@@ -143,6 +143,6 @@ curl --request GET \  --header 'authorization: Bearer {{ai_token}}'  --url https
 
 Once your AI red teaming run is finished running, you can [view your results](../view-ai-red-teaming-results.md) in your Azure AI Foundry project.
 
-## Next steps
+## Related content
 
 Try out an [example workflow](https://aka.ms/airedteamingagent-sample) in our GitHub samples.

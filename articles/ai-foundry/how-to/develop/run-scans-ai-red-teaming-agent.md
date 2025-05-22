@@ -509,6 +509,6 @@ The red teaming scorecard also provides row-level data on each attack-response p
 
 Once your AI red teaming scan is finished running, you can [view your results](../view-ai-red-teaming-results.md) in your Azure AI Foundry project.
 
-## Next steps
+## Related content
 
 Try out an [example workflow](https://aka.ms/airedteamingagent-sample) in our GitHub samples.
