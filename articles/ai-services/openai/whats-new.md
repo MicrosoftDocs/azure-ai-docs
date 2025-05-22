@@ -20,6 +20,12 @@ This article provides a summary of the latest releases and major documentation u
 
 ## May 2025
 
+### Sora video generation released (preview)
+
+Sora (2025-05-02) is a video generation model from OpenAI that can create realistic and imaginative video scenes from text instructions.
+
+Follow the [Video generation quickstart](/en-us/azure/ai-services/openai/video-generation-quickstart) to get started.
+
 ### PII detection content filter
 
 Personally identifiable information (PII) detection is now available as a built-in content filter. This feature allows you to identify and block sensitive information in LLM outputs, enhancing data privacy. For more information, see the [PII detection](./concepts/content-filter-personal-information.md) documentation.
