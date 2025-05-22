@@ -10,7 +10,7 @@ ms.custom: devx-track-azurecli, sdkv2, FY25Q1-Linter, ignite-2024
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: meerakurup
-ms.date: 09/05/2024
+ms.date: 05/22/2025
 # Customer Intent: As an admin, I want to understand how to use private links to secure communications between my Azure Machine Learning workspace and my virtual network.
 ---
 
@@ -421,9 +421,7 @@ If you want to create an isolated Azure Kubernetes Service used by the workspace
 
 ### Scenario: Managed online endpoints with access from selected IP addresses
 
-Enabling inbound access from selected IP addresses is affected by the ingress setting on your managed online endpoints. If public ingress is enabled on your managed online endpoint, then you can't enable selected IP addresses on our workspace.
-
-The following table shows the possible configurations for your workspace and managed online endpoint network configurations, and how it affects both. For more information, see [Network isolation with managed online endpoints](concept-secure-online-endpoint.md).
+Enabling inbound access from selected IP addresses is affected by the ingress setting on your managed online endpoints. The following table shows the possible configurations for your workspace and managed online endpoint network configurations, and how it affects both. For more information, see [Network isolation with managed online endpoints](concept-secure-online-endpoint.md).
 
 | Workspace</br>public network access | Managed online endpoint</br>public network access | Does the workspace</br>respect the selected IPs? | Does the online endpoint</br>respect the selected IPs? |
 | --- | --- | --- | --- |
