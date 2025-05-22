@@ -310,9 +310,9 @@ items:
         href: https://aka.ms/azure-ai-vision-face-liveness-client-sdk-web-api-reference
       - name: Understand the liveness versions
         href: sdk/understand-the-liveness-sdk-versions.md
-- name: Video Analysis
+- name: Video Retrieval
   items:
-  - name: Video Analysis overview
+  - name: Video Retrieval overview
     href: intro-to-spatial-analysis-public-preview.md
   - name: Responsible use of AI
     items:
