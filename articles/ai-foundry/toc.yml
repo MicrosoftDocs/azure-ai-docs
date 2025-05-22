@@ -276,8 +276,6 @@ items:
       href: ../ai-services/speech-service/pronunciation-assessment-tool.md?context=/azure/ai-foundry/context/context
     - name: Speech translation
       href: ../ai-services/speech-service/get-started-speech-translation.md?context=/azure/ai-foundry/context/context
-    - name: Hear and speak with chat in the playground
-      href: quickstarts/hear-speak-playground.md
   - name:  Translator
     items:
     - name: What is Azure AI Translator?
