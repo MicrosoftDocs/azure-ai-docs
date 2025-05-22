@@ -10,7 +10,7 @@ ms.author: pafarley
 ms.date: 05/12/2025
 ---
 
-# Quickstart: Generate a video with Sora
+# Quickstart: Generate a video with Sora (preview)
 
 In this Quickstart, you generate video clips using the Azure OpenAI service. The example uses the Sora model, which is a video generation model that creates realistic and imaginative video scenes from text instructions. This guide shows how to create a video generation job, poll for its status, and retrieve the generated video.
 
