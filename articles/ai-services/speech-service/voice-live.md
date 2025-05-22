@@ -40,7 +40,7 @@ Azure AI Voice Live API is ideal for scenarios where voice-driven interactions i
 
 The Voice Live API includes a comprehensive set of features to support diverse use cases and ensure superior voice interactions:
 
-- **Broad locale coverage**: Supports over 15 locales for speech to text and offers over 600 prebuilt voices across 140+ locales for text to speech, ensuring global accessibility.
+- **Broad locale coverage**: Supports over 15 locales for speech to text and offers over 600 standard voices across 140+ locales for text to speech, ensuring global accessibility.
 - **Customizable input and output**: Use phrase list for lightweight just-in-time customization on audio input. Use custom neural voice to create unique, brand-aligned voices for audio output.
 - **Flexible generative AI model options**: [Choose from multiple models](#supported-models-and-regions), including GPT-4o, GPT-4o-mini, and Phi, tailored to conversational requirements.
 - **Advanced conversational features**:
@@ -48,7 +48,7 @@ The Voice Live API includes a comprehensive set of features to support diverse u
     - Echo cancellation: Prevents the agent from picking up its own responses.
     - Robust interruption detection: Ensures accurate recognition of interruptions during conversations.
     - Advanced end-of-turn detection: Allows natural pauses without prematurely concluding interactions.
-- **Avatar integration**: Provides prebuilt or customizable avatars synchronized with audio output, offering a visual identity for voice agents.
+- **Avatar integration**: Provides standard or customizable avatars synchronized with audio output, offering a visual identity for voice agents.
 - **Function calling**: Enables external actions, use of tools, and grounded responses using the VoiceRAG pattern.
 
 ## How it works
