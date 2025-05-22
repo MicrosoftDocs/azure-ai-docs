@@ -24,7 +24,7 @@ This article provides a summary of the latest releases and major documentation u
 
 Sora (2025-05-02) is a video generation model from OpenAI that can create realistic and imaginative video scenes from text instructions.
 
-Follow the [Video generation quickstart](/en-us/azure/ai-services/openai/video-generation-quickstart) to get started.
+Follow the [Video generation quickstart](/en-us/azure/ai-services/openai/video-generation-quickstart) to get started. For more information, see the [Video generation concepts](./concepts/video-generation.md) guide.
 
 ### PII detection content filter
 
