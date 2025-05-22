@@ -74,7 +74,7 @@ To configure the recommended role-based access:
 
 1. On your search service, [enable roles](search-security-enable-roles.md) and [configure a system-assigned managed identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity).
 
-1. [Assign the following roles](search-security-rbac.md) to yourself.
+1. [Assign the following roles](search-security-rbac.md) to yourself:
 
    + **Search Service Contributor**
 
