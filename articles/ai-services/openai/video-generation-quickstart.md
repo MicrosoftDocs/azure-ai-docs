@@ -20,7 +20,7 @@ In this Quickstart, you generate video clips using the Azure OpenAI service. The
 - An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
 - <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>.
 - An Azure OpenAI resource created in a supported region. See [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability).
-- Then, you need to deploy a `sora` model with your Azure resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
+- Then, you need to deploy a `sora` model with your Azure resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](./how-to/create-resource.md).
 
 
 ## Setup
@@ -36,9 +36,9 @@ To successfully call the Azure OpenAI APIs, you need the following information a
 
 Go to your resource in the Azure portal. On the navigation pane, select **Keys and Endpoint** under **Resource Management**. Copy the **Endpoint** value and an access key value. You can use either the **KEY 1** or **KEY 2** value. Always having two keys allows you to securely rotate and regenerate keys without causing a service disruption.
 
-:::image type="content" source="../media/quickstarts/endpoint.png" alt-text="Screenshot that shows the Keys and Endpoint page for an Azure OpenAI resource in the Azure portal." lightbox="../media/quickstarts/endpoint.png":::
+:::image type="content" source="./media/quickstarts/endpoint.png" alt-text="Screenshot that shows the Keys and Endpoint page for an Azure OpenAI resource in the Azure portal." lightbox="../media/quickstarts/endpoint.png":::
 
-[!INCLUDE [environment-variables](environment-variables.md)]
+[!INCLUDE [environment-variables](./includes/environment-variables.md)]
 
 
 
