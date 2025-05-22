@@ -316,31 +316,15 @@ for doc in results:
 
 ## Using Azure OpenAI models
 
-If you're using Azure OpenAI in Foundry Models or Foundry Models service with OpenAI models with `langchain-azure-ai` package, you might need to use `api_version` parameter to select a specific API version. The following example shows how to connect to an Azure OpenAI in Foundry Models deployment:
+If you're using Azure OpenAI models with `langchain-azure-ai` package, use the following URL:
 
 ```python
 from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 
 llm = AzureAIChatCompletionsModel(
-    endpoint="https://<resource>.openai.azure.com/openai/deployments/<deployment-name>",
+    endpoint="https://<resource>.openai.azure.com/openai/v1",
     credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
-    api_version="2024-05-01-preview",
-)
-```
-
-> [!IMPORTANT]
-> Check which is the API version that your deployment is using. Using a wrong `api_version` or one not supported by the model results in a `ResourceNotFound` exception.
-
-If the deployment is hosted in Azure AI Services, you can use the Foundry Models service:
-
-```python
-from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
-
-llm = AzureAIChatCompletionsModel(
-    endpoint="https://<resource>.services.ai.azure.com/models",
-    credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
-    model="<model-name>",
-    api_version="2024-05-01-preview",
+    model="gpt-4o"
 )
 ```
 
