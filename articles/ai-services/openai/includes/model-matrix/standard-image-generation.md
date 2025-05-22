@@ -9,8 +9,10 @@ ms.custom: references_regions
 ms.date: 02/06/2025
 ---
 
-| **Region**   | **dall-e-3**, **3.0**   |
-|:-----------------|:---------------------:|
-| australiaeast    | ✅                  |
-| eastus           | ✅                  |
-| swedencentral    | ✅                  |
+| **Region**   | **dall-e-3**, **3.0**   | **gpt-image-1** |
+|:-----------------|:---------------------:|  |
+| australiaeast    | ✅                  |  |
+| eastus           | ✅                  |  |
+| swedencentral    | ✅                  |  |
+| westus3   |                   | ✅ |
+| uaenorth    |                  |✅   |
