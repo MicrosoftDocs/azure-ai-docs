@@ -19,20 +19,20 @@ This article is to help you understand the support lifecycle for Azure OpenAI AP
 > [!NOTE]
 > New API response objects may be added to the API response without version changes. We recommend you only parse the response objects you require.
 >
-> The `2025-04-01-preview` Azure OpenAI spec uses OpenAPI 3.1. It is a known issue that this is currently not fully supported by [Azure API Management](/azure/api-management/api-management-key-concepts)
+> The `2025-04-01-preview` Azure OpenAI spec uses OpenAPI 3.1, is a known issue that this is currently not fully supported by [Azure API Management](/azure/api-management/api-management-key-concepts)
 
 ## API evolution
 
-Historically, Azure OpenAI received monthly updates of new API versions. To take advantage of each new feature required constantly updating code and environment variables with each new API release. Azure OpenAI also required the extra step of using Azure specific clients which created additional overhead when migrating code between OpenAI and Azure OpenAI. Starting in May 2025, you can now opt-in to our next generation of Azure OpenAI APIs which add support for:
+Historically, Azure OpenAI received monthly updates of new API versions. To take advantage of each new feature required constantly updating code and environment variables with each new API release. Azure OpenAI also required the extra step of using Azure specific clients which created overhead when migrating code between OpenAI and Azure OpenAI. Starting in May 2025, you can now opt in to our next generation of Azure OpenAI APIs which add support for:
 
 - Access to the latest features with no need to update `api-version` each month.
 - OpenAI client support with minimal code changes to swap between OpenAI and Azure OpenAI.
 
-For the initial preview launch we are only supporting a subset of the dataplane inference API. While in preview, operations may have incomplete functionality that will be continually expanded.
+For the initial preview launch we are only supporting a subset of the inference API. While in preview, operations may have incomplete functionality that will be continually expanded.
 
 ## Code changes
 
-# [API Key)](#tab/key)
+# [API Key](#tab/key)
 
 ### Last generation API 
 
@@ -79,9 +79,9 @@ print(response.model_dump_json(indent=2))
 - `extra_headers={"Authorization": f"Bearer {token.token}"}` passes the Microsoft Entra ID token to handle secure authentication.
 - `extra_query={"api-version": "preview"}` indicates that the version-less always up-to-date preview API is being used.
 
-Once we release the GA next generation API we will support two values `latest` and `preview`. If `api-version` is not passed traffic is automatically routed to the `latest` GA version. Currently only `preview` is supported.
+Once we release the GA next generation API, we will support two values `latest` and `preview`. If `api-version` is not passed traffic is automatically routed to the `latest` GA version. Currently only `preview` is supported.
 
-# [Microsoft Entra ID](#tab/entra)\
+# [Microsoft Entra ID](#tab/entra)
 
 ### Last generation API 
 
@@ -135,7 +135,7 @@ print(response.model_dump_json(indent=2))
 - `extra_headers={"Authorization": f"Bearer {token.token}"}` passes the Microsoft Entra ID token to handle secure authentication.
 - `extra_query={"api-version": "preview"}` indicates that the version-less always up-to-date preview API is being used.
 
-Once we release the GA next generation API we will support two values `latest` and `preview`. If `api-version` is not passed traffic is automatically routed to the `latest` GA version. Currently only `preview` is supported.
+Once we release the GA next generation API, we will support two values `latest` and `preview`. If `api-version` is not passed traffic is automatically routed to the `latest` GA version. Currently only `preview` is supported.
 
 # [REST](#tab/rest)
 
@@ -330,7 +330,7 @@ Azure OpenAI API latest releases:
 - **Breaking Change**: Enhancements parameters removed. This impacts the `gpt-4` **Version:** `vision-preview` model.
 - [timestamp_granularities](https://github.com/Azure/azure-rest-api-specs/blob/fbc90d63f236986f7eddfffe3dca6d9d734da0b2/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-04-01-preview/inference.json#L5217) parameter added.
 - [`audioWord`](https://github.com/Azure/azure-rest-api-specs/blob/fbc90d63f236986f7eddfffe3dca6d9d734da0b2/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-04-01-preview/inference.json#L5286) object added.
-- Additional TTS [`response_formats`: wav & pcm](https://github.com/Azure/azure-rest-api-specs/blob/fbc90d63f236986f7eddfffe3dca6d9d734da0b2/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-04-01-preview/inference.json#L5333).
+- Additional TTS [`response_formats: wav & pcm`](https://github.com/Azure/azure-rest-api-specs/blob/fbc90d63f236986f7eddfffe3dca6d9d734da0b2/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2024-04-01-preview/inference.json#L5333).
 
 ## Latest GA API release
 
