@@ -33,7 +33,7 @@ ms.custom: references_regions
 | `en-PH` | English (Philippines) | Custom neural voice Pro |
 | `en-SG` | English (Singapore) | Custom neural voice Pro |
 | `en-TZ` |  English (Tanzania) | Custom neural voice Pro |
-| `en-US` | English (United States) | Custom neural voice Pro<br/><br/>Custom neural voice lite (Preview)<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary |
+| `en-US` | English (United States) | Custom neural voice Pro<br/><br/>Custom neural voice lite (Preview)<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary<br/><br/>HD voice |
 | `en-ZA` |English (South Africa) | Custom neural voice Pro |
 | `es-AR` |Spanish (Argentina)| Custom neural voice Pro |
 | `es-Cl` |Spanish (Chile)| Custom neural voice Pro |
@@ -72,7 +72,7 @@ ms.custom: references_regions
 | `th-TH` | Thai (Thailand) | Custom neural voice Pro<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary|
 | `tr-TR` | Turkish (Türkiye) | Custom neural voice Pro<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary |
 | `vi-VN` | Vietnamese (Vietnam) | Custom neural voice Pro<br/><br/>Multi-style voice |
-| `zh-CN` | Chinese (Mandarin, Simplified) | Custom neural voice Pro<br/><br/>Custom neural voice lite (Preview)<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary|
+| `zh-CN` | Chinese (Mandarin, Simplified) | Custom neural voice Pro<br/><br/>Custom neural voice lite (Preview)<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary<br/><br/>HD voice|
 | `zh-HK` | Chinese (Cantonese, Traditional) | Custom neural voice Pro<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary |
 | `zh-SG` |  Chinese (Simplified, Singapore) | Custom neural voice Pro |
 | `zh-TW` | Chinese (Taiwanese Mandarin, Traditional) | Custom neural voice Pro<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary  |

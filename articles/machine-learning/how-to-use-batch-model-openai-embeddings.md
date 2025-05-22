@@ -20,7 +20,7 @@ ms.custom: how-to, devplatv2, update-code
 
 To run inference over large amounts of data, you can use batch endpoints to deploy models, including Azure OpenAI models. In this article, you see how to create a batch endpoint to deploy the `text-embedding-ada-002` model from Azure OpenAI to compute embeddings at scale. You can use the same approach for completions and chat completions models. 
 
-The example in this article uses Microsoft Entra authentication to grant access to an Azure OpenAI Service resource, but you can also use an access key. The model is registered in MLflow format. It uses the Azure OpenAI flavor, which provides support for calling the Azure OpenAI service at scale.
+The example in this article uses Microsoft Entra authentication to grant access to an Azure OpenAI in Azure AI Foundry Models resource, but you can also use an access key. The model is registered in MLflow format. It uses the Azure OpenAI flavor, which provides support for calling the Azure OpenAI at scale.
 
 To follow along with the example steps, see the Jupyter notebook [Score OpenAI models in batch using Batch Endpoints](https://github.com/Azure/azureml-examples/blob/main/sdk/python/endpoints/batch/deploy-models/openai-embeddings/deploy-and-test.ipynb).
 
@@ -72,7 +72,7 @@ In this article, you see how to create a deployment for an Azure OpenAI model. T
 
 :::image type="content" source="./media/how-to-use-batch-model-openai-embeddings/azure-openai-deployments.png" alt-text="Screenshot of the Azure OpenAI page within Azure AI Foundry. A model deployment that's available in a particular Azure OpenAI resource is visible." lightbox="media/how-to-use-batch-model-openai-embeddings/azure-openai-deployments.png":::
 
-For information about managing Azure OpenAI models in Azure OpenAI, see [Focus on Azure OpenAI Service](../ai-studio/azure-openai-in-ai-studio.md#focus-on-azure-openai-service).
+For information about managing Azure OpenAI models in Azure OpenAI, see [Focus on Azure OpenAI](../ai-studio/azure-openai-in-ai-studio.md#focus-on-azure-openai-service).
 
 ## Create a compute cluster
 

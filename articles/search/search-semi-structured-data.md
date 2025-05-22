@@ -346,7 +346,7 @@ For filters, you can also use Logical operators (and, or, not) and comparison op
 
 ## Reset and rerun
 
-Indexers can be reset to clear execution history, which allows a full rerun. The following GET requests are for reset, followed by rerun.
+Indexers can be reset to clear execution history, which allows a full rerun. The following POST requests are for reset, followed by rerun.
 
 ```http
 ### Reset the indexer

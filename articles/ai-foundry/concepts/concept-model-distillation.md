@@ -5,7 +5,7 @@ description: Learn how to do distillation in Azure AI Foundry portal.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 03/09/2025
+ms.date: 05/20/2025
 ms.reviewer: vkann
 reviewer: anshirga
 ms.author: ssalgado

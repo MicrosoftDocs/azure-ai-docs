@@ -1,23 +1,23 @@
 ---
 title: Work with the Azure AI Foundry for Visual Studio Code extension
 titleSuffix: Azure AI Foundry
-description: Use this article to learn how to deploy Large Language Models using Azure AI Foundry capabilities directly in VS Code.
+description: Use this article to learn how to create projects and deploy Large Language Models using Azure AI Foundry capabilities directly in VS Code.
 manager: mcleans
 ms.service: azure-ai-foundry
 content_well_notification: 
   - AI-contribution
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 05/07/2025
+ms.date: 05/20/2025
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
-# customer intent: As an AI app developer, I want to learn how to use the Azure AI Foundry for Visual Studio Code extension so that I can deploy Large Language Models using Azure AI Foundry capabilities directly in VS Code.
+# customer intent: As an AI app developer, I want to learn how to use the Azure AI Foundry for Visual Studio Code extension so that I can create projects and deploy Large Language Models using Azure AI Foundry capabilities directly in VS Code.
 ---
 
 # Work with the Azure AI Foundry for Visual Studio Code extension (Preview)
 
-[Azure AI Foundry](/azure/ai-foundry/what-is-ai-foundry) provides a unified platform for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, ensuring organizations can build and operate AI applications with confidence.
+[Azure AI Foundry](/azure/ai-foundry/what-is-azure-ai-foundry) provides a unified platform for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, ensuring organizations can build and operate AI applications with confidence.
 
 With Azure AI Foundry, you can: 
 
@@ -27,7 +27,7 @@ With Azure AI Foundry, you can:
 
 - Quickly get started with developing generative AI applications using a collection of Azure curated code templates 
 
-- Configure and deploy agents with Azure AI Agent Service 
+- Configure and deploy agents with Azure AI Foundry Agent Service 
 
 With the Azure AI Foundry for Visual Studio Code extension, you can accomplish much of this workflow directly from Visual Studio Code. It also comes with other features, such as code templates, playgrounds, and integration with other VS Code extensions and features. 
 
@@ -41,8 +41,6 @@ This article shows you how to quickly get started using the features of the Azur
 Before using the Azure AI Foundry for Visual Studio Code extension, you must:
 
 - Download, install, and configure Visual Studio Code. More information: [Download Visual Studio Code](https://code.visualstudio.com/Download)
-
-- [An existing Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects?tabs=ai-studio). The extension interacts with Azure AI Foundry at the project level.
 
 - Your subscription needs to be below your [quota limit](../quota.md) to [deploy a new model in this quickstart](#deploy-a-model-from-the-model-catalog). Otherwise you already need to have a [deployed chat model](../deploy-models-openai.md).
 
@@ -100,7 +98,7 @@ The Azure AI Foundry Extension opens in its own view, with the Azure AI Foundry 
 
 :::image type="content" source="../../media/how-to/get-started-projects-vs-code/initial-view.png" alt-text="A screenshot of the Azure AI Foundry Extension with highlighted sections.":::
 
-- **Resources**: This section contains the resources you have access to in your Azure AI Foundry project. The **Resources** section is the main view for interacting with your Azure AI Foundry resources. It contains the following subsections:
+- **Resources**: This section contains the resources you have access to in your Azure AI Foundry project. The **Resources** section is the main view for interacting with your Azure AI Foundry Services. It contains the following subsections:
   - **Models**: This section contains the models you can use to build and deploy your AI applications. The **Models** view is where you can find your deployed models in your Azure AI Foundry project.  
   - **Agents**: This section contains your deployed agents in your Azure AI Foundry project.
   - **Threads**: This section contains the threads and runs from a deployed agent in your Azure AI Foundry project.
@@ -110,12 +108,43 @@ The Azure AI Foundry Extension opens in its own view, with the Azure AI Foundry 
     - **Model Playground**: The link to the model playground for interacting with your deployed models in your Azure AI Foundry project.
     - **Agent Playground**: The link to the agent playground for interacting with your deployed agents in your Azure AI Foundry project.
 
-- **Help and Feedback**: This section contains links to the Azure AI Foundry documentation, feedback, and support. It contains the following subsections:
+- **Help and Feedback**: This section contains links to the Azure AI Foundry documentation, feedback, support, and the Microsoft Privacy Statement. It contains the following subsections:
     - **Documentation**: The link to the Azure AI Foundry Extension documentation.
     - **GitHub**: The link to the Azure AI Foundry extension GitHub repository.
+    - **Microsoft Privacy Statement**: The link to the Microsoft Privacy Statement.
 
 >[!NOTE]
-> To learn more about working with Agents and Threads in the Azure AI Foundry Extension, see the [Work with Azure AI Agent Service in Visual Studio Code](./vs-code-agents.md) article. 
+> To learn more about working with Agents and Threads in the Azure AI Foundry Extension, see the [Work with Azure AI Foundry Agent Service in Visual Studio Code](./vs-code-agents.md) article. 
+
+## Create a project
+
+You can create a new Azure AI Foundry project from the Azure AI Foundry Extension view with the following steps:
+
+1. Select the **plus** icon next to **Resources** in the **Resources** section of the Azure AI Foundry Extension view.
+
+1. In the top center, enter the Azure AI Foundry Project name to use in the **Enter project name** textbox and press Enter.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/enter-project-name.png" alt-text="Screenshot of the Enter project name textbox." lightbox="../../media/how-to/get-started-projects-vs-code/enter-project-name.png":::
+
+You can either create a new resource group or select an existing one.
+- To create a new resource group:
+    1. In the top center, select **Create new resource group** and press Enter.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-resource-group.png" alt-text="Screenshot of the Choose resource group dropdown with the Create new resource group item highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/select-resource-group.png":::  
+    
+    1. In the top center, enter the Azure Resource Group name to use in the **Enter new resource group** textbox and press Enter.
+
+    1. In the top center, select the location you want to use from the list of available locations and press Enter.
+
+- To use an existing resource group:
+    1. In the top center, select the resource group you want to use from the list of available resource groups and press Enter.
+
+After project deployment, a popup appears with the message **Project deployed successfully**.
+
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/project-deployed.png" alt-text="A screenshot of the Project deployed successfully popup with the Deploy a model button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/project-deployed.png":::
+
+To deploy a model to the newly created project, select the **Deploy a model** button in the popup.
+This action opens the **Model Catalog** page in the Azure AI Foundry Extension view to select the desired model to [deploy.](#deploy-a-model-from-the-model-catalog) 
 
 ### The default Azure AI Foundry Project
 
@@ -130,7 +159,6 @@ Switch your default project by following these steps:
 Your selected project will now display **Default** after the project name.
 
 :::image type="content" source="../../media/how-to/get-started-projects-vs-code/default-project.png" alt-text="A screenshot of the designated default project." lightbox="../../media/how-to/get-started-projects-vs-code/default-project.png"::: 
-
 
 ## Work with models
 
@@ -187,7 +215,7 @@ Deploy a selected model in the model catalog using the following steps:
 
 1. In the top center, select the AI service to use in the **Choose an AI service** dropdown and press Enter.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/choose-ai-service.png" alt-text="Screenshot of the Chosen AI service dropdown." lightbox="../../media/how-to/get-started-projects-vs-code/choose-ai-service.png":::
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/choose-ai-service.png" alt-text="Screenshot of the Choose an AI service dropdown." lightbox="../../media/how-to/get-started-projects-vs-code/choose-ai-service.png":::
 
 1. In the top center, select the model version to use in the **Choose model version** dropdown and press Enter.
 
@@ -315,6 +343,6 @@ Delete the connected tool with the following steps:
 1. Select the Azure Resource Group containing the tool.
 1. Select the **Delete** button.  
 
-##	Next steps
+##    Next steps
 
-- Learn about [working with the Azure AI Agent Service](./vs-code-agents.md) using this Visual Studio Code extension.
+- Learn about [working with the Azure AI Foundry Agent Service](./vs-code-agents.md) using this Visual Studio Code extension.

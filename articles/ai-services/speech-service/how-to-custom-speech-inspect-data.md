@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 2/25/2025
+ms.date: 5/19/2025
 ms.author: eur
 zone_pivot_groups: foundry-speech-studio-cli-rest
 #Customer intent: As a developer, I want to test the recognition quality of a custom speech model so that I can determine if the provided recognition result is correct.
@@ -22,21 +22,24 @@ Side-by-side model testing is useful to validate which speech recognition model 
 
 ## Create a test
 
+After you [upload training and testing datasets](how-to-custom-speech-upload-data.md), you can create a test.
+
 ::: zone pivot="ai-foundry-portal"
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
-1. Select **Fine-tuning** from the left pane.
-1. Select **AI Service fine-tuning**.
-1. Select the custom model that you want to manage from the **Model name** column.
-1. After the model is trained, select **Test models** from the left menu. Then select **+ Create test**.
+To test your fine-tuned custom speech model, follow these steps:
 
-    :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-test-model.png" alt-text="Screenshot of the page with an option to test your custom speech model." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-test-model.png":::
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
+1. Select the custom speech fine-tuning task (by model name) that you [started as described in the how to start custom speech fine-tuning article](./how-to-custom-speech-create-project.md).
+1. Select **Test models** > **+ Create test**. 
+
+    :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-test-model.png" alt-text="Screenshot of the page with an option to test your custom speech model." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-test-model.png":::
 
 1. In the **Create a new test** wizard, select the test type. For a quality test, select **Inspect quality (Audio-only data)**. Then select **Next**.
 1. Select the data that you want to use for testing. Then select **Next**.
 1. Select up to two models to evaluate and compare accuracy. In this example, we select the model that we trained and the base model. Then select **Next**.
 
-    :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-test-model-select-models.png" alt-text="Screenshot of the page with an option to select up to two models to evaluate and compare accuracy." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-test-model-select-models.png":::
+    :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-test-model-select-models.png" alt-text="Screenshot of the page with an option to select up to two models to evaluate and compare accuracy." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-test-model-select-models.png":::
 
 1. Enter a name and description for the test. Then select **Next**.
 1. Review the settings and select **Create test**. You're taken back to the **Test models** page. The status of the data is **Processing**.

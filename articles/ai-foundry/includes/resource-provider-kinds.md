@@ -14,4 +14,4 @@ ms.custom: include, build-2024
 |---|---|---|
 |Azure AI Foundry hub|`Microsoft.MachineLearningServices/workspace`|`hub`|
 |Azure AI Foundry project|`Microsoft.MachineLearningServices/workspace`|`project`|
-|Azure AI services *or*</br>Azure AI OpenAI Service|`Microsoft.CognitiveServices/account`|`AIServices`</br>`OpenAI`|
+|Azure AI Foundry *or*</br>Azure AI OpenAI Service|`Microsoft.CognitiveServices/account`|`AIServices`</br>`OpenAI`|

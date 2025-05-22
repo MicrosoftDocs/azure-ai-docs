@@ -1,6 +1,6 @@
 ---
 title: Work with chat completion models
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn about the options for how to use models with the chat completions API
 author: mrbullwinkle #dereklegenzoff
 ms.author: mbullwin #delegenz

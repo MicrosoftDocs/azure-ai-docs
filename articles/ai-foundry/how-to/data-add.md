@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 02/11/2025
+ms.date: 05/21/2025
 ms.author: franksolomon
 author: fbsolo-ms1
 ---
@@ -29,12 +29,10 @@ Data can help when you need these capabilities:
 > - **Lineage:** For any given data, you can view which jobs or prompt flow pipelines consume the data.
 > - **Ease-of-use:** An Azure AI Foundry data resembles web browser bookmarks (favorites). Instead of remembering long storage paths that *reference* your frequently-used data on Azure Storage, you can create a data *version* and then access that version of the asset with a friendly name.
 
+
 ## Prerequisites
 
-To create and work with data, you need:
-
-- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
-- An [Azure AI Foundry project](../how-to/create-projects.md).
+[!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 
 ## Create data
 
@@ -58,6 +56,8 @@ Azure AI Foundry shows the supported source paths. You can create a data from a 
 ### Create data: File type
 
 A file (`uri_file`) data resource type points to a *single file* on storage (for example, a CSV file).
+
+[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
 These steps explain how to create a File typed data resource in the Azure AI Foundry portal:
 

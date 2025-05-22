@@ -15,12 +15,17 @@ ms.custom: include
 
 For any model deployment in [Azure AI Foundry](https://ai.azure.com), you can directly use the default content filter, but you might want to have more control. For example, you could make a filter stricter or more lenient, or enable more advanced capabilities like prompt shields and protected material detection.
 
+> [!IMPORTANT]
+> The GPT-image-1 model does not support content filtering configuration: only the default content filter is used.
+
 > [!TIP]
 > For guidance with content filters in your Azure AI Foundry project, you can read more at [Azure AI Foundry content filtering](/azure/ai-studio/concepts/content-filtering).
 
 Follow these steps to create a content filter:
 
-1. Go to [Azure AI Foundry](https://ai.azure.com) and navigate to your project. Then select the **Safety + security** page from the left menu and select the **Content filters** tab.
+[!INCLUDE [tip-left-pane](tip-left-pane.md)]
+
+1. Go to [Azure AI Foundry](https://ai.azure.com) and navigate to your project. Then select the **Guardrails + controls** page from the left menu and select the **Content filters** tab.
 
     :::image type="content" source="../media/content-safety/content-filter/create-content-filter.png" alt-text="Screenshot of the button to create a new content filter." lightbox="../media/content-safety/content-filter/create-content-filter.png":::
 1. Select **+ Create content filter**.
@@ -46,7 +51,7 @@ Follow these steps to create a content filter:
 
     :::image type="content" source="../media/content-safety/content-filter/create-content-filter-deployment.png" alt-text="Screenshot of the option to select a deployment when creating a content filter." lightbox="../media/content-safety/content-filter/create-content-filter-deployment.png":::
 
-    Content filtering configurations are created at the hub level in the [Azure AI Foundry portal](https://ai.azure.com). Learn more about configurability in the [Azure OpenAI Service documentation](/azure/ai-services/openai/how-to/content-filters).
+    Content filtering configurations are created at the hub level in the [Azure AI Foundry portal](https://ai.azure.com). Learn more about configurability in the [Azure OpenAI in Azure AI Foundry Models documentation](/azure/ai-services/openai/how-to/content-filters).
 
 
 1. On the **Review** page, review the settings and then select **Create filter**.

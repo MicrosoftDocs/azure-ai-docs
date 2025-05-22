@@ -1,7 +1,7 @@
 ---
-title: 'How to use GPT-4o Realtime API for speech and audio with Azure OpenAI Service'
+title: 'How to use GPT-4o Realtime API for speech and audio with Azure OpenAI in Azure AI Foundry Models'
 titleSuffix: Azure OpenAI
-description: Learn how to use GPT-4o Realtime API for speech and audio with Azure OpenAI Service.
+description: Learn how to use GPT-4o Realtime API for speech and audio with Azure OpenAI.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
@@ -62,3 +62,4 @@ Support for the Realtime API was first added in API version `2024-10-01-preview`
 * Learn more about [How to use the Realtime API](./how-to/realtime-audio.md)
 * See the [Realtime API reference](./realtime-audio-reference.md)
 * Learn more about Azure OpenAI [quotas and limits](quotas-limits.md)
+* Learn more about [Language and voice support for the Speech service](../../ai-services/speech-service/language-support.md)
