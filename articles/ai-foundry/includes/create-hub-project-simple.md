@@ -23,6 +23,9 @@ ms.custom: include, build-2024, ignite-2024
  1. At the bottom of the left pane, select **Management center**.
  1. At the top of the page, select **All resources**.
  1. Select **Create**.
+ 
+    :::image type="content" source="../media/how-to/projects/management-center-create.png" alt-text="Screenshot shows the management center where you can create a hub based project.":::
+
  1. Select **AI hub resource**.
  1. Enter a name for the project.
  1. If you have a hub, you'll see the one you most recently used selected.  
