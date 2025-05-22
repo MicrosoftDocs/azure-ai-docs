@@ -63,7 +63,7 @@ You might use Azure AI Custom Vision for the following scenarios:
 * **Automated visual alerts:** The ability to monitor a video stream and have alerts triggered when certain circumstances are detected. For example, you might want an alert when there is steam detected, or foam on a river, or an animal is present.
 * **Improved efficiency of manual inspection:** In retail, product recognition enables you to reduce the time you or associates spend counting unique SKUs, or identifying whether all SKUs that should be on a shelf are present. 
 * **Expansion of inspection coverage:** When detecting defects, it's not always possible for a human to review all items coming off a manufacturing line. Instead, you can use Custom Vision to cover the set of items you aren’t able to inspect manually, as well as inform which items you do inspect manually.
-* **Improve object discoverability:** Labelling your images with metadata can make them easier to find later. For example, you might tag the images based on your product catalog or other visual features that you're interested in filtering on. Custom Vision allows you to label images with metadata at the time of ingestion.
+* **Improve object discoverability:** Labeling your images with metadata can make them easier to find later. For example, you might tag the images based on your product catalog or other visual features that you're interested in filtering on. Custom Vision allows you to label images with metadata at the time of ingestion.
 
 ### Considerations when choosing a use case
 

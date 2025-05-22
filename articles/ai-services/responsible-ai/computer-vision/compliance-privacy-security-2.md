@@ -1,7 +1,7 @@
 ---
 title: Data, privacy, and security for Spatial Analysis
 titleSuffix: Azure AI services
-description: This document details issues for compliance, privacy, and security for a Azure AI Vision spatial analysis container deployment.
+description: This document details issues for compliance, privacy, and security for an Azure AI Vision spatial analysis container deployment.
 author: PatrickFarley
 manager: nitinme
 ms.author: pafarley

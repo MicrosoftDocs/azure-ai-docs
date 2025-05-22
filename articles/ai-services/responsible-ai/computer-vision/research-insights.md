@@ -1,7 +1,7 @@
 ---
 title: Research insights for Azure AI Vision spatial analysis
 titleSuffix: Azure AI services
-description: This document details research insights for a Azure AI Vision spatial analysis container deployment.
+description: This document details research insights for an Azure AI Vision spatial analysis container deployment.
 author: PatrickFarley
 manager: nitinme
 ms.author: pafarley

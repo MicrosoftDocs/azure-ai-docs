@@ -1,7 +1,7 @@
 ---
 title: Data and privacy for custom text classification
 titleSuffix: Azure AI services
-description: Learn about data and privacy for custom text classification.
+description: Learn about data and privacy for Custom text classification.
 author: aahill
 ms.author: aahi
 manager: nitinme
@@ -10,7 +10,7 @@ ms.topic: article
 ms.date: 04/26/2023
 ---
 
-# Data and privacy for custom text classification
+# Data and privacy for Custom text classification
 
 This article provides high-level details about how data is processed by custom text classification. Remember that you're responsible for your use and the implementation of this technology, which includes complying with all laws and regulations that apply to you. For example, it's your responsibility to:
 
@@ -19,7 +19,7 @@ This article provides high-level details about how data is processed by custom t
 
 It's your responsibility to comply with all applicable laws and regulations in your jurisdiction.
 
-## What data does custom text classification process?
+## What data does Custom text classification process?
 
 Custom text classification processes the following data:
 
@@ -32,7 +32,7 @@ Custom text classification processes the following data:
 
 Custom text classification doesn't collect or store any customer data to improve its machine-learned models or for product improvement purposes. We use aggregate telemetry, such as which APIs are used and the number of calls from each subscription and resource, for service monitoring purposes.
 
-## How does custom text classification process data?
+## How does Custom text classification process data?
 
 The following diagram illustrates how your data is processed.
 
@@ -59,7 +59,7 @@ To learn more about Microsoft's privacy and security commitments, see the [Micro
 
 ## Next steps
 
-* [Introduction to custom text classification](/azure/ai-services/language-service/custom-text-classification/overview)
+* [Introduction to Custom text classification](/azure/ai-services/language-service/custom-text-classification/overview)
 * [Custom text classification Transparency Note](ctc-transparency-note.md)
 * [Guidance for integration and responsible use](ctc-guidance-integration-responsible-use.md)
 * [Microsoft AI principles](https://www.microsoft.com/ai/responsible-ai?rtc=1&activetab=pivot1%3aprimaryr6)

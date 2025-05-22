@@ -1,7 +1,7 @@
 ---
 title: Disclosure design guidelines for Azure AI Vision spatial analysis
 titleSuffix: Azure AI services
-description: This document details disclosure design guidelines for a Azure AI Vision spatial analysis container deployment.
+description: This document details disclosure design guidelines for an Azure AI Vision spatial analysis container deployment.
 author: PatrickFarley
 manager: nitinme
 ms.author: pafarley
