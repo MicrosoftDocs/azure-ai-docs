@@ -17,6 +17,10 @@ Sora is an AI model from OpenAI that can create realistic and imaginative video 
 
 Sora can generate complex scenes with multiple characters, diverse motions, and detailed backgrounds. The model interprets prompts with contextual and physical world understanding, enabling accurate scene composition and character persistence across multiple shots. Sora demonstrates strong language comprehension for prompt interpretation and emotional character generation. 
 
+## How it works
+
+Video generation is an asynchronous process. You create a job request with your text prompt and video format specifications, and the model processes the request in the background. You can check the status of the video generation job and, once it has finished, retrieve the generated video via a download URL.
+
 ## Best practices for prompts
 
 Users should write text prompts in English or Latin script languages for the best video generation performance.  
@@ -35,7 +39,7 @@ Sora supports the following output resolution dimensions:
 
 Sora supports the following video durations: 5, 10, 15, and 20 seconds.
 
-You can request multiple video variants in a single job: for 1080p resolutions, is feature is disabled; for 720p, the maximum is two variants; for other resolutions, the maximum is four variants.
+You can request multiple video variants in a single job: for 1080p resolutions, this feature is disabled; for 720p, the maximum is two variants; for other resolutions, the maximum is four variants.
 
 A user can have two video creation jobs running at the same time. In that situation, you must wait for one of the jobs to finish before you can create another.
 
