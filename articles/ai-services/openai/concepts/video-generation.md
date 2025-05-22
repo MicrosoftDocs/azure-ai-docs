@@ -19,33 +19,36 @@ Sora can generate complex scenes with multiple characters, diverse motions, and 
 
 
 
+
+
 ## Best practices for prompts
 
 Users should write text prompts in English or Latin script languages for the best video generation performance.  
 
 
 
-## Responsible AI
 
-Sora has a robust safety stack including a moderation stack with prompt rewrites, content filtering, abuse monitoring, sensitive content blocking, and safety classifiers.
-
-Sora does not generate scenes with acts of violence but can demonstrate realistic war-like footage  
-
-Commonly filtered names such as Emma Watson, Obama, Biden, etc. are not filtered.
 
 ## Limitations
 
 ### Content quality limitations
 
-Sora may have difficulty with complex physics, causal relationships (for example, bite marks on a cookie), spatial reasoning (for example, knowing left vs. right), and precise time-base event sequencing such as camera movement.
+Sora may have difficulty with complex physics, causal relationships (for example, bite marks on a cookie), spatial reasoning (for example, knowing left from right), and precise time-based event sequencing such as camera movement.
 
 ### Technical limitations
 
-Sora supports the following output resolution dimensions: 480x480, 480x854, 720x720, 720x1280, 1080x1080, 1920x1080. 
+Sora supports the following output resolution dimensions: 
+480x480, 480x854, 854x480, 720x720, 720x1280, 1280x720, 1080x1080, 1080x1920, 1920x1080.
 
-Sora supports the following video durations: 5, 10, 15, and 20 seconds. The maximum duration for 1080x videos is 10 seconds.
+Sora supports the following video durations: 5, 10, 15, and 20 seconds.
 
+Multiple video variants can be requested in the same job: for 1080p resolutions, is feature is disabled; for 720p, the maximum is two variants; for other resolutions, the maximum is four variants.
 
-Max variants on 1080p =1; 720 =2; otherwise 4  
+A user can create two video creation jobs at a time. Then you must wait for one of the jobs to finish before you create another.
 
-Limiting 2 pending tasks per customer  
+## Responsible AI
+
+Sora has a robust safety stack including content filtering, abuse monitoring, sensitive content blocking, and safety classifiers.
+
+Sora does not generate scenes with acts of violence but can generate adjacent content, such as realistic war-like footage.
+
