@@ -7,7 +7,7 @@ ms.service: azure-ai-openai
 ms.topic: quickstart
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 05/12/2025
+ms.date: 05/22/2025
 ---
 
 # Quickstart: Generate a video with Sora (preview)
