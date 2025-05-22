@@ -23,9 +23,9 @@ This article is to help you understand the support lifecycle for Azure OpenAI AP
 
 ## API evolution
 
-Historically, Azure OpenAI received monthly updates of new API versions. To take advantage of each new feature required constantly updating code and environment variables with each new API release. Azure OpenAI also required the extra step of using Azure specific clients which created overhead when migrating code between OpenAI and Azure OpenAI. Starting in May 2025, you can now opt in to our next generation of Azure OpenAI APIs which add support for:
+Historically, Azure OpenAI received monthly updates of new API versions. Taking advantage of new features required constantly updating code and environment variables with each new API release. Azure OpenAI also required the extra step of using Azure specific clients which created overhead when migrating code between OpenAI and Azure OpenAI. Starting in May 2025, you can now opt in to our next generation of Azure OpenAI APIs which add support for:
 
-- Access to the latest features with no need to update `api-version` each month.
+- Ongoing access to the latest features with no need to update `api-version` each month.
 - OpenAI client support with minimal code changes to swap between OpenAI and Azure OpenAI.
 
 For the initial preview launch we are only supporting a subset of the inference API. While in preview, operations may have incomplete functionality that will be continually expanded.
@@ -76,7 +76,6 @@ print(response.model_dump_json(indent=2))
 
 - `OpenAI()` client is used instead of `AzureOpenAI()`.
 - `base_url` passes the Azure OpenAI endpoint and `/openai/v1` is appended to the endpoint address.
-- `extra_headers={"Authorization": f"Bearer {token.token}"}` passes the Microsoft Entra ID token to handle secure authentication.
 - `extra_query={"api-version": "preview"}` indicates that the version-less always up-to-date preview API is being used.
 
 Once we release the GA next generation API, we will support two values `latest` and `preview`. If `api-version` is not passed traffic is automatically routed to the `latest` GA version. Currently only `preview` is supported.
