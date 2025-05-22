@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: quickstart
-ms.date: 05/21/2025
+ms.date: 05/22/2025
 ---
 
 # Quickstart: Vectorize text in the Azure portal
@@ -47,7 +47,7 @@ For integrated vectorization, you must use one of the following embedding models
 | Provider | Supported models |
 |--|--|
 | [Azure OpenAI in Azure AI Foundry Models](/azure/ai-services/openai/how-to/create-resource) <sup>1, 2</sup> | text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large |
-| [Azure AI services multi-service resource](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills) <sup>3</sup> | For text and images: [Azure AI Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) <sup>4</sup></li> |
+| [Azure AI services multi-service resource](/azure/ai-services/multi-service-resource#azure-ai-multi-services-resource-for-azure-ai-search-skills) <sup>3</sup> | For text and images: [Azure AI Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) <sup>4</sup></li> |
 | [Azure AI Foundry model catalog](/azure/ai-foundry/what-is-azure-ai-foundry) | For text:<br>Cohere-embed-v3-english<br>Cohere-embed-v3-multilingual<br><br>For images:<br>Facebook-DinoV2-Image-Embeddings-ViT-Base<br>Facebook-DinoV2-Image-Embeddings-ViT-Giant |
 
 <sup>1</sup> The endpoint of your Azure OpenAI resource must have a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains), such as `https://my-unique-name.openai.azure.com`. If you created your resource in the [Azure portal](https://portal.azure.com/), this subdomain was automatically generated during resource setup.
@@ -73,6 +73,14 @@ Free search services support role-based connections to Azure AI Search. However,
 To configure the recommended role-based access:
 
 1. On your search service, [enable roles](search-security-enable-roles.md) and [configure a system-assigned managed identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity).
+
+1. [Assign the following roles](search-security-rbac.md) to yourself:
+
+   + **Search Service Contributor**
+
+   + **Search Index Data Contributor**
+
+   + **Search Index Data Reader**
 
 1. On your data source platform and embedding model provider, create role assignments that allow your search service to access data and models. See [Prepare sample data](#prepare-sample-data) and [Prepare embedding models](#prepare-embedding-model).
 
@@ -101,7 +109,7 @@ This section points you to the content that works for this quickstart. Before yo
 
    1. Select **Add** > **Add role assignment**.
 
-   1. Under **Job function roles**, select **[Storage Blob Data Reader](search-howto-managed-identities-data-sources.md#assign-a-role)**, and then select **Next**.
+   1. Under **Job function roles**, select **Storage Blob Data Reader**, and then select **Next**.
 
    1. Under **Members**, select **Managed identity**, and then select **Select members**.
 
@@ -127,7 +135,7 @@ This section points you to the content that works for this quickstart. Before yo
 
    1. Select **Add** > **Add role assignment**.
 
-   1. Under **Job function roles**, select **[Storage Blob Data Reader](search-howto-managed-identities-data-sources.md#assign-a-role)**, and then select **Next**.
+   1. Under **Job function roles**, select **Storage Blob Data Reader**, and then select **Next**.
 
    1. Under **Members**, select **Managed identity**, and then select **Select members**.
 
@@ -188,7 +196,7 @@ The wizard supports text-embedding-ada-002, text-embedding-3-large, and text-emb
 
    1. Select **Add** > **Add role assignment**.
 
-   1. Under **Job function roles**, select **[Cognitive Services OpenAI User](/azure/ai-services/openai/how-to/role-based-access-control#azure-openai-roles)**, and then select **Next**.
+   1. Under **Job function roles**, select **Cognitive Services OpenAI User**, and then select **Next**.
 
    1. Under **Members**, select **Managed identity**, and then select **Select members**.
 
@@ -371,7 +379,7 @@ In this step, you specify an embedding model to vectorize chunked data. Chunking
 
    + Azure AI Foundry model catalog
 
-   + An Azure AI Vision multimodal resource in the same region as Azure AI Search. If there's no [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills) in the same region, this option isn't available.
+   + An Azure AI Vision multimodal resource in the same region as Azure AI Search. If there's no [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-multi-services-resource-for-azure-ai-search-skills) in the same region, this option isn't available.
 
 1. Specify the Azure subscription.
 
