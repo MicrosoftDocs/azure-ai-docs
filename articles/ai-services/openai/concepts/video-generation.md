@@ -19,14 +19,9 @@ Sora can generate complex scenes with multiple characters, diverse motions, and 
 
 
 
-
-
-Sora does not respond to all information provided in the prompt, but is still capable of creating realistic clips  
 ## Best practices for prompts
 
 Users should write text prompts in English or Latin script languages for the best video generation performance.  
-
-
 
 
 
