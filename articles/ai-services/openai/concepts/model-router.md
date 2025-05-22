@@ -54,7 +54,7 @@ Model router doesn't process audio input.
 
 ## Billing information
 
-When you use model router, you're only billed for the use of the underlying models as they're recruited to respond to prompts. The model routing function itself doesn't incur any extra charges.
+When you use model router today, you're only billed for the use of the underlying models as they're recruited to respond to prompts: the model routing function itself doesn't incur any extra charges. Starting August 1, the model router usage will be charged as well.
 
 You can monitor the costs of your model router deployment in the Azure portal.
 
