@@ -27,7 +27,7 @@ LUIS doesn't collect customer data to improve its machine-learned models or for 
 
 The following diagram illustrates how your data is processed.
 
-![Diagram that shows how data is processed.](luis-rai-privacy-chart.png)
+![Diagram that shows how data is processed.](luis-responsible-ai-privacy-chart.png)
 
 ## How is data retained, and what customer controls are available?
 
