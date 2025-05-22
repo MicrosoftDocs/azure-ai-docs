@@ -25,6 +25,9 @@ ms.custom: include
     * Fine-tuning
     * Playgrounds
 
+* You can also [Use a Bicep file](../how-to/create-azure-ai-project-template.md) to create a [!INCLUDE [fdp-project-name](fdp-project-name.md)].
+
+
 ## Prerequisites
 
 Use the following tabs to select the method you plan to use to create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
@@ -92,8 +95,8 @@ To customize the settings for your project, follow these steps:
 
 To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
-1. Install azure-identity: `pip install azure-identity azure_mgmt_cognitiveservices`. If in a notebook cell, use `%pip install azure-identity azure_mgmt_cognitiveservices`.
-
+1. Install packages: `pip install azure-identity azure-mgmt-cognitiveservices`. If in a notebook cell, use `%pip install azure-identity azure-mgmt-cognitiveservices`.
+1. Use `pip show azure-mgmt-cognitiveservices` to verify your version is 13.7 or greater.
 1. Use the following code to create a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)].  This example creates the project in West US:
 
     ```python

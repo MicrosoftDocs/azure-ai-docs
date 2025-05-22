@@ -44,7 +44,6 @@ Azure AI Foundry supports two types of projects: a **[!INCLUDE [fdp](../includes
     * Evaluations
     * Playgrounds
 
-
 ## Prerequisites
 
 Use the following tabs to select the method you plan to use to create a [!INCLUDE [hub](../includes/hub-project-name.md)]:
@@ -176,9 +175,7 @@ In addition, many resources are only accessible by users in your project workspa
 
 ## Related content
 
-- [Quickstart: Get started with Azure AI Foundry](../quickstarts/get-started-code.md?pivots=hub-project)
-
-- [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
+- [Quickstart: Use the chat playground in Azure AI Foundry portal](../quickstarts/get-started-playground.md)
 
 - [Learn more about hubs](../concepts/ai-resources.md)
 

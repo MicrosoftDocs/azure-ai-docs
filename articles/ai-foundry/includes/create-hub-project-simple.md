@@ -16,6 +16,10 @@ ms.custom: include, build-2024, ignite-2024
  
  1. Sign in to [Azure AI Foundry](https://ai.azure.com). 
  1. Select any existing project if you aren't already in one.
+ 
+    > [!IMPORTANT]
+    > You must have an existing [!INCLUDE [fdp-project-name](fdp-project-name.md)] or [!INCLUDE [hub-project-name](hub-project-name.md)] before you can follow these steps. If you don't have an existing project, follow the steps in the [Quickstart: Get started with Azure AI Foundry](../quickstarts/get-started-code.md) to create your first [!INCLUDE [fdp-project-name](fdp-project-name.md)].
+
  1. At the bottom of the left pane, select **Management center**.
  1. At the top of the page, select **All resources**.
  1. Select **Create**.
