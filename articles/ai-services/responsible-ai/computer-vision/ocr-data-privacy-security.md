@@ -21,7 +21,8 @@ The [OCR service](/azure/ai-services/computer-vision/overview-ocr) processes the
 - The [OCR input data](/azure/ai-services/computer-vision/how-to/call-read-api#input-requirements) that includes images (PNG, JPG, and BMP) and documents (PDF and TIFF).
 - The [OCR results](/azure/ai-services/computer-vision/how-to/call-read-api#sample-json-output) that includes the text extracted from customer documents and images in the form of text lines and words, and their locations, along with confidence scores.
 
-### How does the OCR service process the data?
+
+## How does the OCR service process the data?
 
 The following diagram illustrates how your data is processed.
 
@@ -35,7 +36,7 @@ The following diagram illustrates how your data is processed.
  
 **Retrieve the extracted text results**: You call the [Get Read Results](/azure/ai-services/computer-vision/how-to/call-read-api#get-results-from-the-service) operation to get the job completion status and optionally, the extracted text results if the job has succeeded. The other values of status tell you whether the operation has not started, is running, or has failed.
 
-### Data stored by OCR
+## Data stored by OCR
 
 **Temporarily stores the results for customers to retrieve**: Recall that Read and Get Read Results are asynchronous calls. In other words, the service doesn't know when the customers will call the Get Read Results operation to fetch the extracted text results. To facilitate checking the completion status and returning the extracted results to the customer upon completion, the extracted text is stored temporarily in Azure Storage. This behavior allows customers to poll the asynchronous Get Read Results operation for job completion status and fetch the results upon completion.
 

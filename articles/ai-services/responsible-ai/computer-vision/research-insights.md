@@ -14,6 +14,8 @@ ms.date: 08/15/2022
 
 This section summarizes research insights which apply to applications of AI systems that gather data from the environment to generate insights about how people behave. All sources for the references made in this article are listed in the [references section](#references).
 
+## Research insights
+
 **AI systems need to be designed to support effective human decision-making.**
 AI systems are probabilistic in nature and can be computationally complex. In order to make it easier for users to be aware of system errors and other unintended outcomes and thereby support effective human decision-making(15), it is critical that these systems provide explanations about how the system works and be designed with the right level of human control.(16,17) The right level of human involvement needs to be evaluated on a per scenario/ context-of-use basis.(18,19)
 

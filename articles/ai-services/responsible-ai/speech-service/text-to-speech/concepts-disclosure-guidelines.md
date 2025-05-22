@@ -62,7 +62,7 @@ Use this worksheet to determine the context of your synthetic voice experience. 
 
 Use the following diagram to determine whether your synthetic voice experience requires high or low disclosure based on your context of use.
 
-![Disclosure assessment diagram](media\flowchart.png)
+![A diagram of the disclosure assessment.](media\flowchart.png)
 
 ## See also
 

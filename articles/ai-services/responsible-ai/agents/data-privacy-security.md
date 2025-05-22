@@ -14,13 +14,14 @@ ms.topic: article
 
 Azure AI Agent Service is a fully managed service designed to empower developers to securely build, deploy, and scale high-quality, and extensible AI agents without needing to manage the underlying compute and storage resources. Azure AI Agent Service integrates **models, tools and technology** and enables you to extend agents with knowledge from connected sources (such as Bing Search, SharePoint, Fabric, Azure Blob storage, and licensed data) and actions using tools such as Azure Logic Apps, Azure Functions, OpenAPI 3.0 specified tools and Code Interpreter
 
-**NOTE**: This article provides details regarding how data provided by you to the Azure AI Agent service is processed, used, and stored. Please also see the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), which governs data processing by the Azure AI Agent Service (but may not necessarily apply to external tools or services with which Azure AI Agent Service interacts, which are subject to their own data processing terms).
+> [!NOTE]
+> This article provides details regarding how data provided by you to the Azure AI Agent service is processed, used, and stored. Please also see the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), which governs data processing by the Azure AI Agent Service (but may not necessarily apply to external tools or services with which Azure AI Agent Service interacts, which are subject to their own data processing terms).
 
-> [!IMPORTANT] 
-> Your prompts (inputs) and completions (outputs) and your data: 
-> * are NOT available to other customers. 
-> * are NOT available to OpenAI, Meta, Cohere, or Mistral. 
-> * are NOT used to improve OpenAI, Meta, Cohere, or Mistral models. 
+> [!IMPORTANT]
+> Your prompts (inputs) and completions (outputs) and your data:
+> * are NOT available to other customers.
+> * are NOT available to OpenAI, Meta, Cohere, or Mistral.
+> * are NOT used to improve OpenAI, Meta, Cohere, or Mistral models.
 
 When you use Azure AI Agent Service with tools that retrieve data from external sources or services (such as the Grounding with Bing Search tool), the terms (including data processing terms) for those services apply to any data processed by those services. For example, the Grounding with Bing Search tool is subject to separate data collection and privacy terms (see Terms of Use for Grounding with Bing Search in Azure AI Agents Service), and the services are Microsoft-as-controller services and thereby excluded from the Microsoft Products and Services Data Protection Addendum. 
 
@@ -75,4 +76,4 @@ To reduce the risk of harmful use of the Azure AI Agent Service, the Service inc
 ## See also 
 
 * [Terms of Use for Grounding with Bing Search in Azure AI Agent Service](https://www.microsoft.com/bing/apis/grounding-legal) 
-* [Data Residency in Azure](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) 
+* [Data Residency in Azure](https://azure.microsoft.com/explore/global-infrastructure/data-residency/)

@@ -54,6 +54,8 @@ When you're getting ready to integrate and responsibly use AI-powered products o
 
 * **Security.** Ensure that your solution is secure, and has adequate controls to preserve the integrity of your content and prevent any unauthorized access.
 
+## Recommended content
+
 * **Assess your application for alignment with [Responsible AI principles](https://www.microsoft.com/ai/responsible-ai-resources).**
 
 * **Use the [Microsoft HAX Toolkit](https://www.microsoft.com/en-us/haxtoolkit/).** The toolkit recommends best practices for how AI systems should behave on initial interaction, during regular interaction, when they're inevitably wrong, and over time.

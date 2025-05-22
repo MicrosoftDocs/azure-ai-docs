@@ -11,7 +11,9 @@ ms.date: 02/21/2024
 recommendations: false
 ---
 
-# Transparency Note: Anomaly Detector
+# Transparency note: Anomaly Detector
+
+Anomaly Detector is an AI service that enables you to monitor and detect abnormalities in time series data. This article provides transparency information to help you understand how the service works, its capabilities, limitations, and responsible use considerations.
 
 ## What is a Transparency Note?
 
@@ -182,10 +184,3 @@ Anomaly Detector's performance will vary depending on the real-world uses that c
 ## Contact us
 
 Give us feedback on this document by email to: [anomalydetector@microsoft.com](mailto:anomalydetector@microsoft.com)
-
-## About this document
-
-© 2022 Microsoft Corporation. All rights reserved. This document is provided "as-is" and for informational purposes only. Information and views expressed in this document, including URL and other Internet Web site references, may change without notice. You bear the risk of using it. Some examples are for illustration only and are fictitious. No real association is intended or inferred.
-
-Published: 2022/11/1
-Last updated: 2022/11/1

@@ -10,7 +10,7 @@ ms.topic: article
 ms.date: 08/15/2022
 ---
 
-# Disclosure Design Guidelines for Azure AI Vision spatial analysis
+# Disclosure design guidelines for Azure AI Vision spatial analysis
 
 This document outlines helpful tips and guidance to facilitate responsible and ethical use of the Azure AI Vision spatial analysis service.
 
@@ -55,17 +55,17 @@ In order to provide affected stakeholders with sufficient disclosure, consider l
 
 **Upfront disclosure:** Explain how data is handled when people first interact with your system. Example touchpoints: rollout emails, onboarding walkthroughs (mobile app), signage at the building's entrance.
 
-:::image type="content" source="media/spatial-analysis/upfront-disclosure.png" alt-text="an example of providing up front disclosure in a mobile app":::
+:::image type="content" source="media/spatial-analysis/upfront-disclosure.png" alt-text="A screenshot of an example of providing up front disclosure in a mobile app.":::
 
 **On-demand disclosure**: Host all your disclosure content in a centralized information hub that is easy to access for all affected stakeholders. Example touchpoints: FAQ webpage, privacy dashboard (mobile app).
 
-:::image type="content" source="media/spatial-analysis/on-demand-disclosure.png" alt-text="an example of an on-demand disclosure in a mobile app":::
+:::image type="content" source="media/spatial-analysis/on-demand-disclosure.png" alt-text="A screenshot of an example of an on-demand disclosure in a mobile app.":::
 
 **Just-in-time disclosure**: Identify moments in the user journey where people might have questions or concerns regarding data privacy. Anticipate the types of questions that affected stakeholders are likely to have and proactively address their concerns. Example touchpoints: data dashboards, data reports, registration form for visitors, signage pointing at a camera or a sensor.  
 
-:::image type="content" source="media/spatial-analysis/jit-disclosure-cellphone.png" alt-text="an example of just-in-time disclosure in a mobile app":::
+:::image type="content" source="media/spatial-analysis/jit-disclosure-cellphone.png" alt-text="A screenshot of an example of just-in-time disclosure in a mobile app.":::
 
-:::image type="content" source="media/spatial-analysis/jit-disclosure-dashboard.png" alt-text="an eexample of just-in-time disclosure in a dashboard app":::
+:::image type="content" source="media/spatial-analysis/jit-disclosure-dashboard.png" alt-text="A screenshot of an example of just-in-time disclosure in a dashboard app.":::
 
 ## 3. How to build trust with affected stakeholders
 

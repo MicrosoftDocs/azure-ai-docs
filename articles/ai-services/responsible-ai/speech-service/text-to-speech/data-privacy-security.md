@@ -66,7 +66,7 @@ The diagram below illustrates how your data is processed for custom neural voice
 
 The diagram below illustrates how your data is processed for synthesis with prebuilt text to speech avatar. There are three components in an avatar content generation workflow: text analyzer, the TTS audio synthesizer, and TTS avatar video synthesizer. To generate avatar video, text is first input into the text analyzer, which provides the output in the form of phoneme sequence. Then, the TTS audio synthesizer predicts the acoustic features of the input text and synthesize the voice. These two parts are provided by text to speech voice models. Next, the Neural text to speech Avatar model predicts the image of lip sync with the acoustic features, so that the synthetic video is generated.
 
-:::image type="content" source="media\text-to-speech-avatar-data-process.png" alt-text="Diagram of the text to speech avatar data flow.":::
+:::image type="content" source="media\text-to-speech-avatar-data-process.png" alt-text="A diagram of the text to speech avatar data flow.":::
 
 ### Video translation (preview)
 

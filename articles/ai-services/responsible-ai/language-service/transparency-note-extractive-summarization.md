@@ -51,7 +51,7 @@ You can use document summarization in multiple scenarios, across a variety of in
 * **Distill important information from long documents** to empower solutions such as search, question and answering, and decision support.
 
 
-### [Conversation summarization](#tab/conversation)
+#### [Conversation summarization](#tab/conversation)
 
 Conversation summarization uses natural language processing techniques to generate a structured summary for conversations. This feature supports both natural chat transcripts and transcribed transcripts from phone calls. For a chat or call, there are different kinds of important information, scattered over a long text or transcribed transcripts.
 

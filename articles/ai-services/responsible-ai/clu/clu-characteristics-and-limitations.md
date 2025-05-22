@@ -30,9 +30,9 @@ The first step in calculating the model's evaluation is categorizing the extract
 
 The preceding categories are then used to calculate *precision*, *recall* and *F1 score*. These metrics are provided to developers as part of the service's model evaluation. Here are the metric definitions and how they're calculated:
 
-**Precision**: The ratio between the true positives and all the positives. Out of predicted positive classes, precision reveals how many of them are actual positives (belong to the right entity type as predicted).
-**Recall**: The measure of the model's ability to extract actual positive entities. It's the ratio between the predicted true positives and the actually tagged positives. Out of actual tagged entities, recall reveals how many of them are predicted correctly.
-**F1 score**: A function of precision and recall. You need it when you seek a balance between precision and recall.
+- **Precision**: The ratio between the true positives and all the positives. Out of predicted positive classes, precision reveals how many of them are actual positives (belong to the right entity type as predicted).
+- **Recall**: The measure of the model's ability to extract actual positive entities. It's the ratio between the predicted true positives and the actually tagged positives. Out of actual tagged entities, recall reveals how many of them are predicted correctly.
+- **F1 score**: A function of precision and recall. You need it when you seek a balance between precision and recall.
 
 Errors that happen with CLU are mostly dependent on the utterances provided as training data. Any CLU model experiences both false negative and false positive errors. Developers need to consider how each type of error affects the overall system and carefully think through scenarios where true events won't be recognized and incorrect events are recognized. Customers should assess the downstream effects that occur in the implementation and understand the consequences of both types of errors on their client application. Developers should create ways to identify, report, and respond to each type of error.
 

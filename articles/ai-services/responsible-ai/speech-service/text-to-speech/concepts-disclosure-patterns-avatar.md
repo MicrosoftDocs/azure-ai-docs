@@ -44,7 +44,7 @@ Before the avatar experience begins, introduce the digital assistant by being fu
 
 #### First-time user experience
 
-![Transparent introduction during first run experience](media\transparent-intro-first-avatar.png) </br>
+![A diagram of transparent introduction during first run experience.](media\transparent-intro-first-avatar.png) </br>
 *The text to speech avatar is introduced while onboarding a new user.*
 
 Recommendations
@@ -57,21 +57,21 @@ Recommendations
 
 If a user skips the onboarding experience, continue to offer entry points to the Transparent Introduction experience until the user triggers the avatar for the first time. 
 
-![Transparent introduction during return user experience](media\transparent-intro-return-avatar.png)
-<br/>*Provide a consistent entry point to the* text to speech avatar experience. Allow the user to return to the onboarding experience when they trigger the avatar for the first time at any point in the user journey.*
+![A diagram of Transparent introduction during return user experience.](media\transparent-intro-return-avatar.png)
+<br/>*Provide a consistent entry point to the text to speech avatar experience. Allow the user to return to the onboarding experience when they trigger the avatar for the first time at any point in the user journey.*
 
 
 ### Verbal transparent introduction
 
 A spoken prompt stating the origins of the digital assistant's image and voice is explicit enough on its own to achieve disclosure.
 
-![Verbally spoken transparent introduction](media\verbal-transparent.png)
+![A diagram of Verbally spoken transparent introduction.](media\verbal-transparent.png)
 
 ### Explicit byline
 
 Use this pattern if the user will be interacting with a video player or interactive component to trigger the avatar.
 
-![Explicit byline in a news media scenario](media\explicit-byline-2.png) <br/>
+![A diagram of explicit byline in a news media scenario.](media\explicit-byline-2.png) <br/>
 *An explicit byline is the attribution of where image and voice came from.*
 
 Recommendations
@@ -82,7 +82,7 @@ Recommendations
 
 In addition to complying with COPPA regulations, provide disclosure to parents if your primary intended audience is young children. For sensitive uses, consider gating the experience until an adult has acknowledged the use of the synthetic voice. Encourage parents to communicate the message to their children.
 
-![Disclosure for parents](media\parent-disclosure-avatar.png)<br/>
+![A screenshot of Disclosure for parents.](media\parent-disclosure-avatar.png)<br/>
 *A transparent introduction optimized for parents ensures that an adult was made aware of the synthetic nature of the avatar before a child interacts with it.*
 
 Recommendations
@@ -96,12 +96,12 @@ Recommendations
 
 Offer context-sensitive entry points to a page, pop-up, or external site that provides more information about the text to speech avatar technology. For example, you could surface a link to learn more during onboarding or when the user prompts for more information during conversation.
 
-![Entry point to learn more](media\learn-more-entry-point-avatar.png)<br/>
+![A screenshot of entry point to learn more](media\learn-more-entry-point-avatar.png)<br/>
 *Example of an entry point to offer the opportunity to learn more about the synthesized technology.*
 
 Once a user requests more information about the synthetic avatar and voice, the primary goal is to educate them about the origins of the synthetic technology and to be transparent about it.
 
-![Provide users more information about synthetic voice](media\learn-more.png)<br/>
+![A screenshot of providing users more information about synthetic voice.](media\learn-more.png)<br/>
 *More information can be offered in an external help site.*
 
 Recommendations
@@ -113,13 +113,13 @@ Recommendations
 
 Consistency is the key to achieving disclosure implicitly throughout the user journey. Consistent use of visual and auditory cues across devices and modes of interaction can help build associations between implicit patterns and explicit disclosure.
 
-![Consistency of implicit cues](media\consistency.png)
+![A diagram of Consistency of implicit cues.](media\consistency.png)
 
 ### Implicit cues and feedback
 
 Anthropomorphism can manifest in different ways, from the actual visual representation of the agent, to the voice, sounds, patterns of light, bouncing shapes, or even the vibration of a device. When defining your persona, leverage implicit cues and feedback patterns rather than aim for a very human-like avatar. This is one way to minimize the need for more explicit disclosure.
 
-![Visual cues and feedback](media\visual-affordances.png)<br/>
+![A diagram of Visual cues and feedback.](media\visual-affordances.png)<br/>
 *These cues help anthropomorphize the agent without being too human-like. They can also become effective disclosure mechanisms on their own when used consistently over time.*
 
 Consider the different modes of interactions of your experience when incorporating the following types of cues:
@@ -134,7 +134,7 @@ Consider the different modes of interactions of your experience when incorporati
 
 Disclosure can be achieved implicitly by setting accurate expectations for what the digital assistant is capable of. Provide sample commands so that users can learn how to interact with the digital assistant and offer contextual help to learn more about the text to speech avatar during the early stages of the experience.
 
-![Example of default responses to a conversation that you can craft.](media\capability-disclosure.png)<br/>
+![A screenshot of Example of default responses to a conversation that you can craft.](media\capability-disclosure.png)<br/>
 
 ### Conversational Transparency
 

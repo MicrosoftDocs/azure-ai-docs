@@ -123,7 +123,7 @@ The speaker's voice signatures created from the recorded acknowledgement stateme
 
 #### [Custom text to speech avatar](#tab/avatar)
 
-### Microsoft's use of avatar talent’s video files for face comparison and speaker verification.
+### Microsoft's use of avatar talent’s video files for face comparison and speaker verification
 
 Customers must obtain permission from avatar talent for use of their image/likeness to create a custom text to speech avatar for a synthetic video. This technical safeguard is intended to help prevent misuse of our service by, for example, preventing someone from training avatar models with video recordings and using the models to spoof an avatar without the person’s knowledge or consent.
 

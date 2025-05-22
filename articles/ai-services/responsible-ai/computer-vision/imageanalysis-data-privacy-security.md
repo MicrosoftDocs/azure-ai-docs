@@ -18,8 +18,8 @@ This article provides high-level details regarding how Image Analysis service pr
 Image Analysis is part of the Azure Cognitive Azure AI Vision Service. To learn more about the different offerings, see [Azure AI Vision Overview](/azure/ai-services/computer-vision/overview).
 
 
->[!NOTE]
->This article is provided for informational purposes only and not for the purpose of providing legal advice. We strongly recommend seeking specialist legal advice when implementing Image Analysis.
+> [!NOTE]
+> This article is provided for informational purposes only and not for the purpose of providing legal advice. We strongly recommend seeking specialist legal advice when implementing Image Analysis.
 
 
 ## What data does Image Analysis process? 
@@ -38,8 +38,7 @@ Image Analysis processes the following types of data:
     * Adult content detection - API returns three Boolean properties (isAdultContent, isRacyContent, and isGoryContent) in its JSON response, along with a confidence score for each category.
 
 
-   >[!NOTE]
-
+   > [!NOTE]
    > For face detection, the Image Analysis Service returns coordinates of the bounding box locations of the faces only. Face detection does not involve distinguishing one face from another face, or classifying facial attributes, or creating a facial template (a unique set of numbers generated from an image that represents the distinctive features of a face). 
 
    > For celebrity recognition, the Image Analysis Service returns all recognized celebrities along with the coordinates of the recognized faces. Celebrity Recognition covers a finite list (about one million faces) based on commonly requested data sources, such as IMDB, Wikipedia, and top LinkedIn influencers. 

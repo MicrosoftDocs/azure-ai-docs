@@ -21,43 +21,35 @@ The following recommendations have been developed together with private preview 
 Throughout this document, we use the following terms:
 
 - **Customer** - Refers to the entity that is purchasing the technology from Microsoft.
-
 - **Deployer** - Refers to the individual and organization involved in the creation and implementation of software using Azure AI services.
-
 - **Operator** - Refers to the individual that will be using the video insights to manage the public health and safety of buildings and/or businesses.
-
 - **Affected stakeholders** - Refers to the individuals who will be subject to spatial analysis. This could be a tenant in a building, a shopper in a store, or the public at large.
 
-## Key Questions
+## Key questions
 
 Based on [research insights](#research-insights) and an impact assessment conducted on the social distancing scenarios, Microsoft identified the following key questions that deployers, operators, and affected stakeholders are likely to confront as they aim to harness the spatial analysis for the public health and safety of buildings and businesses.
 
 - **Privacy:** How might we maximize personal privacy while improving building health & safety?
-
 - **Disclosure:** How might we balance transparency and information overload to promote trust and peace of mind for people in a monitored space?
-
 - **Human oversight for operators:** How might we design human-AI collaboration to leverage the insights and ingenuity of people to make the most of spatial analysis core skills?
 
 ## Research insights
 
 We conducted research studies, referenced in [Research insights](research-insights.md), to investigate the perception of "intelligence-enabled" cameras in public and commercial spaces. While the application of "intelligence-enabled" cameras is still new, the use of video surveillance in public and commercial spaces has been around for a considerable amount of time. The following are the top insights from those studies regarding public perception of video surveillance cameras.
 
-- **Concerns with workplace employee monitoring** - Recent external research shows that many people care about what organizations and employers are doing to ensure public safety with respect to COVID-19.([1](https://news.gallup.com/poll/312461/amid-slow-return-workplaces-covid-precautions-abound.aspx),[2](https://www.gallup.com/workplace/313358/covid-continues-employees-feeling-less-prepared.aspx),[3](https://www.webershandwick.com/news/employee-perceptions-on-returning-to-work/)) However, there is also research that shows people have less trust when the technology is used in a workplace environment for monitoring purposes. The recommendations below provide considerations for addressing this tension.([6](https://www.pewresearch.org/internet/2019/09/05/more-than-half-of-u-s-adults-trust-law-enforcement-to-use-facial-recognition-responsibly/),[7](https://www.adalovelaceinstitute.org/wp-content/uploads/2019/09/Public-attitudes-to-facial-recognition-technology_v.FINAL_.pdf),[8](https://www.pewresearch.org/internet/2014/11/12/public-privacy-perceptions/))
-
-- **Risk-benefit comparison** - For COVID-19 scenarios, it is important to communicate the benefits of public health and safety.([2](https://www.gallup.com/workplace/313358/covid-continues-employees-feeling-less-prepared.aspx),[3](https://www.webershandwick.com/news/employee-perceptions-on-returning-to-work/)) Public polling shows that many are willing to make economic sacrifices in order to save lives([9](https://cic.nyu.edu/sites/default/files/public-opinion-trust-and-covid19.pdf)), and place high importance on having safety conditions met before returning to normal activities.([10](https://news.gallup.com/poll/310247/targeted-quarantines-top-u-s-adults-conditions-normalcy.aspx)) However, trust in surveillance technology depends on perceived benefits. For example, there is generally trust in the use of surveillance technologies for building access as there is a clear perceived benefit.
-
-- **Trust in technology varies across demographic groups** - Careful considerations for marginalized groups should be taken when deploying technology. Some demographic groups have less trust in technology based on societal inequities and cultural norms. For example, systematically marginalized groups often alter their behavior out of fear or intimidation when under surveillance.([14](https://policyreview.info/articles/analysis/internet-surveillance-regulation-and-chilling-effects-online-comparative-case))
+- **Concerns with workplace employee monitoring** - Recent external research shows that many people care about what organizations and employers are doing to ensure public safety with respect to COVID-19. ([1](https://news.gallup.com/poll/312461/amid-slow-return-workplaces-covid-precautions-abound.aspx), [2](https://www.gallup.com/workplace/313358/covid-continues-employees-feeling-less-prepared.aspx), [3](https://www.webershandwick.com/news/employee-perceptions-on-returning-to-work/)) However, there is also research that shows people have less trust when the technology is used in a workplace environment for monitoring purposes. The recommendations below provide considerations for addressing this tension. ([6](https://www.pewresearch.org/internet/2019/09/05/more-than-half-of-u-s-adults-trust-law-enforcement-to-use-facial-recognition-responsibly/), [7](https://www.adalovelaceinstitute.org/wp-content/uploads/2019/09/Public-attitudes-to-facial-recognition-technology_v.FINAL_.pdf), [8](https://www.pewresearch.org/internet/2014/11/12/public-privacy-perceptions/))
+- **Risk-benefit comparison** - For COVID-19 scenarios, it is important to communicate the benefits of public health and safety. ([2](https://www.gallup.com/workplace/313358/covid-continues-employees-feeling-less-prepared.aspx), [3](https://www.webershandwick.com/news/employee-perceptions-on-returning-to-work/)) Public polling shows that many are willing to make economic sacrifices in order to save lives ([9](https://cic.nyu.edu/sites/default/files/public-opinion-trust-and-covid19.pdf)), and place high importance on having safety conditions met before returning to normal activities. ([10](https://news.gallup.com/poll/310247/targeted-quarantines-top-u-s-adults-conditions-normalcy.aspx)) However, trust in surveillance technology depends on perceived benefits. For example, there is generally trust in the use of surveillance technologies for building access as there is a clear perceived benefit.
+- **Trust in technology varies across demographic groups** - Careful considerations for marginalized groups should be taken when deploying technology. Some demographic groups have less trust in technology based on societal inequities and cultural norms. For example, systematically marginalized groups often alter their behavior out of fear or intimidation when under surveillance. ([14](https://policyreview.info/articles/analysis/internet-surveillance-regulation-and-chilling-effects-online-comparative-case))
 
 Read more about these and additional insights in the [research insights article](research-insights.md).
 
-## Recommendations for customers & deployers
+## Recommendations for customers and deployers
 
-These recommendations are founded in the research insights and impact assessment conducted with building health and safety scenarios that our customers identified during their initial deployment. The recommendations are organized based around the key risks of harm
-identified during our impact assessment process including privacy, transparency through disclosure and accountability through effective human decision-making.
+These recommendations are founded in the research insights and impact assessment conducted with building health and safety scenarios that our customers identified during their initial deployment. The recommendations are organized based around the key risks of harm identified during our impact assessment process including privacy, transparency through disclosure, and accountability through effective human decision-making.
 
 ## Application pre-development recommendations
 
-We recommend developers start by conducting an impact assessment to understand the intended use, context and unintended or high risk uses to avoid. The impact assessment process will provide customers and deployers with the basis to prioritize the recommendations below.
+We recommend developers start by conducting an impact assessment to understand the intended use, context, and unintended or high-risk uses to avoid. The impact assessment process will provide customers and deployers with the basis to prioritize the recommendations below.
 
 | **RECOMMENDATIONS** |
 |---------------------|

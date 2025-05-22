@@ -19,14 +19,12 @@ Now that you've determined the right level of disclosure for your text to spee
 
 There's a spectrum of disclosure design patterns you can apply to your synthetic voice experience. If the outcome of your disclosure assessment was 'High Disclosure', we recommend [explicit disclosure](#explicit-disclosure), which means communicating the origins of the synthetic voice outright. [Implicit disclosure](#implicit-disclosure) includes cues and interaction patterns that benefit voice experiences whether required disclosure levels are high or low.
 
-
-![Spectrum of disclosure patterns](media\affordances.png)
+![A diagram of the spectrum of disclosure patterns.](media\affordances.png)
 
 |Category | Examples |
 |--------------|-------------|
 | Explicit disclosure patterns   | <ul><li>[Transparent Introduction](#transparent-introduction)</li><li>[Verbal Transparent Introduction](#verbal-transparent-introduction)</li> <li> [Explicit Byline](#explicit-byline)</li><li>  [Customization and Calibration](#customization-and-calibration)</li> <li>[Parental Disclosure](#parental-disclosure)</li><li> [Providing opportunities to learn more about how the voice was made](#providing-opportunities-to-learn-more-about-how-the-voice-was-made)</li></ul> |
 |Implicit disclosure patterns | <ul><li>[Capability Disclosure](#capability-disclosure)</li><li>[Implicit Cues and Feedback](#implicit-cues-and-feedback)</li><li> [Conversational Transparency](#conversational-transparency)</li></ul> |
-
 
 Use the following chart to refer directly to the patterns that apply to your synthetic voice. Some of the other conditions in this chart may also apply to your scenario:
 
@@ -50,7 +48,7 @@ Before the voice experience begins, introduce the digital assistant by being ful
 
 #### First-time user experience
 
-![Transparent introduction during first run experience](media\transparent-intro-first.png) <br>
+![A diagram of the transparent introduction during first run experience.](media\transparent-intro-first.png) <br>
 *The synthetic voice is introduced while onboarding a new user.*
 
 Recommendations
@@ -63,26 +61,24 @@ Recommendations
 
 If a user skips the onboarding experience, continue to offer entry points to the Transparent Introduction experience until the user triggers the voice for the first time. 
 
-![Transparent introduction during return user experience](media\transparent-intro-return.png)
+![A diagram of Transparent introduction during return user experience.](media\transparent-intro-return.png)
 <br/>*Provide a consistent entry point to the synthetic voice experience. Allow the user to return to the onboarding experience when they trigger the voice for the first time at any point in the user journey.*
-
 
 ### Verbal transparent introduction
 
 A spoken prompt stating the origins of the digital assistant's voice is explicit enough on its own to achieve disclosure. This pattern is best for High Disclosure scenarios where voice is the only mode of interaction available.
 
-![Verbally spoken transparent introduction](media\spoken-prompt-1.png)
+![A diagram of Verbally spoken transparent introduction.](media\spoken-prompt-1.png)
 <br/>*Use a transparent introduction when there are moments in the user experience where you might already introduce or attribute a person's voice.*
 
-
-![Verbally spoken transparent introduction in first person](media\spoken-prompt-2.png)<br/>
+![A diagram of Verbally spoken transparent introduction in first person.](media\spoken-prompt-2.png)<br/>
 *For additional transparency, the voice actor can disclose the origins of the synthetic voice in the first person.*
 
 ### Explicit Byline
 
 Use this pattern if the user will be interacting with an audio player or interactive component to trigger the voice.
 
-![Explicit byline in a news media scenario](media\explicit-byline.png) <br/>
+![A diagram of Explicit byline in a news media scenario.](media\explicit-byline.png) <br/>
 *An explicit byline is the attribution of where voice came from.*
 
 Recommendations
@@ -97,7 +93,7 @@ Provide users with control over how the digital assistant responds to them (i.e.
 
 Offer choices that have a meaningful and noticeable impact on the synthetic voice experience.
 
-![User preferences](media\customization-user-control.png)<br/>
+![A diagram of User preferences.](media\customization-user-control.png)<br/>
 *User preferences allow users to customize and improve their experience.*
 
 Recommendations
@@ -110,7 +106,7 @@ Recommendations
 
 Offer ways to customize the digital assistant's voice. If the voice is based on a celebrity or a widely recognizable person, consider using both visual and spoken introductions when users preview the voice.
 
-![Voice customization](media\customization-voice-type.png)<br/>
+![A diagram of Voice customization.](media\customization-voice-type.png)<br/>
 *Offering the ability to select from a set of voices helps convey the artificial nature.*
 
 Recommendations
@@ -122,7 +118,7 @@ Recommendations
 
 In addition to complying with COPPA regulations, provide disclosure to parents if your primary intended audience is young children and your exposure level is high. For sensitive uses, consider gaining experience until an adult has acknowledged the use of the synthetic voice. Encourage parents to communicate messages to their children.
 
-![Disclosure for parents](media\parental-disclosure.png)<br/>
+![A diagram of Disclosure for parents.](media\parental-disclosure.png)<br/>
 *A transparent introduction optimized for parents ensures that an adult was made aware of the synthetic nature of the voice before a child interacts with it.*
 
 Recommendations
@@ -136,12 +132,12 @@ Recommendations
 
 Offer context-sensitive entry points to a page, pop-up, or external site that provides more information about synthetic voice technology. For example, you could surface a link to learn more during onboarding or when the user prompts for more information during conversation.
 
-![Entry point to learn more](media\learn-more-entry-point.png)<br/>
+![A diagram of Entry point to learn more.](media\learn-more-entry-point.png)<br/>
 *Example of an entry point to offer the opportunity to learn more about the synthesized voice.*
 
 Once a user requests more information about the synthetic voice, the primary goal is to educate them about the origins of the synthetic voice and to be transparent about the technology.
 
-![Provide users more information about synthetic voice](media\learn-more.png)<br/>
+![A diagram of providing users more information about synthetic voice.](media\learn-more.png)<br/>
 *More information can be offered in an external site help site.*
 
 Recommendations
@@ -153,13 +149,13 @@ Recommendations
 
 Consistency is the key to achieving disclosure implicitly throughout the user journey. Consistent use of visual and auditory cues across devices and modes of interaction can help build associations between implicit patterns and explicit disclosure.
 
-![Consistency of implicit cues](media\consistency.png)
+![A diagram of Consistency of implicit cues.](media\consistency.png)
 
 ### Implicit cues and feedback
 
 Anthropomorphism can manifest in different ways, from the actual visual representation of the agent to the voice, sounds, patterns of light, bouncing shapes, or even the vibration of a device. When defining your persona, leverage implicit cues and feedback patterns rather than aim for a very human-like avatar. This is one way to minimize the need for more explicit disclosure.
 
-![Visual cues and feedback](media\visual-affordances.png)<br/>
+![A diagram of Visual cues and feedback.](media\visual-affordances.png)<br/>
 *These cues help anthropomorphize the agent without being too human-like. They can also become effective disclosure mechanisms on their own when used consistently over time.*
 
 Consider the different modes of interactions of your experience when incorporating the following types of cues:
@@ -174,22 +170,22 @@ Consider the different modes of interactions of your experience when incorporati
 
 Disclosure can be achieved implicitly by setting accurate expectations for what the digital assistant is capable of. Provide sample commands so that users can learn how to interact with the digital assistant and offer contextual help to learn more about the synthetic voice during the early stages of the experience.
 
-![Example of default responses to a conversation that you can craft.](media\capability-disclosure.png)<br/>
+![A diagram of Example of default responses to a conversation that you can craft.](media\capability-disclosure.png)<br/>
 
 ### Conversational Transparency
 
 When conversations fall in unexpected paths, consider crafting default responses that can help reset expectations, reinforce transparency, and steer users towards successful paths. There are opportunities to use explicit disclosure in conversation as well.
 
-![Handling unexpected paths](media\conversational-transparency-1.png)<br/>
+![A diagram of Handling unexpected paths.](media\conversational-transparency-1.png)<br/>
 _Off-task or "personal" questions directed to the agent are a good time to remind users of the synthetic nature of the agent and steer them to engage with it appropriately or to redirect them to a real person._
 
-![Handling off task questions](media\conversational-transparency-2.png)
+![A diagram of Handling off task questions.](media\conversational-transparency-2.png)
 
 ## When to disclose
 
 There are many opportunities for disclosure throughout the user journey. Design for the first use, second use, nth use…, but also embrace moments of "failure" to highlight transparency—like when the system makes a mistake or when the user discovers a limitation of the agent's capabilities.
 
-![Disclosure opportunities throughout a user journey](media\touchpoints.png)<br/>
+![A diagram of Disclosure opportunities throughout a user journey.](media\touchpoints.png)<br/>
 _Example of a standard digital assistant user journey highlighting various disclosure opportunities._
 
 ### Up-front

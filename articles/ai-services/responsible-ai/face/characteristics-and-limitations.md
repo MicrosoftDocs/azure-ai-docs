@@ -180,8 +180,7 @@ Enrolling occluded faces can result in errors. While it's possible for facial re
 - Pay attention to challenges that people face during evaluation and deployment to identify remediations that work best for your environment.
 - Use the [Recogniton_04 model](/azure/ai-services/computer-vision/how-to/specify-recognition-model) in the Verify, Identify, Group, and FindSimilar APIs which can recognize people wearing face coverings (surgical masks, N95 masks, cloth masks).
 
-![Photo of a man surrounded by confetti](media/Occlusion.png)
-
+![Photo of a man surrounded by confetti.](media/Occlusion.png)
 
 #### Significant changes in appearance
 

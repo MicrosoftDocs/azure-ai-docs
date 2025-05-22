@@ -43,7 +43,7 @@ In batch transcription, customers specify their chosen storage location of both 
 
 See the data flows for each Speech to text feature: 
 
-![Data flow diagram fro Speech to text](media/data-flow-speech-to-text.png "Speech to text data flow")
+![A diagram of the data flow for Speech to text.](media/data-flow-speech-to-text.png "Speech to text data flow")
 
 ### Speaker diarization/separation
 

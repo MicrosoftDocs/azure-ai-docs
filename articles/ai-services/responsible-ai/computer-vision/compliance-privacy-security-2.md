@@ -26,7 +26,7 @@ Each of Microsoft's customers has a different environment and space occupants, a
 
 Spatial analysis runs in a container customers deploy on an edge compute device. The container runs a pipeline that ingests video frames, detects people in the video, tracks the people as they move around over time, and generates AI insights as people interact with regions of interest. The customer directs where the AI insights are stored. For example, AI insights can flow to the cloud via Azure IoT Hub or Event Grid.
 
-:::image type="content" source="media/spatial-analysis/spatial-analysis-container-architecture.png" alt-text="a deployment architecture for the spatial analysis container":::
+:::image type="content" source="media/spatial-analysis/spatial-analysis-container-architecture.png" alt-text="A deployment architecture for the spatial analysis container.":::
 
 ## What data does the spatial analysis container process?
 

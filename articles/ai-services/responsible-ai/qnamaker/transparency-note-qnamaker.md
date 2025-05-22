@@ -36,12 +36,11 @@ The first step in using QnA Maker is training and preparing the QnA service to r
 
 The extracted QnA pairs are displayed in the following way:
 
-![Image of an example question and answer with metadata.](media\qnamaker-qna-table.png)
+![A diagram of an example question and answer with metadata.](media\qnamaker-qna-table.png)
 
 You can edit these question and answer pairs, and add new pairs yourself. When you're satisfied with the content of your knowledge base, you can publish it, which will make it ready to be used to respond to questions sent to your client applications. At the second step, your client application sends the user's question to your QnA Maker service API. Your QnA Maker service processes the question and responds with the best answer.
 
-![Image that shows asking a bot a question, and getting an answer from knowledge base
-content.](media\qnamaker-request-response.png)
+![A diagram of asking a bot a question, and getting an answer from knowledge base content.](media\qnamaker-request-response.png)
 
 For more details, see the [QnA Maker documentation](/azure/ai-services/qnamaker/). 
 

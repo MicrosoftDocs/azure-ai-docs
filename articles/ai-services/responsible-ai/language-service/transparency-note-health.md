@@ -134,21 +134,21 @@ In NER, a false positive occurs when the system incorrectly identifies an entity
 
 In the second example, vodka is a false positive for MEDICATION_NAME. Instead, it should be classified as SUBSTANCE_USE.
 
-:::image type="content" source="./media\named-entity-resolution-false-positive.png" alt-text="Named Entity Recognition False Positive"::: 
+:::image type="content" source="./media/named-entity-resolution-false-positive.png" alt-text="A screenshot of Named Entity Recognition False Positive."::: 
 
-:::image type="content" source="./media\substance-use-misclassification.png" alt-text="Substance Use Misclassification"::: 
+:::image type="content" source="./media/substance-use-misclassification.png" alt-text="A screenshot of Substance Use Misclassification."::: 
 
 **False negative**
 
 A false negative in NER occurs when an entity should have been identified as belonging in a category, but it wasn't. In the following example, the entity ER should have been identified as CARE_ENVIRONMENT, but it wasn’t. If an entity isn’t properly recognized, the linked code won’t be recognized either.
 
-:::image type="content" source="./media\named-entity-resolution-false-negative.png" alt-text="Named Entity Recognition False Negative":::
+:::image type="content" source="./media/named-entity-resolution-false-negative.png" alt-text="A screenshot of Named Entity Recognition False Negative.":::
 
 In the next two examples, a second mention of ETHNICITY and information about previous employment aren’t properly recognized.
 
-:::image type="content" source="./media\ethnicity-misclassification.png" alt-text="Ethnicity Misclassification":::
+:::image type="content" source="./media/ethnicity-misclassification.png" alt-text="A screenshot of Ethnicity Misclassification.":::
 
-:::image type="content" source="./media\employment-misclassification.png" alt-text="Employment Misclassification":::
+:::image type="content" source="./media/employment-misclassification.png" alt-text="A screenshot of Employment Misclassification.":::
 
 
 ### Relation Extraction
@@ -157,7 +157,7 @@ In the next two examples, a second mention of ETHNICITY and information about pr
 
 In relation extraction, a false positive occurs when a relation should not have been identified, but it was. In the next example, the value of the AST examination was incorrectly attributed to the ALT examination, which already has a measurement value assigned to it.
 
-:::image type="content" source="./media\relation-extraction-false-negative.png" alt-text="Relation Extraction False Negative":::
+:::image type="content" source="./media/relation-extraction-false-negative.png" alt-text="A screenshot of Relation Extraction False Negative.":::
 
 **False negative**
 
@@ -174,7 +174,7 @@ Entity linking is achieved by looking for an exact match between concepts in com
 
 Because entity linking is an exact match with the original text, you can get a false negative if there's enough signal to properly recognize the entity but the spelling of that entity is not correct in the text. For example, in the following text where therapies is misspelled, you would not get the appropriate linked entity UMLS: C0087111.
 
-:::image type="content" source="./media\entity-linking-false-negative.png" alt-text="Entity Linking False Negative":::
+:::image type="content" source="./media/entity-linking-false-negative.png" alt-text="A screenshot of Entity Linking False Negative.":::
 
 ### Assertion Detection
 
@@ -182,13 +182,13 @@ Because entity linking is an exact match with the original text, you can get a f
 
 In assertion detection, a false positive occurs when the system identifies an assertion that should not exist in the text. In the following example, the entity respiratory disease is incorrectly negated as a DIAGNOSIS for COVID-19.
 
-:::image type="content" source="./media\negation-detection-resolution-false-positive.png" alt-text="Negation Detection False Positive":::
+:::image type="content" source="./media/negation-detection-resolution-false-positive.png" alt-text="A screenshot of Negation Detection False Positive.":::
 
 **False negative**
 
 A false negative in assertion detection occurs when an assertion is not captured. In the following example, the symptom “respond” should be negated because there was no response to the mentioned medication.
 
-:::image type="content" source="./media\negation-detection-resolution-false-negative.png" alt-text="Negation Detection False Negative":::
+:::image type="content" source="./media/negation-detection-resolution-false-negative.png" alt-text="A screenshot of Negation Detection False Negative.":::
 
 ### Best practices for improving system performance
 
