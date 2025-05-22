@@ -87,7 +87,7 @@ For more information on how to manage model upgrades and migrations for provisio
 > [!NOTE]
 > Not all models go through a deprecation period prior to retirement. Some models/versions only have a retirement date.
 >
-> **Fine-tuned models** are subject to the same deprecation and retirement schedule as their equivalent base model.
+> **Fine-tuned models** are subject to a [different](#fine-tuned-models) deprecation and retirement schedule from their equivalent base model.
 
 These models are currently available for use in Azure OpenAI.
 
@@ -134,6 +134,25 @@ We'll notify all customers with these preview deployments at least 30 days befor
 
 > [!IMPORTANT]
 > Vision enhancements preview features including Optical Character Recognition (OCR), object grounding, video prompts will be retired and no longer available once `gpt-4` Version: `vision-preview` is upgraded to `turbo-2024-04-09`. If you're currently relying on any of these preview features, this automatic model upgrade will be a breaking change.
+
+## Fine-tuned models
+
+Fine-tuned models retire in two phases: training and deployment.
+
+All fine-tuned models follow their equivalent base model for **training** retirement. Once retired, a given model is no longer available for fine tuning.
+
+For fine-tuned models made generally available since `gpt-4o-2024-08-06`, **deployment** retirement occurs 1 year after **training** retirement. At deployment retirement, inference and deployment returns error responses.
+
+| Model            | Version     | Training retirement date  | Deployment retirement date       |
+| -----------------|-------------|---------------------------|----------------------------------|
+| `gpt-35-turbo`   | 1106        | At base model retirement  | At training retirement           |
+| `gpt-35-turbo`   | 0125        | At base model retirement  | At training retirement           |
+| `gpt-4o`         | 2024-08-06  | At base model retirement  | 1 year after training retirement |
+| `gpt-4o-mini`    | 2024-07-18  | At base model retirement  | 1 year after training retirement |
+| `gpt-4.1`        | 2025-04-14  | At base model retirement  | 1 year after training retirement |
+| `gpt-4.1-mini`   | 2025-04-14  | At base model retirement  | 1 year after training retirement |
+| `gpt-4.1-nano`   | 2025-04-14  | At base model retirement  | 1 year after training retirement |
+| `o4-mini`        | 2025-04-16  | At base model retirement  | 1 year after training retirement |
 
 ## Default model versions
 
