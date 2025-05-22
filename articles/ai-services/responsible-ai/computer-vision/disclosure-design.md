@@ -63,9 +63,9 @@ In order to provide affected stakeholders with sufficient disclosure, consider l
 
 **Just-in-time disclosure**: Identify moments in the user journey where people might have questions or concerns regarding data privacy. Anticipate the types of questions that affected stakeholders are likely to have and proactively address their concerns. Example touchpoints: data dashboards, data reports, registration form for visitors, signage pointing at a camera or a sensor.  
 
-:::image type="content" source="media/spatial-analysis/jit-disclosure-cellphone.png" alt-text="A screenshot of an example of just-in-time disclosure in a mobile app.":::
+:::image type="content" source="media/spatial-analysis/just-in-time-disclosure-cellphone.png" alt-text="A screenshot of an example of just-in-time disclosure in a mobile app.":::
 
-:::image type="content" source="media/spatial-analysis/jit-disclosure-dashboard.png" alt-text="A screenshot of an example of just-in-time disclosure in a dashboard app.":::
+:::image type="content" source="media/spatial-analysis/just-in-time-disclosure-dashboard.png" alt-text="A screenshot of an example of just-in-time disclosure in a dashboard app.":::
 
 ## 3. How to build trust with affected stakeholders
 

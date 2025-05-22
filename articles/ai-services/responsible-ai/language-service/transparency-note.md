@@ -47,8 +47,8 @@ This article contains basic guidelines for how to use Azure AI Language features
 * [Transparency note for sentiment analysis](/legal/cognitive-services/language-service/transparency-note-sentiment-analysis?context=/azure/ai-services/language-service/context/context)
 * [Transparency note for question answering](/legal/cognitive-services/language-service/transparency-note-question-answering?context=/azure/ai-services/language-service/context/context)
 * [Transparency note for summarization](/legal/cognitive-services/language-service/transparency-note-extractive-summarization?context=/azure/ai-services/language-service/context/context)
-* [Transparency note for custom Named Entity Recognition (custom NER)](/legal/cognitive-services/language-service/cner-transparency-note?context=/azure/ai-services/language-service/context/context)
-* [Transparency note for custom text classification](/legal/cognitive-services/language-service/ctc-transparency-note?context=/azure/ai-services/language-service/context/context)
+* [Transparency note for custom Named Entity Recognition (custom NER)](/legal/cognitive-services/language-service/custom-named-entity-recognition-transparency-note?context=/azure/ai-services/language-service/context/context)
+* [Transparency note for custom text classification](/legal/cognitive-services/language-service/custom-text-classification-transparency-note?context=/azure/ai-services/language-service/context/context)
 * [Transparency note for conversational language understanding](/legal/cognitive-services/clu/clu-transparency-note?context=/azure/ai-services/language-service/context/context)
 
 ## Capabilities 
@@ -154,8 +154,8 @@ If you are using any of the features below, be sure to review the specific infor
 * [Transparency note for question answering](transparency-note-question-answering.md)
 * [Transparency note for summarization](transparency-note-extractive-summarization.md)
 * [Transparency note for sentiment analysis](transparency-note-sentiment-analysis.md)
-* [Transparency note for custom Named Entity Recognition (NER)](cner-transparency-note.md)
-* [Transparency note for custom text classification](ctc-transparency-note.md)
+* [Transparency note for custom Named Entity Recognition (NER)](custom-named-entity-recognition-transparency-note.md)
+* [Transparency note for custom text classification](custom-text-classification-transparency-note.md)
 * [Transparency note for conversational language understanding](..\clu\clu-transparency-note.md)
 
 Also, make sure to review:

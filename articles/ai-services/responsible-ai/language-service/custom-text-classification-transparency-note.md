@@ -63,7 +63,7 @@ Custom text classification can be used in multiple scenarios across a variety of
 ## Next steps
 
 * [Introduction to custom text classification](/azure/ai-services/language-service/custom-text-classification/overview)
-* [Characteristics and limitations for using custom text classification](ctc-characteristics-and-limitations.md)
-* [Data privacy and security](ctc-data-privacy-security.md)
-* [Guidance for integration and responsible use](ctc-guidance-integration-responsible-use.md)
+* [Characteristics and limitations for using custom text classification](custom-text-classification-characteristics-and-limitations.md)
+* [Data privacy and security](custom-text-classification-data-privacy-security.md)
+* [Guidance for integration and responsible use](custom-text-classification-guidance-integration-responsible-use.md)
 * [Microsoft AI principles](https://www.microsoft.com/ai/responsible-ai?rtc=1&activetab=pivot1%3aprimaryr6)

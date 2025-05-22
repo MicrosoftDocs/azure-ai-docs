@@ -56,7 +56,7 @@ Face maintains GDPR data processor classification across all supported regions.
 
 The diagram below illustrates how your data is processed for Face Detection with Face ID (approved customers only).   
 
-![A diagram of Face processing.](media/FaceAPIRAIDiagramDataProcessing.png)
+![A diagram of Face processing.](media/face-api-rai-diagram-data-processing.png)
 
 
 ## Security for customers’ data

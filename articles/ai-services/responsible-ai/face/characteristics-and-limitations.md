@@ -128,14 +128,14 @@ Making sure the face in an enrollment or probe image is sufficiently large is cr
 
 Faces are detectable when their size is as small as 36x36 pixels, but for best performance Microsoft recommends a minimum size of 200x200 pixels with at least 100 pixels between the eyes. Note that higher image resolution increases latency, but [there are ways to optimize latency](/azure/ai-services/computer-vision/how-to/mitigate-latency). The maximum size allowed is 4096 x 4096.
 
-![A small photo of people walking.](media/FaceSize.png)
+![A small photo of people walking.](media/face-size.png)
 
 ### Face orientation  
 
 Faces looking away from the camera may not be detected. Faces should be oriented looking towards the camera within 35 degrees for both the pitch (head tilt towards the front or back) and the yaw (head rotation to the left or to the right); the roll (head tilt to the left or to the right) doesn't matter. 
 
-![Photo of a person's face, with face rectangle shown.](media/FaceOrientation.png) 
-![Diagram of the head pose axes.](media/headpose.jpg)
+![Photo of a person's face, with face rectangle shown.](media/face-orientation.png) 
+![Diagram of the head pose axes.](media/head-pose.jpg)
 
 ### Control image capture environment
 
@@ -188,7 +188,7 @@ Dramatic changes in appearance, like the removal of a full beard or many years p
 - In addition to supporting a fallback method, designing the user experience to support immediate reenrollment following a recognition failure can improve user satisfaction. 
 - Facial recognition systems are generally less accurate for children. Microsoft recommends using Face for recognition of people over 18. Facial recognition can be especially challenging with people 13 and younger.
 
-![Photo of a person's drivers license next to a different photo of the same person.](media/AppearenceChanges.png)
+![Photo of a person's drivers license next to a different photo of the same person.](media/appearance-changes.png)
 
 #### Motion, blur, and extreme expressions
 
@@ -204,7 +204,7 @@ Blurry faces caused by fast movement, or even extreme expression (like yawning w
 
 Twins, family members, and other people who look very similar to each other will be difficult for facial recognition systems to distinguish from one another. This is another reason to support a fallback method.
 
-![Two photos of identical twins using computers.](media/BiometricTwins.png)
+![Two photos of identical twins using computers.](media/biometric-twins.png)
 
 ### Design the system to support human judgment
 

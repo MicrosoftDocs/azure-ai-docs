@@ -66,10 +66,10 @@ Be aware of the following guidance when you use custom NER:
 
 * [Introduction to custom NER](/azure/ai-services/language-service/custom-named-entity-recognition/overview)
 
-* [Characteristics and limitations for using custom NER](cner-characteristics-and-limitations.md)
+* [Characteristics and limitations for using custom NER](custom-named-entity-recognition-characteristics-and-limitations.md)
 
-* [Data privacy and security](cner-data-privacy-security.md)
+* [Data privacy and security](custom-named-entity-recognition-data-privacy-security.md)
 
-* [Guidance for integration and responsible use](cner-guidance-integration-responsible-use.md)
+* [Guidance for integration and responsible use](custom-named-entity-recognition-guidance-integration-responsible-use.md)
 
 * [Microsoft AI principles](https://www.microsoft.com/ai/responsible-ai?rtc=1&activetab=pivot1%3aprimaryr6)

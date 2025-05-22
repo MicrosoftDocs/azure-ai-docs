@@ -27,7 +27,7 @@ Custom Vision processes the following types of data:
 
 The following diagram illustrates how your data is processed.
 
-![Diagram of Azure AI Custom Vision data flow.](DataFlowDiagram.png "Azure AI Custom Vision data flow diagram")
+![Diagram of Azure AI Custom Vision data flow.](data-flow-diagram.png "Azure AI Custom Vision data flow diagram")
 
 Azure AI Custom Vision stores your training images and labels for the purpose of training with Transfer Learning, and to generate the custom model for your use case.
 

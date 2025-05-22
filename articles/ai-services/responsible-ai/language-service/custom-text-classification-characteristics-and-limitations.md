@@ -108,7 +108,7 @@ If you notice low scores in a certain language, consider adding more data in thi
 
 * [Introduction to custom text classification](/azure/ai-services/language-service/custom-text-classification/overview)
 
-* [Custom text classification Transparency Note](ctc-transparency-note.md)
-* [Data privacy and security](ctc-data-privacy-security.md)
-* [Guidance for integration and responsible use](ctc-guidance-integration-responsible-use.md)
+* [Custom text classification Transparency Note](custom-text-classification-transparency-note.md)
+* [Data privacy and security](custom-text-classification-data-privacy-security.md)
+* [Guidance for integration and responsible use](custom-text-classification-guidance-integration-responsible-use.md)
 * [Microsoft AI principles](https://www.microsoft.com/ai/responsible-ai?rtc=1&activetab=pivot1%3aprimaryr6)

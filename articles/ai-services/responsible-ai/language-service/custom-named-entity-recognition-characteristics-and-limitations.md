@@ -114,10 +114,10 @@ Custom NER gives you the option to use data in multiple languages. You can have 
 
 * [Introduction to custom NER](/azure/ai-services/language-service/custom-named-entity-recognition/overview)
 
-* [Custom NER Transparency Note](cner-transparency-note.md)
+* [Custom NER Transparency Note](custom-named-entity-recognition-transparency-note.md)
 
-* [Data privacy and security](cner-data-privacy-security.md)
+* [Data privacy and security](custom-named-entity-recognition-data-privacy-security.md)
 
-* [Guidance for integration and responsible use](cner-guidance-integration-responsible-use.md)
+* [Guidance for integration and responsible use](custom-named-entity-recognition-guidance-integration-responsible-use.md)
 
 * [Microsoft AI principles](https://www.microsoft.com/ai/responsible-ai?rtc=1&activetab=pivot1%3aprimaryr6)

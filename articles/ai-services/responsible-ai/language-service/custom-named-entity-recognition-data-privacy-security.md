@@ -35,7 +35,7 @@ User's data uploaded for training, testing or extracting is customer data.  Cust
 
 The following diagram illustrates how your data is processed.
 
-![Diagram that shows how data is processed.](media\cner-rai-privacy-chart.png)
+![Diagram that shows how data is processed.](media\custom-named-entity-recognition-rai-privacy-chart.png)
 
 ## How is data retained, and what customer controls are available?
 
@@ -64,8 +64,8 @@ To learn about Microsoft's security commitments, see the [Microsoft Trust Cent
 
 * [Introduction to custom NER](/azure/ai-services/language-service/custom-named-entity-recognition/overview)
 
-* [Custom NER transparency note](cner-transparency-note.md)
+* [Custom NER transparency note](custom-named-entity-recognition-transparency-note.md)
 
-* [Guidance for integration and responsible use](cner-guidance-integration-responsible-use.md)
+* [Guidance for integration and responsible use](custom-named-entity-recognition-guidance-integration-responsible-use.md)
 
 * [Microsoft AI principles](https://www.microsoft.com/ai/responsible-ai?rtc=1&activetab=pivot1%3aprimaryr6)

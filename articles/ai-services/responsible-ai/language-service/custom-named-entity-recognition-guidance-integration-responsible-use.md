@@ -55,6 +55,6 @@ When you get ready to integrate and responsibly use AI-powered products or featu
 
 * [Introduction to custom NER](/azure/ai-services/language-service/custom-named-entity-recognition/overview)
 
-* [Custom NER transparency note](cner-transparency-note.md)
+* [Custom NER transparency note](custom-named-entity-recognition-transparency-note.md)
 
 * [Microsoft AI principles](https://www.microsoft.com/ai/responsible-ai?rtc=1&activetab=pivot1%3aprimaryr6)

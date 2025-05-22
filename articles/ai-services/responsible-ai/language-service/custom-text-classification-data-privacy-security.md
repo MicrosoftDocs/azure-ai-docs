@@ -36,7 +36,7 @@ Custom text classification doesn't collect or store any customer data to improve
 
 The following diagram illustrates how your data is processed.
 
-![Diagram that shows how data is processed.](media\ctc-rai-privacy-chart.png)
+![Diagram that shows how data is processed.](media\custom-text-classification-rai-privacy-chart.png)
 
 ## How is data retained, and what customer controls are available?
 
@@ -60,6 +60,6 @@ To learn more about Microsoft's privacy and security commitments, see the [Micro
 ## Next steps
 
 * [Introduction to Custom text classification](/azure/ai-services/language-service/custom-text-classification/overview)
-* [Custom text classification Transparency Note](ctc-transparency-note.md)
-* [Guidance for integration and responsible use](ctc-guidance-integration-responsible-use.md)
+* [Custom text classification Transparency Note](custom-text-classification-transparency-note.md)
+* [Guidance for integration and responsible use](custom-text-classification-guidance-integration-responsible-use.md)
 * [Microsoft AI principles](https://www.microsoft.com/ai/responsible-ai?rtc=1&activetab=pivot1%3aprimaryr6)

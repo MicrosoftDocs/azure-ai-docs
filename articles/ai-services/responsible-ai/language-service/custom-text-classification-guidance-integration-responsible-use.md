@@ -45,5 +45,5 @@ When you get ready to integrate and responsibly use AI-powered products or featu
 ## Next steps
 
 * [Introduction to custom text classification](/azure/ai-services/language-service/custom-text-classification/overview)
-* [Custom text classification Transparency Note](ctc-transparency-note.md)
+* [Custom text classification Transparency Note](custom-text-classification-transparency-note.md)
 * [Microsoft AI principles](https://www.microsoft.com/ai/responsible-ai?rtc=1&activetab=pivot1%3aprimaryr6)
