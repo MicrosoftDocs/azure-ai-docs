@@ -31,6 +31,13 @@ The `pro` mode is currently limited to documents as inputs, with support other t
 Common challenges that the pro mode addresses are aggregating a schema across content from different input files, validating results across documents, and using external knowledge to generate an output schema.
 Learn more about the [pro mode](concepts/standard-pro-modes.md).
 
+### AI Foundry experience
+
+With this release, the following updates are now available to the Content Understanding experience in Azure AI Foundry:
+
+* Added support for creating both `standard` mode and `pro` mode tasks in the existing Content Understanding experience. Now with pro mode, you have the ability to bring in your own reference data and create a task that executes multi-step reasoning on your data. Read more about the two different task types in [Use Azure AI Content Understanding in the Azure AI Foundry](./quickstart/use-ai-foundry.md).
+* Try-out experiences are now available for general document analysis and invoice analysis. Try out these prebuilt features on your own data and start getting insights without having to create a custom task. 
+
 ### Document classification and splitting
 
 This release introduces a new [classification API](concepts/classifier.md). This API supports classifying and logically splitting a single file containing multiple documents with optional routing to field extraction analyzers. You can create a custom classifier to split and classify a file into multiple logical documents and route the individual documents to a downstream field extraction model in a single API call.

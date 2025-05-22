@@ -6,14 +6,14 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 05/21/2025
+ms.date: 05/22/2025
 ms.custom:
   - references_regions
 ---
 
 # Quickstart: Search for multimodal content in the Azure portal
 
-In this quickstart, you use the **Import and vectorize data** wizard in the Azure portal to get started with [multimodal search](multimodal-search-overview.md). The wizard simplifies the process of extracting page text and inline images from documents, describing images in natural language, vectorizing both text and image descriptions, and storing images for later retrieval.
+In this quickstart, you use the **Import and vectorize data** wizard in the Azure portal to get started with [multimodal search](multimodal-search-overview.md). The wizard simplifies the process of extracting page text and inline images from documents, describing images in natural language, vectorizing image descriptions and text, and storing images for later retrieval.
 
 The sample data consists of a multimodal PDF in the [azure-search-sample-data](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/sustainable-ai-pdf) repo, but you can use different files and still follow this quickstart.
 
@@ -23,7 +23,7 @@ The sample data consists of a multimodal PDF in the [azure-search-sample-data](h
 
 + An [Azure Storage account](/azure/storage/common/storage-account-create). Use Azure Blob Storage or Azure Data Lake Storage Gen2 (storage account with a hierarchical namespace) on a standard performance (general-purpose v2) account. Access tiers can be hot, cool, or cold.
 
-+ An [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills) in East US, West Europe, or North Central US.
++ An [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-multi-services-resource-for-azure-ai-search-skills) in East US, West Europe, or North Central US.
 
 + An [Azure AI Search service](search-create-service-portal.md) in the same region as your Azure AI multi-service account.
 
@@ -37,17 +37,59 @@ All of the preceding resources must have public access enabled so that the Azure
 
 If private endpoints are already present and you can't disable them, the alternative is to run the respective end-to-end flow from a script or program on a virtual machine. The virtual machine must be on the same virtual network as the private endpoint. [Here's a Python code sample](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python/code/integrated-vectorization) for integrated vectorization. The same [GitHub repo](https://github.com/Azure/azure-search-vector-samples/tree/main) has samples in other programming languages.
 
-### Role-based access
-
-A free search service supports role-based access control on connections to Azure AI Search, but it doesn't support managed identities on outbound connections to Azure Storage or Azure AI Vision. This level of support means you must use key-based authentication on connections between a free search service and other Azure services. For more secure connections:
-
-+ Use the Basic tier or higher.
-
-+ [Configure a system-assigned managed identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity) and role assignments to admit requests from Azure AI Search on other Azure services.
-
 ### Check for space
 
 If you're starting with the free service, you're limited to three indexes, three data sources, three skillsets, and three indexers. Make sure you have room for extra items before you begin. This quickstart creates one of each object.
+
+## Configure access
+
+Before you begin, make sure you have permissions to access content and operations. We recommend Microsoft Entra ID authentication and role-based access for authorization. You must be an **Owner** or **User Access Administrator** to assign roles. If roles aren't feasible, you can use [key-based authentication](search-security-api-keys.md) instead.
+
+Configure access to each resource identified in this section.
+
+### [**Azure AI Search**](#tab/search-perms)
+
+Azure AI Search provides the multimodal pipeline. Configure access for yourself and your search service to read data, run the pipeline, and interact with other Azure resources.
+
+On your Azure AI Search service:
+
+1. [Enable role-based access](search-security-enable-roles.md).
+
+1. [Configure a system-assigned managed identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity).
+
+1. [Assign the following roles](search-security-rbac.md) to yourself:
+
+   + **Search Service Contributor**
+
+   + **Search Index Data Contributor**
+
+   + **Search Index Data Reader**
+
+### [**Azure Storage**](#tab/storage-perms)
+
+Azure Storage is both the data source for your documents and the destination for extracted images. Your search service requires access to these storage containers, which you create in the next section of this quickstart.
+
+On your Azure Storage account:
+
++ Assign **Storage Blob Data Contributor** to your [search service identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity).
+
+### [**Azure AI services**](#tab/ai-services-perms)
+
+An Azure AI multi-service account provides multiple Azure AI services, including [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview) for content extraction and semantic chunking. Your search service requires access to call the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md).
+
+On your Azure AI multi-service account:
+
++ Assign **Cognitive Services User** to your [search service identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity).
+
+### [**Azure OpenAI**](#tab/openai-perms)
+
+Azure OpenAI provides large language models (LLMs) for image verbalization and embedding models for text and image vectorization. Your search service requires access to call the [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) and [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md).
+
+On your Azure OpenAI resource:
+
++ Assign **Cognitive Services OpenAI User** to your [search service identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity).
+
+---
 
 ## Prepare sample data
 
@@ -65,7 +107,7 @@ To prepare the sample data for this quickstart:
 
 ## Deploy models
 
-The wizard requires a large language model (LLM) to verbalize images and an embedding model to generate vector representations of text and verbalized text content. Both models are available through Azure OpenAI.
+The wizard requires an LLM to verbalize images and an embedding model to generate vector representations of text and verbalized text content. Both models are available through Azure OpenAI.
 
 To deploy the models for this quickstart:
 
@@ -125,7 +167,7 @@ To connect to your data:
 
 The next step is to select a method for document cracking and chunking.
 
-Your Azure AI multi-service account provides access to the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md), which extracts page numbers, bounding polygons, and other location metadata from both text and images. The Document Layout skill also breaks large documents into smaller, more manageable chunks.
+Your Azure AI multi-service account provides access to the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md), which extracts page numbers, bounding polygons, and other location metadata from both text and images. The Document Layout skill also breaks documents into smaller, more manageable chunks.
 
 To use the Document Layout skill:
 
@@ -143,7 +185,7 @@ To use the Document Layout skill:
 
 ## Embed your content
 
-During this step, the wizard calls two skills to generate both descriptive text for images (image verbalization) and vector embeddings for text and images.
+During this step, the wizard calls two skills to generate descriptive text for images (image verbalization) and vector embeddings for text and images.
 
 For image verbalization, the [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) uses the LLM you deployed to analyze each extracted image and produce a natural-language description.
 
@@ -183,7 +225,7 @@ To use the GenAI Prompt skill and Azure OpenAI Embedding skill:
 
 ## Store the extracted images
 
-The next step is to save any images extracted from your documents in Azure Storage. In Azure AI Search, this is known as a knowledge store.
+The next step is to send images extracted from your documents to Azure Storage. In Azure AI Search, this secondary storage is known as a [knowledge store](knowledge-store-concept-intro.md).
 
 To store the extracted images:
 
