@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Generate video with Azure OpenAI'
+title: 'Quickstart: Generate video with Sora'
 titleSuffix: Azure OpenAI
 description: Learn how to get started generating video clips with Azure OpenAI.
 manager: nitinme
@@ -10,9 +10,10 @@ ms.author: pafarley
 ms.date: 05/12/2025
 ---
 
-# Quickstart: Generate video with Azure OpenAI
+# Quickstart: Generate a video with Sora
 
-tbd 
+In this Quickstart, you generate video clips using the Azure OpenAI service. The example uses the Sora model, which is a video generation model that creates realistic and imaginative video scenes from text instructions. This guide shows how to create a video generation job, poll for its status, and retrieve the generated video.
+
 
 ## Prerequisites
 
@@ -40,10 +41,46 @@ Go to your resource in the Azure portal. On the navigation pane, select **Keys a
 [!INCLUDE [environment-variables](environment-variables.md)]
 
 
-POST: Create Video Generation Job 
-`/deployments/{deployment-id}/video/generations/job`
 
 
-GET: Get Video Generation Job /deployments/{deployment-id}/video/generations/jobs/{job-id}
+## Create a video generation job
 
-GET: Get Video Generation /deployments/{deployment id}/video/generations/jobs/{generation-id}
+Send a POST request to create a new video generation job.
+
+```bash
+curl -X POST "{endpoint}/openai/v1/video/generations/jobs?api-version=preview" ^
+  -H "Content-Type: application/json" ^
+  -H "Authorization: Bearer {Azure_OpenAI_Auth_Token}" ^
+  -H "api-key: {Your-API-Key}" ^
+  -d "{
+    \"prompt\": \"A cat playing piano in a jazz bar.\",
+    \"model\": \"sora\"
+  }"
+```
+
+
+
+## Poll for job status
+
+Send a GET request with the `job-id` from the previous step to check the job status.
+
+```bash
+curl -X GET "{endpoint}/openai/v1/video/generations/jobs/{job-id}?api-version=preview" ^
+  -H "Authorization: Bearer {Azure_OpenAI_Auth_Token}" ^
+  -H "api-key: {Your-API-Key}"
+```
+
+Repeat this step until the status is `succeeded`. Then you can retrieve the generated video ID from the `"generations"` field.
+
+## Retrieve the generated video
+
+Once the job status is `succeeded`, use the generation ID from the job result to get the generated video.
+
+```bash
+curl -X GET "{endpoint}/openai/v1/video/generations/{generation-id}?api-version=preview" ^
+  -H "Authorization: Bearer {Azure_OpenAI_Auth_Token}" ^
+  -H "api-key: {Your-API-Key}"
+```
+
+The response contains the download URL for your generated video.
+
