@@ -4,7 +4,7 @@ titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to start using the Azure AI Foundry portal and the Azure AI Foundry SDK.
 manager: scottpolly
 ms.service: azure-ai-foundry
-ms.custom: build-2024, devx-track-azurecli, devx-track-python, ignite-2024, update-code4
+ms.custom: build-2024, devx-track-azurecli, devx-track-python, ignite-2024, update-code5
 ms.topic: how-to
 ms.date: 05/12/2025
 ms.reviewer: dantaylo

@@ -36,7 +36,7 @@ sections:
       - question: |
           What output audio formats does text to speech support?
         answer: |
-          Azure AI text to speech supports various streaming and non-streaming audio formats, with the commonly used sampling rates. All TTS prebuilt neural voices are created to support high-fidelity audio outputs with 48 kHz and 24 kHz. The audio can be resampled to support other rates as needed. See [Audio outputs](rest-text-to-speech.md#audio-outputs).
+          Azure AI text to speech supports various streaming and non-streaming audio formats, with the commonly used sampling rates. All TTS standard voices are created to support high-fidelity audio outputs with 48 kHz and 24 kHz. The audio can be resampled to support other rates as needed. See [Audio outputs](rest-text-to-speech.md#audio-outputs).
       - question: |
           Can the voice be customized to stress specific words?
         answer: |
@@ -72,9 +72,9 @@ sections:
         answer: |
           We recommend that you keep the style consistent in one set of training data. If the styles are different, put them into different training sets. In this case, consider using the multi-style voice training feature of custom neural voice. For the script selection criteria, see [Record custom voice samples](record-custom-voice-samples.md).
       - question: |
-          Does switching styles via SSML work for custom neural voices?
+          Does switching styles via SSML work for custom voices?
         answer: |
-          Switching styles via SSML works for both prebuilt multi-style voices and CNV multi-style voices. With multi-style training, you can create a voice that speaks in different styles, and you can also adjust these styles via SSML.
+          Switching styles via SSML works for both multi-style standard voices and multi-style custom voices. With multi-style training, you can create a voice that speaks in different styles, and you can also adjust these styles via SSML.
       - question: |
           How does cross-lingual voice work with languages that have different pronunciation structure and assembly?  
         answer: |

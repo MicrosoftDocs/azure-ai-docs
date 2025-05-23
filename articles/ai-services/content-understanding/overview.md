@@ -85,6 +85,11 @@ Content Understanding now supports modified content filtering for approved custo
 > * Apply for modified content filters via this form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
 > * For more information, *see* [**Content filtering**](../openai/concepts/content-filter.md).
 
+## Face capabilities
+
+The Face capabilities feature in Content Understanding is a limited Access service and registration is required for access. Face grouping and identification feature in Content Understanding is limited based on eligibility and usage criteria. Face service is only available to Microsoft managed customers and partners. Use the [Face Recognition intake form](https://aka.ms/facerecognition) to apply for access. For more information, see [Microsoft's Limited Access Policy](../../ai-services/cognitive-services-limited-access.md).
+
+
 ## Data privacy and security
 Developers using the Content Understanding service should review Microsoft's policies on customer data. For more information, visit our [**Data, protection and privacy**](https://www.microsoft.com/trust-center/privacy) page.
 

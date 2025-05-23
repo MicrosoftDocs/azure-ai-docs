@@ -35,9 +35,10 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 
 ## Setup  
 > [!NOTE]
-> * The model you selected in Azure AI Agent setup is only used for agent orchestration and response generation. It doesn't impact which model Fabric data agent uses for NL2SQL operation.
+> * The model you selected in Azure AI Foundry Agent setup is only used for agent orchestration and response generation. It doesn't impact which model Fabric data agent uses for NL2SQL operation.
+> * To help your model invoke your Microsoft Fabric tool in the expected way, please make sure you update agent instructions with descriptions of your Fabric data agent and what data it has access to. An example is "for customer and product sales related data, please use the Fabric tool"
 
-1. Create an Azure AI Agent by following the steps in the [quickstart](../../quickstart.md).
+1. Create an Azure AI Foundry Agent by following the steps in the [quickstart](../../quickstart.md).
 
 1. Create and publish a [Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312910)
 

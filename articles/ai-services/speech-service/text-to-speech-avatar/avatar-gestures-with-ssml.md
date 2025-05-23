@@ -31,14 +31,14 @@ Hello <bookmark mark='gesture.wave-left-1'/>, my name is Ava, nice to meet you!
 
 In this example, the avatar will start waving their hand at the left after the word "Hello".
 
-:::image type="content" source="./media/gesture.png" alt-text="Screenshot of displaying the prebuilt avatar waving their hand at the left." lightbox="./media/gesture.png":::
+:::image type="content" source="./media/gesture.png" alt-text="Screenshot of displaying the standard avatar waving their hand at the left." lightbox="./media/gesture.png":::
 
 > [!NOTE]
 > Gesture feature is currently not supported when a voice sync for avatar is selected in a custom text to speech avatar.
 
-## Supported prebuilt avatar characters, styles, and gestures
+## Supported standard avatar characters, styles, and gestures
 
-The full list of prebuilt avatar supported gestures provided here can also be found in the text to speech avatar portal.
+The full list of standard avatar supported gestures provided here can also be found in the text to speech avatar portal.
 
 |  Characters | Styles | Gestures | 
 |------------|-------------------|-----------------------------|
