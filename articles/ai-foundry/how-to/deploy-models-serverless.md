@@ -27,7 +27,7 @@ This article uses a Meta Llama model deployment for illustration. However, you c
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-- An [Azure AI Foundry project](create-projects.md).
+- If you don't have one, [create a [!INCLUDE [hub](hub-project-name.md)]](create-projects.md?pivots=hub-project).
 
 - Ensure that the **Deploy models to Azure AI model inference service** feature is turned off in the Azure AI Foundry portal. When this feature is on, standard deployments are not available for deployment when using the portal.
 

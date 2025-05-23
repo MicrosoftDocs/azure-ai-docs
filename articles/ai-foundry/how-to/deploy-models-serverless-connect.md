@@ -35,7 +35,7 @@ The need to consume a standard deployments endpoint in a different project or hu
 
 - An [Azure AI Foundry hub](create-azure-ai-resource.md), if you're using a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. A **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** does not use a hub. For more information, see [Project types](../what-is-azure-ai-foundry.md#project-types).
 
-- An [Azure AI Foundry project](create-projects.md).
+- If you don't have one, [create a [!INCLUDE [hub](hub-project-name.md)]](create-projects.md?pivots=hub-project).
 
 - A model [deployed to a standard deployments](deploy-models-serverless.md). This article assumes that you previously deployed the **Meta-Llama-3-8B-Instruct** model. To learn how to deploy this model as a standard deployment, see [Deploy models as standard deployments](deploy-models-serverless.md).
 

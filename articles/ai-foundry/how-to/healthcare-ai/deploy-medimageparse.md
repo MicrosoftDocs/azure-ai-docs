@@ -47,7 +47,7 @@ Similar to the MedImageParse model, MedImageParse 3D uses a combination of a tex
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-- An [Azure AI Foundry project](../create-projects.md).
+- If you don't have one, [create a [!INCLUDE [hub](hub-project-name.md)]](../create-projects.md?pivots=hub-project).
 
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../../concepts/rbac-ai-foundry.md).
 
