@@ -852,7 +852,7 @@ To enable the [serverless Spark jobs](how-to-submit-spark-jobs.md) for the manag
     ::: zone-end
     ::: zone pivot="azure-portal"
 
-    Use the __Azure CLI__ or __Python SDK__ tabs to learn how to manually provision the managed virtual network with serverless Spark support.
+    From the Azure portal, you can only select to provision the managed network during workspace creation. To provision the managed network for serverless Spark jobs, you must use the [Azure CLI](how-to-managed-network.md?pivots=cli#configure-for-serverless-spark-jobs) or [Python SDK](how-to-managed-network.md?pivots=python-sdk#configure-for-serverless-spark-jobs).
 
     ::: zone-end
 
@@ -971,7 +971,7 @@ ml_client.workspaces.begin_update(ws)
 ::: zone-end
 ::: zone pivot="azure-portal"
 
-Currently there isn't a way to set the image build compute from the Azure portal. Use the __Azure CLI__ or __Python SDK__ tabs to learn how to manually configure image builds.
+There isn't a way to set the image build compute from the Azure portal. Instead, use the [Azure CLI](how-to-managed-network.md?pivots=cli#configure-image-builds) or [Python SDK](how-to-managed-network.md?pivots=python-sdk#configure-image-builds).
 
 ::: zone-end
 
@@ -1191,8 +1191,6 @@ An Azure Firewall is deployed if an FQDN outbound rule is created while in the _
 > [!IMPORTANT]
 > The firewall isn't created until you add an outbound FQDN rule. For more information on pricing, see [Azure Firewall pricing](https://azure.microsoft.com/pricing/details/azure-firewall/) and view prices for the _standard_ version.
 > URL-based filtering is only supported with Premium SKU Azure Firewall, not Basic or Standard SKU Azure Firewall. Managed virtual network does not support Premium SKU Azure Firewall.
-
-Use the following tabs to learn how to select the firewall version for your managed virtual network.
 
 ::: zone pivot="azure-portal"
 
