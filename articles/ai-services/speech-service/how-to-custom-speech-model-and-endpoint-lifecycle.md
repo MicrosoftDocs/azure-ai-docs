@@ -7,7 +7,7 @@ manager: nitinme
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 2/25/2025
+ms.date: 5/19/2025
 ms.reviewer: heikora
 zone_pivot_groups: foundry-speech-studio-cli-rest
 #Customer intent: As a developer, I want to understand the lifecycle of custom speech models and endpoints so that I can plan for the expiration of my models.
@@ -44,7 +44,6 @@ When a custom model or base model expires, it's no longer available for transcri
 |---------|---------|---------|
 |Custom endpoint|Speech recognition requests fall back to the most recent base model for the same [locale](language-support.md?tabs=stt). You get results, but recognition might not accurately transcribe your domain data.  |Update the endpoint's model as described in the [Deploy a custom speech model](how-to-custom-speech-deploy-model.md) guide. |
 |Batch transcription |[Batch transcription](batch-transcription.md) requests for expired models fail with a 4xx error. |In each [Transcriptions_Create](/rest/api/speechtotext/transcriptions/create) REST API request body, set the `model` property to a base model or custom model that isn't expired. Otherwise don't include the `model` property to always use the latest base model. |
-
 
 ## Get base model expiration dates
 

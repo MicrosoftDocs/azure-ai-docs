@@ -25,7 +25,7 @@ The following sections provide you with a quick guide to the quotas and limits t
 For information about adjustable quotas for Standard (S0) Speech resources, see [more explanations](#detailed-description-quota-adjustment-and-best-practices), [best practices](#general-best-practices-to-mitigate-throttling-during-autoscaling), and [adjustment instructions](#speech-to-text-increase-real-time-speech-to-text-concurrent-request-limit). The quotas and limits for Free (F0) Speech resources aren't adjustable. 
 
 > [!IMPORTANT]
-> If you switch an AI Services resource for Speech from Free (F0) to Standard (S0) pricing tier, the change of the corresponding quotas may take up to several hours.
+> If you switch an AI Foundry resource for Speech from Free (F0) to Standard (S0) pricing tier, the change of the corresponding quotas may take up to several hours.
 
 ### Speech to text quotas and limits per resource
 
@@ -86,7 +86,7 @@ You can use real-time text to speech with the [Speech SDK](speech-sdk.md) or the
 
 | Quota | Free (F0) | Standard (S0) |
 |-----|-----|-----|
-| Maximum number of transactions per time period for prebuilt neural voices and custom neural voices. | 20 transactions per 60 seconds<br/><br/>This limit isn't adjustable. | 200 transactions per second (TPS) (default value)<br/><br/>The rate is adjustable up to 1000 TPS for Standard (S0) resources. See [more explanations](#detailed-description-quota-adjustment-and-best-practices), [best practices](#general-best-practices-to-mitigate-throttling-during-autoscaling), and [adjustment instructions](#text-to-speech-increase-concurrent-request-limit). |
+| Maximum number of transactions per time period for standard voices and custom neural voices. | 20 transactions per 60 seconds<br/><br/>This limit isn't adjustable. | 200 transactions per second (TPS) (default value)<br/><br/>The rate is adjustable up to 1000 TPS for Standard (S0) resources. See [more explanations](#detailed-description-quota-adjustment-and-best-practices), [best practices](#general-best-practices-to-mitigate-throttling-during-autoscaling), and [adjustment instructions](#text-to-speech-increase-concurrent-request-limit). |
 | Max audio length produced per request | 10 min | 10 min |
 | Max total number of distinct `<voice>` and `<audio>` tags in SSML | 50 | 50 |
 | Max SSML message size per turn for websocket | 64 KB | 64 KB |
@@ -166,7 +166,7 @@ Some of the Speech service quotas are adjustable. This section provides more exp
 The following quotas are adjustable for Standard (S0) resources. The Free (F0) request limits aren't adjustable.
 
 - Speech to text [concurrent request limit](#real-time-speech-to-text-and-speech-translation) for base model endpoint and custom endpoint
-- Text to speech [maximum number of transactions per time period](#text-to-speech-quotas-and-limits-per-resource) for prebuilt neural voices and custom neural voices
+- Text to speech [maximum number of transactions per time period](#text-to-speech-quotas-and-limits-per-resource) for standard voices and custom neural voices
 - Speech translation [concurrent request limit](#real-time-speech-to-text-and-speech-translation)
 
 Before requesting a quota increase (where applicable), check your current TPS (transactions per second) and ensure that it's necessary to increase the quota. Speech service uses autoscaling technologies to bring the required computational resources in on-demand mode. At the same time, Speech service tries to keep your costs low by not maintaining an excessive amount of hardware capacity.
@@ -271,14 +271,14 @@ You aren't able to see the existing value of the concurrent request limit parame
 
 To create an increase request, you need to provide your information. 
 
-- For the prebuilt voice:
+- For the standard voice:
   - Speech resource ID
   - Region
 - For the custom voice:
   - Deployment region
   - Custom endpoint ID
 
-How to get information for the prebuilt voice:
+How to get information for the standard voice:
 
 1. Go to the [Azure portal](https://portal.azure.com/).
 1. Select the Speech service resource for which you would like to increase the concurrency request limit.
@@ -313,7 +313,7 @@ Initiate the increase of the limit for concurrent requests for your resource, or
 1. On the **Recommended solution** tab, select **Next**. 
 1. On the **Additional details** tab, fill in all the required items. And in the **Details** field, enter the following:
    - A note that the request is about the text to speech quota.
-   - Choose either the prebuilt voice or custom voice.
+   - Choose either the standard voice or custom voice.
    - The Azure resource information you [collected previously](#prepare-the-required-information).
    - Any other required information.
 1. On the **Review + create** tab, select **Create**.
@@ -328,4 +328,4 @@ To increase the limit of new connections per minute for text to speech avatar, c
 - Justification for the increase
 - Starting date for the increase
 - Ending date for the increase
-- Prebuilt avatar or custom avatar
+- Standard avatar or custom avatar

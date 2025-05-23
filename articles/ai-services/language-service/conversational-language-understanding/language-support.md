@@ -6,7 +6,7 @@ author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 11/21/2024
+ms.date: 05/01/2025
 ms.author: jboback
 ms.custom: language-service-clu
 ---
@@ -18,7 +18,7 @@ Use this article to learn about the languages currently supported by CLU feature
 ## Multi-lingual option
 
 > [!TIP]
-> See [How to train a model](how-to/train-model.md#training-modes) for information on which training mode you should use for multilingual projects. 
+> We recommend using English for the LLM-powered features, like Quick Deploy and Conversation-level understanding, but your project will continue to function for all languages.
 
 With conversational language understanding, you can train a model in one language and use to predict intents and entities from utterances in another language. This feature is powerful because it helps save time and effort. Instead of building separate projects for every language, you can handle multi-lingual dataset in one project. Your dataset doesn't have to be entirely in the same language but you should enable the multi-lingual option for your project while creating or later in project settings. If you notice your model performing poorly in certain languages during the evaluation process, consider adding more data in these languages to your training set.
 
@@ -146,8 +146,6 @@ Conversational language understanding supports utterances in the following langu
 | Chinese (Simplified) | `zh-hans` |
 | Chinese (Traditional) | `zh-hant` |
 | Zulu | `zu` |
-
-
 
 ## Next steps
 

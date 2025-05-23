@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 3/3/2025
+ms.date: 5/23/2025
 ms.author: eur
 ms.custom: references_regions, build-2024
 #Customer intent: As a developer, I want to learn about the languages supported by the Speech service.
@@ -53,7 +53,7 @@ These locales support the [display text format feature](./how-to-custom-speech-d
 
 The table in this section summarizes the locales and voices supported for text to speech. For details, see the table footnotes.
 
-More remarks for text to speech locales are included in the [voice styles and roles](#voice-styles-and-roles), [prebuilt neural voices](#prebuilt-neural-voices), [Custom neural voice](#custom-neural-voice), and [personal voice](#personal-voice) sections in this article. 
+More remarks for text to speech locales are included in the [voice styles and roles](#voice-styles-and-roles), [standard voices](#standard-voices), [Custom neural voice](#custom-neural-voice), and [personal voice](#personal-voice) sections in this article. 
 
 > [!TIP]
 > Check the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) and determine the right voice for your business needs.
@@ -83,7 +83,7 @@ For more information about how to use multi-talker voices via Speech Synthesis M
 
 ### Voice styles and roles
 
-In some cases, you can adjust the speaking style to express different emotions like cheerfulness, empathy, and calm. All prebuilt voices with speaking styles and multi-style custom voices support style degree adjustment. You can optimize the voice for different scenarios like customer service, newscast, and voice assistant. With roles, the same voice can act as a different age and gender.
+In some cases, you can adjust the speaking style to express different emotions like cheerfulness, empathy, and calm. All standard voices with speaking styles and multi-style custom voices support style degree adjustment. You can optimize the voice for different scenarios like customer service, newscast, and voice assistant. With roles, the same voice can act as a different age and gender.
 
 To learn how you can configure and adjust neural voice styles and roles, see [Speech Synthesis Markup Language](speech-synthesis-markup-voice.md#use-speaking-styles-and-roles). 
 
@@ -98,14 +98,14 @@ This table lists all the locales supported for [Viseme](speech-synthesis-markup-
 
 [!INCLUDE [Language support include](includes/language-support/viseme.md)]
 
-### Prebuilt neural voices
+### Standard voices
 
-Each prebuilt neural voice supports a specific language and dialect, identified by locale. You can try the demo and hear the voices in the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery).
+Each standard voice supports a specific language and dialect, identified by locale. You can try the demo and hear the voices in the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery).
 
 > [!IMPORTANT]
-> Pricing varies for Prebuilt Neural Voice (see *Neural* on the pricing page) and custom neural voice (see *Custom Neural* on the pricing page). For more information, see the [Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/) page.
+> Pricing varies for standard voice (see *Neural* on the pricing page) and custom neural voice (see *Custom Neural* on the pricing page). For more information, see the [Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/) page.
 
-Each prebuilt neural voice model is available at 24kHz and high-fidelity 48kHz. Other sample rates can be obtained through upsampling or downsampling when synthesizing.
+Each standard voice model is available at 24kHz and high-fidelity 48kHz. Other sample rates can be obtained through upsampling or downsampling when synthesizing.
 
 The following neural voices are retired.
 
@@ -158,7 +158,7 @@ To set the translation target language, with few exceptions you only specify the
 
 ### Video translation
 
-The table in this section summarizes the locales supported for the [video translation API](./video-translation-overview.md). Video translation supports different languages for prebuilt (platform) voice and personal voice. The available source and target languages depend on whether the translation source is prebuilt or personal voice.
+The table in this section summarizes the locales supported for the [video translation API](./video-translation-overview.md). Video translation supports different languages for standard (platform) voice and personal voice. The available source and target languages depend on whether the translation source is standard or personal voice.
 
 [!INCLUDE [Language support include](includes/language-support/video-translation.md)]
 

@@ -8,5 +8,5 @@ ms.author: eur
 
 > [!div class="checklist"]
 > - An Azure subscription. You can [create one for free](https://azure.microsoft.com/free/cognitive-services).
-> - [Create an AI Services resource for Speech](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) in the Azure portal.
+> - [Create an AI Foundry resource for Speech](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) in the Azure portal.
 > - Get the Speech resource key and region. After your Speech resource is deployed, select **Go to resource** to view and manage keys.

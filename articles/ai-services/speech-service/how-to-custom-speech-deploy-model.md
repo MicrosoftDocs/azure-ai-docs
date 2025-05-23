@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 2/25/2025
+ms.date: 5/19/2025
 ms.author: eur
 zone_pivot_groups: foundry-speech-studio-cli-rest
 #Customer intent: As a developer, I want to learn how to deploy a custom speech model so that I can use it in my applications.
@@ -29,22 +29,21 @@ You can deploy an endpoint for a base or custom model, and then [update](#change
 ::: zone pivot="ai-foundry-portal"
 
 1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
-1. Select **Fine-tuning** from the left pane.
-1. Select **AI Service fine-tuning**.
-1. Select the custom model that you want to manage from the **Model name** column.
-1. After you're satisfied with the test results, select **Deploy models** from the left menu. Then select **+ Deploy model**.
+1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
+1. Select the custom speech fine-tuning task (by model name) that you [started as described in the how to start custom speech fine-tuning article](./how-to-custom-speech-create-project.md).
+1. Select **Deploy models** > **+ Deploy models**. 
 
-    :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-deploy-model.png" alt-text="Screenshot of the page with an option to deploy the custom speech model." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-deploy-model.png":::
+    :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-deploy-model.png" alt-text="Screenshot of the page with an option to deploy the custom speech model." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-deploy-model.png":::
 
 1. In the **Deploy a new model** wizard, select the model that you want to deploy. 
 
-    :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-deploy-model-select-and-deploy.png" alt-text="Screenshot of the page with an option to select the model that you want to deploy." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-deploy-model-select-and-deploy.png":::
+    :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-deploy-model-select-and-deploy.png" alt-text="Screenshot of the page with an option to select the model that you want to deploy." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-deploy-model-select-and-deploy.png":::
 
 1. Enter a name and description for the deployment. Select the box to agree to the terms of use. Then select **Deploy**.
 
 1. After the deployment status is **Succeeded**, you can view the deployment details. Select the deployment to view the details like the endpoint ID. 
 
-    :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-deploy-model-status-succeeded.png" alt-text="Screenshot of the page with an option to select the deployment to view the details like the endpoint ID." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-deploy-model-status-succeeded.png":::
+    :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-deploy-model-status-succeeded.png" alt-text="Screenshot of the page with an option to select the deployment to view the details like the endpoint ID." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-deploy-model-status-succeeded.png":::
 
 
 ::: zone-end

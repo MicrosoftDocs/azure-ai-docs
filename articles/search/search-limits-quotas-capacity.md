@@ -4,8 +4,8 @@ titleSuffix: Azure AI Search
 description: Service limits used for capacity planning and maximum limits on requests and responses for Azure AI Search.
 
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 04/30/2025

@@ -54,9 +54,9 @@ See [Language service regional availability](../concepts/regional-support.md#cus
 |Pricing tier |Item |Limit |
 | --- | --- | ---|
 |F|Training time| 1 hour per month |
-|S|Training time| Unlimited, Pay as you go |
+|S|Training time| Unlimited, Standard |
 |F|Prediction Calls| 5,000 text records per month  |
-|S|Prediction Calls| Unlimited, Pay as you go |
+|S|Prediction Calls| Unlimited, Standard |
 
 ## Document limits
 

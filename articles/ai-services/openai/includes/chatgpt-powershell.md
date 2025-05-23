@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Use Azure OpenAI Service with PowerShell"
+title: "Quickstart: Use Azure OpenAI in Azure AI Foundry Models with PowerShell"
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with PowerShell.
 manager: nitinme
@@ -14,8 +14,8 @@ ms.date: 3/21/2025
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - <a href="https://aka.ms/installpowershell" target="_blank">You can use either the latest version, PowerShell 7, or Windows PowerShell 5.1.</a>
-- An Azure OpenAI Service resource with a model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
-- An Azure OpenAI Service resource with the `gpt-4o` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
+- An Azure OpenAI in Azure AI Foundry Models resource with a model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
+- An Azure OpenAI resource with the `gpt-4o` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
 
 ### Microsoft Entra ID prerequisites
@@ -86,7 +86,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
    ```
 
    > [!IMPORTANT]
-   > For production, use a secure way of storing and accessing your credentials like [The PowerShell Secret Management with Azure Key Vault](/powershell/utility-modules/secretmanagement/how-to/using-azure-keyvault). For more information about credential security, see the Azure AI services [security](../../security-features.md) article.
+   > For production, use a secure way of storing and accessing your credentials like [The PowerShell Secret Management with Azure Key Vault](/powershell/utility-modules/secretmanagement/how-to/using-azure-keyvault). For more information about credential security, see this [security](../../security-features.md) article.
 
 1. Run the script using PowerShell. In this example, we're using the `-Depth` parameter to ensure that the output isn't truncated. 
 
@@ -96,7 +96,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Output
 
-The output of the script is a JSON object that contains the response from the Azure OpenAI Service. The output looks similar to the following:
+The output of the script is a JSON object that contains the response from the Azure OpenAI. The output looks similar to the following:
 
 ```json
 {

@@ -5,7 +5,7 @@ description: Walkthrough on how to get started with audio generation using Azure
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 2/6/2025
+ms.date: 5/23/2025
 author: eric-urban
 ms.author: eur
 ms.custom: references_regions

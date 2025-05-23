@@ -9,14 +9,23 @@ items:
   - name: AI Foundry
     tocHref: /azure/ai-foundry/
     topicHref: /azure/ai-studio/
+  - name: AI Foundry
+    tocHref: /azure/ai-foundry/
+    topicHref: /azure/ai-services/
+  - name: AI Foundry
+    tocHref: /azure/ai-foundry/
+    topicHref: /azure/ai-foundry/
     items:
     - name: Model Inference
       tocHref: /azure/ai-foundry/model-inference/
       topicHref: /azure/ai-foundry/model-inference/
-  - name: AI Services
-    tocHref: /azure/ai-services/
-    topicHref: /azure/ai-services/
+  - name: AI Foundry
+    tocHref: /azure/ai-foundry/
+    topicHref: /azure/ai-foundry/
     items:
+    - name: AI Services
+      tocHref: /azure/ai-services/
+      topicHref: /azure/ai-services/
     - name: Anomaly Detector
       tocHref: /azure/ai-services/anomaly-detector/
       topicHref: /azure/ai-services/anomaly-detector/
@@ -35,6 +44,9 @@ items:
     - name: Language Understanding (LUIS)
       tocHref: /azure/ai-services/luis/
       topicHref: /azure/ai-services/luis/
+    - name: Azure OpenAI
+      tocHref: /azure/ai-services/openai/
+      topicHref: /azure/ai-services/openai/
     - name: QnA Maker
       tocHref: /azure/ai-services/qnamaker/
       topicHref: /azure/ai-services/qnamaker/
@@ -65,7 +77,7 @@ items:
     - name: Content Understanding
       tocHref: /azure/ai-services/content-understanding/
       topicHref: /azure/ai-services/content-understanding/
-    - name: Agents
+    - name: Agent Service
       tocHref: /azure/ai-services/agents/
       topicHref: /azure/ai-services/agents/
   - name: Genomics

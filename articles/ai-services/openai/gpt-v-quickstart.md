@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Use vision-enabled chats with the Azure OpenAI Service'
+title: 'Quickstart: Use vision-enabled chats with the Azure OpenAI in Azure AI Foundry Models'
 titleSuffix: Azure OpenAI
 description: Use this article to get started using Azure OpenAI to deploy and use the GPT-4 Turbo with Vision model or other vision-enabled models. 
 services: cognitive-services
@@ -15,7 +15,7 @@ zone_pivot_groups: openai-quickstart-gpt-v
 
 # Quickstart: Use images in your AI chats
 
-Get started using GPT-4 Turbo with images with the Azure OpenAI Service.
+Get started using GPT-4 Turbo with images with the Azure OpenAI in Azure AI Foundry Models.
 
 > [!NOTE]
 > **Model choice**

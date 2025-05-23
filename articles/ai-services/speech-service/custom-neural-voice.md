@@ -19,7 +19,7 @@ Custom neural voice (CNV) is a text to speech feature that lets you create a one
 > 
 > Access to [Custom neural voice (CNV) Lite](custom-neural-voice-lite.md) is available for anyone to demo and evaluate CNV before investing in professional recordings to create a higher-quality voice. 
 
-Out of the box, [text to speech](text-to-speech.md) can be used with prebuilt neural voices for each [supported language](language-support.md?tabs=tts). The prebuilt neural voices work well in most text to speech scenarios if a unique voice isn't required.
+Out of the box, [text to speech](text-to-speech.md) can be used with standard voices for each [supported language](language-support.md?tabs=tts). The standard voices work well in most text to speech scenarios if a unique voice isn't required.
 
 Custom neural voice is based on the neural text to speech technology and the multilingual, multi-speaker, universal model. You can create synthetic voices that are rich in speaking styles, or adaptable cross languages. The realistic and natural sounding voice of custom neural voice can represent brands, personify machines, and allow users to interact with applications conversationally. See the [supported languages](language-support.md?tabs=tts) for custom neural voice.
 
@@ -46,7 +46,7 @@ Here's an overview of the steps to create a custom neural voice in Speech Studio
 1. [Test your voice](professional-voice-train-voice.md#test-your-voice-model). Prepare test scripts for your voice model that cover the different use cases for your apps. It’s a good idea to use scripts within and outside the training dataset, so you can test the quality more broadly for different content.
 1. [Deploy and use your voice model](professional-voice-deploy-endpoint.md) in your apps.
 
-You can tune, adjust, and use your custom voice, similarly as you would use a prebuilt neural voice. Convert text into speech in real-time, or generate audio content offline with text input. You use the [REST API](./rest-text-to-speech.md), the [Speech SDK](./get-started-text-to-speech.md), or the [Speech Studio](https://speech.microsoft.com/audiocontentcreation).
+You can tune, adjust, and use your custom voice, similarly as you would use a standard voice. Convert text into speech in real-time, or generate audio content offline with text input. You use the [REST API](./rest-text-to-speech.md), the [Speech SDK](./get-started-text-to-speech.md), or the [Speech Studio](https://speech.microsoft.com/audiocontentcreation).
 
 > [!TIP]
 > Check out the code samples in the [Speech SDK repository on GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/custom-voice/README.md) to see how to use custom neural voice in your application.

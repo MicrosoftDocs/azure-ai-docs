@@ -5,7 +5,7 @@ description: Learn how to use text to speech avatar with real-time synthesis.
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 1/13/2025
+ms.date: 4/28/2025
 ms.reviewer: eur
 ms.author: eur
 author: eric-urban
@@ -20,7 +20,7 @@ In this how-to guide, you learn how to use text to speech avatar with real-time 
 To get started, make sure you have the following prerequisites:
 
 - **Azure subscription:** [Create one for free](https://azure.microsoft.com/free/cognitive-services).
-- **Speech resource:** <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices"  title="Create an AI Services resource for Speech"  target="_blank">Create a speech resource</a> in the Azure portal. Select "Standard S0" pricing tier if you want to create speech resource to access avatar. 
+- **Speech resource:** <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices"  title="Create an AI Foundry resource for Speech"  target="_blank">Create a speech resource</a> in the Azure portal. Select "Standard S0" pricing tier if you want to create speech resource to access avatar. 
 - **Your speech resource key and region:** After your Speech resource is deployed, select **Go to resource** to view and manage keys. 
 
 ## Set up environment
@@ -65,7 +65,7 @@ The default voice is the first voice returned per locale from the [voice list AP
 
 ## Select avatar character and style
 
-The supported avatar characters and styles can be found [here](avatar-gestures-with-ssml.md#supported-prebuilt-avatar-characters-styles-and-gestures).
+The supported avatar characters and styles can be found [here](avatar-gestures-with-ssml.md#supported-standard-avatar-characters-styles-and-gestures).
 
 The following code snippet shows how to set avatar character and style:
 
@@ -235,7 +235,7 @@ After you have a transparent-background avatar, you can set the background to an
 
 ## Crop video
 
-The avatar video is by default in a 16:9 aspect ratio. If you want to crop the video to a different aspect ratio, you can crop the video to a rectangle subarea of the original video. You need speficy the rectangle area by giving the coordinates of its top-left vertex and bottom-right vertex. The following code snippet shows how to crop the video:
+The avatar video is by default in a 16:9 aspect ratio. If you want to crop the video to a different aspect ratio, you can crop the video to a rectangle subarea of the original video. You need specify the rectangle area by giving the coordinates of its top-left vertex and bottom-right vertex. The following code snippet shows how to crop the video:
 
 ```JavaScript
 const videoFormat = new SpeechSDK.AvatarVideoFormat()

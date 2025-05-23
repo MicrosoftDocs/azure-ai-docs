@@ -1,12 +1,12 @@
 ---
-title: How to configure a managed network
+title: How to configure a managed network for a hub
 titleSuffix: Azure AI Foundry
 description: Learn how to configure a managed network for Azure AI Foundry hubs. A managed network secures your computing resources.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: ignite-2023, build-2024, devx-track-azurecli, ignite-2024
 ms.topic: how-to
-ms.date: 02/27/2025
+ms.date: 04/30/2025
 ms.reviewer: meerakurup
 ms.author: larryfr
 author: Blackmist
@@ -18,7 +18,9 @@ zone_pivot_groups: azure-ai-studio-sdk-cli
 
 # How to configure a managed network for Azure AI Foundry hubs
 
-We have two network isolation aspects. One is the network isolation to access an [Azure AI Foundry](https://ai.azure.com) hub. Another is the network isolation of computing resources for both your hub and project (such as compute instance, serverless and managed online endpoint.) This document explains the latter highlighted in the diagram. You can use hub built-in network isolation to protect your computing resources.
+[!include [hub](../includes/uses-hub-only.md)]
+
+Network isolation for a [!INCLUDE [hub-based](../includes/hub-project-name.md)] has two aspects. One is the network isolation to access an [Azure AI Foundry](https://ai.azure.com) hub. Another is the network isolation of computing resources for both your hub and project (such as compute instance, serverless and managed online endpoint.) This document explains the latter highlighted in the diagram. You can use hub built-in network isolation to protect your computing resources.
 
 :::image type="content" source="../media/how-to/network/azure-ai-network-outbound.svg" alt-text="Diagram of hub network isolation configuration with Azure AI Foundry." lightbox="../media/how-to/network/azure-ai-network-outbound.png":::
 
@@ -27,7 +29,7 @@ You need to configure following network isolation configurations.
 - Choose network isolation mode. You have two options: allow internet outbound mode or allow only approved outbound mode.
 - If you use Visual Studio Code integration with allow only approved outbound mode, create FQDN outbound rules described in the [use Visual Studio Code](#scenario-use-visual-studio-code) section.
 - If you use HuggingFace models in Models with allow only approved outbound mode, create FQDN outbound rules described in the [use HuggingFace models](#scenario-use-huggingface-models) section.
-- If you use one of the open-source models with allow only approved outbound mode, create FQDN outbound rules described in the [curated by Azure AI](#scenario-curated-by-azure-ai) section.
+- If you use one of the open-source models with allow only approved outbound mode, create FQDN outbound rules described in the [Models Sold Directly by Azure](#scenario-models-sold-directly-by-azure) section.
 
 ## Network isolation architecture and isolation modes
 
@@ -757,7 +759,7 @@ For Azure AI Foundry to run with private networking, there are a set of required
 | `BatchNodeManagement.region` | Outbound | Communication with Azure Batch back-end for Azure AI Foundry compute instances/clusters. |
 | `AzureResourceManager` | Outbound | Creation of Azure resources with Azure AI Foundry, Azure CLI, and Azure AI Foundry SDK. |
 | `AzureFrontDoor.FirstParty` | Outbound | Access docker images provided by Microsoft. |
-| `MicrosoftContainerRegistry` | Outbound | Access docker images provided by Microsoft. Setup of the Azure AI Foundry router for Azure Kubernetes Service. |		
+| `MicrosoftContainerRegistry` | Outbound | Access docker images provided by Microsoft. Setup of the Azure AI Foundry router for Azure Kubernetes Service. |        
 | `AzureMonitor` | Outbound | Used to log monitoring and metrics to Azure Monitor. Only needed if you haven't secured Azure Monitor for the workspace. This outbound is also used to log information for support incidents. |
 | `VirtualNetwork` | Outbound | Required when private endpoints are present in the virtual network or peered virtual networks. |
 
@@ -810,7 +812,7 @@ If you plan to use __HuggingFace models__ with the hub, add outbound _FQDN_ rule
 * cnd.auth0.com
 * cdn-lfs.huggingface.co
 
-### Scenario: Curated by Azure AI
+### Scenario: Models Sold Directly by Azure 
 
 These models involve dynamic installation of dependencies at runtime, and require outbound _FQDN_ rules to allow traffic to the following hosts:
 
@@ -853,8 +855,33 @@ When you create a private endpoint for hub dependency resources, such as Azure S
 
 A private endpoint is automatically created for a connection if the target resource is an Azure resource listed previously. A valid target ID is expected for the private endpoint. A valid target ID for the connection can be the Azure Resource Manager ID of a parent resource. The target ID is also expected in the target of the connection or in `metadata.resourceid`. For more on connections, see [How to add a new connection in Azure AI Foundry portal](connections-add.md).
 
-> [!IMPORTANT]
-> As of April 30th 2025, the Azure AI Enterprise Network Connection Approver role must be assigned to the Azure AI Foundry hub's managed identity to approve private endpoints to securely access your Azure resources from the managed virtual network. This doesn't impact existing resources with approved private endpoints as the role is correctly assigned by the service. For new resources, ensure the role is assigned to the hub's managed identity. For Azure Data Factory, Azure Databricks, and Azure Function Apps, the Contributor role should instead be assigned to your hub's managed identity. This role assignment is applicable to both User-assigned identity and System-assigned identity workspaces. 
+### Approval of Private Endpoints
+
+To establish Private Endpoint connections in managed virtual networks using Azure AI Foundry, the workspace managed identity, whether system-assigned or user-assigned, must have permissions to approve the Private Endpoint connections on the target resources. Previously, this was done through automatic role assignments by the Azure AI Foundry service. However, there are security concerns about the automatic role assignment. To improve security, starting April 30th, 2025, we will discontinue this automatic permission grant logic. We recommend assigning the [Azure AI Enterprise Network Connection Approver role](/azure/role-based-access-control/built-in-roles/ai-machine-learning) or a custom role with the necessary Private Endpoint connection permissions on the target resource types and grant this role to the Azure Machine Learning workspace's managed identity to allow Azure AI Foundry services to approve Private Endpoint connections to the target Azure resources.
+
+Here's the list of private endpoint target resource types covered by covered by the Azure AI Enterprise Network Connection Approver role:
+
+* Azure Application Gateway
+* Azure Monitor
+* Azure AI Search
+* Event Hubs
+* Azure SQL Database
+* Azure Storage
+* Azure Machine Learning workspace
+* Azure Machine Learning registry
+* Azure AI Foundry
+* Azure Key Vault
+* Azure CosmosDB
+* Azure Database for MySQL
+* Azure Database for PostgreSQL
+* Azure AI Services
+* Azure Cache for Redis
+* Container Registry
+* API Management
+
+For creating Private Endpoint outbound rules to target resource types not covered by the Azure AI Enterprise Network Connection Approver role, such as Azure Data Factory, Azure Databricks, and Azure Function Apps, a custom scoped-down role is recommended, defined only by the actions necessary to approve private endpoint connections on the target resource types.
+
+For creating Private Endpoint outbound rules to default workspace resources, the required permissions are automatically covered by the role assignments granted during workspace creation, so no additional action is needed.
 
 ## Select an Azure Firewall version for allowed only approved outbound
 

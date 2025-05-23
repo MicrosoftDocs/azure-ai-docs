@@ -817,7 +817,7 @@ To enable the [serverless Spark jobs](how-to-submit-spark-jobs.md) for the manag
     
         :::image type="content" source="./media/how-to-managed-network/add-outbound-spark-enabled.png" alt-text="Screenshot of an endpoint rule with Spark enabled selected." lightbox="./media/how-to-managed-network/add-outbound-spark-enabled.png":::
 
-    3. Select __Save__ to save the rule, then select __Save__ from the top of __Networking__ to save the changes to the manged virtual network.
+    3. Select __Save__ to save the rule, then select __Save__ from the top of __Networking__ to save the changes to the managed virtual network.
 
     ::: zone-end
 
@@ -1258,7 +1258,7 @@ The Azure Machine Learning managed virtual network feature is free. However, you
 
 ### Migration of compute resources
 
-If you have an existing workspace and want to enable managed virtual network for it, there's currently no supported migration path for existing manged compute resources. You'll need to delete all existing managed compute resources and recreate them after enabling the managed virtual network. The following list contains the compute resources that must be deleted and recreated:
+If you have an existing workspace and want to enable managed virtual network for it, there's currently no supported migration path for existing managed compute resources. You'll need to delete all existing managed compute resources and recreate them after enabling the managed virtual network. The following list contains the compute resources that must be deleted and recreated:
 
 * Compute cluster
 * Compute instance
