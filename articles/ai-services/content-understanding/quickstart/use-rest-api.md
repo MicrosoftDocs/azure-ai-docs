@@ -105,7 +105,7 @@ Use the `resultId` from the [`POST` response](#post-response) and retrieve the r
 
 #### GET request
 ```bash
-curl -i -X GET "{endpoint}/contentunderstanding/analyzerResults/{resultId}?api-version=2025-05-01-preview" \
+curl -i -X GET "{endpoint}/contentunderstanding/{analyzerId}/results/{resultId}?api-version=2025-05-01-preview" \
   -H "Ocp-Apim-Subscription-Key: {key}"
 ```
 
