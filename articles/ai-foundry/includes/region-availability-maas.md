@@ -10,6 +10,8 @@ ms.date: 03/24/2024
 ms.custom: include, references_regions
 ---
 
+[!INCLUDE [uses-hub-only](uses-hub-only.md)]
+
 ### AI21 models
 
 | Model  |Offer Availability Region  | Hub/Project Region for Deployment  | Hub/Project Region for Fine tuning  |
