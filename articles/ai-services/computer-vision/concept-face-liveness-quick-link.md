@@ -1,5 +1,5 @@
 ---
-title: "Use Face liveness quick link - Face"
+title: "Face liveness quick link - Face"
 titleSuffix: Azure AI services
 description: This article explains the concept of Face liveness quick link, its usage flow, and related concepts. 
 author: JinyuID
@@ -7,13 +7,13 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
-ms.topic: how-to
+ms.topic: conceptual
 ms.date: 05/15/2025
 ms.author: pafarley
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
-# Use Face Liveness quick link (Preview)
+# Face Liveness quick link (Preview)
 
 This article explains the concept of Face liveness quick link, its usage flow, and related concepts.
 
