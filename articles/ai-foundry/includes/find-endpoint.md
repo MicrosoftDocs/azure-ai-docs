@@ -9,7 +9,7 @@ ms.date: 05/13/2025
 ms.custom: include file
 ---
 
-Copy the **Azure AI Foundry project endpoint** in the **Overview** section of your project.  You'll need it in the code below.
+Copy the **Azure AI Foundry project endpoint** in the **Overview** section of your project. You'll use it in a moment.
 
 :::image type="content" source="../media/how-to/projects/fdp-project-overview.png" alt-text="Screenshot shows the project overview for a Foundry project.":::
 
