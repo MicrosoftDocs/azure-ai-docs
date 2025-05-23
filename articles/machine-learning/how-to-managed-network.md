@@ -8,7 +8,7 @@ ms.subservice: enterprise-readiness
 ms.reviewer: None
 ms.author: larryfr
 author: Blackmist
-ms.date: 02/27/2025
+ms.date: 05/23/2025
 ms.topic: how-to
 zone_pivot_groups: azureml-portal-cli-python
 ms.custom:
@@ -62,7 +62,7 @@ The following diagram shows a managed virtual network configured to __allow only
 :::image type="content" source="./media/how-to-managed-network/only-approved-outbound.svg" alt-text="Diagram of managed virtual network isolation configured for allow only approved outbound." lightbox="./media/how-to-managed-network/only-approved-outbound.svg":::
 
 > [!NOTE]
-> Once a managed VNet workspace is configured to __allow internet outbound__, the workspace can't be reconfigured to __disabled__. Similarly, once a managed VNet workspace is configured to __allow only approved outbound__, the workspace can't be reconfigured to __allow internet outbound__. Keep this in mind when selecting the isolation mode for managed VNet in your workspace.
+> Once a managed VNet workspace is configured to __allow internet outbound__, the workspace can't be reconfigured to __disabled__. Similarly, once a managed VNet workspace is configured to __allow only approved outbound__, the workspace can't be reconfigured to __allow internet outbound__.
 
 
 ### Azure Machine Learning studio
@@ -161,6 +161,7 @@ Before following the steps in this article, make sure you have the following pre
     ```
 
 ::: zone-end
+
 ::: zone pivot="azure-portal"
 
 * An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
@@ -190,7 +191,7 @@ Microsoft recommends assigning the _Azure AI Enterprise Network Connection Appro
 * Azure Machine Learning registry
 * Azure AI Foundry
 * Azure Key Vault
-* Azure CosmosDB
+* Azure Cosmos DB
 * Azure Database for MySQL
 * Azure Database for PostgreSQL
 * Azure AI Services
@@ -200,9 +201,9 @@ Microsoft recommends assigning the _Azure AI Enterprise Network Connection Appro
 
 If you would like to create a custom role instead, see [Azure AI Enterprise Network Connection Approver role](/azure/role-based-access-control/built-in-roles/ai-machine-learning#azure-ai-enterprise-network-connection-approver) to add the specific actions for each resource type.
 
-For creating private endpoint outbound rules to target resource types not covered by the _Azure AI Enterprise Network Connection Approver_ role, such as Azure Data Factory, Azure Databricks, and Azure Function Apps, a custom scoped-down role is recommended, defined only by the actions necessary to approve private endpoint connections on the target resource types.
+To create private endpoint outbound rules to target resource types not covered by the _Azure AI Enterprise Network Connection Approver_ role, a custom scoped-down role is recommended. The role should be defined with the actions necessary to approve private endpoint connections on the target resource types. , Examples of such resource types are Azure Data Factory, Azure Databricks, and Azure Function Apps.
 
-For creating Private Endpoint outbound rules to default workspace resources, the required permissions are automatically covered by the role assignments granted during workspace creation, so no additional action is needed.
+To create Private Endpoint outbound rules to default workspace resources, the required permissions are automatically covered by the role assignments granted during workspace creation, so no other action is needed.
 
 ## Configure a managed virtual network to allow internet outbound
 
@@ -294,6 +295,7 @@ managed_network:
 ---
 
 ::: zone-end
+
 ::: zone pivot="python-sdk"
 
 To configure a managed virtual network that allows internet outbound communications, use the `ManagedNetwork` class to define a network with `IsolationMode.ALLOW_INTERNET_OUTBOUND`. You can then use the `ManagedNetwork` object to create a new workspace or update an existing one. To define _outbound rules_ to Azure services that the workspace relies on, use the `PrivateEndpointDestination` class to define a new private endpoint to the service.
@@ -364,6 +366,7 @@ ml_client.workspaces.begin_update(ws)
 ---
 
 ::: zone-end
+
 ::: zone pivot="azure-portal"
 
 # [Create a new workspace](#tab/new-workspace)
@@ -526,6 +529,7 @@ managed_network:
 ---
 
 ::: zone-end
+
 ::: zone pivot="python-sdk"
 
 To configure a managed virtual network that allows only approved outbound communications, use the `ManagedNetwork` class to define a network with `IsolationMode.ALLOw_ONLY_APPROVED_OUTBOUND`. You can then use the `ManagedNetwork` object to create a new workspace or update an existing one. To define _outbound rules_, use the following classes:
@@ -931,6 +935,7 @@ print(ws.managed_network.status)
 ```
 
 ::: zone-end
+
 ::: zone pivot="azure-portal"
 
 During workspace creation, select __Provision managed network proactively at creation__ to provision the managed network. Charges are incurred from network resources, such as private endpoints, once the virtual network is provisioned. This configuration option is only available during workspace creation.
@@ -953,6 +958,7 @@ az ml workspace update --name ws --resource-group rg --image-build-compute mycom
 ```
 
 ::: zone-end
+
 ::: zone pivot="python-sdk"
 
 The following example demonstrates how to update a workspace to use a compute cluster to build images:
@@ -981,6 +987,7 @@ ml_client.workspaces.begin_update(ws)
 ```
 
 ::: zone-end
+
 ::: zone pivot="azure-portal"
 
 There isn't a way to set the image build compute from the Azure portal. Instead, use the [Azure CLI](how-to-managed-network.md?pivots=cli#configure-image-builds) or [Python SDK](how-to-managed-network.md?pivots=python-sdk#configure-image-builds).
@@ -1010,6 +1017,7 @@ az ml workspace outbound-rule remove --rule rule-name --workspace-name ws --reso
 ```
 
 ::: zone-end
+
 ::: zone pivot="python-sdk"
 
 The following example demonstrates how to manage outbound rules for a workspace named `myworkspace`:
@@ -1032,6 +1040,7 @@ ml_client._workspace_outbound_rules.begin_remove(resource_group, ws_name, rule_n
 ```
 
 ::: zone-end
+
 ::: zone pivot="azure-portal"
 
 1. Sign in to the [Azure portal](https://portal.azure.com), and select the Azure Machine Learning workspace that you want to enable managed virtual network isolation for.
@@ -1065,7 +1074,7 @@ For Azure Machine Learning to run normally, there are a set of required service 
 | `AzureResourceManager` | Outbound | Creation of Azure resources with Azure Machine Learning, Azure CLI, and Azure Machine Learning SDK. |
 | `AzureFrontDoor.FirstParty` | Outbound | Access docker images provided by Microsoft. |
 | `MicrosoftContainerRegistry` | Outbound | Access docker images provided by Microsoft. Setup of the Azure Machine Learning router for Azure Kubernetes Service. |		
-| `AzureMonitor` | Outbound | Used to log monitoring and metrics to Azure Monitor. Only needed if you haven't secured Azure Monitor for the workspace. This outbound is also used to log information for support incidents. |
+| `AzureMonitor` | Outbound | Used to log monitoring and metrics to Azure Monitor. Only needed if the Azure Monitor for the workspace isn't secured. This outbound is also used to log information for support incidents. |
 | `VirtualNetwork` | Outbound | Required when private endpoints are present in the virtual network or peered virtual networks. |
 
 > [!NOTE]
@@ -1087,7 +1096,7 @@ To allow installation of __Python packages for training and deployment__, add ou
 If you plan to use __Visual Studio Code__ with Azure Machine Learning, add outbound _FQDN_ rules to allow traffic to the following hosts:
 
 > [!NOTE]
-> This isn't a complete list of the hosts required for all Visual Studio Code resources on the internet, only the most commonly used. For example, if you need access to a GitHub repository or other host, you must identify and add the required hosts for that scenario. For a complete list of host names, see [Network Connections in Visual Studio Code](https://code.visualstudio.com/docs/setup/network).
+> The following list isn't a complete list of the hosts required for all Visual Studio Code resources on the internet, only the most commonly used. For example, if you need access to a GitHub repository or other host, you must identify and add the required hosts for that scenario. For a complete list of host names, see [Network Connections in Visual Studio Code](https://code.visualstudio.com/docs/setup/network).
 
 | __Host name__ | __Purpose__ |
 | ---- | ---- |
@@ -1167,13 +1176,15 @@ When you create a private endpoint, you provide the _resource type_ and _subreso
 
 When you create a private endpoint for Azure Machine Learning dependency resources, such as Azure Storage, Azure Container Registry, and Azure Key Vault, the resource can be in a different Azure subscription. However, the resource must be in the same tenant as the Azure Machine Learning workspace.
 
-When configuring private endpoints for the workspace, they are only created when the first _compute is created_ or when managed virtual network provisioning is forced. For more information on forcing the managed virtual network provisioning, see [Manually provision the network](#manually-provision-a-managed-vnet).
+Private endpoints for the workspace aren't creeated automatically. They're only created when the first _compute is created_ or when managed virtual network provisioning is forced. For more information on forcing the managed virtual network provisioning, see [Manually provision the network](#manually-provision-a-managed-vnet).
 
 ### Approval of private endpoints
 
-To establish Private Endpoint connections in managed virtual networks using Azure Machine Learning, the workspace managed identity, whether system-assigned or user-assigned, must have permissions to approve the Private Endpoint connections on the target resources. Previously, this was done through automatic role assignments by the Azure Machine Learning service. However, there are security concerns about the automatic role assignment. To improve security, starting April 30th, 2025, we will discontinue this automatic permission grant logic. We recommend assigning the Azure AI Enterprise Network Connection Approver role or a custom role with the necessary Private Endpoint connection permissions on the target resource types and grant this role to the Azure Machine Learning workspace's managed identity to allow Azure Machine Learning services to approve Private Endpoint connections to the target Azure resources.
+To establish Private Endpoint connections in managed virtual networks using Azure Machine Learning, the workspace managed identity, whether system-assigned or user-assigned, must have permissions to approve the Private Endpoint connections on the target resources. Previously, this assignment was done through automatic role assignments by the Azure Machine Learning service. However, there are security concerns about the automatic role assignment. To improve security, starting April 30th, 2025, this role assignment isn't automatic. 
+
+We recommend assigning the Azure AI Enterprise Network Connection Approver role, or a custom role with the necessary Private Endpoint connection permissions, on the target resource types. To allow Azure Machine Learning services to approve Private Endpoint connections to the target Azure resources, grant this role to the Azure Machine Learning workspace's managed identity.
  
-Here's the list of private endpoint target resource types covered by covered by  the Azure AI Enterprise Network Connection Approver role:
+Here's the list of private endpoint target resource types covered by the Azure AI Enterprise Network Connection Approver role:
 * Azure Application Gateway
 * Azure Monitor
 * Azure AI Search
@@ -1184,7 +1195,7 @@ Here's the list of private endpoint target resource types covered by covered by 
 * Azure Machine Learning registry
 * Azure AI Foundry
 * Azure Key Vault
-* Azure CosmosDB
+* Azure Cosmos DB
 * Azure Database for MySQL
 * Azure Database for PostgreSQL
 * Azure AI Services
@@ -1192,9 +1203,9 @@ Here's the list of private endpoint target resource types covered by covered by 
 * Container Registry
 * API Management
   
-For creating Private Endpoint outbound rules to target resource types not covered by the Azure AI Enterprise Network Connection Approver role, such as Azure Data Factory, Azure Databricks, and Azure Function Apps, a custom scoped-down role is recommended, defined only by the actions necessary to approve private endpoint connections on the target resource types.
+To create Private Endpoint outbound rules to target resource types not covered by the Azure AI Enterprise Network Connection Approver role, a custom scoped-down role is recommended. The rule should define the actions necessary to approve private endpoint connections on the target resource types. Examples of such resource types are Azure Data Factory, Azure Databricks, and Azure Function Apps.
  
-For creating Private Endpoint outbound rules to default workspace resources, the required permissions are automatically covered by the role assignments granted during workspace creation, so no additional action is needed.
+To create Private Endpoint outbound rules to default workspace resources, the required permissions are automatically covered by the role assignments granted during workspace creation, so no other action is needed.
 
 ## Select an Azure Firewall version for allowed only approved outbound
 
@@ -1202,7 +1213,7 @@ An Azure Firewall is deployed if an FQDN outbound rule is created while in the _
 
 > [!IMPORTANT]
 > The firewall isn't created until you add an outbound FQDN rule. For more information on pricing, see [Azure Firewall pricing](https://azure.microsoft.com/pricing/details/azure-firewall/) and view prices for the _standard_ version.
-> URL-based filtering is only supported with Premium SKU Azure Firewall, not Basic or Standard SKU Azure Firewall. Managed virtual network does not support Premium SKU Azure Firewall.
+> URL-based filtering is only supported with Premium SKU Azure Firewall, not Basic or Standard SKU Azure Firewall. Managed virtual network doesn't support Premium SKU Azure Firewall.
 
 ::: zone pivot="azure-portal"
 
@@ -1229,6 +1240,7 @@ tags: {}
 ```
 
 ::: zone-end
+
 ::: zone pivot="python-sdk"
 
 To configure the firewall version from the Python SDK, set the `firewall_sku` property of the `ManagedNetwork` object. The following example demonstrates how to set the firewall SKU to `basic`:
