@@ -37,7 +37,7 @@ sections:
       - question: |
           Is my data used by Microsoft for training models? 
         answer: |
-          No. Data is not used for Microsoft not used for training models. See the [Responsible AI documentation](/legal/cognitive-services/openai/data-privacy?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext) for more information. 
+          No. Data is not used by Microsoft for training models. See the [Responsible AI documentation](/legal/cognitive-services/openai/data-privacy?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext) for more information. 
       - question: |
           Where is data stored geographically?
         answer: |

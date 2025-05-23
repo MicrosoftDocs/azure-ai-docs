@@ -10,8 +10,8 @@ ms.custom:
   - ignite-2024
 ms.topic: how-to
 ms.date: 05/21/2025
-ms.author: franksolomon
-author: fbsolo-ms1
+author: Blackmist
+ms.author: larryfr
 ---
 
 # How to add and manage data in your Azure AI Foundry project

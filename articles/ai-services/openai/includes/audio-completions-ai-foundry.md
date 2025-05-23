@@ -17,8 +17,14 @@ ms.date: 1/7/2025
 
 To chat with your deployed `gpt-4o-mini-audio-preview` model in the **Chat** playground of [Azure AI Foundry portal](https://ai.azure.com), follow these steps:
 
-1. Go to the [Azure OpenAI in Azure AI Foundry Models page](https://ai.azure.com/resource/overview) in Azure AI Foundry portal. Make sure you're signed in with the Azure subscription that has your Azure OpenAI in Azure AI Foundry Models resource and the deployed `gpt-4o-mini-audio-preview` model.
-1. Select the **Chat** playground from under **Resource playground** in the left pane.
+1. Go to the [Azure AI Foundry portal](https://ai.azure.com) and select your project that has your deployed `gpt-4o-mini-audio-preview` model.
+1. Go to your project in [Azure AI Foundry](https://ai.azure.com). 
+1. Select **Playgrounds** from the left pane.
+1. Select **Audio playground** > **Try the Chat playground**. 
+
+    > [!NOTE]
+    > The **Audio playground** doesn't support the `gpt-4o-mini-audio-preview` model. Use the **Chat playground** as described in this section.
+
 1. Select your deployed `gpt-4o-mini-audio-preview` model from the **Deployment** dropdown. 
 1. Start chatting with the model and listen to the audio responses.
 
