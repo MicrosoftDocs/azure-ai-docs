@@ -80,7 +80,7 @@ Here are some of the ways to identify your project type:
 
 * From the **Overview** section of the project
 
-    * If it's a [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)], you see a **Azure AI Foundry endpoint**
+    * If it's a [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)], you see an **Azure AI Foundry endpoint**
 
         :::image type="content" source="media/how-to/projects/fdp-project-overview.png" alt-text="Screenshot shows a Foundry project overview page." lightbox="media/how-to/projects/fdp-project-overview.png":::
 
