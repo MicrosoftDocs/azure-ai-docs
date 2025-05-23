@@ -6,7 +6,7 @@ author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 04/29/2025
+ms.date: 05/23/2025
 ms.author: jboback
 ms.custom: language-service-clu
 ---
@@ -33,7 +33,7 @@ The following table presents a side-by-side comparison between the features of L
 |Machine-learned and Structured ML entities| Learned [entity components](#how-are-entities-different-in-clu) |Machine-learned entities without subentities are transferred as CLU entities. Structured ML entities only transfer leaf nodes (lowest level subentities that don't have their own subentities) as entities in CLU. The name of the entity in CLU is the name of the subentity concatenated with the parent. For example, _Order.Size_|
 |List, regex, and prebuilt entities| List, regex, and prebuilt [entity components](#how-are-entities-different-in-clu) | List, regex, and prebuilt entities are transferred as entities in CLU with a populated entity component based on the entity type.|
 |`Pattern.Any` entities| Not currently available | `Pattern.Any` entities are removed.|
-|Single culture for each application|[Multilingual models](#how-is-conversational-language-understanding-multilingual) enable multiple languages for each project. |The primary language of your project are set as your LUIS application culture. Your project can be trained to extend to different languages.|
+|Single culture for each application|[Multilingual models](#how-is-conversational-language-understanding-multilingual) enable multiple languages for each project. |The primary language of your project is set as your LUIS application culture. Your project can be trained to extend to different languages.|
 |Entity roles  |[Roles](#how-are-entity-roles-transferred-to-clu) are no longer needed. | Entity roles are transferred as entities.|
 |Settings for: normalize punctuation, normalize diacritics, normalize word form, use all training data  |[Settings](#how-is-the-accuracy-of-clu-better-than-luis) are no longer needed. |Settings aren't transferred.  |
 |Patterns and phrase list features|[Patterns and Phrase list features](#how-is-the-accuracy-of-clu-better-than-luis) are no longer needed. |Patterns and phrase list features aren't transferred.  |

@@ -6,27 +6,16 @@ author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 05/01/2025
+ms.date: 05/23/2025
 ms.author: jboback
 ms.custom: language-service-clu, mode-other
-zone_pivot_groups: usage-custom-language-features-foundry
 ---
 
 # Quickstart: Conversational language understanding 
 
 Use this article to get started with Conversational Language understanding using Azure AI Foundry and the REST API. Follow these steps to try out an example.
 
-::: zone pivot="azure-ai-foundry"
-
-[!INCLUDE [Language Studio quickstart](includes/quickstarts/language-studio.md)]
-
-::: zone-end
-
-::: zone pivot="rest-api"
-
 [!INCLUDE [REST API quickstart](includes/quickstarts/rest-api.md)]
-
-::: zone-end
 
 ## Next steps
 
