@@ -6,7 +6,7 @@ manager: scottpolly
 keywords: Azure AI services, cognitive, AI models, local inference
 ms.service: azure-ai-foundry
 ms.topic: quickstart
-ms.date: 05/20/2025
+ms.date: 05/23/2025
 ms.reviewer: samkemp
 ms.author: samkemp
 author: samuel100
@@ -24,7 +24,7 @@ This guide walks you through setting up Foundry Local to run AI models on your d
 
 Your system must meet the following requirements to run Foundry Local:
 
-- **Operating System**: Windows 10 (x64), Windows 11 (x64/ARM), macOS.
+- **Operating System**: Windows 10 (x64), Windows 11 (x64/ARM), Windows Server 2025, macOS.
 - **Hardware**: Minimum 8GB RAM, 3GB free disk space. Recommended 16GB RAM, 15GB free disk space.
 - **Network**: Internet connection for initial model download (optional for offline use)
 - **Acceleration (optional)**: NVIDIA GPU (2,000 series or newer), AMD GPU (6,000 series or newer), Qualcomm Snapdragon X Elite (8GB or more of memory), or Apple silicon.
