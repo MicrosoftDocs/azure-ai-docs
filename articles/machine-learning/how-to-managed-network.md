@@ -42,7 +42,7 @@ There are two different configuration modes for outbound traffic from the manage
 | Allow only approved outbound | Outbound traffic is allowed by specifying service tags. | * You want to minimize the risk of data exfiltration, but you need to prepare all required machine learning artifacts in your private environment.</br>* You want to configure outbound access to an approved list of services, service tags, or FQDNs. |
 | Disabled | Inbound and outbound traffic isn't restricted or you're using your own Azure Virtual Network to protect resources. | You want public inbound and outbound from the workspace, or you're handling network isolation with your own Azure virtual network. |
 
-1: You can use outbound rules with _allow only approved outbound_ mode to achieve the same result as using allow internet outbound. The differences are:
+1. You can use outbound rules with _allow only approved outbound_ mode to achieve the same result as using allow internet outbound. The differences are:
 
 * You must add rules for each outbound connection you need to allow.
 * Adding FQDN outbound rules __increase your costs__ as this rule type uses Azure Firewall. For more information, see [Pricing](#pricing)
@@ -201,7 +201,7 @@ Microsoft recommends assigning the _Azure AI Enterprise Network Connection Appro
 
 If you would like to create a custom role instead, see [Azure AI Enterprise Network Connection Approver role](/azure/role-based-access-control/built-in-roles/ai-machine-learning#azure-ai-enterprise-network-connection-approver) to add the specific actions for each resource type.
 
-To create private endpoint outbound rules to target resource types not covered by the _Azure AI Enterprise Network Connection Approver_ role, a custom scoped-down role is recommended. The role should be defined with the actions necessary to approve private endpoint connections on the target resource types. , Examples of such resource types are Azure Data Factory, Azure Databricks, and Azure Function Apps.
+To create private endpoint outbound rules to target resource types not covered by the _Azure AI Enterprise Network Connection Approver_ role, a custom scoped-down role is recommended. The role should be defined with the actions necessary to approve private endpoint connections on the target resource types. Examples of such resource types are Azure Data Factory, Azure Databricks, and Azure Function Apps.
 
 To create Private Endpoint outbound rules to default workspace resources, the required permissions are automatically covered by the role assignments granted during workspace creation, so no other action is needed.
 
@@ -1176,7 +1176,7 @@ When you create a private endpoint, you provide the _resource type_ and _subreso
 
 When you create a private endpoint for Azure Machine Learning dependency resources, such as Azure Storage, Azure Container Registry, and Azure Key Vault, the resource can be in a different Azure subscription. However, the resource must be in the same tenant as the Azure Machine Learning workspace.
 
-Private endpoints for the workspace aren't creeated automatically. They're only created when the first _compute is created_ or when managed virtual network provisioning is forced. For more information on forcing the managed virtual network provisioning, see [Manually provision the network](#manually-provision-a-managed-vnet).
+Private endpoints for the workspace aren't created automatically. They're only created when the first _compute is created_ or when managed virtual network provisioning is forced. For more information on forcing the managed virtual network provisioning, see [Manually provision the network](#manually-provision-a-managed-vnet).
 
 ### Approval of private endpoints
 
