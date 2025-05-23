@@ -31,7 +31,7 @@ You can use the liveness quick link website, `liveness.face.azure.com`, to turn 
 
 :::image type="content" source="media/liveness/liveness-quick-link-diagram.png" alt-text="A diagram illustrates liveness quick link work flow":::
 
-1.	Start a session with yoru server-side code. Your application backend requests a new liveness session from the Face API and receives a short-lived authorization token that represents that session.
+1.	Start a session with your server-side code. Your application backend requests a new liveness session from the Face API and receives a short-lived authorization token that represents that session.
 2.	Swap the session token for a link. Your application backend sends the token to the quick link service, which creates a one-time URL connected to the session. Here are examples of the post request:
 
     #### [C#](#tab/csharp)
