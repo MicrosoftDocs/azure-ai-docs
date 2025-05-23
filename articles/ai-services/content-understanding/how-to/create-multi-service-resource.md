@@ -19,7 +19,7 @@ To use Content Understanding, you need an Azure AI Foundry resource. This multi-
 
 1. To get started, you need an active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/). If you don't have one, you can [**create a free subscription**](https://azure.microsoft.com/free/).
 
-1. Once you have your Azure subscription, create an [**Azure AI Foundry resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) in the Azure portal. The Azure AI Foundry resource is listed under **AI Foundry** > **AI Foundry** in the portal. The API kind is **AIServices**. 
+1. Once you have your Azure subscription, create an [**Azure AI Foundry resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. The Azure AI Foundry resource is listed under **AI Foundry** > **AI Foundry** in the portal. The API kind is **AIServices**. 
 
     :::image type="content" source="../media/overview/azure-multi-service-resource.png" alt-text="Screenshot of the AI Foundry resource page in the Azure portal.":::
 

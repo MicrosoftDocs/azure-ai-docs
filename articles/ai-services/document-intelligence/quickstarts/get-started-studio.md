@@ -23,7 +23,7 @@ To use Document Intelligence Studio, you need to acquire the following assets fr
 
 * Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/).
 
-* An Azure AI services or Document Intelligence resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [Azure AI multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) resource, in the Azure portal, to get your key and endpoint.
+* An Azure AI services or Document Intelligence resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [Azure AI multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) resource, in the Azure portal, to get your key and endpoint.
 
 * You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
