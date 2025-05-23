@@ -354,7 +354,7 @@ items:
       href: reference.md
     - name: 2025-04-01-preview - Authoring 
       href: authoring-reference-preview.md
-    - name: 2025-04-01-preview - Authoring 
+    - name: 2025-04-01-preview - Inference 
       href: reference-preview.md
     - name: Assistants API Reference
       items:
