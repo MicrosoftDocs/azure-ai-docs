@@ -27,7 +27,7 @@ The following analyzer templates are available for use in the [Azure AI Foundry 
 |Document analysis |Analyze documents to extract text, layout, structured fields, and more.|
 |Invoice analysis |Analyze invoice as prebuilt template and extract structured fields and tables.|
 
-   :::image type="content" source="../media/analyzer-template/scenario-template-document.png" alt-text="Screenshot of document analyzer template.":::
+   :::image type="content" source="../media/analyzer-template/document-analyzers.png" alt-text="Screenshot of document analyzer template.":::
 
 # [Image](#tab/image)
 
@@ -37,7 +37,7 @@ The following analyzer templates are available for use in the [Azure AI Foundry 
 |Retail inventory management |Retail inventory management for monitoring of products on shelves.|
 |Defect detection |Identify potential defects in provided images of metal plates.|
 
-   :::image type="content" source="../media/analyzer-template/image-templates.png" alt-text="Screenshot of image analyzer template.":::
+   :::image type="content" source="../media/analyzer-template/image-analyzers.png" alt-text="Screenshot of image analyzer template.":::
 
 # [Audio](#tab/audio)
 
@@ -48,7 +48,7 @@ The following analyzer templates are available for use in the [Azure AI Foundry 
 |Post call analytics |Analyze call center conversations to extract transcripts, summaries, sentiment, and more.|
 
 
-   :::image type="content" source="../media/analyzer-template/audio-templates.png" alt-text="Screenshot of audio analyzer template.":::
+   :::image type="content" source="../media/analyzer-template/audio-analyzers.png" alt-text="Screenshot of audio analyzer template.":::
 
 # [Video](#tab/video)
 
@@ -60,6 +60,6 @@ The following analyzer templates are available for use in the [Azure AI Foundry 
 |Advertising |Advertising analysis and moderation.|
 
 
-   :::image type="content" source="../media/analyzer-template/video-templates.png" alt-text="Screenshot of video analyzer template.":::
+   :::image type="content" source="../media/analyzer-template/video-analyzers.png" alt-text="Screenshot of video analyzer template.":::
 
 ---
