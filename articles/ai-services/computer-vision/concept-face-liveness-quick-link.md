@@ -40,7 +40,7 @@ You can use the liveness quick link website, `liveness.face.azure.com`, to turn 
     var request = new HttpRequestMessage
     {
         Method = HttpMethod.Post,
-        RequestUri = new Uri("https://liveness.face.azure.com/api/s"),
+        RequestUri = new Uri("https://liveness.face.azure.com/api/quicklink"),
         Headers =
         {
             { "authorization", "Bearer  <session-authorization-token>" },
@@ -57,7 +57,7 @@ You can use the liveness quick link website, `liveness.face.azure.com`, to turn 
     #### [Java](#tab/java)
     ```java
     HttpRequest request = HttpRequest.newBuilder()
-        .uri(URI.create("https://liveness.face.azure.com/api/s"))
+        .uri(URI.create("https://liveness.face.azure.com/api/quicklink"))
         .header("authorization", "Bearer <session-authorization-token>")
         .method("POST", HttpRequest.BodyPublishers.noBody())
         .build();
@@ -86,7 +86,7 @@ You can use the liveness quick link website, `liveness.face.azure.com`, to turn 
     
     #### [JavaScript](#tab/javascript)
     ```javascript
-    fetch("https://liveness.face.azure.com/api/s", {
+    fetch("https://liveness.face.azure.com/api/quicklink", {
       "method": "POST",
       "headers": {
         "authorization": "Bearer <session-authorization-token>"
@@ -103,14 +103,14 @@ You can use the liveness quick link website, `liveness.face.azure.com`, to turn 
     #### [REST(Windows)](#tab/cmd)
     ```console
     curl --request POST ^
-      --url https://liveness.face.azure.com/api/s ^
+      --url https://liveness.face.azure.com/api/quicklink ^
       --header 'authorization: Bearer <session-authorization-token>'
     ```
     
     #### [REST(Linux)](#tab/bash)
     ```bash
     curl --request POST \
-      --url https://liveness.face.azure.com/api/s \
+      --url https://liveness.face.azure.com/api/quicklink \
       --header 'authorization: Bearer <session-authorization-token>'
     ```
 
