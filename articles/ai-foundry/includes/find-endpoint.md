@@ -14,4 +14,4 @@ Copy the **Azure AI Foundry project endpoint** in the **Overview** section of yo
 :::image type="content" source="../media/how-to/projects/fdp-project-overview.png" alt-text="Screenshot shows the project overview for a Foundry project.":::
 
 > [!TIP]
-> If you don't see the **Azure AI Foundry project endpoint**, you're using a [!INCLUDE [hub-project-name](hub-project-name.md)]. (See [Types of projects](../what-is-azure-ai-foundry.md#project-types)). Make sure you follow the steps in the preceding section to create a [!INCLUDE [fdp-project-name](fdp-project-name.md)] instead.
+> If you don't see the **Azure AI Foundry project endpoint**, you're using a [!INCLUDE [hub-project-name](hub-project-name.md)]. (See [Types of projects](../what-is-azure-ai-foundry.md#project-types)). Switch to a [!INCLUDE [fdp-project-name](fdp-project-name.md)], or use the preceding steps to create one.

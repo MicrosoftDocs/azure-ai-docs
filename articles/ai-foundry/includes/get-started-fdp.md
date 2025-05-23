@@ -63,12 +63,13 @@ No installation is necessary to use the Azure AI Foundry portal.
 1. [!INCLUDE [find-endpoint](find-endpoint.md)]
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Python scripts.
 
-> [!TIP]
+> [!NOTE]
 > All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/mslearn-resources/quickstart).
 
 # [Java (preview)](#tab/java)
 
 1. [Install Java and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-java).
+1. [!INCLUDE [find-endpoint](find-endpoint.md)]
 1. Set these environment variables to use in your scripts:
 
     :::code language="plaintext" source="~/foundry-samples-main/samples/microsoft/java/mslearn-resources/quickstart/.env.template":::
@@ -76,7 +77,7 @@ No installation is necessary to use the Azure AI Foundry portal.
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
 1. Download [POM.XML](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart/pom.xml) to your Java IDE.
 
-> [!TIP]
+> [!NOTE]
 > All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart).
 
 # [JavaScript (preview)](#tab/javascript)
@@ -85,12 +86,13 @@ No installation is necessary to use the Azure AI Foundry portal.
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your JavaScript scripts.
 1. Download [package.json](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/javascript/mslearn-resources/quickstart/package.json).
 1. Install packages with `npm install`
+1. [!INCLUDE [find-endpoint](find-endpoint.md)]
 1. Set these environment variables to use in your scripts:
 
     :::code language="plaintext" source="~/foundry-samples-main/samples/microsoft/javascript/mslearn-resources/quickstart/.env.template":::
 
 
-> [!TIP]
+> [!NOTE]
 > All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/javascript/mslearn-resources/quickstart).
 
 # [C#](#tab/csharp)
@@ -100,13 +102,15 @@ No installation is necessary to use the Azure AI Foundry portal.
 
     [!INCLUDE [install-csharp-packages](install-csharp-packages.md)]
 
+1. [!INCLUDE [find-endpoint](find-endpoint.md)]
+
 1. Set these environment variables to use in your scripts:
 
     :::code language="plaintext" source="~/foundry-samples-main/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/.env.example":::
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your C# scripts.
 
-> [!TIP]
+> [!NOTE]
 > All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/csharp/mslearn-resources/quickstart).
 
 # [REST API](#tab/rest)
@@ -121,7 +125,7 @@ No installation is necessary to use the Azure AI Foundry portal.
     
 1. Save the results as the environment variable `AZURE_AI_AUTH_TOKEN`.  
 
-> [!TIP]
+> [!NOTE]
 > All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/REST/mslearn-resources/quickstart).
 
 
@@ -140,6 +144,8 @@ After the preceding steps, you're now in the agents playground.
 1. Start chatting with your agent, for example, "Write me a poem about flowers."
 
 # [Python](#tab/python)
+
+Substitute your endpoint for the `endpoint` in this code:
 
 :::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="create_and_run_agent":::
 
@@ -184,6 +190,8 @@ Now let's add a file search tool that enables us to do knowledge retrieval.
 
 # [Python](#tab/python)
 
+Substitute your endpoint for the `endpoint` in this code:
+
 :::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="create_filesearch_agent":::
 
 # [Java (preview)](#tab/java)
@@ -220,7 +228,7 @@ Chat completions are the basic building block of AI applications. Using chat com
 
 # [Python](#tab/python)
 
-Substitute your value for the endpoint in this code:
+Substitute your endpoint for the `endpoint` in this code:
 
 :::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="chat_completion":::
 
