@@ -45,7 +45,7 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
     
 You now have both a project and a model available for your agent.
 
-### Set up your environment  
+## Set up your environment  
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
@@ -60,6 +60,7 @@ No installation is necessary to use the Azure AI Foundry portal.
     pip install openai azure-ai-projects azure-identity
     ```
 
+1. [!INCLUDE [find-endpoint](find-endpoint.md)]
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Python scripts.
 
 > [!TIP]
