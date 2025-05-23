@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 3/3/2025
+ms.date: 5/23/2025
 ms.author: eur
 ms.custom: references_regions, build-2024
 #Customer intent: As a developer, I want to learn about the languages supported by the Speech service.
