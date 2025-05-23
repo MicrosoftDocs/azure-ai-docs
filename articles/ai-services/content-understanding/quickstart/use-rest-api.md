@@ -20,7 +20,7 @@ ms.date: 05/19/2025
 
 To get started, you need **an active Azure subscription**. If you don't have an Azure account, [create one for free](https://azure.microsoft.com/free/).
 
-* Once you have your Azure subscription, create an [Azure AI Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) in the Azure portal. This multi-service resource enables access to multiple Azure AI services with a single set of credentials.
+* Once you have your Azure subscription, create an [Azure AI Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. This multi-service resource enables access to multiple Azure AI services with a single set of credentials.
 
    * This resource is listed under **AI Foundry** > **AI Foundry** in the portal.
 
