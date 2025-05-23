@@ -75,7 +75,7 @@ You can use the liveness quick link website, `liveness.face.azure.com`, to turn 
         'authorization': "Bearer <session-authorization-token>"
         }
     
-    conn.request("POST", "/api/s", headers=headers)
+    conn.request("POST", "/api/quicklink", headers=headers)
     
     res = conn.getresponse()
     data = res.read()
