@@ -123,7 +123,7 @@ if run.status == "failed":
 
 # Fetch and log all messages
 messages = project_client.agents.messages.list(thread_id=thread.id)
-for message in messages.data:
+for message in messages:
     print(f"Role: {message.role}, Content: {message.content}")
 
 # Delete the agent when done
@@ -504,4 +504,4 @@ curl --request GET \
 
 ## Next steps
 
-[See the full sample for Grounding with Bing Search.](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/sample_agents_bing_grounding.py)
+[See the full sample for Grounding with Bing Search.](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_tools/sample_agents_bing_grounding.py)

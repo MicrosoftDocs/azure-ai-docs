@@ -39,14 +39,14 @@ To try out the video translation demo, follow these steps:
 
    :::image type="content" source="../../../media/video-translation/foundry-portal/capabilities-by-scenario.png" alt-text="Screenshot of filtering Speech service capabilities by scenario." lightbox="../../../media/video-translation/foundry-portal/capabilities-by-scenario.png":::
 
-1. Under the **Sample option** to the right, select personal or prebuilt voice.
+1. Under the **Sample option** to the right, select personal or standard voice.
 
 1. Select the **Play** button to hear the translated audio. Select the original video tab to play the original audio.
 
    :::image type="content" source="../../../media/video-translation/foundry-portal/compare-original-translated.png" alt-text="Screenshot that shows selecting a voice type on the new project page." lightbox="../../../media/video-translation/foundry-portal/compare-original-translated.png":::
    
    The voice type options are:
-   - **Prebuilt voice**: The service automatically selects the most suitable prebuilt voice by matching the speaker's voice in the video with prebuilt voices.
+   - **Standard voice**: The service automatically selects the most suitable standard voice by matching the speaker's voice in the video with standard voices.
    - **Personal voice**: Use the personal voice that matches the voice of the speakers in the video. 
 
    > [!NOTE]
@@ -77,7 +77,7 @@ To create a video translation project, follow these steps:
    :::image type="content" source="../../../media/video-translation/foundry-portal/select-voice-type.png" alt-text="Screenshot of selecting a voice type on the new project page." lightbox="../../../media/video-translation/foundry-portal/select-voice-type.png":::
    
    The voice type options are:
-   - **Prebuilt neural voice**: The service automatically selects the most suitable prebuilt voice by matching the speaker's voice in the video with prebuilt voices.
+   - **Standard voice**: The service automatically selects the most suitable standard voice by matching the speaker's voice in the video with standard voices.
    - **Personal voice**: Use the personal voice that matches the voice of the speakers in the video. 
 
    > [!NOTE]

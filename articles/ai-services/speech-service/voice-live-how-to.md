@@ -30,10 +30,10 @@ An [Azure AI Foundry resource](../multi-service-resource.md) is required to acce
 
 ### WebSocket endpoint
 
-The WebSocket endpoint for the Voice Live API is `wss://<your-ai-foundry-resource-name>.cognitiveservices.azure.com/voice-agent/realtime?api-version=2025-05-01-preview`.
+The WebSocket endpoint for the Voice Live API is `wss://<your-ai-foundry-resource-name>.cognitiveservices.azure.com/voice-live/realtime?api-version=2025-05-01-preview`.
 The endpoint is the same for all models. The only difference is the required `model` query parameter.
 
-For example, an endpoint for a resource with a custom domain would be `wss://<your-ai-foundry-resource-name>.cognitiveservices.azure.com/voice-agent/realtime?api-version=2025-05-01-preview&model=gpt-4o-mini-realtime-preview`
+For example, an endpoint for a resource with a custom domain would be `wss://<your-ai-foundry-resource-name>.cognitiveservices.azure.com/voice-live/realtime?api-version=2025-05-01-preview&model=gpt-4o-mini-realtime-preview`
 
 ### Credentials
 
@@ -170,7 +170,7 @@ Here's an example of end of utterance detection in a session object:
 
 ### Audio output through Azure text to speech
 
-You can use the `voice` parameter to specify a prebuilt or custom voice. The voice is used for audio output. 
+You can use the `voice` parameter to specify a standard or custom voice. The voice is used for audio output. 
 
 The `voice` object has the following properties:
 
@@ -182,7 +182,7 @@ The `voice` object has the following properties:
 
 #### Azure standard voices
 
-Here's a partial message example for a prebuilt (`azure-standard`) neural voice:
+Here's a partial message example for a standard (`azure-standard`) voice:
 
 ```json
 {
@@ -193,11 +193,11 @@ Here's a partial message example for a prebuilt (`azure-standard`) neural voice:
 }
 ```
 
-For the full list of prebuilt neural voices, see [Language and voice support for the Speech service](language-support.md?tabs=tts).
+For the full list of standard voices, see [Language and voice support for the Speech service](language-support.md?tabs=tts).
 
 #### Azure high definition voices
 
-Here's an example `session.update` message for a neural high definition voice:
+Here's an example `session.update` message for a standard high definition voice:
 
 ```json
 {
@@ -209,9 +209,9 @@ Here's an example `session.update` message for a neural high definition voice:
 }
 ```
 
-For the full list of neural high definition voices, see [high definition voices documentation](high-definition-voices.md#supported-azure-ai-speech-hd-voices).
+For the full list of standard high definition voices, see [high definition voices documentation](high-definition-voices.md#supported-azure-ai-speech-hd-voices).
 
-#### Azure custom neural voices
+#### Azure custom voices
 
 ```json
 {
@@ -226,7 +226,7 @@ For the full list of neural high definition voices, see [high definition voices 
 
 ### Azure text to speech avatar
 
-You can use the `avatar` parameter to specify a prebuilt or custom avatar. The avatar is synchronized with the audio output.
+You can use the `avatar` parameter to specify a standard or custom avatar. The avatar is synchronized with the audio output.
 
 An `avatar` parameter can be specified to enable avatar output that is synchronized with the audio output:
 

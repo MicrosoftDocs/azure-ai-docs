@@ -37,7 +37,7 @@ Azure AI Content Understanding offers prebuilt analyzers that extract raw conten
 
 * Extracts transcripts from video files.
 * Identifies keyframes and camera shots.
-* Divides/segments the video into meaningful sections.
+* Segments the video into meaningful sections.
 * Generates a summary for each video segment.
 
 

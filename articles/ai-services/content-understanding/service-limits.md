@@ -46,7 +46,8 @@ This article offers a quick reference of the quotas and limits for the Azure AI 
 | Supported File Types | File Size | Length |
 | --- | --- | --- |
 | ✓ `.pdf`<br> ✓ `.tiff`<br> ✓ `.jpg`, `.png`, `.bmp`, `.heif` | ≤ 200 MB | ≤ 300 pages |
-| ✓ `.txt`<br> ✓ `.docx`, `.xlsx`, `.pptx` <br/> ✓ `.html`, `.md`, `.rtf` <br/> ✓ `.eml`, `.msg` <br/> ✓ `.xml`| ≤ 1 MB | ≤ 1M characters |
+| ✓ `.docx`, `.xlsx`, `.pptx` | ≤ 200 MB | ≤ 1M characters |
+| ✓ `.txt` <br/> ✓ `.html`, `.md`, `.rtf` <br/> ✓ `.eml`, `.msg` <br/> ✓ `.xml`| ≤ 1 MB | ≤ 1M characters |
 
 > [!NOTE]
 > [Pro mode](./concepts/standard-pro-modes.md) currently only supports .pdf, .tiff, and image file types as input.
