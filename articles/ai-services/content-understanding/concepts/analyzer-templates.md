@@ -14,7 +14,7 @@ ms.date: 05/19/2025
 
 Content Understanding analyzer templates give you a head start in developing your Content Understanding solution by allowing you to build your analyzer without creating schemas from scratch.
 There are analyzer templates specific to common scenarios in each modality, such as call center audio analytics and advertising analysis for videos. Templates are also fully customizable, allowing you to adjust any
-fields in the schemas to better fit your needs. Learn more about the analyzer templates offered for each modality by viewing the following tabs.
+fields in the schemas to better fit your needs. Learn more about the analyzer templates offered for each modality by viewing the following tabs. Templates are only offered for Content Understanding Standard mode.
 
 ## Modality templates
 
@@ -43,7 +43,7 @@ The following analyzer templates are available for use in the [Azure AI Foundry 
 
 |Template| Description|
 | ----|----|----|
-|Audio transcription |Transcribe audio recordings.|
+|Speech transcription analysis |Analyze audio recordings to extract transcripts and structured fields.|
 |Conversation summarization |Transcribe conversations and extract summaries.|
 |Post call analytics |Analyze call center conversations to extract transcripts, summaries, sentiment, and more.|
 
@@ -54,7 +54,8 @@ The following analyzer templates are available for use in the [Azure AI Foundry 
 
 |Template| Description|
 | ----|----|----|
-|Video shot analysis |Analyze videos to extract transcript and structured fields for each shot.|
+|Video analysis |Analyze videos to extract the transcript and structured fields for the whole video.|
+|Video segment analysis |Analyze videos to extract the transcript and structured fields for each segment in the video.|
 |Media asset management |Extract structured information from marketing videos, news content, broadcast media, television episodes, and film archives.|
 |Advertising |Advertising analysis and moderation.|
 
