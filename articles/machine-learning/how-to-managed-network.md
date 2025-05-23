@@ -10,6 +10,7 @@ ms.author: larryfr
 author: Blackmist
 ms.date: 02/27/2025
 ms.topic: how-to
+zone_pivot_groups: azureml-portal-cli-python
 ms.custom:
   - build-2023
   - devx-track-azurecli
@@ -88,7 +89,7 @@ If you add the following services to the virtual network by using either a servi
 
 Before following the steps in this article, make sure you have the following prerequisites:
 
-# [Azure CLI](#tab/azure-cli)
+::: zone pivot="cli"
 
 * An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
 
@@ -114,7 +115,8 @@ Before following the steps in this article, make sure you have the following pre
 
 * The Azure CLI examples in this article use `ws` to represent the name of the workspace, and `rg` to represent the name of the resource group. Change these values as needed when using the commands with your Azure subscription.
 
-# [Python SDK](#tab/python)
+::: zone-end
+::: zone pivot="python-sdk"
 
 * An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
 
@@ -158,7 +160,8 @@ Before following the steps in this article, make sure you have the following pre
     ml_client = MLClient(DefaultAzureCredential(), subscription_id=subscription_id, resource_group_name=resource_group)
     ```
 
-# [Azure portal](#tab/portal)
+::: zone-end
+::: zone pivot="azure-portal"
 
 * An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
 
@@ -171,7 +174,7 @@ Before following the steps in this article, make sure you have the following pre
     * `Microsoft.MachineLearningServices/workspaces/privateEndpointConnections/read`
     * `Microsoft.MachineLearningServices/workspaces/privateEndpointConnections/write`
 
----
+::: zone-end
 
 To establish private endpoint connections in managed virtual networks using Azure Machine Learning, the workspace managed identity, whether system-assigned or user-assigned, must have permissions to approve the Private Endpoint connections on the target resources. After April 30th, 2025, permissions aren't automatically granted to the managed identity and must be assigned manually.
 
@@ -209,7 +212,7 @@ For creating Private Endpoint outbound rules to default workspace resources, the
 > [!IMPORTANT]
 > __If you plan to submit serverless Spark jobs__, you must manually start provisioning. For more information, see the [configure for serverless Spark jobs](#configure-for-serverless-spark-jobs) section.
 
-# [Azure CLI](#tab/azure-cli)
+::: zone pivot="cli"
 
 To configure a managed virtual network that allows internet outbound communications, you can use either the `--managed-network allow_internet_outbound` parameter or a YAML configuration file that contains the following entries:
 
@@ -288,7 +291,8 @@ You can configure a managed virtual network using either the `az ml workspace cr
         type: private_endpoint
     ```
 
-# [Python SDK](#tab/python)
+::: zone-end
+::: zone pivot="python-sdk"
 
 To configure a managed virtual network that allows internet outbound communications, use the `ManagedNetwork` class to define a network with `IsolationMode.ALLOW_INTERNET_OUTBOUND`. You can then use the `ManagedNetwork` object to create a new workspace or update an existing one. To define _outbound rules_ to Azure services that the workspace relies on, use the `PrivateEndpointDestination` class to define a new private endpoint to the service.
 
@@ -355,7 +359,8 @@ To configure a managed virtual network that allows internet outbound communicati
     ml_client.workspaces.begin_update(ws)
     ```
 
-# [Azure portal](#tab/portal)
+::: zone-end
+::: zone pivot="azure-portal"
 
 * __Create a new workspace__:
 
@@ -401,7 +406,7 @@ To configure a managed virtual network that allows internet outbound communicati
 
     1. Select __Save__ at the top of the page to save the changes to the managed virtual network.
 
----
+::: zone-end
 
 ## Configure a managed virtual network to allow only approved outbound
 
@@ -411,7 +416,7 @@ To configure a managed virtual network that allows internet outbound communicati
 > [!IMPORTANT]
 > __If you plan to submit serverless Spark jobs__, you must manually start provisioning. For more information, see the [configure for serverless Spark jobs](#configure-for-serverless-spark-jobs) section.
 
-# [Azure CLI](#tab/azure-cli)
+::: zone pivot="cli"
 
 To configure a managed virtual network that allows only approved outbound communications, you can use either the `--managed-network allow_only_approved_outbound` parameter or a YAML configuration file that contains the following entries:
 
@@ -512,7 +517,8 @@ You can configure a managed virtual network using either the `az ml workspace cr
         type: private_endpoint
     ```
 
-# [Python SDK](#tab/python)
+::: zone-end
+::: zone pivot="python-sdk"
 
 To configure a managed virtual network that allows only approved outbound communications, use the `ManagedNetwork` class to define a network with `IsolationMode.ALLOw_ONLY_APPROVED_OUTBOUND`. You can then use the `ManagedNetwork` object to create a new workspace or update an existing one. To define _outbound rules_, use the following classes:
 
@@ -654,7 +660,8 @@ To configure a managed virtual network that allows only approved outbound commun
     ml_client.workspaces.begin_update(ws)
     ```
 
-# [Azure portal](#tab/portal)
+::: zone-end
+::: zone pivot="azure-portal"
 
 * __Create a new workspace__:
 
@@ -721,7 +728,7 @@ To configure a managed virtual network that allows only approved outbound commun
 
     1. Select __Save__ at the top of the page to save the changes to the managed virtual network.
 
----
+::: zone-end
 
 
 ## Configure for serverless Spark jobs
@@ -736,7 +743,7 @@ To enable the [serverless Spark jobs](how-to-submit-spark-jobs.md) for the manag
 
 1. Configure an outbound private endpoint.
 
-    # [Azure CLI](#tab/azure-cli)
+    ::: zone pivot="cli"
 
     Use a YAML file to define the managed virtual network configuration and add a private endpoint for the Azure Storage Account. Also set `spark_enabled: true`:
 
@@ -765,7 +772,8 @@ To enable the [serverless Spark jobs](how-to-submit-spark-jobs.md) for the manag
     > [!NOTE]
     > When **Allow Only Approved Outbound** is enabled (`isolation_mode: allow_only_approved_outbound`), conda package dependencies defined in Spark session configuration fails to install. To resolve this problem, upload a self-contained Python package wheel with no external dependencies to an Azure storage account and create private endpoint to this storage account. Use the path to Python package wheel as `py_files` parameter in your Spark job. Setting an FQDN outbound rule won't bypass this issue as FQDN rule propagation isn't supported by Spark. 
 
-    # [Python SDK](#tab/python)
+    ::: zone-end
+    ::: zone pivot="python-sdk"
 
     The following example demonstrates how to create a managed virtual network for an existing Azure Machine Learning workspace named `myworkspace`. It also adds a private endpoint for the Azure Storage Account and sets `spark_enabled=true`:
 
@@ -801,7 +809,8 @@ To enable the [serverless Spark jobs](how-to-submit-spark-jobs.md) for the manag
     > - If the workspace was created with `IsolationMode.ALLOW_INTERNET_OUTBOUND`, it can’t be updated later to use `IsolationMode.ALLOW_ONLY_APPROVED_OUTBOUND`. 
 
 
-    # [Azure portal](#tab/portal)
+    ::: zone-end
+    ::: zone pivot="azure-portal"
 
     1. Sign in to the [Azure portal](https://portal.azure.com), and select the Azure Machine Learning workspace.
     2. Select __Networking__, then select __Add user-defined outbound rules__. Add a rule for the Azure Storage Account, and make sure that __Spark enabled__ is selected.
@@ -810,14 +819,14 @@ To enable the [serverless Spark jobs](how-to-submit-spark-jobs.md) for the manag
 
     3. Select __Save__ to save the rule, then select __Save__ from the top of __Networking__ to save the changes to the manged virtual network.
 
-    ---
+    ::: zone-end
 
 2. Provision the managed virtual network.
 
     > [!NOTE]
     > If your workspace has [public network access enabled](/azure/machine-learning/how-to-configure-private-link#enable-public-access), you must disable it before provisioning the managed VNet. If you don't disable public network access when provisioning the managed VNet, the private endpoints for the workspace might not be created automatically in the managed VNet. Otherwise, you would have to manually configure the private endpoint outbound rule for the workspace after the provisioning.
 
-    # [Azure CLI](#tab/azure-cli)
+    ::: zone pivot="cli"
 
     The following example shows how to provision a managed virtual network for serverless Spark jobs by using the `--include-spark` parameter.
 
@@ -825,7 +834,8 @@ To enable the [serverless Spark jobs](how-to-submit-spark-jobs.md) for the manag
     az ml workspace provision-network -g my_resource_group -n my_workspace_name --include-spark
     ```
 
-    # [Python SDK](#tab/python)
+    ::: zone-end
+    ::: zone pivot="python-sdk"
 
     The following example shows how to provision a managed virtual network for serverless Spark jobs:
 
@@ -839,11 +849,12 @@ To enable the [serverless Spark jobs](how-to-submit-spark-jobs.md) for the manag
     provision_network_result = ml_client.workspaces.begin_provision_network(workspace_name=ws_name, include_spark=include_spark).result()
     ```
 
-    # [Azure portal](#tab/portal)
+    ::: zone-end
+    ::: zone pivot="azure-portal"
 
     Use the __Azure CLI__ or __Python SDK__ tabs to learn how to manually provision the managed virtual network with serverless Spark support.
 
-    --- 
+    ::: zone-end
 
 ## Manually provision a managed VNet
 
@@ -856,7 +867,7 @@ Alternatively, you can use the `provision_network_now` flag to provision the man
 > [!NOTE]
 > To create an online deployment, you must manually provision the managed network, or create a compute instance first which will automatically provision it. 
 
-# [Azure CLI](#tab/azure-cli)
+::: zone pivot="cli"
 
 The following example shows how to provision a managed virtual network during workspace creation.
     
@@ -879,7 +890,8 @@ To verify that the provisioning completed, use the following command:
 az ml workspace show -n my_workspace_name -g my_resource_group --query managed_network
 ```
 
-# [Python SDK](#tab/python)
+::: zone-end
+::: zone pivot="python-sdk"
 
 To provision the managed network during workspace creation, set the `provision_network_now` flag to `True`.
 
@@ -906,11 +918,12 @@ ws = ml_client.workspaces.get()
 print(ws.managed_network.status)
 ```
 
-# [Azure portal](#tab/portal)
+::: zone-end
+::: zone pivot="azure-portal"
 
 During workspace creation, select __Provision managed network proactively at creation__ to provision the managed network. Charges are incurred from network resources, such as private endpoints, once the virtual network is provisioned. This configuration option is only available during workspace creation.
 
---- 
+::: zone-end
 
 ## Configure image builds
 
@@ -919,7 +932,7 @@ When the Azure Container Registry for your workspace is behind a virtual network
 > [!IMPORTANT]
 > The compute resource used to build Docker images needs to be able to access the package repositories that are used to train and deploy your models. If you're using a network configured to allow only approved outbound, you might need to add [rules that allow access to public repos](#scenario-access-public-machine-learning-packages) or [use private Python packages](concept-vulnerability-management.md#using-a-private-package-repository).
 
-# [Azure CLI](#tab/azure-cli)
+::: zone pivot="cli"
 
 To update a workspace to use a compute cluster or compute instance to build Docker images, use the `az ml workspace update` command with the `--image-build-compute` parameter:
 
@@ -927,7 +940,8 @@ To update a workspace to use a compute cluster or compute instance to build Dock
 az ml workspace update --name ws --resource-group rg --image-build-compute mycompute
 ```
 
-# [Python SDK](#tab/python)
+::: zone-end
+::: zone pivot="python-sdk"
 
 The following example demonstrates how to update a workspace to use a compute cluster to build images:
 
@@ -954,15 +968,16 @@ ml_client.workspaces.begin_update(ws)
 # ml_client.workspaces.begin_update(ws)
 ```
 
-# [Azure portal](#tab/portal)
+::: zone-end
+::: zone pivot="azure-portal"
 
 Currently there isn't a way to set the image build compute from the Azure portal. Use the __Azure CLI__ or __Python SDK__ tabs to learn how to manually configure image builds.
 
----
+::: zone-end
 
 ## Manage outbound rules
 
-# [Azure CLI](#tab/azure-cli)
+::: zone pivot="cli"
 
 To list the managed virtual network outbound rules for a workspace, use the following command:
 
@@ -982,7 +997,8 @@ To remove an outbound rule from the managed virtual network, use the following c
 az ml workspace outbound-rule remove --rule rule-name --workspace-name ws --resource-group rg
 ```
 
-# [Python SDK](#tab/python)
+::: zone-end
+::: zone pivot="python-sdk"
 
 The following example demonstrates how to manage outbound rules for a workspace named `myworkspace`:
 
@@ -1003,7 +1019,8 @@ rule_list = ml_client._workspace_outbound_rules.list(resource_group, ws_name)
 ml_client._workspace_outbound_rules.begin_remove(resource_group, ws_name, rule_name).result()
 ```
 
-# [Azure portal](#tab/portal)
+:::: zone-end
+::: zone pivot="azure-portal"
 
 1. Sign in to the [Azure portal](https://portal.azure.com), and select the Azure Machine Learning workspace that you want to enable managed virtual network isolation for.
 1. Select __Networking__. The __Workspace Outbound access__ section allows you to manage outbound rules.
@@ -1016,7 +1033,7 @@ ml_client._workspace_outbound_rules.begin_remove(resource_group, ws_name, rule_n
 
 * To __delete__ an outbound rule, select __delete__ for the rule.
 
----
+::: zone-end
 
 ## List of required rules
 
@@ -1177,11 +1194,12 @@ An Azure Firewall is deployed if an FQDN outbound rule is created while in the _
 
 Use the following tabs to learn how to select the firewall version for your managed virtual network.
 
-# [Azure portal](#tab/portal)
+::: zone pivot="azure-portal"
 
 After selecting the allow only approved outbound mode, an option to select the Azure Firewall version (SKU) appears. Select __Standard__ to use the standard version or __Basic__ to use the basic version. Select __Save__ to save your configuration.
 
-# [Azure CLI](#tab/azure-cli)
+::: zone-end
+::: zone pivot="cli"
 
 To configure the firewall version from the CLI, use a YAML file and specify the `firewall_sku`. The following example demonstrates a YAML file that sets the firewall SKU to `basic`:
 
@@ -1200,7 +1218,8 @@ managed_network:
 tags: {}
 ```
 
-# [Python SDK](#tab/python)
+::: zone-end
+::: zone pivot="python-sdk"
 
 To configure the firewall version from the Python SDK, set the `firewall_sku` property of the `ManagedNetwork` object. The following example demonstrates how to set the firewall SKU to `basic`:
 
@@ -1208,7 +1227,8 @@ To configure the firewall version from the Python SDK, set the `firewall_sku` pr
 network = ManagedNetwork(isolation_mode=IsolationMode.ALLOW_INTERNET_OUTBOUND,
                          firewall_sku='basic')
 ```
----
+
+::: zone-end
 
 ## Pricing
 

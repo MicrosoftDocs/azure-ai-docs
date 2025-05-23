@@ -1160,3 +1160,14 @@ groups:
     title: Azure portal
   - id: cli
     title: Azure CLI
+- id: azureml-portal-cli-python
+# Owner: Larryfr
+  title: Azure Portal, CLI, and python 
+  prompt: Choose a usage method
+  pivots:
+  - id: cli
+    title: Azure CLI
+  - id: python-sdk
+    title: Python SDK
+  - id: azure-portal
+    title: Azure portal
