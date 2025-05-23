@@ -60,6 +60,34 @@ This table summarizes features available in the two project types:
 | Managed compute  |  | ✅ |
 | Required Azure dependencies | - | Azure Storage account, Azure Key Vault |
 
+## How do I know which type of project I have?
+
+Here are some of the ways to identify your project type:
+
+* From the breadcrumb navigation
+
+    * A [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)] displays **(AI Foundry)** on the second line
+    * A [!INCLUDE [hub-project-name](includes/hub-project-name.md)] displays **(Hub)** on the second line
+
+    :::image type="content" source="media/how-to/projects/breadcrumb.png" alt-text="Screenshot shows both a Foundry and hub based project in the breadcrumb navigation.":::
+
+* From the All Resources page
+
+    * A [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)] displays **(AI Foundry)** as the parent resource
+    * A [!INCLUDE [hub-project-name](includes/hub-project-name.md)] displays **(Hub)** as the parent resource
+
+    :::image type="content" source="media/how-to/projects/all-resources.png" alt-text="Screenshot shows both a Foundry and hub based project in the All Resources page.":::
+
+* From the OVervew section of the project
+
+    * If it's a [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)], you see a **Azure AI Foundry endpoint**
+
+        :::image type="content" source="media/how-to/projects/fdp-project-overview.png" alt-text="Screenshot shows a Foundry project overview page." lightbox="media/how-to/projects/fdp-project-overview.png":::
+
+    * If it's a [!INCLUDE [hub-project-name](includes/hub-project-name.md)], you see a **Project connection string**
+
+        :::image type="content" source="media/how-to/projects/hub-project-overview.png" alt-text="Screenshot shows a hub based project overview page." lightbox="media/how-to/projects/hub-project-overview.png":::
+
 ## Navigate in the Azure AI Foundry portal
 
 In the Azure AI Foundry portal, you can navigate among all your resources using the breadcrumbs at the top of the page. The breadcrumbs show recent resources, along with a link to all resources. 
