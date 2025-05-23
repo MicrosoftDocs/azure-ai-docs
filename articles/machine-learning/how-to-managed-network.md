@@ -1019,7 +1019,7 @@ rule_list = ml_client._workspace_outbound_rules.list(resource_group, ws_name)
 ml_client._workspace_outbound_rules.begin_remove(resource_group, ws_name, rule_name).result()
 ```
 
-:::: zone-end
+::: zone-end
 ::: zone pivot="azure-portal"
 
 1. Sign in to the [Azure portal](https://portal.azure.com), and select the Azure Machine Learning workspace that you want to enable managed virtual network isolation for.
