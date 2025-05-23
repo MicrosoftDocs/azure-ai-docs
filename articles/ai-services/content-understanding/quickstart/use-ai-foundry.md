@@ -36,19 +36,18 @@ To get started, make sure you have the following resources and permissions:
 Follow these steps to create a custom task in the Azure AI Foundry. This task will be used to build your first analyzer.
 
 1. Go to the **Home** page of [Azure AI Foundry](https://ai.azure.com).
-
 1. Select your hub based project. You might need to select **View all resources** to see your project.
 1. Select **Content Understanding** from the left navigation pane.
 1. Select **+ Create**.
+2. Choose a task type. The type of task that you create depends on what data you plan to bring in.
+* [Single-file task:](#single-file-task-standard-mode) A single-file task utilizes Content Understanding Standard mode and allows you to bring in one file to create your analyzer:
+* [Multi-file task:](#multi-file-task-pro-mode) A multi-file task utilizes Content Understanding Pro mode and allows you to bring in multiple files to create your analyzer. You can also bring in a set of reference data that the service can use to perform multi-step reasoning and make conclusions about your data. To learn more about the difference between Content Understanding Standard and Pro mode, check out [Azure AI Content Understanding pro and standard modes](../concepts/standard-pro-modes.md).
 1. Enter a name for your task. Optionally, enter a description and change other settings.
 1. Select **Create**.
 
 ## Create your first task analyzer
 
-Now that everything is configured to get started, we can walk through, step-by-step, how to create a task and build your first analyzer. The type of task that you create depends on what data you plan to bring in. 
-
-* [Single-file task:](#single-file-task-standard-mode) A single-file task utilizes Content Understanding Standard mode and allows you to bring in one file to create your analyzer.
-* [Multi-file task:](#multi-file-task-pro-mode) A multi-file task utilizes Content Understanding Pro mode and allows you to bring in multiple files to create your analyzer. You can also bring in a set of reference data that the service can use to perform multi-step reasoning and make conclusions about your data. To learn more about the difference between Content Understanding Standard and Pro mode, check out [Azure AI Content Understanding pro and standard modes](../concepts/standard-pro-modes.md).
+Now that everything is configured to get started, we can walk through, step-by-step, how to build your first analyzer. 
 
 ### Single-file task (Standard mode)
 
@@ -57,7 +56,7 @@ When you create a single-file Content Understanding task, you'll start by buildi
 
 1. Upload a sample file of an invoice document or any other data relevant to your scenario.
 
-   :::image type="content" source="../media/analyzer-template/define-schema-upload.png" alt-text="Screenshot of upload step in user experience.":::
+   :::image type="content" source="../media/quickstart/upload-data.png" alt-text="Screenshot of upload step in user experience.":::
 
 1. Next, the Content Understanding service suggests analyzer templates based on your content type. Check out [Analyzer templates offered with Content Understanding](../concepts/analyzer-templates.md) for a full list of all templates offered for each modality. For this example, select **Document analysis** to build your own schema tailored to the invoice scenario. When using your own data, select the analyzer template that best fits your needs, or create your own. See [Analyzer templates](../concepts/analyzer-templates.md) for a full list of available templates.
 
@@ -97,7 +96,7 @@ In this example, the schema is created to extract key fields from an invoice doc
 
 1. Upload one or multiple sample files of invoice documents or any other document data relevant to your scenario.
 
-   :::image type="content" source="../media/analyzer-template/define-schema-upload.png" alt-text="Screenshot of upload step in user experience.":::
+   :::image type="content" source="../media/quickstart/upload-test-data.png" alt-text="Screenshot of upload step in user experience.":::
 
 2. Add fields to your schema:
 
@@ -109,19 +108,30 @@ In this example, the schema is created to extract key fields from an invoice doc
 
     * Specify the method to generate the value for each field.
   
+   :::image type="content" source="../media/quickstart/add-fields.png" alt-text="Screenshot of upload step in user experience.":::
+
+  
 3. Select **Save**.
 
-   :::image type="content" source="../media/analyzer-template/define-schema.png" alt-text="Screenshot of completed schema.":::
+   :::image type="content" source="../media/quickstart/save-schema.png" alt-text="Screenshot of completed schema.":::
 
 4. Upload one or more pieces of reference data for the service to analyze. Adding reference data allows the model to compare and apply multi-step reasoning to your test data in order to infer conclusions about that data.
 
+   :::image type="content" source="../media/quickstart/reference-data.png" alt-text="Screenshot of completed schema.":::
+
 5.  Run analysis on your data. Kicking off analysis generates an output on your test files based on the schema that you just created, and applies predictions by comparing that output to your reference data.
+
+   :::image type="content" source="../media/quickstart/prediction.png" alt-text="Screenshot of completed schema.":::
 
 6.  Once you're satisfied with the quality of your output, select **Build analyzer**. This action creates an analyzer ID that you can integrate into your own applications, allowing you to call the analyzer from your code.
 
-   :::image type="content" source="../media/analyzer-template/build-analyzer.png" alt-text="Screenshot of built analyzer.":::
+   :::image type="content" source="../media/quickstart/build-analyzer.png" alt-text="Screenshot of built analyzer.":::
 
-Now you successfully built your first Content Understanding analyzer, and are ready to start extracting insights from your data. When you select the analyzer you just created, you can view sample code to get started with implenting this in code. Check out [Quickstart: Azure AI Content Understanding REST APIs](./use-rest-api.md) to utilize the REST API to call your analyzer.
+Now you successfully built your first Content Understanding analyzer, and are ready to start extracting insights from your data. When you select the analyzer you just created, you can view sample code to get started with implenting this in code.
+
+   :::image type="content" source="../media/quickstart/view-code.png" alt-text="Screenshot of completed schema.":::
+
+Check out [Quickstart: Azure AI Content Understanding REST APIs](./use-rest-api.md) to utilize the REST API to call your analyzer.
 
 ## Sharing your project
 
