@@ -34,7 +34,7 @@ To use the Azure AI Content Understanding service, you must create your Azure AI
 
 | Region | Region Identifier |
 | --- | --- |
-| West US 2 | westus2 |
+| West US | westus |
 | Sweden Central | swedencentral |
 | Australia East | australiaeast |
 
