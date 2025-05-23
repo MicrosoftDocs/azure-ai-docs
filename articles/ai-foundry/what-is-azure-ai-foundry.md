@@ -60,7 +60,7 @@ This table summarizes features available in the two project types:
 | Managed compute  |  | ✅ |
 | Required Azure dependencies | - | Azure Storage account, Azure Key Vault |
 
-### How do I know which type of project I have?
+### <a name="how-do-i-know"></a> How do I know which type of project I have?
 
 Here are some of the ways to identify your project type:
 
