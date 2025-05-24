@@ -242,7 +242,7 @@ A shared access signature (SAS) is a URI that grants restricted access to an Azu
 
 Follow these steps to generate a SAS URL that you can use for batch transcriptions.
 
-1. Complete the steps in [Azure Blob Storage upload](#azure-blob-storage-upload) to create a Storage account and upload audio files to a new container.
+1. Complete the steps in [Azure Blob Storage upload](#upload-to-azure-blob-storage) to create a Storage account and upload audio files to a new container.
 1. Select the new container.
 1. In the **Settings** group in the left pane, select **Shared access tokens**.
 1. Select **+ Container**.
@@ -257,7 +257,7 @@ Follow these steps to generate a SAS URL that you can use for batch transcriptio
 
 Follow these steps to generate a SAS URL that you can use for batch transcriptions.
 
-1. Complete the steps in [Azure Blob Storage upload](#azure-blob-storage-upload) to create a Storage account and upload audio files to a new container.
+1. Complete the steps in [Azure Blob Storage upload](#upload-to-azure-blob-storage) to create a Storage account and upload audio files to a new container.
 1. Generate a SAS URL with read (r) and list (l) permissions for the container with the [`az storage container generate-sas`](/cli/azure/storage/container#az-storage-container-generate-sas) command. Choose a new expiry date and replace `<mycontainer>` with the name of your container.
 
     ```azurecli-interactive
