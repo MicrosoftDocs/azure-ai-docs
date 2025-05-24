@@ -12,13 +12,13 @@ recommendations: false
 ms.custom:
 ---
 
-# Azure OpenAI in Azure AI Foundry Models REST API preview reference
+# Azure OpenAI in Azure AI Foundry Models REST API v1 preview reference
 
 This article provides details on the inference REST API endpoints for Azure OpenAI.
 
 ## Data plane inference
 
-The rest of the article covers our new `preview` API release of the Azure OpenAI data plane inference specification. Learn more in our [API lifecycle guide](../api-version-lifecycle.md#api-evolution).
+The rest of the article covers our new v1 preview API release of the Azure OpenAI data plane inference specification. Learn more in our [API lifecycle guide](../api-version-lifecycle.md#api-evolution).
 
 If you're looking for documentation on the latest GA API release, refer to the [latest GA data plane inference API](./reference.md)
 
