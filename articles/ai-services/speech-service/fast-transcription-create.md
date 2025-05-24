@@ -7,7 +7,7 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 5/4/2025
+ms.date: 5/25/2025
 # Customer intent: As a user who implements audio transcription, I want create transcriptions as quickly as possible.
 ---
 
@@ -31,10 +31,7 @@ Unlike the batch transcription API, fast transcription API only produces transcr
 > [!TIP]
 > Try out fast transcription in the [Azure AI Foundry portal](https://aka.ms/fasttranscription/studio).
 
-> [!NOTE]
-> Speech service is an elastic service. If you receive 429 error code (too many requests), please follow the [best practices to mitigate throttling during autoscaling](speech-services-quotas-and-limits.md#general-best-practices-to-mitigate-throttling-during-autoscaling).
-
-We learn how to use the fast transcription API (via [Transcriptions - Transcribe](https://go.microsoft.com/fwlink/?linkid=2296107)) with the following scenarios:
+We learn how to use the fast transcription API (via [Transcriptions - Transcribe](/rest/api/speechtotext/transcriptions/transcribe)) with the following scenarios:
 - [Known locale specified](?tabs=locale-specified): Transcribe an audio file with a specified locale. If you know the locale of the audio file, you can specify it to improve transcription accuracy and minimize the latency.
 - [Language identification on](?tabs=language-identification-on): Transcribe an audio file with language identification on. If you're not sure about the locale of the audio file, you can turn on language identification to let the Speech service identify the locale (one locale per audio).
 - [Multi-lingual transcription (preview)](?tabs=multilingual-transcription-on): Transcribe an audio file with the latest multi-lingual speech transcription model. If your audio contains multi-lingual contents that you want to transcribe continuously and accurately, you can use the latest multi-lingual speech transcription model without specifying the locale codes.
@@ -1722,9 +1719,12 @@ The response includes `durationMilliseconds`, `offsetMilliseconds`, and more. Th
 ```
 ---
 
+> [!NOTE]
+> Speech service is an elastic service. If you receive 429 error code (too many requests), please follow the [best practices to mitigate throttling during autoscaling](speech-services-quotas-and-limits.md#general-best-practices-to-mitigate-throttling-during-autoscaling).
+
 ## Request configuration options
 
-Here are some property options to configure a transcription when you call the [Transcriptions - Transcribe](https://go.microsoft.com/fwlink/?linkid=2296107) operation.
+Here are some property options to configure a transcription when you call the [Transcriptions - Transcribe](/rest/api/speechtotext/transcriptions/transcribe) operation.
 
 | Property | Description | Required or optional |
 |----------|-------------|----------------------|
@@ -1735,6 +1735,6 @@ Here are some property options to configure a transcription when you call the [T
 
 ## Related content
 
-- [Fast transcription REST API reference](https://go.microsoft.com/fwlink/?linkid=2296107)
+- [Fast transcription REST API reference](/rest/api/speechtotext/transcriptions/transcribe)
 - [Speech to text supported languages](./language-support.md?tabs=stt)
 - [Batch transcription](./batch-transcription.md)
