@@ -4,7 +4,7 @@ manager: cpoulain
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 04/04/2020
-ms.author: ralphe
+ms.author: eur
 ms.custom: devx-track-csharp
 ---
 
