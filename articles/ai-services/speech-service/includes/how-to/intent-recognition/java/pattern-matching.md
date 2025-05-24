@@ -31,7 +31,7 @@ public class Main {
     }
 
     public static void IntentPatternMatchingWithMicrophone() throws InterruptedException, ExecutionException {
-        SpeechConfig config = SpeechConfig.fromSubscription("YOUR_SUBSCRIPTION_KEY", "YOUR_SUBSCRIPTION_REGION");
+        SpeechConfig config = SpeechConfig.fromSubscription("YourSpeechResourceKey", "YourSpeechResourceRegion");
     }
 }
 ```
@@ -40,8 +40,8 @@ public class Main {
 
 Before you can initialize an `IntentRecognizer` object, you need to create a configuration that uses the key and Azure region for your Azure AI services prediction resource.
 
-* Replace `"YOUR_SUBSCRIPTION_KEY"` with your Azure AI services prediction key.
-* Replace `"YOUR_SUBSCRIPTION_REGION"` with your Azure AI Foundry resource region.
+* Replace `"YourSpeechResourceKey"` with your Azure AI services prediction key.
+* Replace `"YourSpeechResourceRegion"` with your Azure AI Foundry resource region.
 
 This sample uses the `fromSubscription()` method to build the `SpeechConfig`. For a full list of available methods, see [SpeechConfig Class](/java/api/com.microsoft.cognitiveservices.speech.speechconfig).
 
@@ -180,7 +180,7 @@ else if (result.getReason() == ResultReason.Canceled) {
     {
         System.out.println("CANCELED: ErrorCode=" + cancellation.getErrorCode());
         System.out.println("CANCELED: ErrorDetails=" + cancellation.getErrorDetails());
-        System.out.println("CANCELED: Did you update the subscription info?");
+        System.out.println("CANCELED: Did you update the Speech resource info?");
     }
 }
 ```
@@ -204,7 +204,7 @@ public class Main {
     }
 
     public static void IntentPatternMatchingWithMicrophone() throws InterruptedException, ExecutionException {
-        SpeechConfig config = SpeechConfig.fromSubscription("YOUR_SUBSCRIPTION_KEY", "YOUR_SUBSCRIPTION_REGION");
+        SpeechConfig config = SpeechConfig.fromSubscription("YourSpeechResourceKey", "YourSpeechResourceRegion");
         try (IntentRecognizer recognizer = new IntentRecognizer(config)) {
             // Creates a Pattern Matching model and adds specific intents from your model. The
             // Id is used to identify this model from others in the collection.
@@ -288,7 +288,7 @@ public class Main {
                 {
                     System.out.println("CANCELED: ErrorCode=" + cancellation.getErrorCode());
                     System.out.println("CANCELED: ErrorDetails=" + cancellation.getErrorDetails());
-                    System.out.println("CANCELED: Did you update the subscription info?");
+                    System.out.println("CANCELED: Did you update the Speech resource info?");
                 }
             }
         }

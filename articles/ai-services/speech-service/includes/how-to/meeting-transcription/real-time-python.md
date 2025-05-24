@@ -28,7 +28,7 @@ import requests
 from scipy.io.wavfile import read
 import json
 
-speech_key, service_region = "your-subscription-key", "your-region"
+speech_key, service_region = "your-speech-resource-key", "your-region"
 endpoint = f"https://signature.{service_region}.cts.speech.microsoft.com/api/v1/Signature/GenerateVoiceSignatureFromByteArray"
 
 #Enrollment audio for each speaker. In this example, two speaker enrollment audio files are added.
@@ -83,7 +83,7 @@ import time
 import uuid
 from scipy.io import wavfile
 
-speech_key, service_region="your-subscription-key","your-region"
+speech_key, service_region="your-speech-resource-key","your-region"
 meetingfilename= "audio-file-to-transcribe.wav" # 8 channel, 16 bits, 16kHz audio
 
 def meeting_transcription():
