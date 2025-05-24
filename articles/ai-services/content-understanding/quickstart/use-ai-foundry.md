@@ -49,7 +49,7 @@ Follow these steps to create a custom task in the Azure AI Foundry. This task wi
 
 Now that everything is configured to get started, we can walk through, step-by-step, how to build your first analyzer. 
 
-### Single-file task (Standard mode)
+# [Single-file task (Standard mode](#tab/standard)
 
 When you create a single-file Content Understanding task, you'll start by building your field schema. The schema is the customizable framework that allows the analyzer to extract insights from your data. In this example, the schema is created to extract key data from an invoice document, but you can bring in any type of data and the steps remain the same. [Compare the output of this invoice analysis use case to the output of a Content Understanding Pro invoice analysis scenario](). For a complete list of supported file types, see [input file limits](../service-limits.md#input-file-limits).
 
@@ -88,7 +88,7 @@ When you create a single-file Content Understanding task, you'll start by buildi
 
 Now you successfully built your first Content Understanding analyzer, and are ready to start extracting insights from your data. Check out [Quickstart: Azure AI Content Understanding REST APIs](./use-rest-api.md) to utilize the REST API to call your analyzer.
 
-### Multi-file task (Pro mode)
+# [Multi-file task (Pro mode](#tab/pro)
 
 When you create a multi-file Content Understanding task, you'll start by building your field schema. The schema is the customizable framework that guides the analyzer to extract the preferred insights from your data.
 
