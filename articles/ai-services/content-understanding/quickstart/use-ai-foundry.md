@@ -74,7 +74,7 @@ When you create a single-file Content Understanding task, you'll start by buildi
 
     * Specify the method to generate the value for each field.
 
-1. Select **Save**.
+1. Once you feel that the schema is ready to test, select **Save**. You can always come back and make changes if needed.
 
    :::image type="content" source="../media/analyzer-template/define-schema.png" alt-text="Screenshot of completed schema.":::
 
@@ -111,11 +111,11 @@ In this example, the schema is created to extract key fields from an invoice doc
    :::image type="content" source="../media/quickstarts/add-fields.png" alt-text="Screenshot of upload step in user experience.":::
 
   
-3. Select **Save**.
+3. Once you feel that the schema is ready to test, select **Save**. You can always come back and make changes if needed.
 
    :::image type="content" source="../media/quickstarts/save-schema.png" alt-text="Screenshot of completed schema.":::
 
-4. Upload one or more pieces of reference data for the service to analyze. Adding reference data allows the model to compare and apply multi-step reasoning to your test data in order to infer conclusions about that data.
+4. Upload one or more documents for reference data for the service to analyze. Adding reference data allows the model to compare and apply multi-step reasoning to your test data in order to infer conclusions about that data.
 
    :::image type="content" source="../media/quickstarts/reference-data.png" alt-text="Screenshot of completed schema.":::
 
@@ -143,9 +143,6 @@ In order to share and manage access to the project you created, navigate to the 
 You can manage the users and their individual roles here:
 
    :::image type="content" source="../media/quickstarts/management-center.png" alt-text="Screenshot of Project users section of management center.":::
-
-
-   :::image type="content" source="../media/analyzer-template/sample-code.png" alt-text="Screenshot of analyzer sample code.":::
 
 ## Next steps
 
