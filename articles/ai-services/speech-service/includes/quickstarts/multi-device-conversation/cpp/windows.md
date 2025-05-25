@@ -46,7 +46,7 @@ Before you get started, make sure to:
     void StartNewConversation()
     {
         // Set these
-        std::string subscriptionKey("YourSubscriptionKey");
+        std::string subscriptionKey("YourSpeechResoureKey");
 
         // Replace below with your own region identifier from here: https://aka.ms/speech/sdkregion
         std::string region("YourServiceRegion");
@@ -190,9 +190,9 @@ Before you get started, make sure to:
     }
     ```
 
-1. In the same file, replace the string `YourSubscriptionKey` with your subscription key.
+1. In the same file, replace the string `YourSpeechResoureKey` with your Speech resource key.
 
-1. Replace the string `YourServiceRegion` with the [region](~/articles/ai-services/speech-service/regions.md) associated with your subscription.
+1. Replace the string `YourServiceRegion` with the [region](~/articles/ai-services/speech-service/regions.md) associated with your Speech resource.
 
 1. From the menu bar, choose **File** > **Save All**.
 

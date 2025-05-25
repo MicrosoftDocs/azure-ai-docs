@@ -330,7 +330,7 @@ using namespace std;
 using namespace Microsoft::CognitiveServices::Speech;
 using namespace Microsoft::CognitiveServices::Speech::Audio;
 
-auto speechConfig = SpeechConfig::FromEndpoint("YourServiceEndpoint", "YourSubscriptionKey");
+auto speechConfig = SpeechConfig::FromEndpoint("YourServiceEndpoint", "YourSpeechResoureKey");
 
 auto autoDetectSourceLanguageConfig =
     AutoDetectSourceLanguageConfig::FromLanguages({ "en-US", "de-DE", "zh-CN" });
@@ -415,7 +415,7 @@ import azure.cognitiveservices.speech as speechsdk
 import time
 import json
 
-speech_key, endpoint_string = "YourSubscriptionKey","YourServiceEndpoint"
+speech_key, endpoint_string = "YourSpeechResoureKey","YourServiceEndpoint"
 weatherfilename="en-us_zh-cn.wav"
 
 speech_config = speechsdk.SpeechConfig(subscription=speech_key, endpoint=endpoint_string)
@@ -603,9 +603,9 @@ using Microsoft.CognitiveServices.Speech.Translation;
 
 public static async Task RecognizeOnceSpeechTranslationAsync()
 {
-    var endpointUrl = new Uri("YourSubscriptionEndpoint");
+    var endpointUrl = new Uri("YourSpeechResoureEndpoint");
     
-    var config = SpeechTranslationConfig.FromEndpoint(endpointUrl, "YourSubscriptionKey");
+    var config = SpeechTranslationConfig.FromEndpoint(endpointUrl, "YourSpeechResoureKey");
 
     // Source language is required, but currently ignored. 
     string fromLanguage = "en-US";
@@ -650,9 +650,9 @@ using Microsoft.CognitiveServices.Speech.Translation;
 
 public static async Task MultiLingualTranslation()
 {
-    var endpointUrl = new Uri("YourSubscriptionEndpoint");
+    var endpointUrl = new Uri("YourSpeechResoureEndpoint");
     
-    var config = SpeechTranslationConfig.FromEndpoint(endpointUrl, "YourSubscriptionKey");
+    var config = SpeechTranslationConfig.FromEndpoint(endpointUrl, "YourSpeechResoureKey");
 
     // Source language is required, but currently ignored. 
     string fromLanguage = "en-US";
@@ -757,8 +757,8 @@ See more examples of speech translation with language identification on [GitHub]
 ### [Recognize once](#tab/once)
 
 ```cpp
-auto endpointString = "YourSubscriptionEndpoint";
-auto config = SpeechTranslationConfig::FromEndpoint(endpointString, "YourSubscriptionKey");
+auto endpointString = "YourSpeechResoureEndpoint";
+auto config = SpeechTranslationConfig::FromEndpoint(endpointString, "YourSpeechResoureKey");
 
 auto autoDetectSourceLanguageConfig = AutoDetectSourceLanguageConfig::FromLanguages({ "en-US", "de-DE" });
 
@@ -825,7 +825,7 @@ using namespace Microsoft::CognitiveServices::Speech::Translation;
 
 void MultiLingualTranslation()
 {
-    auto config = SpeechTranslationConfig::FromEndpoint("YourSubscriptionEndpoint", "YourSubscriptionKey");
+    auto config = SpeechTranslationConfig::FromEndpoint("YourSpeechResoureEndpoint", "YourSpeechResoureKey");
 
     // Set the LanguageIdMode (Optional; Either Continuous or AtStart are accepted; Default AtStart)
     speechConfig->SetProperty(PropertyId::SpeechServiceConnection_LanguageIdMode, "Continuous");
@@ -922,7 +922,7 @@ import azure.cognitiveservices.speech as speechsdk
 import time
 import json
 
-speech_key, service_endpoint = "YourSubscriptionKey","YourServiceEndpoint"
+speech_key, service_endpoint = "YourSpeechResoureKey","YourServiceEndpoint"
 weatherfilename="en-us_zh-cn.wav"
 
 # set up translation parameters: source language and target languages
@@ -975,7 +975,7 @@ import azure.cognitiveservices.speech as speechsdk
 import time
 import json
 
-speech_key, service_endpoint = "YourSubscriptionKey","YourServiceEndpoint"
+speech_key, service_endpoint = "YourSpeechResoureKey","YourServiceEndpoint"
 weatherfilename="en-us_zh-cn.wav"
 
 # Currently the v2 endpoint is required. In a future SDK release you won't need to set it. 

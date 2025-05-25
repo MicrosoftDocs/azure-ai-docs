@@ -57,7 +57,7 @@ Speech service REST API endpoints in Azure Government have the following format:
 | [Speech to text REST API for short audio](rest-speech-to-text-short.md) | `https://<REGION_IDENTIFIER>.stt.speech.azure.us/<URL_PATH>` |
 | [Text to speech REST API](rest-text-to-speech.md) | `https://<REGION_IDENTIFIER>.tts.speech.azure.us/<URL_PATH>` |
 
-Replace `<REGION_IDENTIFIER>` with the identifier matching the region of your subscription from this table:
+Replace `<REGION_IDENTIFIER>` with the identifier matching the region of your Speech resource from this table:
 
 |                     | Region identifier |
 |--|--|
@@ -145,7 +145,7 @@ Speech service REST API endpoints in Azure operated by 21Vianet have the followi
 | [Speech to text REST API for short audio](rest-speech-to-text-short.md) | `https://<REGION_IDENTIFIER>.stt.speech.azure.cn/<URL_PATH>` |
 | [Text to speech REST API](rest-text-to-speech.md) | `https://<REGION_IDENTIFIER>.tts.speech.azure.cn/<URL_PATH>` |
 
-Replace `<REGION_IDENTIFIER>` with the identifier matching the region of your subscription from this table:
+Replace `<REGION_IDENTIFIER>` with the identifier matching the region of your Speech resource from this table:
 
 |                     | Region identifier |
 |--|--|

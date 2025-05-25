@@ -108,7 +108,7 @@ Follow these steps to create a new console application and install the Speech SD
                     {
                         Console.WriteLine($"CANCELED: ErrorCode={cancellation.ErrorCode}");
                         Console.WriteLine($"CANCELED: ErrorDetails={cancellation.ErrorDetails}");
-                        Console.WriteLine($"CANCELED: Did you update the subscription info?");
+                        Console.WriteLine($"CANCELED: Did you update the Speech resource info?");
                     }
                 }
             }
