@@ -3,7 +3,7 @@ author: jyotsna-ravi
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 9/9/2024
-ms.author: jyravi
+ms.author: eur
 ---
 
 ## Prerequisites

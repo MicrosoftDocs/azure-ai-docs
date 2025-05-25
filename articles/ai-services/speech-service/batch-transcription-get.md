@@ -7,7 +7,7 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
+ms.date: 5/25/2025
 zone_pivot_groups: speech-cli-rest
 ms.custom: devx-track-csharp
 ---
@@ -20,52 +20,50 @@ To get transcription results, first check the [status](#get-transcription-status
 
 ::: zone pivot="rest-api"
 
-To get the status of the transcription job, call the [Transcriptions_Get](/rest/api/speechtotext/transcriptions/get) operation of the [Speech to text REST API](rest-speech-to-text.md).
+To get the status of the transcription job, call the [Transcriptions - Get](/rest/api/speechtotext/transcriptions/get) operation of the [Speech to text REST API](rest-speech-to-text.md).
 
 > [!IMPORTANT]
-> Batch transcription jobs are scheduled on a best-effort basis. At peak hours, it may take up to 30 minutes or longer for a transcription job to start processing. Most of the time during the execution the transcription status will be `Running`. This is because the job is assigned the `Running` status the moment it moves to the batch transcription backend system. When the base model is used, this assignment happens almost immediately; it's slightly slower for custom models. Thus, the amount of time a transcription job spends in the `Running` state doesn't correspond to the actual transcription time but also includes waiting time in the internal queues.
+> Batch transcription jobs are scheduled on a best-effort basis. At peak hours, it might take up to 30 minutes or longer for a transcription job to start processing. Most of the time during the execution the transcription status is `Running`. The reason is because the job is assigned the `Running` status the moment it moves to the batch transcription backend system. When the base model is used, this assignment happens almost immediately; it's slightly slower for custom models. Thus, the amount of time a transcription job spends in the `Running` state doesn't correspond to the actual transcription time but also includes waiting time in the internal queues.
 
 Make an HTTP GET request using the URI as shown in the following example. Replace `YourTranscriptionId` with your transcription ID, replace `YourSpeechResoureKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource region.
 
 ```azurecli-interactive
-curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/YourTranscriptionId" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
+curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/transcriptions/YourTranscriptionId?api-version=2024-11-15" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
 ```
 
 You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/637d9333-6559-47a6-b8de-c7d732c1ddf3",
-  "model": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/aaa321e9-5a4e-4db1-88a2-f251bbe7b555"
-  },
+  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/transcriptions/5cff1d03-118f-4c4c-b3ba-e1f1cd88c14d?api-version=2024-11-15",
+  "displayName": "My Transcription",
+  "locale": "en-US",
+  "createdDateTime": "2025-05-24T13:36:57Z",
+  "lastActionDateTime": "2025-05-24T13:37:13Z",
   "links": {
-    "files": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/637d9333-6559-47a6-b8de-c7d732c1ddf3/files"
+    "files": "https://eastus.api.cognitive.microsoft.com/speechtotext/transcriptions/5cff1d03-118f-4c4c-b3ba-e1f1cd88c14d/files?api-version=2024-11-15"
   },
   "properties": {
-    "diarizationEnabled": false,
-    "wordLevelTimestampsEnabled": false,
-    "displayFormWordLevelTimestampsEnabled": true,
+    "wordLevelTimestampsEnabled": true,
+    "displayFormWordLevelTimestampsEnabled": false,
     "channels": [
       0,
       1
     ],
     "punctuationMode": "DictatedAndAutomatic",
     "profanityFilterMode": "Masked",
-    "duration": "PT3S",
+    "timeToLiveHours": 48,
     "languageIdentification": {
       "candidateLocales": [
         "en-US",
         "de-DE",
         "es-ES"
-      ]
-    }
+      ],
+      "mode": "Continuous"
+    },
+    "durationMilliseconds": 3000
   },
-  "lastActionDateTime": "2024-05-10T18:39:09Z",
-  "status": "Succeeded",
-  "createdDateTime": "2024-05-10T18:39:07Z",
-  "locale": "en-US",
-  "displayName": "My Transcription"
+  "status": "Succeeded"
 }
 ```
 
@@ -77,11 +75,12 @@ The `status` property indicates the current status of the transcriptions. The tr
 ::: zone pivot="speech-cli"
 
 > [!IMPORTANT]
-> Batch transcription jobs are scheduled on a best-effort basis. At peak hours, it may take up to 30 minutes or longer for a transcription job to start processing. Most of the time during the execution the transcription status will be `Running`. This is because the job is assigned the `Running` status the moment it moves to the batch transcription backend system. When the base model is used, this assignment happens almost immediately; it's slightly slower for custom models. Thus, the amount of time a transcription job spends in the `Running` state doesn't correspond to the actual transcription time but also includes waiting time in the internal queues.
+> Batch transcription jobs are scheduled on a best-effort basis. At peak hours, it might take up to 30 minutes or longer for a transcription job to start processing. Most of the time during the execution the transcription status is `Running`. The reason is because the job is assigned the `Running` status the moment it moves to the batch transcription backend system. When the base model is used, this assignment happens almost immediately; it's slightly slower for custom models. Thus, the amount of time a transcription job spends in the `Running` state doesn't correspond to the actual transcription time but also includes waiting time in the internal queues.
 
 To get the status of the transcription job, use the `spx batch transcription status` command. Construct the request parameters according to the following instructions:
 
 - Set the `transcription` parameter to the ID of the transcription that you want to get. 
+- Set the required `api-version` parameter to `v3.2`. The Speech CLI doesn't support version `2024-11-15` or later yet, so you must use `v3.2` for now.
 
 Here's an example Speech CLI command to get the transcription status:
 
@@ -112,7 +111,7 @@ You should receive a response body in the following format:
     "profanityFilterMode": "Masked",
     "duration": "PT3S"
   },
-  "lastActionDateTime": "2024-05-10T18:39:09Z",
+  "lastActionDateTime": "2025-05-24T13:37:12Z",
   "status": "Succeeded",
   "createdDateTime": "2024-05-10T18:39:07Z",
   "locale": "en-US",
@@ -134,12 +133,12 @@ spx help batch transcription
 
 ::: zone pivot="rest-api"
 
-The [Transcriptions_ListFiles](/rest/api/speechtotext/transcriptions/list-files) operation returns a list of result files for a transcription. A [transcription report](#transcription-report-file) file is provided for each submitted batch transcription job. In addition, one [transcription](#transcription-result-file) file (the end result) is provided for each successfully transcribed audio file.  
+The [Transcriptions - List Files](/rest/api/speechtotext/transcriptions/list-files) operation returns a list of result files for a transcription. A [transcription report](#transcription-report-file) file is provided for each submitted batch transcription job. In addition, one [transcription](#transcription-result-file) file (the end result) is provided for each successfully transcribed audio file.  
 
 Make an HTTP GET request using the "files" URI from the previous response body. Replace `YourTranscriptionId` with your transcription ID, replace `YourSpeechResoureKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource region.
 
 ```azurecli-interactive
-curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/YourTranscriptionId/files" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
+curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/transcriptions/YourTranscriptionId/files?api-version=2024-11-15" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
 ```
 
 You should receive a response body in the following format:
@@ -148,40 +147,40 @@ You should receive a response body in the following format:
 {
   "values": [
     {
-      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/637d9333-6559-47a6-b8de-c7d732c1ddf3/files/2dd180a1-434e-4368-a1ac-37350700284f",
+      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/transcriptions/5cff1d03-118f-4c4c-b3ba-e1f1cd88c14d/files/ec226a24-d3c7-4ae4-b59e-49d5bdab492e?api-version=2024-11-15",
       "name": "contenturl_0.json",
       "kind": "Transcription",
-      "properties": {
-        "size": 3407
-      },
-      "createdDateTime": "2024-05-10T18:39:09Z",
       "links": {
         "contentUrl": "YourTranscriptionUrl"
-      }
+      },
+      "properties": {
+        "size": 1230
+      },
+      "createdDateTime": "2025-05-24T13:37:12Z"
     },
     {
-      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/637d9333-6559-47a6-b8de-c7d732c1ddf3/files/c027c6a9-2436-4303-b64b-e98e3c9fc2e3",
+      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/transcriptions/5cff1d03-118f-4c4c-b3ba-e1f1cd88c14d/files/078cd816-7944-4619-a6a6-bc52fb000f8c?api-version=2024-11-15",
       "name": "contenturl_1.json",
       "kind": "Transcription",
-      "properties": {
-        "size": 8233
-      },
-      "createdDateTime": "2024-05-10T18:39:09Z",
       "links": {
         "contentUrl": "YourTranscriptionUrl"
-      }
+      },
+      "properties": {
+        "size": 2413
+      },
+      "createdDateTime": "2025-05-24T13:37:12Z"
     },
     {
-      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/637d9333-6559-47a6-b8de-c7d732c1ddf3/files/faea9a41-c95c-4d91-96ff-e39225def642",
+      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/transcriptions/5cff1d03-118f-4c4c-b3ba-e1f1cd88c14d/files/5baff707-8d68-4c69-850e-48775c57c982?api-version=2024-11-15",
       "name": "report.json",
       "kind": "TranscriptionReport",
-      "properties": {
-        "size": 279
-      },
-      "createdDateTime": "2024-05-10T18:39:09Z",
       "links": {
         "contentUrl": "YourTranscriptionReportUrl"
-      }
+      },
+      "properties": {
+        "size": 747
+      },
+      "createdDateTime": "2025-05-24T13:37:12Z"
     }
   ]
 }
@@ -199,6 +198,7 @@ The `spx batch transcription list` command returns a list of result files for a 
 
 - Set the required `files` flag.
 - Set the required `transcription` parameter to the ID of the transcription that you want to get logs.
+- Set the required `api-version` parameter to `v3.2`. The Speech CLI doesn't support version `2024-11-15` or later yet, so you must use `v3.2` for now.
 
 Here's an example Speech CLI command that gets a list of result files for a transcription:
 
@@ -218,7 +218,7 @@ You should receive a response body in the following format:
       "properties": {
         "size": 3407
       },
-      "createdDateTime": "2024-05-10T18:39:09Z",
+      "createdDateTime": "2025-05-24T13:37:12Z",
       "links": {
         "contentUrl": "YourTranscriptionUrl"
       }
@@ -230,7 +230,7 @@ You should receive a response body in the following format:
       "properties": {
         "size": 8233
       },
-      "createdDateTime": "2024-05-10T18:39:09Z",
+      "createdDateTime": "2025-05-24T13:37:12Z",
       "links": {
         "contentUrl": "YourTranscriptionUrl"
       }
@@ -242,7 +242,7 @@ You should receive a response body in the following format:
       "properties": {
         "size": 279
       },
-      "createdDateTime": "2024-05-10T18:39:09Z",
+      "createdDateTime": "2025-05-24T13:37:12Z",
       "links": {
         "contentUrl": "YourTranscriptionReportUrl"
       }
@@ -259,7 +259,7 @@ By default, the results are stored in a container managed by Microsoft. When the
 
 ### Transcription report file
 
-One transcription report file is provided for each submitted batch transcription job. 
+One transcription report file is provided for each submitted batch transcription job. The transcription report file is identified by the `"kind": "TranscriptionReport"` property in the response body of the [Transcriptions - List Files](/rest/api/speechtotext/transcriptions/list-files) operation.
 
 The contents of each transcription result file are formatted as JSON, as shown in this example.
 
@@ -282,15 +282,16 @@ The contents of each transcription result file are formatted as JSON, as shown i
 
 ### Transcription result file
 
-One transcription result file is provided for each successfully transcribed audio file. 
+One transcription result file is provided for each successfully transcribed audio file. The transcription result file is identified by the `"kind": "Transcription"` property in the response body of the [Transcriptions - List Files](/rest/api/speechtotext/transcriptions/list-files) operation.
 
 The contents of each transcription result file are formatted as JSON, as shown in this example.
 
 ```json
 {
   "source": "...",
-  "timestamp": "2023-07-10T14:28:16Z",
+  "timestamp": "2025-05-24T13:37:05Z",
   "durationInTicks": 25800000,
+  "durationMilliseconds": 2580,
   "duration": "PT2.58S",
   "combinedRecognizedPhrases": [
     {
@@ -375,12 +376,13 @@ Depending in part on the request parameters set when you created the transcripti
 |`combinedRecognizedPhrases`|The concatenated results of all phrases for the channel.|
 |`confidence`|The confidence value for the recognition.|
 |`display`|The display form of the recognized text. Added punctuation and capitalization are included.|
-|`displayWords`|The timestamps for each word of the transcription. The `displayFormWordLevelTimestampsEnabled` request property must be set to `true`, otherwise this property isn't present.<br/><br/>**Note**: This property is only available with Speech to text REST API version 3.1 and later.|
+|`displayWords`|The timestamps for each word of the transcription. The `displayFormWordLevelTimestampsEnabled` request property must be set to `true`. Otherwise this property isn't present.|
 |`duration`|The audio duration. The value is an ISO 8601 encoded duration.|
 |`durationInTicks`|The audio duration in ticks (one tick is 100 nanoseconds).|
+|`durationMilliseconds`|The audio duration in milliseconds.|
 |`itn`|The inverse text normalized (ITN) form of the recognized text. Abbreviations such as "Doctor Smith" to "Dr Smith", phone numbers, and other transformations are applied.|
 |`lexical`|The actual words recognized.|
-|`locale`|The locale identified from the input the audio. The `languageIdentification` request property must be set, otherwise this property isn't present.<br/><br/>**Note**: This property is only available with Speech to text REST API version 3.1 and later.|
+|`locale`|The locale identified from the input the audio. The `languageIdentification` request property must be set. Otherwise this property isn't present.|
 |`maskedITN`|The ITN form with profanity masking applied.|
 |`nBest`|A list of possible transcriptions for the current phrase with confidences.|
 |`offset`|The offset in audio of this phrase. The value is an ISO 8601 encoded duration.|
@@ -388,14 +390,13 @@ Depending in part on the request parameters set when you created the transcripti
 |`recognitionStatus`|The recognition state. For example: "Success" or "Failure".|
 |`recognizedPhrases`|The list of results for each phrase.|
 |`source`|The URL that was provided as the input audio source. The source corresponds to the `contentUrls` or `contentContainerUrl` request property. The `source` property is the only way to confirm the audio input for a transcription.|
-|`speaker`|The identified speaker. The `diarization` and `diarizationEnabled` request properties must be set, otherwise this property isn't present.|
+|`speaker`|The identified speaker. The `diarization` and `diarizationEnabled` request properties must be set. Otherwise this property isn't present.|
 |`timestamp`|The creation date and time of the transcription. The value is an ISO 8601 encoded timestamp.|
-|`words`|A list of results with lexical text for each word of the phrase. The `wordLevelTimestampsEnabled` request property must be set to `true`, otherwise this property isn't present.|
+|`words`|A list of results with lexical text for each word of the phrase. The `wordLevelTimestampsEnabled` request property must be set to `true`. Otherwise this property isn't present.|
 
+## Related content
 
-## Next steps
-
-- [Batch transcription overview](batch-transcription.md)
+- [Learn more about batch transcription](batch-transcription.md)
 - [Locate audio files for batch transcription](batch-transcription-audio-data.md)
 - [Create a batch transcription](batch-transcription-create.md)
 - [See batch transcription code samples at GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/batch/)

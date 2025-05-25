@@ -1,10 +1,10 @@
 ---
-author: chschrae
-manager: travisw
+author: eric-urban
+manager: nitinme
 ms.service: azure-ai-speech
 ms.date: 11/15/2021
 ms.topic: include
-ms.author: chschrae
+ms.author: eur
 ---
 
 ## Create a project
