@@ -25,10 +25,10 @@ To get the status of the transcription job, call the [Transcriptions - Get](/res
 > [!IMPORTANT]
 > Batch transcription jobs are scheduled on a best-effort basis. At peak hours, it might take up to 30 minutes or longer for a transcription job to start processing. Most of the time during the execution the transcription status is `Running`. The reason is because the job is assigned the `Running` status the moment it moves to the batch transcription backend system. When the base model is used, this assignment happens almost immediately; it's slightly slower for custom models. Thus, the amount of time a transcription job spends in the `Running` state doesn't correspond to the actual transcription time but also includes waiting time in the internal queues.
 
-Make an HTTP GET request using the URI as shown in the following example. Replace `YourTranscriptionId` with your transcription ID, replace `YourSubscriptionKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource region.
+Make an HTTP GET request using the URI as shown in the following example. Replace `YourTranscriptionId` with your transcription ID, replace `YourSpeechResoureKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource region.
 
 ```azurecli-interactive
-curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/transcriptions/YourTranscriptionId?api-version=2024-11-15" -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey"
+curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/transcriptions/YourTranscriptionId?api-version=2024-11-15" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
 ```
 
 You should receive a response body in the following format:
@@ -135,10 +135,10 @@ spx help batch transcription
 
 The [Transcriptions - List Files](/rest/api/speechtotext/transcriptions/list-files) operation returns a list of result files for a transcription. A [transcription report](#transcription-report-file) file is provided for each submitted batch transcription job. In addition, one [transcription](#transcription-result-file) file (the end result) is provided for each successfully transcribed audio file.  
 
-Make an HTTP GET request using the "files" URI from the previous response body. Replace `YourTranscriptionId` with your transcription ID, replace `YourSubscriptionKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource region.
+Make an HTTP GET request using the "files" URI from the previous response body. Replace `YourTranscriptionId` with your transcription ID, replace `YourSpeechResoureKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource region.
 
 ```azurecli-interactive
-curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/transcriptions/YourTranscriptionId/files?api-version=2024-11-15" -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey"
+curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/transcriptions/YourTranscriptionId/files?api-version=2024-11-15" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
 ```
 
 You should receive a response body in the following format:

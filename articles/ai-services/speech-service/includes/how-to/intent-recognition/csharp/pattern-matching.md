@@ -32,7 +32,7 @@ namespace helloworld
 
         private static async Task IntentPatternMatchingWithMicrophoneAsync()
         {
-            var config = SpeechConfig.FromSubscription("YOUR_SUBSCRIPTION_KEY", "YOUR_SUBSCRIPTION_REGION");
+            var config = SpeechConfig.FromSubscription("YourSpeechResourceKey", "YourSpeechResourceRegion");
         }
     }
 }
@@ -42,8 +42,8 @@ namespace helloworld
 
 Before you can initialize an `IntentRecognizer` object, you need to create a configuration that uses the key and Azure region for your Azure AI services prediction resource.
 
-* Replace `"YOUR_SUBSCRIPTION_KEY"` with your Azure AI services prediction key.
-* Replace `"YOUR_SUBSCRIPTION_REGION"` with your Azure AI Foundry resource region.
+* Replace `"YourSpeechResourceKey"` with your Azure AI services prediction key.
+* Replace `"YourSpeechResourceRegion"` with your Azure AI Foundry resource region.
 
 This sample uses the `FromSubscription()` method to build the `SpeechConfig`. For a full list of available methods, see [SpeechConfig Class](/dotnet/api/microsoft.cognitiveservices.speech.speechconfig).
 
@@ -221,7 +221,7 @@ namespace helloworld
 
         private static async Task IntentPatternMatchingWithMicrophoneAsync()
         {
-            var config = SpeechConfig.FromSubscription("YOUR_SUBSCRIPTION_KEY", "YOUR_SUBSCRIPTION_REGION");
+            var config = SpeechConfig.FromSubscription("YourSpeechResourceKey", "YourSpeechResourceRegion");
 
             using (var recognizer = new IntentRecognizer(config))
             {

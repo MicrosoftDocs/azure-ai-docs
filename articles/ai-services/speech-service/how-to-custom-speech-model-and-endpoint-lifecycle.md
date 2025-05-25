@@ -123,10 +123,10 @@ spx help csr model
 
 To get the training and transcription expiration dates for a base model, use the [Models_GetBaseModel](/rest/api/speechtotext/models/get-base-model) operation of the [Speech to text REST API](rest-speech-to-text.md). You can make a [Models_ListBaseModels](/rest/api/speechtotext/models/list-base-models) request to get available base models for all locales.
 
-Make an HTTP GET request using the model URI as shown in the following example. Replace `BaseModelId` with your model ID, replace `YourSubscriptionKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource region.
+Make an HTTP GET request using the model URI as shown in the following example. Replace `BaseModelId` with your model ID, replace `YourSpeechResoureKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource region.
 
 ```azurecli-interactive
-curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.1/models/base/BaseModelId" -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey"
+curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.1/models/base/BaseModelId" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
 ```
 
 In the response, take note of the date in the `adaptationDateTime` property. This date is the last date that you can use the base model for training. Also take note of the date in the `transcriptionDateTime` property. This date is the last date that you can use the base model for transcription.
@@ -255,10 +255,10 @@ spx help csr model
 
 To get the transcription expiration date for your custom model, use the [Models_GetCustomModel](/rest/api/speechtotext/models/get-custom-model) operation of the [Speech to text REST API](rest-speech-to-text.md). 
 
-Make an HTTP GET request using the model URI as shown in the following example. Replace `YourModelId` with your model ID, replace `YourSubscriptionKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource region.
+Make an HTTP GET request using the model URI as shown in the following example. Replace `YourModelId` with your model ID, replace `YourSpeechResoureKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource region.
 
 ```azurecli-interactive
-curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.1/models/YourModelId" -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey"
+curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.1/models/YourModelId" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
 ```
 
 In the response, take note of the date in the `transcriptionDateTime` property. This date is the last date that you can use your custom model for transcription. The `adaptationDateTime` property isn't applicable, since custom models aren't used to train other custom models.

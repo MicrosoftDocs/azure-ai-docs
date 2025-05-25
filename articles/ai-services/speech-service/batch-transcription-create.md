@@ -39,12 +39,12 @@ For more information, see [Request configuration options](#request-configuration
 
 Make an HTTP POST request that uses the URI as shown in the following [Transcriptions - Submit](/rest/api/speechtotext/transcriptions/submit) example.
 
-- Replace `YourSubscriptionKey` with your Azure AI Foundry resource key.
+- Replace `YourSpeechResoureKey` with your Azure AI Foundry resource key.
 - Replace `YourServiceRegion` with your Azure AI Foundry resource region.
 - Set the request body properties as previously described.
 
 ```azurecli-interactive
-curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey" -H "Content-Type: application/json" -d '{
+curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content-Type: application/json" -d '{
   "contentUrls": [
     "https://crbn.us/hello.wav",
     "https://crbn.us/whatstheweatherlike.wav"
@@ -215,7 +215,7 @@ Optionally, you can modify the previous [create transcription example](#create-a
 ::: zone pivot="rest-api"
 
 ```azurecli-interactive
-curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey" -H "Content-Type: application/json" -d '{
+curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content-Type: application/json" -d '{
   "contentUrls": [
     "https://crbn.us/hello.wav",
     "https://crbn.us/whatstheweatherlike.wav"
@@ -263,16 +263,16 @@ To use a Whisper model for batch transcription, you need to set the `model` prop
 ::: zone pivot="rest-api"
 You can make a [Models - List Base Models](/rest/api/speechtotext/models/list-base-models) request to get available base models for all locales.
 
-Make an HTTP GET request as shown in the following example for the `eastus` region. Replace `YourSubscriptionKey` with your Azure AI Foundry resource key. Replace `eastus` if you're using a different region.
+Make an HTTP GET request as shown in the following example for the `eastus` region. Replace `YourSpeechResoureKey` with your Azure AI Foundry resource key. Replace `eastus` if you're using a different region.
 
 ```azurecli-interactive
-curl -v -X GET "https://eastus.api.cognitive.microsoft.com/speechtotext/models/base?api-version=2024-11-15" -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey"
+curl -v -X GET "https://eastus.api.cognitive.microsoft.com/speechtotext/models/base?api-version=2024-11-15" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
 ```
 
 By default, only the 100 oldest base models are returned. Use the `skip` and `top` query parameters to page through the results. For example, the following request returns the next 100 base models after the first 100.
 
 ```azurecli-interactive
-curl -v -X GET "https://eastus.api.cognitive.microsoft.com/speechtotext/models/base?api-version=2024-11-15&skip=100&top=100" -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey"
+curl -v -X GET "https://eastus.api.cognitive.microsoft.com/speechtotext/models/base?api-version=2024-11-15&skip=100&top=100" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
 ```
 
 ::: zone-end
@@ -326,10 +326,10 @@ The `displayName` property of a Whisper model contains "Whisper" as shown in thi
 
 ::: zone pivot="rest-api"
 
-You set the full model URI as shown in this example for the `eastus` region. Replace `YourSubscriptionKey` with your Azure AI Foundry resource key. Replace `eastus` if you're using a different region.
+You set the full model URI as shown in this example for the `eastus` region. Replace `YourSpeechResoureKey` with your Azure AI Foundry resource key. Replace `eastus` if you're using a different region.
 
 ```azurecli-interactive
-curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey" -H "Content-Type: application/json" -d '{
+curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content-Type: application/json" -d '{
   "contentUrls": [
     "https://crbn.us/hello.wav",
     "https://crbn.us/whatstheweatherlike.wav"
