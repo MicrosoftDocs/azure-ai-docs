@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 3/10/2025
+ms.date: 5/25/2025
 ms.author: eur
 zone_pivot_groups: programming-languages-speech-services-nomore-variant
 #customer intent: As an application developer, I want to use language recognition or translations in order to make my apps work seamlessly for more customers.
@@ -1075,7 +1075,7 @@ For more information about containers, see the [language identification speech c
 
 ## Implement speech to text batch transcription
 
-To identify languages with [Batch transcription REST API](batch-transcription.md), use `languageIdentification` property in the body of your [Transcriptions_Create](/rest/api/speechtotext/transcriptions/create) request.
+To identify languages with [Batch transcription REST API](batch-transcription.md), use `languageIdentification` property in the body of your [Transcriptions - Submit](/rest/api/speechtotext/transcriptions/submit) request.
 
 > [!WARNING]
 > Batch transcription only supports language identification for default base models. If both language identification and a custom model are specified in the transcription request, the service falls back to use the base models for the specified candidate languages. This might result in unexpected recognition results.

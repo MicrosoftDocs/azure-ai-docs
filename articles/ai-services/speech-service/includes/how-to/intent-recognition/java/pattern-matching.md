@@ -1,11 +1,11 @@
 ---
 author: ralphe
-manager: travisw
+manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: linux-related-content
 ms.date: 11/15/2021
 ms.topic: include
-ms.author: ralphe
+ms.author: eur
 ---
 
 [!INCLUDE [Create project](../../../quickstarts/platform/java.md)]
