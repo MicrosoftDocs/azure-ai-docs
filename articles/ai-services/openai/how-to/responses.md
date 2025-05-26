@@ -1079,7 +1079,7 @@ Use the Responses API if you want to:
 * Enable iterative image editing through multi-turn prompts.
 * Stream partial image results during generation for a smoother user experience.
 
-Generate an Image
+Generate an image
 
 
 ```python
@@ -1115,7 +1115,7 @@ if image_data:
         f.write(base64.b64decode(image_base64))
 ```
 
-You can perform multi-turn image generation by using the output of image generation in subsequent calls or just using the 1previous_response_id`.
+You can perform multi-turn image generation by using the output of image generation in subsequent calls or just using the `1previous_response_id`.
 
 ```python
 from openai import AzureOpenAI
@@ -1200,7 +1200,7 @@ for event in stream:
 ```
 
 
-### Edit Images
+### Edit images
 
 ```python
 from openai import AzureOpenAI
