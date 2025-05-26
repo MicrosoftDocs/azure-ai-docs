@@ -1,5 +1,5 @@
 ---
-title: 'How to use Logic Apps with Azure AI Agent Service'
+title: 'How to use Logic Apps with Azure AI Foundry Agent Service'
 titleSuffix: Azure AI Foundry
 description: Learn how to integrate Logic Apps with Azure AI Agents to execute tasks like sending emails.
 services: cognitive-services
@@ -14,7 +14,7 @@ zone_pivot_groups: selection-logic-apps
 ms.custom: azure-ai-agents
 ---
 
-# How to use Logic Apps with Azure AI Agent Service
+# How to use Logic Apps with Azure AI Foundry Agent Service
 
 This article demonstrates how to integrate Logic Apps with Azure AI Agents to execute tasks like sending emails.
 
