@@ -1024,7 +1024,8 @@ for event in stream:
     cursor = event["sequence_number"]
 ```
 
-> [!NOTE] Background responses currently have a higher time-to-first-token latency than synchronous responses. Improvements are underway to reduce this gap.
+> [!NOTE] 
+> Background responses currently have a higher time-to-first-token latency than synchronous responses. Improvements are underway to reduce this gap.
 
 ### Limitations
 
@@ -1069,7 +1070,8 @@ Compared to the standalone Image API, the Responses API offers several advantage
 * **Streaming**: Display partial image outputs during generation to improve perceived latency.
 * **Flexible inputs**: Accept image File IDs as inputs, in addition to raw image bytes.
 
-> [!NOTE] The image generation tool in the Responses API is only supported by the `gpt-image-1` model. You can however call this model from this list of supported models - `gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `o3`.
+> [!NOTE]
+> The image generation tool in the Responses API is only supported by the `gpt-image-1` model. You can however call this model from this list of supported models - `gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `o3`.
 
 Use the Responses API if you want to:
 
