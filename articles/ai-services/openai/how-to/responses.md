@@ -83,7 +83,7 @@ token_provider = get_bearer_token_provider(
 )
 
 client = AzureOpenAI(  
-  base_url = "https://docs-test-001-resource.openai.azure.com/openai/v1/",  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
   azure_ad_token_provider=token_provider,
   api_version="preview"
 )
