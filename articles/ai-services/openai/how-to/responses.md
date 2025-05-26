@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI's new stateful Responses API.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 05/19/2025
+ms.date: 05/25/2025
 author: mrbullwinkle    
 ms.author: mbullwin
 ms.custom: references_regions
@@ -19,7 +19,7 @@ The Responses API is a new stateful API from Azure OpenAI. It brings together th
 
 ### API support
 
-`2025-03-01-preview` or later
+- [v1 preview API is required for access to the latest features](/azure/ai-services/openai/reference-preview-latest?#responses-api---create)
 
 ### Region Availability
 
@@ -82,18 +82,18 @@ token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
+client = AzureOpenAI(  
+  base_url = "https://docs-test-001-resource.openai.azure.com/openai/v1/",  
   azure_ad_token_provider=token_provider,
-  api_version="2025-03-01-preview"
+  api_version="preview"
 )
 
 response = client.responses.create(
-    model="gpt-4o", # replace with your model deployment name 
-    input="This is a test."
-    #truncation="auto" required when using computer-use-preview model.
-
+    model="gpt-4.1-nano",
+    input= "This is a test" 
 )
+
+print(response.model_dump_json(indent=2)) 
 ```
 
 # [Python (API Key)](#tab/python-key)
@@ -102,20 +102,20 @@ response = client.responses.create(
 
 ```python
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
-    api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2025-03-01-preview",
-    azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
-    )
-
-response = client.responses.create(
-    model="gpt-4o", # replace with your model deployment name 
-    input="This is a test."
-    #truncation="auto" required when using computer-use-preview model.
-
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    default_query={"api-version": "preview"}, 
 )
+
+response = client.responses.create(   
+  model="gpt-4.1-nano", # Replace with your model deployment name 
+  input="This is a test.",
+)
+
+print(response.model_dump_json(indent=2)) 
 ```
 
 # [REST API](#tab/rest-api)
@@ -123,7 +123,7 @@ response = client.responses.create(
 ### Microsoft Entra ID
 
 ```bash
-curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/responses?api-version=2025-03-01-preview" \
+curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
@@ -135,11 +135,11 @@ curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/responses?api-v
 ### API Key
 
 ```bash
-curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/responses?api-version=2025-03-01-preview \
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -d '{
-     "model": "gpt-4o",
+     "model": "gpt-4.1-nano",
      "input": "This is a test"
     }'
 ```
@@ -214,10 +214,10 @@ token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
+client = AzureOpenAI(  
+  base_url = "https://docs-test-001-resource.openai.azure.com/openai/v1/",  
   azure_ad_token_provider=token_provider,
-  api_version="2025-03-01-preview"
+  api_version="preview"
 )
 
 response = client.responses.retrieve("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
@@ -231,13 +231,13 @@ print(response.model_dump_json(indent=2))
 
 ```python
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
-    api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2025-03-01-preview",
-    azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
-    )
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    default_query={"api-version": "preview"}, 
+)
 
 response = client.responses.retrieve("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
 ```
@@ -247,7 +247,7 @@ response = client.responses.retrieve("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
 ### Microsoft Entra ID
 
 ```bash
-curl -X GET "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/responses/{response_id}?api-version=2025-03-01-preview" \
+curl -X GET "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/{response_id}?api-version=preview" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" 
 ```
@@ -255,7 +255,7 @@ curl -X GET "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/responses/{respo
 ### API Key
 
 ```bash
-curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/responses/{response_id}?api-version=2025-03-01-preview \
+curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/{response_id}?api-version=preview \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" 
 ```
