@@ -12,7 +12,9 @@ ms.date: 05/22/2025
 
 # Quickstart: Generate a video with Sora (preview)
 
-In this Quickstart, you generate video clips using the Azure OpenAI service. The example uses the Sora model, which is a video generation model that creates realistic and imaginative video scenes from text instructions. This guide shows you how to create a video generation job, poll for its status, and retrieve the generated video.
+In this quickstart, you generate video clips using the Azure OpenAI service. The example uses the Sora model, which is a video generation model that creates realistic and imaginative video scenes from text instructions. This guide shows you how to create a video generation job, poll for its status, and retrieve the generated video.
+
+For more information on video generation, see [Video generation concepts](./concepts/video-generation.md).
 
 
 ## Prerequisites
@@ -71,7 +73,10 @@ Create a new Python file named `quickstart.py`. Open the new file in your prefer
     create_url = f"{endpoint}/openai/v1/video/generations/jobs?api-version=preview"
     payload = {
         "prompt": "A cat playing piano in a jazz bar.",
-        "model": "sora"
+        "model": "sora",
+        "width": 1080,
+        "height": 1080,
+        "n_seconds": 10
     }
     response = requests.post(create_url, headers=headers, json=payload)
     response.raise_for_status()
