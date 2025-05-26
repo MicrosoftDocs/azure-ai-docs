@@ -19,7 +19,7 @@ The Responses API is a new stateful API from Azure OpenAI. It brings together th
 
 ### API support
 
-- [v1 preview API is required for access to the latest features](/azure/ai-services/openai/reference-preview-latest?#responses-api---create)
+- [v1 preview API is required for access to the latest features](../api-version-lifecycle.md#api-evolution)
 
 ### Region Availability
 
@@ -60,7 +60,7 @@ Not every model is available in the regions supported by the responses API. Chec
 
 ### Reference documentation
 
-- [Responses API reference documentation](/azure/ai-services/openai/reference-preview?#responses-api---create)
+- [Responses API reference documentation](/azure/ai-services/openai/reference-preview-latest?#responses-api---create)
 
 ## Getting started with the responses API
 
@@ -123,7 +123,7 @@ print(response.model_dump_json(indent=2))
 ### Microsoft Entra ID
 
 ```bash
-curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview" \
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
@@ -247,7 +247,7 @@ response = client.responses.retrieve("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
 ### Microsoft Entra ID
 
 ```bash
-curl -X GET "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/{response_id}?api-version=preview" \
+curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/{response_id}?api-version=preview \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" 
 ```
