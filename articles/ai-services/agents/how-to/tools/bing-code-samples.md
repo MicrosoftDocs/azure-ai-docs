@@ -60,12 +60,17 @@ from azure.ai.agents.models import BingGroundingTool
 # Create an Azure AI Client from an endpoint, copied from your Azure AI Foundry project.
 # You need to login to Azure subscription via Azure CLI and set the environment variables
 project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT environment variable is set
+subscription_id = os.environ["SUBSCRIPTION_ID"]  
+resource_group = os.environ["RESOURCE_GROUP"] 
+project_name = os.environ["PROJECT_NAME"]
 
 # Create an AIProjectClient instance
 project_client = AIProjectClient(
     endpoint=project_endpoint,
     credential=DefaultAzureCredential(),  # Use Azure Default Credential for authentication
-    api_version="latest",
+    subscription_id=subscription_id,
+    resource_group_name=resource_group_name,
+    project_name=project_name
 )
 ```
 
@@ -75,12 +80,13 @@ project_client = AIProjectClient(
 To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/).
 
 ```python
-conn_id = os.environ["BING_CONNECTION_NAME"]  # Ensure the BING_CONNECTION_NAME environment variable is set
-
-# Initialize the Bing Grounding tool
-bing = BingGroundingTool(connection_id=conn_id)
+conn_id = os.environ["BING_CONNECTION_ID"]  # Ensure the BING_CONNECTION_ID environment variable is set
 
 with project_client:
+    # Initialize the Bing Grounding tool with the connection ID
+    # freshness, count, set_lang and market are optional parameters
+    bing = BingGroundingTool(connection_id=conn_id, freshness="day", count=5, set_lang="en", market="us")
+
     # Create an agent with the Bing Grounding tool
     agent = project_client.agents.create_agent(
         model=os.environ["MODEL_DEPLOYMENT_NAME"],  # Model deployment name
