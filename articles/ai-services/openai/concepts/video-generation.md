@@ -47,5 +47,5 @@ A user can have two video creation jobs running at the same time. In that situat
 
 Sora has a robust safety stack including content filtering, abuse monitoring, sensitive content blocking, and safety classifiers.
 
-Sora does not generate scenes with acts of violence but can generate adjacent content, such as realistic war-like footage.
+Sora doesn't generate scenes with acts of violence but can generate adjacent content, such as realistic war-like footage.
 
