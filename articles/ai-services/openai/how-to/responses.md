@@ -1060,7 +1060,7 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version
   }'
 ```
 
-## Image Generation
+## Image generation
 
 The Responses API enables image generation as part of conversations and multi-step workflows. It supports image inputs and outputs within context and includes built-in tools for generating and editing images.
 
