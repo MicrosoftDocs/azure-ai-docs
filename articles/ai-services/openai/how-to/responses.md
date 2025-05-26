@@ -325,10 +325,10 @@ token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
+client = AzureOpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
   azure_ad_token_provider=token_provider,
-  api_version="2025-03-01-preview"
+  api_version="preview"
 )
 
 response = client.responses.delete("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
@@ -348,10 +348,10 @@ token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
+client = AzureOpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
   azure_ad_token_provider=token_provider,
-  api_version="2025-03-01-preview"
+  api_version="preview"
 )
 
 response = client.responses.create(
@@ -432,10 +432,10 @@ token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
+client = AzureOpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
   azure_ad_token_provider=token_provider,
-  api_version="2025-03-01-preview"
+  api_version="preview"
 )
 
 
@@ -469,10 +469,10 @@ token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  azure_ad_token_provider = token_provider,
-  api_version = "2025-04-01-preview" 
+client = AzureOpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  azure_ad_token_provider=token_provider,
+  api_version="preview"
 )
 
 response = client.responses.create(
@@ -500,10 +500,10 @@ token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
+client = AzureOpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
   azure_ad_token_provider=token_provider,
-  api_version="2025-03-01-preview"
+  api_version="preview"
 )
 
 response = client.responses.create(  
@@ -564,10 +564,10 @@ token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
+client = AzureOpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
   azure_ad_token_provider=token_provider,
-  api_version="2025-03-01-preview"
+  api_version="preview"
 )
 
 response = client.responses.input_items.list("resp_67d856fcfba0819081fd3cffee2aa1c0")
@@ -612,10 +612,10 @@ token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
+client = AzureOpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
   azure_ad_token_provider=token_provider,
-  api_version="2025-03-01-preview"
+  api_version="preview"
 )
 
 response = client.responses.create(
@@ -649,10 +649,10 @@ token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
+client = AzureOpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
   azure_ad_token_provider=token_provider,
-  api_version="2025-03-01-preview"
+  api_version="preview"
 )
 
 def encode_image(image_path):
@@ -684,837 +684,607 @@ response = client.responses.create(
 print(response)
 ```
 
+## Using remote MCP servers
+
+You can extend the capabilities of your model by connecting it to tools hosted on remote Model Context Protocol (MCP) servers. These servers are maintained by developers and organizations and expose tools that can be accessed by MCP-compatible clients, such as the Responses API.
+
+[Model Context Protocol](https://modelcontextprotocol.io/introduction) (MCP) is an open standard that defines how applications provide tools and contextual data to large language models (LLMs). It enables consistent, scalable integration of external tools into model workflows.
+
+The following example demonstrates how to use the fictitious MCP server to query information about the Azure REST API. This allows the model to retrieve and reason over repository content in real time.
+
+```bash
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -d '{
+  "model": "gpt-4.1",
+  "tools": [
+    {
+      "type": "mcp",
+      "server_label": "github",
+      "server_url": "https://contoso.com/Azure/azure-rest-api-specs",
+      "require_approval": "never"
+    }
+  ],
+  "input": "What is this repo in 100 words?"
+}'
+```
+
+```python
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = AzureOpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  azure_ad_token_provider=token_provider,
+  api_version="preview"
+)
+
+response = client.responses.create(
+    model="gpt-4.1", # replace with your model deployment name 
+    tools=[
+        {
+            "type": "mcp",
+            "server_label": "github",
+            "server_url": "https://contoso.com/Azure/azure-rest-api-specs",
+            "require_approval": "never"
+        },
+    ],
+    input="What transport protocols are supported in the 2025-03-26 version of the MCP spec?",
+)
+
+print(response.output_text)
+```
+
+The MCP tool works only in the Responses API, and is available across all newer models (gpt-4o, gpt-4.1, and our reasoning models). When you're using the MCP tool, you only pay for tokens used when importing tool definitions or making tool calls—there are no additional fees involved.
+
+### Approvals
+
+By default, the Responses API requires explicit approval before any data is shared with a remote MCP server. This approval step helps ensure transparency and gives you control over what information is sent externally.
+
+We recommend reviewing all data being shared with remote MCP servers and optionally logging it for auditing purposes.
+
+When an approval is required, the model returns a `mcp_approval_request` item in the response output. This object contains the details of the pending request and allows you to inspect or modify the data before proceeding.
+
+```json
+{
+  "id": "mcpr_682bd9cd428c8198b170dc6b549d66fc016e86a03f4cc828",
+  "type": "mcp_approval_request",
+  "arguments": {},
+  "name": "fetch_azure_rest_api_docs",
+  "server_label": "github"
+}
+```
+
+To proceed with the remote MCP call, you must respond to the approval request by creating a new response object that includes an mcp_approval_response item. This object confirms your intent to allow the model to send the specified data to the remote MCP server.
+
+```bash
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -d '{
+  "model": "gpt-4.1",
+  "tools": [
+    {
+      "type": "mcp",
+      "server_label": "github",
+      "server_url": "https://contoso.com/Azure/azure-rest-api-specs",
+      "require_approval": "never"
+    }
+  ],
+  "previous_response_id": "resp_682f750c5f9c8198aee5b480980b5cf60351aee697a7cd77",
+  "input": [{
+    "type": "mcp_approval_response",
+    "approve": true,
+    "approval_request_id": "mcpr_682bd9cd428c8198b170dc6b549d66fc016e86a03f4cc828"
+  }]
+}'
+```
+
+```python
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = AzureOpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  azure_ad_token_provider=token_provider,
+  api_version="preview"
+)
+
+response = client.responses.create(
+    model="gpt-4.1", # replace with your model deployment name 
+    tools=[
+        {
+            "type": "mcp",
+            "server_label": "github",
+            "server_url": "https://contoso.com/Azure/azure-rest-api-specs",
+            "require_approval": "never"
+        },
+    ],
+    previous_response_id="resp_682f750c5f9c8198aee5b480980b5cf60351aee697a7cd77",
+    input=[{
+        "type": "mcp_approval_response",
+        "approve": True,
+        "approval_request_id": "mcpr_682bd9cd428c8198b170dc6b549d66fc016e86a03f4cc828"
+    }],
+)
+```
+
+### Authentication
+
+Unlike the GitHub MCP server, most remote MCP servers require authentication. The MCP tool in the Responses API supports custom headers, allowing you to securely connect to these servers using the authentication scheme they require.
+
+You can specify headers such as API keys, OAuth access tokens, or other credentials directly in your request. The most commonly used header is the `Authorization` header.
+
+```bash
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -d '{
+        "model": "gpt-4.1",
+        "input": "What is this repo in 100 words?"
+        "tools": [
+            {
+                "type": "mcp",
+                "server_label": "github",
+                "server_url": "https://contoso.com/Azure/azure-rest-api-specs",
+                "headers": {
+                    "Authorization": "Bearer $YOUR_API_KEY"
+            }
+        ]
+    }'
+```
+
+```python
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = AzureOpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  azure_ad_token_provider=token_provider,
+  api_version="preview"
+)
+
+response = client.responses.create(
+    model="gpt-4.1",
+    input="What is this repo in 100 words?",
+    tools=[
+        {
+            "type": "mcp",
+            "server_label": "github",
+            "server_url": "https://gitmcp.io/Azure/azure-rest-api-specs",
+            "headers": {
+                "Authorization": "Bearer $YOUR_API_KEY"
+        }
+    ]
+)
+
+print(response.output_text)
+```
+
+## Background tasks
+
+Background mode allows you to run long-running tasks asynchronously using models like o3 and o1-pro. This is especially useful for complex reasoning tasks that may take several minutes to complete, such as those handled by agents like Codex or Deep Research.
+
+By enabling background mode, you can avoid timeouts and maintain reliability during extended operations. When a request is sent with `"background": true`, the task is processed asynchronously, and you can poll for its status over time.
+
+To start a background task, set the background parameter to true in your request:
+
+```bash
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -d '{
+    "model": "o3",
+    "input": "Write me a very long story",
+    "background": true
+  }'
+```
+
+```python
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = AzureOpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  azure_ad_token_provider=token_provider,
+  api_version="preview"
+)
+
+response = client.responses.create(
+    model = "o3",
+    input = "Write me a very long story",
+    background = True
+)
+
+print(response.status)
+```
+
+Use the `GET` endpoint to check the status of a background response. Continue polling while the status is queued or in_progress. Once the response reaches a final (terminal) state, it will be available for retrieval.
+
+```bash
+curl GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_1234567890?api-version=preview \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN"
+```
+
+```python
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = AzureOpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  azure_ad_token_provider=token_provider,
+  api_version="preview"
+)
+
+response = client.responses.create(
+    model = "o3",
+    input = "Write me a very long story",
+    background = True
+)
+
+while response.status in {"queued", "in_progress"}:
+    print(f"Current status: {resp.status}")
+    sleep(2)
+    response = client.responses.retrieve(response.id)
+
+print(f"Final status: {response.status}\nOutput:\n{response.output_text}")
+```
+
+You can cancel an in-progress background task using the cancel endpoint. Canceling is idempotent—subsequent calls will return the final response object.
+
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_1234567890/cancel?api-version=preview \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN"
+```
+
+```python
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = AzureOpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  azure_ad_token_provider=token_provider,
+  api_version="preview"
+)
+
+response = client.responses.cancel("resp_1234567890")
+
+print(response.status)
+```
+
+### Stream a background response
+
+To stream a background response, set both `background` and `stream` to true. This is useful if you want to resume streaming later in case of a dropped connection. Use the sequence_number from each event to track your position.
+
+```bash
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -d '{
+    "model": "o3",
+    "input": "Write me a very long story",
+    "background": true,
+    "stream": true
+  }'
+
+```
+
+```python
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = AzureOpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  azure_ad_token_provider=token_provider,
+  api_version="preview"
+)
+
+# Fire off an async response but also start streaming immediately
+stream = client.responses.create(
+    model="o3",
+    input="Write me a very long story",
+    background=True,
+    stream=True,
+)
+
+cursor = None
+for event in stream:
+    print(event)
+    cursor = event["sequence_number"]
+```
+
+> [!NOTE] 
+> Background responses currently have a higher time-to-first-token latency than synchronous responses. Improvements are underway to reduce this gap.
+
+### Limitations
+
+* Background mode requires `store=true`. Stateless requests are not supported.
+* You can only resume streaming if the original request included `stream=true`.
+* To cancel a synchronous response, terminate the connection directly.
+
+### Resume streaming from a specific point
+
+```bash
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_1234567890?stream=true&starting_after=42&api-version=2025-04-01-preview \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN"
+```
+
+## Encrypted Reasoning Items
+
+When using the Responses API in stateless mode — either by setting `store` to false or when your organization is enrolled in zero data retention — you must still preserve reasoning context across conversation turns. To do this, include encrypted reasoning items in your API requests.
+
+To retain reasoning items across turns, add `reasoning.encrypted_content` to the `include` parameter in your request. This ensures that the response includes an encrypted version of the reasoning trace, which can be passed along in future requests.
+
+```bash
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -d '{
+    "model": "o4-mini",
+    "reasoning": {"effort": "medium"},
+    "input": "What is the weather like today?",
+    "tools": [<YOUR_FUNCTION GOES HERE>],
+    "include": ["reasoning.encrypted_content"]
+  }'
+```
+
+## Image generation
+
+The Responses API enables image generation as part of conversations and multi-step workflows. It supports image inputs and outputs within context and includes built-in tools for generating and editing images.
+
+Compared to the standalone Image API, the Responses API offers several advantages:
+
+* **Multi-turn editing**: Iteratively refine and edit images using natural language prompts.
+* **Streaming**: Display partial image outputs during generation to improve perceived latency.
+* **Flexible inputs**: Accept image File IDs as inputs, in addition to raw image bytes.
+
+> [!NOTE]
+> The image generation tool in the Responses API is only supported by the `gpt-image-1` model. You can however call this model from this list of supported models - `gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `o3`.
+
+Use the Responses API if you want to:
+
+* Build conversational image experiences with GPT Image.
+* Enable iterative image editing through multi-turn prompts.
+* Stream partial image results during generation for a smoother user experience.
+
+Generate an image
+
+
+```python
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = AzureOpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  azure_ad_token_provider=token_provider,
+  api_version="preview"
+)
+
+response = client.responses.create(
+    model="o3",
+    input="Generate an image of gray tabby cat hugging an otter with an orange scarf",
+    tools=[{"type": "image_generation"}],
+)
+
+# Save the image to a file
+image_data = [
+    output.result
+    for output in response.output
+    if output.type == "image_generation_call"
+]
+    
+if image_data:
+    image_base64 = image_data[0]
+    with open("otter.png", "wb") as f:
+        f.write(base64.b64decode(image_base64))
+```
+
+You can perform multi-turn image generation by using the output of image generation in subsequent calls or just using the `1previous_response_id`.
+
+```python
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = AzureOpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  azure_ad_token_provider=token_provider,
+  api_version="preview"
+)
+
+image_data = [
+    output.result
+    for output in response.output
+    if output.type == "image_generation_call"
+]
+
+if image_data:
+    image_base64 = image_data[0]
+
+    with open("cat_and_otter.png", "wb") as f:
+        f.write(base64.b64decode(image_base64))
+
+
+# Follow up
+
+response_followup = client.responses.create(
+    model="gpt-4.1-mini",
+    previous_response_id=response.id,
+    input="Now make it look realistic",
+    tools=[{"type": "image_generation"}],
+)
+
+image_data_followup = [
+    output.result
+    for output in response_followup.output
+    if output.type == "image_generation_call"
+]
+
+if image_data_followup:
+    image_base64 = image_data_followup[0]
+    with open("cat_and_otter_realistic.png", "wb") as f:
+        f.write(base64.b64decode(image_base64))
+```
+
+### Streaming
+
+You can stream partial images using Responses API. The `partial_images` can be used to receive 1-3 partial images
+
+```python
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = AzureOpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  azure_ad_token_provider=token_provider,
+  api_version="preview"
+)
+
+stream = client.responses.create(
+    model="gpt-4.1",
+    input="Draw a gorgeous image of a river made of white owl feathers, snaking its way through a serene winter landscape",
+    stream=True,
+    tools=[{"type": "image_generation", "partial_images": 2}],
+)
+
+for event in stream:
+    if event.type == "response.image_generation_call.partial_image":
+        idx = event.partial_image_index
+        image_base64 = event.partial_image_b64
+        image_bytes = base64.b64decode(image_base64)
+        with open(f"river{idx}.png", "wb") as f:
+            f.write(image_bytes)
+```
+
+
+### Edit images
+
+```python
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import base64
+
+client = AzureOpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  azure_ad_token_provider=token_provider,
+  api_version="preview"
+)
+
+def create_file(file_path):
+  with open(file_path, "rb") as file_content:
+    result = client.files.create(
+        file=file_content,
+        purpose="vision",
+    )
+    return result.id
+
+def encode_image(file_path):
+    with open(file_path, "rb") as f:
+        base64_image = base64.b64encode(f.read()).decode("utf-8")
+    return base64_image
+
+prompt = """Generate a photorealistic image of a gift basket on a white background 
+labeled 'Relax & Unwind' with a ribbon and handwriting-like font, 
+containing all the items in the reference pictures."""
+
+base64_image1 = encode_image("image1.png")
+base64_image2 = encode_image("image2.png")
+file_id1 = create_file("image3.png")
+file_id2 = create_file("image4.png")
+
+response = client.responses.create(
+    model="gpt-4.1",
+    input=[
+        {
+            "role": "user",
+            "content": [
+                {"type": "input_text", "text": prompt},
+                {
+                    "type": "input_image",
+                    "image_url": f"data:image/jpeg;base64,{base64_image1}",
+                },
+                {
+                    "type": "input_image",
+                    "image_url": f"data:image/jpeg;base64,{base64_image2}",
+                },
+                {
+                    "type": "input_image",
+                    "file_id": file_id1,
+                },
+                {
+                    "type": "input_image",
+                    "file_id": file_id2,
+                }
+            ],
+        }
+    ],
+    tools=[{"type": "image_generation"}],
+)
+
+image_generation_calls = [
+    output
+    for output in response.output
+    if output.type == "image_generation_call"
+]
+
+image_data = [output.result for output in image_generation_calls]
+
+if image_data:
+    image_base64 = image_data[0]
+    with open("gift-basket.png", "wb") as f:
+        f.write(base64.b64decode(image_base64))
+else:
+    print(response.output.content)
+```
+
+
 ## Reasoning models
 
 For examples of how to use reasoning models with the responses API see the [reasoning models guide](./reasoning.md#reasoning-summary).
 
 ## Computer use
 
-In this section, we provide a simple example script that integrates Azure OpenAI's `computer-use-preview` model with [Playwright](https://playwright.dev/) to automate basic browser interactions. Combining the model with [Playwright](https://playwright.dev/) allows the model to see the browser screen, make decisions, and perform actions like clicking, typing, and navigating websites. You should exercise caution when running this example code. This code is designed to be run locally but should only be executed in a test environment. Use a human to confirm decisions and don't give the model access to sensitive data.
-
-:::image type="content" source="../media/computer-use-preview.gif" alt-text="Animated gif of computer-use-preview model integrated with playwright." lightbox="../media/computer-use-preview.gif":::
-
-First you'll need to install the Python library for [Playwright](https://playwright.dev/).
-
-```cmd
-pip install playwright
-```
-
-Once the package is installed, you'll also need to run
-
-```cmd
-playwright install
-```
-
-### Imports and configuration
-
-First, we import the necessary libraries and define our configuration parameters. Since we're using `asyncio` we'll be executing this code outside of Jupyter notebooks. We'll walk through the code first in chunks and then demonstrate how to use it.
-
-```python
-import os
-import asyncio
-import base64
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-from playwright.async_api import async_playwright, TimeoutError
-
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-
-# Configuration
-
-AZURE_ENDPOINT = os.getenv("AZURE_OPENAI_ENDPOINT")
-MODEL = "computer-use-preview" # Set to model deployment name
-DISPLAY_WIDTH = 1024
-DISPLAY_HEIGHT = 768
-API_VERSION = "2025-03-01-preview" #Use this API version or later
-ITERATIONS = 5 # Max number of iterations before returning control to human supervisor
-```
-
-### Key mapping for browser interaction
-
-Next, we set up mappings for special keys that the model might need to pass to Playwright. Ultimately the model is never performing actions itself, it passes representations of commands and you have to provide the final integration layer that can take those commands and execute them in your chosen environment.
-
-This isn't an exhaustive list of possible key mappings. You can expand this list as needed. This dictionary is specific to integrating the model with Playwright. If you were integrating the model with an alternate library to provide API access to your operating systems keyboard/mouse you would need to provide a mapping specific to that library.
-
-```python
-# Key mapping for special keys in Playwright
-KEY_MAPPING = {
-    "/": "Slash", "\\": "Backslash", "alt": "Alt", "arrowdown": "ArrowDown",
-    "arrowleft": "ArrowLeft", "arrowright": "ArrowRight", "arrowup": "ArrowUp",
-    "backspace": "Backspace", "ctrl": "Control", "delete": "Delete", 
-    "enter": "Enter", "esc": "Escape", "shift": "Shift", "space": " ",
-    "tab": "Tab", "win": "Meta", "cmd": "Meta", "super": "Meta", "option": "Alt"
-}
-```
-
-This dictionary translates user-friendly key names to the format expected by Playwright's keyboard API.
-
-### Coordinate validation function
-
-To make sure that any mouse actions that are passed from the model stay within the browser window boundaries we'll add the following utility function:
-
-```python
-def validate_coordinates(x, y):
-    """Ensure coordinates are within display bounds."""
-    return max(0, min(x, DISPLAY_WIDTH)), max(0, min(y, DISPLAY_HEIGHT))
-```
-
-This simple utility attempts to prevent out-of-bounds errors by clamping coordinates to the window dimensions.
-
-### Action handling
-
-The core of our browser automation is the action handler that processes various types of user interactions and convert them into actions within the browser.
-
-```python
-async def handle_action(page, action):
-    """Handle different action types from the model."""
-    action_type = action.type
-    
-    if action_type == "drag":
-        print("Drag action is not supported in this implementation. Skipping.")
-        return
-        
-    elif action_type == "click":
-        button = getattr(action, "button", "left")
-        # Validate coordinates
-        x, y = validate_coordinates(action.x, action.y)
-        
-        print(f"\tAction: click at ({x}, {y}) with button '{button}'")
-        
-        if button == "back":
-            await page.go_back()
-        elif button == "forward":
-            await page.go_forward()
-        elif button == "wheel":
-            await page.mouse.wheel(x, y)
-        else:
-            button_type = {"left": "left", "right": "right", "middle": "middle"}.get(button, "left")
-            await page.mouse.click(x, y, button=button_type)
-            try:
-                await page.wait_for_load_state("domcontentloaded", timeout=3000)
-            except TimeoutError:
-                pass
-        
-    elif action_type == "double_click":
-        # Validate coordinates
-        x, y = validate_coordinates(action.x, action.y)
-        
-        print(f"\tAction: double click at ({x}, {y})")
-        await page.mouse.dblclick(x, y)
-        
-    elif action_type == "scroll":
-        scroll_x = getattr(action, "scroll_x", 0)
-        scroll_y = getattr(action, "scroll_y", 0)
-        # Validate coordinates
-        x, y = validate_coordinates(action.x, action.y)
-        
-        print(f"\tAction: scroll at ({x}, {y}) with offsets ({scroll_x}, {scroll_y})")
-        await page.mouse.move(x, y)
-        await page.evaluate(f"window.scrollBy({{left: {scroll_x}, top: {scroll_y}, behavior: 'smooth'}});")
-        
-    elif action_type == "keypress":
-        keys = getattr(action, "keys", [])
-        print(f"\tAction: keypress {keys}")
-        mapped_keys = [KEY_MAPPING.get(key.lower(), key) for key in keys]
-        
-        if len(mapped_keys) > 1:
-            # For key combinations (like Ctrl+C)
-            for key in mapped_keys:
-                await page.keyboard.down(key)
-            await asyncio.sleep(0.1)
-            for key in reversed(mapped_keys):
-                await page.keyboard.up(key)
-        else:
-            for key in mapped_keys:
-                await page.keyboard.press(key)
-                
-    elif action_type == "type":
-        text = getattr(action, "text", "")
-        print(f"\tAction: type text: {text}")
-        await page.keyboard.type(text, delay=20)
-        
-    elif action_type == "wait":
-        ms = getattr(action, "ms", 1000)
-        print(f"\tAction: wait {ms}ms")
-        await asyncio.sleep(ms / 1000)
-        
-    elif action_type == "screenshot":
-        print("\tAction: screenshot")
-        
-    else:
-        print(f"\tUnrecognized action: {action_type}")
-```
-
-This function attempts to handle various types of actions. We need to translate between the commands that the `computer-use-preview` will generate and the Playwright library which will execute the actions. For more information refer to the reference documentation for `ComputerAction`.
-
-- [Click](/azure/ai-services/openai/reference-preview#click)
-- [DoubleClick](/azure/ai-services/openai/reference-preview#doubleclick)
-- [Drag](/azure/ai-services/openai/reference-preview#drag)
-- [KeyPress](/azure/ai-services/openai/reference-preview#keypress)
-- [Move](/azure/ai-services/openai/reference-preview#move)
-- [Screenshot](/azure/ai-services/openai/reference-preview#screenshot)
-- [Scroll](/azure/ai-services/openai/reference-preview#scroll)
-- [Type](/azure/ai-services/openai/reference-preview#type)
-- [Wait](/azure/ai-services/openai/reference-preview#wait)
-
-### Screenshot capture
-
-In order for the model to be able to see what it's interacting with the model needs a way to capture screenshots. For this code we're using Playwright to capture the screenshots and we're limiting the view to just the content in the browser window. The screenshot won't include the url bar or other aspects of the browser GUI. If you need the model to see outside the main browser window you could augment the model by creating your own screenshot function. 
-
-```python
-async def take_screenshot(page):
-    """Take a screenshot and return base64 encoding with caching for failures."""
-    global last_successful_screenshot
-    
-    try:
-        screenshot_bytes = await page.screenshot(full_page=False)
-        last_successful_screenshot = base64.b64encode(screenshot_bytes).decode("utf-8")
-        return last_successful_screenshot
-    except Exception as e:
-        print(f"Screenshot failed: {e}")
-        print(f"Using cached screenshot from previous successful capture")
-        if last_successful_screenshot:
-            return last_successful_screenshot
-```
-
-This function captures the current browser state as an image and returns it as a base64-encoded string, ready to be sent to the model. We'll constantly do this in a loop after each step allowing the model to see if the command it tried to execute was successful or not, which then allows it to adjust based on the contents of the screenshot. We could let the model decide if it needs to take a screenshot, but for simplicity we will force a screenshot to be taken for each iteration.
-
-### Model response processing
-
-This function processes the model's responses and executes the requested actions:
-
-```python
-async def process_model_response(client, response, page, max_iterations=ITERATIONS):
-    """Process the model's response and execute actions."""
-    for iteration in range(max_iterations):
-        if not hasattr(response, 'output') or not response.output:
-            print("No output from model.")
-            break
-        
-        # Safely access response id
-        response_id = getattr(response, 'id', 'unknown')
-        print(f"\nIteration {iteration + 1} - Response ID: {response_id}\n")
-        
-        # Print text responses and reasoning
-        for item in response.output:
-            # Handle text output
-            if hasattr(item, 'type') and item.type == "text":
-                print(f"\nModel message: {item.text}\n")
-                
-            # Handle reasoning output
-            if hasattr(item, 'type') and item.type == "reasoning":
-                # Extract meaningful content from the reasoning
-                meaningful_content = []
-                
-                if hasattr(item, 'summary') and item.summary:
-                    for summary in item.summary:
-                        # Handle different potential formats of summary content
-                        if isinstance(summary, str) and summary.strip():
-                            meaningful_content.append(summary)
-                        elif hasattr(summary, 'text') and summary.text.strip():
-                            meaningful_content.append(summary.text)
-                
-                # Only print reasoning section if there's actual content
-                if meaningful_content:
-                    print("=== Model Reasoning ===")
-                    for idx, content in enumerate(meaningful_content, 1):
-                        print(f"{content}")
-                    print("=====================\n")
-        
-        # Extract computer calls
-        computer_calls = [item for item in response.output 
-                         if hasattr(item, 'type') and item.type == "computer_call"]
-        
-        if not computer_calls:
-            print("No computer call found in response. Reverting control to human operator")
-            break
-        
-        computer_call = computer_calls[0]
-        if not hasattr(computer_call, 'call_id') or not hasattr(computer_call, 'action'):
-            print("Computer call is missing required attributes.")
-            break
-        
-        call_id = computer_call.call_id
-        action = computer_call.action
-        
-        # Handle safety checks
-        acknowledged_checks = []
-        if hasattr(computer_call, 'pending_safety_checks') and computer_call.pending_safety_checks:
-            pending_checks = computer_call.pending_safety_checks
-            print("\nSafety checks required:")
-            for check in pending_checks:
-                print(f"- {check.code}: {check.message}")
-            
-            if input("\nDo you want to proceed? (y/n): ").lower() != 'y':
-                print("Operation cancelled by user.")
-                break
-            
-            acknowledged_checks = pending_checks
-        
-        # Execute the action
-        try:
-           await page.bring_to_front()
-           await handle_action(page, action)
-           
-           # Check if a new page was created after the action
-           if action.type in ["click"]:
-               await asyncio.sleep(1.5)
-               # Get all pages in the context
-               all_pages = page.context.pages
-               # If we have multiple pages, check if there's a newer one
-               if len(all_pages) > 1:
-                   newest_page = all_pages[-1]  # Last page is usually the newest
-                   if newest_page != page and newest_page.url not in ["about:blank", ""]:
-                       print(f"\tSwitching to new tab: {newest_page.url}")
-                       page = newest_page  # Update our page reference
-           elif action.type != "wait":
-               await asyncio.sleep(0.5)
-               
-        except Exception as e:
-           print(f"Error handling action {action.type}: {e}")
-           import traceback
-           traceback.print_exc()    
-
-        # Take a screenshot after the action
-        screenshot_base64 = await take_screenshot(page)
-
-        print("\tNew screenshot taken")
-        
-        # Prepare input for the next request
-        input_content = [{
-            "type": "computer_call_output",
-            "call_id": call_id,
-            "output": {
-                "type": "input_image",
-                "image_url": f"data:image/png;base64,{screenshot_base64}"
-            }
-        }]
-        
-        # Add acknowledged safety checks if any
-        if acknowledged_checks:
-            acknowledged_checks_dicts = []
-            for check in acknowledged_checks:
-                acknowledged_checks_dicts.append({
-                    "id": check.id,
-                    "code": check.code,
-                    "message": check.message
-                })
-            input_content[0]["acknowledged_safety_checks"] = acknowledged_checks_dicts
-        
-        # Add current URL for context
-        try:
-            current_url = page.url
-            if current_url and current_url != "about:blank":
-                input_content[0]["current_url"] = current_url
-                print(f"\tCurrent URL: {current_url}")
-        except Exception as e:
-            print(f"Error getting URL: {e}")
-        
-        # Send the screenshot back for the next step
-        try:
-            response = client.responses.create(
-                model=MODEL,
-                previous_response_id=response_id,
-                tools=[{
-                    "type": "computer_use_preview",
-                    "display_width": DISPLAY_WIDTH,
-                    "display_height": DISPLAY_HEIGHT,
-                    "environment": "browser"
-                }],
-                input=input_content,
-                truncation="auto"
-            )
-
-            print("\tModel processing screenshot")
-        except Exception as e:
-            print(f"Error in API call: {e}")
-            import traceback
-            traceback.print_exc()
-            break
-    
-    if iteration >= max_iterations - 1:
-        print("Reached maximum number of iterations. Stopping.")
-```
-
-In this section we have added code that:
-
-- Extracts and displays text and reasoning from the model.
-- Processes computer action calls.
-- Handles potential safety checks requiring user confirmation.
-- Executes the requested action.
-- Captures a new screenshot.
-- Sends the updated state back to the model and defines the [`ComputerTool`](/azure/ai-services/openai/reference-preview#computertool).
-- Repeats this process for multiple iterations.
-
-### Main function
-
-The main function coordinates the entire process:
-
-```python
-    # Initialize OpenAI client
-    client = AzureOpenAI(
-        azure_endpoint=AZURE_ENDPOINT,
-        azure_ad_token_provider=token_provider,
-        api_version=API_VERSION
-    )
-    
-    # Initialize Playwright
-    async with async_playwright() as playwright:
-        browser = await playwright.chromium.launch(
-            headless=False,
-            args=[f"--window-size={DISPLAY_WIDTH},{DISPLAY_HEIGHT}", "--disable-extensions"]
-        )
-        
-        context = await browser.new_context(
-            viewport={"width": DISPLAY_WIDTH, "height": DISPLAY_HEIGHT},
-            accept_downloads=True
-        )
-        
-        page = await context.new_page()
-        
-        # Navigate to starting page
-        await page.goto("https://www.bing.com", wait_until="domcontentloaded")
-        print("Browser initialized to Bing.com")
-        
-        # Main interaction loop
-        try:
-            while True:
-                print("\n" + "="*50)
-                user_input = input("Enter a task to perform (or 'exit' to quit): ")
-                
-                if user_input.lower() in ('exit', 'quit'):
-                    break
-                
-                if not user_input.strip():
-                    continue
-                
-                # Take initial screenshot
-                screenshot_base64 = await take_screenshot(page)
-                print("\nTake initial screenshot")
-                
-                # Initial request to the model
-                response = client.responses.create(
-                    model=MODEL,
-                    tools=[{
-                        "type": "computer_use_preview",
-                        "display_width": DISPLAY_WIDTH,
-                        "display_height": DISPLAY_HEIGHT,
-                        "environment": "browser"
-                    }],
-                    instructions = "You are an AI agent with the ability to control a browser. You can control the keyboard and mouse. You take a screenshot after each action to check if your action was successful. Once you have completed the requested task you should stop running and pass back control to your human operator.",
-                    input=[{
-                        "role": "user",
-                        "content": [{
-                            "type": "input_text",
-                            "text": user_input
-                        }, {
-                            "type": "input_image",
-                            "image_url": f"data:image/png;base64,{screenshot_base64}"
-                        }]
-                    }],
-                    reasoning={"generate_summary": "concise"},
-                    truncation="auto"
-                )
-                print("\nSending model initial screenshot and instructions")
-
-                # Process model actions
-                await process_model_response(client, response, page)
-                
-        except Exception as e:
-            print(f"An error occurred: {e}")
-            import traceback
-            traceback.print_exc()
-        
-        finally:
-            # Close browser
-            await context.close()
-            await browser.close()
-            print("Browser closed.")
-
-if __name__ == "__main__":
-    asyncio.run(main())
-```
-
-The main function:
-
-- Initializes the AzureOpenAI client.
-- Sets up the Playwright browser.
-- Starts at Bing.com.
-- Enters a loop to accept user tasks.
-- Captures the initial state.
-- Sends the task and screenshot to the model.
-- Processes the model's response.
-- Repeats until the user exits.
-- Ensures the browser is properly closed.
-
-### Complete script
-
-> [!CAUTION]
-> This code is experimental and for demonstration purposes only. It's only intended to illustrate the basic flow of the responses API and the `computer-use-preview` model. While you can execute this code on your local computer, we strongly recommend running this code on a low privilege virtual machine with no access to sensitive data. This code is for basic testing purposes only.
-
-```python
-import os
-import asyncio
-import base64
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-from playwright.async_api import async_playwright, TimeoutError
-
-
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-# Configuration
-
-AZURE_ENDPOINT = os.getenv("AZURE_OPENAI_ENDPOINT")
-MODEL = "computer-use-preview"
-DISPLAY_WIDTH = 1024
-DISPLAY_HEIGHT = 768
-API_VERSION = "2025-03-01-preview"
-ITERATIONS = 5 # Max number of iterations before forcing the model to return control to the human supervisor
-
-# Key mapping for special keys in Playwright
-KEY_MAPPING = {
-    "/": "Slash", "\\": "Backslash", "alt": "Alt", "arrowdown": "ArrowDown",
-    "arrowleft": "ArrowLeft", "arrowright": "ArrowRight", "arrowup": "ArrowUp",
-    "backspace": "Backspace", "ctrl": "Control", "delete": "Delete", 
-    "enter": "Enter", "esc": "Escape", "shift": "Shift", "space": " ",
-    "tab": "Tab", "win": "Meta", "cmd": "Meta", "super": "Meta", "option": "Alt"
-}
-
-def validate_coordinates(x, y):
-    """Ensure coordinates are within display bounds."""
-    return max(0, min(x, DISPLAY_WIDTH)), max(0, min(y, DISPLAY_HEIGHT))
-
-async def handle_action(page, action):
-    """Handle different action types from the model."""
-    action_type = action.type
-    
-    if action_type == "drag":
-        print("Drag action is not supported in this implementation. Skipping.")
-        return
-        
-    elif action_type == "click":
-        button = getattr(action, "button", "left")
-        # Validate coordinates
-        x, y = validate_coordinates(action.x, action.y)
-        
-        print(f"\tAction: click at ({x}, {y}) with button '{button}'")
-        
-        if button == "back":
-            await page.go_back()
-        elif button == "forward":
-            await page.go_forward()
-        elif button == "wheel":
-            await page.mouse.wheel(x, y)
-        else:
-            button_type = {"left": "left", "right": "right", "middle": "middle"}.get(button, "left")
-            await page.mouse.click(x, y, button=button_type)
-            try:
-                await page.wait_for_load_state("domcontentloaded", timeout=3000)
-            except TimeoutError:
-                pass
-        
-    elif action_type == "double_click":
-        # Validate coordinates
-        x, y = validate_coordinates(action.x, action.y)
-        
-        print(f"\tAction: double click at ({x}, {y})")
-        await page.mouse.dblclick(x, y)
-        
-    elif action_type == "scroll":
-        scroll_x = getattr(action, "scroll_x", 0)
-        scroll_y = getattr(action, "scroll_y", 0)
-        # Validate coordinates
-        x, y = validate_coordinates(action.x, action.y)
-        
-        print(f"\tAction: scroll at ({x}, {y}) with offsets ({scroll_x}, {scroll_y})")
-        await page.mouse.move(x, y)
-        await page.evaluate(f"window.scrollBy({{left: {scroll_x}, top: {scroll_y}, behavior: 'smooth'}});")
-        
-    elif action_type == "keypress":
-        keys = getattr(action, "keys", [])
-        print(f"\tAction: keypress {keys}")
-        mapped_keys = [KEY_MAPPING.get(key.lower(), key) for key in keys]
-        
-        if len(mapped_keys) > 1:
-            # For key combinations (like Ctrl+C)
-            for key in mapped_keys:
-                await page.keyboard.down(key)
-            await asyncio.sleep(0.1)
-            for key in reversed(mapped_keys):
-                await page.keyboard.up(key)
-        else:
-            for key in mapped_keys:
-                await page.keyboard.press(key)
-                
-    elif action_type == "type":
-        text = getattr(action, "text", "")
-        print(f"\tAction: type text: {text}")
-        await page.keyboard.type(text, delay=20)
-        
-    elif action_type == "wait":
-        ms = getattr(action, "ms", 1000)
-        print(f"\tAction: wait {ms}ms")
-        await asyncio.sleep(ms / 1000)
-        
-    elif action_type == "screenshot":
-        print("\tAction: screenshot")
-        
-    else:
-        print(f"\tUnrecognized action: {action_type}")
-
-async def take_screenshot(page):
-    """Take a screenshot and return base64 encoding with caching for failures."""
-    global last_successful_screenshot
-    
-    try:
-        screenshot_bytes = await page.screenshot(full_page=False)
-        last_successful_screenshot = base64.b64encode(screenshot_bytes).decode("utf-8")
-        return last_successful_screenshot
-    except Exception as e:
-        print(f"Screenshot failed: {e}")
-        print(f"Using cached screenshot from previous successful capture")
-        if last_successful_screenshot:
-            return last_successful_screenshot
-
-
-async def process_model_response(client, response, page, max_iterations=ITERATIONS):
-    """Process the model's response and execute actions."""
-    for iteration in range(max_iterations):
-        if not hasattr(response, 'output') or not response.output:
-            print("No output from model.")
-            break
-        
-        # Safely access response id
-        response_id = getattr(response, 'id', 'unknown')
-        print(f"\nIteration {iteration + 1} - Response ID: {response_id}\n")
-        
-        # Print text responses and reasoning
-        for item in response.output:
-            # Handle text output
-            if hasattr(item, 'type') and item.type == "text":
-                print(f"\nModel message: {item.text}\n")
-                
-            # Handle reasoning output
-            if hasattr(item, 'type') and item.type == "reasoning":
-                # Extract meaningful content from the reasoning
-                meaningful_content = []
-                
-                if hasattr(item, 'summary') and item.summary:
-                    for summary in item.summary:
-                        # Handle different potential formats of summary content
-                        if isinstance(summary, str) and summary.strip():
-                            meaningful_content.append(summary)
-                        elif hasattr(summary, 'text') and summary.text.strip():
-                            meaningful_content.append(summary.text)
-                
-                # Only print reasoning section if there's actual content
-                if meaningful_content:
-                    print("=== Model Reasoning ===")
-                    for idx, content in enumerate(meaningful_content, 1):
-                        print(f"{content}")
-                    print("=====================\n")
-        
-        # Extract computer calls
-        computer_calls = [item for item in response.output 
-                         if hasattr(item, 'type') and item.type == "computer_call"]
-        
-        if not computer_calls:
-            print("No computer call found in response. Reverting control to human supervisor")
-            break
-        
-        computer_call = computer_calls[0]
-        if not hasattr(computer_call, 'call_id') or not hasattr(computer_call, 'action'):
-            print("Computer call is missing required attributes.")
-            break
-        
-        call_id = computer_call.call_id
-        action = computer_call.action
-        
-        # Handle safety checks
-        acknowledged_checks = []
-        if hasattr(computer_call, 'pending_safety_checks') and computer_call.pending_safety_checks:
-            pending_checks = computer_call.pending_safety_checks
-            print("\nSafety checks required:")
-            for check in pending_checks:
-                print(f"- {check.code}: {check.message}")
-            
-            if input("\nDo you want to proceed? (y/n): ").lower() != 'y':
-                print("Operation cancelled by user.")
-                break
-            
-            acknowledged_checks = pending_checks
-        
-        # Execute the action
-        try:
-           await page.bring_to_front()
-           await handle_action(page, action)
-           
-           # Check if a new page was created after the action
-           if action.type in ["click"]:
-               await asyncio.sleep(1.5)
-               # Get all pages in the context
-               all_pages = page.context.pages
-               # If we have multiple pages, check if there's a newer one
-               if len(all_pages) > 1:
-                   newest_page = all_pages[-1]  # Last page is usually the newest
-                   if newest_page != page and newest_page.url not in ["about:blank", ""]:
-                       print(f"\tSwitching to new tab: {newest_page.url}")
-                       page = newest_page  # Update our page reference
-           elif action.type != "wait":
-               await asyncio.sleep(0.5)
-               
-        except Exception as e:
-           print(f"Error handling action {action.type}: {e}")
-           import traceback
-           traceback.print_exc()    
-
-        # Take a screenshot after the action
-        screenshot_base64 = await take_screenshot(page)
-
-        print("\tNew screenshot taken")
-        
-        # Prepare input for the next request
-        input_content = [{
-            "type": "computer_call_output",
-            "call_id": call_id,
-            "output": {
-                "type": "input_image",
-                "image_url": f"data:image/png;base64,{screenshot_base64}"
-            }
-        }]
-        
-        # Add acknowledged safety checks if any
-        if acknowledged_checks:
-            acknowledged_checks_dicts = []
-            for check in acknowledged_checks:
-                acknowledged_checks_dicts.append({
-                    "id": check.id,
-                    "code": check.code,
-                    "message": check.message
-                })
-            input_content[0]["acknowledged_safety_checks"] = acknowledged_checks_dicts
-        
-        # Add current URL for context
-        try:
-            current_url = page.url
-            if current_url and current_url != "about:blank":
-                input_content[0]["current_url"] = current_url
-                print(f"\tCurrent URL: {current_url}")
-        except Exception as e:
-            print(f"Error getting URL: {e}")
-        
-        # Send the screenshot back for the next step
-        try:
-            response = client.responses.create(
-                model=MODEL,
-                previous_response_id=response_id,
-                tools=[{
-                    "type": "computer_use_preview",
-                    "display_width": DISPLAY_WIDTH,
-                    "display_height": DISPLAY_HEIGHT,
-                    "environment": "browser"
-                }],
-                input=input_content,
-                truncation="auto"
-            )
-
-            print("\tModel processing screenshot")
-        except Exception as e:
-            print(f"Error in API call: {e}")
-            import traceback
-            traceback.print_exc()
-            break
-    
-    if iteration >= max_iterations - 1:
-        print("Reached maximum number of iterations. Stopping.")
-        
-async def main():    
-    # Initialize OpenAI client
-    client = AzureOpenAI(
-        azure_endpoint=AZURE_ENDPOINT,
-        azure_ad_token_provider=token_provider,
-        api_version=API_VERSION
-    )
-    
-    # Initialize Playwright
-    async with async_playwright() as playwright:
-        browser = await playwright.chromium.launch(
-            headless=False,
-            args=[f"--window-size={DISPLAY_WIDTH},{DISPLAY_HEIGHT}", "--disable-extensions"]
-        )
-        
-        context = await browser.new_context(
-            viewport={"width": DISPLAY_WIDTH, "height": DISPLAY_HEIGHT},
-            accept_downloads=True
-        )
-        
-        page = await context.new_page()
-        
-        # Navigate to starting page
-        await page.goto("https://www.bing.com", wait_until="domcontentloaded")
-        print("Browser initialized to Bing.com")
-        
-        # Main interaction loop
-        try:
-            while True:
-                print("\n" + "="*50)
-                user_input = input("Enter a task to perform (or 'exit' to quit): ")
-                
-                if user_input.lower() in ('exit', 'quit'):
-                    break
-                
-                if not user_input.strip():
-                    continue
-                
-                # Take initial screenshot
-                screenshot_base64 = await take_screenshot(page)
-                print("\nTake initial screenshot")
-                
-                # Initial request to the model
-                response = client.responses.create(
-                    model=MODEL,
-                    tools=[{
-                        "type": "computer_use_preview",
-                        "display_width": DISPLAY_WIDTH,
-                        "display_height": DISPLAY_HEIGHT,
-                        "environment": "browser"
-                    }],
-                    instructions = "You are an AI agent with the ability to control a browser. You can control the keyboard and mouse. You take a screenshot after each action to check if your action was successful. Once you have completed the requested task you should stop running and pass back control to your human supervisor.",
-                    input=[{
-                        "role": "user",
-                        "content": [{
-                            "type": "input_text",
-                            "text": user_input
-                        }, {
-                            "type": "input_image",
-                            "image_url": f"data:image/png;base64,{screenshot_base64}"
-                        }]
-                    }],
-                    reasoning={"generate_summary": "concise"},
-                    truncation="auto"
-                )
-                print("\nSending model initial screenshot and instructions")
-
-                # Process model actions
-                await process_model_response(client, response, page)
-                
-        except Exception as e:
-            print(f"An error occurred: {e}")
-            import traceback
-            traceback.print_exc()
-        
-        finally:
-            # Close browser
-            await context.close()
-            await browser.close()
-            print("Browser closed.")
-
-if __name__ == "__main__":
-    asyncio.run(main())
-```
+Computer use with Playwright has moved to the [dedicated computer use model guide](./computer-use.md#playwright-integration)
