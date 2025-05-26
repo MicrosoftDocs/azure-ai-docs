@@ -1195,4 +1195,4 @@ if __name__ == "__main__":
 
 * [Responses API](./responses.md)
     * [Computer Use with playwright](./responses.md#computer-use)
-* [Computer Use Assistant sample on Github](https://github.com/Azure-Samples/computer-use-model)
+* [Computer Use Assistant sample on GitHub](https://github.com/Azure-Samples/computer-use-model)
