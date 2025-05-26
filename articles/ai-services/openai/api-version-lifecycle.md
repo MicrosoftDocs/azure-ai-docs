@@ -5,7 +5,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 05/22/2025
+ms.date: 05/25/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -23,10 +23,10 @@ This article is to help you understand the support lifecycle for Azure OpenAI AP
 
 ## API evolution
 
-Historically, Azure OpenAI received monthly updates of new API versions. Taking advantage of new features required constantly updating code and environment variables with each new API release. Azure OpenAI also required the extra step of using Azure specific clients which created overhead when migrating code between OpenAI and Azure OpenAI. Starting in May 2025, you can now opt in to our next generation of Azure OpenAI APIs which add support for:
+Historically, Azure OpenAI received monthly updates of new API versions. Taking advantage of new features required constantly updating code and environment variables with each new API release. Azure OpenAI also required the extra step of using Azure specific clients which created overhead when migrating code between OpenAI and Azure OpenAI. Starting in May 2025, you can now opt in to our next generation of v1 Azure OpenAI APIs which add support for:
 
 - Ongoing access to the latest features with no need to update `api-version` each month.
-- OpenAI client support with minimal code changes to swap between OpenAI and Azure OpenAI.
+- OpenAI client support with minimal code changes to swap between OpenAI and Azure OpenAI when using key-based authentication.
 
 For the initial preview launch we are only supporting a subset of the inference API. While in preview, operations may have incomplete functionality that will be continually expanded.
 
@@ -62,11 +62,11 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    default_query={"api-version": "preview"}, 
 )
 
-response = client.responses.create(
-  extra_query={"api-version": "preview"},     
+response = client.responses.create(   
   model="gpt-4.1-nano", # Replace with your model deployment name 
   input="This is a test.",
 )
@@ -76,9 +76,9 @@ print(response.model_dump_json(indent=2))
 
 - `OpenAI()` client is used instead of `AzureOpenAI()`.
 - `base_url` passes the Azure OpenAI endpoint and `/openai/v1` is appended to the endpoint address.
-- `extra_query={"api-version": "preview"}` indicates that the version-less always up-to-date preview API is being used.
+- `default_query={"api-version": "preview"}` indicates that the version-less always up-to-date preview API is being used.
 
-Once we release the GA next generation API, we will support two values `latest` and `preview`. If `api-version` is not passed traffic is automatically routed to the `latest` GA version. Currently only `preview` is supported.
+Once we release the GA next generation v1 API, we will support two values: `latest` and `preview`. If `api-version` is not passed traffic is automatically routed to the `latest` GA version. Currently only `preview` is supported.
 
 # [Microsoft Entra ID](#tab/entra)
 
@@ -108,33 +108,34 @@ print(response.model_dump_json(indent=2))
 
 ### Next generation API
 
+
 ```python
-from openai import OpenAI
+from openai import AzureOpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
-token_credential = DefaultAzureCredential()
-token = token_credential.get_token('https://cognitiveservices.azure.com/.default')
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
 
-client = OpenAI(
-    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/", 
+client = AzureOpenAI(  
+  base_url = "https://docs-test-001-resource.openai.azure.com/openai/v1/",  
+  azure_ad_token_provider=token_provider,
+  api_version="preview"
 )
 
 response = client.responses.create(
-  extra_headers={"Authorization": f"Bearer {token.token}"},
-  extra_query={"api-version": "preview"},    
-  model="gpt-4.1-nano",
-  input="This is a test.",
+    model="gpt-4.1-nano",
+    input= "This is a test" 
 )
 
 print(response.model_dump_json(indent=2)) 
 ```
 
-- `OpenAI()` client is used instead of `AzureOpenAI()`.
+- `AzureOpenAI()` is used to take advantage of automatic token refresh provided by `azure_ad_token_provider`.
 - `base_url` passes the Azure OpenAI endpoint and `/openai/v1` is appended to the endpoint address.
-- `extra_headers={"Authorization": f"Bearer {token.token}"}` passes the Microsoft Entra ID token to handle secure authentication.
-- `extra_query={"api-version": "preview"}` indicates that the version-less always up-to-date preview API is being used.
+- `api-version="preview"` indicates that the version-less always up-to-date preview API is being used.
 
-Once we release the GA next generation API, we will support two values `latest` and `preview`. If `api-version` is not passed traffic is automatically routed to the `latest` GA version. Currently only `preview` is supported.
+Once we release the GA next generation v1 API, we will support two values: `latest` and `preview`. If `api-version` is not passed traffic is automatically routed to the `latest` GA version. Currently only `preview` is supported.
 
 # [REST](#tab/rest)
 
@@ -260,11 +261,19 @@ curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?ap
 
 Azure OpenAI API latest releases:
 
-- [**NEW** Preview API]()
+- [**NEW** v1 Preview API](reference-preview-latest.md)
 - Inference: [2025-04-01-preview](reference-preview.md)
 - Authoring: [2025-04-01-preview](authoring-reference-preview.md)
 
-## Changes between 
+## Changes between v1 preview release and 2025-04-01-preview
+
+- [v1 preview API](#api-evolution)
+- [Video generation support](./concepts/video-generation.md)
+- **NEW** Responses API features:
+    * Remote Model Context Protocol (MCP) servers tool integration
+    * Support for asynchronous background tasks
+    * Encrypted reasoning items
+    * Image generation  
 
 ## Changes between 2025-04-01-preview and 2025-03-01-preview
 
