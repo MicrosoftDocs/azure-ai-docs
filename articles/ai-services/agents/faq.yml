@@ -17,11 +17,11 @@ sections:
   - name: General
     questions:
       - question: |
-          Do you store any data used in the AI Agent Service API? 
+          Do you store any data used in the Foundry Agent Service API? 
         answer: |
-          Yes. Unlike Chat Completions API, Azure AI Foundry Agent Service is a stateful API, meaning it retains data. There are two types of data stored in the AI Agent Service API: 
-          * Stateful entities: Threads, messages, and runs created during AI Agent Service use. 
-          * Files: Uploaded during AI Agent Service setup or as part of a message.  
+          Yes. Foundry Agent Service is a stateful API, meaning it retains data. There are two types of data stored in the Foundry Agent Service API: 
+          * Stateful entities: Threads, messages, and runs created during usage. 
+          * Files: Uploaded during Foundry Agent Service setup or as part of a message.  
       - question: |
           Where is this data stored?
         answer: |
@@ -29,21 +29,21 @@ sections:
       - question: |
           How long is this data stored?
         answer: |
-          All used data persists in this system unless you explicitly delete this data. Use the delete function with the thread ID of the thread you want to delete. Clearing the Run in the AI Agent Service Playground doesn't delete threads, however deleting them using delete function won't list them in the thread page. 
+          All used data persists in this system unless you explicitly delete this data. Use the delete function with the thread ID of the thread you want to delete. Clearing the Run in the Foundry Agent Service Playground doesn't delete threads, however deleting them using delete function won't list them in the thread page. 
       - question: | 
-          Does AI Agent Service support customer-managed key encryption (CMK)?
+          Does Foundry Agent Service support customer-managed key encryption (CMK)?
         answer: |
-          Today we support CMK for Threads and Files in AI Agent Service.
+          Today we support CMK for Threads and Files in Foundry Agent Service.
       - question: |
           Is my data used by Microsoft for training models? 
         answer: |
-          No. Data is not used by Microsoft for training models. See the [Responsible AI documentation](/legal/cognitive-services/openai/data-privacy?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext) for more information. 
+          No. Data is not used by Microsoft for training models. See the [Responsible AI documentation](/legal/cognitive-services/openai/data-privacy?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext) for more information.
       - question: |
           Where is data stored geographically?
         answer: |
           Azure AI Foundry Agent Service endpoints are regional, and data is stored in the same region as the endpoint. For more information, see the [Azure data residency documentation](https://azure.microsoft.com/explore/global-infrastructure/data-residency/#overview). 
       - question: |
-          How am I charged for AI Agent Service?
+          How am I charged for Foundry Agent Service?
         answer: |
           * Inference cost (input and output) of the base model you're using for each Agent (for example gpt-4-0125). If you've created multiple agents, you'll be charged for the base model attached to each Agent.
           * If you've enabled the Code Interpreter tool - for example your agent calls Code Interpreter simultaneously in two different threads, this would create two Code Interpreter sessions, each of which would be charged. Each session is active by default for one hour, which means that you would only pay this fee once if your user keeps giving instructions to Code Interpreter in the same thread for up to one hour.
@@ -51,10 +51,10 @@ sections:
 
           For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).
       - question: |
-          Is there any additional pricing or quota for using AI Agent Service? 
+          Is there any additional pricing or quota for using Foundry Agent Service? 
         answer: |
-          No. All [quotas](./quotas-limits.md) apply to using models with AI Agent Service.
+          No. All [quotas](./quotas-limits.md) apply to using models with Foundry Agent Service.
       - question: |
-          Does the AI Agent Service API support non-Azure OpenAI models?   
+          Does the Foundry Agent Service API support non-Azure OpenAI models?   
         answer: |
-          Yes, the AI Agent Service API supports non-Azure OpenAI models. See the [models](./concepts/model-region-support.md) page for more information.
+          Yes, the Foundry Agent Service API supports non-Azure OpenAI models. See the [models](./concepts/model-region-support.md) page for more information.
