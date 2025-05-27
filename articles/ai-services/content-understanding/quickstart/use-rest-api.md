@@ -26,11 +26,7 @@ To get started, you need **an active Azure subscription**. If you don't have an 
 
      :::image type="content" source="../media/overview/azure-multi-service-resource.png" alt-text="Screenshot of the AI Foundry resource page in the Azure portal.":::
 
-* In this quickstart, we use the cURL command line tool. If it isn't installed, you can download a version for your dev environment:
-
-  * [Windows](https://curl.haxx.se/windows/)
-  * [Mac or Linux](https://learn2torials.com/thread/how-to-install-curl-on-mac-or-linux-(ubuntu)-or-windows)
-
+In this guide, we use the cURL command line tool. If it isn't installed, you can [download](https://everything.curl.dev/install/index.html) the appropriate version for your dev environment.
 
 ## Get started with a prebuilt analyzer
 
