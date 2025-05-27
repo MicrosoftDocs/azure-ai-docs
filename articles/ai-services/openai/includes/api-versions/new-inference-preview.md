@@ -5131,7 +5131,7 @@ This component can be one of the following:
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | created_at | integer | The time when the job was created. | Yes |  |
-| expires_at | integer | The time when the job gets automatically deleted from the service. The video content and metadata of the job should be stored before this date to avoid data loss. | No |  |
+| expires_at | integer | The Unix timestamp (in seconds) for when the job gets deleted from the server. The video content and metadata of the job should be stored before this date to avoid data loss. The default and maximum range is 24 hours from the job completion timestamp. | No |  |
 | failure_reason | string (see valid models below) |  | No |  |
 | finished_at | integer | The time when the job finished with all video generations. | No |  |
 | generations | array | The generated videos for this job. The number depends on the given n_variants and the creation success of the generations. | No |  |

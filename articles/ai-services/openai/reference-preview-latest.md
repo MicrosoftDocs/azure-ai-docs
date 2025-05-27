@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI's latest v1 preview REST API. In this
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 05/23/2025
+ms.date: 05/28/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
