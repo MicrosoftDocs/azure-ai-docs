@@ -10,7 +10,7 @@ ms.custom:
   - references_regions
   - ignite-2024
 ms.topic: whats-new
-ms.date: 04/16/2025
+ms.date: 5/28/2025
 recommendations: false
 ---
 

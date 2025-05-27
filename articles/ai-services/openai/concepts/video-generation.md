@@ -6,7 +6,7 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 05/22/2025
+ms.date: 05/28/2025
 ---
 
 # Sora video generation (preview)
@@ -19,7 +19,7 @@ Sora can generate complex scenes with multiple characters, diverse motions, and 
 
 ## How it works
 
-Video generation is an asynchronous process. You create a job request with your text prompt and video format specifications, and the model processes the request in the background. You can check the status of the video generation job and, once it has finished, retrieve the generated video via a download URL.
+Video generation is an asynchronous process. You create a job request with your text prompt and video format specifications, and the model processes the request in the background. You can check the status of the video generation job and, once it finishes, retrieve the generated video via a download URL.
 
 ## Best practices for prompts
 
@@ -30,18 +30,18 @@ Users should write text prompts in English or Latin script languages for the bes
 
 ### Content quality limitations
 
-Sora may have difficulty with complex physics, causal relationships (for example, bite marks on a cookie), spatial reasoning (for example, knowing left from right), and precise time-based event sequencing such as camera movement.
+Sora might have difficulty with complex physics, causal relationships (for example, bite marks on a cookie), spatial reasoning (for example, knowing left from right), and precise time-based event sequencing such as camera movement.
 
 ### Technical limitations
 
-Sora supports the following output resolution dimensions: 
+Sora has some technical limitations to be aware of:
+
+- Sora supports the following output resolution dimensions: 
 480x480, 480x854, 854x480, 720x720, 720x1280, 1280x720, 1080x1080, 1080x1920, 1920x1080.
-
-Sora supports the following video durations: 5, 10, 15, and 20 seconds.
-
-You can request multiple video variants in a single job: for 1080p resolutions, this feature is disabled; for 720p, the maximum is two variants; for other resolutions, the maximum is four variants.
-
-A user can have two video creation jobs running at the same time. In that situation, you must wait for one of the jobs to finish before you can create another.
+- Sora supports the following video durations: 5, 10, 15, and 20 seconds.
+- You can request multiple video variants in a single job: for 1080p resolutions, this feature is disabled; for 720p, the maximum is two variants; for other resolutions, the maximum is four variants.
+- You can have two video creation jobs running at the same time. You must wait for one of the jobs to finish before you can create another.
+- Jobs are available for up to 24 hours after they're created. After that, you must create a new job to generate the video again.
 
 ## Responsible AI
 
