@@ -349,7 +349,7 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
 
 ## Next steps
 
-Learn more about CREATING [analyzers](../concepts/analyzer-templates.md) for your use case.
+Learn more about creating [custom analyzers](../tutorial/create-custom-analyzer.md) for your use case.
 
 
 
