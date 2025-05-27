@@ -27,7 +27,7 @@ const fs = require('fs');
 const axios = require('axios');
 const formData = require('form-data');
  
-const subscriptionKey = 'your-subscription-key';
+const subscriptionKey = 'your-speech-resource-key';
 const region = 'your-region';
  
 async function createProfile() {
@@ -82,7 +82,7 @@ If speaker identification or differentiate is enabled, then even if you have alr
     var sdk = require("microsoft-cognitiveservices-speech-sdk");
     var fs = require("fs");
     
-    var subscriptionKey = "your-subscription-key";
+    var subscriptionKey = "your-speech-resource-key";
     var region = "your-region";
     var filepath = "audio-file-to-transcribe.wav"; // 8-channel audio
     

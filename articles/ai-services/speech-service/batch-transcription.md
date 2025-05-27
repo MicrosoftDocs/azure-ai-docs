@@ -7,15 +7,12 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 3/10/2025
+ms.date: 5/25/2025
 ms.devlang: csharp
 ms.custom: devx-track-csharp
 ---
 
 # What is batch transcription?
-
-> [!IMPORTANT]
-> New pricing is in effect for batch transcription via [Speech to text REST API v3.2](./migrate-v3-1-to-v3-2.md). For more information, see the [pricing guide](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services). 
 
 Batch transcription is used to transcribe a large amount of audio data in storage. Both the [Speech to text REST API](rest-speech-to-text.md#batch-transcription) and [Speech CLI](spx-basics.md) support batch transcription. 
 
@@ -35,9 +32,9 @@ To use the batch transcription REST API:
 1. [Get batch transcription results](batch-transcription-get.md) - Check transcription status and retrieve transcription results asynchronously. 
 
 > [!IMPORTANT]
-> Batch transcription jobs are scheduled on a best-effort basis. At peak hours it may take up to 30 minutes or longer for a transcription job to start processing. See how to check the current status of a batch transcription job in [this section](batch-transcription-get.md#get-transcription-status).
+> Batch transcription jobs are scheduled on a best-effort basis. At peak hours it might take up to 30 minutes or longer for a transcription job to start processing. See how to check the current status of a batch transcription job in [this section](batch-transcription-get.md#get-transcription-status).
 
-## Next steps
+## Related content
 
 - [Locate audio files for batch transcription](batch-transcription-audio-data.md)
 - [Create a batch transcription](batch-transcription-create.md)
