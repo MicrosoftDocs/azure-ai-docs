@@ -1050,6 +1050,347 @@ Returns a list of input items for a given response.
 |:---|:---|:---|
 |application/json | [AzureErrorResponse](#azureerrorresponse) | |
 
+## Video generation jobs - Create
+
+```HTTP
+POST {endpoint}/openai/v1/video/generations/jobs?api-version=preview
+```
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Request Body
+
+**Content-Type**: application/json
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| height | integer | The height of the video. The following dimensions are supported: 480x480, 854x480, 720x720, 1280x720, 1080x1080 and 1920x1080. | Yes |  |
+| model | string | The name of the deployment to use for this request. | Yes |  |
+| n_seconds | integer | The duration of the video generation job. Must be between 1 and 20 seconds. | No | 5 |
+| n_variants | integer | The number of videos to create as variants for this job. Must be between 1 and 5. Smaller dimensions allow more variants. | No | 1 |
+| prompt | string | The prompt for this video generation job. | Yes |  |
+| width | integer | The width of the video. The following dimensions are supported: 480x480, 854x480, 720x720, 1280x720, 1080x1080 and 1920x1080. | Yes |  |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [VideoGenerationJob](#videogenerationjob) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureOpenAIVideoGenerationErrorResponse](#azureopenaivideogenerationerrorresponse) | |
+
+### Examples
+
+### Example
+
+Create a video generation job
+
+```HTTP
+POST {endpoint}/openai/v1/video/generations/jobs?api-version=preview
+
+{
+ "prompt": "A cat playing piano in a jazz bar.",
+ "model": "video-gen-001"
+}
+
+```
+
+**Responses**:
+Status Code: 200
+
+```json
+{
+  "body": {
+    "id": "vidjob_1234567890",
+    "object": "video_generation_job",
+    "created": 1680000000,
+    "status": "queued",
+    "prompt": "A cat playing piano in a jazz bar.",
+    "model": "video-gen-001"
+  }
+}
+```
+
+## Video generation jobs - List
+
+```HTTP
+GET {endpoint}/openai/v1/video/generations/jobs?api-version=preview
+```
+
+
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
+| before | query | No | string |  |
+| after | query | No | string |  |
+| limit | query | Yes | integer |  |
+| statuses | query | No | array |  |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [VideoGenerationJobList](#videogenerationjoblist) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureOpenAIVideoGenerationErrorResponse](#azureopenaivideogenerationerrorresponse) | |
+
+## Video generation jobs - Get
+
+```HTTP
+GET {endpoint}/openai/v1/video/generations/jobs/{job-id}?api-version=preview
+```
+
+
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
+| job-id | path | Yes | string | The ID of the video generation job to use for the Azure OpenAI request. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [VideoGenerationJob](#videogenerationjob) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureOpenAIVideoGenerationErrorResponse](#azureopenaivideogenerationerrorresponse) | |
+
+## Video generation jobs - Delete
+
+```HTTP
+DELETE {endpoint}/openai/v1/video/generations/jobs/{job-id}?api-version=preview
+```
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
+| job-id | path | Yes | string | The ID of the video generation job to use for the Azure OpenAI request. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 204
+
+**Description**: There is no content to send for this request, but the headers may be useful.  
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureOpenAIVideoGenerationErrorResponse](#azureopenaivideogenerationerrorresponse) | |
+
+## Video generations - Get
+
+```HTTP
+GET {endpoint}/openai/v1/video/generations/{generation-id}?api-version=preview
+```
+
+
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
+| generation-id | path | Yes | string | The ID of the video generation to use for the Azure OpenAI request. |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [VideoGeneration](#videogeneration) | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureOpenAIVideoGenerationErrorResponse](#azureopenaivideogenerationerrorresponse) | |
+
+## Video generations - Retrieve thumbnail
+
+```HTTP
+GET {endpoint}/openai/v1/video/generations/{generation-id}/content/thumbnail?api-version=preview
+```
+
+
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
+| generation-id | path | Yes | string | The ID of the video generation to use for the Azure OpenAI request. |
+| If-Modified-Since | header | No | string | Timestamp formatted as GMT time |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | string | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureOpenAIVideoGenerationErrorResponse](#azureopenaivideogenerationerrorresponse) | |
+
+## Video generations - Retrieve video
+
+```HTTP
+GET {endpoint}/openai/v1/video/generations/{generation-id}/content/video?api-version=preview
+```
+
+### URI Parameters
+
+| Name | In | Required | Type | Description |
+|------|------|----------|------|-----------|
+| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
+| generation-id | path | Yes | string | The ID of the video generation to use for the Azure OpenAI request. |
+| If-Modified-Since | header | No | string |  |
+| quality | query | No |  |  |
+
+### Request Header
+
+**Use either token based authentication or API key. Authenticating with token based authentication is recommended and more secure.**
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| Authorization | True | string | **Example:** `Authorization: Bearer {Azure_OpenAI_Auth_Token}`<br><br>**To generate an auth token using Azure CLI: `az account get-access-token --resource https://cognitiveservices.azure.com`**<br><br>Type: oauth2<br>Authorization Url: `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`<br>scope: `https://cognitiveservices.azure.com/.default`|
+| api-key | True | string | Provide Azure OpenAI API key here |
+
+### Responses
+
+**Status Code:** 200
+
+**Description**: The request has succeeded. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | string | |
+
+**Status Code:** default
+
+**Description**: An unexpected error response. 
+
+|**Content-Type**|**Type**|**Description**|
+|:---|:---|:---|
+|application/json | [AzureOpenAIVideoGenerationErrorResponse](#azureopenaivideogenerationerrorresponse) | |
+
 ## Components
 
 ### AudioTaskLabel
@@ -1805,6 +2146,19 @@ The configuration information for an audio transcription request.
 | └─ output_tokens | integer | The number of image tokens in the output image. | No |  |
 | └─ total_tokens | integer | The total number of tokens (images and text) used for the image generation. | No |  |
 
+### AzureOpenAIVideoGenerationErrorResponse
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| code | string | The distinct, machine-generated identifier for the error. | No |  |
+| inner_error | object | If applicable, an upstream error that originated this error. | No |  |
+| └─ code | enum | The code associated with the inner error.<br>Possible values: `ResponsibleAIPolicyViolation` | No |  |
+| └─ error_details | object |  | No |  |
+| └─ revised_prompt | string | If applicable, the modified prompt used for generation. | No |  |
+| message | string | A human-readable message associated with the error. | No |  |
+| param | string | If applicable, the request input parameter associated with the error | No |  |
+| type | string | If applicable, the input line number associated with the error. | No |  |
+
 ### AzureResponse
 
 | Name | Type | Description | Required | Default |
@@ -1892,6 +2246,10 @@ User security context contains several parameters that describe the application 
 | end_user_tenant_id | string | The Microsoft 365 tenant ID the end user belongs to. It's required when the generative AI application is multitenant. | No |  |
 | source_ip | string | Captures the original client's IP address. | No |  |
 
+### AzureVideoGenerationError
+
+**Type**: object
+
 
 ### ChatCompletionMessageToolCallsItem
 
@@ -1913,6 +2271,17 @@ The tool calls generated by the model, such as function calls.
 | └─ tokens | array |  | No |  |
 | └─ top_logprobs | array |  | No |  |
 | text | string |  | Yes |  |
+
+### CreateVideoGenerationRequest
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| height | integer | The height of the video. The following dimensions are supported: 480x480, 854x480, 720x720, 1280x720, 1080x1080 and 1920x1080. | Yes |  |
+| model | string | The name of the deployment to use for this request. | Yes |  |
+| n_seconds | integer | The duration of the video generation job. Must be between 1 and 20 seconds. | No | 5 |
+| n_variants | integer | The number of videos to create as variants for this job. Must be between 1 and 5. Smaller dimensions allow more variants. | No | 1 |
+| prompt | string | The prompt for this video generation job. | Yes |  |
+| width | integer | The width of the video. The following dimensions are supported: 480x480, 854x480, 720x720, 1280x720, 1080x1080 and 1920x1080. | Yes |  |
 
 ### ElasticsearchChatDataSource
 
@@ -4738,3 +5107,46 @@ both text and audio responses, you can use:
 ### SpeechGenerationResponseFormat
 
 The supported audio output formats for text-to-speech.
+
+### VideoGeneration
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| created_at | integer | The time when the video generation was created. | Yes |  |
+| height | integer | The height of the video. | Yes |  |
+| id | string | The id of the video generation. | Yes |  |
+| job_id | string | The id of the video generation job for this video. | Yes |  |
+| n_seconds | integer | The duration of the video generation. | Yes |  |
+| object | enum | <br>Possible values: `video.generation` | Yes |  |
+| prompt | string | The prompt for this video generation. | Yes |  |
+| width | integer | The width of the video. | Yes |  |
+
+### VideoGenerationJob
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| created_at | integer | The time when the job was created. | Yes |  |
+| expires_at | integer | The Unix timestamp (in seconds) for when the job gets deleted from the server. The video content and metadata of the job should be stored before this date to avoid data loss. The default and maximum range is 24 hours from the job completion timestamp. | No | |
+| failure_reason | string (see valid models below) |  | No |  |
+| finished_at | integer | The time when the job finished with all video generations. | No |  |
+| generations | array | The generated videos for this job. The number depends on the given n_variants and the creation success of the generations. | No |  |
+| height | integer | The height of the video. | Yes |  |
+| id | string | The id of the job. | Yes |  |
+| model | string | The name of the deployment to use for this video generation job. | Yes |  |
+| n_seconds | integer | The duration of the video generation job. | Yes |  |
+| n_variants | integer | The number of videos to create as variants for this video generation job. | Yes |  |
+| object | enum | <br>Possible values: `video.generation.job` | Yes |  |
+| prompt | string | The prompt for this video generation job. | Yes |  |
+| status | object |  | Yes |  |
+| width | integer | The height of the video. | Yes |  |
+
+### VideoGenerationJobList
+
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|---------|
+| data | array |  | Yes |  |
+| first_id | string |  | No |  |
+| has_more | boolean |  | Yes |  |
+| last_id | string |  | No |  |
+| object | enum | <br>Possible values: `list` | Yes |  |
+
