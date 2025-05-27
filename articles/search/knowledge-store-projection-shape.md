@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 05/27/2025
+ms.date: 12/10/2024
 ---
 
 # Shaping data for projection into a knowledge store
