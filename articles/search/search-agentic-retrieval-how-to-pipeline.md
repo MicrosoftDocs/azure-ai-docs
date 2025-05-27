@@ -120,7 +120,7 @@ def agentic_retrieval() -> str:
     messages = project_client.agents.list_messages(thread.id, limit=5, order=ListSortOrder.DESCENDING)
     # Reverse the order so the most recent message is last
     messages.data.reverse()
-    retrieval_result = agent_client.knowledge_retrieval.retrieve(
+    retrieval_result = retrieval_result = agent_client.retrieve(
         retrieval_request=KnowledgeAgentRetrievalRequest(
             messages=[KnowledgeAgentMessage(role=msg["role"], content=[KnowledgeAgentMessageTextContent(text=msg.content[0].text)]) for msg in messages.data],
             target_index_params=[KnowledgeAgentIndexParams(index_name=index_name, reranker_threshold=2.5)]
