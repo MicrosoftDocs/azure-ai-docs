@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn what multimodal search is, how Azure AI Search supports it for text + image content, and where to find detailed concepts, tutorials, and samples.
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 05/19/2025
+ms.date: 05/27/2025
 author: gmndrg
 ms.author: gimondra
 ---
@@ -21,7 +21,7 @@ Azure AI Search simplifies the construction of a multimodal pipeline through a g
 
 + [Azure portal multimodal functionality](search-get-started-portal-image-search.md): The step-by-step multimodal functionality in the **Import and vectorize data** wizard helps configure your data source, extraction and enrichment settings, and generate a multimodal index containing text, embedded image references, and vector embeddings.
 
-+ [Reference GitHub multimodal RAG application sample](https://aka.ms/azs-multimodal-sample-app-repo): A companion GitHub repository with sample code. The sample demonstrates how a [Retrieval Augmented Generation (RAG)](retrieval-augmented-generation-overview.md) application consumes a multimodal index and renders both textual citations and associated image snippets in the response. The repository also showcases the full process of data ingestion and indexing through code, providing developers with a programmatic alternative to the Azure portal wizard.
++ [Reference GitHub multimodal RAG application sample](https://aka.ms/azs-multimodal-sample-app-repo): A companion GitHub repository with sample code. The sample demonstrates how a [Retrieval Augmented Generation (RAG)](retrieval-augmented-generation-overview.md) application consumes a multimodal index (such as the one created by the [Azure portal multimodal functionality]((search-get-started-portal-image-search.md)) and renders both textual citations and associated image snippets in the response. The repository also showcases the full process of data ingestion and indexing through code, providing developers with a programmatic alternative to the Azure portal wizard.
 
 ## Functionality enabling multimodality
 
