@@ -275,7 +275,7 @@ The Azure portal supports the latest preview API.
 
 1. Select **Edit JSON**.
 
-1. Insert `"description"`, followed by the description.
+1. Insert `"description"`, followed by the description. The value must be less than 4,000 characters and in Unicode.
 
    :::image type="content" source="media/search-how-to-index/edit-index-json.png" alt-text="Screenshot of the JSON definition of an index in the Azure portal.":::
 
@@ -287,7 +287,9 @@ The Azure portal supports the latest preview API.
 
 1. Copy the JSON so that you can use it as the basis of a new request.
 
-1. [Formulate an index update using a PUT request](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) and the preview API, providing the *full* JSON of the existing schema, plus the new description field.
+1. [Formulate an index update using a PUT request](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) and the preview API.
+
+1. Provide the *full* JSON of the existing schema, plus the new `description` field. The field must be a top-level field, on the same level as `name` or `fields`. The value must be less than 4,000 characters and in Unicode.
 
 1. To confirm the change, issue another [GET using the 2025-05-01-preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true).
 
