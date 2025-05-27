@@ -17,7 +17,7 @@ ms.date: 05/27/2025
 
 The **GenAI (Generative AI) Prompt** skill executes a *chat completion* request against a Large Language Model (LLM) deployed in Azure AI Foundry or Azure OpenAI in Azure AI Foundry Models.  
 
-Use this capability to create new information that can be indexed and stored as searchable content. Examples include verbalize images, summarize larger passages, simplify complex content, or any other task that an LLM can perform. You can target text-only content, images, or multimodal (text and images) content. It's common to use this skill combined with a data chunking skill. The following tutorials demonstrate several scenarios: 
+Use this capability to create new information that can be indexed and stored as searchable content. Examples include verbalize images, summarize larger passages, simplify complex content, or any other task that an LLM can perform. You can target text-only content, images, or multimodal (text and images) content. It's common to use this skill combined with a data chunking skill. The following tutorials demonstrate the image verbalization scenarios with two different data chunking techniques: 
 
 + [Tutorial: Index mixed content using image verbalizations and the Document Layout skill](tutorial-multimodal-index-image-verbalization-skill.md)
 
@@ -33,6 +33,9 @@ The GenAI Prompt skill is available in the [2025-05-01-preview REST API](/rest/a
 
 > [!NOTE]
 > The search service connects to your model over a public endpoint, so there are no region location requirements, but you should check the [Azure AI Search regions](search-region-support.md) and the [Azure OpenAI model regions](/azure/ai-services/openai/concepts/models) to find suitable pairs, especially if you have data residency requirements.
+>
+> This skill is bound to your Azure OpenAI model and is charged at the existing [Azure OpenAI Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing).
+
 
 ## Prerequisites
 
