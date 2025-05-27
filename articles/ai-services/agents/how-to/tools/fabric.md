@@ -44,7 +44,7 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 
 :::zone pivot="portal"
 
-You can add the Microsoft Fabric tool to an agent programatically using the code examples listed at the top of this article, or the Azure AI Foundry portal. If you want to use the portal: 
+You can add the Microsoft Fabric tool to an agent programmatically using the code examples listed at the top of this article, or the Azure AI Foundry portal. If you want to use the portal: 
 
 1. Navigate to the **Agents** screen for your agent in [Azure AI Foundry](https://ai.azure.com/), scroll down the Setup pane on the right to **knowledge**. Then select **Add**.
    
