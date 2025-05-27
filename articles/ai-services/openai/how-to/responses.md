@@ -1094,7 +1094,8 @@ token_provider = get_bearer_token_provider(
 client = AzureOpenAI(  
   base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
   azure_ad_token_provider=token_provider,
-  api_version="preview"
+  api_version="preview",
+  default_headers={"x-ms-oai-image-generation-deployment":"YOUR-GPT-IMAGE1-DEPLOYMENT-NAME"}
 )
 
 response = client.responses.create(
@@ -1129,7 +1130,8 @@ token_provider = get_bearer_token_provider(
 client = AzureOpenAI(  
   base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
   azure_ad_token_provider=token_provider,
-  api_version="preview"
+  api_version="preview",
+  default_headers={"x-ms-oai-image-generation-deployment":"YOUR-GPT-IMAGE1-DEPLOYMENT-NAME"}
 )
 
 image_data = [
@@ -1181,7 +1183,8 @@ token_provider = get_bearer_token_provider(
 client = AzureOpenAI(  
   base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
   azure_ad_token_provider=token_provider,
-  api_version="preview"
+  api_version="preview",
+  default_headers={"x-ms-oai-image-generation-deployment":"YOUR-GPT-IMAGE1-DEPLOYMENT-NAME"}
 )
 
 stream = client.responses.create(
@@ -1211,7 +1214,8 @@ import base64
 client = AzureOpenAI(  
   base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
   azure_ad_token_provider=token_provider,
-  api_version="preview"
+  api_version="preview",
+  default_headers={"x-ms-oai-image-generation-deployment":"YOUR-GPT-IMAGE1-DEPLOYMENT-NAME"}
 )
 
 def create_file(file_path):
