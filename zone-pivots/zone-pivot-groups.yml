@@ -1044,8 +1044,6 @@ groups:
     title: JavaScript
   - id: programming-language-python-azure
     title: Python (Azure SDK)
-  - id: programming-language-python-openai
-    title: Python (OpenAI SDK)
   - id: programming-language-typescript
     title: TypeScript
   - id: rest-api

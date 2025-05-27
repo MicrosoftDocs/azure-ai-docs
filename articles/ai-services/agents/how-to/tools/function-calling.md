@@ -490,7 +490,7 @@ const { DefaultAzureCredential } = require("@azure/identity");
 
 require("dotenv/config");
 
-const projectEndpoint = process.env["PROJECT_ENDPOINT"] || "<project connection string>";
+const projectEndpoint = process.env["PROJECT_ENDPOINT"];
 
 const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());
 const functionToolExecutor = new FunctionToolExecutor();
