@@ -56,8 +56,9 @@ Not every model is available in the regions supported by the responses API. Chec
 > Not currently supported:
 > - The web search tool
 > - Fine-tuned models
-> - Image generation via streaming
-> - Images can't be uploaded as a file and then referenced as input.
+> - Image generation via streaming. Coming soon.
+> - Images can't be uploaded as a file and then referenced as input. Coming soon.
+> - There's a known issue with performance when background mode is used with streaming. The issue is expected to be resolved soon. 
 
 ### Reference documentation
 
