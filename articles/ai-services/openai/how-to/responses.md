@@ -56,7 +56,8 @@ Not every model is available in the regions supported by the responses API. Chec
 > Not currently supported:
 > - The web search tool
 > - Fine-tuned models
->
+> - Image generation via streaming
+> - Images can't be uploaded as a file and then referenced as input.
 
 ### Reference documentation
 
