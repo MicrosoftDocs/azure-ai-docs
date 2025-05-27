@@ -78,7 +78,7 @@ Go to the [Azure portal](https://portal.azure.com/#home) and navigate to your co
 
 1. Specify the signed key **Start** and **Expiry** times.
 
-    * When you create a shared access signature (SAS), the default duration is 48 hours. After 48 hours, you'll need to create a new token.
+    * When you create a shared access signature (SAS), the default duration is 8 hours. After 8 hours, you'll need to create a new token.
     * Consider setting a longer duration period for the time you're using your storage account for Translator Service operations.
     * The value of the expiry time is determined by whether you're using an **Account key** or **User delegation key** **Signing method**:
        * **Account key**: While a maximum time limit isn't imposed, best practice recommends that you configure an expiration policy to limit the interval and minimize compromise. [Configure an expiration policy for shared access signatures](/azure/storage/common/sas-expiration-policy).
