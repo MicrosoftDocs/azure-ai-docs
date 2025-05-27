@@ -54,7 +54,7 @@ Next, to authenticate your API requests and run the program, use the [az login](
 az login
 ```
 
-Use the following code to create and run an agent. To run this code, you will need to create a connection string using information from your project. This string is in the format:
+Use the following code to create and run an agent. To run this code, you will need to create an connection string using information from your project. This string is in the format:
 
 `<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>`
 

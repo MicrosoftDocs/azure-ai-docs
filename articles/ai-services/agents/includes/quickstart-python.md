@@ -45,11 +45,11 @@ Use the following code to create and run an agent. To run this code, you will ne
 
 [!INCLUDE [endpoint-string-portal](endpoint-string-portal.md)]
 
-For example, your connection string may look something like:
+For example, your endpoint may look something like:
 
 `https://myresource.services.ai.azure.com/api/projects/myproject`
 
-Set this connection string as an environment variable named `PROJECT_ENDPOINT`.
+Set this endpoint as an environment variable named `PROJECT_ENDPOINT`.
 
 ```python
 import os

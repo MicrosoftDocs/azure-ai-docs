@@ -259,7 +259,7 @@ Finally, delete the thread and the agent to clean up the resources created in th
 
 ## Create a project client 
 
-To use code interpreter, first you need to create a project client, which will contain a connection string to your AI project, and will be used to authenticate API calls.
+To use code interpreter, first you need to create a project client, which will contain an endpoint to your AI project, and will be used to authenticate API calls.
 
 ```javascript
 const { AgentsClient, isOutputOfType, ToolUtility } = require("@azure/ai-agents");
@@ -269,7 +269,7 @@ const fs = require("fs");
 const path = require("node:path");
 require("dotenv/config");
 
-const projectEndpoint = process.env["PROJECT_ENDPOINT"] || "<project connection string>";
+const projectEndpoint = process.env["PROJECT_ENDPOINT"];
 
 // Create an Azure AI Client
 const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());
