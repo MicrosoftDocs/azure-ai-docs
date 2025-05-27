@@ -8,31 +8,41 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2025
 ms.topic: reference
-ms.date: 05/12/2025
+ms.date: 05/27/2025
 ---
 
 # GenAI Prompt skill
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-The **GenAI (Generative AI) Prompt** skill executes a *chat completion* request against a Large Language Model (LLM) deployed in **Azure AI Foundry** or **Azure OpenAI in Azure AI Foundry Models**.  
-To augment your data with higher relevant context in your index, use this capability to verbalize images, summarize, transform, enrich, or extract structured data from text-only, image, or text + image inputs.
+The **GenAI (Generative AI) Prompt** skill executes a *chat completion* request against a Large Language Model (LLM) deployed in Azure AI Foundry or Azure OpenAI in Azure AI Foundry Models.  
 
-The GenAI Prompt skill is available in the **2025-05-01-preview** REST API. You can't use this skill in skillsets created with earlier API versions.
+Use this capability to create new information that can be indexed and stored as searchable content. Examples include verbalize images, summarize larger passages, simplify complex content, or any other task that an LLM can perform. You can target text-only content, images, or multimodal (text and images) content. It's common to use this skill combined with a data chunking skill. The following tutorials demonstrate several scenarios: 
 
-## Region Availability
++ [Tutorial: Index mixed content using image verbalizations and the Document Layout skill](tutorial-multimodal-index-image-verbalization-skill.md)
+
++ [Tutorial: Index mixed content using image verbalizations and the Document Extraction skill](tutorial-multimodal-indexing-with-image-verbalization-and-doc-extraction.md)
+
+The GenAI Prompt skill is available in the [2025-05-01-preview REST API](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2025-05-01-preview&preserve-view=true) only. 
+
+<!-- ## Region Availability
 
 - Your Azure AI Search service must be deployed in a [supported region](search-region-support.md).
-- The availability of the GenAI prompt skill depends on the region availability of the chat completions model you choose. If you're using [Azure OpenAI](/azure/ai-services/openai/overview), refer to the [Azure OpenAI region availability](/azure/ai-services/openai/concepts/models) to check which regions support the specific model you selected. For other AI Foundry chat completions models, consult the region availability documentation provided for the respective model to ensure compatibility.
+
+- The availability of the GenAI Prompt skill depends on the region availability of the chat completions model you choose. If you're using [Azure OpenAI](/azure/ai-services/openai/overview), refer to the [Azure OpenAI region availability](/azure/ai-services/openai/concepts/models) to check which regions support the specific model you selected. For other AI Foundry chat completions models, consult the region availability documentation provided for the respective model to ensure compatibility. -->
+
+> [!NOTE]
+> The search service connects to your model over a public endpoint, so there are no region location requirements, but you should check the [Azure AI Search regions](search-region-support.md) and the [Azure OpenAI model regions](/azure/ai-services/openai/concepts/models) to find suitable pairs, especially if you have data residency requirements.
 
 ## Prerequisites
 
-* A deployed chat-completion model (for example *gpt-4o* or any compatible Open Source Software (OSS) model) in Azure AI Foundry or Azure OpenAI.  
-* **Authentication** – provide **either** an API key ***or*** a managed identity that has the required role assignment:  
-  * *Cognitive Services OpenAI User* (Azure OpenAI)  
-  * Model-specific role (Foundry)  
-* The endpoint **URI** copied from *Models + Endpoints* in the Foundry portal or from the Azure OpenAI resource subdomain (`*.openai.azure.com`).  
-* For managed identity, the model must be hosted in Azure OpenAI.
+- A deployed chat-completion model (for example *gpt-4o* or any compatible Open Source Software (OSS) model) in Azure AI Foundry or Azure OpenAI.
+
+  - Copy the endpoint from **Models + Endpoints** in the Foundry portal or from the Azure OpenAI resource subdomain (`*.openai.azure.com`).
+
+  - Provide this endpoint in the `Uri` parameter of your skill definition.
+
+- Authentication can be key-based with an API key from your Azure AI Foundry or Azure OpenAI resource. However, we recommend role-based access using a [search service managed identity](search-howto-managed-identities-data-sources.md) assigned to [**Cognitive Services OpenAI User**](/azure/ai-services/openai/how-to/role-based-access-control) on Azure OpenAI.
 
 ## @odata.type  
 
@@ -42,7 +52,7 @@ The GenAI Prompt skill is available in the **2025-05-01-preview** REST API. You 
 
 | Limit | Notes |
 |-------|-------|
-| `maxTokens` | Default **1024** if omitted. Maximum value is model-dependent. |
+| `maxTokens` | Default is **1024** if omitted. Maximum value is model-dependent. |
 | Request time-out | 30 seconds (default). Override with the `timeout` property (`PT##S`). |
 | Images | Base 64–encoded images and image URLs are supported. Size limit is model-dependent. |
 
@@ -50,7 +60,7 @@ The GenAI Prompt skill is available in the **2025-05-01-preview** REST API. You 
 
 | Property | Type | Required | Notes |
 |----------|------|----------|-------|
-| `uri` | string | Yes | Endpoint of the deployed model. |
+| `uri` | string | Yes | Public endpoint of the deployed model. |
 | `apiKey` | string | Cond.* | Secret key for the model. Leave blank when using managed identity. |
 | `authIdentity` | string | Cond.* | **User-assigned** managed identity client ID (*Azure OpenAI only*). Leave blank to use the **system-assigned** identity. |
 | `commonModelParameters` | object | No | Standard generation controls such as `temperature`, `maxTokens`, etc. |
