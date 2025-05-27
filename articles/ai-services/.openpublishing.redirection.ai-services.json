@@ -181,6 +181,11 @@
       "redirect_document_id": true
     },
     {
+      "source_path_from_root": "/articles/ai-services/openai/api-version-deprecation.md",
+      "redirect_url": "/azure/ai-services/openai/api-version-lifecycle",
+      "redirect_document_id": true
+    },
+    {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-voice-talent.md",
       "redirect_url": "/azure/ai-services/speech-service/professional-voice-create-consent",
       "redirect_document_id": true
