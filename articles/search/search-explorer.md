@@ -86,7 +86,7 @@ Equivalent syntax for an empty search is `*` or `"search": "*"`.
 
    **Results**
    
-   :::image type="content" source="media/search-explorer/search-explorer-example-empty.png" alt-text="Unqualified or empty query example" border="true" lightbox="media/search-explorer/search-explorer-example-empty.png":::
+   :::image type="content" source="media/search-explorer/search-explorer-example-empty.png" alt-text="Screenshot of unqualified or empty query example." border="true" lightbox="media/search-explorer/search-explorer-example-empty.png":::
 
 ### Run a free-text query
 
