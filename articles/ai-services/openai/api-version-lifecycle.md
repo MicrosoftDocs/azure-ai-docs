@@ -268,12 +268,6 @@ Azure OpenAI API latest releases:
 ## Changes between v1 preview release and 2025-04-01-preview
 
 - [v1 preview API](#api-evolution)
-- [Video generation support](./concepts/video-generation.md)
-- **NEW** Responses API features:
-    * Remote Model Context Protocol (MCP) servers tool integration
-    * Support for asynchronous background tasks
-    * Encrypted reasoning items
-    * Image generation  
 
 ## Changes between 2025-04-01-preview and 2025-03-01-preview
 
