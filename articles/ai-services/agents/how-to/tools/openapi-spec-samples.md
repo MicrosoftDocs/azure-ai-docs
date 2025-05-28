@@ -183,7 +183,7 @@ After the interaction is complete, the script performs cleanup by deleting the c
 
 ## Create a project client
 
-Create a client object that contains the connection string for connecting to your AI project and other resources.
+Create a client object that contains the endpoint for connecting to your AI project and other resources.
 
 ```javascript
 const { AgentsClient, isOutputOfType, ToolUtility } = require("@azure/ai-agents");
@@ -192,7 +192,7 @@ const { DefaultAzureCredential } = require("@azure/identity");
 const fs = require("fs");
 require("dotenv/config");
 
-const projectEndpoint = process.env["PROJECT_ENDPOINT"] || "<project connection string>";
+const projectEndpoint = process.env["PROJECT_ENDPOINT"];
 
 // Create an Azure AI Client
 const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());
