@@ -3,12 +3,12 @@ title: Custom text classification data formats
 titleSuffix: Azure AI services
 description: Learn about the data formats accepted by custom text classification.
 #services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
 
