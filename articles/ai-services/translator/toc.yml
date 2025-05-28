@@ -36,7 +36,7 @@ items:
   - name: Text translation reference
     expanded: true
     items:
-    - name: 🆕 Azure AI Translator 2025-05-01-preview
+    - name: Azure AI Translator 2025-05-01-preview 🆕
       items:
       - name: 2025-05-01-preview overview
         displayName: gpt, adaptive, tone, gender
@@ -111,12 +111,9 @@ items:
     - name: Use the Text translation APIs
       displayName: detection,detect,translation,transliteration,identification,length,sentence length,alternate,usage,headers,set up,status,401
       href: text-translation/how-to/use-rest-api.md
-<<<<<<< HEAD
-    - name: Migrate to 2025-05-01-preview
+    - name: "Migrate to 2025-05-01-preview"
       displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
       href: text-translation/how-to/migrate-to-preview.md
-=======
->>>>>>> origin
     - name: Enable Microsoft Entra ID authentication
       href: how-to/microsoft-entra-id-auth.md
     - name: Add profanity filtering
@@ -133,53 +130,15 @@ items:
     - name: Translate behind firewalls
       displayName: domain,IP,filtering,tag,endpoints,CognitiveServicesManagement
       href: firewalls.md
-<<<<<<< HEAD
-  
-=======
-  - name: Reference
-    items:
-    - name: Azure AI Translator v3
-      items:
-      - name: v3 overview
-        displayName: 401000,405000,400000
-        href: text-translation/reference/v3/reference.md
-      - name: Text Translation v3 REST APIs
-        href:  text-translation/reference/rest-api-guide.md
-      - name: Languages
-        href: text-translation/reference/v3/languages.md
-      - name: Translate
-        displayName: detection,detect
-        href: text-translation/reference/v3/translate.md
-      - name: Transliterate
-        href: text-translation/reference/v3/transliterate.md
-      - name: Detect
-        href: text-translation/reference/v3/detect.md
-      - name: BreakSentence
-        displayName: detection,detect
-        href: text-translation/reference/v3/break-sentence.md
-      - name: Dictionary Lookup
-        href: text-translation/reference/v3/dictionary-lookup.md
-      - name: Dictionary Examples
-        href: text-translation/reference/v3/dictionary-examples.md
-      - name: Migrate to v3 Text translation API
-      displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
-      href: text-translation/how-to/migrate-to-v3.md
-    - name: Authentication and authorization
-      displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
-      href: text-translation/reference/authentication.md
-    - name: Status codes
-      displayName: 401000,405000,400000
-      href: text-translation/reference/status-response-codes.md
->>>>>>> origin
 - name: Document translation
   items:
   - name: What is Document translation?
     displayName: ocr,batch,features,development,formats,file types
     href: document-translation/overview.md
-  - name: 🆕 Document translation SDK guide
+  - name: Document translation SDK guide 🆕
     displayName: batch,c#,dotnet,.net,python,blob,set up,install,cli,storage,domain,custom domain
     href: document-translation/document-sdk-overview.md
-  - name: 🆕 Document translation REST API guide
+  - name: Document translation REST API guide 🆕
     displayName: get,post,cancel,delete
     href: document-translation/reference/rest-api-guide.md
   - name: Quickstarts
@@ -249,15 +208,15 @@ items:
       - name: "Container: Translate text"
         displayName: docker,docker-run,run,pull,swagger,c#,python,import,cpu,EULA,billing
         href: containers/translate-text-parameters.md
-      - name: "🆕 Container: Transliterate text"
+      - name: "Container: Transliterate text 🆕"
         displayName: docker,docker-run,run,pull,swagger,c#,python,import,cpu,EULA,billing
         href: containers/transliterate-text-parameters.md
-      - name: "🆕 Container: Translate documents"
+      - name: "Container: Translate documents 🆕"
         displayName: docker,docker-run,run,pull,swagger,c#,python,import,cpu,EULA,billing
         href: containers/translate-document-parameters.md
   - name: Translator container FAQ
     href: containers/faq.yml
-- name: 🆕 Azure AI Foundry custom translation
+- name: Azure AI Foundry custom translation 🆕
   items:
   - name: What is Azure AI Foundry custom translation?
     href: custom-translator/azure-ai-foundry/overview.md

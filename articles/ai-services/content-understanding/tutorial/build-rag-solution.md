@@ -39,7 +39,7 @@ To get started, you need **An active Azure subscription**. If you don't have an 
 * **Azure AI Search Resource:** Set up an [Azure AI Search resource](../../../search/search-create-service-portal.md) to enable indexing and retrieval of multimodal data.
 * **Azure OpenAI Chat Model Deployment:** Deploy an [Azure OpenAI chat model](../../openai/how-to/deployment-types.md) that enables conversational interactions.
 * **Embedding Model Deployment:** Ensure you have an embedding model deployed to generate vector representations for semantic search.
-* **API Version:** This tutorial uses the latest preview [API version](/rest/api/contentunderstanding/analyzers?view=rest-contentunderstanding-2024-12-01-preview&preview&preserve-view=true): `2024-12-01-preview`.
+* **API Version:** This tutorial uses the latest preview [API version](/rest/api/contentunderstanding/analyzers?view=rest-contentunderstanding-2024-12-01-preview&preserve-view=true): `2024-12-01-preview`.
 * **Python Environment:** Install [Python 3.11](https://www.python.org/downloads/) to execute the provided code samples and scripts.
 * This tutorial follows this sample code can be found in our [Python notebook](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples). Follow the [README](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python/blob/main/README.md) to create essential resources, grant resources the right Access control(IAM) roles and install all packages needed for this tutorial.
 * The multimodal data used in this tutorial consists of documents, images, audio, and video. They're designed to guide you through the process of building a robust RAG solution with Azure AI Content Understanding.

@@ -6,11 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-<<<<<<< HEAD
 ms.date: 05/20/2025
-=======
-ms.date: 05/19/2025
->>>>>>> origin
 ms.author: lajanuar
 ---
 
