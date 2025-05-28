@@ -104,7 +104,7 @@ Before following the steps in this article, make sure you have the following pre
 
 # [Python SDK](#tab/python)
 
-* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version](https://azure.microsoft.com/free/).
 
 * The __Microsoft.Network__ resource provider must be registered for your Azure subscription. This resource provider is used by hub when creating private endpoints for the managed virtual network.
 
@@ -563,7 +563,7 @@ To configure a managed virtual network that allows only approved outbound commun
 
 * __Update an existing hub__:
 
-    The following example demonstrates how to create a managed virtual network for an existing Azure Machine Learning hub named `myhub`. The example also adds several outbound rules for the managed virtual network:
+    The following example demonstrates how to create a managed virtual network for an existing hub named `myhub`. The example also adds several outbound rules for the managed virtual network:
 
     * `myrule` - Adds a private endpoint for an Azure Blob store.
     * `datafactory` - Adds a service tag rule to communicate with Azure Data Factory.
@@ -857,7 +857,7 @@ A private endpoint is automatically created for a connection if the target resou
 
 ### Approval of Private Endpoints
 
-To establish Private Endpoint connections in managed virtual networks using Azure AI Foundry, the workspace managed identity, whether system-assigned or user-assigned, must have permissions to approve the Private Endpoint connections on the target resources. Previously, this was done through automatic role assignments by the Azure AI Foundry service. However, there are security concerns about the automatic role assignment. To improve security, starting April 30th, 2025, we will discontinue this automatic permission grant logic. We recommend assigning the [Azure AI Enterprise Network Connection Approver role](/azure/role-based-access-control/built-in-roles/ai-machine-learning) or a custom role with the necessary Private Endpoint connection permissions on the target resource types and grant this role to the Azure Machine Learning workspace's managed identity to allow Azure AI Foundry services to approve Private Endpoint connections to the target Azure resources.
+To establish Private Endpoint connections in managed virtual networks using Azure AI Foundry, the workspace managed identity, whether system-assigned or user-assigned, must have permissions to approve the Private Endpoint connections on the target resources. Previously, this was done through automatic role assignments by the Azure AI Foundry service. However, there are security concerns about the automatic role assignment. To improve security, starting April 30th, 2025, we will discontinue this automatic permission grant logic. We recommend assigning the [Azure AI Enterprise Network Connection Approver role](/azure/role-based-access-control/built-in-roles/ai-machine-learning) or a custom role with the necessary Private Endpoint connection permissions on the target resource types and grant this role to the Foundry hub's managed identity to allow Azure AI Foundry services to approve Private Endpoint connections to the target Azure resources.
 
 Here's the list of private endpoint target resource types covered by covered by the Azure AI Enterprise Network Connection Approver role:
 
