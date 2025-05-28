@@ -72,7 +72,8 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 [!INCLUDE [resource authentication](resource-authentication.md)]
 
 
-## Generate audio from text input
+## Generate video with Sora
+You can generate a video with the Sora model by creating a video generation job, polling for its status, and retrieving the generated video. The following code shows how to do this via the REST API using Python.
 
 ## [Microsoft Entra ID](#tab/keyless)
 

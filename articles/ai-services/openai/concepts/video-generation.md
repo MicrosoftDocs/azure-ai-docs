@@ -38,7 +38,7 @@ Sora has some technical limitations to be aware of:
 
 - Sora supports the following output resolution dimensions: 
 480x480, 480x854, 854x480, 720x720, 720x1280, 1280x720, 1080x1080, 1080x1920, 1920x1080.
-- Sora supports the following video durations: 5, 10, 15, and 20 seconds.
+- Sora supports video durations between 1 and 20 seconds.
 - You can request multiple video variants in a single job: for 1080p resolutions, this feature is disabled; for 720p, the maximum is two variants; for other resolutions, the maximum is four variants.
 - You can have two video creation jobs running at the same time. You must wait for one of the jobs to finish before you can create another.
 - Jobs are available for up to 24 hours after they're created. After that, you must create a new job to generate the video again.
