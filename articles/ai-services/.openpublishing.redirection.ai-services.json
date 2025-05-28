@@ -1172,7 +1172,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/concepts/content-filter-personal-information.md",
-      "redirect_url": "/azure/ai-foundry/ai-services/openai/concepts/content-filter",
+      "redirect_url": "/azure/ai-services/openai/concepts/content-filter",
       "redirect_document_id": false
     }
   ]
