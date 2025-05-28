@@ -219,7 +219,7 @@ Content-Type: application/json
 {
     "messages" : [
             {
-                "role" : "system",
+                "role" : "assistant",
                 "content" : [
                   { "type" : "text", "text" : "You are a helpful assistant for Contoso Human Resources. You have access to a search index containing guidelines about health care coverage for Washington state. If you can't find the answer in the search, say you don't know." }
                 ]
@@ -236,7 +236,6 @@ Content-Type: application/json
             "indexName" : "{{index-name}}",
             "filterAddOn" : "State eq 'WA'",
             "IncludeReferenceSourceData": true, 
-            "rerankerThreshold " : 2.5,
             "maxDocsForReranker": 250
         } 
     ]
