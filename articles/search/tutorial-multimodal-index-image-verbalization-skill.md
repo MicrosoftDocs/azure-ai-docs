@@ -23,7 +23,7 @@ In this tutorial, you use:
 
 + A 36-page PDF document that combines rich visual content—such as charts, infographics, and scanned pages—with traditional text.
 
-+ The [Document Layout skill (preview)](cognitive-search-skill-document-intelligence-layout.md) for extracting text and normalized images with its locationMetadata from various documents, such as page numbers or bounding regions.
++ The [Document Layout skill (preview)](cognitive-search-skill-document-intelligence-layout.md) for extracting text and normalized images with its `locationMetadata` from various documents, such as page numbers or bounding regions.
 
   The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) has limited region availability and is bound to Azure AI services and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. For a lower-cost solution that indexing multimodal content, see [Index multimodal content using image verbalization and document extraction skill](https://aka.ms/azs-multimodal).
 
