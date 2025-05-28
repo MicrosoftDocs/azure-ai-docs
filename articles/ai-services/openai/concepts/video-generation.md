@@ -50,5 +50,5 @@ Sora has a robust safety stack including content filtering, abuse monitoring, se
 Sora doesn't generate scenes with acts of violence but can generate adjacent content, such as realistic war-like footage.
 
 ## Related content
-- [Video generation quickstart](../video-generation/video-generation-quickstart.md)
+- [Video generation quickstart](../video-generation-quickstart.md)
 - [Image generation quickstart](../dall-e-quickstart.md)

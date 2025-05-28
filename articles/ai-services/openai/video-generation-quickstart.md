@@ -12,7 +12,7 @@ ms.date: 5/29/2025
 
 # Quickstart: Generate a video with Sora (preview)
 
-[!INCLUDE [REST API quickstart](includes/audio-completions-rest.md)]
+[!INCLUDE [REST API quickstart](includes/video-generation-rest.md)]
 
 ## Clean-up resources
 
