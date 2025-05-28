@@ -1,12 +1,12 @@
 ---
 title: Identification entities
 titleSuffix: Azure AI services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
 ms.date: 12/19/2023
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-pii
 ---
 

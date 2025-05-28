@@ -2,12 +2,12 @@
 title: Language service encryption of data at rest
 description: Learn how the Language service encrypts your data when it's persisted to the cloud.
 titleSuffix: Azure AI services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 #Customer intent: As a user of the Language service, I want to learn how encryption at rest works.
 ---
 
