@@ -6,11 +6,13 @@ ms.service: azure-ai-model-inference
 ms.topic: how-to
 ms.date: 05/19/2025
 ms.custom: ignite-2024, github-universe-2024
-manager: nitinme
-author: santiagxf
-ms.author: fasantia 
+manager: scottpolly
+author: msakande
+ms.author: mopeakande
 recommendations: false
 zone_pivot_groups: azure-ai-models-deployment
+ms.reviewer: fasantia
+reviewer: santiagxf
 ---
 
 # Configure key-less authentication with Microsoft Entra ID
