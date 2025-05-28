@@ -115,7 +115,7 @@ The first step is to confirm you model choice and the training method. Not all m
 
 - **Supervised Fine Tuning** (SFT): supported by all non-reasoning models.
 - **Direct Preference Optimization (Preview)** ([DPO](../how-to/fine-tuning-direct-preference-optimization.md)): supported by GPT-4o.
-- **Reinforcement Fine Tuning (Preview)** (RFT): supported by reasoning models, like o4-mini.
+- **Reinforcement Fine Tuning (Preview)** ([RFT](../how-to/reinforcement-fine-tuning.md)): supported by reasoning models, like o4-mini.
 
 When selecting the model, you may also select a [previously fine-tuned model](#continuous-fine-tuning).
 

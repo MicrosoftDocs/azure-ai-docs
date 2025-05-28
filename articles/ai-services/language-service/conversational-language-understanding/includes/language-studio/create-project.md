@@ -1,10 +1,10 @@
 ---
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ---
 
 1. In [Language Studio](https://aka.ms/languageStudio), find the section named **Understand questions and conversational language** and select **Conversational language understanding**.  

@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 2/25/2025
+ms.date: 5/19/2025
 ms.author: eur
 zone_pivot_groups: foundry-speech-studio-cli-rest
 show_latex: true
@@ -24,29 +24,32 @@ In this article, you learn how to quantitatively measure and improve the accurac
 
 You can test the accuracy of your custom model by creating a test. A test requires a collection of audio files and their corresponding transcriptions. You can compare a custom model's accuracy with a speech to text base model or another custom model. After you [get](#get-test-results) the test results, [evaluate the word error rate (WER)](#evaluate-word-error-rate-wer) compared to speech recognition results.
 
+After you [upload training and testing datasets](how-to-custom-speech-upload-data.md), you can create a test.
+
 ::: zone pivot="ai-foundry-portal"
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
-1. Select **Fine-tuning** from the left pane.
-1. Select **AI Service fine-tuning**.
-1. Select the custom model that you want to manage from the **Model name** column.
-1. After the model is trained, select **Test models** from the left menu. Then select **+ Create test**.
+To test your fine-tuned custom speech model, follow these steps:
 
-    :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-test-model.png" alt-text="Screenshot of the page with an option to test your custom speech model." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-test-model.png":::
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
+1. Select the custom speech fine-tuning task (by model name) that you [started as described in the how to start custom speech fine-tuning article](./how-to-custom-speech-create-project.md).
+1. Select **Test models** > **+ Create test**. 
+
+    :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-test-model.png" alt-text="Screenshot of the page with an option to test your custom speech model." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-test-model.png":::
 
 1. In the **Create a new test** wizard, select the test type. For an accuracy (quantitative) test, select **Evaluate accuracy (Audio + transcript data)**. Then select **Next**.
 
-    :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-test-model-select-type.png" alt-text="Screenshot of the page with an option to select the test type." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-test-model-select-type.png":::
+    :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-test-model-select-type.png" alt-text="Screenshot of the page with an option to select the test type." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-test-model-select-type.png":::
 
 1. Select the data that you want to use for testing. Then select **Next**.
 1. Select up to two models to evaluate and compare accuracy. In this example, we select the model that we trained and the base model. Then select **Next**.
 
-    :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-test-model-select-models.png" alt-text="Screenshot of the page with an option to select up to two models to evaluate and compare accuracy." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-test-model-select-models.png":::
+    :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-test-model-select-models.png" alt-text="Screenshot of the page with an option to select up to two models to evaluate and compare accuracy." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-test-model-select-models.png":::
 
 1. Enter a name and description for the test. Then select **Next**.
 1. Review the settings and select **Create test**. You're taken back to the **Test models** page. The status of the data is **Processing**.
 
-    :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-test-model-status-processing.png" alt-text="Screenshot of the page that shows the status of the test as processing." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-test-model-status-processing.png":::
+    :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-test-model-status-processing.png" alt-text="Screenshot of the page that shows the status of the test as processing." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-test-model-status-processing.png":::
 
 ::: zone-end
 
@@ -164,10 +167,10 @@ To create a test, use the [Evaluations_Create](/rest/api/speechtotext/evaluation
 - Set the required `locale` property. This property should be the locale of the dataset contents. The locale can't be changed later.
 - Set the required `displayName` property. This property is the name that is displayed in the [Azure AI Foundry portal](https://ai.azure.com).
 
-Make an HTTP POST request using the URI as shown in the following example. Replace `YourSubscriptionKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, and set the request body properties as previously described.
+Make an HTTP POST request using the URI as shown in the following example. Replace `YourSpeechResoureKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, and set the request body properties as previously described.
 
 ```azurecli-interactive
-curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey" -H "Content-Type: application/json" -d '{
+curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content-Type: application/json" -d '{
   "model1": {
     "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/13fb305e-09ad-4bce-b3a1-938c9124dda3"
   },
@@ -410,10 +413,10 @@ spx help csr evaluation
 
 To get test results, start by using the [Evaluations_Get](/rest/api/speechtotext/evaluations/get) operation of the [Speech to text REST API](rest-speech-to-text.md).
 
-Make an HTTP GET request using the URI as shown in the following example. Replace `YourEvaluationId` with your evaluation ID, replace `YourSubscriptionKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource region.
+Make an HTTP GET request using the URI as shown in the following example. Replace `YourEvaluationId` with your evaluation ID, replace `YourSpeechResoureKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource region.
 
 ```azurecli-interactive
-curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/evaluations/YourEvaluationId" -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey"
+curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/evaluations/YourEvaluationId" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
 ```
 
 The word error rates and more details are returned in the response body.

@@ -5,7 +5,7 @@ description: Learn how to use GPT-4o Realtime API for speech and audio with Azur
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 3/20/2025
+ms.date: 5/23/2025
 author: eric-urban
 ms.author: eur
 ms.custom: references_regions, ignite-2024
@@ -62,3 +62,4 @@ Support for the Realtime API was first added in API version `2024-10-01-preview`
 * Learn more about [How to use the Realtime API](./how-to/realtime-audio.md)
 * See the [Realtime API reference](./realtime-audio-reference.md)
 * Learn more about Azure OpenAI [quotas and limits](quotas-limits.md)
+* Learn more about [Language and voice support for the Speech service](../../ai-services/speech-service/language-support.md)

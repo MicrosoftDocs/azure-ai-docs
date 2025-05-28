@@ -36,7 +36,7 @@ To create an AI Foundry resource follow these instructions:
 > - [Create an Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects?tabs=ai-foundry&pivots=fdp-project).
 > - [Create an Azure AI hub based project](/azure/ai-foundry/how-to/create-projects?tabs=ai-foundry&pivots=hub-project).
 
-1. Select this link to create an **AI Foundry** resource: [https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices)
+1. Select this link to create an **AI Foundry** resource: [https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry)
 
 1. On the **Create** page, provide the following information:
 

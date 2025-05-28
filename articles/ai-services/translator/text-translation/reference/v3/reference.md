@@ -1,30 +1,26 @@
 ---
-title: Azure AI Translator v3.0 reference
+title: Translator V3.0 Reference
 titleSuffix: Azure AI services
-description: Reference documentation for Azure AI Translator v3.0 operations and capabilities.
+description: Reference documentation for the Translator V3.0. Version 3.0 of the Translator provides a modern JSON-based Web API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/14/2025
+ms.date: 05/19/2025
 ms.author: lajanuar
 ---
 
-# Azure AI Translator v3.0
-
-Azure AI Translator v3.0 is a cloud-based, multilingual, neural machine translation service that provides robust and scalable translation capabilities suitable for diverse applications. Translator service supports over 100 languages and dialects, making it ideal for businesses, developers, and organizations seeking to seamlessly integrate multilingual communication. Translator is an optimal solution for managing extensive multilingual content and easily integrates with your applications and workflows through a single REST API call and supports multiple programming languages. Azure AI Translator prioritizes data security and privacy, complying with regulations like GDPR, HIPAA, and ISO/SOC, thus ensuring that it's a reliable solution for handling sensitive and confidential information.
+# Translator v3.0
 
 ## What's new?
 
-* **Transliteration**. Convert text in one language from one script to another script.
+Version 3.0 of the Translator provides a modern JSON-based Web API. It improves usability and performance by consolidating existing features into fewer operations and it provides new features.
 
-* **Complex translation**. Translate multiple languages in a single request.
-
-* **Multiple operations**. Utilize language detection, translation, and transliteration in one request.
-
-* **Dictionary lookup**. Add a dictionary to provide alternative translations for a term, find back-translations, and view examples showing terms used in context.
-
-* **Enhanced language detection**. Obtain detailed and comprehensive results for language detection.
+* Transliteration to convert text in one language from one script to another script.
+* Translation to multiple languages in one request.
+* Language detection, translation, and transliteration in one request.
+* Dictionary to look up alternative translations of a term, to find back-translations and examples showing terms used in context.
+* More informative language detection results.
 
 ## Base URLs
 
@@ -48,7 +44,7 @@ Customers with a resource located in Switzerland North or Switzerland West can e
 
 For example: If you create a Translator resource in Azure portal with `Resource region` as `Switzerland North` and your resource name is `my-swiss-n`, then your custom endpoint is `https&#8203;://my-swiss-n.cognitiveservices.azure.com`. And a sample request to translate is:
 
- ```bash
+```curl
 // Pass secret key and region using headers to a custom endpoint
 curl -X POST "https://my-swiss-n.cognitiveservices.azure.com/translator/text/v3.0/translate?to=fr" \
 -H "Ocp-Apim-Subscription-Key: xxx" \
@@ -57,8 +53,9 @@ curl -X POST "https://my-swiss-n.cognitiveservices.azure.com/translator/text/v3.
 -d "[{'Text':'Hello'}]" -v
 ```
 
-> [!NOTE]
-> Custom Translator currently unavailable in Switzerland.
+Custom Translator isn't currently available in Switzerland.
+
+## Authentication
 
 Subscribe to Translator or [multi-service](https://azure.microsoft.com/pricing/details/cognitive-services/) in Azure AI services, and use your key (available in the Azure portal) to authenticate.
 
@@ -347,7 +344,7 @@ The error code is a 6-digit number combining the 3-digit HTTP status code follow
 ## Metrics
 Metrics allow you to view the translator usage and availability information in Azure portal. For more information, see [Data and platform metrics](/azure/azure-monitor/essentials/data-platform-metrics).
 
-:::image type="content" source="../../../media/azure-portal-metrics-v3.png" alt-text="Screenshot of Translator HTTP request metrics in the Azure portal.":::
+![Translator Metrics](../../../media/azure-portal-metrics-v3.png)
 
 This table lists available metrics with description of how they're used to monitor translation API calls.
 

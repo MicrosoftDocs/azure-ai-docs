@@ -1,9 +1,9 @@
 ---
-author: alexeyo26
+author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 02/23/2022
-ms.author: alexeyo
+ms.author: eur
 ---
 
 ## Use of Speech Studio

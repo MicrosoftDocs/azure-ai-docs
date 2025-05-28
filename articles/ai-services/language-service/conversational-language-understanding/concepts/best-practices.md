@@ -2,12 +2,12 @@
 title: Conversational language understanding best practices
 titleSuffix: Azure AI services
 description: Learn how to apply best practices when you use conversational language understanding.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: best-practice
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-clu
 ---
 

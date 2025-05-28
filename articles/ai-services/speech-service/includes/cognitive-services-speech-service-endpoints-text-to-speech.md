@@ -6,7 +6,7 @@ ms.date: 05/06/2019
 ms.author: wolfma
 ---
 
-### Prebuilt neural voices
+### Standard voices
 
 Use this table to determine *availability of neural voices* by region or endpoint:
 

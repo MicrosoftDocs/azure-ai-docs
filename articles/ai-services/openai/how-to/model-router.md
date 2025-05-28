@@ -1,7 +1,6 @@
 ---
 title: How to use model router for Azure AI Foundry (preview)
-titleSuffix: Azure OpenAI Service
-description: Learn how to use the model router in Azure OpenAI Service to select the best model for your task.
+description: Learn how to use the model router in Azure OpenAI to select the best model for your task.
 author: PatrickFarley
 ms.author: pafarley 
 #customer intent: 

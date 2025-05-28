@@ -22,6 +22,14 @@ Deployment of a large language model (LLM) makes it available for use in a websi
 
 In this article, you learn how to deploy models using the Azure Machine Learning SDK. The article also covers how to perform inference on the deployed model.
 
+## Prerequisites
+
+- An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
+
+- If you don't have one, [create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]](create-projects.md?pivots=hub-project).
+
+- Marketplace purchases enabled for your Azure subscription. Learn more [here](/azure/cost-management-billing/manage/enable-marketplace-purchases).
+
 ## Get the model ID
 
 You can deploy managed compute models using the Azure Machine Learning SDK, but first, let's browse the model catalog and get the model ID you need for deployment.

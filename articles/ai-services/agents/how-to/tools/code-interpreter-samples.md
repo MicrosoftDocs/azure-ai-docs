@@ -21,7 +21,7 @@ Azure AI Agents supports using the Code Interpreter tool, which allows an agent 
 
 ## Using the code interpreter tool with an agent
 
-You can add the code interpreter tool to an agent programatically using the code examples listed at the top of this article, or the [Azure AI Foundry portal](https://ai.azure.com/). If you want to use the portal:
+You can add the code interpreter tool to an agent programmatically using the code examples listed at the top of this article, or the [Azure AI Foundry portal](https://ai.azure.com/). If you want to use the portal:
 
 1. In the **Agents** screen for your agent, scroll down the **Setup** pane on the right to **action**. Then select **Add**.
 
@@ -259,7 +259,7 @@ Finally, delete the thread and the agent to clean up the resources created in th
 
 ## Create a project client 
 
-To use code interpreter, first you need to create a project client, which will contain a connection string to your AI project, and will be used to authenticate API calls.
+To use code interpreter, first you need to create a project client, which will contain an endpoint to your AI project, and will be used to authenticate API calls.
 
 ```javascript
 const { AgentsClient, isOutputOfType, ToolUtility } = require("@azure/ai-agents");
@@ -269,7 +269,7 @@ const fs = require("fs");
 const path = require("node:path");
 require("dotenv/config");
 
-const projectEndpoint = process.env["PROJECT_ENDPOINT"] || "<project connection string>";
+const projectEndpoint = process.env["PROJECT_ENDPOINT"];
 
 // Create an Azure AI Client
 const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());

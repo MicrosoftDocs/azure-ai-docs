@@ -30,7 +30,7 @@ The following services are Limited Access:
 - [Azure AI Face](/legal/cognitive-services/computer-vision/limited-access-identity?context=/azure/ai-services/computer-vision/context/context): Identify and Verify features, face ID property
 - [Azure AI Vision](/legal/cognitive-services/computer-vision/limited-access?context=/azure/ai-services/computer-vision/context/context): Celebrity Recognition feature
 - [Azure AI Video Indexer](/azure/azure-video-indexer/limited-access-features): Celebrity Recognition and Face Identify features
-- [Azure OpenAI](/legal/cognitive-services/openai/limited-access): Azure OpenAI Service, modified abuse monitoring, and modified content filters
+- [Azure OpenAI](/legal/cognitive-services/openai/limited-access): Azure OpenAI in Azure AI Foundry Models, modified abuse monitoring, and modified content filters
 
 Features of these services that aren't listed are available without registration. 
 
@@ -46,7 +46,7 @@ Submit a registration form for each Limited Access service you would like to use
 - [Azure AI Face](https://aka.ms/facerecognition): Identify and Verify features
 - [Azure AI Vision](https://aka.ms/facerecognition): Celebrity Recognition feature 
 - [Azure AI Video Indexer](https://aka.ms/facerecognition): Celebrity Recognition and Face Identify features 
-- [Azure OpenAI](/legal/cognitive-services/openai/limited-access): Azure OpenAI Service, modified abuse monitoring, and modified content filters 
+- [Azure OpenAI](/legal/cognitive-services/openai/limited-access): Azure OpenAI, modified abuse monitoring, and modified content filters 
 
 ### How long does the registration process take?
 

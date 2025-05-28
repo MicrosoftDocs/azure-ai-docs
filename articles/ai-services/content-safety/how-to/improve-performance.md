@@ -45,9 +45,9 @@ In addition to adjusting the severity levels for false negatives, you can also u
 
 Read the [Configurability](/en-us/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cuser-prompt%2Cpython-new#configurability-preview) documentation, as some content filtering configurations may require approval through the process mentioned there.
 
-Follow the steps in the documentation to update configurations to handle false positives or negatives: [How to use content filters (preview) with Azure OpenAI Service](/azure/ai-services/openai/how-to/content-filters). 
+Follow the steps in the documentation to update configurations to handle false positives or negatives: [How to use content filters (preview) with Azure OpenAI in Azure AI Foundry Models](/azure/ai-services/openai/how-to/content-filters). 
 
-In addition to adjusting the severity levels for false negatives, you can also use blocklists. Detailed instruction can be found in [How to use blocklists with Azure OpenAI Service](/azure/ai-services/openai/how-to/use-blocklists).
+In addition to adjusting the severity levels for false negatives, you can also use blocklists. Detailed instruction can be found in [How to use blocklists with Azure OpenAI](/azure/ai-services/openai/how-to/use-blocklists).
 
 #### [Azure AI Foundry](#tab/azure-ai-studio)
 

@@ -6,7 +6,7 @@ author: erindormier
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 01/28/2025
+ms.date: 05/19/2025
 ms.author: egeaney
 #Customer intent: As a user of the Translator service, I want to learn how encryption at rest works.
 ---

@@ -148,7 +148,7 @@ ml_client.data.import_data(data_import=data_import)
 
    :::image type="content" source="media/how-to-import-data-assets/create-snowflake-data-import.png" lightbox="media/how-to-import-data-assets/create-snowflake-data-import.png" alt-text="Screenshot that shows details of the data source selection.":::
 
-1. Fill in the values at the Choose a datastore to output screen, and select Next, as shown in this screenshot. **Workspace managed datastore** is selected by default; the path is automatically assigned by the system when you choose manged datastore. If you select **Workspace managed datastore**, the **Auto delete setting** dropdown appears. It offers a data deletion time window of 30 days by default, and [how to manage imported data assets](./how-to-manage-imported-data-assets.md) explains how to change this value.
+1. Fill in the values at the Choose a datastore to output screen, and select Next, as shown in this screenshot. **Workspace managed datastore** is selected by default; the path is automatically assigned by the system when you choose managed datastore. If you select **Workspace managed datastore**, the **Auto delete setting** dropdown appears. It offers a data deletion time window of 30 days by default, and [how to manage imported data assets](./how-to-manage-imported-data-assets.md) explains how to change this value.
 
    :::image type="content" source="media/how-to-import-data-assets/choose-snowflake-datastore-to-output.png" lightbox="media/how-to-import-data-assets/choose-snowflake-datastore-to-output.png" alt-text="Screenshot that shows details of the data source to output.":::
 

@@ -18,7 +18,7 @@ Azure OpenAI is available in multiple regions. When you create an Azure OpenAI r
 
 It's rare, but not impossible, to encounter a network issue that hits an entire region. If your service needs to always be available, then you should design it to either failover into another region or split the workload between two or more regions. Both approaches require at least two Azure OpenAI resources in different regions. This article provides general recommendations for how to implement Business Continuity and Disaster Recovery (BCDR) for your Azure OpenAI applications.
 
-By default, the Azure OpenAI service provides a [default SLA](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services?lang=1). While the default resiliency may be sufficient for many applications, applications requiring high degrees of resiliency and business continuity should take additional steps to further strengthen their model infrastructure.
+By default, the Azure OpenAI provides a [default SLA](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services?lang=1). While the default resiliency may be sufficient for many applications, applications requiring high degrees of resiliency and business continuity should take additional steps to further strengthen their model infrastructure.
 
 ## Standard Deployments
 
@@ -27,7 +27,7 @@ By default, the Azure OpenAI service provides a [default SLA](https://www.micros
 
 1. For Standard Deployments default to Data Zone deployment (US/EU options).
 
-1. You should deploy two Azure OpenAI resources in the Azure Subscription. One resource should be deployed in your preferred region and the other should be deployed in your secondary/failover region. The Azure OpenAI service allocates quota at the subscription + region level, so they can live in the same subscription with no impact on quota.
+1. You should deploy two Azure OpenAI resources in the Azure Subscription. One resource should be deployed in your preferred region and the other should be deployed in your secondary/failover region. The Azure OpenAI allocates quota at the subscription + region level, so they can live in the same subscription with no impact on quota.
 1. You should have one deployment for each model you plan to use deployed to the Azure OpenAI resource in your preferred Azure region and you should duplicate these model deployments in the secondary/failover region. Allocate the full quota available in your Standard deployment to each of these endpoints. This provides the highest throughput rate when compared to splitting quota across multiple deployments.
 1. Select the deployment region based on your network topology. You can deploy an Azure OpenAI resource to any supported region and then create a Private Endpoint for that resource in your preferred region.
     - Once within the Azure OpenAI boundary, the Azure OpenAI optimizes routing and processing across available compute in the data zone. 
@@ -63,7 +63,7 @@ The additional benefit of this architecture is that it allows you to stack Stand
 
 ## Supporting Infrastructure
 
-The infrastructure that supports the Azure OpenAI architecture needs to be considered in designs. The infrastructure components involved in the architecture vary depending on if the applications consume the Azure OpenAI service over the Internet or over a private network. The architecture discussed in this article assumes the organization has implemented a [Generative AI Gateway](/ai/playbook/technology-guidance/generative-ai/dev-starters/genai-gateway/). Organizations with a mature Azure footprint and hybrid connectivity should consume the service through a private network while organizations without hybrid connectivity, or with applications in another cloud such as GCP or AWS, will consume the service through the Microsoft public backbone.
+The infrastructure that supports the Azure OpenAI architecture needs to be considered in designs. The infrastructure components involved in the architecture vary depending on if the applications consume the Azure OpenAI over the Internet or over a private network. The architecture discussed in this article assumes the organization has implemented a [Generative AI Gateway](/ai/playbook/technology-guidance/generative-ai/dev-starters/genai-gateway/). Organizations with a mature Azure footprint and hybrid connectivity should consume the service through a private network while organizations without hybrid connectivity, or with applications in another cloud such as GCP or AWS, will consume the service through the Microsoft public backbone.
 
 ### Designing for consumption through the Microsoft public backbone
 

@@ -15,7 +15,7 @@ ms.author: eur
 
 In this overview, you learn about the benefits and capabilities of the text to speech feature of the Speech service, which is part of Azure AI services.
 
-Text to speech enables your applications, tools, or devices to convert text into human like synthesized speech. The text to speech capability is also known as speech synthesis. Use human like prebuilt neural voices out of the box, or create a custom neural voice that's unique to your product or brand. For a full list of supported voices, languages, and locales, see [Language and voice support for the Speech service](language-support.md?tabs=tts).
+Text to speech enables your applications, tools, or devices to convert text into human like synthesized speech. The text to speech capability is also known as speech synthesis. Use human like standard voices out of the box, or create a custom neural voice that's unique to your product or brand. For a full list of supported voices, languages, and locales, see [Language and voice support for the Speech service](language-support.md?tabs=tts).
 
 ## Core features
 
@@ -23,7 +23,7 @@ Text to speech includes the following features:
 
 | Feature | Summary | Demo |
 | --- | --- | --- |
-| Prebuilt neural voice (called *Neural* on the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/)) | Highly natural out-of-the-box voices. Create an Azure subscription and Speech resource, and then use the [Speech SDK](./get-started-text-to-speech.md) or visit the [Speech Studio portal](https://speech.microsoft.com/portal) and select prebuilt neural voices to get started. Check the [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). | Check the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) and determine the right voice for your business needs. |
+| Standard voice (called *Neural* on the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/)) | Highly natural out-of-the-box voices. Create an Azure subscription and Speech resource, and then use the [Speech SDK](./get-started-text-to-speech.md) or visit the [Speech Studio portal](https://speech.microsoft.com/portal) and select standard voices to get started. Check the [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). | Check the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) and determine the right voice for your business needs. |
 | Custom neural voice (called *Custom Neural* on the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/)) | Easy-to-use self-service for creating a natural brand voice, with limited access for responsible use. Create an Azure subscription and Speech resource (with the S0 tier), and [apply](https://aka.ms/customneural) to use the custom voice feature. After you're granted access, visit the [Speech Studio portal](https://speech.microsoft.com/portal) and select **Custom voice** to get started. Check the [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). | Check the [voice samples](https://aka.ms/customvoice). |
 
 ### More about neural text to speech features
@@ -34,17 +34,17 @@ The patterns of stress and intonation in spoken language are called _prosody_. T
 
 Here's more information about neural text to speech features in the Speech service, and how they overcome the limits of traditional text to speech systems:
 
-* **Real-time speech synthesis**: Use the [Speech SDK](./get-started-text-to-speech.md) or [REST API](rest-text-to-speech.md) to convert text to speech by using [prebuilt neural voices](language-support.md?tabs=tts) or [custom neural voices](custom-neural-voice.md).
+* **Real-time speech synthesis**: Use the [Speech SDK](./get-started-text-to-speech.md) or [REST API](rest-text-to-speech.md) to convert text to speech by using [standard voices](language-support.md?tabs=tts) or [custom neural voices](custom-neural-voice.md).
 
 * **Asynchronous synthesis of long audio**: Use the [batch synthesis API](batch-synthesis.md) to asynchronously synthesize text to speech files longer than 10 minutes (for example, audio books or lectures). Unlike synthesis performed via the Speech SDK or Speech to text REST API, responses aren't returned in real-time. The expectation is that requests are sent asynchronously, responses are polled for, and synthesized audio is downloaded when the service makes it available.
 
-* **Prebuilt neural voices**: Azure AI Speech uses deep neural networks to overcome the limits of traditional speech synthesis regarding stress and intonation in spoken language. Prosody prediction and voice synthesis happen simultaneously, which results in more fluid and natural-sounding outputs. Each prebuilt neural voice model is available at 24 kHz and high-fidelity 48 kHz. You can use neural voices to:
+* **Standard voices**: Azure AI Speech uses deep neural networks to overcome the limits of traditional speech synthesis regarding stress and intonation in spoken language. Prosody prediction and voice synthesis happen simultaneously, which results in more fluid and natural-sounding outputs. Each standard voice model is available at 24 kHz and high-fidelity 48 kHz. You can use neural voices to:
 
   - Make interactions with chatbots and voice assistants more natural and engaging.
   - Convert digital texts such as e-books into audiobooks.
   - Enhance in-car navigation systems.
 
-  For a full list of prebuilt Azure AI Speech neural voices, see [Language and voice support for the Speech service](language-support.md?tabs=tts).
+  For a full list of standard Azure AI Speech neural voices, see [Language and voice support for the Speech service](language-support.md?tabs=tts).
 
 * **Improve text to speech output with SSML**: Speech Synthesis Markup Language (SSML) is an XML-based markup language used to customize text to speech outputs. With SSML, you can adjust pitch, add pauses, improve pronunciation, change speaking rate, adjust volume, and attribute multiple voices to a single document.
 
@@ -78,7 +78,7 @@ Sample code for text to speech is available on GitHub. These samples cover text 
 
 ## Custom neural voice
 
-In addition to prebuilt neural voices, you can create custom neural voices that are unique to your product or brand. All it takes to get started is a handful of audio files and the associated transcriptions. For more information, see [Get started with custom neural voice](professional-voice-create-project.md).
+In addition to standard voices, you can create custom neural voices that are unique to your product or brand. All it takes to get started is a handful of audio files and the associated transcriptions. For more information, see [Get started with custom neural voice](professional-voice-create-project.md).
 
 ## Pricing note
 
@@ -148,7 +148,7 @@ Here's a table summarizing the key metrics for Azure text to speech.
 
 | **Metric name**                  | **Description** |
 |----------------------------------|-----------------|
-| **Synthesized Characters**       | Tracks the number of characters converted into speech, including prebuilt neural voice and custom neural voice. For details on billable characters, see [Billable characters](#billable-characters). |
+| **Synthesized Characters**       | Tracks the number of characters converted into speech, including standard voice and custom neural voice. For details on billable characters, see [Billable characters](#billable-characters). |
 | **Video Seconds Synthesized**    | Measures the total duration of video synthesized, including batch avatar synthesis, real-time avatar synthesis, and custom avatar synthesis.  |
 | **Avatar Model Hosting Seconds** | Tracks the total time in seconds that your custom avatar model is hosted. |
 | **Voice Model Hosting Hours**    | Tracks the total time in hours that your custom neural voice model is hosted.  |

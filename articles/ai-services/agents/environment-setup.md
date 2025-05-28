@@ -14,7 +14,7 @@ ms.custom: azure-ai-agents
 
 # Set up your environment
 
-Creating your first agent with Azure AI Agent Service is a two-step process: 
+Creating your first agent with Azure AI Foundry Agent Service is a two-step process: 
 1. Set up your agent environment.
 1. Create and configure your agent using either the SDK of your choice or the Azure Foundry Portal. 
 

@@ -25,7 +25,7 @@ Both standard setup configurations are designed to give you complete control ove
 * BYO Search: All vector stores created by the agent leverage the customer’s Azure AI Search resource.   
 * BYO Thread Storage: All customer messages and conversation history will be stored in the customer’s own Azure Cosmos DB account.  
 
-By bundling these BYO features (file storage, search, and thread storage), the standard setup guarantees that your deployment is secure by default. All data processed by Azure AI Agent Service is automatically stored at rest in your own Azure resources, helping you meet internal policies, compliance requirements, and enterprise security standards. 
+By bundling these BYO features (file storage, search, and thread storage), the standard setup guarantees that your deployment is secure by default. All data processed by Azure AI Foundry Agent Service is automatically stored at rest in your own Azure resources, helping you meet internal policies, compliance requirements, and enterprise security standards. 
 
 ## Project-Level Data Isolation
 
@@ -41,7 +41,7 @@ Azure AI Foundry enforces project-level data isolation by default. When you conf
 This default behavior was chosen to reduce configuration complexity while still enforcing strict data boundaries—ensuring each project has a clean, isolated storage footprint without requiring manual setup. 
 
 ## Capability hosts
-**Capability hosts** are sub-resources on both the Account and Project, enabling interaction with the Azure AI Agent Service. 
+**Capability hosts** are sub-resources on both the Account and Project, enabling interaction with the Azure AI Foundry Agent Service. 
 - **Account Capability Host**: The account capability host has an empty request body except for the parameter capabilityHostKind="Agents". 
 - **Project Capability Host**: Specifies resources for storing agent state, either managed multitenant (basic setup) or customer-owned (standard setup), single-tenant resource. Think of project capability host as the project settings.
 

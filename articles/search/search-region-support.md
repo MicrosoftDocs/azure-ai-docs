@@ -4,8 +4,8 @@ titleSuffix: Azure AI Search
 description: Shows supported regions and feature availability across regions for Azure AI Search.
 
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.custom: references_regions
@@ -101,8 +101,8 @@ You can create an Azure AI Search service in any of the following Azure public r
 | Southeast Asia​​ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Central India | ✅ | ✅ | ✅ | ✅ |  |
 | Jio India West​​ | ✅ |  | ✅ | ✅ |  |
-| South India <sup>1</sup> |  | ✅ |  |  |  |
-| Japan East | ✅ | ✅ | ✅ | ✅ |  |
+| South India |  | ✅ |  |  |  |
+| Japan East <sup>1</sup> | ✅ | ✅ | ✅ | ✅ |  |
 | Japan West​ | ✅ |  | ✅ | ✅ |  |
 | Korea Central | ✅ | ✅ | ✅ | ✅ |  |
 | Korea South​​ |  |  | ✅ | ✅ |  |

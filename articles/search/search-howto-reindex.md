@@ -11,7 +11,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 04/28/2025
+ms.date: 05/19/2025
 ---
 
 # Update or rebuild an index in Azure AI Search
@@ -199,6 +199,7 @@ The index schema defines the physical data structures created on the search serv
 
 The following list enumerates the schema changes that can be introduced seamlessly into an existing index. Generally, the list includes new fields and functionality used during query execution.
 
++ Add an [index description (preview)]()
 + Add a new field
 + Set the `retrievable` attribute on an existing field
 + Update `searchAnalyzer` on a field having an existing `indexAnalyzer`
@@ -252,6 +253,47 @@ The order of operations is:
 When you create the index, physical storage is allocated for each field in the index schema, with an inverted index created for each searchable field and a vector index created for each vector field. Fields that aren't searchable can be used in filters or expressions, but don't have inverted indexes and aren't full-text or fuzzy searchable. On an index rebuild, these inverted indexes and vector indexes are deleted and recreated based on the index schema you provide.
 
 To minimize disruption to application code, consider [creating an index alias](search-how-to-alias.md). Application code references the alias, but you can update the name of the index that the alias points to.
+
+## Add an index description (preview)
+
+Beginning with REST API version 2025-05-01-preview, a `ddescription` is now supported. This human-readable text is invaluable when a system must access several indexes and make a decision based on the description. Consider a Model Context Protocol (MCP) server that must pick the correct index at run time. The decision can be  based on the description rather than on the index name alone.
+
+An index description is a schema update, and you can add it without having to rebuild the entire index.
+
++ String length is 4,000 characters maximum.
++ Content must be human-readable, in Unicode. Your use-case should determine which language to use.
+
+Support for an index description is provided in the preview REST API, the Azure portal, or in a prerelease Azure SDK package that provides the feature.
+
+### [**Azure portal**](#tab/portal)
+
+The Azure portal supports the latest preview API.
+
+1. Sign in to the Azure portal and find your search service.
+
+1. Under **Search management** > **Indexes**, select an index.
+
+1. Select **Edit JSON**.
+
+1. Insert `"description"`, followed by the description. The value must be less than 4,000 characters and in Unicode.
+
+   :::image type="content" source="media/search-how-to-index/edit-index-json.png" alt-text="Screenshot of the JSON definition of an index in the Azure portal.":::
+
+1. Save the index.
+
+### [**REST**](#tab/rest)
+
+1. [GET an index definition](/rest/api/searchservice/indexes/get).
+
+1. Copy the JSON so that you can use it as the basis of a new request.
+
+1. [Formulate an index update using a PUT request](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) and the preview API.
+
+1. Provide the *full* JSON of the existing schema, plus the new `description` field. The field must be a top-level field, on the same level as `name` or `fields`. The value must be less than 4,000 characters and in Unicode.
+
+1. To confirm the change, issue another [GET using the 2025-05-01-preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true).
+
+---
 
 ## Balancing workloads
 

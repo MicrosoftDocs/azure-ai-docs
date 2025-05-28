@@ -28,7 +28,7 @@ The following table describes the usage of the `voice` element's attributes:
 
 | Attribute | Description | Required or optional |
 | ---------- | ---------- | ---------- |
-| `name`    | The voice used for text to speech output. For a complete list of supported prebuilt voices, see [Language support](language-support.md?tabs=tts).| Required|
+| `name`    | The voice used for text to speech output. For a complete list of supported standard voices, see [Language support](language-support.md?tabs=tts).| Required|
 | `effect` |The audio effect processor that's used to optimize the quality of the synthesized speech output for specific scenarios on devices. <br/><br/>For some scenarios in production environments, the auditory experience might be degraded due to the playback distortion on certain devices. For example, the synthesized speech from a car speaker might sound dull and muffled due to environmental factors such as speaker response, room reverberation, and background noise. The passenger might have to turn up the volume to hear more clearly. To avoid manual operations in such a scenario, the audio effect processor can make the sound clearer by compensating the distortion of playback.<br/><br/>The following values are supported:<br/><ul><li>`eq_car` – Optimize the auditory experience when providing high-fidelity speech in cars, buses, and other enclosed automobiles.</li><li>`eq_telecomhp8k` – Optimize the auditory experience for narrowband speech in telecom or telephone scenarios. You should use a sampling rate of 8 kHz. If the sample rate isn't 8 kHz, the auditory quality of the output speech isn't optimized.</li></ul><br/>If the value is missing or invalid, this attribute is ignored and no effect is applied.|  Optional |
 
 ### Voice examples
