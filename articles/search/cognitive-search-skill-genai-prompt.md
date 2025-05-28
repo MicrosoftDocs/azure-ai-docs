@@ -17,35 +17,37 @@ ms.date: 05/27/2025
 
 The **GenAI (Generative AI) Prompt** skill executes a *chat completion* request against a Large Language Model (LLM) deployed in Azure AI Foundry or Azure OpenAI in Azure AI Foundry Models.  
 
-Use this capability to create new information that can be indexed and stored as searchable content. Examples include verbalize images, summarize larger passages, simplify complex content, or any other task that an LLM can perform. You can target text-only content, images, or multimodal (text and images) content. It's common to use this skill combined with a data chunking skill. The following tutorials demonstrate the image verbalization scenarios with two different data chunking techniques: 
+Use this capability to create new information that can be indexed and stored as searchable content. Examples include verbalize images, summarize larger passages, simplify complex content, or any other task that an LLM can perform. The skill supports text, image, and multimodal content such as a PDF that contains text and images. It's common to use this skill combined with a data chunking skill. The following tutorials demonstrate the image verbalization scenarios with two different data chunking techniques: 
 
-+ [Tutorial: Index mixed content using image verbalizations and the Document Layout skill](tutorial-multimodal-index-image-verbalization-skill.md)
+- [Tutorial: Index mixed content using image verbalizations and the Document Layout skill](tutorial-multimodal-index-image-verbalization-skill.md)
 
-+ [Tutorial: Index mixed content using image verbalizations and the Document Extraction skill](tutorial-multimodal-indexing-with-image-verbalization-and-doc-extraction.md)
+- [Tutorial: Index mixed content using image verbalizations and the Document Extraction skill](tutorial-multimodal-indexing-with-image-verbalization-and-doc-extraction.md)
 
 The GenAI Prompt skill is available in the [2025-05-01-preview REST API](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2025-05-01-preview&preserve-view=true) only. 
 
-<!-- ## Region Availability
+## Supported models
 
-- Your Azure AI Search service must be deployed in a [supported region](search-region-support.md).
+You can use any [chat completion inference model](/azure/ai-foundry/model-inference/concepts/models) deployed in AI Foundry, such as GPT models, Deepseek R#, Llama-4-Mavericj, Cohere-command-r, and so forth.
 
-- The availability of the GenAI Prompt skill depends on the region availability of the chat completions model you choose. If you're using [Azure OpenAI](/azure/ai-services/openai/overview), refer to the [Azure OpenAI region availability](/azure/ai-services/openai/concepts/models) to check which regions support the specific model you selected. For other AI Foundry chat completions models, consult the region availability documentation provided for the respective model to ensure compatibility. -->
+Billing is based on the pricing of the model you use.
 
 > [!NOTE]
-> The search service connects to your model over a public endpoint, so there are no region location requirements, but you should check the [Azure AI Search regions](search-region-support.md) and the [Azure OpenAI model regions](/azure/ai-services/openai/concepts/models) to find suitable pairs, especially if you have data residency requirements.
+> The search service connects to your model over a public endpoint, so there are no region location requirements, but if you're using an all-up Azure solution, you should check the [Azure AI Search regions](search-region-support.md) and the [Azure OpenAI model regions](/azure/ai-services/openai/concepts/models) to find suitable pairs, especially if you have data residency requirements.
 >
-> This skill is bound to your Azure OpenAI model and is charged at the existing [Azure OpenAI Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing).
-
 
 ## Prerequisites
 
-- A deployed chat-completion model (for example *gpt-4o* or any compatible Open Source Software (OSS) model) in Azure AI Foundry or Azure OpenAI.
+- A deployed chat completion model (for example *gpt-4o* or any compatible Open Source Software (OSS) model) in Azure AI Foundry or Azure OpenAI.
 
   - Copy the endpoint from **Models + Endpoints** in the Foundry portal or from the Azure OpenAI resource subdomain (`*.openai.azure.com`).
 
   - Provide this endpoint in the `Uri` parameter of your skill definition.
 
-- Authentication can be key-based with an API key from your Azure AI Foundry or Azure OpenAI resource. However, we recommend role-based access using a [search service managed identity](search-howto-managed-identities-data-sources.md) assigned to [**Cognitive Services OpenAI User**](/azure/ai-services/openai/how-to/role-based-access-control) on Azure OpenAI.
+- Authentication can be key-based with an API key from your Azure AI Foundry or Azure OpenAI resource. However, we recommend role-based access using a [search service managed identity](search-howto-managed-identities-data-sources.md) assigned to a role.
+
+  - On Azure OpenAI, assign [**Cognitive Services OpenAI User**](/azure/ai-services/openai/how-to/role-based-access-control) to the managed identity.
+
+  - For AI Foundry models, assign [**Azure AI User**](/azure/ai-foundry/concepts/rbac-azure-ai-foundry#azure-ai-user).
 
 ## @odata.type  
 
@@ -126,6 +128,7 @@ The GenAI Prompt skill is available in the [2025-05-01-preview REST API](/rest/a
 ```
 
 ### Text + image description
+
 ```json
 {
   "@odata.type": "#Microsoft.Skills.Custom.ChatCompletionSkill",
@@ -145,6 +148,7 @@ The GenAI Prompt skill is available in the [2025-05-01-preview REST API](/rest/a
 ```
 
 ### Structured numerical fact-finder
+
 ```json
 {
   "@odata.type": "#Microsoft.Skills.Custom.ChatCompletionSkill",
@@ -187,6 +191,7 @@ The GenAI Prompt skill is available in the [2025-05-01-preview REST API](/rest/a
 ```
 
 ### Sample output (truncated)
+
 ```json
 {
   "response": {
@@ -204,6 +209,7 @@ The GenAI Prompt skill is available in the [2025-05-01-preview REST API](/rest/a
   }
 }
 ```
+
 ### Best practices
 
 - Chunk long documents with the **Text Split** skill to stay within the model’s context window.  
@@ -211,8 +217,6 @@ The GenAI Prompt skill is available in the [2025-05-01-preview REST API](/rest/a
 - To minimize latency, co-locate the model and your Azure AI Search service in the same Azure region.  
 - Use `responseFormat.json_schema` with **GPT-4o** for reliable structured extraction and easier mapping to index fields.  
 - Monitor token usage and submit **quota-increase requests** if the indexer saturates your Tokens per Minute (TPM) limits.  
-
----
 
 ### Errors and warnings
 
@@ -225,9 +229,9 @@ The GenAI Prompt skill is available in the [2025-05-01-preview REST API](/rest/a
 | Input exceeds model token limit | **Error** |
 | Model returns invalid JSON for `json_schema` | **Warning** – raw string returned in `response` |
 
----
 
 ### See also
+
 - [Azure AI Search built-in indexers](search-indexer-overview.md)
 - [Integrated vectorization](vector-search-integrated-vectorization.md)
 - [How to define a skillset](cognitive-search-defining-skillset.md)  
