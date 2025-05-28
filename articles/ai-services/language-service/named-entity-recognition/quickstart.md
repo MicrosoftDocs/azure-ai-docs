@@ -2,12 +2,12 @@
 title: "Quickstart: Use the NER client library"
 titleSuffix: Azure AI services
 description: Use this quickstart to start using the Named Entity Recognition (NER) API.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
 ms.date: 05/23/2025
-ms.author: jboback
+ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
 ms.custom: language-service-ner, mode-api, devx-track-extended-java, devx-track-js, devx-track-python
