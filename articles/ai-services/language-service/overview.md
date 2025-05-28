@@ -2,12 +2,12 @@
 title: What is Azure AI Language
 titleSuffix: Azure AI services
 description: Learn how to integrate AI into your applications that can extract information and understand written language.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
 ms.date: 03/05/2025
-ms.author: jboback
+ms.author: lajanuar
 ---
 
 # What is Azure AI Language?

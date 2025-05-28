@@ -3,12 +3,12 @@ title: "Quickstart: Use the Text Analytics for health REST API and client librar
 titleSuffix: Azure AI services
 description: Use this quickstart to start using Text Analytics for health.
 #services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
 ms.date: 02/16/2025
-ms.author: jboback
+ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
 ms.custom: language-service-health, mode-api, devx-track-extended-java, devx-track-js, devx-track-python

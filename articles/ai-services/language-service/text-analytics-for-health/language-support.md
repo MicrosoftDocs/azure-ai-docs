@@ -3,12 +3,12 @@ title: Text Analytics for health language support
 titleSuffix: Azure AI services
 description: "This article explains which natural languages are supported by the Text Analytics for health."
 #services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-health
 ---
 

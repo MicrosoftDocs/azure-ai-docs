@@ -2,12 +2,12 @@
 title: Language support for Key Phrase Extraction
 titleSuffix: Azure AI services
 description: Use this article to find the natural languages supported by Key Phrase Extraction.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-key-phrase
 ---
 

@@ -3,12 +3,12 @@ title: What is the Text Analytics for health in Azure AI Language?
 titleSuffix: Azure AI services
 description: An overview of Text Analytics for health in Azure AI services, which helps you extract medical information from unstructured text, like clinical documents.
 #services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
 ms.date: 02/17/2025
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-health, ignite-2024
 ---
 

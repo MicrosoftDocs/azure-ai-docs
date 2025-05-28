@@ -3,12 +3,12 @@ title: Configure Text Analytics for health containers
 titleSuffix: Azure AI services
 description: Text Analytics for health containers uses a common configuration framework, so that you can easily configure and manage storage, logging and telemetry, and security settings for your containers.
 #services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-health
 ---
 
