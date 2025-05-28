@@ -6,7 +6,7 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 05/22/2025
+ms.date: 5/29/2025
 ---
 
 # Sora video generation (preview)
@@ -49,3 +49,6 @@ Sora has a robust safety stack including content filtering, abuse monitoring, se
 
 Sora doesn't generate scenes with acts of violence but can generate adjacent content, such as realistic war-like footage.
 
+## Related content
+- [Video generation quickstart](../video-generation/video-generation-quickstart.md)
+- [Image generation quickstart](../dall-e-quickstart.md)
