@@ -2,12 +2,12 @@
 title: Custom NER data formats
 titleSuffix: Azure AI services
 description: Learn about the data formats accepted by custom NER.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-custom-ner
 ---
 
