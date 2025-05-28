@@ -15,9 +15,9 @@ ms.date: 05/27/2025
 
 # Document Extraction cognitive skill
 
-The **Document Extraction** skill extracts content from a file within the enrichment pipeline. Default content extraction or retrieval is built into the indexer pipeline. However, by using the Document Extraction skill, you can set parameters for more control over image extraction.
+The **Document Extraction** skill extracts content from a file within the enrichment pipeline. By default, content extraction or retrieval is built into the indexer pipeline. However, by using the Document Extraction skill, you can control how parameters are set, and extracted content is represented in the enrichment tree. 
 
-For skills that operate over images, such as [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) for image verbalization or [Optical Character Recognition (OCR)](cognitive-search-skill-ocr.md), using the Document Extraction skill in your pipeline allows you to downstream manage skill inputs by name and path. The following tutorials demonstrate several scenarios: 
+Document Extraction is more affordable than other data chunking approaches. The following tutorials demonstrate skill usage for different scenarios:
 
 + [Tutorial: Index mixed content using multimodal embeddings and the Document Extraction skill](tutorial-multimodal-indexing-with-embedding-and-doc-extraction.md)
 
@@ -25,6 +25,7 @@ For skills that operate over images, such as [GenAI Prompt skill](cognitive-sear
 
 > [!NOTE]
 > This skill isn't bound to Azure AI services and has no Azure AI services key requirement.
+>
 > This skill extracts text and images. Text extraction is free. Image extraction is [billable by Azure AI Search](https://azure.microsoft.com/pricing/details/search/). On a free search service, the cost of 20 transactions per indexer per day is absorbed so that you can complete quickstarts, tutorials, and small projects at no charge. For basic and higher tiers, image extraction is billable.
 >
 
