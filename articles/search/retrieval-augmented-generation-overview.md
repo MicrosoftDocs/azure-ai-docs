@@ -265,9 +265,9 @@ Check out the following GitHub repositories for code, documentation, and video d
 
 + [Build your own copilot solution accelerator](https://github.com/microsoft/Build-your-own-copilot-Solution-Accelerator)
 
-  + [Client Advisor](https://github.com/microsoft/Build-your-own-copilot-Solution-Accelerator/blob/main/ClientAdvisor/README.md)
+  + [Client Advisor](https://github.com/microsoft/Build-your-own-copilot-Solution-Accelerator)
 
-  + [Research Assistant](https://github.com/microsoft/Build-your-own-copilot-Solution-Accelerator/blob/main/ResearchAssistant/README.md)
+  + [Research Assistant](https://github.com/microsoft/Build-your-own-copilot-Solution-Accelerator)
 
   + [Generic copilot](https://github.com/microsoft/Generic-Build-your-own-copilot-Solution-Accelerator)
 
