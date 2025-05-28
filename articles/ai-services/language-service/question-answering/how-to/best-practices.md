@@ -4,8 +4,8 @@ description: Best practices for custom question answering
 ms.service: azure-ai-language
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
-author: jboback
-ms.author: jboback
+author: laujan
+ms.author: lajanuar
 recommendations: false
 ms.date: 11/21/2024
 ---

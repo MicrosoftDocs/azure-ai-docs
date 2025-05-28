@@ -4,8 +4,8 @@ description: The default answer is returned when there is no match to the questi
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/21/2024
-author: jboback
-ms.author: jboback
+author: laujan
+ms.author: lajanuar
 ms.custom: language-service-question-answering
 ---
 
