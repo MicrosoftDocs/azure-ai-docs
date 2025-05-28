@@ -42,9 +42,9 @@ The following table describes the minimum and recommended specifications for the
 
 It's recommended to have a CPU with AVX-512 instruction set, for the best experience (performance and accuracy).
 
-|     | Minimum host specs     | Recommended host specs |
+|  Processor   | Minimum host specs     | Recommended host specs |
 |---------------------|------------------------|------------------------|
-| **CLU**     | 1 core, 2 GB memory     | 4 cores, 8 GB memory    |
+| **CPU**     | 1 core, 2 GB memory     | 4 cores, 8 GB memory    |
 
 CPU core and memory correspond to the `--cpus` and `--memory` settings, which are used as part of the `docker run` command.
 
@@ -87,27 +87,29 @@ docker pull mcr.microsoft.com/azure-cognitive-services/language/clu:latest
 
 After creating the exported model in the section above, users have to run the container in order to download the deployment package that was created specifically for their exported models.
 
-| Placeholder| Value|Format or example|
-|---|---|---|
-|**{API_KEY}**| The key for your Language resource. You can find it on your resource's **Key and endpoint** page, on the Azure portal. |xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx| 
-| **{ENDPOINT_URI}**| The endpoint for accessing the API. You can find it on your resource's **Key and endpoint** page, on the Azure portal. |`https://<your-custom-subdomain>.cognitiveservices.azure.com`|
-| **{IMAGE_TAG}**| The image tag representing the language of the container you want to run. Make sure this matches the `docker pull` command you used.| latest|
-| **{LOCAL_CLU_PORT}**| Port number assigned for the container in local machine.| 5000 |
-| **{LOCAL_MODEL_DIRECTORY}** | Absolute directory in host machine where exported models are saved in. | `C:\usr\local\myDeploymentPackage` |
-| **{PROJECT_NAME}**| Name of the project for the exported model.| myProject|
-| **{EXPORTED_MODEL_NAME}** | Exported model to be downloaded | myExportedModel|
+  |Placeholder| Value|Format or example|
+  |---|---|---|
+  |**{API_KEY}**| The key for your Language resource. You can find it on your resource's **Key and endpoint** page, on the Azure portal. |xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx| 
+  | **{ENDPOINT_URI}**| The endpoint for accessing the API. You can find it on your resource's **Key and endpoint** page, on the Azure portal. |`https://<your-custom-subdomain>.cognitiveservices.azure.com`|
+  | **{IMAGE_TAG}**| The image tag representing the language of the container you want to run. Make sure this matches the `docker pull` command you used.| latest|
+  | **{LOCAL_CLU_PORT}**| Port number assigned for the container in local machine.| 5000 |
+  | **{LOCAL_MODEL_DIRECTORY}** | Absolute directory in host machine where exported models are saved in. | `C:\usr\local\myDeploymentPackage` |
+  | **{PROJECT_NAME}**| Name of the project for the exported model.| myProject|
+  | **{EXPORTED_MODEL_NAME}** | Exported model to be downloaded | myExportedModel|
+  
 
 
-```bash
-docker run --rm -it -p {LOCAL_CLU_PORT}:80 \
-mcr.microsoft.com/azure-cognitive-services/language/clu:{IMAGE_TAG} \ 
--v {LOCAL_MODEL_DIRECTORY}:/DeploymentPackage \
-Billing={ENDPOINT_URI} \ 
-ApiKey={API_KEY} \
-downloadmodel \
-projectName={PROJECT_NAME} \
-exportedModelName={EXPORTED_MODEL_NAME}
-```
+
+  ```bash
+  docker run --rm -it -p {LOCAL_CLU_PORT}:80 \
+  mcr.microsoft.com/azure-cognitive-services/language/clu:{IMAGE_TAG} \ 
+  -v {LOCAL_MODEL_DIRECTORY}:/DeploymentPackage \
+  Billing={ENDPOINT_URI} \ 
+  ApiKey={API_KEY} \
+  downloadmodel \
+  projectName={PROJECT_NAME} \
+  exportedModelName={EXPORTED_MODEL_NAME}
+  ```
 
 DO NOT alter the downloaded files. Even altering the name or folder structure can affect the integrity of the container and might break it.
 
