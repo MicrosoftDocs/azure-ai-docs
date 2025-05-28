@@ -6,7 +6,7 @@ ms.author: fasantia
 ms.custom: subject-cost-optimization
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 1/21/2025
+ms.date: 05/19/2025
 ---
 
 # Plan to manage costs for Azure AI Foundry Models

@@ -6,7 +6,7 @@ author: PatrickFarley
 ms.author: fasantia
 ms.service: azure-ai-model-inference
 ms.topic: conceptual 
-ms.date: 1/21/2025
+ms.date: 05/19/2025
 manager: nitinme
 ---
 
