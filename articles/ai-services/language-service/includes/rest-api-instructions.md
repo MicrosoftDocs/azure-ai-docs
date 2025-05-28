@@ -1,9 +1,9 @@
 ---
-author: jboback
+author: laujan
 ms.service: azure-ai-language
 ms.topic: include
 ms.date: 12/19/2023
-ms.author: jboback
+ms.author: lajanuar
 ---
 
 1. Copy the command into a text editor.
