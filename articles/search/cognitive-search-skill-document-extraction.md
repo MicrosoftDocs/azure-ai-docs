@@ -15,9 +15,9 @@ ms.date: 05/27/2025
 
 # Document Extraction cognitive skill
 
-The **Document Extraction** skill extracts content from a file within the enrichment pipeline. By default, content extraction or retrieval is built into the indexer pipeline. However, by using the Document Extraction skill, you can control how parameters are set, and extracted content is represented in the enrichment tree. 
+The **Document Extraction** skill extracts content from a file within the enrichment pipeline. By default, content extraction or retrieval is built into the indexer pipeline. However, by using the Document Extraction skill, you can control how parameters are set, and how extracted content is named in the enrichment tree.
 
-Document Extraction is more affordable than other data chunking approaches. The following tutorials demonstrate skill usage for different scenarios:
+For [vector](vector-search-overview.md) and [multimodal search](multimodal-search-overview.md), Document Extraction combined with the [Text Split skill](cognitive-search-skill-textsplit.md) is more affordable than other [data chunking approaches](vector-search-how-to-chunk-documents.md). The following tutorials demonstrate skill usage for different scenarios:
 
 + [Tutorial: Index mixed content using multimodal embeddings and the Document Extraction skill](tutorial-multimodal-indexing-with-embedding-and-doc-extraction.md)
 
