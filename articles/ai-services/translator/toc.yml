@@ -78,8 +78,8 @@ items:
       - name: Dictionary Examples
         href: text-translation/reference/v3/dictionary-examples.md
       - name: Migrate to v3 Text translation API
-      displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
-      href: text-translation/how-to/migrate-to-v3.md  
+        displayName: "speech,error,version,endpoint,compatibility,json,authentication,pricing"
+        href: text-translation/how-to/migrate-to-v3.md
   - name: Quickstarts
     items:
     - name: Translator Text SDK
@@ -111,7 +111,7 @@ items:
     - name: Use the Text translation APIs
       displayName: detection,detect,translation,transliteration,identification,length,sentence length,alternate,usage,headers,set up,status,401
       href: text-translation/how-to/use-rest-api.md
-    - name: "Migrate to 2025-05-01-preview"
+    - name: "Migrate to 2025-05-01-preview 🆕"
       displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
       href: text-translation/how-to/migrate-to-preview.md
     - name: Enable Microsoft Entra ID authentication
