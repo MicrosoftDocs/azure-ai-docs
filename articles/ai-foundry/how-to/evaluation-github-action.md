@@ -5,7 +5,7 @@ description: How to run evaluation in GitHub Action to streamline the evaluation
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 05/19/2025
+ms.date: 05/28/2025
 ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt
@@ -41,7 +41,7 @@ Two GitHub Actions are available for evaluating AI applications: **ai-agent-eval
 
 ### AI agent evaluations input
 
-The required inputs of ai-agent-evals include:
+The input of ai-agent-evals includes:
 
 **Required:**
 
