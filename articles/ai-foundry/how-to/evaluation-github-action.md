@@ -27,7 +27,7 @@ Offline evaluation involves testing AI models and agents using test datasets to 
 
 ## Prerequisites
 
-[!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
+Foundry project or Hubs based project. To learn more, see [Create a project](create-projects.md).
 
 Two GitHub Actions are available for evaluating AI applications: **ai-agent-evals** and **genai-evals**.
 
@@ -41,12 +41,20 @@ Two GitHub Actions are available for evaluating AI applications: **ai-agent-eval
 
 ### AI agent evaluations input
 
-The input of ai-agent-evals includes:
+The required inputs of ai-agent-evals include:
 
 **Required:**
 
-- `azure-aiproject-connection-string`: The connection string for the Azure AI project. This is used to connect to Azure OpenAI to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
-- `deployment-name`: the deployed model name.
+# [Foundry project](#tab/foundry-project)
+
+- `azure-ai-project-endpoint`: The endpoint of the Azure AI project. This is used to connect to Azure OpenAI to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
+
+# [Hub based project](#tab/hub-project)
+
+- `azure-aiproject-connection-string`: The connection string of the Azure AI project. This is used to connect to Azure OpenAI to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
+
+---
+- `deployment-name`: the deployed model name for evaluation judgement.
 - `data-path`: Path to the input data file containing the conversation starters. Each conversation starter is sent to each agent for a pairwise comparison of evaluation results.
   - `evaluators`: built-in evaluator names.
   - `data`: a set of conversation starters/queries.
@@ -54,6 +62,7 @@ The input of ai-agent-evals includes:
 - `agent-ids`: a unique identifier for the agent and comma-separated list of agent IDs to evaluate.
   - When only one `agent-id` is specified, the evaluation results include the absolute values for each metric along with the corresponding confidence intervals.
   - When multiple `agent-ids` are specified, the results include absolute values for each agent and a statistical comparison against the designated baseline agent ID.
+
 
 **Optional:**
 
@@ -86,6 +95,16 @@ Here's a sample of the dataset:
 ### AI agent evaluations workflow
 
 To use the GitHub Action, add the GitHub Action to your CI/CD workflows and specify the trigger criteria (for example, on commit) and file paths to trigger your automated workflows.
+
+# [Foundry project](#tab/foundry-project)
+
+Specify v2-beta.
+
+# [Hub based project](#tab/hub-project)
+
+Specify v1-beta.
+
+---
 
 > [!TIP]
 > To minimize costs, you should avoid running evaluation on every commit.  
