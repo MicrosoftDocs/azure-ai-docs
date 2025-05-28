@@ -36,7 +36,7 @@ import os
 from openai import AzureOpenAI
     
 client = AzureOpenAI(
-    azure_endpoint = "https://<resource>.services.ai.azure.com"
+    azure_endpoint = "https://<resource>.services.ai.azure.com",
     api_key=os.getenv("AZURE_INFERENCE_CREDENTIAL"),  
     api_version="2024-10-21",
 )
@@ -71,7 +71,7 @@ token_provider = get_bearer_token_provider(
 )
 
 client = AzureOpenAI(
-    azure_endpoint = "https://<resource>.services.ai.azure.com"
+    azure_endpoint = "https://<resource>.services.ai.azure.com",
     azure_ad_token_provider=token_provider,
     api_version="2024-10-21",
 )
