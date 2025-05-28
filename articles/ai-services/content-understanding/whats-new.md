@@ -18,11 +18,11 @@ Azure AI Content Understanding service is updated on an ongoing basis. Bookmark 
 
 ## May 2025
 
-The Azure AI Content Understanding **`2025-05-01-preview`** REST API is now available. This update introduces the following updates and enhanced capabilities:
+The Azure AI Content Understanding [**`2025-05-01-preview`**](/rest/api/contentunderstanding/content-analyzers?view=rest-contentunderstanding-2025-05-01-preview) REST API is now available. This update introduces the following updates and enhanced capabilities:
 
 ### Processing modes
 
-With the **`2025-05-01-preview`** release, we introduce two modes: `standard` and `pro`.
+With the [**`2025-05-01-preview`**](/rest/api/contentunderstanding/content-analyzers?view=rest-contentunderstanding-2025-05-01-preview) release, we introduce two modes: `standard` and `pro`.
 The default mode for all analyzers is `standard`.
 Content Understanding pro mode adds reasoning, support for multiple input documents, the ability to configure an external knowledge base for linking, enrichment, and validation.
 These features automate complex tasks by extending field extraction capabilities to cover scenarios that previously required custom code or human effort.
