@@ -24,7 +24,7 @@ Before reviewing the syntax, let's revisit a few important concepts to better un
 | Term | Description |
 |------|-------------|
 | "enriched document" | An enriched document is an in-memory structure that collects skill output as it's created and it holds all enrichments related to a document. Think of an enriched document as a tree. Generally, the tree starts at the root document level, and each new enrichment is created from a previous node as its child.  |
-| "node" | Within an enriched document, a node (sometimes referred to as an "annotation") is specific output such as the "text" or "layoutText" of the OCR skill, or an original source field value such as the content of an product ID field, or metadata copied from the source such as metadata_storage_path from blobs in Azure Storage. |
+| "node" | Within an enriched document, a node (sometimes referred to as an "annotation") is specific output such as the "text" or "layoutText" of the OCR skill, or an original source field value such as the content of a product ID field, or metadata copied from the source such as metadata_storage_path from blobs in Azure Storage. |
 | "context" | The scope of enrichment, which is either the entire document, a portion of a document (pages or sentences), or if you're working with images, the extracted images from a document. By default, the enrichment context is at the `"/document"` level, scoped to individual documents contained in the data source. When a skill runs, the outputs of that skill become [properties of the defined context](#example-2). |
 
 ## Paths for different scenarios
