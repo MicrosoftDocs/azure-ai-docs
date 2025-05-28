@@ -5,7 +5,7 @@ description: Learn how to use blocklists with Foundry Models in Azure AI Foundry
 manager: nitinme
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 1/21/2025
+ms.date: 05/19/2025
 author: santiagxf
 ms.author: fasantia
 ms.custom: ignite-2024, github-universe-2024

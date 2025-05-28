@@ -4,7 +4,7 @@ titleSuffix: Azure AI Foundry
 description: Learn how to upgrade your AI project to use models deployed in Azure AI Foundry Models in Azure AI Foundry Service
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 1/21/2025
+ms.date: 05/19/2025
 ms.custom: ignite-2024, github-universe-2024
 manager: nitinme
 author: santiagxf
