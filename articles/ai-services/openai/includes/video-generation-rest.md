@@ -92,9 +92,50 @@ You can generate a video with the Sora model by creating a video generation job,
     credential = DefaultAzureCredential()
     token = credential.get_token("https://cognitiveservices.azure.com/.default")
     
-    api_version = '2025-01-01-preview'
-    url = f"{endpoint}/openai/deployments/gpt-4o-mini-audio-preview/chat/completions?api-version={api_version}"
+    api_version = 'preview'
     headers= { "Authorization": f"Bearer {token.token}", "Content-Type": "application/json" }
+        
+    # 1. Create a video generation job
+    create_url = f"{endpoint}/openai/v1/video/generations/jobs?api-version={api_version}"
+    body = {
+        "prompt": "A cat playing piano in a jazz bar.",
+        "width": 480,
+        "height": 480,
+        "n_seconds": 5,
+        "model": "sora"
+    }
+    response = requests.post(create_url, headers=headers, json=body)
+    response.raise_for_status()
+    print("Full response JSON:", response.json())
+    job_id = response.json()["id"]
+    print(f"Job created: {job_id}")
+    
+    # 2. Poll for job status
+    status_url = f"{endpoint}/openai/v1/video/generations/jobs/{job_id}?api-version={api_version}"
+    status=None
+    while status not in ("succeeded", "failed", "cancelled"):
+        time.sleep(5)  # Wait before polling again
+        status_response = requests.get(status_url, headers=headers).json()
+        status = status_response.get("status")
+        print(f"Job status: {status}")
+        
+    # 3. Retrieve generated video 
+    if status == "succeeded":
+        generations = status_response.get("generations", [])
+        if generations:
+            print(f"✅ Video generation succeeded.")
+            generation_id = generations[0].get("id")
+            video_url = f"{endpoint}/openai/v1/video/generations/{generation_id}/content/video?api-version={api_version}"
+            video_response = requests.get(video_url, headers=headers)
+            if video_response.ok:
+                output_filename = "output.mp4"
+                with open(output_filename, "wb") as file:
+                    file.write(video_response.content)
+                    print(f'Generated video saved as "{output_filename}"')
+        else:
+            raise Exception("No generations found in job result.")
+    else:
+        raise Exception(f"Job didn't succeed. Status: {status}")
     ```
 
 1. Run the Python file.
@@ -116,9 +157,50 @@ You can generate a video with the Sora model by creating a video generation job,
     endpoint = os.environ['AZURE_OPENAI_ENDPOINT']
     api_key = os.environ['AZURE_OPENAI_API_KEY']
     
-    api_version = '2025-01-01-preview'
-    url = f"{endpoint}/openai/deployments/gpt-4o-mini-audio-preview/chat/completions?api-version={api_version}"
+    api_version = 'preview'
     headers= { "api-key": api_key, "Content-Type": "application/json" }
+
+    # 1. Create a video generation job
+    create_url = f"{endpoint}/openai/v1/video/generations/jobs?api-version={api_version}"
+    body = {
+        "prompt": "A cat playing piano in a jazz bar.",
+        "width": 480,
+        "height": 480,
+        "n_seconds": 5,
+        "model": "sora"
+    }
+    response = requests.post(create_url, headers=headers, json=body)
+    response.raise_for_status()
+    print("Full response JSON:", response.json())
+    job_id = response.json()["id"]
+    print(f"Job created: {job_id}")
+    
+    # 2. Poll for job status
+    status_url = f"{endpoint}/openai/v1/video/generations/jobs/{job_id}?api-version={api_version}"
+    status=None
+    while status not in ("succeeded", "failed", "cancelled"):
+        time.sleep(5)  # Wait before polling again
+        status_response = requests.get(status_url, headers=headers).json()
+        status = status_response.get("status")
+        print(f"Job status: {status}")
+        
+    # 3. Retrieve generated video 
+    if status == "succeeded":
+        generations = status_response.get("generations", [])
+        if generations:
+            print(f"✅ Video generation succeeded.")
+            generation_id = generations[0].get("id")
+            video_url = f"{endpoint}/openai/v1/video/generations/{generation_id}/content/video?api-version={api_version}"
+            video_response = requests.get(video_url, headers=headers)
+            if video_response.ok:
+                output_filename = "output.mp4"
+                with open(output_filename, "wb") as file:
+                    file.write(video_response.content)
+                    print(f'Generated video saved as "{output_filename}"')
+        else:
+            raise Exception("No generations found in job result.")
+    else:
+        raise Exception(f"Job didn't succeed. Status: {status}")
     ```
 
 1. Run the Python file.
@@ -133,4 +215,37 @@ Wait a few moments to get the response.
 
 ### Output
 
+The output will show the full response JSON from the video generation job creation request, including the job ID and status. 
+
+```json
+```json
+{
+    "object": "video.generation.job",
+    "id": "task_01jwcet0eje35tc5jy54yjax5q",
+    "status": "queued",
+    "created_at": 1748469875,
+    "finished_at": null,
+    "expires_at": null,
+    "generations": [],
+    "prompt": "A cat playing piano in a jazz bar.",
+    "model": "sora",
+    "n_variants": 1,
+    "n_seconds": 5,
+    "height": 480,
+    "width": 480,
+    "failure_reason": null
+}
+```
+
+The generated video will be saved as `output.mp4` in the current directory.
+
+```text
+Job created: task_01jwcet0eje35tc5jy54yjax5q
+Job status: preprocessing
+Job status: running
+Job status: processing
+Job status: succeeded
+✅ Video generation succeeded.
+Generated video saved as "output.mp4"
+```
 
