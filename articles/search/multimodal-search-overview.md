@@ -39,8 +39,6 @@ Multimodal search is ideal for [retrieval-augmented generation (RAG)](retrieval-
 
 To simplify the creation of a multimodal pipeline, Azure AI Search offers the **Import and vectorize data** wizard in the Azure portal. The wizard helps you configure a data source, define extraction and enrichment settings, and generate a multimodal index that contains text, embedded image references, and vector embeddings. For more information, see [Quickstart: Multimodal search in the Azure portal](search-get-started-portal-image-search.md).
 
-[![Animated GIF showing how to create a multimodal index using the Import and vectorize data wizard in the Azure portal.](./media/multimodal-search-overview/multimodal-search-wizard.gif)](./media/multimodal-search-overview/multimodal-search-wizard.gif#lightbox)
-
 The wizard follows these steps to create a multimodal pipeline:
 
 1. **Extract content:** The [Document Extraction skill](cognitive-search-skill-document-extraction.md) or [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md)  obtains page text, inline images, and structural metadata. The Document Extraction skill doesn't extract polygons or page numbers, and the supported file types vary. For more information, see [Options for multimodal content extraction](#options-for-multimodal-content-extraction).
