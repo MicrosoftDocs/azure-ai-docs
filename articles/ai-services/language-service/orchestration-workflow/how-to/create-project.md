@@ -2,12 +2,12 @@
 title: Create orchestration workflow projects and use Azure resources
 titleSuffix: Azure AI services
 description: Use this article to learn how to create projects in orchestration workflow
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-orchestration
 ---
 
