@@ -1,7 +1,7 @@
 ---
-title: 'Tutorial: Index multimodal content using embedding and document extraction skill'
+title: 'Tutorial: Index multimodal content using embedding and Document Extraction skill'
 titleSuffix: Azure AI Search
-description: Learn how to extract, index, and search multimodal content using the Document Extracction skill for chunking and Azure AI Vision for embeddings.
+description: Learn how to extract, index, and search multimodal content using the Document Extraction skill for chunking and Azure AI Vision for embeddings.
 
 manager: arjagann
 author: mdonovan
@@ -9,7 +9,7 @@ ms.author: mdonovan
 ms.service: azure-ai-search
 ms.custom:
 ms.topic: tutorial
-ms.date: 05/01/2025
+ms.date: 05/28/2025
 
 ---
 
@@ -19,7 +19,7 @@ Azure AI Search can extract and index both text and images from PDF documents st
 
 In this tutorial, you use:
 
-+ A 36-page PDF document that combines rich visual content—such as charts, infographics, and scanned pages—with traditional text.
++ A 36-page PDF document that combines rich visual content, such as charts, infographics, and scanned pages, with traditional text.
 
 + The [Document Extraction skill](cognitive-search-skill-document-extraction.md) for extracting text and normalized images.
 
@@ -27,12 +27,12 @@ In this tutorial, you use:
 
 + A search index configured to store text and image embeddings and support for vector-based similarity search.
 
-This tutorial demonstrates a lower-cost approach for indexing multimodal content using Document Extraction skill and image captioning. It enables extraction and search over both text and images from documents in Azure Blob Storage. However, it does not include locational metadata for text, such as page numbers or bounding regions. 
+This tutorial demonstrates a lower-cost approach for indexing multimodal content using Document Extraction skill and image captioning. It enables extraction and search over both text and images from documents in Azure Blob Storage. However, it doesn't include locational metadata for text, such as page numbers or bounding regions.
 
-For a more comprehensive solution that includes structured text layout and spatial metadata, see [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and document layout skill](https://aka.ms/azs-multimodal).
+For a more comprehensive solution that includes structured text layout and spatial metadata, see [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and Document Layout skill](tutorial-multimodal-index-image-verbalization-skill.md).
 
-> [!NOTE] 
-> Setting `imageAction` to `generateNormalizedImages` as is required for this tutorial will incur an additional charge for image extraction according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/).
+> [!NOTE]
+> Setting `imageAction` to `generateNormalizedImages` as is required for this tutorial incurs an additional charge for image extraction according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/).
 
 Using a REST client and the [Search REST APIs](/rest/api/searchservice/) you will:
 
@@ -58,10 +58,9 @@ Using a REST client and the [Search REST APIs](/rest/api/searchservice/) you wil
 
 ### Download files
 
-Download the sample PDF below:
+Download the following sample PDF:
 
 + [sustainable-ai-pdf](https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/msc/documents/presentations/CSR/Accelerating-Sustainability-with-AI-2025.pdf)
-
 
 ### Upload sample data to Azure Storage
 
@@ -78,6 +77,7 @@ Download the sample PDF below:
         "connectionString" : "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;" 
     }
     ```
+
 1. For connections made using a user-assigned managed identity. Provide a connection string that contains a ResourceId, with no account key or password. The ResourceId must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name. Provide an identity using the syntax shown in the following example. Set userAssignedIdentity to the user-assigned managed identity The connection string is similar to the following example:
 
     ```json
@@ -328,9 +328,9 @@ POST {{baseUrl}}/indexes?api-version=2025-05-01-preview   HTTP/1.1
 
 Key points:
 
-+ Text and image embeddings are stored in the `content_embedding` field and must be configured with appropriate dimensions (e.g., 1024) and a vector search profile.
++ Text and image embeddings are stored in the `content_embedding` field and must be configured with appropriate dimensions, such as 1024, and a vector search profile.
 
-+ `location_metadata` captures bounding polygon and page number metadata for each normalized image, enabling precise spatial search or UI overlays. Note that `location_metadata` only exists for images in this scenario. If you'd like to capture locational metadata for text as well, consider using [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md). An in-depth tutorial is linked at the bottom of the page.
++ `location_metadata` captures bounding polygon and page number metadata for each normalized image, enabling precise spatial search or UI overlays. `location_metadata` only exists for images in this scenario. If you'd like to capture locational metadata for text as well, consider using [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md). An in-depth tutorial is linked at the bottom of the page.
 
 + For more information on vector search, see [Vectors in Azure AI Search](vector-search-overview.md).
 
@@ -711,4 +711,4 @@ Now that you're familiar with a sample implementation of a multimodal indexing s
 * [AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md)
 * [Vectors in Azure AI Search](vector-search-overview.md)
 * [Semantic ranking in Azure AI Search](semantic-search-overview.md)
-* [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and document layout skill](https://aka.ms/azs-multimodal)
+* [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and Document Layout skill](tutorial-multimodal-index-image-verbalization-skill.md)

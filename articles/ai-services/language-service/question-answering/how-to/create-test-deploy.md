@@ -3,8 +3,8 @@ title: Create, test, and deploy your custom question answering project
 description: You can create a custom question answering project from your own content, such as FAQs or product manuals. This article includes an example of creating a custom question answering project from a simple FAQ webpage, to answer questions.
 ms.service: azure-ai-language
 ms.topic: how-to
-author: jboback
-ms.author: jboback
+author: laujan
+ms.author: lajanuar
 ms.date: 11/21/2024
 ms.custom: language-service-question-answering, mode-other
 ---

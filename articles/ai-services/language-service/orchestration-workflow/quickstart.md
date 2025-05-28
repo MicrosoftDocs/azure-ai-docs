@@ -2,12 +2,12 @@
 title: Quickstart - Orchestration workflow
 titleSuffix: Azure AI services
 description: Quickly start creating an AI model to connect your Conversational Language Understanding, question answering and LUIS applications.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-clu, mode-other
 zone_pivot_groups: usage-custom-language-features
 ---

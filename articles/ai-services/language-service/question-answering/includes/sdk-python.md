@@ -2,8 +2,8 @@
 title: "Quickstart: Custom question answering client library for Python"
 description: This quickstart shows how to get started with the custom question answering client library for Python.
 ms.topic: include
-author: jboback
-ms.author: jboback
+author: laujan
+ms.author: lajanuar
 ms.date: 12/19/2023
 ---
 

@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 04/09/2025
+ms.date: 05/28/2025
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-bing-grounding-code
@@ -74,7 +74,7 @@ from azure.ai.agents.models import FilePurpose
 file_path = "./data/product_info_1.md"
 
 # Upload the file
-file = project_client.agents.files.upload_file_and_poll(file_path=file_path, purpose=FilePurpose.AGENTS)
+file = project_client.agents.files.upload_and_poll(file_path=file_path, purpose=FilePurpose.AGENTS)
 print(f"Uploaded file, file ID: {file.id}")
 
 # Create a vector store with the uploaded file
