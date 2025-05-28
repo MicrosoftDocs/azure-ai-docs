@@ -158,7 +158,7 @@ You can generate a video with the Sora model by creating a video generation job,
     api_key = os.environ['AZURE_OPENAI_API_KEY']
     
     api_version = 'preview'
-    headers= { "Authorization": f"Bearer {token.token}", "Content-Type": "application/json" }
+    headers= { "api-key": api_key, "Content-Type": "application/json" }
 
     # 1. Create a video generation job
     create_url = f"{endpoint}/openai/v1/video/generations/jobs?api-version={api_version}"
