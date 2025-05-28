@@ -1,15 +1,15 @@
 ---
-title: 'Tutorial: Index multimodal content using multimodal embedding and document layout skill'
+title: 'Tutorial: Index multimodal content using multimodal embedding and Document Layout skill'
 titleSuffix: Azure AI Search
 description: Learn how to extract, index, and search multimodal content using the Document Layout skill for chunking and Azure AI Vision for embeddings.
 
 manager: arjagann
-author: rawan    
+author: rawan
 ms.author: rawan
 ms.service: azure-ai-search
 ms.custom:
 ms.topic: tutorial
-ms.date: 05/05/2025
+ms.date: 05/28/2025
 
 ---
 
@@ -20,11 +20,11 @@ In this Azure AI Search tutorial, learn how to build a multimodal indexing pipel
 
 In this tutorial, you use:
 
-+ A 36-page PDF document that combines rich visual content—such as charts, infographics, and scanned pages—with traditional text.
++ A 36-page PDF document that combines rich visual content, such as charts, infographics, and scanned pages, with traditional text.
 
-+ The [Document Layout skill (preview)](cognitive-search-skill-document-intelligence-layout.md) for extracting text and normalized images with its `locationMetadata` from various documents, such as page numbers or bounding regions.
++ The [Document Layout skill (preview)](cognitive-search-skill-document-intelligence-layout.md) for extracting text and normalized images with its locationMetadata from various documents, such as page numbers or bounding regions.
 
-  The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) has limited region availability and is bound to Azure AI services and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. For a lower-cost solution that indexing multimodal content, see [Index multimodal content using image verbalization and document extraction skill](https://aka.ms/azs-multimodal).
+  The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) has limited regional availability, is bound to Azure AI services, and requires a [billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. For a lower-cost solution to indexing multimodal content, see [Index multimodal content using image verbalization and Document Extraction skill](tutorial-multimodal-indexing-with-image-verbalization-and-doc-extraction.md).
 
 + Vectorization using the [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md), which generates embeddings for both text and images.
 
@@ -47,13 +47,13 @@ Using a REST client and the [Search REST APIs](/rest/api/searchservice/), you wi
 
 + An [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills) for image vectorization. Image vectorization requires Azure AI Vision multimodal embeddings. For an updated list of regions, see the [Azure AI Vision documentation](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
 
-+ [Azure AI Search](search-what-is-azure-search.md), with a managed identity. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. Your service must be on the Basic tier or higher—this tutorial is not supported on the Free tier. Additionally, it must be in the [same region as Azure AI services multi-service](search-create-service-portal.md#regions-with-the-most-overlap).
++ [Azure AI Search](search-what-is-azure-search.md), with a managed identity. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. Your service must be on the Basic tier or higher—this tutorial isn't supported on the Free tier. Additionally, it must be in the [same region as Azure AI services multi-service](search-create-service-portal.md#regions-with-the-most-overlap).
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
 ### Download files
 
-Download the sample PDF below:
+Download the following sample PDF:
 
 + [sustainable-ai-pdf](https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/msc/documents/presentations/CSR/Accelerating-Sustainability-with-AI-2025.pdf)
 
@@ -288,9 +288,9 @@ POST {{baseUrl}}/indexes?api-version=2025-05-01-preview   HTTP/1.1
 
 Key points:
 
-+ Text and image embeddings are stored in the `content_embedding` field and must be configured with appropriate dimensions (e.g., 1024) and a vector search profile.
++ Text and image embeddings are stored in the `content_embedding` field and must be configured with appropriate dimensions, such as 1024, and a vector search profile.
 
-+ `location_metadata` captures bounding polygon and page number metadata for each text chunk and normalized image, enabling precise spatial search or UI overlays. 
++ `location_metadata` captures bounding polygon and page number metadata for each text chunk and normalized image, enabling precise spatial search or UI overlays.
 
 + For more information on vector search, see [Vectors in Azure AI Search](vector-search-overview.md).
 
@@ -607,9 +607,10 @@ You can use the Azure portal to delete indexes, indexers, and data sources.
 
 ## See also
 
-Now that you're familiar with a sample implementation of a multimodal indexing scenario, check out
+Now that you're familiar with a sample implementation of a multimodal indexing scenario, check out:
+
 + [AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md)
 + [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md)
 + [Vectors in Azure AI Search](vector-search-overview.md)
 + [Semantic ranking in Azure AI Search](semantic-search-overview.md)
-+ [Index multimodal content using embedding and document extraction skill](https://aka.ms/azs-multimodal)
++ [Index multimodal content using embeddings and Document Extraction skill](tutorial-multimodal-indexing-with-embedding-and-doc-extraction.md)
