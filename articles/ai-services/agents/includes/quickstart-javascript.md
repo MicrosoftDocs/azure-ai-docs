@@ -59,11 +59,11 @@ Use the following code to create and run an agent. To run this code, you will ne
 
 [!INCLUDE [endpoint-string-portal](endpoint-string-portal.md)]
 
-For example, your connection string may look something like:
+For example, your endpoint may look something like:
 
 `https://myresource.services.ai.azure.com/api/projects/myproject`
 
-Set this connection string as an environment variable named `PROJECT_ENDPOINT` in a `.env` file.
+Set this endpoint as an environment variable named `PROJECT_ENDPOINT` in a `.env` file.
 
 > [!IMPORTANT] 
 > * This quickstart code uses environment variables for sensitive configuration. Never commit your `.env` file to version control by making sure `.env` is listed in your `.gitignore` file.
@@ -92,7 +92,7 @@ const fs = require("fs");
 const path = require("node:path");
 require("dotenv/config");
 
-const projectEndpoint = process.env["PROJECT_ENDPOINT"] || "<project connection string>";
+const projectEndpoint = process.env["PROJECT_ENDPOINT"];
 const modelDeploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "gpt-4o";
 
 async function main() {

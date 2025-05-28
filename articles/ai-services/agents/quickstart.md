@@ -34,12 +34,6 @@ Azure AI Foundry Agent Service allows you to create AI agents tailored to your n
 
 ::: zone-end
 
-::: zone pivot="programming-language-python-openai"
-
-[!INCLUDE [quickstart-python-openai](includes/quickstart-python-openai.md)]
-
-::: zone-end
-
 ::: zone pivot="programming-language-javascript"
 
 [!INCLUDE [quickstart-javascript](includes/quickstart-javascript.md)]

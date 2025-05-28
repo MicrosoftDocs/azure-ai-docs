@@ -31,11 +31,8 @@ dotnet new console
 
 Install the .NET package to your project. For example if you're using the .NET CLI, run the following command.
 
->[!Note]
-> Azure.AI.Agents.Persistent is only available as a prelease version. Please use the "-prerelease" flag to add the package until a release version becomes available.
-
 ```console
-dotnet add package Azure.AI.Agents.Persistent --prerelease
+dotnet add package Azure.AI.Agents.Persistent
 dotnet add package Azure.Identity
 ```
 
@@ -51,11 +48,11 @@ Use the following code to create and run an agent. To run this code, you will ne
 
 [!INCLUDE [endpoint-string-portal](endpoint-string-portal.md)]
 
-For example, your connection string may look something like:
+For example, your endpoint may look something like:
 
 `https://myresource.services.ai.azure.com/api/projects/myproject`
 
-Set this connection string in an appsetting variable named `ProjectEndpoint`.
+Set this endpoint in an appsetting variable named `ProjectEndpoint`.
 
 
 ```csharp
