@@ -2,12 +2,14 @@
 title: Default Guardrails & controls policies for Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
 description: Learn about the default Guardrails & controls policies that Azure AI Foundry Models uses to flag content.
-author: PatrickFarley
-ms.author: fasantia
+author: msakande
+ms.author: mopeakande
 ms.service: azure-ai-model-inference
-ms.topic: conceptual 
+ms.topic: conceptual
 ms.date: 05/19/2025
-manager: nitinme
+manager: scottpolly
+ms.reviewer: fasantia
+reviewer: santiagxf
 ---
 
 # Default Guardrails & controls policies for Azure AI Foundry Models
