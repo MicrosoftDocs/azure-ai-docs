@@ -22,7 +22,7 @@ A few terms to know before getting started:
 
 This guide will show you how to build and test a Content Understanding analyzer in the AI Foundry. You can then utilize the analyzer in any app or process you build using a simple REST API call, allowing you to extract meaningful outputs on your data at scale. Content Understanding analyzers are fully customizable. You can create an analyzer by building your own schema from scratch or by using a suggested analyzer template offered to address common scenarios across each data type.
 
-:::image type="content" source="media/overview/component-overview-updated.png" alt-text="Screenshot of Content Understanding overview, process, and workflow." lightbox="media/overview/component-overview-updated.png" :::
+:::image type="content" source="../media/overview/component-overview-updated.png" alt-text="Screenshot of Content Understanding overview, process, and workflow." lightbox="media/overview/component-overview-updated.png" :::
 
 ## Prerequisites
 
