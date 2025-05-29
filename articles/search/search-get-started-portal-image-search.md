@@ -348,4 +348,4 @@ This quickstart uses billable Azure resources. If you no longer need the resourc
 
 ## Next step
 
-This quickstart introduced you to the **Import and vectorize data wizard**, which creates all of the necessary objects for multimodal search. To explore each step in detail, see [Tutorial: Index mixed content using image verbalizations and the Document Layout skill](tutorial-multimodal-index-image-verbalization-skill.md).
+This quickstart introduced you to the **Import and vectorize data wizard**, which creates all of the necessary objects for multimodal search. To explore each step in detail, see [Tutorial: Index mixed content using image verbalizations and the Document Layout skill](tutorial-document-layout-image-verbalization.md).
