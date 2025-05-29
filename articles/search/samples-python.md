@@ -11,7 +11,7 @@ ms.custom:
   - devx-track-python
   - ignite-2023
 ms.topic: concept-article
-ms.date: 03/10/2025
+ms.date: 05/29/2025
 ---
 
 # Python samples for Azure AI Search
