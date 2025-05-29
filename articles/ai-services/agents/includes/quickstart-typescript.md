@@ -52,7 +52,7 @@ Next, to authenticate your API requests and run the program, use the [az login](
 az login
 ```
 
-Use the following code to create and run an agent which uploads a CSV file of data then generates a bar chart from that data. To run this code, you'll need to get the endpoint for your project. This string is in the format:
+Use the following code to create and run an agent which uploads [a CSV file](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-agents/data/nifty500QuarterlyResults.csv) of data then generates a bar chart from that data. To run this code, you'll need to get the endpoint for your project. This string is in the format:
 
 `https://<AIFoundryResourceName>.services.ai.azure.com/api/projects/<ProjectName>`
 
@@ -254,6 +254,6 @@ main().catch((err) => {
 ```
 
 
-Run the code using `node index.js`. This code generated a bar chart in the TRANSPORTATION sector for the operating profit from the uploaded CSV file and provided the file to you. Open the PNG file. 
+Run the code using `node index.js`. This code generated a bar chart in the TRANSPORTATION sector for the operating profit from the uploaded CSV file and provided the file to you. Open the PNG file. Full [sample source code](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-agents/samples/v1-beta/typescript/src/codeInterpreterWithStreaming.ts) available.
 
 :::image type="content" source="../media/quickstart/generated-image.png" alt-text="Screenshot of generated image which shows bar chart in the TRANSPORTATION sector for the operating profit from the uploaded CSV file":::
