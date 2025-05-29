@@ -9,7 +9,7 @@ ms.topic: quickstart
 ms.date: 05/29/2025
 ---
 
-# Create an Azure AI Content Understanding multi-file task in the Azure AI Foundry portal
+# Try out Azure AI Content Understanding on multiple files in the Azure AI Foundry portal
 
 In this quickstart, you will learn how to use the Content Understanding service in the Azure AI Foundry portal to create a multi-file task. The Azure AI Foundry is a comprehensive platform for developing and deploying generative AI applications and APIs responsibly. 
 
@@ -30,7 +30,7 @@ To get started, make sure you have the following resources and permissions:
 
 * An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/).
 
-* An [Azure AI Foundry hub-based project](../../../ai-foundry/how-to/create-projects.md) created in one of the following supported regions: `westus`, `swedencentral`, or `australiaeast`. A project is used to organize your work and save state while building customized AI apps. You can create a project from the home page of AI Foundry, or the [Content Understanding landing page](aka.ms/cu-landing).
+* An [Azure AI Foundry hub-based project](../../../ai-foundry/how-to/create-projects.md) created in one of the following [supported regions](../service-limits.md): `westus`, `swedencentral`, or `australiaeast`. A project is used to organize your work and save state while building customized AI apps. You can create a project from the [home page of AI Foundry](https://aka.ms/foundry-home-page), or the [Content Understanding landing page](https://aka.ms/cu-landing).
 
 [!INCLUDE [hub based project required](../../../ai-foundry/includes/uses-hub-only.md)]
 
