@@ -254,6 +254,4 @@ main().catch((err) => {
 ```
 
 
-Run the code using `node index.js`. This code generated a bar chart in the TRANSPORTATION sector for the operating profit from the uploaded CSV file and provided the file to you. Open the PNG file. Full [sample source code](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-agents/samples/v1-beta/typescript/src/codeInterpreterWithStreaming.ts) available.
-
-:::image type="content" source="https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-agents/data/image_file.png" alt-text="Screenshot of generated image which shows bar chart in the TRANSPORTATION sector for the operating profit from the uploaded CSV file":::
+Run the code using `node index.js`. This code generated a [bar chart](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-agents/data/image_file.png) in the TRANSPORTATION sector for the operating profit from the uploaded CSV file and provided the file to you. Open the PNG file. Full [sample source code](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-agents/samples/v1-beta/typescript/src/codeInterpreterWithStreaming.ts) available.
