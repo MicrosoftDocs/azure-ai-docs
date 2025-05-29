@@ -9,11 +9,11 @@ manager: nitinme
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 12/10/2024
+ms.topic: how-to
+ms.date: 05/29/2025
 ---
 
-# Indexer connections to a SQL Server instance on an Azure virtual machine
+# Configure an indexer connection to a SQL Server instance on an Azure virtual machine
 
 When configuring an [Azure SQL indexer](search-how-to-index-sql-database.md) to extract content from a database on an Azure virtual machine, extra steps are required for secure connections. 
 
