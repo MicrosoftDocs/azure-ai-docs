@@ -44,11 +44,13 @@ Azure AI Search requires an encrypted channel for all indexer requests over a pu
 
    1. In regedit, browse to this registry key: `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SQL Server\[MSSQL13.MSSQLSERVER]\MSSQLServer\SuperSocketNetLib\Certificate`. 
 
-      The `[MSSQL13.MSSQLSERVER]` part varies based on version and instance name. 
+      The `[MSSQL13.MSSQLSERVER]` part varies based on version and instance name.
 
    1. Set the value of the **Certificate** key to the **thumbprint** (without spaces) of the TLS/SSL certificate you imported to the VM.
 
-     There are several ways to get the thumbprint, some better than others. If you copy it from the **Certificates** snap-in in MMC, you might pick up an invisible leading character [as described in this support article](https://support.microsoft.com/kb/2023869/), which results in an error when you attempt a connection. Several workarounds exist for correcting this problem. The easiest is to backspace over and then retype the first character of the thumbprint to remove the leading character in the key value field in regedit. Alternatively, you can use a different tool to copy the thumbprint.
+      For example, copy the hexadecimal characters to text editor, such as Notepad. Delete all spaces from the thumbprint string. If the thumbprint is `c0 d0 f2 70 95 b0 3d 43 17 e2 19 84 10 24 32 8c ef 24 87 79`, then change it to `c0d0f27095b03d4317e219841024328cef248779`.
+
+      There are several ways to get the thumbprint, some better than others. If you copy it from the **Certificates** snap-in in MMC, you might pick up an invisible leading character, which results in an error when you attempt a connection. Several workarounds exist for correcting this problem. The easiest is to backspace over and then retype the first character of the thumbprint to remove the leading character in the key value field in regedit. Alternatively, you can use a different tool to copy the thumbprint. For more information, see [Certificate thumbprint displayed in MMC certificate snap-in has extra invisible unicode character](https://support.microsoft.com/help/2023835/certificate-thumbprint-displayed-in-mmc-certificate-snap-in-has-extra). 
 
 1. Grant permissions to the service account. 
 
