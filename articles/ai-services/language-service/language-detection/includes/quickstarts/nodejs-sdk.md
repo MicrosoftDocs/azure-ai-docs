@@ -1,10 +1,10 @@
 ---
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
 ms.date: 03/29/2024
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: devx-track-js
 ---
 

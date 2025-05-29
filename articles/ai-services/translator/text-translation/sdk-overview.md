@@ -82,7 +82,7 @@ This release includes the following updates:
 
 [**README**](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/translation/ai-translation-text-rest/README.md)
 
-[**Samples**](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/translation/ai-translation-text-rest/samples/v1-beta)
+[**Samples**](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/translation/ai-translation-text-rest/samples/v1)
 
 ### [**Python**](#tab/python)
 
@@ -144,7 +144,7 @@ This release includes the following updates:
 
 [**README**](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/translation/ai-translation-text-rest/README.md)
 
-[**Samples**](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/translation/ai-translation-text-rest/samples/v1-beta)
+[**Samples**](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/translation/ai-translation-text-rest/samples/v1)
 
 ### [**Python**](#tab/python)
 
@@ -346,7 +346,7 @@ Create a client object to interact with the Text translation SDK, and then call 
 
 ### [JavaScript](#tab/javascript)
 
-Create a client object to interact with the Text translation SDK, and then call methods on that client object to interact with the service. The SDKs provide both synchronous and asynchronous methods. For more insight, *see* the Text translation [sample repository](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/translation/ai-translation-text-rest/samples/v1-beta) for JavaScript or TypeScript.
+Create a client object to interact with the Text translation SDK, and then call methods on that client object to interact with the service. The SDKs provide both synchronous and asynchronous methods. For more insight, *see* the Text translation [sample repository](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/translation/ai-translation-text-rest/samples/v1) for JavaScript or TypeScript.
 
 ### [Python](#tab/python)
 

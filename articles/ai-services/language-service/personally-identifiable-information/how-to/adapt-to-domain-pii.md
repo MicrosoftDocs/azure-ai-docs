@@ -2,12 +2,12 @@
 title: Adapt Personally Identifying Information (PII) to your domain
 titleSuffix: Azure AI services
 description: This article shows you how to adapt Personally Identifying Information (PII) to your domain.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 04/29/2025
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-pii
 ---
 

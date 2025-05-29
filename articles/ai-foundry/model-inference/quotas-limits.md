@@ -2,13 +2,15 @@
 title: Azure AI Foundry Models quotas and limits
 titleSuffix: Azure AI Foundry
 description: Quick reference, detailed description, and best practices on the quotas and limits for the Azure AI Foundry service.
-author: santiagxf
-manager: nitinme
+author: msakande
+manager: scottpolly
 ms.service: azure-ai-model-inference
 ms.custom: ignite-2024, github-universe-2024
 ms.topic: conceptual
-ms.date: 1/21/2025
-ms.author: fasantia
+ms.date: 05/19/2025
+ms.author: mopeakande
+ms.reviewer: fasantia
+reviewer: santiagxf
 ---
 
 # Azure AI Foundry Models quotas and limits

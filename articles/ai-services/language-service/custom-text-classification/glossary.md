@@ -3,12 +3,12 @@ title: Definitions used in custom text classification
 titleSuffix: Azure AI services
 description: Learn about definitions used in custom text classification.
 #services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
 

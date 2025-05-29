@@ -2,8 +2,8 @@
 title: Best practices - custom question answering
 description: Use these best practices to improve your project and provide better results to your application/chat bot's end users.
 ms.service: azure-ai-language
-author: jboback
-ms.author: jboback
+author: laujan
+ms.author: lajanuar
 ms.topic: conceptual
 ms.date: 11/21/2024
 ms.custom: language-service-question-answering

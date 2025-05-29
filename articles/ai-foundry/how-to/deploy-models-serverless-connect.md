@@ -5,7 +5,7 @@ description: Learn how to consume standard deployments from a different project 
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 12/20/2024
+ms.date: 05/19/2025
 ms.author: mopeakande
 author: msakande
 ms.reviewer: fasantia

@@ -3,8 +3,8 @@ title: "Tutorial: Add your custom question answering project to Power Virtual Ag
 description: In this tutorial, you will learn how to add your custom question answering project to Power Virtual Agents.
 ms.service: azure-ai-language
 ms.topic: tutorial
-author: jboback
-ms.author: jboback
+author: laujan
+ms.author: lajanuar
 ms.date: 11/21/2024
 ms.custom: language-service-question-answering
 ---

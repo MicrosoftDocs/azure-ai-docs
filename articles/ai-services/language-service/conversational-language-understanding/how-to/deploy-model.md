@@ -2,12 +2,12 @@
 title: How to deploy a model for conversational language understanding
 titleSuffix: Azure AI services
 description: Use this article to learn how to deploy models for conversational language understanding.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-clu,
 ---
 
