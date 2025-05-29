@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: references_regions
 ms.topic: how-to
-ms.date: 04/14/2025
+ms.date: 05/28/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
