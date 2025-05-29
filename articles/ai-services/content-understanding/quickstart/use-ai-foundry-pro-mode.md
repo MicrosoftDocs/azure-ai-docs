@@ -11,16 +11,11 @@ ms.date: 05/29/2025
 
 # Try out Azure AI Content Understanding on multiple files in the Azure AI Foundry portal
 
-In this quickstart, you will learn how to use the Content Understanding service in the Azure AI Foundry portal to create a multi-file task. The Azure AI Foundry is a comprehensive platform for developing and deploying generative AI applications and APIs responsibly. 
+This quickstart shows you how to use the Content Understanding service in the Azure AI Foundry portal to extract structured information from your data. Azure AI Foundry enables you to build and deploy generative AI applications and APIs responsibly.
 
-A few terms to know before getting started:
-* **Task**: Your Content Understanding task is the top-level structure that all of your Content Understanding related work falls under. This guide will offer a step by step introduction to creating your field schema.
-* **Field schema**: A field schema is the definition of all of the outputs that you want to extract or generate from your data. Content Understanding offers several prebuilt schemas and they are all fully customizable to meet your business needs. This quickstart will offer guidance to help you build the schema that is right for your scenario.
-* **Analyzer**: The Content Understanding analyzer allows you to call the field schema you define as an API call in your own solution. You can build as many analyzers as needed within your task.
-* **Reference data**: Reference data includes documents that can aid in providing context that references the service at inference time. For example, if you're looking to analyze invoices to ensure they're consistent with a contractual agreement, you can supply the invoice and other relevant documents (for example, a purchase order) as inputs, and supply the contract files as reference data. The service applies reasoning to validate the input documents according to your schema, which might be to identify discrepancies to flag for further review.
-* **Multi-step reasoning**: Multi-step reasoning takes data analysis a step further than extracting and aggregating structured data and allows you to draw conclusions on that data, minimizing the need for human review.
+Suppose you have document files and you want to automatically extract key information from them, while also comparing to reference data to infer conclusions from your files. With Content Understanding, you can create a task to organize your data processing, define a field schema that specifies the information to extract or generate, and then build an analyzer that will apply reasoning to your data to output key inferences and conclusions. The analyzer becomes an API endpoint that you can integrate into your applications or workflows.
 
-This guide will show you how to build and test a Content Understanding analyzer in the AI Foundry. You can then utilize the analyzer in any app or process you build using a simple REST API call, allowing you to extract meaningful outputs on your data at scale. Content Understanding analyzers are fully customizable. You can create an analyzer by building your own schema from scratch or by using a suggested analyzer template offered to address common scenarios across each data type.
+In this guide, you'll walk through building and testing an analyzer for your scenario. You can start from scratch or use suggested templates for common use cases.
 
 :::image type="content" source="../media/overview/component-overview-updated.png" alt-text="Screenshot of Content Understanding overview, process, and workflow." lightbox="media/overview/component-overview-updated.png" :::
 
