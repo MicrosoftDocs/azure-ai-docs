@@ -235,7 +235,8 @@ Content-Type: application/json
         { 
             "indexName" : "{{index-name}}",
             "filterAddOn" : "State eq 'WA'",
-            "IncludeReferenceSourceData": true, 
+            "IncludeReferenceSourceData": true,
+            "rerankerThreshold" : 2.5
             "maxDocsForReranker": 250
         } 
     ]
