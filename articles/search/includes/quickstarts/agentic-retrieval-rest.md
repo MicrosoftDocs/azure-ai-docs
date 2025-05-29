@@ -105,7 +105,7 @@ To connect from your local system:
 
 1. Run the following commands in sequence.
 
-    ```Azure CLI
+    ```azurecli
     az account show
 
     az account set --subscription <PUT YOUR SUBSCRIPTION ID HERE>
@@ -115,7 +115,7 @@ To connect from your local system:
 
 1. To obtain your Microsoft Entra token, run the following command. You specify this value in the next section.
 
-   ```Azure CLI
+   ```azurecli
    az account get-access-token --scope https://search.azure.com/.default --query accessToken --output tsv
    ```
 
