@@ -2,8 +2,8 @@
 title: What is custom question answering?
 description: Custom question answering is a cloud-based Natural Language Processing (NLP) service that easily creates a natural conversational layer over your data. It can be used to find the most appropriate answer for any given natural language input, from your custom project.
 ms.service: azure-ai-language
-author: jboback
-ms.author: jboback
+author: laujan
+ms.author: lajanuar
 recommendations: false
 ms.topic: overview
 ms.date: 03/24/2025

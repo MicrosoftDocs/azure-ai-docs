@@ -407,7 +407,7 @@ curl --request POST \
             "bing_custom_search": {
                 "search_configurations": [
                     {
-                        "connection_id": /subscriptions/<sub-id>/resourceGroups/<your-rg-name>/providers/Microsoft.CognitiveServices/accounts/<your-ai-services-name>/projects/<your-project-name>/connections/<your-fabric-connection-name>,
+                        "connection_id": /subscriptions/<sub-id>/resourceGroups/<your-rg-name>/providers/Microsoft.CognitiveServices/accounts/<your-ai-services-name>/projects/<your-project-name>/connections/<your-bing-connection-name>,
                         "instance_name": <your_custom_search_configuration_name>, 
                         "count": 7,
                         "market": "en-US", 

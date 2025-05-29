@@ -1,73 +1,112 @@
-### YamlMime:Landing
+### YamlMime:Hub
 
 title: Azure AI Content Understanding documentation
-summary: Content Understanding is a solution that analyzes and comprehends various media content—such as audio, video, text, and images—transforming it into structured, organized, and searchable data.
+summary: Content Understanding is a solution that analyzes and comprehends various media content—such as documents, images, audio, and video—transforming it into structured, organized, and searchable data.
 metadata:
   title: Azure AI Content Understanding documentation
-  description: Content Understanding is a solution that analyzes and comprehends various media content—such as audio, video, text, and images—transforming it into structured, organized, and searchable data.
+  description: Content Understanding is a solution that analyzes and comprehends various media content—such as documents, images, audio, and video—transforming it into structured, organized, and searchable data.
   ms.service: azure-ai-content-understanding
   ms.topic: landing-page
   author: laujan
   ms.author: lajanuar
   ms.date: 05/19/2025
 
-landingContent:
+highlightedContent:
+# itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | whats-new
+  items:
+    - title: What is Content Understanding?
+      itemType: overview
+      url: overview.md
+    - title: "What's new?"
+      itemType: whats-new
+      url: whats-new.md
+    - title: Try REST API
+      itemType: quickstart
+      url: quickstart/use-rest-api.md
+    - title: Try AI Foundry
+      itemType: quickstart
+      url: quickstart/use-ai-foundry.md
 
-  - title: About Azure AI Content Understanding
-    linkLists:
-      - linkListType: overview
-        links:
-          - text: What is Azure AI Content Understanding?
-            url: overview.md
-          - text: Azure AI Content Understanding REST API
-            url: /rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2024-12-01-preview&preserve-view=true
-          - text: FAQ
-            url: faq.yml
-
-  - title: Capabilities
-    linkLists:
-      - linkListType: concept
-        links:
-        - text: Audio
-          url: audio/overview.md
-        - text: Video
-          url: video/overview.md
-        - text: Image
-          url: image/overview.md
-        - text: Document
-          url: document/overview.md
-
-  - title: Get started
-    linkLists:
-      - linkListType: quickstart
-        links:
-        - text: Try Content Understanding REST API
-          url: quickstart/use-rest-api.md
-        - text: Try Azure AI Foundry portal
+conceptualContent:
+  items:
+    - title: AI Foundry
+      links:
+        - itemType: quickstart
+          text: Quickstart
           url: quickstart/use-ai-foundry.md
-
-  - title: How-to guides
-    linkLists:
-      - linkListType: how-to-guide
-        links:
-        - text: Create an AI Foundry resource
-          url: how-to/create-multi-service-resource.md
-
-  - title: "What's new?"
-    linkLists:
-      - linkListType: whats-new
-        links:
-        - text: "What's new in Azure AI Content Understanding?"
-          url: whats-new.md
-
-  - title: Reference
-    linkLists:
-        - linkListType: reference
-          links:
-          - text: Service limits
-            url: service-limits.md
-          - text: Language and region support
-            url: language-region-support.md
-
+        - itemType: concept
+          text: Analyzer templates
+          url: concepts/analyzer-templates.md
+    - title: Analyzers
+      links:
+        - itemType: quickstart
+          text: Quickstart
+          url: quickstart/use-rest-api.md
+        - itemType: concept
+          text: "Modes: standard and pro"
+          url: concepts/standard-pro-modes.md
+        - itemType: concept
+          text: Prebuilt analyzers
+          url: concepts/prebuilt-analyzers.md
+        - itemType: how-to-guide
+          text: Create a custom analyzer
+          url: tutorial/create-custom-analyzer.md
+    - title: Classifiers
+      links:
+        - itemType: overview
+          text: Overview
+          url: concepts/classifier.md
+    - title: Face and person directories
+      links:
+        - itemType: overview
+          text: Overview
+          url: face/overview.md
+        - itemType: how-to-guide
+          text: Build a person directory
+          url: tutorial/build-person-directory.md
+    - title: Modalities
+      links:
+        - itemType: concept
+          text: Document
+          url: document/overview.md
+        - itemType: concept
+          text: Image
+          url: image/overview.md
+        - itemType: concept
+          text: Audio
+          url: audio/overview.md
+        - itemType: concept
+          text: Video
+          url: video/overview.md
+    - title: Tutorials
+      links:
+        - itemType: how-to-guide
+          text: Create a custom analyzer
+          url: tutorial/create-custom-analyzer.md
+        - itemType: how-to-guide
+          text: Build a person directory
+          url: tutorial/build-person-directory.md
+    - title: Resources
+      links:
+        - itemType: reference
+          text: Service limits
+          url: service-limits.md
+        - itemType: reference
+          text: Language and region support
+          url: language-region-support.md
+        - itemType: tutorial
+          text: Azure AI Content Understanding Samples (Python)
+          url: https://github.com/Azure-Samples/azure-ai-content-understanding-python
+    - title: Reference
+      links:
+        - itemType: reference
+          text: FAQ
+          url: faq.yml
+        - itemType: reference
+          text: Glossary
+          url: glossary.md
+        - itemType: reference
+          text: REST API
+          url: /rest/api/contentunderstanding/operation-groups
 
 

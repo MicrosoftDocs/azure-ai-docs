@@ -1,8 +1,8 @@
 ---
 title: "Quickstart: Custom question answering client library for .NET"
 description: This quickstart shows how to get started with the custom question answering client library for .NET. Follow these steps to install the package and try out the example code for basic tasks. Custom question answering enables you to power a question-and-answer service from your semi-structured content like FAQ documents, URLs, and product manuals.
-author: jboback
-ms.author: jboback
+author: laujan
+ms.author: lajanuar
 ms.topic: include
 ms.date: 12/19/2023
 ---

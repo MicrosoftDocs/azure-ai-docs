@@ -12,7 +12,7 @@ ms.date: 05/19/2025
 
 # Quickstart: Azure AI Content Understanding REST APIs
 
-* This quickstart shows you how to use the Content Understanding REST API to get structured data from multimodal content in document, image, audio, and video files.
+* This quickstart shows you how to use the [Content Understanding REST API](/rest/api/contentunderstanding/content-analyzers?view=rest-contentunderstanding-2025-05-01-preview&preserve-view=true) to get structured data from multimodal content in document, image, audio, and video files.
 
 * Try [Content Understanding with no code on Azure AI Foundry](https://ai.azure.com/explore/aiservices/vision/contentunderstanding)
 
@@ -20,7 +20,7 @@ ms.date: 05/19/2025
 
 To get started, you need **an active Azure subscription**. If you don't have an Azure account, [create one for free](https://azure.microsoft.com/free/).
 
-* Once you have your Azure subscription, create an [Azure AI Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) in the Azure portal. This multi-service resource enables access to multiple Azure AI services with a single set of credentials.
+* Once you have your Azure subscription, create an [Azure AI Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. This multi-service resource enables access to multiple Azure AI services with a single set of credentials.
 
    * This resource is listed under **AI Foundry** > **AI Foundry** in the portal.
 
@@ -29,11 +29,7 @@ To get started, you need **an active Azure subscription**. If you don't have an 
 
      :::image type="content" source="../media/overview/azure-multi-service-resource.png" alt-text="Screenshot of the AI Foundry resource page in the Azure portal.":::
 
-* In this quickstart, we use the cURL command line tool. If it isn't installed, you can download a version for your dev environment:
-
-  * [Windows](https://curl.haxx.se/windows/)
-  * [Mac or Linux](https://learn2torials.com/thread/how-to-install-curl-on-mac-or-linux-(ubuntu)-or-windows)
-
+* In this quickstart, we use the cURL command line tool. If it isn't installed, you can download a version for your dev environment: [cURL download page](https://curl.se/download.html).
 
 ## Get Started with a prebuilt analyzer
 

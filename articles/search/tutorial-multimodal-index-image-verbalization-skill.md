@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Index multimodal content using image verbalization and document layout skill'
+title: 'Tutorial: Index multimodal content using image verbalization and Document Layout skill'
 titleSuffix: Azure AI Search
 description: Learn how to extract, index, and search multimodal content using the Document Layout skill for chunking and GenAI Prompt skill for image verbalizations.
 
@@ -9,27 +9,25 @@ ms.author: rawan
 ms.service: azure-ai-search
 ms.custom:
 ms.topic: tutorial
-ms.date: 05/05/2025
+ms.date: 05/28/2025
 
 ---
 
 # Tutorial: Index mixed content using image verbalizations and the Document Layout skill
 
-In this Azure AI Search tutorial, learn how to build a multimodal indexing pipeline that that chunks data based on document structure, and uses image verbalization to describe images. Cropped images are stored in a knowledge store, and visual content is described in natural language and ingested alongside text in a searchable index.
+In this Azure AI Search tutorial, learn how to build a multimodal indexing pipeline that chunks data based on document structure and uses image verbalization to describe images. Cropped images are stored in a knowledge store, and visual content is described in natural language and ingested alongside text in a searchable index.
 
-From the source document, each image is passed to the [GenAI Prompt skill (preview)](cognitive-search-skill-genai-prompt.md) to generate a concise textual description. These descriptions, along with the original document text, are then embedded into vector representations using Azure OpenAI’s text-embedding-3-large model. The result is a single index containing semantically searchable content from both modalities—text and verbalized images.
+From the source document, each image is passed to the [GenAI Prompt skill (preview)](cognitive-search-skill-genai-prompt.md) to generate a concise textual description. These descriptions, along with the original document text, are then embedded into vector representations using Azure OpenAI’s text-embedding-3-large model. The result is a single index containing semantically searchable content from both modalities: text and verbalized images.
 
 In this tutorial, you use:
 
-+ A 36-page PDF document that combines rich visual content—such as charts, infographics, and scanned pages—with traditional text.
++ A 36-page PDF document that combines rich visual content, such as charts, infographics, and scanned pages, with traditional text.
 
 + The [Document Layout skill (preview)](cognitive-search-skill-document-intelligence-layout.md) for extracting text and normalized images with its locationMetadata from various documents, such as page numbers or bounding regions.
 
-  The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) has limited region availability and is bound to Azure AI services and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. For a lower-cost solution that indexing multimodal content, see [Index multimodal content using image verbalization and document extraction skill](https://aka.ms/azs-multimodal).
+  The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) has limited regional availability, is bound to Azure AI services, and requires a [billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. For a lower-cost solution to indexing multimodal content, see [Index multimodal content using image verbalization and Document Extraction skill](tutorial-multimodal-indexing-with-image-verbalization-and-doc-extraction.md).
 
-+ The [GenAI Prompt skill (preview)](cognitive-search-skill-genai-prompt.md) to generate image captions — text-based descriptions of visual content — for search and grounding.
-
-+ Vectorization using the [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md), which generates embeddings from both text and images. The same skill is used for both modalities, with text inputs processed into embeddings for semantic search, and images processed into vector representations using Azure AI Vision models.
++ The [GenAI Prompt skill (preview)](cognitive-search-skill-genai-prompt.md) to generate image captions, which are text-based descriptions of visual content, for search and grounding.
 
 + A search index configured to store text and image embeddings and support for vector-based similarity search.
 
@@ -51,13 +49,13 @@ Using a REST client and the [Search REST APIs](/rest/api/searchservice/), you wi
 
 + [Azure Storage](/azure/storage/common/storage-account-create).
 
-+ [Azure AI Search](search-what-is-azure-search.md). [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. Your service must be on the Basic tier or higher—this tutorial is not supported on the Free tier. Additionally, ensure your service is deployed in a [supported region for AI Vision](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
++ [Azure AI Search](search-what-is-azure-search.md). [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. Your service must be on the Basic tier or higher. This tutorial isn't supported on the Free tier.
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
 ### Download files
 
-Download the sample PDF below:
+Download the following sample PDF:
 
 + [sustainable-ai-pdf](https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/msc/documents/presentations/CSR/Accelerating-Sustainability-with-AI-2025.pdf)
 
@@ -293,9 +291,9 @@ POST {{baseUrl}}/indexes?api-version=2025-05-01-preview   HTTP/1.1
 
 Key points:
 
-+ Text and image embeddings are stored in the `content_embedding` field and must be configured with appropriate dimensions (e.g., 3072) and a vector search profile.
++ Text and image embeddings are stored in the `content_embedding` field and must be configured with appropriate dimensions, such as 3072, and a vector search profile.
 
-+ `location_metadata` captures bounding polygon and page number metadata for each text chunk and normalized image, enabling precise spatial search or UI overlays. 
++ `location_metadata` captures bounding polygon and page number metadata for each text chunk and normalized image, enabling precise spatial search or UI overlays.
 
 + For more information on vector search, see [Vectors in Azure AI Search](vector-search-overview.md).
 
@@ -660,10 +658,10 @@ You can use the Azure portal to delete indexes, indexers, and data sources.
 
 ## See also
 
-Now that you're familiar with a sample implementation of a multimodal indexing scenario, check out
+Now that you're familiar with a sample implementation of a multimodal indexing scenario, check out:
+
 + [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)
 + [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md)
 + [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md)
 + [Vectors in Azure AI Search](vector-search-overview.md)
 + [Semantic ranking in Azure AI Search](semantic-search-overview.md)
-+ [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and document layout skill](https://aka.ms/azs-multimodal)

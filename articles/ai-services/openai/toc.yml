@@ -1,5 +1,5 @@
 items:
-- name: Azure OpenAI Service Documentation
+- name: Azure OpenAI Documentation
   href: index.yml
 - name: Overview
   expanded: true
@@ -27,8 +27,6 @@ items:
       href: azure-government.md
 - name: Quickstarts
   items:
-    - name: Assistants (preview)
-      href: assistants-quickstart.md
     - name: Audio generation
       href: audio-completions-quickstart.md
     - name: Chat
@@ -70,8 +68,6 @@ items:
         href: ./concepts/content-filter-groundedness.md
       - name: Protected material detection
         href: ./concepts/content-filter-protected-material.md
-      - name: Personally identifiable information (PII) detection
-        href: ./concepts/content-filter-personal-information.md
       - name: Content filter configurability
         href: ./concepts/content-filter-configurability.md
       - name: Content filter annotations
@@ -117,7 +113,7 @@ items:
 - name: How-to 
   items:
   - name: API version lifecycle
-    href: ./api-version-deprecation.md
+    href: ./api-version-lifecycle.md
   - name: Assistants (preview)
     items:
     - name: Getting started with Assistants
@@ -296,8 +292,6 @@ items:
           href: ./how-to/spillover-traffic-management.md
         - name: Azure OpenAI PTU updates
           href: ./concepts/provisioned-migration.md
-        - name: Azure OpenAI PTU in Azure Government
-          href: ./concepts/gov-provisioned.md
       - name: Plan and manage costs
         href: ./how-to/manage-costs.md
       - name: Performance & latency
@@ -346,11 +340,13 @@ items:
       href: /legal/cognitive-services/openai/customer-copyright-commitment?context=/azure/ai-services/openai/context/context
 - name: Reference
   items:
+    - name: Latest Inference Preview API
+      href: reference-preview-latest.md
     - name: Inference GA API reference
       href: reference.md
-    - name: Authoring preview API reference
+    - name: 2025-04-01-preview - Authoring 
       href: authoring-reference-preview.md
-    - name: Inference preview API reference
+    - name: 2025-04-01-preview - Inference 
       href: reference-preview.md
     - name: Assistants API Reference
       items:

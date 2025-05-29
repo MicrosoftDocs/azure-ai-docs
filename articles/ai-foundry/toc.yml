@@ -28,7 +28,6 @@ items:
       href: how-to/benchmark-model-in-catalog.md
   - name: Explore the model playgrounds
     href: concepts/concept-playgrounds.md
-  - name: Deploy Azure AI Foundry Models
   - name: Deployment options in Azure AI Foundry portal
     href: concepts/deployments-overview.md
   - name: Supported programming languages and SDKs
@@ -73,10 +72,8 @@ items:
           href: how-to/develop/semantic-kernel.md
   - name: Deploy Azure OpenAI in Foundry Models
     items:
-    - name: Azure OpenAI in Azure AI Foundry portal
-      href: azure-openai-in-azure-ai-foundry.md
     - name: Use Azure OpenAI in Azure AI Foundry portal
-      href: ai-services/how-to/connect-azure-openai.md
+      href: ai-services/how-to/connect-azure-openai.md?context=/azure/ai-foundry/context/context
     - name: Supported Azure OpenAI models
       href: ../ai-services/openai/concepts/models.md?context=/azure/ai-foundry/context/context
     - name: Azure OpenAI deployment types
@@ -265,14 +262,18 @@ items:
       href: ../ai-services/speech-service/get-started-speech-to-text.md?context=/azure/ai-foundry/context/context
     - name: Fast transcription
       href: ../ai-services/speech-service/fast-transcription-create.md?context=/azure/ai-foundry/context/context
+    - name: Fine-tune your speech model
+      items:
+      - name: Custom speech fine-tuning
+        href: ../ai-services/speech-service/how-to-custom-speech-create-project.md?context=/azure/ai-foundry/context/context
+      - name: Custom voice fine-tuning
+        href: ../ai-services/speech-service/professional-voice-create-project.md?context=/azure/ai-foundry/context/context
+      - name: Custom avatar fine-tuning
+        href: ../ai-services/speech-service/text-to-speech-avatar/custom-avatar-create.md?context=/azure/ai-foundry/context/context
     - name: Pronunciation assessment
       href: ../ai-services/speech-service/pronunciation-assessment-tool.md?context=/azure/ai-foundry/context/context
     - name: Speech translation
       href: ../ai-services/speech-service/get-started-speech-translation.md?context=/azure/ai-foundry/context/context
-    - name: Hear and speak with chat in the playground
-      href: quickstarts/hear-speak-playground.md
-    - name: Custom speech fine-tuning
-      href: ../ai-services/speech-service/how-to-custom-speech-create-project.md?context=/azure/ai-foundry/context/context
   - name:  Translator
     items:
     - name: What is Azure AI Translator?

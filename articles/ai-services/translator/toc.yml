@@ -36,7 +36,7 @@ items:
   - name: Text translation reference
     expanded: true
     items:
-    - name: 🆕 Azure AI Translator 2025-05-01-preview
+    - name: Azure AI Translator 2025-05-01-preview 🆕
       items:
       - name: 2025-05-01-preview overview
         displayName: gpt, adaptive, tone, gender
@@ -78,8 +78,8 @@ items:
       - name: Dictionary Examples
         href: text-translation/reference/v3/dictionary-examples.md
       - name: Migrate to v3 Text translation API
-      displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
-      href: text-translation/how-to/migrate-to-v3.md  
+        displayName: "speech,error,version,endpoint,compatibility,json,authentication,pricing"
+        href: text-translation/how-to/migrate-to-v3.md
   - name: Quickstarts
     items:
     - name: Translator Text SDK
@@ -111,7 +111,7 @@ items:
     - name: Use the Text translation APIs
       displayName: detection,detect,translation,transliteration,identification,length,sentence length,alternate,usage,headers,set up,status,401
       href: text-translation/how-to/use-rest-api.md
-    - name: Migrate to 2025-05-01-preview
+    - name: "Migrate to 2025-05-01-preview 🆕"
       displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
       href: text-translation/how-to/migrate-to-preview.md
     - name: Enable Microsoft Entra ID authentication
@@ -130,16 +130,15 @@ items:
     - name: Translate behind firewalls
       displayName: domain,IP,filtering,tag,endpoints,CognitiveServicesManagement
       href: firewalls.md
-  
 - name: Document translation
   items:
   - name: What is Document translation?
     displayName: ocr,batch,features,development,formats,file types
     href: document-translation/overview.md
-  - name: 🆕 Document translation SDK guide
+  - name: Document translation SDK guide 🆕
     displayName: batch,c#,dotnet,.net,python,blob,set up,install,cli,storage,domain,custom domain
     href: document-translation/document-sdk-overview.md
-  - name: 🆕 Document translation REST API guide
+  - name: Document translation REST API guide 🆕
     displayName: get,post,cancel,delete
     href: document-translation/reference/rest-api-guide.md
   - name: Quickstarts
@@ -209,15 +208,80 @@ items:
       - name: "Container: Translate text"
         displayName: docker,docker-run,run,pull,swagger,c#,python,import,cpu,EULA,billing
         href: containers/translate-text-parameters.md
-      - name: "🆕 Container: Transliterate text"
+      - name: "Container: Transliterate text 🆕"
         displayName: docker,docker-run,run,pull,swagger,c#,python,import,cpu,EULA,billing
         href: containers/transliterate-text-parameters.md
-      - name: "🆕 Container: Translate documents"
+      - name: "Container: Translate documents 🆕"
         displayName: docker,docker-run,run,pull,swagger,c#,python,import,cpu,EULA,billing
         href: containers/translate-document-parameters.md
   - name: Translator container FAQ
     href: containers/faq.yml
-- name: Custom Translator
+- name: Azure AI Foundry custom translation 🆕
+  items:
+  - name: What is Azure AI Foundry custom translation?
+    href: custom-translator/azure-ai-foundry/overview.md
+  - name: Key terms
+    href: custom-translator/azure-ai-foundry/key-terms.md
+  - name: Azure AI Foundry for beginners
+    displayName: use case,usage,train,training,bleu,tuning,tune
+    href: custom-translator/azure-ai-foundry/beginners-guide.md
+  - name: FAQ
+    href: custom-translator/azure-ai-foundry/faq.md  
+  - name: How-to guides
+    items:
+    - name: Create an Azure AI Foundry project
+      displayName: models,pairs,label,edit,delete
+      href: custom-translator/azure-ai-foundry/how-to/create-project.md
+    - name: Create a language pair
+      displayName: language,language pair,language pair ID,ID
+      href: custom-translator/azure-ai-foundry/how-to/create-language-pair.md  
+    - name: Upload data
+      displayName: parallel,document sets,tuning,phrase,sentence,upload
+      href: custom-translator/azure-ai-foundry/how-to/upload-data.md
+    - name: Train a custom model
+      displayName: full,dictionary,duplicate
+      href: custom-translator/azure-ai-foundry/how-to/train-model.md
+    - name: Test your model
+      displayName: bleu,baseline
+      href: custom-translator/azure-ai-foundry/how-to/test-model.md
+    - name: Deploy a custom model
+      displayName: replace
+      href: custom-translator/azure-ai-foundry/how-to/deploy-model.md
+    - name: Translate text with a custom model
+      displayName: category,ID,category ID,
+      href: custom-translator/azure-ai-foundry/how-to/translate-with-model.md
+    - name: Copy a custom model
+      displayName: copy, publish, move, workspace
+      href: custom-translator/azure-ai-foundry/how-to/copy-model.md
+  - name: Concepts
+    items:
+    - name: Customization
+      displayName: speech
+      href: custom-translator/azure-ai-foundry/concepts/customization.md
+    - name: Workspaces and projects
+      href: custom-translator/azure-ai-foundry/concepts/workspace-and-project.md
+    - name: Parallel documents
+      href: custom-translator/azure-ai-foundry/concepts/parallel-documents.md
+    - name: Dictionaries
+      displayName: phrase,sentence,recommendations
+      href: custom-translator/azure-ai-foundry/concepts/dictionaries.md
+    - name: Document formats
+      href: custom-translator/azure-ai-foundry/concepts/document-formats-naming-convention.md
+    - name: Sentence alignment
+      href: custom-translator/azure-ai-foundry/concepts/sentence-alignment.md
+    - name: Data filtering
+      displayName: deduplication,white space,punctuation,tags,invalid
+      href: custom-translator/azure-ai-foundry/concepts/data-filtering.md
+    - name: Model training
+      displayName: tuning
+      href: custom-translator/azure-ai-foundry/concepts/model-training.md
+    - name: Bilingual Evaluation Understudies (BLEU) score
+      href: custom-translator/azure-ai-foundry/concepts/bleu-score.md
+  - name: Reference
+    items:
+    - name: Release notes
+      href: custom-translator/azure-ai-foundry/release-notes.md
+- name: Custom Translator portal
   items:
   - name: What is Custom Translator?
     href: custom-translator/overview.md

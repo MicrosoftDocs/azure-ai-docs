@@ -7,7 +7,7 @@ author: msakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
 ms.topic: concept-article
-ms.date: 01/24/2025
+ms.date: 05/19/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 ms.custom: generated
@@ -35,6 +35,7 @@ You can get access to the key model providers in the industry. Explore the follo
 - [Microsoft](concepts/models.md#microsoft)
 - [Mistral AI](concepts/models.md#mistral-ai)
 - [NTT Data](concepts/models.md#ntt-data)
+- [xAI](concepts/models.md#xai)
 
 To see details for each model including language, types, and capabilities, see [Models](concepts/models.md) article.
 

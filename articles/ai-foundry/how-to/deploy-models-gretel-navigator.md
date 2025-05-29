@@ -5,7 +5,7 @@ description: Learn how to use Gretel Navigator chat model with Azure AI Foundry.
 ms.service: azure-ai-foundry
 manager: scottpolly
 ms.topic: how-to
-ms.date: 01/13/2025
+ms.date: 05/19/2025
 ms.reviewer: anupamawal
 reviewer: anupamawalaus
 ms.author: mopeakande

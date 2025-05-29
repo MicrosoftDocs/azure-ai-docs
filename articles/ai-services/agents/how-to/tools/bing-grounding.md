@@ -92,4 +92,4 @@ print(f"Last run step detail: {run_steps_data}")
 
 ## Next steps
 
-See [code samples](./bing-code-samples.md) for using the Grounding with Bing tool programatically.
+See [code samples](./bing-code-samples.md) for using the Grounding with Bing tool programmatically.

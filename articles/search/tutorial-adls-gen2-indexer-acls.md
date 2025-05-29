@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn how to index Access Control Lists (ACLs) and Azure Role-Based Access Control (RBAC) scope from ADLS Gen2 and query with permission-filtered results in Azure AI Search.
 ms.service: azure-ai-search  
 ms.topic: tutorial  
-ms.date: 05/08/2025
+ms.date: 05/20/2025
 author: wlifuture
 ms.author: wli
 ---  
@@ -26,7 +26,7 @@ In this tutorial, you learn how to:
 > + Create and run an indexer to ingest permission information into an index from a data source
 > + Search the index you just created
 
-You need a REST client to complete this tutorial. There's no currently no support for ACL indexing in the Azure portal.
+Use a REST client to complete this tutorial and the [2025-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) REST API. There's no currently no support for ACL indexing in the Azure portal.
 
 ## Prerequisites
 
@@ -181,3 +181,26 @@ Indexer configuration for permission ingestion is primarily about defining `fiel
 ```
 
 After indexer creation and immediate run, the file content along with permission metadata information are indexed into the index.
+
+## Run a query to check results
+
+Now that documents are loaded, you can issue queries against them by using [Documents - Search Post (REST)](/rest/api/searchservice/documents/search-post).
+
+The URI is extended to include a query input, which is specified by using the `/docs/search` operator. The query token is passed in the request header. For more information, see [Query-Time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md).
+
+```http
+POST  {{endpoint}}/indexes/stateparks/docs/search?api-version=2025-05-01-preview
+Authorization: Bearer {{search-token}}
+x-ms-query-source-authorization: {{search-token}}
+Content-Type: application/json
+
+{
+    "search": "*",
+    "select": "name,description,location,GroupIds",
+    "orderby": "name asc"
+}
+```
+
+## Related content
+
++ [https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-ACL](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-ACL)

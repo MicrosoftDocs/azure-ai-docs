@@ -40,7 +40,7 @@ For more information, see the [pattern matching overview](./pattern-matching-ove
 
 Be sure you have the following items before you begin this guide:
 
-- An [Azure AI Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) or a [Unified Speech resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices)
+- An [Azure AI Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) or a [Unified Speech resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry)
 - [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/) (any edition).
 
 ## Speech and simple patterns

@@ -39,7 +39,7 @@ sections:
       - question: |
           How do the capabilities of Azure OpenAI compare to OpenAI?
         answer: | 
-          Azure OpenAI Service gives customers advanced language AI with the latest OpenAI models with the security and enterprise promise of Azure. Azure OpenAI codevelops the APIs with OpenAI, ensuring compatibility and a smooth transition from one to the other.
+          Azure OpenAI gives customers advanced language AI with the latest OpenAI models with the security and enterprise promise of Azure. Azure OpenAI codevelops the APIs with OpenAI, ensuring compatibility and a smooth transition from one to the other.
           
           With Azure OpenAI, customers get the security capabilities of Microsoft Azure while running the same models as OpenAI. 
       - question: |
@@ -312,7 +312,7 @@ sections:
       - question: |
           What is Azure OpenAI on your data?  
         answer:
-          Azure OpenAI on your data is a feature of the Azure OpenAI Services that helps organizations to generate customized insights, content, and searches using their designated data sources. It works with the capabilities of the OpenAI models in Azure OpenAI to provide more accurate and relevant responses to user queries in natural language. Azure OpenAI on your data can be integrated with customer's existing applications and workflows, offers insights into key performance indicators, and can interact with users seamlessly.  
+          Azure OpenAI on your data is a feature of the Azure OpenAI that helps organizations to generate customized insights, content, and searches using their designated data sources. It works with the capabilities of the OpenAI models in Azure OpenAI to provide more accurate and relevant responses to user queries in natural language. Azure OpenAI on your data can be integrated with customer's existing applications and workflows, offers insights into key performance indicators, and can interact with users seamlessly.  
       - question: |
           How can I access Azure OpenAI on your data?  
         answer:
@@ -340,7 +340,7 @@ sections:
       - question: |
           Is responsible AI supported by Azure OpenAI on your data?
         answer:
-          Yes, [Azure OpenAI on your data](./concepts/use-your-data.md) is part of the Azure OpenAI Service and works with the [models](./concepts/models.md) available in Azure OpenAI. The [content filtering](./concepts/content-filter.md) and abuse monitoring features of Azure OpenAI still apply. For more information, see the [overview of Responsible AI practices for Azure OpenAI models](/legal/cognitive-services/openai/overview?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext) and the [Transparency Note for Azure OpenAI](/legal/cognitive-services/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=text) for extra guidance on using Azure OpenAI on your data responsibly. 
+          Yes, [Azure OpenAI on your data](./concepts/use-your-data.md) is part of Azure OpenAI and works with the [models](./concepts/models.md) available in Azure OpenAI. The [content filtering](./concepts/content-filter.md) and abuse monitoring features of Azure OpenAI still apply. For more information, see the [overview of Responsible AI practices for Azure OpenAI models](/legal/cognitive-services/openai/overview?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext) and the [Transparency Note for Azure OpenAI](/legal/cognitive-services/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=text) for extra guidance on using Azure OpenAI on your data responsibly. 
       - question: |
           Is there a token limit on the system message? 
         answer: 
@@ -371,7 +371,7 @@ sections:
       - question: |
           How do I obtain coverage under the Customer Copyright Commitment? 
         answer:
-          The Customer Copyright Commitment is a provision to be included in the December 1, 2023, Microsoft Product Terms that describes Microsoft’s obligation to defend customers against certain third-party intellectual property claims relating to Output Content. If the subject of the claim is Output Content generated from the Azure OpenAI Service (or any other Covered Product that allows customers to configure the safety systems), then to receive coverage, customer must have implemented all mitigations required by the Azure OpenAI Service documentation in the offering that delivered the Output Content. The required mitigations are documented [here](/legal/cognitive-services/openai/customer-copyright-commitment?context=/azure/ai-services/openai/context/context) and updated on an ongoing basis. For new services, features, models, or use cases, new CCC requirements will be posted and take effect at or following the launch of such service, feature, model, or use case. Otherwise, customers will have six months from the time of publication to implement new mitigations to maintain coverage under the CCC. If a customer tenders a claim, the customer will be required to demonstrate compliance with the relevant requirements. These mitigations are required for Covered Products that allow customers to configure the safety systems, including Azure OpenAI Service; they do not impact coverage for customers using other Covered Products.
+          The Customer Copyright Commitment is a provision to be included in the December 1, 2023, Microsoft Product Terms that describes Microsoft’s obligation to defend customers against certain third-party intellectual property claims relating to Output Content. If the subject of the claim is Output Content generated from the Azure OpenAI (or any other Covered Product that allows customers to configure the safety systems), then to receive coverage, customer must have implemented all mitigations required by the Azure OpenAI documentation in the offering that delivered the Output Content. The required mitigations are documented [here](/legal/cognitive-services/openai/customer-copyright-commitment?context=/azure/ai-services/openai/context/context) and updated on an ongoing basis. For new services, features, models, or use cases, new CCC requirements will be posted and take effect at or following the launch of such service, feature, model, or use case. Otherwise, customers will have six months from the time of publication to implement new mitigations to maintain coverage under the CCC. If a customer tenders a claim, the customer will be required to demonstrate compliance with the relevant requirements. These mitigations are required for Covered Products that allow customers to configure the safety systems, including Azure OpenAI Service; they do not impact coverage for customers using other Covered Products.
 additionalContent: |
 
   ## Next steps

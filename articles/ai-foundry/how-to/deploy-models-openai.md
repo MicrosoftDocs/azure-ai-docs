@@ -10,7 +10,7 @@ ms.custom:
   - ai-learning-hub
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/05/2024
+ms.date: 05/19/2025
 ms.reviewer: fasantia
 ms.author: mopeakande
 author: msakande

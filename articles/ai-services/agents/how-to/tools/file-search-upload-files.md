@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 04/09/2025
+ms.date: 05/28/2025
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-bing-grounding-code
@@ -45,7 +45,7 @@ Use this article to find step-by-step instructions and code samples for uploadin
 
 ## Create a project client
 
-Create a client object that contains the connection string for connecting to your AI project and other resources.
+Create a client object that contains the endpoint for connecting to your AI project and other resources.
 
 ```python
 import os
@@ -74,7 +74,7 @@ from azure.ai.agents.models import FilePurpose
 file_path = "./data/product_info_1.md"
 
 # Upload the file
-file = project_client.agents.upload_file_and_poll(file_path=file_path, purpose=FilePurpose.AGENTS)
+file = project_client.agents.files.upload_and_poll(file_path=file_path, purpose=FilePurpose.AGENTS)
 print(f"Uploaded file, file ID: {file.id}")
 
 # Create a vector store with the uploaded file
@@ -154,7 +154,7 @@ for message in messages.data:
 
 ## Create a project client
 
-Create a client object that contains the connection string for connecting to your AI project and other resources.
+Create a client object that contains the endpoint for connecting to your AI project and other resources.
 
 ```csharp
 using Azure;
@@ -346,7 +346,7 @@ agentClient.Administration.DeleteAgent(agent.Id);
 
 ## Create a project client
 
-Create a client object that contains the connection string for connecting to your AI project and other resources.
+Create a client object that contains the endpoint for connecting to your AI project and other resources.
 
 ```javascript
 const { AgentsClient, isOutputOfType, ToolUtility } = require("@azure/ai-agents");
@@ -356,7 +356,7 @@ const { DefaultAzureCredential } = require("@azure/identity");
 const fs = require("fs");
 require("dotenv/config");
 
-const projectEndpoint = process.env["PROJECT_ENDPOINT"] || "<project connection string>";
+const projectEndpoint = process.env["PROJECT_ENDPOINT"];
 
 // Create an Azure AI Client
 const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());

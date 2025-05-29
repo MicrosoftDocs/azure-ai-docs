@@ -1,37 +1,37 @@
 ---
-title: Azure AI Translator languages method
+title: Translator Languages Method
 titleSuffix: Azure AI services
-description: The Azure AI Translator v3.0 languages method returns currently supported languages.
+description: The Languages method gets the set of languages currently supported by other operations of the Translator.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 03/31/2025
+ms.date: 05/19/2025
 ms.author: lajanuar
 ---
 
 <!-- markdownlint-disable MD033 -->
 
-# Azure AI Translator v3.0:  languages
+# Translator 3.0: Languages
 
-Gets the set of languages currently supported Azure AI Translator v3.0.
+Gets the set of languages currently supported by other operations of the Translator.
 
 ## Request URL
 
 Send a `GET` request to:
 
-```bash
+```HTTP
 https://api.cognitive.microsofttranslator.com/languages?api-version=3.0
 
 ```
 
 For virtual networks, use your custom domain endpoint:
 
-```bash
+```HTTP
 https://<your-custom-domain>.cognitiveservices.azure.com/languages?api-version=3.0
 ```
 
-For more information, _see_ [**Virtual Network Support**](../authentication.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+For more information, _see_ [**Virtual Network Support**](reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
 
 ## Request parameters
 
@@ -184,7 +184,7 @@ The value for each property is as follows.
 
   * `dir`: Directionality, which is `rtl` for right-to-left languages or `ltr` for left-to-right languages.
 
-  * `translations`: List of languages with alterative translations and examples for the query expressed in the source language. Each element of the `translations` list has properties:
+  * `translations`: List of languages with alternative translations and examples for the query expressed in the source language. Each element of the `translations` list has properties:
 
     * `name`: Display name of the target language in the locale requested via `Accept-Language` header.
 
@@ -225,13 +225,24 @@ The list of supported languages doesn't change frequently. To save network bandw
 
 ## Response status codes
 
-If an error occurs, the request also returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [Translator status code reference page](../status-response-codes.md).
+The following are the possible HTTP status codes that a request returns.
+
+|Status Code|Description|
+|--- |--- |
+|200|Success.|
+|304|The resource isn't modified and aligns with the version specified by request headers `If-None-Match`.|
+|400|One of the query parameters is missing or not valid. Correct request parameters before retrying.|
+|429|The server rejected the request because the client exceeded request limits.|
+|500|An unexpected error occurred. If the error persists, report it with: date and time of the failure, request identifier from response header `X-RequestId`, and client identifier from request header `X-ClientTraceId`.|
+|503|Server temporarily unavailable. Retry the request. If the error persists, report it with: date and time of the failure, request identifier from response header `X-RequestId`, and client identifier from request header `X-ClientTraceId`.|
+
+If an error occurs, the request also returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [v3 Translator reference page](./reference.md#errors).
 
 ## Examples
 
 The following example shows how to retrieve languages supported for text translation.
 
- ```bash
+```curl
 curl "https://api.cognitive.microsofttranslator.com/languages?api-version=3.0&scope=translation"
 ```
 

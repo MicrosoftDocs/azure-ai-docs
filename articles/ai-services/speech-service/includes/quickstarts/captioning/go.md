@@ -37,9 +37,9 @@ Follow these steps to build and run the captioning quickstart code example.
     ```
 1. Run the application with your preferred command line arguments. See [usage and arguments](#usage-and-arguments) for the available options. Here is an example:
     ```console
-    go run captioning --key YourSubscriptionKey --region YourServiceRegion --input caption.this.mp4 --format any --output caption.output.txt --srt --recognizing --threshold 5 --profanity mask --phrases "Contoso;Jessie;Rehaan"
+    go run captioning --key YourSpeechResoureKey --region YourServiceRegion --input caption.this.mp4 --format any --output caption.output.txt --srt --recognizing --threshold 5 --profanity mask --phrases "Contoso;Jessie;Rehaan"
     ```
-    Replace `YourSubscriptionKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource [region](~/articles/ai-services/speech-service/regions.md), such as `westus` or `northeurope`. Make sure that the paths specified by `--input` and `--output` are valid. Otherwise you must change the paths.
+    Replace `YourSpeechResoureKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource [region](~/articles/ai-services/speech-service/regions.md), such as `westus` or `northeurope`. Make sure that the paths specified by `--input` and `--output` are valid. Otherwise you must change the paths.
 
     > [!IMPORTANT]
     > Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](../../../../use-key-vault.md). See the Azure AI services [security](../../../../security-features.md) article for more information.

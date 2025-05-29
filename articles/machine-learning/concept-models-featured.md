@@ -40,7 +40,7 @@ See [this model collection in the Azure AI model catalog](https://ai.azure.com/e
 
 ## Azure OpenAI
 
-Azure OpenAI Service offers a diverse set of models with different capabilities and price points. These models include:
+Azure OpenAI in Azure AI Foundry Models offers a diverse set of models with different capabilities and price points. These models include:
 
 - State-of-the-art models designed to tackle reasoning and problem-solving tasks with increased focus and capability
 - Models that can understand and generate natural language and code
