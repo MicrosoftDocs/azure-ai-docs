@@ -1,5 +1,5 @@
 ---
-title: "Use Azure AI Content Understanding Analyzer templates in the Azure AI Foundry"
+title: "Use Azure AI Content Understanding Analyzer templates in the Azure AI Foundry Portal"
 titleSuffix: Azure AI services
 description: Learn how to use Content Understanding Analyzer templates in Azure AI Foundry portal
 author: laujan
@@ -9,13 +9,16 @@ ms.topic: quickstart
 ms.date: 05/19/2025
 ---
 
-# Use Azure AI Content Understanding in the Azure AI Foundry
+# Use Azure AI Content Understanding in the Azure AI Foundry portal
 
-In this quickstart, you learn how to create a custom task and build your first analyzer using the Azure AI Foundry. The Azure AI Foundry is a comprehensive platform for developing and deploying generative AI applications and APIs responsibly. You also learn how to share your project with other users.
+In this quickstart, you will learn how to use the Content Understanding service in the Azure AI Foundry portal. The Azure AI Foundry is a comprehensive platform for developing and deploying generative AI applications and APIs responsibly. 
 
-[Azure AI Foundry](../../../ai-foundry/index.yml) is a comprehensive platform for developing and deploying generative AI applications and APIs responsibly. Azure AI Content Understanding is a new generative [Azure AI Service](../../what-are-ai-services.md) that analyzes files from varied modalities and extracts structured output in a user-defined field format. 
+A few terms to know before getting started:
+* **Task**: Your Content Understanding task is the top-level structure that all of your Content Understanding related work falls under. This guide will offer a step by step introduction to creating your field schema.
+* **Field schema**: A field schema is the definition of all of the outputs that you want to extract or generate data. Content Understanding offers several prebuilt schemas, and are fully customizable. You can also create a schema from scratch to extract exactly what you need.
+* **Analyzer**: The Content Understanding analyzer allows you to call the field schema you define as an API call in your own solution. You can build as many analyzers as needed within your task.
 
-Input sources include document, video, image, and audio data. This guide shows you how to build and test a Content Understanding analyzer in the AI Foundry. You can then utilize the extracted data in any app or process you build using a simple REST API call. Content Understanding analyzers are fully customizable. You can create an analyzer by building your own schema from scratch or by using a suggested analyzer template offered to address common scenarios across each data type.
+This guide shows you how to build and test a Content Understanding analyzer in the AI Foundry. You can then utilize the extracted data in any app or process you build using a simple REST API call. Content Understanding analyzers are fully customizable. You can create an analyzer by building your own schema from scratch or by using a suggested analyzer template offered to address common scenarios across each data type.
 
 :::image type="content" source="../media/quickstarts/ai-foundry-overview.png" alt-text="Screenshot of the Content Understanding workflow in the Azure AI Foundry.":::
 
@@ -51,7 +54,7 @@ Now that everything is configured to get started, we can walk through, step-by-s
 
 # [Single-file task (Standard mode](#tab/standard)
 
-When you create a single-file Content Understanding task, you'll start by building your field schema. The schema is the customizable framework that allows the analyzer to extract insights from your data. In this example, the schema is created to extract key data from an invoice document, but you can bring in any type of data and the steps remain the same. [Compare the output of this invoice analysis use case to the output of a Content Understanding Pro invoice analysis scenario](). For a complete list of supported file types, see [input file limits](../service-limits.md#input-file-limits).
+When you create a single-file Content Understanding task, you'll start by uploading a sample of your data and building your field schema. The schema is the customizable framework that allows the analyzer to extract insights from your data. In this example, the schema is created to extract key data from an invoice document, but you can bring in any type of data and the steps remain the same. [Compare the output of this invoice analysis use case to the output of a Content Understanding Pro invoice analysis scenario](). For a complete list of supported file types, see [input file limits](../service-limits.md#input-file-limits).
 
 
 1. Upload a sample file of an invoice document or any other data relevant to your scenario.
@@ -64,7 +67,7 @@ When you create a single-file Content Understanding task, you'll start by buildi
 
    :::image type="content" source="../media/analyzer-template/define-schema-template-selection.png" alt-text="Screenshot of analyzer templates.":::
 
-1. Add fields to your schema:
+1. Next, you can add fields to your schema to reflect all of the outputs you want to generate. 
 
     * Specify clear and simple field names. Some example fields might include **vendorName**, **items**, **price**.
 
@@ -73,6 +76,8 @@ When you create a single-file Content Understanding task, you'll start by buildi
     * *[Optional]* Provide field descriptions to explain the desired behavior, including any exceptions or rules.
 
     * Specify the method to generate the value for each field.
+  
+      For best practices on how to define your field schema, refer to [best practices for Azure AI Content Understanding](./best-practices.md).
 
 1. Once you feel that the schema is ready to test, select **Save**. You can always come back and make changes if needed.
 
@@ -132,6 +137,8 @@ Now you successfully built your first Content Understanding analyzer, and are re
    :::image type="content" source="../media/quickstarts/view-code.png" alt-text="Screenshot of completed schema.":::
 
 Check out [Quickstart: Azure AI Content Understanding REST APIs](./use-rest-api.md) to utilize the REST API to call your analyzer.
+
+---
 
 ## Sharing your project
 
