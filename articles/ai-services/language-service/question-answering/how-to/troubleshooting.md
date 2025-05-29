@@ -2,8 +2,8 @@
 title: Troubleshooting - custom question answering
 description: The curated list of the most frequently asked questions regarding custom question answering will help you adopt the feature faster and with better results.
 ms.service: azure-ai-language
-author: jboback
-ms.author: jboback
+author: laujan
+ms.author: lajanuar
 ms.topic: troubleshooting
 ms.date: 11/21/2024
 ---

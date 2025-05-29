@@ -3,12 +3,12 @@ title: How to train your custom text classification model - Azure AI services
 titleSuffix: Azure AI services
 description: Learn about how to train your model for custom text classification.
 #services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
 

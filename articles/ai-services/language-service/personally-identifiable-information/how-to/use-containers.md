@@ -2,13 +2,13 @@
 title: Use personally identifiable information (PII) detection Docker containers on-premises
 titleSuffix: Azure AI services
 description: Use Docker containers for the Personally Identifiable Information (PII) detection API to determine the language of written text, on-premises.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.custom:
 ms.topic: how-to
 ms.date: 04/29/2025
-ms.author: jboback
+ms.author: lajanuar
 keywords: on-premises, Docker, container
 ---
 

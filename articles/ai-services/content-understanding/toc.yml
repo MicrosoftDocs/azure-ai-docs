@@ -26,7 +26,7 @@ items:
       - name: Glossary
         displayName: glossary, definition, updates, previews
         href: glossary.md
-  - name: "AI Foundry: Content Understanding"
+  - name: "AI Foundry portal"
     items:
       - name: Quickstart
         displayName: quickstart, extract, text, images, OCR, optical character recognition

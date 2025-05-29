@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Index multimodal content using image verbalization and document extraction skill'
+title: 'Tutorial: Index multimodal content using image verbalization and Document Extraction skill'
 titleSuffix: Azure AI Search
 description: Learn how to extract, index, and search multimodal content using the Document Extraction skill for chunking and GenAI Prompt skill for image verbalizations.
 
@@ -9,29 +9,29 @@ ms.author: mdonovan
 ms.service: azure-ai-search
 ms.custom:
 ms.topic: tutorial
-ms.date: 05/01/2025
+ms.date: 05/28/2025
 
 ---
 
 # Tutorial: Index mixed content using image verbalizations and the Document Extraction skill
 
-Azure AI Search can extract and index both text and images from PDF documents stored in Azure Blob Storage. This tutorial shows how to build a multimodal indexing pipeline by describing visual content in natural language and embedding it alongside document text.
+Azure AI Search can extract and index both text and images from PDF documents stored in Azure Blob Storage. This tutorial shows you how to build a multimodal indexing pipeline by describing visual content in natural language and embedding it alongside document text.
 
-From the source document, each image is passed to the [GenAI Prompt skill (preview)](cognitive-search-skill-genai-prompt.md) to generate a concise textual description. These descriptions, along with the original document text, are then embedded into vector representations using Azure OpenAI’s text-embedding-3-large model. The result is a single index containing semantically searchable content from both modalities—text and verbalized images.
+From the source document, each image is passed to the [GenAI Prompt skill (preview)](cognitive-search-skill-genai-prompt.md) to generate a concise textual description. These descriptions, along with the original document text, are then embedded into vector representations using Azure OpenAI’s text-embedding-3-large model. The result is a single index containing semantically searchable content from both modalities: text and verbalized images.
 
 In this tutorial, you use:
 
-+ A 36-page PDF document that combines rich visual content—such as charts, infographics, and scanned pages—with traditional text.
++ A 36-page PDF document that combines rich visual content, such as charts, infographics, and scanned pages, with traditional text.
 
 + The [Document Extraction skill](cognitive-search-skill-document-extraction.md) for extracting normalized images and text.
 
-+ The [GenAI Prompt skill (preview)](cognitive-search-skill-genai-prompt.md) to generate image captions—text-based descriptions of visual content—for search and grounding.
++ The [GenAI Prompt skill (preview)](cognitive-search-skill-genai-prompt.md) to generate image captions, which are text-based descriptions of visual content, for search and grounding.
 
 + A search index configured to store text and image embeddings and support for vector-based similarity search.
 
-This tutorial demonstrates a lower-cost approach for indexing multimodal content using Document Extraction skill and image captioning. It enables extraction and search over both text and images from documents in Azure Blob Storage. However, it does not include locational metadata for text, such as page numbers or bounding regions. 
+This tutorial demonstrates a lower-cost approach for indexing multimodal content using Document Extraction skill and image captioning. It enables extraction and search over both text and images from documents in Azure Blob Storage. However, it doesn't include locational metadata for text, such as page numbers or bounding regions.
 
-For a more comprehensive solution that includes structured text layout and spatial metadata, see [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and document layout skill](https://aka.ms/azs-multimodal).
+For a more comprehensive solution that includes structured text layout and spatial metadata, see [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and Document Layout skill](tutorial-multimodal-index-image-verbalization-skill.md).
 
 > [!NOTE]
 > Setting `imageAction` to `generateNormalizedImages` is required for this tutorial and incurs an additional charge for image extraction according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/).
@@ -57,7 +57,7 @@ Using a REST client and the [Search REST APIs](/rest/api/searchservice/) you wil
 
 ### Download files
 
-Download the sample PDF below:
+Download the following sample PDF:
 
 + [sustainable-ai-pdf](https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/msc/documents/presentations/CSR/Accelerating-Sustainability-with-AI-2025.pdf)
 
@@ -330,7 +330,7 @@ Key points:
 
 + Text and image embeddings are stored in the `content_embedding` field and must be configured with appropriate dimensions (for example, 3072) and a vector search profile.
 
-+ `location_metadata` captures bounding polygon and page number metadata for each normalized image, enabling precise spatial search or UI overlays. Note that `location_metadata` only exists for images in this scenario. If you'd like to capture locational metadata for text as well, consider using [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md). An in-depth tutorial is linked at the bottom of the page.
++ `location_metadata` captures bounding polygon and page number metadata for each normalized image, enabling precise spatial search or UI overlays. `location_metadata` only exists for images in this scenario. If you'd like to capture locational metadata for text as well, consider using [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md). An in-depth tutorial is linked at the bottom of the page.
 
 + For more information on vector search, see [Vectors in Azure AI Search](vector-search-overview.md).
 
@@ -680,6 +680,7 @@ Connection: close
   "@odata.nextLink": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/doc-extraction-image-verbalization-index/docs/search?api-version=2025-05-01-preview "
 }
 ```
+
 100 documents are returned in the response.
 
 For filters, you can also use Logical operators (and, or, not) and comparison operators (eq, ne, gt, lt, ge, le). String comparisons are case -sensitive. For more information and examples, see [Examples of simple search queries](search-query-simple-examples.md).
@@ -750,4 +751,4 @@ Now that you're familiar with a sample implementation of a multimodal indexing s
 * [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)
 * [Vectors in Azure AI Search](vector-search-overview.md)
 * [Semantic ranking in Azure AI Search](semantic-search-overview.md)
-* [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and document layout skill](https://aka.ms/azs-multimodal)
+* [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and Document Layout skill](tutorial-multimodal-index-image-verbalization-skill.md)

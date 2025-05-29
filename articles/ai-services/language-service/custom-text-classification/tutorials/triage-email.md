@@ -3,12 +3,12 @@ title: Triage incoming emails with Power Automate
 titleSuffix: Azure AI services
 description: Learn how to use custom text classification to categorize and triage incoming emails with Power Automate
 #services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: tutorial
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ---
 
 # Tutorial: Triage incoming emails with power automate
