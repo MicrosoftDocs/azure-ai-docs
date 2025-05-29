@@ -40,6 +40,9 @@ When you enable roles for the data plane, the change is effective immediately, b
 
 The default failure mode for unauthorized requests is `http401WithBearerChallenge`. Alternatively, you can set the failure mode to `http403`. 
 
+> [!NOTE]
+> When you request an OAuth 2.0 access token for Azure AI Search data-plane operations, specify the scope `https://search.azure.com/.default` to ensure your token has the correct permissions
+
 ### [**Azure portal**](#tab/config-svc-portal)
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and navigate to your search service.
