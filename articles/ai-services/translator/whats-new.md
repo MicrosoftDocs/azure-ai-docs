@@ -17,9 +17,15 @@ ms.author: lajanuar
 
 Bookmark this page to stay up to date with release notes, feature enhancements, and our newest documentation.
 
-Azure AI Translator is a language service that enables users to translate text and documents, helps entities expand their global outreach, and supports preservation of at-risk and endangered languages.
+Azure AI Translator is a language service that enables users to translate text and documents, helps entities expand their global outreach, and supports preservation of at-risk and endangered languages. 
 
 Azure AI Translator service supports language translation for more than 100 languages. If your language community is interested in partnering with Microsoft to add your language to Translator, contact us via the [Translator community partner onboarding form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR-riVR3Xj0tOnIRdZOALbM9UOU1aMlNaWFJOOE5YODhRR1FWVzY0QzU1OS4u).
+
+## May 2025
+
+### Microsoft Translator Pro new update
+
+[**Microsoft Translator Pro**](translator-pro/overview.md), a mobile application that provides precise real-time speech-to-speech translations, now includes same-language transcription. This functionality accurately converts spoken words into written text while maintianing the original language of the speech.
 
 ## March 2025
 
