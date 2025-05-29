@@ -7,7 +7,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: how-to
+ms.topic: reference
 ms.date: 05/27/2025
 ---
 

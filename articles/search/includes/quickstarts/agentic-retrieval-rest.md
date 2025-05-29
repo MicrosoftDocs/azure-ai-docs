@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 05/12/2025
+ms.date: 05/29/2025
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -28,7 +28,7 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 
 ## Deploy models
 
-To run agentic retrieval, you must deploy three models to your Azure OpenAI resource:
+To run agentic retrieval, you must deploy the following models to your Azure OpenAI resource:
 
 + An LLM for query planning.
 
@@ -69,7 +69,7 @@ To configure the recommended role-based access:
 
 1. On your Azure AI Search service, [assign the following roles](../../search-security-rbac.md#how-to-assign-roles-in-the-azure-portal) to yourself.
 
-    + **Owner/Contributor** or **Search Service Contributor**
+    + **Search Service Contributor**
 
     + **Search Index Data Contributor**
 
@@ -425,4 +425,28 @@ The output should be similar to the following JSON, where:
     }
   ]
 }
+```
+
+## Clean up resources
+
+When working in your own subscription, it's a good idea to finish a project by determining whether you still need the resources you created. Resources that are left running can cost you money. You can delete resources individually, or you can delete the resource group to delete the entire set of resources.
+
+In the Azure portal, you can find and manage resources by selecting **All resources** or **Resource groups** from the left pane. You can also run the following code to delete the objects you created in this quickstart.
+
+### Delete the knowledge agent
+
+```HTTP
+### Delete the agent
+DELETE {{baseUrl}}/agents/{{agent-name}}?api-version={{api-version}}
+    Content-Type: application/json
+    Authorization: Bearer {{token}}
+```
+
+### Delete the search index
+
+```HTTP
+### Delete the index
+DELETE {{baseUrl}}/indexes/{{index-name}}?api-version={{api-version}}
+    Content-Type: application/json
+    Authorization: Bearer {{token}}
 ```
