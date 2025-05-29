@@ -13,7 +13,7 @@ ms.reviewer: fasantia
 ms.custom: references_regions, tool_generated
 ---
 
-# Models available in Azure AI Foundry Models
+# Available Azure AI Foundry Models
 
 Azure AI Foundry Models gives you access to flagship models in Azure AI Foundry to consume them as APIs without hosting them on your infrastructure.
 
