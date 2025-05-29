@@ -524,6 +524,6 @@ print(f"Knowledge agent '{agent_name}' deleted successfully")
 
 ```Python
 index_client = SearchIndexClient(endpoint=endpoint, credential=credential)
-index_client.delete_index(index)
+index_client.delete_index(index_name)
 print(f"Index '{index_name}' deleted successfully")
 ```
