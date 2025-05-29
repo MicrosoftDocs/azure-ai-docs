@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 12/05/2024
+ms.date: 05/29/2025
 ---
 
 # Relevance in vector search
@@ -22,7 +22,7 @@ This article explains the algorithms used to find relevant matches and the simil
 
 Vector search algorithms include exhaustive k-nearest neighbors (KNN) and Hierarchical Navigable Small World (HNSW). 
 
-+ Exhaustive KNN performs a brute-force search that scans the entire vector space.
++ Exhaustive KNN performs a brute-force scan of the entire vector space.
 
 + HNSW performs an [approximate nearest neighbor (ANN)](vector-search-overview.md#approximate-nearest-neighbors) search. 
 
