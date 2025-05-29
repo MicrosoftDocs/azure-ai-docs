@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 02/07/2025
+ms.date: 05/28/2025
 ---
 
 # Make outbound connections through a shared private link
@@ -79,7 +79,7 @@ When evaluating shared private links for your scenario, remember these constrain
   |----------|-------------------|---------------------|---------------------|
   | Indexers without skillsets | Basic and higher | None | None |
   | Skillsets with embedding skills ([integrated vectorization](vector-search-integrated-vectorization.md)) | Basic and higher | [High capacity regions](search-limits-quotas-capacity.md#partition-storage-gb) | [After April 3, 2024](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date) |
-  | Skillsets using other [built-in](cognitive-search-predefined-skills.md) or custom skills | Standard 2 (S2) and higher | None | [After April 3, 2024](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date) |
+  | Skillsets using other [built-in](cognitive-search-predefined-skills.md) or custom skills | Standard 1 (S1) and higher | None | [After April 3, 2024](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date) |
 
 + Permissions on both Azure AI Search and the Azure resource:
 
@@ -90,7 +90,9 @@ When evaluating shared private links for your scenario, remember these constrain
 
 <!-- + For [integrated vectorization](vector-search-integrated-vectorization.md) only, outbound connections through shared private link are supported on all billable tiers, on services [created after April 3, 2024](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date), in regions providing [higher capacity](search-limits-quotas-capacity.md#partition-storage-gb).  -->
 
-<!-- + For [AI enrichment](cognitive-search-concept-intro.md) and skillset processing, shared private link  that doesn't include an embedding skill and in services [created before April 3, 2024](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date), Azure AI Search must be Standard 2 (S2) or higher. -->
+<!-- + For [AI enrichment](cognitive-search-concept-intro.md) and skillset processing, shared private link in services [created before April 3, 2024](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date), Azure AI Search must be Standard 2 (S2) or higher. -->
+
+<!-- + For [AI enrichment](cognitive-search-concept-intro.md) and skillset processing, shared private link in services [created after April 3, 2024](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date), Azure AI Search must be Standard 1 (S1) or higher. -->
 
 <!-- + For all other use cases, that don't involve skillsets, Azure AI Search can be Basic or higher. -->
 
