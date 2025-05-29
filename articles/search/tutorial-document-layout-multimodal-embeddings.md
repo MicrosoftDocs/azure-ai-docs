@@ -1,45 +1,41 @@
 ---
-title: 'Tutorial: Index multimodal content using embedding and Document Extraction skill'
+title: 'Tutorial: Use Multimodal Embeddings and Document Layout Skill for Multimodal Indexing'
 titleSuffix: Azure AI Search
-description: Learn how to extract, index, and search multimodal content using the Document Extraction skill for chunking and Azure AI Vision for embeddings.
+description: Learn how to extract, index, and search multimodal content using the Document Layout skill for chunking and Azure AI Vision for embeddings.
 
 manager: arjagann
-author: mdonovan
-ms.author: mdonovan
+author: rawan
+ms.author: rawan
 ms.service: azure-ai-search
 ms.custom:
 ms.topic: tutorial
-ms.date: 05/28/2025
+ms.date: 05/29/2025
 
 ---
 
-# Tutorial: Index mixed content using multimodal embeddings and the Document Extraction skill
+# Tutorial: Index mixed content using multimodal embeddings and the Document Layout skill
 
-Azure AI Search can extract and index both text and images from PDF documents stored in Azure Blob Storage. This tutorial shows you how to build a multimodal indexing pipeline by embedding both text and images into a unified semantic search index.
+<!-- Multimodal plays an essential role in generative AI apps and the user experience as it enables the extraction of information not only from text but also from complex images embedded within documents.  -->
+In this Azure AI Search tutorial, learn how to build a multimodal indexing pipeline that chunks data based on document structure, and uses a multimodal embedding model to vectorize text and images in a searchable index.
 
 In this tutorial, you use:
 
 + A 36-page PDF document that combines rich visual content, such as charts, infographics, and scanned pages, with traditional text.
 
-+ The [Document Extraction skill](cognitive-search-skill-document-extraction.md) for extracting text and normalized images.
++ The [Document Layout skill (preview)](cognitive-search-skill-document-intelligence-layout.md) for extracting text and normalized images with its locationMetadata from various documents, such as page numbers or bounding regions.
+
+  The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) has limited regional availability, is bound to Azure AI services, and requires a [billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. For a lower-cost solution to indexing multimodal content, see [Index multimodal content using image verbalization and Document Extraction skill](tutorial-document-extraction-image-verbalization.md).
 
 + Vectorization using the [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md), which generates embeddings for both text and images.
 
 + A search index configured to store text and image embeddings and support for vector-based similarity search.
 
-This tutorial demonstrates a lower-cost approach for indexing multimodal content using Document Extraction skill and image captioning. It enables extraction and search over both text and images from documents in Azure Blob Storage. However, it doesn't include locational metadata for text, such as page numbers or bounding regions.
-
-For a more comprehensive solution that includes structured text layout and spatial metadata, see [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and Document Layout skill](tutorial-multimodal-index-image-verbalization-skill.md).
-
-> [!NOTE]
-> Setting `imageAction` to `generateNormalizedImages` as is required for this tutorial incurs an additional charge for image extraction according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/).
-
-Using a REST client and the [Search REST APIs](/rest/api/searchservice/) you will:
+Using a REST client and the [Search REST APIs](/rest/api/searchservice/), you will:
 
 > [!div class="checklist"]
 > + Set up sample data and configure an `azureblob` data source
 > + Create an index with support for text and image embeddings
-> + Define a skillset with extraction and embedding steps
+> + Define a skillset with extraction, embedding and knowleage store file projection steps
 > + Create and run an indexer to process and index content
 > + Search the index you just created
 
@@ -51,8 +47,7 @@ Using a REST client and the [Search REST APIs](/rest/api/searchservice/) you wil
 
 + An [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills) for image vectorization. Image vectorization requires Azure AI Vision multimodal embeddings. For an updated list of regions, see the [Azure AI Vision documentation](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
 
-+ [Azure AI Search](search-what-is-azure-search.md), with a managed identity. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription.  
-  > Your service must be on the Basic tier or higher—this tutorial is not supported on the Free tier. Additionally, it must be in the [same region as Azure AI services multi-service](search-create-service-portal.md#regions-with-the-most-overlap).
++ [Azure AI Search](search-what-is-azure-search.md), with a managed identity. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. Your service must be on the Basic tier or higher—this tutorial isn't supported on the Free tier. Additionally, it must be in the [same region as Azure AI services multi-service](search-create-service-portal.md#regions-with-the-most-overlap).
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
@@ -62,32 +57,32 @@ Download the following sample PDF:
 
 + [sustainable-ai-pdf](https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/msc/documents/presentations/CSR/Accelerating-Sustainability-with-AI-2025.pdf)
 
+
 ### Upload sample data to Azure Storage
 
-1. In Azure Storage, create a new container named **doc-extraction-multimodality-container**.
+1. In Azure Storage, create a new container named **doc-intelligence-multimodality-container**.
 
 1. [Upload the sample data file](/azure/storage/blobs/storage-quickstart-blobs-portal).
 
-1. [Create a role assignment in Azure Storage and Specify a managed identity in a connection string](search-howto-managed-identities-storage.md)
+1. [Create a role assignment in Azure Storage and specify a managed identity in a connection string](search-howto-managed-identities-storage.md)
 
-1. For connections made using a system-assigned managed identity. Provide a connection string that contains a ResourceId, with no account key or password. The ResourceId must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name. The connection string is similar to the following example:
+   1. For connections made using a system-assigned managed identity, provide a connection string that contains a ResourceId, with no account key or password. The ResourceId must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name. The connection string is similar to the following example:
 
-    ```json
-    "credentials" : { 
-        "connectionString" : "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;" 
-    }
-    ```
+        ```json
+        "credentials" : { 
+            "connectionString" : "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;" 
+        }
+        ```
+   1. For connections made using a user-assigned managed identity. Provide a connection string that contains a ResourceId, with no account key or password. The ResourceId must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name. Provide an identity using the syntax shown in the following example. Set userAssignedIdentity to the user-assigned managed identity The connection string is similar to the following example:
 
-1. For connections made using a user-assigned managed identity. Provide a connection string that contains a ResourceId, with no account key or password. The ResourceId must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name. Provide an identity using the syntax shown in the following example. Set userAssignedIdentity to the user-assigned managed identity The connection string is similar to the following example:
-
-    ```json
-    "credentials" : { 
-        "connectionString" : "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;" 
-    },
-    "identity" : { 
-        "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
-        "userAssignedIdentity" : "/subscriptions/00000000-0000-0000-0000-00000000/resourcegroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.ManagedIdentity/userAssignedIdentities/MY-DEMO-USER-MANAGED-IDENTITY" 
-    }
+        ```json
+        "credentials" : { 
+            "connectionString" : "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;" 
+        },
+        "identity" : { 
+            "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
+            "userAssignedIdentity" : "/subscriptions/00000000-0000-0000-0000-00000000/resourcegroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.ManagedIdentity/userAssignedIdentities/MY-DEMO-USER-MANAGED-IDENTITY" 
+        }
     ```
 
 ### Copy a search service URL and API key
@@ -125,21 +120,21 @@ For help with the REST client, see [Quickstart: Keyword search using REST](searc
 [Create Data Source (REST)](/rest/api/searchservice/data-sources/create) creates a data source connection that specifies what data to index.
 
 ```http
-### Create a data source
+### Create a data source using system-assigned managed identities
 POST {{baseUrl}}/datasources?api-version=2025-05-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
   {
-    "name": "doc-extraction-multimodal-embedding-ds",
-    "description": null,
+    "name": "doc-intelligence-multimodal-embedding-ds",
+    "description": "A data source to store multimodal documents",
     "type": "azureblob",
     "subtype": null,
     "credentials": {
-      "connectionString":  "{{storageConnection}}"
+      "connectionString":  "ResourceId=/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MY-DEMO-RESOURCE-GROUP/providers/Microsoft.Storage/storageAccounts/MY-DEMO-STORAGE-ACCOUNT/;"
     },
     "container": {
-      "name": "doc-extraction-multimodality-container",
+      "name": "doc-intelligence-multimodality-container",
       "query": null
     },
     "dataChangeDetectionPolicy": null,
@@ -147,42 +142,7 @@ POST {{baseUrl}}/datasources?api-version=2025-05-01-preview   HTTP/1.1
     "encryptionKey": null,
     "identity": null
   }
-```
 
-Send the request. The response should look like:
-
-```json
-HTTP/1.1 201 Created
-Transfer-Encoding: chunked
-Content-Type: application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
-Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows-int.net:443/datasources('doc-extraction-multimodal-embedding-ds')?api-version=2025-05-01-preview -Preview
-Server: Microsoft-IIS/10.0
-Strict-Transport-Security: max-age=2592000, max-age=15724800; includeSubDomains
-Preference-Applied: odata.include-annotations="*"
-OData-Version: 4.0
-request-id: 4eb8bcc3-27b5-44af-834e-295ed078e8ed
-elapsed-time: 346
-Date: Sat, 26 Apr 2025 21:25:24 GMT
-Connection: close
-
-{
-  "name": "doc-extraction-multimodal-embedding-ds",
-  "description": "A test datasource",
-  "type": "azureblob",
-  "subtype": null,
-  "indexerPermissionOptions": [],
-  "credentials": {
-    "connectionString": null
-  },
-  "container": {
-    "name": "doc-extraction-multimodality-container",
-    "query": null
-  },
-  "dataChangeDetectionPolicy": null,
-  "dataDeletionDetectionPolicy": null,
-  "encryptionKey": null,
-  "identity": null
-}
 ```
 
 ## Create an index
@@ -198,7 +158,7 @@ POST {{baseUrl}}/indexes?api-version=2025-05-01-preview   HTTP/1.1
   api-key: {{apiKey}}
 
 {
-    "name": "doc-extraction-multimodal-embedding-index",
+    "name": "doc-intelligence-multimodal-embedding-index",
     "fields": [
         {
             "name": "content_id",
@@ -330,11 +290,11 @@ Key points:
 
 + Text and image embeddings are stored in the `content_embedding` field and must be configured with appropriate dimensions, such as 1024, and a vector search profile.
 
-+ `location_metadata` captures bounding polygon and page number metadata for each normalized image, enabling precise spatial search or UI overlays. `location_metadata` only exists for images in this scenario. If you'd like to capture locational metadata for text as well, consider using [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md). An in-depth tutorial is linked at the bottom of the page.
++ `location_metadata` captures bounding polygon and page number metadata for each text chunk and normalized image, enabling precise spatial search or UI overlays.
 
 + For more information on vector search, see [Vectors in Azure AI Search](vector-search-overview.md).
 
-+ For more information on semantic ranking, see [Semantic ranking in Azure AI Search](semantic-search-overview.md)
++ For more information on semantic ranking, see [Semantic ranking in Azure AI Search](semantic-search-overview.md).
 
 ## Create a skillset
 
@@ -347,21 +307,22 @@ POST {{baseUrl}}/skillsets?api-version=2025-05-01-preview   HTTP/1.1
   api-key: {{apiKey}}
 
 {
-  "name": "doc-extraction-multimodal-embedding-skillset",
-	"description": "A test skillset",
+  "name": "doc-intelligence-multimodal-embedding-skillset",
+  "description": "A sample skillset for multimodal using multimodal embedding",
   "skills": [
     {
-      "@odata.type": "#Microsoft.Skills.Util.DocumentExtractionSkill",
-      "name": "document-extraction-skill",
-      "description": "Document extraction skill to exract text and images from documents",
-      "parsingMode": "default",
-      "dataToExtract": "contentAndMetadata",
-      "configuration": {
-          "imageAction": "generateNormalizedImages",
-          "normalizedImageMaxWidth": 2000,
-          "normalizedImageMaxHeight": 2000
-      },
+      "@odata.type": "#Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill",
+      "name": "document-layout-skill",
+      "description": "Document Intelligence skill for document cracking",
       "context": "/document",
+      "outputMode": "oneToMany",
+      "outputFormat": "text",
+      "extractionOptions": ["images", "locationMetadata"],
+      "chunkingProperties": {     
+          "unit": "characters",
+          "maximumLength": 2000, 
+          "overlapLength": 200
+      },
       "inputs": [
         {
           "name": "file_data",
@@ -369,82 +330,57 @@ POST {{baseUrl}}/skillsets?api-version=2025-05-01-preview   HTTP/1.1
         }
       ],
       "outputs": [
-        {
-          "name": "content",
-          "targetName": "extracted_content"
-        },
-        {
-          "name": "normalized_images",
-          "targetName": "normalized_images"
-        }
+        { 
+          "name": "text_sections", 
+          "targetName": "text_sections" 
+        }, 
+        { 
+          "name": "normalized_images", 
+          "targetName": "normalized_images" 
+        } 
       ]
     },
-    {
-      "@odata.type": "#Microsoft.Skills.Text.SplitSkill",
-      "name": "split-skill",
-      "description": "Split skill to chunk documents",
-      "context": "/document",
-      "defaultLanguageCode": "en",
-      "textSplitMode": "pages",
-      "maximumPageLength": 2000,
-      "pageOverlapLength": 200,
-      "unit": "characters",
-      "inputs": [
-        {
-          "name": "text",
-          "source": "/document/extracted_content",
-          "inputs": []
-        }
-      ],
-      "outputs": [
-        {
-          "name": "textItems",
-          "targetName": "pages"
-        }
-      ]
-    },  
-  { 
-    "@odata.type": "#Microsoft.Skills.Vision.VectorizeSkill", 
-    "name": "text-embedding-skill",
-    "description": "Vision Vectorization skill for text",
-    "context": "/document/pages/*", 
-    "modelVersion": "{{modelVersion}}", 
-    "inputs": [ 
-      { 
-        "name": "text", 
-        "source": "/document/pages/*" 
-      } 
-    ], 
-    "outputs": [ 
-      { 
-        "name": "vector",
-        "targetName": "text_vector"
-      } 
-    ] 
-  },
-  { 
-    "@odata.type": "#Microsoft.Skills.Vision.VectorizeSkill", 
-    "name": "image-embedding-skill",
-    "description": "Vision Vectorization skill for images",
-    "context": "/document/normalized_images/*", 
-    "modelVersion": "{{modelVersion}}", 
-    "inputs": [ 
-      { 
-        "name": "image", 
-        "source": "/document/normalized_images/*" 
-      } 
-    ], 
-    "outputs": [ 
-      { 
-        "name": "vector",
-  "targetName": "image_vector"
-      } 
-    ] 
-  },  
+    { 
+      "@odata.type": "#Microsoft.Skills.Vision.VectorizeSkill", 
+      "name": "text-embedding-skill",
+      "description": "Vision Vectorization skill for text",
+      "context": "/document/text_sections/*", 
+      "modelVersion": "2023-04-15", 
+      "inputs": [ 
+        { 
+          "name": "text", 
+          "source": "/document/text_sections/*/content" 
+        } 
+      ], 
+      "outputs": [ 
+        { 
+          "name": "vector",
+          "targetName": "text_vector"
+        } 
+      ] 
+    },    
+    { 
+      "@odata.type": "#Microsoft.Skills.Vision.VectorizeSkill", 
+      "name": "image-embedding-skill",
+      "description": "Vision Vectorization skill for images",
+      "context": "/document/normalized_images/*", 
+      "modelVersion": "2023-04-15", 
+      "inputs": [ 
+        { 
+          "name": "image", 
+          "source": "/document/normalized_images/*" 
+        } 
+      ], 
+      "outputs": [ 
+        { 
+          "name": "vector",
+          "targetName": "image_vector"
+        } 
+      ] 
+    },
     {
       "@odata.type": "#Microsoft.Skills.Util.ShaperSkill",
       "name": "shaper-skill",
-      "description": "Shaper skill to reshape the data to fit the index schema"
       "context": "/document/normalized_images/*",
       "inputs": [
         {
@@ -454,28 +390,9 @@ POST {{baseUrl}}/skillsets?api-version=2025-05-01-preview   HTTP/1.1
         },
         {
           "name": "imagePath",
-          "source": "='{{imageProjectionContainer}}/'+$(/document/normalized_images/*/imagePath)",
+          "source": "='my_container_name/'+$(/document/normalized_images/*/imagePath)",
           "inputs": []
-        },
-        {
-          "name": "dataUri",
-          "source": "='data:image/jpeg;base64,'+$(/document/normalized_images/*/data)",
-          "inputs": []
-        },
-        {
-          "name": "location_metadata",
-          "sourceContext": "/document/normalized_images/*",
-          "inputs": [
-            {
-              "name": "page_number",
-              "source": "/document/normalized_images/*/pageNumber"
-            },
-            {
-              "name": "bounding_polygons",
-              "source": "/document/normalized_images/*/boundingPolygon"
-            }              
-          ]
-        }          
+        }
       ],
       "outputs": [
         {
@@ -483,64 +400,63 @@ POST {{baseUrl}}/skillsets?api-version=2025-05-01-preview   HTTP/1.1
           "targetName": "new_normalized_images"
         }
       ]
-    }  
-  ],
-  "cognitiveServices": {
-    "@odata.type": "#Microsoft.Azure.Search.AIServicesByKey",
-    "subdomainUrl": "{{cognitiveServicesUrl}}",
-    "key": "{{cognitiveServicesKey}}"
-  },
-  "indexProjections": {
+    }      
+  ], 
+   "indexProjections": {
       "selectors": [
         {
-          "targetIndexName": "doc-extraction-multimodal-embedding-index",
+          "targetIndexName": "{{index}}",
           "parentKeyFieldName": "text_document_id",
-          "sourceContext": "/document/pages/*",
-          "mappings": [              
+          "sourceContext": "/document/text_sections/*",
+          "mappings": [    
             {
-              "name": "content_embedding",
-              "source": "/document/pages/*/text_vector"
-            },
+            "name": "content_embedding",
+            "source": "/document/text_sections/*/text_vector"
+            },                      
             {
               "name": "content_text",
-              "source": "/document/pages/*"
-            },             
-            {
-              "name": "document_title",
-              "source": "/document/document_title"
-            }      
-          ]
-        },
-        {
-          "targetIndexName": "doc-extraction-multimodal-embedding-index",
-          "parentKeyFieldName": "image_document_id",
-          "sourceContext": "/document/normalized_images/*",
-          "mappings": [                                   
-            {
-              "name": "content_embedding",
-              "source": "/document/normalized_images/*/image_vector"
-            },
-            {
-              "name": "content_path",
-              "source": "/document/normalized_images/*/new_normalized_images/imagePath"
+              "source": "/document/text_sections/*/content"
             },
             {
               "name": "location_metadata",
-              "source": "/document/normalized_images/*/new_normalized_images/location_metadata"
-            },                      
+              "source": "/document/text_sections/*/locationMetadata"
+            },                
             {
               "name": "document_title",
               "source": "/document/document_title"
-            }                
+            }   
+          ]
+        },        
+        {
+          "targetIndexName": "{{index}}",
+          "parentKeyFieldName": "image_document_id",
+          "sourceContext": "/document/normalized_images/*",
+          "mappings": [    
+            {
+            "name": "content_embedding",
+            "source": "/document/normalized_images/*/image_vector"
+            },                                           
+            {
+              "name": "content_path",
+              "source": "/document/normalized_images/*/new_normalized_images/imagePath"
+            },                    
+            {
+              "name": "document_title",
+              "source": "/document/document_title"
+            },
+            {
+              "name": "location_metadata",
+              "source": "/document/normalized_images/*/locationMetadata"
+            }             
           ]
         }
       ],
       "parameters": {
         "projectionMode": "skipIndexingParentDocuments"
       }
-  },
+  },  
   "knowledgeStore": {
-    "storageConnectionString": "{{storageConnection}}",
+    "storageConnectionString": "",
     "projections": [
       {
         "files": [
@@ -559,9 +475,9 @@ This skillset extracts text and images, vectorizes both, and shapes the image me
 
 Key points:
 
-+ The `content_text` field is populated with text extracted using the Document Extraction Skill and chunked using the Split Skill
++ The `content_text` field is populated with text extracted and chunked using the Document Layout Skill
 
-+ `content_path` contains the relative path to the image file within the designated image projection container. This field is generated only for images extracted from PDFs when `imageAction` is set to `generateNormalizedImages`, and can be mapped from the enriched document from the source field `/document/normalized_images/*/imagePath`.
++ `content_path` contains the relative path to the image file within the designated image projection container. This field is generated only for images extracted from documents when `extractOption` is set to `["images", "locationMetadata"]` or `["images"]`, and can be mapped from the enriched document from the source field `/document/normalized_images/*/imagePath`.
 
 + The Azure AI Vision multimodal embeddings skill enables embedding of both textual and visual data using the same skill type, differentiated by input (text vs image). For more information, see [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md).
 
@@ -576,9 +492,9 @@ POST {{baseUrl}}/indexers?api-version=2025-05-01-preview   HTTP/1.1
   api-key: {{apiKey}}
 
 {
-  "dataSourceName": "doc-extraction-multimodal-embedding-ds",
-  "targetIndexName": "doc-extraction-multimodal-embedding-index",
-  "skillsetName": "doc-extraction-multimodal-embedding-skillset",
+  "dataSourceName": "doc-intelligence-multimodal-embedding-ds",
+  "targetIndexName": "doc-intelligence-multimodal-embedding-index",
+  "skillsetName": "doc-intelligence-multimodal-embedding-skillset",
   "parameters": {
     "maxFailedItems": -1,
     "maxFailedItemsPerBatch": 0,
@@ -603,7 +519,7 @@ You can start searching as soon as the first document is loaded.
 
 ```http
 ### Query the index
-POST {{baseUrl}}/indexes/doc-extraction-multimodal-embedding-index/docs/search?api-version=2025-05-01-preview   HTTP/1.1
+POST {{baseUrl}}/indexes/doc-intelligence-multimodal-embedding-index/docs/search?api-version=2025-05-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
   
@@ -616,20 +532,6 @@ POST {{baseUrl}}/indexes/doc-extraction-multimodal-embedding-index/docs/search?a
 Send the request. This is an unspecified full-text search query that returns all of the fields marked as retrievable in the index, along with a document count. The response should look like:
 
 ```json
-HTTP/1.1 200 OK
-Transfer-Encoding: chunked
-Content-Type: application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
-Content-Encoding: gzip
-Vary: Accept-Encoding
-Server: Microsoft-IIS/10.0
-Strict-Transport-Security: max-age=2592000, max-age=15724800; includeSubDomains
-Preference-Applied: odata.include-annotations="*"
-OData-Version: 4.0
-request-id: 712ca003-9493-40f8-a15e-cf719734a805
-elapsed-time: 198
-Date: Wed, 30 Apr 2025 23:20:53 GMT
-Connection: close
-
 {
   "@odata.count": 100,
   "@search.nextPageParameters": {
@@ -639,7 +541,7 @@ Connection: close
   },
   "value": [
   ],
-  "@odata.nextLink": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/doc-extraction-multimodal-embedding-index/docs/search?api-version=2025-05-01-preview "
+  "@odata.nextLink": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/doc-intelligence-multimodal-embedding-index/docs/search?api-version=2025-05-01-preview "
 }
 ```
 100 documents are returned in the response.
@@ -651,7 +553,7 @@ For filters, you can also use Logical operators (and, or, not) and comparison op
 
 ```http
 ### Query for only images
-POST {{baseUrl}}/indexes/doc-extraction-multimodal-embedding-index/docs/search?api-version=2025-05-01-preview   HTTP/1.1
+POST {{baseUrl}}/indexes/doc-intelligence-multimodal-embedding-index/docs/search?api-version=2025-05-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
   
@@ -664,11 +566,10 @@ POST {{baseUrl}}/indexes/doc-extraction-multimodal-embedding-index/docs/search?a
 
 ```http
 ### Query for text or images with content related to energy, returning the id, parent document, and text (only populated for text chunks), and the content path where the image is saved in the knowledge store (only populated for images)
-POST {{baseUrl}}/indexes/doc-extraction-multimodal-embedding-index/docs/search?api-version=2025-05-01-preview   HTTP/1.1
+POST {{baseUrl}}/indexes/doc-intelligence-multimodal-embedding-index/docs/search?api-version=2025-05-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
   
-
   {
     "search": "energy",
     "count": true,
@@ -678,23 +579,23 @@ POST {{baseUrl}}/indexes/doc-extraction-multimodal-embedding-index/docs/search?a
 
 ## Reset and rerun
 
-Indexers can be reset to clear the high-water mark, which allows a full rerun. The following POST requests are for reset, followed by rerun.
+Indexers can be reset to clear execution history, which allows a full rerun. The following POST requests are for reset, followed by rerun.
 
 ```http
 ### Reset the indexer
-POST {{baseUrl}}/indexers/doc-extraction-multimodal-embedding-indexer/reset?api-version=2025-05-01-preview   HTTP/1.1
+POST {{baseUrl}}/indexers/doc-intelligence-multimodal-embedding-indexer/reset?api-version=2025-05-01-preview   HTTP/1.1
   api-key: {{apiKey}}
 ```
 
 ```http
 ### Run the indexer
-POST {{baseUrl}}/indexers/doc-extraction-multimodal-embedding-indexer/run?api-version=2025-05-01-preview   HTTP/1.1
+POST {{baseUrl}}/indexers/doc-intelligence-multimodal-embedding-indexer/run?api-version=2025-05-01-preview   HTTP/1.1
   api-key: {{apiKey}}
 ```
 
 ```http
 ### Check indexer status 
-GET {{baseUrl}}/indexers/doc-extraction-multimodal-embedding-indexer/status?api-version=2025-05-01-preview   HTTP/1.1
+GET {{baseUrl}}/indexers/doc-intelligence-multimodal-embedding-indexer/status?api-version=2025-05-01-preview   HTTP/1.1
   api-key: {{apiKey}}
 ```
 
@@ -708,7 +609,8 @@ You can use the Azure portal to delete indexes, indexers, and data sources.
 
 Now that you're familiar with a sample implementation of a multimodal indexing scenario, check out:
 
-* [AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md)
-* [Vectors in Azure AI Search](vector-search-overview.md)
-* [Semantic ranking in Azure AI Search](semantic-search-overview.md)
-* [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and Document Layout skill](tutorial-multimodal-index-image-verbalization-skill.md)
++ [AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md)
++ [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md)
++ [Vectors in Azure AI Search](vector-search-overview.md)
++ [Semantic ranking in Azure AI Search](semantic-search-overview.md)
++ [Index multimodal content using embeddings and Document Extraction skill](tutorial-document-extraction-multimodal-embeddings.md)
