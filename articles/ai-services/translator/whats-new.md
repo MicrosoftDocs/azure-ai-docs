@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 04/02/2025
+ms.date: 05/29/2025
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD024 -->
