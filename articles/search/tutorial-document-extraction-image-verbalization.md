@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Index multimodal content using image verbalization and Document Extraction skill'
+title: 'Tutorial: Use Image Verbalization and Document Extraction Skill for Multimodal Indexing'
 titleSuffix: Azure AI Search
 description: Learn how to extract, index, and search multimodal content using the Document Extraction skill for chunking and GenAI Prompt skill for image verbalizations.
 
@@ -9,7 +9,7 @@ ms.author: mdonovan
 ms.service: azure-ai-search
 ms.custom:
 ms.topic: tutorial
-ms.date: 05/28/2025
+ms.date: 05/29/2025
 
 ---
 
@@ -31,7 +31,7 @@ In this tutorial, you use:
 
 This tutorial demonstrates a lower-cost approach for indexing multimodal content using Document Extraction skill and image captioning. It enables extraction and search over both text and images from documents in Azure Blob Storage. However, it doesn't include locational metadata for text, such as page numbers or bounding regions.
 
-For a more comprehensive solution that includes structured text layout and spatial metadata, see [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and Document Layout skill](tutorial-multimodal-index-image-verbalization-skill.md).
+For a more comprehensive solution that includes structured text layout and spatial metadata, see [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and Document Layout skill](tutorial-document-layout-image-verbalization.md).
 
 > [!NOTE]
 > Setting `imageAction` to `generateNormalizedImages` is required for this tutorial and incurs an additional charge for image extraction according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/).
@@ -751,4 +751,4 @@ Now that you're familiar with a sample implementation of a multimodal indexing s
 * [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)
 * [Vectors in Azure AI Search](vector-search-overview.md)
 * [Semantic ranking in Azure AI Search](semantic-search-overview.md)
-* [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and Document Layout skill](tutorial-multimodal-index-image-verbalization-skill.md)
+* [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and Document Layout skill](tutorial-document-layout-image-verbalization.md)

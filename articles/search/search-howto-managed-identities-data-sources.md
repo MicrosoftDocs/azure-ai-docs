@@ -11,7 +11,7 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: how-to
-ms.date: 11/22/2024
+ms.date: 05/29/2025
 ---
 
 # Configure a search service to connect using a managed identity in Azure AI Search

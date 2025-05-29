@@ -929,6 +929,7 @@ curl GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_12
 ```python
 from openai import AzureOpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+from time import sleep
 
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
@@ -947,7 +948,7 @@ response = client.responses.create(
 )
 
 while response.status in {"queued", "in_progress"}:
-    print(f"Current status: {resp.status}")
+    print(f"Current status: {response.status}")
     sleep(2)
     response = client.responses.retrieve(response.id)
 

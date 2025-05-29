@@ -9,7 +9,7 @@ ms.author: beloh
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
+ms.topic: reference
 ms.date: 12/10/2024
 ---
 
