@@ -9,7 +9,7 @@ ms.topic: quickstart
 ms.date: 05/19/2025
 ---
 
-# Create an Azure AI Content Understanding single-file task in the Azure AI Foundry portal
+# Try out Azure AI Content Understanding with a single file in the Azure AI Foundry portal
  
 This quickstart shows you how to use the Content Understanding service in the Azure AI Foundry portal to extract structured information from your data. Azure AI Foundry enables you to build and deploy generative AI applications and APIs responsibly.
  
