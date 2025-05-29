@@ -10,15 +10,12 @@ ms.date: 05/19/2025
 ---
 
 # Create an Azure AI Content Understanding single-file task in the Azure AI Foundry portal
-
-In this quickstart, you will learn how to use the Content Understanding service in the Azure AI Foundry portal to create a single-file task which will allow you to generate structured outputs from your video, audio, image and document data. The Azure AI Foundry is a comprehensive platform for developing and deploying generative AI applications and APIs responsibly. 
-
-A few terms to know before getting started:
-* **Task**: Your Content Understanding task is the top-level structure that all of your Content Understanding related work falls under. This guide will offer a step by step introduction to creating your field schema.
-* **Field schema**: A field schema is the definition of all of the outputs that you want to extract or generate from your data. Content Understanding offers several prebuilt schemas and they are all fully customizable to meet your business needs. This quickstart will offer guidance to help you build the schema that is right for your scenario.
-* **Analyzer**: The Content Understanding analyzer allows you to call the field schema you define as an API call in your own solution. You can build as many analyzers as needed within your task.
-
-This guide will show you how to build and test a Content Understanding analyzer in the AI Foundry. You can then utilize the analyzer in any app or process you build using a simple REST API call, allowing you to extract meaningful outputs on your data at scale. Content Understanding analyzers are fully customizable. You can create an analyzer by building your own schema from scratch or by using a suggested analyzer template offered to address common scenarios across each data type.
+ 
+This quickstart shows you how to use the Content Understanding service in the Azure AI Foundry portal to extract structured information from your data. Azure AI Foundry enables you to build and deploy generative AI applications and APIs responsibly.
+ 
+Suppose you have files—such as documents, images, audio, or video—and you want to automatically extract key information from them. With Content Understanding, you can create a task to organize your data processing, define a field schema that specifies the information to extract or generate, and then build an analyzer. The analyzer becomes an API endpoint that you can integrate into your applications or workflows.
+ 
+In this guide, you'll walk through building and testing an analyzer for your scenario. You can start from scratch or use suggested templates for common use cases.
 
 :::image type="content" source="../media/overview/component-overview-updated.png" alt-text="Screenshot of Content Understanding overview, process, and workflow." lightbox="media/overview/component-overview-updated.png" :::
 
@@ -28,7 +25,7 @@ To get started, make sure you have the following resources and permissions:
 
 * An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/).
 
-* An [Azure AI Foundry hub-based project](../../../ai-foundry/how-to/create-projects.md) created in one of the following supported regions: `westus`, `swedencentral`, or `australiaeast`. A project is used to organize your work and save state while building customized AI apps. You can create a project from the home page of AI Foundry, or the [Content Understanding landing page](aka.ms/cu-landing).
+* An [Azure AI Foundry hub-based project](../../../ai-foundry/how-to/create-projects.md) created in one of the following [supported regions](../service-limits.md): `westus`, `swedencentral`, or `australiaeast`. A project is used to organize your work and save state while building customized AI apps. You can create a project from the home page of AI Foundry, or the [Content Understanding landing page](https://aka.ms/foundry-home-page).
 
 [!INCLUDE [hub based project required](../../../ai-foundry/includes/uses-hub-only.md)]
 
@@ -40,8 +37,7 @@ Follow these steps to create a custom task in the Azure AI Foundry. This task wi
 1. Select your hub based project. You might need to select **View all resources** to see your project.
 1. Select **Content Understanding** from the left navigation pane.
 1. Select **+ Create**.
-2. In this guide, you will select a single-file task utilizing Content Understanding Standard mode, but if you're interested in creating a multi-file task utilizing Pro mode, refer to [Create an Azure AI Content Understanding multi-file task in the Azure AI Foundry portal
-](./use-ai-foundry-pro-mode.md). For more information on which mode is right for your scenario, check out [Azure AI Content Understanding pro and standard modes](../concepts/standard-pro-modes.md).
+2. In this guide, you will create a `Single-file task` utilizing Content Understanding Standard mode, but if you're interested in creating a multi-file task utilizing Pro mode, refer to [Create an Azure AI Content Understanding multi-file task in the Azure AI Foundry portal](./use-ai-foundry-pro-mode.md). For more information on which mode is right for your scenario, check out [Azure AI Content Understanding pro and standard modes](../concepts/standard-pro-modes.md).
 1. Enter a name for your task. Optionally, enter a description and change other settings.
 1. Select **Create**.
 
@@ -49,9 +45,9 @@ Follow these steps to create a custom task in the Azure AI Foundry. This task wi
 
 Now that everything is configured to get started, we can walk through how to build your first analyzer. 
 
-When you create a single-file Content Understanding task, you'll start by uploading a sample of your data and building your field schema. The schema is the customizable framework that allows the analyzer to extract insights from your data. In this example, the schema is created to extract key data from an invoice document, but you can bring in any type of data and the steps remain the same. [Compare the output of this invoice analysis use case to the output of a Content Understanding Pro invoice analysis scenario](). For a complete list of supported file types, see [input file limits](../service-limits.md#input-file-limits).
+When you create a single-file Content Understanding task, you'll start by uploading a sample of your data and building your field schema. The schema is the customizable framework that allows the analyzer to extract insights from your data. In this example, the schema is created to extract key data from an invoice document, but you can bring in any type of data and the steps remain the same. For a complete list of supported file types, see [input file limits](../service-limits.md#input-file-limits).
 
-1. Upload a sample file of an invoice document or any other data relevant to your scenario.
+1. Upload a [sample file of an invoice document](https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/invoice.pdf) or any other data relevant to your scenario.
 
    :::image type="content" source="../media/quickstarts/upload-data.png" alt-text="Screenshot of upload step in user experience.":::
 
@@ -71,7 +67,7 @@ When you create a single-file Content Understanding task, you'll start by upload
 
     * Specify the method to generate the value for each field.
   
-      For best practices on how to define your field schema, refer to [best practices for Azure AI Content Understanding](./best-practices.md).
+      For best practices on how to define your field schema, refer to [best practices for Azure AI Content Understanding](./best-practices.md). It may take a few minutes to build out your schema.
 
 1. Once you feel that the schema is ready to test, select **Save**. You can always come back and make changes if needed.
 
