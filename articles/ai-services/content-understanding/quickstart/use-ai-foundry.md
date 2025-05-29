@@ -59,7 +59,7 @@ When you create a single-file Content Understanding task, you'll start by upload
 
 1. Select **Create**.
 
-   :::image type="content" source="../media/quickstarts/invoice-template-selection.png" alt-text="Screenshot of analyzer templates.":::
+   :::image type="content" source="../media/quickstarts/invioce-template.png" alt-text="Screenshot of analyzer templates.":::
 
 1. Next, you can add fields to your schema to reflect all of the outputs you want to generate. 
 
@@ -83,7 +83,7 @@ When you create a single-file Content Understanding task, you'll start by upload
 
 1. Once you're satisfied with the quality of your output, select **Build analyzer**. This action creates an analyzer ID that you can integrate into your own applications, allowing you to call the analyzer from your code.
 
-   :::image type="content" source="../media/quickstart/build-invoice-analyzer.png" alt-text="Screenshot of built analyzer.":::
+   :::image type="content" source="../media/quickstarts/build-invoice-analyzer.png" alt-text="Screenshot of built analyzer.":::
 
 Now you successfully built your first Content Understanding analyzer, and are ready to start extracting insights from your data. Check out [Quickstart: Azure AI Content Understanding REST APIs](./use-rest-api.md) to utilize the REST API to call your analyzer.
 
