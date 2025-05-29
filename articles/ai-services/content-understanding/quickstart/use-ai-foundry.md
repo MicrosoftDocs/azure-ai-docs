@@ -59,7 +59,7 @@ When you create a single-file Content Understanding task, you'll start by upload
 
 1. Select **Create**.
 
-   :::image type="content" source="../media/analyzer-template/define-schema-template-selection.png" alt-text="Screenshot of analyzer templates.":::
+   :::image type="content" source="../media/quickstarts/invoice-template-selection.png" alt-text="Screenshot of analyzer templates.":::
 
 1. Next, you can add fields to your schema to reflect all of the outputs you want to generate. 
 
@@ -75,15 +75,15 @@ When you create a single-file Content Understanding task, you'll start by upload
 
 1. Once you feel that the schema is ready to test, select **Save**. You can always come back and make changes if needed.
 
-   :::image type="content" source="../media/analyzer-template/define-schema.png" alt-text="Screenshot of completed schema.":::
+   :::image type="content" source="../media/quickstarts/define-invoice-schema.png" alt-text="Screenshot of completed schema.":::
 
 1. With the completed schema, Content Understanding now generates the output on your sample data. At this step, you can add more data to test the analyzer's accuracy or make changes to the schema if needed.
 
-   :::image type="content" source="../media/analyzer-template/test-analyzer.png" alt-text="Screenshot of schema testing step.":::
+   :::image type="content" source="../media/quickstarts/test-invoice.png" alt-text="Screenshot of schema testing step.":::
 
 1. Once you're satisfied with the quality of your output, select **Build analyzer**. This action creates an analyzer ID that you can integrate into your own applications, allowing you to call the analyzer from your code.
 
-   :::image type="content" source="../media/analyzer-template/build-analyzer.png" alt-text="Screenshot of built analyzer.":::
+   :::image type="content" source="../media/quickstart/build-invoice-analyzer.png" alt-text="Screenshot of built analyzer.":::
 
 Now you successfully built your first Content Understanding analyzer, and are ready to start extracting insights from your data. Check out [Quickstart: Azure AI Content Understanding REST APIs](./use-rest-api.md) to utilize the REST API to call your analyzer.
 
