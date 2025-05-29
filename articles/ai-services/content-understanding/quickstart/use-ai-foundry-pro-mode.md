@@ -100,4 +100,4 @@ You can manage the users and their individual roles here:
 
 ## Next steps
 
- * Learn more about 
+ * Learn how to call the REST API at [Quickstart: Azure AI Content Understanding REST APIs](./use-rest-api.md)
