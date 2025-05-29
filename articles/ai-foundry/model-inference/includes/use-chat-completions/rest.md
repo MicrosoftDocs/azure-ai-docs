@@ -6,7 +6,7 @@ manager: scottpolly
 author: mopeakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
-ms.topic: how-to
+ms.topic: include
 ms.date: 03/20/2025
 ms.author: mopeakande
 ms.reviewer: fasantia

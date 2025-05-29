@@ -244,6 +244,19 @@ Once access has been granted, you will need to create a deployment for the model
 |`dall-e-3` | East US<br>Australia East<br>Sweden Central|
 |`gpt-image-1` | West US 3 (Global Standard) <br> UAE North (Global Standard) |
 
+
+## Video generation models
+
+Sora is an AI model from OpenAI that can create realistic and imaginative video scenes from text instructions. Sora is in public preview.
+
+
+
+### Region availability
+
+| Model | Region |
+|---|---|
+|`sora` | East US 2|
+
 ## Audio models
 
 Audio models in Azure OpenAI are available via the `realtime`, `completions`, and `audio` APIs.
@@ -438,6 +451,20 @@ These models can only be used with Embedding API requests.
 |  --- | :---: |
 | gpt-image-1 | 4,000 |
 | dall-e-3  | 4,000 |
+
+# [Video Generation](#tab/standard-video-generations)
+
+### Video generation models
+
+| **Region**   | **sora**   |
+|:-----------------|:---------------------:|
+| eastus2    | ✅                  |
+
+|  Model ID  | Max Request (characters) |
+|  --- | :---: |
+| sora | 4,000 |
+
+
 
 # [Audio](#tab/standard-audio)
 
