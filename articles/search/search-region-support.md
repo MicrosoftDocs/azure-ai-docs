@@ -60,7 +60,7 @@ You can create an Azure AI Search service in any of the following Azure public r
 | North Europe​​ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | West Europe​​ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | France Central​​ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Germany West Central​ ​| ✅ | ✅ |  |  |  |
+| Germany West Central​ ​| ✅ | ✅ | ✅ | ✅ |  |
 | Italy North​​ |  | ✅ | ✅ | ✅ |  |
 | Norway East​​ | ✅ | ✅ |  |  |  |
 | Poland Central​​ |  |  | ✅ | ✅ |  |
@@ -80,7 +80,7 @@ You can create an Azure AI Search service in any of the following Azure public r
 | Region | AI enrichment | Availability zones | Agentic retrieval | Semantic ranker | Query rewrite |
 |--|--|--|--|--|--|
 | Israel Central​ <sup>1</sup> |  | ✅ |  |  |  |
-| Qatar Central​ <sup>1</sup> |  | ✅ |  |  |  |
+| Qatar Central​ <sup>1</sup> |  | ✅ | ✅ | ✅ |  |
 | UAE North​​ | ✅ | ✅ | ✅ | ✅ |  |
 
 <sup>1</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) aren't available in this region. If you want higher limits, choose a different region.
