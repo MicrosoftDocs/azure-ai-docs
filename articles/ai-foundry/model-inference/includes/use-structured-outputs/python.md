@@ -7,7 +7,7 @@ author: msakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
 ms.topic: include
-ms.date: 1/21/2025
+ms.date: 05/29/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 zone_pivot_groups: azure-ai-inference-samples
@@ -35,11 +35,11 @@ zone_pivot_groups: azure-ai-inference-samples
 
 ## How to use structured outputs
 
-Structured outputs use JSON schemas to enforce output structure. JSON schemas describe the shape of the JSON object including expected values, types, and which ones are required. Those JSON objects are encoded as a string within the response of the model.
+Structured outputs use JSON schemas to enforce output structure. JSON schemas describe the shape of the JSON object, including expected values, types, and which ones are required. Those JSON objects are encoded as a string within the response of the model.
 
 ### Example
 
-To exemplify the scenario, let's try to parse the attributes of a GitHub Issue from its description.
+To illustrate, let's try to parse the attributes of a GitHub Issue from its description.
 
 ```python
 import requests
@@ -49,7 +49,7 @@ response = requests.get(url)
 issue_body = response.json()["body"]
 ```
 
-The output of `issue_body` looks as follows:
+The output of `issue_body` is:
 
 ```output
 <!--
@@ -118,12 +118,12 @@ __github_issue_schema.json__
 
 When defining schemas, follow these recommendations:
 
-> [!div class="checklist"]
-> * Use clear and expressive keys.
-> * Use `_` if you need to separate words to convey meaning.
-> * Create clear titles and descriptions for important keys in your structure.
-> * Evaluate multiple structures until finding the one that works best for your use case.
-> * Take into account limitations when indicating schemas, which may vary per model.
+
+* Use clear and expressive keys.
+* Use `_` if you need to separate words to convey meaning.
+* Create clear titles and descriptions for important keys in your structure.
+* Evaluate multiple structures until you find the one that works best for your use case.
+* Take into account limitations when indicating schemas—limitations might vary per model.
 
 Let's load this schema:
 
@@ -132,9 +132,9 @@ with open("github_issue_schema.json", "r") as f:
     github_issue_schema = json.load(f)
 ```
 
-### Use structure outputs
+### Use structured outputs
 
-We can use structure outputs with the defined schema as follows:
+We can use structured outputs with the defined schema as follows:
 
 ```python
 response = client.complete(
@@ -197,17 +197,16 @@ class Issue(BaseModel, extra="forbid"):
 
 Some things to notice:
 
-> [!div class="checklist"]
-> * We represent schemas using a class that inherits from `BaseModel`.
-> * We set `extra="forbid"` to instruct Pyndantic to do not accept additional properties from what we have specified.
-> * We use type annotations to indicate the expected types.
-> * `Literal` indicates we expect specific fixed values.
+* We represent schemas using a class that inherits from `BaseModel`.
+* We set `extra="forbid"` to instruct Pyndantic to _not_ accept additional properties from what we've specified.
+* We use type annotations to indicate the expected types.
+* `Literal` indicates we expect specific fixed values.
 
 ```python
 github_issue_schema = Issue.model_json_schema()
 ```
 
-### Use structure outputs
+### Use structured outputs
 
 Let's see how we can use the schema in the same way:
 
@@ -253,7 +252,7 @@ print(json.dumps(json_response_message, indent=4))
 
 ### Validate
 
-Structured Outputs can still contain mistakes. If you see mistakes, try adjusting your instructions, providing examples in the system instructions, or splitting tasks into simpler subtasks.
+Structured outputs can still contain mistakes. If you see mistakes, try adjusting your instructions, providing examples in the system instructions, or splitting tasks into simpler subtasks.
 
 It's a best practice to use validators to ensure you get valid structures. In Pydantic, you can verify the schema of a given object as follows:
 
@@ -268,13 +267,13 @@ except ValidationError as e:
 
 ### Specifying a schema
 
-There are some limitations that models may place in schemas definitions. Such limitations may vary per-model. **We recommend reviewing the documentation from the model provider** to verify that your schemas are valid.
+There are some limitations that models might place in schemas definitions. Such limitations might vary per-model. **We recommend reviewing the documentation from the model provider** to verify that your schemas are valid.
 
 The following guidelines apply to most of the models:
 
 #### Optional fields
 
-Some models may require all the fields to be in the `required` section of the schema. If you need to use optional fields, use unions with null types to express that a given field can be optional.
+Some models might require all the fields to be in the `required` section of the schema. If you need to use optional fields, use unions with null types to express that a given field can be optional.
 
 ```python
 from pydantic import BaseModel
@@ -289,7 +288,7 @@ class Issue(BaseModel, extra="forbid"):
 
 #### Nested types
 
-Models may support indicating nesting types. You can compose complex structures as needed:
+Models might support indicating nesting types. You can compose complex structures as needed:
 
 ```python
 from pydantic import BaseModel
@@ -325,13 +324,13 @@ Verify the level of nesting supported by the model you're working with.
 
 ## Structured outputs in images
 
-You can use structured outputs with multi-modal models to extract information from data like images. 
+You can use structured outputs with multi-modal models to extract information from data such as image data. 
 
 Let's consider the following chart:
 
 :::image type="content" source="../../media/use-structured-outputs/example-graph-treecover.png" alt-text="An example image showing a chart with the annual loss in thousand square kilometers of global tree cover across different climate zones." lightbox="../../media/use-structured-outputs/example-graph-treecover.png":::
 
-We can define a generic schema that can be used to encode the information contained in the chart and then use it for further analysis. We use [Pyndatic objects](#use-pydantic-objects) as described before.
+We can define a generic schema that can be used to encode the information contained in the chart and then use it for further analysis. We use [Pyndatic objects as described before](#use-pydantic-objects).
 
 ```python
 from pydantic import BaseModel
