@@ -183,6 +183,29 @@ The following headers are included with each Document translation API request:
 }
 ```
 
+### Translate text embedded in images within documents 🆕
+
+> [!Note]
+>
+> * This feature is optional and must be enabled for each translation request.
+> * Enabling this feature will incur additional costs based on usage. For more information, *see* [Azure AI Vision pricing](https://azure.microsoft.com/pricing/details/cognitive-services/computer-vision/)
+> * This feature is currently available only with the Batch Document translation API.
+> * The Supported file format is `.docx` only.
+> * An Azure AI Foundry resource (not the standalone Translator resource) is required to use this feature.
+
+### Request configuration
+
+* Use the optional `translateTextWithinImage` parameter in the `options` field
+
+   * Data type: Boolean (`true` or `false`) 
+   * Default Boolean setting is `false`. Set the option to `true` to enable image text translation.
+
+* **Response Details**. When the feature is enabled, added image processing information is included with the response: 
+
+   * **`totalImageScansSucceeded`**. The number of successfully translated image scans.
+
+   * **`totalImageScansFailed`**. The number of image scans that failed processing.
+
 ### Translate documents using a custom glossary
 
 ```json
@@ -208,29 +231,6 @@ The following headers are included with each Document translation API request:
     ]
 }
 ```
-
-### 🆕 Translate text embedded in images within documents
-
-> [!Note]
->
-> * This feature is optional and must be enabled for each translation request.
-> * Enabling this feature will incur additional costs based on usage. For more information, *see* [Azure AI Vision pricing](https://azure.microsoft.com/pricing/details/cognitive-services/computer-vision/)
-> * This feature is currently available only with the Batch Document translation API.
-> * The Supported file format is `.docx` only.
-> * An Azure AI Foundry resource (not the standalone Translator resource) is required to use this feature.
-
-### Request configuration
-
-* Use the optional `translateTextWithinImage` parameter in the `options` field
-
-   * Data type: Boolean (`true` or `false`) 
-   * Default Boolean setting is `false`. Set the option to `true` to enable image text translation.
-
-* **Response Details**. When the feature is enabled, added image processing information is included with the response: 
-
-   * **`totalImageScansSucceeded`**. The number of successfully translated image scans.
-
-   * **`totalImageScansFailed`**. The number of image scans that failed processing.
 
 ## Use code to submit Document translation requests
 
