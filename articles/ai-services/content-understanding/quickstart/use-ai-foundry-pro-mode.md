@@ -34,7 +34,7 @@ To get started, make sure you have the following resources and permissions:
 
 [!INCLUDE [hub based project required](../../../ai-foundry/includes/uses-hub-only.md)]
 
-## Create a custom task
+## Create your multi-file task powered by Content Understanding Pro mode
 
 Follow these steps to create a custom task in the Azure AI Foundry. This task will be used to build your first analyzer.
 
@@ -46,9 +46,9 @@ Follow these steps to create a custom task in the Azure AI Foundry. This task wi
 1. Enter a name for your task. Optionally, enter a description and change other settings.
 1. Select **Create**.
 
-## Creating your multi-file task powered by Content Understanding Pro mode
+## Create your first analyzer
 
-When you create a multi-file Content Understanding task, you'll start by building your field schema. The schema is the customizable framework that guides the analyzer to extract the preferred insights from your data.
+When you create a multi-file Content Understanding task, you'll start by uploading one or more samples of data and building your field schema. The schema is the customizable framework that guides the analyzer to extract the preferred insights from your data.
 
 In this example, the schema is created to extract key fields from an invoice document, but you can bring in any document based data and the steps remain the same. For a complete list of supported file types, see [input file limits](../service-limits.md#input-file-limits).
 
