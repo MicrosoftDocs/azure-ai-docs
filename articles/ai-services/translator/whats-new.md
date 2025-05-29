@@ -23,9 +23,9 @@ Azure AI Translator service supports language translation for more than 100 lang
 
 ## May 2025
 
-### Microsoft Translator Pro new update
+### Microsoft Translator Pro
 
-[**Microsoft Translator Pro**](translator-pro/overview.md), a mobile application that provides precise real-time speech-to-speech translations, now includes same-language transcription. This functionality accurately converts spoken words into written text while maintianing the original language of the speech.
+[**Microsoft Translator Pro**](translator-pro/overview.md), a mobile application that provides precise real-time speech-to-speech translations, now includes same-language transcription. This functionality accurately converts spoken words into written text while maintaining the original language of the speech.
 
 ## March 2025
 
