@@ -198,7 +198,7 @@ class Issue(BaseModel, extra="forbid"):
 Some things to notice:
 
 * We represent schemas using a class that inherits from `BaseModel`.
-* We set `extra="forbid"` to instruct Pyndantic to _not_ accept additional properties from what we've specified.
+* We set `extra="forbid"` to instruct Pydantic to _not_ accept additional properties from what we've specified.
 * We use type annotations to indicate the expected types.
 * `Literal` indicates we expect specific fixed values.
 
@@ -330,7 +330,7 @@ Let's consider the following chart:
 
 :::image type="content" source="../../media/use-structured-outputs/example-graph-treecover.png" alt-text="An example image showing a chart with the annual loss in thousand square kilometers of global tree cover across different climate zones." lightbox="../../media/use-structured-outputs/example-graph-treecover.png":::
 
-We can define a generic schema that can be used to encode the information contained in the chart and then use it for further analysis. We use [Pyndatic objects as described before](#use-pydantic-objects).
+We can define a generic schema that can be used to encode the information contained in the chart and then use it for further analysis. We use [Pydantic objects as described before](#use-pydantic-objects).
 
 ```python
 from pydantic import BaseModel

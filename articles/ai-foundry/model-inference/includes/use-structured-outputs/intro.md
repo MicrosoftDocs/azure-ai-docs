@@ -16,7 +16,7 @@ Free-form outputs of language models can be difficult to parse by software appli
 
 The following list describes typical scenarios where structured outputs are useful:
 
-* You need to extract specific information from a prompt and such information can be described as an schema with specific keys and types.
+* You need to extract specific information from a prompt and such information can be described as a schema with specific keys and types.
 * You need to parse information contained in the prompts.
 * You're using the model to control a workflow in your application where you can benefit from more rigid structures.
 * You're using the model as a zero-shot or few-shot learner.
