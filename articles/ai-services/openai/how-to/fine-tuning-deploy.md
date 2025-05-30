@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions
 ms.topic: how-to
-ms.date: 03/31/2025
+ms.date: 05/30/2025
 author: mrbullwinkle
 ms.author: mbullwin
 ---
@@ -387,7 +387,7 @@ Azure OpenAI fine-tuning supports the following deployment types.
 |GPT-4o-finetune|North Central US, Sweden Central|
 |GPT-4o-mini-finetune|North Central US, Sweden Central|
 
-[Provisioned throughput](./deployment-types.md#provisioned) fine-tuned deployments offer [predictable performance](../concepts/provisioned-throughput.md) for latency-sensitive agents and applications. They use the same regional provisioned throughput (PTU) capacity as base models, so if you already have regional PTU quota you can deploy your fine-tuned model in support regions.
+[Provisioned throughput](./deployment-types.md#regional-provisioned) fine-tuned deployments offer [predictable performance](../concepts/provisioned-throughput.md) for latency-sensitive agents and applications. They use the same regional provisioned throughput (PTU) capacity as base models, so if you already have regional PTU quota you can deploy your fine-tuned model in support regions.
 
 ## Clean up your deployment
 
