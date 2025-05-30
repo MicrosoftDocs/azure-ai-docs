@@ -8,14 +8,14 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/05/2025
+ms.date: 05/30/2025
 ---
 
 # Retrieve data using a knowledge agent in Azure AI Search
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In Azure AI Search, *agentic retrieval* is a new parallel query architecture that uses a conversational large language model (LLM) for query planning, generating subqueries that broaden the scope of what's searchable and relevant.
+In Azure AI Search, *agentic retrieval* is a new parallel query architecture that uses a chat completion model for query planning. It generates subqueries that broaden the scope of what's searchable and relevant.
 
 This article explains how to use the [**retrieve** method](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-05-01-preview&preserve-view=true) that invokes a knowledge agent and parallel query processing. This article also explains the three components of the retrieval response: 
 
@@ -23,16 +23,20 @@ This article explains how to use the [**retrieve** method](/rest/api/searchservi
 + *referenced results*
 + *query activity*
 
+The retrieve request can include instructions for query processing that override the defaults set on the knowledge agent.
+
 > [!NOTE]
-> Currently, there's no model-generated "answer" in the response. Instead, the response provides grounding data that you can use to generate an answer from an LLM. For an end-to-end example, see [Build an agent-to-agent retrieval solution ](search-agentic-retrieval-how-to-pipeline.md) or [Azure OpenAI Demo](https://github.com/Azure-Samples/azure-search-openai-demo).
+> There's no model-generated "answer" in the response. Instead, the response provides grounding data used to generate an answer from an LLM. For an end-to-end example, see [Build an agent-to-agent retrieval solution ](search-agentic-retrieval-how-to-pipeline.md) or [Azure OpenAI Demo](https://github.com/Azure-Samples/azure-search-openai-demo).
 
 ## Prerequisites
 
-+ A [knowledge agent definition](search-agentic-retrieval-how-to-create.md) that represents a conversational language model.
++ A [knowledge agent](search-agentic-retrieval-how-to-create.md) that represents the chat completion model and a valid target index.
 
-+ Azure AI Search, in any [region that provides semantic ranker](search-region-support.md), on basic tier and above. Your search service must have a [managed identity](search-howto-managed-identities-data-sources.md) for role-based access to a chat model.
++ Azure AI Search, in any [region that provides semantic ranker](search-region-support.md), on basic tier and higher. Your search service must have a [managed identity](search-howto-managed-identities-data-sources.md) for role-based access to a chat completion model.
 
-+ API requirements. Use 2025-05-01-preview data plane REST API or a prerelease package of an Azure SDK that provides knowledge agent APIs.
++ Permissions on Azure AI Search. **Search Index Data Reader** can run queries on Azure AI Search, but the search service managed identity must have **Cognitive Services User** permissions on the Azure OpenAI resource. For more information about local testing and obtaining access tokens, see [Quickstart: Connect without keys](search-get-started-rbac.md).
+
++ API requirements. To create or use a knowledge agent, use [2025-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) data plane REST API. Or, use a prerelease package of an Azure SDK that provides knowledge agent APIs: [Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md#1170-beta3-2025-03-25), [Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
 
 To follow the steps in this guide, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending REST API calls to Azure AI Search. There's no portal support at this time.
 
@@ -40,18 +44,20 @@ To follow the steps in this guide, we recommend [Visual Studio Code](https://cod
 
 Call the **retrieve** action on the knowledge agent object to invoke retrieval and return a response. Use the [2025-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) data plane REST API or an Azure SDK prerelease package that provides equivalent functionality for this task.
 
+All `searchable` fields in the search index are in-scope for query execution. If the index includes vector fields, your index should have a valid vectorizer definition so that it can vectorize the query inputs. Otherwise, vector fields are ignored. The implied query type is `semantic`, and there's no search mode or selection of search fields.
+
 The input for the retrieval route is chat conversation history in natural language, where the `messages` array contains the conversation.
 
 ```http
 # Send Grounding Request
 POST https://{{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-05-01-preview
-api-key: {{search-api-key}}
-Content-Type: application/json
+    @accessToken=<YOUR PERSONAL ID>
+    Content-Type: application/json
 
 {
     "messages" : [
             {
-                "role" : "system",
+                "role" : "assistant",
                 "content" : [
                   { "type" : "text", "text" : "You are a helpful assistant for Contoso Human Resources. You have access to a search index containing guidelines about health care coverage for Washington state. If you can't find the answer in the search, say you don't know." }
                 ]
@@ -59,7 +65,13 @@ Content-Type: application/json
             {
                 "role" : "user",
                 "content" : [
-                  { "type" : "text", "text" : "What are my vision benefits?" }
+                  { "type" : "text", "text" : "What are my options for health care coverage" }
+                ]
+            },
+            {
+                "role" : "user",
+                "content" : [
+                  { "type" : "text", "text" : "Which one has vision benefits" }
                 ]
             }
         ],
@@ -68,7 +80,7 @@ Content-Type: application/json
             "indexName" : "{{index-name}}",
             "filterAddOn" : "State eq 'WA'",
             "IncludeReferenceSourceData": true, 
-            "rerankerThreshold " : 2.5,
+            "rerankerThreshold" : 2.5,
             "maxDocsForReranker": 250
         } 
     ]
@@ -79,7 +91,7 @@ Content-Type: application/json
 
 + `messages` articulates the messages sent to the model. The message format is similar to Azure OpenAI APIs.
 
-  + `role` defines where the message came from, for example either `system` or `user`. The model you use determines which roles are valid.
+  + `role` defines where the message came from, for example either `assistant` or `user`. The model you use determines which roles are valid.
 
   + `content` is the message sent to the LLM. It must be text in this preview.
 
@@ -93,7 +105,9 @@ Content-Type: application/json
 
     `rerankerThreshold` is the minimum semantic reranker score that's acceptable for inclusion in a response. [Reranker scores](semantic-search-overview.md#how-ranking-is-scored) range from 1 to 4. Plan on revising this value based on testing and what works for your content.
 
-    `maxDocsForReranker` dictates the maximum number of documents to consider for the final response string. Semantic reranker accepts 50 documents. If the maximum is 200, four more subqueries are added to the query plan to ensure all 200 documents are semantically ranked. for semantic ranking. If the number isn't evenly divisible by 50, the query plan rounds up to nearest whole number.
+    `maxDocsForReranker` dictates the maximum number of documents to consider for the final response string. Semantic reranker accepts 50 documents. If the maximum is 200, four more subqueries are added to the query plan to ensure all 200 documents are semantically ranked. for semantic ranking. If the number isn't evenly divisible by 50, the query plan rounds up to nearest whole number. 
+
+    The `content` portion of the response consists of the 200 chunks or less, excluding any results that fail to meet the minimum threshold of a 2.5 reranker score.
 
 ## Review the extracted response
 
@@ -104,7 +118,7 @@ The body of the response is also structured in the chat message style format. Cu
 ```http
 "response": [
     {
-        "role": "system",
+        "role": "assistant",
         "content": [
             {
                 "type": "text",
@@ -119,7 +133,7 @@ The body of the response is also structured in the chat message style format. Cu
 
 The `maxOutputSize` property on the knowledge agent determines the length of the string. We recommend 5,000 tokens.
 
-Fields in the content `text` response string include the ref_id and semantic configuration fields: `title`, `terms`, `terms`.
+Fields in the content `text` response string include the ref_id and semantic configuration fields: `title`, `terms`, `content`.
 
 ## Review the activity array
 
@@ -175,6 +189,8 @@ Here's an example of an activity array.
 
 The `references` array is a direct reference from the underlying grounding data and includes the `sourceData` used to generate the response. It consists of every single document that was found and semantically ranked by the search engine. Fields in the `sourceData` include an `id` and semantic fields: `title`, `terms`, `content`.
 
+The `id` is a reference ID for an item within a specific response. It's not the document key in the search index. It's used for providing citations.
+
 The purpose of this array is to provide a chat message style structure for easy integration. For example, if you want to serialize the results into a different structure or you require some programmatic manipulation of the data before you returned it to the user.
 
 You can also get the structured data from the source data object in the references array to manipulate it however you see fit.
@@ -221,5 +237,7 @@ The `includeReferenceSourceData` parameter tells the search engine to provide gr
 ## Related content
 
 + [Agentic retrieval in Azure AI Search](search-agentic-retrieval-concept.md)
+
++ [Agentic RAG: build a reasoning retrieval engine with Azure AI Search](https://www.youtube.com/watch?v=PeTmOidqHM8)
 
 + [Azure OpenAI Demo featuring agentic retrieval](https://github.com/Azure-Samples/azure-search-openai-demo)
