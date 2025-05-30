@@ -146,11 +146,11 @@ When you click into each testing criteria, you will see different types of grade
 
 4. Select your evaluation data which will be in `.jsonl` format. If you already have an existing data, you can select one, or upload a new data.
 
-    :::image type="content" source="../media/how-to/evaluations/upload-data-1.png" alt-text="Screenshot of data upload" lightbox="../media/how-to/evaluations/upload-data-1.png":::
+    :::image type="content" source="../media/how-to/evaluations/upload-data-1.png" alt-text="Screenshot of data upload." lightbox="../media/how-to/evaluations/upload-data-1.png":::
 
    When you upload new data, you'll see the first three lines of the file as a preview on the right side:
 
-    :::image type="content" source="../media/how-to/evaluations/upload-data-2.png" alt-text="Screenshot of data upload" lightbox="../media/how-to/evaluations/upload-data-2.png":::
+    :::image type="content" source="../media/how-to/evaluations/upload-data-2.png" alt-text="Screenshot of data upload." lightbox="../media/how-to/evaluations/upload-data-2.png":::
 
    If you need a sample test file, you can use this sample `.jsonl` text. This sample contains sentences of various technical content, and we are going to be assessing semantic similarity across these sentences.
 
@@ -169,11 +169,11 @@ When you click into each testing criteria, you will see different types of grade
     
 5. If you would like to create new responses using inputs from your test data, you can select 'Generate new responses'. This will inject the input fields from our evaluation file into individual prompts for a model of your choice to generate output.
 
-:::image type="content" source="../media/how-to/evaluations/eval-generate-1.png" alt-text="Screenshot of the UX for generating model responses" lightbox="../media/how-to/evaluations/eval-generate-1.png":::
+:::image type="content" source="../media/how-to/evaluations/eval-generate-1.png" alt-text="Screenshot of the UX for generating model responses." lightbox="../media/how-to/evaluations/eval-generate-1.png":::
    
 You will select the model of your choice. If you do not have a model, you can create a new model deployment. The selected model will take the input data and generate its own unique outputs, which in this case will be stored in a variable called `{{sample.output_text}}`. We'll then use that output later as part of our testing criteria. Alternatively, you could provide your own custom system message and individual message examples manually.
 
-:::image type="content" source="../media/how-to/evaluations/eval-generate-2.png" alt-text="Screenshot of the UX for generating model responses" lightbox="../media/how-to/evaluations/eval-generate-2.png":::
+:::image type="content" source="../media/how-to/evaluations/eval-generate-2.png" alt-text="Screenshot of the UX for generating model responses." lightbox="../media/how-to/evaluations/eval-generate-2.png":::
 
 6. For creating a test criteria, select **Add**. For the example file we provided, we are going to be assessing semantic similarity. Select **Model Scorer**, which contains test criteria presets for Semantic Similarity.
 
