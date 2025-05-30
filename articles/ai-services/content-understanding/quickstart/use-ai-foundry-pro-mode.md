@@ -61,7 +61,7 @@ In this example, the schema is created to extract key fields from an invoice doc
 
     * Specify the method to generate the value for each field.
   
-   :::image type="content" source="../media/quickstarts/add-fields.png" alt-text="Screenshot of upload step in user experience.":::
+   :::image type="content" source="../media/quickstarts/add-fields.png" alt-text="Screenshot of create schema step in user experience.":::
 
   
 3. Once you feel that the schema is ready to test, select **Save**. You can always come back and make changes if needed.
@@ -70,11 +70,11 @@ In this example, the schema is created to extract key fields from an invoice doc
 
 4. Upload one or more documents for reference data for the service to analyze. Adding reference data allows the model to compare and apply multi-step reasoning to your test data in order to infer conclusions about that data.
 
-   :::image type="content" source="../media/quickstarts/reference-data.png" alt-text="Screenshot of completed schema.":::
+   :::image type="content" source="../media/quickstarts/reference-data.png" alt-text="Screenshot of user adding reference data.":::
 
 5.  Run analysis on your data. Kicking off analysis generates an output on your test files based on the schema that you just created, and applies predictions by comparing that output to your reference data.
 
-   :::image type="content" source="../media/quickstarts/prediction.png" alt-text="Screenshot of completed schema.":::
+   :::image type="content" source="../media/quickstarts/prediction.png" alt-text="Screenshot of user running analysis on their data.":::
 
 6.  Once you're satisfied with the quality of your output, select **Build analyzer**. This action creates an analyzer ID that you can integrate into your own applications, allowing you to call the analyzer from your code.
 
@@ -82,7 +82,7 @@ In this example, the schema is created to extract key fields from an invoice doc
 
 Now you successfully built your first Content Understanding analyzer, and are ready to start extracting insights from your data. When you select the analyzer you just created, you can view sample code to get started with implenting this in code.
 
-   :::image type="content" source="../media/quickstarts/view-code.png" alt-text="Screenshot of completed schema.":::
+   :::image type="content" source="../media/quickstarts/view-code.png" alt-text="Screenshot of sample code.":::
 
 Check out [Quickstart: Azure AI Content Understanding REST APIs](./use-rest-api.md) to utilize the REST API to call your analyzer.
 
