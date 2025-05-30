@@ -15,7 +15,7 @@ This quickstart shows you how to use the Content Understanding service in the Az
  
 Suppose you have files—such as documents, images, audio, or video—and you want to automatically extract key information from them. With Content Understanding, you can create a task to organize your data processing, define a field schema that specifies the information to extract or generate, and then build an analyzer. The analyzer becomes an API endpoint that you can integrate into your applications or workflows.
  
-In this guide, you'll walk through building and testing an analyzer for your scenario. You can start from scratch or use suggested templates for common use cases.
+In this guide, we walk you through building and testing an analyzer for your scenario. You can start from scratch or use suggested templates for common use cases.
 
 :::image type="content" source="../media/overview/component-overview-updated.png" alt-text="Screenshot of Content Understanding overview, process, and workflow." lightbox="../media/overview/component-overview-updated.png" :::
 
@@ -31,13 +31,13 @@ To get started, make sure you have the following resources and permissions:
 
 ## Create your single-file task powered by Content Understanding Standard mode
 
-Follow these steps to create a custom task in the Azure AI Foundry. This task will be used to build your first analyzer.
+Follow these steps to create a custom task in the Azure AI Foundry. This task is used to build your first analyzer.
 
 1. Go to the **Home** page of [Azure AI Foundry](https://ai.azure.com).
 1. Select your hub based project. You might need to select **View all resources** to see your project.
 1. Select **Content Understanding** from the left navigation pane.
 1. Select **+ Create**.
-2. In this guide, you will create a `Single-file task` utilizing Content Understanding Standard mode, but if you're interested in creating a multi-file task utilizing Pro mode, refer to [Create an Azure AI Content Understanding multi-file task in the Azure AI Foundry portal](./use-ai-foundry-pro-mode.md). For more information on which mode is right for your scenario, check out [Azure AI Content Understanding pro and standard modes](../concepts/standard-pro-modes.md).
+2. In this guide, you create a `Single-file task` utilizing Content Understanding Standard mode, but if you're interested in creating a multi-file task utilizing Pro mode, refer to [Create an Azure AI Content Understanding multi-file task in the Azure AI Foundry portal](./use-ai-foundry-pro-mode.md). For more information on which mode is right for your scenario, check out [Azure AI Content Understanding pro and standard modes](../concepts/standard-pro-modes.md).
 1. Enter a name for your task. Optionally, enter a description and change other settings.
 1. Select **Create**.
 
@@ -45,7 +45,7 @@ Follow these steps to create a custom task in the Azure AI Foundry. This task wi
 
 Now that everything is configured to get started, we can walk through how to build your first analyzer. 
 
-When you create a single-file Content Understanding task, you'll start by uploading a sample of your data and building your field schema. The schema is the customizable framework that allows the analyzer to extract insights from your data. In this example, the schema is created to extract key data from an invoice document, but you can bring in any type of data and the steps remain the same. For a complete list of supported file types, see [input file limits](../service-limits.md#input-file-limits).
+When you create a single-file Content Understanding task, you start by uploading a sample of your data and building your field schema. The schema is the customizable framework that allows the analyzer to extract insights from your data. In this example, the schema is created to extract key data from an invoice document, but you can bring in any type of data and the steps remain the same. For a complete list of supported file types, see [input file limits](../service-limits.md#input-file-limits).
 
 1. Upload a [sample file of an invoice document](https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/invoice.pdf) or any other data relevant to your scenario.
 
