@@ -17,7 +17,7 @@ Suppose you have files—such as documents, images, audio, or video—and you wa
  
 In this guide, you'll walk through building and testing an analyzer for your scenario. You can start from scratch or use suggested templates for common use cases.
 
-:::image type="content" source="../media/overview/component-overview-updated.png" alt-text="Screenshot of Content Understanding overview, process, and workflow." lightbox="media/overview/component-overview-updated.png" :::
+:::image type="content" source="../media/overview/component-overview-updated.png" alt-text="Screenshot of Content Understanding overview, process, and workflow." lightbox="../media/overview/component-overview-updated.png" :::
 
 ## Prerequisites
 
@@ -67,7 +67,7 @@ When you create a single-file Content Understanding task, you'll start by upload
 
     * Specify the method to generate the value for each field.
   
-      For best practices on how to define your field schema, refer to [best practices for Azure AI Content Understanding](./best-practices.md). It may take a few minutes to build out your schema.
+      For best practices on how to define your field schema, refer to [best practices for Azure AI Content Understanding](../concepts//best-practices.md). It may take a few minutes to build out your schema.
 
 1. Once you feel that the schema is ready to test, select **Save**. You can always come back and make changes if needed.
 
