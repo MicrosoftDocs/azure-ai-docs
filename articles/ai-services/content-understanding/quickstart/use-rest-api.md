@@ -10,7 +10,7 @@ ms.topic: quickstart
 ms.date: 05/19/2025
 ---
 
-# Quickstart: Azure AI Content Understanding REST APIs
+# Quickstart: Use Azure AI Content Understanding REST API
 
 * This quickstart shows you how to use the [Content Understanding REST API](/rest/api/contentunderstanding/content-analyzers?view=rest-contentunderstanding-2025-05-01-preview&preserve-view=true) to get structured data from multimodal content in document, image, audio, and video files.
 
