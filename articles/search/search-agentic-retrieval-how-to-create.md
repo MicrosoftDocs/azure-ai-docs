@@ -15,11 +15,13 @@ ms.date: 05/30/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In Azure AI Search, a *knowledge agent* is a top-level resource representing a connection to a chat completion model for use in agentic retrieval workloads. A knowledge agent specifies:
+In Azure AI Search, a *knowledge agent* is a top-level resource representing a connection to a chat completion model for use in agentic retrieval workloads. A knowledge agent is used by the [retrieve method](search-agentic-retrieval-how-to-retrieve.md) in an LLM-powered information retrieval pipeline.
+
+knowledge agent specifies:
 
 + A model that provides reasoning capabilities
-+ A search index used at query time
-+ Parameters on the index for setting default response behavior
++ A target search index used at query time
++ Parameters on the index for setting default behaviors and response shaping
 
 After you can create a knowledge agent, you can update its properties at any time. If the knowledge agent is in use, updates take effect on the next job.
 
@@ -27,7 +29,7 @@ After you can create a knowledge agent, you can update its properties at any tim
 
 + Familiarity with [agentic retrieval concepts and use cases](search-agentic-retrieval-concept.md).
 
-+ A chat completion model on Azure OpenAI.
++ A [supported chat completion model](#supported-models) on Azure OpenAI.
 
 + Azure AI Search, in any [region that provides semantic ranker](search-region-support.md), on the basic pricing tier or higher. Your search service must have a [managed identity](search-howto-managed-identities-data-sources.md) for role-based access to the model.
 
@@ -104,7 +106,7 @@ You can use API keys if you don't have permission to create role assignments.
    # List Indexes
    GET https://{{search-url}}/indexes?api-version=2025-05-01-preview
       Content-Type: application/json
-      @api-key = <YOUR-SEARCH-SERVICE-API-KEY>
+      @api-key: {{search-api-ke}}
    ```
 
 ## Check for existing knowledge agents
@@ -117,7 +119,7 @@ The following request lists knowledge agents by name on your search service. Wit
 # List knowledge agents
 GET https://{{search-url}}/agents?api-version=2025-05-01-preview
    Content-Type: application/json
-   @token = <a long GUID>
+   Authorization: Bearer {{accessToken}}
 ```
 
 You can also return a single agent by name to review its JSON definition.
@@ -126,7 +128,7 @@ You can also return a single agent by name to review its JSON definition.
 # Get knowledge agent
 GET https://{{search-url}}/agents/{{agent-name}}?api-version=2025-05-01-preview
    Content-Type: application/json
-   @token = <a long GUID>
+   Authorization: Bearer {{accessToken}}
 ```
 
 <!-- --- -->
@@ -145,12 +147,12 @@ To create an agent, use the 2025-05-01-preview data plane REST API or an Azure S
 @agent-name=<YOUR AGENT NAME>
 @index-name=<YOUR INDEX NAME>
 @model-provider-url=<YOUR AZURE OPENAI RESOURCE URI>
-@token = <a long GUID>
+@accessToken = <a long GUID>
 
 # Create knowledge agent
 PUT https://{{search-url}}/agents/{{agent-name}}?api-version=2025-05-01-preview
    Content-Type: application/json
-   @token = <a long GUID>
+   Authorization: Bearer {{accessToken}}
 
 {
     "name" : "{{agent-name}}",
@@ -223,7 +225,7 @@ Replace "What are my vision benefits?" with a query string that's valid for your
 # Send Grounding Request
 POST https://{{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-05-01-preview
    Content-Type: application/json
-   @token = <a long GUID>
+   Authorization: Bearer {{accessToken}}
 
 {
     "messages" : [
@@ -261,7 +263,7 @@ If you no longer need the agent, or if you need to rebuild it on the search serv
 ```http
 # Delete Agent
 DELETE https://{{search-url}}/agents/{{agent-name}}?api-version=2025-05-01-preview
-   @token = <a long GUID>
+   Authorization: Bearer {{accessToken}}
 ```
 
 ## Related content

@@ -17,7 +17,7 @@ ms.date: 05/30/2025
 
 In Azure AI Search, *agentic retrieval* is a new parallel query architecture that uses a chat completion model for query planning. It generates subqueries that broaden the scope of what's searchable and relevant.
 
-This article explains how to use the [**retrieve** method](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-05-01-preview&preserve-view=true) that invokes a knowledge agent and parallel query processing. This article also explains the three components of the retrieval response: 
+This article explains how to use the [**retrieve method**](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-05-01-preview&preserve-view=true) that invokes a knowledge agent and parallel query processing. This article also explains the three components of the retrieval response: 
 
 + *extracted response for the LLM*
 + *referenced results*
@@ -26,7 +26,7 @@ This article explains how to use the [**retrieve** method](/rest/api/searchservi
 The retrieve request can include instructions for query processing that override the defaults set on the knowledge agent.
 
 > [!NOTE]
-> There's no model-generated "answer" in the response. Instead, the response provides grounding data used to generate an answer from an LLM. For an end-to-end example, see [Build an agent-to-agent retrieval solution ](search-agentic-retrieval-how-to-pipeline.md) or [Azure OpenAI Demo](https://github.com/Azure-Samples/azure-search-openai-demo).
+> There's no model-generated "answer" in the response. Instead, the response passes content to an LLM that grounds its answer based on the content. For an end-to-end example that includes this step, see [Build an agent-to-agent retrieval solution ](search-agentic-retrieval-how-to-pipeline.md) or [Azure OpenAI Demo](https://github.com/Azure-Samples/azure-search-openai-demo).
 
 ## Prerequisites
 
@@ -49,10 +49,13 @@ All `searchable` fields in the search index are in-scope for query execution. If
 The input for the retrieval route is chat conversation history in natural language, where the `messages` array contains the conversation.
 
 ```http
+@search-url=<YOUR SEARCH SERVICE URL>
+@accessToken=<YOUR PERSONAL ID>
+
 # Send Grounding Request
 POST https://{{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-05-01-preview
-    @accessToken=<YOUR PERSONAL ID>
     Content-Type: application/json
+    Authorization: Bearer {{accessToken}}
 
 {
     "messages" : [
@@ -155,32 +158,32 @@ Here's an example of an activity array.
     {
       "type": "ModelQueryPlanning",
       "id": 0,
-      "inputTokens": 1308,
-      "outputTokens": 141
+      "inputTokens": 1270,
+      "outputTokens": 221
     },
     {
       "type": "AzureSearchQuery",
       "id": 1,
       "targetIndex": "myindex",
       "query": {
-        "search": "hello world programming",
+        "search": "impact of prior authorization process on out-of-pocket costs",
         "filter": null
       },
       "queryTime": "2025-04-25T16:40:08.811Z",
-      "count": 2,
-      "elapsedMs": 867
+      "count": 27,
+      "elapsedMs": 623
     },
     {
       "type": "AzureSearchQuery",
       "id": 2,
       "targetIndex": "myindex",
       "query": {
-        "search": "hello world meaning",
+        "search": "copayment expectations for in-network services",
         "filter": null
       },
       "queryTime": "2025-04-25T16:40:08.955Z",
-      "count": 2,
-      "elapsedMs": 136
+      "count": 22,
+      "elapsedMs": 556
     }
   ],
 ```
@@ -201,7 +204,7 @@ Here's an example of the references array.
   "references": [
     {
       "type": "AzureSearchDoc",
-      "id": "0",
+      "id": "1",
       "activitySource": 2,
       "docKey": "2",
       "sourceData": {
