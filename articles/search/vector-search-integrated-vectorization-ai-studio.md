@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 05/08/2025
+ms.date: 05/30/2025
 ---
 
 # Use embedding models from Azure AI Foundry model catalog for integrated vectorization
@@ -49,15 +49,17 @@ For image embeddings:
 
 1. Open the [Azure AI Foundry model catalog](https://ai.azure.com/explore/models). Create a project if you don't have one already.
 
-1. Apply a filter to show just the embedding models. Under **Inference tasks**, select **Embeddings**:
+1. From the left pane, select **Model catalog**.
+
+1. Apply a filter to show just the embedding models. Under **Inference tasks**, select **Embeddings**.
 
    :::image type="content" source="media\vector-search-integrated-vectorization-ai-studio\ai-studio-catalog-embeddings-filter.png" lightbox="media\vector-search-integrated-vectorization-ai-studio\ai-studio-catalog-embeddings-filter.png" alt-text="Screenshot of the Azure AI Foundry model catalog page highlighting how to filter by embeddings models.":::
 
-1. Select a supported model, then select **Deploy**.
+1. Select a supported model, and then select **Use this model**.
 
-   :::image type="content" source="media\vector-search-integrated-vectorization-ai-studio\ai-studio-deploy-endpoint.png" lightbox="media\vector-search-integrated-vectorization-ai-studio\ai-studio-deploy-endpoint.png" alt-text="Screenshot of deploying an endpoint via the Azure AI Foundry model catalog.":::
+   :::image type="content" source="media\vector-search-integrated-vectorization-ai-studio\use-this-model.png" lightbox="media\vector-search-integrated-vectorization-ai-studio\use-this-model.png" alt-text="Screenshot of deploying a model via the Azure AI Foundry model catalog.":::
 
-1. Accept the defaults or modify as needed, and then select **Deploy**. The deployment details vary depending on which model you select. 
+1. Accept the defaults or modify as needed, and then select **Deploy**. The deployment details vary depending on which model you select.
 
 1. Wait for the model to finish deploying by monitoring the **Provisioning State**. It should change from "Provisioning" to "Updating" to "Succeeded". You might need to select **Refresh** every few minutes to see the status update.
 
