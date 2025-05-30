@@ -26,22 +26,19 @@ items:
       - name: Glossary
         displayName: glossary, definition, updates, previews
         href: glossary.md
-  - name: "AI Foundry portal"
+  - name: Azure AI Foundry portal"
     items:
-      - name: "AI Foundry portal"
+      - name: Quickstarts
         items:
-          - name: "Quickstart: Try Content Understanding with a single file"
+          - name: Try Content Understanding with a single file"
             displayName: quickstart, extract, text, images, OCR, optical character recognition, foundry, standard, mode
             href: quickstart/use-ai-foundry.md
-          - name: "Quickstart: Try Content Understanding with multiple files"
+          - name: Try Content Understanding with multiple files"
             displayName: quickstart, extract, text, images, OCR, optical character recognition, foundry, pro, mode
             href: quickstart/use-ai-foundry-pro-mode.md
-          - name: Analyzer templates
-            displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
-            href: concepts/analyzer-templates.md
   - name: Analyzers
     items:
-      - name: "Quickstart"
+      - name: Quickstart
         displayName: quickstart, extract, text, images, OCR, optical character recognition, content filtering, filter
         href: quickstart/use-rest-api.md
       - name: Modalities
@@ -68,6 +65,9 @@ items:
             displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
       - name: Concepts
         items:
+          - name: Analyzer templates
+            displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
+            href: concepts/analyzer-templates.md
           - name: Prebuilt analyzers 🆕
             displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
             href: concepts/prebuilt-analyzers.md
