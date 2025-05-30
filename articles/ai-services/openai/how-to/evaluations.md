@@ -50,7 +50,7 @@ Azure OpenAI evaluation enables developers to create evaluation runs to test aga
 - West US 2
 - West US 3
 
-If your preferred region is missing, please refer to [Azure OpenAI regions](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#global-standard-model-availability) and check if it is one of the Azure OpenAI regional availability zones.
+If your preferred region is missing, please refer to [Azure OpenAI regions](https://learn.microsoft.com/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#global-standard-model-availability) and check if it is one of the Azure OpenAI regional availability zones.
 
 ### Supported deployment types
 
@@ -63,7 +63,7 @@ If your preferred region is missing, please refer to [Azure OpenAI regions](http
 
 ## Evaluation API (preview)
 
-Evaluation API lets users test and improve model outputs directly through API calls, making the experience simple and customizable for developers to programmatically assess model quality and performance in their development workflows. To use Evaluation API, check out the [REST API documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/authoring-reference-preview#evaluation---get-list). 
+Evaluation API lets users test and improve model outputs directly through API calls, making the experience simple and customizable for developers to programmatically assess model quality and performance in their development workflows. To use Evaluation API, check out the [REST API documentation](https://learn.microsoft.com/azure/ai-services/openai/authoring-reference-preview#evaluation---get-list). 
 
 ## Evaluation pipeline
 
@@ -154,7 +154,7 @@ When you click into each testing criteria, you will see different types of grade
 
     :::image type="content" source="../media/how-to/evaluations/upload-data-2.png" alt-text="Screenshot of data upload" lightbox="../media/how-to/evaluations/upload-data-2.png":::
 
-   If you need a sample test file, you can use this sample `.jsonl` text. This sample contains sentences of various technical content, and we are going to be assessing semantic similiarity across these sentences.
+   If you need a sample test file, you can use this sample `.jsonl` text. This sample contains sentences of various technical content, and we are going to be assessing semantic similarity across these sentences.
 
     ```jsonl
     {"input": [{"role": "system", "content": "Provide a clear and concise summary of the technical content, highlighting key concepts and their relationships. Focus on the main ideas and practical implications."}, {"role": "user", "content": "Tokenization is a key step in preprocessing for natural language processing, involving the division of text into smaller components called tokens. These can be words, subwords, or characters, depending on the method chosen. Word tokenization divides text at word boundaries, while subword techniques like Byte Pair Encoding (BPE) or WordPiece can manage unknown words by breaking them into subunits. Character tokenization splits text into individual characters, useful for multiple languages and misspellings. The tokenization method chosen greatly affects model performance and its capacity to handle various languages and vocabularies."}], "output": "Tokenization divides text into smaller units (tokens) for NLP applications, using word, subword (e.g., BPE), or character methods. Each has unique benefits, impacting model performance and language processing capabilities."}      
@@ -171,13 +171,13 @@ When you click into each testing criteria, you will see different types of grade
     
 5. If you would like to create new responses using inputs from your test data, you can select 'Generate new responses'. This will inject the input fields from our evaluation file into individual prompts for a model of your choice to generate output.
 
-    :::image type="content" source="../media/how-to/evaluations/eval-generate-1.png" alt-text="Screenshot of the UX for generating model responses" lightbox="../media/how-to/evaluations/eval-generate-1.png":::
+:::image type="content" source="../media/how-to/evaluations/eval-generate-1.png" alt-text="Screenshot of the UX for generating model responses" lightbox="../media/how-to/evaluations/eval-generate-1.png":::
    
 You will select the model of your choice. If you do not have a model, you can create a new model deployment. The selected model will take the input data and generate its own unique outputs, which in this case will be stored in a variable called `{{sample.output_text}}`. We'll then use that output later as part of our testing criteria. Alternatively, you could provide your own custom system message and individual message examples manually.
 
-    :::image type="content" source="../media/how-to/evaluations/eval-generate-2.png" alt-text="Screenshot of the UX for generating model responses" lightbox="../media/how-to/evaluations/eval-generate-2.png":::
+:::image type="content" source="../media/how-to/evaluations/eval-generate-2.png" alt-text="Screenshot of the UX for generating model responses" lightbox="../media/how-to/evaluations/eval-generate-2.png":::
 
-6. For creating a test criteria, select **Add**. For the example file we provided above, we are going to be assessing semantic similarity. Select **Model Scorer**, which contains test criteria presets for Semantic Semilarity.
+6. For creating a test criteria, select **Add**. For the example file we provided above, we are going to be assessing semantic similarity. Select **Model Scorer**, which contains test criteria presets for Semantic Similarity.
 
     :::image type="content" source="../media/how-to/evaluations/eval-semantic-similarity-1.png" alt-text="Screenshot of the semantic similarity UX config." lightbox="../media/how-to/evaluations/eval-semantic-similarity-1.png":::
 
@@ -185,29 +185,28 @@ You will select the model of your choice. If you do not have a model, you can cr
 
     :::image type="content" source="../media/how-to/evaluations/eval-semantic-similarity-2.png" alt-text="Screenshot of the semantic similarity UX config." lightbox="../media/how-to/evaluations/eval-semantic-similarity-2.png":::
 
-       :::image type="content" source="../media/how-to/evaluations/eval-semantic-similarity-3.png" alt-text="Screenshot of the semantic similarity UX config." lightbox="../media/how-to/evaluations/eval-semantic-similarity-3.png":::
+:::image type="content" source="../media/how-to/evaluations/eval-semantic-similarity-3.png" alt-text="Screenshot of the semantic similarity UX config." lightbox="../media/how-to/evaluations/eval-semantic-similarity-3.png":::
 
 7. Select **Add** to add this testing criteria. If you would like to add additional testing criteria, you can add them at this step.
 
 8. You are ready to create your Evaluation. Provide your Evaluation name, review everything looks correct, and **Submit** to create the Evaluation job. You'll be taken to a status page for your evaluation job, which will show the status as "Waiting".
 
-    :::image type="content" source="../media/how-to/evaluations/eval-submit-job.png" alt-text="Screenshot of the evaluation job submit UX." lightbox="../media/how-to/evaluations/eval-submit-job.png.png":::
-
-    :::image type="content" source="../media/how-to/evaluations/eval-submit-job-2.png" alt-text="Screenshot of the evaluation job submit UX." lightbox="../media/how-to/evaluations/eval-submit-job-2.png.png":::
+:::image type="content" source="../media/how-to/evaluations/eval-submit-job.png" alt-text="Screenshot of the evaluation job submit UX." lightbox="../media/how-to/evaluations/eval-submit-job.png":::
+:::image type="content" source="../media/how-to/evaluations/eval-submit-job-2.png" alt-text="Screenshot of the evaluation job submit UX." lightbox="../media/how-to/evaluations/eval-submit-job-2.png":::
 
 9. Once your evaluation job has created, you can select the job to view the full details of the job:
 
-    :::image type="content" source="../media/how-to/evaluations/test-complete.png" alt-text="Screenshot of a completed semantic similarity test with mix of pass and failures." lightbox="../media/how-to/evaluations/test-complete.png":::
+:::image type="content" source="../media/how-to/evaluations/test-complete.png" alt-text="Screenshot of a completed semantic similarity test with mix of pass and failures." lightbox="../media/how-to/evaluations/test-complete.png":::
 
 10. For semantic similarity **View output details** contains a JSON representation that you can copy/paste of your passing tests.
 
-    :::image type="content" source="../media/how-to/evaluations/output-details.png" alt-text="Screenshot of the evaluation status UX with output details." lightbox="../media/how-to/evaluations/output-details.png":::
+:::image type="content" source="../media/how-to/evaluations/output-details.png" alt-text="Screenshot of the evaluation status UX with output details." lightbox="../media/how-to/evaluations/output-details.png":::
 
-11. You can also add more Eval runs by selecting **+ Add Run** button at the top left corner of your evluation job page.
+11. You can also add more Eval runs by selecting **+ Add Run** button at the top left corner of your evaluation job page.
 
 ## Types of Testing Criteria
 
-Azure OpenAI Evaluation offers various evaluation testing criteria on top of Semantic Similiarity we saw in the example above. This section provides information about each testing criteria at much more detail.
+Azure OpenAI Evaluation offers various evaluation testing criteria on top of Semantic Similarity we saw in the example above. This section provides information about each testing criteria at much more detail.
 
 ### Factuality
 
