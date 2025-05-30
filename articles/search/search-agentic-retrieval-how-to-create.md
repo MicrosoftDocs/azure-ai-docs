@@ -17,7 +17,7 @@ ms.date: 05/30/2025
 
 In Azure AI Search, a *knowledge agent* is a top-level resource representing a connection to a chat completion model for use in agentic retrieval workloads. A knowledge agent is used by the [retrieve method](search-agentic-retrieval-how-to-retrieve.md) in an LLM-powered information retrieval pipeline.
 
-knowledge agent specifies:
+A knowledge agent specifies:
 
 + A model that provides reasoning capabilities
 + A target search index used at query time
@@ -270,6 +270,6 @@ DELETE https://{{search-url}}/agents/{{agent-name}}?api-version=2025-05-01-previ
 
 + [Agentic retrieval in Azure AI Search](search-agentic-retrieval-concept.md)
 
-+ [Agentic RAG: build a reasoning retrieval engine with Azure AI Search](https://www.youtube.com/watch?v=PeTmOidqHM8)
++ [Agentic RAG: build a reasoning retrieval engine with Azure AI Search (YouTube video)](https://www.youtube.com/watch?v=PeTmOidqHM8)
 
 + [Azure OpenAI Demo featuring agentic retrieval](https://github.com/Azure-Samples/azure-search-openai-demo)
