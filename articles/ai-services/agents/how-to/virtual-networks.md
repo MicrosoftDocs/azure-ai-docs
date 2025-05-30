@@ -154,7 +154,7 @@ For Agents, private endpoints ensure secure, internal-only connectivity for the 
 | **Azure Cosmos DB**        | Sql          | `privatelink.documents.azure.com` | `documents.azure.com` |
 | **Azure Storage**          | blob         | `privatelink.blob.core.windows.net` | `blob.core.windows.net` |
 
-To create a conditional forwarder in the DNS Server to the Azure DNS Virtual Server. Use the list of zones mentioned in the above table. The Azure DNS Virtual Server IP address is 168.63.129.16.
+To create a conditional forwarder in the DNS Server to the Azure DNS Virtual Server, use the list of zones mentioned in the above table. The Azure DNS Virtual Server IP address is 168.63.129.16.
 
 ### Access your secured agents
 
