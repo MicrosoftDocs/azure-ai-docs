@@ -133,14 +133,12 @@ items:
       href: /rest/api/aifoundry/aiagents
     - name: SDK
       items:
-      - name: Azure SDK
-        items:
-        - name: C#
-          href: /dotnet/api/overview/azure/ai.agents.persistent-readme
-        - name: Python
-          href: https://aka.ms/azsdk/azure-ai-projects/python/reference
-        - name: JavaScript
-          href: /javascript/api/overview/azure/ai-projects-readme
+      - name: C#
+        href: /dotnet/api/overview/azure/ai.agents.persistent-readme
+      - name: Python
+        href: https://aka.ms/azsdk/azure-ai-projects/python/reference
+      - name: JavaScript
+        href: /javascript/api/overview/azure/ai-projects-readme
     - name: Data monitoring reference
       href: reference/monitor-service.md
 - name: Resources
