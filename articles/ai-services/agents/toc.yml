@@ -141,12 +141,6 @@ items:
           href: https://aka.ms/azsdk/azure-ai-projects/python/reference
         - name: JavaScript
           href: /javascript/api/overview/azure/ai-projects-readme
-      - name: OpenAI SDK
-        items:
-        - name: C#
-          href: https://github.com/openai/openai-dotnet/blob/main/README.md
-        - name: Python
-          href: https://github.com/openai/openai-python/blob/main/README.md
     - name: Data monitoring reference
       href: reference/monitor-service.md
 - name: Resources
