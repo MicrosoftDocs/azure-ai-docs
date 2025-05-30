@@ -80,7 +80,7 @@ For customers without an existing virtual network, the Standard Setup with Priva
 ### Option 1: manually deploy the bicep template
 
 1. To deploy and customize the bicep templates, [download the template from GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/15-private-network-standard-agent-setup). Download the following from the `private-network-standard-agent-setup` folder:
-    1. `main.bicep`
+    1. `main-create.bicep`
     1. `azuredeploy.parameters.json`
     1. `modules-network-secured folder`
 1. To authenticate to your Azure subscription from the Azure CLI, use the following command: 
@@ -102,7 +102,7 @@ For customers without an existing virtual network, the Standard Setup with Priva
     1. To use default resource names, run:
 
         ```console
-        az deployment group create --resource-group {my_resource_group} --template-file main.bicep
+        az deployment group create --resource-group {my_resource_group} --template-file main-create.bicep
         ```
 For more details, see the [README](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/15-private-network-standard-agent-setup).
 
