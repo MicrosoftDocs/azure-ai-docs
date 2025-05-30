@@ -23,7 +23,7 @@ Provisioned throughput units (PTUs) are generic units of model processing capaci
 
 ## Understanding provisioned throughput billing
 
-Azure AI Foundry [Regional Provisioned Throughput](../how-to/deployment-types.md#provisioned), [Data Zone Provisioned Throughput](../how-to/deployment-types.md#data-zone-provisioned), and [Global Provisioned Throughput](../how-to/deployment-types.md#global-provisioned) are purchased on-demand at an hourly basis based on the number of deployed PTUs, with substantial term discount available via the purchase of [Azure Reservations](#azure-reservations-for-azure-openai-provisioned-deployments).  
+Azure AI Foundry [Regional Provisioned Throughput](../how-to/deployment-types.md#regional-provisioned), [Data Zone Provisioned Throughput](../how-to/deployment-types.md#data-zone-provisioned), and [Global Provisioned Throughput](../how-to/deployment-types.md#global-provisioned) are purchased on-demand at an hourly basis based on the number of deployed PTUs, with substantial term discount available via the purchase of [Azure Reservations](#azure-reservations-for-azure-ai-foundry-provisioned-throughput).  
 
 The hourly model is useful for short-term deployment needs, such as validating new models or acquiring capacity for a hackathon.  However, the discounts provided by the Azure Reservation for Azure AI Foundry Regional Provisioned, Data Zone Provisioned, and Global Provisioned are considerable and most customers with consistent long-term usage will find a reserved model to be a better value proposition. 
 
@@ -37,11 +37,11 @@ Unlike the Tokens Per Minute (TPM) quota used by other Azure AI Foundry offering
 
 :::image type="content" source="../media/provisioned/model-independent-quota.png" alt-text="Diagram of model independent quota with one pool of PTUs available to multiple Azure OpenAI models." lightbox="../media/provisioned/model-independent-quota.png":::
 
-Quota for provisioned deployments shows up in Azure AI Foundry as the following deployment types: [global provisioned](../how-to/deployment-types.md#global-provisioned), [data zone provisioned](../how-to/deployment-types.md#data-zone-provisioned) and [regional provisioned](../how-to/deployment-types.md#provisioned).
+Quota for provisioned deployments shows up in Azure AI Foundry as the following deployment types: [global provisioned](../how-to/deployment-types.md#global-provisioned), [data zone provisioned](../how-to/deployment-types.md#data-zone-provisioned) and [regional provisioned](../how-to/deployment-types.md#regional-provisioned).
 
 |deployment type  |Quota name  |
 |---------|---------|
-|[Regional Provisioned](../how-to/deployment-types.md#provisioned)     |  Regional Provisioned Throughput Unit       |
+|[Regional Provisioned](../how-to/deployment-types.md#regional-provisioned)     |  Regional Provisioned Throughput Unit       |
 |[Global Provisioned](../how-to/deployment-types.md#global-provisioned)     | Global Provisioned Throughput Unit        |
 |[Data zone Provisioned](../how-to/deployment-types.md#data-zone-provisioned)    | Data Zone Provisioned Throughput Unit        |
 
@@ -59,7 +59,7 @@ If the deployment size is changed, the costs of the deployment will adjust to ma
 
 Paying for regional provisioned, data zone provisioned, and global provisioned deployments on an hourly basis is ideal for short-term deployment scenarios.  For example: Quality and performance benchmarking of new models, or temporarily increasing PTU capacity to cover an event such as a hackathon.  
 
-Customers that require long-term usage of regional provisioned, data zone provisioned, and global provisioned deployments, however, might pay significantly less per month by purchasing a term discount via [Azure Reservations](#azure-reservations-for-azure-openai-provisioned-deployments) as discussed later in the article. 
+Customers that require long-term usage of regional provisioned, data zone provisioned, and global provisioned deployments, however, might pay significantly less per month by purchasing a term discount via [Azure Reservations](#azure-reservations-for-azure-ai-foundry-provisioned-throughput) as discussed later in the article. 
 
 > [!IMPORTANT]
 > It's not recommended to scale production deployments according to incoming traffic and pay for them purely on an hourly basis. There are two reasons for this:
