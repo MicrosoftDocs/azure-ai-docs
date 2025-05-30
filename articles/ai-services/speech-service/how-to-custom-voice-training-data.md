@@ -22,7 +22,7 @@ When you're ready to create a custom Text to speech voice for your application, 
 
 A voice training dataset includes audio recordings, and a text file with the associated transcriptions. Each audio file should contain a single utterance (a single sentence or a single turn for a dialog system), and be less than 15 seconds long.
 
-In some cases, you might not have the right dataset ready. You can test the custom neural voice training with available audio files, short or long, with or without transcripts.
+In some cases, you might not have the right dataset ready. You can test the custom voice with available audio files, short or long, with or without transcripts.
 
 This table lists data types and how each is used to create a custom Text to speech voice model.
 

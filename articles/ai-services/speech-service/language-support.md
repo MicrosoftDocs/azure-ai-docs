@@ -115,7 +115,7 @@ The following neural voices are retired.
 
 ### Custom neural voice
 
-Custom neural voice lets you create synthetic voices that are rich in speaking styles. You can create a unique brand voice in multiple languages and styles by using a small set of recording data. Multi-style custom neural voices support style degree adjustment. There are two custom neural voice (CNV) project types: CNV Pro and CNV Lite (preview). 
+Custom neural voice lets you create synthetic voices that are rich in speaking styles. You can create a unique brand voice in multiple languages and styles by using a small set of recording data. Multi-style custom neural voices support style degree adjustment. 
 
 Select the right locale that matches your training data to train a custom neural voice model. For example, if the recording data is spoken in English with a British accent, select `en-GB`. 
 

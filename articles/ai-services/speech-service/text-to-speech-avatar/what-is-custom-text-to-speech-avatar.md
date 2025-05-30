@@ -64,7 +64,7 @@ Custom avatar *training* is only available in the following service regions: Sou
 
 ## Custom voice and custom text to speech avatar
 
-[Custom voice](../custom-neural-voice.md) and custom text to speech avatar are separate features. You can use them independently or together. If you're also creating a custom neural voice (CNV) for the actor, the avatar can be highly realistic. 
+[Custom voice](../custom-neural-voice.md) and custom text to speech avatar are separate features. You can use them independently or together. If you're also creating a professional voice for the actor, the avatar can be highly realistic. 
 
 The custom text to speech avatar can work with a standard voice or custom voice as the avatar's voice. For more information, see [Avatar voice and language](./what-is-text-to-speech-avatar.md#avatar-voice-and-language).
 

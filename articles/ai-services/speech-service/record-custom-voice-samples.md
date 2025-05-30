@@ -13,9 +13,9 @@ ms.author: eur
 
 # Recording voice samples for custom neural voice
 
-This article provides you with best practices on preparing high-quality voice samples for creating a professional voice model using the custom neural voice Pro project. To understand how the data is processed and the minimum requirements for data acceptance, please refer to [upload your data](professional-voice-create-training-set.md#upload-your-data).
+This article provides you with best practices on preparing high-quality voice samples for professional voice fine-tuning. To understand how the data is processed and the minimum requirements for data acceptance, please refer to [upload your data](professional-voice-create-training-set.md#upload-your-data).
 
-Creating a high-quality production custom neural voice from scratch isn't a casual undertaking. The central component of a custom neural voice is a large collection of audio samples of human speech. It's vital that these audio recordings be of high quality. Choose a voice talent who has experience making these kinds of recordings, and have them recorded by a recording engineer using professional equipment.
+Creating a high-quality professional voice from scratch isn't a casual undertaking. The central component of a custom neural voice is a large collection of audio samples of human speech. It's vital that these audio recordings be of high quality. Choose a voice talent who has experience making these kinds of recordings, and have them recorded by a recording engineer using professional equipment.
 
 Before you can make these recordings, though, you need a script: the words are spoken by your voice talent to create the audio samples.
 
@@ -71,7 +71,7 @@ We provide [sample scripts in the 'General', 'Chat' and 'Customer Service' domai
 
 ### Script selection criteria
 
-Below are some general guidelines that you can follow to create a good corpus (recorded audio samples) for custom neural voice training.
+Below are some general guidelines that you can follow to create a good corpus (recorded audio samples) for professional voice fine-tuning.
 
 -  For most use cases, sentences are recommended to be between 2 and 15 seconds long, containing 5 to 30 words for Latin-based languages or 4 to 80 words for non-Latin languages. Aim to balance your script to include a variety of sentence types and lengths. Ensure your script does not include any duplicate sentences.<br>
    
@@ -223,7 +223,7 @@ You can refer to below specification to prepare for the audio samples as best pr
 | Environment noise or echo |   - The level of noise at start of the wave before speaking < -70 dB |
 
 > [!Note]
-> You can record at higher sampling rate and bit depth, for example in the format of 48 KHz 24 bit PCM. During the custom neural voice training, we'll down sample it to 24 KHz 16 bit PCM automatically.
+> You can record at higher sampling rate and bit depth, for example in the format of 48 KHz 24 bit PCM. During the professional voice fine-tuning, we'll down sample it to 24 KHz 16 bit PCM automatically.
 
 A higher signal-to-noise ratio (SNR) indicates lower noise in your audio. You can typically reach a 35+ SNR by recording at professional studios. Audio with an SNR below 20 can result in obvious noise in your generated voice.
 

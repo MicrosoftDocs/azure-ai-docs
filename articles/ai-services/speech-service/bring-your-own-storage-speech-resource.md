@@ -436,7 +436,7 @@ For more information, see [Prevent anonymous public read access to containers an
 
 **Configure Azure Storage firewall**
 
-Custom neural voice uses [User delegation SAS](/azure/storage/common/storage-sas-overview#user-delegation-sas) to read the data for custom neural voice model training. It requires allowing external network traffic access to the Storage account.
+Custom neural voice uses [User delegation SAS](/azure/storage/common/storage-sas-overview#user-delegation-sas) to read the data for professional voice fine-tuning. It requires allowing external network traffic access to the Storage account.
 
 1. Go to the [Azure portal](https://portal.azure.com/) and sign in to your Azure account.
 1. Select the Storage account.
