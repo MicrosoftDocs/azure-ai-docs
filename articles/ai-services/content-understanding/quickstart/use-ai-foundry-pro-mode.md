@@ -17,7 +17,7 @@ Suppose you have document files and you want to automatically extract key inform
 
 In this guide, you'll walk through building and testing an analyzer for your scenario. You can start from scratch or use suggested templates for common use cases.
 
-:::image type="content" source="../media/overview/component-overview-updated.png" alt-text="Screenshot of Content Understanding overview, process, and workflow." lightbox="media/overview/component-overview-updated.png" :::
+:::image type="content" source="../media/overview/component-overview-updated.png" alt-text="Screenshot of Content Understanding overview, process, and workflow." lightbox="../media/overview/component-overview-updated.png" :::
 
 ## Prerequisites
 
