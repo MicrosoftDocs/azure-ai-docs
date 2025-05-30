@@ -32,8 +32,11 @@ conceptualContent:
     - title: AI Foundry
       links:
         - itemType: quickstart
-          text: Quickstart
+          text: "Quickstart: Content Understanding with a single file"
           url: quickstart/use-ai-foundry.md
+        - itemType: quickstart
+          text: "Quickstart: Content Understanding with multiple files"
+          url: quickstart/use-ai-foundry-pro-mode.md  
         - itemType: concept
           text: Analyzer templates
           url: concepts/analyzer-templates.md
