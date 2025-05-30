@@ -62,29 +62,25 @@ POST https://{{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-05-0
             {
                 "role" : "assistant",
                 "content" : [
-                  { "type" : "text", "text" : "You are a helpful assistant for Contoso Human Resources. You have access to a search index containing guidelines about health care coverage for Washington state. If you can't find the answer in the search, say you don't know." }
+                  { "type" : "text", "text" : "You can answer questions about the Earth at night.
+                    Sources have a JSON format with a ref_id that must be cited in the answer.
+                    If you do not have the answer, respond with "I don't know"." }
                 ]
             },
             {
                 "role" : "user",
                 "content" : [
-                  { "type" : "text", "text" : "What are my options for health care coverage" }
-                ]
-            },
-            {
-                "role" : "user",
-                "content" : [
-                  { "type" : "text", "text" : "Which one has vision benefits" }
+                  { "type" : "text", "text" : "Why is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?" }
                 ]
             }
         ],
     "targetIndexParams" :  [
         { 
             "indexName" : "{{index-name}}",
-            "filterAddOn" : "State eq 'WA'",
+            "filterAddOn" : "page_number eq 105'",
             "IncludeReferenceSourceData": true, 
             "rerankerThreshold" : 2.5,
-            "maxDocsForReranker": 250
+            "maxDocsForReranker": 50
         } 
     ]
 }
@@ -102,7 +98,7 @@ POST https://{{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-05-0
 
   + `filterAddOn` lets you set an [OData filter expression](search-filters.md) for keyword or hybrid search.
 
-  + `IncludeReferenceSourceData` is initially set in the knowledge agent definition. You can override that setting in the retrieve action to return grounding data in the [references section](#review-the-references-array) of the response.
+  + `IncludeReferenceSourceData` tells the retrieval engine to return the source content in the response. This value is initially set in the knowledge agent definition. You can override that setting in the retrieve action to return original source content in the [references section](#review-the-references-array) of the response.
 
   + `rerankerThreshold` and `maxDocsForReranker` are also initially set in the knowledge agent definition as defaults. You can override them in the retrieve action to configure [semantic reranker](semantic-how-to-configure.md), setting minimum thresholds and the maximum number of inputs sent to the reranker.
 
@@ -125,18 +121,21 @@ The body of the response is also structured in the chat message style format. Cu
         "content": [
             {
                 "type": "text",
-                "text": "[{\"ref_id\":0,\"title\":\"Vision benefits\",\"terms\":\"exams, frames, contacts\",\"content\":\"<content chunk>\"}]"
+                "text": "[{\"ref_id\":0,\"title\":\"Urban Structure\",\"terms\":\"Location of Phoenix, Grid of City Blocks, Phoenix Metropolitan Area at Night\",\"content\":\"<content chunk redacted>\"}]"
             }
         ]
     }
 ]
 ```
 
-`content` is a JSON array. It's a single string composed of the most relevant documents (or chunks) found in the search index, given the query and chat history inputs. This array is your grounding data that a conversational language model uses to formulate a response to the user's question.
+**Key points**:
 
-The `maxOutputSize` property on the knowledge agent determines the length of the string. We recommend 5,000 tokens.
++ `content` is a JSON array. It's a single string composed of the most relevant documents (or chunks) found in the search index, given the query and chat history inputs. This array is your grounding data that a conversational language model uses to formulate a response to the user's question.
 
-Fields in the content `text` response string include the ref_id and semantic configuration fields: `title`, `terms`, `content`.
++ text is the only valid value for type, and the text consists of the reference ID of the chunk (used for citation purposes), and any fields specified in the semantic configuration of the target index. In this example, you should assume the semantic configuration in the target index has a "title" field, a "terms" field, and a "content" filed. 
+
+> [!NOTE]
+> The `maxOutputSize` property on the [knowledge agent](search-agentic-retrieval-how-to-create.md) determines the length of the string. We recommend 5,000 tokens.
 
 ## Review the activity array
 
@@ -154,36 +153,53 @@ Output includes:
 Here's an example of an activity array.
 
 ```json
-  "activity": [
+"activity": [
     {
       "type": "ModelQueryPlanning",
       "id": 0,
-      "inputTokens": 1270,
-      "outputTokens": 221
+      "inputTokens": 1261,
+      "outputTokens": 270
     },
     {
       "type": "AzureSearchQuery",
       "id": 1,
-      "targetIndex": "myindex",
+      "targetIndex": "earth_at_night",
       "query": {
-        "search": "impact of prior authorization process on out-of-pocket costs",
+        "search": "suburban belts December brightening urban cores comparison",
         "filter": null
       },
-      "queryTime": "2025-04-25T16:40:08.811Z",
-      "count": 27,
-      "elapsedMs": 623
+      "queryTime": "2025-05-30T21:23:25.944Z",
+      "count": 0,
+      "elapsedMs": 600
     },
     {
       "type": "AzureSearchQuery",
       "id": 2,
-      "targetIndex": "myindex",
+      "targetIndex": "earth_at_night",
       "query": {
-        "search": "copayment expectations for in-network services",
+        "search": "Phoenix nighttime street grid visibility from space",
         "filter": null
       },
-      "queryTime": "2025-04-25T16:40:08.955Z",
-      "count": 22,
-      "elapsedMs": 556
+      "queryTime": "2025-05-30T21:23:26.128Z",
+      "count": 2,
+      "elapsedMs": 161
+    },
+    {
+      "type": "AzureSearchQuery",
+      "id": 3,
+      "targetIndex": "earth_at_night",
+      "query": {
+        "search": "interstate visibility from space midwestern cities",
+        "filter": null
+      },
+      "queryTime": "2025-05-30T21:23:26.277Z",
+      "count": 0,
+      "elapsedMs": 147
+    },
+    {
+      "type": "AzureSearchSemanticRanker",
+      "id": 4,
+      "inputTokens": 2622
     }
   ],
 ```
@@ -204,38 +220,20 @@ Here's an example of the references array.
   "references": [
     {
       "type": "AzureSearchDoc",
-      "id": "1",
+      "id": "0",
       "activitySource": 2,
-      "docKey": "2",
-      "sourceData": {
-        "id": "2",
-        "parent": {
-          "title": null,
-          "content": "good by cruel world"
-        }
-      }
+      "docKey": "earth_at_night_508_page_104_verbalized",
+      "sourceData": null
     },
     {
       "type": "AzureSearchDoc",
       "id": "1",
       "activitySource": 2,
-      "docKey": "4",
-      "sourceData": {
-        "id": "4",
-        "parent": {
-          "title": "zzzzzzz",
-          "content": "zzzzzzz"
-        }
-      }
+      "docKey": "earth_at_night_508_page_105_verbalized",
+      "sourceData": null
     }
   ]
 ```
-
-<!-- Create H2s for the main patterns. -->
-<!-- This section is in progress. It needs a code sample for the simple case showing how to pipeline ground data to chat completions and responses -->
-## Use data for grounding
-
-The `includeReferenceSourceData` parameter tells the search engine to provide grounding data to the knowledge agent.
 
 ## Related content
 
