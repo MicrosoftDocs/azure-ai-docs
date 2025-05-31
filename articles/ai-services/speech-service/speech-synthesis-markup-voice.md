@@ -225,7 +225,7 @@ This SSML snippet illustrates how the `role` attribute is used to change the rol
 
 #### Custom voice style example
 
-You can train your custom voice to speak with some preset styles such as `cheerful`, `sad`, and `whispering`. You can also [fine-tune a professional voice](professional-voice-train-voice.md?tabs=multistyle#train-your-custom-neural-voice-model) to speak in a custom style as determined by your training data. To use your custom voice style in SSML, specify the style name that you previously entered in Speech Studio.
+You can train your custom voice to speak with some preset styles such as `cheerful`, `sad`, and `whispering`. You can also [fine-tune a professional voice](professional-voice-train-voice.md?tabs=multistyle#train-your-custom-voice-model) to speak in a custom style as determined by your training data. To use your custom voice style in SSML, specify the style name that you previously entered in Speech Studio.
 
 This example uses a custom voice named **my-custom-voice**. The custom voice speaks with the `cheerful` preset style and style degree of `2`, and then with a custom style named **my-custom-style** and style degree of `0.01`. 
 

@@ -29,7 +29,7 @@ For information about locale and regional availability, see [Language and voice 
 
 ## Text to speech
 
-Help bring everyone into the conversation by converting text messages to audio using [Text to speech](text-to-speech.md) for scenarios, such as game dialogue prototyping, greater accessibility, or nonplayable character (NPC) voices. Text to speech includes [standard voice](language-support.md?tabs=tts#standard-voices) and [custom voice](language-support.md?tabs=tts#custom-voice) features. Standard voice can provide highly natural out-of-box voices with leading voice variety in terms of a large portfolio of languages and voices. Custom voice is an easy-to-use self-service for creating a highly natural custom voice. 
+Help bring everyone into the conversation by converting text messages to audio using [Text to speech](text-to-speech.md) for scenarios, such as game dialogue prototyping, greater accessibility, or nonplayable character (NPC) voices. Text to speech includes [standard voice](language-support.md?tabs=tts#standard-voices) and [custom voice](language-support.md?tabs=tts#professional-voice) features. Standard voice can provide highly natural out-of-box voices with leading voice variety in terms of a large portfolio of languages and voices. Custom voice is an easy-to-use self-service for creating a highly natural custom voice. 
 
 When enabling this functionality in your game, keep in mind the following benefits:
 

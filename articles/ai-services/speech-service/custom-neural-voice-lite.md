@@ -43,7 +43,7 @@ To create a custom voice lite project, follow these steps:
 1. Sign in to the [Speech Studio](https://aka.ms/speechstudio/customvoice).
 1. Select the subscription and Speech resource to work with.
 1. Select **Custom voice** > **Create a project**. 
-1. Select **Custom voice lite** > **Next**. To create a custom voice professional project instead, see [Create a project for custom voice](professional-voice-create-project.md).
+1. Select **Custom neural voice lite** > **Next**. To create a custom voice professional project instead, see the [professional voice fine-tuning documentation](professional-voice-create-project.md).
 
 1. Follow the instructions provided by the wizard to create your project. 
     

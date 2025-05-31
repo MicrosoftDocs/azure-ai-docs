@@ -78,7 +78,7 @@ sections:
       - question: |
           How does cross-lingual voice work with languages that have different pronunciation structure and assembly?  
         answer: |
-          Sentence structure and pronunciation naturally vary across languages such as English and Japanese. Each neural voice is trained with audio data recorded by native speaking voice talent. For [cross lingual](professional-voice-train-voice.md?tabs=crosslingual#train-your-custom-neural-voice-model) voice, we transfer the major features like timbre to sound like the original speaker and preserve the right pronunciation. For example, a cross-lingual voice uses the native way to speak Japanese and still sounds similar (but not exactly) like the original English speaker. 
+          Sentence structure and pronunciation naturally vary across languages such as English and Japanese. Each neural voice is trained with audio data recorded by native speaking voice talent. For [cross lingual](professional-voice-train-voice.md?tabs=crosslingual#train-your-custom-voice-model) voice, we transfer the major features like timbre to sound like the original speaker and preserve the right pronunciation. For example, a cross-lingual voice uses the native way to speak Japanese and still sounds similar (but not exactly) like the original English speaker. 
       - question: |
           Can I use professional voice fine-tuning to customize pronunciation for my domain?
         answer: |

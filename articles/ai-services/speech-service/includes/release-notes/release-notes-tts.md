@@ -655,9 +655,9 @@ See the [full language and voice list](../../language-support.md?tabs=tts#custom
 
 #### Custom neural voice
 
-- [Multi-style voice](../../professional-voice-train-voice.md?tabs=multistyle#train-your-custom-neural-voice-model) is generally available.
+- [Multi-style voice](../../professional-voice-train-voice.md?tabs=multistyle#train-your-custom-voice-model) is generally available.
 - Added two new locales in public preview for multi-style voice: `ja-JP` and `zh-CN`. See the [full language and voice list](../../language-support.md?tabs=tts#custom-voice) for more information. Refer to [the preset style list for different languages](../../professional-voice-train-voice.md?tabs=multistyle#available-preset-styles-across-different-languages).
-- [Cross-lingual voice](../../professional-voice-train-voice.md?tabs=crosslingual#train-your-custom-neural-voice-model) is generally available. 
+- [Cross-lingual voice](../../professional-voice-train-voice.md?tabs=crosslingual#train-your-custom-voice-model) is generally available. 
 - Added two new locales for cross-lingual voice: `id-ID` and `nl-NL`. See the [full language and voice list](../../language-support.md?tabs=tts#custom-voice) for more information. 
 
 #### Standard voices
@@ -978,7 +978,7 @@ For more information, see the [language and voice list](../../language-support.m
 #### Custom neural voice
 
 * Enabled to fix data issues online. Learn more on [how to resolve data issues in Speech Studio](../../professional-voice-create-training-set.md#resolve-data-issues-online).
-* Added training recipe version. Learn more on [selecting the training recipe version for your voice model](../../professional-voice-train-voice.md#train-your-custom-neural-voice-model).
+* Added training recipe version. Learn more on [selecting the training recipe version for your voice model](../../professional-voice-train-voice.md#train-your-custom-voice-model).
 
 #### Audio Content Creation tool
 
@@ -1001,7 +1001,7 @@ For more information, see the [language and voice list](../../language-support.m
 
 #### Custom neural voice
 
-* Enabled to cancel training during training voice model. Learn more on [how to cancel training](../../professional-voice-train-voice.md#train-your-custom-neural-voice-model).
+* Enabled to cancel training during training voice model. Learn more on [how to cancel training](../../professional-voice-train-voice.md#train-your-custom-voice-model).
 * Enabled to clone model (rename voice model). Learn more on [how to rename your voice model](../../professional-voice-train-voice.md#rename-your-model).
 * Enabled to test your voice model by adding your own test script. Learn more on [how to upload your test script](../../professional-voice-train-voice.md#test-your-voice-model).
 * Enabled to update engine version for your voice model. Learn more on [how to update the model engine version](../../professional-voice-train-voice.md#update-engine-version-for-your-voice-model).
