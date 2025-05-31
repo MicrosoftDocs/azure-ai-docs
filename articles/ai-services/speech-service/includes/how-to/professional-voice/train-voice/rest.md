@@ -28,7 +28,7 @@ After you validate your data files, use them to build your custom voice model. W
 
 - [Neural - cross lingual](?tabs=crosslingual#create-a-voice-model): Create a voice that speaks a different language from your training data. For example, with the `fr-FR` training data, you can create a voice that speaks `en-US`.
 
-  The language of the training data and the target language must both be one of the [languages that are supported](../../../../language-support.md?tabs=tts#custom-voice) for cross lingual voice training. You don't need to prepare training data in the target language, but your test script must be in the target language.
+  The language of the training data and the target language must both be one of the [languages that are supported](../../../../language-support.md?tabs=tts#professional-voice) for cross lingual voice training. You don't need to prepare training data in the target language, but your test script must be in the target language.
 
 - [Neural - multi style](?tabs=multistyle#create-a-voice-model): Create a custom voice that speaks in multiple styles and emotions, without adding new training data. Multiple style voices are useful for video game characters, conversational chatbots, audiobooks, content readers, and more.
 
