@@ -53,7 +53,7 @@ These locales support the [display text format feature](./how-to-custom-speech-d
 
 The table in this section summarizes the locales and voices supported for text to speech. For details, see the table footnotes.
 
-More remarks for text to speech locales are included in the [voice styles and roles](#voice-styles-and-roles), [standard voices](#standard-voices), [professional voice](#custom-voice), and [personal voice](#personal-voice) sections in this article. 
+More remarks for text to speech locales are included in the [voice styles and roles](#voice-styles-and-roles), [standard voices](#standard-voices), [professional voice](#professional-voice), and [personal voice](#personal-voice) sections in this article. 
 
 > [!TIP]
 > Check the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) and determine the right voice for your business needs.
