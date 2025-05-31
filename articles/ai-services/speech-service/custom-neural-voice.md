@@ -12,7 +12,7 @@ ms.author: eur
 
 # What is custom voice?
 
-Custom voice is a text to speech feature that lets you create a one-of-a-kind, customized, synthetic voice for your applications. With custom voice, you can build a highly natural-sounding voice for your brand or characters by providing human speech samples as training data.
+Custom voice is a text to speech feature that lets you create a one-of-a-kind, customized, synthetic voice for your applications. With custom voice, you can build a highly natural-sounding voice for your brand or characters by providing human speech samples as fine-tuning data.
 
 > [!IMPORTANT]
 > Custom voice access is [limited](/legal/cognitive-services/speech-service/custom-neural-voice/limited-access-custom-neural-voice?context=%2fazure%2fcognitive-services%2fspeech-service%2fcontext%2fcontext) based on eligibility and usage criteria. Request access on the [intake form](https://aka.ms/customneural).
@@ -35,8 +35,8 @@ Before you get started in Speech Studio, here are some considerations:
 Here's an overview of the steps to create a custom voice in Speech Studio:
 
 1. [Create a project](professional-voice-create-project.md) to contain your data, voice models, tests, and endpoints. Each project is specific to a country/region and language. If you're going to create multiple voices, it's recommended that you create a project for each voice.
-1. [Set up voice talent](professional-voice-create-project.md). Before you can train a neural voice, you must submit a recording of the voice talent's consent statement. The voice talent statement is a recording of the voice talent reading a statement that they consent to the usage of their speech data to train a custom voice model.
-1. [Prepare training data](professional-voice-create-training-set.md) in the right [format](how-to-custom-voice-training-data.md). It's a good idea to capture the audio recordings in a professional quality recording studio to achieve a high signal-to-noise ratio. The quality of the voice model depends heavily on your training data. Consistent volume, speaking rate, pitch, and consistency in expressive mannerisms of speech are required.
+1. [Set up voice talent](professional-voice-create-project.md). Before you can fine-tune a professional voice, you must submit a recording of the voice talent's consent statement. The voice talent statement is a recording of the voice talent reading a statement that they consent to the usage of their speech data for professional voice fine-tuning.
+1. [Prepare fine-tuning data](professional-voice-create-training-set.md) in the right [format](how-to-custom-voice-training-data.md). It's a good idea to capture the audio recordings in a professional quality recording studio to achieve a high signal-to-noise ratio. The quality of the voice model depends heavily on your fine-tuning data. Consistent volume, speaking rate, pitch, and consistency in expressive mannerisms of speech are required.
 1. [Train your voice model](professional-voice-train-voice.md). Select at least 300 utterances to create a custom voice. A series of data quality checks are automatically performed when you upload them. To build high-quality voice models, you should fix any errors and submit again.
 1. [Test your voice](professional-voice-train-voice.md#test-your-voice-model). Prepare test scripts for your voice model that cover the different use cases for your apps. It’s a good idea to use scripts within and outside the training dataset, so you can test the quality more broadly for different content.
 1. [Deploy and use your voice model](professional-voice-deploy-endpoint.md) in your apps.
@@ -77,5 +77,5 @@ An AI system includes not only the technology, but also the people who use it, t
 ## Next steps
 
 * [Create a project](professional-voice-create-project.md) 
-* [Prepare training data](professional-voice-create-training-set.md)
+* [Prepare fine-tuning data](professional-voice-create-training-set.md)
 * [Train model](professional-voice-train-voice.md)

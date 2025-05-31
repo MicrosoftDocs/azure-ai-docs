@@ -14,7 +14,7 @@ ms.custom: references_regions
 
 # What is custom text to speech avatar?
 
-Custom text to speech avatar allows you to create a customized, one-of-a-kind synthetic talking avatar for your application. With custom text to speech avatar, you can build a unique and natural-looking avatar for your product or brand by providing video recording data of your selected actors. The avatar is even more realistic if you also use a [custom neural voice](#custom-voice-and-custom-text-to-speech-avatar) (or voice sync for avatar) for the same actor.
+Custom text to speech avatar allows you to create a customized, one-of-a-kind synthetic talking avatar for your application. With custom text to speech avatar, you can build a unique and natural-looking avatar for your product or brand by providing video recording data of your selected actors. The avatar is even more realistic if you also use a [professional voice or voice sync for avatar](#custom-voice-and-custom-text-to-speech-avatar) for the same actor.
 
 > [!IMPORTANT]
 > Custom text to speech avatar access is [limited](/legal/cognitive-services/speech-service/custom-neural-voice/limited-access-custom-neural-voice?context=%2fazure%2fcognitive-services%2fspeech-service%2fcontext%2fcontext) based on eligibility and usage criteria. Request access on the [intake form](https://aka.ms/customneural).
@@ -33,9 +33,9 @@ Before you get started, here are some considerations:
 
 **The look of the avatar:** The custom text to speech avatar looks the same as the avatar talent in the training data, and we don't support customizing the appearance of the avatar model, such as clothes, hairstyle, etc. So if your application requires multiple styles of the same avatar, you should prepare training data for each style, as each style of an avatar is considered as a single avatar model.
 
-**The voice of the avatar:** The custom text to speech avatar can work with standard voice, custom neural voice, and voice sync for avatar. 
+**The voice of the avatar:** The custom text to speech avatar can work with standard voice, professional voice, and voice sync for avatar. 
 - Voice sync for avatar: A synthetic voice resembling the avatar talent’s voice is trained alongside the custom avatar utilizing audio from the training video.
-- Custom neural voice: Develop a professional custom neural voice with more training data, providing a premium voice experience for your avatar, including natural conversations, multi-style, and multilingual support.
+- Professional voice: Fine-tune a professional voice with more training data, providing a premium voice experience for your avatar, including natural conversations, multi-style, and multilingual support.
 
 Here's an overview of the steps to create a custom text to speech avatar:
 
@@ -51,12 +51,12 @@ Here's an overview of the steps to create a custom text to speech avatar:
 
 The custom text to speech avatar model contains three components: text analyzer, the text to speech audio synthesizer, and text to speech avatar video renderer. 
 - To generate an avatar video file or stream with the avatar model, text is first input into the text analyzer, which provides the output in the form of a phoneme sequence. 
-- The audio synthesizer synthesizes the speech audio for input text, and these two parts are provided by text to speech or custom neural voice models. 
-- Finally, the neural text to speech avatar model predicts the image of lip sync with the speech audio, so that the synthetic video is generated. 
+- The audio synthesizer synthesizes the speech audio for input text, and these two parts are provided by standard or custonm voice models. 
+- Finally, the text to speech avatar model predicts the image of lip sync with the speech audio, so that the synthetic video is generated. 
 
 :::image type="content" source="./media/custom-avatar-workflow.png" alt-text="Screenshot of displaying an overview of the custom text to speech avatar workflow." lightbox="./media/custom-avatar-workflow.png":::
 
-The neural text to speech avatar models are trained using deep neural networks based on the recording samples of human videos in different languages. All languages of standard voices and custom neural voices can be supported.
+The text to speech avatar models are trained using deep neural networks based on the recording samples of human videos in different languages. All languages of standard voices and custom voices can be supported.
 
 ## Available locations
 
@@ -70,11 +70,11 @@ The custom text to speech avatar can work with a standard voice or custom voice 
 
 There are two kinds of custom voice for a custom avatar:
 - **Voice sync for avatar**: When you enable the voice sync for avatar option during custom avatar training, a synthetic voice model using the likeness of the avatar talent is simultaneously trained with the avatar. This voice is exclusively associated with the custom avatar and can't be independently used. Voice sync for avatar is currently supported in the Southeast Asia, West Europe, and West US 2 regions.
-- **Custom neural voice**: Build a custom neural voice if you prefer a fine-tuned professional voice. [Custom neural voice](../custom-neural-voice.md) and custom text to speech avatar are separate features. You can use them independently or together. If you choose to use them together, you need to apply for [custom neural voice](https://aka.ms/customneural) and [custom text to speech avatar](https://aka.ms/customneural) separately, and you are charged separately for custom neural voice and custom text to speech avatar. For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). Additionally, if you plan to use [custom neural voice](../custom-neural-voice.md) with a text to speech avatar, you need to deploy or [copy](../professional-voice-train-voice.md#copy-your-voice-model-to-another-project) your custom neural voice model to one of the [avatar supported regions](./what-is-custom-text-to-speech-avatar.md#available-locations).
+- **Professional voice**: You can fine-tune a professional voice. [Professional voice fine-tuning](../custom-neural-voice.md) and custom text to speech avatar are separate features. You can use them independently or together. If you choose to use them together, you need to apply for [professional voice fine-tuning](https://aka.ms/customneural) and [custom text to speech avatar](https://aka.ms/customneural) separately, and you are charged separately for professional voice fine-tuning and custom text to speech avatar. For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). Additionally, if you plan to use [professional voice fine-tuning](../custom-neural-voice.md) with a text to speech avatar, you need to deploy or [copy your custom voice model](../professional-voice-train-voice.md#copy-your-voice-model-to-another-project) to one of the [avatar supported regions](./what-is-custom-text-to-speech-avatar.md#available-locations).
 
-If you create a custom voice and want to use it together with the custom avatar, pay attention to the following points:
+If you fine-tune a professional voice and want to use it together with the custom avatar, pay attention to the following points:
 
-- Ensure that the custom voice endpoint is created in the same Azure AI Foundry resource as the custom avatar endpoint. As needed, refer to [Train your professional voice model](../professional-voice-train-voice.md#copy-your-voice-model-to-another-project) to copy the custom voice model to the same Azure AI Foundry resource as the custom avatar endpoint.
+- Ensure that the custom voice endpoint is created in the same Azure AI Foundry resource as the custom avatar endpoint. As needed, refer to [train your professional voice model](../professional-voice-train-voice.md#copy-your-voice-model-to-another-project) to copy the custom voice model to the same Azure AI Foundry resource as the custom avatar endpoint.
 - You can see the custom voice option in the voices list of the [avatar content generation page](https://speech.microsoft.com/portal/talkingavatar) and [live chat voice settings](https://speech.microsoft.com/portal/livechat).
 - If you're using batch synthesis for avatar API, add the `"customVoices"` property to associate the deployment ID of the custom voice model with the voice name in the request. For more information, see the [text to speech properties](batch-synthesis-avatar-properties.md#text-to-speech-properties).
 - If you're using real-time synthesis for avatar API, refer to our sample code on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar) to set the custom voice.

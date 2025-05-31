@@ -1,34 +1,34 @@
 ---
-title: "Training data for custom neural voice - Speech service"
+title: "Professional voice fine-tuning data - Speech service"
 titleSuffix: Azure AI services
-description: "Learn about the data types that you can use to train a custom neural voice."
+description: "Learn about the data types that you can use for professional voice fine-tuning."
 author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 3/10/2025
 ms.author: eur
-#Customer intent: As a developer, I want to learn about the data types that I can use to train a custom neural voice.
+#Customer intent: As a developer, I want to learn about the data types that I can use for professional voice fine-tuning.
 ---
 
-# Training data for custom neural voice
+# Professional voice fine-tuning data
 
-When you're ready to create a custom Text to speech voice for your application, the first step is to gather audio recordings and associated scripts to start training the voice model. The Speech service uses this data to create a unique voice tuned to match the voice in the recordings. After you train the voice, you can start synthesizing speech in your applications.
+When you're ready to create a custom voice for your application, the first step is to gather audio recordings and associated scripts to start professional voice fine-tuning. "Custom voice" is an umbrella term that includes both professional voice fine-tuning and personal voice. The Speech service uses this data for professional voice fine-tuning, creating a unique voice tuned to match the voice in the recordings. After you fine-tune a professional voice, you can start synthesizing speech in your applications.
 
 > [!TIP]
-> To create a voice for production use, we recommend you use a professional recording studio and voice talent. For more information, see [record voice samples to create a custom neural voice](record-custom-voice-samples.md).
+> To create a voice for production use, we recommend you use a professional recording studio and voice talent. For more information, see [record voice samples for professional voice fine-tuning](record-custom-voice-samples.md).
 
-## Types of training data
+## Types of data for professional voice fine-tuning
 
-A voice training dataset includes audio recordings, and a text file with the associated transcriptions. Each audio file should contain a single utterance (a single sentence or a single turn for a dialog system), and be less than 15 seconds long.
+A dataset for professional voice fine-tuning includes audio recordings and a text file with the associated transcriptions. Each audio file should contain a single utterance (a single sentence or a single turn for a dialog system), and be less than 15 seconds long.
 
-In some cases, you might not have the right dataset ready. You can test the custom voice with available audio files, short or long, with or without transcripts.
+In some cases, you might not have the right dataset ready. You can test professional voice fine-tuning with available audio files, short or long, with or without transcripts.
 
-This table lists data types and how each is used to create a custom Text to speech voice model.
+This table lists data types and how each is used for professional voice fine-tuning.
 
 | Data type | Description | When to use | Extra processing required | Processed as |
 | --------- | ----------- | ----------- | ------------------------------ | ---------------- |
-| [Individual utterances + matching transcript](#individual-utterances--matching-transcript) | A collection (.zip) of audio files (.wav) as individual utterances. Each audio file should be 15 seconds or less in length, paired with a formatted transcript (.txt). | Professional recordings with matching transcripts | Ready for training. | Segmented |
+| [Individual utterances + matching transcript](#individual-utterances--matching-transcript) | A collection (.zip) of audio files (.wav) as individual utterances. Each audio file should be 15 seconds or less in length, paired with a formatted transcript (.txt). | Professional recordings with matching transcripts | Ready for fine-tuning. | Segmented |
 | [Long audio + transcript](#long-audio--transcript-preview) | A collection (.zip) of long, unsegmented audio files (.wav or .mp3, longer than 20 seconds, at most 1,000 audio files), paired with a collection (.zip) of transcripts that contains all spoken words. | You have audio files and matching transcripts, but they aren't segmented into utterances. | Segmentation (using batch transcription).<br>Audio format transformation wherever required. | Segmented, Contextual |
 | [Audio only (Preview)](#audio-only-preview) | A collection (.zip) of audio files (.wav or .mp3, at most 1,000 audio files) without a transcript. | You only have audio files available, without transcripts. | Segmentation + transcript generation (using batch transcription).<br>Audio format transformation wherever required.| Segmented, Contextual |
 
@@ -45,7 +45,7 @@ You can prepare recordings of individual utterances and the matching transcript 
 
 To produce a good voice model, create the recordings in a quiet room with a high-quality microphone. Consistent volume, speaking rate, speaking pitch, and expressive mannerisms of speech are essential.
 
-For data format examples, refer to the sample training set on [GitHub](https://github.com/Azure-Samples/Cognitive-Speech-TTS/tree/master/CustomVoice/Sample%20Data). The sample training set includes the sample script and the associated audio.
+For data format examples, refer to the sample dataset on [GitHub](https://github.com/Azure-Samples/Cognitive-Speech-TTS/tree/master/CustomVoice/Sample%20Data). The sample dataset includes the sample script and the associated audio.
 
 ### Audio data for Individual utterances + matching transcript
 
@@ -57,14 +57,14 @@ Follow these guidelines when preparing audio.
 | -------- | ----- |
 | File format | RIFF (.wav), grouped into a .zip file |
 | File name | File name characters supported by Windows OS, with .wav extension.<br>The characters `\ / : * ? " < > \|` aren't allowed. <br>It can't start or end with a space, and can't start with a dot. <br>No duplicate file names allowed. |
-| Sampling rate	| 24 KHz and higher required when creating a custom neural voice. |
+| Sampling rate	| 24 KHz and higher required when fine-tuning a professional voice. |
 | Sample format | PCM, at least 16-bit |
 | Audio length | Shorter than 15 seconds |
 | Archive format | .zip |
 | Maximum archive size | 2048 MB |
 
 > [!NOTE]
-> The default sampling rate for a custom neural voice is 24 KHz. Audio files with a sampling rate lower than 16,000 Hz will be rejected. If a .zip file contains .wav files with different sample rates, only those equal to or higher than 16,000 Hz will be imported. Your audio files with a sampling rate higher than 16,000 Hz and lower than 24 KHz will be up-sampled to 24 KHz to train a neural voice. It's recommended that you should use a sample rate of 24 KHz and higher for your training data.
+> The default sampling rate for professional voice fine-tuning is 24 KHz. Audio files with a sampling rate lower than 16,000 Hz will be rejected. If a .zip file contains .wav files with different sample rates, only those equal to or higher than 16,000 Hz will be imported. Your audio files with a sampling rate higher than 16,000 Hz and lower than 24 KHz will be up-sampled to 24 KHz for fine-tuning. It's recommended that you use a sample rate of 24 KHz and higher for your fine-tuning data.
 
 ### Transcription data for Individual utterances + matching transcript
 
@@ -84,7 +84,7 @@ Here's an example of how the transcripts are organized utterance by utterance in
 0000000002[tab]	We have trouble scoring.
 0000000003[tab]	It was Janet Maslin.
 ```
-It's important that the transcripts are 100% accurate transcriptions of the corresponding audio. Errors in the transcripts introduce quality loss during the training.
+It's important that the transcripts are 100% accurate transcriptions of the corresponding audio. Errors in the transcripts introduce quality loss during the fine-tuning process.
 
 ## Long audio + transcript (Preview)
 
@@ -99,7 +99,7 @@ The service offers two processing modes:
 - **Segmented**: The default processing mode that works with all supported languages
 - **Contextual**: An enhanced mode that retains the audio as a whole to keep the contextual information for more natural intonations.
 
-During the processing of the segmentation, your audio files and the transcripts are also sent to the custom speech service to refine the recognition model so the accuracy can be improved for your data. No data is retained during this process. After the segmentation is done, only the utterances segmented and their mapping transcripts will be stored for your downloading and training.
+During the processing of the segmentation, your audio files and the transcripts are also sent to the custom speech service to refine the recognition model so the accuracy can be improved for your data. No data is retained during this process. After the segmentation is done, only the utterances segmented and their mapping transcripts will be stored for your downloading and fine-tuning.
 
 ### Audio data for Long audio + transcript
 
@@ -109,14 +109,14 @@ Follow these guidelines when preparing audio for segmentation.
 | -------- | ----- |
 | File format | RIFF (.wav) or .mp3, grouped into a .zip file |
 | File name	|  File name characters supported by Windows OS, with .wav extension. <br>The characters `\ / : * ? " < > \|` aren't allowed. <br>It can't start or end with a space, and can't start with a dot. <br>No duplicate file names allowed. |
-| Sampling rate	| 24 KHz and higher required when creating a custom neural voice. |
+| Sampling rate	| 24 KHz and higher required when fine-tuning a professional voice. |
 | Sample format |RIFF(.wav): PCM, at least 16-bit.<br/><br/>mp3: At least 256 KBps bit rate.|
 | Audio length | Longer than 30 seconds |
 | Archive format | .zip |
 | Maximum archive size | 2048 MB, at most 1,000 audio files included |
 
 > [!NOTE]
-> The default sampling rate for a custom neural voice is 24 KHz. Audio files with a sampling rate lower than 16,000 Hz will be rejected. Your audio files with a sampling rate higher than 16,000 Hz and lower than 24 KHz will be up-sampled to 24 KHz to train a neural voice. It's recommended that you should use a sample rate of 24 KHz and higher for your training data.
+> The default sampling rate for professional voice fine-tuning is 24 KHz. Audio files with a sampling rate lower than 16,000 Hz will be rejected. Your audio files with a sampling rate higher than 16,000 Hz and lower than 24 KHz will be up-sampled to 24 KHz for fine-tuning. It's recommended that you should use a sample rate of 24 KHz and higher for your fine-tuning data.
 >
 > Segmented utterances should ideally be between 5 and 15 seconds long. For optimal segmentation results, it is recommended to include natural pauses of 0.5 to 1 second every 5 to 15 seconds of speech, preferably at the end of phrases or sentences.
 
@@ -136,7 +136,7 @@ Transcripts must be prepared to the specifications listed in this table. Each au
 
 All transcripts files in this data type should be grouped into a zip file. For example, you might upload a 45-second audio file named 'kingstory.wav' and a 200-second long audio file named 'queenstory.mp3' in the same zip file. You need to upload another zip file containing the corresponding two transcripts--one named 'kingstory.txt' and the other one named 'queenstory.txt'. Within each plain text file, you provide the full correct transcription for the matching audio.
 
-After your dataset is successfully uploaded, we'll help you segment the audio file into utterances based on the transcript provided. You can check the segmented utterances and the matching transcripts by downloading the dataset. Unique IDs are assigned to the segmented utterances automatically. It's important that you make sure the transcripts you provide are 100% accurate. Errors in the transcripts can reduce the accuracy during the audio segmentation and further introduce quality loss in the training phase that comes later.
+After your dataset is successfully uploaded, we'll help you segment the audio file into utterances based on the transcript provided. You can check the segmented utterances and the matching transcripts by downloading the dataset. Unique IDs are assigned to the segmented utterances automatically. It's important that you make sure the transcripts you provide are 100% accurate. Errors in the transcripts can reduce the accuracy during the audio segmentation and further introduce quality loss in the fine-tuning phase that comes later.
 
 ## Audio only (Preview)
 
@@ -157,14 +157,14 @@ Follow these guidelines when preparing audio.
 | -------- | ----- |
 | File format | RIFF (.wav) or .mp3, grouped into a .zip file |
 | File name |  File name characters supported by Windows OS, with .wav extension. <br>The characters `\ / : * ? " < > \|` aren't allowed. <br>It can't start or end with a space, and can't start with a dot. <br>No duplicate file names allowed. |
-| Sampling rate	| 24 KHz and higher required when creating a custom neural voice. |
+| Sampling rate	| 24 KHz and higher required when fine-tuning a professional voice. |
 | Sample format |RIFF(.wav): PCM, at least 16-bit<br>mp3: At least 256 KBps bit rate.|
 | Audio length | No limit |
 | Archive format | .zip |
 | Maximum archive size | 2048 MB, at most 1,000 audio files included |
 
 > [!NOTE]
-> The default sampling rate for a custom neural voice is 24 KHz. Your audio files with a sampling rate higher than 16,000 Hz and lower than 24 KHz will be up-sampled to 24 KHz to train a neural voice. It's recommended that you should use a sample rate of 24 KHz and higher for your training data.
+> The default sampling rate for professional voice fine-tuning is 24 KHz. Your audio files with a sampling rate higher than 16,000 Hz and lower than 24 KHz will be up-sampled to 24 KHz for fine-tuning. It's recommended that you should use a sample rate of 24 KHz and higher for your fine-tuning data.
 >
 > Segmented utterances should ideally be between 5 and 15 seconds long. For optimal segmentation results, it is recommended to include natural pauses of 0.5 to 1 second every 5 to 15 seconds of speech, preferably at the end of phrases or sentences.
 

@@ -10,33 +10,33 @@ ms.custom: include
 ---
 
 
-In this article, you learn how to train a custom neural voice through the custom voice API.
+In this article, you learn how to fine-tune a professional voice through the custom voice API.
 
 > [!IMPORTANT]
-> Custom neural voice training is currently only available in some regions. After your voice model is trained in a supported region, you can copy it to an AI Foundry resource for Speech in another region as needed. For more information, see the footnotes in the [Speech service table](../../../../regions.md#regions).
+> Professional voice fine-tuning is currently only available in some regions. After your voice model is trained in a supported region, you can copy it to an AI Foundry resource in another region as needed. For more information, see the footnotes in the [Speech service table](../../../../regions.md#regions).
 
-Training duration varies depending on how much data you use. It takes about 40 compute hours on average to train a custom neural voice. Standard subscription (S0) users can train four voices simultaneously. If you reach the limit, wait until at least one of your voice models finishes training, and then try again.
+Training duration varies depending on how much data you use. It takes about 40 compute hours on average to fine-tune a professional voice. Standard subscription (S0) users can train four voices simultaneously. If you reach the limit, wait until at least one of your voice models finishes training, and then try again.
 
 > [!NOTE]
 > Although the total number of hours required per [training method](#choose-a-training-method) varies, the same unit price applies to each. For more information, see the [custom neural training pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
 
 ## Choose a training method
 
-After you validate your data files, use them to build your custom neural voice model. When you create a custom neural voice, you can choose to train it with one of the following methods:
+After you validate your data files, use them to build your custom voice model. When you create a custom voice, you can choose to train it with one of the following methods:
 
 - [Neural](?tabs=neural#create-a-voice-model): Create a voice in the same language of your training data.
 
 - [Neural - cross lingual](?tabs=crosslingual#create-a-voice-model): Create a voice that speaks a different language from your training data. For example, with the `fr-FR` training data, you can create a voice that speaks `en-US`.
 
-  The language of the training data and the target language must both be one of the [languages that are supported](../../../../language-support.md?tabs=tts#custom-neural-voice) for cross lingual voice training. You don't need to prepare training data in the target language, but your test script must be in the target language.
+  The language of the training data and the target language must both be one of the [languages that are supported](../../../../language-support.md?tabs=tts#custom-voice) for cross lingual voice training. You don't need to prepare training data in the target language, but your test script must be in the target language.
 
-- [Neural - multi style](?tabs=multistyle#create-a-voice-model): Create a custom neural voice that speaks in multiple styles and emotions, without adding new training data. Multiple style voices are useful for video game characters, conversational chatbots, audiobooks, content readers, and more.
+- [Neural - multi style](?tabs=multistyle#create-a-voice-model): Create a custom voice that speaks in multiple styles and emotions, without adding new training data. Multiple style voices are useful for video game characters, conversational chatbots, audiobooks, content readers, and more.
 
   To create a multiple style voice, you need to prepare a set of general training data, at least 300 utterances. Select one or more of the preset target speaking styles. You can also create multiple custom styles by providing style samples, of at least 100 utterances per style, as extra training data for the same voice. The supported preset styles vary according to different languages. See [available preset styles across different languages](?tabs=multistyle#available-preset-styles-across-different-languages).
 
   - [Neural - HD Voice (preview)](?tabs=hdvoice#create-a-voice-model): Create a HD voice in the same language of your training data. Azure neural HD voices are LLM-based, optimized for dynamic conversations. Learn more about neural HD voices [here](../../../../high-definition-voices.md).
 
-The language of the training data must be one of the [languages that are supported](../../../../language-support.md?tabs=tts) for custom neural voice, cross lingual, or multiple style or HD voice training.
+The language of the training data must be one of the [languages that are supported](../../../../language-support.md?tabs=tts) for custom voice, cross lingual, or multiple style or HD voice training.
 
 ## Create a voice model
 

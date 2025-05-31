@@ -20,7 +20,7 @@ Here are a few Speech features to consider for flexible and interactive game exp
 - Make the game more accessible for players who are unable to read text in a particular language, including young players who don't read or write. Players can listen to storylines and instructions in their preferred language. 
 - Create game avatars and nonplayable characters (NPC) that can initiate or participate in a conversation in-game. 
 - Standard voice can provide highly natural out-of-box voices with leading voice variety in terms of a large portfolio of languages and voices. 
-- Custom neural voice for creating a voice that stays on-brand with consistent quality and speaking style. You can add emotions, accents, nuances, laughter, and other para linguistic sounds and expressions. 
+- Custom voice for creating a voice that stays on-brand with consistent quality and speaking style. You can add emotions, accents, nuances, laughter, and other para linguistic sounds and expressions. 
 - Use game dialogue prototyping to shorten the amount of time and money spent in product to get the game to market sooner. You can rapidly swap lines of dialog and listen to variations in real-time to iterate the game content.
 
 You can use the [Speech SDK](speech-sdk.md) or [Speech CLI](spx-overview.md) for real-time low latency speech to text, text to speech, language identification, and speech translation. You can also use the [Batch transcription API](batch-transcription.md) to transcribe prerecorded speech to text. To synthesize a large volume of text input (long and short) to speech, use the [Batch synthesis API](batch-synthesis.md).
@@ -29,7 +29,7 @@ For information about locale and regional availability, see [Language and voice 
 
 ## Text to speech
 
-Help bring everyone into the conversation by converting text messages to audio using [Text to speech](text-to-speech.md) for scenarios, such as game dialogue prototyping, greater accessibility, or nonplayable character (NPC) voices. Text to speech includes [standard voice](language-support.md?tabs=tts#standard-voices) and [custom voice](language-support.md?tabs=tts#custom-neural-voice) features. Standard voice can provide highly natural out-of-box voices with leading voice variety in terms of a large portfolio of languages and voices. Custom neural voice is an easy-to-use self-service for creating a highly natural custom voice. 
+Help bring everyone into the conversation by converting text messages to audio using [Text to speech](text-to-speech.md) for scenarios, such as game dialogue prototyping, greater accessibility, or nonplayable character (NPC) voices. Text to speech includes [standard voice](language-support.md?tabs=tts#standard-voices) and [custom voice](language-support.md?tabs=tts#custom-voice) features. Standard voice can provide highly natural out-of-box voices with leading voice variety in terms of a large portfolio of languages and voices. Custom voice is an easy-to-use self-service for creating a highly natural custom voice. 
 
 When enabling this functionality in your game, keep in mind the following benefits:
 

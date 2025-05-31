@@ -20,7 +20,7 @@ With personal voice, you can enable your users to get AI generated replication o
 > Personal voice is available in these regions: West Europe, East US, West US 2, South East Asia and East Asia. 
 > For supported locales, see [personal voice language support](./language-support.md?tabs=tts#personal-voice).
 
-The following table summarizes the difference between personal voice and professional custom neural voice.  
+The following table summarizes the difference between personal voice and professional voice.  
  
 | Comparison | Personal voice | Professional voice |
 |-------|-------------------------|-----|
@@ -75,5 +75,5 @@ We care about the people who use AI and the people who will be affected by it as
 ## Next steps
 
 - [Create a project](./personal-voice-create-project.md). 
-- Learn more about custom neural voice in the [overview](custom-neural-voice.md).
+- Learn more about custom voice in the [overview](custom-neural-voice.md).
 - Learn more about Speech Studio in the [overview](speech-studio-overview.md).

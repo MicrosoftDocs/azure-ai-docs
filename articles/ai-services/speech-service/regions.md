@@ -104,7 +104,7 @@ The regions in these tables support most of the core features of the Speech serv
 
 # [Text to speech](#tab/tts)
 
-| **Region** | **Neural text to speech** | **Batch synthesis API** | **HD voices** | **Azure OpenAI voices**  | **Custom neural voice** | **Custom neural voice training** | **Custom neural voice high performance endpoint** | **Personal voice** | **Text to speech avatar** | **Custom avatar** | **Custom avatar training** |
+| **Region** | **Neural text to speech** | **Batch synthesis API** | **HD voices** | **Azure OpenAI voices**  | **Custom voice** | **Custom voice training** | **Custom voice high performance endpoint** | **Personal voice** | **Text to speech avatar** | **Custom avatar** | **Custom avatar training** |
 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 | australiaeast      | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
 | brazilsouth        | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |

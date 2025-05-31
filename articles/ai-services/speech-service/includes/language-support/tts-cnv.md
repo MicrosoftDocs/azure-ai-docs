@@ -7,7 +7,7 @@ ms.author: eur
 ms.custom: references_regions
 ---
 
-| Locale (BCP-47) | Language | Custom neural voice feature |
+| Locale (BCP-47) | Language | Custom voice feature |
 | ----- | ----- | ----- |
 | `ar-EG` | Arabic (Egypt) | Professional voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary|
 | `ar-OM` | Arabic (Oman)| Professional voice |

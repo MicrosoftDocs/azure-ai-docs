@@ -64,9 +64,9 @@ This example alternates between the `en-US-AvaMultilingualNeural` and `en-US-And
 </speak>
 ```
 
-#### Custom neural voice example
+#### Custom voice example
 
-To use your [custom neural voice](professional-voice-deploy-endpoint.md#use-your-custom-voice), specify the model name as the voice name in SSML. 
+To use your [custom voice](professional-voice-deploy-endpoint.md#use-your-custom-voice), specify the model name as the voice name in SSML. 
 
 This example uses a custom voice named **my-custom-voice**. 
 
@@ -126,7 +126,7 @@ The following table describes the usage of the `mstts:express-as` element's attr
 
 | Attribute | Description | Required or optional |
 | ---------- | ---------- | ---------- |
-| `style` | The voice-specific speaking style. You can express emotions like cheerfulness, empathy, and calmness. You can also optimize the voice for different scenarios like customer service, newscast, and voice assistant. If the style value is missing or invalid, the entire `mstts:express-as` element is ignored and the service uses the default neutral speech. For custom neural voice styles, see the [custom neural voice style example](#custom-neural-voice-style-example). | Required |
+| `style` | The voice-specific speaking style. You can express emotions like cheerfulness, empathy, and calmness. You can also optimize the voice for different scenarios like customer service, newscast, and voice assistant. If the style value is missing or invalid, the entire `mstts:express-as` element is ignored and the service uses the default neutral speech. For custom voice styles, see the [custom voice style example](#custom-voice-style-example). | Required |
 | `styledegree` | The intensity of the speaking style. You can specify a stronger or softer style to make the speech more expressive or subdued. The range of accepted values are: `0.01` to `2` inclusive. The default value is `1`, which means the predefined style intensity. The minimum unit is `0.01`, which results in a slight tendency for the target style. A value of `2` results in a doubling of the default style intensity. If the style degree is missing or isn't supported for your voice, this attribute is ignored.| Optional |
 | `role`| The speaking role-play. The voice can imitate a different age and gender, but the voice name isn't changed. For example, a male voice can raise the pitch and change the intonation to imitate a female voice, but the voice name isn't changed. If the role is missing or isn't supported for your voice, this attribute is ignored. | Optional |
 
@@ -223,9 +223,9 @@ This SSML snippet illustrates how the `role` attribute is used to change the rol
 </speak>
 ```
 
-#### Custom neural voice style example
+#### Custom voice style example
 
-You can train your custom neural voice to speak with some preset styles such as `cheerful`, `sad`, and `whispering`. You can also [train a custom neural voice](professional-voice-train-voice.md?tabs=multistyle#train-your-custom-neural-voice-model) to speak in a custom style as determined by your training data. To use your custom neural voice style in SSML, specify the style name that you previously entered in Speech Studio.
+You can train your custom voice to speak with some preset styles such as `cheerful`, `sad`, and `whispering`. You can also [fine-tune a professional voice](professional-voice-train-voice.md?tabs=multistyle#train-your-custom-neural-voice-model) to speak in a custom style as determined by your training data. To use your custom voice style in SSML, specify the style name that you previously entered in Speech Studio.
 
 This example uses a custom voice named **my-custom-voice**. The custom voice speaks with the `cheerful` preset style and style degree of `2`, and then with a custom style named **my-custom-style** and style degree of `0.01`. 
 
@@ -244,7 +244,7 @@ This example uses a custom voice named **my-custom-voice**. The custom voice spe
 
 ## Speaker profile ID
 
-You use the `mstts:ttsembedding` element to specify the `speakerProfileId` property for a [personal voice](./personal-voice-overview.md). Personal voice is a custom neural voice that's trained on your own voice or your customer's voice. For more information, see [create a personal voice](./personal-voice-create-voice.md).
+You use the `mstts:ttsembedding` element to specify the `speakerProfileId` property for a [personal voice](./personal-voice-overview.md). Personal voice is a custom voice that's trained on your own voice or your customer's voice. For more information, see [create a personal voice](./personal-voice-create-voice.md).
 
 The following SSML example uses the `<mstts:ttsembedding>` element with a voice name and speaker profile ID.
 
