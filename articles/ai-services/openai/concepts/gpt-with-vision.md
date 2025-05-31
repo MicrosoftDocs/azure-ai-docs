@@ -6,13 +6,13 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 02/20/2025
+ms.date: 05/31/2025
 manager: nitinme
 ---
 
 # Vision-enabled chat model concepts
 
-Vision-enabled chat models are large multimodal models (LMM) developed by OpenAI that can analyze images and provide textual responses to questions about them. They incorporate both natural language processing and visual understanding. The current vision-enabled models are GPT-4 Turbo with Vision, GPT-4o, and GPT-4o-mini. This guide provides details on their capabilities and limitations.
+Vision-enabled chat models are large multimodal models (LMM) developed by OpenAI that can analyze images and provide textual responses to questions about them. They incorporate both natural language processing and visual understanding. This guide provides details on their capabilities and limitations. To see which models support image input, see the [Models page](./models.md).
 
 To try out vision-enabled chat models, see the [quickstart](/azure/ai-services/openai/gpt-v-quickstart).
 
@@ -20,6 +20,16 @@ To try out vision-enabled chat models, see the [quickstart](/azure/ai-services/o
 
 The vision-enabled models answer general questions about what's present in the images you upload.
 
+
+## Input limitations
+
+This section describes the limitations of vision-enabled chat models.
+
+### Image support
+
+- **Maximum input image size**: The maximum size for input images is restricted to 20 MB.
+- **Low resolution accuracy**: When images are analyzed using the "low resolution" setting, it allows for faster responses and uses fewer input tokens for certain use cases. However, this could impact the accuracy of object and text recognition within the image.
+- **Image chat restriction**: When you upload images in [Azure AI Foundry portal](https://ai.azure.com/) or the API, there is a limit of 10 images per chat call.
 
 ## Special pricing information
 
@@ -69,16 +79,6 @@ For a typical use case, take a 3-minute video with a 100-token prompt input. The
 
 Additionally, there's a one-time indexing cost of $0.15 to generate the Video Retrieval index for this 3-minute video. This index can be reused across any number of Video Retrieval and GPT-4 Turbo with Vision API calls.
 -->
-
-## Input limitations
-
-This section describes the limitations of vision-enabled chat models.
-
-### Image support
-
-- **Maximum input image size**: The maximum size for input images is restricted to 20 MB.
-- **Low resolution accuracy**: When images are analyzed using the "low resolution" setting, it allows for faster responses and uses fewer input tokens for certain use cases. However, this could impact the accuracy of object and text recognition within the image.
-- **Image chat restriction**: When you upload images in [Azure AI Foundry portal](https://ai.azure.com/) or the API, there is a limit of 10 images per chat call.
 
 <!--
 ### Video support
