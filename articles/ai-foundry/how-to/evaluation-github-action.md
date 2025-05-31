@@ -5,7 +5,7 @@ description: How to run evaluation in GitHub Action to streamline the evaluation
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 05/28/2025
+ms.date: 06/1/2025
 ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt
@@ -47,11 +47,11 @@ The input of ai-agent-evals includes:
 
 # [Foundry project](#tab/foundry-project)
 
-- `azure-ai-project-endpoint`: The endpoint of the Azure AI project. This is used to connect to Azure OpenAI to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
+- `azure-ai-project-endpoint`: The endpoint of the Azure AI project. This is used to connect to your AI project to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
 
 # [Hub based project](#tab/hub-project)
 
-- `azure-aiproject-connection-string`: The connection string of the Azure AI project. This is used to connect to Azure OpenAI to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
+- `azure-aiproject-connection-string`: The connection string of the Azure AI project. This is used to connect to your AI project to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
 
 ---
 - `deployment-name`: the deployed model name for evaluation judgement.
@@ -96,20 +96,52 @@ Here's a sample of the dataset:
 
 To use the GitHub Action, add the GitHub Action to your CI/CD workflows and specify the trigger criteria (for example, on commit) and file paths to trigger your automated workflows.
 
-# [Foundry project](#tab/foundry-project)
-
-Specify v2-beta.
-
-# [Hub based project](#tab/hub-project)
-
-Specify v1-beta.
-
----
-
 > [!TIP]
 > To minimize costs, you should avoid running evaluation on every commit.  
 
 This example illustrates how Azure Agent AI Evaluation can be run when comparing different agents with agent IDs.
+
+# [Foundry project](#tab/foundry-project)
+
+```YAML
+name: "AI Agent Evaluation"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  run-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Azure login using Federated Credentials
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Run Evaluation
+        uses: microsoft/ai-agent-evals@v2-beta
+        with:
+          # Replace placeholders with values for your Azure AI Project
+          azure-ai-project-endpoint: "<your-ai-project-endpoint>"
+          deployment-name: "<your-deployment-name>"
+          agent-ids: "<your-ai-agent-ids>"
+          data-path: ${{ github.workspace }}/path/to/your/data-file
+
+```
+
+# [Hub based project](#tab/hub-project)
 
 ```YAML
 name: "AI Agent Evaluation"
@@ -148,6 +180,8 @@ jobs:
           data-path: ${{ github.workspace }}/path/to/your/data-file
 
 ```
+
+---
 
 ### AI agent evaluations output
 
