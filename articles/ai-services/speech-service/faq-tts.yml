@@ -62,7 +62,7 @@ sections:
       - question: |
           How much data is required for professional voice fine-tuning?
         answer: |
-          You need trainig data of at least 300 lines of recordings (or approximately 30 minutes of speech) for professional voice fine-tuning. We recommend 2,000 lines of recordings (or approximately 2-3 hours of speech) to create a voice for production use. For the script selection criteria, see [Record custom voice samples](record-custom-voice-samples.md).
+          You need training data of at least 300 lines of recordings (or approximately 30 minutes of speech) for professional voice fine-tuning. We recommend 2,000 lines of recordings (or approximately 2-3 hours of speech) to create a voice for production use. For the script selection criteria, see [Record custom voice samples](record-custom-voice-samples.md).
       - question: |
           Can we include duplicate text sentences in the same set of training data?
         answer: |
