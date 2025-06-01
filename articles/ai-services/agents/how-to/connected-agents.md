@@ -223,22 +223,21 @@ To create a multi-agent setup, follow these steps:
 
     ```python
     import os
-    from azure.ai.projects import AIProjectClient
-    from azure.ai.projects.models import ConnectedAgentTool, MessageRole
+    from azure.ai.agents import AgentsClient
+    from azure.ai.agents.models import ConnectedAgentTool, MessageRole
     from azure.identity import DefaultAzureCredential
     
     
-    project_client = AIProjectClient(
-    endpoint=os.environ["PROJECT_ENDPOINT"],
-    credential=DefaultAzureCredential(),
-    api_version="latest",
+    agents_client = AgentsClient(
+        endpoint=os.environ["PROJECT_ENDPOINT"],
+        credential=DefaultAzureCredential(),
     )
     ```
 
 1. Create an agent that will be connected to a "main" agent.
 
     ```python
-    stock_price_agent = project_client.agents.create_agent(
+    stock_price_agent = agents_client.create_agent(
         model=os.environ["MODEL_DEPLOYMENT_NAME"],
         name="stock_price_bot",
         instructions="Your job is to get the stock price of a company. If you don't know the realtime stock price, return the last known stock price.",
@@ -257,7 +256,7 @@ To create a multi-agent setup, follow these steps:
 1. Create the "main" agent that will use the connected agent.
 
     ```python
-    agent = project_client.agents.create_agent(
+    agent = agents_client.create_agent(
         model=os.environ["MODEL_DEPLOYMENT_NAME"],
         name="my-agent",
         instructions="You are a helpful agent, and use the available tools to get stock prices.",
@@ -266,55 +265,46 @@ To create a multi-agent setup, follow these steps:
     
     print(f"Created agent, ID: {agent.id}")
     ```
-
-1. Create a thread and add a message to it.
     
-    ```python
-    thread = project_client.agents.create_thread()
-    print(f"Created thread, ID: {thread.id}")
-    
-    # Create message to thread
-    message = project_client.agents.create_message(
-        thread_id=thread.id,
-        role=MessageRole.USER,
-        content="What is the stock price of Microsoft?",
-    )
-    print(f"Created message, ID: {message.id}")
-    
-    ```
-    
-1. Create a run and wait for it to complete. 
+1. Create a thread and run, and wait for it to complete. 
     
     ```python
     
     # Create and process Agent run in thread with tools
-    run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
-    print(f"Run finished with status: {run.status}")
+    thread_run = agents_client.create_thread_and_process_run(
+        agent_id=agent.id,
+        thread=AgentThreadCreationOptions(
+            messages=[
+                {
+                    "role": "user",
+                    "content": "What is the stock price of Microsoft?",
+                }
+            ]
+        ),
+    )
+    print(f"Created thread run, ID: {thread_run.id}")
+    print(f"Run finished with status: {thread_run.status}")
     
-    if run.status == "failed":
-        print(f"Run failed: {run.last_error}")
+    if thread_run.status == "failed":
+        print(f"Run failed: {thread_run.last_error}")
     
     # Delete the Agent when done
-    project_client.agents.delete_agent(agent.id)
+    agents_client.delete_agent(agent.id)
     print("Deleted agent")
     
     # Delete the connected Agent when done
-    project_client.agents.delete_agent(stock_price_agent.id)
+    agents_client.delete_agent(stock_price_agent.id)
     print("Deleted connected agent")
     ```
 
 1. Print the agent's response. The main agent will compile the responses from the connected agents and provide the response. connected agent responses are only visible to the main agent, and not to the end user.
     
     ```python
-    # Print the Agent's response message with optional citation
-    response_message = project_client.agents.list_messages(thread_id=thread.id).get_last_message_by_role(
-        MessageRole.AGENT
-    )
-    if response_message:
-        for text_message in response_message.text_messages:
-            print(f"Agent response: {text_message.text.value}")
-        for annotation in response_message.url_citation_annotations:
-            print(f"URL Citation: [{annotation.url_citation.title}]({annotation.url_citation.url})")
+    messages = agents_client.messages.list(thread_id=thread_run.thread_id, order=ListSortOrder.ASCENDING)
+    for msg in messages:
+        if msg.text_messages:
+            last_text = msg.text_messages[-1]
+            print(f"{msg.role}: {last_text.text.value}")
     ```
 
 ::: zone-end
