@@ -14,6 +14,7 @@ ms.custom:
   - references_regions
   - tool_generated
   - build-aifnd
+  - build-2025
 ---
 
 # Available Azure AI Foundry Models

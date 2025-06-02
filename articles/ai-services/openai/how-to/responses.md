@@ -2,13 +2,15 @@
 title: Azure OpenAI Responses API
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI's new stateful Responses API.
+author: mrbullwinkle
+ms.author: mbullwin
 manager: nitinme
+ms.date: 05/25/2025
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 05/25/2025
-author: mrbullwinkle    
-ms.author: mbullwin
-ms.custom: references_regions
+ms.custom:
+  - references_regions
+  - build-2025
 ---
 
 # Azure OpenAI Responses API (Preview)

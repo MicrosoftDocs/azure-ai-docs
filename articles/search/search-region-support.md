@@ -2,15 +2,15 @@
 title: Supported Regions
 titleSuffix: Azure AI Search
 description: Shows supported regions and feature availability across regions for Azure AI Search.
-
-manager: nitinme
 author: haileytap
 ms.author: haileytapia
+manager: nitinme
+ms.date: 05/29/2025
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.custom: references_regions
-ms.date: 05/29/2025
-
+ms.custom:
+  - references_regions
+  - build-2025
 ---
 
 # Azure AI Search regions list

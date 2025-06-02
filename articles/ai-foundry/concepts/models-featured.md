@@ -13,6 +13,7 @@ ms.topic: conceptual
 ms.custom:
   - references_regions
   - build-aifnd
+  - build-2025
 ---
 
 # Azure AI Foundry Models available for standard deployment

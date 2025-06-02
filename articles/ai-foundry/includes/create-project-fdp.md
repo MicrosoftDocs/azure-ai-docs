@@ -10,6 +10,7 @@ ms.topic: include
 ms.custom:
   - include
   - build-aifnd
+  - build-2025
 ---
 
 > [!TIP]

@@ -14,6 +14,7 @@ ms.custom:
   - build-2024
   - ignite-2024
   - build-aifnd
+  - build-2025
 zone_pivot_groups: project-type
 # customer intent: As a developer, I want to create an Azure AI Foundry project so I can work with generative AI.
 ---

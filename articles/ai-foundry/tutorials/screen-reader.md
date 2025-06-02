@@ -13,6 +13,7 @@ ms.custom:
   - ignite-2023
   - build-2024
   - build-aifnd
+  - build-2025
 ---
 
 # Use a screen reader with Azure AI Foundry

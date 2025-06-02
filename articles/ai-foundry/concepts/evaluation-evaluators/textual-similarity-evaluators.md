@@ -11,6 +11,7 @@ ms.service: azure-ai-foundry
 ms.topic: reference
 ms.custom:
   - build-aifnd
+  - build-2025
 ---
 
 # Textual similarity evaluators

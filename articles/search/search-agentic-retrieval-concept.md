@@ -2,14 +2,15 @@
 title: Agentic Retrieval
 titleSuffix: Azure AI Search
 description: Learn about agentic retrieval concepts, architecture, and use cases.
-
-manager: nitinme
 author: HeidiSteen
 ms.author: heidist
+manager: nitinme
+ms.date: 05/19/2025
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.custom: references_regions
-ms.date: 05/19/2025
+ms.custom:
+  - references_regions
+  - build-2025
 ---
 
 # Agentic retrieval in Azure AI Search

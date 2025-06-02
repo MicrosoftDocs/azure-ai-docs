@@ -12,6 +12,7 @@ ms.service: azure-ai-foundry
 ms.topic: conceptual
 ms.custom:
   - build-aifnd
+  - build-2025
 ---
 
 # Choose an Azure resource type for AI foundry

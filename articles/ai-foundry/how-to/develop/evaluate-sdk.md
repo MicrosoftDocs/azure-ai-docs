@@ -14,6 +14,7 @@ ms.custom:
   - references_regions
   - ignite-2024
   - build-aifnd
+  - build-2025
 ---
 # Evaluate your Generative AI application locally with the Azure AI Evaluation SDK
 

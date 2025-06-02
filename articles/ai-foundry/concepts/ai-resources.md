@@ -15,6 +15,7 @@ ms.custom:
   - ai-learning-hub
   - ignite-2024
   - build-aifnd
+  - build-2025
 ---
 
 # Hub resources overview

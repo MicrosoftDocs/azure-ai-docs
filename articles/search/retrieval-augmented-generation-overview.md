@@ -2,16 +2,16 @@
 title: RAG and generative AI
 titleSuffix: Azure AI Search
 description: Learn how generative AI and retrieval augmented generation (RAG) patterns are used in Azure AI Search solutions.
-
-manager: nitinme
 author: HeidiSteen
 ms.author: heidist
+manager: nitinme
+ms.date: 04/15/2025
 ms.service: azure-ai-search
+ms.topic: conceptual
 ms.custom:
   - ignite-2023
   - ignite-2024
-ms.topic: conceptual
-ms.date: 04/15/2025
+  - build-2025
 ---
 
 # Retrieval Augmented Generation (RAG) in Azure AI Search

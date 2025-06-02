@@ -12,6 +12,7 @@ ms.topic: quickstart-bicep
 ms.custom:
   - "subject-bicepqs"
   - "build-aifnd"
+  - "build-2025"
 # Customer intent: As a DevOps person, I need to automate or customize the creation of an AI Foundry resource by using templates.
 ---
 

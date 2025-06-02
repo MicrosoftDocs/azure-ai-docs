@@ -11,6 +11,7 @@ ms.custom:
   - include
   - build-2024
   - build-aifnd
+  - build-2025
 ---
 
 |Resource type|Resource provider|Kind|

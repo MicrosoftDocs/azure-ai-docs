@@ -11,6 +11,7 @@ ms.custom:
   - include
   - references_regions
   - build-aifnd
+  - build-2025
 ---
 
 [!INCLUDE [uses-hub-only](uses-hub-only.md)]

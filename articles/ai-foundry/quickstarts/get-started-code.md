@@ -16,6 +16,7 @@ ms.custom:
   - ignite-2024
   - update-code5
   - build-aifnd
+  - build-2025
 zone_pivot_groups: project-type
 # customer intent: As a developer, I want to start using the Azure AI Foundry portal and client libraries.
 ---

@@ -1,14 +1,15 @@
 ---
-title: 'Test a fine-tuned model'
+title: "Test a fine-tuned model"
 titleSuffix: Azure OpenAI
 description: Learn how to test your fine-tuned model with Azure OpenAI in Azure AI Foundry Models by using Python, the REST APIs, or Azure AI Foundry portal.
-manager: nitinme
-ms.service: azure-ai-openai
-ms.custom: build-2025
-ms.topic: how-to
-ms.date: 05/20/2025
 author: voutilad
 ms.author: davevoutila
+manager: nitinme
+ms.date: 05/20/2025
+ms.service: azure-ai-openai
+ms.topic: how-to
+ms.custom:
+  - build-2025
 ---
 
 # Deploy a fine-tuned model for testing (Preview)

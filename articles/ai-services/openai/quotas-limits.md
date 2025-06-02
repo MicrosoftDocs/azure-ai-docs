@@ -2,14 +2,15 @@
 title: Azure OpenAI in Azure AI Foundry Models quotas and limits
 description: Quick reference, detailed description, and best practices on the quotas and limits for the OpenAI service in Azure AI services.
 author: mrbullwinkle
+ms.author: mbullwin
 manager: nitinme
+ms.date: 05/29/2025
 ms.service: azure-ai-openai
+ms.topic: conceptual
 ms.custom:
   - ignite-2023
   - references_regions
-ms.topic: conceptual
-ms.date: 05/29/2025
-ms.author: mbullwin
+  - build-2025
 ---
 
 # Azure OpenAI in Azure AI Foundry Models quotas and limits

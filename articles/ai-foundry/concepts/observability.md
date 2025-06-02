@@ -11,6 +11,7 @@ ms.service: azure-ai-foundry
 ms.topic: conceptual
 ms.custom:
   - build-aifnd
+  - build-2025
 ---
 
 # Observability in generative AI  

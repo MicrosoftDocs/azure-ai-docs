@@ -11,6 +11,7 @@ ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:
   - build-aifnd
+  - build-2025
 zone_pivot_groups: foundry-sdk-overview-languages
 # customer intent: As a developer, I want to install the Azure AI Foundry SDK in my development environment
 ---

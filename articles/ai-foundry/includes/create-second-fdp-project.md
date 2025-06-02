@@ -12,6 +12,7 @@ ms.custom:
   - build-2024
   - ignite-2024
   - build-aifnd
+  - build-2025
 ---
 
 

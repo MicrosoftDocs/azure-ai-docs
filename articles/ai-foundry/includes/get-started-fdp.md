@@ -9,6 +9,7 @@ ms.topic: include
 ms.custom:
   - include file
   - build-aifnd
+  - build-2025
 ---
 
 In this quickstart, you use [Azure AI Foundry](https://ai.azure.com) to:
