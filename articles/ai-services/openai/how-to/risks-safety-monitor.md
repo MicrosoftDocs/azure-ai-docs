@@ -6,7 +6,7 @@ author: PatrickFarley
 ms.author: pafarley 
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 02/20/2025
+ms.date: 05/31/2025
 manager: nitinme
 ---
 
@@ -43,14 +43,14 @@ Adjust your content filter configuration to further align with business needs an
 
 ## Potentially abusive user detection   
 
-The **Potentially abusive user detection** pane leverages user-level abuse reporting to show information about users whose behavior has resulted in blocked content. The goal is to help you get a view of the sources of harmful content so you can take responsive actions to ensure the model is being used in a responsible way. 
+The **Potentially abusive user detection** pane shows information about users whose behavior has resulted in blocked content. The goal is to help you get a view of the sources of harmful content so you can take responsive actions to ensure the model is being used in a responsible way. 
 
 
 To use Potentially abusive user detection, you need:
 - A content filter configuration applied to your deployment.
 - You must be sending user ID information in your Chat Completion requests (see the _user_ parameter of the [Completions API](/azure/ai-services/openai/reference#completions), for example).
     > [!CAUTION]
-    > Use GUID strings to identify individual users. Do not include sensitive personal information in the _user_ field.
+    > Use GUID strings to identify individual users. Don't include sensitive personal information in the _user_ field.
 - An Azure Data Explorer database set up to store the user analysis results (instructions below).
 
 ### Set up your Azure Data Explorer database

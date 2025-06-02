@@ -104,7 +104,7 @@ productDirectory:
           text: Speech
         - url: ../ai-services/computer-vision/index.yml
           text: Vision
-        - url: ../ai-services/custom-vision-service/index.yml
+        - url: ../ai-services/translator/index.yml
           text: Translator
         - url: ../ai-services/language-service/index.yml
           text: Language

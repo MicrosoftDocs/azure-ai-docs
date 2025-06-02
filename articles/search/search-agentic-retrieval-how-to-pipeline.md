@@ -263,4 +263,6 @@ Look at output tokens in the [activity array](search-agentic-retrieval-how-to-re
 
 + [Agentic retrieval in Azure AI Search](search-agentic-retrieval-concept.md)
 
++ [Agentic RAG: build a reasoning retrieval engine with Azure AI Search (YouTube video)](https://www.youtube.com/watch?v=PeTmOidqHM8)
+
 + [Azure OpenAI Demo featuring agentic retrieval](https://github.com/Azure-Samples/azure-search-openai-demo)
