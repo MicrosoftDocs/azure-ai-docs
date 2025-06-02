@@ -14,11 +14,27 @@ ms.author: lajanuar
 
 Azure AI Language is updated on an ongoing basis. To stay up-to-date with recent developments, this article provides you with information about new releases and features.
 
+## Build 2025 Releases (May 19 - 23)
+We released many new updates alongside the 2025 Microsoft Build Conference including:
+-	[Customizing PII detection using your own regex](personally-identifiable-information/how-to/adapt-to-domain-pii#customizing-pii-detection-using-your-own-regex-only-available-for-text-pii-container) (only available for Text PII container)
+-	Support for customizing PII output by [specifying values to exclude](personally-identifiable-information/how-to/adapt-to-domain-pii#customizing-pii-output-by-specifying-values-to-exclude)
+-	Customizing PII detection using [Entity Synonyms](personally-identifiable-information/how-to/adapt-to-domain-pii#api-schema-for-the-entitysynoyms-parameter)
+-	Model support for a new DateOfBirth entity subtype for PII detection. 
+-	Updated preview NER & PII API version: 2025-05-15-preview. This API version includes DateOfBirth support, enhanced phoneNumber AI quality and umbrella entity type support for BankAccount, Passport, Drivers License
+
+More on these releases can be found on our TechCommunity Blog Post
+
 ## May 2025
 
 * Azure AI Language now supports the following agent templates:
     *   [Intent routing](https://aka.ms/intent-triage-agent-template) detects user intent and provides exact answering. Perfect for deterministically intent routing and exact question answering with human controls.
     *   [Exact question answering](https://aka.ms/exact-answer-agent-template) answers high-value predefined questions deterministically to ensure consistent and accurate responses.
+
+## April 2025
+* Updated and improved model GA release for NER
+* Expanded context window for [PII redaction](personally-identifiable-information/overview?tabs=text-pii) – This service update expands the window of detection the PII redaction service considers, enhancing quality and accuracy.
+* The prediction capability of custom models, including Conversational Language Understanding (CLU), custom Named Entity Recognition (NER) and custom text classification, are now available in 3 new regions: Jio India Central, UK West and Canada East.
+* Scanned PDF PII - [Document input for PII redaction](personally-identifiable-information/how-to/redact-document-pii) now supports scanned PDFs, enabling PII detection and redaction in both digital and non-digital documents using OCR.
 
 ## March 2025
 
