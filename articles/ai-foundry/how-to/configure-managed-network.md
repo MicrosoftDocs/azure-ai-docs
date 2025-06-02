@@ -809,7 +809,7 @@ If you plan to use __HuggingFace models__ with the hub, add outbound _FQDN_ rule
 * *.docker.io
 * *.docker.com
 * production.cloudflare.docker.com
-* cnd.auth0.com
+* cdn.auth0.com
 * cdn-lfs.huggingface.co
 
 ### Scenario: Models Sold Directly by Azure 
