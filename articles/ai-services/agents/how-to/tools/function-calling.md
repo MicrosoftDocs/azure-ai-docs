@@ -104,33 +104,39 @@ print(f"Created message, ID: {message['id']}")
 ## Create a run and check the output
 ```python
 # Create and process a run for the agent to handle the message
-run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
+run = project_client.agents.runs.create(thread_id=thread.id, agent_id=agent.id)
 print(f"Created run, ID: {run.id}")
 
 # Poll the run status until it is completed or requires action
 while run.status in ["queued", "in_progress", "requires_action"]:
-    time.sleep(1)
-    run = project_client.agents.runs.get(thread_id=thread.id, run_id=run.id)
+  time.sleep(1)
+  run = agents_client.runs.get(thread_id=thread.id, run_id=run.id)
 
-    if run.status == "requires_action":
-        tool_calls = run.required_action.submit_tool_outputs.tool_calls
-        tool_outputs = []
-        for tool_call in tool_calls:
-            if tool_call.name == "fetch_weather":
-                output = fetch_weather("New York")
-                tool_outputs.append({"tool_call_id": tool_call.id, "output": output})
-        project_client.agents.runs.submit_tool_outputs(thread_id=thread.id, run_id=run.id, tool_outputs=tool_outputs)
+  if run.status == "requires_action" and isinstance(run.required_action, SubmitToolOutputsAction):
+      tool_calls = run.required_action.submit_tool_outputs.tool_calls
+      if not tool_calls:
+          print("No tool calls provided - cancelling run")
+          agents_client.runs.cancel(thread_id=thread.id, run_id=run.id)
+          break
 
-print(f"Run completed with status: {run.status}")
+      tool_outputs = []
+      for tool_call in tool_calls:
+          if isinstance(tool_call, RequiredFunctionToolCall):
+              try:
+                  print(f"Executing tool call: {tool_call}")
+                  output = functions.execute(tool_call)
+                  tool_outputs.append(
+                      ToolOutput(
+                          tool_call_id=tool_call.id,
+                          output=output,
+                      )
+                  )
+              except Exception as e:
+                  print(f"Error executing tool_call {tool_call.id}: {e}")
 
-# Fetch and log all messages from the thread
-messages = project_client.agents.messages.list(thread_id=thread.id)
-for message in messages:
-    print(f"Role: {message['role']}, Content: {message['content']}")
-
-# Delete the agent after use
-project_client.agents.delete_agent(agent.id)
-print("Deleted agent")
+      print(f"Tool outputs: {tool_outputs}")
+      if tool_outputs:
+          agents_client.runs.submit_tool_outputs(thread_id=thread.id, run_id=run.id, tool_outputs=tool_outputs)
 ```
 
 ::: zone-end
