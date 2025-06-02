@@ -2,15 +2,17 @@
 title: Azure AI Foundry Models available for standard deployment
 titleSuffix: Azure AI Foundry
 description: Explore various models available for standard deployment in Azure AI Foundry.
-manager: scottpolly
 author: msakande
+ms.author: mopeakande
+manager: scottpolly
 reviewer: santiagxf
+ms.reviewer: fasantia
+ms.date: 05/19/2025
 ms.service: azure-ai-foundry
 ms.topic: conceptual
-ms.date: 05/19/2025
-ms.author: mopeakande
-ms.reviewer: fasantia
-ms.custom: references_regions
+ms.custom:
+  - references_regions
+  - build-aifnd
 ---
 
 # Azure AI Foundry Models available for standard deployment

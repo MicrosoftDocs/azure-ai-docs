@@ -2,16 +2,22 @@
 title: What is Azure AI Foundry?
 titleSuffix: Azure AI Foundry
 description: Azure AI Foundry is a trusted platform that empowers developers to drive innovation and shape the future with AI in a safe, secure, and responsible way.
+author: sdgilley
+ms.author: sgilley
 manager: scottpolly
-keywords: Azure AI services, cognitive
+ms.reviewer: sgilley
+ms.date: 05/12/2025
 ms.service: azure-ai-foundry
 ms.topic: overview
-ms.date: 05/12/2025
-ms.reviewer: sgilley
-ms.author: sgilley
-author: sdgilley
-ms.custom: ignite-2023, build-2024, ignite-2024
-#customer intent: As a developer, I want to understand what Azure AI Foundry is so that I can use it to build AI applications.
+ms.custom:
+  - ignite-2023
+  - build-2024
+  - ignite-2024
+  - build-aifnd
+keywords:
+  - Azure AI services
+  - cognitive
+# customer intent: As a developer, I want to understand what Azure AI Foundry is so that I can use it to build AI applications.
 ---
 
 # What is Azure AI Foundry?

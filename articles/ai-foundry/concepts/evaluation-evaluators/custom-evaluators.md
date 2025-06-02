@@ -2,13 +2,15 @@
 title: Custom evaluators
 titleSuffix: Azure AI Foundry
 description: Learn how to create custom evaluators for your AI applications using code-based or prompt-based approaches.
+author: lgayhardt
+ms.author: lagayhar
 manager: scottpolly
+ms.reviewer: mithigpe
+ms.date: 05/19/2025
 ms.service: azure-ai-foundry
 ms.topic: reference
-ms.date: 05/19/2025
-ms.reviewer: mithigpe
-ms.author: lagayhar
-author: lgayhardt
+ms.custom:
+  - build-aifnd
 ---
 
 # Custom evaluators

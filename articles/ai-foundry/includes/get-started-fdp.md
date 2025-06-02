@@ -3,10 +3,12 @@ title: Include file
 description: Include file
 author: sgilley
 ms.author: sgilley
+ms.date: 05/13/2025
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 05/13/2025
-ms.custom: include file
+ms.custom:
+  - include file
+  - build-aifnd
 ---
 
 In this quickstart, you use [Azure AI Foundry](https://ai.azure.com) to:

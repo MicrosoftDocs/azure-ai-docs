@@ -2,16 +2,17 @@
 title: How to trace your AI application
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to trace your application with Azure AI Inference SDK.
+author: lgayhardt
+ms.author: lagayhar
 manager: scottpolly
+ms.reviewer: amibp
+ms.date: 05/19/2025
 ms.service: azure-ai-foundry
+ms.topic: how-to
 ms.custom:
   - build-2024
   - ignite-2024
-ms.topic: how-to
-ms.date: 05/19/2025
-ms.reviewer: amibp
-ms.author: lagayhar
-author: lgayhardt
+  - build-aifnd
 ---
 
 # Tracing your AI application (preview)

@@ -2,12 +2,16 @@
 title: Include file
 description: Include file
 author: sdgilley
-ms.reviewer: deeikele
 ms.author: sgilley
+ms.reviewer: deeikele
+ms.date: 04/09/2025
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 04/09/2025
-ms.custom: include, build-2024, ignite-2024
+ms.custom:
+  - include
+  - build-2024
+  - ignite-2024
+  - build-aifnd
 ---
 
 

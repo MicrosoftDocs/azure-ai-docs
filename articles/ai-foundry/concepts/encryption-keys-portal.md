@@ -4,12 +4,13 @@ titleSuffix: Azure AI Foundry
 description: Learn about using customer-managed keys for encryption to improve data security with Azure AI Foundry.
 author: Blackmist
 ms.author: larryfr
+ms.reviewer: deeikele
+ms.date: 05/01/2025
 ms.service: azure-ai-services
+ms.topic: concept-article
 ms.custom:
   - ignite-2023
-ms.topic: concept-article
-ms.date: 05/01/2025
-ms.reviewer: deeikele
+  - build-aifnd
 zone_pivot_groups: project-type
 # Customer intent: As an admin, I want to understand how I can use my own encryption keys with Azure AI Foundry.
 ---

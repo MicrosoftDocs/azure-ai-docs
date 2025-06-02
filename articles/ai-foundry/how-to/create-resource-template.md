@@ -6,10 +6,12 @@ author: deeikele
 ms.author: larryfr
 manager: scottpolly
 reviewer: deeikele
+ms.date: 05/18/2025
 ms.service: azure-ai-foundry
 ms.topic: quickstart-bicep
-ms.custom: "subject-bicepqs"
-ms.date: 05/18/2025
+ms.custom:
+  - "subject-bicepqs"
+  - "build-aifnd"
 # Customer intent: As a DevOps person, I need to automate or customize the creation of an AI Foundry resource by using templates.
 ---
 

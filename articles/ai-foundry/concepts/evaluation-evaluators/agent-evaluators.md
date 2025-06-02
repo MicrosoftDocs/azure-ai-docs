@@ -2,13 +2,15 @@
 title: Agent evaluators for generative AI
 titleSuffix: Azure AI Foundry
 description: Learn how to evaluate Azure AI agents using intent resolution, tool call accuracy, and task adherence evaluators.
+author: lgayhardt
+ms.author: lagayhar
 manager: scottpolly
+ms.reviewer: changliu2
+ms.date: 05/19/2025
 ms.service: azure-ai-foundry
 ms.topic: reference
-ms.date: 05/19/2025
-ms.reviewer: changliu2
-ms.author: lagayhar
-author: lgayhardt
+ms.custom:
+  - build-aifnd
 ---
 
 # Agent evaluators (preview)
