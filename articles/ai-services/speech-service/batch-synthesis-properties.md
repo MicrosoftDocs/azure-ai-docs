@@ -3,11 +3,13 @@ title: Batch synthesis properties for text to speech - Speech service
 titleSuffix: Azure AI services
 description: Learn about the batch synthesis properties for text to speech.
 author: eric-urban
+ms.author: eur
 manager: nitinme
+ms.date: 3/10/2025
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
-ms.author: eur
+ms.custom:
+  - build-2025
 ---
 
 # Batch synthesis properties for text to speech

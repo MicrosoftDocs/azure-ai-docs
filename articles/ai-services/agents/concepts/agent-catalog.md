@@ -2,12 +2,14 @@
 title: How to use the AI agent catalog
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to use the AI agent catalog to use code samples to quickly deploy agents.
+author: aahill
+ms.author: aahi
 manager: nitinme
+ms.date: 05/18/2025
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 05/18/2025
-ms.author: aahi
-author: aahill
+ms.custom:
+  - build-2025
 ---
 
 # Get started with the Agent Catalog

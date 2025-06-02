@@ -5,12 +5,14 @@ description: Learn about OpenAI voices that you can use for text to speech in Az
 author: eric-urban
 ms.author: eur
 manager: nitinme
+ms.reviewer: eur
+ms.date: 2/22/2025
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 2/22/2025
-ms.reviewer: eur
-ms.custom: references_regions
-#customer intent: As a user who implements text to speech, I want to understand the options and differences between available OpenAI text to speech voices in Azure AI services.
+ms.custom:
+  - references_regions
+  - build-2025
+# customer intent: As a user who implements text to speech, I want to understand the options and differences between available OpenAI text to speech voices in Azure AI services.
 ---
 
 # What are OpenAI text to speech voices? 

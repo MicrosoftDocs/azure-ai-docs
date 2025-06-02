@@ -3,11 +3,13 @@ title: "Create an Azure AI Content Understanding single-file task in the Azure A
 titleSuffix: Azure AI services
 description: Create an Azure AI Content Understanding single-file task in the Azure AI Foundry portal
 author: laujan
-manager: nitinme
 ms.author: kabrow
+manager: nitinme
+ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: quickstart
-ms.date: 05/19/2025
+ms.custom:
+  - build-2025
 ---
 
 # Quickstart: Use Content Understanding with a single file

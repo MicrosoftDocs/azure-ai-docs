@@ -2,15 +2,19 @@
 title: Models available in Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
 description: Explore the models available via the Azure AI Foundry Models and their capabilities.
-manager: scottpolly
 author: msakande
+ms.author: mopeakande
+manager: scottpolly
 reviewer: santiagxf
+ms.reviewer: fasantia
+ms.date: 05/19/2025
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 05/19/2025
-ms.author: mopeakande
-ms.reviewer: fasantia
-ms.custom: references_regions, tool_generated
+ms.custom:
+  - references_regions
+  - tool_generated
+  - build-aifnd
+  - build-2025
 ---
 
 # Available Azure AI Foundry Models

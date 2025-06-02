@@ -1,14 +1,15 @@
 ---
-title: 'How to use the data agents in Microsoft Fabric with Azure AI Foundry Agent Service'
+title: "How to use the data agents in Microsoft Fabric with Azure AI Foundry Agent Service"
 titleSuffix: Azure AI Foundry
 description: Learn how to perform data analytics in Azure AI Foundry Agents using Microsoft Fabric data agent.
-services: cognitive-services
-manager: nitinme
-ms.service: azure-ai-agent-service
-ms.topic: how-to
-ms.date: 04/07/2025
 author: aahill
 ms.author: aahi
+manager: nitinme
+ms.date: 04/07/2025
+ms.service: azure-ai-agent-service
+ms.topic: how-to
+ms.custom:
+  - build-2025
 zone_pivot_groups: selection-fabric-data-agent
 ---
 

@@ -1,11 +1,14 @@
 ---
 author: laujan
+ms.author: lajanuar
 manager: nitinme
+ms.date: 12/19/2023
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/19/2023
-ms.author: lajanuar
-ms.custom: devx-track-js, ignite-2024
+ms.custom:
+  - devx-track-js
+  - ignite-2024
+  - build-2025
 ---
 
 [Reference documentation](/javascript/api/overview/azure/ai-language-text-readme) | [More samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/cognitivelanguage/ai-language-text/samples/v1) | [Package (npm)](https://www.npmjs.com/package/@azure/ai-language-text) | [Library source code](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/cognitivelanguage/ai-language-text) 

@@ -1,12 +1,15 @@
 ---
- title: Include file
- description: Include file
- author: mrbullwinkle
- ms.author: mbullwin
- ms.service: azure-ai-foundry
- ms.topic: include
- ms.date: 02/27/2025
-ms.custom: include, build-2024
+title: Include file
+description: Include file
+author: mrbullwinkle
+ms.author: mbullwin
+ms.date: 02/27/2025
+ms.service: azure-ai-foundry
+ms.topic: include
+ms.custom:
+  - include
+  - build-2024
+  - build-2025
 ---
 
 ## Prerequisites

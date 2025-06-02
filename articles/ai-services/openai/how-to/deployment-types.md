@@ -2,11 +2,13 @@
 title: Understanding Azure AI Foundry Models deployment types
 description: Learn how to use Azure AI Foundry deployment types | Global-Standard | Standard | Provisioned.
 author: mrbullwinkle
+ms.author: mbullwin
 manager: nitinme
+ms.date: 04/30/2025
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 04/30/2025
-ms.author: mbullwin
+ms.custom:
+  - build-2025
 ---
 
 # Deployment types for Azure AI Foundry Models

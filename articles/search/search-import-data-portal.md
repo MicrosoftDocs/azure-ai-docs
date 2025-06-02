@@ -3,14 +3,14 @@ title: Import Wizards in the Azure Portal
 titleSuffix: Azure AI Search
 description: Learn about the import wizards in the Azure portal used to create and load an index, and optionally invoke applied AI for vectorization, natural language processing, language translation, OCR, and image analysis.
 author: HeidiSteen
-manager: nitinme
 ms.author: heidist
+manager: nitinme
+ms.date: 05/12/2025
 ms.service: azure-ai-search
+ms.topic: concept-article
 ms.custom:
   - ignite-2024
-ms.topic: concept-article
-ms.date: 05/12/2025
-customer intent: As a developer, I want to use wizards for index creation so that I can query the content quickly.
+  - build-2025
 ---
 
 # Import data wizards in the Azure portal
