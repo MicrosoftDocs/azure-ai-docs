@@ -1,7 +1,7 @@
 ---
-title: How to create projects in Conversational Language Understanding
+title: Create Projects in Conversational Language Understanding
 titleSuffix: Azure AI services
-description: Use this article to learn how to create projects in Conversational Language Understanding.
+description: Use this article to learn how to create projects in conversational language understanding (CLU).
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
@@ -11,28 +11,25 @@ ms.author: lajanuar
 ms.custom: language-service-clu
 ---
 
-# How to create a CLU fine-tuning task
+# Create a CLU fine-tuning task
 
-Use this article to learn how to set up these requirements and create a project. 
+Use this article to learn how to set up these requirements and create a project.
 
 ## Prerequisites
 
-Before you start using CLU, you will need a few items:
+* An Azure subscription. If you don't have one, you can [create one for free](https://azure.microsoft.com/free/cognitive-services).
+* An Azure AI Language resource.
 
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
-* An Azure AI Language resource 
+### Create a Language resource
 
-### Create a Language resource 
-
-Before you start using CLU, you will need an Azure AI Language resource.
+Before you start using CLU, you need an Azure AI Language resource.
 
 > [!NOTE]
->  * You need to have an **owner** role assigned on the resource group to create a Language resource.
+> You need to have an Owner role assigned on the resource group to create a Language resource.
 
 [!INCLUDE [create a new resource from the Azure portal](../includes/resource-creation-azure-portal.md)]
 
 [!INCLUDE [create a new resource from Language Studio](../includes/resource-creation-language-studio.md)]
-
 
 ## Sign in to Language Studio
 
@@ -40,7 +37,7 @@ Before you start using CLU, you will need an Azure AI Language resource.
 
 ## Create a conversation project
 
-Once you have a Language resource created, create a Conversational Language Understanding project. 
+After you create a Language resource, create a CLU project.
 
 ### [Azure AI Foundry](#tab/azure-ai-foundry)
 
@@ -56,21 +53,21 @@ Once you have a Language resource created, create a Conversational Language Unde
 
 ### [Azure AI Foundry](#tab/azure-ai-foundry)
 
-You can export a Conversational Language Understanding project as a JSON file at any time by going to the conversation projects page, selecting a project, and from the top menu, clicking on **Export**.
+You can export a CLU project as a JSON file at any time. On the conversation projects page, select a project, and on the top menu, select **Export**.
 
-:::image type="content" source="../media/export.png" alt-text="A screenshot showing the Conversational Language Understanding export button." lightbox="../media/export.png":::
+:::image type="content" source="../media/export.png" alt-text="A screenshot that shows the CLU Export button." lightbox="../media/export.png":::
 
-That project can be reimported as a new project. If you import a project with the exact same name, it replaces the project's data with the newly imported project's data.
+You can reimport that project as a new project. If you import a project with the exact same name, it replaces the project's data with the newly imported project's data.
 
-If you have an existing LUIS application, you can _import_ the LUIS application JSON to Conversational Language Understanding directly, and it will create a Conversation project with all the pieces that are currently available: Intents, ML entities, and utterances. See [the LUIS migration article](../how-to/migrate-from-luis.md) for more information.
+If you have an existing Language Understanding (LUIS) application, you can _import_ the LUIS application JSON to CLU directly. It creates a Conversation project with all the pieces that are currently available: intents, machine learning entities, and utterances. For more information, see [Migrate from Language Understanding (LUIS) to conversational language understanding (CLU)](../how-to/migrate-from-luis.md).
 
-To import a project, select the arrow button next to **Create a new project** and select **Import**, then select the LUIS or Conversational Language Understanding JSON file.
+To import a project, select the arrow button next to **Create a new project** and select **Import**. Then select the LUIS or CLU JSON file.
 
-:::image type="content" source="../media/import.png" alt-text="A screenshot showing the Conversational Language Understanding import button." lightbox="../media/import.png":::
+:::image type="content" source="../media/import.png" alt-text="A screenshot that shows the CLU Import button." lightbox="../media/import.png":::
 
 ### [REST APIs](#tab/rest-api)
 
-You can import a CLU JSON into the service
+You can import a CLU JSON into the service.
 
 [!INCLUDE [Import project](../includes/rest-api/import-project.md)]
 
@@ -80,11 +77,11 @@ You can import a CLU JSON into the service
 
 ### [Azure AI Foundry](#tab/azure-ai-foundry)
 
-You can export a Conversational Language Understanding project as a JSON file at any time by going to the conversation projects page, selecting a project, and pressing **Export**.
+You can export a CLU project as a JSON file at any time. On the conversation projects page, select a project, and select **Export**.
 
 ### [REST APIs](#tab/rest-api)
 
-You can export a Conversational Language Understanding project as a JSON file at any time.
+You can export a CLU project as a JSON file at any time.
 
 [!INCLUDE [Export project](../includes/rest-api/export-project.md)]
 
@@ -102,7 +99,7 @@ You can export a Conversational Language Understanding project as a JSON file at
 
 ---
 
-## Delete project 
+## Delete project
 
 ### [Azure AI Foundry](#tab/azure-ai-foundry)
 
@@ -110,12 +107,12 @@ You can export a Conversational Language Understanding project as a JSON file at
 
 ### [REST APIs](#tab/rest-api)
 
-When you don't need your project anymore, you can delete your project using the APIs.
+When you don't need your project anymore, you can use the APIs to delete your project.
 
 [!INCLUDE [Delete project](../includes/rest-api/delete-project.md)]
 
 ---
 
-## Next Steps
+## Related content
 
-[Build schema](./build-schema.md)
+- [Build schema](./build-schema.md)
