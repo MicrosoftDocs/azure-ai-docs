@@ -5,9 +5,11 @@ description: Learn to build a retrieval-augmented generation solution with Conte
 author: laujan
 ms.author: paulhsu
 manager: nitinme
+ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: tutorial
-ms.date: 05/19/2025
+ms.custom:
+  - build-2025
 ---
 
 # Tutorial: Build a retrieval-augmented generation solution 

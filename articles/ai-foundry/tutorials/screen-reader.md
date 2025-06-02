@@ -2,16 +2,18 @@
 title: Use a screen reader with Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: This quickstart guides you in how to get oriented and navigate Azure AI Foundry with a screen reader.
+author: sdgilley
+ms.author: sgilley
 manager: scottpolly
+ms.reviewer: ailsaleen
+ms.date: 05/02/2025
 ms.service: azure-ai-foundry
+ms.topic: how-to
 ms.custom:
   - ignite-2023
   - build-2024
-ms.topic: how-to
-ms.date: 05/02/2025
-ms.reviewer: ailsaleen
-ms.author: sgilley
-author: sdgilley
+  - build-aifnd
+  - build-2025
 ---
 
 # Use a screen reader with Azure AI Foundry

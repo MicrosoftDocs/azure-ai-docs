@@ -5,9 +5,11 @@ description: Learn about Azure AI Content Understanding analyzer templates.
 author: laujan
 ms.author: kabrow
 manager: nitinme
+ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 05/19/2025
+ms.custom:
+  - build-2025
 ---
 
 # Analyzer templates offered with Azure AI Content Understanding

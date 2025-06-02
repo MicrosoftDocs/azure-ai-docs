@@ -1,16 +1,15 @@
 ---
-title: How to use image generation models 
+title: How to use image generation models
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn how to generate and edit images with image models, and learn about the configuration options that are available.
 author: PatrickFarley
-ms.author: pafarley 
-ms.service: azure-ai-openai
-ms.custom: 
-ms.topic: how-to
-ms.date: 04/23/2025
+ms.author: pafarley
 manager: nitinme
-keywords: 
-zone_pivot_groups: 
+ms.date: 04/23/2025
+ms.service: azure-ai-openai
+ms.topic: how-to
+ms.custom:
+  - build-2025
 # Customer intent: as an engineer or hobbyist, I want to know how to use DALL-E image generation models to their full capability.
 ---
 

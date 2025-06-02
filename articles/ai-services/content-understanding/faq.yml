@@ -3,11 +3,13 @@ metadata:
   title: Azure AI Content Understanding FAQ
   description: Get answers to frequently asked questions about the Document Intelligence service.
   author: laujan
+  ms.author: lajanuar
   manager: nitinme
+  ms.date: 05/19/2025
   ms.service: azure-ai-content-understanding
   ms.topic: faq
-  ms.date: 05/19/2025
-  ms.author: lajanuar
+  ms.custom:
+    - build-2025
 title: Frequently asked questions
 summary: |
 

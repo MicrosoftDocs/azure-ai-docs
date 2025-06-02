@@ -3,11 +3,13 @@ title: Service quotas and limits - Content Understanding
 titleSuffix: Azure AI services
 description: Quick reference, detailed description, and best practices for working within Azure AI Content Understanding service Quotas and Limits
 author: laujan
+ms.author: lajanuar
 manager: nitinme
+ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: conceptual
-ms.date: 05/19/2025
-ms.author: lajanuar
+ms.custom:
+  - build-2025
 ---
 
 

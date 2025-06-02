@@ -1,12 +1,13 @@
 ---
 author: laujan
+ms.author: lajanuar
 manager: nitinme
+ms.date: 12/19/2023
 ms.service: azure-ai-language
+ms.topic: include
 ms.custom:
   - ignite-2024
-ms.topic: include
-ms.date: 12/19/2023
-ms.author: lajanuar
+  - build-2025
 ---
 
 [Reference documentation](https://go.microsoft.com/fwlink/?linkid=2239169)

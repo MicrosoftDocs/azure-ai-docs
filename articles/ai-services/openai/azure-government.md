@@ -3,11 +3,13 @@ title: Azure OpenAI in Azure Government
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI in the Azure Government cloud.
 author: challenp
+ms.date: 5/29/2025
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.custom: references_regions, azuregovernment
-ms.date: 5/29/2025
-recommendations: false
+ms.custom:
+  - references_regions
+  - azuregovernment
+  - build-2025
 ---
 
 # Azure OpenAI and features in Azure Government
