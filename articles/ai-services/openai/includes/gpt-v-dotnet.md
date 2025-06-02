@@ -98,7 +98,7 @@ To run the quickstart, follow these steps:
 
     var chatClient = openAIClient.GetChatClient(deploymentName);
     
-    var imageUri = "YOUR_IMAGE_URL";
+    var imageUrl = "YOUR_IMAGE_URL";
     
     var chatMessages = new List<ChatMessage>
     {
