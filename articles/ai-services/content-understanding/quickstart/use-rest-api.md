@@ -5,9 +5,11 @@ description: Learn about Content Understanding REST APIs
 author: laujan
 ms.author: paulhsu
 manager: nitinme
+ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: quickstart
-ms.date: 05/19/2025
+ms.custom:
+  - build-2025
 ---
 
 # Quickstart: Use Azure AI Content Understanding REST API

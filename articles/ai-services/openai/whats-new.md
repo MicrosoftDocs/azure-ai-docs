@@ -1,17 +1,17 @@
 ---
 title: What's new in Azure OpenAI in Azure AI Foundry Models?
 description: Learn about the latest news and features updates for Azure OpenAI.
-manager: nitinme
 author: mrbullwinkle
 ms.author: mbullwin #
+manager: nitinme
+ms.date: 5/28/2025
 ms.service: azure-ai-openai
+ms.topic: whats-new
 ms.custom:
   - ignite-2023
   - references_regions
   - ignite-2024
-ms.topic: whats-new
-ms.date: 5/28/2025
-recommendations: false
+  - build-2025
 ---
 
 # What's new in Azure OpenAI in Azure AI Foundry Models

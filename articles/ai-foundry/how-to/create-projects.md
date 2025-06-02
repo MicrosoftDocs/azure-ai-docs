@@ -2,17 +2,19 @@
 title: Create a project
 titleSuffix: Azure AI Foundry
 description: This article describes how to create an Azure AI Foundry project so you can work with generative AI in the cloud.
+author: sdgilley
+ms.author: sgilley
 manager: scottpolly
+ms.reviewer: deeikele
+ms.date: 05/20/2025
 ms.service: azure-ai-foundry
+ms.topic: how-to
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
-ms.topic: how-to
-ms.date: 05/20/2025
-ms.reviewer: deeikele
-ms.author: sgilley
-author: sdgilley
+  - build-aifnd
+  - build-2025
 zone_pivot_groups: project-type
 # customer intent: As a developer, I want to create an Azure AI Foundry project so I can work with generative AI.
 ---

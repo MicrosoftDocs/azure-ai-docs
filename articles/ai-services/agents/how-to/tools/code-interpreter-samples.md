@@ -1,15 +1,16 @@
 ---
-title: 'Code interpreter code samples'
+title: "Code interpreter code samples"
 titleSuffix: Azure AI Foundry
 description: Find code samples to enable code interpreter for Azure AI Agents.
-services: cognitive-services
-manager: nitinme
-ms.service: azure-ai-agent-service
-ms.topic: how-to
-ms.date: 04/09/2025
 author: aahill
 ms.author: aahi
-ms.custom: azure-ai-agents-code
+manager: nitinme
+ms.date: 04/09/2025
+ms.service: azure-ai-agent-service
+ms.topic: how-to
+ms.custom:
+  - azure-ai-agents-code
+  - build-2025
 zone_pivot_groups: selection-code-interpreter
 ---
 

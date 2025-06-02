@@ -5,9 +5,11 @@ description: Learn about Azure AI Content Understanding's document layout analys
 author: laujan
 ms.author: paulhsu
 manager: nitinme
+ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 05/19/2025
+ms.custom:
+  - build-2025
 ---
 
 # Document analysis: extracting structured content
