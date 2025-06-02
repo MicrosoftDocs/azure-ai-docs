@@ -12,7 +12,7 @@ ms.date: 06/02/2025
 
 # Productivity tools and accelerators for Azure AI Search
 
-Microsoft engineers build productivity tools that aren't part of the Azure AI Search service and aren't covered by service-level agreements (SLAs). These tools are provided as source code that you can download, modify, and build to create an app that helps you develop or maintain a search solution.
+Microsoft engineers build productivity tools that aren't part of the Azure AI Search service and aren't covered by service-level agreements (SLAs). You can download, modify, and build these tools to create an app that helps you develop or maintain a search solution.
 
 ## Tools
 
