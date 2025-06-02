@@ -54,10 +54,11 @@ user_functions = {fetch_weather}
 
 ## Create a client and agent
 
+<!--
 In the sample below we create a client and define a `toolset` which will be used to process the functions defined in `user_functions`.
 
 `toolset`: When using the toolset parameter, you provide not only the function definitions and descriptions but also their implementations. The SDK will execute these functions within `create_and_run_process` or streaming. These functions will be invoked based on their definitions.
-
+-->
 ```python
 import os, time
 from azure.identity import DefaultAzureCredential
