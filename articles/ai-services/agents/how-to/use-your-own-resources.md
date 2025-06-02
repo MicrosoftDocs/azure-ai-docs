@@ -1,7 +1,7 @@
 ---
-title: 'Use your own resources in the Azure AI Agent Service'
-titleSuffix: Azure OpenAI
-description: Learn how to use resources that you already have with the Azure AI Agent Service. 
+title: 'Use your own resources in the Azure AI Foundry Agent Service'
+titleSuffix: Azure AI Foundry
+description: Learn how to use resources that you already have with the Azure AI Foundry Agent Service. 
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
@@ -17,7 +17,7 @@ ms.custom: azure-ai-agents
 Use this article if you want to use the Azure Agent Service with resources you already have. 
 
 > [!NOTE]
-> * If you use an existing AI Services / Azure OpenAI Service resource, no model will be deployed. You can deploy a model to the resource after the agent setup is complete. 
+> * If you use an existing AI Services / Azure OpenAI in Azure AI Foundry Models resource, no model will be deployed. You can deploy a model to the resource after the agent setup is complete. 
 > * Make sure your Azure OpenAI resource and Azure AI Foundry project are in the same region. 
 
 ## Choose basic or standard agent setup

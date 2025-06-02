@@ -1,11 +1,11 @@
 ---
-title: 'Text to speech with Azure OpenAI Service'
+title: 'Text to speech with Azure OpenAI in Azure AI Foundry Models'
 titleSuffix: Azure OpenAI
-description: Use the Azure OpenAI Service for text to speech with OpenAI voices.
+description: Use the Azure OpenAI for text to speech with OpenAI voices.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: quickstart
-ms.date: 3/10/2025
+ms.date: 5/23/2025
 ms.reviewer: eur
 ms.author: eur
 author: eric-urban
@@ -13,11 +13,11 @@ recommendations: false
 zone_pivot_groups: programming-languages-rest-js-cs
 ---
 
-# Quickstart: Text to speech with the Azure OpenAI Service
+# Quickstart: Text to speech with the Azure OpenAI in Azure AI Foundry Models
 
-In this quickstart, you use the Azure OpenAI Service for text to speech with OpenAI voices.  
+In this quickstart, you use the Azure OpenAI for text to speech with OpenAI voices.  
 
-The available voices are: `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. For more information, see [Azure OpenAI Service reference documentation for text to speech](./reference.md#text-to-speech-preview).
+The available voices are: `alloy`, `echo`, `fable`, `onyx`, `nova`, and `shimmer`. For more information, see [Azure OpenAI reference documentation for text to speech](./reference.md#text-to-speech-preview).
 
 ::: zone pivot="rest-api"
 
@@ -52,5 +52,5 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 
 ## Next steps
 
-* Learn more about how to work with text to speech with Azure OpenAI Service in the [Azure OpenAI Service reference documentation](./reference.md#text-to-speech-preview).
+* Learn more about how to work with text to speech with Azure OpenAI in the [Azure OpenAI reference documentation](./reference.md#text-to-speech-preview).
 * For more examples, check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai)

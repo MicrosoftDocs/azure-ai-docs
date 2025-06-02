@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 02/10/2025
+ms.date: 05/25/2025
 author: mrbullwinkle
 ms.author: mbullwin
 zone_pivot_groups: structured-outputs
@@ -23,7 +23,7 @@ dotnet add package Newtonsoft.Json.Schema
 
 # [Microsoft Entra ID](#tab/dotnet-entra-id)
 
-If you are new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI Service with Microsoft Entra ID authentication](../how-to/managed-identity.md).
+If you are new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI in Azure AI Foundry Models with Microsoft Entra ID authentication](../how-to/managed-identity.md).
 
 ```csharp
 using Azure.AI.OpenAI;

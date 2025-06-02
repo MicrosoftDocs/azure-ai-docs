@@ -1,12 +1,12 @@
 ---
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.custom:
   - ignite-2024
 ms.topic: include
 ms.date: 12/19/2023
-ms.author: jboback
+ms.author: lajanuar
 ---
 
 [Reference documentation](https://go.microsoft.com/fwlink/?linkid=2239169)
@@ -18,7 +18,7 @@ Use this quickstart to send language detection requests using the REST API. In t
 
 * The current version of [cURL](https://curl.haxx.se/)
 * An Azure subscription - [create one for free](https://azure.microsoft.com/free/cognitive-services/)
-* Once you have your Azure subscription, [create an AI services resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal#create-a-new-azure-ai-services-resource).
+* Once you have your Azure subscription, [create an AI Foundry resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal).
     * You need the key and endpoint from the resource you create to connect your application to the API. You paste your key and endpoint into the code later in the quickstart.
     * You can use the free pricing tier (`Free F0`) to try the service (providing 5,000 text records - 1,000 characters each) and upgrade later to the `Standard S` pricing tier for production. You can also start with the `Standard S` pricing tier, receiving the same initial quota for free (5,000 text records) before getting charged. For more information on pricing, visit [Language Service Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/language-service/).
 

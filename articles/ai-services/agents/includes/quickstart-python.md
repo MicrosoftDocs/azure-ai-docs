@@ -12,18 +12,9 @@ ms.date: 11/13/2024
 
 ## Prerequisites
 
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
-* [Python 3.8 or later](https://www.python.org/)
-* Ensure that the individual deploying the template has the **Azure AI Developer** role assigned at the resource group level where the template is being deployed.
-* Additionally, to deploy the template, you need to have the preset **Role Based Access Administrator** role at the subscription level.
-   * The **Owner** role at the subscription level satisfies this requirement.
-   * The specific admin role that is needed is `Microsoft.Authorization/roleAssignments/write`
-* Ensure that each team member who wants to use the Agent Playground or SDK to create or edit agents has been assigned the built-in **Azure AI Developer** [RBAC role](../../../ai-foundry/concepts/rbac-azure-ai-foundry.md) for the project.
-    * Note: assign these roles after the template has been deployed
-    * The minimum set of permissions required is: `agents/*/read`, `agents/*/action`, `agents/*/delete`
-* Install [the Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli). If you have the CLI already installed, make sure it's updated to the latest version.
+[!INCLUDE [universal-prerequisites](universal-prerequisites.md)]
 
-[!INCLUDE [bicep-setup](bicep-setup.md)]
+
 
 ## Configure and run an agent
 
@@ -48,104 +39,72 @@ Next, to authenticate your API requests and run the program, use the [az login](
 az login
 ```
 
-Use the following code to create and run an agent. To run this code, you will need to create a connection string using information from your project. This string is in the format:
+Use the following code to create and run an agent. To run this code, you will need to get the endpoint for your project. This string is in the format:
 
-`<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>`
+`https://<AIFoundryResourceName>.services.ai.azure.com/api/projects/<ProjectName>`
 
-[!INCLUDE [connection-string-portal](connection-string-portal.md)]
+[!INCLUDE [endpoint-string-portal](endpoint-string-portal.md)]
 
-`HostName` can be found by navigating to your `discovery_url` and removing the leading `https://` and trailing `/discovery`. To find your `discovery_url`, run this CLI command:
+For example, your endpoint may look something like:
 
-```azurecli
-az ml workspace show -n {project_name} --resource-group {resource_group_name} --query discovery_url
-```
+`https://myresource.services.ai.azure.com/api/projects/myproject`
 
-For example, your connection string may look something like:
-
-`eastus.api.azureml.ms;12345678-abcd-1234-9fc6-62780b3d3e05;my-resource-group;my-project-name`
-
-Set this connection string as an environment variable named `PROJECT_CONNECTION_STRING`.
+Set this endpoint as an environment variable named `PROJECT_ENDPOINT`.
 
 ```python
 import os
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import CodeInterpreterTool
 from azure.identity import DefaultAzureCredential
-from typing import Any
-from pathlib import Path
+from azure.ai.agents.models import CodeInterpreterTool
 
-# Create an Azure AI Client from a connection string, copied from your Azure AI Foundry project.
-# At the moment, it should be in the format "<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>"
-# HostName can be found by navigating to your discovery_url and removing the leading "https://" and trailing "/discovery"
-# To find your discovery_url, run the CLI command: az ml workspace show -n {project_name} --resource-group {resource_group_name} --query discovery_url
-# Project Connection example: eastus.api.azureml.ms;12345678-abcd-1234-9fc6-62780b3d3e05;my-resource-group;my-project-name
-# Customer needs to login to Azure subscription via Azure CLI and set the environment variables
+# Create an Azure AI Client from an endpoint, copied from your Azure AI Foundry project.
+# You need to login to Azure subscription via Azure CLI and set the environment variables
+project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT environment variable is set
 
-project_client = AIProjectClient.from_connection_string(
-    credential=DefaultAzureCredential(), conn_str=os.environ["PROJECT_CONNECTION_STRING"]
+# Create an AIProjectClient instance
+project_client = AIProjectClient(
+    endpoint=project_endpoint,
+    credential=DefaultAzureCredential(),  # Use Azure Default Credential for authentication
+    api_version="latest",
 )
 
+code_interpreter = CodeInterpreterTool()
 with project_client:
-    # Create an instance of the CodeInterpreterTool
-    code_interpreter = CodeInterpreterTool()
-
-    # The CodeInterpreterTool needs to be included in creation of the agent
+    # Create an agent with the Bing Grounding tool
     agent = project_client.agents.create_agent(
-        model="gpt-4o-mini",
-        name="my-agent",
-        instructions="You are helpful agent",
-        tools=code_interpreter.definitions,
-        tool_resources=code_interpreter.resources,
+        model=os.environ["MODEL_DEPLOYMENT_NAME"],  # Model deployment name
+        name="my-agent",  # Name of the agent
+        instructions="You are a helpful agent",  # Instructions for the agent
+        tools=code_interpreter.definitions,  # Attach the tool
     )
-    print(f"Created agent, agent ID: {agent.id}")
+    print(f"Created agent, ID: {agent.id}")
 
-    # Create a thread
-    thread = project_client.agents.create_thread()
-    print(f"Created thread, thread ID: {thread.id}")
+# Create a thread for communication
+thread = project_client.agents.threads.create()
+print(f"Created thread, ID: {thread.id}")
 
-    # Create a message
-    message = project_client.agents.create_message(
-        thread_id=thread.id,
-        role="user",
-        content="Could you please create a bar chart for the operating profit using the following data and provide the file to me? Company A: $1.2 million, Company B: $2.5 million, Company C: $3.0 million, Company D: $1.8 million",
-    )
-    print(f"Created message, message ID: {message.id}")
+# Add a message to the thread
+message = project_client.agents.messages.create(
+    thread_id=thread.id,
+    role="user",  # Role of the message sender
+    content="What is the weather in Seattle today?",  # Message content
+)
+print(f"Created message, ID: {message['id']}")
 
-    # Run the agent
-    run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
-    print(f"Run finished with status: {run.status}")
+# Create and process an agent run
+run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
+print(f"Run finished with status: {run.status}")
 
-    if run.status == "failed":
-        # Check if you got "Rate limit is exceeded.", then you want to get more quota
-        print(f"Run failed: {run.last_error}")
+# Check if the run failed
+if run.status == "failed":
+    print(f"Run failed: {run.last_error}")
 
-    # Get messages from the thread
-    messages = project_client.agents.list_messages(thread_id=thread.id)
-    print(f"Messages: {messages}")
+# Fetch and log all messages
+messages = project_client.agents.messages.list(thread_id=thread.id)
+for message in messages.data:
+    print(f"Role: {message.role}, Content: {message.content}")
 
-    # Get the last message from the sender
-    last_msg = messages.get_last_text_message_by_role("assistant")
-    if last_msg:
-        print(f"Last Message: {last_msg.text.value}")
-
-    # Generate an image file for the bar chart
-    for image_content in messages.image_contents:
-        print(f"Image File ID: {image_content.image_file.file_id}")
-        file_name = f"{image_content.image_file.file_id}_image_file.png"
-        project_client.agents.save_file(file_id=image_content.image_file.file_id, file_name=file_name)
-        print(f"Saved image file to: {Path.cwd() / file_name}")
-
-    # Print the file path(s) from the messages
-    for file_path_annotation in messages.file_path_annotations:
-        print(f"File Paths:")
-        print(f"Type: {file_path_annotation.type}")
-        print(f"Text: {file_path_annotation.text}")
-        print(f"File ID: {file_path_annotation.file_path.file_id}")
-        print(f"Start Index: {file_path_annotation.start_index}")
-        print(f"End Index: {file_path_annotation.end_index}")
-        project_client.agents.save_file(file_id=file_path_annotation.file_path.file_id, file_name=Path(file_path_annotation.text).name)
-
-    # Delete the agent once done
-    project_client.agents.delete_agent(agent.id)
-    print("Deleted agent")
+# Delete the agent when done
+project_client.agents.delete_agent(agent.id)
+print("Deleted agent")
 ```

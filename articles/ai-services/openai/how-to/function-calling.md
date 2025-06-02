@@ -1,6 +1,6 @@
 ---
-title: How to use function calling with Azure OpenAI Service
-titleSuffix: Azure OpenAI Service
+title: How to use function calling with Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI
 description: Learn how to use function calling with the GPT-35-Turbo and GPT-4 models 
 author: mrbullwinkle #dereklegenzoff
 ms.author: mbullwin #delegenz
@@ -11,7 +11,7 @@ ms.date: 04/16/2025
 manager: nitinme
 ---
 
-# How to use function calling with Azure OpenAI Service
+# How to use function calling with Azure OpenAI in Azure AI Foundry Models
 
 The latest versions of gpt-35-turbo and gpt-4 are fine-tuned to work with functions and are able to both determine when and how a function should be called. If one or more functions are included in your request, the model determines if any of the functions should be called based on the context of the prompt. When the model determines that a function should be called, it responds with a JSON object including the arguments for the function. 
 

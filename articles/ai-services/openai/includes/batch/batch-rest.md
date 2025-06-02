@@ -1,6 +1,6 @@
 ---
 title: Azure OpenAI Global Batch REST
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Azure OpenAI model global batch REST
 manager: nitinme
 ms.service: azure-ai-openai
@@ -69,7 +69,7 @@ For this article we'll create a file named `test.jsonl` and will copy the conten
 
 ## Upload batch file
 
-Once your input file is prepared, you first need to upload the file to then be able to kick off a batch job. File upload can be done both programmatically or via the Studio. This example uses environment variables in place of the key and endpoint values. If you're unfamiliar with using environment variables with Python refer to one of our [quickstarts](../../chatgpt-quickstart.md) where the process of setting up the environment variables in explained step-by-step. 
+Once your input file is prepared, you first need to upload the file to then be able to initiate a batch job. File upload can be done both programmatically or via the Azure AI Foundry portal. This example demonstrates uploading a file directly to your Azure OpenAI resource. Alternatively, you can [configure Azure Blob Storage for Azure OpenAI Batch](../../how-to/batch-blob-storage.md).
 
 [!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
@@ -189,7 +189,7 @@ The default 500 max file limit per resource also applies to output files. Here y
 
 ## Track batch job progress
 
-Once you have created batch job successfully you can monitor its progress either in the Studio or programatically. When checking batch job progress we recommend waiting at least 60 seconds in between each status call.
+Once you have created batch job successfully you can monitor its progress either in the Studio or programmatically. When checking batch job progress we recommend waiting at least 60 seconds in between each status call.
 
 ```http
 curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches/{batch_id}?api-version=2025-03-01-preview \

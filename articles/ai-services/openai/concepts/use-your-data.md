@@ -1,5 +1,5 @@
 ---
-title: 'Using your data with Azure OpenAI Service'
+title: 'Using your data with Azure OpenAI in Azure AI Foundry Models'
 titleSuffix: Azure OpenAI
 description: Use this article to learn about using your data for better text generation in Azure OpenAI.
 manager: nitinme
@@ -236,7 +236,7 @@ Using [Azure AI Foundry portal](https://ai.azure.com/), you can upload files fro
 
 You can paste URLs and the service will store the webpage content, using it when generating responses from the model. The content in URLs/web addresses that you use need to have the following characteristics to be properly ingested:
 
-* A public website, such as [Using your data with Azure OpenAI Service - Azure OpenAI | Microsoft Learn](/azure/ai-services/openai/concepts/use-your-data?tabs=ai-search). You can't add a URL/Web address with access control, such as ones with a password.
+* A public website, such as [Using your data with Azure OpenAI in Azure AI Foundry Models - Azure OpenAI | Microsoft Learn](/azure/ai-services/openai/concepts/use-your-data?tabs=ai-search). You can't add a URL/Web address with access control, such as ones with a password.
 * An HTTPS website.
 * The size of content in each URL is smaller than 5 MB.  
 * The website can be downloaded as one of the [supported file types](#data-formats-and-file-types).
@@ -264,7 +264,7 @@ You can connect to your [Elasticsearch vector database](https://www.elastic.co/g
 
 ### Request access
 
-Using the Elasticsearch data source is a preview feature which is subject to the Limited Access Service terms in the [service-specific terms](https://www.microsoft.com/licensing/terms/productoffering/MicrosoftAzure/EAEAS) for Azure AI services. You must fill out and submit a [request form](https://aka.ms/aoaioydelasticsearchrequest) to request access to the Elasticsearch data source. The form requests information about your company and the scenario for which you plan to use the Elasticsearch data source. After you submit the form, the Azure AI services team will review it and email you with a decision within 10 business days.
+Using the Elasticsearch data source is a preview feature which is subject to the Limited Access Service terms in the [service-specific terms](https://www.microsoft.com/licensing/terms/productoffering/MicrosoftAzure/EAEAS). You must fill out and submit a [request form](https://aka.ms/aoaioydelasticsearchrequest) to request access to the Elasticsearch data source. The form requests information about your company and the scenario for which you plan to use the Elasticsearch data source. After you submit the form, the Azure OpenAI team will review it and email you with a decision within 10 business days.
 
 ### Connect Elasticsearch to Azure OpenAI On Your Data
 
@@ -371,7 +371,7 @@ This gives you multiple options for deploying your solution.
 
 #### [Copilot (preview)](#tab/copilot)
 
-You can deploy to a copilot in [Copilot Studio](/microsoft-copilot-studio/fundamentals-what-is-copilot-studio) (preview) directly from [Azure AI Foundry portal](https://ai.azure.com/), enabling you to bring conversational experiences to various channels such as: Microsoft Teams, websites, Dynamics 365, and other [Azure Bot Service channels](/microsoft-copilot-studio/publication-connect-bot-to-azure-bot-service-channels). The tenant used in the Azure OpenAI service and Copilot Studio (preview) should be the same. For more information, see [Use a connection to Azure OpenAI On Your Data](/microsoft-copilot-studio/nlu-generative-answers-azure-openai).
+You can deploy to a copilot in [Copilot Studio](/microsoft-copilot-studio/fundamentals-what-is-copilot-studio) (preview) directly from [Azure AI Foundry portal](https://ai.azure.com/), enabling you to bring conversational experiences to various channels such as: Microsoft Teams, websites, Dynamics 365, and other [Azure Bot Service channels](/microsoft-copilot-studio/publication-connect-bot-to-azure-bot-service-channels). The tenant used in the Azure OpenAI and Copilot Studio (preview) should be the same. For more information, see [Use a connection to Azure OpenAI On Your Data](/microsoft-copilot-studio/nlu-generative-answers-azure-openai).
 
 > [!NOTE]
 > Deploying to a copilot in Copilot Studio (preview) is only available in US regions.
@@ -721,6 +721,7 @@ Each user message can translate to multiple search queries, all of which get sen
 > The following models are not supported by Azure OpenAI On Your Data:
 > * o1 models
 > * o3 models
+> * model-router
 
 | Region | `gpt-35-turbo-16k (0613)` | `gpt-35-turbo (1106)` | `gpt-4-32k (0613)` | `gpt-4 (1106-preview)` | `gpt-4 (0125-preview)` | `gpt-4 (0613)`  | `gpt-4o`\*\* | `gpt-4 (turbo-2024-04-09)` |
 |------|---|---|---|---|---|----|----|----|

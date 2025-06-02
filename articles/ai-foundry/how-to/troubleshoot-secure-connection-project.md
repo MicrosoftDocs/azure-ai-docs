@@ -15,6 +15,9 @@ author: Blackmist
 
 # Troubleshoot connection to a project with a private endpoint
 
+> [!NOTE]
+> The information discussed in this article is specific to a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. For more information, see [Types of projects](../what-is-azure-ai-foundry.md#project-types).
+
 When connecting to an [Azure AI Foundry](https://ai.azure.com) project configured with a private endpoint, you might encounter a 403 or a messaging saying that access is forbidden. Use the information in this article to check for common configuration problems that can cause this error.
 
 ## Error loading Azure AI Hub or Project

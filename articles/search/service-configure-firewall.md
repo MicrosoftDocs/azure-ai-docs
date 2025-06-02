@@ -10,12 +10,12 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 04/14/2025
+ms.date: 05/20/2025
 ---
 
 # Configure network access and firewall rules for Azure AI Search
 
-This article explains how to restrict network access to a search service's public endpoint. To block *all* data plane access to the public endpoint, use [private endpoints](service-create-private-endpoint.md) and an Azure virtual network.
+This article explains how to restrict network access to a search service's public endpoint. To block *all* data plane access to the public endpoint, use [private endpoints](service-create-private-endpoint.md) and connect from within an Azure virtual network.
 
 This article assumes the Azure portal for configuring network access options. You can also use the [Management REST API](/rest/api/searchmanagement/), [Azure PowerShell](/powershell/module/az.search), or the [Azure CLI](/cli/azure/search).
 
@@ -34,6 +34,7 @@ If you aren't hosting a public web site, you might want to configure network acc
 There are two mechanisms for restricting access to the public endpoint:
 
 + Inbound rules listing the IP addresses, ranges, or subnets from which requests are admitted
+
 + Exceptions to network rules, where requests are admitted with no checks, as long as the request originates from a [trusted service](#grant-access-to-trusted-azure-services)
 
 Network rules aren't required, but it's a security best practice to add them if you use Azure AI Search for surfacing private or internal corporate content.
@@ -46,7 +47,7 @@ There are a few drawbacks to locking down the public endpoint.
 
 + It takes time to fully identify IP ranges and set up firewalls, and if you're in early stages of proof-of-concept testing and investigation and using sample data, you might want to defer network access controls until you actually need them.
 
-+ Some workflows require access to a public endpoint. Specifically, the [**import wizards**](search-import-data-portal.md) in the Azure portal connect to built-in (hosted) sample data and embedding models over the public endpoint. You can switch to code or script to complete the same tasks when firewall rules in place, but if you want to run the wizards, the public endpoint must be available. For more information, see [Secure connections in the import wizards](search-import-data-portal.md#secure-connections).
++ Some workflows require access to a public endpoint. Specifically, the [**indexing wizards**](search-import-data-portal.md) in the Azure portal connect to built-in (hosted) sample data and embedding models over the public endpoint. You can switch to code or script to complete the same tasks when firewall rules in place, but if you want to run the wizards, the public endpoint must be available. For more information, see [Secure connections in the import wizards](search-import-data-portal.md#secure-connections).
 
 <a id="configure-ip-policy"></a> 
 
@@ -58,21 +59,23 @@ There are a few drawbacks to locking down the public endpoint.
 
 1. Choose **Selected IP addresses**. Avoid the **Disabled** option unless you're configuring a [private endpoint](service-create-private-endpoint.md).
 
-   :::image type="content" source="media/service-configure-firewall/azure-portal-firewall.png" alt-text="Screenshot showing the network access options in the Azure portal.":::
+   :::image type="content" source="media/service-configure-firewall/azure-portal-firewall.png" alt-text="Screenshot showing the network access options in the Azure portal." lightbox="media/service-configure-firewall/azure-portal-firewall.png" :::
 
-1. More settings become available when you choose this option. 
+1. Under **IP Firewall**, select **Add your client IP address**. This step creates an inbound rule for the public IP address of your personal device to Azure AI Search. See [Allow access from the Azure portal IP address](#allow-access-from-the-azure-portal-ip-address) for details.
 
-   :::image type="content" source="media/service-configure-firewall/azure-portal-firewall-all.png" alt-text="Screenshot showing how to configure the IP firewall in the Azure portal.":::
-
-1. Under **IP Firewall**, select **Add your client IP address** to create an inbound rule for the public IP address of your personal device. See [Allow access from the Azure portal IP address](#allow-access-from-the-azure-portal-ip-address) for details.
+   :::image type="content" source="media/service-configure-firewall/azure-portal-firewall-all.png" alt-text="Screenshot showing how to configure the IP firewall in the Azure portal." lightbox="media/service-configure-firewall/azure-portal-firewall-all.png":::
 
 1. Add other client IP addresses for other devices and services that send requests to a search service.
 
-   IP addresses and ranges are in the CIDR format. An example of CIDR notation is 8.8.8.0/24, which represents the IPs that range from 8.8.8.0 to 8.8.8.255.
+   Specify IP addresses and ranges in the CIDR format. An example of CIDR notation is 8.8.8.0/24, which represents the IPs that range from 8.8.8.0 to 8.8.8.255.
 
-   If your search client is a static web app on Azure, see [Inbound and outbound IP addresses in Azure App Service](/azure/app-service/overview-inbound-outbound-ips#find-outbound-ips). For Azure functions, see [IP addresses in Azure Functions](/azure/azure-functions/ip-addresses).
+   To get the public IP addresses of Azure services, see [Azure IP Ranges and Service Tags](https://www.microsoft.com/download/details.aspx?id=56519). If your search client is hosted within an Azure function, see [IP addresses in Azure Functions](/azure/azure-functions/ip-addresses).
 
-1. Under **Exceptions**, select **Allow Azure services on the trusted services list to access this search service**. The trusted service list includes:
+1. Under **Exceptions**, select **Allow Azure services on the trusted services list to access this search service**. 
+ 
+   :::image type="content" source="media/service-configure-firewall/exceptions.png" alt-text="Screenshot showing the exceptions checkbox on the network configuration page." lightbox="media/service-configure-firewall/exceptions.png":::
+
+   The trusted service list includes:
 
    + `Microsoft.CognitiveServices` for Azure OpenAI and Azure AI services
    + `Microsoft.MachineLearningServices` for Azure Machine Learning
@@ -92,9 +95,11 @@ When requests originate from IP addresses that aren't in the allowed list, a gen
 
 ## Allow access from the Azure portal IP address
 
-When IP rules are configured, some features of the Azure portal are disabled. You can view and manage service level information, but portal access to the import wizards, indexes, indexers, and other top-level resources are restricted. 
+The Azure portal has its own connection to Azure AI Search, separate from your local device and browser. If you use the Azure portal to manage your search service, you need to add the portal IP address as described in this section, and your client IP address as described in the previous section.
 
-You can restore portal access to the full range of search service operations by adding the Azure portal IP address.
+When IP rules are configured, some features of the Azure portal are disabled. For example, you can view and manage service level information, but portal access to the import wizards, indexes, indexers, and other top-level resources are restricted. 
+
+You can restore the Azure portal's access to the full range of search service operations by adding the Azure portal IP address to the restricted address range. 
 
 To get the Azure portal's IP address, perform `nslookup` (or `ping`) on:
 
@@ -122,7 +127,7 @@ For ping, the request times out, but the IP address is visible in the response. 
 
 A banner informs you that IP rules affect the Azure portal experience. This banner remains visible even after you add the Azure portal's IP address. Remember to wait several minutes for network rules to take effect before testing.
 
-:::image type="content" source="media/service-configure-firewall/restricted-access.png" alt-text="Screenshot showing the restricted access banner.":::
+:::image type="content" source="media/service-configure-firewall/restricted-access.png" alt-text="Screenshot showing the restricted access banner." lightbox="media/service-configure-firewall/restricted-access.png" :::
 
 ## Grant access to trusted Azure services
 
@@ -139,7 +144,7 @@ Workflows for this network exception are requests originating from Azure AI Foun
 
 To set up managed identities for Azure OpenAI and Azure Machine Learning:
 
-+ [How to configure Azure OpenAI Service with managed identities](/azure/ai-services/openai/how-to/managed-identity)
++ [How to configure Azure OpenAI in Azure AI Foundry Models with managed identities](/azure/ai-services/openai/how-to/managed-identity)
 + [How to set up authentication between Azure Machine Learning and other services](/azure/machine-learning/how-to-identity-based-service-authentication).
 
 To set up a managed identity for an Azure AI service:

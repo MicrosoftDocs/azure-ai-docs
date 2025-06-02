@@ -39,7 +39,7 @@ landingContent:
           url: how-to-audio-content-creation.md
     - linkListType: concept
       links:
-        - text: What is custom neural voice?
+        - text: What is custom voice?
           url: custom-neural-voice.md
         - text: Improve synthesis with SSML
           url: speech-synthesis-markup.md

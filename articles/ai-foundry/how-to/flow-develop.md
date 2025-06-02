@@ -33,7 +33,7 @@ In this article, you learn how to create and develop your first prompt flow in A
 
 ## Prerequisites
 
-- If you don't have an Azure AI Foundry project already, first [create a project](create-projects.md).
+[!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 - Prompt flow requires a compute session. If you don't have a runtime, you can [create one in Azure AI Foundry portal](./create-manage-compute-session.md).
 - You need a deployed model.
 - In your project, configure access control for the blob storage account. Assign the **Storage Blob Data Contributor** role to your user account.
@@ -52,6 +52,8 @@ In this article, you learn how to create and develop your first prompt flow in A
 You can create a flow by either cloning the samples available in the gallery or creating a flow from scratch. If you already have flow files in local or file share, you can also import the files to create a flow.
 
 To create a prompt flow from the gallery in Azure AI Foundry portal:
+
+[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
 1. Sign in to [Azure AI Foundry](https://ai.azure.com) and select your project. 
 1. If you're in the Management center, select **Go to project** to return to your project.
@@ -103,7 +105,7 @@ In addition to inline editing the node in the default view, you can also turn on
 
 ### Flow input and output
 
-Flow input is the data passed into the flow as a whole. Define the input schema by specifying the name and type.  Set the input value of each input to test the flow. You can reference the flow input later in the flow nodes using `${input.[input name]}` syntax. 
+Flow input is the data passed into the flow as a whole. Define the input schema by specifying the name and type.  Set the input value of each input to test the flow. You can reference the flow input later in the flow nodes using `${inputs.[input name]}` syntax. 
 
 Flow output is the data produced by the flow as a whole, which summarizes the results of the flow execution. You can view and export the output table after the flow run or batch run is completed.  Define flow output value by referencing the flow single node output using syntax `${[node name].output}` or `${[node name].output.[field name]}`.
 
@@ -118,7 +120,7 @@ Prompt Flow offers not just a streamlined way to execute the flow, but it also b
 At its core, conditional control provides the capability to associate each node in a flow with an **activate config**. This configuration is essentially a "when" statement that determines when a node should be executed. The power of this feature is realized when you have complex flows where the execution of certain tasks depends on the outcome of previous tasks. By using the conditional control, you can configure your specific nodes to execute only when the specified conditions are met.
 
 Specifically, you can set the activate config for a node by selecting the **Activate config** button in the node card. You can add "when" statement and set the condition.
-You can set the conditions by referencing the flow input, or node output. For example, you can set the condition `${input.[input name]}` as specific value or `${[node name].output}` as specific value. 
+You can set the conditions by referencing the flow input, or node output. For example, you can set the condition `${inputs.[input name]}` as specific value or `${[node name].output}` as specific value. 
 
 If the condition isn't met, the node is skipped. The node status is shown as "Bypassed".
 

@@ -1,18 +1,20 @@
 ---
-title: Default content safety policies for Azure AI Model Inference
+title: Default Guardrails & controls policies for Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
-description: Learn about the default content safety policies that Azure AI Model Inference uses to flag content.
-author: PatrickFarley
-ms.author: fasantia
+description: Learn about the default Guardrails & controls policies that Azure AI Foundry Models uses to flag content.
+author: msakande
+ms.author: mopeakande
 ms.service: azure-ai-model-inference
-ms.topic: conceptual 
-ms.date: 1/21/2025
-manager: nitinme
+ms.topic: conceptual
+ms.date: 05/19/2025
+manager: scottpolly
+ms.reviewer: fasantia
+reviewer: santiagxf
 ---
 
-# Default content safety policies for Azure AI Model Inference
+# Default Guardrails & controls policies for Azure AI Foundry Models
 
-Azure AI model inference includes default safety applied to all models, excluding Azure OpenAI Whisper. These configurations provide you with a responsible experience by default.
+Azure AI Foundry Models includes default safety applied to all models, excluding Azure OpenAI Whisper. These configurations provide you with a responsible experience by default.
 
 Default safety aims to mitigate risks such as hate and fairness, sexual, violence, self-harm, protected material content, and user prompt injection attacks. To learn more about content filtering, read [our documentation describing categories and severity levels](content-filter.md).
 
@@ -23,7 +25,7 @@ This document describes the default configuration.
 
 ## Text models
 
-Text models in Azure AI model inference can take in and generate both text and code. These models apply Azure's text content filtering models to detect and prevent harmful content. This system works on both prompt and completion. 
+Text models in Azure AI Foundry Models can take in and generate both text and code. These models apply Azure's text content filtering models to detect and prevent harmful content. This system works on both prompt and completion. 
 
 | Risk Category                             | Prompt/Completion      | Severity Threshold  |
 |-------------------------------------------|------------------------|---------------------|
@@ -78,4 +80,4 @@ Content filters apply only to text prompts and completions. Images aren't subjec
 
 ## Next steps
 
-* [Configure content filters in Azure AI Model Inference](../how-to/configure-content-filters.md)
+* [Configure content filters in Azure AI Foundry Models](../how-to/configure-content-filters.md)

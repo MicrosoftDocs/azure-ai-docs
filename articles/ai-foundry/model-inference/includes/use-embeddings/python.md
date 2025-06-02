@@ -1,13 +1,13 @@
 ---
-title: How to generate embeddings with Azure AI model inference
+title: How to generate embeddings with Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
-description: Learn how to generate embeddings with Azure AI model inference
+description: Learn how to generate embeddings with Azure AI Foundry Models
 manager: scottpolly
 author: mopeakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
-ms.topic: how-to
-ms.date: 1/21/2025
+ms.topic: include
+ms.date: 05/29/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 ms.custom: references_regions, tool_generated
@@ -16,7 +16,7 @@ zone_pivot_groups: azure-ai-inference-samples
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use embeddings API with models deployed to Azure AI model inference in Azure AI services.
+This article explains how to use embeddings API with models deployed in Azure AI Foundry Models.
 
 ## Prerequisites
 
@@ -26,7 +26,7 @@ To use embedding models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites-python](../how-to-prerequisites-python.md)]
 
-* An embeddings model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add an embeddings model to your resource.
+* An embeddings model deployment. If you don't have one read [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add an embeddings model to your resource.
 
 
 ## Use embeddings
@@ -40,7 +40,7 @@ from azure.ai.inference import EmbeddingsClient
 from azure.core.credentials import AzureKeyCredential
 
 model = EmbeddingsClient(
-    endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
+    endpoint="https://<resource>.services.ai.azure.com/models",
     credential=AzureKeyCredential(os.environ["AZURE_INFERENCE_CREDENTIAL"]),
     model="text-embedding-3-small"
 )
@@ -52,10 +52,10 @@ If you have configured the resource to with **Microsoft Entra ID** support, you 
 ```python
 import os
 from azure.ai.inference import EmbeddingsClient
-from azure.core.credentials import AzureKeyCredential
+from azure.identity import DefaultAzureCredential
 
 model = EmbeddingsClient(
-    endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
+    endpoint="https://<resource>.services.ai.azure.com/models",
     credential=DefaultAzureCredential(),
     model="text-embedding-3-small"
 )

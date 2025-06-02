@@ -1,7 +1,7 @@
 ---
-title: Quickstart - Create a new Azure AI Agent Service project
-titleSuffix: Azure AI services
-description: Use this guide to start using Azure AI Agent Service.
+title: Quickstart - Create a new Azure AI Foundry Agent Service project
+titleSuffix: Azure AI Foundry
+description: Use this guide to start using Azure AI Foundry Agent Service.
 manager: nitinme
 author: aahill
 ms.author: aahi
@@ -12,9 +12,9 @@ zone_pivot_groups: agents-quickstart
 ms.custom: azure-ai-agents
 ---
 
-# Quickstart: Create a new agent (Preview)
+# Quickstart: Create a new agent
 
-Azure AI Agent Service allows you to create AI agents tailored to your needs through custom instructions and augmented by advanced tools like code interpreter, and custom functions.
+Azure AI Foundry Agent Service allows you to create AI agents tailored to your needs through custom instructions and augmented by advanced tools like code interpreter, and custom functions.
 
 ::: zone pivot="ai-foundry-portal"
 
@@ -31,12 +31,6 @@ Azure AI Agent Service allows you to create AI agents tailored to your needs thr
 ::: zone pivot="programming-language-python-azure"
 
 [!INCLUDE [quickstart-python-azure](includes/quickstart-python.md)]
-
-::: zone-end
-
-::: zone pivot="programming-language-python-openai"
-
-[!INCLUDE [quickstart-python-openai](includes/quickstart-python-openai.md)]
 
 ::: zone-end
 

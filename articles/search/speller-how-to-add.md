@@ -9,8 +9,8 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 12/10/2024
+ms.topic: how-to
+ms.date: 05/29/2025
 ---
 
 # Add spell check to queries in Azure AI Search
@@ -32,18 +32,18 @@ Use a search client that supports preview APIs on the query request. You can use
 
 | Client library | Versions |
 |----------|----------|
-| REST API | Versions 2020-06-30-Preview and later. We recommend the latest preview API. [2024-05-01-preview](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-05-01-preview&preserve-view=true)|
-| Azure SDK for .NET | [version 11.5.0-beta.5](https://www.nuget.org/packages/Azure.Search.Documents/11.5.0-beta.5) | 
-| Azure SDK for Java |  [version 11.6.0-beta.5](https://central.sonatype.com/artifact/com.azure/azure-search-documents) |
+| REST API | Versions 2020-06-30-Preview and later. We recommend the latest preview API. [2025-05-01-preview](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-05-01-preview&preserve-view=true)|
+| Azure SDK for .NET | [version 11.7.0-beta.4](https://www.nuget.org/packages/Azure.Search.Documents/11.7.0-beta.4) | 
+| Azure SDK for Java |  [version 11.8.0-beta.7](https://central.sonatype.com/artifact/com.azure/azure-search-documents/11.8.0-beta.7) |
 | Azure SDK for JavaScript | [version 11.3.0-beta.8](https://www.npmjs.com/package/@azure/search-documents/v/11.3.0-beta.8) |
-| Azure SDK for Python | [version 11.4.0b3](https://pypi.org/project/azure-search-documents/11.4.0b3/) |
+| Azure SDK for Python | [version 11.6.0b12](https://pypi.org/project/azure-search-documents/11.6.0b12/) |
 
 ## Spell correction with simple search
 
 The following example uses the built-in hotels-sample index to demonstrate spell correction on a simple text query. Without spell correction, the query returns zero results. With correction, the query returns one result for Johnson's family-oriented resort.
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2024-05-01-preview
+POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-05-01-preview
 {
     "search": "famly acitvites",
     "speller": "lexicon",
@@ -64,7 +64,7 @@ Spelling correction occurs on individual query terms that undergo text analysis,
 This example uses fielded search over the Category field, with full Lucene syntax, and a misspelled query term. By including speller, the typo in "Suiite" is corrected and the query succeeds.
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2024-05-01-preview
+POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-05-01-preview
 {
     "search": "Category:(Resort and Spa) OR Category:Suiite",
     "queryType": "full",
@@ -80,7 +80,7 @@ POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/
 This query, with typos in every term except one, undergoes spelling corrections to return relevant results. To learn more, see [Configure semantic ranker](semantic-how-to-query-request.md).
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2024-05-01-preview    
+POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/search?api-version=2025-05-01-preview    
 {
     "search": "hisotoric hotell wiht great restrant nad wiifi",
     "queryType": "semantic",
@@ -94,7 +94,7 @@ POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/
 
 ## Supported languages
 
-Valid values for `queryLanguage` can be found in the following table, copied from the list of [supported languages (REST API reference)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-05-01-preview&tabs=HTTP#querylanguage&preserve-view=true).
+Valid values for `queryLanguage` can be found in the following table, copied from the list of [supported languages (REST API reference)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-05-01-preview&tabs=HTTP#querylanguage&preserve-view=true).
 
 | Language | queryLanguage |
 |----------|---------------|

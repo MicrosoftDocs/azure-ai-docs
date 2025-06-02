@@ -19,7 +19,7 @@ LangChain is a development ecosystem that makes as easy possible for developers 
 
 Models deployed to [Azure AI Foundry](https://ai.azure.com) can be used with LangChain in two ways:
 
-- **Using the Azure AI model inference API:** All models deployed to Azure AI Foundry support the [Azure AI model inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md), which offers a common set of functionalities that can be used for most of the models in the catalog. The benefit of this API is that, since it's the same for all the models, changing from one to another is as simple as changing the model deployment being use. No further changes are required in the code. When working with LangChain, install the extensions `langchain-azure-ai`.
+- **Using the Azure AI Foundry Models API:** All models deployed to Azure AI Foundry support the [Foundry Models API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md), which offers a common set of functionalities that can be used for most of the models in the catalog. The benefit of this API is that, since it's the same for all the models, changing from one to another is as simple as changing the model deployment being use. No further changes are required in the code. When working with LangChain, install the extensions `langchain-azure-ai`.
 
 - **Using the model's provider specific API:** Some models, like OpenAI, Cohere, or Mistral, offer their own set of APIs and extensions for LangChain. Those extensions might include specific functionalities that the model support and hence are suitable if you want to exploit them. When working with LangChain, install the extension specific for the model you want to use, like `langchain-openai` or `langchain-cohere`.
 
@@ -30,7 +30,7 @@ In this tutorial, you learn how to use the packages `langchain-azure-ai` to buil
 To run this tutorial, you need:
 
 * An [Azure subscription](https://azure.microsoft.com).
-* A model deployment supporting the [Azure AI model inference API](https://aka.ms/azureai/modelinference) deployed. In this example, we use a `Mistral-Large-2407` deployment in the [Azure AI model inference](../../../ai-foundry/model-inference/overview.md).
+* A model deployment supporting the [Foundry Models API](https://aka.ms/azureai/modelinference) deployed. In this example, we use a `Mistral-Large-2407` deployment in the [Foundry Models](../../../ai-foundry/model-inference/overview.md).
 * Python 3.9 or later installed, including pip.
 * LangChain installed. You can do it with:
 
@@ -38,7 +38,7 @@ To run this tutorial, you need:
     pip install langchain-core
     ```
 
-* In this example, we're working with the Azure AI model inference API, hence we install the following packages:
+* In this example, we're working with the Foundry Models API, hence we install the following packages:
 
     ```bash
     pip install -U langchain-azure-ai
@@ -48,9 +48,14 @@ To run this tutorial, you need:
 
 To use LLMs deployed in Azure AI Foundry portal, you need the endpoint and credentials to connect to it. Follow these steps to get the information you need from the model you want to use:
 
+[!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
+
 1. Go to the [Azure AI Foundry](https://ai.azure.com/).
+
 1. Open the project where the model is deployed, if it isn't already open.
+
 1. Go to **Models + endpoints** and select the model you deployed as indicated in the prerequisites.
+
 1. Copy the endpoint URL and the key.
 
     :::image type="content" source="../../media/how-to/inference/serverless-endpoint-url-keys.png" alt-text="Screenshot of the option to copy endpoint URI and keys from an endpoint." lightbox="../../media/how-to/inference/serverless-endpoint-url-keys.png":::
@@ -61,11 +66,19 @@ To use LLMs deployed in Azure AI Foundry portal, you need the endpoint and crede
 In this scenario, we placed both the endpoint URL and key in the following environment variables:
 
 ```bash
-export AZURE_INFERENCE_ENDPOINT="<your-model-endpoint-goes-here>"
+export AZURE_INFERENCE_ENDPOINT="https://<resource>.services.ai.azure.com/models"
 export AZURE_INFERENCE_CREDENTIAL="<your-key-goes-here>"
 ```
 
-Once configured, create a client to connect to the endpoint. In this case, we're working with a chat completions model hence we import the class `AzureAIChatCompletionsModel`.
+Once configured, create a client to connect with the chat model by using the `init_chat_model`. For Azure OpenAI models, configure the client as indicated at [Using Azure OpenAI models](#using-azure-openai-models).
+
+```python
+from langchain.chat_models import init_chat_model
+
+llm = init_chat_model(model="mistral-large-2407", model_provider="azure_ai")
+```
+
+You can also use the class `AzureAIChatCompletionsModel` directly.
 
 ```python
 import os
@@ -78,8 +91,8 @@ model = AzureAIChatCompletionsModel(
 )
 ```
 
-> [!TIP]
-> For Azure OpenAI models, configure the client as indicated at [Using Azure OpenAI models](#using-azure-openai-models).
+> [!CAUTION]
+> **Breaking change:** Parameter `model_name` was renamed `model` in version `0.1.3`.
 
 You can use the following code to create the client if your endpoint supports Microsoft Entra ID:
 
@@ -91,7 +104,7 @@ from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 model = AzureAIChatCompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=DefaultAzureCredential(),
-    model_name="mistral-large-2407",
+    model="mistral-large-2407",
 )
 ```
 
@@ -109,11 +122,11 @@ from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 model = AzureAIChatCompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=DefaultAzureCredentialAsync(),
-    model_name="mistral-large-2407",
+    model="mistral-large-2407",
 )
 ```
 
-If your endpoint is serving one model, like with the Serverless API Endpoints, you don't have to indicate `model_name` parameter:
+If your endpoint is serving one model, like with the standard deployment, you don't have to indicate `model` parameter:
 
 ```python
 import os
@@ -176,9 +189,9 @@ chain.invoke({"language": "italian", "text": "hi"})
 
 ### Chaining multiple LLMs together
 
-Models deployed to Azure AI Foundry support the Azure AI model inference API, which is standard across all the models. Chain multiple LLM operations based on the capabilities of each model so you can optimize for the right model based on capabilities. 
+Models deployed to Azure AI Foundry support the Foundry Models API, which is standard across all the models. Chain multiple LLM operations based on the capabilities of each model so you can optimize for the right model based on capabilities. 
 
-In the following example, we create two model clients. One is a producer and another one is a verifier. To make the distinction clear, we're using a multi-model endpoint like the [Azure AI model inference service](../../model-inference/overview.md) and hence we're passing the parameter `model_name` to use a `Mistral-Large` and a `Mistral-Small` model, quoting the fact that **producing content is more complex than verifying it**.
+In the following example, we create two model clients. One is a producer and another one is a verifier. To make the distinction clear, we're using a multi-model endpoint like the [Foundry Models API](../../model-inference/overview.md) and hence we're passing the parameter `model` to use a `Mistral-Large` and a `Mistral-Small` model, quoting the fact that **producing content is more complex than verifying it**.
 
 ```python
 from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
@@ -186,13 +199,13 @@ from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 producer = AzureAIChatCompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
-    model_name="mistral-large-2407",
+    model="mistral-large-2407",
 )
 
 verifier = AzureAIChatCompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
-    model_name="mistral-small",
+    model="mistral-small",
 )
 ```
 
@@ -269,7 +282,7 @@ from langchain_azure_ai.embeddings import AzureAIEmbeddingsModel
 embed_model = AzureAIEmbeddingsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=os.environ['AZURE_INFERENCE_CREDENTIAL'],
-    model_name="text-embedding-3-large",
+    model="text-embedding-3-large",
 )
 ```
 
@@ -303,31 +316,15 @@ for doc in results:
 
 ## Using Azure OpenAI models
 
-If you are using Azure OpenAI service or Azure AI model inference service with OpenAI models with `langchain-azure-ai` package, you might need to use `api_version` parameter to select a specific API version. The following example shows how to connect to an Azure OpenAI model deployment in Azure OpenAI service:
+If you're using Azure OpenAI models with `langchain-azure-ai` package, use the following URL:
 
 ```python
 from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 
 llm = AzureAIChatCompletionsModel(
-    endpoint="https://<resource>.openai.azure.com/openai/deployments/<deployment-name>",
+    endpoint="https://<resource>.openai.azure.com/openai/v1",
     credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
-    api_version="2024-05-01-preview",
-)
-```
-
-> [!IMPORTANT]
-> Check which is the API version that your deployment is using. Using a wrong `api_version` or one not supported by the model results in a `ResourceNotFound` exception.
-
-If the deployment is hosted in Azure AI Services, you can use the Azure AI model inference service:
-
-```python
-from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
-
-llm = AzureAIChatCompletionsModel(
-    endpoint="https://<resource>.services.ai.azure.com/models",
-    credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
-    model_name="<model-name>",
-    api_version="2024-05-01-preview",
+    model="gpt-4o"
 )
 ```
 
@@ -368,7 +365,7 @@ from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 model = AzureAIChatCompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
-    model_name="mistral-large-2407",
+    model="mistral-large-2407",
     client_kwargs={"logging_enable": True},
 )
 ```
@@ -380,6 +377,8 @@ Use the client as usual in your code.
 You can use the tracing capabilities in Azure AI Foundry by creating a tracer. Logs are stored in Azure Application Insights and can be queried at any time using Azure Monitor or Azure AI Foundry portal. Each AI Hub has an Azure Application Insights associated with it.
 
 ### Get your instrumentation connection string
+
+[!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
 You can configure your application to send telemetry to Azure Application Insights either by:
 
@@ -466,5 +465,5 @@ Learn more about [how to visualize and manage traces](visualize-traces.md).
 
 * [Develop applications with LlamaIndex](llama-index.md)
 * [Visualize and manage traces in Azure AI Foundry](visualize-traces.md)
-* [Use the Azure AI model inference service](../../model-inference/overview.md)
-* [Reference: Azure AI model inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md)
+* [Use Azure AI Foundry Models](../../model-inference/overview.md)
+* [Reference: Foundry Models API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md)

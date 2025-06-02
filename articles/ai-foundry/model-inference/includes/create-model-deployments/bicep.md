@@ -16,9 +16,9 @@ zone_pivot_groups: azure-ai-models-deployment
 
   * Your Azure subscription ID.
 
-  * Your Azure AI Services resource name.
+  * Your Azure AI Foundry (formerly known Azure AI Services) resource name.
 
-  * The resource group where the Azure AI Services resource is deployed.
+  * The resource group where the Azure AI Foundry resource is deployed.
 
   * The model name, provider, version, and SKU you would like to deploy. You can use the Azure AI Foundry portal or the Azure CLI to identify it. In this example we deploy the following model:
 
@@ -40,6 +40,8 @@ The files for this example are in:
 ```azurecli
 cd azureai-model-inference-bicep/infra
 ```
+
+[!INCLUDE [marketplace-rbac](../configure-marketplace/rbac.md)]
 
 ## Add the model
 
@@ -67,4 +69,4 @@ cd azureai-model-inference-bicep/infra
 
 ## Use the model
 
-Deployed models in Azure AI model inference can be consumed using the [Azure AI model's inference endpoint](../../concepts/endpoints.md) for the resource. When constructing your request, indicate the parameter `model` and insert the model deployment name you have created.
+Deployed models can be consumed using the [Azure AI model's inference endpoint](../../concepts/endpoints.md) for the resource. When constructing your request, indicate the parameter `model` and insert the model deployment name you have created.

@@ -2,21 +2,27 @@
 title: What's new in Azure AI Language?
 titleSuffix: Azure AI services
 description: Find out about new releases and features for the Azure AI Language.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: whats-new
 ms.date: 04/10/2025
-ms.author: jboback
+ms.author: lajanuar
 ---
 
 # What's new in Azure AI Language?
 
 Azure AI Language is updated on an ongoing basis. To stay up-to-date with recent developments, this article provides you with information about new releases and features.
 
+## May 2025
+
+* Azure AI Language now supports the following agent templates:
+    *   [Intent routing](https://aka.ms/intent-triage-agent-template) detects user intent and provides exact answering. Perfect for deterministically intent routing and exact question answering with human controls.
+    *   [Exact question answering](https://aka.ms/exact-answer-agent-template) answers high-value predefined questions deterministically to ensure consistent and accurate responses.
+
 ## March 2025
 
-* Azure AI Language resource now can be deployed to 3 new regions, Jio India Central, UK West and Canada East, for the following capabilities: 
+* Azure AI Language resource now can be deployed to three new regions, Jio India Central, UK West, and Canada East, for the following capabilities: 
     * Language detection 
     * Sentiment analysis 
     * Key phrase extraction 
@@ -33,7 +39,7 @@ Azure AI Language is updated on an ongoing basis. To stay up-to-date with recent
 ## February 2025
 
 * Document and text abstractive summarization is now powered by fine-tuned Phi-3.5-mini! Check out the [Announcing Blog](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/exciting-update-abstractive-summarization-in-azure-ai-language-now-powered-by-ph/4369025) for more information.
-* More skills are available in [Azure AI Foundry](https://ai.azure.com): Extract key phrase, Extract named entities, Analyze sentiment and Detect language. More skills are yet to come.
+* More skills are available in [Azure AI Foundry](https://ai.azure.com): Extract key phrase, Extract named entities, Analyze sentiment, and Detect language. More skills are yet to come.
 
 ## January 2025
 
@@ -49,7 +55,7 @@ Azure AI Language is updated on an ongoing basis. To stay up-to-date with recent
     * Custom text classification
     * Extractive text summarization
     * Abstractive text summarization
-* Custom sentiment analysis (preview), custom text analytics for health (preview) and custom summarization (preview) were retired on January 10th, 2025, as Azure AI features are constantly evaluated based on customer demand and feedback. Based on the customers’ feedback of these preview features, Microsoft has decided to retire this feature and prioritize new custom model features leveraging the power of generative AI to better serve customers’ needs. 
+* Custom sentiment analysis (preview), custom text analytics for health (preview) and custom summarization (preview) were retired on January 10, 2025, as Azure AI features are constantly evaluated based on customer demand and feedback. Based on the customers’ feedback of these preview features, Microsoft has decided to retire this feature and prioritize new custom model features leveraging the power of generative AI to better serve customers’ needs. 
 
 ## November 2024
 
@@ -71,7 +77,7 @@ Azure AI Language is updated on an ongoing basis. To stay up-to-date with recent
 
 * PII detection now has container support. See more details in the Azure Update post: [Announcing Text PII Redaction Container Release](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/announcing-text-pii-redaction-container-release/4264655).
 * Custom sentiment analysis (preview) will be retired January 10, 2025. You can transition to other custom model training services, such as custom text classification in Azure AI Language, by that date.  See more details in the Azure Update post: [Retirement: Announcing upcoming retirement of custom sentiment analysis (preview) in Azure AI Language (microsoft.com)](https://azure.microsoft.com/updates/v2/custom-sentiment-analysis-retirement).
-* Custom text analytics for health (preview) will be retired on January 10th, 2025. Please transition to other custom model training services, such as custom named entity recognition in Azure AI Language, by that date.  See more details in the Azure Update post: [Retirement: Announcing upcoming retirement of custom text analytics for health (preview) in Azure AI Language (microsoft.com)](https://azure.microsoft.com/updates/v2/custom-text-analytics-for-health-retirement).
+* Custom text analytics for health (preview) will be retired on January 10, 2025. Please transition to other custom model training services, such as custom named entity recognition in Azure AI Language, by that date.  See more details in the Azure Update post: [Retirement: Announcing upcoming retirement of custom text analytics for health (preview) in Azure AI Language (microsoft.com)](https://azure.microsoft.com/updates/v2/custom-text-analytics-for-health-retirement).
 
 ## August 2024
 * [CLU utterance limit in a project](conversational-language-understanding/service-limits.md#data-limits) increased from 25,000 to 50,000.

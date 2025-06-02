@@ -1,13 +1,13 @@
 ---
-title: How to use structured outputs for chat models with Azure AI model inference
+title: How to use structured outputs for chat models with Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
-description: Learn how to use structured outputs with chat completions with Azure AI model inference
+description: Learn how to use structured outputs with chat completions with Azure AI Foundry Models
 manager: scottpolly
 author: msakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
-ms.topic: how-to
-ms.date: 1/21/2025
+ms.topic: include
+ms.date: 05/29/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 zone_pivot_groups: azure-ai-inference-samples
@@ -28,34 +28,60 @@ zone_pivot_groups: azure-ai-inference-samples
 
 ## How to use structured outputs
 
-Structured outputs use JSON schemas to enforce output structure. JSON schemas describe the shape of the JSON object including expected values, types, and which ones are required. Those JSON objects are encoded as a string within the response of the model.
+Structured outputs use JSON schemas to enforce output structure. JSON schemas describe the shape of the JSON object, including expected values, types, and which ones are required. Those JSON objects are encoded as a string within the response of the model.
 
 ### Example
 
-To exemplify the scenario, let's try to parse the attributes of a GitHub Issue from its description.
+To illustrate, let's try to parse the attributes of a GitHub Issue from its description.
 
-```python
+```javascript
 const url = 'https://api.github.com/repos/Azure-Samples/azure-search-openai-demo/issues/2231';
 
 async function getIssueBody() {
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    const issueBody = data.body;
-    return issueBody;
-  } catch (error) {
-    console.error('Error fetching issue:', error);
-  }
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        const issueBody = data.body;
+        return issueBody;
+    } catch (error) {
+        console.error('Error fetching issue:', error);
+    }
 }
 
 issueBody = await getIssueBody();
-
 ```
 
-The output of `issueBody` looks as follows:
+The output of `issueBody` is:
 
 ```output
-'<!--\r\nIF SUFFICIENT INFORMATION IS NOT PROVIDED VIA THE FOLLOWING TEMPLATE THE ISSUE MIGHT BE CLOSED WITHOUT FURTHER CONSIDERATION OR INVESTIGATION\r\n-->\r\n> Please provide us with the following information:\r\n> ---------------------------------------------------------------\r\n\r\n### This issue is for a: (mark with an `x`)\r\n```\r\n- [x] bug report -> please search issues before submitting\r\n- [ ] feature request\r\n- [ ] documentation issue or request\r\n- [ ] regression (a behavior that used to work and stopped in a new release)\r\n```\r\n\r\n### Minimal steps to reproduce\r\n> Deploy the app with auth and acl´s turned on, configure the acls file, run all the scripts needed.\r\n\r\n### Any log messages given by the failure\r\n> None\r\n\r\n### Expected/desired behavior\r\n> groups field to be filled the the groups id\'s that have permissions to "view the file"\r\n\r\n### OS and Version?\r\n> win 10\r\n### azd version?\r\n> azd version 1.11.0\r\n\r\n### Versions\r\n>\r\n\r\n### Mention any other details that might be useful\r\n\r\nAfter configuring the json with the perms all the scripts (`adlsgen2setup.py` and `prepdocs.ps1`) everything goes well but the groups metadata tag never gets to have any groups.\r\n\r\n![image](https://github.com/user-attachments/assets/40f1eb09-2c21-4244-98b5-adfb3fa16955)\r\n\r\n\r\n> ---------------------------------------------------------------\r\n> Thanks! We\'ll be in touch soon.\r\n'
+<!--
+IF SUFFICIENT INFORMATION IS NOT PROVIDED VIA THE FOLLOWING TEMPLATE THE ISSUE MIGHT BE CLOSED WITHOUT FURTHER CONSIDERATION OR INVESTIGATION
+-->
+> Please provide us with the following information:
+> ---------------------------------------------------------------
+
+### This issue is for a: (mark with an `x`)
+
+- [x] bug report -> please search issues before submitting
+- [ ] feature request
+- [ ] documentation issue or request
+- [ ] regression (a behavior that used to work and stopped in a new release)
+
+### Minimal steps to reproduce
+> Deploy the app with auth and acl´s turned on, configure the acls file, run all the scripts needed.
+
+### Any log messages given by the failure
+> None
+
+### Expected/desired behavior
+> groups field to be filled the the groups id's that have permissions to "view the file"
+
+### OS and Version?
+> win 10
+...
+
+> ---------------------------------------------------------------
+> Thanks! We'll be in touch soon.
 ```
 
 ### Define the schema
@@ -94,25 +120,24 @@ __github_issue_schema.json__
 
 When defining schemas, follow these recommendations:
 
-> [!div class="checklist"]
-> * Use clear and expressive keys.
-> * Use `_` if you need to separate words to convey meaning.
-> * Create clear titles and descriptions for important keys in your structure.
-> * Evaluate multiple structures until finding the one that works best for your use case.
-> * Take into account limitations when indicating schemas, which may vary per model.
+* Use clear and expressive keys.
+* Use `_` if you need to separate words to convey meaning.
+* Create clear titles and descriptions for important keys in your structure.
+* Evaluate multiple structures until you find the one that works best for your use case.
+* Take into account limitations when indicating schemas—limitations might vary per model.
 
 Let's load this schema:
 
 ```javascript
-const fs = require('fs');
+import fs from "fs";
 
 const data = fs.readFileSync('./github_issue_schema.json', 'utf-8');
-const gitHubIssueSchema = JSON.parse(data);```
+const gitHubIssueSchema = JSON.parse(data);
 ```
 
-### Use structure outputs
+### Use structured outputs
 
-We can use structure outputs with the defined schema as follows:
+We can use structured outputs with the defined schema as follows:
 
 
 ```javascript
@@ -150,7 +175,7 @@ var response = await client.path("/chat/completions").post({
 Let's see how this works:
 
 ```javascript
-const rawContent = response.choices[0].message.content;
+const rawContent = response.body.choices[0].message.content;
 const jsonResponseMessage = JSON.parse(rawContent);
 
 console.log(JSON.stringify(jsonResponseMessage, null, 4));
@@ -167,7 +192,7 @@ console.log(JSON.stringify(jsonResponseMessage, null, 4));
 
 ## Structured outputs in images
 
-You can use structured outputs with multi-modal models to extract information from data like images. 
+You can use structured outputs with multi-modal models to extract information from data such as image data. 
 
 Let's consider the following chart:
 
@@ -201,7 +226,8 @@ __graph_schema.json__
                 "serie"
             ],
             "title": "DataPoint",
-            "type": "object"
+            "type": "object",
+            "additionalProperties": false
         }
     },
     "title": "Graph",
@@ -253,10 +279,10 @@ __graph_schema.json__
 Let's load this schema:
 
 ```javascript
-const fs = require('fs');
+import fs from "fs";
 
 const data = fs.readFileSync('./graph_schema.json', 'utf-8');
-const graphSchema = JSON.parse(data);```
+const graphSchema = JSON.parse(data);
 ```
 
 We can load the image as follows to pass it to the model:
@@ -269,38 +295,41 @@ We can load the image as follows to pass it to the model:
  * @returns {string} The data URL of the image.
  */
 function getImageDataUrl(imageFile, imageFormatType) {
-  try {
-    const imageBuffer = fs.readFileSync(imageFile);
-    const imageBase64 = imageBuffer.toString("base64");
-    return `data:image/${imageFormatType};base64,${imageBase64}`;
-  } catch (error) {
-    console.error(`Could not read '${imageFile}'.`);
-    console.error("Set the correct path to the image file before running this sample.");
-    process.exit(1);
-  }
+    try {
+        const imageBuffer = fs.readFileSync(imageFile);
+        const imageBase64 = imageBuffer.toString("base64");
+        return `data:image/${imageFormatType};base64,${imageBase64}`;
+    } catch (error) {
+        console.error(`Could not read '${imageFile}'.`);
+        console.error("Set the correct path to the image file before running this sample.");
+        process.exit(1);
+    }
 }
+
+var imageContent = getImageDataUrl("example-graph-treecover.png", "png");
 ```
 
 Use structured outputs to extract the information:
 
 ```javascript
 var messages = [
-    { 
-        role: "system", 
+    {
+        role: "system",
         content: `
             Extract the information from the graph. Extrapolate the values of the x axe to ensure you have the correct number
             of data points for each of the years from 2001 to 2023. Scale the values of the y axes to account for the values
             being stacked.`
-        },
-        { 
-            role: "user", 
-            content: {
-              type: "image_url",
-              image_url: {
-                url: getImageDataUrl("example-graph-treecover.png", "png"),
-              },
+    },
+    {
+        role: "user",
+        content: [
+            {
+                type: "image_url",
+                image_url: {
+                    url: imageContent,
+                }
             }
-        },
+        ]
     }
 ];
 
@@ -315,7 +344,7 @@ const response = await client.path("/chat/completions").post({
                 description: "Describes the data in the graph",
                 strict: true,
             },
-        }
+        },
         model: "gpt-4o",
     },
 });
@@ -325,7 +354,7 @@ const response = await client.path("/chat/completions").post({
 Let's inspect the output:
 
 ```javascript
-var rawContent = response.choices[0].message.content;
+var rawContent = response.body.choices[0].message.content;
 var jsonResponseMessage = JSON.parse(rawContent);
 
 console.log(JSON.stringify(jsonResponseMessage, null, 4));

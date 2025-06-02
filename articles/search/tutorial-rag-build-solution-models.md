@@ -8,19 +8,19 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: tutorial
 ms.custom: references_regions
-ms.date: 12/03/2024
+ms.date: 05/30/2025
 
 ---
 
 # Tutorial: Choose embedding and chat models for RAG in Azure AI Search
 
-A RAG solution built on Azure AI Search takes a dependency on embedding models for vectorization, and on chat models for conversational search over your data.
+A RAG solution built on Azure AI Search takes a dependency on embedding models for vectorization, and on chat completion models for conversational search over your data.
 
 In this tutorial, you:
 
 > [!div class="checklist"]
-> - Learn which models in the Azure cloud work with built-in integration
-> - Learn about the Azure models used for chat
+> - Learn about the Azure models supported for built-in vectorization
+> - Learn about the Azure models supported for chat completion
 > - Deploy models and collect model information for your code
 > - Configure search engine access to Azure models
 > - Learn about custom skills and vectorizers for attaching non-Azure models
@@ -45,12 +45,9 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
   - [Azure AI Vision regions](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0#region-availability)
 
-  - [Azure AI Foundry](/azure/ai-foundry/reference/region-support) regions. 
+  - [Azure AI Foundry regions](/azure/ai-foundry/reference/region-support)
 
-  Azure AI Search is currently facing limited availability in some regions. To confirm region status, check the [Azure AI Search region list](search-region-support.md).
-
-> [!TIP]
-> Check [this article](search-create-service-portal.md#regions-with-the-most-overlap) for a list of overlapping regions.
+  - [Azure AI Search regions](search-region-support.md)
 
 ## Review models supporting built-in vectorization
 
@@ -102,15 +99,13 @@ This tutorial series uses the following models and model providers:
 
 You must have [**Cognitive Services OpenAI Contributor**]( /azure/ai-services/openai/how-to/role-based-access-control#cognitive-services-openai-contributor) or higher to deploy models in Azure OpenAI.
 
-1. Go to [Azure AI Foundry](https://ai.azure.com/).
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/).
 
-1. Select **Deployments** on the left menu.
+1. From the left pane, select **Model catalog**.
 
-1. Select **Deploy model** > **Deploy base model**.
+1. Select **text-embedding-3-large**, and then select **Use this model**.
 
-1. Select **text-embedding-3-large** from the dropdown list and confirm the selection.
-
-1. Specify a deployment name. We recommend "text-embedding-3-large".
+1. Specify a deployment name. We recommend **text-embedding-3-large**.
 
 1. Accept the defaults.
 

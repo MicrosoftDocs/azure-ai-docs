@@ -1,13 +1,13 @@
 ---
 title: 'Use the Azure OpenAI web app'
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Use this article to learn about using the available web app to chat with Azure OpenAI models.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
 author: aahill
 ms.author: aahi
-ms.date: 02/19/2025
+ms.date: 05/20/2025
 recommendations: false
 ---
 
@@ -387,7 +387,7 @@ For further instructions on enabling these data sources, see the [GitHub reposit
 > [!NOTE]
 > As of February 1, 2024, the web app requires the app startup command to be set to `python3 -m gunicorn app:app`. When you're updating an app that was published before February 1, 2024, you need to manually add the startup command from the **App Service Configuration** page.
 
-We recommend pulling changes from the `main` branch for the web app's source code frequently to ensure that you have the latest bug fixes, API version, and improvements. Additionally, the web app must be synchronized every time the API version that you're using is [retired](../api-version-deprecation.md). Consider selecting either the **Watch** or the **Star** button on the web app's [GitHub repo](https://github.com/microsoft/sample-app-aoai-chatGPT) to be notified about changes and updates to the source code.
+We recommend pulling changes from the `main` branch for the web app's source code frequently to ensure that you have the latest bug fixes, API version, and improvements. Additionally, the web app must be synchronized every time the API version that you're using is [retired](../api-version-lifecycle.md). Consider selecting either the **Watch** or the **Star** button on the web app's [GitHub repo](https://github.com/microsoft/sample-app-aoai-chatGPT) to be notified about changes and updates to the source code.
 
 If you haven't customized the web app, you can use these steps to synchronize it:
 
@@ -448,7 +448,7 @@ In the webapp application settings, navigate to "Environment Variables" and make
 If using an embedding model deployed to the same resource as your model used for inference, there are no other settings changes required.
 
 However, if you're using an embedding model deployed to a different resource, make the following extra changes to your app's environment variables:
-* Set `AZURE_OPENAI_EMBEDDING_ENDPOINT` variable to the full API path of the embedding API for the resource you're using for embeddings, for example, `https://<your Azure OpenAI Service resource name>.openai.azure.com/openai/deployments/<your embedding deployment name>/embeddings`
+* Set `AZURE_OPENAI_EMBEDDING_ENDPOINT` variable to the full API path of the embedding API for the resource you're using for embeddings, for example, `https://<your Azure OpenAI in Azure AI Foundry Models resource name>.openai.azure.com/openai/deployments/<your embedding deployment name>/embeddings`
 * Delete the `AZURE_OPENAI_EMBEDDING_KEY` variable to use Microsoft Entra ID authentication. 
 
 Once all of the environment variable changes are completed, restart the webapp to begin using Microsoft Entra ID authentication between services in the webapp. It will take a few minutes after restarting for any settings changes to take effect.

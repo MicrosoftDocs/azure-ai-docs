@@ -1,11 +1,11 @@
 ---
-title: Consume deployed serverless API endpoints from a different project or hub
+title: Consume standard deployments from a different project or hub
 titleSuffix: Azure AI Foundry
-description: Learn how to consume deployed serverless API endpoints from a different project or hub.
+description: Learn how to consume standard deployments from a different project or hub.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 12/20/2024
+ms.date: 05/19/2025
 ms.author: mopeakande
 author: msakande
 ms.reviewer: fasantia
@@ -16,15 +16,15 @@ ms.custom:
   - ignite-2024
 ---
 
-# Consume serverless API endpoints from a different Azure AI Foundry project or hub
+# Consume standard deployments from a different Azure AI Foundry project or hub
 
-In this article, you learn how to configure an existing serverless API endpoint in a different project or hub than the one that was used to create the deployment.
+In this article, you learn how to configure an existing standard deployments in a different project or hub than the one that was used to create the deployment.
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
 
-[Certain models in the model catalog](deploy-models-serverless-availability.md) can be deployed as serverless APIs. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription.
+[Certain models in the model catalog](deploy-models-serverless-availability.md) can be deployed as standard deploymentss. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription.
 
-The need to consume a serverless API endpoint in a different project or hub than the one that was used to create the deployment might arise in situations such as these:
+The need to consume a standard deployments endpoint in a different project or hub than the one that was used to create the deployment might arise in situations such as these:
 
 - You want to centralize your deployments in a given project or hub and consume them from different projects or hubs in your organization.
 - You need to deploy a model in a hub in a particular Azure region where serverless deployment for that model is available. However, you need to consume it from another region, where serverless deployment isn't available for the particular models.
@@ -33,11 +33,11 @@ The need to consume a serverless API endpoint in a different project or hub than
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-- An [Azure AI Foundry hub](create-azure-ai-resource.md).
+- An [Azure AI Foundry hub](create-azure-ai-resource.md), if you're using a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. A **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** does not use a hub. For more information, see [Project types](../what-is-azure-ai-foundry.md#project-types).
 
-- An [Azure AI Foundry project](create-projects.md).
+- If you don't have one, [create a [!INCLUDE [hub](../includes/hub-project-name.md)]](create-projects.md?pivots=hub-project).
 
-- A model [deployed to a serverless API endpoint](deploy-models-serverless.md). This article assumes that you previously deployed the **Meta-Llama-3-8B-Instruct** model. To learn how to deploy this model as a serverless API, see [Deploy models as serverless APIs](deploy-models-serverless.md).
+- A model [deployed to a standard deployments](deploy-models-serverless.md). This article assumes that you previously deployed the **Meta-Llama-3-8B-Instruct** model. To learn how to deploy this model as a standard deployment, see [Deploy models as standard deployments](deploy-models-serverless.md).
 
 - You need to install the following software to work with Azure AI Foundry:
 
@@ -82,13 +82,15 @@ The need to consume a serverless API endpoint in a different project or hub than
     from azure.ai.ml.entities import ServerlessEndpoint, ServerlessConnection
     ```
 
-## Create a serverless API endpoint connection
+## Create a standard deployment endpoint connection
 
 Follow these steps to create a connection:
 
 1. Connect to the project or hub where the endpoint is deployed:
 
     # [Azure AI Foundry portal](#tab/azure-ai-studio)
+
+    [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
     Go to [Azure AI Foundry](https://ai.azure.com) and navigate to the project where the endpoint you want to connect to is deployed.
 

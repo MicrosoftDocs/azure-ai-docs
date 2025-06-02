@@ -1,12 +1,12 @@
 ---
 title: How to use Risks & Safety monitoring in Azure AI Foundry
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn how to check statistics and insights from your Azure OpenAI content filtering activity.
 author: PatrickFarley 
 ms.author: pafarley 
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 02/20/2025
+ms.date: 05/31/2025
 manager: nitinme
 ---
 
@@ -20,7 +20,7 @@ When you use an Azure OpenAI model deployment with a content filter, you might w
 
 To access Risks & Safety monitoring, you need an Azure OpenAI resource in one of the supported Azure regions: East US, Switzerland North, France Central, Sweden Central, Canada East. You also need a model deployment that uses a content filter configuration.
 
-Go to [Azure AI Foundry](https://ai.azure.com/) and sign in with the credentials associated with your Azure OpenAI resource. Select a project. Then select the **Models + endpoints** tab on the left and then select your model deployment from the list. On the deployment's page, select the **Metrics** tab at the top. Then select **Open in Azure Monitor** to view the full report in the Azure portal.
+Go to [Azure AI Foundry](https://ai.azure.com/) and sign in with the credentials associated with your Azure OpenAI resource. Select a project. Then select the **Models + endpoints** tab on the left and then select your model deployment from the list. On the deployment's page, select the **Monitoring** tab at the top. Then select **Open in Azure Monitor** to view the full report in the Azure portal.
 
 ## Configure metrics   
 
@@ -43,14 +43,14 @@ Adjust your content filter configuration to further align with business needs an
 
 ## Potentially abusive user detection   
 
-The **Potentially abusive user detection** pane leverages user-level abuse reporting to show information about users whose behavior has resulted in blocked content. The goal is to help you get a view of the sources of harmful content so you can take responsive actions to ensure the model is being used in a responsible way. 
+The **Potentially abusive user detection** pane shows information about users whose behavior has resulted in blocked content. The goal is to help you get a view of the sources of harmful content so you can take responsive actions to ensure the model is being used in a responsible way. 
 
 
 To use Potentially abusive user detection, you need:
 - A content filter configuration applied to your deployment.
 - You must be sending user ID information in your Chat Completion requests (see the _user_ parameter of the [Completions API](/azure/ai-services/openai/reference#completions), for example).
     > [!CAUTION]
-    > Use GUID strings to identify individual users. Do not include sensitive personal information in the _user_ field.
+    > Use GUID strings to identify individual users. Don't include sensitive personal information in the _user_ field.
 - An Azure Data Explorer database set up to store the user analysis results (instructions below).
 
 ### Set up your Azure Data Explorer database
@@ -94,4 +94,4 @@ Combine this data with enriched signals to validate whether the detected users a
 Next, create or edit a content filter configuration in Azure AI Foundry.
 
 > [!div class="nextstepaction"]
-> [Configure content filters with Azure OpenAI Service](/azure/ai-services/openai/how-to/content-filters)
+> [Configure content filters with Azure OpenAI in Azure AI Foundry Models](/azure/ai-services/openai/how-to/content-filters)

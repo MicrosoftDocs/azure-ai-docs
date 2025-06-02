@@ -1,11 +1,11 @@
 ---
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
 ms.date: 12/19/2023
 ms.custom: devx-track-java, ignite-2024
-ms.author: jboback
+ms.author: lajanuar
 ---
 
 [Reference documentation](/java/api/overview/azure/ai-textanalytics-readme?view=azure-java-preview&preserve-view=true) | [More samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/textanalytics/azure-ai-textanalytics/src/samples) | [Package (Maven)](https://mvnrepository.com/artifact/com.azure/azure-ai-textanalytics/5.3.0) | [Library source code](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/textanalytics/azure-ai-textanalytics)
@@ -18,7 +18,7 @@ Use this quickstart to create a text summarization application with the client l
 
 * Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
 * [Java Development Kit (JDK)](https://www.oracle.com/technetwork/java/javase/downloads/index.html) with version 8 or above
-* Once you have your Azure subscription, [create an AI services resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal#create-a-new-azure-ai-services-resource).
+* Once you have your Azure subscription, [create an AI Foundry resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal).
     * You'll need the key and endpoint from the resource you create to connect your application to the API. You paste your key and endpoint into the code below later in the quickstart.
     * You can use the free pricing tier (`Free F0`) to try the service, and upgrade later to a paid tier for production.
 * To use the Analyze feature, you'll need a Language resource with the standard (S) pricing tier.

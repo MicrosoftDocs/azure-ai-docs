@@ -1,5 +1,5 @@
 items:
-- name: Azure OpenAI Service Documentation
+- name: Azure OpenAI Documentation
   href: index.yml
 - name: Overview
   expanded: true
@@ -27,8 +27,6 @@ items:
       href: azure-government.md
 - name: Quickstarts
   items:
-    - name: Assistants (preview)
-      href: assistants-quickstart.md
     - name: Audio generation
       href: audio-completions-quickstart.md
     - name: Chat
@@ -38,6 +36,8 @@ items:
       href: gpt-v-quickstart.md
     - name: Image generation
       href: dall-e-quickstart.md
+    - name: Video generation
+      href: video-generation-quickstart.md
     - name: Use your data
       href: use-your-data-quickstart.md
     - name: Realtime API for speech and audio (preview)
@@ -56,8 +56,28 @@ items:
       href: ./concepts/abuse-monitoring.md
     - name: Audio
       href: ./concepts/audio.md
+    - name: Model router
+      href: ./concepts/model-router.md
     - name: Content filtering
-      href: ./concepts/content-filter.md
+      items:
+      - name: Content filtering overview
+        href: ./concepts/content-filter.md
+      - name: Content filtering severity levels
+        href: ./concepts/content-filter-severity-levels.md
+      - name: Prompt shields
+        href: ./concepts/content-filter-prompt-shields.md
+      - name: Groundedness detection
+        href: ./concepts/content-filter-groundedness.md
+      - name: Protected material detection
+        href: ./concepts/content-filter-protected-material.md
+      - name: Content filter configurability
+        href: ./concepts/content-filter-configurability.md
+      - name: Content filter annotations
+        href: ./concepts/content-filter-annotations.md
+      - name: Document embedding in prompts
+        href: ./concepts/content-filter-document-embedding.md
+      - name: Content streaming
+        href: ./concepts/content-streaming.md
     - name: Default safety policies
       href: ./concepts/default-safety-policies.md
     - name: Prompt transformations
@@ -70,6 +90,8 @@ items:
       href: ./concepts/fine-tuning-considerations.md
     - name: Vision-enabled models
       href: ./concepts/gpt-with-vision.md
+    - name: Video generation (preview)
+      href: ./concepts/video-generation.md
     - name: Red teaming large language models (LLMs)
       href: ./concepts/red-teaming.md
     - name: Content credentials
@@ -95,7 +117,7 @@ items:
 - name: How-to 
   items:
   - name: API version lifecycle
-    href: ./api-version-deprecation.md
+    href: ./api-version-lifecycle.md
   - name: Assistants (preview)
     items:
     - name: Getting started with Assistants
@@ -121,7 +143,11 @@ items:
       - name: Realtime API via WebSockets (preview)
         href: ./how-to/realtime-audio-websockets.md
   - name: Batch
-    href: ./how-to/batch.md
+    items:
+     - name: Getting started with batch
+       href: ./how-to/batch.md
+     - name: Batch with Azure Blob Storage
+       href: ./how-to/batch-blob-storage.md   
   - name: Responses & chat completions
     items:
     - name: Responses API
@@ -131,6 +157,8 @@ items:
     - name: GPT-35-Turbo & GPT-4 
       href: ./how-to/chatgpt.md
       displayName: ChatGPT, chatgpt
+    - name: Model router
+      href: ./how-to/model-router.md
     - name: Computer Use
       href: ./how-to/computer-use.md
       displayName: cua, computer using model
@@ -178,7 +206,10 @@ items:
     items:
       - name: Fine-tuning your model
         href: ./how-to/fine-tuning.md
-        displayName: finetuning, fine-tuning 
+        displayName: finetuning, fine-tuning
+      - name: Deploy for testing
+        href: ./how-to/fine-tune-test.md
+        displayName: finetuning, fine-tuning
       - name: Deploy your fine-tuned model
         href: ./how-to/fine-tuning-deploy.md 
         displayName: finetuning, fine-tuning  
@@ -188,6 +219,9 @@ items:
       - name: Preference fine-tuning
         href: ./how-to/fine-tuning-direct-preference-optimization.md
         displayName: finetuning, fine-tuning  
+      - name: Reinforcement fine-tuning
+        href: ./how-to/reinforcement-fine-tuning.md
+        displayName: finetuning, fine-tuning
       - name: Safety evaluation
         href: ./how-to/fine-tuning-safety-evaluation.md
         displayName: finetuning, fine-tuning  
@@ -310,9 +344,13 @@ items:
       href: /legal/cognitive-services/openai/customer-copyright-commitment?context=/azure/ai-services/openai/context/context
 - name: Reference
   items:
+    - name: Latest Inference Preview API
+      href: reference-preview-latest.md
     - name: Inference GA API reference
       href: reference.md
-    - name: Inference preview API reference
+    - name: 2025-04-01-preview - Authoring 
+      href: authoring-reference-preview.md
+    - name: 2025-04-01-preview - Inference 
       href: reference-preview.md
     - name: Assistants API Reference
       items:

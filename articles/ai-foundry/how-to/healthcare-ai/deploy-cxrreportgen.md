@@ -37,7 +37,7 @@ The CXRReportGen model combines a radiology-specific image encoder with a large 
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-- An [Azure AI Foundry project](../create-projects.md).
+- If you don't have one, [create a [!INCLUDE [hub](../../includes/hub-project-name.md)]](../create-projects.md?pivots=hub-project).
 
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../../concepts/rbac-ai-foundry.md).
 
@@ -50,7 +50,7 @@ To __deploy the model through the UI__:
 1. Go to the model catalog.
 1. Search for the _CxrReportGen_ model and select its model card.
 1. On the model's overview page, select __Deploy__.
-1. If given the option to choose between serverless API deployment and deployment using a managed compute, select **Managed Compute**.
+1. If given the option to choose between standard deployment and deployment using a managed compute, select **Managed Compute**.
 1. Fill out the details in the deployment window.
 
     > [!NOTE]

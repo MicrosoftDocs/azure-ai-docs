@@ -1,6 +1,5 @@
 ---
-title: What's new in Azure OpenAI Service?
-titleSuffix: Azure AI services
+title: What's new in Azure OpenAI in Azure AI Foundry Models?
 description: Learn about the latest news and features updates for Azure OpenAI.
 manager: nitinme
 author: mrbullwinkle
@@ -11,15 +10,36 @@ ms.custom:
   - references_regions
   - ignite-2024
 ms.topic: whats-new
-ms.date: 04/16/2025
+ms.date: 5/28/2025
 recommendations: false
 ---
 
-# What's new in Azure OpenAI Service
+# What's new in Azure OpenAI in Azure AI Foundry Models
 
-This article provides a summary of the latest releases and major documentation updates for Azure OpenAI Service.
+This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
+
+## May 2025
+
+### Sora video generation released (preview)
+
+Sora (2025-05-02) is a video generation model from OpenAI that can create realistic and imaginative video scenes from text instructions.
+
+Follow the [Video generation quickstart](/azure/ai-services/openai/video-generation-quickstart) to get started. For more information, see the [Video generation concepts](./concepts/video-generation.md) guide.
+
+### Spotlighting for prompt shields
+
+Spotlighting is a sub-feature of prompt shields that enhances protection against indirect (embedded document) attacks by tagging input documents with special formatting to indicate lower trust to the model. For more information, see the [Prompt shields filter](./concepts/content-filter-prompt-shields.md) documentation.
+
+
+### Model router (preview)
+
+Model router for Azure AI Foundry is a deployable AI chat model that automatically selects the best underlying chat model to respond to a given prompt. For more information on how model router works and its advantages and limitations, see the [Model router concepts guide](./concepts/model-router.md). To use model router with the Completions API, follow the [How-to guide](./concepts/model-router.md).
 
 ## April 2025
+
+### Realtime API (preview) support for WebRTC
+
+The Realtime API (preview) now supports WebRTC, enabling real-time audio streaming and low-latency interactions. This feature is ideal for applications requiring immediate feedback, such as live customer support or interactive voice assistants. For more information, see the [Realtime API (preview) documentation](./how-to/realtime-audio-webrtc.md).
 
 ### GPT-image-1 released (preview, limited access)
 
@@ -129,7 +149,7 @@ For more information, see the [GPT-4o real-time audio quickstart](realtime-audio
 
 ### o1 reasoning model released for limited access
 
-The latest `o1` model is now available for API access and model deployment. **Registration is required, and access will be granted based on Microsoft's eligibility criteria**. Customers who previously applied and received access to `o1-preview`, don't need to reapply as they are automatically on the wait-list for the latest model.
+The latest `o1` model is now available for API access and model deployment. **Registration is required, and access will be granted based on Microsoft's eligibility criteria**. Customers who previously applied and received access to `o1-preview`, don't need to reapply as they're automatically on the wait-list for the latest model.
 
 Request access: [limited access model application](https://aka.ms/OAI/o1access)
 
@@ -143,7 +163,7 @@ To learn more about the advanced `o1` series models see, [getting started with o
 
 ### Preference fine-tuning (preview)
 
-[Direct preference optimization (DPO)](./how-to/fine-tuning-direct-preference-optimization.md) is a new alignment technique for large language models, designed to adjust model weights based on human preferences. Unlike reinforcement learning from human feedback (RLHF), DPO does not require fitting a reward model and uses simpler data (binary preferences) for training. This method is computationally lighter and faster, making it equally effective at alignment while being more efficient. DPO is especially useful in scenarios where subjective elements like tone, style, or specific content preferences are important. We’re excited to announce the public preview of DPO in Azure OpenAI Service, starting with the `gpt-4o-2024-08-06` model.
+[Direct preference optimization (DPO)](./how-to/fine-tuning-direct-preference-optimization.md) is a new alignment technique for large language models, designed to adjust model weights based on human preferences. Unlike reinforcement learning from human feedback (RLHF), DPO doesn't require fitting a reward model and uses simpler data (binary preferences) for training. This method is computationally lighter and faster, making it equally effective at alignment while being more efficient. DPO is especially useful in scenarios where subjective elements like tone, style, or specific content preferences are important. We’re excited to announce the public preview of DPO in Azure OpenAI, starting with the `gpt-4o-2024-08-06` model.
 
 For fine-tuning model region availability, see the [models page](./concepts/models.md#fine-tuning-models).
 
@@ -181,7 +201,7 @@ For fine-tuning model region availability, see the [models page](./concepts/mode
 
 ### NEW AI abuse monitoring
 
-We are introducing new forms of abuse monitoring that leverage LLMs to improve efficiency of detection of potentially abusive use of the Azure OpenAI service and to enable abuse monitoring without the need for human review of prompts and completions. Learn more, see [Abuse monitoring](/azure/ai-services/openai/concepts/abuse-monitoring).
+We're introducing new forms of abuse monitoring that leverage LLMs to improve efficiency of detection of potentially abusive use of the Azure OpenAI and to enable abuse monitoring without the need for human review of prompts and completions. Learn more, see [Abuse monitoring](/azure/ai-services/openai/concepts/abuse-monitoring).
 
 Prompts and completions that are flagged through content classification and/or identified to be part of a potentially abusive pattern of use are subjected to an additional review process to help confirm the system's analysis and inform actioning decisions. Our abuse monitoring systems have been expanded to enable review by LLM by default and by humans when necessary and appropriate. 
 
@@ -294,13 +314,13 @@ OpenAI has incorporated additional safety measures into the `o1` models, includi
 
 ### Availability
 
-The `o1-preview` and `o1-mini` are available in the East US2 region for limited access through the [Azure AI Foundry portal](https://ai.azure.com) early access playground. Data processing for the `o1` models might occur in a different region than where they are available for use.
+The `o1-preview` and `o1-mini` are available in the East US2 region for limited access through the [Azure AI Foundry portal](https://ai.azure.com) early access playground. Data processing for the `o1` models might occur in a different region than where they're available for use.
 
 To try the `o1-preview` and `o1-mini` models in the early access playground **registration is required, and access will be granted based on Microsoft’s eligibility criteria.**
 
 Request access: [limited access model application](https://aka.ms/oai/modelaccess)
 
-Once access has been granted, you will need to:
+Once access has been granted, you'll need to:
 
 1. Navigate to https://ai.azure.com/resources and select a resource in the `eastus2` region. If you don't have an Azure OpenAI resource in this region you'll need to [create one](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI).  
 2. Once the `eastus2` Azure OpenAI resource is selected, in the upper left-hand panel under **Playgrounds** select **Early access playground (preview)**.
@@ -357,7 +377,7 @@ Unlike the previous early access playground, the [Azure AI Foundry portal](https
 > [!NOTE]
 > Prompts and completions made through the early access playground (preview) might be processed in any Azure OpenAI region, and are currently subject to a 10 request per minute per Azure subscription limit. This limit might change in the future.
 >
-> Azure OpenAI Service abuse monitoring is enabled for all early access playground users even if approved for modification; default content filters are enabled and cannot be modified.
+> Azure OpenAI abuse monitoring is enabled for all early access playground users even if approved for modification; default content filters are enabled and can't be modified.
 
 To test out GPT-4o `2024-08-06`, sign-in to the Azure AI early access playground (preview) using this [link](https://aka.ms/oai/docs/earlyaccessplayground).
 
@@ -544,7 +564,7 @@ Prompt Shields protect applications powered by Azure OpenAI models from two type
 
 ### 2024-05-01-preview API release
 
-- For more information, see the [API version lifecycle](./api-version-deprecation.md).
+- For more information, see the [API version lifecycle](./api-version-lifecycle.md).
 
 ### GPT-4 Turbo model general availability (GA)
 
@@ -597,7 +617,7 @@ Azure OpenAI Studio now provides a Risks & Safety dashboard for each of your dep
 
 This is the latest GA API release and is the replacement for the previous `2023-05-15` GA release. This release adds support for the latest Azure OpenAI GA features like Whisper, DALLE-3, fine-tuning, on your data, and more.
 
-Features that are in preview such as Assistants, text to speech (TTS), and some of the "on your data" datasources, require a preview API version. For more information, check out our [API version lifecycle guide](./api-version-deprecation.md).
+Features that are in preview such as Assistants, text to speech (TTS), and some of the "on your data" datasources, require a preview API version. For more information, check out our [API version lifecycle guide](./api-version-lifecycle.md).
 
 ### Whisper general availability (GA)
 
@@ -617,7 +637,7 @@ You can now access DALL-E 3 with an Azure OpenAI resource in the `East US` or `A
 
 ### Model deprecations and retirements
 
-We have added a page to track [model deprecations and retirements](./concepts/model-retirements.md) in Azure OpenAI Service. This page provides information about the models that are currently available, deprecated, and retired.
+We have added a page to track [model deprecations and retirements](./concepts/model-retirements.md) in Azure OpenAI. This page provides information about the models that are currently available, deprecated, and retired.
 
 ### 2024-03-01-preview API released
 
@@ -626,7 +646,7 @@ We have added a page to track [model deprecations and retirements](./concepts/mo
 - `encoding_format` allows you to specify the format to generate embeddings in `float`, or `base64`. The default is `float`.
 - `dimensions` allows you set the number of output embeddings. This parameter is only supported with the new third generation embeddings models: `text-embedding-3-large`, `text-embedding-3-small`. Typically larger embeddings are more expensive from a compute, memory, and storage perspective. Being able to adjust the number of dimensions allows more control over overall cost and performance. The `dimensions` parameter isn't supported in all versions of the OpenAI 1.x Python library, to take advantage of this parameter  we recommend upgrading to the latest version: `pip install openai --upgrade`.
 
-If you're currently using a preview API version to take advantage of the latest features, we recommend consulting the [API version lifecycle](./api-version-deprecation.md) article to track how long your current API version will be supported.
+If you're currently using a preview API version to take advantage of the latest features, we recommend consulting the [API version lifecycle](./api-version-lifecycle.md) article to track how long your current API version will be supported.
 
 ### Update to GPT-4-1106-Preview upgrade plans
 
@@ -661,7 +681,7 @@ To simplify migration between different versions of the GPT-3.5-Turbo models (in
 
 ### GPT-4-0125-preview model available
 
-The `gpt-4` model version `0125-preview` is now available on Azure OpenAI Service in the East US, North Central US, and South Central US regions.  Customers with deployments of `gpt-4` version `1106-preview` will be automatically upgraded to `0125-preview` in the coming weeks.  
+The `gpt-4` model version `0125-preview` is now available on Azure OpenAI in the East US, North Central US, and South Central US regions.  Customers with deployments of `gpt-4` version `1106-preview` will be automatically upgraded to `0125-preview` in the coming weeks.  
 
 For information on model regional availability and upgrades refer to the [models page](./concepts/models.md).
 
@@ -680,10 +700,10 @@ Azure OpenAI now supports the API that powers OpenAI's GPTs. Azure OpenAI Assist
 
 ### OpenAI text to speech voices public preview
 
-Azure OpenAI Service now supports text to speech APIs with OpenAI's voices. Get AI-generated speech from the text you provide. To learn more, see the [overview guide](../speech-service/openai-voices.md) and try the [quickstart](./text-to-speech-quickstart.md).
+Azure OpenAI now supports text to speech APIs with OpenAI's voices. Get AI-generated speech from the text you provide. To learn more, see the [overview guide](../speech-service/openai-voices.md) and try the [quickstart](./text-to-speech-quickstart.md).
 
 > [!NOTE]
-> Azure AI Speech also supports OpenAI text to speech voices. To learn more, see [OpenAI text to speech voices via Azure OpenAI Service or via Azure AI Speech](../speech-service/openai-voices.md#openai-text-to-speech-voices-via-azure-openai-service-or-via-azure-ai-speech) guide.
+> Azure AI Speech also supports OpenAI text to speech voices. To learn more, see [OpenAI text to speech voices via Azure OpenAI or via Azure AI Speech](../speech-service/openai-voices.md#openai-text-to-speech-voices-via-azure-openai-or-via-azure-ai-speech) guide.
 
 ### New Fine-tuning capabilities and model support
 
@@ -709,7 +729,7 @@ You can now use Azure OpenAI On Your Data in the following Azure region:
 
 ### GPT-4 Turbo with Vision now available
 
-GPT-4 Turbo with Vision on Azure OpenAI service is now in public preview. GPT-4 Turbo with Vision is a large multimodal model (LMM) developed by OpenAI that can analyze images and provide textual responses to questions about them. It incorporates both natural language processing and visual understanding. With enhanced mode, you can use the [Azure AI Vision](/azure/ai-services/computer-vision/overview) features to generate additional insights from the images.
+GPT-4 Turbo with Vision on Azure OpenAI is now in public preview. GPT-4 Turbo with Vision is a large multimodal model (LMM) developed by OpenAI that can analyze images and provide textual responses to questions about them. It incorporates both natural language processing and visual understanding. With enhanced mode, you can use the [Azure AI Vision](/azure/ai-services/computer-vision/overview) features to generate additional insights from the images.
 
 - Explore the capabilities of GPT-4 Turbo with Vision in a no-code experience using the [Azure OpenAI Playground](https://oai.azure.com/). Learn more in the [Quickstart guide](./gpt-v-quickstart.md).
 - Vision enhancement using GPT-4 Turbo with Vision is now available in the [Azure OpenAI Playground](https://oai.azure.com/) and includes support for Optical Character Recognition, object grounding, image support for "add your data," and support for video prompt.
@@ -783,18 +803,18 @@ Try out DALL-E 3 by following a [quickstart](./dall-e-quickstart.md).
 ## September 2023
 
 ### GPT-4
-GPT-4 and GPT-4-32k are now available to all Azure OpenAI Service customers. Customers no longer need to apply for the waitlist to use GPT-4 and GPT-4-32k (the Limited Access registration requirements continue to apply for all Azure OpenAI models). Availability might vary by region. Check the [models page](concepts/models.md), for the latest information on model availability in each region.
+GPT-4 and GPT-4-32k are now available to all Azure OpenAI customers. Customers no longer need to apply for the waitlist to use GPT-4 and GPT-4-32k (the Limited Access registration requirements continue to apply for all Azure OpenAI models). Availability might vary by region. Check the [models page](concepts/models.md), for the latest information on model availability in each region.
 
 ### GPT-3.5 Turbo Instruct
 
-Azure OpenAI Service now supports the GPT-3.5 Turbo Instruct model. This model has performance comparable to `text-davinci-003` and is available to use with the Completions API. Check the [models page](concepts/models.md), for the latest information on model availability in each region.
+Azure OpenAI now supports the GPT-3.5 Turbo Instruct model. This model has performance comparable to `text-davinci-003` and is available to use with the Completions API. Check the [models page](concepts/models.md), for the latest information on model availability in each region.
 
 ### Whisper public preview
 
-Azure OpenAI Service now supports speech to text APIs powered by OpenAI's Whisper model. Get AI-generated text based on the speech audio you provide. To learn more, check out the [quickstart](./whisper-quickstart.md).
+Azure OpenAI now supports speech to text APIs powered by OpenAI's Whisper model. Get AI-generated text based on the speech audio you provide. To learn more, check out the [quickstart](./whisper-quickstart.md).
 
 > [!NOTE]
-> Azure AI Speech also supports OpenAI's Whisper model via the batch transcription API. To learn more, check out the [Create a batch transcription](../speech-service/batch-transcription-create.md#use-a-whisper-model) guide. Check out [What is the Whisper model?](../speech-service/whisper-overview.md) to learn more about when to use Azure AI Speech vs. Azure OpenAI Service.
+> Azure AI Speech also supports OpenAI's Whisper model via the batch transcription API. To learn more, check out the [Create a batch transcription](../speech-service/batch-transcription-create.md#use-a-whisper-model) guide. Check out [What is the Whisper model?](../speech-service/whisper-overview.md) to learn more about when to use Azure AI Speech vs. Azure OpenAI.
 
 ### New Regions
 
@@ -848,7 +868,7 @@ Azure OpenAI Service now supports speech to text APIs powered by OpenAI's Whispe
 
 ### Content filtering & annotations (Preview)
 
-- How to [configure content filters](how-to/content-filters.md) with Azure OpenAI Service.
+- How to [configure content filters](how-to/content-filters.md) with Azure OpenAI.
 - [Enable annotations](concepts/content-filter.md) to view content filtering category and severity information as part of your GPT based Completion and Chat Completion calls.
 
 ### Quota
@@ -879,7 +899,7 @@ If you're currently using the `2023-03-15-preview` API, we recommend migrating t
 
 ## April 2023
 
-- **DALL-E 2 public preview**. Azure OpenAI Service now supports image generation APIs powered by OpenAI's DALL-E 2 model. Get AI-generated images based on the descriptive text you provide. To learn more, check out the [quickstart](./dall-e-quickstart.md).
+- **DALL-E 2 public preview**. Azure OpenAI now supports image generation APIs powered by OpenAI's DALL-E 2 model. Get AI-generated images based on the descriptive text you provide. To learn more, check out the [quickstart](./dall-e-quickstart.md).
 
 - **Inactive deployments of customized models will now be deleted after 15 days; models will remain available for redeployment.** If a customized (fine-tuned) model is deployed for more than fifteen (15) days during which no completions or chat completions calls are made to it, the deployment will automatically be deleted (and no further hosting charges will be incurred for that deployment). The underlying customized model will remain available and can be redeployed at any time. To learn more check out the [how-to-article](/azure/ai-services/openai/how-to/fine-tuning?tabs=turbo%2Cpython-new&pivots=programming-language-studio#deploy-a-custom-model).
 
@@ -893,7 +913,7 @@ If you're currently using the `2023-03-15-preview` API, we recommend migrating t
 - **GPT-35-Turbo preview**. To learn more, check out the [how-to article](./how-to/chatgpt.md).
 
 - Increased training limits for fine-tuning: The max training job size (tokens in training file) x (# of epochs) is 2 Billion tokens for all models. We have also increased the max training job from 120 to 720 hours. 
-- Adding additional use cases to your existing access.  Previously, the process for adding new use cases required customers to reapply to the service. Now, we're releasing a new process that allows you to quickly add new use cases to your use of the service. This process follows the established Limited Access process within Azure AI services. [Existing customers can attest to any and all new use cases here](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUM003VEJPRjRSOTZBRVZBV1E5N1lWMk1XUyQlQCN0PWcu). Please note that this is required anytime you would like to use the service for a new use case you didn't originally apply for.
+- Adding additional use cases to your existing access.  Previously, the process for adding new use cases required customers to reapply to the service. Now, we're releasing a new process that allows you to quickly add new use cases to your use of the service. This process follows the established Limited Access process within Azure OpenAI. [Existing customers can attest to any and all new use cases here](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUM003VEJPRjRSOTZBRVZBV1E5N1lWMk1XUyQlQCN0PWcu). Please note that this is required anytime you would like to use the service for a new use case you didn't originally apply for.
 
 ## February 2023
 
@@ -909,7 +929,7 @@ If you're currently using the `2023-03-15-preview` API, we recommend migrating t
 
 New articles on:
 
-- [Monitoring an Azure OpenAI Service](./how-to/monitoring.md)
+- [Monitoring an Azure OpenAI](./how-to/monitoring.md)
 - [Plan and manage costs for Azure OpenAI](./how-to/manage-costs.md)
 
 New training course:
@@ -921,7 +941,7 @@ New training course:
 
 ### New Features
 
-* **Service GA**. Azure OpenAI Service is now generally available.​
+* **Service GA**. Azure OpenAI is now generally available.​
 
 * **New models**: Addition of the latest text model, text-davinci-003 (East US, West Europe), text-ada-embeddings-002 (East US, South Central US, West Europe)
 
@@ -940,7 +960,7 @@ New training course:
 
 * **Higher training limits:** 40M training tokens for Ada, Babbage, and Curie. 10M for Davinci.​
 
-* **Process for requesting modifications to the abuse & miss-use data logging & human review.** Today, the service logs request/response data for the purposes of abuse and misuse detection to ensure that these powerful models aren't abused. However, many customers have strict data privacy and security requirements that require greater control over their data. To support these use cases, we're releasing a new process for customers to modify the content filtering policies or turn off the abuse logging for low-risk use cases. This process follows the established Limited Access process within Azure AI services and [existing OpenAI customers can apply here](https://aka.ms/oai/modifiedaccess).​
+* **Process for requesting modifications to the abuse & miss-use data logging & human review.** Today, the service logs request/response data for the purposes of abuse and misuse detection to ensure that these powerful models aren't abused. However, many customers have strict data privacy and security requirements that require greater control over their data. To support these use cases, we're releasing a new process for customers to modify the content filtering policies or turn off the abuse logging for low-risk use cases. This process follows the established Limited Access process within Azure OpenAI and [existing OpenAI customers can apply here](https://aka.ms/oai/modifiedaccess).​
 
 * **Customer managed key (CMK) encryption.** CMK provides customers greater control over managing their data in Azure OpenAI by providing their own encryption keys used for storing training data and customized models. Customer-managed keys (CMK), also known as bring your own key (BYOK), offer greater flexibility to create, rotate, disable, and revoke access controls. You can also audit the encryption keys used to protect your data. [Learn more from our encryption at rest documentation](encrypt-data-at-rest.md).
 
