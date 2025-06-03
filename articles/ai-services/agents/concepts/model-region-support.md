@@ -7,7 +7,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: conceptual
-ms.date: 05/05/2025
+ms.date: 06/03/2025
 ms.custom: azure-ai-agents
 ---
 
@@ -27,7 +27,8 @@ All deployments can perform the exact same inference operations, however the bil
 Azure AI Foundry Agent Service supports the following Azure OpenAI models in the listed regions.
 
 > [!NOTE]
-> The following table is for standard deployment availability. For information on Provisioned Throughput Unit (PTU) availability, see [provisioned throughput](../../openai/concepts/provisioned-throughput.md) in the Azure OpenAI documentation. `GlobalStandard` customers also have access to [global standard models](../../openai/concepts/models.md#global-standard-model-availability). 
+> * The following table is for standard deployment availability. For information on Provisioned Throughput Unit (PTU) availability, see [provisioned throughput](../../openai/concepts/provisioned-throughput.md) in the Azure OpenAI documentation. `GlobalStandard` customers also have access to [global standard models](../../openai/concepts/models.md#global-standard-model-availability). 
+> * [Hub based projects](../../../ai-foundry/what-is-azure-ai-foundry.md#project-types) are limited to the following models: gpt-4o, gpt-4o-mini, gpt-4, gpt-35-turbo
 
 | REGION           | o1 | o3-mini | gpt-4.1, 2025-04-14 | gpt-4.1-mini, 2025-04-14 | gpt-4.1-nano, 2025-04-14 | gpt-4o, 2024-05-13 | gpt-4o, 2024-08-06 | gpt-4o, 2024-11-20 | gpt-4o-mini, 2024-07-18 | gpt-4, 0613 | gpt-4, turbo-2024-04-09 | gpt-4-32k, 0613 | gpt-35-turbo, 1106 | gpt-35-turbo, 0125 |
 |------------------|----|---------|---------------------|--------------------------|--------------------------|--------------------|--------------------|--------------------|-------------------------|-------------|-------------------------|-----------------|--------------------|--------------------|
