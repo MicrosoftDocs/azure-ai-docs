@@ -163,7 +163,7 @@ For provisioned deployments, we use a variation of the leaky bucket algorithm to
 The number of concurrent calls you can achieve depends on each call's shape (prompt size, `max_tokens` parameter, etc.). The service continues to accept calls until the utilization reaches 100%. To determine the approximate number of concurrent calls, you can model out the maximum requests per minute for a particular call shape in the [capacity calculator](https://ai.azure.com/resource/calculator). If the system generates less than the number of output tokens set for the `max_tokens` parameter, then the provisioned deployment will accept more requests.
 
 
-## Foundry Models with provisioned throughput capability  
+## Provisioned throughput capability for Models Sold Directly by Azure  
 
 This section lists Foundry Models that support the provisioned throughput capability. You can use your PTU quota and PTU reservation across the models shown in the table. 
 
@@ -179,23 +179,23 @@ The following points are some important takeaways from the table:
 
 - Spillover is an optional capability that manages traffic fluctuations on provisioned deployments. For more information on spillover, see [Manage traffic with spillover for provisioned deployments (Preview)](../how-to/spillover-traffic-management.md).
 
-| Model Family   | Model name      | Global provisioned | Data zone provisioned | Regional provisioned | Spillover feature |
-|----------------|-----------------|--------------------|-----------------------|----------------------|-------------------|
-| **Azure OpenAI**   | Gpt4.1          | ✅                 | ✅                    | ✅                   | ✅                |
-|                | Gpt 4.1 mini    | ✅                 | ✅                    | ✅                   | ✅                |
-|                | Gpt 4.1 nano    | ✅                 | ✅                    | ✅                   | ✅                |
-|                | Gpt 4o          | ✅                 | ✅                    | ✅                   | ✅                |
-|                | Gpt 4o mini     | ✅                 | ✅                    | ✅                   | ✅                |
-|                | Gpt 3.5 Turbo   | ✅                 | ✅                    | ✅                   | ✅                |
-|                | o1              | ✅                 | ✅                    | ✅                   | ✅                |
-|                | O3 mini         | ✅                 | ✅                    | ✅                   | ✅                |
-|                | O4 mini         | ✅                 | ✅                    | ✅                   | ✅                |
-| **Azure DeepSeek** | DeepSeek-R1     | ✅                 |                       |                      |                   |
-|                | DeepSeek-V3-0324| ✅                 |                       |                      |                   |
-|                | MAI-DeepSeek-R1 | ✅                 |                       |                      |                   |
+| Model Family       | Model name       | Global provisioned | Data zone provisioned | Regional provisioned | Spillover feature |
+|--------------------|------------------|--------------------|-----------------------|----------------------|-------------------|
+| **Azure OpenAI**   | Gpt4.1           | ✅                 | ✅                     | ✅                   | ✅                 |
+|                    | Gpt 4.1 mini     | ✅                 | ✅                     | ✅                   | ✅                 |
+|                    | Gpt 4.1 nano     | ✅                 | ✅                     | ✅                   | ✅                 |
+|                    | Gpt 4o           | ✅                 | ✅                     | ✅                   | ✅                 |
+|                    | Gpt 4o mini      | ✅                 | ✅                     | ✅                   | ✅                 |
+|                    | Gpt 3.5 Turbo    | ✅                 | ✅                     | ✅                   | ✅                 |
+|                    | o1               | ✅                 | ✅                     | ✅                   | ✅                 |
+|                    | O3 mini          | ✅                 | ✅                     | ✅                   | ✅                 |
+|                    | O4 mini          | ✅                 | ✅                     | ✅                   | ✅                 |
+| **Azure DeepSeek** | DeepSeek-R1      | ✅                 |                       |                      |                   |
+|                    | DeepSeek-V3-0324 | ✅                 |                       |                      |                   |
 
 
-### Available regions for models sold directly by Azure with provisioned throughput capability
+
+### Region availablilty for provisioned throughput capability
 
 # [Global Provisioned Throughput](#tab/global-ptum)
 
