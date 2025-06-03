@@ -400,9 +400,9 @@ When the wizard completes the configuration, it creates the following objects:
 
 ## Check results
 
-This quickstart creates a multimodal index that supports [hybrid search](hybrid-search-overview.md) over both text and images. Unless you use direct multimodal embeddings, the index doesn't accept images as query inputs, which requires the [AML skill](cognitive-search-aml-skill.md) or [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) with an equivalent vectorizer. For more information, see [Query with Search explorer](search-explorer.md).
+This quickstart creates a multimodal index that supports [hybrid search](hybrid-search-overview.md) over both text and images. Unless you use direct multimodal embeddings, the index doesn't accept images as query inputs, which requires the [AML skill](cognitive-search-aml-skill.md) or [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) with an equivalent vectorizer. For more information, see [Configure a vectorizer in a search index](vector-search-how-to-configure-vectorizer.md).
 
-Hybrid search is a combination of full-text queries and vector queries. When you issue a hybrid query, the search engine computes the semantic similarity between your query and the indexed vectors and ranks the results accordingly. For the index created in this quickstart, the results surface content from the `content_text` field that closely aligns with your query.
+Hybrid search is combines full-text queries and vector queries. When you issue a hybrid query, the search engine computes the semantic similarity between your query and the indexed vectors and ranks the results accordingly. For the index created in this quickstart, the results surface content from the `content_text` field that closely aligns with your query.
 
 To query your multimodal index:
 
@@ -430,7 +430,7 @@ This quickstart uses billable Azure resources. If you no longer need the resourc
 
 ## Next steps
 
-This quickstart introduced you to the **Import and vectorize data wizard**, which creates all of the necessary objects for multimodal search. To explore each step in detail, see the following tutorials:
+This quickstart introduced you to the **Import and vectorize data** wizard, which creates all of the necessary objects for multimodal search. To explore each step in detail, see the following tutorials:
 
 + [Tutorial: Image verbalization and Document Extraction skill](tutorial-document-extraction-image-verbalization.md)
 + [Tutorial: Image verbalization and Document Layout skill](tutorial-document-layout-image-verbalization.md)
