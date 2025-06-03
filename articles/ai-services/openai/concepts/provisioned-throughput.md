@@ -195,7 +195,7 @@ The following points are some important takeaways from the table:
 |                | MAI-DeepSeek-R1 | ✅                 |                       |                      |                   |
 
 
-### Available regions for Azure OpenAI models with provisioned throughput capability
+### Available regions for models sold directly by Azure with provisioned throughput capability
 
 # [Global Provisioned Throughput](#tab/global-ptum)
 
