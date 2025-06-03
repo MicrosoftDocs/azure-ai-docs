@@ -23,8 +23,6 @@ Though the AI Red Teaming Agent (preview) can be run [locally](run-scans-ai-red-
 
 [!INCLUDE [uses-fdp-only](../../includes/uses-fdp-only.md)]
 
-- An Azure AI Foundry project. To learn more, see [Create a project](../create-projects.md).
-
 If this is your first time running evaluations or AI red teaming runs on your Azure AI Foundry project, you might need to do a few additional setup steps.
 
 1. [Create and connect your storage account](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/01-connections/connection-storage-account.bicep) to your Azure AI Foundry project at the resource level. This bicep template provisions and connects a storage account to your Foundry project with key authentication.
