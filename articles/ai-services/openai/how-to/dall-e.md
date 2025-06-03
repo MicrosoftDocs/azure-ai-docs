@@ -237,7 +237,7 @@ The format in which DALL-E 3 generated images are returned. Must be one of `url`
 
 ## Call the Image Edit API
 
-The Image Edit API allows you to modify existing images based on text prompts you provide. The API call is similar to the image generation API call, but you also need to provide an image URL or base 64-encoded image data.
+The Image Edit API allows you to modify existing images based on text prompts you provide. The API call is similar to the image generation API call, but you also need to provide an input image (base64-encoded image data).
 
 
 
