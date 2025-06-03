@@ -183,7 +183,7 @@ The following headers are included with each Document translation API request:
 }
 ```
 
-### Translate text embedded in images within documents 🆕
+### Translate text embedded within images in a document 🆕
 
 > [!Note]
 >
@@ -200,11 +200,58 @@ The following headers are included with each Document translation API request:
    * Data type: Boolean (`true` or `false`) 
    * Default Boolean setting is `false`. Set the option to `true` to enable image text translation.
 
+* Here's a sample JSON request:
+
+  ```json
+  {
+    "inputs": [
+      {
+        "source": {
+          "sourceUrl": "<SAS-URL>",
+          "language": "en"
+        },
+        "targets": [
+          {
+            "targetUrl": "<SAS-URL>",
+            "language": "ta"
+          }
+        ]
+      }
+    ],
+    "options": {
+      "experimental": false,
+      "translateTextWithinImage": true
+    }
+  }
+  ```
+
 * **Response Details**. When the feature is enabled, added image processing information is included with the response: 
 
    * **`totalImageScansSucceeded`**. The number of successfully translated image scans.
 
    * **`totalImageScansFailed`**. The number of image scans that failed processing.
+
+* Here's a sample JSON response:
+
+  ```json
+    {
+        "id": "1a2b0c23-45d6-789-a123-a456fdaf7890",
+        "createdDateTimeUtc": "2024-11-13T22:06:58.2789197Z",
+        "lastActionDateTimeUtc": "2024-11-13T22:07:14.1608283Z",
+        "status": "Running",
+        "summary": {
+            "total": 1,
+            "failed": 0,
+            "success": 0,
+            "inProgress": 1,
+            "notYetStarted": 0,
+            "cancelled": 0,
+            "totalCharacterCharged": 0,
+            "totalImageScansSucceeded": 2,
+            "totalImageScansFailed": 0
+        }
+    }
+  ```
 
 ### Translate documents using a custom glossary
 
