@@ -17,7 +17,7 @@ recommendations: false
 > [!NOTE]
 > For more information on recent changes to the provisioned throughput offering, see the [update article](./provisioned-migration.md) for more information.
 
-The Azure AI Foundry provisioned throughput offering is a model deployment type that allows you to specify the amount of throughput you require in a model deployment. Azure AI Foundry then allocates the necessary model processing capacity and ensures it's ready for you. You can use the provisioned throughput you requested across a diverse portfolio of [models that are hosted and sold directly by Azure](../../../ai-foundry/concepts/foundry-models-overview.md#models-sold-directly-by-azure). These models include Azure OpenAI models and newly introduced flagship model families like Azure DeepSeek, Azure Grok, Azure Llama, and more within Azure AI Foundry Models.
+The Azure AI Foundry provisioned throughput offering is a model deployment type that allows you to specify the amount of throughput you require in a model deployment. Azure AI Foundry then allocates the necessary model processing capacity and ensures it's ready for you. You can use the provisioned throughput you requested across a diverse portfolio of [models that are sold directly by Azure](../../../ai-foundry/concepts/foundry-models-overview.md#models-sold-directly-by-azure). These models include Azure OpenAI models and newly introduced flagship model families like Azure DeepSeek, Azure Grok, Azure Llama, and more within Azure AI Foundry Models.
 
 Provisioned throughput provides:
 
@@ -91,7 +91,7 @@ az cognitiveservices account deployment create \
 
 ### Capacity transparency
 
-The models hosted and sold directly by Microsoft are highly sought-after services where customer demand might exceed service GPU capacity. Microsoft strives to provide capacity for all in-demand regions and models, but selling out a region is always a possibility. This constraint can limit some customers' ability to create a deployment of their desired model, version, or number of PTU in a desired region - even if they have quota available in that region. Generally speaking:
+The models sold directly by Azure are highly sought-after services where customer demand might exceed service GPU capacity. Microsoft strives to provide capacity for all in-demand regions and models, but selling out a region is always a possibility. This constraint can limit some customers' ability to create a deployment of their desired model, version, or number of PTU in a desired region - even if they have quota available in that region. Generally speaking:
 
 - Quota places a limit on the maximum number of PTU that can be deployed in a subscription and region, and doesn't guarantee capacity availability.
 - Capacity is allocated at deployment time and is held for as long as the deployment exists. If service capacity isn't available, the deployment fails.
@@ -173,7 +173,7 @@ The following points are some important takeaways from the table:
 
 - Regional provisioned throughput deployment option varies by region.  
 
-- New models hosted and sold by Microsoft are onboarded with Global provisioned throughput deployment option first. The Data zone provisioned option comes later.  
+- New models sold directly by Azure are onboarded with Global provisioned throughput deployment option first. The Data zone provisioned option comes later.  
 
 - PTU are managed regionally and by offer type. PTU quota and any reservations must be in the region and shape (Global, Data zone, Regional) you wish to use. 
 
