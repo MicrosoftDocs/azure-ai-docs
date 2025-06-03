@@ -114,18 +114,21 @@ You can use the liveness quick link website, `liveness.face.azure.com`, to turn 
       --header 'authorization: Bearer <session-authorization-token>'
     ```
 
----
 
-    The following is an example response:
+The following is an example response:
     
-    ```json
-    {
-      "url": "/?s=60c3980c-d9f6-4b16-a7f5-f1f4ad2b506f"
-    }
-    ```
+  ```json
+  {
+    "url": "/?s=60c3980c-d9f6-4b16-a7f5-f1f4ad2b506f"
+  }
+  ```
 
-    Use that value to construct the liveness quick link web page: `https://liveness.face.azure.com/?s=60c3980c-d9f6-4b16-a7f5-f1f4ad2b506f`
+Use that value to construct the liveness quick link web page: `https://liveness.face.azure.com/?s=60c3980c-d9f6-4b16-a7f5-f1f4ad2b506f`
 
-1. Send the link to the user. You can redirect the browser, show a button, or display a QR code—anything that lets the user open the link on a camera-enabled device.
-1. Azure hosts the capture experience. When the link opens, the Azure-operated page guides the user through the liveness check sequence using the latest Liveness web client.
-1. Get the outcome callback. As soon as the check finishes—or if the user abandons or times out—the quick link service notifies your callback endpoint so your application can decide what happens next.
+3. Send the link to the user. You can redirect the browser, show a button, or display a QR code—anything that lets the user open the link on a camera-enabled device.
+4. Azure hosts the capture experience. When the link opens, the Azure-operated page guides the user through the liveness check sequence using the latest Liveness web client.
+5. Get the outcome callback. As soon as the check finishes—or if the user abandons or times out—the quick link service notifies your callback endpoint so your application can decide what happens next.
+
+## Quick link URL handling
+
+The URL returned by the quick link service is a bearer secret: anyone who possesses the link can initiate, complete, or cancel the associated liveness session. If a malicious party intercepts the link before the intended user opens it, they can consume or spoof the session and prevent the legitimate user from completing the check—creating a repudiation and impersonation risk rather than exposing biometric data. To minimize this risk, transmit the link only over protected channels, avoid persisting it in logs or analytics, and, when possible, lowering lifetime of the liveness session.
