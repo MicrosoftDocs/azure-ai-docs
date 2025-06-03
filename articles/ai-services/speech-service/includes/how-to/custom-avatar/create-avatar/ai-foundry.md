@@ -26,7 +26,7 @@ You need video recordings of your avatar talent as training data. You upload the
 
 To fine-tune a custom avatar, follow these steps:
 
-1. Go to your Azure AI Foundry project in the [Azure AI Foundry portal](https://ai.azure.com). If you need to create a project, see [Create an Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects).
+1. Go to your Azure AI Foundry project in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). If you need to create a project, see [Create an Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects).
 1. Select **Fine-tuning** from the left pane.
 1. Select **AI Service fine-tuning** > **+ Fine-tune**.
 
@@ -49,7 +49,7 @@ For more information about recording the consent video, see [How to record video
 
 To add an avatar talent profile and upload their consent statement in your project, follow these steps:
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the custom avatar fine-tuning task (by model name) that you [started as described in the previous section](#step-1-start-fine-tuning).
 1. Select **Set up avatar talent** > **Upload consent video**. 
@@ -79,7 +79,7 @@ All data you upload must meet the requirements for the data type that you choose
 When you're ready to upload your data, go to the **Prepare training data** tab to add your data. 
 
 To upload training data, follow these steps:
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the custom avatar fine-tuning task (by model name) that you [started as described in the previous section](#step-1-start-fine-tuning).
 1. Select **Prepare training data** > **Upload data**. 
@@ -98,7 +98,7 @@ After you upload the data, you can check the data overview which indicates wheth
 > All the training data in the project is included in the training. The model quality is highly dependent on the data you provided, and you're responsible for the video quality. Make sure you record the training videos according to the [how to record video samples guide](../../../../text-to-speech-avatar/custom-avatar-record-video-samples.md). 
 
 To create a custom avatar in the Azure AI Foundry portal, follow these steps for one of the following methods:
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the custom avatar fine-tuning task (by model name) that you [started as described in the previous section](#step-1-start-fine-tuning).
 1. Select **Train model** > **+ Train model**. 
@@ -132,7 +132,7 @@ Navigate to the project where you copied the model to deploy the model copy.
 After you successfully created and trained your avatar model, you deploy it to your endpoint.
 
 To deploy your avatar:
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the custom avatar fine-tuning task (by model name) that you [started as described in the previous section](#step-1-start-fine-tuning).
 1. Select **Deploy model** > **Deploy model**. 
@@ -150,7 +150,7 @@ After you deploy your custom avatar, it's available to use in the Azure AI Found
 ### Remove a deployment 
 
 To remove your deployment, follow these steps:
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the custom avatar fine-tuning task (by model name) that you [started as described in the previous section](#step-1-start-fine-tuning).
 1. Select the deployment on the **Deploy model** page. The model is actively hosted if the status is "Succeeded".

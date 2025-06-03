@@ -10,11 +10,11 @@ All it takes to get started are a handful of audio files and the associated tran
 
 ## Start fine-tuning
 
-In the [Azure AI Foundry portal](https://ai.azure.com), you can fine-tune some Azure AI services models. For example, you can fine-tune a professional voice model. 
+In the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), you can fine-tune some Azure AI services models. For example, you can fine-tune a professional voice model. 
 
 To fine-tune a professional voice model, follow these steps:
 
-1. Go to your Azure AI Foundry project in the [Azure AI Foundry portal](https://ai.azure.com). If you need to create a project, see [Create an Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects).
+1. Go to your Azure AI Foundry project in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). If you need to create a project, see [Create an Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects).
 1. Select **Fine-tuning** from the left pane.
 1. Select **AI Service fine-tuning** > **+ Fine-tune**.
 
@@ -36,7 +36,7 @@ Go to the Azure AI Speech documentation to learn how to continue fine-tuning you
 
 After fine-tuning, you can access your custom voice models and deployments from the **Fine-tuning** page. 
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane.
 1. Select **AI Service fine-tuning**. You can view the status of your fine-tuning tasks and the models that were created.
     

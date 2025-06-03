@@ -22,7 +22,7 @@ Azure AI Agents supports using the Code Interpreter tool, which allows an agent 
 
 ## Using the code interpreter tool with an agent
 
-You can add the code interpreter tool to an agent programmatically using the code examples listed at the top of this article, or the [Azure AI Foundry portal](https://ai.azure.com/). If you want to use the portal:
+You can add the code interpreter tool to an agent programmatically using the code examples listed at the top of this article, or the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). If you want to use the portal:
 
 1. In the **Agents** screen for your agent, scroll down the **Setup** pane on the right to **action**. Then select **Add**.
 

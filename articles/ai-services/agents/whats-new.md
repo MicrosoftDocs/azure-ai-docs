@@ -72,7 +72,7 @@ The Microsoft Fabric tool is now available for the Azure AI Foundry Agent Servic
 
 ### Use Azure AI Foundry Agent Service in the Azure AI Foundry portal
 
-You can now use the Azure AI Foundry Agent Service in the [Azure AI Foundry](https://ai.azure.com/). Create, debug and modify agents, view threads, add tools and chat with agents without writing code. See the [quickstart](./quickstart.md?pivots=ai-foundry) for steps on getting started. 
+You can now use the Azure AI Foundry Agent Service in the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). Create, debug and modify agents, view threads, add tools and chat with agents without writing code. See the [quickstart](./quickstart.md?pivots=ai-foundry) for steps on getting started. 
 
 ## December 2024
 

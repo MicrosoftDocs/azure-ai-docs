@@ -176,11 +176,11 @@ Models which we're supporting as grader models are:
     "model": string,
     "pass_threshold": number,
     "range": number[],
-    "sampling_parameters": {
+    "sampling_params": {
         "seed": number,
         "top_p": number,
         "temperature": number,
-        "max_completion_tokens": number,
+        "max_completions_tokens": number,
         "reasoning_effort": "low" | "medium" | "high"
     }
 }

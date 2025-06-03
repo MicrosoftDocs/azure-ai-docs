@@ -48,7 +48,7 @@ Azure Monitor metrics can be queried using multiple tools, including:
 
 You can view metrics within Azure AI Foundry portal. To view them, follow these steps:
 
-1. Go to [Azure AI Foundry portal](https://ai.azure.com).
+1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 1. Navigate to your model deployment by selecting **Deployments**, and then select the name of the deployment you want to see metrics about.
 

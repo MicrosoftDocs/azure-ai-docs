@@ -14,13 +14,13 @@ manager: nitinme
 
 When you use an Azure OpenAI model deployment with a content filter, you might want to check the results of the filtering activity. You can use that information to further adjust your [filter configuration](/azure/ai-services/openai/how-to/content-filters) to serve your specific business needs and Responsible AI principles.  
 
-[Azure AI Foundry](https://ai.azure.com/) provides a Risks & Safety monitoring dashboard for each of your deployments that uses a content filter configuration.
+[Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) provides a Risks & Safety monitoring dashboard for each of your deployments that uses a content filter configuration.
 
 ## Access Risks & Safety monitoring
 
 To access Risks & Safety monitoring, you need an Azure OpenAI resource in one of the supported Azure regions: East US, Switzerland North, France Central, Sweden Central, Canada East. You also need a model deployment that uses a content filter configuration.
 
-Go to [Azure AI Foundry](https://ai.azure.com/) and sign in with the credentials associated with your Azure OpenAI resource. Select a project. Then select the **Models + endpoints** tab on the left and then select your model deployment from the list. On the deployment's page, select the **Monitoring** tab at the top. Then select **Open in Azure Monitor** to view the full report in the Azure portal.
+Go to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and sign in with the credentials associated with your Azure OpenAI resource. Select a project. Then select the **Models + endpoints** tab on the left and then select your model deployment from the list. On the deployment's page, select the **Monitoring** tab at the top. Then select **Open in Azure Monitor** to view the full report in the Azure portal.
 
 ## Configure metrics   
 
@@ -56,7 +56,7 @@ To use Potentially abusive user detection, you need:
 ### Set up your Azure Data Explorer database
 
 In order to protect the data privacy of user information and manage the permission of the data, we support the option for our customers to bring their own storage to get the detailed potentially abusive user detection insights (including user GUID and statistics on harmful request by category) stored in a compliant way and with full control. Follow these steps to enable it:
-1. In [Azure AI Foundry](https://ai.azure.com/), navigate to the model deployment that you'd like to set up user abuse analysis with, and select **Add a data store**. 
+1. In [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), navigate to the model deployment that you'd like to set up user abuse analysis with, and select **Add a data store**. 
 1. Fill in the required information and select **Save**. We recommend you create a new database to store the analysis results.
 1. After you connect the data store, take the following steps to grant permission to write analysis results to the connected database:
     1. Go to your Azure OpenAI resource's page in the Azure portal, and choose the **Identity** tab.

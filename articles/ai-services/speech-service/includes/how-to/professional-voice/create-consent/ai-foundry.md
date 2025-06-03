@@ -25,7 +25,7 @@ You can find the verbal consent statement in multiple languages on [GitHub](http
 
 To add a voice talent profile and upload their consent statement, follow these steps:
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the professional voice fine-tuning task (by model name) that you [started as described in the create professional voice article](/azure/ai-services/speech-service/professional-voice-create-project).
 1. Select **Set up voice talent** > **+ Add voice talent**. 
