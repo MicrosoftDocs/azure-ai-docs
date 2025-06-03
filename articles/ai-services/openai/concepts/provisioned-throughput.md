@@ -1,9 +1,9 @@
 ---
-title: Azure OpenAI in Azure AI Foundry Models provisioned throughput
-description: Learn about provisioned throughput and Azure OpenAI.
+title: Azure AI Foundry Models provisioned throughput
+description: Learn about provisioned throughput and Azure AI Foundry.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 04/30/2025
+ms.date: 06/03/2025
 manager: nitinme
 author: aahill #ChrisHMSFT
 ms.author: aahi #chrhoder
@@ -15,15 +15,15 @@ recommendations: false
 > [!NOTE]
 > If you're looking for what's recently changed with the provisioned throughput offering, see the [update article](./provisioned-migration.md) for more information.
 
-The provisioned throughput offering is a model deployment type that allows you to specify the amount of throughput you require in a model deployment. Azure OpenAI then allocates the necessary model processing capacity and ensures it's ready for you. Provisioned throughput provides:
+The provisioned throughput offering is a model deployment type that allows you to specify the amount of throughput you require in a model deployment. Azure AI Foundry then allocates the necessary model processing capacity and ensures it's ready for you. Provisioned throughput provides:
 
 - **Predictable performance:** stable max latency and throughput for uniform workloads.
 - **Allocated processing capacity:** A deployment configures the amount of throughput. Once deployed, the throughput is available whether used or not.
 - **Cost savings:** High throughput workloads might provide cost savings vs token-based consumption.
 
 > [!TIP]
-> * You can take advantage of additional cost savings when you buy [Microsoft Azure OpenAI in Azure AI Foundry Models reservations](/azure/cost-management-billing/reservations/azure-openai#buy-a-microsoft-azure-openai-service-reservation).
-> * Provisioned throughput is available as the following deployment types: [global provisioned](../how-to/deployment-types.md#global-provisioned), [data zone provisioned](../how-to/deployment-types.md#data-zone-provisioned) and [standard provisioned](../how-to/deployment-types.md#provisioned).
+> * You can take advantage of additional cost savings when you buy [Microsoft Azure AI Foundry Provisioned Throughput reservations](/azure/cost-management-billing/reservations/azure-openai#buy-a-microsoft-azure-openai-service-reservation).
+> * Provisioned throughput is available as the following deployment types: [global provisioned](../how-to/deployment-types.md#global-provisioned), [data zone provisioned](../how-to/deployment-types.md#data-zone-provisioned) and [regional provisioned](../how-to/deployment-types.md#provisioned).
 
 <!--
 Throughput is defined in terms of provisioned throughput units (PTU) which is a normalized way of representing the throughput for your deployment. Each model-version pair requires different amounts of PTU to deploy, and provides different amounts of throughput per PTU. 
@@ -33,19 +33,27 @@ An Azure OpenAI deployment is a unit of management for a specific OpenAI Model. 
 
 ## When to use provisioned throughput
 
-You should consider switching from standard deployments to provisioned managed deployments when you have well-defined, predictable throughput and latency requirements. Typically, this occurs when the application is ready for production or has already been deployed in production and there's an understanding of the expected traffic. This allows users to accurately forecast the required capacity and avoid unexpected billing. Provisioned managed deployments are also useful for applications that have real-time/latency sensitive requirements.
+You should consider switching from standard deployments to provisioned throughput deployments when you have well-defined, predictable throughput and latency requirements. Typically, this occurs when the application is ready for production or has already been deployed in production and there's an understanding of the expected traffic. This allows users to accurately forecast the required capacity and avoid unexpected billing. Provisioned Throughput deployments are also useful for applications that have real-time/latency sensitive requirements.
 
 ## Key concepts
 
 ### Provisioned Throughput Units (PTU)
 
-Provisioned throughput units (PTUs) are generic units of model processing capacity that you can use to size provisioned deployments to achieve the required throughput for processing prompts and generating completions. Provisioned throughput units are granted to a subscription as quota, and used to define costs. Each quota is specific to a region and defines the maximum number of PTUs that can be assigned to deployments in that subscription and region. For information about the costs associated with the provision managed offering and PTUs, see [Understanding costs associated with PTU](../how-to/provisioned-throughput-onboarding.md).
+Provisioned throughput units (PTUs) are generic units of model processing capacity that you can use to size provisioned deployments to achieve the required throughput for processing prompts and generating completions. Provisioned throughput units are granted to a subscription as quota, and used to define costs. Each quota is specific to a region and defines the maximum number of PTUs that can be assigned to deployments in that subscription and region. For information about the costs associated with the provision throughput offering and PTUs, see [Understanding costs associated with PTU](../how-to/provisioned-throughput-onboarding.md).
 
 ### Deployment types
 
-When creating a provisioned deployment in Azure AI Foundry, the deployment type on the Create Deployment dialog can be set to the Global Provisioned-Managed, DataZone Provisioned-Managed, or regional Provisioned-Managed deployment type depending on the data processing needs for the given workload.
+When creating a provisioned deployment in Azure AI Foundry, the deployment type on the Create Deployment dialog can be set to the Global Provisioned Througput, Data Zone Provisioned Throughput, or Regional Provisioned Throughput deployment type depending on the data processing needs for the given workload.
 
-When creating a provisioned deployment in Azure OpenAI via CLI or API, the `sku-name` can be set to `GlobalProvisionedManaged`, `DataZoneProvisionedManaged`, or `ProvisionedManaged` depending on the data processing need for the given workload. To adapt the Azure CLI example command below to a different deployment type, simply update the `sku-name` parameter to match the deployment type you wish to deploy.
+When creating a provisioned deployment in Azure AI Foundry via CLI or API, the `sku-name` can be set to `GlobalProvisionedManaged`, `DataZoneProvisionedManaged`, or `ProvisionedManaged` depending on the data processing need for the given workload. To adapt the Azure CLI example command below to a different deployment type, simply update the `sku-name` parameter to match the deployment type you wish to deploy.
+
+| **Deployment Type** | **sku-name in CLI** |
+|----------|----------|
+| Global Provisioned Throughput | GlobalProvisionedManaged    |
+| Data Zone Provisioned Throughput | DataZoneProvisionedManaged    |
+| Regional Provisioned Throughput | ProvisionedManaged    |
+
+To adapt the Azure CLI example command below to a different deployment type, simply update the sku-name parameter to match the deployment type you wish to deploy. 
 
 ```azurecli
 az cognitiveservices account deployment create \
@@ -61,7 +69,7 @@ az cognitiveservices account deployment create \
 
 ### Capacity transparency
 
-Azure OpenAI is a highly sought-after service where customer demand might exceed service GPU capacity. Microsoft strives to provide capacity for all in-demand regions and models, but selling out a region is always a possibility. This constraint can limit some customers' ability to create a deployment of their desired model, version, or number of PTUs in a desired region - even if they have quota available in that region. Generally speaking:
+The models hosted and sold directly by Microsoft are highly sought-after services where customer demand might exceed service GPU capacity. Microsoft strives to provide capacity for all in-demand regions and models, but selling out a region is always a possibility. This constraint can limit some customers' ability to create a deployment of their desired model, version, or number of PTUs in a desired region - even if they have quota available in that region. Generally speaking:
 
 - Quota places a limit on the maximum number of PTUs that can be deployed in a subscription and region, and does not guarantee of capacity availability.
 - Capacity is allocated at deployment time and is held for as long as the deployment exists.  If service capacity is not available, the deployment will fail
@@ -74,7 +82,7 @@ To find the capacity needed for their deployments, use the capacity API or the A
 
 In Azure AI Foundry, the deployment experience identifies when a region lacks the capacity needed to deploy the model. This looks at the desired model, version and number of PTUs. If capacity is unavailable, the experience directs users to a select an alternative region.
 
-Details on the deployment experience can be found in the Azure OpenAI [Provisioned get started guide](../how-to/provisioned-get-started.md).
+Details on the deployment experience can be found in the Azure AI Foundry [Provisioned get started guide](../how-to/provisioned-get-started.md).
 
 The [model capacities API](/rest/api/aiservices/accountmanagement/model-capacities/list?view=rest-aiservices-accountmanagement-2024-04-01-preview&tabs=HTTP&preserve-view=true) can be used to programmatically identify the maximum sized deployment of a specified model.  The API considers both your quota and service capacity in the region.
 
@@ -99,7 +107,7 @@ The 429 response isn't an error, but instead part of the design for telling user
 
 The  `retry-after-ms` and `retry-after` headers in the response tell you the time to wait before the next call will be accepted. How you choose to handle this response depends on your application requirements. Here are some considerations:
 -    You can consider redirecting the traffic to other models, deployments, or experiences. This option is the lowest-latency solution because the action can be taken as soon as you receive the 429 signal. For ideas on how to effectively implement this pattern see this [community post](https://github.com/Azure/aoai-apim).
--    If you're okay with longer per-call latencies, implement client-side retry logic. This option gives you the highest amount of throughput per PTU. The Azure OpenAI client libraries include built-in capabilities for handling retries.
+-    If you're okay with longer per-call latencies, implement client-side retry logic. This option gives you the highest amount of throughput per PTU. The Azure AI Foundry client libraries include built-in capabilities for handling retries.
 
 #### How does the service decide when to send a 429?
 
@@ -134,21 +142,21 @@ The number of concurrent calls you can achieve depends on each call's shape (pro
 
 ## What models and regions are available for provisioned throughput?
 
-# [Global Provisioned Managed](#tab/global-ptum)
+# [Global Provisioned Throughput](#tab/global-ptum)
 
-### Global provisioned managed model availability
+### Global provisioned Throughput model availability
 
 [!INCLUDE [Provisioned Managed Global](../includes/model-matrix/provisioned-global.md)]
 
-# [Data Zone Provisioned Managed](#tab/datazone-provisioned-managed)
+# [Data Zone Provisioned Throughput](#tab/datazone-provisioned-managed)
 
-### Data zone provisioned managed model availability
+### Data Zone provisioned Throughput model availability
 
 [!INCLUDE [Global data zone provisioned managed](../includes/model-matrix/datazone-provisioned-managed.md)]
 
-# [Provisioned Managed](#tab/provisioned)
+# [Regional Provisioned Throughput](#tab/provisioned)
 
-### Provisioned deployment model availability
+### Regional Provisioned Throughput deployment model availability
 
 [!INCLUDE [Provisioned](../includes/model-matrix/provisioned-models.md)]
 
