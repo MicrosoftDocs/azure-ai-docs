@@ -195,7 +195,7 @@ The following points are some important takeaways from the table:
 
 
 
-### Region availablilty for provisioned throughput capability
+### Region availability for provisioned throughput capability
 
 # [Global Provisioned Throughput](#tab/global-ptum)
 
