@@ -2,13 +2,15 @@
 title: Connect to Azure Logic Apps
 titleSuffix: Azure AI Search
 description: Use an Azure Logic Apps workflow for indexer-based indexing in Azure AI Search.
-manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: azure-ai-search
-ms.custom: references_regions
-ms.topic: how-to
+manager: nitinme
 ms.date: 05/19/2025
+ms.service: azure-ai-search
+ms.topic: how-to
+ms.custom:
+  - references_regions
+  - build-2025
 ---
 
 # Use an Azure Logic Apps workflow for indexer-based indexing in Azure AI Search

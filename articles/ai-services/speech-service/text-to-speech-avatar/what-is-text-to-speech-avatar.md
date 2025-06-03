@@ -38,7 +38,7 @@ With text to speech avatar's advanced neural network models, the feature empower
 
 You can choose from a range of standard voices for the avatar. The language support for text to speech avatar is the same as the language support for text to speech. For details, see [Language and voice support for the Speech service](../language-support.md?tabs=tts). Standard text to speech avatars can be accessed through the [Speech Studio portal](https://speech.microsoft.com/portal/talkingavatar) or via API.
 
-The voice in the synthetic video could be a standard voice available on Azure AI Speech or the [custom neural voice](../custom-neural-voice.md) of voice talent selected by you.
+The voice in the synthetic video could be an Azure AI Speech standard voice or the [custom voice](../custom-neural-voice.md) of voice talent selected by you.
 
 ## Avatar video output
 
@@ -52,11 +52,11 @@ Both batch synthesis and real-time synthesis resolution are 1920 x 1080, and the
 
 ## Custom text to speech avatar
 
-You can create custom text to speech avatars that are unique to your product or brand. All it takes to get started is taking 10 minutes of video recordings. If you're also creating a custom neural voice for the actor, the avatar can be highly realistic. 
+You can create custom text to speech avatars that are unique to your product or brand. All it takes to get started is taking 10 minutes of video recordings. If you're also fine-tuning a professional voice for the actor, the avatar can be highly realistic. 
 
 Voice sync for avatar is trained alongside the custom avatar utilizing audio from the training video. The voice is exclusively associated with the custom avatar and cannot be independently used.
 
-[Custom neural voice](../custom-neural-voice.md) and [custom text to speech avatar](what-is-custom-text-to-speech-avatar.md) are separate features. You can use them independently or together. If you plan to also use [custom neural voice](../custom-neural-voice.md) with a text to speech avatar, you need to deploy or [copy](../professional-voice-train-voice.md#copy-your-voice-model-to-another-project) your custom neural voice model to one of the [avatar supported regions](#available-locations).
+[Professional voice fine-tuning](../custom-neural-voice.md) and [custom text to speech avatar](what-is-custom-text-to-speech-avatar.md) are separate features. You can use them independently or together. If you plan to also use [professional voice fine-tuning](../custom-neural-voice.md) with a text to speech avatar, you need to deploy or [copy](../professional-voice-train-voice.md#copy-your-voice-model-to-another-project) your fine-tuned professional voice model to one of the [avatar supported regions](#available-locations).
 
 For more information, see [What is custom text to speech avatar](./what-is-custom-text-to-speech-avatar.md).
 

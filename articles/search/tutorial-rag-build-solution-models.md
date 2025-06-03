@@ -8,7 +8,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: tutorial
 ms.custom: references_regions
-ms.date: 05/29/2025
+ms.date: 05/30/2025
 
 ---
 
@@ -99,15 +99,13 @@ This tutorial series uses the following models and model providers:
 
 You must have [**Cognitive Services OpenAI Contributor**]( /azure/ai-services/openai/how-to/role-based-access-control#cognitive-services-openai-contributor) or higher to deploy models in Azure OpenAI.
 
-1. Go to [Azure AI Foundry](https://ai.azure.com/).
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/).
 
-1. Select **Deployments** on the left menu.
+1. From the left pane, select **Model catalog**.
 
-1. Select **Deploy model** > **Deploy base model**.
+1. Select **text-embedding-3-large**, and then select **Use this model**.
 
-1. Select **text-embedding-3-large** from the dropdown list and confirm the selection.
-
-1. Specify a deployment name. We recommend "text-embedding-3-large".
+1. Specify a deployment name. We recommend **text-embedding-3-large**.
 
 1. Accept the defaults.
 

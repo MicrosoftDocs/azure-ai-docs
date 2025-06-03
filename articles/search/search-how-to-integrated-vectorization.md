@@ -86,7 +86,7 @@ In this section, you retrieve the endpoint and Microsoft Entra token for your Az
 
 1. To obtain your Microsoft Entra token, run the following command on your local system. This step requires completion of [Quickstart: Connect without keys](search-get-started-rbac.md).
 
-   ```Azure CLI
+   ```azurecli
    az account get-access-token --scope https://search.azure.com/.default --query accessToken --output tsv
    ```
 

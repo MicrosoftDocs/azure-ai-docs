@@ -2,18 +2,20 @@
 title: Hubs and hub-based project overview
 titleSuffix: Azure AI Foundry
 description: This article introduces concepts about Azure AI Foundry hubs for your Azure AI Foundry projects.
+author: Blackmist
+ms.author: larryfr
 manager: scottpolly
+ms.reviewer: deeikele
+ms.date: 04/28/2025
 ms.service: azure-ai-foundry
+ms.topic: conceptual
 ms.custom:
   - ignite-2023
   - build-2024
   - ai-learning-hub
   - ignite-2024
-ms.topic: conceptual
-ms.date: 04/28/2025
-ms.reviewer: deeikele
-ms.author: larryfr
-author: Blackmist
+  - build-aifnd
+  - build-2025
 ---
 
 # Hub resources overview

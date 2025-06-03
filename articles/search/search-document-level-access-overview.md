@@ -1,13 +1,15 @@
----  
-title: Document-level access control    
-titleSuffix: Azure AI Search    
-description: Conceptual overview of document-level permissions in Azure AI Search.    
-ms.service: azure-ai-search    
-ms.topic: conceptual    
-ms.date: 05/10/2025    
-author: gmndrg    
-ms.author: gimondra    
----  
+---
+title: Document-level access control
+titleSuffix: Azure AI Search
+description: Conceptual overview of document-level permissions in Azure AI Search.
+author: gmndrg
+ms.author: gimondra
+ms.date: 05/10/2025
+ms.service: azure-ai-search
+ms.topic: conceptual
+ms.custom:
+  - build-2025
+---
   
 # Document-level access control in Azure AI Search  
   

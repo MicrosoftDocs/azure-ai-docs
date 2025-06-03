@@ -80,7 +80,7 @@ To get started with fast transcription, see [use the fast transcription API](fas
 With [text to speech](text-to-speech.md), you can convert input text into human like synthesized speech. Use neural voices, which are human like voices powered by deep neural networks. Use the [Speech Synthesis Markup Language (SSML)](speech-synthesis-markup.md) to fine-tune the pitch, pronunciation, speaking rate, volume, and more.
 
 - Standard voice: Highly natural out-of-the-box voices. Check the standard voice samples the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) and determine the right voice for your business needs.
-- Custom neural voice: Besides the standard voices that come out of the box, you can also create a [custom neural voice](custom-neural-voice.md) that is recognizable and unique to your brand or product. Custom neural voices are private and can offer a competitive advantage. Check the custom neural voice samples [here](https://aka.ms/customvoice).
+- Custom voice: Besides the standard voices that come out of the box, you can also create a [custom voice](custom-neural-voice.md) that is recognizable and unique to your brand or product. Custom voices are private and can offer a competitive advantage. Check the custom voice samples [here](https://aka.ms/customvoice).
 
 ### Speech translation
 
@@ -154,7 +154,7 @@ An AI system includes not only the technology, but also the people who use it, t
 * [Transparency note and use cases](/legal/cognitive-services/speech-service/pronunciation-assessment/transparency-note-pronunciation-assessment?context=/azure/ai-services/speech-service/context/context)
 * [Characteristics and limitations](/legal/cognitive-services/speech-service/pronunciation-assessment/characteristics-and-limitations-pronunciation-assessment?context=/azure/ai-services/speech-service/context/context)
 
-### Custom neural voice
+### Custom voice
 
 * [Transparency note and use cases](/legal/cognitive-services/speech-service/custom-neural-voice/transparency-note-custom-neural-voice?context=/azure/ai-services/speech-service/context/context)
 * [Characteristics and limitations](/legal/cognitive-services/speech-service/custom-neural-voice/characteristics-and-limitations-custom-neural-voice?context=/azure/ai-services/speech-service/context/context)

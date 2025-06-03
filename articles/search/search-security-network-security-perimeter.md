@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 12/05/2024
+ms.date: 05/29/2025
 ---
 
 # Add a search service to a network security perimeter

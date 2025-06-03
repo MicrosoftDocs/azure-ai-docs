@@ -1,19 +1,22 @@
 ---
-title: Models available for standard deployment in Azure AI Foundry
+title: Azure AI Foundry Models available for standard deployment
 titleSuffix: Azure AI Foundry
 description: Explore various models available for standard deployment in Azure AI Foundry.
-manager: scottpolly
 author: msakande
+ms.author: mopeakande
+manager: scottpolly
 reviewer: santiagxf
+ms.reviewer: fasantia
+ms.date: 05/19/2025
 ms.service: azure-ai-foundry
 ms.topic: conceptual
-ms.date: 03/06/2025
-ms.author: mopeakande
-ms.reviewer: fasantia
-ms.custom: references_regions
+ms.custom:
+  - references_regions
+  - build-aifnd
+  - build-2025
 ---
 
-# Featured models of Azure AI Foundry
+# Azure AI Foundry Models available for standard deployment
 
 The Azure AI model catalog offers a large selection of Azure AI Foundry Models from a wide range of providers. You have various options for deploying models from the model catalog. This article lists Azure AI Foundry Models that  can be deployed via standard deployment. For some of these models, you can also host them on your infrastructure for deployment via managed compute.
 

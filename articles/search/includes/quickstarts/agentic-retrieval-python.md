@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 05/12/2025
+ms.date: 05/30/2025
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -27,7 +27,7 @@ This quickstart is based on the [Quickstart-Agentic-Retrieval](https://github.co
 
 ## Deploy models
 
-To run agentic retrieval, you must deploy three models to your Azure OpenAI resource:
+To run agentic retrieval, you must deploy the following models to your Azure OpenAI resource:
 
 + An LLM for query planning.
 
@@ -39,20 +39,19 @@ Agentic retrieval [supports several models](../../search-agentic-retrieval-how-t
 
 To deploy the Azure OpenAI models:
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/).
-
-1. On the home page, find the Azure OpenAI tile and select **Let's go**.
-
-    :::image type="content" source="../../media/search-get-started-agentic-retrieval/azure-openai-lets-go-tile.png" alt-text="Screenshot of the Azure OpenAI tile in the Azure AI Foundry portal." border="true" lightbox="../../media/search-get-started-agentic-retrieval/azure-openai-lets-go-tile.png":::
-
-   Your most recently used Azure OpenAI resource appears. If you have multiple Azure OpenAI resources, select **All resources** to switch between them.
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/) and select your Azure OpenAI resource.
 
 1. From the left pane, select **Model catalog**.
 
-1. Deploy `gpt-4o-mini` and `text-embedding-3-large` to your Azure OpenAI resource.
+1. Select **gpt-4o-mini**, and then select **Use this model**.
 
-   > [!NOTE]
-   > To simplify your code, don't use a custom deployment name for either model. This quickstart assumes the deployment and model names are the same.
+1. Specify a deployment name. To simplify your code, we recommend **gpt-4o-mini**.
+
+1. Accept the defaults.
+
+1. Select **Deploy**.
+
+1. Repeat the previous steps for **text-embedding-3-large**.
 
 ## Configure role-based access
 
@@ -100,7 +99,7 @@ To obtain your service endpoints:
 
 You configured role-based access to interact with Azure AI Search and Azure OpenAI. From the command line, use the Azure CLI to sign in to the same subscription and tenant for both services. For more information, see [Quickstart: Connect without keys](../../search-get-started-rbac.md).
 
-```Azure CLI
+```azurecli
 az account show
 
 az account set --subscription <PUT YOUR SUBSCRIPTION ID HERE>
@@ -504,4 +503,26 @@ The output should be similar to the following example.
 
 ```
 To find lava at night, you can look for the following signs:  1. **Active Volcanoes**: Research volcanoes that are currently active. Notable examples include Mount Etna in Italy and Kilauea in Hawaii. Both have had significant eruptions that can be observed at night due to the glow of lava. 2. **Satellite Imagery**: Use satellite imagery, especially those from sources like VIIRS (Visible Infrared Imaging Radiometer Suite) on the Suomi NPP satellite, which captures nighttime images of active lava flows. During eruptions, lava glows brightly in thermal infrared images, making it detectable from space.  3. **Safe Viewing Locations**: If you’re near an active volcano, find designated viewing areas for safety. Many national parks with volcanoes offer nighttime lava viewing experiences.  4. **Moonlight**: The presence of moonlight can enhance visibility, allowing you to spot lava flows more easily against the backdrop of the dark landscape.  5. **Monitoring Reports**: Follow updates from geological services or local authorities that monitor volcanic activity, which often provide real-time information about eruptions and visible lava flows at night.  6. **Photography**: If you're an enthusiast, consider using long-exposure photography techniques to capture the glow of lava flows at night.  For more information on observing volcanic activity, satellite imagery can provide vital data for detecting lava flows and volcanic eruptions.
+```
+
+## Clean up resources
+
+When working in your own subscription, it's a good idea to finish a project by determining whether you still need the resources you created. Resources that are left running can cost you money. You can delete resources individually, or you can delete the resource group to delete the entire set of resources.
+
+In the Azure portal, you can find and manage resources by selecting **All resources** or **Resource groups** from the left pane. You can also run the following code to delete the objects you created in this quickstart.
+
+### Delete the knowledge agent
+
+```Python
+index_client = SearchIndexClient(endpoint=endpoint, credential=credential)
+index_client.delete_agent(agent_name)
+print(f"Knowledge agent '{agent_name}' deleted successfully")
+```
+
+### Delete the search index
+
+```Python
+index_client = SearchIndexClient(endpoint=endpoint, credential=credential)
+index_client.delete_index(index_name)
+print(f"Index '{index_name}' deleted successfully")
 ```

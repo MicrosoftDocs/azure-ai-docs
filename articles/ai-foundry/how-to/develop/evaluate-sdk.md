@@ -2,17 +2,19 @@
 title: Local Evaluation with Azure AI Evaluation SDK
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to evaluate a Generative AI application with the Azure AI Evaluation SDK.
+author: lgayhardt
+ms.author: lagayhar
 manager: scottpolly
+ms.reviewer: minthigpen
+ms.date: 05/19/2025
 ms.service: azure-ai-foundry
+ms.topic: how-to
 ms.custom:
   - build-2024
   - references_regions
   - ignite-2024
-ms.topic: how-to
-ms.date: 05/19/2025
-ms.reviewer: minthigpen
-ms.author: lagayhar
-author: lgayhardt
+  - build-aifnd
+  - build-2025
 ---
 # Evaluate your Generative AI application locally with the Azure AI Evaluation SDK
 
