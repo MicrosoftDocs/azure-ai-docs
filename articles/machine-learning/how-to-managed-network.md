@@ -1171,6 +1171,7 @@ Private endpoints are currently supported for the following Azure services:
 * Azure Database for PostgreSQL Flexible Server
 * Azure Database for MySQL
 * Azure API Management
+  * Supporting only Classic tier without VNET injection and Standard V2 tier with virtual network integration. For more on API Management virtual networks, see [Virtual Network Concepts](https://learn.microsoft.com/azure/api-management/virtual-network-concepts)
 
 When you create a private endpoint, you provide the _resource type_ and _subresource_ that the endpoint connects to. Some resources have multiple types and subresources. For more information, see [what is a private endpoint](/azure/private-link/private-endpoint-overview).
 
