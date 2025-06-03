@@ -183,7 +183,7 @@ The following headers are included with each Document translation API request:
 }
 ```
 
-### Translate text embedded within images in a document 🆕
+### Translate text embedded within images in documents 🆕
 
 > [!Note]
 >
