@@ -129,7 +129,7 @@ Network isolation | [Configure managed networks for Azure AI Foundry hubs](../ho
 
 For Azure OpenAI models, see [Azure OpenAI](../../ai-services/openai/concepts/models.md).
 
-To view a list of supported models for standard deployment or Managed Compute, go to the home page of the model catalog in [Azure AI Foundry](https://ai.azure.com). Use the **Deployment options** filter to select either **Standard deployment** or **Managed Compute**. 
+To view a list of supported models for standard deployment or Managed Compute, go to the home page of the model catalog in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). Use the **Deployment options** filter to select either **Standard deployment** or **Managed Compute**. 
 
 :::image type="content" source="../media/how-to/model-catalog-overview/catalog-filter.png" alt-text="A screenshot showing how to filter by managed compute models in the catalog." lightbox="../media/how-to/model-catalog-overview/catalog-filter.png":::  
 

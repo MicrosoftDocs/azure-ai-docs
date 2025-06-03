@@ -74,7 +74,7 @@ For this article, we'll create a file named `test.jsonl` and will copy the conte
 Once your input file is prepared, you first need to upload the file to then be able to initiate a batch job. File upload can be done both programmatically or via the Azure AI Foundry portal. This example demonstrates uploading a file directly to your Azure OpenAI resource. Alternatively, you can [configure Azure Blob Storage for Azure OpenAI Batch](../../how-to/batch-blob-storage.md). 
 
 
-1. Sign in to [Azure AI Foundry portal](https://ai.azure.com).
+1. Sign in to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 2. Select the Azure OpenAI resource where you have a global batch model deployment available.
 3. Select **Batch jobs** > **+Create batch jobs**.
 

@@ -41,7 +41,7 @@ Your first project (default project) plays a special role and has access to more
     
     [!INCLUDE [tip-left-pane](tip-left-pane.md)]
     
-    1. In [Azure AI Foundry](https://ai.azure.com), select either the [!INCLUDE [fdp-project-name](fdp-project-name.md)] or its associated resource.
+    1. In [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), select either the [!INCLUDE [fdp-project-name](fdp-project-name.md)] or its associated resource.
     1. In the left pane, select **Management center**.
     1. In the resource section, select  **Overview**.
     1. Select **New project** and provide a name.
