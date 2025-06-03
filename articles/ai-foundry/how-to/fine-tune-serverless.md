@@ -26,7 +26,7 @@ Azure AI Foundry enables you to customize large language models to your specific
 
 **Customization and Control**: Azure AI Foundry provides greater customization and control over the fine-tuning process, enabling users to tailor models more precisely to their specific requirements.
 
-In this article, you will discover how to fine-tune models that are deployed using standard deployments in [Azure AI Foundry](https://ai.azure.com).
+In this article, you will discover how to fine-tune models that are deployed using standard deployments in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
 
 ## Prerequisites
@@ -56,7 +56,7 @@ The AI Foundry model catalog offers fine-tuning support for multiple types of mo
 
 You can also go to the Azure AI Foundry portal to view all models that contain fine-tuning support:
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com).
+1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 1. If you're not already in your project, select it. 
 1. Navigate to the model catalog.
 1. Select the **Fine-tuning tasks** filter. 
@@ -269,7 +269,7 @@ After your custom model deploys, you can use it like any other deployed model. Y
 
 ### Clean up your fine-tuned models 
 
-You can delete a fine-tuned model from the fine-tuning model list in [Azure AI Foundry](https://ai.azure.com) or from the model details page. To delete the fine-tuned model from the Fine-tuning page,
+You can delete a fine-tuned model from the fine-tuning model list in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) or from the model details page. To delete the fine-tuned model from the Fine-tuning page,
 
 1. Select __Fine-tuning__ from the left navigation in your Azure AI Foundry project.
 1. Select the __Delete__ button to delete the fine-tuned model.

@@ -3,13 +3,16 @@ title: Include file
 description: Include file
 author: sgilley
 ms.author: sgilley
+ms.date: 05/13/2025
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 05/13/2025
-ms.custom: include file
+ms.custom:
+  - include file
+  - build-aifnd
+  - build-2025
 ---
 
-In this quickstart, you use [Azure AI Foundry](https://ai.azure.com) to:
+In this quickstart, you use [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) to:
 
 > [!div class="checklist"]
 > * Create a project
@@ -32,7 +35,7 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 
 ## Start with a project and model
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. On the home page, select **Create an agent**. 
     
     :::image type="content" source="../media/quickstarts/start-building.png" alt-text="Screenshot shows how to start building an Agent in Azure AI Foundry portal.":::

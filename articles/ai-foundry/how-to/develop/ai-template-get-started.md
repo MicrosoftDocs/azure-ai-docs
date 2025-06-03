@@ -35,7 +35,7 @@ Available templates include:
 
 [!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
-1. Go to [Azure AI Foundry portal](https://ai.azure.com).
+1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Open your project in Azure AI Foundry portal.
 1. On the left pane, select **Templates**.
 1. Find the solution template you want to use.

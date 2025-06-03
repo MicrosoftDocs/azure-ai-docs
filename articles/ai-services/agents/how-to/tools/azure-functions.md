@@ -27,8 +27,9 @@ To use all features of function calling including parallel functions, you need t
 ## Prerequisites
 
 * [Azure Functions Core Tools v4.x](/azure/azure-functions/functions-run-local)
-* [A deployed agent with the standard setup](../../quickstart.md)
-    * The basic agent setup is not supported.
+* [A deployed agent with the standard setup](../../environment-setup.md#choose-your-setup)
+    > [!NOTE] 
+    > The basic agent setup is not supported.
 * [Azurite](https://github.com/Azure/Azurite)
 
 ## Prepare your local environment

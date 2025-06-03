@@ -62,7 +62,7 @@ Default limits vary by offer category type, such as free trial, standard deploym
 
 ## Azure AI Foundry quota 
 
-The following actions in [Azure AI Foundry portal](https://ai.azure.com) consume quota: 
+The following actions in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) consume quota: 
 
 - Creating a compute instance.
 - Building a vector index.
@@ -75,7 +75,7 @@ The following actions in [Azure AI Foundry portal](https://ai.azure.com) consume
 - The quota on the number of cores is split by each VM Family and cumulative total cores.
 - The quota on the number of unique compute resources per region is separate from the VM core quota, as it applies only to the managed compute resources  
 
-To raise the limits for compute, you can [request a quota increase](#view-and-request-quotas-in-azure-ai-foundry-portal) in the [Azure AI Foundry](https://ai.azure.com).
+To raise the limits for compute, you can [request a quota increase](#view-and-request-quotas-in-azure-ai-foundry-portal) in the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
 Available resources include:
 - Dedicated cores per region have a default limit of 24 to 300, depending on your subscription offer type. You can increase the number of dedicated cores per subscription for each VM family. Specialized VM families like NCv2, NCv3, or ND series start with a default of zero cores. GPUs also default to zero cores. 

@@ -1,15 +1,21 @@
 ---
-title: 'Use your own data with Azure OpenAI in Azure AI Foundry Models'
+title: "Use your own data with Azure OpenAI in Azure AI Foundry Models"
 titleSuffix: Azure OpenAI
 description: Use this article to import and use your data in Azure OpenAI.
-manager: nitinme
-ms.service: azure-ai-openai
-ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-track-ts, devx-track-go, devx-track-python
-ms.topic: quickstart
 author: aahill
 ms.author: aahi
+manager: nitinme
 ms.date: 04/29/2025
-recommendations: false
+ms.service: azure-ai-openai
+ms.topic: quickstart
+ms.custom:
+  - devx-track-dotnet
+  - devx-track-extended-java
+  - devx-track-js
+  - devx-track-ts
+  - devx-track-go
+  - devx-track-python
+  - build-2025
 zone_pivot_groups: openai-use-your-data
 ---
 
