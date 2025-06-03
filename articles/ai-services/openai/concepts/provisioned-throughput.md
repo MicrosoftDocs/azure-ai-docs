@@ -220,7 +220,7 @@ The following points are some important takeaways from the table:
 > [!NOTE]
 > The provisioned version of `gpt-4` **Version:** `turbo-2024-04-09` is currently limited to text only.
 
-## Next steps
+## Related content
 
 - [Learn about the onboarding steps for provisioned deployments](../how-to/provisioned-throughput-onboarding.md)
 - [Provisioned Throughput Units (PTU) getting started guide](../how-to//provisioned-get-started.md)
