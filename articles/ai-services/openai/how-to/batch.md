@@ -1,15 +1,16 @@
 ---
-title: 'How to use global batch processing with Azure OpenAI in Azure AI Foundry Models'
+title: "How to use global batch processing with Azure OpenAI in Azure AI Foundry Models"
 titleSuffix: Azure OpenAI
 description: Learn how to use global batch with Azure OpenAI
-manager: nitinme
-ms.service: azure-ai-openai
-ms.custom: references_regions
-ms.topic: how-to
-ms.date: 04/14/2025
 author: mrbullwinkle
 ms.author: mbullwin
-recommendations: false
+manager: nitinme
+ms.date: 05/28/2025
+ms.service: azure-ai-openai
+ms.topic: how-to
+ms.custom:
+  - references_regions
+  - build-2025
 zone_pivot_groups: openai-fine-tuning-batch
 ---
 

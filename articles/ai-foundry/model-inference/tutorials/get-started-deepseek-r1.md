@@ -5,7 +5,7 @@ description: Learn about the reasoning capabilities of DeepSeek-R1 in Azure AI F
 manager: scottpolly
 ms.service: azure-ai-model-inference
 ms.topic: tutorial
-ms.date: 03/01/2025
+ms.date: 05/19/2025
 ms.reviewer: fasantia
 ms.author: mopeakande
 author: msakande

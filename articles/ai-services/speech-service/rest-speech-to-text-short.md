@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
+ms.date: 5/25/2025
 ms.author: eur
 ms.devlang: csharp
 ms.custom: devx-track-csharp
@@ -15,13 +15,13 @@ ms.custom: devx-track-csharp
 
 # Speech to text REST API for short audio
 
-Use cases for the Speech to text REST API for short audio are limited. Use it only in cases where you can't use the [Speech SDK](speech-sdk.md).
+Use cases for the Speech to text REST API for short audio are limited. Use it only in cases where you can't use the [Speech SDK](speech-sdk.md) or [fast transcription API](fast-transcription-create.md). 
 
 Before you use the Speech to text REST API for short audio, consider the following limitations:
 
 * Requests that use the REST API for short audio and transmit audio directly can contain no more than 60 seconds of audio. For pronunciation assessment, the audio duration should be no more than 30 seconds. The input [audio formats](#audio-formats) are more limited compared to the [Speech SDK](speech-sdk.md).
 * The REST API for short audio returns only final results. It doesn't provide partial results.
-* [Speech translation](speech-translation.md) isn't supported via REST API for short audio. You need to use [Speech SDK](speech-sdk.md).
+* [Speech translation](speech-translation.md) isn't supported via REST API for short audio. You need to use the [Speech SDK](speech-sdk.md).
 * [Batch transcription](batch-transcription.md) and [custom speech](custom-speech-overview.md) aren't supported via REST API for short audio. You should always use the [Speech to text REST API](rest-speech-to-text.md) for batch transcription and custom speech.
 
 Before you use the Speech to text REST API for short audio, understand that you need to complete a token exchange as part of authentication to access the service. For more information, see [Authentication](#authentication).
@@ -49,7 +49,7 @@ Audio is sent in the body of the HTTP `POST` request. It must be in one of the f
 | OGG    | OPUS  | 256 kbps | 16 kHz, mono |
 
 > [!NOTE]
-> The preceding formats are supported through the REST API for short audio and WebSocket in the Speech service. The [Speech SDK](speech-sdk.md) supports the WAV format with PCM codec as well as [other formats](how-to-use-codec-compressed-audio-input-streams.md).
+> The preceding formats are supported through the REST API for short audio and WebSockets in the Speech service. The [Speech SDK](speech-sdk.md) supports the WAV format with PCM codec as well as [other formats](how-to-use-codec-compressed-audio-input-streams.md).
 
 ## Request headers
 
@@ -77,7 +77,6 @@ These parameters might be included in the query string of the REST request.
 | `language` | Identifies the spoken language that's being recognized. See [Supported languages](language-support.md?tabs=stt). | Required |
 | `format` | Specifies the result format. Accepted values are `simple` and `detailed`. Simple results include `RecognitionStatus`, `DisplayText`, `Offset`, and `Duration`. Detailed responses include four different representations of display text. The default setting is `simple`. | Optional |
 | `profanity` | Specifies how to handle profanity in recognition results. Accepted values are: <br><br>`masked`, which replaces profanity with asterisks. <br>`removed`, which removes all profanity from the result. <br>`raw`, which includes profanity in the result. <br><br>The default setting is `masked`. | Optional |
-| `cid` | When you're using the [Speech Studio](speech-studio-overview.md) to create [custom models](./custom-speech-overview.md), you can take advantage of the **Endpoint ID** value from the **Deployment** page. Use the **Endpoint ID** value as the argument to the `cid` query string parameter. | Optional |
 
 ### Pronunciation assessment parameters
 
@@ -360,7 +359,8 @@ using (var fs = new FileStream(audioFile, FileMode.Open, FileAccess.Read))
 
 [!INCLUDE [](includes/cognitive-services-speech-service-rest-auth.md)]
 
-## Next steps
+## Related content
 
+- [Fast transcription API](fast-transcription-create.md)
 - [Customize speech models](./how-to-custom-speech-train-model.md)
 - [Get familiar with batch transcription](batch-transcription.md)

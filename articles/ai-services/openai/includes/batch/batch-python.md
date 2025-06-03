@@ -3,9 +3,11 @@ title: Azure OpenAI Global Batch Python
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Azure OpenAI model global batch Python
 manager: nitinme
+ms.date: 10/15/2024
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 10/15/2024
+ms.custom:
+  - build-2025
 ---
 
 ## Prerequisites
@@ -226,7 +228,7 @@ If your batch jobs are so large that you're hitting the enqueued token limit eve
 
 ## Track batch job progress
 
-Once you have created batch job successfully you can monitor its progress either in the Studio or programatically. When checking batch job progress we recommend waiting at least 60 seconds in between each status call.
+Once you have created batch job successfully you can monitor its progress either in the Studio or programmatically. When checking batch job progress we recommend waiting at least 60 seconds in between each status call.
 
 ```Python
 import time

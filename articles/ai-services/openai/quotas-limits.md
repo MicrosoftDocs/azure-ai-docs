@@ -2,14 +2,15 @@
 title: Azure OpenAI in Azure AI Foundry Models quotas and limits
 description: Quick reference, detailed description, and best practices on the quotas and limits for the OpenAI service in Azure AI services.
 author: mrbullwinkle
+ms.author: mbullwin
 manager: nitinme
+ms.date: 05/29/2025
 ms.service: azure-ai-openai
+ms.topic: conceptual
 ms.custom:
   - ignite-2023
   - references_regions
-ms.topic: conceptual
-ms.date: 04/23/2025
-ms.author: mbullwin
+  - build-2025
 ---
 
 # Azure OpenAI in Azure AI Foundry Models quotas and limits
@@ -26,6 +27,7 @@ The following sections provide you with a quick guide to the default quotas and 
 | Default DALL-E 2 quota limits | 2 concurrent requests |
 | Default DALL-E 3 quota limits| 2 capacity units (6 requests per minute)|
 | Default GPT-image-1 quota limits | 2 capacity units (6 requests per minute) |
+| Default Sora quota limits | 60 requests per minute |
 | Default speech to text audio API quota limits | 3 requests per minute |
 | Maximum prompt tokens per request | Varies per model. For more information, see [Azure OpenAI models](./concepts/models.md)|
 | Max Standard deployments per resource | 32 |
@@ -43,9 +45,9 @@ The following sections provide you with a quick guide to the default quotas and 
 | Max number of `/chat/completions` functions | 128 |
 | Max number of `/chat completions` tools | 128 |
 | Maximum number of Provisioned throughput units per deployment | 100,000 |
-| Max files per Assistant/thread | 10,000 when using the API or [Azure AI Foundry portal](https://ai.azure.com/). In Azure OpenAI Studio the limit was 20.|
+| Max files per Assistant/thread | 10,000 when using the API or [Azure AI Foundry portal](https://ai.azure.com/).|
 | Max file size for Assistants & fine-tuning | 512 MB<br/><br/>200 MB via [Azure AI Foundry portal](https://ai.azure.com/) |
-| Max size for all uploaded files for Assistants |100 GB |
+| Max size for all uploaded files for Assistants |200 GB |
 | Assistants token limit | 2,000,000 token limit |
 | GPT-4o max images per request (# of images in the messages array/conversation history) | 50 |
 | GPT-4 `vision-preview` & GPT-4 `turbo-2024-04-09` default max tokens | 16 <br><br> Increase the `max_tokens` parameter value to avoid truncated responses. GPT-4o max tokens defaults to 4096. |
@@ -195,7 +197,7 @@ M = million | K = thousand
 
 ### gpt-4o audio
 
-The rate limits for each `gpt-4o` audio model deployment are 100 K TPM and 1 K RPM. During the preview, [Azure AI Foundry portal](https://ai.azure.com/) and APIs might inaccurately show different rate limits. Even if you try to set a different rate limit, the actual rate limit will be 100 K TPM and 1 K RPM.
+The rate limits for each `gpt-4o` audio model deployment are 100 K TPM and 1 K RPM. During the preview, [Azure AI Foundry portal](https://ai.azure.com/) and APIs might inaccurately show different rate limits. Even if you try to set a different rate limit, the actual rate limit is 100 K TPM and 1 K RPM.
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|
@@ -231,7 +233,7 @@ The Usage Limit determines the level of usage above which customers might see la
 
 ## Other offer types
 
-If your Azure subscription is linked to certain [offer types](https://azure.microsoft.com/support/legal/offer-details/) your max quota values are lower than the values indicated in the above tables.
+If your Azure subscription is linked to certain [offer types](https://azure.microsoft.com/support/legal/offer-details/), your max quota values are lower than the values indicated in the above tables.
 
 |Tier| Quota Limit in tokens per minute (TPM) |
 |---|:---|
@@ -246,7 +248,7 @@ If your Azure subscription is linked to certain [offer types](https://azure.micr
 
 <sup>*</sup>This only applies to a small number of legacy CSP sandbox subscriptions. Use the query below to determine what `quotaId` is associated with your subscription.
 
-To determine the offer type that is associated with your subscription. you can check your `quotaId`. If your `quotaId` isn't listed in this table your subscription qualifies for default quota.
+To determine the offer type that is associated with your subscription, you can check your `quotaId`. If your `quotaId` isn't listed in this table, your subscription qualifies for default quota.
 
 # [REST](#tab/REST)
 
@@ -313,7 +315,7 @@ To minimize issues related to rate limits, it's a good idea to use the following
 
 ## How to request quota increases
 
-Quota increase requests can be submitted via the [quota increase request form](https://aka.ms/oai/stuquotarequest). Due to high demand, quota increase requests are being accepted and will be filled in the order they're received. Priority is given to customers who generate traffic that consumes the existing quota allocation, and your request might be denied if this condition isn't met.
+Quota increase requests can be submitted via the [quota increase request form](https://aka.ms/oai/stuquotarequest). Due to high demand, quota increase requests are being accepted and are filled in the order they're received. Priority is given to customers who generate traffic that consumes the existing quota allocation, and your request might be denied if this condition isn't met.
 
 For other rate limits, [submit a service request](../cognitive-services-support-options.md?context=/azure/ai-services/openai/context/context).
 
@@ -321,7 +323,7 @@ For other rate limits, [submit a service request](../cognitive-services-support-
 
 You can view quota availability by region for your subscription in the [Azure AI Foundry portal](https://ai.azure.com/resource/quota).
 
-Alternatively to view quota capacity by region for a specific model/version you can query the [capacity API](/rest/api/aiservices/accountmanagement/model-capacities/list) for your subscription. Provide a `subscriptionId`, `model_name`, and `model_version` and the API will return the available capacity for that model across all regions, and deployment types for your subscription.
+Alternatively to view quota capacity by region for a specific model/version you can query the [capacity API](/rest/api/aiservices/accountmanagement/model-capacities/list) for your subscription. Provide a `subscriptionId`, `model_name`, and `model_version` and the API returns the available capacity for that model across all regions, and deployment types for your subscription.
 
 > [!NOTE]
 > Currently both the Azure AI Foundry portal and the capacity API return quota/capacity information for models that are [retired](./concepts/model-retirements.md) and no longer available.

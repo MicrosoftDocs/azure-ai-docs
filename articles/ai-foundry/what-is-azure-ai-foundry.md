@@ -2,16 +2,23 @@
 title: What is Azure AI Foundry?
 titleSuffix: Azure AI Foundry
 description: Azure AI Foundry is a trusted platform that empowers developers to drive innovation and shape the future with AI in a safe, secure, and responsible way.
+author: sdgilley
+ms.author: sgilley
 manager: scottpolly
-keywords: Azure AI services, cognitive
+ms.reviewer: sgilley
+ms.date: 05/12/2025
 ms.service: azure-ai-foundry
 ms.topic: overview
-ms.date: 05/12/2025
-ms.reviewer: sgilley
-ms.author: sgilley
-author: sdgilley
-ms.custom: ignite-2023, build-2024, ignite-2024
-#customer intent: As a developer, I want to understand what Azure AI Foundry is so that I can use it to build AI applications.
+ms.custom:
+  - ignite-2023
+  - build-2024
+  - ignite-2024
+  - build-aifnd
+  - build-2025
+keywords:
+  - Azure AI services
+  - cognitive
+# customer intent: As a developer, I want to understand what Azure AI Foundry is so that I can use it to build AI applications.
 ---
 
 # What is Azure AI Foundry?
@@ -60,6 +67,34 @@ This table summarizes features available in the two project types:
 | Managed compute  |  | ✅ |
 | Required Azure dependencies | - | Azure Storage account, Azure Key Vault |
 
+### <a name="how-do-i-know"></a> How do I know which type of project I have?
+
+Here are some of the ways to identify your project type:
+
+* From the **breadcrumb navigation** section
+
+    * A [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)] displays **(AI Foundry)** on the second line
+    * A [!INCLUDE [hub-project-name](includes/hub-project-name.md)] displays **(Hub)** on the second line
+
+    :::image type="content" source="media/how-to/projects/breadcrumb.png" alt-text="Screenshot shows both a Foundry and hub based project in the breadcrumb navigation.":::
+
+* From the **All resources** page
+
+    * A [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)] displays **(AI Foundry)** as the parent resource
+    * A [!INCLUDE [hub-project-name](includes/hub-project-name.md)] displays **(Hub)** as the parent resource
+
+    :::image type="content" source="media/how-to/projects/all-resources.png" alt-text="Screenshot shows both a Foundry and hub based project in the All Resources page.":::
+
+<!-- * From the **Overview** section of the project
+
+    * If it's a [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)], you see an **Azure AI Foundry endpoint**
+
+        :::image type="content" source="media/how-to/projects/fdp-project-overview.png" alt-text="Screenshot shows a Foundry project overview page." lightbox="media/how-to/projects/fdp-project-overview.png":::
+
+    * If it's a [!INCLUDE [hub-project-name](includes/hub-project-name.md)], you see a **Project connection string**
+
+        :::image type="content" source="media/how-to/projects/hub-project-overview.png" alt-text="Screenshot shows a hub based project overview page." lightbox="media/how-to/projects/hub-project-overview.png"::: -->
+
 ## Navigate in the Azure AI Foundry portal
 
 In the Azure AI Foundry portal, you can navigate among all your resources using the breadcrumbs at the top of the page. The breadcrumbs show recent resources, along with a link to all resources. 
@@ -77,7 +112,7 @@ If you're an admin, or leading a development team, and need to manage the team's
 
 The left pane of the Azure AI Foundry portal is your main navigation tool. Customize this area to show the parts of the portal you want to use.
 
-Pin or unpin items into the left pane. When you pin an item, it appears in the left pane. When you unpin an item, it disappears from the left pane. 
+Pin or unpin items into the left pane. When you unpin an item, it is hidden from the left pane but can be found again in the **...More** menu.
 
 * Select **... More** at the bottom of the pane to see items to pin and unpin.
 * Customize each project separately. The left pane is not shared across projects.

@@ -2,13 +2,16 @@
 title: Observability in Generative AI with Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: Learn how Azure AI Foundry enables safe, high-quality generative AI through systematic evaluation and observability tools.
+author: lgayhardt
+ms.author: lagayhar
 manager: scottpolly
+ms.reviewer: mithigpe
+ms.date: 05/19/2025
 ms.service: azure-ai-foundry
 ms.topic: conceptual
-ms.date: 05/19/2025
-ms.reviewer: mithigpe
-ms.author: lagayhar
-author: lgayhardt
+ms.custom:
+  - build-aifnd
+  - build-2025
 ---
 
 # Observability in generative AI  

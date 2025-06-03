@@ -3,12 +3,12 @@ title: How to call Text Analytics for health
 titleSuffix: Azure AI services
 description: Learn how to extract and label medical information from unstructured clinical text with Text Analytics for health.
 #services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-health
 ---
 

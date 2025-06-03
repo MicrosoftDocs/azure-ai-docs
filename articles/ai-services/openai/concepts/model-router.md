@@ -4,11 +4,12 @@ titleSuffix: Azure OpenAI
 description: Learn about the model router feature in Azure OpenAI in Azure AI Foundry Models.
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-openai
-ms.topic: conceptual 
-ms.date: 05/08/2025
-ms.custom: 
 manager: nitinme
+ms.date: 05/08/2025
+ms.service: azure-ai-openai
+ms.topic: conceptual
+ms.custom:
+  - build-2025
 ---
 
 # Model router for Azure AI Foundry (preview)
@@ -54,7 +55,7 @@ Model router doesn't process audio input.
 
 ## Billing information
 
-When you use model router, you're only billed for the use of the underlying models as they're recruited to respond to prompts. The model routing function itself doesn't incur any extra charges.
+When you use model router today, you're only billed for the use of the underlying models as they're recruited to respond to prompts: the model routing function itself doesn't incur any extra charges. Starting August 1, the model router usage will be charged as well.
 
 You can monitor the costs of your model router deployment in the Azure portal.
 

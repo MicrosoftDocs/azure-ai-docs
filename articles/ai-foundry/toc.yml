@@ -72,10 +72,8 @@ items:
           href: how-to/develop/semantic-kernel.md
   - name: Deploy Azure OpenAI in Foundry Models
     items:
-    - name: Azure OpenAI in Azure AI Foundry portal
-      href: azure-openai-in-azure-ai-foundry.md
     - name: Use Azure OpenAI in Azure AI Foundry portal
-      href: ai-services/how-to/connect-azure-openai.md
+      href: ai-services/how-to/connect-azure-openai.md?context=/azure/ai-foundry/context/context
     - name: Supported Azure OpenAI models
       href: ../ai-services/openai/concepts/models.md?context=/azure/ai-foundry/context/context
     - name: Azure OpenAI deployment types
@@ -276,8 +274,6 @@ items:
       href: ../ai-services/speech-service/pronunciation-assessment-tool.md?context=/azure/ai-foundry/context/context
     - name: Speech translation
       href: ../ai-services/speech-service/get-started-speech-translation.md?context=/azure/ai-foundry/context/context
-    - name: Hear and speak with chat in the playground
-      href: quickstarts/hear-speak-playground.md
   - name:  Translator
     items:
     - name: What is Azure AI Translator?

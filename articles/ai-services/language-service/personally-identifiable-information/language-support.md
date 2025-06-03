@@ -2,12 +2,12 @@
 title: Personally Identifiable Information (PII) detection language support
 titleSuffix: Azure AI services
 description: This article explains which natural languages are supported by the PII detection feature of Azure AI Language.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-pii, build-2024
 ---
 

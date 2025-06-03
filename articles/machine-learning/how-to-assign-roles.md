@@ -269,11 +269,11 @@ If you anticipate that you need to recreate complex role assignments, an Azure R
 The following table is a summary of Azure Machine Learning activities and the permissions required to perform them at the least scope. For example, if an activity can be performed with a workspace scope (Column 4), then all higher scope with that permission also work automatically. For certain activities, the permissions differ between V1 and V2 APIs.
 
 > [!IMPORTANT]
-> All paths in this table that start with `/` are *relative paths* to `Microsoft.MachineLearningServices/` :
+> All paths in this table that start with `/` are *relative paths* to `Microsoft.MachineLearningServices/`
 
 | Activity | Subscription-level scope | Resource group-level scope | Workspace-level scope |
 | ----- | ----- | ----- | ----- |
-| Create new workspace <sub>1</sub> | Not required | Owner, contributor, or custom role allowing: `Microsoft.Resources/deployments/*` | N/A (becomes Owner or inherits higher scope role after creation) |
+| Create new workspace <sub>1</sub> | Not required | Owner, contributor, or custom role allowing: `Microsoft.Resources/deployments/*` and `Microsoft.MachineLearningServices/workspaces/write` | N/A (becomes Owner or inherits higher scope role after creation) |
 | Request subscription level Amlcompute quota or set workspace level quota | Owner, or contributor, or custom role <br>allowing `/locations/updateQuotas/action`<br> at subscription scope | Not authorized | Not authorized |
 | Create new compute cluster | Not required | Not required | Owner, contributor, or custom role allowing: `/workspaces/computes/write` |
 | Create new compute instance | Not required | Not required | Owner, contributor, or custom role allowing: `/workspaces/computes/write` |
@@ -292,6 +292,8 @@ The following table is a summary of Azure Machine Learning activities and the pe
 1. If you receive a failure when trying to create a workspace for the first time, make sure that your role allows `Microsoft.MachineLearningServices/register/action`. This action allows you to register the Azure Machine Learning resource provider with your Azure subscription.
 
 2. When attaching an AKS cluster, you also need to have the [Azure Kubernetes Service Cluster Admin Role](/azure/role-based-access-control/built-in-roles#azure-kubernetes-service-cluster-admin-role) on the cluster.
+
+3. These scenarios don't include the permissions needed to create workspace dependent resources. For more information, see the write permissions for [Storage](https://learn.microsoft.com/azure/role-based-access-control/permissions/storage#microsoftstorage), [OperationalInsights](https://learn.microsoft.com/azure/role-based-access-control/permissions/monitor#microsoftoperationalinsights), [Key Vault](https://learn.microsoft.com/azure/role-based-access-control/permissions/security#microsoftkeyvault) and [Container Registry](https://learn.microsoft.com/azure/role-based-access-control/permissions/containers#microsoftcontainerregistry).
 
 ###  Deploy into a virtual network or subnet
 

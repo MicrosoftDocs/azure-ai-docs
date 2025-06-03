@@ -2,15 +2,20 @@
 title: "Quickstart: Create an AI Foundry resource in the Azure portal"
 titleSuffix: Azure AI services
 description: Get started with Azure AI services by creating an AI Foundry resource in the Azure portal.
+author: eric-urban
+ms.author: eur
 manager: nitinme
-keywords: Azure AI services, cognitive intelligence, cognitive solutions, ai services
+ms.date: 8/1/2024
 ms.service: azure-ai-services
+ms.topic: quickstart
 ms.custom:
   - ignite-2023
-ms.topic: quickstart
-ms.date: 8/1/2024
-ms.author: eur
-author: eric-urban
+  - build-2025
+keywords:
+  - Azure AI services
+  - cognitive intelligence
+  - cognitive solutions
+  - ai services
 ---
 
 ## Prerequisites
@@ -36,7 +41,7 @@ To create an AI Foundry resource follow these instructions:
 > - [Create an Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects?tabs=ai-foundry&pivots=fdp-project).
 > - [Create an Azure AI hub based project](/azure/ai-foundry/how-to/create-projects?tabs=ai-foundry&pivots=hub-project).
 
-1. Select this link to create an **AI Foundry** resource: [https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices)
+1. Select this link to create an **AI Foundry** resource: [https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry)
 
 1. On the **Create** page, provide the following information:
 

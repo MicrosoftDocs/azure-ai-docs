@@ -406,10 +406,10 @@ token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
+client = AzureOpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
   azure_ad_token_provider=token_provider,
-  api_version="2025-04-01-preview" # You must use this version or greater to access reasoning summary
+  api_version="preview"
 )
 
 response = client.responses.create(
@@ -427,7 +427,7 @@ print(response.model_dump_json(indent=2))
 # [REST](#tab/REST)
 
 ```bash
-curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/responses?api-version=2025-04-01-preview" \
+curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
  -d '{

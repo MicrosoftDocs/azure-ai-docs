@@ -3,9 +3,11 @@ title: Azure OpenAI Global Batch REST
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Azure OpenAI model global batch REST
 manager: nitinme
+ms.date: 07/22/2024
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 07/22/2024
+ms.custom:
+  - build-2025
 ---
 
 ## Prerequisites
@@ -189,7 +191,7 @@ The default 500 max file limit per resource also applies to output files. Here y
 
 ## Track batch job progress
 
-Once you have created batch job successfully you can monitor its progress either in the Studio or programatically. When checking batch job progress we recommend waiting at least 60 seconds in between each status call.
+Once you have created batch job successfully you can monitor its progress either in the Studio or programmatically. When checking batch job progress we recommend waiting at least 60 seconds in between each status call.
 
 ```http
 curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/batches/{batch_id}?api-version=2025-03-01-preview \

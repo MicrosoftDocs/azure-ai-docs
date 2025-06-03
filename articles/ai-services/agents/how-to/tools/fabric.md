@@ -1,14 +1,15 @@
 ---
-title: 'How to use the data agents in Microsoft Fabric with Azure AI Foundry Agent Service'
+title: "How to use the data agents in Microsoft Fabric with Azure AI Foundry Agent Service"
 titleSuffix: Azure AI Foundry
 description: Learn how to perform data analytics in Azure AI Foundry Agents using Microsoft Fabric data agent.
-services: cognitive-services
-manager: nitinme
-ms.service: azure-ai-agent-service
-ms.topic: how-to
-ms.date: 04/07/2025
 author: aahill
 ms.author: aahi
+manager: nitinme
+ms.date: 04/07/2025
+ms.service: azure-ai-agent-service
+ms.topic: how-to
+ms.custom:
+  - build-2025
 zone_pivot_groups: selection-fabric-data-agent
 ---
 
@@ -35,15 +36,16 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 
 ## Setup  
 > [!NOTE]
-> * The model you selected in Azure AI Agent setup is only used for agent orchestration and response generation. It doesn't impact which model Fabric data agent uses for NL2SQL operation.
+> * The model you selected in Azure AI Foundry Agent setup is only used for agent orchestration and response generation. It doesn't impact which model Fabric data agent uses for NL2SQL operation.
+> * To help your model invoke your Microsoft Fabric tool in the expected way, please make sure you update agent instructions with descriptions of your Fabric data agent and what data it has access to. An example is "for customer and product sales related data, please use the Fabric tool". We recommend using a smaller AI model such as `gpt-4o-mini`. You can also use `tool_choice` parameter in SDK or API to force Fabric tool to be invoked at each run. 
 
-1. Create an Azure AI Agent by following the steps in the [quickstart](../../quickstart.md).
+1. Create an Azure AI Foundry Agent by following the steps in the [quickstart](../../quickstart.md).
 
 1. Create and publish a [Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312910)
 
 :::zone pivot="portal"
 
-You can add the Microsoft Fabric tool to an agent programatically using the code examples listed at the top of this article, or the Azure AI Foundry portal. If you want to use the portal: 
+You can add the Microsoft Fabric tool to an agent programmatically using the code examples listed at the top of this article, or the Azure AI Foundry portal. If you want to use the portal: 
 
 1. Navigate to the **Agents** screen for your agent in [Azure AI Foundry](https://ai.azure.com/), scroll down the Setup pane on the right to **knowledge**. Then select **Add**.
    

@@ -116,7 +116,7 @@ Follow these steps to create a console application for conversation transcriptio
                     if (e.getReason() == CancellationReason.Error) {
                         System.out.println("CANCELED: ErrorCode=" + e.getErrorCode());
                         System.out.println("CANCELED: ErrorDetails=" + e.getErrorDetails());
-                        System.out.println("CANCELED: Did you update the subscription info?");
+                        System.out.println("CANCELED: Did you update the Speech resource info?");
                     }
     
                     stopRecognitionSemaphore.release();

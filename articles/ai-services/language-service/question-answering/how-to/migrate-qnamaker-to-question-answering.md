@@ -2,8 +2,8 @@
 title: Migrate from QnA Maker to custom question answering
 description: Details on features, requirements, and examples for migrating from QnA Maker to custom question answering
 ms.service: azure-ai-language
-ms.author: jboback
-author: jboback
+ms.author: lajanuar
+author: laujan
 ms.manager: nitinme
 ms.topic: how-to
 ms.date: 11/21/2024

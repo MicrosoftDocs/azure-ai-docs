@@ -184,7 +184,7 @@ The value for each property is as follows.
 
   * `dir`: Directionality, which is `rtl` for right-to-left languages or `ltr` for left-to-right languages.
 
-  * `translations`: List of languages with alterative translations and examples for the query expressed in the source language. Each element of the `translations` list has properties:
+  * `translations`: List of languages with alternative translations and examples for the query expressed in the source language. Each element of the `translations` list has properties:
 
     * `name`: Display name of the target language in the locale requested via `Accept-Language` header.
 

@@ -1,5 +1,5 @@
 ---
-title: 'How to use Logic Apps with Azure AI Agent Service'
+title: 'How to use Logic Apps with Azure AI Foundry Agent Service'
 titleSuffix: Azure AI Foundry
 description: Learn how to integrate Logic Apps with Azure AI Agents to execute tasks like sending emails.
 services: cognitive-services
@@ -14,7 +14,7 @@ zone_pivot_groups: selection-logic-apps
 ms.custom: azure-ai-agents
 ---
 
-# How to use Logic Apps with Azure AI Agent Service
+# How to use Logic Apps with Azure AI Foundry Agent Service
 
 This article demonstrates how to integrate Logic Apps with Azure AI Agents to execute tasks like sending emails.
 
@@ -47,7 +47,7 @@ project_client = AIProjectClient(
 
 ## Register the Logic App
 
-Register the Logic App by providing its name and trigger details.
+Register the Logic App by providing its name and trigger details. You can find code for `AzureLogicAppTool` on[GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/utils/user_functions.py).
 
 ```python
 from user_logic_apps import AzureLogicAppTool
@@ -143,4 +143,4 @@ print("Deleted agent")
 
 ## Next steps
 
-[See the full sample for Logic Apps integration.](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/sample_agents_logic_apps.py)
+[See the full sample for Logic Apps integration.](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_tools/sample_agents_logic_apps.py)

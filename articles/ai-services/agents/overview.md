@@ -105,11 +105,11 @@ Azure AI Foundry Agent Service provides a production-ready foundation for deploy
 | **4. Trust and safety** | Integrated [content filters](../openai/how-to/content-filters.md) help prevent misuse and mitigate prompt injection risks (XPIA). all outputs are policy-governed. |
 | **5. Enterprise integration** | Bring your own [storage](./how-to/use-your-own-resources.md#use-an-existing-azure-cosmos-db-for-nosql-account-for-thread-storage), [Azure AI Search index](./how-to/use-your-own-resources.md#use-an-existing-azure-ai-search-resource), and [virtual network](./how-to/virtual-networks.md) to meet compliance needs. |
 | **6. Observability and debugging** | Threads, tool invocations, and message traces are [fully traceable](./concepts/tracing.md); [Application Insights integration](./how-to/metrics.md) for telemetry |
-| **7. Identity and policy control** | Built on Microsoft Entra with full support for RBAC, audit logs, and enterprise conditional acces.s |
+| **7. Identity and policy control** | Built on Microsoft Entra with full support for RBAC, audit logs, and enterprise conditional access. |
 
-## Get started with Azure AI Foundry Agent Service
+## Get started with Foundry Agent Service
 
-To get started with Azure AI Agent Service, you need to create an Azure AI Foundry project in your Azure subscription. 
+To get started with Foundry Agent Service, you need to create an Azure AI Foundry project in your Azure subscription. 
 
 Start with the [environment setup](./environment-setup.md) and [quickstart](./quickstart.md) guide if it's your first time using the service.
 1. You can create a project with the required resources. 

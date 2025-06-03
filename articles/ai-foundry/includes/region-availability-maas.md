@@ -2,13 +2,19 @@
 title: Include file
 description: Include file
 author: s-polly
-ms.reviewer: scottpolly
 ms.author: scottpolly
+ms.reviewer: scottpolly
+ms.date: 03/24/2024
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 03/24/2024
-ms.custom: include, references_regions
+ms.custom:
+  - include
+  - references_regions
+  - build-aifnd
+  - build-2025
 ---
+
+[!INCLUDE [uses-hub-only](uses-hub-only.md)]
 
 ### AI21 models
 

@@ -78,7 +78,7 @@ landingContent:
         links:            
           - text: Run training with CLI, SDK, or REST API
             url: how-to-train-model.md
-          - text: Build pipelines from reuseable components
+          - text: Build pipelines from reusable components
             url: tutorial-pipeline-python-sdk.md
   # Card
   - title: Deploy models

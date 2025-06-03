@@ -8,7 +8,7 @@ ms.author: eur
 
 > [!div class="checklist"]
 > * Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
-> * <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices" title="Create an AI Foundry resource" target="_blank">Create a multi-service resource</a> in the Azure portal. This quickstart only requires one Azure AI services [multi-service resource](../../../../multi-service-resource.md?pivots=azportal). The sample code allows you to specify separate Language and Speech resource keys.
+> * <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry" title="Create an AI Foundry resource" target="_blank">Create a multi-service resource</a> in the Azure portal. This quickstart only requires one Azure AI services [multi-service resource](../../../../multi-service-resource.md?pivots=azportal). The sample code allows you to specify separate Language and Speech resource keys.
 > * Get the resource key and region. After your Azure AI Foundry resource is deployed, select **Go to resource** to view and manage keys.
 
 > [!IMPORTANT]

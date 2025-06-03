@@ -3,9 +3,11 @@ title: Azure OpenAI Global Batch Studio
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Azure OpenAI model global batch Studio
 manager: nitinme
+ms.date: 07/23/2024
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 07/23/2024
+ms.custom:
+  - build-2025
 ---
 
 ## Prerequisites

@@ -49,7 +49,7 @@ Use this article to find step-by-step instructions and code samples for Groundin
 
 ## Create a project client
 
-Create a client object, which will contain the connection string for connecting to your AI project and other resources.
+Create a client object, which will contain the endpoint for connecting to your AI project and other resources.
 
 ```python
 import os
@@ -315,7 +315,7 @@ agentClient.Administration.DeleteAgent(agentId: agent.Id);
 
 ## Create a project client
 
-Create a client object, which will contain the connection string for connecting to your AI project and other resources.
+Create a client object, which will contain the endpoint for connecting to your AI project and other resources.
 
 ```javascript
 const { AgentsClient, ToolUtility, isOutputOfType } = require("@azure/ai-agents");
@@ -324,7 +324,7 @@ const { DefaultAzureCredential } = require("@azure/identity");
 
 require("dotenv/config");
 
-const projectEndpoint = process.env["PROJECT_ENDPOINT"] || "<project connection string>";
+const projectEndpoint = process.env["PROJECT_ENDPOINT"];
 
 // Create an Azure AI Client
 const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());
