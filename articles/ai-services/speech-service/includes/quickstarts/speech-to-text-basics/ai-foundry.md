@@ -9,7 +9,7 @@ ms.date: 4/14/2025
 ms.author: eur
 ---
 
-In this quickstart, you try real-time speech to text in [Azure AI Foundry](https://ai.azure.com). 
+In this quickstart, you try real-time speech to text in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). 
 
 ## Prerequisites
 

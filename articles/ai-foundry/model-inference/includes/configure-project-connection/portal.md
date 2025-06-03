@@ -20,7 +20,7 @@ zone_pivot_groups: azure-ai-models-deployment
 
 You can create a connection to an Azure AI services resource using the following steps:
 
-1. Go to [Azure AI Foundry Portal](https://ai.azure.com).
+1. Go to [Azure AI Foundry Portal](https://ai.azure.com/?cid=learnDocs).
 
 2. In the lower left corner of the screen, select **Management center**.
 
@@ -42,7 +42,7 @@ You can create a connection to an Azure AI services resource using the following
 
 You can see the model deployments available in the connected resource by following these steps:
 
-1. Go to [Azure AI Foundry Portal](https://ai.azure.com).
+1. Go to [Azure AI Foundry Portal](https://ai.azure.com/?cid=learnDocs).
 
 2. On the left pane, select **Models + endpoints**.
 

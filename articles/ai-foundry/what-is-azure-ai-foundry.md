@@ -23,9 +23,9 @@ keywords:
 
 # What is Azure AI Foundry?
 
-[Azure AI Foundry](https://ai.azure.com) provides a unified platform for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, ensuring organizations can build and operate AI applications with confidence. 
+[Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) provides a unified platform for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, ensuring organizations can build and operate AI applications with confidence. 
 
-[Azure AI Foundry](https://ai.azure.com) is designed for developers to:
+[Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) is designed for developers to:
 
 - Build generative AI applications on an enterprise-grade platform.
 - Explore, build, test, and deploy using cutting-edge AI tools and ML models, grounded in responsible AI practices.

@@ -45,7 +45,7 @@ To follow the steps in this guide, we recommend [Visual Studio Code](https://cod
 
 Make sure you have a supported model that Azure AI Search can access. The following instruction assumes Azure AI Foundry Model as the provider.
 
-1. Sign in to [Azure AI Foundry portal](https://ai.azure.com/).
+1. Sign in to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 1. Deploy a supported model using [these instructions](/azure/ai-foundry/how-to/deploy-models-openai).
 

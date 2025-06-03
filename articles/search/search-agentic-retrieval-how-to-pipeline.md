@@ -128,7 +128,7 @@ You can find endpoints for Azure AI Search and Azure OpenAI in the [Azure portal
 
 You can find the project endpoint in the Azure AI Foundry portal:
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com) and open your project. 
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and open your project. 
 
 1. In the **Overview** tile, find and copy the Azure AI Foundry project endpoint.
 
