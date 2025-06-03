@@ -13,7 +13,7 @@ ms.author: lajanuar
 
 If it's your first time to sign in, you see a window in [Language Studio](https://aka.ms/languageStudio) that you can use to choose an existing Language resource or create a new one. You can also create a resource by selecting the settings icon in the upper-right corner, selecting **Resources**, and then selecting **Create a new resource**.
 
-Create a Language resource with the following information.
+Create a Language resource with the following information:
 
 |Instance detail  |Required value  |
 |---------|---------|

@@ -15,7 +15,7 @@ ms.author: lajanuar
 
     :::image type="content" source="../../media/projects-page.png" alt-text="A screenshot that shows the conversation project page in Language Studio." lightbox="../../media/projects-page.png":::
 
-To create a new project, provide the following details:
+To create a new project, provide the following information:
 
 |Value  | Description  |
 |---------|---------|
