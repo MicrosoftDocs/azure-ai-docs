@@ -1043,7 +1043,7 @@ groups:
   - id: programming-language-javascript
     title: JavaScript
   - id: programming-language-python-azure
-    title: Python (Azure SDK)
+    title: Python
   - id: programming-language-typescript
     title: TypeScript
   - id: rest-api
