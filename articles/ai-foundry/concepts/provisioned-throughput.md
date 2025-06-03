@@ -69,7 +69,7 @@ The following points are some important takeaways from the table:
 |                | MAI-DeepSeek-R1 | ✅                 |                       |                      |                   |
 
 
-Related content
+## Related content
 
-- [Get started using Provisioned Deployments](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/provisioned-get-started)
 - [What is provisioned throughput?](../../ai-services/openai/concepts/provisioned-throughput.md)
+- [Get started using provisioned deployments on the Azure OpenAI in Azure AI Foundry Models](../../ai-services/openai/how-to/provisioned-get-started.md)

@@ -279,7 +279,7 @@ items:
         href: ./how-to/monitor-openai.md
       - name: Provisioned throughput units (PTU)
         items:
-        - name: What is the Provisioned Managed offering (PTU)?
+        - name: What is the Provisioned Throughput offering (PTU)?
           href: ./concepts/provisioned-throughput.md
           displayName: PTU, provisioned, provisioned throughput units
         - name: Understanding and calculating PTU costs 
