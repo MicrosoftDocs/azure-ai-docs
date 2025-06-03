@@ -1,15 +1,16 @@
 ---
-title: 'How to use the Custom Bing Search with Azure AI Foundry Agent Service tool'
+title: "How to use the Custom Bing Search with Azure AI Foundry Agent Service tool"
 titleSuffix: Azure OpenAI
 description: Find samples to ground Azure AI Foundry Agents using Custom Bing Search results.
-services: cognitive-services
-manager: nitinme
-ms.service: azure-ai-agent-service
-ms.topic: how-to
-ms.date: 04/15/2025
 author: aahill
 ms.author: aahi
-ms.custom: azure-ai-agents
+manager: nitinme
+ms.date: 04/15/2025
+ms.service: azure-ai-agent-service
+ms.topic: how-to
+ms.custom:
+  - azure-ai-agents
+  - build-2025
 zone_pivot_groups: selection-bing-custom-grounding
 ---
 

@@ -143,4 +143,4 @@ print("Deleted agent")
 
 ## Next steps
 
-[See the full sample for Logic Apps integration.](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/sample_agents_logic_apps.py)
+[See the full sample for Logic Apps integration.](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_tools/sample_agents_logic_apps.py)

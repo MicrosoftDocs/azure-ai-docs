@@ -4,10 +4,12 @@ titleSuffix: Azure OpenAI
 description: Learn about the default Guidelines & controls policies that Azure OpenAI uses to flag content and ensure responsible use of the service.
 author: PatrickFarley
 ms.author: pafarley
+manager: nitinme
+ms.date: 05/31/2025
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 02/20/2025
-manager: nitinme
+ms.custom:
+  - build-2025
 ---
 
 # Default Guidelines & controls policies

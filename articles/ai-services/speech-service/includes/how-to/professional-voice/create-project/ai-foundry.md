@@ -6,7 +6,7 @@ ms.topic: include
 ms.date: 5/19/2025
 ---
 
-All it takes to get started are a handful of audio files and the associated transcriptions. See if custom neural voice supports your [language](../../../../language-support.md?tabs=tts) and [region](../../../../regions.md#regions).
+All it takes to get started are a handful of audio files and the associated transcriptions. See if custom voice supports your [language](../../../../language-support.md?tabs=tts) and [region](../../../../regions.md#regions).
 
 ## Start fine-tuning
 

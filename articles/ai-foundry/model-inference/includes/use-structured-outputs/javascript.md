@@ -6,8 +6,8 @@ manager: scottpolly
 author: msakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
-ms.topic: how-to
-ms.date: 1/21/2025
+ms.topic: include
+ms.date: 05/29/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 zone_pivot_groups: azure-ai-inference-samples
@@ -28,11 +28,11 @@ zone_pivot_groups: azure-ai-inference-samples
 
 ## How to use structured outputs
 
-Structured outputs use JSON schemas to enforce output structure. JSON schemas describe the shape of the JSON object including expected values, types, and which ones are required. Those JSON objects are encoded as a string within the response of the model.
+Structured outputs use JSON schemas to enforce output structure. JSON schemas describe the shape of the JSON object, including expected values, types, and which ones are required. Those JSON objects are encoded as a string within the response of the model.
 
 ### Example
 
-To exemplify the scenario, let's try to parse the attributes of a GitHub Issue from its description.
+To illustrate, let's try to parse the attributes of a GitHub Issue from its description.
 
 ```javascript
 const url = 'https://api.github.com/repos/Azure-Samples/azure-search-openai-demo/issues/2231';
@@ -51,7 +51,7 @@ async function getIssueBody() {
 issueBody = await getIssueBody();
 ```
 
-The output of `issueBody` looks as follows:
+The output of `issueBody` is:
 
 ```output
 <!--
@@ -120,12 +120,11 @@ __github_issue_schema.json__
 
 When defining schemas, follow these recommendations:
 
-> [!div class="checklist"]
-> * Use clear and expressive keys.
-> * Use `_` if you need to separate words to convey meaning.
-> * Create clear titles and descriptions for important keys in your structure.
-> * Evaluate multiple structures until finding the one that works best for your use case.
-> * Take into account limitations when indicating schemas, which may vary per model.
+* Use clear and expressive keys.
+* Use `_` if you need to separate words to convey meaning.
+* Create clear titles and descriptions for important keys in your structure.
+* Evaluate multiple structures until you find the one that works best for your use case.
+* Take into account limitations when indicating schemas—limitations might vary per model.
 
 Let's load this schema:
 
@@ -136,9 +135,9 @@ const data = fs.readFileSync('./github_issue_schema.json', 'utf-8');
 const gitHubIssueSchema = JSON.parse(data);
 ```
 
-### Use structure outputs
+### Use structured outputs
 
-We can use structure outputs with the defined schema as follows:
+We can use structured outputs with the defined schema as follows:
 
 
 ```javascript
@@ -193,7 +192,7 @@ console.log(JSON.stringify(jsonResponseMessage, null, 4));
 
 ## Structured outputs in images
 
-You can use structured outputs with multi-modal models to extract information from data like images. 
+You can use structured outputs with multi-modal models to extract information from data such as image data. 
 
 Let's consider the following chart:
 

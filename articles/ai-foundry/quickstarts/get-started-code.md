@@ -2,14 +2,21 @@
 title: "Quickstart: Get started with Azure AI Foundry"
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to start using the Azure AI Foundry portal and the Azure AI Foundry SDK.
-manager: scottpolly
-ms.service: azure-ai-foundry
-ms.custom: build-2024, devx-track-azurecli, devx-track-python, ignite-2024, update-code5
-ms.topic: how-to
-ms.date: 05/12/2025
-ms.reviewer: dantaylo
-ms.author: sgilley
 author: sdgilley
+ms.author: sgilley
+manager: scottpolly
+ms.reviewer: dantaylo
+ms.date: 05/12/2025
+ms.service: azure-ai-foundry
+ms.topic: how-to
+ms.custom:
+  - build-2024
+  - devx-track-azurecli
+  - devx-track-python
+  - ignite-2024
+  - update-code5
+  - build-aifnd
+  - build-2025
 zone_pivot_groups: project-type
 # customer intent: As a developer, I want to start using the Azure AI Foundry portal and client libraries.
 ---

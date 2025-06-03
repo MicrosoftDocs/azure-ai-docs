@@ -2,15 +2,20 @@
 title: "Quickstart: Create an AI Foundry resource in the Azure portal"
 titleSuffix: Azure AI services
 description: Get started with Azure AI services by creating an AI Foundry resource in the Azure portal.
+author: eric-urban
+ms.author: eur
 manager: nitinme
-keywords: Azure AI services, cognitive intelligence, cognitive solutions, ai services
+ms.date: 8/1/2024
 ms.service: azure-ai-services
+ms.topic: quickstart
 ms.custom:
   - ignite-2023
-ms.topic: quickstart
-ms.date: 8/1/2024
-ms.author: eur
-author: eric-urban
+  - build-2025
+keywords:
+  - Azure AI services
+  - cognitive intelligence
+  - cognitive solutions
+  - ai services
 ---
 
 ## Prerequisites

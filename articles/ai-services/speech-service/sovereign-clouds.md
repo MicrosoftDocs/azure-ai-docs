@@ -36,7 +36,7 @@ Available to US government entities and their partners only. See more informatio
   - Speech translation
 - **Unsupported features:**
   - Custom commands
-  - Custom neural voice
+  - Custom voice
   - Personal voice
   - Text to speech avatar
 - **Supported languages:**
@@ -124,7 +124,7 @@ Available to organizations with a business presence in China. See more informati
   - Speech translator
 - **Unsupported features:**
   - Custom commands
-  - Custom neural voice
+  - Custom voice
   - Personal voice
   - Text to speech avatar
 - **Supported languages:**

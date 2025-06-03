@@ -24,7 +24,7 @@ The PII feature includes the ability to detect personal (`PII`) and health (`PHI
 
 The following entity categories are returned when you're sending API requests PII feature.
 
-# [Generally Available API](#tab/ga-api)
+# [Preview API](#tab/preview-api)
 
 ## Category: Person
 
@@ -627,7 +627,7 @@ These entity categories include identifiable Azure information like authenticati
     :::column-end:::
 :::row-end:::
 
-# [Preview API](#tab/preview-api)
+# [Generally Available API](#tab/ga-api)
 
 ## Type: Person
 

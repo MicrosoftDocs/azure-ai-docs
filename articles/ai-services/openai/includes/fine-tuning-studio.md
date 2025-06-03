@@ -1,13 +1,15 @@
 ---
-title: 'Customize a model with Azure OpenAI in Azure AI Foundry Models and Azure AI Foundry portal'
+title: "Customize a model with Azure OpenAI in Azure AI Foundry Models and Azure AI Foundry portal"
 titleSuffix: Azure OpenAI
 description: Learn how to create your own custom model with Azure OpenAI by using the Azure AI Foundry portal.
+author: mrbullwinkle
+ms.author: mbullwin
 manager: nitinme
+ms.date: 02/27/2025
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 02/27/2025
-author: mrbullwinkle    
-ms.author: mbullwin
+ms.custom:
+  - build-2025
 ---
 
 ## Prerequisites

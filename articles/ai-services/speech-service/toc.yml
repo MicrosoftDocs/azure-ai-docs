@@ -136,9 +136,9 @@ items:
     - name: Use high definition (HD) voices
       href: high-definition-voices.md
       displayName: hd voice
-    - name: Custom neural voice
+    - name: Custom voice
       items:
-        - name: Custom neural voice overview
+        - name: Custom voice overview
           href: custom-neural-voice.md
           displayName: cnv
         - name: Create a professional voice
@@ -160,7 +160,7 @@ items:
             href: professional-voice-train-voice.md
           - name: "Part 5: Deploy and use your voice model"
             href: professional-voice-deploy-endpoint.md
-        - name: Custom neural voice lite
+        - name: Custom voice lite
           href: custom-neural-voice-lite.md
         - name: Personal voice
           items:
@@ -533,13 +533,13 @@ items:
         href: /legal/cognitive-services/speech-service/disclosure-voice-talent?context=/azure/ai-services/speech-service/context/context
       - name: Disclosure design guidelines
         items:
-        - name: Custom neural voice
+        - name: Custom voice
           href: /legal/cognitive-services/speech-service/custom-neural-voice/concepts-disclosure-guidelines?context=/azure/ai-services/speech-service/context/context
         - name: Text to speech avatar
           href: /legal/cognitive-services/speech-service/custom-neural-voice/concepts-disclosure-guidelines-avatar?context=/azure/ai-services/speech-service/context/context
       - name: Disclosure design patterns
         items:
-        - name: Custom neural voice
+        - name: Custom voice
           href: /legal/cognitive-services/speech-service/custom-neural-voice/concepts-disclosure-patterns?context=/azure/ai-services/speech-service/context/context
         - name: Text to speech avatar
           href: /legal/cognitive-services/speech-service/custom-neural-voice/concepts-disclosure-patterns-avatar?context=/azure/ai-services/speech-service/context/context

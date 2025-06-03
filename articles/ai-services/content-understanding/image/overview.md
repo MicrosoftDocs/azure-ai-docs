@@ -5,9 +5,11 @@ description: Learn how to use Azure AI Content Understanding image solutions
 author: laujan
 ms.author: lajanuar
 manager: nitinme
+ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: how-to
-ms.date: 05/19/2025
+ms.custom:
+  - build-2025
 ---
 
 # Azure AI Content Understanding image solutions (preview)

@@ -58,5 +58,5 @@ zone_pivot_groups: programming-languages-speech-services
 ## Next steps
 
 * [Try the text to speech quickstart](get-started-text-to-speech.md)
-* [Get started with custom neural voice](professional-voice-create-project.md)
+* [Get started with custom voice](professional-voice-create-project.md)
 * [Improve synthesis with SSML](speech-synthesis-markup.md)

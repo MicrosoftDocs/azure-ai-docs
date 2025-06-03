@@ -9,16 +9,16 @@ ms.date: 5/19/2025
 ms.custom: include
 ---
 
-After you successfully created and [trained](../../../../professional-voice-train-voice.md) your voice model, you deploy it to a custom neural voice endpoint. 
+After you successfully created and [fine-tuned](../../../../professional-voice-train-voice.md) your professional voice model, you deploy it to a custom voice endpoint. 
 
 > [!NOTE]
-> You can create up to 50 endpoints with a standard (S0) Speech resource, each with its own custom neural voice.
+> You can create up to 50 endpoints with a standard (S0) Speech resource, each with its own custom voice.
 
-To use your custom neural voice, you must specify the voice model name, use the custom URI directly in an HTTP request, and use the same Speech resource to pass through the authentication of the text to speech service.
+To use your fine-tuned professional voice, you must specify the voice model name, use the custom URI directly in an HTTP request, and use the same Speech resource to pass through the authentication of the text to speech service.
 
 ## Add a deployment endpoint
 
-To create a custom neural voice endpoint:
+To create a professional voice endpoint:
 
 To deploy an endpoint, follow these steps:
 1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
@@ -67,7 +67,7 @@ You can suspend or resume an endpoint to limit spend and conserve resources that
 > [!NOTE]
 > The suspend operation completes almost immediately. The resume operation completes in about the same amount of time as a new deployment. 
 
-This section describes how to suspend or resume a custom neural voice endpoint in the Azure AI Foundry portal.
+This section describes how to suspend or resume a custom voice endpoint in the Azure AI Foundry portal.
 
 ### Suspend endpoint
 
@@ -89,6 +89,6 @@ To suspend and deactivate your endpoint:
 
 ## Next steps
 
-- Learn more about custom neural voice in the [overview](../../../../custom-neural-voice.md).
+- Learn more about custom voice in the [overview](../../../../custom-neural-voice.md).
 - Learn more about custom avatar in the [overview](../../../../text-to-speech-avatar/what-is-text-to-speech-avatar.md).
 

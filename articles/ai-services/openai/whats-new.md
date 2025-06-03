@@ -1,17 +1,17 @@
 ---
 title: What's new in Azure OpenAI in Azure AI Foundry Models?
 description: Learn about the latest news and features updates for Azure OpenAI.
-manager: nitinme
 author: mrbullwinkle
 ms.author: mbullwin #
+manager: nitinme
+ms.date: 5/28/2025
 ms.service: azure-ai-openai
+ms.topic: whats-new
 ms.custom:
   - ignite-2023
   - references_regions
   - ignite-2024
-ms.topic: whats-new
-ms.date: 5/28/2025
-recommendations: false
+  - build-2025
 ---
 
 # What's new in Azure OpenAI in Azure AI Foundry Models
@@ -19,6 +19,12 @@ recommendations: false
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
 ## May 2025
+
+### Sora video generation released (preview)
+
+Sora (2025-05-02) is a video generation model from OpenAI that can create realistic and imaginative video scenes from text instructions.
+
+Follow the [Video generation quickstart](/azure/ai-services/openai/video-generation-quickstart) to get started. For more information, see the [Video generation concepts](./concepts/video-generation.md) guide.
 
 ### Spotlighting for prompt shields
 

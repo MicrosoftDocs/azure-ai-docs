@@ -5,9 +5,11 @@ description: Learn to create a custom analyzer with Azure AI Content Understandi
 author: laujan
 ms.author: paulhsu
 manager: nitinme
+ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 05/19/2025
+ms.custom:
+  - build-2025
 ---
 
 # Create a custom analyzer via REST APIs
