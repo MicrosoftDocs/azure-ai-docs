@@ -574,6 +574,8 @@ items:
         href: /legal/cognitive-services/speech-service/speaker-recognition/data-privacy-speaker-recognition?context=/azure/ai-services/speech-service/context/context
 - name: Resources
   items:
+    - name: Known issues
+      href: known-issues.md
     - name: Support and help options
       href: ../cognitive-services-support-options.md?context=/azure/ai-services/speech-service/context/context
     - name: Pricing calculator
