@@ -8,7 +8,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: quickstart
-ms.date: 02/12/2025
+ms.date: 04/10/2025
 ms.reviewer: zuramir
 ms.author: sgilley
 author: sdgilley
@@ -17,19 +17,16 @@ author: sdgilley
 
 # Quickstart: Use the chat playground in Azure AI Foundry portal
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+In this quickstart, you use [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) to deploy a chat model and use it in the chat playground in Azure AI Foundry portal.
 
-In this quickstart, you use [Azure AI Foundry](https://ai.azure.com) to deploy a chat model and use it in the chat playground in Azure AI Foundry portal.
+For this quickstart, you can use either a [!INCLUDE [hub](../includes/hub-project-name.md)] or a [!INCLUDE [fdp](../includes/fdp-project-name.md)]. For more information about the differences between these two project types, see [Project types](../what-is-azure-ai-foundry.md#project-types).
+
 
 If you don't have an Azure subscription, <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">create one for free</a>.
 
 ## Prerequisites
 
-- You need permissions to create an Azure AI Foundry hub or have one created for you.
-    - If your role is **Contributor** or **Owner**, you can follow the steps in this tutorial.
-    - If your role is **Azure AI Developer**, the hub must already be created before you can complete this tutorial. Your user role must be **Azure AI Developer**, **Contributor**, or **Owner** on the hub. For more information, see [hubs](../concepts/ai-resources.md) and [Azure AI roles](../concepts/rbac-azure-ai-foundry.md).
-
-- Your subscription needs to be below your [quota limit](../how-to/quota.md) to [deploy a new model in this tutorial](#deploy-a-chat-model). Otherwise you already need to have a [deployed chat model](../how-to/deploy-models-openai.md).
+- A subscription below the [quota limit](../how-to/quota.md) to [deploy a new model in this tutorial](#deploy-a-chat-model). Otherwise you already need to have a [deployed chat model](../how-to/deploy-models-openai.md).
 
 
 ## Deploy a chat model
@@ -44,7 +41,7 @@ For more information about deploying models, see [how to deploy models](../how-t
 
 ## Chat in the playground without your data
 
-In the [Azure AI Foundry](https://ai.azure.com) playground, you can observe how your model responds with and without your data. In this quickstart, you test your model without your data.
+In the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) playground, you can observe how your model responds with and without your data. In this quickstart, you test your model without your data.
 
 To chat with your deployed model in the chat playground, follow these steps:
 

@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Use vision-enabled chats with the Azure OpenAI Service'
+title: 'Quickstart: Use vision-enabled chats with the Azure OpenAI in Azure AI Foundry Models'
 titleSuffix: Azure OpenAI
 description: Use this article to get started using Azure AI Foundry to deploy and use an image-capable model.
 services: cognitive-services
@@ -10,7 +10,7 @@ ms.custom: references_regions, ignite-2024
 ms.date: 01/29/2025
 ---
 
-Use this article to get started using [Azure AI Foundry](https://ai.azure.com) to deploy and test a chat completion model with image understanding. 
+Use this article to get started using [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) to deploy and test a chat completion model with image understanding. 
 
 
 ## Prerequisites
@@ -28,7 +28,7 @@ You need an image to complete this quickstart. You can use this sample image or 
 
 ## Go to Azure AI Foundry
 
-1. Browse to [Azure AI Foundry](https://ai.azure.com/) and sign in with the credentials associated with your Azure OpenAI resource. During or after the sign-in workflow, select the appropriate directory, Azure subscription, and Azure OpenAI resource.
+1. Browse to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and sign in with the credentials associated with your Azure OpenAI resource. During or after the sign-in workflow, select the appropriate directory, Azure subscription, and Azure OpenAI resource.
 1. Select the project you'd like to work in.
 1. On the left nav menu, select **Models + endpoints** and select **+ Deploy model**.
 1. Choose an image-capable deployment by selecting model name: **gpt-4o** or **gpt-4o-mini**. In the window that appears, select a name and deployment type. Make sure your Azure OpenAI resource is connected. For more information about model deployment, see the [resource deployment guide](/azure/ai-services/openai/how-to/create-resource).

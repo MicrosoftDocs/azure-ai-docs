@@ -3,8 +3,8 @@ title: Configure the custom question answering service
 description: This document outlines advanced configurations for custom question answering enabled resources.
 ms.service: azure-ai-language
 ms.topic: how-to
-author: jboback
-ms.author: jboback
+author: laujan
+ms.author: lajanuar
 ms.date: 11/21/2024
 ms.custom: language-service-question-answering
 ---

@@ -2,12 +2,12 @@
 title: What is the Personally Identifying Information (PII) detection feature in Azure AI Language?
 titleSuffix: Azure AI services
 description: An overview of the PII detection feature in Azure AI services, which helps you extract entities and sensitive information (PII) in text.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
 ms.date: 03/24/2025
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-pii
 ---
 

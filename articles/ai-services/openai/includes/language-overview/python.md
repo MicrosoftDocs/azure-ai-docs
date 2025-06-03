@@ -1,6 +1,6 @@
 ---
 title: Azure OpenAI Python support
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Azure OpenAI Python support
 manager: nitinme
 ms.service: azure-ai-openai
@@ -336,7 +336,7 @@ print(completion.model_dump_json(indent=2))
   "prompt_filter_results": [
     {
       "prompt_index": 0,
-      "content_filter_result": {
+      "content_filter_results": {
         "jailbreak": {
           "filtered": false,
           "detected": false
@@ -345,7 +345,7 @@ print(completion.model_dump_json(indent=2))
     },
     {
       "prompt_index": 1,
-      "content_filter_result": {
+      "content_filter_results": {
         "sexual": {
           "filtered": false,
           "severity": "safe"

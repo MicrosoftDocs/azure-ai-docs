@@ -1,13 +1,13 @@
 ---
 title: How to use structured outputs for chat models
 titleSuffix: Azure AI Foundry
-description: Learn how to use structured outputs with chat completions with Azure AI model inference
+description: Learn how to use structured outputs with chat completions with Azure AI Foundry Models
 manager: scottpolly
 author: msakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
-ms.topic: how-to
-ms.date: 1/21/2025
+ms.topic: include
+ms.date: 05/29/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 zone_pivot_groups: azure-ai-inference-samples
@@ -29,18 +29,17 @@ zone_pivot_groups: azure-ai-inference-samples
     client = ChatCompletionsClient(
         endpoint="https://aiservices-demo-wus2.services.ai.azure.com/models",
         credential=AzureKeyCredential(os.environ["AZURE_INFERENCE_CREDENTIAL"]),
-        model="gpt-4o",
-        api_version="2024-12-01-preview"
+        model="gpt-4o"
     )
     ```
 
 ## How to use structured outputs
 
-Structured outputs use JSON schemas to enforce output structure. JSON schemas describe the shape of the JSON object including expected values, types, and which ones are required. Those JSON objects are encoded as a string within the response of the model.
+Structured outputs use JSON schemas to enforce output structure. JSON schemas describe the shape of the JSON object, including expected values, types, and which ones are required. Those JSON objects are encoded as a string within the response of the model.
 
 ### Example
 
-To exemplify the scenario, let's try to parse the attributes of a GitHub Issue from its description.
+To illustrate, let's try to parse the attributes of a GitHub Issue from its description.
 
 ```python
 import requests
@@ -50,10 +49,37 @@ response = requests.get(url)
 issue_body = response.json()["body"]
 ```
 
-The output of `issue_body` looks as follows:
+The output of `issue_body` is:
 
 ```output
-'<!--\r\nIF SUFFICIENT INFORMATION IS NOT PROVIDED VIA THE FOLLOWING TEMPLATE THE ISSUE MIGHT BE CLOSED WITHOUT FURTHER CONSIDERATION OR INVESTIGATION\r\n-->\r\n> Please provide us with the following information:\r\n> ---------------------------------------------------------------\r\n\r\n### This issue is for a: (mark with an `x`)\r\n```\r\n- [x] bug report -> please search issues before submitting\r\n- [ ] feature request\r\n- [ ] documentation issue or request\r\n- [ ] regression (a behavior that used to work and stopped in a new release)\r\n```\r\n\r\n### Minimal steps to reproduce\r\n> Deploy the app with auth and acl´s turned on, configure the acls file, run all the scripts needed.\r\n\r\n### Any log messages given by the failure\r\n> None\r\n\r\n### Expected/desired behavior\r\n> groups field to be filled the the groups id\'s that have permissions to "view the file"\r\n\r\n### OS and Version?\r\n> win 10\r\n### azd version?\r\n> azd version 1.11.0\r\n\r\n### Versions\r\n>\r\n\r\n### Mention any other details that might be useful\r\n\r\nAfter configuring the json with the perms all the scripts (`adlsgen2setup.py` and `prepdocs.ps1`) everything goes well but the groups metadata tag never gets to have any groups.\r\n\r\n![image](https://github.com/user-attachments/assets/40f1eb09-2c21-4244-98b5-adfb3fa16955)\r\n\r\n\r\n> ---------------------------------------------------------------\r\n> Thanks! We\'ll be in touch soon.\r\n'
+<!--
+IF SUFFICIENT INFORMATION IS NOT PROVIDED VIA THE FOLLOWING TEMPLATE THE ISSUE MIGHT BE CLOSED WITHOUT FURTHER CONSIDERATION OR INVESTIGATION
+-->
+> Please provide us with the following information:
+> ---------------------------------------------------------------
+
+### This issue is for a: (mark with an `x`)
+
+- [x] bug report -> please search issues before submitting
+- [ ] feature request
+- [ ] documentation issue or request
+- [ ] regression (a behavior that used to work and stopped in a new release)
+
+### Minimal steps to reproduce
+> Deploy the app with auth and acl´s turned on, configure the acls file, run all the scripts needed.
+
+### Any log messages given by the failure
+> None
+
+### Expected/desired behavior
+> groups field to be filled the the groups id's that have permissions to "view the file"
+
+### OS and Version?
+> win 10
+...
+
+> ---------------------------------------------------------------
+> Thanks! We'll be in touch soon.
 ```
 
 ### Define the schema
@@ -92,12 +118,12 @@ __github_issue_schema.json__
 
 When defining schemas, follow these recommendations:
 
-> [!div class="checklist"]
-> * Use clear and expressive keys.
-> * Use `_` if you need to separate words to convey meaning.
-> * Create clear titles and descriptions for important keys in your structure.
-> * Evaluate multiple structures until finding the one that works best for your use case.
-> * Take into account limitations when indicating schemas, which may vary per model.
+
+* Use clear and expressive keys.
+* Use `_` if you need to separate words to convey meaning.
+* Create clear titles and descriptions for important keys in your structure.
+* Evaluate multiple structures until you find the one that works best for your use case.
+* Take into account limitations when indicating schemas—limitations might vary per model.
 
 Let's load this schema:
 
@@ -106,9 +132,9 @@ with open("github_issue_schema.json", "r") as f:
     github_issue_schema = json.load(f)
 ```
 
-### Use structure outputs
+### Use structured outputs
 
-We can use structure outputs with the defined schema as follows:
+We can use structured outputs with the defined schema as follows:
 
 ```python
 response = client.complete(
@@ -171,17 +197,16 @@ class Issue(BaseModel, extra="forbid"):
 
 Some things to notice:
 
-> [!div class="checklist"]
-> * We represent schemas using a class that inherits from `BaseModel`.
-> * We set `extra="forbid"` to instruct Pyndantic to do not accept additional properties from what we have specified.
-> * We use type annotations to indicate the expected types.
-> * `Literal` indicates we expect specific fixed values.
+* We represent schemas using a class that inherits from `BaseModel`.
+* We set `extra="forbid"` to instruct Pydantic to _not_ accept additional properties from what we've specified.
+* We use type annotations to indicate the expected types.
+* `Literal` indicates we expect specific fixed values.
 
 ```python
 github_issue_schema = Issue.model_json_schema()
 ```
 
-### Use structure outputs
+### Use structured outputs
 
 Let's see how we can use the schema in the same way:
 
@@ -227,7 +252,7 @@ print(json.dumps(json_response_message, indent=4))
 
 ### Validate
 
-Structured Outputs can still contain mistakes. If you see mistakes, try adjusting your instructions, providing examples in the system instructions, or splitting tasks into simpler subtasks.
+Structured outputs can still contain mistakes. If you see mistakes, try adjusting your instructions, providing examples in the system instructions, or splitting tasks into simpler subtasks.
 
 It's a best practice to use validators to ensure you get valid structures. In Pydantic, you can verify the schema of a given object as follows:
 
@@ -242,13 +267,13 @@ except ValidationError as e:
 
 ### Specifying a schema
 
-There are some limitations that models may place in schemas definitions. Such limitations may vary per-model. **We recommend reviewing the documentation from the model provider** to verify that your schemas are valid.
+There are some limitations that models might place in schemas definitions. Such limitations might vary per-model. **We recommend reviewing the documentation from the model provider** to verify that your schemas are valid.
 
 The following guidelines apply to most of the models:
 
 #### Optional fields
 
-Some models may require all the fields to be in the `required` section of the schema. If you need to use optional fields, use unions with null types to express that a given field can be optional.
+Some models might require all the fields to be in the `required` section of the schema. If you need to use optional fields, use unions with null types to express that a given field can be optional.
 
 ```python
 from pydantic import BaseModel
@@ -263,7 +288,7 @@ class Issue(BaseModel, extra="forbid"):
 
 #### Nested types
 
-Models may support indicating nesting types. You can compose complex structures as needed:
+Models might support indicating nesting types. You can compose complex structures as needed:
 
 ```python
 from pydantic import BaseModel
@@ -299,13 +324,13 @@ Verify the level of nesting supported by the model you're working with.
 
 ## Structured outputs in images
 
-You can use structured outputs with multi-modal models to extract information from data like images. 
+You can use structured outputs with multi-modal models to extract information from data such as image data. 
 
 Let's consider the following chart:
 
 :::image type="content" source="../../media/use-structured-outputs/example-graph-treecover.png" alt-text="An example image showing a chart with the annual loss in thousand square kilometers of global tree cover across different climate zones." lightbox="../../media/use-structured-outputs/example-graph-treecover.png":::
 
-We can define a generic schema that can be used to encode the information contained in the chart and then use it for further analysis. We use [Pyndatic objects](#use-pydantic-objects) as described before.
+We can define a generic schema that can be used to encode the information contained in the chart and then use it for further analysis. We use [Pydantic objects as described before](#use-pydantic-objects).
 
 ```python
 from pydantic import BaseModel

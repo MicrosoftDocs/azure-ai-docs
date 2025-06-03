@@ -8,7 +8,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 03/17/2025
+ms.date: 05/12/2025
 ms.reviewer: dantaylo
 ms.author: larryfr
 author: Blackmist
@@ -16,16 +16,18 @@ author: Blackmist
 
 # Add a new connection using the Azure Machine Learning SDK
 
+[!INCLUDE [hub-only](../../includes/uses-hub-only.md)]
+
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-In this article, you learn how to add a new connection to [Azure AI Foundry](https://ai.azure.com) using the Azure Machine Learning SDK.
+In this article, you learn how to add a new connection to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) using the Azure Machine Learning SDK.
 
-Connections are a way to authenticate and consume both Microsoft and other resources within your Azure AI Foundry projects. For example, connections can be used for prompt flow, training data, and deployments. [Connections can be created](../../how-to/connections-add.md) exclusively for one project or shared with all projects in the same Azure AI Foundry hub. For more information, see [Connections in Azure AI Foundry portal](../../concepts/connections.md).
+Connections are a way to authenticate and consume both Microsoft and other resources within your Azure AI Foundry projects. For example, connections can be used for prompt flow, training data, and deployments. [Connections can be created](../../how-to/connections-add.md) exclusively for one project or shared with all projects in the same Azure AI Foundry hub. For more information, see [How to add a new connection in Azure AI Foundry portal](../connections-add.md).
 
 ## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure AI Foundry](https://azure.microsoft.com/free/) today.
-- An Azure AI Foundry hub. For information on creating a hub, see [Create Azure AI Foundry resources with the SDK](./create-hub-project-sdk.md).
+- An Azure AI Foundry hub. For information on creating a hub, see [Create Azure AI Foundry Services with the SDK](./create-hub-project-sdk.md).
 - A resource to create a connection to. For example, an AI Services resource. The examples in this article use placeholders that you must replace with your own values when running the code.
 
 ## Set up your environment
@@ -38,17 +40,15 @@ There are various authentication methods for the different connection types. Whe
 
 [!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
-## Azure OpenAI Service
+## Azure OpenAI in Foundry Models
 
-The following example creates an Azure OpenAI Service connection.
+The following example uses the [AzureOpenAIConnection](/python/api/azure-ai-ml/azure.ai.ml.entities.azureopenaiconnection) class to create an Azure OpenAI in Azure AI Foundry Models connection.
 
 > [!TIP]
 > To connect to Azure OpenAI and more AI services with one connection, you can use the [AI services connection](#azure-ai-services) instead.
 
 ```python
-from azure.ai.ml.entities import AzureOpenAIConnection, ApiKeyConfiguration
-from azure.ai.ml.entities import UsernamePasswordConfiguration
-
+from azure.ai.ml.entities import AzureOpenAIConnection
 name = "XXXXXXXXX"
 
 target = "https://XXXXXXXXX.cognitiveservices.azure.com/"
@@ -57,9 +57,6 @@ resource_id= "Azure-resource-id"
 
 # Microsoft Entra ID
 credentials = None
-# Uncomment the following if you need to use API key instead
-# api_key= "my-key"
-# credentials = ApiKeyConfiguration(key=api_key)
 
 wps_connection = AzureOpenAIConnection(
     name=name,
@@ -73,22 +70,19 @@ ml_client.connections.create_or_update(wps_connection)
 
 ## Azure AI services
 
-The following example creates an Azure AI services connection. This example creates one connection for the AI services documented in the [Connect to Azure AI services](../../../ai-services/connect-services-ai-foundry-portal.md) article. The same connection also supports the Azure OpenAI service.
+The following example uses the [AzureAIServicesConnection](/python/api/azure-ai-ml/azure.ai.ml.entities.azureaiservicesconnection) class to create an Azure AI services connection. This example creates one connection for the AI services documented in the [Connect to Azure AI services](../../../ai-services/connect-services-ai-foundry-portal.md) article. The same connection also supports Azure OpenAI.
 
 ```python
-from azure.ai.ml.entities import AzureAIServicesConnection, ApiKeyConfiguration
-from azure.ai.ml.entities import UsernamePasswordConfiguration
+from azure.ai.ml.entities import AzureAIServicesConnection
 
 name = "my-ai-services"
 
-target = "https://XXXXXXXXX.cognitiveservices.azure.com/"
+target = "https://my.cognitiveservices.azure.com/"
 resource_id=""
 
 # Microsoft Entra ID
 credentials = None
-# Uncomment the following if you need to use API key instead
-# api_key= "my-key"
-# credentials = ApiKeyConfiguration(key=api_key)
+
 
 wps_connection = AzureAIServicesConnection(
     name=name,
@@ -101,20 +95,17 @@ ml_client.connections.create_or_update(wps_connection)
 
 ## Azure AI Search
 
-The following example creates an Azure AI Search connection:
+The following example uses the [AzureAISearchConnection](/python/api/azure-ai-ml/azure.ai.ml.entities.azureaisearchconnection) class to create an Azure AI Search connection:
 
 ```python
-from azure.ai.ml.entities import AzureAISearchConnection, ApiKeyConfiguration
-from azure.ai.ml.entities import UsernamePasswordConfiguration
+from azure.ai.ml.entities import AzureAISearchConnection
 
 name = "my_aisearch_demo_connection"
-target = "https://XXXXXXXXX.search.windows.net"
+target = "https://my.search.windows.net"
 
 # Microsoft Entra ID
 credentials = None
-# Uncomment the following if you need to use API key instead
-# api_key= "my-key"
-# credentials = ApiKeyConfiguration(key=api_key)
+
 
 wps_connection = AzureAISearchConnection(
     name=name,
@@ -130,11 +121,10 @@ The following example creates an Azure AI Content Safety connection:
 
 ```python
 from azure.ai.ml.entities import AzureContentSafetyConnection, ApiKeyConfiguration
-from azure.ai.ml.entities import UsernamePasswordConfiguration
 
 name = "my_content_safety"
 
-target = "https://XXXXXXXXX.cognitiveservices.azure.com/"
+target = "https://my.cognitiveservices.azure.com/"
 api_key = "XXXXXXXXX"
 
 wps_connection = AzureContentSafetyConnection(
@@ -155,7 +145,7 @@ from azure.ai.ml.entities import ServerlessConnection
 
 name = "my_maas_apk"
 
-endpoint = "https://XXXXXXXXX.eastus2.inference.ai.azure.com/"
+endpoint = "https://my.eastus2.inference.ai.azure.com/"
 api_key = "XXXXXXXXX"
 wps_connection = ServerlessConnection(
     name=name,
@@ -168,11 +158,10 @@ ml_client.connections.create_or_update(wps_connection)
 
 ## Azure Blob Storage
 
-The following example creates an Azure Blob Storage connection. This connection is authenticated with an account key or a SAS token:
+The following example uses the [AzureBlobStoreConnection](/python/api/azure-ai-ml/azure.ai.ml.entities.azureblobstoreconnection) class to create an Azure Blob Storage connection. This connection is authenticated with an account key or a SAS token:
 
 ```python
 from azure.ai.ml.entities import AzureBlobStoreConnection, SasTokenConfiguration,AccountKeyConfiguration
-from azure.ai.ml.entities import UsernamePasswordConfiguration
 
 
 name = "my_blobstore"
@@ -196,7 +185,7 @@ The following example creates Azure Data Lake Storage Gen 2 connection. This con
 
 ```python
 from azure.ai.ml.entities import WorkspaceConnection
-from azure.ai.ml.entities import UsernamePasswordConfiguration, ServicePrincipalConfiguration
+from azure.ai.ml.entities import ServicePrincipalConfiguration
 
 sp_config = ServicePrincipalConfiguration(
     tenant_id="XXXXXXXXXXXX",
@@ -220,7 +209,7 @@ ml_client.connections.create_or_update(workspace_connection=wps_connection)
 
 ## Microsoft OneLake
 
-The following example creates a Microsoft OneLake connection. This connection is authenticated with a Service Principal:
+The following example uses the [MicrosoftOneLakeWorkspaceConnection](/python/api/azure-ai-ml/azure.ai.ml.entities.microsoftonelakeconnection) class to create a Microsoft OneLake connection. This connection is authenticated with a Service Principal:
 
 ```python
 from azure.ai.ml.entities import MicrosoftOneLakeWorkspaceConnection, OneLakeArtifact
@@ -252,7 +241,7 @@ ml_client.connections.create_or_update(workspace_connection=wps_connection)
 
 ## Serp
 
-The following example creates a Serp connection:
+The following example uses the [SerpConnection](/python/api/azure-ai-ml/azure.ai.ml.entities.serpconnection) class:
 
 ```python
 from azure.ai.ml.entities import SerpConnection
@@ -269,7 +258,7 @@ ml_client.connections.create_or_update(wps_connection)
 
 ## OpenAI
 
-The following example creates an OpenAI (not Azure OpenAI) connection:
+The following example uses the [OpenAIConnection](/python/api/azure-ai-ml/azure.ai.ml.entities.openaiconnection) class to create an OpenAI (not Azure OpenAI) connection:
 
 ```python
 from azure.ai.ml.entities import OpenAIConnection
@@ -286,11 +275,11 @@ ml_client.connections.create_or_update(wps_connection)
 
 ## Custom
 
-The following example creates custom connection:
+The following example uses the [ApiKeyConfiguration](/python/api/azure-ai-ml/azure.ai.ml.entities.apikeyconnection) class to create custom connection:
 
 ```python
 from azure.ai.ml.entities import WorkspaceConnection
-from azure.ai.ml.entities import UsernamePasswordConfiguration, ApiKeyConfiguration
+from azure.ai.ml.entities import ApiKeyConfiguration
 
 
 name = "my_custom"
@@ -331,4 +320,4 @@ ml_client.connections.delete(name)
 
 - [Get started building a chat app using the prompt flow SDK](../../quickstarts/get-started-code.md)
 - [Work with projects in VS Code](vscode.md)
-- [Connections in Azure AI Foundry portal](../../concepts/connections.md)
+

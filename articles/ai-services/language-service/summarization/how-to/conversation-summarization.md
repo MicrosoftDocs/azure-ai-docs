@@ -2,12 +2,12 @@
 title: Summarize text with the conversation summarization API
 titleSuffix: Azure AI services
 description: This article shows you how to summarize chat logs with the conversation summarization API.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 03/05/2025
-ms.author: jboback
+ms.author: lajanuar
 ms.custom:
   - language-service-pii
 ---

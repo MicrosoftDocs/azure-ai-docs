@@ -1,13 +1,15 @@
 ---
-title: 'Customize a model with Azure OpenAI Service and the REST API'
+title: "Customize a model with Azure OpenAI in Azure AI Foundry Models and the REST API"
 titleSuffix: Azure OpenAI
-description: Learn how to create your own customized model with Azure OpenAI Service by using the REST APIs.
-manager: nitinme
-ms.service: azure-ai-openai
-ms.topic: include
-ms.date: 02/27/2025
+description: Learn how to create your own customized model with Azure OpenAI by using the REST APIs.
 author: mrbullwinkle
 ms.author: mbullwin
+manager: nitinme
+ms.date: 02/27/2025
+ms.service: azure-ai-openai
+ms.topic: include
+ms.custom:
+  - build-2025
 ---
 
 ## Prerequisites
@@ -18,23 +20,14 @@ ms.author: mbullwin
 - Fine-tuning access requires **Cognitive Services OpenAI Contributor**.
 - If you don't already have access to view quota, and deploy models in Azure AI Foundry portal you'll require [additional permissions](../how-to/role-based-access-control.md).  
 
-
+> [!NOTE]
+> The REST API does not currently support **Global** training jobs. Inspecting Global training jobs via the API may return incorrect information.
 
 ### Supported models
 
-The following models support fine-tuning:
-
-- `gpt-35-turbo` (1106)
-- `gpt-35-turbo` (0125)
-- `gpt-4o` (2024-08-06)
-- `gpt-4o-mini` (2024-07-18)
-- `gpt-4.1` (2024-04-14)
-- `gpt-4.1-mini`(2025-04-14)
-
-Or you can fine tune a previously fine-tuned model, formatted as base-model.ft-{jobid}.
-
 Consult the [models page](../concepts/models.md#fine-tuning-models) to check which regions currently support fine-tuning.
 
+Or you can fine tune a previously fine-tuned model, formatted as base-model.ft-{jobid}.
 
 
 ## Review the workflow for the REST API
@@ -138,7 +131,7 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/fine_tuning/jobs?api-version=2024-10-
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -d '{
-    "model": "gpt-35-turbo-0125", 
+    "model": "gpt-4.1-2025-04-14",
     "training_file": "<TRAINING_FILE_ID>", 
     "validation_file": "<VALIDATION_FILE_ID>",
     "seed": 105
@@ -223,9 +216,11 @@ Look for your loss to decrease over time, and your accuracy to increase. If you 
 
 ## Deploy a fine-tuned model
 
-[!INCLUDE [Fine-tuning deletion](fine-tune.md)]
+Once you're satisfied with the metrics from your fine-tuning job, or you just want to move onto inference, you must deploy the model.
 
-The following example shows how to use the REST API to create a model deployment for your customized model. The REST API generates a name for the deployment of your customized model.
+If you're deploying for further validation, consider deploying for [testing](../how-to/fine-tune-test.md?tabs=rest) using a Developer deployment.
+
+If you're ready to deploy for production or have particular data residency needs, follow our [deployment guide](../how-to/fine-tuning-deploy.md?tabs=rest).
 
 |variable      | Definition|
 |--------------|-----------|
@@ -234,7 +229,7 @@ The following example shows how to use the REST API to create a model deployment
 | resource_group | The resource group name for your Azure OpenAI resource. |
 | resource_name | The Azure OpenAI resource name. |
 | model_deployment_name | The custom name for your new fine-tuned model deployment. This is the name that will be referenced in your code when making chat completion calls. |
-| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-35-turbo-0125.ft-b044a9d3cf9c4228b5d393567f693b83`. You'll need to add that value to the deploy_data json. Alternatively you can also deploy a checkpoint, by passing the checkpoint ID which will appear in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d` |
+| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-4.1-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83`. You'll need to add that value to the deploy_data json. Alternatively you can also deploy a checkpoint, by passing the checkpoint ID which will appear in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d` |
 
 ```bash
 curl -X POST "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>api-version=2024-10-21" \
@@ -259,15 +254,15 @@ Learn more about cross region deployment and use the deployed model [here](../ho
 
 Once you have created a fine-tuned model, you might want to continue to refine the model over time through further fine-tuning. Continuous fine-tuning is the iterative process of selecting an already fine-tuned model as a base model and fine-tuning it further on new sets of training examples.
 
-To perform fine-tuning on a model that you have previously fine-tuned, you would use the same process as described in [create a customized model](#create-a-customized-model) but instead of specifying the name of a generic base model you would specify your already fine-tuned model's ID. The fine-tuned model ID looks like `gpt-35-turbo-0125.ft-5fd1918ee65d4cd38a5dcf6835066ed7`
+To perform fine-tuning on a model that you have previously fine-tuned, you would use the same process as described in [create a customized model](#create-a-customized-model) but instead of specifying the name of a generic base model you would specify your already fine-tuned model's ID. The fine-tuned model ID looks like `gpt-4.1-2025-04-14.ft-5fd1918ee65d4cd38a5dcf6835066ed7`
 
 ```bash
 curl -X POST $AZURE_OPENAI_ENDPOINT/openai/fine_tuning/jobs?api-version=2023-12-01-preview \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -d '{
-    "model": "gpt-35-turbo-0125.ft-5fd1918ee65d4cd38a5dcf6835066ed7", 
-    "training_file": "<TRAINING_FILE_ID>", 
+    "model": "gpt-4.1-2025-04-14.ft-5fd1918ee65d4cd38a5dcf6835066ed7",
+    "training_file": "<TRAINING_FILE_ID>",
     "validation_file": "<VALIDATION_FILE_ID>",
     "suffix": "<additional text used to help identify fine-tuned models>"
 }'

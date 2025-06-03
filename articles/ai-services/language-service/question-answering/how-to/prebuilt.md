@@ -3,8 +3,8 @@ title: Prebuilt API - custom question answering
 titleSuffix: Azure AI services
 description: Use the custom question answering Prebuilt API to ask and receive answers to questions without having to create a project. 
 ms.service: azure-ai-language
-author: jboback
-ms.author: jboback
+author: laujan
+ms.author: lajanuar
 ms.topic: how-to
 ms.date: 11/21/2024
 ---

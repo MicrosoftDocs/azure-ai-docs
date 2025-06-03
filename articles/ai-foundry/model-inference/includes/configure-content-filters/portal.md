@@ -10,7 +10,7 @@ zone_pivot_groups: azure-ai-models-deployment
 
 [!INCLUDE [Header](intro.md)]
 
-* An AI project connected to your Azure AI Services resource. You call follow the steps at [Configure Azure AI model inference service in my project](../../how-to/configure-project-connection.md) in Azure AI Foundry.
+* An AI project connected to your Azure AI Services resource. You call follow the steps at [Configure Azure AI Foundry Models service in my project](../../how-to/configure-project-connection.md) in Azure AI Foundry.
 
 ## Create a custom content filter
 
@@ -18,7 +18,7 @@ Follow these steps to create a custom content filter:
 
 1. Go to [Azure AI Foundry portal](https://ai.azure.com/explore/models).
 
-2. Select **Safety + security**.
+2. Select **Guardrails & controls**.
 
 3. Select the tab **Content filters** and then select **Create content filter**.
 

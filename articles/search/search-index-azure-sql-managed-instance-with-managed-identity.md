@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 12/10/2024
+ms.date: 05/29/2025
 ---
 
 # Set up an indexer connection to Azure SQL Managed Instance using a managed identity
@@ -46,12 +46,11 @@ Follow these steps to assign the search service system managed identity permissi
 
    :::image type="content" source="./media/search-index-azure-sql-managed-instance-with-managed-identity/sql-login.png" alt-text="Showing screenshot of the Connect to Server dialog.":::
 
-3. From the left pane, locate the SQL database you are using as data source for indexing and right-click it. Select **New Query**. 
+1. From the left pane, locate the SQL database you are using as data source for indexing and right-click it. Select **New Query**. 
 
    :::image type="content" source="./media/search-index-azure-sql-managed-instance-with-managed-identity/new-sql-query.png" alt-text="Showing screenshot of new SQL query.":::
 
-
-4. In the T-SQL window, copy the following commands and include the brackets around your search service name. Click on **Execute**.
+1. In the T-SQL window, copy the following commands and include the brackets around your search service name. Click on **Execute**.
 
     
     ```sql
@@ -79,8 +78,7 @@ In this step, you'll give your Azure AI Search service permission to read data f
 
    :::image type="content" source="./media/search-index-azure-sql-managed-instance-with-managed-identity/access-control-add-role-assignment.png" alt-text="Showing screenshot of the Access Control page." lightbox="media/search-index-azure-sql-managed-instance-with-managed-identity/access-control-add-role-assignment.png":::
 
-
-4. Select **Reader** role.
+1. Select **Reader** role.
 1. Leave **Assign access to** as **Microsoft Entra user, group, or service principal**.
 1. If you're using a system-assigned managed identity, search for your search service, then select it. If you're using a user-assigned managed identity, search for the name of the user-assigned managed identity, then select it. Select **Save**.
 
@@ -101,7 +99,7 @@ When you're connecting with a system-assigned managed identity, the only change 
 Here's an example of how to create a data source to index data from a storage account using the [Create Data Source](/rest/api/searchservice/data-sources/create) REST API and a managed identity connection string. The managed identity connection string format is the same for the REST API, .NET SDK, and the Azure portal.  
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2020-06-30
+POST https://[service name].search.windows.net/datasources?api-version=2024-07-01
 Content-Type: application/json
 api-key: [admin key]
 
@@ -124,7 +122,7 @@ The index specifies the fields in a document, attributes, and other constructs t
 Here's a [Create Index](/rest/api/searchservice/indexes/create) REST API call with a searchable `booktitle` field:   
 
 ```http
-POST https://[service name].search.windows.net/indexes?api-version=2020-06-30
+POST https://[service name].search.windows.net/indexes?api-version=2024-07-01
 Content-Type: application/json
 api-key: [admin key]
 
@@ -144,7 +142,7 @@ An indexer connects a data source with a target search index, and provides a sch
 Here's a [Create Indexer](/rest/api/searchservice/indexers/create) REST API call with an Azure SQL indexer definition. The indexer runs when you submit the request.
 
 ```http
-POST https://[service name].search.windows.net/indexers?api-version=2020-06-30
+POST https://[service name].search.windows.net/indexers?api-version=2024-07-01
 Content-Type: application/json
 api-key: [admin key]
 

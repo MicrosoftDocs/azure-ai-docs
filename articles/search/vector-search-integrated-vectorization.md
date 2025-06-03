@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 02/24/2025
+ms.date: 05/08/2025
 ---
 
 # Integrated vector embedding in Azure AI Search
@@ -111,7 +111,7 @@ A more common scenario - data chunking and vectorization during indexing:
 Optionally, [create secondary indexes](index-projections-concept-intro.md) for advanced scenarios where chunked content is in one index, and nonchunked in another index. Chunked indexes (or secondary indexes) are useful for RAG apps.
 
 > [!TIP]
-> [Try the new **Import and vectorize data** wizard](search-get-started-portal-import-vectors.md) in the Azure portal to explore integrated vectorization before writing any code.
+> [Try the **Import and vectorize data wizard**](search-get-started-portal-import-vectors.md) in the Azure portal to explore integrated vectorization before writing any code.
 
 ### Secure connections to vectorizers and models
 
@@ -145,9 +145,10 @@ Here are some of the key benefits of the integrated vectorization:
 
 + Projecting chunked content to secondary indexes. Secondary indexes are created as you would any search index (a schema with fields and other constructs), but they're populated in tandem with a primary index by an indexer. Content from each source document flows to fields in primary and secondary indexes during the same indexing run. 
 
-  Secondary indexes are intended for question and answer or chat style apps. The secondary index contains granular information for more specific matches, but the parent index has more information and can often produce a more complete answer. When a match is found in the secondary index, the query returns the parent document from the primary index. For example, assuming a large PDF as a source document, the primary index might have basic information (title, date, author, description), while a secondary index has chunks of searchable content. 
+  Secondary indexes are intended for question and answer or chat style apps. The secondary index contains granular information for more specific matches, but the parent index has more information and can often produce a more complete answer. When a match is found in the secondary index, the query returns the parent document from the primary index. For example, assuming a large PDF as a source document, the primary index might have basic information (title, date, author, description), while a secondary index has chunks of searchable content.
 
 ## Next steps
 
++ [Set up integrated vectorization](search-how-to-integrated-vectorization.md)
 + [Configure a vectorizer in a search index](vector-search-how-to-configure-vectorizer.md)
 + [Configure index projections in a skillset](index-projections-concept-intro.md)

@@ -11,15 +11,15 @@ ms.custom: references_regions
 
 [!INCLUDE [Feature preview](../../../../includes/preview-feature.md)]
 
-In this article, you learn how to use video translation with Azure AI Speech in the [Azure AI Foundry portal](https://ai.azure.com/).
+In this article, you learn how to use video translation with Azure AI Speech in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 > [!TIP]
-> Try out video translation in the [Azure AI Foundry portal](https://ai.azure.com/) before using the API. Use the [video translation REST API](?pivots=rest-api) to integrate video translation into your applications. For more information about the API, see [Video translation REST API](/rest/api/aiservices/videotranslation/translation-operations/create-translation).
+> Try out video translation in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) before using the API. Use the [video translation REST API](?pivots=rest-api) to integrate video translation into your applications. For more information about the API, see [Video translation REST API](/rest/api/aiservices/videotranslation/translation-operations/create-translation).
 
 ## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, create a free account before you begin.
-- An Azure AI Services resource for Speech [in a supported region](../../../video-translation-overview.md#supported-regions-and-languages). If you don't have a Speech resource, create one in the [Azure portal](https://portal.azure.com/).
+- an AI Foundry resource for Speech [in a supported region](../../../video-translation-overview.md#supported-regions-and-languages). If you don't have a Speech resource, create one in the [Azure portal](https://portal.azure.com/).
 - An [Azure Blob Storage](/azure/storage/blobs/storage-blobs-overview) account. 
 - You need a video file in .mp4 format, less than 5 GB, and shorter than 4 hours. For testing purposes, you can use the sample video file provided by Microsoft at [https://speechstudioprodpublicsa.blob.core.windows.net/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4](https://speechstudioprodpublicsa.blob.core.windows.net/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4).
 - Make sure video translation supports your [source and target language](../../../language-support.md?tabs=speech-translation#video-translation).
@@ -39,14 +39,14 @@ To try out the video translation demo, follow these steps:
 
    :::image type="content" source="../../../media/video-translation/foundry-portal/capabilities-by-scenario.png" alt-text="Screenshot of filtering Speech service capabilities by scenario." lightbox="../../../media/video-translation/foundry-portal/capabilities-by-scenario.png":::
 
-1. Under the **Sample option** to the right, select personal or prebuilt voice.
+1. Under the **Sample option** to the right, select personal or standard voice.
 
 1. Select the **Play** button to hear the translated audio. Select the original video tab to play the original audio.
 
-   :::image type="content" source="../../../media/video-translation/foundry-portal/compare-original-translated.png" alt-text="Screenshot of selecting a voice type on the new project page." lightbox="../../../media/video-translation/foundry-portal/compare-original-translated.png":::
+   :::image type="content" source="../../../media/video-translation/foundry-portal/compare-original-translated.png" alt-text="Screenshot that shows selecting a voice type on the new project page." lightbox="../../../media/video-translation/foundry-portal/compare-original-translated.png":::
    
    The voice type options are:
-   - **Prebuilt voice**: The service automatically selects the most suitable prebuilt voice by matching the speaker's voice in the video with prebuilt voices.
+   - **Standard voice**: The service automatically selects the most suitable standard voice by matching the speaker's voice in the video with standard voices.
    - **Personal voice**: Use the personal voice that matches the voice of the speakers in the video. 
 
    > [!NOTE]
@@ -77,7 +77,7 @@ To create a video translation project, follow these steps:
    :::image type="content" source="../../../media/video-translation/foundry-portal/select-voice-type.png" alt-text="Screenshot of selecting a voice type on the new project page." lightbox="../../../media/video-translation/foundry-portal/select-voice-type.png":::
    
    The voice type options are:
-   - **Prebuilt neural voice**: The service automatically selects the most suitable prebuilt voice by matching the speaker's voice in the video with prebuilt voices.
+   - **Standard voice**: The service automatically selects the most suitable standard voice by matching the speaker's voice in the video with standard voices.
    - **Personal voice**: Use the personal voice that matches the voice of the speakers in the video. 
 
    > [!NOTE]

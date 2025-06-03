@@ -1,18 +1,21 @@
 ---
-title: Understanding Azure OpenAI Service deployment types
-titleSuffix: Azure AI services
+title: Understanding Azure OpenAI in Azure AI Foundry Models deployment types
 description: Learn how to use Azure OpenAI deployment types | Global-Standard | Standard | Provisioned.
 author: mrbullwinkle
+ms.author: mbullwin
 manager: nitinme
+ms.date: 04/30/2025
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 04/30/2025
-ms.author: mbullwin
+ms.custom:
+  - build-2025
 ---
 
 # Azure OpenAI deployment types
 
 Azure OpenAI provides customers with choices on the hosting structure that fits their business and usage patterns. The service offers two main types of deployments: **standard** and **provisioned**. For a given deployment type, customers can align their workloads with their data processing requirements by choosing an Azure geography (`Standard` or `Provisioned-Managed`), Microsoft specified data zone (`DataZone-Standard` or `DataZone Provisioned-Managed`), or Global (`Global-Standard` or `Global Provisioned-Managed`) processing options.
+
+For fine-tuned models, an additional `Developer` deployment type provides a cost-efficient means of custom model evaluation, but without data residency.
 
 All deployments can perform the exact same inference operations, however the billing, scale, and performance are substantially different. As part of your solution design, you will need to make two key decisions:
 
@@ -29,9 +32,12 @@ Our global deployments will be the first location for all new models and feature
 
 Data zone deployments leverage Azure's global infrastructure to dynamically route customer traffic to the data center with the best availability for the customer's inference requests within the data zone defined by Microsoft. Positioned between our Azure geography and Global deployment offerings, data zone deployments provide elevated quota limits while keeping data processing within the Microsoft specified data zone. Data stored at rest will continue to remain in the geography of the Azure OpenAI resource (e.g., for an Azure OpenAI resource created in the Sweden Central Azure region, the Azure geography is Sweden).
 
-If the Azure OpenAI resource used in your Data Zone deployment is located in the United States, the data will be processed within the United States. If the Azure OpenAI resource used in your Data Zone deployment is located in a European Union Member Nation, the data will be processed within the European Union Member Nation geographies. For all Azure OpenAI service deployment types, any data stored at rest will continue to remain in the geography of the Azure OpenAI resource. Azure data processing and compliance commitments remain applicable.
+If the Azure OpenAI resource used in your Data Zone deployment is located in the United States, the data will be processed within the United States. If the Azure OpenAI resource used in your Data Zone deployment is located in a European Union Member Nation, the data will be processed within the European Union Member Nation geographies. For all Azure OpenAI deployment types, any data stored at rest will continue to remain in the geography of the Azure OpenAI resource. Azure data processing and compliance commitments remain applicable.
 
-For any [deployment type](/azure/ai-services/openai/how-to/deployment-types) labeled 'Global,' prompts and responses may be processed in any geography where the relevant Azure OpenAI model is deployed (learn more about [region availability of models](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For any deployment type labeled as 'DataZone,' prompts and responses may be processed in any geography within the specified data zone, as defined by Microsoft. If you create a DataZone deployment in an Azure OpenAI resource located in the United States, prompts and responses may be processed anywhere within the United States. If you create a DataZone deployment in an Azure OpenAI resource located in a European Union Member Nation, prompts and responses may be processed in that or any other European Union Member Nation. For both Global and DataZone deployment types, any data stored at rest, such as uploaded data, is stored in the customer-designated geography. Only the location of processing is affected when a customer uses a Global deployment type or DataZone deployment type in Azure OpenAI Service; Azure data processing and compliance commitments remain applicable.
+For any [deployment type](/azure/ai-services/openai/how-to/deployment-types) labeled 'Global,' prompts and responses may be processed in any geography where the relevant Azure OpenAI model is deployed (learn more about [region availability of models](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For any deployment type labeled as 'DataZone,' prompts and responses may be processed in any geography within the specified data zone, as defined by Microsoft. If you create a DataZone deployment in an Azure OpenAI resource located in the United States, prompts and responses may be processed anywhere within the United States. If you create a DataZone deployment in an Azure OpenAI resource located in a European Union Member Nation, prompts and responses may be processed in that or any other European Union Member Nation. For both Global and DataZone deployment types, any data stored at rest, such as uploaded data, is stored in the customer-designated geography. Only the location of processing is affected when a customer uses a Global deployment type or DataZone deployment type in Azure OpenAI in Azure AI Foundry Models; Azure data processing and compliance commitments remain applicable.
+
+> [!NOTE]
+> With Global standard and Data zone standard deployment types if the primary region experiences an interruption in service all traffic that is initially routed to this region will be impacted. To learn more, consult the [business continuity and disaster recovery guide](../how-to/business-continuity-disaster-recovery.md).
 
 ## Global standard
 
@@ -147,9 +153,18 @@ You can use the following policy to disable access to any Azure OpenAI deploymen
 }
 ```
 
+## Developer (for fine-tuned models)
+
+> [!IMPORTANT]
+> Data stored at rest remains in the designated Azure geography, while data may be processed for inferencing in any Azure OpenAI location. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
+
+**SKU name in code:** `Developer`
+
+Fine-tuned models support a Developer deployment specifically designed to support custom model evaluation. It offers no data residency guarantees nor does it offer an SLA. To learn more about using the Developer deployment type, see the [fine-tuning guide](./fine-tune-test.md).
+
 ## Deploy models
 
-:::image type="content" source="../media/deployment-types/deploy-models-new.png" alt-text="Screenshot that shows the model deployment dialog in Azure AI Foundry portal with three deployment types highlighted." lightbox="../media/deployment-types/deploy-models-new.png":::
+:::image type="content" source="../media/deployment-types/deploy-models-new.png" alt-text="Screenshot that shows the model deployment dialog in Azure AI Foundry portal with three deployment types highlighted.":::
 
 To learn about creating resources and deploying models refer to the [resource creation guide](./create-resource.md).
 

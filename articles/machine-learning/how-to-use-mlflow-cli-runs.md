@@ -204,7 +204,7 @@ mlflow.autolog()
 
 ## View metrics and artifacts in your workspace
 
-The metrics and artifacts from MLflow logging are tracked in your workspace. You can view and access them in Azure Machine Learning studio or access them programatically via the MLflow SDK.
+The metrics and artifacts from MLflow logging are tracked in your workspace. You can view and access them in Azure Machine Learning studio or access them programmatically via the MLflow SDK.
 
 To view metrics and artifacts in the studio:
 
@@ -215,7 +215,7 @@ To view metrics and artifacts in the studio:
 
    :::image type="content" source="media/how-to-log-view-metrics/metrics.png" alt-text="Screenshot of the metrics view that shows the list of metrics and the charts created from the metrics." lightbox="media/how-to-log-view-metrics/metrics.png"::: 
 
-To access or query metrics, parameters, and artifacts programatically via the MLflow SDK, use [mlflow.get_run()](https://mlflow.org/docs/latest/python_api/mlflow.html#mlflow.get_run).
+To access or query metrics, parameters, and artifacts programmatically via the MLflow SDK, use [mlflow.get_run()](https://mlflow.org/docs/latest/python_api/mlflow.html#mlflow.get_run).
 
 ```python
 import mlflow

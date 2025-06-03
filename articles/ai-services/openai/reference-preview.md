@@ -1,5 +1,5 @@
 ---
-title: Azure OpenAI Service REST API preview reference
+title: Azure OpenAI in Azure AI Foundry Models REST API preview reference
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI's latest preview REST API. In this article, you learn about authorization options,  how to structure a request and receive a response.
 manager: nitinme
@@ -12,7 +12,7 @@ recommendations: false
 ms.custom:
 ---
 
-# Azure OpenAI Service REST API preview reference
+# Azure OpenAI in Azure AI Foundry Models REST API preview reference
 
 This article provides details on the inference REST API endpoints for Azure OpenAI.
 
@@ -20,7 +20,7 @@ This article provides details on the inference REST API endpoints for Azure Open
 
 ## Data plane inference
 
-The rest of the article covers the latest preview release of the Azure OpenAI data plane inference specification, `2025-03-01-preview`. This article includes documentation for the latest preview capabilities like assistants, threads, and vector stores.
+The rest of the article covers the `2025-04-01-preview` preview release of the Azure OpenAI data plane inference specification.
 
 If you're looking for documentation on the latest GA API release, refer to the [latest GA data plane inference API](./reference.md)
 

@@ -20,7 +20,7 @@ The Speech to text REST API is used for [fast transcription](./fast-transcriptio
 > [!IMPORTANT]
 > Speech to text REST API version `2024-11-15` is the latest version that's generally available. 
 > - [Speech to text REST API](rest-speech-to-text.md) version `2024-05-15-preview` will be retired on a date to be announced. 
-> - Speech to text REST API `v3.0`, `v3.1`, `v3.2`, `3.2-preview.1`, and `3.2-preview.2` will be retired on April 1st, 2026. 
+> - Speech to text REST API `v3.0`, `v3.1`, `v3.2`, `3.2-preview.1`, and `3.2-preview.2` will be retired on March 31st, 2026. 
 > 
 > For more information about upgrading, see the Speech to text REST API [v3.0 to v3.1](migrate-v3-0-to-v3-1.md), [v3.1 to v3.2](migrate-v3-1-to-v3-2.md), and [v3.2 to 2024-11-15](migrate-2024-11-15.md) migration guides.
 
@@ -48,7 +48,7 @@ The `LanguageIdentificationMode` is added to `LanguageIdentificationProperties` 
 Azure AI Speech now supports OpenAI's Whisper model via Speech to text REST API v3.2. To learn more, check out the [Create a batch transcription](./batch-transcription-create.md#use-a-whisper-model) guide. 
 
 > [!NOTE]
-> Azure OpenAI Service also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, check out the [quickstart](../openai/whisper-quickstart.md). Check out [What is the Whisper model?](./whisper-overview.md) to learn more about when to use Azure AI Speech vs. Azure OpenAI Service. 
+> Azure OpenAI in Azure AI Foundry Models also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, check out the [quickstart](../openai/whisper-quickstart.md). Check out [What is the Whisper model?](./whisper-overview.md) to learn more about when to use Azure AI Speech vs. Azure OpenAI in Azure AI Foundry Models. 
 
 ## Custom speech
 

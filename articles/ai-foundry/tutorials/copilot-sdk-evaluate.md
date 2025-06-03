@@ -7,16 +7,17 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: tutorial
-ms.date: 11/06/2024
+ms.date: 04/07/2025
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
+
 #customer intent: As a developer, I want to learn how to use the prompt flow SDK so that I can evaluate and deploy a chat app.
 ---
 
 # Tutorial: Part 3 - Evaluate a custom chat application with the Azure AI Foundry SDK
 
-In this tutorial, you use the [Azure AI Foundry](https://ai.azure.com) SDK (and other libraries) to  evaluate the chat app you built in [Part 2 of the tutorial series](copilot-sdk-build-rag.md). In this part three, you learn how to:
+In this tutorial, you use the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) SDK (and other libraries) to  evaluate the chat app you built in [Part 2 of the tutorial series](copilot-sdk-build-rag.md). In this part three, you learn how to:
 
 > [!div class="checklist"]
 > - Create an evaluation dataset
@@ -28,9 +29,13 @@ This tutorial is part three of a three-part tutorial.
 
 ## Prerequisites
 
-- Complete [part 2 of the tutorial series](copilot-sdk-build-rag.md) to build the chat application.
-- Make sure you've completed the steps to [add telemetry logging](copilot-sdk-build-rag.md#logging) from part 2.
+[!INCLUDE [hub-only-tutorial](../includes/hub-only-tutorial.md)]
 
+- Complete [part 2 of the tutorial series](copilot-sdk-build-rag.md) to build the chat application.
+
+- Use the same **[!INCLUDE [hub](../includes/hub-project-name.md)]** you created in part 1. 
+
+- Make sure you've completed the steps to [add telemetry logging](copilot-sdk-build-rag.md#logging) from part 2.
 
 ## <a name="evaluate"></a> Evaluate the quality of the chat app responses
 

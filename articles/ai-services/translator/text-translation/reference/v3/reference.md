@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/14/2025
+ms.date: 05/19/2025
 ms.author: lajanuar
 ---
 
@@ -344,7 +344,7 @@ The error code is a 6-digit number combining the 3-digit HTTP status code follow
 ## Metrics
 Metrics allow you to view the translator usage and availability information in Azure portal. For more information, see [Data and platform metrics](/azure/azure-monitor/essentials/data-platform-metrics).
 
-![Translator Metrics](../../../media/translatormetrics.png)
+![Translator Metrics](../../../media/azure-portal-metrics-v3.png)
 
 This table lists available metrics with description of how they're used to monitor translation API calls.
 
