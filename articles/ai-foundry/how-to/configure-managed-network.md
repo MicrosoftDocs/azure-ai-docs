@@ -832,6 +832,7 @@ Private endpoints are currently supported for the following Azure services:
 * Azure AI Search
 * Azure AI services
 * Azure API Management
+    * Supporting only Classic tier without VNET injection and Standard V2 tier with virtual network integration. For more on API Management virtual networks, see [Virtual Network Concepts](https://learn.microsoft.com/azure/api-management/virtual-network-concepts)    
 * Azure Container Registry
 * Azure Cosmos DB (all sub resource types)
 * Azure Data Factory
