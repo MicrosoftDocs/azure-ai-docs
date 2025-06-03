@@ -14,7 +14,7 @@ zone_pivot_groups: azure-ai-models-deployment
 
 To create a project with an Azure AI Foundry (formerly known Azure AI Services) resource, follow these steps:
 
-1. Go to [Azure AI Foundry portal](https://ai.azure.com).
+1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 2. On the landing page, select **Create project**.
 

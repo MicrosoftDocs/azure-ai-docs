@@ -39,7 +39,7 @@ In the Completions playground you can also view Python and curl code samples pre
 
 To use the Azure OpenAI for text summarization in the Completions playground, follow these steps:
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select the subscription and OpenAI resource to work with. 
 1. Select **Completions playground** on the landing page.
 1. Select your deployment from the **Deployments** dropdown. If your resource doesn't have a deployment, select **Create a deployment** and then revisit this step.

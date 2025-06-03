@@ -17,7 +17,7 @@ author: sdgilley
 
 # Tutorial: Part 3 - Evaluate a custom chat application with the Azure AI Foundry SDK
 
-In this tutorial, you use the [Azure AI Foundry](https://ai.azure.com) SDK (and other libraries) to  evaluate the chat app you built in [Part 2 of the tutorial series](copilot-sdk-build-rag.md). In this part three, you learn how to:
+In this tutorial, you use the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) SDK (and other libraries) to  evaluate the chat app you built in [Part 2 of the tutorial series](copilot-sdk-build-rag.md). In this part three, you learn how to:
 
 > [!div class="checklist"]
 > - Create an evaluation dataset

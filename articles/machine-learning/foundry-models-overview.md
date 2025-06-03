@@ -192,7 +192,7 @@ Models from Microsoft are billed via Azure meters as First Party Consumption Ser
 
 ### Fine-tuning models
 
-For models that are available through MaaS and support fine-tuning, users can take advantage of hosted fine-tuning with Standard billing to tailor the models using data they provide. For more information, see [fine-tune a Llama 2 model](/azure/ai-services/openai/how-to/fine-tuning) in [Azure AI Foundry portal](https://ai.azure.com/). 
+For models that are available through MaaS and support fine-tuning, users can take advantage of hosted fine-tuning with Standard billing to tailor the models using data they provide. For more information, see [fine-tune a Llama 2 model](/azure/ai-services/openai/how-to/fine-tuning) in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). 
 
 ### RAG with models deployed as standard deployments
 

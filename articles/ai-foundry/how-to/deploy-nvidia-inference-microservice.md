@@ -57,7 +57,7 @@ NVIDIA inference microservices are containers built by NVIDIA for optimized pret
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com) and go to the **Home** page.
+1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and go to the **Home** page.
 2. Select **Model catalog** from the left sidebar.
 3. In the filters section, select **Collections** and select **NVIDIA**.
 

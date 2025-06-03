@@ -19,7 +19,7 @@ Azure OpenAI in Azure AI Foundry Models provides a **completion endpoint** that 
 > [!IMPORTANT]
 > Unless you have a specific use case that requires the completions endpoint, we recommend instead using the [responses API](./responses.md) of [chat completions endpoint](./chatgpt.md) which allows you to take advantage of the latest models like GPT-4o, GPT-4o mini, and GPT-4 Turbo. 
 
-The best way to start exploring completions is through the playground in [Azure AI Foundry](https://ai.azure.com). It's a simple text box where you enter a prompt to generate a completion. You can start with a simple prompt like this one:
+The best way to start exploring completions is through the playground in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). It's a simple text box where you enter a prompt to generate a completion. You can start with a simple prompt like this one:
 
 ```console
 write a tagline for an ice cream shop

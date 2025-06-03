@@ -27,7 +27,7 @@ You can use Codex for a variety of tasks including:
 
 ## How to use completions models with code
 
-Here are a few examples of using completion models that can be tested in the [Azure AI Foundry](https://ai.azure.com) playground with a deployment of `gpt-35-turbo-instruct`.
+Here are a few examples of using completion models that can be tested in the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) playground with a deployment of `gpt-35-turbo-instruct`.
 
 ### Saying "Hello" (Python)
 

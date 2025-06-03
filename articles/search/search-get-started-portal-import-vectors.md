@@ -52,7 +52,7 @@ For integrated vectorization, you must use one of the following embedding models
 
 <sup>1</sup> The endpoint of your Azure OpenAI resource must have a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains), such as `https://my-unique-name.openai.azure.com`. If you created your resource in the [Azure portal](https://portal.azure.com/), this subdomain was automatically generated during resource setup.
 
-<sup>2</sup> Azure OpenAI resources (with access to embedding models) that were created in the [Azure AI Foundry portal](https://ai.azure.com/) aren't supported. Only Azure OpenAI resources created in the Azure portal are compatible with the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) integration.
+<sup>2</sup> Azure OpenAI resources (with access to embedding models) that were created in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) aren't supported. Only Azure OpenAI resources created in the Azure portal are compatible with the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) integration.
 
 <sup>3</sup> For billing purposes, you must [attach your Azure AI multi-service resource](cognitive-search-attach-cognitive-services.md) to the skillset in your Azure AI Search service. Unless you use a [keyless connection (preview)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) to create the skillset, both resources must be in the same region.
 
@@ -182,7 +182,7 @@ This section points you to the content that works for this quickstart. Before yo
 
 ## Prepare embedding model
 
-The wizard can use embedding models deployed from Azure OpenAI, Azure AI Vision, or from the model catalog in the [Azure AI Foundry portal](https://ai.azure.com/). Before you proceed, make sure you completed the prerequisites for [role-based access](#role-based-access).
+The wizard can use embedding models deployed from Azure OpenAI, Azure AI Vision, or from the model catalog in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). Before you proceed, make sure you completed the prerequisites for [role-based access](#role-based-access).
 
 ### [Azure OpenAI](#tab/model-aoai)
 
@@ -204,7 +204,7 @@ The wizard supports text-embedding-ada-002, text-embedding-3-large, and text-emb
 
 1. To deploy an embedding model:
 
-   1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/) and select your Azure OpenAI resource.
+   1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your Azure OpenAI resource.
 
    1. From the left pane, select **Model catalog**.
 
@@ -255,7 +255,7 @@ For the model catalog, you should have an [Azure AI Foundry project](/azure/ai-f
 
 1. To deploy an embedding model:
 
-   1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/) and select your project.
+   1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your project.
 
    1. From the left pane, select **Model catalog**.
 
@@ -413,7 +413,7 @@ However, if you work with content that includes useful images, you can apply AI 
 
 Azure AI Search and your Azure AI resource must be in the same region or configured for [keyless billing connections](cognitive-search-attach-cognitive-services.md).
 
-1. On the **Vectorize your images** page, specify the kind of connection the wizard should make. For image vectorization, the wizard can connect to embedding models in the [Azure AI Foundry portal](https://ai.azure.com/) or Azure AI Vision.
+1. On the **Vectorize your images** page, specify the kind of connection the wizard should make. For image vectorization, the wizard can connect to embedding models in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) or Azure AI Vision.
 
 1. Specify the subscription.
 

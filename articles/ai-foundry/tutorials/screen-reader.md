@@ -22,7 +22,7 @@ This article is for people who use screen readers such as [Microsoft's Narrator]
 
 ## Getting oriented in Azure AI Foundry portal 
 
-Most [Azure AI Foundry](https://ai.azure.com) pages are composed of the following landmark structure: 
+Most [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) pages are composed of the following landmark structure: 
 
 - Banner (contains Azure AI Foundry app title, settings, and profile information)
     - Might sometimes contain a breadcrumb navigation element 
@@ -60,7 +60,7 @@ For more information about the navigation, see [What is Azure AI Foundry](../wha
 ## Projects 
 
 To work within the Azure AI Foundry portal, you must first [create a project](../how-to/create-projects.md): 
-1. In [Azure AI Foundry](https://ai.azure.com), select **Azure AI Foundry** from the top breadcrumbs.
+1. In [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), select **Azure AI Foundry** from the top breadcrumbs.
 1. Press the **Tab** key until you hear *Start building* and select this button. This will create a project for use with an agent.
 1. Enter the information requested in the **Create a project** dialog. 
 1. When the project is ready, you'll be prompted to select a model to use for your agent.
@@ -68,7 +68,7 @@ To work within the Azure AI Foundry portal, you must first [create a project](..
 
 If you already have some projects, you can also create a new project without also creating an agent.
 
-1. In [Azure AI Foundry](https://ai.azure.com), select **Azure AI Foundry** from the top breadcrumbs.
+1. In [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), select **Azure AI Foundry** from the top breadcrumbs.
 1. Press the **Tab** key until you hear *+ Create new*.  This path creates a project but does not go on to deploy a model as well.
 1. When the project is created, you'll be in the project home page.
 
