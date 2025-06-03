@@ -39,7 +39,7 @@ They might create an intent to represent each of these actions. They might also 
 
 ## Add intents
 
-To build a project schema within [AI Foundry](https://ai.azure.com):
+To build a project schema within [AI Foundry](https://ai.azure.com/?cid=learnDocs):
 
 1. Select **Define schema** from the left side menu.
 

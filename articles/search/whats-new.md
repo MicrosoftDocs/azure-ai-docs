@@ -1,16 +1,16 @@
 ---
 title: What's new in Azure AI Search
 description: Announcements of new and enhanced features, including a service rename of Azure Cognitive Search to Azure AI Search.
-
-manager: nitinme
 author: HeidiSteen
 ms.author: heidist
+manager: nitinme
+ms.date: 05/15/2025
 ms.service: azure-ai-search
 ms.topic: overview
-ms.date: 05/15/2025
 ms.custom:
   - references_regions
   - ignite-2024
+  - build-2025
 ---
 
 # What's new in Azure AI Search

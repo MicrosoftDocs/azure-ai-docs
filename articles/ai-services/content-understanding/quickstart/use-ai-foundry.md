@@ -3,11 +3,13 @@ title: "Create an Azure AI Content Understanding single-file task in the Azure A
 titleSuffix: Azure AI services
 description: Create an Azure AI Content Understanding single-file task in the Azure AI Foundry portal
 author: laujan
-manager: nitinme
 ms.author: kabrow
+manager: nitinme
+ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: quickstart
-ms.date: 05/19/2025
+ms.custom:
+  - build-2025
 ---
 
 # Quickstart: Use Content Understanding with a single file
@@ -34,7 +36,7 @@ To get started, make sure you have the following resources and permissions:
 
 Follow these steps to create a custom task in the Azure AI Foundry. This task is used to build your first analyzer.
 
-1. Go to the **Home** page of [Azure AI Foundry](https://ai.azure.com).
+1. Go to the **Home** page of [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 1. Select your hub based project. You might need to select **View all resources** to see your project.
 1. Select **Content Understanding** from the left navigation pane.
 1. Select **+ Create**.

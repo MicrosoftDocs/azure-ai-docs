@@ -31,6 +31,7 @@ Azure AI Agents supports function calling, which allows you to describe the stru
 
 ## Define a function for your agent to call
 Start by defining a function for your agent to call. When you create a function for an agent to call, you describe its structure with any required parameters in a docstring.
+
 ```python
 import json
 import datetime
@@ -54,9 +55,15 @@ user_functions = {fetch_weather}
 
 ## Create a client and agent
 
+<!--
 In the sample below we create a client and define a `toolset` which will be used to process the functions defined in `user_functions`.
 
 `toolset`: When using the toolset parameter, you provide not only the function definitions and descriptions but also their implementations. The SDK will execute these functions within `create_and_run_process` or streaming. These functions will be invoked based on their definitions.
+-->
+
+> [!NOTE]
+> You can find a streaming example on [GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_streaming/sample_agents_stream_eventhandler_with_functions.py).
+
 
 ```python
 import os, time
@@ -104,7 +111,7 @@ print(f"Created message, ID: {message['id']}")
 ## Create a run and check the output
 ```python
 # Create and process a run for the agent to handle the message
-run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
+run = project_client.agents.runs.create(thread_id=thread.id, agent_id=agent.id)
 print(f"Created run, ID: {run.id}")
 
 # Poll the run status until it is completed or requires action
@@ -136,6 +143,9 @@ print("Deleted agent")
 ::: zone-end
 
 ::: zone pivot="csharp"
+
+> [!NOTE]
+> You can find a streaming example on [GitHub](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/samples/Sample8_PersistentAgents_FunctionsWithStreaming.md).
 
 ## Configure client and define functions
 

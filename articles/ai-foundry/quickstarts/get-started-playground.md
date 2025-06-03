@@ -17,7 +17,7 @@ author: sdgilley
 
 # Quickstart: Use the chat playground in Azure AI Foundry portal
 
-In this quickstart, you use [Azure AI Foundry](https://ai.azure.com) to deploy a chat model and use it in the chat playground in Azure AI Foundry portal.
+In this quickstart, you use [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) to deploy a chat model and use it in the chat playground in Azure AI Foundry portal.
 
 For this quickstart, you can use either a [!INCLUDE [hub](../includes/hub-project-name.md)] or a [!INCLUDE [fdp](../includes/fdp-project-name.md)]. For more information about the differences between these two project types, see [Project types](../what-is-azure-ai-foundry.md#project-types).
 
@@ -41,7 +41,7 @@ For more information about deploying models, see [how to deploy models](../how-t
 
 ## Chat in the playground without your data
 
-In the [Azure AI Foundry](https://ai.azure.com) playground, you can observe how your model responds with and without your data. In this quickstart, you test your model without your data.
+In the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) playground, you can observe how your model responds with and without your data. In this quickstart, you test your model without your data.
 
 To chat with your deployed model in the chat playground, follow these steps:
 

@@ -1,14 +1,15 @@
 ---
-title: 'How to use the data agents in Microsoft Fabric with Azure AI Foundry Agent Service'
+title: "How to use the data agents in Microsoft Fabric with Azure AI Foundry Agent Service"
 titleSuffix: Azure AI Foundry
 description: Learn how to perform data analytics in Azure AI Foundry Agents using Microsoft Fabric data agent.
-services: cognitive-services
-manager: nitinme
-ms.service: azure-ai-agent-service
-ms.topic: how-to
-ms.date: 04/07/2025
 author: aahill
 ms.author: aahi
+manager: nitinme
+ms.date: 04/07/2025
+ms.service: azure-ai-agent-service
+ms.topic: how-to
+ms.custom:
+  - build-2025
 zone_pivot_groups: selection-fabric-data-agent
 ---
 
@@ -46,7 +47,7 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 
 You can add the Microsoft Fabric tool to an agent programmatically using the code examples listed at the top of this article, or the Azure AI Foundry portal. If you want to use the portal: 
 
-1. Navigate to the **Agents** screen for your agent in [Azure AI Foundry](https://ai.azure.com/), scroll down the Setup pane on the right to **knowledge**. Then select **Add**.
+1. Navigate to the **Agents** screen for your agent in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), scroll down the Setup pane on the right to **knowledge**. Then select **Add**.
    
     :::image type="content" source="../../media/tools/knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools.png":::
 

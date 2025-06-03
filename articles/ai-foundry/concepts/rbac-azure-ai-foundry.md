@@ -18,7 +18,7 @@ zone_pivot_groups: project-type
 
 # Role-based access control in Azure AI Foundry portal
 
-In this article, you learn how to manage access (authorization) to your [Azure AI Foundry](https://ai.azure.com) resources. Azure role-based access control (Azure RBAC) is used to manage access to Azure resources, such as the ability to create new resources or use existing ones. Users in your Microsoft Entra ID are assigned specific roles, which grant access to resources. Azure provides both built-in roles and the ability to create custom roles.
+In this article, you learn how to manage access (authorization) to your [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) resources. Azure role-based access control (Azure RBAC) is used to manage access to Azure resources, such as the ability to create new resources or use existing ones. Users in your Microsoft Entra ID are assigned specific roles, which grant access to resources. Azure provides both built-in roles and the ability to create custom roles.
 
 Azure AI Foundry supports two types of projects: a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** and a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. For more information about the differences between these two project types, see [Types of projects](../what-is-azure-ai-foundry.md#project-types). Use the selector at the top of this article to switch between the two project types.
 
@@ -220,7 +220,7 @@ For example, if you're trying to consume a new Blob storage, you need to ensure 
 
 ## Manage access with roles
 
-If you're an owner of a Foundry account resource, you can add and remove roles for Azure AI Foundry. From the **Home** page in [Azure AI Foundry](https://ai.azure.com), select your Foundry resource. Then select **Users** to add and remove users for the hub. You can also manage permissions from the [Azure portal](https://portal.azure.com) under **Access Control (IAM)** or through the Azure CLI.
+If you're an owner of a Foundry account resource, you can add and remove roles for Azure AI Foundry. From the **Home** page in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), select your Foundry resource. Then select **Users** to add and remove users for the hub. You can also manage permissions from the [Azure portal](https://portal.azure.com) under **Access Control (IAM)** or through the Azure CLI.
 
 For example, use the Azure CLI to assign the Azure AI User role to `joe@contoso.com` for resource group `this-rg` with the following command:
 
@@ -461,7 +461,7 @@ For example, if you're trying to consume a new Blob storage, you need to ensure 
 
 ## Manage access with roles 
 
-If you're an owner of a hub, you can add and remove roles for Azure AI Foundry. Go to the **Home** page in [Azure AI Foundry](https://ai.azure.com) and select your hub. Then select **Users** to add and remove users for the hub. You can also manage permissions from the Azure portal under **Access Control (IAM)** or through the Azure CLI. For example, use the [Azure CLI](/cli/azure/) to assign the Azure AI Developer role to "joe@contoso.com" for resource group "this-rg" with the following command: 
+If you're an owner of a hub, you can add and remove roles for Azure AI Foundry. Go to the **Home** page in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and select your hub. Then select **Users** to add and remove users for the hub. You can also manage permissions from the Azure portal under **Access Control (IAM)** or through the Azure CLI. For example, use the [Azure CLI](/cli/azure/) to assign the Azure AI Developer role to "joe@contoso.com" for resource group "this-rg" with the following command: 
  
 ```azurecli-interactive
 az role assignment create --role "Azure AI Developer" --assignee "joe@contoso.com" --resource-group this-rg 

@@ -59,7 +59,7 @@ The Azure AI Foundry Projects client library is a unified library that enables y
     from azure.identity import DefaultAzureCredential
     from azure.ai.projects import AIProjectClient
     
-    project = AIProjectClient.from_connection_string(
+    project = AIProjectClient(
       endpoint="your_project_endpoint",  # Replace with your endpoint
       credential=DefaultAzureCredential())
     ```

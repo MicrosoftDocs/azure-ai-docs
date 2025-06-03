@@ -54,7 +54,7 @@ The Azure AI Foundry Agent Service also supports the following models from the A
 
 * Meta-Llama-405B-Instruct
 
-To use these models, you can use [Azure AI Foundry portal](https://ai.azure.com/) to make a deployment, and then reference the deployment name in your agent. For example:
+To use these models, you can use [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) to make a deployment, and then reference the deployment name in your agent. For example:
 
 ```python
 agent = project_client.agents.create_agent( model="llama-3", name="my-agent", instructions="You are a helpful agent" ) 
@@ -65,7 +65,7 @@ agent = project_client.agents.create_agent( model="llama-3", name="my-agent", in
 
 To best support agentic scenarios, we recommend using models that support tool-calling. The Azure AI Foundry Agent Service currently supports all agent-compatible models from the Azure AI Foundry model catalog. 
 
-To use these models, use the [Azure AI Foundry portal](https://ai.azure.com/) to make a model deployment, then reference the deployment name in your agent. For example: 
+To use these models, use the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) to make a model deployment, then reference the deployment name in your agent. For example: 
 
 `agent = project_client.agents.create_agent( model="llama-3", name="my-agent", instructions="You are a helpful agent")`
 

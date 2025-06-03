@@ -12,7 +12,7 @@ ms.topic: reference
 
 # Azure AI Foundry custom translation key terms
 
-The following table presents a list of key terms that you may find as you work with custom translation in the [Azure AI Foundry](https://ai.azure.com/).
+The following table presents a list of key terms that you may find as you work with custom translation in the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
 | Word or Phrase|Definition|
 |------------------|-----------|

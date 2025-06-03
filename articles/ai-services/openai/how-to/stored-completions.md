@@ -245,7 +245,7 @@ curl $AZURE_OPENAI_ENDPOINT/openai/deployments/gpt-4o/chat/completions?api-versi
 
 ---
 
-Once stored completions are enabled for an Azure OpenAI deployment, they'll begin to show up in the [Azure AI Foundry portal](https://ai.azure.com) in the **Stored Completions** pane.
+Once stored completions are enabled for an Azure OpenAI deployment, they'll begin to show up in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) in the **Stored Completions** pane.
 
 :::image type="content" source="../media/stored-completions/stored-completions.png" alt-text="Screenshot of the stored completions User Experience." lightbox="../media/stored-completions/stored-completions.png":::
 
@@ -255,7 +255,7 @@ Distillation allows you to turn your stored completions into a fine-tuning datas
 
 Distillation requires a minimum of 10 stored completions, though it's recommended to provide hundreds to thousands of stored completions for the best results.
 
-1. From the **Stored Completions** pane in the [Azure AI Foundry portal](https://ai.azure.com) use the **Filter** options to select the completions you want to train your model with.
+1. From the **Stored Completions** pane in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) use the **Filter** options to select the completions you want to train your model with.
 
 2. To begin distillation, select **Distill**
 
@@ -284,7 +284,7 @@ The [evaluation](./evaluations.md) of large language models is a critical step i
 
 Stored completions can be used as a dataset for running evaluations.
 
-1. From the **Stored Completions** pane in the [Azure AI Foundry portal](https://ai.azure.com) use the **Filter** options to select the completions you want to be part of your evaluation dataset.
+1. From the **Stored Completions** pane in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) use the **Filter** options to select the completions you want to be part of your evaluation dataset.
 
 2. To configure the evaluation, select **Evaluate**
 

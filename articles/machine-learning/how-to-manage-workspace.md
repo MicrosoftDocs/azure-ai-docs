@@ -185,7 +185,7 @@ This class requires an existing virtual network.
 
 # [Studio](#tab/studio)
 
-1. To create a workspace with disabled internet connectivity via Studio, you should specify a hub workspace that has public network access disabled. Workspaces created without a hub in [Azure AI Foundry portal](https://ai.azure.com/), have public internet access enabled. A private hub has a 'lock' icon.
+1. To create a workspace with disabled internet connectivity via Studio, you should specify a hub workspace that has public network access disabled. Workspaces created without a hub in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), have public internet access enabled. A private hub has a 'lock' icon.
 
    :::image type="content" source="media/how-to-manage-workspace/studio-private-hub-selection.png" alt-text="Screenshot of the private hub with the 'lock' icon.":::
  

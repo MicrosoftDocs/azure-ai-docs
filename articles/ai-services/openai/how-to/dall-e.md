@@ -1,16 +1,15 @@
 ---
-title: How to use image generation models 
+title: How to use image generation models
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn how to generate and edit images with image models, and learn about the configuration options that are available.
 author: PatrickFarley
-ms.author: pafarley 
-ms.service: azure-ai-openai
-ms.custom: 
-ms.topic: how-to
-ms.date: 04/23/2025
+ms.author: pafarley
 manager: nitinme
-keywords: 
-zone_pivot_groups: 
+ms.date: 04/23/2025
+ms.service: azure-ai-openai
+ms.topic: how-to
+ms.custom:
+  - build-2025
 # Customer intent: as an engineer or hobbyist, I want to know how to use DALL-E image generation models to their full capability.
 ---
 
@@ -238,7 +237,7 @@ The format in which DALL-E 3 generated images are returned. Must be one of `url`
 
 ## Call the Image Edit API
 
-The Image Edit API allows you to modify existing images based on text prompts you provide. The API call is similar to the image generation API call, but you also need to provide an image URL or base 64-encoded image data.
+The Image Edit API allows you to modify existing images based on text prompts you provide. The API call is similar to the image generation API call, but you also need to provide an input image (base64-encoded image data).
 
 
 

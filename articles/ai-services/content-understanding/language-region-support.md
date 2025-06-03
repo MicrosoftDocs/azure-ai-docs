@@ -5,10 +5,13 @@ description: Azure AI Content Understanding region and language support
 author: laujan
 ms.author: lajanuar
 manager: nitinme
+ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: reference
-ms.custom: references_regions, ignite-2024-understanding-release
-ms.date: 05/19/2025
+ms.custom:
+  - references_regions
+  - ignite-2024-understanding-release
+  - build-2025
 ---
 
 # Azure AI Content Understanding region and language support

@@ -20,7 +20,7 @@ zone_pivot_groups: azure-ai-studio-sdk-cli
 
 [!include [hub](../includes/uses-hub-only.md)]
 
-Network isolation for a [!INCLUDE [hub-based](../includes/hub-project-name.md)] has two aspects. One is the network isolation to access an [Azure AI Foundry](https://ai.azure.com) hub. Another is the network isolation of computing resources for both your hub and project (such as compute instance, serverless and managed online endpoint.) This document explains the latter highlighted in the diagram. You can use hub built-in network isolation to protect your computing resources.
+Network isolation for a [!INCLUDE [hub-based](../includes/hub-project-name.md)] has two aspects. One is the network isolation to access an [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) hub. Another is the network isolation of computing resources for both your hub and project (such as compute instance, serverless and managed online endpoint.) This document explains the latter highlighted in the diagram. You can use hub built-in network isolation to protect your computing resources.
 
 :::image type="content" source="../media/how-to/network/azure-ai-network-outbound.svg" alt-text="Diagram of hub network isolation configuration with Azure AI Foundry." lightbox="../media/how-to/network/azure-ai-network-outbound.png":::
 
@@ -809,7 +809,7 @@ If you plan to use __HuggingFace models__ with the hub, add outbound _FQDN_ rule
 * *.docker.io
 * *.docker.com
 * production.cloudflare.docker.com
-* cnd.auth0.com
+* cdn.auth0.com
 * cdn-lfs.huggingface.co
 
 ### Scenario: Models Sold Directly by Azure 
