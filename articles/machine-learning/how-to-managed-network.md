@@ -177,7 +177,7 @@ Before following the steps in this article, make sure you have the following pre
 
 ::: zone-end
 
-To establish private endpoint connections in managed virtual networks using Azure Machine Learning, the workspace managed identity, whether system-assigned or user-assigned, must have permissions to approve the Private Endpoint connections on the target resources. After April 30th, 2025, permissions aren't automatically granted to the managed identity and must be assigned manually.
+To establish private endpoint connections in managed virtual networks using Azure Machine Learning, the workspace managed identity, whether system-assigned or user-assigned, and the user identity that initiates the creation of the private endpoint, must have permissions to approve the Private Endpoint connections on the target resources. After April 30th, 2025, permissions aren't automatically granted to the managed identity and must be assigned manually.
 
 Microsoft recommends assigning the _Azure AI Enterprise Network Connection Approver_ role to the managed identity. The following list contains the private endpoint target resource types covered by the __Azure AI Enterprise Network Connection Approver__ role:
 
