@@ -37,7 +37,7 @@ This table lists the current known issues for the Text-to-Speech feature.
 
 |Issue ID|Category|Tile|Description|Workaround|Issues publish date|
 |--------|--------|----|-----------|----------|-------------------|
-| 2001   | Service | Model copying via Rest API | The TTS service doesn't allow model copying via the REST API for disaster recovery purposes. | N/A | June 6, 2025 | N/A |
+| 2001   | Service | Model copying via Rest API | The TTS service doesn't allow model copying via the REST API for disaster recovery purposes. | N/A | June 6, 2025 |
 | 2002   | TTS Avatar | Missing parameters | TTS Avatar parameters "avatarPosition" and "avatarSize" not supported in Batch synthesis. | N/A | June 6, 2025 |
 | 2003   | TTS Avatar | Missing Blob file names | The 'outputs': 'result' url of Batch avatar synthesis job doesn't have the blob file name. | Customers should use 'subtitleType = soft_embedded' as a temporary workaround. | June 6, 2025 |
 | 2004   | TTS Avatar | Batch synthesis unsupported for TTS | Batch synthesis for avatar doesn't support bring-your-own-storage (BYOS) and it requires the storage account to allow external traffic. | N/A | June 6, 2025 |
