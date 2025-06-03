@@ -15,7 +15,7 @@ ms.custom:
 
 In this quickstart, you use the **Import and vectorize data** wizard in the Azure portal to get started with [multimodal search](multimodal-search-overview.md). The wizard simplifies the process of extracting, chunking, vectorizing, and loading both text and images into a searchable index.
 
-Unlike [Quickstart: Vector search in the Azure portal](search-get-started-portal-import-vectors.md), which processes simple images, this quickstart supports advanced image processing for multimodal RAG scenarios.
+Unlike [Quickstart: Vector search in the Azure portal](search-get-started-portal-import-vectors.md), which processes simple text-containing images, this quickstart supports advanced image processing for multimodal RAG scenarios.
 
 This quickstart uses a multimodal PDF from the [azure-search-sample-data](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/sustainable-ai-pdf) repo. However, you can use different files and still complete this quickstart.
 
@@ -55,7 +55,7 @@ For content embedding, you can choose either image verbalization (followed by te
 
 <sup>1</sup> The endpoint of your Azure OpenAI resource must have a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains), such as `https://my-unique-name.openai.azure.com`. If you created your resource in the [Azure portal](https://portal.azure.com/), this subdomain was automatically generated during resource setup.
 
-<sup>2</sup> Azure OpenAI resources (with access to embedding models) that were created in the [Azure AI Foundry portal](https://ai.azure.com/) aren't supported. You must create an Azure OpenAI resource in the Azure portal.
+<sup>2</sup> Azure OpenAI resources (with access to embedding models) that were created in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) aren't supported. You must create an Azure OpenAI resource in the Azure portal.
 
 <sup>3</sup> For billing purposes, you must [attach your multi-service resource](cognitive-search-attach-cognitive-services.md) to the skillset in your Azure AI Search service. Unless you use a [keyless connection](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) to create the skillset, both resources must be in the same region.
 
@@ -101,7 +101,7 @@ On your Azure AI Search service:
 
 ### [**Azure Storage**](#tab/storage-perms)
 
-Azure Storage is both the data source for your documents and the destination for extracted images. Your search service requires access to these storage containers, which you create in the next section of this quickstart.
+Azure Storage is both the data source for your documents and the destination for extracted images. Your search service requires access to these storage containers, which you create in the next section.
 
 On your Azure Storage account:
 
@@ -111,7 +111,7 @@ On your Azure Storage account:
 
 ### Conditional roles
 
-The following tabs cover all wizard-compatible resources for multimodal search. Only select the tabs that apply to your chosen [extraction method](#supported-extraction-methods) and [embedding method](#supported-embedding-methods).
+The following tabs cover all wizard-compatible resources for multimodal search. Select only the tabs that apply to your chosen [extraction method](#supported-extraction-methods) and [embedding method](#supported-embedding-methods).
 
 ### [**Azure OpenAI**](#tab/openai-perms)
 
@@ -123,7 +123,7 @@ On your Azure OpenAI resource:
 
 ### [**Azure AI Foundry**](#tab/ai-foundry-perms)
 
-The Azure AI Foundry model catalog provides large language models (LLMs) for image verbalization and embedding models for text and image vectorization. Your search service requires access to call the [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) and [AML skill](cognitive-search-aml-skill.md).
+The Azure AI Foundry model catalog provides LLMs for image verbalization and embedding models for text and image vectorization. Your search service requires access to call the [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) and [AML skill](cognitive-search-aml-skill.md).
 
 On your Azure AI Foundry project:
 
@@ -162,7 +162,7 @@ The wizard offers several options for content embedding. Image verbalization req
 
 To deploy the models for this quickstart:
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 1. Select your Azure OpenAI resource or Azure AI Foundry project.
 
@@ -210,9 +210,9 @@ Depending on your chosen [extraction method](#supported-extraction-methods), the
 
 ### [**Default extraction**](#tab/document-extraction)
 
-The default method calls the [Document Extraction skill](cognitive-search-skill-document-extraction.md) to extract content and metadata from documents, which includes generating normalized images. The [Text Split skill](cognitive-search-skill-textsplit.md) is then used to split the extracted content into pages.
+The default method calls the [Document Extraction skill](cognitive-search-skill-document-extraction.md) to extract text content and generate normalized images from your documents. The [Text Split skill](cognitive-search-skill-textsplit.md) is then called to split the extracted text content into pages.
 
-To use Document Extraction skill:
+To use the Document Extraction skill:
 
 1. On the **Content extraction** page, select **Default**.
 
@@ -222,13 +222,13 @@ To use Document Extraction skill:
 
 ### [**Enhanced extraction**](#tab/document-intelligence)
 
-Your Azure AI multi-service resource provides access to the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md), which extracts page numbers, bounding polygons, and other location metadata from both text and images. The Document Layout skill also breaks documents into smaller, more manageable chunks.
+Your Azure AI multi-service resource provides access to [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview), which calls the [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) to recognize document structure and extract text and images relationally. It does so by attaching location metadata, such as page numbers and bounding polygons, to each image. The Document Layout skill also breaks text content into smaller, more manageable chunks.
 
 To use the Document Layout skill:
 
 1. On the **Content extraction** page, select **AI Document Intelligence**.
 
-1. Specify your Azure subscription and Azure AI multi-service resource.
+1. Specify your Azure subscription and multi-service resource.
 
 1. For the authentication type, select **System assigned identity**.
 
@@ -248,7 +248,7 @@ During this step, the wizard uses your chosen [embedding method](#supported-embe
 
 The wizard calls one skill to create descriptive text for images (image verbalization) and another skill to create vector embeddings for both text and images.
 
-For image verbalization, the [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) uses the LLM you deployed to analyze each extracted image and produce a natural-language description.
+For image verbalization, the [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) uses your deployed LLM to analyze each extracted image and produce a natural-language description.
 
 For embeddings, the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [AML skill](cognitive-search-aml-skill.md), or [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) uses your deployed embedding model to convert text chunks and verbalized descriptions into high-dimensional vectors. These vectors enable similarity and hybrid retrieval.
 
@@ -332,14 +332,14 @@ On the **Advanced settings** page, you can optionally add fields to the index sc
 
 | Field | Applies to | Description | Attributes |
 |--|--|--|--|
-| content_id | Text and image vectors | String field. Document key for the index. | Searchable, retrievable, sortable, filterable, and facetable. |
-| document_title | Text and image vectors | String field. Human-readable document title, page title, or page number. | Searchable, retrievable, sortable, filterable, and facetable. |
+| content_id | Text and image vectors | String field. Document key for the index. | Retrievable, sortable, and searchable. |
+| document_title | Text and image vectors | String field. Human-readable document title. | Retrievable and searchable. |
 | text_document_id | Text vectors | String field. Identifies the parent document from which the text chunk originates. | Retrievable and filterable. |
-| image_document_id | Image vectors | String field. Identifies the parent document from which the image originates. | Searchable, retrievable, sortable, filterable, and facetable. |
-| content_text | Text vectors | String field. Human-readable version of the text chunk. | Searchable, retrievable, sortable, filterable, and facetable. |
-| content_embedding | Image vectors | Collection(Edm.Single). Vector representation of the image verbalization. | Searchable and retrievable. |
-| content_path | Text and image vectors | String field. Path to the content in the storage container. | Retrievable, sortable, filterable, and facetable. |
-| locationMetadata | Text and image vectors | Edm.ComplexType. Contains metadata about the content's location. | Varies by field. |
+| image_document_id | Image vectors | String field. Identifies the parent document from which the image originates. | Retrievable and filterable. |
+| content_text | Text vectors | String field. Human-readable version of the text chunk. | Retrievable and searchable. |
+| content_embedding | Text and image vectors | Collection(Edm.Single). Vector representation of text and images. | Retrievable and searchable. |
+| content_path | Text and image vectors | String field. Path to the content in the storage container. | Retrievable and searchable. |
+| locationMetadata | Image vectors | Edm.ComplexType. Contains metadata about the image's location in the documents. | Varies by field. |
 
 You can't modify the generated fields or their attributes, but you can add fields if your data source provides them. For example, Azure Blob Storage provides a collection of metadata fields.
 
@@ -350,9 +350,6 @@ To add fields to the index schema:
 1. Select **Add field**.
 
 1. Select a source field from the available fields, enter a field name for the index, and accept (or override) the default data type.
-
-   > [!NOTE]
-   > Metadata fields are searchable but not retrievable, filterable, facetable, or sortable.
 
 1. If you want to restore the schema to its original version, select **Reset**.
 
@@ -392,9 +389,9 @@ When the wizard completes the configuration, it creates the following objects:
 
   + The [Document Extraction skill](cognitive-search-skill-document-extraction.md) or [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) extracts text and images from source documents. The [Text Split skill](cognitive-search-skill-textsplit.md) accompanies the Document Extraction skill for data chunking, while the Document Layout skill has built-in chunking.
 
-  + The [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) verbalizes images. If you're using direct multimodal embeddings, this skill is absent.
+  + The [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) verbalizes images in natural language. If you're using direct multimodal embeddings, this skill is absent.
 
-  + The [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [AML skill](cognitive-search-aml-skill.md), or [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) is called twice to vectorize text and image content.
+  + The [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [AML skill](cognitive-search-aml-skill.md), or [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) is called once for text vectorization and once for image vectorization.
 
   + The [Shaper skill](cognitive-search-skill-shaper.md) enriches the output with metadata and creates new images with contextual information.
 
@@ -403,7 +400,7 @@ When the wizard completes the configuration, it creates the following objects:
 
 ## Check results
 
-This quickstart creates a multimodal index that supports [hybrid search](hybrid-search-overview.md) over both text and verbalized images. However, it doesn't support images as query inputs, which requires integrated vectorization using an embedding skill and an equivalent vectorizer. For more information, see [Query with Search explorer](search-explorer.md).
+This quickstart creates a multimodal index that supports [hybrid search](hybrid-search-overview.md) over both text and images. Unless you use direct multimodal embeddings, the index doesn't accept images as query inputs, which requires the [AML skill](cognitive-search-aml-skill.md) or [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) with an equivalent vectorizer. For more information, see [Query with Search explorer](search-explorer.md).
 
 Hybrid search is a combination of full-text queries and vector queries. When you issue a hybrid query, the search engine computes the semantic similarity between your query and the indexed vectors and ranks the results accordingly. For the index created in this quickstart, the results surface content from the `content_text` field that closely aligns with your query.
 
