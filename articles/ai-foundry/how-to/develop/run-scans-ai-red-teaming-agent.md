@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - references_regions
 ms.topic: how-to
-ms.date: 05/29/2025
+ms.date: 06/03/2025
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
@@ -340,7 +340,7 @@ red_team_agent_result = await red_team_agent.scan(
 )
 ```
 
-The `My-First-RedTeam-Scan.json` file contains a scorecard that provides a breakdown across attack complexity and risk categories, as well as a joint attack complexity and risk category report. Important metadata is tracked in the `redteaming_simulation_parameters` section which outlines which risk categories were used to generate the attack objectives and which attack strategies were specified in the scan.
+The `My-First-RedTeam-Scan.json` file contains a scorecard that provides a breakdown across attack complexity and risk categories, as well as a joint attack complexity and risk category report. Important metadata is tracked in the `parameters` section which outlines which risk categories were used to generate the attack objectives and which attack strategies were specified in the scan.
 
 ```json
 {
@@ -449,7 +449,7 @@ The `My-First-RedTeam-Scan.json` file contains a scorecard that provides a break
         }
       }
     },
-    "redteaming_simulation_parameters": {
+    "parameters": {
       "attack_objective_generated_from": {
         "risk_categories": [
           "hate_unfairness",

@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - references_regions
 ms.topic: how-to
-ms.date: 05/29/2025
+ms.date: 06/03/2025
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
