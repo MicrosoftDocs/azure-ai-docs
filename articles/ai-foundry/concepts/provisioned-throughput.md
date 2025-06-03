@@ -66,7 +66,6 @@ The following points are some important takeaways from the table:
 |                | O4 mini         | ✅                 | ✅                    | ✅                   | ✅                |
 | **Azure DeepSeek** | DeepSeek-R1     | ✅                 |                       |                      |                   |
 |                | DeepSeek-V3-0324| ✅                 |                       |                      |                   |
-|                | MAI-DeepSeek-R1 | ✅                 |                       |                      |                   |
 
 
 ## Related content
