@@ -26,9 +26,9 @@ Azure AI Language is updated on an ongoing basis. Bookmark this page to stay up 
 
     *  [Customize PII detection using your own regex](personally-identifiable-information/how-to/adapt-to-domain-pii.md#customizing-pii-detection-using-your-own-regex-only-available-for-text-pii-container) (only available for Text PII container).
 
-    *  [Customizing PII output specifying values to exclude](personally-identifiable-information/how-to/adapt-to-domain-pii.md#customizing-pii-output-by-specifying-values-to-exclude).
+    *  [Customize PII output specifying values to exclude](personally-identifiable-information/how-to/adapt-to-domain-pii.md#customizing-pii-output-by-specifying-values-to-exclude).
 
-    *  [Customizing PII detection using entity synonyms](personally-identifiable-information/how-to/adapt-to-domain-pii.md#api-schema-for-the-entitysynoyms-parameter).
+    *  [Customize PII detection using entity synonyms](personally-identifiable-information/how-to/adapt-to-domain-pii.md#api-schema-for-the-entitysynoyms-parameter).
 
 * [`2025-05-15-preview`](/rest/api/language/operation-groups?view=rest-language-2025-05-15-preview&preserve-view=true) release. This API preview version includes the following named entity recognition (NER) and personally identifiable information (PII) detection updates:
 
