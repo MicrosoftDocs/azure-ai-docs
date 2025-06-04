@@ -38,4 +38,4 @@ Some customers may want to use the Azure OpenAI for a use case that involves the
 
 - Learn more about the [underlying models that power Azure OpenAI](../concepts/models.md).
 - Learn more about understanding and mitigating risks associated with your application: [Overview of Responsible AI practices for Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/overview?context=/azure/ai-services/openai/context/context).
-- Learn more about how data is processed in content filtering and abuse monitoring: [Data, privacy, and security for Azure OpenAI](/legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context#preventing-abuse-and-harmful-content-generation).
+- Learn more about how data is processed in content filtering and abuse monitoring: [Data, privacy, and security for Azure OpenAI](/azure/ai-foundry/responsible-ai/openai/data-privacy?context=/azure/ai-services/openai/context/context#preventing-abuse-and-harmful-content-generation).

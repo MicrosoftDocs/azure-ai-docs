@@ -11,7 +11,7 @@ ms.author: mbullwin
 
 # Azure OpenAI in Azure AI Foundry Models encryption of data at rest
 
-Azure OpenAI automatically encrypts your data when it's persisted to the cloud. The encryption protects your data and helps you meet your organizational security and compliance commitments. This article covers how Azure OpenAI handles encryption of data at rest, specifically training data and fine-tuned models. For information on how data provided by you to the service is processed, used, and stored, consult the [data, privacy, and security article](/legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context).
+Azure OpenAI automatically encrypts your data when it's persisted to the cloud. The encryption protects your data and helps you meet your organizational security and compliance commitments. This article covers how Azure OpenAI handles encryption of data at rest, specifically training data and fine-tuned models. For information on how data provided by you to the service is processed, used, and stored, consult the [data, privacy, and security article](/azure/ai-foundry/responsible-ai/openai/data-privacy?context=/azure/ai-services/openai/context/context).
 
 ## About Azure OpenAI encryption
 
