@@ -63,7 +63,7 @@ retrieval(
 
 ### Retrieval output
 
-The numerical score on a likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (a default is set), we also output "pass" if the score <= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
+The numerical score on a likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (a default is set), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
 
 ```python
 {
@@ -163,7 +163,7 @@ document_retrieval_evaluator(retrieval_ground_truth=retrieval_ground_truth, retr
 
 ### Document retrieval output
 
-All numerical scores have `high_is_better=True` except for `holes` and `holes_ratio` which have `high_is_better=False`. Given a numerical threshold (default to 3), we also output "pass" if the score <= threshold, or "fail" otherwise. 
+All numerical scores have `high_is_better=True` except for `holes` and `holes_ratio` which have `high_is_better=False`. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. 
 
 ```python
 {
@@ -206,7 +206,7 @@ groundedness(
 
 ### Groundedness output
 
-The numerical score on a likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score <= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
+The numerical score on a likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
 
 ```python
 {
@@ -276,7 +276,7 @@ relevance(
 
 ### Relevance output
 
-The numerical score on a likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score <= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
+The numerical score on a likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
 
 ```python
 {
@@ -306,7 +306,7 @@ response_completeness(
 
 ### Response completeness output
 
-The numerical score on a likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score <= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
+The numerical score on a likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
 
 ```python
 {
