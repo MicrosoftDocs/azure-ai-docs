@@ -17,7 +17,7 @@ ms.date: 04/14/2025
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-To maximize your uptime, plan ahead to maintain business continuity and prepare for disaster recovery with [Azure AI Foundry](https://ai.azure.com). Since Azure AI Foundry builds on [Azure Machine Learning architecture](/azure/machine-learning/concept-workspace), it's beneficial to reference the foundational architecture.
+To maximize your uptime, plan ahead to maintain business continuity and prepare for disaster recovery with [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). Since Azure AI Foundry builds on [Azure Machine Learning architecture](/azure/machine-learning/concept-workspace), it's beneficial to reference the foundational architecture.
 
 Microsoft strives to ensure that Azure services are always available. However, unplanned service outages might occur. We recommend having a disaster recovery plan in place for handling regional service outages. In this article, you learn how to:
 

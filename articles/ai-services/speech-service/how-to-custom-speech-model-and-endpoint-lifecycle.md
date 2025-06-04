@@ -53,7 +53,7 @@ Follow these instructions to get the transcription expiration date for a base mo
 
 ::: zone pivot="ai-foundry-portal"
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane.
 1. Select **AI Service fine-tuning**.
 1. Select the custom model that you want to check from the **Model name** column.
@@ -164,7 +164,7 @@ You should receive a response body in the following format:
 
 Follow these instructions to get the transcription expiration date for a custom model:
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane.
 1. Select **AI Service fine-tuning**.
 1. Select the custom model that you want to check from the **Model name** column.

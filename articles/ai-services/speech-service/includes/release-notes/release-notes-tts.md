@@ -251,7 +251,7 @@ Azure AI speech high definition (HD) voices are available in public preview. The
   - `es-US`: Spanish (United States)
   - `ta-MY`: Tamil (Malaysia)
   
-  See the [language list for Custom neural voice](../../language-support.md?tabs=tts#custom-neural-voice) for the full list of supported locales.  
+  See the [language list for Custom neural voice](../../language-support.md?tabs=tts#professional-voice) for the full list of supported locales.  
 
 - The cross-lingual feature now supports the following new locales as source locales:  
 
@@ -273,7 +273,7 @@ Azure AI speech high definition (HD) voices are available in public preview. The
   | `ta-IN`               | Tamil (India) |
   | `zh-HK`               | Chinese (Cantonese, Traditional)       |  
 
-  See the [language list for Custom neural voice](../../language-support.md?tabs=tts#custom-neural-voice) for the full list of supported locales.  
+  See the [language list for Custom neural voice](../../language-support.md?tabs=tts#professional-voice) for the full list of supported locales.  
 
 - The multi-style voice feature now supports the following new locales:  
 
@@ -320,7 +320,7 @@ Azure AI speech high definition (HD) voices are available in public preview. The
   | `zh-HK`             | Chinese (Cantonese, Traditional)      |
   | `zh-TW`             | Chinese (Taiwanese Mandarin, Traditional)         |
 
-  See the [language list for Custom neural voice](../../language-support.md?tabs=tts#custom-neural-voice) for the full list of supported locales.  
+  See the [language list for Custom neural voice](../../language-support.md?tabs=tts#professional-voice) for the full list of supported locales.  
 
 ### September 2024 release
 
@@ -598,7 +598,7 @@ For more information, see [text to speech avatar](../../text-to-speech-avatar/wh
 
 #### Custom neural voice
 
-Added support for the 24 new locales for cross-lingual voice. See the [full language list](../../language-support.md?tabs=tts#custom-neural-voice) for more information.
+Added support for the 24 new locales for cross-lingual voice. See the [full language list](../../language-support.md?tabs=tts#professional-voice) for more information.
 
 #### Standard voice
 Introducing new voices for public preview:
@@ -621,13 +621,13 @@ Models updated with bugs fixed and quality improvement:
 | `en-GB` | English (United Kingdom) | `RyanNeural` (Male) |
 | `ko-KR` | Korean (Korea) | `InjoonNeural` (Male) |
 
-See the [full language and voice list](../../language-support.md?tabs=tts#custom-neural-voice) for more information.
+See the [full language and voice list](../../language-support.md?tabs=tts#professional-voice) for more information.
 
 ### October 2023 release
 
 #### Custom neural voice
 
-- Added support for the 12 new locales with custom neural voice Pro. See the [full language list](../../language-support.md?tabs=tts#custom-neural-voice) for more information.
+- Added support for the 12 new locales with custom neural voice Pro. See the [full language list](../../language-support.md?tabs=tts#professional-voice) for more information.
 
 ### September 2023 release
 
@@ -640,7 +640,7 @@ See the [full language and voice list](../../language-support.md?tabs=tts#custom
 | `en-US` | English (United States) | `en-US-AndrewNeural` (Male) |
 | `en-US` | English (United States) | `en-US-BrianNeural` (Male) |
 
-See the [full language and voice list](../../language-support.md?tabs=tts#custom-neural-voice) for more information.
+See the [full language and voice list](../../language-support.md?tabs=tts#professional-voice) for more information.
 
 #### Embedded neural voice
 - All 147 locales here (except fa-IR, Persian (Iran)) are available out of box with either 1 selected female and/or 1 selected male voices.
@@ -655,10 +655,10 @@ See the [full language and voice list](../../language-support.md?tabs=tts#custom
 
 #### Custom neural voice
 
-- [Multi-style voice](../../professional-voice-train-voice.md?tabs=multistyle#train-your-custom-neural-voice-model) is generally available.
-- Added two new locales in public preview for multi-style voice: `ja-JP` and `zh-CN`. See the [full language and voice list](../../language-support.md?tabs=tts#custom-neural-voice) for more information. Refer to [the preset style list for different languages](../../professional-voice-train-voice.md?tabs=multistyle#available-preset-styles-across-different-languages).
-- [Cross-lingual voice](../../professional-voice-train-voice.md?tabs=crosslingual#train-your-custom-neural-voice-model) is generally available. 
-- Added two new locales for cross-lingual voice: `id-ID` and `nl-NL`. See the [full language and voice list](../../language-support.md?tabs=tts#custom-neural-voice) for more information. 
+- [Multi-style voice](../../professional-voice-train-voice.md?tabs=multistyle#train-your-custom-voice-model) is generally available.
+- Added two new locales in public preview for multi-style voice: `ja-JP` and `zh-CN`. See the [full language and voice list](../../language-support.md?tabs=tts#professional-voice) for more information. Refer to [the preset style list for different languages](../../professional-voice-train-voice.md?tabs=multistyle#available-preset-styles-across-different-languages).
+- [Cross-lingual voice](../../professional-voice-train-voice.md?tabs=crosslingual#train-your-custom-voice-model) is generally available. 
+- Added two new locales for cross-lingual voice: `id-ID` and `nl-NL`. See the [full language and voice list](../../language-support.md?tabs=tts#professional-voice) for more information. 
 
 #### Standard voices
 
@@ -722,7 +722,7 @@ Speech Synthesis Markup Language (SSML) is updated to support audio effect proce
 
 #### Custom neural voice
 
-Added support for the `nl-BE` locale with [Custom neural voice](../../custom-neural-voice.md) Pro. See the [full language and voice list](../../language-support.md?tabs=tts#custom-neural-voice) for more information.
+Added support for the `nl-BE` locale with [Custom neural voice](../../custom-neural-voice.md) Pro. See the [full language and voice list](../../language-support.md?tabs=tts#professional-voice) for more information.
 
 #### Standard voices
 
@@ -978,7 +978,7 @@ For more information, see the [language and voice list](../../language-support.m
 #### Custom neural voice
 
 * Enabled to fix data issues online. Learn more on [how to resolve data issues in Speech Studio](../../professional-voice-create-training-set.md#resolve-data-issues-online).
-* Added training recipe version. Learn more on [selecting the training recipe version for your voice model](../../professional-voice-train-voice.md#train-your-custom-neural-voice-model).
+* Added training recipe version. Learn more on [selecting the training recipe version for your voice model](../../professional-voice-train-voice.md#train-your-custom-voice-model).
 
 #### Audio Content Creation tool
 
@@ -1001,7 +1001,7 @@ For more information, see the [language and voice list](../../language-support.m
 
 #### Custom neural voice
 
-* Enabled to cancel training during training voice model. Learn more on [how to cancel training](../../professional-voice-train-voice.md#train-your-custom-neural-voice-model).
+* Enabled to cancel training during training voice model. Learn more on [how to cancel training](../../professional-voice-train-voice.md#train-your-custom-voice-model).
 * Enabled to clone model (rename voice model). Learn more on [how to rename your voice model](../../professional-voice-train-voice.md#rename-your-model).
 * Enabled to test your voice model by adding your own test script. Learn more on [how to upload your test script](../../professional-voice-train-voice.md#test-your-voice-model).
 * Enabled to update engine version for your voice model. Learn more on [how to update the model engine version](../../professional-voice-train-voice.md#update-engine-version-for-your-voice-model).

@@ -2,12 +2,14 @@
 title: How to use the AI agent catalog
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to use the AI agent catalog to use code samples to quickly deploy agents.
+author: aahill
+ms.author: aahi
 manager: nitinme
+ms.date: 05/18/2025
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 05/18/2025
-ms.author: aahi
-author: aahill
+ms.custom:
+  - build-2025
 ---
 
 # Get started with the Agent Catalog
@@ -24,7 +26,7 @@ With agents you create using these code samples, be sure to assess safety and le
 
 ## Find the Agent Catalog in the Azure AI Foundry portal
 
-1. Go to [Azure AI Foundry portal](https://ai.azure.com).
+1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Open your project.
 1. On the left pane, select **Agents**.
 1. Near the top of the screen, select **Catalog**. Find the code sample you want to use.

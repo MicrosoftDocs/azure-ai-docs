@@ -2,13 +2,14 @@
 title: Build an agentic retrieval solution
 titleSuffix: Azure AI Search
 description: Learn how to design and build a custom agentic retrieval solution where Azure AI Search handles data retrieval for your custom agents.
-
-manager: nitinme
 author: HeidiSteen
 ms.author: heidist
+manager: nitinme
+ms.date: 05/21/2025
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/21/2025
+ms.custom:
+  - build-2025
 ---
 
 # Build an agent-to-agent retrieval solution using Azure AI Search
@@ -127,7 +128,7 @@ You can find endpoints for Azure AI Search and Azure OpenAI in the [Azure portal
 
 You can find the project endpoint in the Azure AI Foundry portal:
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com) and open your project. 
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and open your project. 
 
 1. In the **Overview** tile, find and copy the Azure AI Foundry project endpoint.
 
@@ -262,5 +263,7 @@ Look at output tokens in the [activity array](search-agentic-retrieval-how-to-re
 ## Related content
 
 + [Agentic retrieval in Azure AI Search](search-agentic-retrieval-concept.md)
+
++ [Agentic RAG: build a reasoning retrieval engine with Azure AI Search (YouTube video)](https://www.youtube.com/watch?v=PeTmOidqHM8)
 
 + [Azure OpenAI Demo featuring agentic retrieval](https://github.com/Azure-Samples/azure-search-openai-demo)

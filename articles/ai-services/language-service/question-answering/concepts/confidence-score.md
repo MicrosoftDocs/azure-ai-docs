@@ -4,8 +4,8 @@ titleSuffix: Azure AI services
 description: When a user query is matched against a knowledge base, custom question answering returns relevant answers, along with a confidence score.
 #services: cognitive-services
 manager: nitinme
-author: jboback
-ms.author: jboback
+author: laujan
+ms.author: lajanuar
 ms.service: azure-ai-language
 ms.topic: conceptual
 ms.date: 11/21/2024

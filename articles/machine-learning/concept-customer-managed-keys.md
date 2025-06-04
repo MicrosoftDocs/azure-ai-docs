@@ -54,13 +54,12 @@ When you use a customer-managed key, there are two possible configurations:
 
 ## Service-side encryption of metadata
 
-A new architecture for the customer-managed key encryption workspace is available in preview, reducing cost compared to the current architecture and mitigating likelihood of Azure policy conflicts. In this configuration, encrypted data is stored service-side on Microsoft-managed resources instead of in your subscription.
+In this configuration, encrypted data is stored service-side on Microsoft-managed resources instead of in your subscription. Using service-side encryption reduces costs compared to the subscription-side encryption, and mitigates the likelihood of Azure policy conflicts.
 
-Data that previously was stored in Azure Cosmos DB in your subscription, is stored in multitenant Microsoft-managed resources with document-level encryption using your encryption key. Search indices that were previously stored in Azure AI Search in your subscription, are stored on Microsoft-managed resources that are provisioned dedicated for you per workspace. The cost of the Azure AI search instance is charged under your Azure Machine Learning workspace in Microsoft Cost Management.
+Data is stored in multitenant Microsoft-managed resources with document-level encryption using your encryption key. Search indices are stored on Microsoft-managed resources that are provisioned dedicated for you per workspace. The cost of the Azure AI search instance is charged under your Azure Machine Learning workspace in Microsoft Cost Management.
 
-Pipelines metadata that previously was stored in a storage account in a managed resource group, is now stored on the storage account in your subscription that is associated to the Azure Machine Learning workspace. Since this Azure Storage resource is managed separately in your subscription, you're responsible to configure encryption settings on it.
+Pipelines metadata is stored on the storage account in your subscription that is associated to the Azure Machine Learning workspace. Since this Azure Storage resource is managed separately in your subscription, you're responsible to configure encryption settings on it.
 
-To opt in for this preview, set the `enableServiceSideCMKEncryption` on a REST API or in your Bicep or Resource Manager template. You can also use Azure portal.
 
 :::image type="content" source="./media/concept-customer-managed-keys/cmk-service-side-encryption.png" alt-text="Screenshot of the encryption tab with the option for server side encryption selected." lightbox="./media/concept-customer-managed-keys/cmk-service-side-encryption.png":::
 

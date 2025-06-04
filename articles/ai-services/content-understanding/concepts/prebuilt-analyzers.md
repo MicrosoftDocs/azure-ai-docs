@@ -5,9 +5,11 @@ description: Learn about prebuilt analyzers, their scenarios, customization opti
 author: laujan
 ms.author: admaheshwari
 manager: nitinme
+ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 05/19/2025
+ms.custom:
+  - build-2025
 ---
 
 # Prebuilt analyzers in Azure AI Content Understanding

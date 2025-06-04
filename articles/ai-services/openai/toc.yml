@@ -36,6 +36,8 @@ items:
       href: gpt-v-quickstart.md
     - name: Image generation
       href: dall-e-quickstart.md
+    - name: Video generation
+      href: video-generation-quickstart.md
     - name: Use your data
       href: use-your-data-quickstart.md
     - name: Realtime API for speech and audio (preview)
@@ -68,8 +70,6 @@ items:
         href: ./concepts/content-filter-groundedness.md
       - name: Protected material detection
         href: ./concepts/content-filter-protected-material.md
-      - name: Personally identifiable information (PII) detection
-        href: ./concepts/content-filter-personal-information.md
       - name: Content filter configurability
         href: ./concepts/content-filter-configurability.md
       - name: Content filter annotations
@@ -90,6 +90,8 @@ items:
       href: ./concepts/fine-tuning-considerations.md
     - name: Vision-enabled models
       href: ./concepts/gpt-with-vision.md
+    - name: Video generation (preview)
+      href: ./concepts/video-generation.md
     - name: Red teaming large language models (LLMs)
       href: ./concepts/red-teaming.md
     - name: Content credentials

@@ -5,9 +5,11 @@ description: Learn how to best use Azure AI Content Understanding for document, 
 author: laujan
 ms.author: jfilcik
 manager: nitinme
+ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 05/19/2025
+ms.custom:
+  - build-2025
 ---
 
 # Best practices for Azure AI Content Understanding

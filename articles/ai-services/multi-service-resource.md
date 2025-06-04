@@ -3,12 +3,17 @@ title: Create an AI Foundry resource
 titleSuffix: Azure AI services
 description: Create and manage an AI Foundry resource.
 author: eric-urban
-manager: nitinme
-ms.service: azure-ai-services
-ms.custom: devx-track-azurecli, devx-track-azurepowershell, build-2024, ignite-2024
-ms.topic: quickstart
-ms.date: 5/19/2025
 ms.author: eur
+manager: nitinme
+ms.date: 5/19/2025
+ms.service: azure-ai-services
+ms.topic: quickstart
+ms.custom:
+  - devx-track-azurecli
+  - devx-track-azurepowershell
+  - build-2024
+  - ignite-2024
+  - build-2025
 zone_pivot_groups: programming-languages-portal-cli-ps
 ---
 

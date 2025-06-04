@@ -2,13 +2,15 @@
 title: Azure OpenAI Responses API
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI's new stateful Responses API.
+author: mrbullwinkle
+ms.author: mbullwin
 manager: nitinme
+ms.date: 05/25/2025
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 05/25/2025
-author: mrbullwinkle    
-ms.author: mbullwin
-ms.custom: references_regions
+ms.custom:
+  - references_regions
+  - build-2025
 ---
 
 # Azure OpenAI Responses API (Preview)
@@ -929,6 +931,7 @@ curl GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_12
 ```python
 from openai import AzureOpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+from time import sleep
 
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
@@ -947,7 +950,7 @@ response = client.responses.create(
 )
 
 while response.status in {"queued", "in_progress"}:
-    print(f"Current status: {resp.status}")
+    print(f"Current status: {response.status}")
     sleep(2)
     response = client.responses.retrieve(response.id)
 

@@ -9,12 +9,12 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 12/06/2024
+ms.date: 05/27/2025
 ---
 
 # Hybrid search using vectors and full text in Azure AI Search
 
-Hybrid search is a combination of full text and vector queries that execute against a search index containing both searchable plain text content and generated embeddings. For query purposes, hybrid search is:
+Hybrid search is a single query request, configured for full text and vector search, that executes against a search index containing both searchable plain text content and generated embeddings. For query purposes, hybrid search is:
 
 + A single query request that includes both `search` and `vectors` query parameters
 + Executing in parallel

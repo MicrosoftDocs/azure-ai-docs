@@ -31,13 +31,13 @@ Once you sign up, you can immediately use either of these links to access Azure 
 
 + [Sign in to Azure portal](https://portal.azure.com/) to view, manage, and create more resources. You can also use the Azure portal to track your credits and projected costs.
 
-+ [Sign in to Azure AI Foundry](https://ai.azure.com) for a no-code approach to deploying models on Azure OpenAI and using Azure AI Search for information retrieval. **We recommend you start here first.**
++ [Sign in to Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) for a no-code approach to deploying models on Azure OpenAI and using Azure AI Search for information retrieval. **We recommend you start here first.**
 
 ## Step two: "Day One" tasks
 
 [**How to build and consume vector indexes in Azure AI Foundry portal**](/azure/ai-foundry/how-to/index-add) is a great place to start.
 
-1. [Sign in to Azure AI Foundry](https://ai.azure.com).
+1. [Sign in to Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
 1. Create a new hub and project.
 

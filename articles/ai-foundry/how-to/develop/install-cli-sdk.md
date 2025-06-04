@@ -1,22 +1,24 @@
 ---
 title: Set up your development environment
 titleSuffix: Azure AI Foundry
-description:  Instructions for installing the Azure AI Foundry SDK and the Azure CLI 
+description: Instructions for installing the Azure AI Foundry SDK and the Azure CLI
+author: sdgilley
+ms.author: sgilley
 manager: scottpolly
+ms.reviewer: dantaylo
+ms.date: 04/22/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 04/22/2025
-ms.reviewer: dantaylo
-ms.author: sgilley
-author: sdgilley
+ms.custom:
+  - build-aifnd
+  - build-2025
 zone_pivot_groups: foundry-sdk-overview-languages
-
-#customer intent: As a developer, I want to install the Azure AI Foundry SDK in my development environment
+# customer intent: As a developer, I want to install the Azure AI Foundry SDK in my development environment
 ---
 
 # Set up your development environment
 
-Set up your development environment to use the [Azure AI Foundry](https://ai.azure.com) SDK. You also need Azure CLI for authentication so that your code can access your user credentials.
+Set up your development environment to use the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) SDK. You also need Azure CLI for authentication so that your code can access your user credentials.
 
 ## Prerequisites
 

@@ -117,7 +117,7 @@ The key difference between this model and the new model is that previously the o
 
 With this insight, the new way to think about payment models is: 
 
-1. Create deployments using your exsiting or default quota.
+1. Create deployments using your existing or default quota.
 1. Optionally request additional PTU quota as needed.
 1. Optionally purchase or extend a commitment or a reservation to apply a term discount to your deployments. 
 

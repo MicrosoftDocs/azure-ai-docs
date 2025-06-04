@@ -1,15 +1,16 @@
 ---
-title: 'Code interpreter code samples'
+title: "Code interpreter code samples"
 titleSuffix: Azure AI Foundry
 description: Find code samples to enable code interpreter for Azure AI Agents.
-services: cognitive-services
-manager: nitinme
-ms.service: azure-ai-agent-service
-ms.topic: how-to
-ms.date: 04/09/2025
 author: aahill
 ms.author: aahi
-ms.custom: azure-ai-agents-code
+manager: nitinme
+ms.date: 04/09/2025
+ms.service: azure-ai-agent-service
+ms.topic: how-to
+ms.custom:
+  - azure-ai-agents-code
+  - build-2025
 zone_pivot_groups: selection-code-interpreter
 ---
 
@@ -21,7 +22,7 @@ Azure AI Agents supports using the Code Interpreter tool, which allows an agent 
 
 ## Using the code interpreter tool with an agent
 
-You can add the code interpreter tool to an agent programmatically using the code examples listed at the top of this article, or the [Azure AI Foundry portal](https://ai.azure.com/). If you want to use the portal:
+You can add the code interpreter tool to an agent programmatically using the code examples listed at the top of this article, or the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). If you want to use the portal:
 
 1. In the **Agents** screen for your agent, scroll down the **Setup** pane on the right to **action**. Then select **Add**.
 

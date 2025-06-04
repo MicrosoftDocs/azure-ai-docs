@@ -2,14 +2,16 @@
 title: Quickstart - Create a new Azure AI Foundry Agent Service project
 titleSuffix: Azure AI Foundry
 description: Use this guide to start using Azure AI Foundry Agent Service.
-manager: nitinme
 author: aahill
 ms.author: aahi
+manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: quickstart
 ms.date: 05/27/2025
+ms.custom:
+  - azure-ai-agents
+  - build-2025
 zone_pivot_groups: agents-quickstart
-ms.custom: azure-ai-agents
 ---
 
 # Quickstart: Create a new agent

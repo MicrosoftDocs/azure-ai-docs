@@ -1,7 +1,7 @@
 ---
 title: Monitor Azure AI Foundry Agent Service
 description: Start here to learn how to use Azure Monitor to capture and analyze metrics for your Azure AI Foundry Agent Service.
-ms.date: 03/20/2025
+ms.date: 06/02/2025
 ms.custom: horz-monitor, subject-monitoring
 ms.topic: conceptual
 author: aahill
@@ -14,6 +14,9 @@ ms.service: azure-ai-agent-service
 [!INCLUDE [horz-monitor-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-intro.md)]
 
 Monitoring is available for agents in a [standard agent setup](../concepts/standard-agent-setup.md).
+
+> [!IMPORTANT]
+> Monitoring support is currently limited to Azure AI Foundry hubs. Azure AI Foundry projects are not supported.
 
 ## Dashboards
 
