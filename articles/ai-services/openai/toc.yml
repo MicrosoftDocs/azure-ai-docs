@@ -269,7 +269,7 @@ items:
 - name: Security & Governance
   items:
     - name: Data, privacy, and security
-      href: /legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context
+      href: /azure/ai-foundry/responsible-ai/openai/data-privacy?context=/azure/ai-services/openai/context/context
     - name: Use virtual networks
       href: ../cognitive-services-virtual-networks.md?context=/azure/ai-services/openai/context/context
     - name: Encryption of data at rest
@@ -287,17 +287,17 @@ items:
 - name: Responsible AI
   items:
     - name: Overview
-      href: /legal/cognitive-services/openai/overview?context=/azure/ai-services/openai/context/context
+      href: /azure/ai-foundry/responsible-ai/openai/overview?context=/azure/ai-services/openai/context/context
     - name : Transparency note
-      href: /legal/cognitive-services/openai/transparency-note?context=/azure/ai-services/openai/context/context
+      href: /azure/ai-foundry/responsible-ai/openai/transparency-note?context=/azure/ai-services/openai/context/context
     - name: Limited access
-      href: /legal/cognitive-services/openai/limited-access?context=/azure/ai-services/openai/context/context
+      href: /azure/ai-foundry/responsible-ai/openai/limited-access?context=/azure/ai-services/openai/context/context
     - name: Code of conduct
       href: /legal/ai-code-of-conduct?context=/azure/ai-services/openai/context/context
     - name: Data, privacy, and security
-      href: /legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context
+      href: /azure/ai-foundry/responsible-ai/openai/data-privacy?context=/azure/ai-services/openai/context/context
     - name: Customer Copyright Commitment
-      href: /legal/cognitive-services/openai/customer-copyright-commitment?context=/azure/ai-services/openai/context/context
+      href: /azure/ai-foundry/responsible-ai/openai/customer-copyright-commitment?context=/azure/ai-services/openai/context/context
 - name: Reference
   items:
     - name: Inference GA API reference
