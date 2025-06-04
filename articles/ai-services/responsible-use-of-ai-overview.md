@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: conceptual
-ms.date: 05/01/2025
+ms.date: 05/31/2025
 ms.author: pafarley
 ---
 
@@ -20,9 +20,8 @@ Azure AI services provides information and guidelines on how to responsibly use 
 
 ## Vision
 - [Azure AI Vision - Image Analysis](/legal/cognitive-services/computer-vision/imageanalysis-transparency-note?context=/azure/ai-services/computer-vision/context/context)
-- [Azure AI Vision - OCR](/legal/cognitive-services/computer-vision/ocr-transparency-note?context=/azure/ai-services/computer-vision/context/context)
+- [Azure AI Vision - OCR (legacy)](/legal/cognitive-services/computer-vision/ocr-transparency-note?context=/azure/ai-services/computer-vision/context/context)
 - [Azure AI Vision - Face](/legal/cognitive-services/face/transparency-note?context=/azure/ai-services/computer-vision/context/context)
-- [Azure AI Vision - Spatial Analysis](/legal/cognitive-services/computer-vision/transparency-note-spatial-analysis?context=/azure/ai-services/computer-vision/context/context)
 - [Azure Custom Vision](/legal/cognitive-services/custom-vision/custom-vision-cvs-transparency-note?context=/azure/ai-services/custom-vision-service/context/context)
 - [Azure Video Indexer](/legal/azure-video-indexer/transparency-note?context=%2Fazure%2Fazure-video-indexer%2Fcontext%2Fcontext)
 

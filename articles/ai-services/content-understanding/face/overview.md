@@ -5,10 +5,12 @@ description: Learn about Azure AI Content Understanding face solutions.
 author: laujan
 ms.author: quentinm
 manager: nitinme
+ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 05/19/2025
-ms.custom: build-2025-understanding-refresh
+ms.custom:
+  - build-2025-understanding-refresh
+  - build-2025
 ---
 
 # Azure AI Content Understanding face solutions (preview)

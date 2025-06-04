@@ -54,7 +54,7 @@ As you add utterances and label them, keep in mind:
 
 Use the following steps to label your utterances:
 
-1. Go to your project page in [AI Foundry](https://ai.azure.com).
+1. Go to your project page in [AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
 1. From the left side menu, select `Manage data`. In this page, you can start adding your utterances and labeling them. You can also upload your utterances directly by clicking on `Upload utterance file` from the top menu. Make sure it follows the [accepted format](../concepts/data-formats.md#utterance-file-format).
 

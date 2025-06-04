@@ -2,12 +2,12 @@
 title: What is key phrase extraction in Azure AI Language?
 titleSuffix: Azure AI services
 description: An overview of key phrase extraction in Azure AI services, which helps you identify main concepts in unstructured text
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
 ms.date: 02/17/2025
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-key-phrase
 ---
 

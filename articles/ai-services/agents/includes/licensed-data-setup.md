@@ -9,7 +9,7 @@ ms.date: 04/28/2025
 
 ## Setup
 
-1. Go to [Azure AI Foundry portal](https://ai.azure.com/) and select your AI Project. Select **Management Center**.
+1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your AI Project. Select **Management Center**.
    
    :::image type="content" source="../media/tools/licensed-data/project-assets.png" alt-text="A screenshot showing the selectors for the management center for an AI project." lightbox="../media/tools/licensed-data/project-assets.png":::
 

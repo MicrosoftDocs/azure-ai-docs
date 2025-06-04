@@ -2,13 +2,13 @@
 title: Language and region support for custom named entity recognition
 titleSuffix: Azure AI services
 description: Learn about the languages and regions supported by custom named entity recognition.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
 ms.date: 11/21/2024
 ms.custom: language-service-custom-ner
-ms.author: jboback
+ms.author: lajanuar
 ---
 
 # Language support for custom named entity recognition

@@ -1,17 +1,17 @@
 ---
 title: What's new in Azure OpenAI in Azure AI Foundry Models?
 description: Learn about the latest news and features updates for Azure OpenAI.
-manager: nitinme
 author: mrbullwinkle
 ms.author: mbullwin #
+manager: nitinme
+ms.date: 5/28/2025
 ms.service: azure-ai-openai
+ms.topic: whats-new
 ms.custom:
   - ignite-2023
   - references_regions
   - ignite-2024
-ms.topic: whats-new
-ms.date: 5/28/2025
-recommendations: false
+  - build-2025
 ---
 
 # What's new in Azure OpenAI in Azure AI Foundry Models
@@ -20,9 +20,11 @@ This article provides a summary of the latest releases and major documentation u
 
 ## May 2025
 
-### PII detection content filter
+### Sora video generation released (preview)
 
-Personally identifiable information (PII) detection is now available as a built-in content filter. This feature allows you to identify and block sensitive information in LLM outputs, enhancing data privacy. For more information, see the [PII detection](./concepts/content-filter-personal-information.md) documentation.
+Sora (2025-05-02) is a video generation model from OpenAI that can create realistic and imaginative video scenes from text instructions.
+
+Follow the [Video generation quickstart](/azure/ai-services/openai/video-generation-quickstart) to get started. For more information, see the [Video generation concepts](./concepts/video-generation.md) guide.
 
 ### Spotlighting for prompt shields
 
@@ -139,7 +141,7 @@ The `gpt-4o-realtime-preview` model version 2024-12-17 is available for global d
 
 - Added support for [prompt caching](./how-to/prompt-caching.md) with the `gpt-4o-realtime-preview` model.
 - Added support for new voices. The `gpt-4o-realtime-preview` models now support the following voices: "alloy", "ash", "ballad", "coral", "echo", "sage", "shimmer", "verse".
-- Rate limits are no longer based on connections per minute. Rate limiting is now based on RPM (requests per minute) and TPM (tokens per minute) for the `gpt-4o-realtime-preview` model. The rate limits for each `gpt-4o-realtime-preview` model deployment are 100K TPM and 1K RPM. During the preview, [Azure AI Foundry portal](https://ai.azure.com/) and APIs might inaccurately show different rate limits. Even if you try to set a different rate limit, the actual rate limit will be 100K TPM and 1K RPM.
+- Rate limits are no longer based on connections per minute. Rate limiting is now based on RPM (requests per minute) and TPM (tokens per minute) for the `gpt-4o-realtime-preview` model. The rate limits for each `gpt-4o-realtime-preview` model deployment are 100K TPM and 1K RPM. During the preview, [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and APIs might inaccurately show different rate limits. Even if you try to set a different rate limit, the actual rate limit will be 100K TPM and 1K RPM.
 
 For more information, see the [GPT-4o real-time audio quickstart](realtime-audio-quickstart.md) and the [how-to guide](./how-to/realtime-audio.md).
 
@@ -269,7 +271,7 @@ Global batch now supports GPT-4o (2024-08-06). See the [global batch getting sta
 
 ### Azure OpenAI Studio UX updates
 
-As of September 19, 2024, when you go to the [Azure OpenAI Studio](https://oai.azure.com/) you no longer see the legacy Azure OpenAI Studio by default. If needed you'll still be able to go back to the previous experience by using the **Switch to the old look** toggle in the top bar of the UI for the next couple of weeks. If you switch back to legacy [Azure AI Foundry portal](https://ai.azure.com/), it helps if you fill out the feedback form to let us know why. We're actively monitoring this feedback to improve the new experience.
+As of September 19, 2024, when you go to the [Azure OpenAI Studio](https://oai.azure.com/) you no longer see the legacy Azure OpenAI Studio by default. If needed you'll still be able to go back to the previous experience by using the **Switch to the old look** toggle in the top bar of the UI for the next couple of weeks. If you switch back to legacy [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), it helps if you fill out the feedback form to let us know why. We're actively monitoring this feedback to improve the new experience.
 
 
 ### GPT-4o 2024-08-06 provisioned deployments
@@ -312,7 +314,7 @@ OpenAI has incorporated additional safety measures into the `o1` models, includi
 
 ### Availability
 
-The `o1-preview` and `o1-mini` are available in the East US2 region for limited access through the [Azure AI Foundry portal](https://ai.azure.com) early access playground. Data processing for the `o1` models might occur in a different region than where they're available for use.
+The `o1-preview` and `o1-mini` are available in the East US2 region for limited access through the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) early access playground. Data processing for the `o1` models might occur in a different region than where they're available for use.
 
 To try the `o1-preview` and `o1-mini` models in the early access playground **registration is required, and access will be granted based on Microsoft’s eligibility criteria.**
 
@@ -370,7 +372,7 @@ On August 6, 2024, OpenAI [announced](https://openai.com/index/introducing-struc
 
 Azure customers can test out GPT-4o `2024-08-06` today in the new Azure AI Foundry early access playground (preview).
 
-Unlike the previous early access playground, the [Azure AI Foundry portal](https://ai.azure.com/) early access playground (preview) doesn't require you to have a resource in a specific region.
+Unlike the previous early access playground, the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) early access playground (preview) doesn't require you to have a resource in a specific region.
 
 > [!NOTE]
 > Prompts and completions made through the early access playground (preview) might be processed in any Azure OpenAI region, and are currently subject to a 10 request per minute per Azure subscription limit. This limit might change in the future.

@@ -102,5 +102,5 @@ The following table outlines which SDK features are supported for Phoenix and Dr
 
 ## Next steps
 
-- Learn more about custom neural voice in the [overview](custom-neural-voice.md).
+- Learn more about custom voice in the [overview](custom-neural-voice.md).
 - Learn more about Speech Studio in the [overview](speech-studio-overview.md).

@@ -39,7 +39,7 @@ This article uses a Meta Llama model deployment for illustration. However, you c
 
     # [Azure AI Foundry portal](#tab/azure-ai-studio)
 
-    You can use any compatible web browser to navigate [Azure AI Foundry](https://ai.azure.com).
+    You can use any compatible web browser to navigate [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
     # [Azure CLI](#tab/cli)
 
@@ -581,7 +581,7 @@ You can delete model subscriptions and endpoints. Deleting a model subscription 
 
 To delete a standard deployment:
 
-1. Go to the [Azure AI Foundry](https://ai.azure.com).
+1. Go to the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
 1. Go to your project.
 

@@ -2,7 +2,7 @@
 manager: nitinme
 ms.service: azure-ai-model-inference
 ms.topic: include
-ms.date: 1/31/2025
+ms.date: 05/29/2025
 ms.author: fasantia
 author: santiagxf
 ---
@@ -36,7 +36,7 @@ import os
 from openai import AzureOpenAI
     
 client = AzureOpenAI(
-    azure_endpoint = "https://<resource>.services.ai.azure.com"
+    azure_endpoint = "https://<resource>.services.ai.azure.com",
     api_key=os.getenv("AZURE_INFERENCE_CREDENTIAL"),  
     api_version="2024-10-21",
 )
@@ -71,7 +71,7 @@ token_provider = get_bearer_token_provider(
 )
 
 client = AzureOpenAI(
-    azure_endpoint = "https://<resource>.services.ai.azure.com"
+    azure_endpoint = "https://<resource>.services.ai.azure.com",
     azure_ad_token_provider=token_provider,
     api_version="2024-10-21",
 )
@@ -108,8 +108,6 @@ response = client.chat.completions.create(
         {"role": "user", "content": "How many languages are in the world?"}
     ]
 )
-
-print(response.model_dump_json(indent=2)
 ```
 
 # [Model Inference API (preview)](#tab/inference)
@@ -255,15 +253,17 @@ def print_stream(completion):
     for event in completion:
         if event.choices:
             content = event.choices[0].delta.content
-            reasoning_content = event.choices[0].delta.reasoning_content
-            if reasoning_content:
+            reasoning_content = event.choices[0].delta.reasoning_content if hasattr(event.choices[0].delta, "reasoning_content") else None
+            if reasoning_content and not is_thinking:
                 is_thinking = True
                 print("🧠 Thinking...", end="", flush=True)
             elif content:
                 if is_thinking:
                     is_thinking = False
                     print("🛑\n\n")
-                print(content, end="", flush=True)
+            print(content or reasoning_content, end="", flush=True)
+
+print_stream(response)
 ```
 
 # [Model Inference API (preview)](#tab/inference)
@@ -294,7 +294,7 @@ You can visualize how streaming generates content:
 
 
 ```python
-print_stream(result)
+print_stream(response)
 ```
 
 ### Parameters

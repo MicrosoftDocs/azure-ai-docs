@@ -626,11 +626,6 @@ az ml environment create --file <yaml file>
 
 You can now use the environment in a [training job](how-to-train-cli.md).
 
-### Build Azure Machine Learning managed environment into base image from private ACR for training or inference
-
-> [!NOTE]
-> Connecting to a private ACR using user-assigned managed identity is not currently supported. **Admin key** is the only auth type supported for private ACR.
-
 <!-- 20240725: this commented block will be restored at a later date TBD . . .
 
 [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
