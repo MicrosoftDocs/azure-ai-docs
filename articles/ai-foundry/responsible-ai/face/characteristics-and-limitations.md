@@ -250,4 +250,4 @@ When a device correlation ID is flagged and no more sessions can be created with
 ## Next steps
 
 * [Quickstart your Face use case development](/azure/ai-services/computer-vision/quickstarts-sdk/identity-client-library)
-* [Responsible deployment of Face](/legal/cognitive-services/face/guidance-integration-responsible-use?context=/azure/ai-services/computer-vision/context/context)
+* [Responsible deployment of Face](/azure/ai-foundry/responsible-ai/face/guidance-integration-responsible-use?context=/azure/ai-services/computer-vision/context/context)

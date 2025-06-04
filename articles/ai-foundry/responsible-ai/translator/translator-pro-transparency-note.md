@@ -130,13 +130,13 @@ It is important to note that certain populations may be more negatively impacted
 
 ### Best practices for improving system performance
 
-The Microsoft Translator Pro is an integrated end-to-end solution that leverages various services such as speech-to-text, translation, and text-to-speech. Please refer to [speech-to-text](/legal/cognitive-services/speech-service/speech-to-text/transparency-note) and [text-to-speech](/legal/cognitive-services/speech-service/text-to-speech/transparency-note) transparency notes for more details on the best practices for improving system performance.
+The Microsoft Translator Pro is an integrated end-to-end solution that leverages various services such as speech-to-text, translation, and text-to-speech. Please refer to [speech-to-text](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note) and [text-to-speech](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note) transparency notes for more details on the best practices for improving system performance.
 
 ## Evaluation of Microsoft Translator Pro
 
 ### Evaluation results
 
-The Microsoft Translator Pro is an integrated end-to-end solution that leverages various services such as speech-to-text, translation, and text-to-speech. Please refer to [speech-to-text](/legal/cognitive-services/speech-service/speech-to-text/transparency-note) and [text-to-speech](/legal/cognitive-services/speech-service/text-to-speech/transparency-note) transparency notes transparency notes for more details on evaluation results.
+The Microsoft Translator Pro is an integrated end-to-end solution that leverages various services such as speech-to-text, translation, and text-to-speech. Please refer to [speech-to-text](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note) and [text-to-speech](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note) transparency notes transparency notes for more details on evaluation results.
 
 ### Fairness considerations
 

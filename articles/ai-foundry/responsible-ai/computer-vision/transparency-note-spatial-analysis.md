@@ -155,7 +155,7 @@ There are many scenarios in which Spatial Analysis can be used. Accuracy has dif
 
     For media companies, the precision of search results directly impacts the efficiency and effectiveness of their content production process. False positives could lead to wasted time reviewing irrelevant footage, while false negatives might mean missing out on ideal content that's already in their library. Therefore, refining search queries and ensuring the video library is well-indexed with accurate tags and descriptions are essential steps to enhance the accuracy and usefulness of the Video Retrieval system in a media and entertainment setting. This accuracy is key to saving time and effort for the content production team, enabling them to find the exact content they need quickly and efficiently.
 
-Both kinds of errors reduce the accuracy of the system. For deployment recommendations, including providing effective human oversight to reduce the potential risks associated with these errors see the [Responsible Use Deployment documentation](/legal/cognitive-services/computer-vision/responsible-use-deployment).
+Both kinds of errors reduce the accuracy of the system. For deployment recommendations, including providing effective human oversight to reduce the potential risks associated with these errors see the [Responsible Use Deployment documentation](/azure/ai-foundry/responsible-ai/computer-vision/responsible-use-deployment).
 
 ### Best practices for improving system performance
 
@@ -223,5 +223,5 @@ The evaluation of Spatial Analysis and Video Retrieval models is essential to en
 ## Learn more about Spatial Analysis
 
 - [Spatial Analysis overview](/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview)
-- [Data, privacy, and security for Spatial Analysis](/legal/cognitive-services/computer-vision/compliance-privacy-security-2?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext)
+- [Data, privacy, and security for Spatial Analysis](/azure/ai-foundry/responsible-ai/computer-vision/compliance-privacy-security-2?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext)
 

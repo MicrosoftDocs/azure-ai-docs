@@ -59,10 +59,10 @@ Data does not get stored outside the designated region that the user selected fo
 
 ### Face 
 
-Face is a gated feature as it processes biometric data. We detect faces in the input files and group them by their similarity. All intermediate data do not persist beyond the processing of the request. The face groupings associated with analysis results are persisted for 48 hours unless the user explicitly deletes face data. For more information, please refer to the [Data and Privacy for Face documentation](/legal/cognitive-services/face/data-privacy-security?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext). 
+Face is a gated feature as it processes biometric data. We detect faces in the input files and group them by their similarity. All intermediate data do not persist beyond the processing of the request. The face groupings associated with analysis results are persisted for 48 hours unless the user explicitly deletes face data. For more information, please refer to the [Data and Privacy for Face documentation](/azure/ai-foundry/responsible-ai/face/data-privacy-security?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext). 
 
  
 
 ### Azure OpenAI 
 
-Content Understanding also utilizes Azure OpenAI model once each modality input is processed through the underlying AI services. Please refer to the [Azure OpenAI Data, privacy, and security documentation](/legal/cognitive-services/openai/data-privacy?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=azure-portal) for more information. 
+Content Understanding also utilizes Azure OpenAI model once each modality input is processed through the underlying AI services. Please refer to the [Azure OpenAI Data, privacy, and security documentation](/azure/ai-foundry/responsible-ai/openai/data-privacy?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=azure-portal) for more information. 

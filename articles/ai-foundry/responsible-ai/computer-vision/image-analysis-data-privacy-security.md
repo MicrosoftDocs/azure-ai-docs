@@ -73,7 +73,7 @@ For additional security best practices and information, visit [Azure AI services
 
 ## Next steps
 
-* [Characteristics and limitations](/legal/cognitive-services/computer-vision/imageanalysis-characteristics-and-limitations)
-* [Responsible deployment of Image Analysis](/legal/cognitive-services/computer-vision/imageanalysis-guidance-for-integration)
+* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/computer-vision/imageanalysis-characteristics-and-limitations)
+* [Responsible deployment of Image Analysis](/azure/ai-foundry/responsible-ai/computer-vision/imageanalysis-guidance-for-integration)
 * [Quickstart your Image Analysis use case development](/azure/ai-services/computer-vision/quickstarts-sdk/image-analysis-client-library)
-* [Transparency Note](/legal/cognitive-services/computer-vision/imageanalysis-transparency-note)
+* [Transparency Note](/azure/ai-foundry/responsible-ai/computer-vision/imageanalysis-transparency-note)

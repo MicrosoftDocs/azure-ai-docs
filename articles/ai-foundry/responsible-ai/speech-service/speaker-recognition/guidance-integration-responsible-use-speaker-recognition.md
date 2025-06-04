@@ -42,5 +42,5 @@ A successful privacy approach empowers individuals with information and provides
 ## Next steps
 
 * [Speaker Recognition overview](/azure/ai-services/speech-service/speaker-recognition-overview)
-* [Limited access for Speaker Recognition](/legal/cognitive-services/speech-service/speaker-recognition/limited-access-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
-* [Transparency Note for Speaker Recognition](/legal/cognitive-services/speech-service/speaker-recognition/transparency-note-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
+* [Limited access for Speaker Recognition](/azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/limited-access-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
+* [Transparency Note for Speaker Recognition](/azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/transparency-note-speaker-recognition?context=/azure/ai-services/speech-service/context/context)

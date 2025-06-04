@@ -194,7 +194,7 @@ This section discusses Image Analysis and key considerations for using this tech
 
 You can report feedback on the content filtering system [through support](/azure/ai-services/cognitive-services-support-options).
 
-To ensure you have properly mitigated risks in your application, you should evaluate all potential harms carefully, follow guidance in the [Transparency Note](/legal/cognitive-services/computer-vision/imageanalysis-transparency-note?context=%2Fazure%2Fcognitive-services%2Fcomputer-vision%2Fcontext%2Fcontext) and add scenario-specific mitigation as needed.
+To ensure you have properly mitigated risks in your application, you should evaluate all potential harms carefully, follow guidance in the [Transparency Note](/azure/ai-foundry/responsible-ai/computer-vision/imageanalysis-transparency-note?context=%2Fazure%2Fcognitive-services%2Fcomputer-vision%2Fcontext%2Fcontext) and add scenario-specific mitigation as needed.
 
 ### Recommendations for preserving privacy
 
@@ -270,7 +270,7 @@ Based on the model's performance, you need to decide if the model is appropriate
 
 ## Next steps
 
-* [Responsible deployment of Image Analysis](/legal/cognitive-services/computer-vision/imageanalysis-guidance-for-integration)
+* [Responsible deployment of Image Analysis](/azure/ai-foundry/responsible-ai/computer-vision/imageanalysis-guidance-for-integration)
 * [Image Analysis Overview](/azure/ai-services/computer-vision/overview-image-analysis)
 * [QuickStart your Image Analysis use case development](/azure/ai-services/computer-vision/quickstarts-sdk/image-analysis-client-library)
-* [Data, privacy, and security for Image Analysis](/legal/cognitive-services/computer-vision/imageanalysis-data-privacy-security)
+* [Data, privacy, and security for Image Analysis](/azure/ai-foundry/responsible-ai/computer-vision/imageanalysis-data-privacy-security)

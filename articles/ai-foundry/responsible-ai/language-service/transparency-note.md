@@ -39,17 +39,17 @@ Read the overview to get an introduction to each feature and review the example 
 
 This article contains basic guidelines for how to use Azure AI Language features responsibly. Read the general information first and then jump to the specific article if you're using one of the features below.
 
-* [Transparency note for Named Entity Recognition](/legal/cognitive-services/language-service/transparency-note-named-entity-recognition?context=/azure/ai-services/language-service/context/context)
-* [Transparency note for Personally Identifying Information](/legal/cognitive-services/language-service/transparency-note-personally-identifiable-information?context=/azure/ai-services/language-service/context/context)
-* [Transparency note for text analytics for health](/legal/cognitive-services/language-service/transparency-note-health?context=/azure/ai-services/language-service/context/context)
-* [Transparency note for key phrase extraction](/legal/cognitive-services/language-service/transparency-note-key-phrase-extraction?context=/azure/ai-services/language-service/context/context)
-* [Transparency note for language detection](/legal/cognitive-services/language-service/transparency-note-language-detection?context=/azure/ai-services/language-service/context/context)
-* [Transparency note for sentiment analysis](/legal/cognitive-services/language-service/transparency-note-sentiment-analysis?context=/azure/ai-services/language-service/context/context)
-* [Transparency note for question answering](/legal/cognitive-services/language-service/transparency-note-question-answering?context=/azure/ai-services/language-service/context/context)
-* [Transparency note for summarization](/legal/cognitive-services/language-service/transparency-note-extractive-summarization?context=/azure/ai-services/language-service/context/context)
-* [Transparency note for custom Named Entity Recognition (custom NER)](/legal/cognitive-services/language-service/custom-named-entity-recognition-transparency-note?context=/azure/ai-services/language-service/context/context)
-* [Transparency note for custom text classification](/legal/cognitive-services/language-service/custom-text-classification-transparency-note?context=/azure/ai-services/language-service/context/context)
-* [Transparency note for conversational language understanding](/legal/cognitive-services/clu/clu-transparency-note?context=/azure/ai-services/language-service/context/context)
+* [Transparency note for Named Entity Recognition](/azure/ai-foundry/responsible-ai/language-service/transparency-note-named-entity-recognition?context=/azure/ai-services/language-service/context/context)
+* [Transparency note for Personally Identifying Information](/azure/ai-foundry/responsible-ai/language-service/transparency-note-personally-identifiable-information?context=/azure/ai-services/language-service/context/context)
+* [Transparency note for text analytics for health](/azure/ai-foundry/responsible-ai/language-service/transparency-note-health?context=/azure/ai-services/language-service/context/context)
+* [Transparency note for key phrase extraction](/azure/ai-foundry/responsible-ai/language-service/transparency-note-key-phrase-extraction?context=/azure/ai-services/language-service/context/context)
+* [Transparency note for language detection](/azure/ai-foundry/responsible-ai/language-service/transparency-note-language-detection?context=/azure/ai-services/language-service/context/context)
+* [Transparency note for sentiment analysis](/azure/ai-foundry/responsible-ai/language-service/transparency-note-sentiment-analysis?context=/azure/ai-services/language-service/context/context)
+* [Transparency note for question answering](/azure/ai-foundry/responsible-ai/language-service/transparency-note-question-answering?context=/azure/ai-services/language-service/context/context)
+* [Transparency note for summarization](/azure/ai-foundry/responsible-ai/language-service/transparency-note-extractive-summarization?context=/azure/ai-services/language-service/context/context)
+* [Transparency note for custom Named Entity Recognition (custom NER)](/azure/ai-foundry/responsible-ai/language-service/custom-named-entity-recognition-transparency-note?context=/azure/ai-services/language-service/context/context)
+* [Transparency note for custom text classification](/azure/ai-foundry/responsible-ai/language-service/custom-text-classification-transparency-note?context=/azure/ai-services/language-service/context/context)
+* [Transparency note for conversational language understanding](/azure/ai-foundry/responsible-ai/clu/clu-transparency-note?context=/azure/ai-services/language-service/context/context)
 
 ## Capabilities 
 

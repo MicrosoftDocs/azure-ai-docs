@@ -73,6 +73,6 @@ Our research shows that you can support security and reception personnel by help
 ## Next steps
 
 * [Meaningful consent guidelines](/azure/ai-services/computer-vision/enrollment-overview).
-* [Characteristics and limitations](/legal/cognitive-services/face/characteristics-and-limitations?context=/azure/ai-services/computer-vision/context/context)
-* [Data, privacy, and security for Face](/legal/cognitive-services/face/data-privacy-security?context=/azure/ai-services/computer-vision/context/context)
+* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/face/characteristics-and-limitations?context=/azure/ai-services/computer-vision/context/context)
+* [Data, privacy, and security for Face](/azure/ai-foundry/responsible-ai/face/data-privacy-security?context=/azure/ai-services/computer-vision/context/context)
 * [Quickstart your Face use case development](/azure/ai-services/computer-vision/quickstarts-sdk/identity-client-library)

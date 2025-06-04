@@ -26,7 +26,7 @@ This article provides some high level details regarding how Face processes data 
 ## What data does Face process, how long is it retained and what protections are in place?
 
 
-Descriptions of Face API processes use the key terms defined [here](/legal/cognitive-services/face/transparency-note?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext#key-terms).
+Descriptions of Face API processes use the key terms defined [here](/azure/ai-foundry/responsible-ai/face/transparency-note?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext#key-terms).
 
 Face maintains GDPR data processor classification across all supported regions. 
 

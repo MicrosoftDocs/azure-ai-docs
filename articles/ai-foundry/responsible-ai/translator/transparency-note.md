@@ -224,5 +224,5 @@ Examples of business intelligence signals:
 
 ## Next steps
 
-* [Data, privacy, and security](/legal/cognitive-services/translator/data-privacy-security?context=/azure/ai-services/translator/context/context)
+* [Data, privacy, and security](/azure/ai-foundry/responsible-ai/translator/data-privacy-security?context=/azure/ai-services/translator/context/context)
 

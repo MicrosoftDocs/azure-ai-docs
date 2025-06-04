@@ -27,7 +27,7 @@ Anomaly Detector is a service that provides time series anomaly detection. It do
 
 ### Human review
 
-Anomaly Detector doesn't accept labeled data from customers, but you can use two parameters – sensitivity and [maxAnomalyRatio](/legal/cognitive-services/anomaly-detector/transparency-note#introduction-to-anomaly-detector) – to fine-tune detection results according to your specific needs.
+Anomaly Detector doesn't accept labeled data from customers, but you can use two parameters – sensitivity and [maxAnomalyRatio](/azure/ai-foundry/responsible-ai/anomaly-detector/transparency-note#introduction-to-anomaly-detector) – to fine-tune detection results according to your specific needs.
 Humans can check the detection results and ensure the service is generating expected results. This human review would be important in some critical cases to ensure valid decisions are made.
 
 ## Recommendations for integration

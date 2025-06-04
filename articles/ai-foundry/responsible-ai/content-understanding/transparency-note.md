@@ -126,11 +126,11 @@ If highly disturbing input files are uploaded to Content Understanding, it can r
 Faces are blurred before the image or video is sent to the model for analysis thus inference on faces, such as emotion, won't work in either image or video.  Only video modality supports face grouping which only provides groups of similar faces without any additional analysis. 
 
 > [!IMPORTANT]
-> Face grouping feature in Content Understanding is limited based on eligibility and usage criteria. in order to support our Responsible AI principles. Face service is only available to Microsoft managed customers and partners. Use the [Face Recognition intake form](https://aka.ms/facerecognition) to apply for access. For more information, see the [Face limited access page](/legal/cognitive-services/computer-vision/limited-access-identity?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext). 
+> Face grouping feature in Content Understanding is limited based on eligibility and usage criteria. in order to support our Responsible AI principles. Face service is only available to Microsoft managed customers and partners. Use the [Face Recognition intake form](https://aka.ms/facerecognition) to apply for access. For more information, see the [Face limited access page](/azure/ai-foundry/responsible-ai/computer-vision/limited-access-identity?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext). 
 
 #### Document 
 
-Document extraction capability is heavily dependent on the way you name the fields and description of the fields. Also, the product forces grounding – anchoring outputs in the text of the input documents – and will not return answers if they cannot be grounded. Therefore, in some cases, the value of the field may be missing. Due to the nature of the grounded extraction, the system will return content from the document even if the document is incorrect or the content is not visible to the human eye. Documents should also have a reasonable resolution, where the text is not too blurry for the [Layout model](/legal/cognitive-services/computer-vision/limited-access-identity?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext) to recognize.
+Document extraction capability is heavily dependent on the way you name the fields and description of the fields. Also, the product forces grounding – anchoring outputs in the text of the input documents – and will not return answers if they cannot be grounded. Therefore, in some cases, the value of the field may be missing. Due to the nature of the grounded extraction, the system will return content from the document even if the document is incorrect or the content is not visible to the human eye. Documents should also have a reasonable resolution, where the text is not too blurry for the [Layout model](/azure/ai-foundry/responsible-ai/computer-vision/limited-access-identity?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext) to recognize.
 
 #### Video 
 
@@ -286,17 +286,17 @@ In some cases, there may be remaining performance disparities. It is important t
 
 Regarding representational harms, such as stereotyping, demeaning, or erasing outputs, we acknowledge the risks associated with these issues. While our evaluation process aims to mitigate such risks, we encourage users to consider their specific use cases carefully and implement additional mitigations as appropriate. Having a human in the loop can provide an extra layer of oversight to address any potential biases or unintended consequences.  
 
-We are committed to continuously improving our fairness evaluations to gain a deeper understanding of the system's performance across various demographic groups and potential fairness concerns. The evaluation process is ongoing, and we are actively working to enhance fairness and inclusivity and mitigate any identified disparities. You can find more fairness testing related to speech in this [documentation](/legal/cognitive-services/speech-service/speech-to-text/transparency-note#fairness-considerations). 
+We are committed to continuously improving our fairness evaluations to gain a deeper understanding of the system's performance across various demographic groups and potential fairness concerns. The evaluation process is ongoing, and we are actively working to enhance fairness and inclusivity and mitigate any identified disparities. You can find more fairness testing related to speech in this [documentation](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note#fairness-considerations). 
 
 ## Evaluating and integrating Image Analysis for your use
 
  
-When integrating Content Understanding for your use case, knowing that Content Understanding is subject to the [Microsoft Generative AI Services Code of Conduct](/legal/cognitive-services/openai/code-of-conduct), and [Code of Conduct for Azure AI Vision Face](/legal/ai-code-of-conduct?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext) will ensure a successful integration. 
+When integrating Content Understanding for your use case, knowing that Content Understanding is subject to the [Microsoft Generative AI Services Code of Conduct](/azure/ai-foundry/responsible-ai/openai/code-of-conduct), and [Code of Conduct for Azure AI Vision Face](/legal/ai-code-of-conduct?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext) will ensure a successful integration. 
 
 When you're getting ready to integrate Content Understanding to your product or features, the following activities help to set you up for success: 
 - **Understand what it can do**: Fully assess the potential of Content Understanding to understand its capabilities and limitations. Understand how it will perform in your scenario and context. For example, if you're using audio content extraction, test with real-world recordings from your business processes to analyze and benchmark the results against your existing process metrics. 
 - **Respect an individual's right to privacy**: Only collect data and information from individuals from whom you have obtained consent, and for lawful and justifiable purposes. 
-- **Legal and regulatory considerations**. Organizations need to evaluate potential specific legal and regulatory obligations when using Content Understanding. Content Understanding is not appropriate for use in every industry or scenario. Always use Content Understanding in accordance with the applicable terms of service and the [Microsoft Generative AI Services Code of Conduct](/legal/cognitive-services/openai/code-of-conduct).  
+- **Legal and regulatory considerations**. Organizations need to evaluate potential specific legal and regulatory obligations when using Content Understanding. Content Understanding is not appropriate for use in every industry or scenario. Always use Content Understanding in accordance with the applicable terms of service and the [Microsoft Generative AI Services Code of Conduct](/azure/ai-foundry/responsible-ai/openai/code-of-conduct).  
 - **Human-in-the-loop**: Keep a human in the loop, and include human oversight as a consistent pattern area to explore. This means ensuring constant human oversight of the AI-powered product or feature and to maintain the role of humans in decision-making. Ensure that you can have real-time human intervention in the solution to prevent harm. A human in the loop enables you to manage situations when Content Understanding does not perform as required. 
 - **Security**: Ensure your solution is secure and that it has adequate controls to preserve the integrity of your content and prevent unauthorized access. 
 
@@ -317,11 +317,11 @@ When you're getting ready to integrate Content Understanding to your product or 
 
 ### Additional transparency notes for underlying services
 
-- [Azure OpenAI](/legal/cognitive-services/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=text) 
-- [Azure AI Document Intelligence](/legal/cognitive-services/document-intelligence/transparency-note?toc=%2Fazure%2Fai-services%2Fdocument-intelligence%2Ftoc.json&bc=%2Fazure%2Fai-services%2Fdocument-intelligence%2Fbreadcrumb%2Ftoc.json&view=doc-intel-4.0.0&preserve-view=true) 
-- [Azure AI Speech](/legal/cognitive-services/speech-service/speech-to-text/transparency-note?context=%2Fazure%2Fai-services%2Fspeech-service%2Fcontext%2Fcontext ) 
-- [Azure AI Vision](/legal/cognitive-services/computer-vision/imageanalysis-transparency-note?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext ) 
-- [Azure AI Face](/legal/cognitive-services/face/transparency-note?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext)  
+- [Azure OpenAI](/azure/ai-foundry/responsible-ai/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=text) 
+- [Azure AI Document Intelligence](/azure/ai-foundry/responsible-ai/document-intelligence/transparency-note?toc=%2Fazure%2Fai-services%2Fdocument-intelligence%2Ftoc.json&bc=%2Fazure%2Fai-services%2Fdocument-intelligence%2Fbreadcrumb%2Ftoc.json&view=doc-intel-4.0.0&preserve-view=true) 
+- [Azure AI Speech](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note?context=%2Fazure%2Fai-services%2Fspeech-service%2Fcontext%2Fcontext ) 
+- [Azure AI Vision](/azure/ai-foundry/responsible-ai/computer-vision/imageanalysis-transparency-note?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext ) 
+- [Azure AI Face](/azure/ai-foundry/responsible-ai/face/transparency-note?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext)  
 - [Azure AI Video Indexer](/legal/azure-video-indexer/transparency-note?context=%2Fazure%2Fazure-video-indexer%2Fcontext%2Fcontext ) 
 
 ### Code of Conduct

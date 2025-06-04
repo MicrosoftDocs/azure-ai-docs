@@ -103,4 +103,4 @@ Evaluate the first and continuous-use experience with a representative sample of
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Research insights for spatial analysis](/legal/cognitive-services/computer-vision/research-insights?context=%2fazure%2fcognitive-services%2fComputer-vision%2fcontext%2fcontext)
+> [Research insights for spatial analysis](/azure/ai-foundry/responsible-ai/computer-vision/research-insights?context=%2fazure%2fcognitive-services%2fComputer-vision%2fcontext%2fcontext)

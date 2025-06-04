@@ -53,7 +53,7 @@ The diagram below illustrates how your data is processed. This diagram covers se
 
 ## Model inferencing 
 
-Azure AI Agent Service interacts with the configured model inferencing endpoints you designate. Models (base or fine-tuned) process your input prompts and generate output responses which may be further used or processed by your agent. Data is processed for model inferencing in accordance with the terms that apply to the relevant model. Learn more at [Data, privacy, and security for Azure OpenAI Service](/legal/cognitive-services/openai/data-privacy) and [Data, privacy, and security for use of models through the model catalog in AI Foundry portal](/azure/ai-studio/how-to/concept-data-privacy). 
+Azure AI Agent Service interacts with the configured model inferencing endpoints you designate. Models (base or fine-tuned) process your input prompts and generate output responses which may be further used or processed by your agent. Data is processed for model inferencing in accordance with the terms that apply to the relevant model. Learn more at [Data, privacy, and security for Azure OpenAI Service](/azure/ai-foundry/responsible-ai/openai/data-privacy) and [Data, privacy, and security for use of models through the model catalog in AI Foundry portal](/azure/ai-studio/how-to/concept-data-privacy). 
 
 ## Data storage for Azure AI Agent Service features 
 

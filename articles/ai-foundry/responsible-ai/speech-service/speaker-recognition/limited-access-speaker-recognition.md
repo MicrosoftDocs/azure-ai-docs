@@ -30,4 +30,4 @@ Report abuse of Speaker Recognition [here](https://aka.ms/reportabuse).
 
 * [Speaker Recognition overview](/azure/ai-services/speech-service/speaker-recognition-overview)
 * [Limited Access with Azure AI services](/azure/ai-services/cognitive-services-limited-access)
-* [Transparency Note for Speaker Recognition](/legal/cognitive-services/speech-service/speaker-recognition/transparency-note-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
+* [Transparency Note for Speaker Recognition](/azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/transparency-note-speaker-recognition?context=/azure/ai-services/speech-service/context/context)

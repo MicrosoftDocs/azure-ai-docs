@@ -20,7 +20,7 @@ Microsoft's Transparency Notes are part of a broader effort at Microsoft to put 
 
 ## The basics of the Azure OpenAI Models
 
-Azure OpenAI provides customers with a fully managed AI service that lets developers and data scientists apply OpenAI's powerful models including models that can generate natural language, code, and images. Within the Azure OpenAI Service, the OpenAI models are integrated with Microsoft-developed content filtering and abuse detection models. Learn more about content filtering [here](/azure/ai-services/openai/concepts/content-filter) and abuse detection [here](/legal/cognitive-services/openai/data-privacy?context=%2Fazure%2Fcognitive-services%2Fopenai%2Fcontext%2Fcontext).
+Azure OpenAI provides customers with a fully managed AI service that lets developers and data scientists apply OpenAI's powerful models including models that can generate natural language, code, and images. Within the Azure OpenAI Service, the OpenAI models are integrated with Microsoft-developed content filtering and abuse detection models. Learn more about content filtering [here](/azure/ai-services/openai/concepts/content-filter) and abuse detection [here](/azure/ai-foundry/responsible-ai/openai/data-privacy?context=%2Fazure%2Fcognitive-services%2Fopenai%2Fcontext%2Fcontext).
 
 
 ### Introduction
@@ -84,7 +84,7 @@ You can learn more about the training and modeling techniques for GPT-4 Turbo wi
 
 Azure OpenAI Computer Use (Preview) accepts text input on the first turn, and screenshot image on the second and following turns, and outputs commands to the keyboard and mouse.  The Computer Use model and the Computer Use Tool enable developers to build agentic AI systems. 
 
-The following guidance is drawn from Microsoft research insights and [best practices for responsible AI](/legal/cognitive-services/openai/overview?context=%2Fazure%2Fcognitive-services%2Fopenai%2Fcontext%2Fcontext). 
+The following guidance is drawn from Microsoft research insights and [best practices for responsible AI](/azure/ai-foundry/responsible-ai/openai/overview?context=%2Fazure%2Fcognitive-services%2Fopenai%2Fcontext%2Fcontext). 
 
 ### Key terms
 
@@ -109,7 +109,7 @@ The `gpt-4o-realtime-preview` model in Azure OpenAI service enables robust speec
 
 The Whisper model in Azure OpenAI service enables access to a model that performs robust speech recognition and translation tasks. The Whisper model is an Automatic Speech Recognition (ASR) model that was developed by [OpenAI](https://openai.com/research/whisper) and is capable of transcribing speech audio files into the language that was spoken as well as translated into English.
 
-You can learn more about training and modeling techniques for the Whisper model in the [OpenAI Whisper research paper](https://cdn.openai.com/papers/whisper.pdf). The Whisper model is also used in the Azure AI Speech service. Learn more about the Azure AI Speech integration and evaluate it for your use [here](/legal/cognitive-services/speech-service/speech-to-text/transparency-note?context=%2Fazure%2Fcognitive-services%2Fspeech-service%2Fcontext%2Fcontext).
+You can learn more about training and modeling techniques for the Whisper model in the [OpenAI Whisper research paper](https://cdn.openai.com/papers/whisper.pdf). The Whisper model is also used in the Azure AI Speech service. Learn more about the Azure AI Speech integration and evaluate it for your use [here](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note?context=%2Fazure%2Fcognitive-services%2Fspeech-service%2Fcontext%2Fcontext).
 
 ### Key terms
 
@@ -295,7 +295,7 @@ The following are additional use cases we recommend for fine-tuned text and code
 - **Improving performance at specific skills or tasks** such as classification, summarization, or formatting – that can be hard to describe within a prompt. 
 - **Reducing costs or latency** by utilizing shorter prompts, or swapping a fine-tuned version of a smaller/faster model for a more general-purpose model (e.g. fine tuned GPT-3.5-Turbo for GPT-4). 
 
-As with base models, the use case prohibitions outlined in the [Azure OpenAI Code of conduct](/legal/cognitive-services/openai/code-of-conduct) apply to fine-tuned models as well.  
+As with base models, the use case prohibitions outlined in the [Azure OpenAI Code of conduct](/azure/ai-foundry/responsible-ai/openai/code-of-conduct) apply to fine-tuned models as well.  
 
 Fine tuning alone is not recommended for scenarios where you want to extend your model to include out-of-domain information, where explainability or grounding are important, or where the underlying data are updated frequently.
 
@@ -342,7 +342,7 @@ The capabilities of Computer Use are best suited for developing agentic AI syste
 
 ### Considerations when choosing a use case
 
-We encourage customers to use the Azure OpenAI GPT-4, GPT-3, Codex, and Computer Use models in their innovative solutions or applications as approved in their [Limited Access registration form](/legal/cognitive-services/openai/limited-access?context=%2Fazure%2Fcognitive-services%2Fopenai%2Fcontext%2Fcontext). However, here are some considerations when choosing a use case:
+We encourage customers to use the Azure OpenAI GPT-4, GPT-3, Codex, and Computer Use models in their innovative solutions or applications as approved in their [Limited Access registration form](/azure/ai-foundry/responsible-ai/openai/limited-access?context=%2Fazure%2Fcognitive-services%2Fopenai%2Fcontext%2Fcontext). However, here are some considerations when choosing a use case:
 
 - **Not suitable for open-ended, unconstrained content generation.**  Scenarios where users can generate content on any topic are more likely to produce offensive or harmful text. The same is true of longer generations.
 - **Not suitable for scenarios where up-to-date, factually accurate information is crucial**  unless you have human reviewers or are using the models to search your own documents and have verified suitability for your scenario. The service does not have information about events that occur after its training date, likely has missing knowledge about some topics, and may not always produce factually accurate information.
@@ -423,7 +423,7 @@ The capabilities of Computer Use are best suited for developing agentic AI syste
 
 ### Considerations when choosing a use case
 
-We encourage customers to use the Azure OpenAI DALL·E 2, DALL·E 3, GPT-4 Turbo with Vision, GPT-4o, and Computer Use models in their innovative solutions or applications as approved in their [Limited access registration form](/legal/cognitive-services/openai/limited-access). However, here are some considerations when choosing a use case:
+We encourage customers to use the Azure OpenAI DALL·E 2, DALL·E 3, GPT-4 Turbo with Vision, GPT-4o, and Computer Use models in their innovative solutions or applications as approved in their [Limited access registration form](/azure/ai-foundry/responsible-ai/openai/limited-access). However, here are some considerations when choosing a use case:
 
 
 - **Do not use for tracking or facial recognition, identification, or verification purposes.** Examples include using models for surveillance of individuals and using models to verify two individuals pictured in two separate locations are the same person.  
@@ -621,16 +621,16 @@ The steps in conducting an Azure OpenAI evaluation are:
 1. **Specify test cases to evaluate the data**: Select one or more test cases to score the provided data with passing / failing grades. 
 1. **Review and filter results**: Each test includes a definition of passing and failing scores. After an evaluation runs, users can review their row-by-row results to see individual test results, or filter on passed / failed. 
 
-For additional information on how to evaluate and integrate these models responsibly, please see the [RAI Overview document](/legal/cognitive-services/openai/overview?context=%2Fazure%2Fcognitive-services%2Fopenai%2Fcontext%2Fcontext).
+For additional information on how to evaluate and integrate these models responsibly, please see the [RAI Overview document](/azure/ai-foundry/responsible-ai/openai/overview?context=%2Fazure%2Fcognitive-services%2Fopenai%2Fcontext%2Fcontext).
 
 
 #### [Vision models](#tab/image)
 
-For additional information on how to evaluate and integrate these models responsibly, please see the [RAI Overview document](/legal/cognitive-services/openai/overview?context=%2Fazure%2Fcognitive-services%2Fopenai%2Fcontext%2Fcontext).
+For additional information on how to evaluate and integrate these models responsibly, please see the [RAI Overview document](/azure/ai-foundry/responsible-ai/openai/overview?context=%2Fazure%2Fcognitive-services%2Fopenai%2Fcontext%2Fcontext).
 
 #### [Audio / speech models](#tab/speech)
 
-The OpenAI Whisper model is also available within Azure AI Speech services, enhancing the experience with advanced features like multi-lingual recognition and readability. Depending on your scenario, you might explore [Azure Speech services](https://azure.microsoft.com/products/cognitive-services/speech-to-text/) and the service's additional capabilities like diaritization, customization, real-time streaming, or processing multiple audio files per request. For additional information on how to evaluate and integrate the Whisper model responsibly, please see the [Azure Speech services transparency note](/legal/cognitive-services/speech-service/speech-to-text/transparency-note?context=%2Fazure%2Fcognitive-services%2Fspeech-service%2Fcontext%2Fcontext).
+The OpenAI Whisper model is also available within Azure AI Speech services, enhancing the experience with advanced features like multi-lingual recognition and readability. Depending on your scenario, you might explore [Azure Speech services](https://azure.microsoft.com/products/cognitive-services/speech-to-text/) and the service's additional capabilities like diaritization, customization, real-time streaming, or processing multiple audio files per request. For additional information on how to evaluate and integrate the Whisper model responsibly, please see the [Azure Speech services transparency note](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note?context=%2Fazure%2Fcognitive-services%2Fspeech-service%2Fcontext%2Fcontext).
 
 ---
 
@@ -642,6 +642,6 @@ The OpenAI Whisper model is also available within Azure AI Speech services, enha
 
 ## Learn more about Azure OpenAI
 
-- [Limited access to Azure OpenAI Service - Azure AI services | Microsoft Learn](/legal/cognitive-services/openai/limited-access?context=%2Fazure%2Fcognitive-services%2Fopenai%2Fcontext%2Fcontext) 
-- [Code of Conduct for the Azure OpenAI Service | Microsoft Learn](/legal/cognitive-services/openai/code-of-conduct?context=%2Fazure%2Fcognitive-services%2Fopenai%2Fcontext%2Fcontext) 
-- [Data, privacy, and security for Azure OpenAI Service - Azure AI services | Microsoft Learn](/legal/cognitive-services/openai/data-privacy?context=%2Fazure%2Fcognitive-services%2Fopenai%2Fcontext%2Fcontext) 
+- [Limited access to Azure OpenAI Service - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/openai/limited-access?context=%2Fazure%2Fcognitive-services%2Fopenai%2Fcontext%2Fcontext) 
+- [Code of Conduct for the Azure OpenAI Service | Microsoft Learn](/azure/ai-foundry/responsible-ai/openai/code-of-conduct?context=%2Fazure%2Fcognitive-services%2Fopenai%2Fcontext%2Fcontext) 
+- [Data, privacy, and security for Azure OpenAI Service - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/openai/data-privacy?context=%2Fazure%2Fcognitive-services%2Fopenai%2Fcontext%2Fcontext) 

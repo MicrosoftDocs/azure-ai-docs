@@ -99,4 +99,4 @@ The recommendations outlined below provide general guidance for supporting effec
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Disclosure design guidelines for spatial analysis](/legal/cognitive-services/computer-vision/disclosure-design?context=%2fazure%2fcognitive-services%2fComputer-vision%2fcontext%2fcontext)
+> [Disclosure design guidelines for spatial analysis](/azure/ai-foundry/responsible-ai/computer-vision/disclosure-design?context=%2fazure%2fcognitive-services%2fComputer-vision%2fcontext%2fcontext)

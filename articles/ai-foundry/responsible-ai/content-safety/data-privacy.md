@@ -47,4 +47,4 @@ If you have feedback on Azure AI Content Safety; suspect that Azure AI Content S
 ## Next steps
 
 * [AI Content Safety quickstart](/azure/ai-services/content-safety/quickstart-text)
-* [Transparency Note](/legal/cognitive-services/content-safety/transparency-note)
+* [Transparency Note](/azure/ai-foundry/responsible-ai/content-safety/transparency-note)

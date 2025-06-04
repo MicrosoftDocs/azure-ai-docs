@@ -224,4 +224,4 @@ A successful privacy approach empowers individuals with information and provides
 
 ## Next steps
 
-- [Data, privacy, and security for speech to text](/legal/cognitive-services/speech-service/speech-to-text/data-privacy-security?context=/azure/ai-services/speech-service/context/context)
+- [Data, privacy, and security for speech to text](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/data-privacy-security?context=/azure/ai-services/speech-service/context/context)

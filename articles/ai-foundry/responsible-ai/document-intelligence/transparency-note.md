@@ -88,7 +88,7 @@ Document Intelligence prebuilt models are used for processing specific document 
 
 **Custom model limitations**
 
-Document Intelligence custom models are trained using your own training data so that the model can train to your specific forms and documents. This capability is heavily dependent on the way you label the data, as well as the type of training data set you provide. For custom models, it’s important to note the limits of training data set size, document page limits, and minimum number of samples needed for each type of document. Custom models currently use Azure OpenAI Service's GPT-3.5 model. Further information on the Azure OpenAI models can be found in the [Azure OpenAI Transparency Note](/legal/cognitive-services/openai/transparency-note?context=/azure/ai-services/openai/context/context). 
+Document Intelligence custom models are trained using your own training data so that the model can train to your specific forms and documents. This capability is heavily dependent on the way you label the data, as well as the type of training data set you provide. For custom models, it’s important to note the limits of training data set size, document page limits, and minimum number of samples needed for each type of document. Custom models currently use Azure OpenAI Service's GPT-3.5 model. Further information on the Azure OpenAI models can be found in the [Azure OpenAI Transparency Note](/azure/ai-foundry/responsible-ai/openai/transparency-note?context=/azure/ai-services/openai/context/context). 
 
 The [Service limits](/azure/ai-services/document-intelligence/service-limits) page contains more information on Azure AI Document Intelligence service quotas and limits for all pricing tiers. It also contains model limitations and best practices for model usage and avoiding request throttling. 
 
@@ -190,4 +190,4 @@ A successful privacy approach empowers individuals with information and provides
 ## Learn more about Document Intelligence
 
 - [Document Intelligence overview](/azure/ai-services/document-intelligence/overview)
-- [Data, privacy, and security for Document Intelligence](/legal/cognitive-services/document-intelligence/data-privacy-security?toc=%2Fazure%2Fai-services%2Fdocument-intelligence%2Ftoc.json&bc=%2Fazure%2Fai-services%2Fdocument-intelligence%2Fbreadcrumb%2Ftoc.json)
+- [Data, privacy, and security for Document Intelligence](/azure/ai-foundry/responsible-ai/document-intelligence/data-privacy-security?toc=%2Fazure%2Fai-services%2Fdocument-intelligence%2Ftoc.json&bc=%2Fazure%2Fai-services%2Fdocument-intelligence%2Fbreadcrumb%2Ftoc.json)
