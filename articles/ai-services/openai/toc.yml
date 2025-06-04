@@ -269,6 +269,8 @@ items:
         href: encrypt-data-at-rest.md
       - name: Managed identity
         href: ./how-to/managed-identity.md
+      - name: Network security perimeter
+        href: ./how-to/network-security-perimeter.md
   - name: Service management
     items:
       - name: Resource creation & model deployment
