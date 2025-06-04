@@ -5,7 +5,7 @@ description: Learn key data concepts in Azure Machine Learning
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
-ms.topic: conceptual
+ms.topic: concept-article
 author: fbsolo-ms1 
 ms.author: franksolomon 
 ms.reviewer: swatig 

@@ -5,7 +5,7 @@ description: Learn how to securely connect to your data storage on Azure with Az
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
-ms.topic: conceptual
+ms.topic: concept-article
 ms.reviewer: franksolomon
 author: ssalgadodev
 ms.author: xunwan

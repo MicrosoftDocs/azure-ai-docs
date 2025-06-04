@@ -5,7 +5,7 @@ description: 'Learn about using customer-managed keys to improve data security w
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
-ms.topic: conceptual
+ms.topic: concept-article
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: deeikele

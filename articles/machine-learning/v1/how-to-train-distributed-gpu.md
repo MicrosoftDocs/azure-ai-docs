@@ -7,7 +7,7 @@ ms.author: sgilley
 ms.reviewer: ratanase
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 10/21/2021
 ms.custom: UpdateFrequency5, sdkv1
 ---
