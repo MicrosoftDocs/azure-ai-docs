@@ -19,19 +19,24 @@ Azure AI Language is updated on an ongoing basis. Bookmark this page to stay up 
 * **New agent templates**. Azure AI Language now supports the following agent templates:
 
     *   [Intent routing](../agents/concepts/agent-catalog.md) detects user intent and provides exact answering. Perfect for deterministically intent routing and exact question answering with human controls.
+
     *   [Exact question answering](../agents/concepts/agent-catalog.md) answers high-value predefined questions deterministically to ensure consistent and accurate responses.
 
-* **Personally-identifiable-information updates**. Azure AI Language now offers PII detection customization and entity subtype support.
+* **Personally-identifiable-information updates**. Azure AI Language now offers the following PII detection customization and entity subtype support:
 
-    *    [Customizing PII detection using your own regex](personally-identifiable-information/how-to/adapt-to-domain-pii.md#customizing-pii-detection-using-your-own-regex-only-available-for-text-pii-container) (only available for Text PII container)
-    *   Support for customizing PII output by [specifying values to exclude](personally-identifiable-information/how-to/adapt-to-domain-pii.md#customizing-pii-output-by-specifying-values-to-exclude)
-    *    Customizing PII detection using [entity synonyms](personally-identifiable-information/how-to/adapt-to-domain-pii.md#api-schema-for-the-entitysynoyms-parameter)
+    *  [Customize PII detection using your own regex](personally-identifiable-information/how-to/adapt-to-domain-pii.md#customizing-pii-detection-using-your-own-regex-only-available-for-text-pii-container) (only available for Text PII container).
+
+    *  [Customizing PII output specifying values to exclude](personally-identifiable-information/how-to/adapt-to-domain-pii.md#customizing-pii-output-by-specifying-values-to-exclude).
+
+    *  [Customizing PII detection using entity synonyms](personally-identifiable-information/how-to/adapt-to-domain-pii.md#api-schema-for-the-entitysynoyms-parameter).
+
 * [`2025-05-15-preview`](/rest/api/language/operation-groups?view=rest-language-2025-05-15-preview&preserve-view=true) release. This API preview version includes the following named entity recognition (NER) and personally identifiable information (PII) detection updates:
 
-    * New entity type support for `DateOfBirth`, `BankAccountNumber`, `PassportNumber`, and `DriversLicenseNumber`
-    * Enhanced AI quality for `PhoneNumber` entity type
+    * New entity type support for `DateOfBirth`, `BankAccountNumber`, `PassportNumber`, and `DriversLicenseNumber`.
 
-To Learn more, see our latest [TechCommunity Blog Post](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/announcing-azure-ai-language-new-features-to-accelerate-your-agent-development/4415216).
+    * Enhanced AI quality for `PhoneNumber` entity type.
+
+To learn more, see our latest [TechCommunity Blog Post](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/announcing-azure-ai-language-new-features-to-accelerate-your-agent-development/4415216).
 
 
 ## April 2025
