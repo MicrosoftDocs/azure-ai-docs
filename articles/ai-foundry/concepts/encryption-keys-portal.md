@@ -18,7 +18,7 @@ zone_pivot_groups: project-type
 
 # Customer-managed keys for encryption with Azure AI Foundry
 
-Customer-managed keys (CMKs) in [Azure AI Foundry portal](https://ai.azure.com/) provide enhanced control over the encryption of your data. By using CMKs, you can manage your own encryption keys to add an extra layer of protection and meet compliance requirements more effectively.
+Customer-managed keys (CMKs) in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) provide enhanced control over the encryption of your data. By using CMKs, you can manage your own encryption keys to add an extra layer of protection and meet compliance requirements more effectively.
 
 ## About encryption in Azure AI Foundry
 
@@ -68,7 +68,7 @@ Two architecture options are available when using customer-managed keys:
   |-----|-----|-----|
   |Azure Cosmos DB|Stores metadata for your Azure AI projects and tools|Index names, tags; Flow creation timestamps; deployment tags; evaluation metrics|
   |Azure AI Search|Stores indices that are used to help query your Azure AI Foundry content.|An index based off your model deployment names|
-  |Azure Storage Account|Stores instructions for how customization tasks are orchestrated|JSON representation of flows you create in [Azure AI Foundry portal](https://ai.azure.com/)|
+  |Azure Storage Account|Stores instructions for how customization tasks are orchestrated|JSON representation of flows you create in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs)|
 
 
 ::: zone-end

@@ -31,7 +31,7 @@ Language features are also utilized in [agent templates](https://github.com/azur
 > [!TIP]
 > Unsure which feature to use? See [Which Language service feature should I use](#which-language-service-feature-should-i-use) to help you decide.
 
-[**Azure AI Foundry**](https://ai.azure.com) enables you to use most of the following service features without needing to write code.
+[**Azure AI Foundry**](https://ai.azure.com/?cid=learnDocs) enables you to use most of the following service features without needing to write code.
 
 ### Named Entity Recognition (NER)
 

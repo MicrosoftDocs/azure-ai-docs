@@ -16,7 +16,7 @@ author: sdgilley
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-In this article, you learn how to create the following [Azure AI Foundry](https://ai.azure.com) resources using the Azure Machine Learning SDK and Azure CLI (with machine learning extension):
+In this article, you learn how to create the following [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) resources using the Azure Machine Learning SDK and Azure CLI (with machine learning extension):
 - An Azure AI Foundry hub
 - An Azure AI Services connection
 

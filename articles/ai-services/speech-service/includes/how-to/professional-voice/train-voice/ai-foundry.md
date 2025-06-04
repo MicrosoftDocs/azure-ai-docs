@@ -45,7 +45,7 @@ To create a custom voice in Azure AI Foundry portal, follow these steps for one 
 
 # [Neural](#tab/neural)
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the professional voice fine-tuning task (by model name) that you [started as described in the create professional voice article](/azure/ai-services/speech-service/professional-voice-create-project).
 1. Select **Train model** > **+ Train model**. 
@@ -78,7 +78,7 @@ To create a custom voice in Azure AI Foundry portal, follow these steps for one 
 
 # [Neural - cross lingual](#tab/crosslingual)
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the professional voice fine-tuning task (by model name) that you [started as described in the create professional voice article](/azure/ai-services/speech-service/professional-voice-create-project).
 1. Select **Train model** > **+ Train model**. 
@@ -107,7 +107,7 @@ To create a custom voice in Azure AI Foundry portal, follow these steps for one 
 
 # [Neural - multi style](#tab/multistyle)
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the professional voice fine-tuning task (by model name) that you [started as described in the create professional voice article](/azure/ai-services/speech-service/professional-voice-create-project).
 1. Select **Train model** > **+ Train model**. 
@@ -150,7 +150,7 @@ The following table summarizes the different preset styles according to differen
 
 # [Neural - multi lingual (preview)](#tab/multilingual)
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the professional voice fine-tuning task (by model name) that you [started as described in the create professional voice article](/azure/ai-services/speech-service/professional-voice-create-project).
 1. Select **Train model** > **+ Train model**. 

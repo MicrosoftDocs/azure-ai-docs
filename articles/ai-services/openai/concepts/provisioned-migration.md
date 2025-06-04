@@ -260,7 +260,7 @@ Azure Reservations for Azure OpenAI provisioned offers are specific to the provi
 
 ## Managing Provisioned Throughput Commitments
 
-Provisioned throughput commitments are created and managed by selecting **Management center** in the [Azure AI Foundry portal](https://ai.azure.com/)'s navigation menu > **Quota** > **Manage Commitments**. 
+Provisioned throughput commitments are created and managed by selecting **Management center** in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs)'s navigation menu > **Quota** > **Manage Commitments**. 
 
 :::image type="content" source="../media/how-to/provisioned-onboarding/notifications.png" alt-text="Screenshot of commitment purchase UI with notifications." lightbox="../media/how-to/provisioned-onboarding/notifications.png":::
 

@@ -16,7 +16,7 @@ Follow these steps to configure Microsoft Entra ID for inference:
 
 1. Go to the [Azure portal](https://portal.azure.com) and locate the **Azure AI Foundry (formerly known Azure AI Services)** resource you're using. If you're using Azure AI Foundry with projects or hubs, you can navigate to it by:
 
-   1. Go to [Azure AI Foundry portal](https://ai.azure.com).
+   1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
    2. On the landing page, select **Open management center**.
 
@@ -74,7 +74,7 @@ Even when your resource has Microsoft Entra ID configured, your projects may sti
 
 To change this behavior, you have to update the connections from your projects to use Microsoft Entra ID. Follow these steps:
 
-1. Go to [Azure AI Foundry portal](https://ai.azure.com).
+1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 2. Navigate to the projects or hubs that are using the Azure AI Foundry (formerly known Azure AI Services) resource through a connection.
 

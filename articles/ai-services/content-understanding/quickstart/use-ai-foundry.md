@@ -36,7 +36,7 @@ To get started, make sure you have the following resources and permissions:
 
 Follow these steps to create a custom task in the Azure AI Foundry. This task is used to build your first analyzer.
 
-1. Go to the **Home** page of [Azure AI Foundry](https://ai.azure.com).
+1. Go to the **Home** page of [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 1. Select your hub based project. You might need to select **View all resources** to see your project.
 1. Select **Content Understanding** from the left navigation pane.
 1. Select **+ Create**.

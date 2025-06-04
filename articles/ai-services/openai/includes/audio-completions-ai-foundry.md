@@ -15,10 +15,10 @@ ms.date: 1/7/2025
 
 ## Use GPT-4o audio generation
 
-To chat with your deployed `gpt-4o-mini-audio-preview` model in the **Chat** playground of [Azure AI Foundry portal](https://ai.azure.com), follow these steps:
+To chat with your deployed `gpt-4o-mini-audio-preview` model in the **Chat** playground of [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), follow these steps:
 
-1. Go to the [Azure AI Foundry portal](https://ai.azure.com) and select your project that has your deployed `gpt-4o-mini-audio-preview` model.
-1. Go to your project in [Azure AI Foundry](https://ai.azure.com). 
+1. Go to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your project that has your deployed `gpt-4o-mini-audio-preview` model.
+1. Go to your project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). 
 1. Select **Playgrounds** from the left pane.
 1. Select **Audio playground** > **Try the Chat playground**. 
 

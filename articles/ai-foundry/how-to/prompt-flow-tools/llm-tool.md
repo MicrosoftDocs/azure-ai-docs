@@ -31,7 +31,7 @@ Prepare a prompt as described in the [Prompt tool](prompt-tool.md#prerequisites)
 
 ## Build with the LLM tool
 
-1. Create or open a flow in [Azure AI Foundry](https://ai.azure.com). For more information, see [Create a flow](../flow-develop.md).
+1. Create or open a flow in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). For more information, see [Create a flow](../flow-develop.md).
 1. Select **+ LLM** to add the LLM tool to your flow.
 
     :::image type="content" source="../../media/prompt-flow/llm-tool.png" alt-text="Screenshot that shows the LLM tool added to a flow in Azure AI Foundry portal." lightbox="../../media/prompt-flow/llm-tool.png":::
