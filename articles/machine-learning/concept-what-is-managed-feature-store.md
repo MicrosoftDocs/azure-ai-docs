@@ -8,7 +8,7 @@ ms.reviewer: seramasu
 ms.service: azure-machine-learning
 ms.subservice: mldata 
 ms.custom: build-2023, ignite-2023
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 09/27/2024
 ---
 

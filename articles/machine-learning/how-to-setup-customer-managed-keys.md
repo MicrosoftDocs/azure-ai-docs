@@ -8,7 +8,7 @@ ms.subservice: enterprise-readiness
 ms.custom:
   - engagement-fy23
   - ignite-2023
-ms.topic: conceptual
+ms.topic: concept-article
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: deeikele

@@ -6,7 +6,7 @@ manager: scottpolly
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: training
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom:
   - build-2025
 ms.date: 05/12/2025

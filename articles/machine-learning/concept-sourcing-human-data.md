@@ -6,7 +6,7 @@ ms.author: lagayhar
 ms.service: azure-machine-learning
 ms.subservice: responsible-ai
 ms.reviewer: nhudo
-ms.topic: conceptual 
+ms.topic: concept-article 
 ms.date: 03/17/2025
 ms.custom: responsible-ml 
 ---
