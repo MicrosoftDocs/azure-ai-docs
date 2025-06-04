@@ -240,7 +240,8 @@ The format in which DALL-E 3 generated images are returned. Must be one of `url`
 
 The Image Edit API allows you to modify existing images based on text prompts you provide. The API call is similar to the image generation API call, but you also need to provide an input image (base64-encoded image data).
 
-
+> [!IMPORTANT]
+> The input image must be less than 20 MB in size and must be a PNG or JPG file.
 
 #### [GPT-image-1](#tab/gpt-image-1)
 
