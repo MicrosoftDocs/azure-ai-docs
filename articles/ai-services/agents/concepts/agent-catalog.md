@@ -26,7 +26,7 @@ With agents you create using these code samples, be sure to assess safety and le
 
 ## Find the Agent Catalog in the Azure AI Foundry portal
 
-1. Go to [Azure AI Foundry portal](https://ai.azure.com).
+1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Open your project.
 1. On the left pane, select **Agents**.
 1. Near the top of the screen, select **Catalog**. Find the code sample you want to use.

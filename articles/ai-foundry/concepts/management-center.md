@@ -25,7 +25,7 @@ The management center is a part of the Azure AI Foundry portal that streamlines 
 
 - User management and role assignment
 
-To access the management center, sign in to [Azure AI Foundry](https://ai.azure.com), select a project, and then select **Management center** from the bottom of left menu.
+To access the management center, sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), select a project, and then select **Management center** from the bottom of left menu.
 
 :::image type="content" source="../media/management-center/management-center.png" alt-text="Screenshot of the left menu of Azure AI Foundry with the management center selected." lightbox="../media/management-center/management-center.png":::
 

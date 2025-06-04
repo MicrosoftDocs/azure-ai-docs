@@ -52,7 +52,7 @@ You can add models to the Foundry Models endpoint using the following steps:
 
 You can manage the existing model deployments in the resource using Azure AI Foundry portal.
 
-1. Go to **Models + Endpoints** section in [Azure AI Foundry portal](https://ai.azure.com).
+1. Go to **Models + Endpoints** section in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 2. Scroll to the connection to your Azure AI Foundry resource. Model deployments are grouped and displayed per connection.
 
@@ -70,7 +70,7 @@ You can interact with the new model in Azure AI Foundry portal using the playgro
 > [!NOTE]
 > Playground is only available when working with AI projects in Azure AI Foundry. Create an AI project to get full access to all the capabilities in Azure AI Foundry.
 
-1. Go to **Playgrounds** section in [Azure AI Foundry portal](https://ai.azure.com).
+1. Go to **Playgrounds** section in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 2. Depending on the type of model you deployed, select the playground needed. In this case we select **Chat playground**.
 

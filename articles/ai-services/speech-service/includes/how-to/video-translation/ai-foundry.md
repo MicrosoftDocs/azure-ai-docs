@@ -11,10 +11,10 @@ ms.custom: references_regions
 
 [!INCLUDE [Feature preview](../../../../includes/preview-feature.md)]
 
-In this article, you learn how to use video translation with Azure AI Speech in the [Azure AI Foundry portal](https://ai.azure.com/).
+In this article, you learn how to use video translation with Azure AI Speech in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 > [!TIP]
-> Try out video translation in the [Azure AI Foundry portal](https://ai.azure.com/) before using the API. Use the [video translation REST API](?pivots=rest-api) to integrate video translation into your applications. For more information about the API, see [Video translation REST API](/rest/api/aiservices/videotranslation/translation-operations/create-translation).
+> Try out video translation in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) before using the API. Use the [video translation REST API](?pivots=rest-api) to integrate video translation into your applications. For more information about the API, see [Video translation REST API](/rest/api/aiservices/videotranslation/translation-operations/create-translation).
 
 ## Prerequisites
 

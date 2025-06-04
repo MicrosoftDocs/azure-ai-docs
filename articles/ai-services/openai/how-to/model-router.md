@@ -32,7 +32,7 @@ Model router is packaged as a single Azure AI Foundry model that you deploy. Fol
 
 You can use model router through the [chat completions API](/azure/ai-services/openai/chatgpt-quickstart) in the same way you'd use other OpenAI chat models. Set the `model` parameter to the name of our model router deployment, and set the `messages` parameter to the messages you want to send to the model.
 
-In the [Azure AI Foundry portal](https://ai.azure.com/), you can navigate to your model router deployment on the **Models + endpoints** page and select it to enter the model playground. In the playground experience, you can enter messages and see the model's responses. Each response message shows which underlying model was selected to respond.
+In the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), you can navigate to your model router deployment on the **Models + endpoints** page and select it to enter the model playground. In the playground experience, you can enter messages and see the model's responses. Each response message shows which underlying model was selected to respond.
 
 
 > [!IMPORTANT]

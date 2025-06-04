@@ -36,7 +36,7 @@ You can deploy managed compute models using the Azure Machine Learning SDK, but 
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com) and go to the **Home** page.
+1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and go to the **Home** page.
 1. Select **Model catalog** from the left sidebar.
 1. In the **Deployment options** filter, select **Managed compute**.
 

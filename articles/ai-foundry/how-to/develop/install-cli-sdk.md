@@ -18,7 +18,7 @@ zone_pivot_groups: foundry-sdk-overview-languages
 
 # Set up your development environment
 
-Set up your development environment to use the [Azure AI Foundry](https://ai.azure.com) SDK. You also need Azure CLI for authentication so that your code can access your user credentials.
+Set up your development environment to use the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) SDK. You also need Azure CLI for authentication so that your code can access your user credentials.
 
 ## Prerequisites
 
