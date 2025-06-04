@@ -541,35 +541,8 @@ This type contains the following entity:
     :::column-end:::
 :::row-end:::
 
+---
 
-## Type: URL
-
-This type contains the following entity:
-
-:::row:::
-    :::column span="":::
-        **Entity**
-
-        URL
-
-    :::column-end:::
-    :::column span="2":::
-        **Details**
-
-        URLs to websites. Returned as both PII and PHI.
-
-        To get this entity type, add `URL` to the `piiCategories` parameter. `URL` will be returned in the API response if detected.
-
-    :::column-end:::
-
-    :::column span="":::
-      **Supported languages**
-
-      `en`, `es`, `fr`, `de`, `it`, `zh`, `ja`, `ko`, `pt-pt`, `pt-br`, `nl`, `sv`, `tr`, `hi`
-
-    :::column-end:::
-
-:::row-end:::
 
 ---
 
