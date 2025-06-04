@@ -17,7 +17,7 @@ sections:
   - name: Data and Privacy
     questions:
       - question: |
-          Do you use my company data to train any of the models? /azure/ai-foundry/responsible-ai/
+          Do you use my company data to train any of the models? 
         answer: |
           Azure OpenAI doesn't use customer data to retrain models. For more information, see the [Azure OpenAI data, privacy, and security guide](/legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context).    
   - name: General
@@ -123,7 +123,7 @@ sections:
   - name: Getting access to Azure OpenAI Service
     questions:
       - question: |
-          How do I get access to Azure OpenAI? /azure/ai-foundry/responsible-ai/
+          How do I get access to Azure OpenAI? 
         answer: |
           A Limited Access registration form is not required to access most Azure OpenAI models. Learn more on the [Azure OpenAI Limited Access page](/legal/cognitive-services/openai/limited-access?context=/azure/ai-services/openai/context/context).
       - question: |
@@ -268,7 +268,7 @@ sections:
         answer: |
           Today we support CMK for Threads and Files in Assistants. See the [What's new page](./whats-new.md#customer-managed-key-cmk-support-for-assistants) for available regions for this feature.
       - question: |
-          Is my data used by Microsoft for training models? /azure/ai-foundry/responsible-ai/
+          Is my data used by Microsoft for training models? 
         answer: |
           No. Data is not used for Microsoft not used for training models. See the [Responsible AI documentation](/legal/cognitive-services/openai/data-privacy?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext) for more information. 
       - question: |
@@ -340,7 +340,7 @@ sections:
         answer:
           See [Using your data](./concepts/use-your-data.md#data-formats-and-file-types) for more information on supported file types. 
       - question: |
-          Is responsible AI supported by Azure OpenAI on your data?/azure/ai-foundry/responsible-ai//azure/ai-foundry/responsible-ai/
+          Is responsible AI supported by Azure OpenAI on your data?
         answer:
           Yes, [Azure OpenAI on your data](./concepts/use-your-data.md) is part of the Azure OpenAI Service and works with the [models](./concepts/models.md) available in Azure OpenAI. The [content filtering](./concepts/content-filter.md) and abuse monitoring features of Azure OpenAI still apply. For more information, see the [overview of Responsible AI practices for Azure OpenAI models](/legal/cognitive-services/openai/overview?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext) and the [Transparency Note for Azure OpenAI](/legal/cognitive-services/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=text) for extra guidance on using Azure OpenAI on your data responsibly. 
       - question: |
@@ -371,7 +371,7 @@ sections:
   - name: Customer Copyright Commitment
     questions:
       - question: |
-          How do I obtain coverage under the Customer Copyright Commitment? /azure/ai-foundry/responsible-ai/
+          How do I obtain coverage under the Customer Copyright Commitment? 
         answer:
           The Customer Copyright Commitment is a provision to be included in the December 1, 2023, Microsoft Product Terms that describes Microsoft’s obligation to defend customers against certain third-party intellectual property claims relating to Output Content. If the subject of the claim is Output Content generated from the Azure OpenAI Service (or any other Covered Product that allows customers to configure the safety systems), then to receive coverage, customer must have implemented all mitigations required by the Azure OpenAI Service documentation in the offering that delivered the Output Content. The required mitigations are documented [here](/legal/cognitive-services/openai/customer-copyright-commitment?context=/azure/ai-services/openai/context/context) and updated on an ongoing basis. For new services, features, models, or use cases, new CCC requirements will be posted and take effect at or following the launch of such service, feature, model, or use case. Otherwise, customers will have six months from the time of publication to implement new mitigations to maintain coverage under the CCC. If a customer tenders a claim, the customer will be required to demonstrate compliance with the relevant requirements. These mitigations are required for Covered Products that allow customers to configure the safety systems, including Azure OpenAI Service; they do not impact coverage for customers using other Covered Products.
 additionalContent: |

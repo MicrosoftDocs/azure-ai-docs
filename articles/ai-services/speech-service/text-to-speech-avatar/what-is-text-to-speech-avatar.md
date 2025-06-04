@@ -16,7 +16,7 @@ ms.custom: references_regions
 
 Text to speech avatar converts text into a digital video of a photorealistic human (either a prebuilt avatar or a [custom text to speech avatar](#custom-text-to-speech-avatar)) speaking with a natural-sounding voice. The text to speech avatar video can be synthesized asynchronously or in real time. Developers can build applications integrated with text to speech avatar through an API, or use a content creation tool on Speech Studio to create video content without coding.
 
-With text to speech avatar's advanced neural network models, the feature empowers users to deliver life-like and high-quality synthetic talking avatar videos for various applications while adhering to [responsible AI practices](/azure/ai-foundry/responsible-ai/speech-service/disclosure-voice-talent?context=/azure/ai-services/speech-service/context/context).
+With text to speech avatar's advanced neural network models, the feature empowers users to deliver life-like and high-quality synthetic talking avatar videos for various applications while adhering to [responsible AI practices](/legal/cognitive-services/speech-service/disclosure-voice-talent?context=/azure/ai-services/speech-service/context/context).
 
 > [!TIP]
 > To convert text to speech with a no-code approach, try the [Text to speech avatar tool in Speech Studio](https://speech.microsoft.com/portal/talkingavatar).
@@ -82,4 +82,4 @@ We care about the people who use AI and the people who will be affected by it as
 ## Next steps
 
 * [Use batch synthesis for text to speech avatar](./batch-synthesis-avatar.md)
-* [What is custom text to speech avatar](what-is-custom-text-to-speech-avatar.md)/azure/ai-foundry/responsible-ai//azure/ai-foundry/responsible-ai/
+* [What is custom text to speech avatar](what-is-custom-text-to-speech-avatar.md)

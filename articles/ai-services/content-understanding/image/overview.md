@@ -51,7 +51,7 @@ For detailed information on supported input file formats, refer to our [Service 
 ## Supported languages and regions
 For a detailed list of supported languages and regions, visit our [Language and region support](../language-region-support.md) page.
 
-## Supported field types/azure/ai-foundry/responsible-ai/
+## Supported field types
 For detailed information on supported field types, refer to our [Service quotas and limits](../service-limits.md#field-type-limits) page.
 
 ## Data privacy and security

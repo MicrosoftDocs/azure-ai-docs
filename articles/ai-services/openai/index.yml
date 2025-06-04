@@ -129,15 +129,15 @@ landingContent:
       - linkListType: reference
         links:
         - text: Transparency note
-          url: /azure/ai-foundry/responsible-ai/openai/transparency-note?context=/azure/ai-services/openai/context/context
+          url: /legal/cognitive-services/openai/transparency-note?context=/azure/ai-services/openai/context/context
         - text: Limited access
-          url: /azure/ai-foundry/responsible-ai/openai/limited-access?context=/azure/ai-services/openai/context/context
+          url: /legal/cognitive-services/openai/limited-access?context=/azure/ai-services/openai/context/context
         - text: Code of conduct
           url: /legal/ai-code-of-conduct?context=/azure/ai-services/openai/context/context
         - text: Data, privacy, and security
-          url: /azure/ai-foundry/responsible-ai/openai/data-privacy?context=/azure/ai-services/openai/context/context
+          url: /legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context
         - text: Customer Copyright Commitment
-          url: /azure/ai-foundry/responsible-ai/openai/customer-copyright-commitment?context=/azure/ai-services/openai/context/context
+          url: /legal/cognitive-services/openai/customer-copyright-commitment?context=/azure/ai-services/openai/context/context
       - linkListType: concept
         links:
           - text: Asynchronous content filtering

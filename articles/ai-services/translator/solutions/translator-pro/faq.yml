@@ -58,17 +58,17 @@ sections:
          - question: |
             Does Microsoft implement measures to identify and mitigate potential bias in translation outputs, especially concerning minority languages, dialects, or culturally specific terminology?
            answer: |
-              Yes. Microsoft actively researches and addresses bias-related issues. For more information, *see* [Azure AI Translator Transparency Note](/azure/ai-foundry/responsible-ai/translator/transparency-note#bias).
+              Yes. Microsoft actively researches and addresses bias-related issues. For more information, *see* [Azure AI Translator Transparency Note](/legal/cognitive-services/translator/transparency-note#bias).
 
          - question: |
             Has the Microsoft Translator Pro app been evaluated for its impact on equity and fairness?
            answer: |
-              Yes. Microsoft prioritizes creating technologies and products that are fair and inclusive. For more information, *see* [Azure AI Speech Transparency Note](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note#fairness-considerations).
+              Yes. Microsoft prioritizes creating technologies and products that are fair and inclusive. For more information, *see* [Azure AI Speech Transparency Note](/legal/cognitive-services/speech-service/speech-to-text/transparency-note#fairness-considerations).
 
          - question: |
             Which demographic or cultural factors affect the accuracy or quality of translations?
            answer: |
-            Microsoft Translator Pro is carefully trained to minimize biases and [supports multiple languages and accents](language-support.md). However, there can be variations in the quality and availability of voices across different languages. For more information, *see*  [Transcription and translation accuracy](/azure/ai-foundry/responsible-ai/translator/translator-pro-transparency-note#transcription-and-translation-accuracy).
+            Microsoft Translator Pro is carefully trained to minimize biases and [supports multiple languages and accents](language-support.md). However, there can be variations in the quality and availability of voices across different languages. For more information, *see*  [Transcription and translation accuracy](/legal/cognitive-services/translator/translator-pro-transparency-note#transcription-and-translation-accuracy).
 
   - name: Training Data and Model Parameters
     questions:
@@ -82,14 +82,14 @@ sections:
       - question: |
          Are models trained to handle information related to sensitive factors such as sex, gender, age, and other demographic characteristics to prevent discriminatory outputs or biases in translation quality?
         answer: |
-         Yes, fairness is a complex social-technical factor that influences aspects of our product development. One dimension we consider is how well the system performs across groups based on factors such as race, ethnicity, region, gender, and age. For more information, *see* [Azure AI Translator transparency note](/azure/ai-foundry/responsible-ai/translator/transparency-note#bias).
+         Yes, fairness is a complex social-technical factor that influences aspects of our product development. One dimension we consider is how well the system performs across groups based on factors such as race, ethnicity, region, gender, and age. For more information, *see* [Azure AI Translator transparency note](/legal/cognitive-services/translator/transparency-note#bias).
 
   - name: Testing Standards, Evaluation, and Metrics
     questions:
       - question: |
          Are evaluation metrics and testing protocols implemented to ensure the accuracy and cultural sensitivity of translations, especially in critical areas like legal documents or emergency communications?
         answer: |
-          Translation quality is always relative to a test set. We recommend that you measure quality for a representative test set for a given scenario. For more information, *see* [Azure AI Translator evaluation methods](/azure/ai-foundry/responsible-ai/translator/transparency-note?context=%2Fazure%2Fai-services%2Ftranslator%2Fcontext%2Fcontext#evaluation-of-azure-ai-translator).
+          Translation quality is always relative to a test set. We recommend that you measure quality for a representative test set for a given scenario. For more information, *see* [Azure AI Translator evaluation methods](/legal/cognitive-services/translator/transparency-note?context=%2Fazure%2Fai-services%2Ftranslator%2Fcontext%2Fcontext#evaluation-of-azure-ai-translator).
 
       - question: |
          How does Microsoft Translator Pro ensure the quality and accuracy of translations in real-world, high-stakes environments?
@@ -111,7 +111,7 @@ sections:
       - question: |
           What transparency measures are implemented to document and communicate model limitations, recurring issues, or risks associated with translations?
         answer: |
-          Microsoft's Transparency Notes aim to clarify the workings of our AI technology, highlighting the choices available to system owners that can impact system performance and behavior. They emphasize the importance of considering the entire system, encompassing the technology, the people, and the environment. These notes can be a valuable resource when developing or deploying your own system. For more information, *see* [Microsoft Translator Pro Transparency Note](/azure/ai-foundry/responsible-ai/translator/translator-pro-transparency-note#limitations).
+          Microsoft's Transparency Notes aim to clarify the workings of our AI technology, highlighting the choices available to system owners that can impact system performance and behavior. They emphasize the importance of considering the entire system, encompassing the technology, the people, and the environment. These notes can be a valuable resource when developing or deploying your own system. For more information, *see* [Microsoft Translator Pro Transparency Note](/legal/cognitive-services/translator/translator-pro-transparency-note#limitations).
 
       - question: |
          How does the quality differ when the app utilizes on-device models versus online models?

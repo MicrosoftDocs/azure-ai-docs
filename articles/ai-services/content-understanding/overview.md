@@ -75,7 +75,7 @@ See [Quickstart](quickstart/use-ai-foundry.md) for more examples.
 ## Responsible AI
 
  Azure AI Content Understanding is designed to guard against processing harmful content, such as graphic violence and gore, hateful speech and bullying, exploitation, abuse, and more. For more information and a full list of prohibited content, *see* our [**Transparency note**](/legal/cognitive-services/content-understanding/transparency-note?toc=/azure/ai-services/content-understanding/toc.json&bc=/azure/ai-services/content-understanding/breadcrumb/toc.json) and our [**Code of Conduct**](https://aka.ms/AI-CoC).
-/azure/ai-foundry/responsible-ai/
+
 ### Modified Content Filtering
 
 Content Understanding now supports modified content filtering for approved customers. The subscription IDs with approved modified content filtering impacts Content Understanding output. By default, Content Understanding employs a content filtering system that identifies specific risk categories for potentially harmful content in both submitted prompts and generated outputs. Modified content filtering allows the system to annotate rather than block potentially harmful output, giving you the ability to determine how to handle potentially harmful content. For more information on content filter types, *see* [Content filtering: filter types](../openai/concepts/content-filter.md#content-filter-types).
@@ -95,7 +95,7 @@ Developers using the Content Understanding service should review Microsoft's pol
 
 ## Getting started
 Our quickstart guides help you quickly start using the Content Understanding service:
-/azure/ai-foundry/responsible-ai/
+
 * [**Azure AI Foundry portal Quickstart**](quickstart/use-ai-foundry.md)
 * [**Rest API Quickstart**](quickstart/use-rest-api.md)
 

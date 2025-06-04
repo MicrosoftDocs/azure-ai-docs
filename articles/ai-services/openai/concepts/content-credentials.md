@@ -27,7 +27,7 @@ The manifest contains several key pieces of information:
 |`"when"` |The timestamp of when the Content Credentials were created. | 
 
 
-Content Credentials in the Azure OpenAI Service can help people understand when visual content is AI-generated. For more information on how to responsibly build solutions with Azure OpenAI Service image-generation models, visit the [Azure OpenAI tra/azure/ai-foundry/responsible-ai/nitive-services/openai/transparency-note?tabs=text).
+Content Credentials in the Azure OpenAI Service can help people understand when visual content is AI-generated. For more information on how to responsibly build solutions with Azure OpenAI Service image-generation models, visit the [Azure OpenAI transparency note](/legal/cognitive-services/openai/transparency-note?tabs=text).
 
 ## How do I use Content Credentials in my solution today?
 

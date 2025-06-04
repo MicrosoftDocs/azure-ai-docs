@@ -14,9 +14,9 @@
   topicHref: /azure/index
   items:
   - name: Azure AI services                # Original doc set name
-    tocHref: /azure/ai-foundry/responsible-ai/computer-vision    # Destination doc set route
+    tocHref: /legal/cognitive-services/computer-vision    # Destination doc set route
     topicHref: /azure/ai-services/index    # Original doc set route
     items:
     - name: Azure AI Vision                  # Original doc set name
-      tocHref: /azure/ai-foundry/responsible-ai/computer-vision    # Destination doc set route
+      tocHref: /legal/cognitive-services/computer-vision    # Destination doc set route
       topicHref: /azure/ai-services/Computer-vision/index      # Original doc set route

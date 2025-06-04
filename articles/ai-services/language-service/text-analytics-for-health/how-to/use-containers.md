@@ -64,7 +64,7 @@ Once the container is on the host computer, use the [docker run](https://docs.do
 > [!IMPORTANT]
 > * The docker commands in the following sections use the back slash, `\`, as a line continuation character. Replace or remove this based on your host operating system's requirements. 
 > * The `Eula`, `Billing`, and `ApiKey` options must be specified to run the container; otherwise, the container won't start.  For more information, see [Billing](#billing).
->   * The [responsible AI](/azure/ai-foundry/responsible-ai/text-analytics/transparency-note-health)  (RAI) acknowledgment must also be present with a value of `accept`.
+>   * The [responsible AI](/legal/cognitive-services/text-analytics/transparency-note-health)  (RAI) acknowledgment must also be present with a value of `accept`.
 > * The sentiment analysis and language detection containers use v3 of the API, and are generally available. The key phrase extraction container uses v2 of the API, and is in preview.
 
 There are multiple ways you can install and run the Text Analytics for health container. 

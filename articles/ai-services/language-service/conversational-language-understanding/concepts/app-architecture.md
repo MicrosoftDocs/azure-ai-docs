@@ -31,7 +31,7 @@ Orchestration involves two steps:
   * If your overall schema has a substantial number of domains, the orchestration approach can help decompose your application into several child apps (each serving a specific domain). For example, an automotive conversational app might have a *navigation domain* or a *media domain*.
   * Developing each domain app in parallel is easier. People and teams with specific domain expertise can work on individual apps collaboratively and in parallel.
   * Because each domain app is smaller, the development cycle becomes faster. Smaller-sized domain apps take much less time to train than a single large app.
-* More flexible [confidence score thresholds](/azure/ai-foundry/responsible-ai/clu/clu-characteristics-and-limitations?context=/azure/ai-services/language-service/context/context#understand-confidence-scores):
+* More flexible [confidence score thresholds](/legal/cognitive-services/clu/clu-characteristics-and-limitations?context=/azure/ai-services/language-service/context/context#understand-confidence-scores):
 
   * Because separate child apps serve each domain, it's easy to set separate thresholds for different child apps.
 * AI-quality improvements where appropriate:

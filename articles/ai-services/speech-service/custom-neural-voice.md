@@ -15,7 +15,7 @@ ms.author: eur
 Custom neural voice (CNV) is a text to speech feature that lets you create a one-of-a-kind, customized, synthetic voice for your applications. With custom neural voice, you can build a highly natural-sounding voice for your brand or characters by providing human speech samples as training data.
 
 > [!IMPORTANT]
-> Custom neural voice access is [li/azure/ai-foundry/responsible-ai/rvices/speech-service/custom-neural-voice/limited-access-custom-neural-voice?context=%2fazure%2fcognitive-services%2fspeech-service%2fcontext%2fcontext) based on eligibility and usage criteria. Request access on the [intake form](https://aka.ms/customneural).
+> Custom neural voice access is [limited](/legal/cognitive-services/speech-service/custom-neural-voice/limited-access-custom-neural-voice?context=%2fazure%2fcognitive-services%2fspeech-service%2fcontext%2fcontext) based on eligibility and usage criteria. Request access on the [intake form](https://aka.ms/customneural).
 > 
 > Access to [Custom neural voice (CNV) Lite](custom-neural-voice-lite.md) is available for anyone to demo and evaluate CNV before investing in professional recordings to create a higher-quality voice. 
 
@@ -64,15 +64,15 @@ Next, the phoneme sequence goes into the neural acoustic model to predict acoust
 
 Neural text to speech voice models are trained by using deep neural networks based on
 the recording samples of human voices. For more information, see [this Microsoft blog post](https://techcommunity.microsoft.com/t5/azure-ai/neural-text-to-speech-extends-support-to-15-more-languages-with/ba-p/1505911). To learn more about how a neural vocoder is trained, see [this Microsoft blog post](https://techcommunity.microsoft.com/t5/azure-ai/azure-neural-tts-upgraded-with-hifinet-achieving-higher-audio/ba-p/1847860).
-/azure/ai-foundry/responsible-ai/
-## Responsible AI /azure/ai-foundry/responsible-ai/
-/azure/ai-foundry/responsible-ai/
-An AI system includes not only the technology, but also the people who u/azure/ai-foundry/responsible-ai/affected by it, and the environment in which it's deployed. Read the transparency notes to learn about responsible AI use and deployment in your systems. 
-/azure/ai-foundry/responsible-ai/
-* [Transparency note and use case/azure/ai-foundry/responsible-ai/(/legal/cognitive-services/speech-service/custom-neural-voice/transparency-note-custom-neural-voice?context=/azure/ai-services/speech-service/context/context)  
-* [Characteristics and limitati/azure/ai-foundry/responsible-ai/l voice](/legal/cognitive-services/speech-service/custom-neural-voice/characteristics-and-limitations-custom-neural-voice?context=/azure/ai-services/speech-service/context/context)   
-* [Limited access to custom neural voice](/legal/cog/azure/ai-foundry/responsible-ai/vice/custom-neural-voice/limited-access-custom-neural-voice?context=/azure/ai-services/speech-service/context/context) 
-* [Guidelines for responsible deployment of synth/azure/ai-foundry/responsible-ai/gal/cognitive-services/speech-service/custom-neural-voice/concepts-guidelines-responsible-deployment-synthetic?context=/azure/ai-services/speech-service/context/context)   
+
+## Responsible AI 
+
+An AI system includes not only the technology, but also the people who use it, the people who are affected by it, and the environment in which it's deployed. Read the transparency notes to learn about responsible AI use and deployment in your systems. 
+
+* [Transparency note and use cases for custom neural voice](/legal/cognitive-services/speech-service/custom-neural-voice/transparency-note-custom-neural-voice?context=/azure/ai-services/speech-service/context/context)  
+* [Characteristics and limitations for using custom neural voice](/legal/cognitive-services/speech-service/custom-neural-voice/characteristics-and-limitations-custom-neural-voice?context=/azure/ai-services/speech-service/context/context)   
+* [Limited access to custom neural voice](/legal/cognitive-services/speech-service/custom-neural-voice/limited-access-custom-neural-voice?context=/azure/ai-services/speech-service/context/context) 
+* [Guidelines for responsible deployment of synthetic voice technology](/legal/cognitive-services/speech-service/custom-neural-voice/concepts-guidelines-responsible-deployment-synthetic?context=/azure/ai-services/speech-service/context/context)   
 * [Disclosure for voice talent](/legal/cognitive-services/speech-service/disclosure-voice-talent?context=/azure/ai-services/speech-service/context/context)   
 * [Disclosure design guidelines](/legal/cognitive-services/speech-service/custom-neural-voice/concepts-disclosure-guidelines?context=/azure/ai-services/speech-service/context/context)   
 * [Disclosure design patterns](/legal/cognitive-services/speech-service/custom-neural-voice/concepts-disclosure-patterns?context=/azure/ai-services/speech-service/context/context)   

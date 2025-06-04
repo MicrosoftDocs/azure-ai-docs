@@ -14,10 +14,10 @@
   topicHref: /azure/index
   items:
   - name: Azure AI services             # Original doc set name
-    tocHref: /azure/ai-foundry/responsible-ai/anomaly-detector    # Destination doc set route
+    tocHref: /legal/cognitive-services/anomaly-detector    # Destination doc set route
     topicHref: /azure/ai-services/index    # Original doc set route
     items:
     - name: Anomaly Detector           # Destination doc set name
-      tocHref: /azure/ai-foundry/responsible-ai/anomaly-detector      # Destination doc set route
+      tocHref: /legal/cognitive-services/anomaly-detector      # Destination doc set route
       topicHref: /azure/ai-services/anomaly-detector/index    # Original doc set route
 
