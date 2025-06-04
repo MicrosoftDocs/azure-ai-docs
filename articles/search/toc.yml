@@ -373,13 +373,13 @@ items:
           href: cognitive-search-create-custom-skill-example.md
   - name: Agentic retrieval
     items:
+    - name: Design an index for agentic retrieval
+      href: search-agentic-retrieval-how-to-index.md
     - name: Create a knowledge agent
       href: search-agentic-retrieval-how-to-create.md
-    - name: Use a knowledge agent to retrieve data
+    - name: Retrieve data using a knowledge agent
       href: search-agentic-retrieval-how-to-retrieve.md
-    - name: Define an index for agentic retrieval
-      href: search-agentic-retrieval-how-to-index.md
-    - name: Build an agentic retrieval pipeline
+    - name: Build a retrieval pipeline
       href: search-agentic-retrieval-how-to-pipeline.md
   - name: Vector search
     items:
