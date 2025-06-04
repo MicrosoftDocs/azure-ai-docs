@@ -20,7 +20,7 @@ the link in the **Version** column to view the source on the
 
 ## Azure AI services
 
-[!INCLUDE [azure-policy-reference-rp-cognitiveservices](~/azure-docs-pr-policy-includes/includes/policy/reference/byrp/microsoft.cognitiveservices.md)]
+[!INCLUDE [azure-policy-reference-rp-cognitiveservices](~/azure-policy-autogen-docs/includes/policy/reference/byrp/microsoft.cognitiveservices.md)]
 
 ## Next steps
 

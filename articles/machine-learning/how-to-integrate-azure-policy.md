@@ -28,7 +28,7 @@ Azure Policy provides a set of policies that you can use for common scenarios wi
 
 The following table lists the built-in policies you can assign with Azure Machine Learning. For a list of all Azure built-in policies, see [Built-in policies](/azure/governance/policy/samples/built-in-policies).
 
-[!INCLUDE [azure-policy-reference-policies-machine-learning](~/azure-docs-pr-policy-includes/includes/policy/reference/bycat/policies-machine-learning.md)]
+[!INCLUDE [azure-policy-reference-policies-machine-learning](~/azure-policy-autogen-docs/includes/policy/reference/bycat/policies-machine-learning.md)]
 
 Policies can be set at different scopes, such as at the subscription or resource group level. For more information, see the [Azure Policy documentation](/azure/governance/policy/overview).
 

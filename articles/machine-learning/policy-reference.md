@@ -24,7 +24,7 @@ the link in the **GitHub** column to view the source on the
 
 ## Built-in policy definitions
 
-[!INCLUDE [azure-policy-reference-cat-machinelearning](~/azure-docs-pr-policy-includes/includes/policy/reference/bycat/policies-machine-learning.md)]
+[!INCLUDE [azure-policy-reference-cat-machinelearning](~/azure-policy-autogen-docs/includes/policy/reference/bycat/policies-machine-learning.md)]
 
 ## Next steps
 
