@@ -404,7 +404,7 @@ When the wizard completes the configuration, it creates the following objects:
 
 This quickstart creates a multimodal index that supports [hybrid search](hybrid-search-overview.md) over both text and images. Unless you use direct multimodal embeddings, the index doesn't accept images as query inputs, which requires the [AML skill](cognitive-search-aml-skill.md) or [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) with an equivalent vectorizer. For more information, see [Configure a vectorizer in a search index](vector-search-how-to-configure-vectorizer.md).
 
-Hybrid search is combines full-text queries and vector queries. When you issue a hybrid query, the search engine computes the semantic similarity between your query and the indexed vectors and ranks the results accordingly. For the index created in this quickstart, the results surface content from the `content_text` field that closely aligns with your query.
+Hybrid search combines full-text queries and vector queries. When you issue a hybrid query, the search engine computes the semantic similarity between your query and the indexed vectors and ranks the results accordingly. For the index created in this quickstart, the results surface content from the `content_text` field that closely aligns with your query.
 
 To query your multimodal index:
 
@@ -424,7 +424,7 @@ To query your multimodal index:
 
    :::image type="content" source="media/search-get-started-portal-images/search-button.png" alt-text="Screenshot of the Search button in Search Explorer." border="true" lightbox="media/search-get-started-portal-images/search-button.png":::
 
-   The results should include text and image content related to `energy` in your index. If you enabled semantic ranker, the `@search.answers` array provides concise, high-confidence [semantic answers](semantic-answers.md) to help you quickly identify relevant matches.
+   The JSON results should include text and image content related to `energy` in your index. If you enabled semantic ranker, the `@search.answers` array provides concise, high-confidence [semantic answers](semantic-answers.md) to help you quickly identify relevant matches.
 
    ```json
    "@search.answers": [
