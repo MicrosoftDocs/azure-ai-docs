@@ -5,7 +5,7 @@ description: Learn about how the drag-and-drop Designer (v1) UI in Azure Machine
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.topic: conceptual
+ms.topic: concept-article
 ms.author: lagayhar
 ms.reviewer: lagayhar
 author: lgayhardt
