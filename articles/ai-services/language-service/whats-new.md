@@ -16,25 +16,31 @@ Azure AI Language is updated on an ongoing basis. Bookmark this page to stay up 
 
 ## May 2025
 
-* **New agent templates**. Azure AI Language now supports the following agent templates:
+##### New agent templates 
 
-    *   [Intent routing](../agents/concepts/agent-catalog.md) detects user intent and provides exact answering. Perfect for deterministically intent routing and exact question answering with human controls.
+Azure AI Language now supports the following agent templates:
 
-    *   [Exact question answering](../agents/concepts/agent-catalog.md) answers high-value predefined questions deterministically to ensure consistent and accurate responses.
+*  [Intent routing](../agents/concepts/agent-catalog.md): Detects user intent and provides precise answers, ideal for deterministic intent routing, and exact question answering with human oversight.
 
-* **Personally-identifiable-information updates**. Azure AI Language now offers the following PII detection customization and entity subtype support:
+*   [Exact question answering](../agents/concepts/agent-catalog.md): Delivers consistent, accurate responses to high-value predefined questions through deterministic methods.
 
-    *  [Customize PII detection using your own regex](personally-identifiable-information/how-to/adapt-to-domain-pii.md#customizing-pii-detection-using-your-own-regex-only-available-for-text-pii-container) (only available for Text PII container).
+##### PII detection enhancements
 
-    *  [Customize PII output specifying values to exclude](personally-identifiable-information/how-to/adapt-to-domain-pii.md#customizing-pii-output-by-specifying-values-to-exclude).
+Azure AI Language introduces new customization and entity subtype features for PII detection:
 
-    *  [Customize PII detection using entity synonyms](personally-identifiable-information/how-to/adapt-to-domain-pii.md#api-schema-for-the-entitysynoyms-parameter).
+*  [Customize PII detection using your own regex](personally-identifiable-information/how-to/adapt-to-domain-pii.md#customizing-pii-detection-using-your-own-regex-only-available-for-text-pii-container) (Text PII container only).
 
-* [`2025-05-15-preview`](/rest/api/language/operation-groups?view=rest-language-2025-05-15-preview&preserve-view=true) release. This API preview version includes the following named entity recognition (NER) and personally identifiable information (PII) detection updates:
+*  [Specify values to exclude from PII output](personally-identifiable-information/how-to/adapt-to-domain-pii.md#customizing-pii-output-by-specifying-values-to-exclude).
+
+*  [Use entity synonyms for tailored PII detection](personally-identifiable-information/how-to/adapt-to-domain-pii.md#api-schema-for-the-entitysynoyms-parameter).
+
+##### 2025-05-15-preview release. 
+
+The [latest API preview version](/rest/api/language/operation-groups?view=rest-language-2025-05-15-preview&preserve-view=true) includes updates for named entity recognition (NER) and PII detection:
 
     * New entity type support for `DateOfBirth`, `BankAccountNumber`, `PassportNumber`, and `DriversLicenseNumber`.
 
-    * Enhanced AI quality for `PhoneNumber` entity type.
+    * Improved AI quality for `PhoneNumber` entity type.
 
 To learn more, see our latest [TechCommunity Blog Post](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/announcing-azure-ai-language-new-features-to-accelerate-your-agent-development/4415216).
 
