@@ -95,3 +95,4 @@ As with all the Azure AI services, developers using the Content Understanding se
 * Review code sample: [**video content extraction**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/notebooks/content_extraction.ipynb).
 * Review code sample: [**video search with natural language queries**](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python/tree/main#samples).
 * Review code sample: [**analyzer templates**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates)
+/azure/ai-foundry/responsible-ai/

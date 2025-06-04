@@ -322,3 +322,4 @@ An AI system includes not only the technology, but also the people who use it, t
 
 - Use [pronunciation assessment with the Speech SDK](how-to-pronunciation-assessment.md)
 - Read the blog about [use cases](https://aka.ms/pronunciationassessment/techblog)
+/azure/ai-foundry/responsible-ai//azure/ai-foundry/responsible-ai/

@@ -298,5 +298,5 @@ Navigate to the project where you copied the model to [deploy the model copy](..
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Deploy the professional voice endpoint](../../../../professional-voice-deploy-endpoint.md)
+> [Deploy the professional voice endpoint](../../../../professional-voice-deploy-endpoint.md)/azure/ai-foundry/responsible-ai/
 

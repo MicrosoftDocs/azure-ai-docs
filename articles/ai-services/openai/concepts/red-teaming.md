@@ -24,7 +24,7 @@ The term *red teaming* has historically described systematic adversarial attacks
 Red teaming is a best practice in the responsible development of systems and features using LLMs. While not a replacement for systematic measurement and mitigation work, red teamers help to uncover and identify harms and, in turn, enable measurement strategies to validate the effectiveness of mitigations.
 
 While Microsoft has conducted red teaming exercises and implemented safety systems (including [content filters](./content-filter.md) and other [mitigation strategies](./prompt-engineering.md)) for its Azure OpenAI Service models (see this [Overview of responsible AI practices](/legal/cognitive-services/openai/overview)), the context of each LLM application will be unique and you also should conduct red teaming to:
-
+/azure/ai-foundry/responsible-ai/
 - Test the LLM base model and determine whether there are gaps in the existing safety systems, given the context of your application.
 
 - Identify and mitigate shortcomings in the existing default filters or mitigation strategies.

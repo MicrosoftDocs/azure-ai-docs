@@ -55,7 +55,7 @@ Speaker enrollment data is stored in a secured system, including the speech audi
 
 You control how long data should be retained. You can create, update, and delete enrollment data for individual speakers through API calls. When the subscription is deleted, all the speaker enrollment data associated with the subscription is also deleted. 
 
-As with all of the Azure AI services resources, developers who use the speaker recognition feature must be aware of Microsoft policies on customer data. You should ensure that you received the appropriate permissions from the users. You can find more details in [Data and privacy for speaker recognition](/legal/cognitive-services/speech-service/speaker-recognition/data-privacy-speaker-recognition). For more information, see the [Azure AI services page](https://azure.microsoft.com/support/legal/cognitive-services-compliance-and-privacy/) on the Microsoft Trust Center. 
+As with all of the Azure AI services resources, developers who use the speaker recognition feature must be aware of Microsoft policies on customer data. You should ensure that you received the appropriate permissions from the users. You can find more details in [Data and privacy for speaker recognition]/azure/ai-foundry/responsible-ai//speech-service/speaker-recognition/data-privacy-speaker-recognition). For more information, see the [Azure AI services page](https://azure.microsoft.com/support/legal/cognitive-services-compliance-and-privacy/) on the Microsoft Trust Center. 
 
 ## Common questions and solutions
 
@@ -73,11 +73,11 @@ As with all of the Azure AI services resources, developers who use the speaker r
 
 An AI system includes not only the technology, but also the people who use it, the people who are affected by it, and the environment in which it's deployed. Read the transparency notes to learn about responsible AI use and deployment in your systems. 
 
-* [Transparency note and use cases](/legal/cognitive-services/speech-service/speaker-recognition/transparency-note-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
-* [Characteristics and limitations](/legal/cognitive-services/speech-service/speaker-recognition/characteristics-and-limitations-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
-* [Limited access](/legal/cognitive-services/speech-service/speaker-recognition/limited-access-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
-* [General guidelines](/legal/cognitive-services/speech-service/speaker-recognition/guidance-integration-responsible-use-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
-* [Data, privacy, and security](/legal/cognitive-services/speech-service/speaker-recognition/data-privacy-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
+* [Transparency note and use cases](/azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/transparency-note-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
+* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/characteristics-and-limitations-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
+* [Limited access](/azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/limited-access-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
+* [General guidelines](/azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/guidance-integration-responsible-use-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
+* [Data, privacy, and security](/azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/data-privacy-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
 
 ## Related content
 

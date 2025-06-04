@@ -246,3 +246,4 @@ An AI system includes not only the technology, but also the people who use it, t
 * [Transparency note for the Language service](/legal/cognitive-services/text-analytics/transparency-note)
 * [Integration and responsible use](/legal/cognitive-services/text-analytics/guidance-integration-responsible-use)
 * [Data, privacy, and security](/legal/cognitive-services/text-analytics/data-privacy)
+/azure/ai-foundry/responsible-ai//azure/ai-foundry/responsible-ai//azure/ai-foundry/responsible-ai/
