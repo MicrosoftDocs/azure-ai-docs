@@ -71,12 +71,13 @@ Checks the contract against internal standards or uploaded guidelines to identif
     
     "Review this document against company compliance guidelines and flag any deviations from the approved template."
 
-:::zone pivot="portal"
-
 ## Limitations
 
 * Connected agents cannot call local functions using the function calling tool. We recommend using the [OpenAPI tool](./tools/openapi-spec.md) or [Azure Functions](./tools/azure-functions.md) instead.
 * It is currently not possible to guarantee citations will be passed from connected agents. You can try using prompt engineering combined with different models to try and improve the possibility that citations will be outputted by the main agent, but results are subject to variability. 
+
+:::zone pivot="portal"
+
 
 ## Creating a multi-agent setup
 
