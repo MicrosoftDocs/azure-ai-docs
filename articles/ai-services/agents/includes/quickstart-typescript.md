@@ -22,7 +22,7 @@ ms.custom: devx-track-ts
 * Make sure you have the **Azure AI Developer** [RBAC role](../../../ai-foundry/concepts/rbac-azure-ai-foundry.md) assigned at the appropriate level.
 * Install [the Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli). If you have the CLI already installed, make sure it's updated to the latest version.
 
-[!INCLUDE [bicep-setup](bicep-setup.md)]
+
 
 ## Configure and run an agent
 
@@ -54,11 +54,11 @@ Next, to authenticate your API requests and run the program, use the [az login](
 az login
 ```
 
-Use the following code to create and run an agent. To run this code, you will need to create a connection string using information from your project. This string is in the format:
+Use the following code to create and run an agent. To run this code, you will need to create an endpoint using information from your project. This string is in the format:
 
 `<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>`
 
-[!INCLUDE [connection-string-portal](connection-string-portal.md)]
+[!INCLUDE [connection-string-portal](endpoint-string-portal.md)]
 
 `HostName` can be found by navigating to your `discovery_url` and removing the leading `https://` and trailing `/discovery`. To find your `discovery_url`, run this CLI command:
 

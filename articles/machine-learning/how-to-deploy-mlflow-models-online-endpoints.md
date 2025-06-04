@@ -10,7 +10,7 @@ ms.author: mopeakande
 ms.reviewer: fasantia
 ms.date: 03/31/2025
 ms.topic: how-to
-ms.custom: deploy, mlflow, devplatv2, no-code-deployment, devx-track-azurecli, cliv2, update-code
+ms.custom: deploy, mlflow, devplatv2, no-code-deployment, devx-track-azurecli, cliv2, update-code1
 # customer intent: As a developer, I want to see how to deploy an MLflow model to an online endpoint so that I can use the model to make predictions in real time.
 ---
 
@@ -25,7 +25,7 @@ For no-code-deployment, Azure Machine Learning:
 * Dynamically installs Python packages that you list in a conda.yaml file. As a result, dependencies are installed during container runtime.
 * Provides an MLflow base image, or curated environment, that contains the following items:
     * The [`azureml-inference-server-http`](how-to-inference-server-http.md) package
-    * The [`mlflow-skinny`](https://github.com/mlflow/mlflow/blob/master/README_SKINNY.md) package
+    * The [`mlflow-skinny`](https://github.com/mlflow/mlflow/blob/master/skinny/README_SKINNY.md) package
     * A scoring script for inferencing
 
 [!INCLUDE [mlflow-model-package-for-workspace-without-egress](includes/mlflow-model-package-for-workspace-without-egress.md)]

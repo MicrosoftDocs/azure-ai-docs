@@ -6,7 +6,7 @@ ms.topic: install-set-up-deploy
 manager: nitinme
 ms.author: lajanuar
 author: laujan
-ms.date: 04/10/2025
+ms.date: 04/14/2025
 ---
 
 # Enable Microsoft Entra ID authentication
@@ -151,7 +151,7 @@ Client applications utilize credentials to gain access to a web API. These crede
 
     :::image type="content" source="../media/entra-id/client-secret-value.png" alt-text="Screenshot of the client secret value location for a registered application in the Azure portal.":::
 
-Now that your application has the proper authentication credentials, we add permissions for your application to access Azure AI Services resources.
+Now that your application has the proper authentication credentials, we add permissions for your application to access Azure AI Foundry resources.
 
 ## Add API permissions
 
@@ -270,7 +270,7 @@ To make a valid REST API request, the following values are required:
 
 1. Navigate to your resource instant page in the Azure portal.
 
-    * The global endpoint is found on under `Resource Management` → `Keys and Endpoint` → `Web API` → `Text Translation`.
+    * The global endpoint is found on under `Resource Management` → `Keys and Endpoint` → `Web API` → `Text translation`.
 
     * The `ResourceID` is found under `Resource Management` → `Properties`.
 
@@ -303,7 +303,7 @@ To make a valid REST API request, the following values are required:
 
 ### Use your custom domain endpoint
 
- Your custom domain endpoint is a URL formatted with your resource name and hostname and is available in the Azure portal. When you created your Translator resource, the value that you entered in the `Name` field is the custom domain name parameter for the endpoint. You can find your custom domain endpoint URL in the Document Translation and Containers Text Translation fields.
+ Your custom domain endpoint is a URL formatted with your resource name and hostname and is available in the Azure portal. When you created your Translator resource, the value that you entered in the `Name` field is the custom domain name parameter for the endpoint. You can find your custom domain endpoint URL in the Document translation and Containers Text translation fields.
 
 ***Linux or macOS***
 

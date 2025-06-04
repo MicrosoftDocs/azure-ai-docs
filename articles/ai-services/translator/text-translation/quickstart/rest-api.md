@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 09/26/2024
+ms.date: 05/19/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, golang, java, javascript, python
@@ -34,13 +34,12 @@ You need an active Azure subscription. If you don't have an Azure subscription, 
   * You need the key and endpoint from the resource to connect your application to the Translator service. You paste your key and endpoint into the code later in the quickstart. You can find these values on the Azure portal **Keys and Endpoint** page:
 
     :::image type="content" source="../../media/quickstarts/keys-and-endpoint-portal.png" alt-text="Screenshot: Azure portal keys and endpoint page.":::
-
     > [!NOTE]
     >
-    > * For this quickstart it is recommended that you use a Translator text single-service global resource.
-    > * With a single-service global resource you'll include one authorization header (**Ocp-Apim-Subscription-key**) with the REST API request. The value for Ocp-Apim-Subscription-key is your Azure secret key for your Translator Text subscription.
-    > * If you choose to use an Azure AI multi-service or regional Translator resource, two authentication headers will be required: (**Ocp-Api-Subscription-Key** and **Ocp-Apim-Subscription-Region**). The value for Ocp-Apim-Subscription-Region is the region associated with your subscription.
-    > * For more information on how to use the **Ocp-Apim-Subscription-Region** header, _see_ [Text Translation REST API headers](../how-to/use-rest-api.md#headers).
+    > * For this quickstart, we recommended that you use a Translator text single-service global resource.
+    > * With a single-service global resource, you' include one authorization header (**Ocp-Apim-Subscription-key**) with the REST API request. The value for Ocp-Apim-Subscription-key is your Azure secret key for your Translator Text subscription.
+    > * If you choose to use an Azure AI multi-service or regional Translator resource, two authentication headers are required: (**Ocp-Api-Subscription-Key** and **Ocp-Apim-Subscription-Region**). The value for Ocp-Apim-Subscription-Region is the region associated with your subscription.
+    > * For more information on how to use the **Ocp-Apim-Subscription-Region** header, _see_ [Text translation REST API headers](../how-to/use-rest-api.md#headers).
 
 ## Headers
 
@@ -353,7 +352,7 @@ After a successful call, you should see the following response:
   >[!TIP]
   >
   > * Visual Studio Code offers a **Coding Pack for Java** for Windows and macOS.The coding pack is a bundle of VS Code, the Java Development Kit (JDK), and a collection of suggested extensions by Microsoft. The Coding Pack can also be used to fix an existing development environment.
-  > * If you are using VS Code and the Coding Pack For Java, install the [**Gradle for Java**](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-gradle) extension.
+  > * If you're using VS Code and the Coding Pack For Java, install the [**Gradle for Java**](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-gradle) extension.
 
 * If you aren't using Visual Studio Code, make sure you have the following installed in your development environment:
 
@@ -691,7 +690,7 @@ After a successful call, you should see the following response:
     ```
 
     > [!NOTE]
-    > We will also use a Python built-in package called json. It's used to work with JSON data.
+    > We also use a Python built-in package called json. It's used to work with JSON data.
 <!-- checked -->
 <!--
  > [!div class="nextstepaction"]

@@ -33,7 +33,7 @@ See [MLflow and Azure Machine Learning](../concept-mlflow.md) for all supported 
 ## Prerequisites
 
 * Install the `mlflow` package. 
-    * You can use the [MLflow Skinny](https://github.com/mlflow/mlflow/blob/master/README_SKINNY.md) which is a lightweight MLflow package without SQL storage, server, UI, or data science dependencies. This is recommended for users who primarily need the tracking and logging capabilities without importing the full suite of MLflow features including deployments.
+    * You can use the [MLflow Skinny](https://github.com/mlflow/mlflow/blob/master/skinny/README_SKINNY.md) which is a lightweight MLflow package without SQL storage, server, UI, or data science dependencies. This is recommended for users who primarily need the tracking and logging capabilities without importing the full suite of MLflow features including deployments.
 
 * Install the `azureml-mlflow` package. 
 * [Create an Azure Machine Learning Workspace](../quickstart-create-resources.md).

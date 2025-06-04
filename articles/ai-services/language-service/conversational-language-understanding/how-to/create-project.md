@@ -2,23 +2,22 @@
 title: How to create projects in Conversational Language Understanding
 titleSuffix: Azure AI services
 description: Use this article to learn how to create projects in Conversational Language Understanding.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/21/2024
-ms.author: jboback
+ms.date: 05/01/2025
+ms.author: lajanuar
 ms.custom: language-service-clu
 ---
 
-# How to create a CLU project
+# How to create a CLU fine-tuning task
 
 Use this article to learn how to set up these requirements and create a project. 
 
-
 ## Prerequisites
 
-Before you start using CLU, you will need several things:
+Before you start using CLU, you will need a few items:
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
 * An Azure AI Language resource 
@@ -43,7 +42,7 @@ Before you start using CLU, you will need an Azure AI Language resource.
 
 Once you have a Language resource created, create a Conversational Language Understanding project. 
 
-### [Language Studio](#tab/language-studio)
+### [Azure AI Foundry](#tab/azure-ai-foundry)
 
 [!INCLUDE [Create project](../includes/language-studio/create-project.md)]
 
@@ -55,7 +54,7 @@ Once you have a Language resource created, create a Conversational Language Unde
 
 ## Import project
 
-### [Language Studio](#tab/language-studio)
+### [Azure AI Foundry](#tab/azure-ai-foundry)
 
 You can export a Conversational Language Understanding project as a JSON file at any time by going to the conversation projects page, selecting a project, and from the top menu, clicking on **Export**.
 
@@ -79,11 +78,11 @@ You can import a CLU JSON into the service
 
 ## Export project
 
-### [Language Studio](#tab/Language-Studio)
+### [Azure AI Foundry](#tab/azure-ai-foundry)
 
 You can export a Conversational Language Understanding project as a JSON file at any time by going to the conversation projects page, selecting a project, and pressing **Export**.
 
-### [REST APIs](#tab/rest-apis)
+### [REST APIs](#tab/rest-api)
 
 You can export a Conversational Language Understanding project as a JSON file at any time.
 
@@ -93,7 +92,7 @@ You can export a Conversational Language Understanding project as a JSON file at
 
 ## Get CLU project details
 
-### [Language Studio](#tab/language-studio)
+### [Azure AI Foundry](#tab/azure-ai-foundry)
 
 [!INCLUDE [Language Studio project details](../includes/language-studio/project-details.md)]
 
@@ -105,7 +104,7 @@ You can export a Conversational Language Understanding project as a JSON file at
 
 ## Delete project 
 
-### [Language Studio](#tab/language-studio)
+### [Azure AI Foundry](#tab/azure-ai-foundry)
 
 [!INCLUDE [Delete project](../includes/language-studio/delete-project.md)]
 

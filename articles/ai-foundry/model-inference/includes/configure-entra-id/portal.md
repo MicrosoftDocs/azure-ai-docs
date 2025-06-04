@@ -14,13 +14,13 @@ zone_pivot_groups: azure-ai-models-deployment
 
 Follow these steps to configure Microsoft Entra ID for inference: 
 
-1. Go to the [Azure portal](https://portal.azure.com) and locate the **Azure AI Services** resource you're using. If you're using Azure AI Foundry with projects or hubs, you can navigate to it by:
+1. Go to the [Azure portal](https://portal.azure.com) and locate the **Azure AI Foundry (formerly known Azure AI Services)** resource you're using. If you're using Azure AI Foundry with projects or hubs, you can navigate to it by:
 
-   1. Go to [Azure AI Foundry portal](https://ai.azure.com).
+   1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
    2. On the landing page, select **Open management center**.
 
-   3. Go to the section **Connected resources** and select the connection to the Azure AI Services resource that you want to configure. If it isn't listed, select **View all** to see the full list.
+   3. Go to the section **Connected resources** and select the connection to the Azure AI Foundry (formerly known Azure AI Services) resource that you want to configure. If it isn't listed, select **View all** to see the full list.
 
       :::image type="content" source="../../media/configure-entra-id/resource-behind-select.png" alt-text="Screenshot showing how to navigate to the details of the connection in Azure AI Foundry in the management center." lightbox="../../media/configure-entra-id/resource-behind-select.png":::
 
@@ -74,13 +74,13 @@ Even when your resource has Microsoft Entra ID configured, your projects may sti
 
 To change this behavior, you have to update the connections from your projects to use Microsoft Entra ID. Follow these steps:
 
-1. Go to [Azure AI Foundry portal](https://ai.azure.com).
+1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
-2. Navigate to the projects or hubs that are using the Azure AI Services resource through a connection.
+2. Navigate to the projects or hubs that are using the Azure AI Foundry (formerly known Azure AI Services) resource through a connection.
 
 3. Select **Management center**.
 
-3. Go to the section **Connected resources** and select the connection to the Azure AI Services resource that you want to configure. If it's not listed, select **View all** to see the full list.
+3. Go to the section **Connected resources** and select the connection to the Azure AI Foundry (formerly known Azure AI Services) resource that you want to configure. If it's not listed, select **View all** to see the full list.
 
 4. On the **Connection details** section, next to **Access details**, select the edit icon.
 

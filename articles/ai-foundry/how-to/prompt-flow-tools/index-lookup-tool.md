@@ -12,6 +12,7 @@ ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
 ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
+ms.update-cycle: 180-days
 ---
 
 # Index Lookup tool for Azure AI Foundry
@@ -22,7 +23,7 @@ The prompt flow Index Lookup tool enables the use of common vector indices (such
 
 ## Build with the Index Lookup tool
 
-1. Create or open a flow in [Azure AI Foundry](https://ai.azure.com). For more information, see [Create a flow](../flow-develop.md).
+1. Create or open a flow in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). For more information, see [Create a flow](../flow-develop.md).
 1. Select **+ More tools** > **Index Lookup** to add the Index Lookup tool to your flow.
 
     :::image type="content" source="../../media/prompt-flow/configure-index-lookup-tool.png" alt-text="Screenshot that shows the Index Lookup tool added to a flow in Azure AI Foundry portal." lightbox="../../media/prompt-flow/configure-index-lookup-tool.png":::

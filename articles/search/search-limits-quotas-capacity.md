@@ -1,14 +1,14 @@
 ---
-title: Service limits for tiers and skus
+title: Service Limits for Tiers and SKUs
 titleSuffix: Azure AI Search
 description: Service limits used for capacity planning and maximum limits on requests and responses for Azure AI Search.
 
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 04/09/2025
+ms.date: 04/30/2025
 ms.custom:
   - references_regions
   - build-2024
@@ -107,7 +107,12 @@ This table shows the progression of vector quota increases in GB over time. The 
 The service enforces a vector index size quota *for every partition* in your search service. Each extra partition increases the available vector index size quota. This quota is a hard limit to ensure your service remains healthy, which means that further indexing attempts once the limit is exceeded results in failure. You can resume indexing once you free up available quota by either deleting some vector documents or by scaling up in partitions.
 
 > [!IMPORTANT]
-> Higher vector limits are tied to larger partition sizes. Regions that run on older infrastructure are subject to the July-April limits. Review the [regions list](search-region-support.md) for status on partition storage limits.
+> Higher vector limits are tied to [larger partition sizes](#partition-storage-gb). Currently, higher vector limits aren't available in the following regions, which are subject to the July–April limits.
+> 
+> + Israel Central
+> + Qatar Central
+> + ⁠Spain Central
+> + South India
 
 ## Indexer limits
 
@@ -236,6 +241,7 @@ Indexing APIs:
 
 Query APIs:
 
++ Maximum 10 fields in a vector query
 + Maximum 32 fields in $orderby clause.
 + Maximum 100,000 characters in a search clause.
 + Maximum number of clauses in search is 3,000.

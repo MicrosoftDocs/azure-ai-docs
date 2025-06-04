@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 03/07/2025
+ms.date: 04/14/2025
 ms.author: lajanuar
 ---
 
@@ -54,20 +54,20 @@ There are no limits on concurrent requests.
 | S3 / C3 | 120 million characters per hour |
 | S4 / C4 | 200 million characters per hour |
 
-Limits for [multi-service subscriptions](./text-translation/reference/v3/reference.md#authentication) are the same as the S1 tier.
+Limits for [multi-service subscriptions](./text-translation/reference/authentication.md) are the same as the S1 tier.
 
 These limits are restricted to Microsoft's standard translation models. Custom translation models that use Custom Translator are limited to 3,600 characters per second, per model.
 
 ### Latency
 
-The Translator has a maximum latency of 15 seconds using standard models and 120 seconds when using custom models. Typically, responses *for text within 100 characters* are returned in 150 milliseconds to 300 milliseconds. The custom translator models have similar latency characteristics on sustained request rate and can have a higher latency when your request rate is intermittent. Response times vary based on the size of the request and language pair. If you don't receive a translation or an [error response](./text-translation/reference/v3/reference.md#errors) within that time frame, check your code, your network connection, and retry.
+The Translator has a maximum latency of 15 seconds using standard models and 120 seconds when using custom models. Typically, responses *for text within 100 characters* are returned in 150 milliseconds to 300 milliseconds. The custom translator models have similar latency characteristics on sustained request rate and can have a higher latency when your request rate is intermittent. Response times vary based on the size of the request and language pair. If you don't receive a translation or an [error response](./text-translation/reference/status-response-codes.md#error-codes) within that time frame, check your code, your network connection, and retry.
 
-## Document Translation
+## Document translation
 
 > [!NOTE]
 >
-> * Document Translation doesn't support translating secured documents such as those with an encrypted password or with restricted access to copy content.
-> * The Document Translation feature supports translation of complete sentences in a single language. If sentences are composed of more than one language, the content may not completely translate to the target language.
+> * Document translation doesn't support translating secured documents such as those with an encrypted password or with restricted access to copy content.
+> * The Document translation feature supports translation of complete sentences in a single language. If sentences are composed of more than one language, the content may not completely translate to the target language.
 
 ##### Asynchronous (batch) operation limits
 

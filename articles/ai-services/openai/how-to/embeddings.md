@@ -1,5 +1,5 @@
 ---
-title: 'How to generate embeddings with Azure OpenAI Service'
+title: 'How to generate embeddings with Azure OpenAI in Azure AI Foundry Models'
 titleSuffix: Azure OpenAI
 description: Learn how to generate embeddings with Azure OpenAI
 manager: nitinme
@@ -57,7 +57,7 @@ string oaiKey = "YOUR_API_KEY";
 
 AzureKeyCredential credentials = new (oaiKey);
 
-OpenAIClient openAIClient = new (oaiEndpoint, credentials);
+AzureOpenAIClient openAIClient = new (oaiEndpoint, credentials);
 
 EmbeddingsOptions embeddingOptions = new()
 {

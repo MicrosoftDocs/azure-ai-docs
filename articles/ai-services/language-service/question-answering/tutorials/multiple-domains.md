@@ -3,8 +3,8 @@ title: "Tutorial: Create a FAQ bot for multiple categories with Azure AI Bot Ser
 description: In this tutorial, create a no code FAQ Bot for production use cases with custom question answering and Azure AI Bot Service.
 ms.service: azure-ai-language
 ms.topic: tutorial
-author: jboback
-ms.author: jboback
+author: laujan
+ms.author: lajanuar
 ms.date: 11/21/2024
 ms.custom: language-service-question-answering, cogserv-non-critical-language
 ---

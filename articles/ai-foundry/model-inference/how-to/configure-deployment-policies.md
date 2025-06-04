@@ -1,11 +1,11 @@
 ---
 title: Control model deployment with custom policies
 titleSuffix: Azure AI Foundry
-description: "Learn how to use custom Azure Policies to control Azure AI services and Azure OpenAI model deployment with Azure AI Foundry."
+description: "Learn how to use custom Azure Policies to control Azure AI Foundry and Azure OpenAI in Foundry Models deployment with Azure AI Foundry."
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to #Don't change
-ms.date: 02/11/2025
+ms.date: 05/05/2025
 author: Blackmist
 ms.author: larryfr
 reviewer: santiagxf
@@ -15,7 +15,10 @@ ms.reviewer: fasantia
 
 # Control model deployment with custom policies
 
-When using models from Azure AI Services and Azure OpenAI with [Azure AI Foundry](https://ai.azure.com), you might need to use custom policies to control which [type of deployment](../concepts/deployment-types.md) options are available to users or which specific models users can deploy. This article guides you on how to create policies to control model deployments using Azure Policies. 
+When using models from Azure AI Foundry (formerly known Azure AI Services) and Azure OpenAI with [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), you might need to use custom policies to control which [type of deployment](../concepts/deployment-types.md) options are available to users or which specific models users can deploy. This article guides you on how to create policies to control model deployments using Azure Policies. 
+
+> [!TIP]
+> The steps in this article apply to both a [!INCLUDE [fdp](../../includes/fdp-project-name.md)] and [!INCLUDE [hub](../../includes/hub-project-name.md)].
 
 ## Prerequisites
 
@@ -31,7 +34,7 @@ Follow these steps to create and assign an example custom policy to control mode
 
 2. From the left side of the Azure Policy Dashboard, select **Authoring**, **Definitions**, and then select **+ Policy definition** from the top of the page.
 
-    :::image type="content" source="../media/configure-deployment-policies/create-new-policy.png" alt-text="An screenshot showing how to create a new policy definition in Azure Policies." lightbox="../media/configure-deployment-policies/create-new-policy.png":::
+    :::image type="content" source="../media/configure-deployment-policies/create-new-policy.png" alt-text="A screenshot showing how to create a new policy definition in Azure Policies." lightbox="../media/configure-deployment-policies/create-new-policy.png":::
 
 3. In the **Policy Definition** form, use the following values:
 
@@ -157,7 +160,7 @@ To monitor compliance with the policy, follow these steps:
 
 1. From the left side of the Azure Policy Dashboard, select **Compliance**. Each policy assignment is listed with the compliance status. To view more details, select the policy assignment. The following example shows the compliance report for a policy that blocks deployments of type *Global standard*.
 
-    :::image type="content" source="../media/configure-deployment-policies/policy-compliance.png" alt-text="An screenshot showing an example of a policy compliance report for a policy that blocks Global standard deployment SKUs." lightbox="../media/configure-deployment-policies/policy-compliance.png":::
+    :::image type="content" source="../media/configure-deployment-policies/policy-compliance.png" alt-text="A screenshot showing an example of a policy compliance report for a policy that blocks Global standard deployment SKUs." lightbox="../media/configure-deployment-policies/policy-compliance.png":::
 
 ## Update the policy assignment
 

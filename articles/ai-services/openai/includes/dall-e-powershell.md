@@ -1,14 +1,14 @@
 ---
-title: "Quickstart: Generate images with Azure OpenAI Service using PowerShell"
-titleSuffix: Azure OpenAI Service
-description: Learn how to generate images with Azure OpenAI Service by using PowerShell and the endpoint and access keys for your Azure OpenAI resource.
+title: "Quickstart: Generate images with Azure OpenAI in Azure AI Foundry Models using PowerShell"
+titleSuffix: Azure OpenAI
+description: Learn how to generate images with Azure OpenAI by using PowerShell and the endpoint and access keys for your Azure OpenAI resource.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
 ms.date: 3/21/2025
 ---
 
-Use this guide to get started calling the Azure OpenAI Service image generation APIs with PowerShell.
+Use this guide to get started calling the Azure OpenAI in Azure AI Foundry Models image generation APIs with PowerShell.
 
 ## Prerequisites
 
@@ -92,7 +92,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
    ```
 
    > [!IMPORTANT]
-   > For production, use a secure way of storing and accessing your credentials like [The PowerShell Secret Management with Azure Key Vault](/powershell/utility-modules/secretmanagement/how-to/using-azure-keyvault). For more information about credential security, see the Azure AI services [security](../../security-features.md) article.
+   > For production, use a secure way of storing and accessing your credentials like [The PowerShell Secret Management with Azure Key Vault](/powershell/utility-modules/secretmanagement/how-to/using-azure-keyvault). For more information about credential security, see this [security](../../security-features.md) article.
 
 1. Run the script using PowerShell:
 
@@ -106,7 +106,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 PowerShell requests the image from Azure OpenAI and stores the output image in the _generated_image.png_ file in your specified directory. For convenience, the full path for the file is returned at the end of the script.
 
-The image generation APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it doesn't generate an image. For more information, see [Content filtering](../concepts/content-filter.md).
+The Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it doesn't generate an image. For more information, see [Content filtering](../concepts/content-filter.md).
 
 ## Clean up resources
 
@@ -117,5 +117,5 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 
 ## Next steps
 
-* Explore the image generation APIs in more depth with the [DALL-E how-to guide](../how-to/dall-e.md).
+* Explore the Image APIs in more depth with the [Image API how-to guide](../how-to/dall-e.md).
 - Try examples in the [Azure OpenAI Samples GitHub repository](https://github.com/Azure/openai-samples).

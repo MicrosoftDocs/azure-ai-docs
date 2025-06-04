@@ -5,7 +5,7 @@ description: Learn how to use text to speech avatar with real-time synthesis.
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 1/13/2025
+ms.date: 4/28/2025
 ms.reviewer: eur
 ms.author: eur
 author: eric-urban
@@ -20,7 +20,7 @@ In this how-to guide, you learn how to use text to speech avatar with real-time 
 To get started, make sure you have the following prerequisites:
 
 - **Azure subscription:** [Create one for free](https://azure.microsoft.com/free/cognitive-services).
-- **Speech resource:** <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices"  title="Create an AI Services resource for Speech"  target="_blank">Create a speech resource</a> in the Azure portal. Select "Standard S0" pricing tier if you want to create speech resource to access avatar. 
+- **Speech resource:** <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry"  title="Create an AI Foundry resource for Speech"  target="_blank">Create a speech resource</a> in the Azure portal. Select "Standard S0" pricing tier if you want to create speech resource to access avatar. 
 - **Your speech resource key and region:** After your Speech resource is deployed, select **Go to resource** to view and manage keys. 
 
 ## Set up environment
@@ -65,7 +65,7 @@ The default voice is the first voice returned per locale from the [voice list AP
 
 ## Select avatar character and style
 
-The supported avatar characters and styles can be found [here](avatar-gestures-with-ssml.md#supported-prebuilt-avatar-characters-styles-and-gestures).
+The supported avatar characters and styles can be found [here](avatar-gestures-with-ssml.md#supported-standard-avatar-characters-styles-and-gestures).
 
 The following code snippet shows how to set avatar character and style:
 
@@ -192,24 +192,76 @@ To avoid unnecessary costs after you finish using the real-time avatar, it’s i
 
 ## Edit background
 
-The avatar real-time synthesis API currently doesn't support setting a background image/video and only supports setting a solid-color background, without transparent background support. However, there's an alternative way to implement background customization on the client side, following these guidelines:
+### Set background color
+
+You can set the background color of the avatar video through the `backgroundColor` property of `AvatarConfig` object. The following code snippet shows how to set the background color:
+
+```JavaScript
+const avatarConfig = new SpeechSDK.AvatarConfig(
+    "lisa", // Set avatar character here.
+    "casual-sitting", // Set avatar style here.
+)
+avatarConfig.backgroundColor = '#00FF00FF' // Set background color to green
+```
+
+> [!NOTE]
+>  The color string should be in format `#RRGGBBAA`. And the alpha channel (`AA` part) is always ignored as we don't support transparent background for real-time avatar.
+
+
+### Set background image
+
+You can set the background image of the avatar video through the `backgroundImage` property of `AvatarConfig` object. You need upload the image to a public accessible URL and then assign the URL to the `backgroundImage` property. The following code snippet shows how to set the background image:
+
+```JavaScript
+const avatarConfig = new SpeechSDK.AvatarConfig(
+    "lisa", // Set avatar character here.
+    "casual-sitting", // Set avatar style here.
+)
+avatarConfig.backgroundImage = "https://www.example.com/1920-1080-image.jpg" // A public accessiable URL of the image.
+```
+
+### Set background video
+
+The avatar real-time synthesis API currently doesn't support setting background video directly. However, there's an alternative way to implement background customization on the client side, following these guidelines:
 
 - Set the background color to green (for ease of matting), which the avatar real-time synthesis API supports.
 - Create a canvas element with the same size as the avatar video.
 - Capture each frame of the avatar video and apply a pixel-by-pixel calculation to set the green pixel to transparent, and draw the recalculated frame to the canvas.
 - Hide the original video.
 
-With this approach, you can get an animated canvas that plays like a video, which has a transparent background. Here's the [JavaScript sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/browser/avatar/js/basic.js#L108) to demonstrate such an approach.
+With this approach, you can get an animated canvas that plays like a video, which has a transparent background. Here's the [JavaScript sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/browser/avatar/js/basic.js#L142) to demonstrate such an approach.
 
-After you have a transparent-background avatar, you can set the background to any image or video by placing the image or video behind the canvas.
+After you have a transparent-background avatar, you can set the background to any dynamic content (like a video) by placing the dynamic content behind the canvas.
+
+## Crop video
+
+The avatar video is by default in a 16:9 aspect ratio. If you want to crop the video to a different aspect ratio, you can crop the video to a rectangle subarea of the original video. You need specify the rectangle area by giving the coordinates of its top-left vertex and bottom-right vertex. The following code snippet shows how to crop the video:
+
+```JavaScript
+const videoFormat = new SpeechSDK.AvatarVideoFormat()
+const topLeftCoordinate = new SpeechSDK.Coordinate(640, 0) // coordinate of top-left vertex, with X=640, Y=0
+const bottomRightCoordinate = new SpeechSDK.Coordinate(1320, 1080) // coordinate of bottom-right vertex, with X=1320, Y=1080
+videoFormat.setCropRange(topLeftCoordinate, bottomRightCoordinate)
+const avatarConfig = new SpeechSDK.AvatarConfig(
+    "lisa", // Set avatar character here.
+    "casual-sitting", // Set avatar style here.
+    videoFormat, // Set video format here.
+)
+```
+
+For a full sample with more context, you can go to our [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/browser/avatar/js/basic.js) and search `crop`.
 
 ## Code samples
 
 You can find text to speech avatar code samples in the Speech SDK repository on GitHub. The samples demonstrate how to use real-time text to speech avatars in your web applications.
 
-- [JavaScript](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js)
-- [Android](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/java/android/avatar)
-- [iOS](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/swift/ios/avatar)
+- Server + client
+    - [Python (server) + JavaScript (client)](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/python/web/avatar)
+    - [C# (server) + JavaScript (client)](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/csharp/web/avatar)
+- Client only
+    - [JavaScript](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar)
+    - [Android](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/java/android/avatar)
+    - [iOS](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/swift/ios/avatar)
 
 These samples demonstrate how to use real-time text to speech avatars in your mobile applications.
 

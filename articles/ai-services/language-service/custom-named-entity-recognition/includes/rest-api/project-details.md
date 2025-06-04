@@ -1,11 +1,11 @@
 ---
 titleSuffix: Azure AI services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ---
 
 Use the following **GET** request to get your project details. Replace the placeholder values below with your own values. 

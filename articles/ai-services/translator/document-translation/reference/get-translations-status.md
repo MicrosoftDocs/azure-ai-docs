@@ -7,13 +7,13 @@ ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 08/23/2024
+ms.date: 04/14/2025
 ---
 
 # Get status for all translation jobs
 
 Reference</br>
-Feature: **Azure AI Translator → Document Translation**</br>
+Feature: **Azure AI Translator → Document translation**</br>
 API Version: **2024-05-01**</br>
 HTTP method: **GET**
 
@@ -25,14 +25,14 @@ HTTP method: **GET**
   * `$maxpagesize` is the maximum items returned in a page.
   * If more items are requested via `$top` (or `$top` isn't specified and there are more items to be returned), `@nextLink` will contain the link to the next page.
   * The server honors the values specified by the client. However, clients must be prepared to handle responses that contain a different page size or contain a continuation token.
-  * When both `$top` and `$skip` are included, the server will first apply `$skip` and then `$top` on the collection.
+  * When both `$top` and `$skip` are included, the server first applies `$skip` and then `$top` on the collection.
 
 > [!NOTE]
-> If the server can't honor `$top` and/or `$skip`, the server must return an error to the client informing about it instead of just ignoring the query options. This reduces the risk of the client making assumptions about the data returned.
+> If the server can't honor `$top` and/or `$skip`, the server must return an error to the client informing about it instead of just ignoring the query options. This action reduces the risk of the client making assumptions about the data returned.
 
 * `$orderBy` query parameter can be used to sort the returned list (ex: `$orderBy=createdDateTimeUtc asc` or `$orderBy=createdDateTimeUtc desc`).
   * The default sorting is descending by `createdDateTimeUtc`. Some query parameters can be used to filter the returned list (ex: `status=Succeeded,Cancelled`) returns succeeded and canceled operations.
-  * The `createdDateTimeUtcStart` and `createdDateTimeUtcEnd` query parameters can be used combined or separately to specify a range of datetime to filter the returned list.
+  * The `createdDateTimeUtcStart` and `createdDateTimeUtcEnd` query parameters can be combined or used separately to specify a range of datetime to filter the returned list.
   * The supported filtering query parameters are (`status`, `id`, `createdDateTimeUtcStart`, and  `createdDateTimeUtcEnd`).
 
 ## Request URL
@@ -43,7 +43,7 @@ HTTP method: **GET**
 
 > [!IMPORTANT]
 >
-> **All API requests to the Document Translation feature require a custom domain endpoint that is located on your resource overview page in the Azure portal**.
+> **All API requests to the Document translation feature require a custom domain endpoint that is located on your resource overview page in the Azure portal**.
 
 ## Request parameters
 
@@ -109,7 +109,7 @@ The following information is returned in a successful response.
 
 |Name|Type|Description|
 |--- |--- |--- |
-|code|string|Enums containing high-level error codes. Possible values:<br/>&bullet; InternalServerError<br>&bullet; InvalidArgument<br>&bullet; InvalidRequest<br>&bullet; RequestRateTooHigh<br>&bullet; ResourceNotFound<br>&bullet; ServiceUnavailable<br>&bullet; Unauthorized|
+|code|string|Enums containing high-level error codes. Accepted values:<br/>&bullet; InternalServerError<br>&bullet; InvalidArgument<br>&bullet; InvalidRequest<br>&bullet; RequestRateTooHigh<br>&bullet; ResourceNotFound<br>&bullet; ServiceUnavailable<br>&bullet; Unauthorized|
 |message|string|Gets high-level error message.|
 |target|string|Gets the source of the error. For example, it would be `documents` or `document id` if there was an invalid document.|
 |innerError|InnerTranslationError|New Inner Error format that conforms to Azure AI services API Guidelines. This error message contains required properties ErrorCode, message, and optional properties target, details (key value pair), inner error (it can be nested).|
@@ -202,7 +202,7 @@ Status code: 500
 
 ## Next steps
 
-Follow our quickstart to learn more about using Document Translation and the client library.
+Follow our quickstart to learn more about using Document translation and the client library.
 
 > [!div class="nextstepaction"]
-> [Get started with Document Translation](../how-to-guides/use-rest-api-programmatically.md)
+> [Get started with Document translation](../how-to-guides/use-rest-api-programmatically.md)

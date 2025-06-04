@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 01/31/2024
+ms.date: 04/14/2025
 ms.author: lajanuar
 ---
 
@@ -41,7 +41,7 @@ The following table lists the base URLs for Azure sovereign cloud endpoints:
 |Azure portal | <ul><li>[Azure Government Portal](https://portal.azure.us/)</li></ul>|
 | Available regions</br></br>The region-identifier is a required header when using Translator for the government cloud. | <ul><li>`usgovarizona` </li><li> `usgovvirginia`</li></ul>|
 |Available pricing tiers|<ul><li>Free (F0) and Standard (S1). See [Translator pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator/)</li></ul>|
-|Supported Features | <ul><li>[Text Translation](../text-translation/reference/v3/reference.md)</li><li>[Document Translation](../document-translation/overview.md)</li><li>[Custom Translator](../custom-translator/overview.md)</li></ul>|
+|Supported Features | <ul><li>[Text translation](../text-translation/reference/v3/reference.md)</li><li>[Document translation](../document-translation/overview.md)</li><li>[Custom Translator](../custom-translator/overview.md)</li></ul>|
 |Supported Languages| <ul><li>[Translator language support](../language-support.md)</li></ul>|
 
 <!-- markdownlint-disable MD036 -->
@@ -52,7 +52,7 @@ The following table lists the base URLs for Azure sovereign cloud endpoints:
 
 Base URL:
 
-```http
+```bash
 https://portal.azure.us
 ```
 
@@ -65,25 +65,25 @@ Replace the `<region-identifier>` parameter with the sovereign cloud identifier:
 | Azure US Government|<ul><li>`usgovarizona` (US Gov Arizona)</li><li>`usgovvirginia` (US Gov Virginia)</li></ul>|
 | Azure operated by 21Vianet|<ul><li>`chinaeast2` (East China 2)</li><li>`chinanorth` (China North)</li></ul>|
 
-```http
+```bash
 https://<region-identifier>.api.cognitive.microsoft.us/sts/v1.0/issueToken
 ```
 
 #### Text translation
 
-```http
+```bash
 https://api.cognitive.microsofttranslator.us/
 ```
 
-#### Document Translation custom endpoint
+#### Document translation custom endpoint
 
-```http
+```bash
 https://<NAME-OF-YOUR-RESOURCE>.cognitiveservices.azure.us/translator/text/batch/v1.0
 ```
 
 #### Custom Translator portal
 
-```http
+```bash
 https://portal.customtranslator.azure.us/
 ```
 
@@ -93,7 +93,7 @@ Translate a single sentence from English to Simplified Chinese.
 
 **Request**
 
-```curl
+ ```bash
 curl -X POST "https://api.cognitive.microsofttranslator.us/translate?api-version=3.0?&from=en&to=zh-Hans" -H "Ocp-Apim-Subscription-Key: <key>" -H "Ocp-Apim-Subscription-Region: chinanorth" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'你好, 你叫什么名字？'}]"
 ```
 
@@ -120,7 +120,7 @@ The Azure operated by 21Vianet cloud is a physical and logical network-isolated 
 |---|---|
 |Azure portal |<ul><li>[Azure operated by 21Vianet Portal](https://portal.azure.cn/)</li></ul>|
 |Regions <br></br>The region-identifier is a required header when using a multi-service resource. | <ul><li>`chinanorth` </li><li> `chinaeast2`</li></ul>|
-|Supported Feature|<ul><li>[Text Translation](https://docs.azure.cn/cognitive-services/translator/reference/v3-0-reference)</li><li>[Document Translation](../document-translation/overview.md)</li></ul>|
+|Supported Feature|<ul><li>[Text translation](https://docs.azure.cn/cognitive-services/translator/reference/v3-0-reference)</li><li>[Document translation](../document-translation/overview.md)</li></ul>|
 |Supported Languages|<ul><li>[Translator language support.](https://docs.azure.cn/cognitive-services/translator/language-support)</li></ul>|
 
 <!-- markdownlint-disable MD036 -->
@@ -132,7 +132,7 @@ Base URL
 
 #### Azure portal
 
-```http
+```bash
 https://portal.azure.cn
 ```
 
@@ -140,13 +140,13 @@ https://portal.azure.cn
 
 Replace the `<region-identifier>` parameter with the sovereign cloud identifier:
 
-```http
+```bash
 https://<region-identifier>.api.cognitive.azure.cn/sts/v1.0/issueToken
 ```
 
 #### Text translation
 
-```http
+```bash
 https://api.translator.azure.cn/translate
 ```
 
@@ -156,7 +156,7 @@ Translate a single sentence from English to Simplified Chinese.
 
 **Request**
 
-```curl
+ ```bash
 curl -X POST "https://api.translator.azure.cn/translate?api-version=3.0&from=en&to=zh-Hans" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text': 'Hello, what is your name?'}]"
 ```
 
@@ -172,9 +172,9 @@ curl -X POST "https://api.translator.azure.cn/translate?api-version=3.0&from=en&
 ]
 ```
 
-#### Document Translation custom endpoint
+#### Document translation custom endpoint
 
-```http
+```bash
 https://<NAME-OF-YOUR-RESOURCE>.cognitiveservices.azure.cn/translator/text/batch/v1.0
 ```
 

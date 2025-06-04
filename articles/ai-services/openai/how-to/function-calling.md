@@ -1,17 +1,17 @@
 ---
-title: How to use function calling with Azure OpenAI Service
-titleSuffix: Azure OpenAI Service
+title: How to use function calling with Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI
 description: Learn how to use function calling with the GPT-35-Turbo and GPT-4 models 
 author: mrbullwinkle #dereklegenzoff
 ms.author: mbullwin #delegenz
 ms.service: azure-ai-openai
 ms.custom: devx-track-python
 ms.topic: how-to
-ms.date: 02/28/2025
+ms.date: 04/16/2025
 manager: nitinme
 ---
 
-# How to use function calling with Azure OpenAI Service
+# How to use function calling with Azure OpenAI in Azure AI Foundry Models
 
 The latest versions of gpt-35-turbo and gpt-4 are fine-tuned to work with functions and are able to both determine when and how a function should be called. If one or more functions are included in your request, the model determines if any of the functions should be called based on the context of the prompt. When the model determines that a function should be called, it responds with a JSON object including the arguments for the function. 
 
@@ -40,12 +40,17 @@ At a high level you can break down working with functions into three steps:
 * `gpt-4o` (`2024-11-20`)
 * `gpt-4o-mini` (`2024-07-18`)
 * `gpt-4.5-preview` (`2025-02-27`)
+* `gpt-4.1` (`2025-04-14`)
+* `gpt-4.1-mini` (`2025-04-14`)
 
 Support for parallel function was first added in API version [`2023-12-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2023-12-01-preview/inference.json)
 
 ### Basic function calling with tools
 
 * All the models that support parallel function calling
+* `o4-mini` (`2025-04-16`)
+* `o3` (`2025-04-16`)
+* `gpt-4.1-nano` (`2025-04-14`)
 * `o3-mini` (`2025-01-31`)
 * `o1` (`2024-12-17`)
 * `gpt-4` (`0613`)
@@ -55,6 +60,9 @@ Support for parallel function was first added in API version [`2023-12-01-previe
 
 > [!NOTE]
 > The `tool_choice` parameter is now supported with `o3-mini` and `o1`. For more information on what parameters are supported with the o-series models see, the [reasoning models guide](./reasoning.md).
+
+> [!IMPORTANT]
+> Tool/function descriptions are currently limited to 1024 characters with Azure OpenAI. We will update this article if this limit is changed.
 
 ## Single tool/function calling example
 

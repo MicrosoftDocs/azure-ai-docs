@@ -16,9 +16,12 @@ author: sdgilley
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-In this article, you learn how to create the following [Azure AI Foundry](https://ai.azure.com) resources using the Azure Machine Learning SDK and Azure CLI (with machine learning extension):
+In this article, you learn how to create the following [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) resources using the Azure Machine Learning SDK and Azure CLI (with machine learning extension):
 - An Azure AI Foundry hub
 - An Azure AI Services connection
+
+> [!NOTE]
+> A hub is used only for a **[!INCLUDE [hub](../../includes/hub-project-name.md)]**. A **[!INCLUDE [fdp](../../includes/fdp-project-name.md)]** does not use a hub. For more information, see [Types of projects](../../what-is-azure-ai-foundry.md#project-types).
 
 ## Prerequisites
 

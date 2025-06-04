@@ -1,5 +1,5 @@
 ---
-title: Azure OpenAI Service embeddings
+title: Azure OpenAI in Azure AI Foundry Models embeddings
 titleSuffix: Azure OpenAI - embeddings and cosine similarity
 description: Learn more about how the Azure OpenAI embeddings API uses cosine similarity for document search and to measure similarity between texts.
 manager: nitinme
@@ -12,7 +12,7 @@ recommendations: false
 ms.custom:
 ---
 
-# Understand embeddings in Azure OpenAI Service
+# Understand embeddings in Azure OpenAI in Azure AI Foundry Models
 
 An embedding is a special format of data representation that machine learning models and algorithms can easily use. The embedding is an information dense representation of the semantic meaning of a piece of text. Each embedding is a vector of floating-point numbers, such that the distance between two embeddings in the vector space is correlated with semantic similarity between two inputs in the original format. For example, if two texts are similar, then their vector representations should also be similar. Embeddings power vector similarity search in retrieval systems such as [Azure AI Search](/azure/search) (recommended) and in Azure databases such as [Azure Cosmos DB for MongoDB vCore](/azure/cosmos-db/mongodb/vcore/vector-search) ,  [Azure SQL Database](/azure/azure-sql/database/ai-artificial-intelligence-intelligent-applications?view=azuresql&preserve-view=true#vector-search), and [Azure Database for PostgreSQL - Flexible Server](/azure/postgresql/flexible-server/how-to-use-pgvector).
 

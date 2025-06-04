@@ -3,8 +3,8 @@ title: Compress vectors using quantization
 titleSuffix: Azure AI Search
 description: Configure built-in scalar or quantization for compressing vectors on disk and in memory.
 
-author: heidisteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
@@ -27,6 +27,9 @@ To use built-in quantization, follow these steps:
 > - Create a new vector field having the new vector profile
 > - Load the index with float32 or float16 data that's quantized during indexing with the configuration you defined
 > - Optionally, [query quantized data](#query-a-quantized-vector-field-using-oversampling) using the oversampling parameter. If the vector field doesn't specify oversampling in its definition, you can add it at query time.
+
+> [!TIP]
+> [Azure AI Search: Cut Vector Costs Up To 92.5% with New Compression Techniques](https://aka.ms/AISearch-cut-cost) compares compression strategies and explains savings in storage and costs. It also includes metrics for measuring relevance based on Normalized discounted cumulative gain (NDCG), demonstrating that you can compress your data without sacrificing search quality.
 
 ## Prerequisites
 

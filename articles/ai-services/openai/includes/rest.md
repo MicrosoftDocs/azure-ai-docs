@@ -1,6 +1,6 @@
 ---
 title: 'Quickstart: Use the OpenAI Service to make your first completions call with the REST API'
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with the REST API. 
 manager: nitinme
 ms.service: azure-ai-openai
@@ -63,7 +63,7 @@ The format of your first line of the command with an example endpoint would appe
 If you want to run this command in a normal Windows command prompt you would need to alter the text to remove the `\` and line breaks.
 
 > [!IMPORTANT]
-> For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see the Azure AI services [security](../../security-features.md) article.
+> For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see this [security](../../security-features.md) article.
 
 ## Output
 
@@ -92,7 +92,7 @@ The output from the completions API will look as follows.
 ```
 
 
-The Azure OpenAI Service also performs content moderation on the prompt inputs and generated outputs. The prompts or responses may be filtered if harmful content is detected. For more information, see the [content filter](../concepts/content-filter.md) article.
+The Azure OpenAI in Azure AI Foundry Models also performs content moderation on the prompt inputs and generated outputs. The prompts or responses may be filtered if harmful content is detected. For more information, see the [content filter](../concepts/content-filter.md) article.
 
 ## Clean up resources
 

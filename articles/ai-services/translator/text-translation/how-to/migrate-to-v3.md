@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 01/28/2025
+ms.date: 05/19/2025
 ms.author: lajanuar
 ---
 
@@ -52,7 +52,7 @@ The following list of V2 and V3 methods identifies the V3 methods and APIs that 
 
 Microsoft Translator Translation V2 accepted and returned data in XML format. In V3, all data sent and received using the API is in JSON format. XML is no longer accepted or returned in V3.
 
-This change affects several aspects of an application written for the V2 Text Translation API. As an example: The Languages API returns language information for text translation, transliteration, and the two dictionary methods. You can request all language information for all methods in one call or request them individually.
+This change affects several aspects of an application written for the V2 Text translation API. As an example: The Languages API returns language information for text translation, transliteration, and the two dictionary methods. You can request all language information for all methods in one call or request them individually.
 
 The languages method doesn't require authentication; by selecting the following link you can see all the language information for V3 in JSON:
 

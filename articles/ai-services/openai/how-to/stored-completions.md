@@ -1,12 +1,12 @@
 ---
-title: 'How to use Azure OpenAI Service stored completions & distillation'
+title: 'How to use Azure OpenAI in Azure AI Foundry Models stored completions & distillation'
 titleSuffix: Azure OpenAI
 description: Learn how to use stored completions & distillation with Azure OpenAI
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
 ms.custom: references_regions
-ms.date: 02/25/2025
+ms.date: 05/25/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -24,15 +24,11 @@ Support first added in `2024-10-01-preview`, use `2025-02-01-preview` or later f
 
 ### Deployment type
 
-Currently only `Standard` model deployments support stored completions.
+Stored completions is supported for all Azure OpenAI Deployment types: standard, global, datazone, and provisioned.
 
 ### Model & region availability
 
-| **Region**     | **o1-preview**, **2024-09-12**   | **o1-mini**, **2024-09-12**   | **gpt-4o**, **2024-08-06**   | **gpt-4o**, **2024-05-13**  | **gpt-4o-mini**, **2024-07-18**   |
-|:---|:---:|:---:|:---:|:---:|:---:|
-| Sweden Central | ✅ | ✅  | ✅ | ✅ | ✅ |
-| North Central US | - | - | ✅ | - | - |
-| East US 2 | - | - | ✅ | - | - |
+As long as you're using the Chat Completions API for inferencing, you can leverage stored completions. It is supported for all Azure OpenAI models, and in all supported regions (including global-only regions).
 
 ## Configure stored completions
 
@@ -249,7 +245,7 @@ curl $AZURE_OPENAI_ENDPOINT/openai/deployments/gpt-4o/chat/completions?api-versi
 
 ---
 
-Once stored completions are enabled for an Azure OpenAI deployment, they'll begin to show up in the [Azure AI Foundry portal](https://ai.azure.com) in the **Stored Completions** pane.
+Once stored completions are enabled for an Azure OpenAI deployment, they'll begin to show up in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) in the **Stored Completions** pane.
 
 :::image type="content" source="../media/stored-completions/stored-completions.png" alt-text="Screenshot of the stored completions User Experience." lightbox="../media/stored-completions/stored-completions.png":::
 
@@ -259,7 +255,7 @@ Distillation allows you to turn your stored completions into a fine-tuning datas
 
 Distillation requires a minimum of 10 stored completions, though it's recommended to provide hundreds to thousands of stored completions for the best results.
 
-1. From the **Stored Completions** pane in the [Azure AI Foundry portal](https://ai.azure.com) use the **Filter** options to select the completions you want to train your model with.
+1. From the **Stored Completions** pane in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) use the **Filter** options to select the completions you want to train your model with.
 
 2. To begin distillation, select **Distill**
 
@@ -288,7 +284,7 @@ The [evaluation](./evaluations.md) of large language models is a critical step i
 
 Stored completions can be used as a dataset for running evaluations.
 
-1. From the **Stored Completions** pane in the [Azure AI Foundry portal](https://ai.azure.com) use the **Filter** options to select the completions you want to be part of your evaluation dataset.
+1. From the **Stored Completions** pane in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) use the **Filter** options to select the completions you want to be part of your evaluation dataset.
 
 2. To configure the evaluation, select **Evaluate**
 

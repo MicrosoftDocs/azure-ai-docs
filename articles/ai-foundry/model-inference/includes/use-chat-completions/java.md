@@ -1,13 +1,13 @@
 ---
-title: How to use chat completions with Azure AI model inference
+title: How to use chat completions with Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
-description: Learn how to generate chat completions with Azure AI model inference
+description: Learn how to generate chat completions with Azure AI Foundry Models
 manager: scottpolly
 author: mopeakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
-ms.topic: how-to
-ms.date: 03/20/2025
+ms.topic: include
+ms.date: 05/29/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 ms.custom: references_regions, tool_generated
@@ -16,7 +16,7 @@ zone_pivot_groups: azure-ai-inference-samples
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use chat completions API with models deployed to Azure AI model inference in Azure AI services.
+This article explains how to use chat completions API with models deployed in Azure AI Foundry Models.
 
 ## Prerequisites
 
@@ -26,7 +26,7 @@ To use chat completion models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites-java](../how-to-prerequisites-java.md)]
 
-* A chat completions model deployment. If you don't have one, read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
+* A chat completions model deployment. If you don't have one, read [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
 
     * This example uses `mistral-large-2407`.
 
@@ -37,7 +37,7 @@ First, create the client to consume the model. The following code uses an endpoi
 ```java
 ChatCompletionsClient client = new ChatCompletionsClientBuilder()
     .credential(new AzureKeyCredential("{key}"))
-    .endpoint("https://<resource>.services.ai.azure.com/models")
+    .endpoint("https://<resource>.services.ai.azure.com/api/models")
     .buildClient();
 ```
 
@@ -47,7 +47,7 @@ If you've configured the resource with **Microsoft Entra ID** support, you can u
 TokenCredential defaultCredential = new DefaultAzureCredentialBuilder().build();
 ChatCompletionsClient client = new ChatCompletionsClientBuilder()
     .credential(defaultCredential)
-    .endpoint("https://<resource>.services.ai.azure.com/models")
+    .endpoint("https://<resource>.services.ai.azure.com/api/models")
     .buildClient();
 ```
 
@@ -155,7 +155,7 @@ Now, it's time to call the appropriate function to handle the tool call. The fol
 
 View the response from the model:
 
-### Apply content safety
+### Apply Guardrails and controls
 
 The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 

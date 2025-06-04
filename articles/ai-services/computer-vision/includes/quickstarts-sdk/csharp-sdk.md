@@ -7,6 +7,7 @@ ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 08/07/2023
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
+ms.update-cycle: 365-days
 ms.author: pafarley
 ms.custom: devx-track-csharp
 ---
@@ -128,7 +129,7 @@ Amount Per Serving
 Trans Fat 0g
 Calories 190
 Cholesterol 0mg
-ories from Fat 110
+Calories from Fat 110
 Sodium 20mg
 nt Daily Values are based on Vitamin A 50%
 calorie diet.

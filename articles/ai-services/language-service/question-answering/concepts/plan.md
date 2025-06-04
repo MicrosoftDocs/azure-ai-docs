@@ -2,8 +2,8 @@
 title: Plan your app - custom question answering
 description: Learn how to plan your custom question answering app. Understand how custom question answering works and interacts with other Azure services and some project concepts.
 ms.service: azure-ai-language
-author: jboback
-ms.author: jboback
+author: laujan
+ms.author: lajanuar
 ms.topic: conceptual
 ms.date: 11/21/2024
 ---

@@ -1,13 +1,13 @@
 ---
-title: How to use chat completions with Azure AI model inference
+title: How to use chat completions with Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
-description: Learn how to generate chat completions with Azure AI model inference
+description: Learn how to generate chat completions with Azure AI Foundry Models
 manager: scottpolly
 author: mopeakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
-ms.topic: how-to
-ms.date: 03/20/2025
+ms.topic: include
+ms.date: 05/29/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 ms.custom: references_regions, tool_generated
@@ -16,7 +16,7 @@ zone_pivot_groups: azure-ai-inference-samples
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use chat completions API with models deployed to Azure AI model inference in Azure AI services.
+This article explains how to use chat completions API with models deployed in Azure AI Foundry Models.
 
 ## Prerequisites
 
@@ -24,7 +24,7 @@ To use chat completion models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 
-* A chat completions model deployment. If you don't have one, read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
+* A chat completions model deployment. If you don't have one, read [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
 
     * This example uses `mistral-large-2407`.
 
@@ -69,7 +69,7 @@ The following example shows how you can create a basic chat completions request 
 ```
 
 > [!NOTE]
-> Some models don't support system messages (`role="system"`). When you use the Azure AI model inference API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
+> Some models don't support system messages (`role="system"`). When you use the Azure AI Foundry Models API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
 
 The response is as follows, where you can see the model's usage statistics:
 
@@ -181,7 +181,7 @@ The last message in the stream has `finish_reason` set, indicating the reason fo
 
 #### Explore more parameters supported by the inference client
 
-Explore other parameters that you can specify in the inference client. For a full list of all the supported parameters and their corresponding documentation, see [Azure AI Model Inference API reference](https://aka.ms/azureai/modelinference).
+Explore other parameters that you can specify in the inference client. For a full list of all the supported parameters and their corresponding documentation, see [Foundry Models API reference](https://aka.ms/azureai/modelinference).
 
 ```json
 {
@@ -288,7 +288,7 @@ Some models can create JSON outputs. Set `response_format` to `json_object` to e
 
 ### Pass extra parameters to the model
 
-The Azure AI Model Inference API allows you to pass extra parameters to the model. The following code example shows how to pass the extra parameter `logprobs` to the model. 
+The Foundry Models Inference API allows you to pass extra parameters to the model. The following code example shows how to pass the extra parameter `logprobs` to the model. 
 
 ```http
 POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
@@ -315,7 +315,7 @@ extra-parameters: pass-through
 }
 ```
 
-Before you pass extra parameters to the Azure AI model inference API, make sure your model supports those extra parameters. When the request is made to the underlying model, the header `extra-parameters` is passed to the model with the value `pass-through`. This value tells the endpoint to pass the extra parameters to the model. Use of extra parameters with the model doesn't guarantee that the model can actually handle them. Read the model's documentation to understand which extra parameters are supported.
+Before you pass extra parameters to The Azure AI Model Inference API, make sure your model supports those extra parameters. When the request is made to the underlying model, the header `extra-parameters` is passed to the model with the value `pass-through`. This value tells the endpoint to pass the extra parameters to the model. Use of extra parameters with the model doesn't guarantee that the model can actually handle them. Read the model's documentation to understand which extra parameters are supported.
 
 ### Use tools
 
@@ -508,11 +508,11 @@ View the response from the model:
 }
 ```
 
-### Apply content safety
+### Apply Guardrails and controls
 
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+The Azure AI Model Inference API supports [Azure AI Content Safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI Content Safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
-The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
+The following example shows how to handle events when the model detects harmful content in the input prompt.
 
 
 ```json
@@ -545,4 +545,4 @@ The following example shows how to handle events when the model detects harmful 
 ```
 
 > [!TIP]
-> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
+> To learn more about how you can configure and control Azure AI Content Safety settings, check the [Azure AI Content Safety documentation](https://aka.ms/azureaicontentsafety).

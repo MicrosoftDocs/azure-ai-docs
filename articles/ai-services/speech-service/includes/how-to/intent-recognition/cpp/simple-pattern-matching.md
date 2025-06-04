@@ -1,10 +1,10 @@
 ---
-author: chschrae
-manager: travisw
+author: eric-urban
+manager: nitinme
 ms.service: azure-ai-speech
 ms.date: 01/03/2022
 ms.topic: include
-ms.author: chschrae
+ms.author: eur
 ---
 
 ## Create a project
@@ -26,7 +26,7 @@ Let's open `helloworld.cpp` and add some code that works as a skeleton for our p
     {
         std::cout << "Hello World!\n";
 
-        auto config = SpeechConfig::FromSubscription("YOUR_SUBSCRIPTION_KEY", "YOUR_SUBSCRIPTION_REGION");
+        auto config = SpeechConfig::FromSubscription("YourSpeechResourceKey", "YourSpeechResourceRegion");
     }
 ```
 
@@ -34,8 +34,8 @@ Let's open `helloworld.cpp` and add some code that works as a skeleton for our p
 
 Before you can initialize an `IntentRecognizer` object, you need to create a configuration that uses the key and location for your Azure AI services prediction resource.
 
-* Replace `"YOUR_SUBSCRIPTION_KEY"` with your Azure AI services prediction key.
-* Replace `"YOUR_SUBSCRIPTION_REGION"` with your Azure AI services resource region.
+* Replace `"YourSpeechResourceKey"` with your Azure AI services prediction key.
+* Replace `"YourSpeechResourceRegion"` with your Azure AI Foundry resource region.
 
 This sample uses the `FromSubscription()` method to build the `SpeechConfig`. For a full list of available methods, see [SpeechConfig Class](/cpp/cognitive-services/speech/speechconfig).
 
@@ -148,7 +148,7 @@ using namespace Microsoft::CognitiveServices::Speech::Intent;
 
 int main()
 {
-    auto config = SpeechConfig::FromSubscription("YOUR_SUBSCRIPTION_KEY", "YOUR_SUBSCRIPTION_REGION");
+    auto config = SpeechConfig::FromSubscription("YourSpeechResourceKey", "YourSpeechResourceRegion");
     auto intentRecognizer = IntentRecognizer::FromConfig(config);
 
     intentRecognizer->AddIntent("Take me to floor {floorName}.", "ChangeFloors");

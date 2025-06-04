@@ -13,7 +13,7 @@ ms.author: eur
 ## Convert speech to text
 
 At a command prompt, run the following command. Insert the following values into the command:
-- Your subscription key for the Speech resource
+- Your API key for the Speech resource
 - Your Speech service region
 - The path for input audio file
 

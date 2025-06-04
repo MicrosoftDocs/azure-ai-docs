@@ -3,13 +3,13 @@ title: Configure a vectorizer
 titleSuffix: Azure AI Search
 description: Steps for adding a vectorizer to a search index in Azure AI Search. A vectorizer calls an embedding model that generates embeddings from text.
 
-author: heidisteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 01/14/2025
+ms.date: 05/08/2025
 ---
 
 # Configure a vectorizer in a search index

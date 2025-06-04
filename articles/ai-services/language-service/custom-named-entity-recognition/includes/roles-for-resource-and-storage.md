@@ -2,12 +2,12 @@
 title: How to create custom text classification projects
 titleSuffix: Azure AI services
 description: Learn about the steps for using Azure resources with custom text classification.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ---
 
 Use the following steps to set the required roles for your Language resource and storage account.

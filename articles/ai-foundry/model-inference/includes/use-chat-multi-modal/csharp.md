@@ -1,13 +1,13 @@
 ---
-title: How to use image and audio in chat completions with Azure AI model inference
+title: How to use image and audio in chat completions with Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
-description: Learn how to process audio and images with chat completions models with Azure AI model inference
+description: Learn how to process audio and images with chat completions models with Azure AI Foundry Models
 manager: scottpolly
 author: mopeakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
-ms.topic: how-to
-ms.date: 03/20/2025
+ms.topic: include
+ms.date: 05/29/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 ms.custom: references_regions, tool_generated
@@ -16,7 +16,7 @@ zone_pivot_groups: azure-ai-inference-samples
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use chat completions API with _multimodal_ models deployed to Azure AI model inference in Azure AI services. Apart from text input, multimodal models can accept other input types, such as images or audio input.
+This article explains how to use chat completions API with _multimodal_ models deployed in Azure AI Foundry Models. Apart from text input, multimodal models can accept other input types, such as images or audio input.
 
 ## Prerequisites
 
@@ -26,7 +26,7 @@ To use chat completion models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites-csharp](../how-to-prerequisites-csharp.md)]
 
-* A chat completions model deployment. If you don't have one, read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
+* A chat completions model deployment. If you don't have one, read [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
 
     * This example uses `phi-4-multimodal-instruct`.
 
@@ -37,7 +37,7 @@ First, create the client to consume the model. The following code uses an endpoi
 
 ```csharp
 ChatCompletionsClient client = new ChatCompletionsClient(
-    new Uri(Environment.GetEnvironmentVariable("AZURE_INFERENCE_ENDPOINT")),
+    new Uri("https://<resource>.services.ai.azure.com/api/models"),
     new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_INFERENCE_CREDENTIAL")),
 );
 ```
@@ -46,16 +46,9 @@ If you've configured the resource with **Microsoft Entra ID** support, you can u
 
 
 ```csharp
-TokenCredential credential = new DefaultAzureCredential(includeInteractiveCredentials: true);
-AzureAIInferenceClientOptions clientOptions = new AzureAIInferenceClientOptions();
-BearerTokenAuthenticationPolicy tokenPolicy = new BearerTokenAuthenticationPolicy(credential, new string[] { "https://cognitiveservices.azure.com/.default" });
-
-clientOptions.AddPolicy(tokenPolicy, HttpPipelinePosition.PerRetry);
-
 client = new ChatCompletionsClient(
-    new Uri(Environment.GetEnvironmentVariable("AZURE_INFERENCE_ENDPOINT")),
-    credential,
-    clientOptions,
+    new Uri("https://<resource>.services.ai.azure.com/api/models"),
+    new DefaultAzureCredential(),
 );
 ```
 
@@ -125,10 +118,17 @@ Usage:
   Total tokens: 2506
 ```
 
+### Usage
+
 Images are broken into tokens and submitted to the model for processing. When referring to images, each of those tokens is typically referred as *patches*. Each model might break down a given image on a different number of patches. Read the model card to learn the details.
 
-> [!IMPORTANT]
-> Some models support only one image for each turn in the chat conversation and only the last image is retained in context. If you add multiple images, it results in an error.
+### Multi-turn conversations
+
+Some models support only one image for each turn in the chat conversation and only the last image is retained in context. If you add multiple images, it results in an error. Read the model card to understand the case of each model.
+
+### Image URLs
+
+The model can read the content from an **accessible cloud location** by passing the URL as an input. This approach requires the URL to be public and do not require specific handling.
 
 ## Use chat completions with audio
 
@@ -205,5 +205,7 @@ Usage:
     Completion tokens: 7
     Total tokens: 84
 ```
+
+### Usage
 
 Audio is broken into tokens and submitted to the model for processing. Some models might operate directly over audio tokens while other might use internal modules to perform speech-to-text, resulting in different strategies to compute tokens. Read the model card for details about how each model operates.

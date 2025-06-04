@@ -1,21 +1,22 @@
 ---
-title: Work with Azure AI Agent Service using the Azure AI Foundry for Visual Studio Code extension
+title: Work with Azure AI Foundry Agent Service using the Azure AI Foundry for Visual Studio Code extension
 titleSuffix: Azure AI Foundry
-description: Use this article to learn how to use Azure AI Agent Service directly in VS Code.
+description: Use this article to learn how to use Azure AI Foundry Agent Service directly in VS Code.
 manager: mcleans
 ms.service: azure-ai-foundry
 content_well_notification: 
   - AI-contribution
+ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 04/03/2025
+ms.date: 05/07/2025
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
 ---
 
-# Work with Azure AI Agent Service in Visual Studio Code
+# Work with Azure AI Foundry Agent Service in Visual Studio Code (Preview)
 
-After you [get started with the AI Foundry the VS Code extension](./get-started-projects-vs-code.md), you can work with [Azure AI Agent Service](/azure/ai-services/agents/overview). Agents are "smart" microservices that:
+After you [get started with the AI Foundry the VS Code extension](./get-started-projects-vs-code.md), you can work with [Azure AI Foundry Agent Service](/azure/ai-services/agents/overview). Agents are "smart" microservices that:
 
 - Answer questions using their training data or search other sources with Retrieval Augmented Generation (RAG)
 - Perform specific actions
@@ -25,17 +26,17 @@ Agents combine AI models with tools to access and interact with your data.
 
 Azure AI Foundry developers can stay productive by developing, testing, and deploying agents in the familiar and powerful environment of VS Code.
 
-###	Create and edit Azure AI Agents within the designer view
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+
+###    Create and edit Azure AI Agents within the designer view
 
 Follow these steps to create an Azure AI Agent:
 
 1. First, finish the [Get Started](./get-started-projects-vs-code.md#get-started) section to sign in to your Azure resources and set your default project.
  
-1. [Deploy a model](./get-started-projects-vs-code.md#deploy-a-model) to use with your agent.
+1. [Deploy a model](./get-started-projects-vs-code.md#deploy-a-model-from-the-model-catalog) to use with your agent.
 
-1. Select your AI Foundry project in the Azure Resources sidebar. 
-
-1. Under your project, find the **Agents** section.
+1. In the Azure AI Foundry Extension view, find the **Resources** section.
 
 1. Select the **+** (plus) icon next to the **Agents** subsection to create a new AI Agent.
 
@@ -49,7 +50,7 @@ Follow these steps to create an Azure AI Agent:
 
 ### Interact with your agent in the designer
 
-After you choose your save location, the Designer view will open to edit your AI Agent.
+After you choose your save location, both the agent .yaml file and the Designer view will open to edit your AI Agent.
 
 1. Perform the following tasks in the agent designer:
 
@@ -69,24 +70,27 @@ After you choose your save location, the Designer view will open to edit your AI
 
         :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-designer.png" alt-text="Screenshot of the Agent designer that enables you to edit and interact with your AI Agent." lightbox="../../media/how-to/get-started-projects-vs-code/agent-designer.png":::
  
-1. Select the **Save locally** button in the bottom-center of the **Agent Preferences** screen to store your agent configuration.
+    1. To save the .yaml file, select **File** > **Save** in the VS Code menu bar.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/save-agent-locally.png" alt-text="Screenshot of the Agent designer with the 'Save locally' button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/save-agent-locally.png":::
+###    Explore the Azure AI Agent YAML definition
 
-###	Show the Azure AI Agent YAML definition
-
-Select the **Open Yaml File** on the top-right of the designer to open your AI Agent .yaml file. This file contains the details and setup information for your agent, similar to the following .yaml file example: 
+Your AI Agent .yaml file was opened at the same time the designer was. This file contains the details and setup information for your agent, similar to the following .yaml file example: 
 
 ```yml
+# yaml-language-server: $schema=https://aka.ms/ai-foundry-vsc/agent/1.0.0
 version: 1.0.0
-name: BingAgent
+name: my-agent
 description: Description of the agent
-metadata:
-  author: Author Name
-  tag: basic
 id: ''
+metadata:
+  authors:
+    - author1
+    - author2
+  tags:
+    - tag1
+    - tag2
 model:
-  id: ''
+  id: 'gpt-4o-1'
   options:
     temperature: 1
     top_p: 1
@@ -96,27 +100,46 @@ tools: []
 
 ### Add tools to the Azure AI Agent
 
-Azure AI Agent Service has a set of tools that you can use to interact with your data sources, such as:
- - Grounding with Bing search
- - Azure AI Search 
- - Azure Functions 
- - File retrieval 
- - Code interpreter
 
-#### Create the tool configuration file
+Azure AI Agent Service has a set of knowledge and action tools that you can use to interact with your data sources. 
+
+
+#### Available tools for Azure AI Agents
+
+The following tools are available:
+
+- Knowledge tools:
+  - [Grounding with Bing search](/azure/ai-services/agents/how-to/tools/bing-grounding?tabs=python&pivots=overview)
+  - [File search]( /azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview)
+  - [Azure AI Search](/azure/ai-services/agents/how-to/tools/azure-ai-search?tabs=azurecli%2Cpython&pivots=overview-azure-ai-search)   
+  - [Microsoft Fabric](/azure/ai-services/agents/how-to/tools/fabric?tabs=csharp&pivots=overview)
+  - [Use licensed data](/azure/ai-services/agents/how-to/tools/licensed-data) 
+
+- Action tools:
+ - [Azure AI Agents function calling](/azure/ai-services/agents/how-to/tools/function-calling?tabs=python&pivots=overview)
+
+Azure AI Foundry Agent Service has a set of knowledge and action tools that you can use to interact with your data sources, such as:
+ - [Grounding with Bing search](/azure/ai-services/agents/how-to/tools/bing-grounding?tabs=python&pivots=overview)
+ - [Azure AI Search](/azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview) 
+ - [Azure Functions](/azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview) 
+ - [File retrieval](/azure/ai-services/agents/how-to/tools/azure-functions?tabs=python&pivots=overview) 
+ - [Code interpreter](/azure/ai-services/agents/how-to/tools/code-interpreter?tabs=python&pivots=overview)
+ - [OpenAPI Specified tools](/azure/ai-services/agents/how-to/tools/openapi-spec?tabs=python&pivots=overview)
+ - [Azure Functions](/azure/ai-services/agents/how-to/tools/azure-functions?tabs=python&pivots=overview)
+
+#### Configure the tools YAML file
 
 The Agent Designer adds tools to an AI Agent via .yaml files. 
 
 Create a tool configuration .yaml file using the following steps:
 
-1. Perform any setup steps that might be required. See the article for the tool you’re interested in using. For example, [Grounding with Bing search](/azure/ai-services/agents/how-to/tools/bing-grounding?tabs=python&pivots=overview#setup).
+1. Choose a tool from the [available tools for Azure AI Agents](#available-tools-for-azure-ai-agents). Perform any setup steps that might be required. For example, [Grounding with Bing search](/azure/ai-services/agents/how-to/tools/bing-grounding?tabs=python&pivots=overview#setup).
 
-1. Once you complete the setup, create a yaml code file that specifies the tool’s configuration. For example, this format for Grounding with Bing Search:
+1. Once you complete the setup, create a yaml code file that specifies the tool's configuration. For example, this format for Grounding with Bing Search:
 
     ```yml
     type: bing_grounding
-    name: bing_search
-    configuration:
+    options:
       tool_connections:
         - >-
           /subscriptions/<Azure Subscription ID>/resourceGroups/<Azure Resource Group name>/providers/Microsoft.MachineLearningServices/workspaces/<Azure AI Foundry Project name>/connections/<Bing connection name>
@@ -128,9 +151,9 @@ Create a tool configuration .yaml file using the following steps:
     - Azure AI Foundry Project name
     - Bing connection name
 
-1. Save the .yaml file.
+1. To save the .yaml file, select **File** > **Save** in the VS Code menu bar.
 
-#### Add the tool to the AI Agent
+#### Connect the tools file to the AI Agent
 
 Add a tool to the AI Agent with the following steps:
 
@@ -146,9 +169,10 @@ Add a tool to the AI Agent with the following steps:
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-added-tool.png" alt-text="Screenshot of the Agent designer TOOL section with the new tool highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/agent-added-tool.png":::
 
-1. Select the **Save locally** button in the bottom-center of the **Agent Preferences** screen to store your agent configuration. 
+1. To save the .yaml file, select **File** > **Save** in the VS Code menu bar.
 
-###	Deploy Azure AI Agents to the Azure AI Foundry Studio
+
+###    Deploy Azure AI Agents to the Azure AI Foundry Studio
 
 Deploy your agent directly to Azure AI Foundry with the following steps:
 
@@ -175,15 +199,41 @@ Selecting the deployed agent opens the **Agent Preferences** page in a view only
 
 Open the **Agents Playground** using the following steps:
 
-1. Right-click on your deployed agent and select the **Open Playground** option This action starts a thread with your agent and let you send messages.
+1. Right-click on your deployed agent and select the **Open Playground** option This action starts a thread with your agent and let you send messages. 
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-open-playground.png" alt-text="Screenshot of the agent context menu with the 'Open Playground' option highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/agent-open-playground.png":::
+1. Alternatively, select the **Agent Playground** link in the **Tools** subsection, and select your agent from the top-center list. 
 
 1. The **Playground** page is displayed.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-display-playground.png" alt-text="Screenshot of the **Agents Playground** page in VS Code." lightbox="../../media/how-to/get-started-projects-vs-code/agent-display-playground.png":::
 
-1. Type your prompt and see the outputs. 
+1. Type your prompt and see the outputs. The **Grounding with Bing search** tool is used to search the web for information. The agent uses the model and tools you configured in the agent designer. The source of the information is displayed in the **Agent Annotations** section, highlighted in the following image. 
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-playground-run.png" alt-text="Screenshot of the Agents Playground page with agent annotations highlighted in VS Code." lightbox="../../media/how-to/get-started-projects-vs-code/agent-playground-run.png":::
+
+## Explore Threads
+
+The **Threads** subsection displays the threads created during a run with your agent. In the Azure Resources Extension view, select the **caret** icon in front of the **Threads** subsection to view the list of threads.
+
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/thread-list.png" alt-text="Screenshot of the threads in the Threads subsection." lightbox="../../media/how-to/get-started-projects-vs-code/thread-list.png":::
+
+###  View thread details
+
+Select a thread to see the **Thread Details** page.
+
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/thread-view.png" alt-text="Screenshot of the thread details view." lightbox="../../media/how-to/get-started-projects-vs-code/thread-view.png":::
+
+- A **Thread** is a conversation session between an agent and a user. Threads store **Messages** and automatically handle truncation to fit content into a model's context.
+
+- A **Message** is a single interaction between the agent and the user. Messages can include text, images, and other files. Messages are stored as a list on the Thread.
+
+- A **Run** is a single execution of an agent. Each run can have multiple threads, and each thread can have multiple messages. The agent uses its configuration and Thread's Messages to perform tasks by calling models and tools. As part of a Run, the agent appends Messages to the Thread.
+
+###  View run details
+
+Select the **View run info** button in the **Thread Details** page to see the run information in a JSON file.
+
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/run-file.png" alt-text="Screenshot of the run details .json file." lightbox="../../media/how-to/get-started-projects-vs-code/run-file.png":::
 
 ## Cleanup resources
 
@@ -191,9 +241,11 @@ The Azure resources that you created in this article are billed to your Azure su
 
 ### Delete your agents
 
-Delete the deployed agent in the [online AI Foundry portal](https://ai.azure.com). Select **Agents** from the navigation menu on the left, select your agent, then select the **Delete** button.
+[!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
-:::image type="content" source="../../media/how-to/get-started-projects-vs-code/delete-agent.png" alt-text="Screenshot of the AI Foundry portal with 'Agents' from the navigation menu on the left and the **Delete** button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/delete-agent.png":::
+Delete the deployed agent in the [online AI Foundry portal](https://ai.azure.com/?cid=learnDocs). Select **Agents** from the navigation menu on the left, select your agent, then select the **Delete** button.
+
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/delete-agent.png" alt-text="Screenshot of the AI Foundry portal with Agents from the navigation menu on the left and the Delete button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/delete-agent.png":::
 
 ### Delete your models
 
@@ -201,7 +253,7 @@ Delete the deployed agent in the [online AI Foundry portal](https://ai.azure.com
 
 1. Right-click on your deployed model to delete and select the **Delete** option.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/delete-model.png" alt-text="Screenshot of the model context menu with the 'Delete' option highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/delete-model.png":::
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/delete-model.png" alt-text="Screenshot of the model context menu with the Delete option highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/delete-model.png":::
 
 ### Delete your tools
 
@@ -211,6 +263,6 @@ Delete the connected tool with the following steps:
 1. Select the Azure Resource Group containing the tool.
 1. Select the **Delete** button.  
 
-##	Next steps
+##    Next steps
 
 - Learn about the tools you can use with Azure AI Agents, such as [file search](/azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview), or [code interpreter](/azure/ai-services/agents/how-to/tools/code-interpreter?tabs=python&pivots=overview).

@@ -195,7 +195,7 @@ In this section, you'll learn to create a component specification in the valid Y
 
 * `name` is the unique identifier of the component. Its display name is `Score Image Classification Keras`. 
 * This component has two inputs and one output. 
-* The source code path of it's defined in the `code` section and when the component is run in cloud, all files from that path will be uploaded as the snapshot of this component. 
+* The source code path of its defined in the `code` section and when the component is run in cloud, all files from that path will be uploaded as the snapshot of this component. 
 * The `command` section specifies the command to execute while running this component. 
 * The `environment` section contains a docker image and a conda yaml file. The source file is in the [sample repository](https://github.com/Azure/azureml-examples/blob/v2samplesreorg/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet/score/conda.yaml).
 

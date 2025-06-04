@@ -2,14 +2,16 @@
 title: Connect using Azure roles
 titleSuffix: Azure AI Search
 description: Use Azure role-based access control for granular permissions on service administration and content tasks.
-
-manager: nitinme
 author: HeidiSteen
 ms.author: heidist
+manager: nitinme
+ms.date: 03/31/2025
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/31/2025
-ms.custom: subject-rbac-steps, devx-track-azurepowershell
+ms.custom:
+  - subject-rbac-steps
+  - devx-track-azurepowershell
+  - build-2025
 ---
 
 # Connect to Azure AI Search using roles
@@ -23,7 +25,7 @@ In Azure AI Search, you can assign Azure roles for:
 + [Read-only access for queries](#assign-roles-for-read-only-queries)
 + [Scoped access to a single index](#grant-access-to-a-single-index)
 
-Per-user access over search results (sometimes referred to as *row-level security* or *document-level security*) isn't supported through role assignments. As a workaround, [create security filters](search-security-trimming-for-azure-search.md) that trim results by user identity, removing documents for which the requestor shouldn't have access. See this [Enterprise chat sample using RAG](/azure/developer/python/get-started-app-chat-template) for a demonstration.
+Per-user access over search results (sometimes referred to as *row-level security* or *document-level security*) isn't supported through role assignments. As a workaround, [create security filters](search-security-trimming-for-azure-search.md) that trim results by user identity, removing documents for which the requester shouldn't have access. See this [Enterprise chat sample using RAG](/azure/developer/python/get-started-app-chat-template) for a demonstration.
 
 Role assignments are cumulative and pervasive across all tools and client libraries. You can assign roles using any of the [supported approaches](/azure/role-based-access-control/role-assignments-steps) described in Azure role-based access control documentation.
 
@@ -531,7 +533,7 @@ These steps create a custom role that augments search query rights to include li
 
 ### [**Azure PowerShell**](#tab/custom-role-ps)
 
-The PowerShell example shows the JSON syntax for creating a custom role that's a clone of **Search Index Data Reader**, but withe ability to list all indexes by name.
+The PowerShell example shows the JSON syntax for creating a custom role that's a clone of **Search Index Data Reader**, but with ability to list all indexes by name.
 
 1. Review the [list of atomic permissions](/azure/role-based-access-control/resource-provider-operations#microsoftsearch) to determine which ones you need. For this example, you'll need the following:
 

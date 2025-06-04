@@ -5,7 +5,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: include
-ms.date: 07/18/2023
+ms.date: 05/19/2025
 ms.author: lajanuar
 recommendations: false
 ---
@@ -17,7 +17,7 @@ recommendations: false
 
 > [!NOTE]
 >
-> The Azure Text Translation SDK for Java is tested and supported on Windows, Linux, and macOS platforms. It is not tested on other platforms and doesn't support Android deployments.
+> The Azure Text translation SDK for Java is tested and supported on Windows, Linux, and macOS platforms. It isn't tested on other platforms and doesn't support Android deployments.
 
 For this quickstart, we use the Gradle build automation tool to create and run the application.
 
@@ -26,7 +26,7 @@ For this quickstart, we use the Gradle build automation tool to create and run t
   > [!TIP]
   >
   > * Visual Studio Code offers a **Coding Pack for Java** for Windows and macOS.The coding pack is a bundle of VS Code, the Java Development Kit (JDK), and a collection of suggested extensions by Microsoft. The Coding Pack can also be used to fix an existing development environment.
-  > * If you are using VS Code and the Coding Pack For Java, install the [**Gradle for Java**](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-gradle) extension.
+  > * If you're using VS Code and the Coding Pack For Java, install the [**Gradle for Java**](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-gradle) extension.
 
 * If you aren't using Visual Studio Code, make sure you have the following installed in your development environment:
 
@@ -101,7 +101,7 @@ For this quickstart, we use the Gradle build automation tool to create and run t
 
 1. Copy and paste the following text translation code sample into your **Translate.java** file.
 
-    * Update **`"<your-key>"`**, **`"<your-endpoint>"`** and  **`"<region>"`** with values from your Azure portal Translator instance.
+    * Update **`"<your-key>"`**, **`"<your-endpoint>"`** and,  **`"<region>"`** with values from your Azure portal Translator instance.
 
 ## Code sample
 
@@ -113,7 +113,7 @@ For this quickstart, we use the Gradle build automation tool to create and run t
 To interact with the Translator service using the client library, you need to create an instance of the `TextTranslationClient`class. To do so, create an `AzureKeyCredential` with your `key` from the Azure portal and a `TextTranslationClient` instance with the `AzureKeyCredential`. The authentication varies slightly depending on whether your resource uses the regional or global endpoint. For this project, authenticate using the global endpoint. For more information about using a regional endpoint, _see_ [Translator text sdks](../../../sdk-overview.md#3-authenticate-the-client).
 
   > [!NOTE]
-  > In this example we are using the global endpoint. If you're using a regional endpoint, see [Create a Text Translation client](../../../../create-translator-resource.md#create-a-text-translation-client).
+  > In this example, we're using the global endpoint. If you're using a regional endpoint, see [Create a Text translation client](../../../../create-translator-resource.md#create-a-text-translation-client).
 
 ```java
 import java.util.List;
@@ -155,7 +155,7 @@ public class Translate {
 
 ## Build and run the application**
 
-Once you've added the code sample to your application, navigate back to your main project directory—**text-translation-app**.
+Once you add the code sample to your application, navigate back to your main project directory—**text-translation-app**.
 
 1. Build your application with the `build` command (you should receive a **BUILD SUCCESSFUL** message):
 

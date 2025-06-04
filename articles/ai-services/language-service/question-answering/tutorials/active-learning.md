@@ -3,8 +3,8 @@ title: Enrich your project with active learning
 description: In this tutorial, learn how to enrich your custom question answering projects with active learning
 ms.service: azure-ai-language
 ms.topic: tutorial
-author: jboback
-ms.author: jboback
+author: laujan
+ms.author: lajanuar
 ms.date: 11/21/2024
 ms.custom: language-service-question-answering
 ---

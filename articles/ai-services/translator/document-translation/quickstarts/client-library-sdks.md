@@ -1,29 +1,29 @@
 ---
-title: "Batch Document Translation C#/.NET or Python client library"
+title: "Batch Document translation C#/.NET or Python client library"
 titleSuffix: Azure AI services
-description: Use the Batch Document Translation C#/.NET or Python client library (SDK) for cloud-based batch document translation service and process.
+description: Use the Batch Document translation C#/.NET or Python client library (SDK) for cloud-based batch document translation service and process.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.custom: devx-track-dotnet, devx-track-python
 ms.topic: quickstart
-ms.date: 01/27/2025
+ms.date: 04/14/2025
 ms.author: lajanuar
 zone_pivot_groups: programming-languages-document-sdk
 ---
 
-# Get started: Document Translation client libraries
+# Get started: Document translation client libraries
 <!-- markdownlint-disable MD024 -->
 <!-- markdownlint-disable MD001 -->
 
-Document Translation is a cloud-based feature of the [Azure AI Translator](../../translator-overview.md) service that asynchronously translates whole documents in [supported languages](../../language-support.md) and various [file formats](../overview.md#batch-supported-document-formats). In this quickstart, learn to use Document Translation with a programming language of your choice to translate a source document into a target language while preserving structure and text formatting.
+Document translation is a cloud-based feature of the [Azure AI Translator](../../translator-overview.md) service that asynchronously translates whole documents in [supported languages](../../language-support.md) and various [file formats](../overview.md#batch-supported-document-formats). In this quickstart, learn to use Document translation with a programming language of your choice to translate a source document into a target language while preserving structure and text formatting.
 
 > [!IMPORTANT]
 >
-> * Document Translation is currently supported in the Azure AI Translator (single-service) resource only, and is **not** included in the Azure AI services (multi-service) resource.
-> * Document Translation is supported in paid tiers. The Language Studio supports the S1 or D3 instance tiers. We suggest that you select Standard S1 to try Document Translation. *See* [Azure AI services pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
-> * Document Translation public preview releases provide early access to features that are in active development. Features, approaches, and processes can change, before General Availability (GA) release, based on user feedback.
-> * The public preview version of Document Translation client libraries default to REST API version **2024-05-01**.
+> * Document translation is currently supported in the Azure AI Translator (single-service) resource only, and is **not** included in the Azure AI services (multi-service) resource.
+> * Document translation is supported in paid tiers. The Language Studio supports the S1 or D3 instance tiers. We suggest that you select Standard S1 to try Document translation. *See* [Azure AI services pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
+> * Document translation public preview releases provide early access to features that are in active development. Features, approaches, and processes can change, before General Availability (GA) release, based on user feedback.
+> * The public preview version of Document translation client libraries default to REST API version **2024-05-01**.
 
 ## Prerequisites
 
@@ -31,7 +31,7 @@ To get started, you need:
 
 * An active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/). If you don't have one, you can [**create a free account**](https://azure.microsoft.com/free/).
 
-* A [**single-service Azure AI Translator resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) (**not** a multi-service Azure AI services resource). If you're planning on using the Document Translation feature with [managed identity authorization](../how-to-guides/create-use-managed-identities.md), choose a geographic region such as **East US**. Select the **Standard S1 Standard Service Plan (Pay-as-you-go) or C2, C3, C4, or D3 Volume Discount Plans**.
+* A [**single-service Azure AI Translator resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) (**not** a multi-service Azure AI Foundry resource). If you're planning on using the Document translation feature with [managed identity authorization](../how-to-guides/create-use-managed-identities.md), choose a geographic region such as **East US**. Select the **Standard S1 Standard Service Plan or C2, C3, C4, or D3 Volume Discount Plans**.
 
 * An [**Azure Blob Storage account**](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM). You'll [**create containers**](/azure/storage/blobs/storage-quickstart-blobs-portal#create-a-container) in your Azure Blob Storage account for your source and target files:
 
@@ -44,7 +44,7 @@ You can choose one of the following options to authorize access to your Azure AI
 
 **✔️ Managed Identity**. A managed identity is a service principal that creates a Microsoft Entra identity and specific permissions for an Azure managed resource. Managed identities enable you to run your Azure AI Translator application without having to embed credentials in your code. Managed identities are a safer way to grant access to storage data and replace the requirement for you to include shared access signature tokens (SAS) with your source and target URLs.
 
-To learn more, *see* [Managed identities for Document Translation](../how-to-guides/create-use-managed-identities.md).
+To learn more, *see* [Managed identities for Document translation](../how-to-guides/create-use-managed-identities.md).
 
   :::image type="content" source="../media/managed-identity-rbac-flow.png" alt-text="Screenshot of managed identity flow (RBAC).":::
 
@@ -70,4 +70,4 @@ To learn more, *see* [**Create SAS tokens**](../how-to-guides/create-sas-tokens.
 ### Next step
 
 > [!div class="nextstepaction"]
-> [**Learn more about Document Translation operations**](../reference/rest-api-guide.md)
+> [**Learn more about Document translation operations**](../reference/rest-api-guide.md)

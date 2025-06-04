@@ -144,9 +144,9 @@ Document Intelligence billing is calculated monthly based on the model type and 
 | Adjustable | No | No |
 | **Custom neural model train** | 10 hours per month <sup>5</sup> | no limit (pay by the hour), start with 10 free hours each month |
 | Adjustable | No |Yes <sup>3</sup>|
-| **Max number of pages (Training) * Classifier** | 10,000 | 10,000 (default value) |
+| **Max number of pages (Training) * Classifier** | 25,000 | 25,000 (default value) |
 | Adjustable | No | No |
-| **Max number of document types (classes) * Classifier** | 500 | 500 (default value) |
+| **Max number of document types (classes) * Classifier** | 1000 | 1000 (default value) |
 | Adjustable | No | No |
 | **Training dataset size * Classifier** | 1GB | 2GB (default value) |
 | Adjustable | No | No |

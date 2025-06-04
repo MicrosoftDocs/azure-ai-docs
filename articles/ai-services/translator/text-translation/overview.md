@@ -1,18 +1,18 @@
 ---
-title: What is Azure Text Translation?
+title: What is Azure Text translation?
 titlesuffix: Azure AI services
-description: Integrate the Text Translation API into your applications, websites, tools, and other solutions for multi-language user experiences.
+description: Integrate the Text translation API into your applications, websites, tools, and other solutions for multi-language user experiences.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 02/10/2025
+ms.date: 05/19/2025
 ms.author: lajanuar
 ---
 
-# What is Azure Text Translation?
+# What is Azure Text translation?
 
- Azure Text Translation is a cloud-based REST API feature of the Translator service that uses neural machine translation technology to enable quick and accurate source-to-target text translation in real time across all [supported languages](../language-support.md). In this overview, you learn how the Text Translation REST APIs enable you to build intelligent solutions for your applications and workflows.
+ Azure Text translation is a cloud-based REST API feature of the Translator service that uses neural machine translation technology to enable quick and accurate source-to-target text translation in real time across all [supported languages](../language-support.md). In this overview, you learn how the Text translation REST APIs enable you to build intelligent solutions for your applications and workflows.
 
 Text translation documentation contains the following article types:
 
@@ -22,7 +22,7 @@ Text translation documentation contains the following article types:
 
 ## Text translation features
 
- Text Translation supports the following methods:
+ Text translation supports the following methods:
 
 * [**Languages**](reference/v3/languages.md). Returns a list of languages supported by **Translate**, **Transliterate**, and **Dictionary Lookup** operations. This request doesn't require authentication; just copy and paste the following GET request into your favorite REST API tool or browser:
 
@@ -44,7 +44,7 @@ Text translation documentation contains the following article types:
 
 ## Text translation deployment options
 
-Add Text Translation to your projects and applications using the following resources:
+Add Text translation to your projects and applications using the following resources:
 
 * Access the cloud-based Translator service via the [**REST API**](reference/rest-api-guide.md), available in Azure.
 
@@ -59,9 +59,9 @@ Add Text Translation to your projects and applications using the following resou
 
 ## Data residency
 
-Text Translation data residency depends on the Azure region where your Translator resource was created:
+Text translation data residency depends on the Azure region where your Translator resource was created:
 
-### Text Translation data residency
+### Text translation data residency
 
 ✔️ Feature: **Translator Text** </br>
 
@@ -90,7 +90,7 @@ curl -X POST "https://my-swiss-n.cognitiveservices.azure.com/translator/text/v3.
 
 Custom Translator isn't currently available in Switzerland.
 
-## Get started with Text Translation
+## Get started with Text translation
 
 Ready to begin?
 
@@ -107,7 +107,7 @@ Ready to begin?
 
 ## Next steps
 
-Dive deeper into the Text Translation REST API:
+Dive deeper into the Text translation REST API:
 
 > [!div class="nextstepaction"]
 > [See the REST API reference](reference/v3/reference.md)

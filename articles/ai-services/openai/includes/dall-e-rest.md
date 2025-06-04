@@ -1,7 +1,7 @@
 ---
-title: 'Quickstart: Generate images with the REST APIs for Azure OpenAI Service'
-titleSuffix: Azure OpenAI Service
-description: Learn how to generate images with Azure OpenAI Service by using the REST APIs and the endpoint and access keys for your Azure OpenAI resource.
+title: 'Quickstart: Generate images with the REST APIs for Azure OpenAI in Azure AI Foundry Models'
+titleSuffix: Azure OpenAI
+description: Learn how to generate images with Azure OpenAI by using the REST APIs and the endpoint and access keys for your Azure OpenAI resource.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.custom:
@@ -10,7 +10,7 @@ ms.topic: include
 ms.date: 02/20/2025
 ---
 
-Use this guide to get started calling the Azure OpenAI Service image generation REST APIs by using Python.
+Use this guide to get started calling the Azure OpenAI in Azure AI Foundry Models image generation REST APIs by using Python.
 
 ## Prerequisites
 
@@ -99,7 +99,7 @@ The output from a successful image generation API call looks like the following 
 } 
 ```
 
-The image generation APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it doesn't generate an image. For more information, see [Content filtering](../concepts/content-filter.md). For examples of error responses, see the [DALL-E how-to guide](../how-to/dall-e.md).
+The Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it doesn't generate an image. For more information, see [Content filtering](../concepts/content-filter.md). For examples of error responses, see the [DALL-E how-to guide](../how-to/dall-e.md).
 
 The system returns an operation status of `Failed` and the `error.code` value in the message is set to `contentFilter`. Here's an example:
 
@@ -137,6 +137,6 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 
 ## Next steps
 
-* Explore the image generation APIs in more depth with the [DALL-E how-to guide](../how-to/dall-e.md).
+* Explore the Image APIs in more depth with the [Image API how-to guide](../how-to/dall-e.md).
 * Try examples in the [Azure OpenAI Samples GitHub repository](https://github.com/Azure/openai-samples).
 * See the [API reference](../reference.md#image-generation)

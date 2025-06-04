@@ -1,11 +1,11 @@
 ---
-title: Azure OpenAI Service REST API reference
+title: Azure OpenAI in Azure AI Foundry Models REST API reference
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI's REST API. In this article, you learn about authorization options,  how to structure a request and receive a response.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 01/29/2025
+ms.date: 04/30/2025
 author: mrbullwinkle 
 ms.author: mbullwin
 recommendations: false
@@ -13,7 +13,7 @@ ms.custom:
   - ignite-2023
 ---
 
-# Azure OpenAI Service REST API reference
+# Azure OpenAI in Azure AI Foundry Models REST API reference
 
 This article provides details on the inference REST API endpoints for Azure OpenAI.
 
