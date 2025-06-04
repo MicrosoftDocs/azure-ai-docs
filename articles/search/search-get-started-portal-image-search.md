@@ -6,7 +6,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 06/03/2025
+ms.date: 06/04/2025
 ms.custom:
   - references_regions
 ---
@@ -57,7 +57,7 @@ For content embedding, you can choose either image verbalization (followed by te
 
 <sup>2</sup> Azure OpenAI resources (with access to embedding models) that were created in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) aren't supported. You must create an Azure OpenAI resource in the Azure portal.
 
-<sup>3</sup> For billing purposes, you must [attach your multi-service resource](cognitive-search-attach-cognitive-services.md) to the skillset in your Azure AI Search service. Unless you use a [keyless connection](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) to create the skillset, both resources must be in the same region.
+<sup>3</sup> For billing purposes, you must [attach your multi-service resource](cognitive-search-attach-cognitive-services.md) to the skillset in your Azure AI Search service. Unless you use a [keyless connection (preview)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) to create the skillset, both resources must be in the same region.
 
 <sup>4</sup> `phi-4` is only available to Azure AI Foundry projects.
 
@@ -228,13 +228,15 @@ To use the Document Layout skill:
 
 1. On the **Content extraction** page, select **AI Document Intelligence**.
 
+   :::image type="content" source="media/search-get-started-portal-images/extract-your-content-doc-intelligence.png" alt-text="Screenshot of the wizard page with Azure AI Document Intelligence selected for content extraction." border="true" lightbox="media/search-get-started-portal-images/extract-your-content-doc-intelligence.png":::
+
 1. Specify your Azure subscription and multi-service resource.
 
 1. For the authentication type, select **System assigned identity**.
 
 1. Select the checkbox that acknowledges the billing effects of using these resources.
 
-   :::image type="content" source="media/search-get-started-portal-images/extract-your-content-doc-intelligence.png" alt-text="Screenshot of the wizard page with Azure AI Document Intelligence selected for content extraction." border="true" lightbox="media/search-get-started-portal-images/extract-your-content-doc-intelligence.png":::
+   :::image type="content" source="media/search-get-started-portal-images/doc-intelligence-options.png" alt-text="Screenshot of the wizard page with configuration options for Azure AI Document Intelligence selected." border="true" lightbox="media/search-get-started-portal-images/doc-intelligence-options.png":::
 
 1. Select **Next**.
 
@@ -422,7 +424,30 @@ To query your multimodal index:
 
    :::image type="content" source="media/search-get-started-portal-images/search-button.png" alt-text="Screenshot of the Search button in Search Explorer." border="true" lightbox="media/search-get-started-portal-images/search-button.png":::
 
-   The results should include text and image content related to `energy` in your index. Highlights from relevant passages and image verbalizations appear in `@search.captions`, helping you quickly identify matches to your query.
+   The results should include text and image content related to `energy` in your index. If you enabled semantic ranker, the `@search.answers` array provides concise, high-confidence [semantic answers](semantic-answers.md) to help you quickly identify relevant matches.
+
+   ```json
+   "@search.answers": [
+      {
+         "key": "a71518188062_aHR0cHM6Ly9oYWlsZXlzdG9yYWdlLmJsb2IuY29yZS53aW5kb3dzLm5ldC9tdWx0aW1vZGFsLXNlYXJjaC9BY2NlbGVyYXRpbmctU3VzdGFpbmFiaWxpdHktd2l0aC1BSS0yMDI1LnBkZg2_normalized_images_7",
+         "text": "A vertical infographic consisting of three sections describing the roles of AI in sustainability:  1. **Measure, predict, and optimize complex systems**: AI facilitates analysis, modeling, and optimization in areas like energy distribution, resource allocation, and environmental monitoring. **Accelerate the development of sustainability solution...",
+         "highlights": "A vertical infographic consisting of three sections describing the roles of AI in sustainability:  1. **Measure, predict, and optimize complex systems**: AI facilitates analysis, modeling, and optimization in areas like<em> energy distribution, </em>resource<em> allocation, </em>and environmental monitoring. **Accelerate the development of sustainability solution...",
+         "score": 0.9950000047683716
+      },
+      {
+         "key": "1cb0754930b6_aHR0cHM6Ly9oYWlsZXlzdG9yYWdlLmJsb2IuY29yZS53aW5kb3dzLm5ldC9tdWx0aW1vZGFsLXNlYXJjaC9BY2NlbGVyYXRpbmctU3VzdGFpbmFiaWxpdHktd2l0aC1BSS0yMDI1LnBkZg2_text_sections_5",
+         "text": "...cross-laminated timber.8 Through an agreement with Brookfield, we aim  10.5 gigawatts (GW) of renewable energy to the grid.910.5 GWof new renewable energy capacity to be developed across the United States and Europe.Play 4 Advance AI policy principles and governance for sustainabilityWe advocated for policies that accelerate grid decarbonization",
+         "highlights": "...cross-laminated timber.8 Through an agreement with Brookfield, we aim <em> 10.5 gigawatts (GW) of renewable energy </em>to the<em> grid.910.5 </em>GWof new<em> renewable energy </em>capacity to be developed across the United States and Europe.Play 4 Advance AI policy principles and governance for sustainabilityWe advocated for policies that accelerate grid decarbonization",
+         "score": 0.9890000224113464
+      },
+      {
+         "key": "1cb0754930b6_aHR0cHM6Ly9oYWlsZXlzdG9yYWdlLmJsb2IuY29yZS53aW5kb3dzLm5ldC9tdWx0aW1vZGFsLXNlYXJjaC9BY2NlbGVyYXRpbmctU3VzdGFpbmFiaWxpdHktd2l0aC1BSS0yMDI1LnBkZg2_text_sections_50",
+         "text": "ForewordAct... Similarly, we have restored degraded stream ecosystems near our datacenters from Racine, Wisconsin120 to Jakarta, Indonesia.117INNOVATION SPOTLIGHTAI-powered Community Solar MicrogridsDeveloping energy transition programsWe are co-innovating with communities to develop energy transition programs that align their goals with broader s.",
+         "highlights": "ForewordAct... Similarly, we have restored degraded stream ecosystems near our datacenters from Racine, Wisconsin120 to Jakarta, Indonesia.117INNOVATION SPOTLIGHTAI-powered Community<em> Solar MicrogridsDeveloping energy transition programsWe </em>are co-innovating with communities to develop<em> energy transition programs </em>that align their goals with broader s.",
+          "score": 0.9869999885559082
+      }
+   ]
+   ```
 
 ## Clean up resources
 
