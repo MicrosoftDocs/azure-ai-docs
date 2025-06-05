@@ -396,26 +396,26 @@ The preceding code does the following:
  
 
 
-    The output consists of recommendations for several hotels. Here's an example of what the output might look like:
+The output consists of recommendations for several hotels. Here's an example of what the output might look like:
 
-    ```
-   Sure! Here are a few hotels that offer complimentary breakfast:
-   
-   - **Head Wind Resort**
-   - Complimentary continental breakfast in the lobby
-   - Free Wi-Fi throughout the hotel
-   
-   - **Double Sanctuary Resort**
-   - Continental breakfast included
-   
-   - **White Mountain Lodge & Suites**
-   - Continental breakfast available
-   
-   - **Swan Bird Lake Inn**
-   - Continental-style breakfast each morning with a variety of food and drinks 
-     such as caramel cinnamon rolls, coffee, orange juice, milk, cereal, 
-     instant oatmeal, bagels, and muffins
-    ```
+```
+Sure! Here are a few hotels that offer complimentary breakfast:
+
+- **Head Wind Resort**
+- Complimentary continental breakfast in the lobby
+- Free Wi-Fi throughout the hotel
+
+- **Double Sanctuary Resort**
+- Continental breakfast included
+
+- **White Mountain Lodge & Suites**
+- Continental breakfast available
+
+- **Swan Bird Lake Inn**
+- Continental-style breakfast each morning with a variety of food and drinks 
+    such as caramel cinnamon rolls, coffee, orange juice, milk, cereal, 
+    instant oatmeal, bagels, and muffins
+```
 
 ## Troubleshooting
 
