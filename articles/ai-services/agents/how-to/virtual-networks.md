@@ -54,6 +54,7 @@ For customers without an existing virtual network, the Standard Setup with Priva
     * `Microsoft.Search`
     * `Microsoft.Network`
     * `Microsoft.App`
+    * `Microsoft.ContainerService`
     * To use Bing Search tool: `Microsoft.Bing`
 
     ```console
