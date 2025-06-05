@@ -31,7 +31,7 @@ We recommend that you use [datasets](concept-data.md) to import data into the de
 
 ### Register a dataset
 
-You can register existing datasets [programatically with the SDK](how-to-create-register-datasets.md#create-datasets-from-datastores) or [visually in Azure Machine Learning studio](how-to-connect-data-ui.md#create-data-assets).
+You can register existing datasets [programmatically with the SDK](how-to-create-register-datasets.md#create-datasets-from-datastores) or [visually in Azure Machine Learning studio](how-to-connect-data-ui.md#create-data-assets).
 
 You can also register the output for any designer component as a dataset.
 

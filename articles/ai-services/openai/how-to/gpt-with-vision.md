@@ -1,20 +1,20 @@
 ---
 title: How to use vision-enabled chat models
-titleSuffix: Azure OpenAI Service
-description: Learn how to use vision-enabled chat models in Azure OpenAI Service, including how to call the Chat Completion API and process images.
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
+description: Learn how to use vision-enabled chat models in Azure OpenAI, including how to call the Chat Completion API and process images.
 author: PatrickFarley #dereklegenzoff
 ms.author: pafarley #delegenz
 #customer intent: As a developer, I want to learn how to use vision-enabled chat models so that I can integrate image processing capabilities into my applications.
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 02/20/2025
+ms.date: 05/31/2025
 manager: nitinme
 ---
 
 # Use vision-enabled chat models
 
 
-Vision-enabled chat models are large multimodal models (LMM) developed by OpenAI that can analyze images and provide textual responses to questions about them. They incorporate both natural language processing and visual understanding. The current vision-enabled models are [o1](./reasoning.md), GPT-4o, GPT-4o-mini, and GPT-4 Turbo with Vision.
+Vision-enabled chat models are large multimodal models (LMM) developed by OpenAI that can analyze images and provide textual responses to questions about them. They incorporate both natural language processing and visual understanding. The current vision-enabled models are the [o-series reasoning models](./reasoning.md), GPT-4.1 series models, GPT-4.5, GPT-4o series, and GPT-4 Turbo with Vision.
 
 The vision-enabled models can answer general questions about what's present in the images you upload.
 
@@ -383,7 +383,7 @@ Every response includes a `"finish_reason"` field. It has the following possible
 [!INCLUDE [GPT-4 Turbo](../includes/gpt-4-turbo.md)]
 
 
-## Next steps
+## Related content
 
 * [Learn more about Azure OpenAI](../overview.md).
 * [Vision-enabled chats quickstart](../gpt-v-quickstart.md)

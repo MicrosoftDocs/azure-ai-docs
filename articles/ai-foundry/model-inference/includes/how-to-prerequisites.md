@@ -2,14 +2,14 @@
 manager: nitinme
 ms.service: azure-ai-model-inference
 ms.topic: include
-ms.date: 1/21/2025
+ms.date: 05/29/2025
 ms.author: fasantia
 author: santiagxf
 ---
 
-* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Azure AI model inference](../how-to/quickstart-github-models.md) if that's your case.
+* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Azure AI Foundry Models](../how-to/quickstart-github-models.md) if that's your case.
 
-* An Azure AI services resource. For more information, see [Create an Azure AI Services resource](../how-to/quickstart-create-resources.md).
+* An Azure AI Foundry resource (formerly known as Azure AI Services). For more information, see [Create an Azure AI Foundry resource](../how-to/quickstart-create-resources.md).
 
 * The endpoint URL and key.
 

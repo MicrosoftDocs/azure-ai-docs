@@ -1,6 +1,6 @@
 ---
 title: Safety system message templates 
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: This article contains recommended safety system messages for your generative AI systems, to help reduce the propensity of harm in various concern areas.
 ms.service: azure-ai-openai
 ms.topic: conceptual
@@ -31,7 +31,7 @@ Below are examples of recommended system message components you can include to p
 
 ## Add safety system messages in Azure AI Foundry portal 
 
-The following steps show how to leverage safety system messages in [Azure AI Foundry portal](https://ai.azure.com/).
+The following steps show how to leverage safety system messages in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 1. Go to Azure AI Foundry and navigate to Azure OpenAI and the Chat playground.
     :::image type="content" source="../media/navigate-chat-playground.PNG" alt-text="Screenshot of the Azure AI Foundry portal selection.":::

@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 12/10/2024
+ms.date: 05/29/2025
 ---
 
 # Visualize Azure AI Search Logs and Metrics with Power BI
@@ -17,7 +17,7 @@ ms.date: 12/10/2024
 Azure AI Search can send operation logs and service metrics to an Azure Storage account, which can then be visualized in Power BI. This article explains the steps and how to use a Power BI template app to visualize the data. The template covers information about queries, indexing, operations, and service metrics.
 
 > [!NOTE]
-> The Power BI template is currently using the previous product name, Azure Cognitive Search. The name change will be updated on the next template refresh.
+> The Power BI template currently uses a former product name, Azure Cognitive Search. The product name will be updated on the next template refresh.
 
 ## Set up logging and install the template
 

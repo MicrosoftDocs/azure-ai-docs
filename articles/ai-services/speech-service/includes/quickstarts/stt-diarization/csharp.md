@@ -12,7 +12,7 @@ ms.author: eur
 
 ## Prerequisites
 
-[!INCLUDE [Prerequisites](../../common/azure-prerequisites.md)]
+[!INCLUDE [Prerequisites](../../common/azure-prerequisites-resourcekey-endpoint.md)]
 
 ## Set up the environment
 
@@ -20,7 +20,7 @@ The Speech SDK is available as a [NuGet package](https://www.nuget.org/packages/
 
 ### Set environment variables
 
-[!INCLUDE [Environment variables](../../common/environment-variables.md)]
+[!INCLUDE [Environment variables](../../common/environment-variables-resourcekey-endpoint.md)]
 
 ## Implement diarization from file with conversation transcription
 
@@ -49,14 +49,14 @@ Follow these steps to create a console application and install the Speech SDK.
     
     class Program 
     {
-        // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
+        // This example requires environment variables named "SPEECH_KEY" and "ENDPOINT"
         static string speechKey = Environment.GetEnvironmentVariable("SPEECH_KEY");
-        static string speechRegion = Environment.GetEnvironmentVariable("SPEECH_REGION");
+        static string endpoint = Environment.GetEnvironmentVariable("ENDPOINT");
     
         async static Task Main(string[] args)
         {
             var filepath = "katiesteve.wav";
-            var speechConfig = SpeechConfig.FromSubscription(speechKey, speechRegion);        
+            var speechConfig = SpeechConfig.FromEndpoint(speechKey, endpoint);        
             speechConfig.SpeechRecognitionLanguage = "en-US";
             speechConfig.SetProperty(PropertyId.SpeechServiceResponse_DiarizeIntermediateResults, "true"); 
     
@@ -95,7 +95,7 @@ Follow these steps to create a console application and install the Speech SDK.
                         {
                             Console.WriteLine($"CANCELED: ErrorCode={e.ErrorCode}");
                             Console.WriteLine($"CANCELED: ErrorDetails={e.ErrorDetails}");
-                            Console.WriteLine($"CANCELED: Did you set the speech resource key and region values?");
+                            Console.WriteLine($"CANCELED: Did you set the speech resource key and endpoint values?");
                             stopRecognition.TrySetResult(0);
                         }
     
@@ -133,7 +133,7 @@ Follow these steps to create a console application and install the Speech SDK.
    ```
 
 > [!IMPORTANT]
-> Make sure that you set the `SPEECH_KEY` and `SPEECH_REGION` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
+> Make sure that you set the `SPEECH_KEY` and `ENDPOINT` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
 
 The transcribed conversation should be output as text:
 
@@ -223,7 +223,7 @@ TRANSCRIBED: Text=That's exciting. Let me try it right now. Speaker ID=Guest-2
 Speakers are identified as Guest-1, Guest-2, and so on, depending on the number of speakers in the conversation. 
 
 > [!NOTE]
-> You might see `Speaker ID=Unknown` in some of the early intermediate results when the speaker is not yet identified. Without intermediate diarization results (if you don't set the `PropertyId.SpeechServiceResponse_DiarizeIntermediateResults` property to "true"), the speaker ID is always "Unknown".
+> You might see `Speaker ID=Unknown` in some of the early intermediate results when the speaker isn't yet identified. Without intermediate diarization results (if you don't set the `PropertyId.SpeechServiceResponse_DiarizeIntermediateResults` property to "true"), the speaker ID is always "Unknown."
 
 ## Clean up resources
 

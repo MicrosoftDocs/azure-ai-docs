@@ -1,17 +1,17 @@
 ---
-title: Supported models in Azure AI Agent Service
-titleSuffix: Azure AI services
-description: Learn about the models you can use with Azure AI Agent Service.
+title: Supported models in Azure AI Foundry Agent Service
+titleSuffix: Azure AI Foundry
+description: Learn about the models you can use with Azure AI Foundry Agent Service.
 manager: nitinme
 author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: conceptual
-ms.date: 05/05/2025
+ms.date: 06/03/2025
 ms.custom: azure-ai-agents
 ---
 
-# Models supported by Azure AI Agent Service
+# Models supported by Azure AI Foundry Agent Service
 
 Agents are powered by a diverse set of models with different capabilities and price points. Model availability varies by region and cloud. Certain tools and capabilities require the latest models. The following models are available in the REST API and SDKs. 
 
@@ -24,10 +24,11 @@ Azure OpenAI provides customers with choices on the hosting structure that fits 
 
 All deployments can perform the exact same inference operations, however the billing, scale, and performance are substantially different. To learn more about Azure OpenAI deployment types see [deployment types guide](../../openai/how-to/deployment-types.md).
 
-Azure AI Agent Service supports the following Azure OpenAI models in the listed regions.
+Azure AI Foundry Agent Service supports the following Azure OpenAI models in the listed regions.
 
 > [!NOTE]
-> The following table is for pay-as-you-go. For information on Provisioned Throughput Unit (PTU) availability, see [provisioned throughput](../../openai/concepts/provisioned-throughput.md) in the Azure OpenAI documentation. `GlobalStandard` customers also have access to [global standard models](../../openai/concepts/models.md#global-standard-model-availability). 
+> * The following table is for standard deployment availability. For information on Provisioned Throughput Unit (PTU) availability, see [provisioned throughput](../../openai/concepts/provisioned-throughput.md) in the Azure OpenAI documentation. `GlobalStandard` customers also have access to [global standard models](../../openai/concepts/models.md#global-standard-model-availability). 
+> * [Hub based projects](../../../ai-foundry/what-is-azure-ai-foundry.md#project-types) are limited to the following models: gpt-4o, gpt-4o-mini, gpt-4, gpt-35-turbo
 
 | REGION           | o1 | o3-mini | gpt-4.1, 2025-04-14 | gpt-4.1-mini, 2025-04-14 | gpt-4.1-nano, 2025-04-14 | gpt-4o, 2024-05-13 | gpt-4o, 2024-08-06 | gpt-4o, 2024-11-20 | gpt-4o-mini, 2024-07-18 | gpt-4, 0613 | gpt-4, turbo-2024-04-09 | gpt-4-32k, 0613 | gpt-35-turbo, 1106 | gpt-35-turbo, 0125 |
 |------------------|----|---------|---------------------|--------------------------|--------------------------|--------------------|--------------------|--------------------|-------------------------|-------------|-------------------------|-----------------|--------------------|--------------------|
@@ -50,11 +51,11 @@ Azure AI Agent Service supports the following Azure OpenAI models in the listed 
 
 ## Non-Microsoft models
 
-The Azure AI Agent Service also supports the following models from the Azure AI Foundry model catalog.
+The Azure AI Foundry Agent Service also supports the following models from the Azure AI Foundry model catalog.
 
 * Meta-Llama-405B-Instruct
 
-To use these models, you can use [Azure AI Foundry portal](https://ai.azure.com/) to make a deployment, and then reference the deployment name in your agent. For example:
+To use these models, you can use [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) to make a deployment, and then reference the deployment name in your agent. For example:
 
 ```python
 agent = project_client.agents.create_agent( model="llama-3", name="my-agent", instructions="You are a helpful agent" ) 
@@ -63,9 +64,9 @@ agent = project_client.agents.create_agent( model="llama-3", name="my-agent", in
 
 ### Models with tool-calling 
 
-To best support agentic scenarios, we recommend using models that support tool-calling. The Azure AI Agent Service currently supports all agent-compatible models from the Azure AI Foundry model catalog. 
+To best support agentic scenarios, we recommend using models that support tool-calling. The Azure AI Foundry Agent Service currently supports all agent-compatible models from the Azure AI Foundry model catalog. 
 
-To use these models, use the [Azure AI Foundry portal](https://ai.azure.com/) to make a model deployment, then reference the deployment name in your agent. For example: 
+To use these models, use the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) to make a model deployment, then reference the deployment name in your agent. For example: 
 
 `agent = project_client.agents.create_agent( model="llama-3", name="my-agent", instructions="You are a helpful agent")`
 

@@ -7,14 +7,14 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 04/28/2025
+ms.date: 05/05/2025
 ms.reviewer: varundua
 ms.author: sgilley
 author: sdgilley
 #customer intent: As a developer, I want to jump start my journey with an AI template.
 ---
 
-# Get started with an AI template
+# Get started with an AI template (Preview)
 
 Streamline your code-first development with prebuilt, task-specific Azure AI templates. Benefit from using the latest features and best practices from Microsoft Azure AI, with popular frameworks like LangChain, prompt flow, and Semantic Kernel in multiple languages.
 
@@ -33,9 +33,11 @@ Available templates include:
 
 ## Start with a sample application
 
-1. Go to [Azure AI Foundry portal](https://ai.azure.com).
+[!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
+
+1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Open your project in Azure AI Foundry portal.
-1. On the left pane, select **Templates** (preview).
+1. On the left pane, select **Templates**.
 1. Find the solution template you want to use.
 1. Select **Open in Github** to view the entire sample application.
 1. In some cases, you can also view a step-by-step tutorial that explains the AI code.

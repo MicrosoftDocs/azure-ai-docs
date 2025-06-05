@@ -5,7 +5,7 @@ description: How to run evaluation in GitHub Action to streamline the evaluation
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 05/08/2025
+ms.date: 06/1/2025
 ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt
@@ -17,7 +17,7 @@ author: lgayhardt
 
 This GitHub Action enables offline evaluation of AI models and agents within your CI/CD pipelines. It's designed to streamline the evaluation process, allowing you to assess model performance and make informed decisions before deploying to production.
 
-Offline evaluation involves testing AI models and agents using test datasets to measure their performance on various quality and safety metrics such as fluency, coherence, and content safety. After you select a model in the [Azure AI Model Catalog](https://azure.microsoft.com/products/ai-model-catalog?msockid=1f44c87dd9fa6d1e257fdd6dd8406c42) or [GitHub Model marketplace](https://github.com/marketplace/models), offline pre-production evaluation is crucial for AI application validation during integration testing. This process allows developers to identify potential issues and make improvements before deploying the model or application to production, such as when creating and updating agents.
+Offline evaluation involves testing AI models and agents using test datasets to measure their performance on various quality and safety metrics such as fluency, coherence, and appropriateness. After you select a model in the [Azure AI Model Catalog](https://azure.microsoft.com/products/ai-model-catalog?msockid=1f44c87dd9fa6d1e257fdd6dd8406c42) or [GitHub Model marketplace](https://github.com/marketplace/models), offline pre-production evaluation is crucial for AI application validation during integration testing. This process allows developers to identify potential issues and make improvements before deploying the model or application to production, such as when creating and updating agents.
 
 [!INCLUDE [features](../includes/evaluation-github-action-azure-devops-features.md)]
 
@@ -26,6 +26,8 @@ Offline evaluation involves testing AI models and agents using test datasets to 
 - **Out-of-box operation metrics**: Automatically generates operational metrics for each evaluation run (client run duration, server run duration, completion tokens, and prompt tokens).
 
 ## Prerequisites
+
+Foundry project or Hubs based project. To learn more, see [Create a project](create-projects.md).
 
 Two GitHub Actions are available for evaluating AI applications: **ai-agent-evals** and **genai-evals**.
 
@@ -43,8 +45,16 @@ The input of ai-agent-evals includes:
 
 **Required:**
 
-- `azure-aiproject-connection-string`: The connection string for the Azure AI project. This is used to connect to Azure OpenAI to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
-- `deployment-name`: the deployed model name.
+# [Foundry project](#tab/foundry-project)
+
+- `azure-ai-project-endpoint`: The endpoint of the Azure AI project. This is used to connect to your AI project to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
+
+# [Hub based project](#tab/hub-project)
+
+- `azure-aiproject-connection-string`: The connection string of the Azure AI project. This is used to connect to your AI project to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
+
+---
+- `deployment-name`: the deployed model name for evaluation judgement.
 - `data-path`: Path to the input data file containing the conversation starters. Each conversation starter is sent to each agent for a pairwise comparison of evaluation results.
   - `evaluators`: built-in evaluator names.
   - `data`: a set of conversation starters/queries.
@@ -52,6 +62,7 @@ The input of ai-agent-evals includes:
 - `agent-ids`: a unique identifier for the agent and comma-separated list of agent IDs to evaluate.
   - When only one `agent-id` is specified, the evaluation results include the absolute values for each metric along with the corresponding confidence intervals.
   - When multiple `agent-ids` are specified, the results include absolute values for each agent and a statistical comparison against the designated baseline agent ID.
+
 
 **Optional:**
 
@@ -90,6 +101,48 @@ To use the GitHub Action, add the GitHub Action to your CI/CD workflows and spec
 
 This example illustrates how Azure Agent AI Evaluation can be run when comparing different agents with agent IDs.
 
+# [Foundry project](#tab/foundry-project)
+
+```YAML
+name: "AI Agent Evaluation"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  run-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Azure login using Federated Credentials
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Run Evaluation
+        uses: microsoft/ai-agent-evals@v2-beta
+        with:
+          # Replace placeholders with values for your Azure AI Project
+          azure-ai-project-endpoint: "<your-ai-project-endpoint>"
+          deployment-name: "<your-deployment-name>"
+          agent-ids: "<your-ai-agent-ids>"
+          data-path: ${{ github.workspace }}/path/to/your/data-file
+
+```
+
+# [Hub based project](#tab/hub-project)
+
 ```YAML
 name: "AI Agent Evaluation"
 
@@ -127,6 +180,8 @@ jobs:
           data-path: ${{ github.workspace }}/path/to/your/data-file
 
 ```
+
+---
 
 ### AI agent evaluations output
 

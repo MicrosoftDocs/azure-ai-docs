@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 04/18/2025
+ms.date: 05/08/2025
 ---
 
 # Create a skillset in Azure AI Search
@@ -17,7 +17,7 @@ ms.date: 04/18/2025
 
 A skillset defines operations that generate textual content and structure from documents that contain images or unstructured text. Examples are optical character recognition (OCR) for images, entity recognition for undifferentiated text, and text translation. A skillset executes after text and images are extracted from an external data source, and after [field mappings](search-indexer-field-mappings.md) are processed.
 
-This article explains how to create a skillset using [REST APIs](/rest/api/searchservice/skillsets/create), but the same concepts and steps apply to other programming languages. 
+This article explains how to create a skillset using [REST APIs](/rest/api/searchservice/skillsets/create), but the same concepts and steps apply to other programming languages.
 
 Rules for skillset definition include:
 
@@ -263,7 +263,7 @@ Although skill output can be optionally cached for reuse purposes, it's usually 
 
 + To send output to a field in a search index, [create an output field mapping](cognitive-search-output-field-mapping.md) in an indexer.
 
-+ To send output to a knowledge store, [create a projection](knowledge-store-projection-overview.md). 
++ To send output to a knowledge store, [create a projection](knowledge-store-projection-overview.md).
 
 + To send output to a downstream skill, reference the output by its node name, such as `"/document/organization"`, in the downstream skill's input source property. See [Reference an annotation](cognitive-search-concept-annotations-syntax.md) for examples.
 

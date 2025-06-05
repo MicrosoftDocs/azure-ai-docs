@@ -1,19 +1,21 @@
 ---
-title: Azure OpenAI default content safety policies
+title: Azure OpenAI default Guidelines & controls policies
 titleSuffix: Azure OpenAI
-description: Learn about the default content safety policies that Azure OpenAI uses to flag content and ensure responsible use of the service.
+description: Learn about the default Guidelines & controls policies that Azure OpenAI uses to flag content and ensure responsible use of the service.
 author: PatrickFarley
 ms.author: pafarley
+manager: nitinme
+ms.date: 05/31/2025
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 02/20/2025
-manager: nitinme
+ms.custom:
+  - build-2025
 ---
 
-# Default content safety policies
+# Default Guidelines & controls policies
 
 
-Azure OpenAI Service includes default safety policies applied to all models, excluding Azure OpenAI Whisper. These configurations provide you with a responsible experience by default, including [content filtering models](/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cpython-new), blocklists, prompt transformation, [content credentials](/azure/ai-services/openai/concepts/content-credentials), and others.
+Azure OpenAI in Azure AI Foundry Models includes default safety policies applied to all models, excluding Azure OpenAI Whisper. These configurations provide you with a responsible experience by default, including [content filtering models](/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cpython-new), blocklists, prompt transformation, [content credentials](/azure/ai-services/openai/concepts/content-credentials), and others.
 
 Default safety aims to mitigate risks in different categories such as hate and fairness, sexual, violence, self-harm, protected material content, and user prompt injection attacks. To learn more about content filtering, visit our documentation describing [categories and severity levels](/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cpython-new).
 
@@ -21,7 +23,7 @@ All safety policies are configurable. To learn more about configurability, see t
 
 ## Text models
 
-Text models in the Azure OpenAI Service can take in and generate both text and code. These models leverage Azure’s text content filters to detect and prevent harmful content. This system works on both prompts and completions. 
+Text models in the Azure OpenAI can take in and generate both text and code. These models leverage Azure’s text content filters to detect and prevent harmful content. This system works on both prompts and completions. 
 
 | Risk Category     | Prompt/Completion | Severity Threshold |
 |-------------------------------------------|------------------------|---------------------|

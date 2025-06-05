@@ -5,7 +5,7 @@ description: Learn how automated machine learning in Azure Machine Learning can 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: automl
-ms.topic: conceptual
+ms.topic: concept-article
 ms.author: cesardl
 author: CESARDELATORRE
 ms.date: 03/15/2022

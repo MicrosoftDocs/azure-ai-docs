@@ -1,6 +1,6 @@
 ---
 title: How to migrate to OpenAI JavaScript v4.x
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn about migrating to the latest release of the OpenAI JavaScript library with Azure OpenAI.
 author: mrbullwinkle 
 ms.author: mbullwin 
@@ -13,7 +13,7 @@ manager: nitinme
 
 # Migrating to the OpenAI JavaScript API library 4.x
 
-As of June 2024, we recommend migrating to the OpenAI JavaScript API library 4.x, the latest version of the official OpenAI JavaScript client library that supports the Azure OpenAI Service API version `2022-12-01` and later. This article helps you bring you up to speed on the changes specific to Azure OpenAI.
+As of June 2024, we recommend migrating to the OpenAI JavaScript API library 4.x, the latest version of the official OpenAI JavaScript client library that supports the Azure OpenAI in Azure AI Foundry Models API version `2022-12-01` and later. This article helps you bring you up to speed on the changes specific to Azure OpenAI.
 
 ## Authenticating the client
 
@@ -21,7 +21,7 @@ There are several ways to authenticate API requests to Azure OpenAI. We highly r
 
 ### Microsoft Entra ID
 
-There are several ways to authenticate with the Azure OpenAI service using Microsoft Entra ID tokens. The default way is to use the `DefaultAzureCredential` class from the `@azure/identity` package, but your application might be using a different credential class. For the purposes of this guide, we assume that you are using the `DefaultAzureCredential` class. A credential can be created as follows:
+There are several ways to authenticate with the Azure OpenAI using Microsoft Entra ID tokens. The default way is to use the `DefaultAzureCredential` class from the `@azure/identity` package, but your application might be using a different credential class. For the purposes of this guide, we assume that you are using the `DefaultAzureCredential` class. A credential can be created as follows:
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";
@@ -68,7 +68,7 @@ const client = new AzureOpenAI(options);
 
 The endpoint of the Azure OpenAI resource can be specified by setting the `endpoint` option but it can also be loaded by the client from the environment variable `AZURE_OPENAI_ENDPOINT`. This is the recommended way to set the endpoint because it allows the client to be used in different environments without changing the code and also to protect the endpoint from being exposed in the code.
 
-The API version is required to be specified, this is necessary to ensure that existing code doesn't break between preview API versions. Refer to [API versioning documentation](../api-version-deprecation.md) to learn more about Azure OpenAI API versions. Additionally, the `deployment` property isn't required but it's recommended to be set. Once `deployment` is set, it's used as the default deployment for all operations that require it. If the client isn't created with the `deployment` option, the `model` property in the options object should be set with the deployment name. However, audio operations such as `audio.transcriptions.create` require the client to be created with the `deployment` option set to the deployment name.
+The API version is required to be specified, this is necessary to ensure that existing code doesn't break between preview API versions. Refer to [API versioning documentation](../api-version-lifecycle.md) to learn more about Azure OpenAI API versions. Additionally, the `deployment` property isn't required but it's recommended to be set. Once `deployment` is set, it's used as the default deployment for all operations that require it. If the client isn't created with the `deployment` option, the `model` property in the options object should be set with the deployment name. However, audio operations such as `audio.transcriptions.create` require the client to be created with the `deployment` option set to the deployment name.
 
 # [Azure OpenAI JavaScript (previous)](#tab/javascript-old)
 
@@ -87,7 +87,7 @@ If not set, the API version defaults to the last known one before the release of
 There are key differences between the `OpenAIClient` and `AssistantsClient` clients and the `AzureOpenAI` client:
 
 - Operations are represented as a flat list of methods in both `OpenAIClient` and `AssistantsClient`, for example `client.getChatCompletions`. In `AzureOpenAI`, operations are grouped in nested groups, for example `client.chat.completions.create`.
-- `OpenAIClient` and `AssistantsClient` rename many of the names used in the Azure OpenAI service API. For example, snake case is used in the API but camel case is used in the client. In `AzureOpenAI`, names are kept the same as in the Azure OpenAI service API.
+- `OpenAIClient` and `AssistantsClient` rename many of the names used in the Azure OpenAI API. For example, snake case is used in the API but camel case is used in the client. In `AzureOpenAI`, names are kept the same as in the Azure OpenAI API.
 
 ## Migration examples
 
@@ -112,7 +112,7 @@ const result = await client.getChatCompletions(deploymentName, messages, { maxTo
 Note the following:
 - The `getChatCompletions` method has been replaced with the `chat.completions.create` method.
 - The `messages` parameter is now passed in the options object with the `messages` property.
-- The `maxTokens` property has been renamed to `max_tokens` and the `deploymentName` parameter has been removed. Generally, the names of the properties in the `options` object are the same as in the Azure OpenAI service API, following the snake case convention instead of the camel case convention used in the `AssistantsClient`. This is true for all the properties across all requests and responses in the `AzureOpenAI` client.
+- The `maxTokens` property has been renamed to `max_tokens` and the `deploymentName` parameter has been removed. Generally, the names of the properties in the `options` object are the same as in the Azure OpenAI API, following the snake case convention instead of the camel case convention used in the `AssistantsClient`. This is true for all the properties across all requests and responses in the `AzureOpenAI` client.
 - The `deploymentName` parameter isn't needed if the client was created with the `deployment` option. If the client was not created with the `deployment` option, the `model` property in the option object should be set with the deployment name.
 
 ### Streaming chat completions
@@ -177,7 +177,7 @@ const result = await client.getChatCompletions(deploymentName, messages, { azure
 
 - `"@azure/openai/types"` is imported which adds Azure-specific definitions (for example, `data_sources`) to the client types.
 - The `azureExtensionOptions` property has been replaced with the inner `data_sources` property.
-- The `parameters` property has been added to wrap the parameters of the extension, which mirrors the schema of the Azure OpenAI service API.
+- The `parameters` property has been added to wrap the parameters of the extension, which mirrors the schema of the Azure OpenAI API.
 - Camel case properties have been replaced with snake case properties.
 
 ### Audio transcription
@@ -559,7 +559,7 @@ The following table explores several type names from `@azure/openai` and shows t
 
 ## Azure types
 
-`AzureOpenAI` connects to the Azure OpenAI service and can call all the operations available in the service. However, the types of the requests and responses are inherited from the `OpenAI` and are not yet updated to reflect the additional features supported exclusively by the Azure OpenAI service. TypeScript users will need to import `"@azure/openai/types"` from `@azure/openai@2.0.0-beta.1` which will merge Azure-specific definitions into existing types. Examples in [the Migration examples](#migration-examples) section show how to do this.
+`AzureOpenAI` connects to the Azure OpenAI and can call all the operations available in the service. However, the types of the requests and responses are inherited from the `OpenAI` and are not yet updated to reflect the additional features supported exclusively by the Azure OpenAI service. TypeScript users will need to import `"@azure/openai/types"` from `@azure/openai@2.0.0-beta.1` which will merge Azure-specific definitions into existing types. Examples in [the Migration examples](#migration-examples) section show how to do this.
 
 ## Next steps
 
