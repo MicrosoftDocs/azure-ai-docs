@@ -79,32 +79,32 @@ with project_client:
     )
     print(f"Created agent, ID: {agent.id}")
 
-# Create a thread for communication
-thread = project_client.agents.threads.create()
-print(f"Created thread, ID: {thread.id}")
-
-# Add a message to the thread
-message = project_client.agents.messages.create(
-    thread_id=thread.id,
-    role="user",  # Role of the message sender
-    content="What is the weather in Seattle today?",  # Message content
-)
-print(f"Created message, ID: {message['id']}")
-
-# Create and process an agent run
-run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
-print(f"Run finished with status: {run.status}")
-
-# Check if the run failed
-if run.status == "failed":
-    print(f"Run failed: {run.last_error}")
-
-# Fetch and log all messages
-messages = project_client.agents.messages.list(thread_id=thread.id)
-for message in messages.data:
-    print(f"Role: {message.role}, Content: {message.content}")
-
-# Delete the agent when done
-project_client.agents.delete_agent(agent.id)
-print("Deleted agent")
+    # Create a thread for communication
+    thread = project_client.agents.threads.create()
+    print(f"Created thread, ID: {thread.id}")
+    
+    # Add a message to the thread
+    message = project_client.agents.messages.create(
+        thread_id=thread.id,
+        role="user",  # Role of the message sender
+        content="What is the weather in Seattle today?",  # Message content
+    )
+    print(f"Created message, ID: {message['id']}")
+    
+    # Create and process an agent run
+    run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
+    print(f"Run finished with status: {run.status}")
+    
+    # Check if the run failed
+    if run.status == "failed":
+        print(f"Run failed: {run.last_error}")
+    
+    # Fetch and log all messages
+    messages = project_client.agents.messages.list(thread_id=thread.id)
+    for message in messages:
+        print(f"Role: {message.role}, Content: {message.content}")
+    
+    # Delete the agent when done
+    project_client.agents.delete_agent(agent.id)
+    print("Deleted agent")
 ```

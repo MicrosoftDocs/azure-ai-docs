@@ -5,7 +5,7 @@ description: Learn how Azure Machine Learning can automatically generate a model
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: automl
-ms.topic: conceptual
+ms.topic: concept-article
 author: ssalgadodev
 ms.author: ssalgado
 ms.reviewer: manashg

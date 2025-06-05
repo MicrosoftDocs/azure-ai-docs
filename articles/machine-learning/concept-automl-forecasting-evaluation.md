@@ -8,7 +8,7 @@ ms.author: ssalgado
 ms.reviewer: erwright
 ms.service: azure-machine-learning
 ms.subservice: automl
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom: automl, sdkv2
 ms.date: 10/03/2024
 show_latex: true

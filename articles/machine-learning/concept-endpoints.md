@@ -5,7 +5,7 @@ description: Learn how Azure Machine Learning endpoints simplify deployments.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
-ms.topic: conceptual
+ms.topic: concept-article
 author: msakande
 ms.author: mopeakande
 ms.reviewer: sehan

@@ -40,7 +40,6 @@ The Azure AI Foundry SDK is a set of client libraries and services designed to w
     az login
     ```
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 ## Unified Projects client library
 
@@ -69,6 +68,7 @@ The Azure AI Foundry Projects client library is a unified library that enables y
 
 ::: zone pivot="programming-language-java"
 
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 * Add these packages to your installation (preview):
     * `com.azure.ai.projects`
@@ -94,6 +94,8 @@ The Azure AI Foundry Projects client library is a unified library that enables y
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
+
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 * Install dependencies (preview):
 

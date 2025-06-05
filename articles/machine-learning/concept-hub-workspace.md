@@ -5,7 +5,7 @@ description: Hubs provide a central way to govern security, connectivity, and co
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.topic: conceptual
+ms.topic: concept-article
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: namanjoshi

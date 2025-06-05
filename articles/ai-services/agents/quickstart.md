@@ -5,9 +5,9 @@ description: Use this guide to start using Azure AI Foundry Agent Service.
 author: aahill
 ms.author: aahi
 manager: nitinme
-ms.date: 01/30/2025
 ms.service: azure-ai-agent-service
 ms.topic: quickstart
+ms.date: 05/27/2025
 ms.custom:
   - azure-ai-agents
   - build-2025
@@ -36,19 +36,9 @@ Azure AI Foundry Agent Service allows you to create AI agents tailored to your n
 
 ::: zone-end
 
-::: zone pivot="programming-language-javascript"
-
-[!INCLUDE [quickstart-javascript](includes/quickstart-javascript.md)]
-
-[!INCLUDE [quickstart-output](includes/quickstart-output.md)]
-
-::: zone-end
-
 ::: zone pivot="programming-language-typescript"
 
 [!INCLUDE [quickstart-typescript](includes/quickstart-typescript.md)]
-
-[!INCLUDE [quickstart-output](includes/quickstart-output.md)]
 
 ::: zone-end
 
