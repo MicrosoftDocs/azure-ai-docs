@@ -17,76 +17,81 @@ zone_pivot_groups: selection-sharepoint
 
 Use this article to find step-by-step instructions and code samples for using the Sharepoint tool in Azure AI Foundry Agent Service.
 
-## Step 1: Create a project client
+## Step 1: Create an agent
 
-Create a client object, which will contain the connection string for connecting to your AI project and other resources.
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
 
-```python
-import os
-from azure.ai.projects import AIProjectClient
-from azure.identity import DefaultAzureCredential
-from azure.ai.projects.models import SharepointTool
+```bash
+curl --request POST \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=$API_VERSION \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+        "instructions": "You are a helpful agent.",
+        "name": "my-agent",
+        "model": "gpt-4o",
+        "tools": [
+          {
+            "type": "sharepoint_grounding",
+            "sharepoint_grounding": {
+                "connections": [
+                    {
+                        "connection_id": "/subscriptions/<sub-id>/resourceGroups/<your-rg-name>/providers/Microsoft.CognitiveServices/accounts/<your-ai-services-name>/projects/<your-project-name>/connections/<your-sharepoint-connection-name>"
+                    }
+                ]
+            }
+          }
+        ]
+      }'
 ```
 
-## Step 2: Create an Agent with the SharePoint tool enabled
+## Create a thread
 
-To make the SharePoint tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the Azure AI Foundry portal.
-
-```python
-# Initialize Sharepoint tool with connection id
-sharepoint_connection = project_client.connections.get(
-    connection_name="CONNECTION_NAME",
-)
-conn_id = sharepoint_connection.id
-print(conn_id)
-sharepoint = SharepointTool(connection_id=conn_id)
-
-# Create agent with SharePoint tool and process assistant run
-with project_client:
-    agent = project_client.agents.create_agent(
-        model=os.environ["MODEL_NAME"],
-        name="my-assistant",
-        instructions="You are a helpful assistant",
-        tools=sharepoint.definitions,
-        headers={"x-ms-enable-preview": "true"},
-    )
-    print(f"Created agent, ID: {agent.id}")
+```bash
+curl --request POST \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads?api-version=$API_VERSION \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d ''
 ```
 
-## Step 3: Create a thread
+### Add a user question to the thread
 
-```python
-# Create thread for communication
-thread = project_client.agents.create_thread()
-print(f"Created thread, ID: {thread.id}")
-
-# Create message to thread
-# Remember to update the message with your data
-message = project_client.agents.create_message(
-    thread_id=thread.id,
-    role="user",
-    content="<ask questions specific to your SharePoint documents>",
-)
-print(f"Created message, ID: {message.id}")
+```bash
+curl --request POST \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+      "role": "user",
+      "content": "What is the weather in Seattle?"
+    }'
 ```
 
-## Step 4: Create a run and check the output
+## Run the thread
 
-Create a run and observe that the model uses the SharePoint tool to provide a response to the user's question.
+```bash
+curl --request POST \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs?api-version=$API_VERSION \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "assistant_id": "asst_abc123",
+  }'
+```
 
-```python
-# Create and process agent run in thread with tools
-run = project_client.agents.create_and_process_run(thread_id=thread.id, assistant_id=agent.id)
-print(f"Run finished with status: {run.status}")
+## Retrieve the status of the run
 
-if run.status == "failed":
-    print(f"Run failed: {run.last_error}")
+```bash
+curl --request GET \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123?api-version=$API_VERSION \
+  -H "Authorization: Bearer $AGENT_TOKEN"
+```
 
-# Delete the assistant when done
-project_client.agents.delete_agent(agent.id)
-print("Deleted agent")
+## Retrieve the agent response
 
-# Fetch and log all messages
-messages = project_client.agents.list_messages(thread_id=thread.id)
-print(f"Messages: {messages}")
+```bash
+curl --request GET \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/messages?api-version=$API_VERSION \
+  -H "Authorization: Bearer $AGENT_TOKEN"
 ```
