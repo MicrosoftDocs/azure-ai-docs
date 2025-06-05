@@ -412,6 +412,8 @@
         "articles/ai-studio/**/*.yml": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
         "articles/ai-foundry/**/*.md": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
         "articles/ai-foundry/**/*.yml": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
+        "articles/ai-foundry/responsible-ai/**/*.md": "rai-skilling-ai-copilot, ce-skilling-fresh-tier2",
+        "articles/ai-foundry/responsible-ai/**/*.yml": "rai-skilling-ai-copilot, ce-skilling-fresh-tier2",
         "articles/search/**/*.md": "ce-skilling-ai-copilot",
         "articles/search/**/*.yml": "ce-skilling-ai-copilot",
         "articles/machine-learning/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
