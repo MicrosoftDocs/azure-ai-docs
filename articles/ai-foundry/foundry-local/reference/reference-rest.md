@@ -5,7 +5,7 @@ description: Complete reference guide for the Foundry Local REST API.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: build-2025
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 05/20/2025
 ms.author: samkemp
 author: samuel100

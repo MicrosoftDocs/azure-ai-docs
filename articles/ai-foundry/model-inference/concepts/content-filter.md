@@ -5,7 +5,7 @@ description: Learn about the content filtering capabilities of Azure AI Foundry 
 author: msakande
 ms.author: mopeakande
 ms.service: azure-ai-model-inference
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 05/19/2025
 ms.custom: ignite-2024, github-universe-2024
 manager: scottpolly

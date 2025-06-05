@@ -9,7 +9,7 @@ reviewer: santiagxf
 ms.reviewer: fasantia
 ms.date: 05/19/2025
 ms.service: azure-ai-foundry
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom:
   - references_regions
   - build-aifnd
