@@ -11,7 +11,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 01/18/2025
+ms.date: 05/19/2025
 ---
 
 # Indexing blobs and files to produce multiple search documents
@@ -24,11 +24,12 @@ When you use any of these parsing modes, the new search documents that emerge mu
 
 To address this problem, the blob indexer generates an `AzureSearch_DocumentKey` that uniquely identifies each child search document created from the single blob parent. This article explains how this feature works.
 
+
 ## One-to-many document key
 
-Each document in an index is uniquely identified by a document key. When no parsing mode is specified, and if there's no [explicit field mapping](search-indexer-field-mappings.md) in the indexer definition for the search document key, the blob indexer automatically maps the `metadata_storage_path property` as the document key. This default mapping ensures that each blob appears as a distinct search document, and it saves you the step of having to create this field mapping yourself (normally, only fields having identical names and types are automatically mapped).
+A document key uniquely identifies each document in an index. When no parsing mode is specified, and if there's no [explicit field mapping](search-indexer-field-mappings.md) in the indexer definition for the search document key, the blob indexer automatically maps the `metadata_storage_path property` as the document key. This default mapping ensures that each blob appears as a distinct search document. It also eliminates the need for you to manually create this field mapping. Normally, fields with identical names and types are the only ones mapped automatically.
 
-In a one-to-many search document scenario, an implicit document key based on `metadata_storage_path property` isn't possible. As a workaround, Azure AI Search can generate a document key for each individual entity extracted from a blob. The generated key is named `AzureSearch_DocumentKey` and it's added to each search document. The indexer keeps track of the "many documents" created from each blob, and can target updates to the search index when source data changes over time.
+In a one-to-many search document scenario, an implicit document key based on `metadata_storage_path property` isn't possible. As a workaround, Azure AI Search can generate a document key for each individual entity extracted from a blob. The system generates a key called `AzureSearch_DocumentKey` and adds it to each search document. The indexer keeps track of the "many documents" created from each blob, and can target updates to the search index when source data changes over time.
 
 By default, when no explicit field mappings for the key index field are specified, the `AzureSearch_DocumentKey` is mapped to it, using the `base64Encode` field-mapping function.
 
@@ -132,9 +133,13 @@ id, temperature, pressure, timestamp
 2, 120, 3,"2022-05-11T00:00:00Z" 
 ```
 
-Notice that each document contains the `id` field, which is defined as the `key` field in the index. In such a case, even though a document-unique `AzureSearch_DocumentKey` is generated, it isn't used as the "key" for the document. Rather, the value of the `id` field is mapped to the `key` field
+Each document contains the `id` field, which is defined as the `key` field in the index. In this situation, the system generates a unique AzureSearch_DocumentKey` for the document, but it isn't used as the "key." Instead, the value of the `id` field is mapped to the `key` field.
 
-Similar to the previous example, this mapping doesn't result in four documents showing up in the index because the `id` field isn't unique _across blobs_. When this is the case, any json entry that specifies an `id` results in a merge on the existing document instead of an upload of a new document, and the state of the index reflects the latest read entry with the specified `id`.
+Similar to the previous example, this mapping doesn't result in four documents showing up in the index because the `id` field isn't unique _across blobs_. When this situation occurs, any JSON entry that specifies an `id` causes a merge with the existing document instead of uploading a new one. The index then reflects the latest state of the entry with the specified `id`.
+
+## Limitations
+
+When a document entry in the index is created from a line in a file, as explained in this article, deleting that line from the file does'nt automatically remove the corresponding entry from the index. To delete the document entry, you must manually submit a deletion request to the index using the [REST API deletion operation](/rest/api/searchservice/addupdate-or-delete-documents).
 
 ## Next steps
 

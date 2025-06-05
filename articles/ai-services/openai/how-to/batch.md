@@ -1,15 +1,16 @@
 ---
-title: 'How to use global batch processing with Azure OpenAI in Azure AI Foundry Models'
+title: "How to use global batch processing with Azure OpenAI in Azure AI Foundry Models"
 titleSuffix: Azure OpenAI
 description: Learn how to use global batch with Azure OpenAI
-manager: nitinme
-ms.service: azure-ai-openai
-ms.custom: references_regions
-ms.topic: how-to
-ms.date: 04/14/2025
 author: mrbullwinkle
 ms.author: mbullwin
-recommendations: false
+manager: nitinme
+ms.date: 05/28/2025
+ms.service: azure-ai-openai
+ms.topic: how-to
+ms.custom:
+  - references_regions
+  - build-2025
 zone_pivot_groups: openai-fine-tuning-batch
 ---
 
@@ -36,10 +37,10 @@ Key use cases include:
 > [!TIP]
 > If your batch jobs are so large that you are hitting the enqueued token limit even after maxing out the quota for your deployment, certain regions now support a new feature that allows you to queue multiple batch jobs with exponential backoff. 
 >
->Once your enqueued token quota is available, the next batch job can be created and kicked off automatically.To learn more, see [**automating retries of large batch jobs with exponential backoff**](#queueing-batch-jobs).
+>Once your enqueued token quota is available, the next batch job can be created and kicked off automatically. To learn more, see [**automating retries of large batch jobs with exponential backoff**](#queueing-batch-jobs).
 
 > [!IMPORTANT]
-> We aim to process batch requests within 24 hours; we don't expire the jobs that take longer. You can [cancel](#cancel-batch) the job anytime. When you cancel the job, any remaining work is cancelled and any already completed work is returned. You'll be charged for any completed work.
+> We aim to process batch requests within 24 hours; we don't expire the jobs that take longer. You can [cancel](#cancel-batch) the job anytime. When you cancel the job, any remaining work is canceled and any already completed work is returned. You'll be charged for any completed work.
 >
 > Data stored at rest remains in the designated Azure geography, while data may be processed for inferencing in any Azure OpenAI location. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).  
 
@@ -69,20 +70,13 @@ The following models support global batch:
 |`gpt-4o` | 2024-08-06 |text + image |
 |`gpt-4o-mini`| 2024-07-18 | text + image |
 |`gpt-4o` | 2024-05-13 |text + image |
-|`gpt-4` | turbo-2024-04-09 | text |
-|`gpt-4` | 0613 | text |
-| `gpt-35-turbo` | 0125 | text |
-| `gpt-35-turbo` | 1106 | text |
-| `gpt-35-turbo` | 0613 | text |
-
-Refer to the [models page](../concepts/models.md) for the most up-to-date information on regions/models where global batch is currently supported.
 
 ### API support
 
 |   | API Version   |
 |---|---|
 |**Latest GA API release:**| `2024-10-21`|
-|**Latest Preview API release:**| `2025-03-01-preview`|
+|**Latest Supported Preview API release:**| `2025-04-01-preview`|
 
 > [!NOTE]
 > While Global Batch supports older API versions, some models require newer preview API versions. For example, `o3-mini` isn't supported with `2024-10-21` since it was released after this date. To access the newer models with global batch use the latest preview API version.
@@ -94,18 +88,15 @@ The following aren't currently supported:
 - Integration with the Assistants API.
 - Integration with Azure OpenAI On Your Data feature.
 
-> [!NOTE]
-> Structured outputs is now supported with Global Batch.
-
 ### Batch deployment
 
 > [!NOTE]
-> In the [Azure AI Foundry portal](https://ai.azure.com/) the batch deployment types will appear as `Global-Batch` and `Data Zone Batch`. To learn more about Azure OpenAI deployment types, see our [deployment types guide](../how-to/deployment-types.md).
+> In the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) the batch deployment types will appear as `Global-Batch` and `Data Zone Batch`. To learn more about Azure OpenAI deployment types, see our [deployment types guide](../how-to/deployment-types.md).
 
 :::image type="content" source="../media/how-to/global-batch/global-batch.png" alt-text="Screenshot that shows the model deployment dialog in Azure AI Foundry portal with Global-Batch deployment type highlighted." lightbox="../media/how-to/global-batch/global-batch.png":::
 
 > [!TIP]
-> We recommend enabling **dynamic quota** for all global batch model deployments to help avoid job failures due to insufficient enqueued token quota. Dynamic quota allows your deployment to opportunistically take advantage of more quota when extra capacity is available. When dynamic quota is set to off, your deployment will only be able to process requests up to the enqueued token limit that was defined when you created the deployment.
+> We recommend enabling **dynamic quota** for all global batch model deployments to help avoid job failures due to insufficient enqueued token quota. Using dynamic quota allows your deployment to opportunistically take advantage of more quota when extra capacity is available. When dynamic quota is set to off, your deployment will only be able to process requests up to the enqueued token limit that was defined when you created the deployment.
 
 ::: zone pivot="ai-foundry-portal"
 
@@ -172,11 +163,11 @@ Yes. Similar to other deployment types, you can create content filters and assoc
 
 ### Can I request additional quota?
 
-Yes, from the quota page in the [Azure AI Foundry portal](https://ai.azure.com/). Default quota allocation can be found in the [quota and limits article](../quotas-limits.md#batch-quota).
+Yes, from the quota page in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). Default quota allocation can be found in the [quota and limits article](../quotas-limits.md#batch-quota).
 
 ### What happens if the API doesn't complete my request within the 24 hour time frame?
 
-We aim to process these requests within 24 hours; we don't expire the jobs that take longer. You can cancel the job anytime. When you cancel the job, any remaining work is cancelled and any already completed work is returned. You'll be charged for any completed work.
+We aim to process these requests within 24 hours; we don't expire the jobs that take longer. You can cancel the job anytime. When you cancel the job, any remaining work is canceled and any already completed work is returned. You'll be charged for any completed work.
 
 ### How many requests can I queue using batch?
 

@@ -2,13 +2,15 @@
 title: Connect to Azure Logic Apps
 titleSuffix: Azure AI Search
 description: Use an Azure Logic Apps workflow for indexer-based indexing in Azure AI Search.
-manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: azure-ai-search
-ms.custom: references_regions
-ms.topic: how-to
+manager: nitinme
 ms.date: 05/19/2025
+ms.service: azure-ai-search
+ms.topic: how-to
+ms.custom:
+  - references_regions
+  - build-2025
 ---
 
 # Use an Azure Logic Apps workflow for indexer-based indexing in Azure AI Search
@@ -41,7 +43,7 @@ After the wizard completes, you have the following components:
 | Component | Location | Description |
 |-----------|----------|------------|
 | Search index | Azure AI Search | Contains indexed content from a supported Logic Apps connector. The index schema is a default index created by the wizard. You can add extra elements, such as scoring profile or semantic configuration, but you can't change existing fields. You view, manage, and access the search index on Azure AI Search. |
-| Logic app resource and workflow | Azure Logic Apps | You can view the running workflow, or you can open the designer in Azure Logic Apps to edit the workflow, as you regularly do if you'd started from Azure Logic Apps instead. You can edit and extend the workflow, but exercise caution so as to not break the indexing pipeline. |
+| Logic app resource and workflow | Azure Logic Apps | You can view the running workflow, or you can open the designer in Azure Logic Apps to edit the workflow, as you regularly do if you'd started from Azure Logic Apps instead. You can edit and extend the workflow, but exercise caution so as to not break the indexing pipeline. The workflow created by the wizard uses the **Consumption** hosting option. |
 | Logic app templates | Azure Logic Apps | Up to two templates created per workflow: one for on-demand indexing, and a second template for scheduled indexing. You can modify the indexing schedule in the **Index multiple documents** step of the workflow. |
 
 ## Prerequisites
@@ -101,6 +103,7 @@ Currently, the public preview has these limitations:
 + Vectorization supports text embedding only.
 + Deletion detection isn't supported. You must manually [delete orphaned documents](search-howto-reindex.md#delete-orphan-documents) from the index.
 + Duplicate documents in the search index are a known issue in this preview. Consider deleting objects and starting over if this becomes an issue.
++ No support for private endpoints in the logic app workflow created by the portal wizard. The workflow is hosted using the [**Consumption** hosting option](/azure/logic-apps/single-tenant-overview-compare) and is subject to its constraints. To use the **Standard** hosting option, use a programmatic approach to creating the workflow. Use the [2025-05-01-preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) or a prerelease Azure SDK package that provides the feature.
 
 ## Create a logic app workflow
 

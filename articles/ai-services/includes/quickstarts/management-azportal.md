@@ -2,15 +2,20 @@
 title: "Quickstart: Create an AI Foundry resource in the Azure portal"
 titleSuffix: Azure AI services
 description: Get started with Azure AI services by creating an AI Foundry resource in the Azure portal.
+author: eric-urban
+ms.author: eur
 manager: nitinme
-keywords: Azure AI services, cognitive intelligence, cognitive solutions, ai services
+ms.date: 8/1/2024
 ms.service: azure-ai-services
+ms.topic: quickstart
 ms.custom:
   - ignite-2023
-ms.topic: quickstart
-ms.date: 8/1/2024
-ms.author: eur
-author: eric-urban
+  - build-2025
+keywords:
+  - Azure AI services
+  - cognitive intelligence
+  - cognitive solutions
+  - ai services
 ---
 
 ## Prerequisites
@@ -18,6 +23,8 @@ author: eric-urban
 * A valid Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/).
 
 ## Create a new Azure AI Foundry resource
+
+AI Foundry portal provides a way to create a new Azure resource with basic,  defaulted, settings. If your organization requires customized Azure configurations like alternative names, security controls or cost tags, you may have to use Azure portal or [template options](../../../ai-foundry/how-to/create-resource-template.md) to comply with your organization's Azure Policy compliance.
 
 The Azure AI Foundry multi-service resource is listed under **AI Foundry** > **AI Foundry** in the portal. The API kind is **AIServices**. Look for the logo as shown here:
 
@@ -27,17 +34,23 @@ The Azure AI Foundry multi-service resource is listed under **AI Foundry** > **A
 > Azure provides more than one resource kinds named Azure AI services. Be sure to select the one that is listed under **AI Foundry** > **AI Foundry** with the logo as shown previously.
 
 To create an AI Foundry resource follow these instructions:
-1. Select this link to create an **AI Foundry** resource: [https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices)
+
+> [!TIP]
+> If you need to create an [!INCLUDE [fdp](../../../ai-foundry/includes/fdp-project-name.md)] or [!INCLUDE [hub](../../../ai-foundry/includes/hub-project-name.md)] resource, you can also use the [Azure Foundry portal](https://ai.azure.com/?cid=learnDocs) to create the resource. For more information, see the following articles:
+>
+> - [Create an Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects?tabs=ai-foundry&pivots=fdp-project).
+> - [Create an Azure AI hub based project](/azure/ai-foundry/how-to/create-projects?tabs=ai-foundry&pivots=hub-project).
+
+1. Select this link to create an **AI Foundry** resource: [https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry)
 
 1. On the **Create** page, provide the following information:
 
     |Project details| Description   |
     |--|--|
     | **Subscription** | Select one of your available Azure subscriptions. |
-    | **Resource group** | The Azure resource group that will contain your Azure AI Foundry resource. You can create a new group or add it to a pre-existing group. |
+    | **Resource group** | The Azure resource group that will contain your Azure AI Foundry resource. You can create a new group or add it to a preexisting group. |
     | **Region** | The location of your Azure AI service instance. Different locations may introduce latency, but have no impact on the runtime availability of your resource. |
     | **Name** | A descriptive name for your Azure AI Foundry resource. For example, *MyAIServicesResource*. |
-    | **Pricing tier** | The cost of your Azure AI services account depends on the options you choose and your usage. For more information, see the API [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/). |
 
 1. Configure other settings for your resource as needed, read and accept the conditions (as applicable), and then select **Review + create**.
 

@@ -61,7 +61,7 @@ In order for the resources to work correctly inside a web app, you need to confi
 
 To start, identify the resources you need to configure from the Azure AI Foundry portal.
 
-1. Open the [Azure AI Foundry portal](https://ai.azure.com) and select the project you used to deploy the Azure OpenAI chat model.
+1. Open the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select the project you used to deploy the Azure OpenAI chat model.
 1. Select **Management center** from the left pane.
 1. Select **Connected resources** under your project.
 1. Identify the three resources you need to configure:  the **Azure OpenAI**, the **Azure AI Search**, and the **Azure Blob storage** that corresponds to your **workspaceblobstore**.
@@ -139,7 +139,7 @@ In this tutorial, your web app is deployed to the same resource group as your [A
 
 Follow these steps to navigate to your resource group in the Azure portal:
 
-1. Go to your project in [Azure AI Foundry](https://ai.azure.com). Then select **Management center** from the left pane.
+1. Go to your project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). Then select **Management center** from the left pane.
 1. Under the **Project** heading, select **Overview**.
 1. Select the resource group name to open the resource group in the Azure portal. In this example, the resource group is named `rg-sdg-ai`.
 

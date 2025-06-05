@@ -129,22 +129,16 @@ items:
       href: /legal/cognitive-services/agents/data-privacy-security?context=/azure/ai-services/agents/context/context
 - name: Reference
   items:
+    - name: REST API
+      href: /rest/api/aifoundry/aiagents
     - name: SDK
       items:
-      - name: Azure SDK
-        items:
-        - name: C#
-          href: /dotnet/api/overview/azure/ai.agents.persistent-readme
-        - name: Python
-          href: /python/api/overview/azure/ai-agents-readme
-        - name: JavaScript
-          href: /javascript/api/overview/azure/ai-projects-readme
-      - name: OpenAI SDK
-        items:
-        - name: C#
-          href: https://github.com/openai/openai-dotnet/blob/main/README.md
-        - name: Python
-          href: https://github.com/openai/openai-python/blob/main/README.md
+      - name: C#
+        href: /dotnet/api/overview/azure/ai.agents.persistent-readme
+      - name: Python
+        href: https://aka.ms/azsdk/azure-ai-projects/python/reference
+      - name: JavaScript
+        href: /javascript/api/overview/azure/ai-projects-readme
     - name: Data monitoring reference
       href: reference/monitor-service.md
 - name: Resources

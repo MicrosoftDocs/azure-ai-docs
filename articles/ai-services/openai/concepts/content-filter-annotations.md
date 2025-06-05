@@ -11,7 +11,7 @@ ms.author: pafarley
 
 # Content filtering annotations
 
-Azure OpenAI Service provides content filtering annotations to help you understand the content filtering results for your requests. Annotations can be enabled even for filters and severity levels that have been disabled from blocking requests.
+Azure OpenAI in Azure AI Foundry Models provides content filtering annotations to help you understand the content filtering results for your requests. Annotations can be enabled even for filters and severity levels that have been disabled from blocking requests.
 
 ## Standard content filters
 
@@ -419,7 +419,7 @@ violence  : @{filtered=False; severity=safe}
 
 ---
 
-For details on the inference REST API endpoints for Azure OpenAI and how to create Chat and Completions, follow [Azure OpenAI Service REST API reference guidance](../reference.md). Annotations are returned for all scenarios when using any preview API version starting from `2023-06-01-preview`, as well as the GA API version `2024-02-01`.
+For details on the inference REST API endpoints for Azure OpenAI and how to create Chat and Completions, follow [Azure OpenAI REST API reference guidance](../reference.md). Annotations are returned for all scenarios when using any preview API version starting from `2023-06-01-preview`, as well as the GA API version `2024-02-01`.
 
 ## Groundedness
 

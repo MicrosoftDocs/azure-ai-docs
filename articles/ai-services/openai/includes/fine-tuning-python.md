@@ -1,13 +1,15 @@
 ---
-title: 'Customize a model with Azure OpenAI in Azure AI Foundry Models and the Python SDK'
+title: "Customize a model with Azure OpenAI in Azure AI Foundry Models and the Python SDK"
 titleSuffix: Azure OpenAI
 description: Learn how to create your own customized model with Azure OpenAI by using the Python SDK.
-manager: nitinme
-ms.service: azure-ai-openai
-ms.topic: include
-ms.date: 04/30/2025
 author: mrbullwinkle
 ms.author: mbullwin
+manager: nitinme
+ms.date: 04/30/2025
+ms.service: azure-ai-openai
+ms.topic: include
+ms.custom:
+  - build-2025
 ---
 
 ## Prerequisites
@@ -20,22 +22,14 @@ ms.author: mbullwin
 - Fine-tuning access requires **Cognitive Services OpenAI Contributor**.
 - If you do not already have access to view quota, and deploy models in Azure AI Foundry portal you will require [additional permissions](../how-to/role-based-access-control.md).  
 
+> [!NOTE]
+> The REST API does not currently support **Global** training jobs. Inspecting Global training jobs via the API may return incorrect information.
 
 ### Supported models
 
-The following models support fine-tuning:
-
-- `gpt-35-turbo` (1106)
-- `gpt-35-turbo` (0125)
-- `gpt-4o` (2024-08-06)
-- `gpt-4o-mini` (2024-07-18)
-- `gpt-4.1` (2024-04-14)
-- `gpt-4.1-mini`(2025-04-14)
+Consult the [models page](../concepts/models.md#fine-tuning-models) to check which regions currently support fine-tuning.
 
 Or you can fine tune a previously fine-tuned model, formatted as `base-model.ft-{jobid}`.
-
-
-Consult the [models page](../concepts/models.md#fine-tuning-models) to check which regions currently support fine-tuning.
 
 ## Review the workflow for the Python SDK
 
@@ -155,7 +149,7 @@ In this example we are also passing the seed parameter. The seed controls the re
 response = client.fine_tuning.jobs.create(
     training_file=training_file_id,
     validation_file=validation_file_id,
-    model="gpt-35-turbo-0125", # Enter base model name. Note that in Azure OpenAI the model name contains dashes and cannot contain dot/period characters. 
+    model="gpt-4.1-2025-04-14", # Enter base model name. Note that in Azure OpenAI the model name contains dashes and cannot contain dot/period characters.
     seed = 105  # seed parameter controls reproducibility of the fine-tuning job. If no seed is specified one will be generated automatically.
 )
 
@@ -193,7 +187,7 @@ client = AzureOpenAI(
 
 client.fine_tuning.jobs.create(
   training_file="file-abc123", 
-  model="gpt-35-turbo-0125", # Enter base model name. Note that in Azure OpenAI the model name contains dashes and cannot contain dot/period characters. 
+  model="gpt-4.1-2025-04-14", # Enter base model name. Note that in Azure OpenAI the model name contains dashes and cannot contain dot/period characters.
   hyperparameters={
     "n_epochs":2
   }
@@ -274,7 +268,9 @@ Look for your loss to decrease over time, and your accuracy to increase. If you 
 
 ## Deploy a fine-tuned model
 
-When the fine-tuning job succeeds, the value of the `fine_tuned_model` variable in the response body is set to the name of your customized model. Your model is now also available for discovery from the [list Models API](/rest/api/azureopenai/models/list). However, you can't issue completion calls to your customized model until your customized model is deployed. You must deploy your customized model to make it available for use with completion calls.
+Once you're satisfied with the metrics from your fine-tuning job, or you just want to move onto inference, you must deploy the model.
+
+If you're deploying for further validation, consider deploying for [testing](../how-to/fine-tune-test.md?tabs=python) using a Developer deployment.
 
 Unlike the previous SDK commands, deployment must be done using the control plane API which requires separate authorization, a different API path, and a different API version.
 
@@ -285,7 +281,7 @@ Unlike the previous SDK commands, deployment must be done using the control plan
 | resource_group | The resource group name for your Azure OpenAI resource. |
 | resource_name | The Azure OpenAI resource name. |
 | model_deployment_name | The custom name for your new fine-tuned model deployment. This is the name that will be referenced in your code when making chat completion calls. |
-| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-35-turbo-0125.ft-b044a9d3cf9c4228b5d393567f693b83`. You will need to add that value to the deploy_data json. Alternatively you can also deploy a checkpoint, by passing the checkpoint ID which will appear in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d` |
+| fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-4.1-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83`. You will need to add that value to the deploy_data json. Alternatively you can also deploy a checkpoint, by passing the checkpoint ID which will appear in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d` |
 
 ```python
 import json
@@ -296,7 +292,7 @@ token= os.getenv("<TOKEN>")
 subscription = "<YOUR_SUBSCRIPTION_ID>"  
 resource_group = "<YOUR_RESOURCE_GROUP_NAME>"
 resource_name = "<YOUR_AZURE_OPENAI_RESOURCE_NAME>"
-model_deployment_name ="gpt-35-turbo-ft" # custom deployment name that you will use to reference the model when making inference calls.
+model_deployment_name ="gpt-41-ft" # custom deployment name that you will use to reference the model when making inference calls.
 
 deploy_params = {'api-version': "2024-10-01"} # control plane API version rather than dataplane API for this call 
 deploy_headers = {'Authorization': 'Bearer {}'.format(token), 'Content-Type': 'application/json'}
@@ -306,7 +302,7 @@ deploy_data = {
     "properties": {
         "model": {
             "format": "OpenAI",
-            "name": <"fine_tuned_model">, #retrieve this value from the previous call, it will look like gpt-35-turbo-0125.ft-b044a9d3cf9c4228b5d393567f693b83
+            "name": <"fine_tuned_model">, #retrieve this value from the previous call, it will look like gpt-4.1-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83
             "version": "1"
         }
     }
@@ -327,12 +323,13 @@ print(r.json())
 
 Learn more about cross region deployment and use the deployed model [here](../how-to/fine-tuning-deploy.md#use-your-deployed-fine-tuned-model).
 
+If you're ready to deploy for production or have particular data residency needs, follow our [deployment guide](../how-to/fine-tuning-deploy.md?tabs=python).
 
 ## Continuous fine-tuning
 
 Once you have created a fine-tuned model you might want to continue to refine the model over time through further fine-tuning. Continuous fine-tuning is the iterative process of selecting an already fine-tuned model as a base model and fine-tuning it further on new sets of training examples.
 
-To perform fine-tuning on a model that you have previously fine-tuned you would use the same process as described in [create a customized model](#create-a-customized-model) but instead of specifying the name of a generic base model you would specify your already fine-tuned model's ID. The fine-tuned model ID looks like `gpt-35-turbo-0125.ft-5fd1918ee65d4cd38a5dcf6835066ed7`
+To perform fine-tuning on a model that you have previously fine-tuned you would use the same process as described in [create a customized model](#create-a-customized-model) but instead of specifying the name of a generic base model you would specify your already fine-tuned model's ID. The fine-tuned model ID looks like `gpt-4.1-2025-04-14.ft-5fd1918ee65d4cd38a5dcf6835066ed7`
 
 ```python
 from openai import AzureOpenAI
@@ -346,7 +343,7 @@ client = AzureOpenAI(
 response = client.fine_tuning.jobs.create(
     training_file=training_file_id,
     validation_file=validation_file_id,
-    model="gpt-35-turbo-0125.ft-5fd1918ee65d4cd38a5dcf6835066ed7" # Enter base model name. Note that in Azure OpenAI the model name contains dashes and cannot contain dot/period characters. 
+    model="gpt-4.1-2025-04-14.ft-5fd1918ee65d4cd38a5dcf6835066ed7"
 )
 
 job_id = response.id

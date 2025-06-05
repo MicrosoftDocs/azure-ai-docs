@@ -6,7 +6,7 @@ manager: scottpolly
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: training
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom:
   - build-2025
 ms.date: 05/12/2025
@@ -74,7 +74,7 @@ When selecting models from Azure AI Foundry Models, consider the following:
 
 The model catalog organizes models into different collections:
 
-* **Azure OpenAI models exclusively available on Azure**: Flagship Azure OpenAI models available through an integration with Azure OpenAI Service. Microsoft supports these models and their use according to the product terms and [SLA for Azure OpenAI Service](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services).
+* **Azure OpenAI models exclusively available on Azure**: Flagship Azure OpenAI models available through an integration with Azure OpenAI in Azure AI Foundry Models. Microsoft supports these models and their use according to the product terms and [SLA for Azure OpenAI in Azure AI Foundry Models](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services).
 
 * **Open models from the Hugging Face hub**: Hundreds of models from the Hugging Face hub for real-time inference with managed compute. Hugging Face creates and maintains models listed in this collection. For help, use the [Hugging Face forum](https://discuss.huggingface.co) or [Hugging Face support](https://huggingface.co/support). Learn more in [Deploy open models with Azure AI Foundry](../ai-foundry/how-to/deploy-models-managed.md).
 
@@ -82,7 +82,7 @@ You can submit a request to add a model to the model catalog by using [this form
 
 ## Overview of Model Catalog capabilities
 
-The model catalog in Azure AI Foundry portal is the hub to discover and use a wide range of models for building generative AI applications. The model catalog features hundreds of models across model providers such as Azure OpenAI Service, Mistral, Meta, Cohere, NVIDIA, and Hugging Face, including models that Microsoft trained. Models from providers other than Microsoft are Non-Microsoft Products as defined in [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and are subject to the terms provided with the models.
+The model catalog in Azure AI Foundry portal is the hub to discover and use a wide range of models for building generative AI applications. The model catalog features hundreds of models across model providers such as Azure OpenAI, Mistral, Meta, Cohere, NVIDIA, and Hugging Face, including models that Microsoft trained. Models from providers other than Microsoft are Non-Microsoft Products as defined in [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and are subject to the terms provided with the models.
 
 You can search and discover models that meet your need through keyword search and filters. Model catalog also offers the model performance leaderboard and benchmark metrics for select models. You can access them by selecting **Browse leaderboard** and **Compare Models**. Benchmark data is also accessible from the model card Benchmark tab.
  
@@ -111,7 +111,7 @@ On the model card, you'll find:
 
 ## Model deployment: Managed compute and standard deployments  
 
-In addition to Azure OpenAI Service models, the model catalog offers two distinct ways to deploy models for your use: managed compute and standard deployments.
+In addition to Azure OpenAI models, the model catalog offers two distinct ways to deploy models for your use: managed compute and standard deployments.
 
 The deployment options and features available for each model vary, as described in the following tables. [Learn more about data processing with the deployment options]( concept-data-privacy.md).
 
@@ -192,7 +192,7 @@ Models from Microsoft are billed via Azure meters as First Party Consumption Ser
 
 ### Fine-tuning models
 
-For models that are available through MaaS and support fine-tuning, users can take advantage of hosted fine-tuning with Standard billing to tailor the models using data they provide. For more information, see [fine-tune a Llama 2 model](/azure/ai-services/openai/how-to/fine-tuning) in [Azure AI Foundry portal](https://ai.azure.com/). 
+For models that are available through MaaS and support fine-tuning, users can take advantage of hosted fine-tuning with Standard billing to tailor the models using data they provide. For more information, see [fine-tune a Llama 2 model](/azure/ai-services/openai/how-to/fine-tuning) in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). 
 
 ### RAG with models deployed as standard deployments
 

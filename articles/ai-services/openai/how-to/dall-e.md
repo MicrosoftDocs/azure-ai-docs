@@ -1,16 +1,15 @@
 ---
-title: How to use image generation models 
+title: How to use image generation models
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn how to generate and edit images with image models, and learn about the configuration options that are available.
 author: PatrickFarley
-ms.author: pafarley 
-ms.service: azure-ai-openai
-ms.custom: 
-ms.topic: how-to
-ms.date: 04/23/2025
+ms.author: pafarley
 manager: nitinme
-keywords: 
-zone_pivot_groups: 
+ms.date: 04/23/2025
+ms.service: azure-ai-openai
+ms.topic: how-to
+ms.custom:
+  - build-2025
 # Customer intent: as an engineer or hobbyist, I want to know how to use DALL-E image generation models to their full capability.
 ---
 
@@ -238,7 +237,7 @@ The format in which DALL-E 3 generated images are returned. Must be one of `url`
 
 ## Call the Image Edit API
 
-The Image Edit API allows you to modify existing images based on text prompts you provide. The API call is similar to the image generation API call, but you also need to provide an image URL or base 64-encoded image data.
+The Image Edit API allows you to modify existing images based on text prompts you provide. The API call is similar to the image generation API call, but you also need to provide an input image (base64-encoded image data).
 
 
 
@@ -259,22 +258,23 @@ Replace the following values:
 - `<api_version>` is the version of the API you want to use. For example, `2025-04-01-preview`.
 
 **Required headers**:
-- `Content-Type`: `application/json`
+- `Content-Type`: `multipart/form-data`
 - `api-key`: `<your_API_key>`
 
 **Body**:
 
 The following is a sample request body. You specify a number of options, defined in later sections.
 
-```json
-{
-    "image": "<base64_encoded_image>",
-    "prompt": "Add a beach ball in the center.",
-    "model": "gpt-image-1",
-    "size": "1024x1024", 
-    "n": 1,
-    "quality": "high"
-}
+> [!IMPORTANT]
+> The Image Edit API takes multipart/form data, not JSON data. The example below shows sample form data that would be attached to a cURL request.
+
+```
+-F "image[]=@beach.png" \
+-F 'prompt=Add a beach ball in the center' \
+-F "model=gpt-image-1" \
+-F "size=1024x1024" \
+-F "n=1" \
+-F "quality=high"
 ```
 
 ### Output
@@ -304,7 +304,7 @@ The *image* value indicates the image file you want to edit. It can be either a 
 
 #### Mask
 
-The *mask* parameter is the same type as the main *image* input parameter. It defines the area of the image that you want the model to change, using fully transparent pixels (alpha of zero) in those areas. The mask can be a URL or base 64-encoded image data. It must be a PNG file and have the same dimensions as the image.
+The *mask* parameter is the same type as the main *image* input parameter. It defines the area of the image that you want the model to edit, using fully transparent pixels (alpha of zero) in those areas. The mask must be a base 64-encoded image. It must be a PNG file and have the same dimensions as the input image.
 
 
 #### [DALL-E 3](#tab/dalle-3)

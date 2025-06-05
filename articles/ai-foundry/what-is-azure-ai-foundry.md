@@ -2,23 +2,30 @@
 title: What is Azure AI Foundry?
 titleSuffix: Azure AI Foundry
 description: Azure AI Foundry is a trusted platform that empowers developers to drive innovation and shape the future with AI in a safe, secure, and responsible way.
+author: sdgilley
+ms.author: sgilley
 manager: scottpolly
-keywords: Azure AI services, cognitive
+ms.reviewer: sgilley
+ms.date: 05/12/2025
 ms.service: azure-ai-foundry
 ms.topic: overview
-ms.date: 05/12/2025
-ms.reviewer: sgilley
-ms.author: sgilley
-author: sdgilley
-ms.custom: ignite-2023, build-2024, ignite-2024
-#customer intent: As a developer, I want to understand what Azure AI Foundry is so that I can use it to build AI applications.
+ms.custom:
+  - ignite-2023
+  - build-2024
+  - ignite-2024
+  - build-aifnd
+  - build-2025
+keywords:
+  - Azure AI services
+  - cognitive
+# customer intent: As a developer, I want to understand what Azure AI Foundry is so that I can use it to build AI applications.
 ---
 
 # What is Azure AI Foundry?
 
-[Azure AI Foundry](https://ai.azure.com) provides a unified platform for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, ensuring organizations can build and operate AI applications with confidence. 
+[Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) provides a unified platform for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, ensuring organizations can build and operate AI applications with confidence. 
 
-[Azure AI Foundry](https://ai.azure.com) is designed for developers to:
+[Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) is designed for developers to:
 
 - Build generative AI applications on an enterprise-grade platform.
 - Explore, build, test, and deploy using cutting-edge AI tools and ML models, grounded in responsible AI practices.
@@ -97,7 +104,7 @@ The left pane is organized around your goals. Generally, as you develop with Azu
 * **Define and explore**. In this stage you define your project goals, and then explore and test models and services against your use case to find the ones that enable you to achieve your goals.
 * **Build and customize**. In this stage, you're actively building solutions and applications with the models, tools, and capabilities you selected. You can also customize models to perform better for your use case by fine-tuning, grounding in your data, and more. Building and customizing might be something you choose to do in the Azure AI Foundry portal, or through code and the Azure AI Foundry SDKs. Either way, a project provides you with everything you need.
   * Once you're actively developing in your project, the **Overview** page shows the things you want easy access to, like your endpoints and keys.
-* **Assess and improve**. In this stage, you're looking for where you can improve your application's performance. You might choose to use tools like tracing to debug your application or compare evaluations to hone in on how you want your application to behave. You can also integrate with safety & security systems so you can be confident when you take your application to production.
+* **Observe and improve**. In this stage, you're looking for where you can improve your application's performance. You might choose to use tools like tracing to debug your application or compare evaluations to hone in on how you want your application to behave. You can also integrate with safety & security systems so you can be confident when you take your application to production.
 
 If you're an admin, or leading a development team, and need to manage the team's resources, project access, quota, and more, you can do that in the Management Center.
  

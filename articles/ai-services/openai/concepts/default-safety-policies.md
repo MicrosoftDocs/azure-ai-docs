@@ -4,10 +4,12 @@ titleSuffix: Azure OpenAI
 description: Learn about the default Guidelines & controls policies that Azure OpenAI uses to flag content and ensure responsible use of the service.
 author: PatrickFarley
 ms.author: pafarley
+manager: nitinme
+ms.date: 05/31/2025
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 02/20/2025
-manager: nitinme
+ms.custom:
+  - build-2025
 ---
 
 # Default Guidelines & controls policies
@@ -23,15 +25,15 @@ All safety policies are configurable. To learn more about configurability, see t
 
 Text models in the Azure OpenAI can take in and generate both text and code. These models leverage Azure’s text content filters to detect and prevent harmful content. This system works on both prompts and completions. 
 
-| Risk Category                             | Prompt/Completion      | Severity Threshold |
+| Risk Category     | Prompt/Completion | Severity Threshold |
 |-------------------------------------------|------------------------|---------------------|
-| Hate and Fairness                         | Prompts and Completions| Medium              |
-| Violence                                  | Prompts and Completions| Medium              |
-| Sexual                                    | Prompts and Completions| Medium              |
-| Self-Harm                                 | Prompts and Completions| Medium              |
-| User prompt injection attack (Jailbreak)  | Prompts                | N/A                 |
-| Protected Material – Text                 | Completions            | N/A                 |
-| Protected Material – Code                 | Completions            | N/A                 |
+| Hate and Fairness | Prompts and Completions| Medium    |
+| Violence     | Prompts and Completions| Medium    |
+| Sexual  | Prompts and Completions| Medium    |
+| Self-Harm    | Prompts and Completions| Medium    |
+| User prompt injection attack (Jailbreak)  | Prompts | N/A  |
+| Protected Material – Text  | Completions  | N/A  |
+| Protected Material – Code  | Completions  | N/A  |
 
 
 
@@ -39,30 +41,48 @@ Text models in the Azure OpenAI can take in and generate both text and code. The
 
 ### Vision-enabled chat models
 
-| Risk Category                                        | Prompt/Completion      | Severity Threshold |
+| Risk Category  | Prompt/Completion | Severity Threshold |
 |------------------------------------------------------|------------------------|---------------------|
-| Hate and Fairness                                    | Prompts and Completions| Medium              |
-| Violence                                             | Prompts and Completions| Medium              |
-| Sexual                                               | Prompts and Completions| Medium              |
-| Self-Harm                                            | Prompts and Completions| Medium              |
-| Identification of Individuals and Inference of Sensitive Attributes | Prompts                | N/A                 |
-| User prompt injection attack (Jailbreak)             | Prompts                | N/A                 |
+| Hate and Fairness  | Prompts and Completions| Medium    |
+| Violence  | Prompts and Completions| Medium    |
+| Sexual    | Prompts and Completions| Medium    |
+| Self-Harm | Prompts and Completions| Medium    |
+| Identification of Individuals and Inference of Sensitive Attributes | Prompts | N/A  |
+| User prompt injection attack (Jailbreak)   | Prompts | N/A  |
 
 ### Image generation models
 
+#### [GPT-image-1](#tab/gpt-image-1)
 
-| Risk Category                                     | Prompt/Completion      | Severity Threshold |
+| Risk Category   | Prompt/Completion | Severity Threshold |
 |---------------------------------------------------|------------------------|---------------------|
-| Hate and Fairness                                 | Prompts and Completions| Low                 |
-| Violence                                          | Prompts and Completions| Low                 |
-| Sexual                                            | Prompts and Completions| Low                 |
-| Self-Harm                                         | Prompts and Completions| Low                 |
-| Content Credentials                               | Completions            | N/A                 |
-| Deceptive Generation of Political Candidates      | Prompts                | N/A                 |
-| Depictions of Public Figures                      | Prompts                | N/A                 |
-| User prompt injection attack (Jailbreak)          | Prompts                | N/A                 |
-| Protected Material – Art and Studio Characters    | Prompts                | N/A                 |
-| Profanity                                         | Prompts                | N/A                 |
+| Hate and Fairness    | Prompts and Completions| Medium  |
+| Violence    | Prompts and Completions| Medium  |
+| Sexual | Prompts and Completions| Medium  |
+| Self-Harm   | Prompts and Completions| Medium  |
+| Content Credentials  | Completions  | N/A  |
+| Deceptive Generation of Political Candidates | Prompts | N/A  |
+| Depictions of Public Figures   | Prompts | N/A  |
+| User prompt injection attack (Jailbreak)     | Prompts | N/A  |
+| Protected Material – Art and Studio Characters    | Prompts | N/A  |
+| Profanity   | Prompts | N/A  |
 
+#### [DALL-E](#tab/dalle)
 
-In addition to the above safety configurations, the latest image generation models also come with [prompt transformation](./prompt-transformation.md) by default. This transformation occurs on all prompts to enhance the safety of your original prompt, specifically in the risk categories of diversity, deceptive generation of political candidates, depictions of public figures, protected material, and others. 
+| Risk Category   | Prompt/Completion | Severity Threshold |
+|---------------------------------------------------|------------------------|---------------------|
+| Hate and Fairness    | Prompts and Completions| Low  |
+| Violence    | Prompts and Completions| Low  |
+| Sexual | Prompts and Completions| Low  |
+| Self-Harm   | Prompts and Completions| Low  |
+| Content Credentials  | Completions  | N/A  |
+| Deceptive Generation of Political Candidates | Prompts | N/A  |
+| Depictions of Public Figures   | Prompts | N/A  |
+| User prompt injection attack (Jailbreak)     | Prompts | N/A  |
+| Protected Material – Art and Studio Characters    | Prompts | N/A  |
+| Profanity   | Prompts | N/A  |
+
+In addition to the above safety configurations, DALL-E 3 also comes with [prompt transformation](./prompt-transformation.md) by default. This transformation occurs on all prompts to enhance the safety of your original prompt, specifically in the risk categories of diversity, deceptive generation of political candidates, depictions of public figures, protected material, and others. 
+
+---
+

@@ -2,13 +2,16 @@
 title: Observability in Generative AI with Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: Learn how Azure AI Foundry enables safe, high-quality generative AI through systematic evaluation and observability tools.
+author: lgayhardt
+ms.author: lagayhar
 manager: scottpolly
+ms.reviewer: mithigpe
+ms.date: 05/19/2025
 ms.service: azure-ai-foundry
 ms.topic: conceptual
-ms.date: 05/19/2025
-ms.reviewer: mithigpe
-ms.author: lagayhar
-author: lgayhardt
+ms.custom:
+  - build-aifnd
+  - build-2025
 ---
 
 # Observability in generative AI  
@@ -42,7 +45,7 @@ Evaluators are specialized tools that measure the quality, safety, and reliabili
 | Response Completeness | Measures to what extent the response is complete (not missing critical information) with respect to the ground truth. |
 
 
-[**Agents:**](./evaluation-evaluators/agent-evaluators.md)
+[**Agents (preview):**](./evaluation-evaluators/agent-evaluators.md)
 
 | Evaluator | Purpose |
 |--|--|
@@ -60,7 +63,7 @@ Evaluators are specialized tools that measure the quality, safety, and reliabili
 | QA | Measures comprehensively various quality aspects in question-answering.|
 
 
-[**Safety and Security:**](./evaluation-evaluators/risk-safety-evaluators.md)
+[**Safety and Security (preview):**](./evaluation-evaluators/risk-safety-evaluators.md)
 
 | Evaluator | Purpose |
 |--|--|
@@ -86,7 +89,7 @@ Evaluators are specialized tools that measure the quality, safety, and reliabili
 | METEOR | Metric for Evaluation of Translation with Explicit Ordering measures overlaps in n-grams between response and ground truth. |
 
 
-[**Azure OpenAI Graders:**](./evaluation-evaluators/azure-openai-graders.md)
+[**Azure OpenAI Graders (preview):**](./evaluation-evaluators/azure-openai-graders.md)
 
 | Evaluator | Purpose |
 |--|--|

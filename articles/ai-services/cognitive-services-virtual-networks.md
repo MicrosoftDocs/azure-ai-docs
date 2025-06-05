@@ -51,7 +51,7 @@ Virtual networks are supported in [regions where Azure AI services are available
 > - Translator
 
 > [!NOTE]
-> If you use Azure OpenAI, LUIS, Speech Services, or Language services, the `CognitiveServicesManagement` tag only enables you to use the service by using the SDK or REST API. To access and use the [Azure AI Foundry portal](https://ai.azure.com/), LUIS portal, Speech Studio, or Language Studio from a virtual network, you need to use the following tags:
+> If you use Azure OpenAI, LUIS, Speech Services, or Language services, the `CognitiveServicesManagement` tag only enables you to use the service by using the SDK or REST API. To access and use the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), LUIS portal, Speech Studio, or Language Studio from a virtual network, you need to use the following tags:
 >
 > - `AzureActiveDirectory`
 > - `AzureFrontDoor.Frontend`
@@ -60,7 +60,7 @@ Virtual networks are supported in [regions where Azure AI services are available
 > - `CognitiveServicesFrontEnd`
 > - `Storage` (Speech Studio only)
 > 
-> For information on [Azure AI Foundry portal](https://ai.azure.com/) configurations, see the [Azure AI Foundry documentation](../ai-foundry/how-to/configure-private-link.md).
+> For information on [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) configurations, see the [Azure AI Foundry documentation](../ai-foundry/how-to/configure-private-link.md).
 
 ## Change the default network access rule
 
@@ -532,7 +532,7 @@ When you create a private endpoint, specify the Azure AI services resource that 
 ### Connect to private endpoints
 
 > [!NOTE]
-> Azure OpenAI Service uses a different private DNS zone and public DNS zone forwarder than other Azure AI services. For the correct zone and forwarder names, see [Azure services DNS zone configuration](/azure/private-link/private-endpoint-dns#azure-services-dns-zone-configuration).
+> Azure OpenAI in Azure AI Foundry Models uses a different private DNS zone and public DNS zone forwarder than other Azure AI services. For the correct zone and forwarder names, see [Azure services DNS zone configuration](/azure/private-link/private-endpoint-dns#azure-services-dns-zone-configuration).
 
 Clients on a virtual network that use the private endpoint use the same connection string for the Azure AI services resource as clients connecting to the public endpoint. The exception is the Speech service, which requires a separate endpoint. For more information, see [Use private endpoints with the Speech service](#use-private-endpoints-with-the-speech-service) in this article. DNS resolution automatically routes the connections from the virtual network to the Azure AI services resource over a private link.
 

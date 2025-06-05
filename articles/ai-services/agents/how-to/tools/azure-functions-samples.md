@@ -6,7 +6,7 @@ services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 01/30/2025
+ms.date: 05/20/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
@@ -15,51 +15,47 @@ zone_pivot_groups: selection-azure-functions-samples
 
 # How to use Azure Functions with Azure AI Agents 
 
-Azure AI Agents supports function calling, which allows you to describe the structure of functions to an Assistant and then return the functions that need to be called along with their arguments. These examples show how to use Azure Functions to process the function calls through queue messages in Azure Storage. You can see a complete working sample on [GitHub](https://github.com/Azure-Samples/azure-functions-ai-services-agent-python)
+Azure AI Agents supports function calling, which allows you to describe the structure of functions to an Assistant and then return the functions that need to be called along with their arguments. These examples show how to use Azure Functions to process the function calls through queue messages in Azure Storage.
 
 
 ## Prerequisites
 
 * A prepared environment. See the [overview](./azure-functions.md) article for details.
 
+> [!NOTE] 
+> You must have a [A deployed agent with the standard setup](../../environment-setup.md#choose-your-setup). The basic agent setup is not supported.
 
 ::: zone pivot="python"
 
+> [!TIP]
+> You can find a complete working sample on [GitHub](https://github.com/Azure-Samples/azure-functions-ai-services-agent-python)
 
 ## Define a function for your agent to call
 
-Start by defining an Azure Function queue trigger function that will process function calls from the queue. For example this sample in Python:
+Start by defining an Azure Function queue trigger function that will process function calls from the queue. For example:
 
 ```python
-# Function to get the weather from an Azure Storage queue where the AI Agent will send function call information
-# It returns the mock weather to an output queue with the correlation id for the AI Agent Service to pick up the result of the function call
-@app.function_name(name="GetWeather")
-@app.queue_trigger(arg_name="msg", queue_name="input", connection="STORAGE_CONNECTION")  
-def process_queue_message(msg: func.QueueMessage) -> None:
-    logging.info('Python queue trigger function processed a queue item')
+app = func.FunctionApp()
 
-    # Queue to send message to
-    queue_client = QueueClient(
-        os.environ["STORAGE_CONNECTION__queueServiceUri"],
-        queue_name="output",
-        credential=DefaultAzureCredential(),
-        message_encode_policy=BinaryBase64EncodePolicy(),
-        message_decode_policy=BinaryBase64DecodePolicy()
-    )
+@app.queue_trigger(arg_name="msg", queue_name="azure-function-foo-input", connection="STORAGE_CONNECTION")
+@app.queue_output(arg_name="outputQueue", queue_name="azure-function-foo-output", connection="STORAGE_CONNECTION")  
 
-    # Get the content of the function call message
-    messagepayload = json.loads(msg.get_body().decode('utf-8'))
-    location = messagepayload['location']
-    correlation_id = messagepayload['CorrelationId']
+def queue_trigger(inputQueue: func.QueueMessage, outputQueue: func.Out[str]):
+    try:
+        messagepayload = json.loads(inputQueue.get_body().decode("utf-8"))
+        logging.info(f'The function receives the following message: {json.dumps(messagepayload)}')
+        location = messagepayload["location"]
+        weather_result = f"Weather is {len(location)} degrees and sunny in {location}"
+        response_message = {
+            "Value": weather_result,
+            "CorrelationId": messagepayload["CorrelationId"]
+        }
+        logging.info(f'The function returns the following message through the {outputQueue} queue: {json.dumps(response_message)}')
 
-    # Send message to queue. Sends a mock message for the weather
-    result_message = {
-        'Value': 'Weather is 74 degrees and sunny in ' + location,
-        'CorrelationId': correlation_id
-    }
-    queue_client.send_message(json.dumps(result_message).encode('utf-8'))
+        outputQueue.set(json.dumps(response_message))
 
-    logging.info(f"Sent message to output queue with message {result_message}")
+    except Exception as e:
+        logging.error(f"Error processing message: {e}")
 ```
 
 ## Configure the Azure Function tool
@@ -91,7 +87,7 @@ azure_function_tool = AzureFunctionTool(
         storage_service_endpoint=storage_service_endpoint,
     ),
     output_queue=AzureFunctionStorageQueue(  # Output queue configuration
-        queue_name="azure-function-tool-output",
+        queue_name="azure-function-foo-output",
         storage_service_endpoint=storage_service_endpoint,
     ),
 )
@@ -311,6 +307,9 @@ For any issues with the TypeScript code, create an issue on the [sample code rep
 ::: zone-end
 -->
 ::: zone pivot="csharp"
+
+> [!TIP]
+> You can find a complete working sample on [GitHub](https://github.com/Azure-Samples/azure-functions-ai-services-agent-dotnet)
 
 ## Prerequisites for .NET Azure Function Sample
 To make a function call, we need to create and deploy the Azure function. In the code snippet, we have an example of function on C# which can be used by the earlier code.

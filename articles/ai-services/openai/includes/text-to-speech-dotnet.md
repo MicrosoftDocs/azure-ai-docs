@@ -98,7 +98,7 @@ To run the quickstart, follow these steps:
     var speechFilePath = "YOUR_AUDIO_FILE_PATH";
     
     AzureOpenAIClient openAIClient = new AzureOpenAIClient(endpoint, credentials);
-    AudioClient = openAIClient.GetAudioClient(deploymentName);
+    AudioClient audioClient = openAIClient.GetAudioClient(deploymentName);
     
     var result = await audioClient.GenerateSpeechAsync(
                     "the quick brown chicken jumped over the lazy dogs");

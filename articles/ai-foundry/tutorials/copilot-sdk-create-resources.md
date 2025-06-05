@@ -17,7 +17,7 @@ author: sdgilley
 
 # Tutorial:  Part 1 - Set up project and development environment to build a custom knowledge retrieval (RAG) app with the Azure AI Foundry SDK
 
-In this tutorial, you use the [Azure AI Foundry](https://ai.azure.com) SDK (and other libraries) to build, configure, and evaluate a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
+In this tutorial, you use the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) SDK (and other libraries) to build, configure, and evaluate a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
 
 This tutorial is part one of a three-part tutorial.  This part one gets you ready to write code in part two and evaluate your chat app in part three. In this part, you:
 
@@ -93,7 +93,7 @@ If you already have an Azure AI Search connection in your project, you can skip 
 
 In the Azure AI Foundry portal, check for an Azure AI Search connected resource.
 
-1. In [Azure AI Foundry](https://ai.azure.com), go to your project and select **Management center** from the left pane.
+1. In [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), go to your project and select **Management center** from the left pane.
 1. In the **Connected resources** section, look to see if you have a connection of type **Azure AI Search**.
 1. If you have an Azure AI Search connection, you can skip ahead to the next section.
 1. Otherwise, select **New connection** and then **Azure AI Search**.

@@ -1,15 +1,16 @@
 ---
-title: 'Code interpreter code samples'
+title: "Code interpreter code samples"
 titleSuffix: Azure AI Foundry
 description: Find code samples to enable code interpreter for Azure AI Agents.
-services: cognitive-services
-manager: nitinme
-ms.service: azure-ai-agent-service
-ms.topic: how-to
-ms.date: 04/09/2025
 author: aahill
 ms.author: aahi
-ms.custom: azure-ai-agents-code
+manager: nitinme
+ms.date: 04/09/2025
+ms.service: azure-ai-agent-service
+ms.topic: how-to
+ms.custom:
+  - azure-ai-agents-code
+  - build-2025
 zone_pivot_groups: selection-code-interpreter
 ---
 
@@ -21,7 +22,7 @@ Azure AI Agents supports using the Code Interpreter tool, which allows an agent 
 
 ## Using the code interpreter tool with an agent
 
-You can add the code interpreter tool to an agent programatically using the code examples listed at the top of this article, or the [Azure AI Foundry portal](https://ai.azure.com/). If you want to use the portal:
+You can add the code interpreter tool to an agent programmatically using the code examples listed at the top of this article, or the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). If you want to use the portal:
 
 1. In the **Agents** screen for your agent, scroll down the **Setup** pane on the right to **action**. Then select **Add**.
 
@@ -38,6 +39,7 @@ You can add the code interpreter tool to an agent programatically using the code
 :::zone-end 
 
 :::zone pivot="python"
+
 
 ## Initialization
 The code begins by setting up the necessary imports and initializing the AI Project client:
@@ -57,7 +59,6 @@ project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT
 project_client = AIProjectClient(
     endpoint=project_endpoint,
     credential=DefaultAzureCredential(),  # Use Azure Default Credential for authentication
-    api_version="latest",
 )
 ```
 
@@ -96,10 +97,10 @@ agent = project_client.agents.create_agent(
 The code creates a conversation thread and initial message:
 
 ```python
-thread = project_client.agents.create_thread()
-message = project_client.agents.create_message(
+thread = project_client.agents.threads.create()
+message = project_client.agents.messages.create(
     thread_id=thread.id,
-    role="user",
+    role=MessageRole.USER,
     content="Could you please create bar chart in TRANSPORTATION sector for the operating profit from the uploaded csv file and provide file to me?",
 )
 ```
@@ -108,14 +109,14 @@ message = project_client.agents.create_message(
 A run is created to process the message and execute code:
 
 ```python
-run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
+run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
 ```
 
 ## File Handling
 The code handles the output files and annotations:
 
 ```python
-messages = project_client.agents.list_messages(thread_id=thread.id)
+messages = project_client.agents.messages.list(thread_id=thread.id)
 
 # Save generated image files
 for image_content in messages.image_contents:
@@ -259,7 +260,7 @@ Finally, delete the thread and the agent to clean up the resources created in th
 
 ## Create a project client 
 
-To use code interpreter, first you need to create a project client, which will contain a connection string to your AI project, and will be used to authenticate API calls.
+To use code interpreter, first you need to create a project client, which will contain an endpoint to your AI project, and will be used to authenticate API calls.
 
 ```javascript
 const { AgentsClient, isOutputOfType, ToolUtility } = require("@azure/ai-agents");
@@ -269,7 +270,7 @@ const fs = require("fs");
 const path = require("node:path");
 require("dotenv/config");
 
-const projectEndpoint = process.env["PROJECT_ENDPOINT"] || "<project connection string>";
+const projectEndpoint = process.env["PROJECT_ENDPOINT"];
 
 // Create an Azure AI Client
 const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());

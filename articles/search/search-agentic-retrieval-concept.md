@@ -2,23 +2,24 @@
 title: Agentic Retrieval
 titleSuffix: Azure AI Search
 description: Learn about agentic retrieval concepts, architecture, and use cases.
-
-manager: nitinme
 author: HeidiSteen
 ms.author: heidist
+manager: nitinme
+ms.date: 05/19/2025
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.custom: references_regions
-ms.date: 05/19/2025
+ms.custom:
+  - references_regions
+  - build-2025
 ---
 
 # Agentic retrieval in Azure AI Search
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In Azure AI Search, *agentic retrieval* is a new parallel query processing architecture that incorporates user conversation history and Azure OpenAI models to plan, retrieve and synthesize queries for improved results. It produces high-quality grounding data for custom chat and generative AI solutions that include agents.
+In Azure AI Search, *agentic retrieval* is a new parallel query processing architecture that incorporates user conversation history and Azure OpenAI models to plan, retrieve and synthesize queries for improved results. It produces high-quality grounding data for custom chat and generative AI solutions that include knowledge agents.
 
-Programmatically, agentic retrieval is supported through a new Knowledge Agents object (also known as a search agent) in the 2025-05-01-preview data plane REST API and in Azure SDK prerelease packages that provide the feature. An agent's retrieval response is designed for downstream consumption by other agents and chat apps.
+Programmatically, agentic retrieval is supported through a new Knowledge Agents object in the 2025-05-01-preview data plane REST API and in Azure SDK prerelease packages that provide the feature. A knowledge agent's retrieval response is designed for downstream consumption by other agents and chat apps.
 
 ## Why use agentic retrieval
 
@@ -54,9 +55,9 @@ Agentic retrieval has these components:
 
 | Component | Resource | Usage |
 |-----------|----------|-------|
-| LLM (gpt-4o and gpt-4.1 series) | Azure OpenAI | An LLM has two functions. First, it formulates subqueries for the query plan and sends it back to the search agent. Second, after the query executes, the LLM receives grounding data from the query response and uses it for answer formulation. |
+| LLM (gpt-4o and gpt-4.1 series) | Azure OpenAI | An LLM has two functions. First, it formulates subqueries for the query plan and sends it back to the knowledge agent. Second, after the query executes, the LLM receives grounding data from the query response and uses it for answer formulation. |
 | Search index | Azure AI Search | Contains plain text and vector content, a semantic configuration, and other elements as needed. |
-| Search agent | Azure AI Search | Connects to your LLM, providing parameters and inputs to build a query plan. |
+| Knowledge agent | Azure AI Search | Connects to your LLM, providing parameters and inputs to build a query plan. |
 | Retrieval engine | Azure AI Search | Executes on the LLM-generated query plan and other parameters, returning a rich response that includes content and query plan metadata. Queries are keyword, vector, and hybrid. Results are merged and ranked. |
 | Semantic ranker | Azure AI Search | Provides L2 reranking, promoting the most relevant matches. Semantic ranker is required for agentic retrieval. |
 
@@ -65,12 +66,12 @@ Your solution should include a tool or app that drives the pipeline. An agentic 
 <!-- Insert multiquery pipeline diagram here -->
 Agentic retrieval has these processes:
 
-+ Requests for agentic retrieval are initiated by calls to an agent on Azure AI Search.
-+ Agents connect to an LLM and provide conversation history as input. How much history is configurable by the number of messages you provide.
++ Requests for agentic retrieval are initiated by calls to a knowledge agent on Azure AI Search.
++ Knowledge agents connect to an LLM and provide conversation history as input. How much history is configurable by the number of messages you provide.
 + LLMs look at the conversation and determine whether to break it up into subqueries. The number of subqueries depends on what the LLM decides and whether the `maxDocsForReranker` parameter is higher than 50. A new subquery is defined for each 50-document batch sent to semantic ranker.
 + Subqueries execute simultaneously on Azure AI Search and generate structured results and extracted references.
 + Results are ranked and merged.
-+ Agent responses are formulated and returned as a three-part response consisting of a unified result (a long string), a reference array, and an activities array that enumerates all operations.
++ Knowledge agent responses are formulated and returned as a three-part response consisting of a unified result (a long string), a reference array, and an activities array that enumerates all operations.
 
 Your search index determines query execution and any optimizations that occur during query execution. This includes your semantic configuration, as well as optional scoring profiles, synonym maps, analyzers, and normalizers (if you add filters).
 
@@ -80,7 +81,7 @@ Agentic retrieval is available in [all regions that provide semantic ranker](sea
 
 Billing for agentic retrieval has two parts:
 
-+ Billing for query planning is pay-as-you-go in Azure OpenAI. It's token based for both input and output tokens. The model you assign to the agent is the one charged for token usage. For example, if you use gpt-4o, the token charge appears in the bill for gpt-4o.
++ Billing for query planning is pay-as-you-go in Azure OpenAI. It's token based for both input and output tokens. The model you assign to the knowledge agent is the one charged for token usage. For example, if you use gpt-4o, the token charge appears in the bill for gpt-4o.
 
 + Billing for semantic ranking during query execution. Billing is suspended during the initial roll-out phase but then transitions to pay-as-you-go on the Azure AI Search side through the semantic ranker. Semantic ranker, which is a premium billable feature, is an integral part of agentic retrieval. You're charged on the Azure AI Search side for token inputs to the semantic ranking models.
 
@@ -134,7 +135,7 @@ To estimate the semantic ranking costs associated with agentic retrieval, start 
 
 1. Estimate the output costs based on an average of 350 tokens. If we multiply 350 by 2,000 agentic retrievals, we get 700,000 output tokens total for a total of 42 cents.
 
-Putting it all together, you'd pay about $3.30 for semantic ranking in Azure AI Search, 60 cents for input tokens in Azure OpenAI, and 42 cents for output tokens in Azure OpenAI, for $1.02 for query planning total. The combined cost for the full execution is $4.02.
+Putting it all together, you'd pay about $3.30 for semantic ranking in Azure AI Search, 60 cents for input tokens in Azure OpenAI, and 42 cents for output tokens in Azure OpenAI, for $1.02 for query planning total. The combined cost for the full execution is $4.32.
 
 ## How to get started
 
@@ -154,11 +155,11 @@ Choose any of these options for your next step.
 
 + How-to guides for a focused look at development tasks:
 
-  + [Create an agent](search-agentic-retrieval-how-to-create.md)
-  + [Use an agent to retrieve data](search-agentic-retrieval-how-to-retrieve.md)
+  + [Create a knowledge agent](search-agentic-retrieval-how-to-create.md)
+  + [Use a knowledge agent to retrieve data](search-agentic-retrieval-how-to-retrieve.md)
   + [Build an agent-to-agent retrieval solution](search-agentic-retrieval-how-to-pipeline.md).
 
-+ REST API reference, [Agents](/rest/api/searchservice/knowledge-agents?view=rest-searchservice-2025-05-01-preview&preserve-view=true) and [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-05-01-preview&preserve-view=true).
++ REST API reference, [Knowledge Agents](/rest/api/searchservice/knowledge-agents?view=rest-searchservice-2025-05-01-preview&preserve-view=true) and [Knowledge Retrieval](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-05-01-preview&preserve-view=true).
 
 + [Azure OpenAI Demo](https://github.com/Azure-Samples/azure-search-openai-demo), updated to use agentic retrieval.
 

@@ -36,7 +36,7 @@ To create a video translation project, follow these steps:
    :::image type="content" source="../../../media/video-translation/select-voice-type.png" alt-text="Screenshot of selecting a voice type on the new project page." lightbox="../../../media/video-translation/select-voice-type.png":::
    
    The voice type options are:
-   - **Prebuilt neural voice**: The service automatically selects the most suitable prebuilt voice by matching the speaker's voice in the video with prebuilt voices.
+   - **Standard voice**: The service automatically selects the most suitable standard voice by matching the speaker's voice in the video with standard voices.
    - **Personal voice**: Use the personal voice that matches the voice of the speakers in the video. 
 
    > [!NOTE]

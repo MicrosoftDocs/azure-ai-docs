@@ -121,6 +121,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/ai-services/openai/assistants-quickstart.md",
+      "redirect_url": "/azure/ai-services/agents/quickstart",
+      "redirect_document_id": true
+    },
+    {
       "source_path_from_root": "/articles/ai-services/openai/how-to/use-your-data-securely.md",
       "redirect_url": "/azure/ai-services/openai/how-to/on-your-data-configuration",
       "redirect_document_id": false
@@ -283,6 +288,36 @@
     {
       "source_path": "articles/ai-services/index.yml",
       "redirect_url": "/azure/ai-foundry",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/text-to-speech-avatar/custom-avatar-endpoint.md",
+      "redirect_url": "/azure/ai-services/speech-service/custom-avatar-create",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/migration-overview-neural-voice.md",
+      "redirect_url": "/azure/ai-services/speech-service/custom-neural-voice",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/how-to-migrate-to-custom-neural-voice.md",
+      "redirect_url": "/azure/ai-services/speech-service/custom-neural-voice",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/how-to-migrate-to-prebuilt-neural-voice.md",
+      "redirect_url": "/azure/ai-services/speech-service/custom-neural-voice",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-foundry/quickstarts/hear-speak-playground.md",
+      "redirect_url": "/azure/ai-foundry/quickstarts/get-started-playground",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/tutorials/prompt-flow.md",
+      "redirect_url": "/azure/ai-services/language-service/tutorials/power-automate",
       "redirect_document_id": false
     }
   ]

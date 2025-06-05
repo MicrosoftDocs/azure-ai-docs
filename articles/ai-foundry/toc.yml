@@ -28,7 +28,6 @@ items:
       href: how-to/benchmark-model-in-catalog.md
   - name: Explore the model playgrounds
     href: concepts/concept-playgrounds.md
-  - name: Deploy Azure AI Foundry Models
   - name: Deployment options in Azure AI Foundry portal
     href: concepts/deployments-overview.md
   - name: Supported programming languages and SDKs
@@ -73,10 +72,8 @@ items:
           href: how-to/develop/semantic-kernel.md
   - name: Deploy Azure OpenAI in Foundry Models
     items:
-    - name: Azure OpenAI in Azure AI Foundry portal
-      href: azure-openai-in-azure-ai-foundry.md
     - name: Use Azure OpenAI in Azure AI Foundry portal
-      href: ai-services/how-to/connect-azure-openai.md
+      href: ai-services/how-to/connect-azure-openai.md?context=/azure/ai-foundry/context/context
     - name: Supported Azure OpenAI models
       href: ../ai-services/openai/concepts/models.md?context=/azure/ai-foundry/context/context
     - name: Azure OpenAI deployment types
@@ -265,14 +262,18 @@ items:
       href: ../ai-services/speech-service/get-started-speech-to-text.md?context=/azure/ai-foundry/context/context
     - name: Fast transcription
       href: ../ai-services/speech-service/fast-transcription-create.md?context=/azure/ai-foundry/context/context
+    - name: Fine-tune your speech model
+      items:
+      - name: Custom speech fine-tuning
+        href: ../ai-services/speech-service/how-to-custom-speech-create-project.md?context=/azure/ai-foundry/context/context
+      - name: Custom voice fine-tuning
+        href: ../ai-services/speech-service/professional-voice-create-project.md?context=/azure/ai-foundry/context/context
+      - name: Custom avatar fine-tuning
+        href: ../ai-services/speech-service/text-to-speech-avatar/custom-avatar-create.md?context=/azure/ai-foundry/context/context
     - name: Pronunciation assessment
       href: ../ai-services/speech-service/pronunciation-assessment-tool.md?context=/azure/ai-foundry/context/context
     - name: Speech translation
       href: ../ai-services/speech-service/get-started-speech-translation.md?context=/azure/ai-foundry/context/context
-    - name: Hear and speak with chat in the playground
-      href: quickstarts/hear-speak-playground.md
-    - name: Custom speech fine-tuning
-      href: ../ai-services/speech-service/how-to-custom-speech-create-project.md?context=/azure/ai-foundry/context/context
   - name:  Translator
     items:
     - name: What is Azure AI Translator?
@@ -410,10 +411,14 @@ items:
         displayName: accuracy,metrics
    - name: AI red teaming
      items:
-      - name: AI red teaming overview
+      - name: AI red teaming agent overview
         href: concepts/ai-red-teaming-agent.md
-      - name: Run automated scans with AI Red Teaming Agent
+      - name: Run red teaming scans locally (Azure AI Evaluation SDK)
         href: how-to/develop/run-scans-ai-red-teaming-agent.md
+      - name: Run red teaming scans in the cloud (Azure AI Foundry SDK)
+        href: how-to/develop/run-ai-red-teaming-cloud.md
+      - name: View red teaming results in the portal
+        href: how-to/view-ai-red-teaming-results.md
    - name: CI/CD evaluations 
      items:
       - name: Evaluation in GitHub Actions 
@@ -466,6 +471,8 @@ items:
       - name: Vision fine-tuning
         href: ../ai-services/openai/how-to/fine-tuning-vision.md?context=/azure/ai-foundry/context/context
         displayName: finetuning, fine-tuning 
+      - name: Reinforcement fine-tuning
+        href: ../ai-services/openai/how-to/reinforcement-fine-tuning.md?context=/azure/ai-foundry/context/context
       - name: Preference fine-tuning
         href: ../ai-services/openai/how-to/fine-tuning-direct-preference-optimization.md?context=/azure/ai-foundry/context/context
         displayName: finetuning, fine-tuning 
@@ -537,55 +544,76 @@ items:
           href: how-to/monitor-quality-safety.md
         - name: Troubleshoot prompt flow
           href: how-to/prompt-flow-troubleshoot.md
-- name: Management center
+- name: Setup and management
   items:
-  - name: Management center overview
-    href: concepts/management-center.md
-  - name: Manage projects and hubs
+  - name: Choose a resource type
+    href: concepts/resource-types.md
+  - name: Manage AI Foundry resources
     items:
-    - name: Create a project
-      href: how-to/create-projects.md
-    - name: Create a project using a Bicep template
-      href: how-to/create-azure-ai-project-template.md
-    - name: Create an Azure AI Foundry resource
+    - name: Create your first resource
       href: ../ai-services/multi-service-resource.md?context=/azure/ai-foundry/context/context
-    - name: Hubs and projects overview
+    - name: Create using Bicep template
+      href: how-to/create-resource-template.md
+  - name: Manage AI Hub resources
+    items:
+    - name: Hubs overview
       href: concepts/ai-resources.md
     - name: Create your first hub
       href: how-to/create-azure-ai-resource.md
-    - name: Create a hub using the Azure Machine Learning SDK and CLI
-      href: how-to/develop/create-hub-project-sdk.md
-    - name: Create a hub with custom security
+    - name: Advanced hub creation options
       items:
       - name: Create a hub in the Azure portal
         href: how-to/create-secure-ai-hub.md
       - name: Create a hub from template
         href: how-to/create-azure-ai-hub-template.md
         displayName: code
+      - name: Create a hub using the Azure Machine Learning SDK and CLI
+        href: how-to/develop/create-hub-project-sdk.md
       - name: Create a hub using Terraform
         href: how-to/create-hub-terraform.md
-  - name: Create and manage compute
-    href: how-to/create-manage-compute.md
-  - name: Connections
+    - name: Create and manage compute
+      href: how-to/create-manage-compute.md
+  - name: Manage projects
+    items:
+    - name: Create a project
+      href: how-to/create-projects.md
+    - name: Create a project using a Bicep template
+      href: how-to/create-azure-ai-project-template.md
+  - name: Management center
+    href: concepts/management-center.md
+  - name: Connect other services
     items:
     - name: Create a connection
       href: how-to/connections-add.md
     - name: Create a connection using the Azure Machine Learning SDK
       href: how-to/develop/connections-add-sdk.md
       displayName: code
-  - name: Add and manage data in Azure AI Foundry
-    href: how-to/data-add.md
+    - name: Connect and manage data
+      href: how-to/data-add.md
   - name: Costs and quotas
     items:
     - name: Plan and manage costs for AI Foundry resources
       href: how-to/costs-plan-manage.md
       displayName: pricing, budget, estimate
-    - name: Manage quotas and limits for Foundry Models
-      href: ../ai-foundry/model-inference/quotas-limits.md?context=/azure/ai-foundry/context/context
     - name: Manage quotas
       href: how-to/quota.md
     - name: Increase rate limit
       href: how-to/autoscale.md
+  - name: Cost management for Foundry Models
+    items:
+    - name: Manage quotas and limits for Foundry Models
+      href: ../ai-foundry/model-inference/quotas-limits.md?context=/azure/ai-foundry/context/context
+    - name: What is the Provisioned Throughput offering (PTU)?
+      href: ../ai-services/openai/concepts/provisioned-throughput.md?context=/azure/ai-foundry/context/context
+      displayName: PTU, provisioned, provisioned throughput units
+    - name: Understanding and calculating PTU costs 
+      href: ../ai-services/openai/how-to/provisioned-throughput-onboarding.md?context=/azure/ai-foundry/context/context
+      displayName: PTU, provisioned, provisioned throughput units
+    - name: Get started with Provisioned Deployments
+      href: ../ai-services/openai/how-to/provisioned-get-started.md?context=/azure/ai-foundry/context/context
+      displayName: PTU, provisioned, provisioned throughput units
+    - name: Provisioned spillover
+      href: ../ai-services/openai/how-to/spillover-traffic-management.md?context=/azure/ai-foundry/context/context
 - name: Security & Governance
   items:
   - name: Identity & access management

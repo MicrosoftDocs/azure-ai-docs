@@ -1,15 +1,21 @@
 ---
-title: 'Use your own data with Azure OpenAI in Azure AI Foundry Models'
+title: "Use your own data with Azure OpenAI in Azure AI Foundry Models"
 titleSuffix: Azure OpenAI
 description: Use this article to import and use your data in Azure OpenAI.
-manager: nitinme
-ms.service: azure-ai-openai
-ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-track-ts, devx-track-go, devx-track-python
-ms.topic: quickstart
 author: aahill
 ms.author: aahi
+manager: nitinme
 ms.date: 04/29/2025
-recommendations: false
+ms.service: azure-ai-openai
+ms.topic: quickstart
+ms.custom:
+  - devx-track-dotnet
+  - devx-track-extended-java
+  - devx-track-js
+  - devx-track-ts
+  - devx-track-go
+  - devx-track-python
+  - build-2025
 zone_pivot_groups: openai-use-your-data
 ---
 
@@ -22,11 +28,7 @@ In this quickstart, you can use your own data with Azure OpenAI models. Using Az
 ## Prerequisites
 
 The following resources: 
-- [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
-- [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
-- [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
-- An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
-    - Be sure that you're assigned at least the [Cognitive Services Contributor](./how-to/role-based-access-control.md#cognitive-services-contributor) role for the Azure OpenAI resource.
+- 
 - Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
 
 
@@ -41,11 +43,7 @@ The following resources:
 ## Prerequisites
 
 The following resources: 
-- [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
-- [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
-- [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
-- An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
-    - Be sure that you're assigned at least the [Cognitive Services Contributor](./how-to/role-based-access-control.md#cognitive-services-contributor) role for the Azure OpenAI resource.
+- An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 - Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
 - The [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 
@@ -145,7 +143,7 @@ The following resources:
 
 [Reference](https://platform.openai.com/docs/api-reference?lang=python) | [Source code](https://github.com/openai/openai-python) | [Package (pypi)](https://pypi.org/project/openai/) | [Samples](https://github.com/openai/openai-cookbook/)
 
-These links reference the OpenAI API for Python. There's no Azure-specific OpenAI Python SDK. [Learn how to switch between the OpenAI services and Azure OpenAI services](/azure/ai-services/openai/how-to/switching-endpoints).
+These links reference the OpenAI API for Python. There's no Azure-specific OpenAI Python SDK. [Learn how to switch between the OpenAI services and Azure OpenA](/azure/ai-services/openai/how-to/switching-endpoints).
 
 [!INCLUDE [Connect your data to OpenAI](includes/connect-your-data-studio.md)]
 

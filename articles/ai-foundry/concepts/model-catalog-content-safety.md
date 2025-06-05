@@ -5,7 +5,7 @@ description: Learn about content safety for models deployed using standard deplo
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: conceptual
-ms.date: 02/04/2025
+ms.date: 05/19/2025
 ms.author: mopeakande 
 author: msakande
 ms.reviewer: ositanachi

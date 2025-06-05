@@ -2,12 +2,12 @@
 title: Preparing data and designing a schema for custom NER
 titleSuffix: Azure AI services
 description: Learn about how to select and prepare data, to be successful in creating custom NER projects.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-custom-ner
 ---
 

@@ -2,13 +2,16 @@
 title: General purpose evaluators for generative AI
 titleSuffix: Azure AI Foundry
 description: Learn about general-purpose evaluators for generative AI, including coherence, fluency, and question-answering composite evaluation.
+author: lgayhardt
+ms.author: lagayhar
 manager: scottpolly
+ms.reviewer: changliu2
+ms.date: 05/19/2025
 ms.service: azure-ai-foundry
 ms.topic: reference
-ms.date: 05/19/2025
-ms.reviewer: changliu2
-ms.author: lagayhar
-author: lgayhardt
+ms.custom:
+  - build-aifnd
+  - build-2025
 ---
 
 # General purpose evaluators
@@ -49,8 +52,8 @@ from azure.ai.evaluation import CoherenceEvaluator
 
 coherence = CoherenceEvaluator(model_config=model_config, threshold=3)
 coherence(
-    query="Is Marie Currie is born in Paris?", 
-    response="No, Marie Currie is born in Warsaw."
+    query="Is Marie Curie is born in Paris?", 
+    response="No, Marie Curie is born in Warsaw."
 )
 ```
 
@@ -79,7 +82,7 @@ from azure.ai.evaluation import FluencyEvaluator
 
 fluency = FluencyEvaluator(model_config=model_config, threshold=3)
 fluency(
-    response="No, Marie Currie is born in Warsaw."
+    response="No, Marie Curie is born in Warsaw."
 )
 ```
 
@@ -115,10 +118,10 @@ from azure.ai.evaluation import QAEvaluator
 
 qa_eval = QAEvaluator(model_config=model_config, threshold=3)
 qa_eval(
-    query="Where was Marie Currie born?", 
+    query="Where was Marie Curie born?", 
     context="Background: 1. Marie Curie was a chemist. 2. Marie Curie was born on November 7, 1867. 3. Marie Curie is a French scientist.",
-    response="According to wikipedia, Marie Currie was not born in Paris but in Warsaw.",
-    ground_truth="Marie Currie was born in Warsaw."
+    response="According to wikipedia, Marie Curie was not born in Paris but in Warsaw.",
+    ground_truth="Marie Curie was born in Warsaw."
 )
 ```
 
@@ -160,5 +163,5 @@ While F1 score outputs a numerical score on 0-1 float scale, the other evaluator
 
 ## Related content
 
-- [How to run batch evaluation on a dataset](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-datasets)  
+- [How to run batch evaluation on a dataset](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-test-datasets-using-evaluate)  
 - [How to run batch evaluation on a target](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-a-target)

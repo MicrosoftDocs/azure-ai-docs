@@ -2,13 +2,16 @@
 title: Azure OpenAI Graders for generative AI
 titleSuffix: Azure AI Foundry
 description: Learn about Azure OpenAI Graders for evaluating AI model outputs, including label grading, string checking, text similarity, and custom grading.
+author: lgayhardt
+ms.author: lagayhar
 manager: scottpolly
+ms.reviewer: mithigpe
+ms.date: 05/19/2025
 ms.service: azure-ai-foundry
 ms.topic: reference
-ms.date: 05/19/2025
-ms.reviewer: mithigpe
-ms.author: lagayhar
-author: lgayhardt
+ms.custom:
+  - build-aifnd
+  - build-2025
 ---
 
 # Azure OpenAI Graders (preview)
@@ -40,7 +43,7 @@ model_config = AzureOpenAIModelConfiguration(
 `AzureOpenAILabelGrader` uses your custom prompt to instruct a model to classify outputs based on labels you define. It returns structured results with explanations for why each label was chosen.
 
 > [!NOTE]
-> We recommend using Azure Open AI GPT o3-mini for best results.
+> We recommend using Azure OpenAI GPT o3-mini for best results.
 
 Here's an example `data.jsonl` that is used in the following code snippets:
 
@@ -262,5 +265,5 @@ Aside from individual data evaluation results, the grader also returns a metric 
 
 ## Related content
 
-- [How to run batch evaluation on a dataset](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-datasets)  
+- [How to run batch evaluation on a dataset](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-test-datasets-using-evaluate)  
 - [How to run batch evaluation on a target](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-a-target)

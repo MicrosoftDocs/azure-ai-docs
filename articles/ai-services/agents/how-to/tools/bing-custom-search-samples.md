@@ -1,15 +1,16 @@
 ---
-title: 'How to use the Custom Bing Search with Azure AI Agent Service tool'
+title: "How to use the Custom Bing Search with Azure AI Foundry Agent Service tool"
 titleSuffix: Azure OpenAI
-description: Find samples to ground Azure AI Agents using Custom Bing Search results.
-services: cognitive-services
-manager: nitinme
-ms.service: azure-ai-agent-service
-ms.topic: how-to
-ms.date: 04/15/2025
+description: Find samples to ground Azure AI Foundry Agents using Custom Bing Search results.
 author: aahill
 ms.author: aahi
-ms.custom: azure-ai-agents
+manager: nitinme
+ms.date: 04/15/2025
+ms.service: azure-ai-agent-service
+ms.topic: how-to
+ms.custom:
+  - azure-ai-agents
+  - build-2025
 zone_pivot_groups: selection-bing-custom-grounding
 ---
 
@@ -19,7 +20,7 @@ zone_pivot_groups: selection-bing-custom-grounding
 ::: zone pivot="portal"
 
 
-1. Navigate to the **Agents** screen for your agent in the [Azure AI Foundry portal](https://ai.azure.com/), scroll down the Setup pane on the right to **knowledge**. Then select **Add**.
+1. Navigate to the **Agents** screen for your agent in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), scroll down the Setup pane on the right to **knowledge**. Then select **Add**.
 
     :::image type="content" source="../../media/tools/knowledge-tools.png" alt-text="A screenshot of the agents screen in the AI Foundry portal.":::
 
@@ -35,6 +36,7 @@ zone_pivot_groups: selection-bing-custom-grounding
 
 :::zone-end
 
+<!--
 ::: zone pivot="python"
 
 ## Create a project client
@@ -63,7 +65,7 @@ project_client = AIProjectClient(
 
 ## Create an Agent with the Grounding with Bing Custom Search tool enabled
 
-To make the Grounding with Bing Custom Search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/).
+To make the Grounding with Bing Custom Search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 ```python
 bing_custom_connection = project_client.connections.get(connection_name=os.environ["BING_CUSTOM_CONNECTION_NAME"])
@@ -131,6 +133,8 @@ if response_message:
 
 
 :::zone-end
+-->
+
 <!--
 ::: zone pivot="csharp"
 
@@ -157,7 +161,7 @@ AgentsClient agentClient = projectClient.GetAgentsClient();
 
 ## Create an Agent with the Grounding with Bing Custom Search tool enabled
 
-To make the Grounding with Bing Custom Search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/).
+To make the Grounding with Bing Custom Search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 ```csharp
 AgentsClient agentClient = projectClient.GetAgentsClient();
@@ -281,7 +285,7 @@ const client = AIProjectsClient.fromConnectionString(
 
 ## Create an Agent with the Grounding with Bing Custom Search tool enabled
 
-To make the Grounding with Bing Custom Search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/).
+To make the Grounding with Bing Custom Search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 ```javascript
 const bingCustomSearchConnection = await client.connections.getConnection(
@@ -378,14 +382,16 @@ Create a run and observe that the model uses the Grounding with Bing Custom Sear
 ::: zone pivot="rest"
 
 >[!IMPORTANT]
-> 1. This REST API allows developers to invoke the Grounding with Bing Custom Search tool through the Azure AI Foundry Agent Service. It does not send calls to the Grounding with Bing Custom Search API directly. 
+> * This REST API allows developers to invoke the Grounding with Bing Custom Search tool through the Azure AI Foundry Agent Service. It does not send calls to the Grounding with Bing Custom Search API directly.
+> * The following samples are applicable if you are using **Azure AI Foundry Project** resource with Microsoft Fabric tool through REST API call
+> * Your connection ID should be in this format: `/subscriptions/<sub-id>/resourceGroups/<your-rg-name>/providers/Microsoft.CognitiveServices/accounts/<your-ai-services-name>/projects/<your-project-name>/connections/<your-bing-connection-name>`
 
 Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
 
 
 ## Create an Agent with the Grounding with Bing Custom Search tool enabled
 
-To make the Grounding with Bing Custom Search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/).
+To make the Grounding with Bing Custom Search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 ```bash
 curl --request POST \
@@ -402,12 +408,12 @@ curl --request POST \
             "bing_custom_search": {
                 "search_configurations": [
                     {
-                        "connection_id": <your_custom_search_connecion_id>,
+                        "connection_id": /subscriptions/<sub-id>/resourceGroups/<your-rg-name>/providers/Microsoft.CognitiveServices/accounts/<your-ai-services-name>/projects/<your-project-name>/connections/<your-bing-connection-name>,
                         "instance_name": <your_custom_search_configuration_name>, 
                         "count": 7,
                         "market": "en-US", 
                         "set_lang": "en",
-                        "freshness": "7d",
+                        "freshness": "day",
                     }
                 ]
             }

@@ -2,14 +2,21 @@
 title: "Quickstart: Get started with Azure AI Foundry"
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to start using the Azure AI Foundry portal and the Azure AI Foundry SDK.
-manager: scottpolly
-ms.service: azure-ai-foundry
-ms.custom: build-2024, devx-track-azurecli, devx-track-python, ignite-2024, update-code4
-ms.topic: how-to
-ms.date: 05/12/2025
-ms.reviewer: dantaylo
-ms.author: sgilley
 author: sdgilley
+ms.author: sgilley
+manager: scottpolly
+ms.reviewer: dantaylo
+ms.date: 05/12/2025
+ms.service: azure-ai-foundry
+ms.topic: how-to
+ms.custom:
+  - build-2024
+  - devx-track-azurecli
+  - devx-track-python
+  - ignite-2024
+  - update-code5
+  - build-aifnd
+  - build-2025
 zone_pivot_groups: project-type
 # customer intent: As a developer, I want to start using the Azure AI Foundry portal and client libraries.
 ---
@@ -19,7 +26,7 @@ zone_pivot_groups: project-type
 
 ::: zone pivot="hub-project"
 
-In this quickstart, we walk you through setting up your local development environment with the [Azure AI Foundry](https://ai.azure.com) SDK. We write a prompt, run it as part of your app code, trace the LLM calls being made, and run a basic evaluation on the outputs of the LLM.
+In this quickstart, we walk you through setting up your local development environment with the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) SDK. We write a prompt, run it as part of your app code, trace the LLM calls being made, and run a basic evaluation on the outputs of the LLM.
 
 > [!TIP]
 > The rest of this article shows how to use a **[!INCLUDE [hub](../includes/hub-project-name.md)]**.  Select **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** at the top of this article if you want to use a [!INCLUDE [fdp](../includes/fdp-project-name.md)] instead.
@@ -43,7 +50,7 @@ In this quickstart, we walk you through setting up your local development enviro
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com).
+1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 1. Select a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]. If you don't have a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)], select **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** at the top of this article to use a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)] instead.
 
 1. Select **Model catalog** from the left pane.

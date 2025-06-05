@@ -2,13 +2,16 @@
 title: Retrieval-augmented Generation (RAG) evaluators for generative AI
 titleSuffix: Azure AI Foundry
 description: Learn about Retrieval-augmented Generation (RAG) evaluators for assessing relevance, groundedness, and response completeness in generative AI systems.
+author: lgayhardt
+ms.author: lagayhar
 manager: scottpolly
+ms.reviewer: changliu2
+ms.date: 05/19/2025
 ms.service: azure-ai-foundry
 ms.topic: reference
-ms.date: 05/19/2025
-ms.reviewer: changliu2
-ms.author: lagayhar
-author: lgayhardt
+ms.custom:
+  - build-aifnd
+  - build-2025
 ---
 
 # Retrieval-augmented Generation (RAG) evaluators
@@ -53,7 +56,7 @@ from azure.ai.evaluation import RetrievalEvaluator
 
 retrieval = RetrievalEvaluator(model_config=model_config, threshold=3)
 retrieval(
-    query="Where was Marie Currie born?", 
+    query="Where was Marie Curie born?", 
     context="Background: 1. Marie Curie was born in Warsaw. 2. Marie Curie was born on November 7, 1867. 3. Marie Curie is a French scientist. ",
 )
 ```
@@ -195,9 +198,9 @@ from azure.ai.evaluation import GroundednessEvaluator
 
 groundedness = GroundednessEvaluator(model_config=model_config, threshold=3)
 groundedness(
-    query="Is Marie Currie is born in Paris?", 
+    query="Is Marie Curie is born in Paris?", 
     context="Background: 1. Marie Curie is born on November 7, 1867. 2. Marie Curie is born in Warsaw.",
-    response="No, Marie Currie is born in Warsaw."
+    response="No, Marie Curie is born in Warsaw."
 )
 ```
 
@@ -238,9 +241,9 @@ azure_ai_project = os.environ.get("AZURE_AI_PROJECT")
 
 groundedness_pro = GroundednessProEvaluator(azure_ai_project=azure_ai_project), 
 groundedness_pro(
-    query="Is Marie Currie is born in Paris?", 
+    query="Is Marie Curie is born in Paris?", 
     context="Background: 1. Marie Curie is born on November 7, 1867. 2. Marie Curie is born in Warsaw.",
-    response="No, Marie Currie is born in Warsaw."
+    response="No, Marie Curie is born in Warsaw."
 )
 ```
 
@@ -266,8 +269,8 @@ from azure.ai.evaluation import RelevanceEvaluator
 
 relevance = RelevanceEvaluator(model_config=model_config, threshold=3)
 relevance(
-    query="Is Marie Currie is born in Paris?", 
-    response="No, Marie Currie is born in Warsaw."
+    query="Is Marie Curie is born in Paris?", 
+    response="No, Marie Curie is born in Warsaw."
 )
 ```
 
@@ -316,5 +319,5 @@ The numerical score on a likert scale (integer 1 to 5) and a higher score is bet
 
 ## Related content
 
-- [How to run batch evaluation on a dataset](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-datasets)  
+- [How to run batch evaluation on a dataset](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-test-datasets-using-evaluate)  
 - [How to run batch evaluation on a target](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-a-target)

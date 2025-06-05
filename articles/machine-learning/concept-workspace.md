@@ -6,7 +6,7 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.custom: build-2023
-ms.topic: conceptual
+ms.topic: concept-article
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: deeikele

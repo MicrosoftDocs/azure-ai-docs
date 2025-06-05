@@ -3,11 +3,13 @@ title: Batch synthesis API for text to speech - Speech service
 titleSuffix: Azure AI services
 description: Learn how to use the batch synthesis API for asynchronous synthesis of long-form text to speech.
 author: eric-urban
+ms.author: eur
 manager: nitinme
+ms.date: 3/10/2025
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
-ms.author: eur
+ms.custom:
+  - build-2025
 ---
 
 # Batch synthesis API for text to speech
@@ -42,7 +44,7 @@ For code samples, see [GitHub](https://github.com/Azure-Samples/cognitive-servic
 To submit a batch synthesis request, construct the HTTP PUT request path and body according to the following instructions:
 
 - Set the required `inputKind` property.
-- If the `inputKind` property is set to "PlainText", then you must also set the `voice` property in the `synthesisConfig`. In the example below, the `inputKind` is set to "SSML", so the `synthesisConfig` isn't set.
+- If the `inputKind` property is set to "PlainText", then you must also set the `voice` property in the `synthesisConfig`. In the following example, the `inputKind` is set to "SSML", so the `synthesisConfig` isn't set.
 - Optionally you can set the `description`, `timeToLiveInHours`, and other properties. For more information, see [batch synthesis properties](batch-synthesis-properties.md).
 
 > [!NOTE]

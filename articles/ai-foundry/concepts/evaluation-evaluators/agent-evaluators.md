@@ -2,13 +2,16 @@
 title: Agent evaluators for generative AI
 titleSuffix: Azure AI Foundry
 description: Learn how to evaluate Azure AI agents using intent resolution, tool call accuracy, and task adherence evaluators.
+author: lgayhardt
+ms.author: lagayhar
 manager: scottpolly
+ms.reviewer: changliu2
+ms.date: 05/19/2025
 ms.service: azure-ai-foundry
 ms.topic: reference
-ms.date: 05/19/2025
-ms.reviewer: changliu2
-ms.author: lagayhar
-author: lgayhardt
+ms.custom:
+  - build-aifnd
+  - build-2025
 ---
 
 # Agent evaluators (preview)
@@ -186,5 +189,5 @@ If you're building agents outside of Azure AI Agent Service, this evaluator acce
 
 ## Related content
 
-- [How to run batch evaluation on a dataset](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-datasets)  
+- [How to run batch evaluation on a dataset](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-test-datasets-using-evaluate)  
 - [How to run batch evaluation on a target](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-a-target)

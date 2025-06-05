@@ -1,28 +1,29 @@
 ---
-title: 'How to use the data agents in Microsoft Fabric with Azure AI Foundry Agent Service'
+title: "How to use the data agents in Microsoft Fabric with Azure AI Foundry Agent Service"
 titleSuffix: Azure AI Foundry
-description: Learn how to perform data analytics in Azure AI Agents using Microsoft Fabric data agent.
-services: cognitive-services
-manager: nitinme
-ms.service: azure-ai-agent-service
-ms.topic: how-to
-ms.date: 04/07/2025
+description: Learn how to perform data analytics in Azure AI Foundry Agents using Microsoft Fabric data agent.
 author: aahill
 ms.author: aahi
+manager: nitinme
+ms.date: 04/07/2025
+ms.service: azure-ai-agent-service
+ms.topic: how-to
+ms.custom:
+  - build-2025
 zone_pivot_groups: selection-fabric-data-agent
 ---
 
 # Use the Microsoft Fabric data agent (preview)
 
-Integrate your Azure AI Agent with the [**Microsoft Fabric data agent**](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. The Fabric data agent transforms enterprise data into conversational Q&A systems, allowing users to interact with the data through chat and uncover data-driven and actionable insights. 
+Integrate your Azure AI Foundry Agent with the [**Microsoft Fabric data agent**](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. The Fabric data agent transforms enterprise data into conversational Q&A systems, allowing users to interact with the data through chat and uncover data-driven and actionable insights. 
 
-You need to first build and publish a Fabric data agent and then connect your Fabric data agent with the published endpoint. When a user sends a query, Azure AI Agent will first determine if the Fabric data agent should be leveraged or not. If so, it will use the end user’s identity to generate queries over data they have access to. Lastly, Azure AI Agent will generate responses based on queries returned from Fabric data agents. With Identity Passthrough (On-Behalf-Of) authorization, this integration simplifies access to enterprise data in Fabric while maintaining robust security, ensuring proper access control and enterprise-grade protection. 
+You need to first build and publish a Fabric data agent and then connect your Fabric data agent with the published endpoint. When a user sends a query, the will first determine if the Fabric data agent should be leveraged or not. If so, it will use the end user’s identity to generate queries over data they have access to. Lastly, the agent will generate responses based on queries returned from Fabric data agents. With Identity Passthrough (On-Behalf-Of) authorization, this integration simplifies access to enterprise data in Fabric while maintaining robust security, ensuring proper access control and enterprise-grade protection. 
 
 ## Usage support
 
 |Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
-| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| ✔️ |  |  |  | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 * You have created and published a Fabric data agent endpoint
@@ -31,21 +32,22 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 
 * Developers and end users have at least `READ` access to the Fabric data agent and the underlying data sources it connects with.
 
-* Your Fabric Data Agent and Azure AI Agent need to be in the same tenant.
+* Your Fabric Data Agent and Azure AI Foundry Agent need to be in the same tenant.
 
 ## Setup  
 > [!NOTE]
-> * The model you selected in Azure AI Agent setup is only used for agent orchestration and response generation. It doesn't impact which model Fabric data agent uses for NL2SQL operation.
+> * The model you selected in Azure AI Foundry Agent setup is only used for agent orchestration and response generation. It doesn't impact which model Fabric data agent uses for NL2SQL operation.
+> * To help your model invoke your Microsoft Fabric tool in the expected way, please make sure you update agent instructions with descriptions of your Fabric data agent and what data it has access to. An example is "for customer and product sales related data, please use the Fabric tool". We recommend using a smaller AI model such as `gpt-4o-mini`. You can also use `tool_choice` parameter in SDK or API to force Fabric tool to be invoked at each run. 
 
-1. Create an Azure AI Agent by following the steps in the [quickstart](../../quickstart.md).
+1. Create an Azure AI Foundry Agent by following the steps in the [quickstart](../../quickstart.md).
 
 1. Create and publish a [Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312910)
 
 :::zone pivot="portal"
 
-You can add the Microsoft Fabric tool to an agent programatically using the code examples listed at the top of this article, or the Azure AI Foundry portal. If you want to use the portal: 
+You can add the Microsoft Fabric tool to an agent programmatically using the code examples listed at the top of this article, or the Azure AI Foundry portal. If you want to use the portal: 
 
-1. Navigate to the **Agents** screen for your agent in [Azure AI Foundry](https://ai.azure.com/), scroll down the Setup pane on the right to **knowledge**. Then select **Add**.
+1. Navigate to the **Agents** screen for your agent in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), scroll down the Setup pane on the right to **knowledge**. Then select **Add**.
    
     :::image type="content" source="../../media/tools/knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools.png":::
 
@@ -60,7 +62,7 @@ You can add the Microsoft Fabric tool to an agent programatically using the code
         :::image type="content" source="../../media/tools/fabric-foundry.png" alt-text="A screenshot showing the fabric connection in the Azure AI Foundry portal." lightbox="../../media/tools/fabric-foundry.png":::
 
 :::zone-end
-
+<!--
 :::zone pivot="python"
 
 ## Create a project client
@@ -148,6 +150,8 @@ print("Deleted agent")
 ```
 
 :::zone-end
+-->
+
 <!--
 :::zone pivot="csharp"
 
@@ -280,7 +284,7 @@ agentClient.Administration.DeleteAgent(agentId: agent.Id);
 
 ```
 :::zone-end
--->
+
 :::zone pivot="javascript"
 
 ## Create a project client
@@ -363,10 +367,13 @@ for await (const m of messagesIterator) {
 }
 ```
 :::zone-end
-
+-->
 :::zone pivot="rest"
 
-Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`. For `API_VERSION`, please make sure you are using `2025-05-15-preview`.
+> [!IMPORTANT]
+> The following samples are applicable if you are using **Azure AI Foundry Project** resource with Microsoft Fabric tool through REST API call
+> Your connection id should be in this format: `/subscriptions/<sub-id>/resourceGroups/<your-rg-name>/providers/Microsoft.CognitiveServices/accounts/<your-ai-services-name>/projects/<your-project-name>/connections/<your-fabric-connection-name>`
 
 ### Create an agent with the Microsoft Fabric tool enabled
 
@@ -385,7 +392,7 @@ curl --request POST \
             "fabric_dataagent": {
                 "connections": [
                     {
-                        "connection_id": "/subscriptions/<your-subscription-id>/resourceGroups/<your-resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<your-project-name>/connections/<your-fabric-connection-name>"
+                        "connection_id": "/subscriptions/<sub-id>/resourceGroups/<your-rg-name>/providers/Microsoft.CognitiveServices/accounts/<your-ai-services-name>/projects/<your-project-name>/connections/<your-fabric-connection-name>"
                     }
                 ]
             }

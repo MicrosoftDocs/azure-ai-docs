@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 05/12/2025
+ms.date: 05/30/2025
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -28,7 +28,7 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 
 ## Deploy models
 
-To run agentic retrieval, you must deploy three models to your Azure OpenAI resource:
+To run agentic retrieval, you must deploy the following models to your Azure OpenAI resource:
 
 + An LLM for query planning.
 
@@ -40,20 +40,19 @@ Agentic retrieval [supports several models](../../search-agentic-retrieval-how-t
 
 To deploy the Azure OpenAI models:
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/).
-
-1. On the home page, find the Azure OpenAI tile and select **Let's go**.
-
-    :::image type="content" source="../../media/search-get-started-agentic-retrieval/azure-openai-lets-go-tile.png" alt-text="Screenshot of the Azure OpenAI tile in the Azure AI Foundry portal." border="true" lightbox="../../media/search-get-started-agentic-retrieval/azure-openai-lets-go-tile.png":::
-
-   Your most recently used Azure OpenAI resource appears. If you have multiple Azure OpenAI resources, select **All resources** to switch between them.
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your Azure OpenAI resource.
 
 1. From the left pane, select **Model catalog**.
 
-1. Deploy `gpt-4o-mini` and `text-embedding-3-large` to your Azure OpenAI resource.
+1. Select **gpt-4o-mini**, and then select **Use this model**.
 
-   > [!NOTE]
-   > To simplify your code, don't use a custom deployment name for either model. This quickstart assumes the deployment and model names are the same.
+1. Specify a deployment name. To simplify your code, we recommend **gpt-4o-mini**.
+
+1. Accept the defaults.
+
+1. Select **Deploy**.
+
+1. Repeat the previous steps for **text-embedding-3-large**.
 
 ## Configure role-based access
 
@@ -69,7 +68,7 @@ To configure the recommended role-based access:
 
 1. On your Azure AI Search service, [assign the following roles](../../search-security-rbac.md#how-to-assign-roles-in-the-azure-portal) to yourself.
 
-    + **Owner/Contributor** or **Search Service Contributor**
+    + **Search Service Contributor**
 
     + **Search Index Data Contributor**
 
@@ -105,7 +104,7 @@ To connect from your local system:
 
 1. Run the following commands in sequence.
 
-    ```Azure CLI
+    ```azurecli
     az account show
 
     az account set --subscription <PUT YOUR SUBSCRIPTION ID HERE>
@@ -115,7 +114,7 @@ To connect from your local system:
 
 1. To obtain your Microsoft Entra token, run the following command. You specify this value in the next section.
 
-   ```Azure CLI
+   ```azurecli
    az account get-access-token --scope https://search.azure.com/.default --query accessToken --output tsv
    ```
 
@@ -279,9 +278,9 @@ POST {{baseUrl}}/indexes/{{index-name}}/docs/index?api-version={{api-version}}  
     }
 ```
 
-## Create a search agent
+## Create a knowledge agent
 
-To connect Azure AI Search to your `gpt-4o-mini` deployment and target the `earth_at_night` index at query time, you need a search agent. Use [Create Knowledge Agents](/rest/api/searchservice/knowledge-agents/create?view=rest-searchservice-2025-05-01-preview&preserve-view=true) to define an agent named `earth-search-agent`, which you specified using the `@agent-name` variable in a previous section.
+To connect Azure AI Search to your `gpt-4o-mini` deployment and target the `earth_at_night` index at query time, you need a knowledge agent. Use [Create Knowledge Agents](/rest/api/searchservice/knowledge-agents/create?view=rest-searchservice-2025-05-01-preview&preserve-view=true) to define an agent named `earth-search-agent`, which you specified using the `@agent-name` variable in a previous section.
 
 To ensure relevant and semantically meaningful responses, `defaultRerankerThreshold` is set to exclude responses with a reranker score of `2.5` or lower.
 
@@ -425,4 +424,28 @@ The output should be similar to the following JSON, where:
     }
   ]
 }
+```
+
+## Clean up resources
+
+When working in your own subscription, it's a good idea to finish a project by determining whether you still need the resources you created. Resources that are left running can cost you money. You can delete resources individually, or you can delete the resource group to delete the entire set of resources.
+
+In the Azure portal, you can find and manage resources by selecting **All resources** or **Resource groups** from the left pane. You can also run the following code to delete the objects you created in this quickstart.
+
+### Delete the knowledge agent
+
+```HTTP
+### Delete the agent
+DELETE {{baseUrl}}/agents/{{agent-name}}?api-version={{api-version}}
+    Content-Type: application/json
+    Authorization: Bearer {{token}}
+```
+
+### Delete the search index
+
+```HTTP
+### Delete the index
+DELETE {{baseUrl}}/indexes/{{index-name}}?api-version={{api-version}}
+    Content-Type: application/json
+    Authorization: Bearer {{token}}
 ```

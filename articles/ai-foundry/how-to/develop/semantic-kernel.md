@@ -42,12 +42,10 @@ To use LLMs deployed in Azure AI Foundry portal, you need the endpoint and crede
 
 [!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
-1. Go to the [Azure AI Foundry portal](https://ai.azure.com/).
+1. Go to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Open the project where the model is deployed, if it isn't already open.
 1. Go to **Models + endpoints** and select the model you deployed as indicated in the prerequisites.
 1. Copy the endpoint URL and the key.
-
-    :::image type="content" source="../../media/how-to/inference/serverless-endpoint-url-keys.png" alt-text="Screenshot of the option to copy endpoint URI and keys from an endpoint." lightbox="../../media/how-to/inference/serverless-endpoint-url-keys.png":::
 
     > [!TIP]
     > If your model was deployed with Microsoft Entra ID support, you don't need a key.

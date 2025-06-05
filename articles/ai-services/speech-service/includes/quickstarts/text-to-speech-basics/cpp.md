@@ -12,7 +12,7 @@ ms.author: eur
 
 ## Prerequisites
 
-[!INCLUDE [Prerequisites](../../common/azure-prerequisites.md)]
+[!INCLUDE [Prerequisites](../../common/azure-prerequisites-resourcekey-endpoint.md)]
 
 ## Set up the environment
 
@@ -20,7 +20,7 @@ The Speech SDK is available as a [NuGet package](https://www.nuget.org/packages/
 
 ### Set environment variables
 
-[!INCLUDE [Environment variables](../../common/environment-variables.md)]
+[!INCLUDE [Environment variables](../../common/environment-variables-resourcekey-endpoint.md)]
 
 ## Create the application
 
@@ -42,16 +42,16 @@ Follow these steps to create a console application and install the Speech SDK.
 
     int main()
     {
-        // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
+        // This example requires environment variables named "SPEECH_KEY" and "ENDPOINT"
         auto speechKey = GetEnvironmentVariable("SPEECH_KEY");
-        auto speechRegion = GetEnvironmentVariable("SPEECH_REGION");
+        auto endpoint = GetEnvironmentVariable("ENDPOINT");
 
-        if ((size(speechKey) == 0) || (size(speechRegion) == 0)) {
-            std::cout << "Please set both SPEECH_KEY and SPEECH_REGION environment variables." << std::endl;
+        if ((size(speechKey) == 0) || (size(endpoint) == 0)) {
+            std::cout << "Please set both SPEECH_KEY and ENDPOINT environment variables." << std::endl;
             return -1;
         }
 
-        auto speechConfig = SpeechConfig::FromSubscription(speechKey, speechRegion);
+        auto speechConfig = SpeechConfig::FromEndpoint(speechKey, endpoint);
 
         // The neural multilingual voice can speak different languages based on the input text.
         speechConfig->SetSpeechSynthesisVoiceName("en-US-AvaMultilingualNeural");
@@ -79,7 +79,7 @@ Follow these steps to create a console application and install the Speech SDK.
             {
                 std::cout << "CANCELED: ErrorCode=" << (int)cancellation->ErrorCode << std::endl;
                 std::cout << "CANCELED: ErrorDetails=[" << cancellation->ErrorDetails << "]" << std::endl;
-                std::cout << "CANCELED: Did you set the speech resource key and region values?" << std::endl;
+                std::cout << "CANCELED: Did you set the speech resource key and endpoint values?" << std::endl;
             }
         }
 
@@ -112,14 +112,14 @@ Follow these steps to create a console application and install the Speech SDK.
     Install-Package Microsoft.CognitiveServices.Speech
     ```
 
-1. To change the speech synthesis language, replace `en-US-AvaMultilingualNeural` with another [supported voice](~/articles/ai-services/speech-service/language-support.md#prebuilt-neural-voices).
+1. To change the speech synthesis language, replace `en-US-AvaMultilingualNeural` with another [supported voice](~/articles/ai-services/speech-service/language-support.md#standard-voices).
 
    All neural voices are multilingual and fluent in their own language and English. For example, if the input text in English is *I'm excited to try text to speech* and you set `es-ES-ElviraNeural`, the text is spoken in English with a Spanish accent. If the voice doesn't speak the language of the input text, the Speech service doesn't output synthesized audio.
 
-1. [Build and run your new console application](/cpp/build/vscpp-step-2-build) to start speech synthesis to the default speaker.
+1. To start speech synthesis to the default speaker, [Build and run your new console application](/cpp/build/vscpp-step-2-build).
 
    > [!IMPORTANT]
-   > Make sure that you set the `SPEECH_KEY` and `SPEECH_REGION` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
+   > Make sure that you set the `SPEECH_KEY` and `ENDPOINT` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
 
 1. Enter some text that you want to speak. For example, type *I'm excited to try text to speech*. Select the **Enter** key to hear the synthesized speech.
 

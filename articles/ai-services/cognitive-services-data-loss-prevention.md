@@ -3,10 +3,12 @@ title: Data loss prevention
 description: Azure AI services data loss prevention capabilities allow customers to configure the list of outbound URLs their Azure AI services resources are allowed to access. This configuration creates another level of control for customers to prevent data loss.
 author: gclarkmt
 ms.author: gregc
+ms.date: 5/19/2025
 ms.service: azure-ai-services
 ms.topic: how-to
-ms.date: 5/19/2025
-ms.custom: template-concept
+ms.custom:
+  - template-concept
+  - build-2025
 ---
 
 # Configure data loss prevention for Azure AI services
@@ -24,7 +26,7 @@ There are two parts to enable data loss prevention. First, the resource property
 >[!NOTE]
 >
 > * The `allowedFqdnList`  property value supports a maximum of 1000 URLs.
-> * The property supports both IP addresses (IPv4 only) and fully qualified domain names (i.e., `www.microsoft.com`) as values.
+> * The property supports fully qualified domain names (i.e., `www.microsoft.com`) as values.
 > * It can take up to 15 minutes for the updated list to take effect. 
 
 # [Azure CLI](#tab/azure-cli)

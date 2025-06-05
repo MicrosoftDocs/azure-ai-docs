@@ -2,13 +2,16 @@
 title: Custom evaluators
 titleSuffix: Azure AI Foundry
 description: Learn how to create custom evaluators for your AI applications using code-based or prompt-based approaches.
+author: lgayhardt
+ms.author: lagayhar
 manager: scottpolly
+ms.reviewer: mithigpe
+ms.date: 05/19/2025
 ms.service: azure-ai-foundry
 ms.topic: reference
-ms.date: 05/19/2025
-ms.reviewer: mithigpe
-ms.author: lagayhar
-author: lgayhardt
+ms.custom:
+  - build-aifnd
+  - build-2025
 ---
 
 # Custom evaluators
@@ -59,9 +62,13 @@ name: Friendliness Evaluator
 description: Friendliness Evaluator to measure warmth and approachability of answers.
 model:
   api: chat
+  configuration:
+    type: azure_openai
+    azure_endpoint: ${env:AZURE_OPENAI_ENDPOINT}
+    azure_deployment: gpt-4o-mini
   parameters:
+    model:
     temperature: 0.1
-    response_format: { "type": "json" }
 inputs:
   response:
     type: string
@@ -88,7 +95,7 @@ Five stars: the answer is very friendly
 Please assign a rating between 1 and 5 based on the tone and demeanor of the response.
 
 **Example 1**
-generated_query: I just dont feel like helping you! Your questions are getting very annoying.
+generated_query: I just don't feel like helping you! Your questions are getting very annoying.
 output:
 {"score": 1, "reason": "The response is not warm and is resisting to be providing helpful information."}
 **Example 2**
@@ -147,4 +154,5 @@ friendliness_score = friendliness_eval(response="I will not apologize for my beh
 
 ## Related content
 
-- Learn [how to run batch evaluation on a dataset](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-datasets) and [how to run batch evaluation on a target](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-a-target).
+- [How to run batch evaluation on a dataset](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-test-datasets-using-evaluate)  
+- [How to run batch evaluation on a target](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-a-target)

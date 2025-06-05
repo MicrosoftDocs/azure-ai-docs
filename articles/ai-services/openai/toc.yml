@@ -1,5 +1,5 @@
 items:
-- name: Azure OpenAI Service Documentation
+- name: Azure OpenAI Documentation
   href: index.yml
 - name: Overview
   expanded: true
@@ -27,8 +27,6 @@ items:
       href: azure-government.md
 - name: Quickstarts
   items:
-    - name: Assistants (preview)
-      href: assistants-quickstart.md
     - name: Audio generation
       href: audio-completions-quickstart.md
     - name: Chat
@@ -38,6 +36,8 @@ items:
       href: gpt-v-quickstart.md
     - name: Image generation
       href: dall-e-quickstart.md
+    - name: Video generation
+      href: video-generation-quickstart.md
     - name: Use your data
       href: use-your-data-quickstart.md
     - name: Realtime API for speech and audio (preview)
@@ -70,8 +70,6 @@ items:
         href: ./concepts/content-filter-groundedness.md
       - name: Protected material detection
         href: ./concepts/content-filter-protected-material.md
-      - name: Personally identifiable information (PII) detection
-        href: ./concepts/content-filter-personal-information.md
       - name: Content filter configurability
         href: ./concepts/content-filter-configurability.md
       - name: Content filter annotations
@@ -92,6 +90,8 @@ items:
       href: ./concepts/fine-tuning-considerations.md
     - name: Vision-enabled models
       href: ./concepts/gpt-with-vision.md
+    - name: Video generation (preview)
+      href: ./concepts/video-generation.md
     - name: Red teaming large language models (LLMs)
       href: ./concepts/red-teaming.md
     - name: Content credentials
@@ -117,7 +117,7 @@ items:
 - name: How-to 
   items:
   - name: API version lifecycle
-    href: ./api-version-deprecation.md
+    href: ./api-version-lifecycle.md
   - name: Assistants (preview)
     items:
     - name: Getting started with Assistants
@@ -143,7 +143,11 @@ items:
       - name: Realtime API via WebSockets (preview)
         href: ./how-to/realtime-audio-websockets.md
   - name: Batch
-    href: ./how-to/batch.md
+    items:
+     - name: Getting started with batch
+       href: ./how-to/batch.md
+     - name: Batch with Azure Blob Storage
+       href: ./how-to/batch-blob-storage.md   
   - name: Responses & chat completions
     items:
     - name: Responses API
@@ -202,7 +206,10 @@ items:
     items:
       - name: Fine-tuning your model
         href: ./how-to/fine-tuning.md
-        displayName: finetuning, fine-tuning 
+        displayName: finetuning, fine-tuning
+      - name: Deploy for testing
+        href: ./how-to/fine-tune-test.md
+        displayName: finetuning, fine-tuning
       - name: Deploy your fine-tuned model
         href: ./how-to/fine-tuning-deploy.md 
         displayName: finetuning, fine-tuning  
@@ -212,6 +219,9 @@ items:
       - name: Preference fine-tuning
         href: ./how-to/fine-tuning-direct-preference-optimization.md
         displayName: finetuning, fine-tuning  
+      - name: Reinforcement fine-tuning
+        href: ./how-to/reinforcement-fine-tuning.md
+        displayName: finetuning, fine-tuning
       - name: Safety evaluation
         href: ./how-to/fine-tuning-safety-evaluation.md
         displayName: finetuning, fine-tuning  
@@ -273,7 +283,7 @@ items:
         href: ./how-to/monitor-openai.md
       - name: Provisioned throughput units (PTU)
         items:
-        - name: What is the Provisioned Managed offering (PTU)?
+        - name: What is the Provisioned Throughput offering (PTU)?
           href: ./concepts/provisioned-throughput.md
           displayName: PTU, provisioned, provisioned throughput units
         - name: Understanding and calculating PTU costs 
@@ -286,8 +296,6 @@ items:
           href: ./how-to/spillover-traffic-management.md
         - name: Azure OpenAI PTU updates
           href: ./concepts/provisioned-migration.md
-        - name: Azure OpenAI PTU in Azure Government
-          href: ./concepts/gov-provisioned.md
       - name: Plan and manage costs
         href: ./how-to/manage-costs.md
       - name: Performance & latency
@@ -336,11 +344,13 @@ items:
       href: /legal/cognitive-services/openai/customer-copyright-commitment?context=/azure/ai-services/openai/context/context
 - name: Reference
   items:
+    - name: Latest Inference Preview API
+      href: reference-preview-latest.md
     - name: Inference GA API reference
       href: reference.md
-    - name: Authoring preview API reference
+    - name: 2025-04-01-preview - Authoring 
       href: authoring-reference-preview.md
-    - name: Inference preview API reference
+    - name: 2025-04-01-preview - Inference 
       href: reference-preview.md
     - name: Assistants API Reference
       items:

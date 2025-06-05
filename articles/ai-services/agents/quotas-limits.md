@@ -7,7 +7,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: conceptual
-ms.date: 04/25/2025
+ms.date: 05/29/2025
 ms.custom: azure-ai-agents
 ---
 
@@ -23,8 +23,10 @@ The following sections provide you with a guide to the default quotas and limits
 |--|--|
 | Max files per agent/thread | 10,000 |
 | Max file size for agents & fine-tuning | 512 MB |
-| Max size for all uploaded files for agents |100 GB |  
+| Max size for all uploaded files for agents |200 GB |  
 | agents token limit | 2,000,000 token limit |
+
+The 2,000,000 agent limit refers to the maximum number of distinct Agent resources that can be created within a single Azure subscription per region. It does not apply to threads or token usage.
 
 ## Quotas and limits for Azure OpenAI models
 

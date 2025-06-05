@@ -2,24 +2,26 @@
 title: Plan and manage costs for Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: Learn how to plan for and manage costs for Azure AI Foundry by using cost analysis in the Azure portal.
+author: Blackmist
+ms.author: larryfr
 manager: scottpolly
+ms.reviewer: obiume
+ms.date: 05/07/2025
 ms.service: azure-ai-foundry
+ms.topic: conceptual
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
-ms.topic: conceptual
-ms.date: 05/07/2025
-ms.reviewer: obiume
-ms.author: larryfr
-author: Blackmist
+  - build-aifnd
+  - build-2025
 ---
 
 # Plan and manage costs for Azure AI Foundry
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-This article describes how you plan for and manage costs for [Azure AI Foundry](https://ai.azure.com). First, you use the Azure pricing calculator to help plan for Azure AI Foundry costs before you add any resources for the service to estimate costs. Next, as you add Azure resources, review the estimated costs.
+This article describes how you plan for and manage costs for [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). First, you use the Azure pricing calculator to help plan for Azure AI Foundry costs before you add any resources for the service to estimate costs. Next, as you add Azure resources, review the estimated costs.
 
 > [!TIP]
 > Azure AI Foundry does not have a specific page in the Azure pricing calculator. Azure AI Foundry is composed of several other Azure services, some of which are optional. This article provides information on using the pricing calculator to estimate costs for these services.
@@ -55,7 +57,7 @@ When you create resources for a hub, resources for other Azure services are also
 
 | Service pricing page | Description with example use cases | 
 | --- | --- | 
-| [Azure AI services](https://azure.microsoft.com/pricing/details/cognitive-services/) | You pay to use services such as Azure OpenAI, Speech, Content Safety, Vision, Document Intelligence, and Language. Costs vary for each service and for some features within each service. For more information about provisioning of Azure AI services, see [Azure AI Foundry hubs](../concepts/ai-resources.md#azure-ai-services-api-access-keys).| 
+| [Azure AI services](https://azure.microsoft.com/pricing/details/cognitive-services/) | You pay to use services such as Azure OpenAI, Speech, Content Safety, Vision, Document Intelligence, and Language. Costs vary for each service and for some features within each service. For more information about provisioning of Azure AI services, see [Azure AI Foundry hubs](../concepts/ai-resources.md).| 
 | [Azure AI Search](https://azure.microsoft.com/pricing/details/search/) | An example use case is to store data in a [vector search index](./index-add.md). |
 | [Azure Machine Learning](https://azure.microsoft.com/pricing/details/machine-learning/) | Compute instances are needed to run [Visual Studio Code (Web or Desktop)](./develop/vscode.md) and [prompt flow](./prompt-flow.md) via Azure AI Foundry.<br/><br/>When you create a compute instance, the virtual machine (VM) stays on so it's available for your work.<br/><br/>Enable idle shutdown to save on cost when the VM is idle for a specified time period.<br/><br/>Or set up a schedule to automatically start and stop the compute instance to save cost when you aren't planning to use it. | 
 | [Azure Virtual Machine](https://azure.microsoft.com/pricing/details/virtual-machines/) | Azure Virtual Machines gives you the flexibility of virtualization for a wide range of computing solutions with support for Linux, Windows Server, SQL Server, Oracle, IBM, SAP, and more. |
@@ -108,14 +110,14 @@ For the examples in this section, assume that all Azure AI Foundry Services are 
 
 Here's an example of how to monitor costs for a project. The costs are used as an example only. Your costs vary depending on the services that you use and the amount of usage.
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com).
+1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 1. Select your project and then select **Management center** from the left menu. 
 1. Under the **Project** heading, select **Overview**. 
 1. Select **View cost for resources** from the **Total cost** section. The [Azure portal](https://portal.azure.com) opens to the resource group for your project.
 
     :::image type="content" source="../media/cost-management/project-costs/project-settings-go-view-costs.png" alt-text="Screenshot of the Azure AI Foundry portal showing how to see project settings." lightbox="../media/cost-management/project-costs/project-settings-go-view-costs.png":::
 
-1. Expand the **Resource** column to see the costs for each service that's underlying your [project](../concepts/ai-resources.md#organize-work-in-projects-for-customization). But this view doesn't include costs for all resources that you use in a project.
+1. Expand the **Resource** column to see the costs for each service that's underlying your [project](../concepts/ai-resources.md). But this view doesn't include costs for all resources that you use in a project.
 
     :::image type="content" source="../media/cost-management/project-costs/costs-per-project-resource.png" alt-text="Screenshot of the Azure portal cost analysis with the project and associated resources." lightbox="../media/cost-management/project-costs/costs-per-project-resource.png":::
 
@@ -131,9 +133,9 @@ Here's an example of how to monitor costs for a project. The costs are used as a
     - The resource group name is **rg-contosoairesource**.
     - The total cost for all resources and services in the example resource group is **$222.97**. In this example, $222.97 is the total cost for your application or solution that you're building with Azure AI Foundry. Again, this example assumes that all Azure AI Foundry Services are in the same resource group. But you can have resources in different resource groups.
     - The project name is **contoso-outdoor-proj**.
-    - The costs that are limited to resources and services in the example [project](../concepts/ai-resources.md#organize-work-in-projects-for-customization) total **$212.06**. 
+    - The costs that are limited to resources and services in the example [project](../concepts/ai-resources.md) total **$212.06**. 
     
-1. Expand **contoso-outdoor-proj** to see the costs for services underlying the [project](../concepts/ai-resources.md#organize-work-in-projects-for-customization) resource. 
+1. Expand **contoso-outdoor-proj** to see the costs for services underlying the [project](../concepts/ai-resources.md) resource. 
 
     :::image type="content" source="../media/cost-management/project-costs/costs-per-project-resource-details.png" alt-text="Screenshot of the Azure portal cost analysis with project expanded." lightbox="../media/cost-management/project-costs/costs-per-project-resource-details.png":::
 

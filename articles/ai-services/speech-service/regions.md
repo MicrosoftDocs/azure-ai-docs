@@ -18,7 +18,7 @@ The Speech service allows your application to convert audio to text, perform spe
 
 Keep in mind the following points:
 
-- If your application uses a [Speech SDK](speech-sdk.md), you provide the region identifier, such as `westus`, when you create a `SpeechConfig`. Make sure the region matches the region of your subscription.
+- If your application uses a [Speech SDK](speech-sdk.md), you provide the region identifier, such as `westus`, when you create a `SpeechConfig`. Make sure the region matches the region of your Speech resource.
 - If your application uses one of the Speech service REST APIs, the region is part of the endpoint URI you use when making requests.
 - Keys created for a region are valid only in that region. If you attempt to use them with other regions, you get authentication errors.
 
@@ -104,7 +104,7 @@ The regions in these tables support most of the core features of the Speech serv
 
 # [Text to speech](#tab/tts)
 
-| **Region** | **Neural text to speech** | **Batch synthesis API** | **HD voices** | **Azure OpenAI voices**  | **Custom neural voice** | **Custom neural voice training** | **Custom neural voice high performance endpoint** | **Personal voice** | **Text to speech avatar** | **Custom avatar** | **Custom avatar training** |
+| **Region** | **Neural text to speech** | **Batch synthesis API** | **HD voices** | **Azure OpenAI voices**  | **Custom voice** | **Custom voice training** | **Custom voice high performance endpoint** | **Personal voice** | **Text to speech avatar** | **Custom avatar** | **Custom avatar training** |
 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 | australiaeast      | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
 | brazilsouth        | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
@@ -249,38 +249,38 @@ The regions in these tables support most of the core features of the Speech serv
 
 # [Scenarios](#tab/scenarios)
 
-| **Region** | **Pronunciation assessment** | **Speaker recognition** | **Voice assistants** |
+| **Region** | **Pronunciation assessment** | **Speaker recognition** | **Voice assistants** | **Voice Live API** |
 |-----|-----|-----|-----|
-| australiaeast      | ✅ | ✅ |  |
-| brazilsouth        | ✅ |  |  |
-| canadacentral      | ✅ | ✅ | ✅ |
-| centralindia       | ✅ | ✅ |  |
-| centralus          | ✅ | ✅ |  |
-| eastasia           | ✅ | ✅ | ✅ |
-| eastus             | ✅ | ✅ | ✅ |
-| eastus2            | ✅ | ✅ | ✅ |
-| francecentral      | ✅ | ✅ |  |
-| germanywestcentral | ✅ | ✅ |  |
-| japaneast          | ✅ | ✅ |  |
-| japanwest          | ✅ | ✅ |  |
-| koreacentral       | ✅ | ✅ |  |
-| northcentralus     | ✅ |  |  |
-| northeurope        | ✅ | ✅ | ✅ |
-| norwayeast         | ✅ | ✅ |  |
-| qatarcentral       | ✅ | ✅ |  |
-| southafricanorth   | ✅ |  |  |
-| southcentralus     | ✅ |  | ✅ |
-| southeastasia      | ✅ | ✅ | ✅ |
-| swedencentral      | ✅ | ✅ |  |
-| switzerlandnorth   | ✅ |  |  |
-| switzerlandwest    | ✅ | ✅ |  |
-| uaenorth           | ✅ |  |  |
-| uksouth            | ✅ | ✅ |  |
-| westcentralus      | ✅ | ✅ | ✅ |
-| westeurope         | ✅ | ✅ | ✅ |
-| westus             | ✅ | ✅ | ✅ |
-| westus2            | ✅ | ✅ | ✅ |
-| westus3            | ✅ | ✅ |  |
+| australiaeast      | ✅ | ✅ |  |  |
+| brazilsouth        | ✅ |  |  |  |
+| canadacentral      | ✅ | ✅ | ✅ |  |
+| centralindia       | ✅ | ✅ |  |  |
+| centralus          | ✅ | ✅ |  |  |
+| eastasia           | ✅ | ✅ | ✅ |  |
+| eastus             | ✅ | ✅ | ✅ |  |
+| eastus2            | ✅ | ✅ | ✅ | ✅ |
+| francecentral      | ✅ | ✅ |  |  |
+| germanywestcentral | ✅ | ✅ |  |  |
+| japaneast          | ✅ | ✅ |  |  |
+| japanwest          | ✅ | ✅ |  |  |
+| koreacentral       | ✅ | ✅ |  |  |
+| northcentralus     | ✅ |  |  |  |
+| northeurope        | ✅ | ✅ | ✅ |  |
+| norwayeast         | ✅ | ✅ |  |  |
+| qatarcentral       | ✅ | ✅ |  |  |
+| southafricanorth   | ✅ |  |  |  |
+| southcentralus     | ✅ |  | ✅ |  |
+| southeastasia      | ✅ | ✅ | ✅ |  |
+| swedencentral      | ✅ | ✅ |  | ✅ |
+| switzerlandnorth   | ✅ |  |  |  |
+| switzerlandwest    | ✅ | ✅ |  |  |
+| uaenorth           | ✅ |  |  |  |
+| uksouth            | ✅ | ✅ |  |  |
+| westcentralus      | ✅ | ✅ | ✅ |  |
+| westeurope         | ✅ | ✅ | ✅ |  |
+| westus             | ✅ | ✅ | ✅ |  |
+| westus2            | ✅ | ✅ | ✅ |  |
+| westus3            | ✅ | ✅ |  |  |
 
 > [!NOTE]
 > The [Speech SDK](speech-sdk.md) supports voice assistant capabilities through Direct Line Speech.

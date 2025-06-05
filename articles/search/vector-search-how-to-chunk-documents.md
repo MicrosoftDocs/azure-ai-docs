@@ -196,6 +196,6 @@ A [fixed-sized chunking and embedding generation sample](https://github.com/Azur
 
 ## See also
 
-+ [Understand embeddings in Azure OpenAI Service](/azure/ai-services/openai/concepts/understand-embeddings)
++ [Understand embeddings in Azure OpenAI in Azure AI Foundry Models](/azure/ai-services/openai/concepts/understand-embeddings)
 + [Learn how to generate embeddings](/azure/ai-services/openai/how-to/embeddings)
-+ [Tutorial: Explore Azure OpenAI Service embeddings and document search](/azure/ai-services/openai/tutorials/embeddings)
++ [Tutorial: Explore Azure OpenAI embeddings and document search](/azure/ai-services/openai/tutorials/embeddings)

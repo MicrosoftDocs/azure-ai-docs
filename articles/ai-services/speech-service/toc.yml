@@ -136,9 +136,9 @@ items:
     - name: Use high definition (HD) voices
       href: high-definition-voices.md
       displayName: hd voice
-    - name: Custom neural voice
+    - name: Custom voice
       items:
-        - name: Custom neural voice overview
+        - name: Custom voice overview
           href: custom-neural-voice.md
           displayName: cnv
         - name: Create a professional voice
@@ -160,7 +160,7 @@ items:
             href: professional-voice-train-voice.md
           - name: "Part 5: Deploy and use your voice model"
             href: professional-voice-deploy-endpoint.md
-        - name: Custom neural voice lite
+        - name: Custom voice lite
           href: custom-neural-voice-lite.md
         - name: Personal voice
           items:
@@ -200,14 +200,11 @@ items:
         items:
         - name: Custom text to speech avatar overview
           href: text-to-speech-avatar/what-is-custom-text-to-speech-avatar.md
+        - name: How to record video samples
+          href: text-to-speech-avatar/custom-avatar-record-video-samples.md
           displayName: custom-tts-avatar
         - name: Create a custom text to speech avatar
           href: text-to-speech-avatar/custom-avatar-create.md
-        - name: How to record video samples
-          href: text-to-speech-avatar/custom-avatar-record-video-samples.md
-          displayName: avatar
-        - name: Deploy your custom text to speech avatar model as an endpoint
-          href: text-to-speech-avatar/custom-avatar-endpoint.md
           displayName: avatar
     - name: Audio content creation
       href: how-to-audio-content-creation.md
@@ -297,12 +294,12 @@ items:
         href: language-learning-overview.md
       - name: Pronunciation Assessment with speech to text
         items:
-        - name: Reading and speaking assessment in Azure AI Foundry
+        - name: Pronunciation assessment in Azure AI Foundry
           href: pronunciation-assessment-tool.md
           displayName: pronounce, learn language, assess pron
         - name: Interactive language learning with pronunciation assessment
           href: language-learning-with-pronunciation-assessment.md
-          displayName: pronounce, learn language, assess pron, chatting 
+          displayName: pronounce, learn language, assess pron, chatting
     - name: Azure OpenAI speech to speech chat
       href: openai-speech.md
     - name: Multi-device conversation
@@ -323,7 +320,7 @@ items:
   items:
     - name: Access control and authentication
       items:
-      - name: Role-based access with Microsoft Entra ID 
+      - name: Role-based access with Microsoft Entra ID
         href: role-based-access-control.md
       - name: Use Microsoft Entra authentication
         href: how-to-configure-azure-ad-auth.md
@@ -418,16 +415,6 @@ items:
         href: resiliency-and-recovery-plan.md
     - name: Migration
       items:
-        - name: Neural voice migration
-          items:
-            - name: Migration overview
-              href: migration-overview-neural-voice.md
-            - name: Migrate to custom neural voice 
-              href: how-to-migrate-to-custom-neural-voice.md
-            - name: Migrate to prebuilt neural voice
-              href: how-to-migrate-to-prebuilt-neural-voice.md
-            - name: Migrate to custom voice API
-              href: migrate-to-custom-voice-api.md
         - name: Speech to text REST API migration
           items:
           - name: From Speech to text v3.2 to 2024-11-15
@@ -441,6 +428,8 @@ items:
             displayName: migrate,migration,deprecate,retire,sunset
         - name: From Long Audio API to Batch synthesis API
           href: migrate-to-batch-synthesis.md
+        - name: Migrate to custom voice API
+          href: migrate-to-custom-voice-api.md
 - name: Speech CLI
   items:
     - name: Speech CLI overview
@@ -508,13 +497,13 @@ items:
           displayName: Python SDK,Python dev kit,reference,reference docs,ref documentation
           href: /python/api/azure-cognitiveservices-speech/
     - name: REST API reference
-      items: 
+      items:
         - name: Speech to text REST API
           href: rest-speech-to-text.md
-          displayName: reference 
+          displayName: reference
         - name: Speech to text REST API for short audio
-          href: rest-speech-to-text-short.md    
-          displayName: reference       
+          href: rest-speech-to-text-short.md
+          displayName: reference
         - name: Text to speech REST API
           href: rest-text-to-speech.md
           displayName: reference, tts output, output format
@@ -544,13 +533,13 @@ items:
         href: /legal/cognitive-services/speech-service/disclosure-voice-talent?context=/azure/ai-services/speech-service/context/context
       - name: Disclosure design guidelines
         items:
-        - name: Custom neural voice
+        - name: Custom voice
           href: /legal/cognitive-services/speech-service/custom-neural-voice/concepts-disclosure-guidelines?context=/azure/ai-services/speech-service/context/context
         - name: Text to speech avatar
           href: /legal/cognitive-services/speech-service/custom-neural-voice/concepts-disclosure-guidelines-avatar?context=/azure/ai-services/speech-service/context/context
       - name: Disclosure design patterns
         items:
-        - name: Custom neural voice
+        - name: Custom voice
           href: /legal/cognitive-services/speech-service/custom-neural-voice/concepts-disclosure-patterns?context=/azure/ai-services/speech-service/context/context
         - name: Text to speech avatar
           href: /legal/cognitive-services/speech-service/custom-neural-voice/concepts-disclosure-patterns-avatar?context=/azure/ai-services/speech-service/context/context
@@ -567,7 +556,7 @@ items:
     - name: Embedded speech
       href: /legal/cognitive-services/speech-service/embedded-speech/limited-access-embedded-speech?context=/azure/ai-services/speech-service/context/context
     - name: Speaker Recognition
-      items: 
+      items:
       - name: Transparency note
         items:
         - name: Use cases for Speaker Recognition

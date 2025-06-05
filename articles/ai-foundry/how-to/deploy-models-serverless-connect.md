@@ -5,7 +5,7 @@ description: Learn how to consume standard deployments from a different project 
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 12/20/2024
+ms.date: 05/19/2025
 ms.author: mopeakande
 author: msakande
 ms.reviewer: fasantia
@@ -35,7 +35,7 @@ The need to consume a standard deployments endpoint in a different project or hu
 
 - An [Azure AI Foundry hub](create-azure-ai-resource.md), if you're using a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. A **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** does not use a hub. For more information, see [Project types](../what-is-azure-ai-foundry.md#project-types).
 
-- An [Azure AI Foundry project](create-projects.md).
+- If you don't have one, [create a [!INCLUDE [hub](../includes/hub-project-name.md)]](create-projects.md?pivots=hub-project).
 
 - A model [deployed to a standard deployments](deploy-models-serverless.md). This article assumes that you previously deployed the **Meta-Llama-3-8B-Instruct** model. To learn how to deploy this model as a standard deployment, see [Deploy models as standard deployments](deploy-models-serverless.md).
 
@@ -43,7 +43,7 @@ The need to consume a standard deployments endpoint in a different project or hu
 
     # [Azure AI Foundry portal](#tab/azure-ai-studio)
 
-    You can use any compatible web browser to navigate [Azure AI Foundry](https://ai.azure.com).
+    You can use any compatible web browser to navigate [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
     # [Azure CLI](#tab/cli)
 
@@ -92,7 +92,7 @@ Follow these steps to create a connection:
 
     [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-    Go to [Azure AI Foundry](https://ai.azure.com) and navigate to the project where the endpoint you want to connect to is deployed.
+    Go to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and navigate to the project where the endpoint you want to connect to is deployed.
 
     # [Azure CLI](#tab/cli)
 

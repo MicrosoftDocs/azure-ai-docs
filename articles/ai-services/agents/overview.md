@@ -16,7 +16,7 @@ ms.custom: azure-ai-agents
 
 Most businesses don’t want just chatbots - they want automation that's faster and with fewer errors. That might mean summarizing documents, processing invoices, managing support tickets, or publishing blog posts. In all cases, the goal is the same: freeing people and resources to focus on higher-value work by offloading repetitive and predictable tasks.
 
-Large language models (LLMs) opened the door to a new type of automation with systems that can understand unstructured data, make decisions, and generate content. In practice, it can difficult for businesses to move beyond demos and into production. LLMs can drift, be incorrect, and lack accountability. Without visibility, policy enforcement, and orchestration, these models are difficult to trust in real business workflows.
+Large language models (LLMs) opened the door to a new type of automation with systems that can understand unstructured data, make decisions, and generate content. In practice, it can be difficult for businesses to move beyond demos and into production. LLMs can drift, be incorrect, and lack accountability. Without visibility, policy enforcement, and orchestration, these models are difficult to trust in real business workflows.
 
 :::row:::
     :::column span="1":::
@@ -105,11 +105,11 @@ Azure AI Foundry Agent Service provides a production-ready foundation for deploy
 | **4. Trust and safety** | Integrated [content filters](../openai/how-to/content-filters.md) help prevent misuse and mitigate prompt injection risks (XPIA). all outputs are policy-governed. |
 | **5. Enterprise integration** | Bring your own [storage](./how-to/use-your-own-resources.md#use-an-existing-azure-cosmos-db-for-nosql-account-for-thread-storage), [Azure AI Search index](./how-to/use-your-own-resources.md#use-an-existing-azure-ai-search-resource), and [virtual network](./how-to/virtual-networks.md) to meet compliance needs. |
 | **6. Observability and debugging** | Threads, tool invocations, and message traces are [fully traceable](./concepts/tracing.md); [Application Insights integration](./how-to/metrics.md) for telemetry |
-| **7. Identity and policy control** | Built on Microsoft Entra with full support for RBAC, audit logs, and enterprise conditional acces.s |
+| **7. Identity and policy control** | Built on Microsoft Entra with full support for RBAC, audit logs, and enterprise conditional access. |
 
-## Get started with Azure AI Foundry Agent Service
+## Get started with Foundry Agent Service
 
-To get started with Azure AI Agent Service, you need to create an Azure AI Foundry project in your Azure subscription. 
+To get started with Foundry Agent Service, you need to create an Azure AI Foundry project in your Azure subscription. 
 
 Start with the [environment setup](./environment-setup.md) and [quickstart](./quickstart.md) guide if it's your first time using the service.
 1. You can create a project with the required resources. 

@@ -20,7 +20,7 @@ zone_pivot_groups: azure-ai-studio-sdk-cli
 
 [!include [hub](../includes/uses-hub-only.md)]
 
-Network isolation for a [!INCLUDE [hub-based](../includes/hub-project-name.md)] has two aspects. One is the network isolation to access an [Azure AI Foundry](https://ai.azure.com) hub. Another is the network isolation of computing resources for both your hub and project (such as compute instance, serverless and managed online endpoint.) This document explains the latter highlighted in the diagram. You can use hub built-in network isolation to protect your computing resources.
+Network isolation for a [!INCLUDE [hub-based](../includes/hub-project-name.md)] has two aspects. One is the network isolation to access an [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) hub. Another is the network isolation of computing resources for both your hub and project (such as compute instance, serverless and managed online endpoint.) This document explains the latter highlighted in the diagram. You can use hub built-in network isolation to protect your computing resources.
 
 :::image type="content" source="../media/how-to/network/azure-ai-network-outbound.svg" alt-text="Diagram of hub network isolation configuration with Azure AI Foundry." lightbox="../media/how-to/network/azure-ai-network-outbound.png":::
 
@@ -104,7 +104,7 @@ Before following the steps in this article, make sure you have the following pre
 
 # [Python SDK](#tab/python)
 
-* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version](https://azure.microsoft.com/free/).
 
 * The __Microsoft.Network__ resource provider must be registered for your Azure subscription. This resource provider is used by hub when creating private endpoints for the managed virtual network.
 
@@ -563,7 +563,7 @@ To configure a managed virtual network that allows only approved outbound commun
 
 * __Update an existing hub__:
 
-    The following example demonstrates how to create a managed virtual network for an existing Azure Machine Learning hub named `myhub`. The example also adds several outbound rules for the managed virtual network:
+    The following example demonstrates how to create a managed virtual network for an existing hub named `myhub`. The example also adds several outbound rules for the managed virtual network:
 
     * `myrule` - Adds a private endpoint for an Azure Blob store.
     * `datafactory` - Adds a service tag rule to communicate with Azure Data Factory.
@@ -809,7 +809,7 @@ If you plan to use __HuggingFace models__ with the hub, add outbound _FQDN_ rule
 * *.docker.io
 * *.docker.com
 * production.cloudflare.docker.com
-* cnd.auth0.com
+* cdn.auth0.com
 * cdn-lfs.huggingface.co
 
 ### Scenario: Models Sold Directly by Azure 
@@ -832,6 +832,7 @@ Private endpoints are currently supported for the following Azure services:
 * Azure AI Search
 * Azure AI services
 * Azure API Management
+    * Supporting only Classic tier without VNET injection and Standard V2 tier with virtual network integration. For more on API Management virtual networks, see [Virtual Network Concepts](https://learn.microsoft.com/azure/api-management/virtual-network-concepts)    
 * Azure Container Registry
 * Azure Cosmos DB (all sub resource types)
 * Azure Data Factory
@@ -855,8 +856,33 @@ When you create a private endpoint for hub dependency resources, such as Azure S
 
 A private endpoint is automatically created for a connection if the target resource is an Azure resource listed previously. A valid target ID is expected for the private endpoint. A valid target ID for the connection can be the Azure Resource Manager ID of a parent resource. The target ID is also expected in the target of the connection or in `metadata.resourceid`. For more on connections, see [How to add a new connection in Azure AI Foundry portal](connections-add.md).
 
-> [!IMPORTANT]
-> As of April 30th 2025, the Azure AI Enterprise Network Connection Approver role must be assigned to the Azure AI Foundry hub's managed identity to approve private endpoints to securely access your Azure resources from the managed virtual network. This doesn't impact existing resources with approved private endpoints as the role is correctly assigned by the service. For new resources, ensure the role is assigned to the hub's managed identity. For Azure Data Factory, Azure Databricks, and Azure Function Apps, the Contributor role should instead be assigned to your hub's managed identity. This role assignment is applicable to both User-assigned identity and System-assigned identity workspaces. 
+### Approval of Private Endpoints
+
+To establish Private Endpoint connections in managed virtual networks using Azure AI Foundry, the workspace managed identity, whether system-assigned or user-assigned, and the user identity that initiates the creation of the private endpoint, must have permissions to approve the Private Endpoint connections on the target resources. Previously, this was done through automatic role assignments by the Azure AI Foundry service. However, there are security concerns about the automatic role assignment. To improve security, starting April 30th, 2025, we will discontinue this automatic permission grant logic. We recommend assigning the [Azure AI Enterprise Network Connection Approver role](/azure/role-based-access-control/built-in-roles/ai-machine-learning) or a custom role with the necessary Private Endpoint connection permissions on the target resource types and grant this role to the Foundry hub's managed identity to allow Azure AI Foundry services to approve Private Endpoint connections to the target Azure resources.
+
+Here's the list of private endpoint target resource types covered by covered by the Azure AI Enterprise Network Connection Approver role:
+
+* Azure Application Gateway
+* Azure Monitor
+* Azure AI Search
+* Event Hubs
+* Azure SQL Database
+* Azure Storage
+* Azure Machine Learning workspace
+* Azure Machine Learning registry
+* Azure AI Foundry
+* Azure Key Vault
+* Azure CosmosDB
+* Azure Database for MySQL
+* Azure Database for PostgreSQL
+* Azure AI Services
+* Azure Cache for Redis
+* Container Registry
+* API Management
+
+For creating Private Endpoint outbound rules to target resource types not covered by the Azure AI Enterprise Network Connection Approver role, such as Azure Data Factory, Azure Databricks, and Azure Function Apps, a custom scoped-down role is recommended, defined only by the actions necessary to approve private endpoint connections on the target resource types.
+
+For creating Private Endpoint outbound rules to default workspace resources, the required permissions are automatically covered by the role assignments granted during workspace creation, so no additional action is needed.
 
 ## Select an Azure Firewall version for allowed only approved outbound
 

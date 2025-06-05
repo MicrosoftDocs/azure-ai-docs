@@ -1,11 +1,14 @@
 ---
-author: jboback
+author: laujan
+ms.author: lajanuar
 manager: nitinme
+ms.date: 12/19/2023
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/19/2023
-ms.author: jboback
-ms.custom: devx-track-js, ignite-2024
+ms.custom:
+  - devx-track-js
+  - ignite-2024
+  - build-2025
 ---
 
 [Reference documentation](/javascript/api/overview/azure/ai-language-text-readme) | [More samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/cognitivelanguage/ai-language-text/samples/v1) | [Package (npm)](https://www.npmjs.com/package/@azure/ai-language-text) | [Library source code](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/cognitivelanguage/ai-language-text) 
@@ -17,7 +20,7 @@ Use this quickstart to create a Text Analytics for health application with the c
 
 * Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
 * [Node.js](https://nodejs.org/) v14 LTS or later
-* Once you have your Azure subscription, [create an AI Foundry resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal#create-a-new-azure-ai-foundry-resource).
+* Once you have your Azure subscription, [create an AI Foundry resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal).
     * You need the key and endpoint from the resource you create to connect your application to the API. You paste your key and endpoint into the code later in the quickstart.
     * You can use the free pricing tier (`Free F0`) to try the service (providing 5,000 text records - 1,000 characters each) and upgrade later to the `Standard S` pricing tier for production. You can also start with the `Standard S` pricing tier, receiving the same initial quota for free (5,000 text records) before getting charged. For more information on pricing, visit [Language Service Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/language-service/).
 

@@ -18,7 +18,7 @@ zone_pivot_groups: azure-ai-studio-sdk-cli
 > [!NOTE]
 > The information provided in this article is specific to a **[!INCLUDE [hub](../includes/hub-project-name.md)]**, and doesn't apply for a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. For more information, see [Types of projects](../what-is-azure-ai-foundry.md#project-types).
 
-Use this article to learn how to securely use [Azure AI Foundry](https://ai.azure.com)'s playground chat on your data. The following sections provide our recommended configuration to protect your data and resources by using Microsoft Entra ID role-based access control, a managed network, and private endpoints. We recommend disabling public network access for Azure OpenAI resources, Azure AI Search resources, and storage accounts. Using selected networks with IP rules isn't supported because the services' IP addresses are dynamic.
+Use this article to learn how to securely use [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs)'s playground chat on your data. The following sections provide our recommended configuration to protect your data and resources by using Microsoft Entra ID role-based access control, a managed network, and private endpoints. We recommend disabling public network access for Azure OpenAI resources, Azure AI Search resources, and storage accounts. Using selected networks with IP rules isn't supported because the services' IP addresses are dynamic.
 
 > [!NOTE]
 > Azure AI Foundry's managed virtual network settings apply only to Azure AI Foundry's managed compute resources, not platform as a service (PaaS) services like Azure OpenAI or Azure AI Search. When using PaaS services, there's no data exfiltration risk because the services are managed by Microsoft.
@@ -168,7 +168,7 @@ Azure AI Foundry uses Azure Key Vault to securely store and manage secrets. To a
 
 ## Configure connections to use Microsoft Entra ID
 
-Connections from Azure AI Foundry to Azure AI services and Azure AI Search should use Microsoft Entra ID for secure access. Connections are created from [Azure AI Foundry](https://ai.azure.com) instead of the Azure portal.
+Connections from Azure AI Foundry to Azure AI services and Azure AI Search should use Microsoft Entra ID for secure access. Connections are created from [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) instead of the Azure portal.
 
 > [!IMPORTANT]
 > Using Microsoft Entra ID with Azure AI Search is currently a preview feature. For more information on connections, visit the [Add connections](connections-add.md#create-a-new-connection) article.

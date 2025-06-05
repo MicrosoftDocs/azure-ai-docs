@@ -1,11 +1,14 @@
 ---
 title: Monitor model deployments in Azure AI Foundry Models
 description: Learn how to use Azure Monitor tools like Log Analytics to capture and analyze metrics and data logs for Foundry Models.
-author: santiagxf
-ms.author: fasantia 
+author: ssalgadodev
+ms.author: ssalgado
 ms.service: azure-ai-model-inference
 ms.topic: how-to
 ms.date: 4/30/2025
+manager: scottpolly
+ms.reviewer: fasantia
+reviewer: santiagxf
 ---
 
 # Monitor model deployments in Azure AI Foundry Models
@@ -45,7 +48,7 @@ Azure Monitor metrics can be queried using multiple tools, including:
 
 You can view metrics within Azure AI Foundry portal. To view them, follow these steps:
 
-1. Go to [Azure AI Foundry portal](https://ai.azure.com).
+1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 1. Navigate to your model deployment by selecting **Deployments**, and then select the name of the deployment you want to see metrics about.
 
