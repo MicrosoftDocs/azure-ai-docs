@@ -14,16 +14,16 @@ ms.date: 06/05/2025
   - [Choose a region](/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#global-standard-model-availability) that supports the chat completion model you want to use (gpt-4o, gpt-4o-mini, or an equivalent model).
   - [Deploy the chat completion model](/azure/ai-foundry/how-to/deploy-models-openai) in Azure AI Foundry or [use another approach](/azure/ai-services/openai/how-to/working-with-models).
 
-- An [Azure AI Search resource](../search-create-service-portal.md).
+- An [Azure AI Search resource](../../search-create-service-portal.md).
   - Use the same region as your Azure OpenAI resource.
   - We recommend using the Basic tier or higher.
-  - [Enable semantic ranking](../semantic-how-to-enable-disable.md).
+  - [Enable semantic ranking](../../semantic-how-to-enable-disable.md).
 
 - [Visual Studio Code](https://code.visualstudio.com/download).
 - [Node.JS with LTS](https://nodejs.org/en/download/).
 - [TypeScript](https://www.typescriptlang.org/download).
 
-To meet the same-region requirement, start by reviewing the [regions for the chat model](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability) you want to use. After you identify a region, confirm that Azure AI Search is available in the [same region](../search-region-support.md#azure-public-regions).
+To meet the same-region requirement, start by reviewing the [regions for the chat model](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability) you want to use. After you identify a region, confirm that Azure AI Search is available in the [same region](../../search-region-support.md#azure-public-regions).
 
 ## Configure access
 
@@ -64,7 +64,7 @@ A search index provides grounding data for the chat model. We recommend the hote
 
 1. In the Azure portal, [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
-1. On the **Overview** home page, select [**Import data**](../search-get-started-portal.md) to start the wizard.
+1. On the **Overview** home page, select [**Import data**](../../search-get-started-portal.md) to start the wizard.
 
 1. On the **Connect to your data** page, select **Samples** from the dropdown list.
 
@@ -119,9 +119,9 @@ A search index provides grounding data for the chat model. We recommend the hote
 
 1. **Save** your changes.
 
-1. Run the following query in [Search Explorer](../search-explorer.md) to test your index: `complimentary breakfast`.
+1. Run the following query in [Search Explorer](../../search-explorer.md) to test your index: `complimentary breakfast`.
 
-   Output should look similar to the following example. Results that are returned directly from the search engine consist of fields and their verbatim values, along with metadata like a search score and a semantic ranking score and caption if you use semantic ranker. We used a [select statement](../search-query-odata-select.md) to return just the HotelName, Description, and Tags fields.
+   Output should look similar to the following example. Results that are returned directly from the search engine consist of fields and their verbatim values, along with metadata like a search score and a semantic ranking score and caption if you use semantic ranker. We used a [select statement](../../search-query-odata-select.md) to return just the HotelName, Description, and Tags fields.
 
    ```
    {
@@ -198,7 +198,7 @@ In the remaining sections, you set up API calls to Azure OpenAI and Azure AI Sea
 1. On the **Overview** home page, select the link to view the endpoints. Copy the URL. An example endpoint might look like `https://example.openai.azure.com/`.
 
 
-You're using Microsoft Entra ID and role assignments for the connection. Make sure you're logged in to the same tenant and subscription as Azure AI Search and Azure OpenAI. You can use the Azure CLI on the command line to show current properties, change properties, and to sign in. For more information, see [Connect without keys](../search-get-started-rbac.md). 
+You're using Microsoft Entra ID and role assignments for the connection. Make sure you're logged in to the same tenant and subscription as Azure AI Search and Azure OpenAI. You can use the Azure CLI on the command line to show current properties, change properties, and to sign in. For more information, see [Connect without keys](../../search-get-started-rbac.md). 
 
 Run each of the following commands in sequence.
 
@@ -433,7 +433,7 @@ The preceding code does the following:
 
 ## Send a complex RAG query
 
-Azure AI Search supports [complex types](../search-howto-complex-data-types.md) for nested JSON structures. In the hotels-sample-index, `Address` is an example of a complex type, consisting of `Address.StreetAddress`, `Address.City`, `Address.StateProvince`, `Address.PostalCode`, and `Address.Country`. The index also has complex collection of `Rooms` for each hotel.
+Azure AI Search supports [complex types](../../search-howto-complex-data-types.md) for nested JSON structures. In the hotels-sample-index, `Address` is an example of a complex type, consisting of `Address.StreetAddress`, `Address.City`, `Address.StateProvince`, `Address.PostalCode`, and `Address.Country`. The index also has complex collection of `Rooms` for each hotel.
 
 If your index has complex types, change your prompt to include formatting instructions: 
 
@@ -624,7 +624,3 @@ Once you have your tenant ID, run `az login --tenant <YOUR-TENANT-ID>` at a comm
 When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
 You can find and manage resources in the Azure portal by using the **All resources** or **Resource groups** link in the leftmost pane.
-
-## Related content
-
-- [Tutorial: Build a RAG solution in Azure AI Search](../tutorial-rag-build-solution.md)

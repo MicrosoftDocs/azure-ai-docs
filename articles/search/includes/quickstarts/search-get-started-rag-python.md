@@ -14,14 +14,14 @@ ms.date: 06/05/2025
   - [Choose a region](/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#global-standard-model-availability) that supports the chat completion model you want to use (gpt-4o, gpt-4o-mini, or an equivalent model).
   - [Deploy the chat completion model](/azure/ai-foundry/how-to/deploy-models-openai) in Azure AI Foundry or [use another approach](/azure/ai-services/openai/how-to/working-with-models).
 
-- An [Azure AI Search resource](../search-create-service-portal.md).
+- An [Azure AI Search resource](../../search-create-service-portal.md).
   - Use the same region as your Azure OpenAI resource.
   - We recommend using the Basic tier or higher.
-  - [Enable semantic ranking](../semantic-how-to-enable-disable.md).
+  - [Enable semantic ranking](../../semantic-how-to-enable-disable.md).
 
 - [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and the [Jupyter package](https://pypi.org/project/jupyter/). For more information, see [Python in Visual Studio Code](https://code.visualstudio.com/docs/languages/python).
 
-To meet the same-region requirement, start by reviewing the [regions for the chat model](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability) you want to use. After you identify a region, confirm that Azure AI Search is available in the [same region](../search-region-support.md#azure-public-regions).
+To meet the same-region requirement, start by reviewing the [regions for the chat model](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability) you want to use. After you identify a region, confirm that Azure AI Search is available in the [same region](../../search-region-support.md#azure-public-regions).
 
 ## Download file
 
@@ -68,7 +68,7 @@ A search index provides grounding data for the chat model. We recommend the hote
 
 1. In the Azure portal, [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
-1. On the **Overview** home page, select [**Import data**](../search-get-started-portal.md) to start the wizard.
+1. On the **Overview** home page, select [**Import data**](../../search-get-started-portal.md) to start the wizard.
 
 1. On the **Connect to your data** page, select **Samples** from the dropdown list.
 
@@ -123,9 +123,9 @@ A search index provides grounding data for the chat model. We recommend the hote
 
 1. **Save** your changes.
 
-1. Run the following query in [Search Explorer](../search-explorer.md) to test your index: `complimentary breakfast`.
+1. Run the following query in [Search Explorer](../../search-explorer.md) to test your index: `complimentary breakfast`.
 
-   Output should look similar to the following example. Results that are returned directly from the search engine consist of fields and their verbatim values, along with metadata like a search score and a semantic ranking score and caption if you use semantic ranker. We used a [select statement](../search-query-odata-select.md) to return just the HotelName, Description, and Tags fields.
+   Output should look similar to the following example. Results that are returned directly from the search engine consist of fields and their verbatim values, along with metadata like a search score and a semantic ranking score and caption if you use semantic ranker. We used a [select statement](../../search-query-odata-select.md) to return just the HotelName, Description, and Tags fields.
 
    ```
    {
@@ -215,7 +215,7 @@ It takes several minutes to create the environment. When the environment is read
 
 ## Sign in to Azure
 
-You're using Microsoft Entra ID and role assignments for the connection. Make sure you're logged in to the same tenant and subscription as Azure AI Search and Azure OpenAI. You can use the Azure CLI on the command line to show current properties, change properties, and to sign in. For more information, see [Connect without keys](../search-get-started-rbac.md). 
+You're using Microsoft Entra ID and role assignments for the connection. Make sure you're logged in to the same tenant and subscription as Azure AI Search and Azure OpenAI. You can use the Azure CLI on the command line to show current properties, change properties, and to sign in. For more information, see [Connect without keys](../../search-get-started-rbac.md). 
 
 Run each of the following commands in sequence.
 
@@ -352,7 +352,7 @@ This section uses Visual Studio Code and Python to call the chat completion APIs
 
 ## Send a complex RAG query
 
-Azure AI Search supports [complex types](../search-howto-complex-data-types.md) for nested JSON structures. In the hotels-sample-index, `Address` is an example of a complex type, consisting of `Address.StreetAddress`, `Address.City`, `Address.StateProvince`, `Address.PostalCode`, and `Address.Country`. The index also has complex collection of `Rooms` for each hotel.
+Azure AI Search supports [complex types](../../search-howto-complex-data-types.md) for nested JSON structures. In the hotels-sample-index, `Address` is an example of a complex type, consisting of `Address.StreetAddress`, `Address.City`, `Address.StateProvince`, `Address.PostalCode`, and `Address.Country`. The index also has complex collection of `Rooms` for each hotel.
 
 If your index has complex types, your query can provide those fields if you first convert the search results output to JSON, and then pass the JSON to the chat model. The following example adds complex types to the request. The formatting instructions include a JSON specification.
 
@@ -457,6 +457,3 @@ When you're working in your own subscription, it's a good idea at the end of a p
 
 You can find and manage resources in the Azure portal by using the **All resources** or **Resource groups** link in the leftmost pane.
 
-## Related content
-
-- [Tutorial: Build a RAG solution in Azure AI Search](../tutorial-rag-build-solution.md)
