@@ -106,19 +106,26 @@ For customers without an existing virtual network, the Standard Setup with Priva
         ```
 
 1. Run the CheckCapabilityHostReadiness.ps1 and edit the command to add your subscription ID, resource group name, and your newly deployed AI Services account resource name.
+   
    ```
    .\CheckCapabilityHostReadiness.ps1 -subscriptionId "<your-sub-id>" -resourcegroup "<new-rg-name>" -accountname "<your-aiservices-name>"
    ```
-   If you do not want to run the Powershell script, you can run a bash script instead, from the file CheckCapabilityHostReadiness.sh. Run the following two      commands:
+   
+   If you don't want to run the PowerShell script, you can run a bash script instead, from the file CheckCapabilityHostReadiness.sh. Run the following two commands:
+   
       ```
       chmod +x CheckCapabilityHostReadiness.sh
       ./CheckCapabilityHostReadiness.sh "<your-sub-id>" "<new-rg-name>" "<your-aiservices-name>"
       ```
+      
 1. Deploy the main-project-caphost-create.bicep
+   
    ```
    az deployment group create --resource-group <new-rg-name> --template-file main-project-caphost-create.bicep
    ```
-   After running this script, you are required to input the following values:
+   
+   After running this script, you're required to input the following values:
+   
    ```
    Please provide string value for 'accountName' (? for help): <your-account-name>
    Please provide string value for 'projectName' (? for help): <your-project-name>
