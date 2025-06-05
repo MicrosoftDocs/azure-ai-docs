@@ -5,7 +5,7 @@ description: Get details about how data that customers provide is processed, use
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: references_regions, build-2024
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 12/19/2024
 ms.reviewer: shubhirajMsft
 ms.author: scottpolly

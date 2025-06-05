@@ -9,7 +9,7 @@ reviewer: larryfr
 ms.reviewer: larryfr
 ms.date: 05/18/2025
 ms.service: azure-ai-foundry
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom:
   - build-aifnd
   - build-2025
