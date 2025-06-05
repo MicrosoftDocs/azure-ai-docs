@@ -419,17 +419,17 @@ The preceding code does the following:
 
 ## Troubleshooting
 
-    If you get a **Forbidden** error message, check Azure AI Search configuration to make sure role-based access is enabled.
+If you get a **Forbidden** error message, check Azure AI Search configuration to make sure role-based access is enabled.
 
-    If you get an **Authorization failed** error message, wait a few minutes and try again. It can take several minutes for role assignments to become operational.
+If you get an **Authorization failed** error message, wait a few minutes and try again. It can take several minutes for role assignments to become operational.
 
-    If you get a **Resource not found** error message, check the resource URIs and make sure the API version on the chat model is valid.
+If you get a **Resource not found** error message, check the resource URIs and make sure the API version on the chat model is valid.
 
-    Otherwise, to experiment further, change the query and rerun the last step to better understand how the model works with the grounding data.
+Otherwise, to experiment further, change the query and rerun the last step to better understand how the model works with the grounding data.
 
-    You can also modify the prompt to change the tone or structure of the output.
+You can also modify the prompt to change the tone or structure of the output.
 
-    You might also try the query without semantic ranking by setting `use_semantic_reranker=False` in the query parameters step. Semantic ranking can noticably improve the relevance of query results and the ability of the LLM to return useful information. Experimentation can help you decide whether it makes a difference for your content.
+You might also try the query without semantic ranking by setting `use_semantic_reranker=False` in the query parameters step. Semantic ranking can noticably improve the relevance of query results and the ability of the LLM to return useful information. Experimentation can help you decide whether it makes a difference for your content.
 
 ## Send a complex RAG query
 

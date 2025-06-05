@@ -279,11 +279,11 @@ groups:
   title: Programming languages
   prompt: Choose a programming language
   pivots:
-  - id: programming-language-javascript
+  - id: javascript
     title: JavaScript
-  - id: programming-language-python
+  - id: python
     title: Python
-  - id: programming-language-typescript
+  - id: typescript
     title: TypeScript
 # Owner: diberry
 - id: programming-languages-rest-ps-py-js
