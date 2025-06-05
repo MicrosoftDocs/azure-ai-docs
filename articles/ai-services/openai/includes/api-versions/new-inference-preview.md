@@ -634,20 +634,21 @@ Status Code: 200
 }
 ```
 
-## Create image edit
+## Image generations - Edit
 
 ```HTTP
-POST {endpoint}/openai/v1/images/edits?api-version=preview
+POST https://{endpoint}/openai/deployments/{deployment-id}/images/edits?api-version=2025-04-01-preview
 ```
 
-
+Edits an image from a text caption on a given gpt-image-1 model deployment
 
 ### URI Parameters
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
+| deployment-id | path | Yes | string |  |
+| api-version | query | Yes | string |  |
 
 ### Request Header
 
@@ -663,34 +664,33 @@ POST {endpoint}/openai/v1/images/edits?api-version=preview
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| background | enum | Allows to set transparency for the background of the generated image(s). <br>This parameter is only supported for `gpt-image-1`. Must be one of <br>`transparent`, `opaque` or `auto` (default value). When `auto` is used, the <br>model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it <br>should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
-| image | string or array |  | Yes |  |
-| mask | string |  | No |  |
-| model | string | The model deployment to use for the image edit operation. | Yes |  |
-| n | integer | The number of images to generate. Must be between 1 and 10. | No | 1 |
-| prompt | string | A text description of the desired image(s). The maximum length is 1000 characters for `dall-e-2`, and 32000 characters for `gpt-image-1`. | Yes |  |
-| quality | enum | The quality of the image that will be generated. `high`, `medium` and `low` are only supported for `gpt-image-1`. `dall-e-2` only supports `standard` quality. Defaults to `auto`.<br>Possible values: `standard`, `low`, `medium`, `high`, `auto` | No |  |
-| response_format | enum | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. This parameter is only supported for `dall-e-2`, as `gpt-image-1` will always return base64-encoded images.<br>Possible values: `url`, `b64_json` | No |  |
-| size | enum | The size of the generated images. Must be one of `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), or `auto` (default value) for `gpt-image-1`, and one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`.<br>Possible values: `256x256`, `512x512`, `1024x1024`, `1536x1024`, `1024x1536`, `auto` | No |  |
-| user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
+| image | string or array | The image(s) to edit. Must be a supported image file or an array of images. Each image should be a png, or jpg file less than 25MB. | Yes |  |
+| mask | string | An additional image whose fully transparent areas (e.g., where alpha is zero) indicate where the image should be edited. If there are multiple images provided, the mask will be applied to the first image. Must be a valid PNG file, less than 4MB, and have the same dimensions as the image. | No |  |
+| n | integer | The number of images to generate. | No | 1 |
+| prompt | string | A text description of the desired image(s). The maximum length is 32000 characters. | Yes |  |
+| quality | [imageQuality](#imagequality) | The quality of the image that will be generated. | No | auto |
+| response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which the generated images are returned. | No | url |
+| size | [imageSize](#imagesize) | The size of the generated images. | No | auto |
+| user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
 
 ### Responses
 
 **Status Code:** 200
 
-**Description**: The request has succeeded. 
+**Description**: Ok 
 
 |**Content-Type**|**Type**|**Description**|
 |:---|:---|:---|
-|application/json | [AzureImagesResponse](#azureimagesresponse) | |
+|application/json | [generateImagesResponse](#generateimagesresponse) | |
 
 **Status Code:** default
 
-**Description**: An unexpected error response. 
+**Description**: An error occurred. 
 
 |**Content-Type**|**Type**|**Description**|
 |:---|:---|:---|
-|application/json | [AzureErrorResponse](#azureerrorresponse) | |
+|application/json | [dalleErrorResponse](#dalleerrorresponse) | |
+
 
 ## Create image
 
