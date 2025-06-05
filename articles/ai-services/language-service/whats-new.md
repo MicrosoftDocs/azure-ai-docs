@@ -42,6 +42,18 @@ Azure AI Language introduces new customization and entity subtype features for P
 
 *  [Use entity synonyms for tailored PII detection](personally-identifiable-information/how-to/adapt-to-domain-pii.md#api-schema-for-the-entitysynoyms-parameter).
 
+##### Enhanced CLU and CQA Capabilities in Azure AI Foundry
+
+Azure AI Foundry now offers enhanced capabilities for fine-tuning with custom conversational language understanding (CLU) and conversational question-and-answer (CQA) AI features:
+
+*	CLU and CQA authoring tools are now available in Azure AI Foundry.
+  
+*	CLU offers a quick deploy option powered by large language models (LLMs) for rapid deployment.
+
+*	CQA incorporates the QnA Maker scoring algorithm for more accurate responses.
+
+*	CQA enables exact match answering for precise query resolutions.
+
 For more information, see our latest [TechCommunity Blog Post](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/announcing-azure-ai-language-new-features-to-accelerate-your-agent-development/4415216).
 
 ## April 2025
