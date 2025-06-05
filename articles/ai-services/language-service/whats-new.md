@@ -54,7 +54,7 @@ Azure AI Foundry now offers enhanced capabilities for fine-tuning with custom co
 
 *	CQA enables exact match answering for precise query resolutions.
 
-For more information, see our latest [TechCommunity Blog Post](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/announcing-azure-ai-language-new-features-to-accelerate-your-agent-development/4415216).
+###### For more information on our latest updates, see our [TechCommunity Blog Post](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/announcing-azure-ai-language-new-features-to-accelerate-your-agent-development/4415216).
 
 ## April 2025
 
