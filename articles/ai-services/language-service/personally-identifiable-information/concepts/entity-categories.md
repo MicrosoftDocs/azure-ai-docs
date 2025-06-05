@@ -11,17 +11,17 @@ ms.author: lajanuar
 ms.custom: language-service-pii
 ---
 
-# Supported Personally Identifiable Information (PII) entity categories
+# Supported PII entity categories
 
-Use this article to find the entity categories that the [PII detection feature](../how-to-call.md) returns. This feature runs a predictive model to identify, categorize, and redact sensitive information from an input document.
+Use this article to find the entity categories that the [personally identifiable information (PII) detection feature](../how-to-call.md) returns. This feature runs a predictive model to identify, categorize, and redact sensitive information from an input document.
 
 The PII feature includes the ability to detect personal (`PII`) and health (`PHI`) information.
 
 ## Entity categories
 
 > [!NOTE]
-> To detect protected health information (PHI), use the `domain=phi` parameter and model version `2020-04-01` or later.
-> The `Type` and Sub is a new designation we're introducing in preview
+> * To detect protected health information (PHI), use the `domain=phi` parameter and model version `2020-04-01` or later.
+> The `Type` and `Subtype` are new designations introduced in preview
 
 The following entity categories are returned when you're sending API requests PII feature.
 
