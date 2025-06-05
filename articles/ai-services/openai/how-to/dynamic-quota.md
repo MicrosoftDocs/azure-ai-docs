@@ -1,20 +1,18 @@
 ---
-title: Azure OpenAI Service dynamic quota
-titleSuffix: Azure AI services
+title: Azure OpenAI in Azure AI Foundry Models dynamic quota
 description: Learn how to use Azure OpenAI dynamic quota
-#services: cognitive-services
 author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 01/31/2025
+ms.date: 04/30/2025
 ms.author: mbullwin
 ---
 
 
 # Azure OpenAI Dynamic quota (Preview)
 
-Dynamic quota is an Azure OpenAI feature that enables a standard (pay-as-you-go) deployment to opportunistically take advantage of more quota when extra capacity is available. When dynamic quota is set to off, your deployment will be able to process a maximum throughput established by your Tokens Per Minute (TPM) setting. When you exceed your preset TPM, requests will return HTTP 429 responses. When dynamic quota is enabled, the deployment has the capability to access higher throughput before returning 429 responses, allowing you to perform more calls earlier. The extra requests are still billed at the [regular pricing rates](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
+Dynamic quota is an Azure OpenAI feature that enables a standard deployment to opportunistically take advantage of more quota when extra capacity is available. When dynamic quota is set to off, your deployment will be able to process a maximum throughput established by your Tokens Per Minute (TPM) setting. When you exceed your preset TPM, requests will return HTTP 429 responses. When dynamic quota is enabled, the deployment has the capability to access higher throughput before returning 429 responses, allowing you to perform more calls earlier. The extra requests are still billed at the [regular pricing rates](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
 
 Dynamic quota can only temporarily *increase* your available quota: it will never decrease below your configured value.
 
@@ -61,7 +59,7 @@ Alternatively, you can enable it programmatically with Azure CLI's [`az rest`](/
 Replace the `{subscriptionId}`, `{resourceGroupName}`, `{accountName}`, and `{deploymentName}` with the relevant values for your resource. In this case, `accountName` is equal to Azure OpenAI resource name.
 
 ```azurecli
-az rest --method patch --url "https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/deployments/{deploymentName}?2023-10-01-preview" --body '{"properties": {"dynamicThrottlingEnabled": true} }'
+az rest --method patch --url "https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/deployments/{deploymentName}?api-version=2023-10-01-preview" --body '{"properties": {"dynamicThrottlingEnabled": true} }'
 ```
 
 ### How do I know how much throughput dynamic quota is adding to my app?

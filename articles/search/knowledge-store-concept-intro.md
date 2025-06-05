@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 12/10/2024
+ms.date: 05/27/2025
 ---
 
 # Knowledge store in Azure AI Search
@@ -75,7 +75,7 @@ The type of projection you specify in this structure determines the type of stor
 
 To create knowledge store, use the Azure portal or an API. 
 
-You need [Azure Storage](/azure/storage/), a [skillset](cognitive-search-working-with-skillsets.md), and an [indexer](search-indexer-overview.md). Because indexers require a search index, you also need to provide an index definition.
+You need [Azure Storage](/azure/storage/), a [skillset](cognitive-search-working-with-skillsets.md), and an [indexer](search-indexer-overview.md). Because indexers require a search index, you also need to provide an [index definition](search-how-to-create-search-index.md).
 
 Go with the Azure portal approach for the fastest route to a finished knowledge store. Or, choose the REST API for a deeper understanding of how objects are defined and related.
 
@@ -91,7 +91,7 @@ Go with the Azure portal approach for the fastest route to a finished knowledge 
 
 1. Complete the wizard. Data extraction, enrichment, and knowledge store creation occur in this last step.
 
-The wizard automates several tasks. Specifically, both shaping and projections (definitions of physical data structures in Azure Storage) are created for you. 
+The wizard automates several tasks. Specifically, both data shaping and projections (definitions of physical data structures in Azure Storage) are created for you. 
 
 ### [**REST**](#tab/kstore-rest)
 

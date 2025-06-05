@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 01/16/2025
+ms.date: 05/05/2025
 ms.author: lajanuar
 ---
 
@@ -86,7 +86,7 @@ See how data, including text, tables, table headers, selection marks, and struct
 
     :::image type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Screenshot of keys and endpoint location in the Azure portal.":::
 
-After you retrieve you key and endpoint, you can use the following development options to build and deploy your Document Intelligence applications:
+After you retrieve your key and endpoint, use the following development options to build and deploy your Document Intelligence applications:
 
 ### [REST API](#tab/rest)
 
@@ -103,7 +103,7 @@ After you retrieve you key and endpoint, you can use the following development o
 ### [Document Intelligence Studio](#tab/studio)
 
 * [Studio](https://documentintelligence.ai.azure.com/studio)
-* [How-to guide](../studio-overview.md#authentication-in-studio)
+* [How-to guide](../quickstarts/get-started-studio.md#authentication-in-studio)
 
 ---
 
@@ -119,6 +119,11 @@ The layout model extracts structural elements from your documents. To follow are
 * [**Output response to markdown**](#output-response-to-markdown-format)
 * [**Figures**](#figures)
 * [**Sections**](#sections)
+
+Run the sample layout document analysis within [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio), then navigate to the results tab and access the full JSON output.
+
+   :::image type="content" source="../media/studio/json-output-tab.png" alt-text="Screenshot of results JSON output tab in the Document Intelligence Studio.":::
+
 
 ### Pages
 
@@ -220,9 +225,9 @@ The new machine-learning based page object detection extracts logical roles like
 
 ### Text, lines, and words
 
-The document layout model in Document Intelligence extracts print and handwritten style text as `lines` and `words`. The `styles` collection ../includes any handwritten style for lines if detected along with the spans pointing to the associated text. This feature applies to [supported handwritten languages](../language-support/prebuilt.md).
+The document layout model in Document Intelligence extracts print and handwritten style text as `lines` and `words`. The `styles` collection includes any handwritten style for lines if detected along with the spans pointing to the associated text. This feature applies to [supported handwritten languages](../language-support/prebuilt.md).
 
-For Microsoft Word, Excel, PowerPoint, and HTML, Document Intelligence v4.0 2024-11-30 (GA) Layout model extract all embedded text as is. Texts are extracted as words and paragraphs. Embedded images aren't supported.
+For Microsoft Word, Excel, PowerPoint, and HTML, Document Intelligence v4.0 `2024-11-30` (GA) Layout model extract all embedded text as is. Texts are extracted as words and paragraphs. Embedded images aren't supported.
 
 #### [Sample code](#tab/sample-code)
 
@@ -343,8 +348,8 @@ Here are a few factors to consider when using the Document Intelligence bale ext
 
 > [!NOTE]
 >
-> * Table analysis is not supported if the input file is XLSX.
-> * For *2024-11-30 (GA)*, the bounding regions for figures and tables cover only the core content and exclude associated caption and footnotes.
+> * Table analysis isn't supported if the input file is XLSX.
+> * For `2024-11-30` (GA), the bounding regions for figures and tables cover only the core content and exclude associated caption and footnotes.
 
 #### [Sample code](#tab/sample-code)
 
@@ -399,7 +404,8 @@ if result.tables:
 The Layout API can output the extracted text in markdown format. Use the `outputContentFormat=markdown` to specify the output format in markdown. The markdown content is output as part of the `content` section.
 
 > [!NOTE]
-> For v4.0 *2024-11-30 (GA)*, the representation of tables is changed to HTML tables to enable rendering of merged cells, multi-row headers, etc. Another related change is to use Unicode checkbox characters ☒ and ☐ for selection marks instead of :selected: and :unselected:.  Note that this means that the content of selection mark fields will contain :selected: even though their spans refer to Unicode characters in the top-level span.
+>
+> For v4.0 `2024-11-30` (GA), the representation of tables is changed to HTML tables to enable rendering of merged cells, multi-row headers, etc. Another related change is to use Unicode checkbox characters ☒ and ☐ for selection marks instead of `:selected:` and `:unselected:`. This update means that the content of selection mark fields contains `:selected:` even though their spans refer to Unicode characters in the top-level span. Refer to the [Markdown Output Format](../concept/markdown-elements.md) for full definition of Markdown elements.
 
 #### [Sample code](#tab/sample-code)
 
@@ -472,7 +478,7 @@ When *output=figures* is specified during the initial analyze operation, the ser
 `FigureId` is included in each figure object, following an undocumented convention of `{pageNumber}.{figureIndex}` where `figureIndex` resets to one per page.
 
 > [!NOTE]
-> For v4.0 *2024-11-30 (GA)*, the bounding regions for figures and tables cover only the core content and exclude associated caption and footnotes.
+> For v4.0 `2024-11-30` (GA), the bounding regions for figures and tables cover only the core content and exclude associated caption and footnotes.
 
 #### [Sample code](#tab/sample-code)
 
@@ -520,7 +526,7 @@ if result.figures:
 
 ### Sections
 
-Hierarchical document structure analysis is pivotal in organizing, comprehending, and processing extensive documents. This approach is vital for semantically segmenting long documents to boost comprehension, facilitate navigation, and improve information retrieval. The advent of [Retrieval Augmented Generation (RAG)](../concept/retrieval-augmented-generation.md) in document generative AI underscores the significance of hierarchical document structure analysis. The Layout model supports sections and subsections in the output, which identifies the relationship of sections and object within each section. The hierarchical structure is maintained in `elements` of each section. You can use [output response to markdown format](#output-response-to-markdown-format) to easily get the sections and subsections in markdown.
+Hierarchical document structure analysis is pivotal in organizing, comprehending, and processing extensive documents. This approach is vital for semantically segmenting long documents to boost comprehension, facilitate navigation, and improve information retrieval. The advent of [retrieval-augmented generation (RAG)](../concept/retrieval-augmented-generation.md) in document generative AI underscores the significance of hierarchical document structure analysis. The Layout model supports sections and subsections in the output, which identifies the relationship of sections and object within each section. The hierarchical structure is maintained in `elements` of each section. You can use [output response to markdown format](#output-response-to-markdown-format) to easily get the sections and subsections in markdown.
 
 #### [Sample code](#tab/sample-code)
 
@@ -637,7 +643,7 @@ Supported file formats:
 
   * For custom extraction model training, the total size of training data is 50 MB for template model and `1` GB for the neural model.
 
-  * For custom classification model training, the total size of training data is `1` GB  with a maximum of 10,000 pages. For 2024-11-30 (GA), the total size of training data is `2` GB with a maximum of 10,000 pages.
+  * For custom classification model training, the total size of training data is `1` GB  with a maximum of 10,000 pages. For `2024-11-30` (GA), the total size of training data is `2` GB with a maximum of 10,000 pages.
 
 :::moniker-end
 
@@ -675,8 +681,8 @@ After you retrieve you key and endpoint, you can use the following development o
 ### [REST API](#tab/rest)
 
 
-* [2023-07-31 GA (v3.1)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)
-* [2022-08-31 GA (v3.0)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)
+* [`2023-07-31` GA (v3.1)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)
+* [`2022-08-31` GA (v3.0)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)
 
 # [Client libraries](#tab/sdks)
 
@@ -688,7 +694,7 @@ After you retrieve you key and endpoint, you can use the following development o
 ### [Document Intelligence Studio](#tab/studio)
 
 * [Studio](https://documentintelligence.ai.azure.com/studio)
-* [How-to guide](../studio-overview.md#authentication-in-studio)
+* [How-to guide](../quickstarts/get-started-studio.md#authentication-in-studio)
 
 ---
 
@@ -901,7 +907,7 @@ The new machine-learning based page object detection extracts logical roles like
 
 The document layout model in Document Intelligence extracts print and handwritten style text as `lines` and `words`. The `styles` collection ../includes any handwritten style for lines if detected along with the spans pointing to the associated text. This feature applies to [supported handwritten languages](../language-support/prebuilt.md).
 
-For Microsoft Word, Excel, PowerPoint, and HTML, Document Intelligence v4.0 2024-11-30 (GA) Layout model extract all embedded text as is. Texts are extracted as words and paragraphs. Embedded images aren't supported.
+For Microsoft Word, Excel, PowerPoint, and HTML, Document Intelligence v4.0 `2024-11-30` (GA) Layout model extract all embedded text as is. Texts are extracted as words and paragraphs. Embedded images aren't supported.
 
 :::moniker-end
 
@@ -1078,8 +1084,8 @@ Here are a few factors to consider when using the Document Intelligence bale ext
 
 > [!NOTE]
 >
-> * Table analysis is not supported if the input file is XLSX.
- > * Document Intelligence v4.0 2024-11-30 (GA) supports bounding regions for figures and tables that cover only the core content and exclude associated caption and footnotes.
+> * Table analysis isn't supported if the input file is XLSX.
+ > * Document Intelligence v4.0 `2024-11-30` (GA) supports bounding regions for figures and tables that cover only the core content and exclude associated caption and footnotes.
 
 :::moniker-end
 

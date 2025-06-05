@@ -8,7 +8,7 @@ manager: omkarm
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
 ms.date: 10/20/2023
-ms.topic: article
+ms.topic: concept-article
 ---
 
 # Transparency Note for auto-generate prompt variants in prompt flow
@@ -52,7 +52,7 @@ This Transparency Note uses the following key terms:
 
 You use the auto-generate prompt variants feature to automatically generate and then assess prompt variations, so you can quickly find the best prompt for your use case. This feature enhances the capabilities in prompt flow to interactively edit and evaluate prompts, with the goal of simplifying prompt engineering.
 
-When you provide a base prompt, the auto-generate prompt variants feature generates several variations by using the generative power of Azure OpenAI Service models and an internal system prompt. Although Azure OpenAI Service provides content management filters, we recommend that you verify any generated prompts before you use them in production scenarios.
+When you provide a base prompt, the auto-generate prompt variants feature generates several variations by using the generative power of Azure OpenAI in Azure AI Foundry Models models and an internal system prompt. Although Azure OpenAI in Azure AI Foundry Models provides content management filters, we recommend that you verify any generated prompts before you use them in production scenarios.
 
 ### Use cases
 
@@ -74,7 +74,7 @@ The auto-generate prompt variants feature doesn't provide a measurement or evalu
 
 The auto-generate prompt variants feature is limited to generating a maximum of five variations from a base prompt. If you need more variations, modify your base prompt to generate them.
 
-Auto-generate prompt variants supports only Azure OpenAI Service models at this time. It also limits content to what's acceptable in terms of the content management policy in Azure OpenAI Service. The feature doesn't support uses outside this policy.
+Auto-generate prompt variants supports only Azure OpenAI models at this time. It also limits content to what's acceptable in terms of the content management policy in Azure OpenAI. The feature doesn't support uses outside this policy.
 
 ## System performance
 
@@ -82,7 +82,7 @@ Your use case in each scenario determines the performance of the auto-generate p
 
 Operating in the prompt flow ecosystem, which focuses on prompt engineering, provides a strong story for error handling. Retrying the operation often resolves an error.
 
-One error that might arise specific to this feature is response filtering from the Azure OpenAI Service resource for content or harm detection. This error happens when content in the base prompt is against the content management policy in Azure OpenAI Service. To resolve this error, update the base prompt in accordance with the guidance in [Azure OpenAI Service content filtering](/azure/ai-services/openai/concepts/content-filter).
+One error that might arise specific to this feature is response filtering from the Azure OpenAI resource for content or harm detection. This error happens when content in the base prompt is against the content management policy in Azure OpenAI. To resolve this error, update the base prompt in accordance with the guidance in [Azure OpenAI content filtering](/azure/ai-services/openai/concepts/content-filter).
 
 ### Best practices for improving system performance  
 
@@ -96,7 +96,7 @@ To improve performance, you can modify the following parameters, depending on th
 
 The Microsoft development team tested the auto-generate prompt variants feature to evaluate harm mitigation and fitness for purpose.
 
-The testing for harm mitigation showed support for the combination of system prompts and Azure OpenAI content management policies in actively safeguarding responses. You can find more opportunities to minimize the risk of harms in [Azure OpenAI Service abuse monitoring](/azure/ai-services/openai/concepts/abuse-monitoring) and [Azure OpenAI Service content filtering](/azure/ai-services/openai/concepts/content-filter).
+The testing for harm mitigation showed support for the combination of system prompts and Azure OpenAI content management policies in actively safeguarding responses. You can find more opportunities to minimize the risk of harms in [Azure OpenAI abuse monitoring](/azure/ai-services/openai/concepts/abuse-monitoring) and [Azure OpenAI content filtering](/azure/ai-services/openai/concepts/content-filter).
 
 Fitness-for-purpose testing supported the quality of generated prompts from creative purposes (poetry) and chat-bot agents. We caution you against drawing sweeping conclusions, given the breadth of possible base prompts and potential use cases. For your environment, use evaluations that are appropriate to the required use cases, and ensure that a human reviewer is part of the process.
 

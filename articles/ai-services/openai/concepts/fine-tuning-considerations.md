@@ -1,11 +1,10 @@
 ---
-title: Azure OpenAI Service fine-tuning considerations
-description: Learn more about what you should take into consideration before fine-tuning with Azure OpenAI Service 
-#services: cognitive-services
+title: Azure OpenAI in Azure AI Foundry Models fine-tuning considerations
+description: Learn more about what you should take into consideration before fine-tuning with Azure OpenAI 
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 08/29/2024
+ms.date: 03/26/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false

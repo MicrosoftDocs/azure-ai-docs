@@ -17,6 +17,8 @@ ms.custom: UpdateFrequency5, deploy, cliv1, sdkv1
 
 [!INCLUDE [dev v1](../includes/machine-learning-dev-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In this article, you learn how to update a web service that was deployed with Azure Machine Learning.
 
 ## Prerequisites

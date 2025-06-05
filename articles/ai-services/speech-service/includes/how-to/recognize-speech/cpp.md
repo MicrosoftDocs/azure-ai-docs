@@ -12,16 +12,16 @@ ms.author: eur
 
 ## Create a speech configuration instance
 
-To call the Speech service using the Speech SDK, you need to create a [`SpeechConfig`](/cpp/cognitive-services/speech/speechconfig) instance. This class includes information about your subscription, like your key and associated region, endpoint, host, or authorization token.
+To call the Speech service using the Speech SDK, you need to create a [`SpeechConfig`](/cpp/cognitive-services/speech/speechconfig) instance. This class includes information about your Speech resource, like your key and associated region, endpoint, host, or authorization token.
 
-1. Create an AI Services resource for Speech in the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices). Get the Speech resource key and region.
-1. Create a `SpeechConfig` instance by using the following code. Replace `YourSpeechKey` and `YourSpeechRegion` with your Speech resource key and region.
+1. Create an AI Foundry resource for Speech in the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry). Get the Speech resource key and endpoint.
+1. Create a `SpeechConfig` instance by using the following code. Replace `YourSpeechKey` and `YourSpeechEndpoint` with your Speech resource key and endpoint.
 
 ```cpp
 using namespace std;
 using namespace Microsoft::CognitiveServices::Speech;
 
-auto speechConfig = SpeechConfig::FromSubscription("YourSpeechKey", "YourSpeechRegion");
+auto speechConfig = SpeechConfig::FromEndpoint("YourServiceEndpoint", "YourSpeechResoureKey");
 ```
 
 You can initialize `SpeechConfig` in a few other ways:
@@ -99,7 +99,7 @@ switch (result->Reason)
             if (cancellation->Reason == CancellationReason::Error) {
                 cout << "CANCELED: ErrorCode= " << (int)cancellation->ErrorCode << std::endl;
                 cout << "CANCELED: ErrorDetails=" << cancellation->ErrorDetails << std::endl;
-                cout << "CANCELED: Did you set the speech resource key and region values?" << std::endl;
+                cout << "CANCELED: Did you set the speech resource key and endpoint values?" << std::endl;
             }
         }
         break;
@@ -158,7 +158,7 @@ speechRecognizer->Canceled.Connect([&recognitionEnd](const SpeechRecognitionCanc
         {
             cout << "CANCELED: ErrorCode=" << (int)e.ErrorCode << "\n"
                  << "CANCELED: ErrorDetails=" << e.ErrorDetails << "\n"
-                 << "CANCELED: Did you set the speech resource key and region values?" << std::endl;
+                 << "CANCELED: Did you set the speech resource key and endpoint values?" << std::endl;
 
             recognitionEnd.set_value(); // Notify to stop recognition.
         }
@@ -205,14 +205,14 @@ For a complete code sample, see [Language identification](../../../language-iden
 With [custom speech](../../../custom-speech-overview.md), you can upload your own data, test and train a custom model, compare accuracy between models, and deploy a model to a custom endpoint. The following example shows how to set a custom endpoint.
 
 ```cpp
-auto speechConfig = SpeechConfig::FromSubscription("YourSubscriptionKey", "YourServiceRegion");
+auto speechConfig = SpeechConfig::FromEndpoint("YourServiceEndpoint", "YourSpeechResoureKey");
 speechConfig->SetEndpointId("YourEndpointId");
 auto speechRecognizer = SpeechRecognizer::FromConfig(speechConfig);
 ```
 
 ## Run and use a container
 
-Speech containers provide websocket-based query endpoint APIs that are accessed through the Speech SDK and Speech CLI. By default, the Speech SDK and Speech CLI use the public Speech service. To use the container, you need to change the initialization method. Use a container host URL instead of key and region.
+Speech containers provide websocket-based query endpoint APIs that are accessed through the Speech SDK and Speech CLI. By default, the Speech SDK and Speech CLI use the public Speech service. To use the container, you need to change the initialization method. Use a container host URL instead of key and endpoint.
 
 For more information about containers, see Host URLs in [Install and run Speech containers with Docker](../../../speech-container-howto.md#host-urls).
 

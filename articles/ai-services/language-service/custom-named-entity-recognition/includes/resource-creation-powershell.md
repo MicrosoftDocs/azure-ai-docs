@@ -1,13 +1,12 @@
 ---
 title: Using Azure resources in custom NER
 titleSuffix: Azure AI services
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ---
 
 

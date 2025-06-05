@@ -22,9 +22,9 @@ import os
 from azure.ai.inference import ChatCompletionsClient
 from azure.core.credentials import AzureKeyCredential
 
-model = ChatCompletionsClient(
+client = ChatCompletionsClient(
     endpoint="https://<resource>.services.ai.azure.com/models",
-    credential=AzureKeyCredential(os.environ["AZUREAI_ENDPOINT_KEY"]),
+    credential=AzureKeyCredential(os.environ["AZURE_INFERENCE_CREDENTIAL"]),
 )
 ```
 
@@ -47,7 +47,7 @@ import { AzureKeyCredential } from "@azure/core-auth";
 
 const client = new ModelClient(
     "https://<resource>.services.ai.azure.com/models", 
-    new AzureKeyCredential(process.env.AZUREAI_ENDPOINT_KEY)
+    new AzureKeyCredential(process.env.AZURE_INFERENCE_CREDENTIAL)
 );
 ```
 
@@ -97,7 +97,7 @@ Then, you can use the package to consume the model. The following example shows 
 ```java
 ChatCompletionsClient client = new ChatCompletionsClientBuilder()
     .credential(new AzureKeyCredential("{key}"))
-    .endpoint("{endpoint}")
+    .endpoint("https://<resource>.services.ai.azure.com/models")
     .buildClient();
 ```
 

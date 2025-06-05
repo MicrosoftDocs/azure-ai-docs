@@ -1,12 +1,12 @@
 ---
 title: Design system messages with Azure OpenAI
-titleSuffix: Azure OpenAI Service
-description: Learn about system message design with GPT-3, GPT-35-Turbo, and GPT-4 models.
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
+description: Learn about system message design
 author: mrbullwinkle
 ms.author: mbullwin 
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 09/05/2024
+ms.date: 03/26/2025
 manager: nitinme
 keywords: ChatGPT, GPT-4, meta prompts, chain of thought
 ---
@@ -17,9 +17,9 @@ This guide will walk you through some techniques in system message design.
 
 
 
-## What is a system message? 
+## What is a system message?
 
-A system message is a feature-specific set of instructions or contextual frameworks given to a generative AI model (e.g. GPT4-o, GPT3.5 Turbo, etc.) to direct and improve the quality and safety of a model’s output. This is particularly helpful in situations that need certain degrees of formality, technical language, or industry-specific terms.  
+A system message is a feature-specific set of instructions or contextual frameworks given to a generative AI model (e.g. GPT-4o, GPT-3.5 Turbo, etc.) to direct and improve the quality and safety of a model’s output. This is particularly helpful in situations that need certain degrees of formality, technical language, or industry-specific terms.  
 
 
 There is no prescribed length. A system message can be one short sentence:  
@@ -42,7 +42,7 @@ The example below, shows a sample system message and the resulting model respons
 
 Some other examples of system messages are:
 -	“Assistant is a large language model trained by OpenAI.”
--	“Assistant is an intelligent chatbot designed to help users answer technical questions about Azure OpenAI Service. Only answer questions using the context below and if you're not sure of an answer, you can say "I don't know".
+-	“Assistant is an intelligent chatbot designed to help users answer technical questions about Azure OpenAI in Azure AI Foundry Models. Only answer questions using the context below and if you're not sure of an answer, you can say "I don't know".
 -	“Assistant is an intelligent chatbot designed to help users answer their tax related questions.”
 -	“You're an assistant designed to extract entities from text. Users will paste in a string of text and you'll respond with entities you've extracted from the text as a JSON object. Here's an example of your output format:
 

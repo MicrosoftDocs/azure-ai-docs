@@ -13,7 +13,7 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: how-to
-ms.date: 3/10/2025
+ms.date: 4/7/2025
 ms.author: eur
 zone_pivot_groups: programming-languages-ai-services
 #Customer intent: As a developer, I want to implement pronunciation assessment on spoken language using a technology that works in my environment to gives feedback on accuracy and fluency.
@@ -30,9 +30,9 @@ In this article, you learn how to evaluate pronunciation with speech to text thr
 
 Pronunciation assessment supports uninterrupted streaming mode. The recording time can be unlimited through the Speech SDK. As long as you don't stop recording, the evaluation process doesn't finish and you can pause and resume evaluation conveniently.
 
-For information about availability of pronunciation assessment, see [supported languages](language-support.md?tabs=pronunciation-assessment) and [available regions](regions.md#regions).
+For information about availability of pronunciation assessment, see [supported languages](language-support.md?tabs=pronunciation-assessment) and [available regions](regions.md?tabs=scenarios#regions).
 
-As a baseline, usage of pronunciation assessment costs the same as speech to text for pay-as-you-go or commitment tier [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services). If you [purchase a commitment tier](../commitment-tier.md) for speech to text, the spend for pronunciation assessment goes towards meeting the commitment. For more information, see [Pricing](./pronunciation-assessment-tool.md#pricing).
+As a baseline, usage of pronunciation assessment costs the same as speech to text for Standard or commitment tier [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services). If you [purchase a commitment tier](../commitment-tier.md) for speech to text, the spend for pronunciation assessment goes towards meeting the commitment. For more information, see [Pricing](./pronunciation-assessment-tool.md#pricing).
 
 ::: zone pivot="programming-language-csharp"
 
@@ -48,13 +48,13 @@ For how to use Pronunciation Assessment in streaming mode in your own applicatio
 
 ::: zone pivot="programming-language-java"
 
-For how to use Pronunciation Assessment in streaming mode in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/java/android/sdkdemo/app/src/main/java/com/microsoft/cognitiveservices/speech/samples/sdkdemo/MainActivity.java#L548).
+For how to use Pronunciation Assessment in streaming mode in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/java/android/sdkdemo/app/src/main/java/com/microsoft/cognitiveservices/speech/samples/sdkdemo/MainActivity.java#:~:text=pronunciationAssessmentFromStreamButton.setOnClickListener).
 
 ::: zone-end
 
 ::: zone pivot="programming-language-python"
 
-For how to use Pronunciation Assessment in streaming mode in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/python/console/speech_sample.py#L915).
+For how to use Pronunciation Assessment in streaming mode in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/scenarios/python/console/language-learning/pronunciation_assessment.py).
 
 ::: zone-end
 
@@ -66,13 +66,13 @@ For how to use Pronunciation Assessment in streaming mode in your own applicatio
 
 ::: zone pivot="programming-language-objectivec"
 
-For how to use Pronunciation Assessment in streaming mode in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/objective-c/ios/speech-samples/speech-samples/ViewController.m#L831).
+For how to use Pronunciation Assessment in streaming mode in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/objective-c/ios/speech-samples/speech-samples/ViewController.m#:~:text=(void)pronunciationAssessFromStream).
 
 ::: zone-end
 
 ::: zone pivot="programming-language-swift"
 
-For how to use Pronunciation Assessment in streaming mode in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/swift/ios/speech-samples/speech-samples/ViewController.swift#L191).
+For how to use Pronunciation Assessment in streaming mode in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/swift/ios/speech-samples/speech-samples/ViewController.swift#:~:text=func%20pronunciationAssessmentWithStream()).
 
 ::: zone-end
 
@@ -102,7 +102,7 @@ If your audio file exceeds 30 seconds, use continuous mode for processing. The s
 
 ::: zone pivot="programming-language-python"
 
-If your audio file exceeds 30 seconds, use continuous mode for processing. The sample code for continuous mode can be found on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/261160e26dfcae4c3aee93308d58d74e36739b6f/samples/python/console/speech_sample.py) under the function `pronunciation_assessment_continuous_from_file`.
+If your audio file exceeds 30 seconds, use continuous mode for processing. The sample code for continuous mode can be found on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/scenarios/python/console/language-learning/pronunciation_assessment.py) under the function `pronunciation_assessment_continuous_from_file`.
 
 ::: zone-end
 
@@ -146,7 +146,7 @@ In the `SpeechRecognizer`, you can specify the language to learn or practice imp
 var recognizer = new SpeechRecognizer(speechConfig, "en-US", audioConfig);
 ```
 
-::: zone-end  
+::: zone-end
 
 ::: zone pivot="programming-language-cpp"
 
@@ -208,21 +208,21 @@ You must create a `PronunciationAssessmentConfig` object. You can set `EnablePro
 ::: zone pivot="programming-language-csharp"
 
 ```csharp
-var pronunciationAssessmentConfig = new PronunciationAssessmentConfig( 
-    referenceText: "", 
-    gradingSystem: GradingSystem.HundredMark,  
-    granularity: Granularity.Phoneme,  
-    enableMiscue: false); 
-pronunciationAssessmentConfig.EnableProsodyAssessment(); 
+var pronunciationAssessmentConfig = new PronunciationAssessmentConfig(
+    referenceText: "",
+    gradingSystem: GradingSystem.HundredMark,
+    granularity: Granularity.Phoneme,
+    enableMiscue: false);
+pronunciationAssessmentConfig.EnableProsodyAssessment();
 ```
 
-::: zone-end  
+::: zone-end
 
 ::: zone pivot="programming-language-cpp"
 
 ```cpp
-auto pronunciationConfig = PronunciationAssessmentConfig::Create("", PronunciationAssessmentGradingSystem::HundredMark, PronunciationAssessmentGranularity::Phoneme, false); 
-pronunciationConfig->EnableProsodyAssessment(); 
+auto pronunciationConfig = PronunciationAssessmentConfig::Create("", PronunciationAssessmentGradingSystem::HundredMark, PronunciationAssessmentGranularity::Phoneme, false);
+pronunciationConfig->EnableProsodyAssessment();
 ```
 
 ::: zone-end
@@ -230,9 +230,9 @@ pronunciationConfig->EnableProsodyAssessment();
 ::: zone pivot="programming-language-java"
 
 ```Java
-PronunciationAssessmentConfig pronunciationConfig = new PronunciationAssessmentConfig("", 
-    PronunciationAssessmentGradingSystem.HundredMark, PronunciationAssessmentGranularity.Phoneme, false); 
-pronunciationConfig.enableProsodyAssessment(); 
+PronunciationAssessmentConfig pronunciationConfig = new PronunciationAssessmentConfig("",
+    PronunciationAssessmentGradingSystem.HundredMark, PronunciationAssessmentGranularity.Phoneme, false);
+pronunciationConfig.enableProsodyAssessment();
 ```
 
 ::: zone-end
@@ -240,12 +240,12 @@ pronunciationConfig.enableProsodyAssessment();
 ::: zone pivot="programming-language-python"
 
 ```Python
-pronunciation_config = speechsdk.PronunciationAssessmentConfig( 
-    reference_text="", 
-    grading_system=speechsdk.PronunciationAssessmentGradingSystem.HundredMark, 
-    granularity=speechsdk.PronunciationAssessmentGranularity.Phoneme, 
-    enable_miscue=False) 
-pronunciation_config.enable_prosody_assessment() 
+pronunciation_config = speechsdk.PronunciationAssessmentConfig(
+    reference_text="",
+    grading_system=speechsdk.PronunciationAssessmentGradingSystem.HundredMark,
+    granularity=speechsdk.PronunciationAssessmentGranularity.Phoneme,
+    enable_miscue=False)
+pronunciation_config.enable_prosody_assessment()
 ```
 
 ::: zone-end
@@ -253,12 +253,12 @@ pronunciation_config.enable_prosody_assessment()
 ::: zone pivot="programming-language-javascript"
 
 ```JavaScript
-var pronunciationAssessmentConfig = new sdk.PronunciationAssessmentConfig( 
-    referenceText: "", 
-    gradingSystem: sdk.PronunciationAssessmentGradingSystem.HundredMark,  
-    granularity: sdk.PronunciationAssessmentGranularity.Phoneme,  
-    enableMiscue: false); 
-pronunciationAssessmentConfig.enableProsodyAssessment(); 
+var pronunciationAssessmentConfig = new sdk.PronunciationAssessmentConfig(
+    referenceText: "",
+    gradingSystem: sdk.PronunciationAssessmentGradingSystem.HundredMark,
+    granularity: sdk.PronunciationAssessmentGranularity.Phoneme,
+    enableMiscue: false);
+pronunciationAssessmentConfig.enableProsodyAssessment();
 ```
 
 ::: zone-end
@@ -266,9 +266,9 @@ pronunciationAssessmentConfig.enableProsodyAssessment();
 ::: zone pivot="programming-language-objectivec"
 
 ```ObjectiveC
-SPXPronunciationAssessmentConfiguration *pronunicationConfig = 
-[[SPXPronunciationAssessmentConfiguration alloc] init:@"" gradingSystem:SPXPronunciationAssessmentGradingSystem_HundredMark granularity:SPXPronunciationAssessmentGranularity_Phoneme enableMiscue:false]; 
-[pronunicationConfig enableProsodyAssessment]; 
+SPXPronunciationAssessmentConfiguration *pronunicationConfig =
+[[SPXPronunciationAssessmentConfiguration alloc] init:@"" gradingSystem:SPXPronunciationAssessmentGradingSystem_HundredMark granularity:SPXPronunciationAssessmentGranularity_Phoneme enableMiscue:false];
+[pronunicationConfig enableProsodyAssessment];
 ```
 
 ::: zone-end
@@ -276,11 +276,11 @@ SPXPronunciationAssessmentConfiguration *pronunicationConfig =
 ::: zone pivot="programming-language-swift"
 
 ```swift
-let pronAssessmentConfig = try! SPXPronunciationAssessmentConfiguration("", 
-    gradingSystem: .hundredMark, 
-    granularity: .phoneme, 
-    enableMiscue: false) 
-pronAssessmentConfig.enableProsodyAssessment() 
+let pronAssessmentConfig = try! SPXPronunciationAssessmentConfiguration("",
+    gradingSystem: .hundredMark,
+    granularity: .phoneme,
+    enableMiscue: false)
+pronAssessmentConfig.enableProsodyAssessment()
 ```
 
 ::: zone-end
@@ -305,7 +305,7 @@ This table lists some of the optional methods you can set for the `Pronunciation
 
 > [!NOTE]
 > Prosody assessment is only available in the [en-US](./language-support.md?tabs=pronunciation-assessment) locale.
-> 
+>
 > To explore the prosody assessment, upgrade to the SDK version 1.35.0 or later.
 
 | Method | Description |
@@ -422,7 +422,7 @@ speechRecognizer.recognizeOnceAsync((speechRecognitionResult: SpeechSDK.SpeechRe
 
 To learn how to specify the learning language for pronunciation assessment in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/node/pronunciationAssessmentContinue.js#LL37C4-L37C52).
 
-::: zone-end  
+::: zone-end
 
 ::: zone pivot="programming-language-python"
 
@@ -443,7 +443,7 @@ pronunciation_assessment_result_json = speech_recognition_result.properties.get(
 
 To learn how to specify the learning language for pronunciation assessment in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/python/console/speech_sample.py#LL937C1-L937C1).
 
-::: zone-end  
+::: zone-end
 
 ::: zone pivot="programming-language-objectivec"
 
@@ -787,7 +787,7 @@ To request IPA phonemes, set the phoneme alphabet to `IPA`. If you don't specify
 pronunciationAssessmentConfig.PhonemeAlphabet = "IPA";
 ```
 
-::: zone-end  
+::: zone-end
 
 ::: zone pivot="programming-language-cpp"
 
@@ -1090,7 +1090,7 @@ pronunciationAssessmentConfig?.nbestPhonemeCount = 5
 ## Pronunciation score calculation
 
 Pronunciation scores are calculated by weighting accuracy, prosody, fluency, and completeness scores based on specific formulas for reading and speaking scenarios.
-  
+
 When sorting the scores of accuracy, prosody, fluency, and completeness from low to high (if each score is available) and representing the lowest score to the highest score as s0 to s3, the pronunciation score is calculated as follows:
 
 For reading scenario:
@@ -1105,7 +1105,10 @@ This formula provides a weighted calculation based on the importance of each sco
 
 ## Content assessment
 
-For some recognized speech, you might also want to get content assessment results for vocabulary, grammar, and topic relevance. You can use a chat model such as Azure OpenAI `gpt-4o` to get the content assessment results. For more information about using chat models, see [Azure OpenAI Service models](../openai/concepts/models.md) and the Azure AI Model Inference API [chat completions reference documentation](/rest/api/aifoundry/model-inference/get-chat-completions/get-chat-completions).
+> [!IMPORTANT]
+> Content assessment (preview) via the Speech SDK will be retired in July 2025. Instead, you can use the Azure OpenAI in Azure AI Foundry Models to get content assessment results as described in this section.
+
+For some recognized speech, you might also want to get content assessment results for vocabulary, grammar, and topic relevance. You can use a chat model such as Azure OpenAI `gpt-4o` to get the content assessment results. For more information about using chat models, see [Azure OpenAI models](../openai/concepts/models.md) and the Azure AI Model Inference API [chat completions reference documentation](/rest/api/aifoundry/model-inference/get-chat-completions/get-chat-completions).
 
 The user and system messages are used to set the context for the chat model. In the following example, the user message contains the essay to be assessed, and the system message provides instructions on how to evaluate the essay.
 

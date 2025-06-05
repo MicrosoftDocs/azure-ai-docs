@@ -15,6 +15,8 @@ ms.custom: UpdateFrequency5, designer
 
 # Import data into Azure Machine Learning designer
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In this article, you learn how to import your own data in the designer to create custom solutions. There are two ways you can import data into the designer: 
 
 * **Azure Machine Learning datasets** - Register [datasets](concept-data.md) in Azure Machine Learning to enable advanced features that help you manage your data.
@@ -29,7 +31,7 @@ We recommend that you use [datasets](concept-data.md) to import data into the de
 
 ### Register a dataset
 
-You can register existing datasets [programatically with the SDK](how-to-create-register-datasets.md#create-datasets-from-datastores) or [visually in Azure Machine Learning studio](how-to-connect-data-ui.md#create-data-assets).
+You can register existing datasets [programmatically with the SDK](how-to-create-register-datasets.md#create-datasets-from-datastores) or [visually in Azure Machine Learning studio](how-to-connect-data-ui.md#create-data-assets).
 
 You can also register the output for any designer component as a dataset.
 

@@ -5,7 +5,7 @@ description: Learn how automated machine learning in Azure Machine Learning can 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: automl
-ms.topic: conceptual
+ms.topic: concept-article
 ms.author: cesardl
 author: CESARDELATORRE
 ms.date: 03/15/2022
@@ -15,6 +15,8 @@ ms.custom: UpdateFrequency5, automl
 # Automated machine learning (AutoML)?
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 Automated machine learning, also referred to as automated ML or AutoML, is the process of automating the time-consuming, iterative tasks of machine learning model development. It allows data scientists, analysts, and developers to build ML models with high scale, efficiency, and productivity all while sustaining model quality. Automated ML in Azure Machine Learning is based on a breakthrough from our [Microsoft Research division](https://www.microsoft.com/research/project/automl/).
 

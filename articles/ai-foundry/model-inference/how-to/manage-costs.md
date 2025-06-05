@@ -1,20 +1,23 @@
 ---
-title: Plan to manage costs for model inference in Azure AI Services
-description: Learn how to plan for and manage costs for Azure AI model inference in Azure AI Services by using cost analysis in the Azure portal.
-author: santiagxf
-ms.author: fasantia 
+title: Plan to manage costs for Azure AI Foundry Models
+description: Learn how to plan for and manage costs for Azure AI Foundry Models by using cost analysis in the Azure portal.
+author: ssalgadodev
+ms.author: ssalgado
 ms.custom: subject-cost-optimization
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 1/21/2025
+ms.date: 05/19/2025
+manager: scottpolly
+ms.reviewer: fasantia
+reviewer: santiagxf
 ---
 
+# Plan to manage costs for Azure AI Foundry Models
 
-# Plan to manage costs for model inference in Azure AI Services
+This article describes how you can view, plan for, and manage costs for Azure AI Foundry Models.
 
-This article describes how you can view, plan for, and manage costs for model inference in Azure AI Services.
+Although this article is about planning for and managing costs for Azure AI Foundry Models, you're billed for all Azure services and resources used in your Azure subscription.
 
-Although this article is about planning for and managing costs for model inference in Azure AI Services, you're billed for all Azure services and resources used in your Azure subscription.
 
 ## Prerequisites
 
@@ -22,19 +25,20 @@ Although this article is about planning for and managing costs for model inferen
 * To view cost data, you need at least read access for an Azure account. For information about assigning access to cost management data, see [Assign access to data](/azure/cost-management/assign-access-acm-data?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
 
 
-## Understand model inference billing model
+## Understand Foundry Models billing model
 
-Language models understand and process inputs by breaking them down into tokens. For reference, each token is roughly four characters for typical English text. Models that can process images or audio break down them into tokens too for billing purposes. The number of tokens per image or audio content depends on the model and the resolution of the input.
 
-Costs per token vary depending on which model series you choose but in all cases models deployed in Azure AI Services are charged per 1,000 tokens. Token costs are for both input and output. For example, suppose you have a 1,000 token JavaScript code sample that you ask a model to convert to Python. You would be charged approximately 1,000 tokens for the initial input request sent, and 1,000 more tokens for the output that is received in response for a total of 2,000 tokens.
+Language models understand and process inputs by breaking them down into tokens. For reference, each token is roughly four characters for typical English text. Models that can process images or audio break them down into tokens too for billing purposes. The number of tokens per image or audio content depends on the model and the resolution of the input.
+
+Costs per token vary depending on which model series you choose but in all cases models deployed in Azure AI Foundry are charged per 1,000 tokens. Token costs are for both input and output. For example, suppose you have a 1,000 token JavaScript code sample that you ask a model to convert to Python. You would be charged approximately 1,000 tokens for the initial input request sent, and 1,000 more tokens for the output that is received in response for a total of 2,000 tokens.
 
 ### Cost breakdown
 
 To understand the breakdown of what makes up the cost, it can be helpful to use **Cost Analysis** tool in Azure portal. Follow these steps to understand the cost of inference:
 
-1. Go to [Azure AI Foundry Portal](https://ai.azure.com).
+1. Go to [Azure AI Foundry Portal](https://ai.azure.com/?cid=learnDocs).
 
-2. In the upper right corner of the screen, select on the name of your Azure AI Services resource, or if you're working on an AI project, on the name of the project.
+2. In the upper right corner of the screen, select on the name of your Azure AI Foundry resource (formerly known as Azure AI Services), or if you're working on an AI project, on the name of the project.
 
 3. Select the name of the project. Azure portal opens in a new window.
 
@@ -45,7 +49,7 @@ To understand the breakdown of what makes up the cost, it can be helpful to use 
 5. By default, cost analysis is scoped to the selected resource group.
 
     > [!IMPORTANT]
-    > It's important to scope *Cost Analysis* to the resource group where the Azure AI Services resource is deployed. Cost meters associated with some provider model providers, like Mistral AI or Cohere, are displayed under the resource group instead of the Azure AI Services resource.
+    > It's important to scope *Cost Analysis* to the resource group where the Azure AI Foundry resource is deployed. Cost meters associated with [Models from Partners and Community](#models-from-partners-and-community) are displayed under the resource group instead of the Azure AI Foundry resource.
 
 6. Modify **Group by** to **Meter**. You can now see that for this particular resource group, the source of the costs comes from different models series.  
 
@@ -53,24 +57,24 @@ To understand the breakdown of what makes up the cost, it can be helpful to use 
 
 The following sections explain the entries in details.
 
-### Azure OpenAI and Microsoft models
+### Models Sold Directly by Azure 
 
-Azure OpenAI models and models offered as first-party consumption services from Microsoft (including DeepSeek family and Phi family of models) are charged directly and they show up as billing meters under each Azure AI services resource. This billing happens directly through Microsoft. When you inspect your bill, you notice billing meters accounting for inputs and outputs for each consumed model.
+[Models Sold Directly by Azure](../concepts/models.md#models-sold-directly-by-azure) (including Azure OpenAI) are charged directly and they show up as billing meters under each Azure AI Foundry resource (formerly known Azure AI Services). This billing happens directly through Microsoft. When you inspect your bill, you notice billing meters accounting for inputs and outputs for each consumed model.
 
-:::image type="content" source="../media/manage-cost/cost-by-meter-1p.png" alt-text="Screenshot of cost analysis dashboard scoped to the resource group where the Azure AI Services resource is deployed, highlighting the meters for Azure OpenAI and Microsoft's models. Cost is group by meter." lightbox="../media/manage-cost/cost-by-meter-1p.png":::
+:::image type="content" source="../media/manage-cost/cost-by-meter-1p.png" alt-text="Screenshot of cost analysis dashboard scoped to the resource group where the Azure AI Foundry resource is deployed, highlighting the meters for Azure OpenAI and Phi models. Cost is group by meter." lightbox="../media/manage-cost/cost-by-meter-1p.png":::
 
-### Provider models
+### Models from Partners and Community
 
-Models provided by another provider, like Mistral AI, Cohere, Meta AI, or AI21 Labs, are billed using Azure Marketplace. As opposite to Microsoft billing meters, those entries are associated with the resource group where your Azure AI services is deployed instead of to the Azure AI Services resource itself. Given model providers charge you directly, you see entries under the category **Marketplace** and **Service Name** *SaaS* accounting for inputs and outputs for each consumed model.
+Models provided by third-party providers, like Cohere, are billed using Azure Marketplace. As opposite to Microsoft billing meters, those entries are associated with the resource group where your Azure AI Foundry (formerly known as Azure AI Services) is deployed instead of to the Azure AI Foundry resource itself. Given model providers charge you directly, you see entries under the category **Marketplace** and **Service Name** *SaaS* accounting for inputs and outputs for each consumed model.
 
-:::image type="content" source="../media/manage-cost/cost-by-meter-saas.png" alt-text="Screenshot of cost analysis dashboard scoped to the resource group where the Azure AI Services resource is deployed, highlighting the meters for models billed throughout Azure Marketplace. Cost is group by meter." lightbox="../media/manage-cost/cost-by-meter-saas.png":::
+:::image type="content" source="../media/manage-cost/cost-by-meter-saas.png" alt-text="Screenshot of cost analysis dashboard scoped to the resource group where the Azure AI Foundry resource is deployed, highlighting the meters for models billed throughout Azure Marketplace. Cost is group by meter." lightbox="../media/manage-cost/cost-by-meter-saas.png":::
 
 > [!IMPORTANT]
-> This distinction between Azure OpenAI, Microsoft-offered models, and provider models only affects how the model is made available to you and how you are charged. In all cases, models are hosted within Azure cloud and there is no interaction with external services or providers.
+> This distinction between [Models Sold Directly by Azure ](../concepts/models.md#models-sold-directly-by-azure) (including Azure OpenAI) and [Models from Partners and Community](../concepts/models.md#models-from-partners-and-community) only affects how the model is made available to you and how you are charged. In all cases, models are hosted within Azure cloud and there is no interaction with external services or providers.
 
 ### Using Azure Prepayment
 
-You can pay for Azure OpenAI and Microsoft's models charges with your Azure Prepayment credit. However, you can't use Azure Prepayment credit to pay for charges for other provider models given they're billed through Azure Marketplace.
+You can pay for Models Sold Directly by Azure charges with your Azure Prepayment credit. However, you can't use Azure Prepayment credit to pay for charges for other provider models given they're billed through Azure Marketplace.
 
 ### HTTP Error response code and billing status
 
@@ -87,7 +91,7 @@ You can get more detailed billing information by using **Cost Analysis**:
 
 To understand the breakdown of what makes up that cost, it can be helpful to use **Cost Analysis** tool in Azure portal.
 
-1. Go to [Azure AI Foundry Portal](https://ai.azure.com).
+1. Go to [Azure AI Foundry Portal](https://ai.azure.com/?cid=learnDocs).
 
 2. In the upper right corner of the screen, select on the name of your Azure AI Services resource, or if you're working on an AI project, on the name of the project.
 

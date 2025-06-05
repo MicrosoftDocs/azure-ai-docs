@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2023
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 05/08/2025
 ---
 
 # Index data from Azure Files
@@ -24,8 +24,8 @@ To configure and run the indexer, you can use:
 
 + [Search Service preview REST APIs](/rest/api/searchservice), any preview version.
 + An Azure SDK package, any version.
-+ [Import data](search-get-started-portal.md) wizard in the Azure portal.
-+ [Import and vectorize data](search-get-started-portal-import-vectors.md) wizard in the Azure portal.
++ [Import data wizard](search-get-started-portal.md) in the Azure portal.
++ [Import and vectorize data wizard](search-get-started-portal-import-vectors.md) in the Azure portal.
 
 ## Prerequisites
 
@@ -98,7 +98,7 @@ Indexers can connect to a file share using the following connections.
 | Full access storage account connection string |
 |-----------------------------------------------|
 |`{ "connectionString" : "DefaultEndpointsProtocol=https;AccountName=<your storage account>;AccountKey=<your account key>;" }` |
-| You can get the connection string from the Storage account page in Azure portal by selecting **Access keys** in the left navigation pane. Make sure to select a full connection string and not just a key. |
+| You can get the connection string from the Storage account page in Azure portal by selecting **Access keys** in the left pane. Make sure to select a full connection string and not just a key. |
 
 ## Add search fields to an index
 

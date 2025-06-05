@@ -2,11 +2,11 @@
 title: What is custom question answering?
 description: Custom question answering is a cloud-based Natural Language Processing (NLP) service that easily creates a natural conversational layer over your data. It can be used to find the most appropriate answer for any given natural language input, from your custom project.
 ms.service: azure-ai-language
-author: jboback
-ms.author: jboback
+author: laujan
+ms.author: lajanuar
 recommendations: false
 ms.topic: overview
-ms.date: 09/27/2024
+ms.date: 03/24/2025
 keywords: "qna maker, low code chat bots, multi-turn conversations"
 ms.custom: language-service-question-answering
 ---
@@ -35,6 +35,7 @@ This documentation contains the following article types:
 * **When you want to provide the same answer to a request, question, or command** - when different users submit the same question, the same answer is returned.
 * **When you want to filter static information based on meta-information** - add [metadata](./tutorials/multiple-domains.md) tags to provide additional filtering options relevant to your client application's users and the information. Common metadata information includes [chit-chat](./how-to/chit-chat.md), content type or format, content purpose, and content freshness. <!--TODO: Fix Link-->
 * **When you want to manage a bot conversation that includes static information** - your project takes a user's conversational text or command and answers it. If the answer is part of a pre-determined conversation flow, represented in your project with [multi-turn context](./tutorials/guided-conversations.md), the bot can easily provide this flow.
+* **When you want to use an agent to get an exact answer** - Use the [exact question answering](https://aka.ms/exact-answer-agent-template) agent template answers high-value predefined questions deterministically to ensure consistent and accurate responses or the [intent routing](https://aka.ms/intent-triage-agent-template) agent template, which detects user intent and provides exact answering. Perfect for deterministically intent routing and exact question answering with human control.
 
 ## What is a project?
 

@@ -1,11 +1,10 @@
 ---
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
 ms.date: 12/19/2023
-ms.author: jboback
+ms.author: lajanuar
 ---
 
 ### Get your key and endpoint
@@ -16,6 +15,6 @@ Next you will need the key and endpoint from the resource to connect your applic
 
     :::image type="content" source="../media/portal-resource-next-steps.png" alt-text="A screenshot showing the next steps after a resource has deployed." lightbox="../media/portal-resource-next-steps.png":::
 
-1. On the screen for your resource, select **Keys and endpoint** on the left navigation menu. You will use one of your keys and your endpoint in the steps below. 
+1. On the screen for your resource, select **Keys and endpoint** on the left pane. You will use one of your keys and your endpoint in the steps below. 
 
     :::image type="content" source="../media/azure-portal-resource-credentials.png" alt-text="A screenshot showing the keys and endpoint section for a resource." lightbox="../media/azure-portal-resource-credentials.png":::

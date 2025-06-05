@@ -1,11 +1,11 @@
 ---
-title: "Quickstart: Document Translation Python SDK"
-description: 'Document Translation processing using the Python SDK'
+title: "Quickstart: Document translation Python SDK"
+description: 'Document translation processing using the Python SDK'
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: include
-ms.date: 06/19/2024
+ms.date: 04/14/2025
 ms.author: lajanuar
 recommendations: false
 ---
@@ -18,10 +18,10 @@ Make sure that the latest version of [Python](https://www.python.org/downloads/)
 
 ### Install the client library
 
-Install the latest version of the Document Translation client library:
+Install the latest version of the Document translation client library:
 
 ```console
-  pip install azure-ai-translation-document==1.1.0b1
+  pip install azure-ai-translation-document==1.0.0
 ```
 
 ### Translate batch files
@@ -81,7 +81,7 @@ targetUri = '<your-container-targetUrl>'
 targetLanguage = '<target-language-code>'
 
 
-# initialize a new instance of the DocumentTranslationClient object to interact with the asynchronous Document Translation feature
+# initialize a new instance of the DocumentTranslationClient object to interact with the asynchronous Document translation feature
 client = DocumentTranslationClient(endpoint, AzureKeyCredential(key))
 
 # include source and target locations and target language code for the begin translation operation
@@ -148,7 +148,7 @@ def sample_single_document_translation():
     endpoint = "<your-document-translation-endpoint>"
     target_language = "{target-language-code}"
 
-    # initialize a new instance of the SingleDocumentTranslationClient object to interact with the synchronous Document Translation feature
+    # initialize a new instance of the SingleDocumentTranslationClient object to interact with the synchronous Document translation feature
     client = SingleDocumentTranslationClient(endpoint, AzureKeyCredential(key))
 
     # absolute path to your document

@@ -1,11 +1,10 @@
 ---
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ---
 
 Go to your resource overview page in the [Azure portal](https://portal.azure.com/#home). From the menu on the left side, select **Keys and Endpoint**. You will use the endpoint and key for the API requests 

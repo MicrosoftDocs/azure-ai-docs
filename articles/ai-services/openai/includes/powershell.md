@@ -1,8 +1,7 @@
 ---
 title: "Quickstart: Use the OpenAI Service via PowerShell"
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with PowerShell.
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
@@ -13,7 +12,7 @@ ms.date: 08/28/2023
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>
 - <a href="https://aka.ms/installpowershell" target="_blank">You can use either the latest version, PowerShell 7, or Windows PowerShell 5.1.</a>
-- An Azure OpenAI Service resource with a model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
+- An Azure OpenAI in Azure AI Foundry Models resource with a model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
 ## Retrieve key and endpoint
 
@@ -107,7 +106,7 @@ echo export AZURE_OPENAI_ENDPOINT="REPLACE_WITH_YOUR_ENDPOINT_HERE" >> /etc/envi
    ```
 
    > [!IMPORTANT]
-   > For production, use a secure way of storing and accessing your credentials like [The PowerShell Secret Management with Azure Key Vault](/powershell/utility-modules/secretmanagement/how-to/using-azure-keyvault). For more information about credential security, see the Azure AI services [security](../../security-features.md) article.
+   > For production, use a secure way of storing and accessing your credentials like [The PowerShell Secret Management with Azure Key Vault](/powershell/utility-modules/secretmanagement/how-to/using-azure-keyvault). For more information about credential security, see this [security](../../security-features.md) article.
 
 1. Run the script using PowerShell:
 

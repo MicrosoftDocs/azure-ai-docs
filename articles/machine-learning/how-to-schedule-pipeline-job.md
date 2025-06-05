@@ -52,6 +52,7 @@ This article shows you how to create, retrieve, update, and deactivate schedules
 - The studio UI supports only v2 schedules, and can't list or access v1 schedules that are based on published pipelines or pipeline endpoints. You can create a schedule for an unpublished pipeline.
 - If recurrence is set as the 31st or 30th day of every month, the schedule doesn't trigger jobs in months that have fewer days.
 - `DAYS` and `MONTHS` values aren't supported in cron schedule expressions. Values passed for these parameters are ignored and treated as `*`.
+- Even after assigning a managed identity to a schedule, the author must retain their job run permissions for the schedule to function.
 
 ## Create a schedule
 

@@ -9,9 +9,9 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 02/11/2025
-ms.author: franksolomon
-author: fbsolo-ms1
+ms.date: 05/21/2025
+author: Blackmist
+ms.author: larryfr
 ---
 
 # How to add and manage data in your Azure AI Foundry project
@@ -29,14 +29,14 @@ Data can help when you need these capabilities:
 > - **Lineage:** For any given data, you can view which jobs or prompt flow pipelines consume the data.
 > - **Ease-of-use:** An Azure AI Foundry data resembles web browser bookmarks (favorites). Instead of remembering long storage paths that *reference* your frequently-used data on Azure Storage, you can create a data *version* and then access that version of the asset with a friendly name.
 
+
 ## Prerequisites
 
-To create and work with data, you need:
-
-- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
-- An [Azure AI Foundry project](../how-to/create-projects.md).
+[!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 
 ## Create data
+
+You are charged for the storage used by your data. To help estimate the cost, you can use the [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/). The data is stored in a container called `workspaceblobstore` in your project's Azure Storage account. 
 
 When you create your data, you need to set the data type. Azure AI Foundry supports these data types:
 
@@ -57,9 +57,11 @@ Azure AI Foundry shows the supported source paths. You can create a data from a 
 
 A file (`uri_file`) data resource type points to a *single file* on storage (for example, a CSV file).
 
+[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
+
 These steps explain how to create a File typed data resource in the Azure AI Foundry portal:
 
-1. Navigate to the [Azure AI Foundry](https://ai.azure.com/).
+1. Navigate to the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
 1. Select the project where you want to create the data.
 
@@ -88,7 +90,7 @@ These steps explain how to create a File typed data resource in the Azure AI Fou
 
 A Folder (`uri_folder`) data source type points to a *folder* on a storage resource (for example, a folder containing several subfolders of images). Use these steps to create a Folder type data resource in Azure AI Foundry portal:
 
-1. Navigate to [Azure AI Foundry](https://ai.azure.com/)
+1. Navigate to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs)
 
 1. Select the project where you want to create the data.
 

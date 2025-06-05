@@ -1,20 +1,20 @@
 ---
-title: Plan to manage costs for Azure OpenAI Service
+title: Plan to manage costs for Azure OpenAI in Azure AI Foundry Models
 description: Learn how to plan for and manage costs for Azure OpenAI by using cost analysis in the Azure portal.
 author: mrbullwinkle
 ms.author: mbullwin
 ms.custom: subject-cost-optimization
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 01/31/2025
+ms.date: 04/30/2025
 ---
 
 
-# Plan to manage costs for Azure OpenAI Service
+# Plan to manage costs for Azure OpenAI in Azure AI Foundry Models
 
-This article describes how you can plan for and manage costs for Azure OpenAI Service. Before you deploy the service, use the Azure pricing calculator to estimate costs for Azure OpenAI. Later, as you deploy Azure resources, review the estimated costs. After you start using Azure OpenAI resources, use Cost Management features to set budgets and monitor costs.
+This article describes how you can plan for and manage costs for Azure OpenAI. Before you deploy the service, use the Azure pricing calculator to estimate costs for Azure OpenAI. Later, as you deploy Azure resources, review the estimated costs. After you start using Azure OpenAI resources, use Cost Management features to set budgets and monitor costs.
 
-You can also review forecasted costs and identify spending trends to identify areas where you might want to act. Costs for Azure OpenAI Service are only a portion of the monthly costs in your Azure bill. Although this article is about planning for and managing costs for Azure OpenAI, you're billed for all Azure services and resources used in your Azure subscription, including the third-party services.
+You can also review forecasted costs and identify spending trends to identify areas where you might want to act. Costs for Azure OpenAI are only a portion of the monthly costs in your Azure bill. Although this article is about planning for and managing costs for Azure OpenAI, you're billed for all Azure services and resources used in your Azure subscription, including the third-party services.
 
 ## Prerequisites
 
@@ -26,11 +26,11 @@ Use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculato
 
 ## Understand the Azure OpenAI full billing model
 
-Azure OpenAI Service runs on Azure infrastructure that accrues costs when you deploy new resources. There could be other infrastructure costs that might accrue. The following sections describe how you're charged for Azure OpenAI Service.
+Azure OpenAI runs on Azure infrastructure that accrues costs when you deploy new resources. There could be other infrastructure costs that might accrue. The following sections describe how you're charged for Azure OpenAI.
 
 ### Model inference chat completions
 
-Azure OpenAI chat completions model inference is [charged per 1,000 tokens with different rates](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) depending on model and [deployment type](./deployment-types.md).
+Azure OpenAI chat completions model inference is [charged per 1,000 tokens with different rates](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) depending on model and [deployment type](./deployment-types.md). For most models pricing is now listed in terms of 1 million tokens.
 
 Azure OpenAI models understand and process text by breaking it down into tokens. For reference, each token is roughly four characters for typical English text.
 
@@ -60,15 +60,15 @@ The hosting hours cost is important to be aware of since after a fine-tuned mode
 > Each customized (fine-tuned) model that's deployed incurs an hourly hosting cost regardless of whether completions
 > or chat completions calls are being made to the model. .
 
-### Other costs that might accrue with Azure OpenAI Service
+### Other costs that might accrue with Azure OpenAI
 
 Enabling capabilities such as sending data to Azure Monitor Logs and alerting incurs extra costs for those services. These costs are visible under those other services and at the subscription level, but aren't visible when scoped just to your Azure OpenAI resource.
 
-### Using Azure Prepayment with Azure OpenAI Service
+### Using Azure Prepayment with Azure OpenAI
 
-You can pay for Azure OpenAI Service charges with your Azure Prepayment credit. However, you can't use Azure Prepayment credit to pay for charges for third party products and services including those products and services found in the Azure Marketplace.
+You can pay for Azure OpenAI charges with your Azure Prepayment credit. However, you can't use Azure Prepayment credit to pay for charges for third party products and services including those products and services found in the Azure Marketplace.
 
-### HTTP Error response code and billing status in Azure OpenAI Service
+### HTTP Error response code and billing status in Azure OpenAI
 
 If the service performs processing, you will be charged even if the status code is not successful (not 200).
 For example, a 400 error due to a content filter or input limit, or a 408 error due to a timeout.

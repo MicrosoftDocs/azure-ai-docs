@@ -1,6 +1,6 @@
 ---
 title: 'How to use Azure AI Agents file search'
-titleSuffix: Azure OpenAI
+titleSuffix: Azure AI Foundry
 description: Learn how to use Agents file search.
 services: cognitive-services
 manager: nitinme
@@ -10,12 +10,9 @@ ms.date: 12/11/2024
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
-zone_pivot_groups: selection-file-search
 ---
 
-# Azure AI Agent Service file search tool
-
-::: zone pivot="overview" 
+# Azure AI Foundry Agent Service file search tool
 
 File search augments agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.  
 
@@ -30,6 +27,10 @@ File search augments agents with knowledge from outside its model, such as propr
 ### File sources  
 - Upload local files 
 - Azure Blob Storage 
+
+### Supported file types
+
+- [Supported file types](#supported-file-types)
 
 ### Usage support
 
@@ -89,35 +90,86 @@ We highly recommend that you ensure all files in a vector_store are fully proces
 
 As a fallback, there's a 60-second maximum wait in the run object when the thread's vector store contains files that are still being processed. This is to ensure that any files your users upload in a thread are fully searchable before the run proceeds. This fallback wait does not apply to the agent's vector store.
 
-## Add file search to an agent using the Azure AI Foundry portal
+## Creating vector stores and adding files 
+Adding files to vector stores is an async operation. To ensure the operation is complete, we recommend that you use the 'create and poll' helpers in our official SDKs. If you're not using the SDKs, you can retrieve the `vector_store` object and monitor its `file_counts` property to see the result of the file ingestion operation.
 
-You can add the Bing Search tool to an agent programatically using the code examples listed at the top of this article, or the [Azure AI Foundry portal](https://ai.azure.com/). If you want to use the portal:
+Files can also be added to a vector store after it's created by creating vector store files.
 
-1. In the **Create and debug** screen for your agent, scroll down the **Setup** pane on the right to **knowledge**. Then select **Add**.
+```python
 
-    :::image type="content" source="../../media/tools/knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools.png":::
+# create a vector store with no file and wait for it to be processed
+vector_store = project_client.agents.create_vector_store_and_poll(data_sources=[], name="sample_vector_store")
+print(f"Created vector store, vector store ID: {vector_store.id}")
 
-1. Select **Files** and follow the prompts to add the tool. 
+# add the file to the vector store or you can supply file ids in the vector store creation
+vector_store_file_batch = project_client.agents.create_vector_store_file_batch_and_poll(
+    vector_store_id=vector_store.id, file_ids=[file.id]
+)
+print(f"Created vector store file batch, vector store file batch ID: {vector_store_file_batch.id}")
 
-    :::image type="content" source="../../media/tools/knowledge-tools-list.png" alt-text="A screenshot showing the available knowledge tools in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools-list.png":::
+```
 
-    :::image type="content" source="../../media/tools/file-upload.png" alt-text="A screenshot showing the file upload page." lightbox="../../media/tools/file-upload.png":::
+Alternatively, you can add several files to a vector store by creating batches of up to 500 files.
 
-::: zone-end
+```python
+batch = project_client.agents.create_vector_store_file_batch_and_poll(
+  vector_store_id=vector_store.id,
+  file_ids=[file_1.id, file_2.id, file_3.id, file_4.id, file_5.id]
+)
+```
 
-::: zone pivot="upload-files-code-examples"
+### Basic agent setup: Deleting files from vector stores
+Files can be removed from a vector store by either:
 
-[!INCLUDE [upload-files-code-examples](../../includes/file-search/upload-files-code-examples.md)]
+* Deleting the vector store file object or,
+* Deleting the underlying file object, which removes the file from all vector_store and code_interpreter configurations across all agents and threads in your organization
 
-::: zone-end
+The maximum file size is 512 MB. Each file should contain no more than 5,000,000 tokens per file (computed automatically when you attach a file).
 
-::: zone pivot="azure-blob-storage-code-examples"
 
-[!INCLUDE [azure-blob-storage-code-examples](../../includes/file-search/azure-blob-storage-code-examples.md)]
+## Remove vector store 
 
-::: zone-end
+You can remove a vector store from the file search tool.
 
-::: zone pivot="supported-filetypes"
+```python
+file_search_tool.remove_vector_store(vector_store.id)
+print(f"Removed vector store from file search, vector store ID: {vector_store.id}")
+
+project_client.agents.update_agent(
+    agent_id=agent.id, tools=file_search_tool.definitions, tool_resources=file_search_tool.resources
+)
+print(f"Updated agent, agent ID: {agent.id}")
+
+```
+
+## Deleting vector stores
+```python
+project_client.agents.delete_vector_store(vector_store.id)
+print("Deleted vector store")
+```
+
+## Managing costs with expiration policies
+
+For basic agent setup, the `file_search` tool uses the `vector_stores`  object as its resource and you're billed based on the size of the vector_store objects created. The size of the vector store object is the sum of all the parsed chunks from your files and their corresponding embeddings.
+
+To help you manage the costs associated with these vector_store objects, we added support for expiration policies in the `vector_store` object. You can set these policies when creating or updating the `vector_store` object.
+
+```python
+vector_store = project_client.agents.create_vector_store_and_poll(
+  name="Product Documentation",
+  file_ids=[file_1.id],
+  expires_after={
+      "anchor": "last_active_at",
+      "days": 7
+  }
+)
+```
+
+### Thread vector stores have default expiration policies
+
+Vector stores created using thread helpers (like `tool_resources.file_search.vector_stores` in Threads or `message.attachments` in Messages) have a default expiration policy of seven days after they were last active (defined as the last time the vector store was part of a run).
+
+When a vector store expires, the runs on that thread fail.  To fix this issue, you can recreate a new vector_store with the same files and reattach it to the thread.
 
 ### Supported file types
 
@@ -147,12 +199,4 @@ You can add the Bing Search tool to an agent programatically using the code exam
 | `.js` | `text/javascript` |
 | `.sh` | `application/x-sh` |
 | `.ts` | `application/typescript` |
-
-::: zone-end
-
-::: zone pivot="deep-dive"
-
-[!INCLUDE [deep-dive](../../includes/file-search/deep-dive.md)]
-
-::: zone-end
 

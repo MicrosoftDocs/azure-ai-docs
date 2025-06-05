@@ -1,13 +1,13 @@
 ---
-title: How to use image and audio in chat completions with Azure AI model inference
+title: How to use image and audio in chat completions with Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
-description: Learn how to process audio and images with chat completions models with Azure AI model inference
+description: Learn how to process audio and images with chat completions models with Azure AI Foundry Models
 manager: scottpolly
 author: mopeakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
-ms.topic: how-to
-ms.date: 1/21/2025
+ms.topic: include
+ms.date: 05/29/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 ms.custom: references_regions, tool_generated
@@ -16,8 +16,7 @@ zone_pivot_groups: azure-ai-inference-samples
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use chat completions API with models deployed to Azure AI model inference in Azure AI services.
-
+This article explains how to use chat completions API with _multimodal_ models deployed in Azure AI Foundry Models. Apart from text input, multimodal models can accept other input types, such as images or audio input.
 ## Prerequisites
 
 To use chat completion models in your application, you need:
@@ -26,29 +25,29 @@ To use chat completion models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites-javascript](../how-to-prerequisites-javascript.md)]
 
-* A chat completions model deployment with support for **audio and images**. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
+* A chat completions model deployment with support for **audio and images**. If you don't have one, see [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
 
-  * This tutorial uses `Phi-4-multimodal-instruct`.
+  * This article uses `Phi-4-multimodal-instruct`.
 
 ## Use chat completions
 
 First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
 
 ```javascript
-const client = new ModelClient(
-    "https://<resource>.services.ai.azure.com/models", 
-    new AzureKeyCredential(process.env.AZUREAI_ENDPOINT_KEY)
+const client = ModelClient(
+    "https://<resource>.services.ai.azure.com/api/models", 
+    new AzureKeyCredential(process.env.AZURE_INFERENCE_CREDENTIAL)
 );
 ```
 
-If you have configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
+If you've configured the resource with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
 
 ```javascript
 const clientOptions = { credentials: { "https://cognitiveservices.azure.com" } };
 
-const client = new ModelClient(
-    "https://<resource>.services.ai.azure.com/models", 
-    new DefaultAzureCredential(),
+const client = ModelClient(
+    "https://<resource>.services.ai.azure.com/api/models", 
+    new DefaultAzureCredential()
     clientOptions,
 );
 ```
@@ -56,6 +55,9 @@ const client = new ModelClient(
 ## Use chat completions with images
 
 Some models can reason across text and images and generate text completions based on both kinds of input. In this section, you explore the capabilities of some models for vision in a chat fashion. 
+
+> [!IMPORTANT]
+> Some models support only one image for each turn in the chat conversation and only the last image is retained in context. If you add multiple images, it results in an error.
 
 To see this capability, download an image and encode the information as `base64` string. The resulting data should be inside of a [data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs):
 
@@ -127,10 +129,17 @@ Usage:
   Total tokens: 2506
 ```
 
-Images are broken into tokens and submitted to the model for processing. When referring to images, each of those tokens is typically referred as *patches*. Each model may break down a given image on a different number of patches. Read the model card to learn the details.
+### Usage
 
-> [!IMPORTANT]
-> Some models support only one image for each turn in the chat conversation and only the last image is retained in context. If you add multiple images, it results in an error.
+Images are broken into tokens and submitted to the model for processing. When referring to images, each of those tokens is typically referred as *patches*. Each model might break down a given image on a different number of patches. Read the model card to learn the details.
+
+### Multi-turn conversations
+
+Some models support only one image for each turn in the chat conversation and only the last image is retained in context. If you add multiple images, it results in an error. Read the model card to understand the case of each model.
+
+### Image URLs
+
+The model can read the content from an **accessible cloud location** by passing the URL as an input. This approach requires the URL to be public and do not require specific handling.
 
 ## Use chat completions with audio
 
@@ -209,9 +218,9 @@ console.log("\tCompletion tokens:", response.body.usage.completion_tokens);
 ASSISTANT: Hola. ¿Cómo estás?
 Model: speech
 Usage:
-	Prompt tokens: 77
-	Completion tokens: 7
-	Total tokens: 84
+    Prompt tokens: 77
+    Completion tokens: 7
+    Total tokens: 84
 ```
 
 The model can read the content from an **accessible cloud location** by passing the URL as an input. The Python SDK doesn't provide a direct way to do it, but you can indicate the payload as follows:
@@ -241,4 +250,6 @@ const response = await client.path("/chat/completions").post({
   });
 ```
 
-Audio is broken into tokens and submitted to the model for processing. Some models may operate directly over audio tokens while other may use internal modules to perform speech-to-text, resulting in different strategies to compute tokens. Read the model card for details about how each model operates.
+### Usage
+
+Audio is broken into tokens and submitted to the model for processing. Some models might operate directly over audio tokens while other might use internal modules to perform speech-to-text, resulting in different strategies to compute tokens. Read the model card for details about how each model operates.

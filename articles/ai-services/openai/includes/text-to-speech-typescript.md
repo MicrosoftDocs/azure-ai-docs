@@ -28,7 +28,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Set up
 
-1. Create a new folder `assistants-quickstart` to contain the application and open Visual Studio Code in that folder with the following command:
+1. Create a new folder `assistants-quickstart` and go to the quickstart folder with the following command:
 
     ```shell
     mkdir assistants-quickstart && cd assistants-quickstart
@@ -86,7 +86,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     
     // Required Azure OpenAI deployment name and API version
     const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "tts";
-    const apiVersion = process.env.OPENAI_API_VERSION || "2024-08-01-preview";
+    const apiVersion = process.env.OPENAI_API_VERSION || "2025-04-01-preview";
 
     // keyless authentication    
     const credential = new DefaultAzureCredential();
@@ -184,7 +184,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     
     // Required Azure OpenAI deployment name and API version
     const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "tts";
-    const apiVersion = process.env.OPENAI_API_VERSION || "2024-08-01-preview";
+    const apiVersion = process.env.OPENAI_API_VERSION || "2025-04-01-preview";
     
     function getClient(): AzureOpenAI {
       return new AzureOpenAI({

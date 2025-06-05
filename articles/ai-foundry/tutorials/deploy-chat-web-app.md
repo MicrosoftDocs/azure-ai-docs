@@ -18,8 +18,6 @@ author: sdgilley
 
 # Tutorial: Deploy an enterprise chat web app
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
-
 In this article, you deploy an enterprise chat web app that uses your own data with a large language model in Azure AI Foundry portal.
 
 Your data source is used to help ground the model with specific data. Grounding means that the model uses your data to help it understand the context of your question. You're not changing the deployed model itself. Your data is stored separately and securely in your original data source
@@ -34,7 +32,8 @@ The steps in this tutorial are:
 
 ## Prerequisites
 
-- An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
+[!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
+
 - A [deployed Azure OpenAI](../how-to/deploy-models-openai.md) chat model. Complete the [Azure AI Foundry playground quickstart](../quickstarts/get-started-playground.md) to create this resource if you haven't already.
 
 - A Search service connection to index the sample product data.  If you don't have one, follow the steps to [create](copilot-sdk-create-resources.md#create-search) and [connect](copilot-sdk-create-resources.md#connect) a search service.
@@ -62,7 +61,7 @@ In order for the resources to work correctly inside a web app, you need to confi
 
 To start, identify the resources you need to configure from the Azure AI Foundry portal.
 
-1. Open the [Azure AI Foundry portal](https://ai.azure.com) and select the project you used to deploy the Azure OpenAI chat model.
+1. Open the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select the project you used to deploy the Azure OpenAI chat model.
 1. Select **Management center** from the left pane.
 1. Select **Connected resources** under your project.
 1. Identify the three resources you need to configure:  the **Azure OpenAI**, the **Azure AI Search**, and the **Azure Blob storage** that corresponds to your **workspaceblobstore**.
@@ -140,7 +139,7 @@ In this tutorial, your web app is deployed to the same resource group as your [A
 
 Follow these steps to navigate to your resource group in the Azure portal:
 
-1. Go to your project in [Azure AI Foundry](https://ai.azure.com). Then select **Management center** from the left pane.
+1. Go to your project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). Then select **Management center** from the left pane.
 1. Under the **Project** heading, select **Overview**.
 1. Select the resource group name to open the resource group in the Azure portal. In this example, the resource group is named `rg-sdg-ai`.
 

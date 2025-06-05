@@ -29,7 +29,7 @@ Install a Java Development Kit such as [Azul Zulu OpenJDK](https://www.azul.com/
 
 ## Install the Speech SDK for Java
 
-Some of the instructions use a specific SDK version such as `1.42.0`. To check the latest version, [search our GitHub repository](https://github.com/Azure-Samples/cognitive-services-speech-sdk/search?q=com.microsoft.cognitiveservices.speech%3Aclient-sdk).
+Some of the instructions use a specific SDK version such as `1.43.0`. To check the latest version, [search our GitHub repository](https://github.com/Azure-Samples/cognitive-services-speech-sdk/search?q=com.microsoft.cognitiveservices.speech%3Aclient-sdk).
 
 Choose your target environment:
 

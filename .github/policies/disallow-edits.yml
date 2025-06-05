@@ -24,7 +24,7 @@ configuration:
           - payloadType: Pull_Request
           - isAction:
               action: Opened
-          -or
+          - or:
             - filesMatchPattern:
                 matchAny: true
                 pattern: articles/ai-foundry/responsible-ai/*
@@ -45,7 +45,7 @@ configuration:
           - payloadType: Pull_Request
           - isAction:
               action: Opened
-          -or
+          -or:
             - filesMatchPattern:
                 matchAny: true
                 pattern: articles/ai-foundry/responsible-ai/*
@@ -73,3 +73,55 @@ configuration:
                 - mrbullwinkle
               replyTemplate: ${mentionees} - Please review this PR and sign off when you're ready to merge it.
               assignMentionees: True # This part probably won't work since the bot doesn't have write perms.
+          - addLabel:
+              label: needs-human-review
+
+      - description: \@mention specific people when a PR is opened in the "ai-services/responsible-ai" folder.
+        if:
+          - payloadType: Pull_Request
+          - isAction:
+              action: Opened
+          - filesMatchPattern:
+              matchAny: true
+              pattern: articles/ai-services/responsible-ai/*
+          - activitySenderHasAssociation:
+              association: Member
+          - not:
+              or:
+                - isActivitySender:
+                    user: eric-urban
+                - isActivitySender:
+                    user: nitinme
+                - isActivitySender:
+                    user: mrbullwinkle
+                - isActivitySender:
+                    user: aahill
+                - isActivitySender:
+                    user: laujan
+                - isActivitySender:
+                    user: patrickfarley
+                - isActivitySender:
+                    user: jboback
+                - isActivitySender:
+                    user: heidisteen
+                - isActivitySender:
+                    user: haileytap
+        then:
+          - addReply:
+              reply: >-
+                @${issueAuthor} - Please don't sign off on this PR. The area owners will sign off once they've reviewed your contribution.
+          - mentionUsers:
+              mentionees:
+                - eric-urban
+                - nitinme
+                - mrbullwinkle
+                - aahill
+                - laujan
+                - patrickfarley
+                - jboback
+                - heidisteen
+                - haileytap
+              replyTemplate: ${mentionees} - Please review this PR and sign off when you're ready to merge it.
+              assignMentionees: True # This part probably won't work since the bot doesn't have write perms.
+          - addLabel:
+              label: needs-human-review

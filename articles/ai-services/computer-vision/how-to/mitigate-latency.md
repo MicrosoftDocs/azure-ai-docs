@@ -2,7 +2,6 @@
 title: Mitigate latency and improve Face service performance
 titleSuffix: Azure AI services
 description: Learn how to mitigate network latency and improve service performance when using the Azure AI Face service to enhance user experience.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision

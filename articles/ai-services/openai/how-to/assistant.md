@@ -1,5 +1,5 @@
 ---
-title: 'How to create Assistants with Azure OpenAI Service'
+title: 'How to create Assistants with Azure OpenAI in Azure AI Foundry Models'
 titleSuffix: Azure OpenAI
 description: Learn how to create helpful AI Assistants with tools like Code Interpreter.
 services: cognitive-services
@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: references_regions
 ms.topic: how-to
-ms.date: 01/28/2025
+ms.date: 04/29/2025
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -17,8 +17,6 @@ recommendations: false
 # Getting started with Azure OpenAI Assistants (Preview)
 
 Azure OpenAI Assistants (Preview) allows you to create AI assistants tailored to your needs through custom instructions and augmented by advanced tools like code interpreter, and custom functions. In this article, we provide an in-depth walkthrough of getting started with the Assistants API.
-
-[!INCLUDE [Assistants v2 note](../includes/assistants-v2-note.md)]
 
 ## Assistants support
 
@@ -120,7 +118,7 @@ assistant = client.beta.assistants.create(
 There are a few details you should note from the configuration above:
 
 - We enable this assistant to access code interpreter with the line `tools=[{"type": "code_interpreter"}],`. This gives the model access to a sand-boxed python environment to run and execute code to help formulating responses to a user's question.
-- In the instructions we remind the model that it can execute code. Sometimes the model needs help guiding it towards the right tool to solve a given query. If you know you want to use a particular library to generate a certain response that you know is part of code interpreter, it can help to provide guidance by saying something like "Use Matplotlib to do x."
+- In the instructions we remind the model that it can execute code. Sometimes the model needs help with guiding it towards the right tool to solve a given query. If you know you want to use a particular library to generate a certain response that you know is part of code interpreter, it can help to provide guidance by saying something like "Use Matplotlib to do x."
 - Since this is Azure OpenAI the value you enter for `model=` **must match the deployment name**.
 
 Next we're going to print the contents of assistant that we just created to confirm that creation was successful:

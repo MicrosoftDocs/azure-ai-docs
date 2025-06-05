@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 5/21/2024
+ms.date: 04/23/2025
 ms.reviewer: fasantia
 reviewer: santiagxf
 ms.author: mopeakande
@@ -27,18 +27,18 @@ This article provides instructions on how to troubleshoot your deployments and m
 For the general deployment error code reference, see [Troubleshooting online endpoints deployment and scoring](/azure/machine-learning/how-to-troubleshoot-online-endpoints) in the Azure Machine Learning documentation. Much of the information there also apply to Azure AI Foundry deployments.
 
 
-### Error: Use of Azure OpenAI models in Azure Machine Learning requires Azure OpenAI Services resources
+### Error: Use of Azure OpenAI models in Azure Machine Learning requires Azure OpenAI in Azure AI Foundry Models resources
 
-The full error message states: "Use of Azure OpenAI models in Azure Machine Learning requires Azure OpenAI Services resources. This subscription or region doesn't have access to this model."
+The full error message states: "Use of Azure OpenAI models in Azure Machine Learning requires Azure OpenAI in Azure AI Foundry Models resources. This subscription or region doesn't have access to this model."
 
-This error means that you might not have access to the particular Azure OpenAI model. For example, your subscription might not have access to the latest GPT model yet or this model isn't offered in the region you want to deploy to. You can learn more about it on [Azure OpenAI Service models](../../ai-services/openai/concepts/models.md).
+This error means that you might not have access to the particular Azure OpenAI model. For example, your subscription might not have access to the latest GPT model yet or this model isn't offered in the region you want to deploy to. You can learn more about it on [Azure OpenAI in Azure AI Foundry Models](../../ai-services/openai/concepts/models.md?context=/azure/ai-foundry/context/context).
 
 ### Error: Out of quota
 
 For more information about managing quota, see:
 
 - [Quota for deploying and inferencing a model](../how-to/deploy-models-openai.md#quota-for-deploying-and-inferencing-a-model)
-- [Manage Azure OpenAI Service quota documentation](/azure/ai-services/openai/how-to/quota?tabs=rest)
+- [Manage Azure OpenAI in Azure AI Foundry Models quota documentation](/azure/ai-services/openai/how-to/quota?tabs=rest)
 - [Manage and increase quotas for resources with Azure AI Foundry](quota.md)
 
 ### Error: `ToolLoadError`
@@ -47,10 +47,12 @@ After you deployed a prompt flow, you got the error message: "Tool load failed i
 
 To fix this error, take the following steps to manually assign the ML Data scientist role to your endpoint. It might take several minutes for the new role to take effect.
 
-1. Go to your project in [Azure AI Foundry](https://ai.azure.com) and select **Management center** from the left navigation menu to open the settings page.
+[!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
+
+1. Go to your project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and select **Management center** from the left pane to open the settings page.
 1. Under the **Project** heading, select **Overview**.
 1. Under **Quick reference**, select the link to your resource group to open it in the Azure portal. 
-1. Select **Access control (IAM)** from the left navigation menu in the Azure portal.
+1. Select **Access control (IAM)** from the left pane in the Azure portal.
 1. Select **Add role assignment**.
 1. Select **Azure ML Data Scientist**, and select __Next__.
 1. Select **Managed Identity**.
@@ -59,7 +61,7 @@ To fix this error, take the following steps to manually assign the ML Data scien
 1. Select your endpoint's name.
 1. Select **Select**.
 1. Select **Review + Assign**.
-1. Return to your project in Azure AI Foundry portal and select **Deployments** from the left navigation menu. 
+1. Return to your project in Azure AI Foundry portal and select **Deployments** from the left pane. 
 1. Select your deployment.
 1. Test the prompt flow deployment.
 
@@ -75,20 +77,22 @@ This error message refers to a situation where the deployment build failed. You 
 
 __Option 1: Find the build log for the Azure default blob storage.__
 
-1. Go to your project in [Azure AI Foundry](https://ai.azure.com) and select **Management center** from the left navigation menu to open the settings page.
+[!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
+
+1. Go to your project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and select **Management center** from the left pane to open the settings page.
 1. Under the **Hub** heading, select **Overview**.
 1. In the section for **Connected resources**, select the link to your storage account name. This name should be the name of the storage account listed in the error message you received. You'll be taken to the storage account page in the [Azure portal](https://portal.azure.com).
-1. On the storage account page, select **Data Storage** > **Containers** from the left navigation menu.
+1. On the storage account page, select **Data Storage** > **Containers** from the left pane.
 1. Select the container name that's listed in the error message you received.
 1. Select through folders to find the build logs.
 
 __Option 2: Find the build log within Azure Machine Learning studio.__
 
 > [!NOTE]
-> This option to access the build log uses [Azure Machine Learning studio](https://ml.azure.com), which is a different portal than [Azure AI Foundry](https://ai.azure.com).
+> This option to access the build log uses [Azure Machine Learning studio](https://ml.azure.com), which is a different portal than [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
 1. Go to [Azure Machine Learning studio](https://ml.azure.com).
-2. Select **Endpoints** from the left navigation menu.
+2. Select **Endpoints** from the left pane.
 3. Select your endpoint name. It might be identical to your deployment name.
 4. Select the link to **Environment** from the deployment section.
 5. Select **Build log** at the top of the environment details page.
@@ -109,5 +113,5 @@ Playground only supports select models, such as Azure OpenAI models and Llama-2.
 
 ## Related content
 
-- [Azure AI Foundry overview](../what-is-ai-foundry.md)
+- [Azure AI Foundry overview](../what-is-azure-ai-foundry.md)
 - [Azure AI FAQ](../faq.yml)

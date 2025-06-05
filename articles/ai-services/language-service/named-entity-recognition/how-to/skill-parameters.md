@@ -2,15 +2,14 @@
 title: Named entity recognition skill parameters
 titleSuffix: Azure AI services
 description: Learn about skill parameters for named entity recognition.
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/04/2024
-ms.author: jboback
+ms.date: 04/29/2025
+ms.author: lajanuar
 ---
 
 # Using named entity recognition skill parameters

@@ -19,6 +19,8 @@ adobe-target: true
 
 [!INCLUDE [sdk & cli v1](../includes/machine-learning-dev-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 Learn how to deploy your machine learning or deep learning model as a web service in the Azure cloud.
 
 [!INCLUDE [endpoints-option](../includes/machine-learning-endpoints-preview-note.md)]

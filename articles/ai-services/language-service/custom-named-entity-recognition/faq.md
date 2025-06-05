@@ -2,13 +2,12 @@
 title: Custom Named Entity Recognition (NER) FAQ
 titleSuffix: Azure AI services
 description: Learn about Frequently asked questions when using custom Named Entity Recognition.
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: faq
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-custom-ner
 ---
 
@@ -43,7 +42,7 @@ When you're ready to start [using your model to make predictions](#how-do-i-use-
 
 ## What is the recommended CI/CD process?
 
-You can train multiple models on the same dataset within the same project. After you have trained your model successfully, you can [view its performance](how-to/view-model-evaluation.md). You can [deploy and test](quickstart.md#deploy-your-model) your model within [Language studio](https://aka.ms/languageStudio). You can add or remove labels from your data and train a **new** model and test it as well. View [service limits](service-limits.md)to learn about maximum number of trained models with the same project. When you [train a model](how-to/train-model.md), you can determine how your dataset is split into training and testing sets. You can also have your data split randomly into training and testing set where there is no guarantee that the reflected model evaluation is about the same test set, and the results are not comparable. It's recommended that you develop your own test set and use it to evaluate both models so you can measure improvement.
+You can train multiple models on the same dataset within the same project. After you have trained your model successfully, you can [view its performance](how-to/view-model-evaluation.md). You can [deploy and test](quickstart.md#deploy-your-model) your model within [Language studio](https://aka.ms/languageStudio). You can add or remove labels from your data and train a **new** model and test it as well. View [service limits](service-limits.md) to learn about maximum number of trained models with the same project. When you [train a model](how-to/train-model.md), you can determine how your dataset is split into training and testing sets. You can also have your data split randomly into training and testing set where there is no guarantee that the reflected model evaluation is about the same test set, and the results are not comparable. It's recommended that you develop your own test set and use it to evaluate both models so you can measure improvement.
 
 ## Does a low or high model score guarantee bad or good performance in production?
 

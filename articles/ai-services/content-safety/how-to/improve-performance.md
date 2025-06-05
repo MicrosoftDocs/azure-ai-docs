@@ -2,21 +2,20 @@
 title: "Mitigate false results in Azure AI Content Safety"
 titleSuffix: Azure AI services
 description: Learn techniques to improve the performance of Azure AI Content Safety models by handling false positives and false negatives.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: how-to
-ms.date: 09/18/2024
+ms.date: 03/26/2025
 ms.author: pafarley
 #customer intent: As a user, I want to improve the performance of Azure AI Content Safety so that I can ensure accurate content moderation.
 ---
 
 # Mitigate false results in Azure AI Content Safety
 
-This guide provides a step-by-step process for handling false positives and false negatives from Azure AI Content Safety models. 
+This guide shows you how to handle false positives and false negatives from Azure AI Content Safety models. 
 
-False positives are when the system incorrectly flags non-harmful content as harmful; false negatives are when harmful content is not flagged as harmful. Address these instances to ensure the integrity and reliability of your content moderation process, including responsible generative AI deployment.
+False positives occur when the system incorrectly flags non-harmful content as harmful; false negatives occur when harmful content is not flagged as harmful. Address these instances to ensure the integrity and reliability of your content moderation process, including responsible generative AI deployment.
 
 ## Prerequisites
 
@@ -25,10 +24,10 @@ False positives are when the system incorrectly flags non-harmful content as har
 
 ## Review and verification
 
-Conduct an initial assessment to confirm that the flagged content is really a false positive or false negative. This can involve: 
+Conduct an initial assessment to confirm that you really have a false positive or false negative. This can involve: 
 - Checking the context of the flagged content.  
-- Comparing the flagged content against the content safety risk categories and severity definitions:
-    - If you're using content safety in Azure OpenAI, see the [Azure OpenAI content filtering doc](/azure/ai-services/openai/concepts/content-filter).
+- Comparing the flagged content against the content risk categories and severity definitions:
+    - If you're using Guardrails & controls in Azure OpenAI, see the [Azure OpenAI content filtering doc](/azure/ai-services/openai/concepts/content-filter).
     - If you're using the Azure AI Content Safety standalone API, see the [Harm categories doc](/azure/ai-services/content-safety/concepts/harm-categories?tabs=warning) or the [Prompt Shields doc](/azure/ai-services/content-safety/concepts/jailbreak-detection), depending on which API you're using.
 
 ## Customize your severity settings
@@ -46,9 +45,9 @@ In addition to adjusting the severity levels for false negatives, you can also u
 
 Read the [Configurability](/en-us/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cuser-prompt%2Cpython-new#configurability-preview) documentation, as some content filtering configurations may require approval through the process mentioned there.
 
-Follow the steps in the documentation to update configurations to handle false positives or negatives: [How to use content filters (preview) with Azure OpenAI Service](/azure/ai-services/openai/how-to/content-filters). 
+Follow the steps in the documentation to update configurations to handle false positives or negatives: [How to use content filters (preview) with Azure OpenAI in Azure AI Foundry Models](/azure/ai-services/openai/how-to/content-filters). 
 
-In addition to adjusting the severity levels for false negatives, you can also use blocklists. Detailed instruction can be found in [How to use blocklists with Azure OpenAI Service](/azure/ai-services/openai/how-to/use-blocklists).
+In addition to adjusting the severity levels for false negatives, you can also use blocklists. Detailed instruction can be found in [How to use blocklists with Azure OpenAI](/azure/ai-services/openai/how-to/use-blocklists).
 
 #### [Azure AI Foundry](#tab/azure-ai-studio)
 

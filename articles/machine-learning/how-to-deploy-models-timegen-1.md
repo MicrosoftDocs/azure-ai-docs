@@ -17,23 +17,23 @@ ms.collection: ce-skilling-ai-copilot
 
 # How to deploy a TimeGEN-1 model with Azure Machine Learning
 
-In this article, you learn how to use Azure Machine Learning to deploy the TimeGEN-1 model as a serverless API with pay-as-you-go billing.
+In this article, you learn how to use Azure Machine Learning to deploy the TimeGEN-1 model as a standard deployment with pay per token offer.
 You filter on the Nixtla collection to browse the TimeGEN-1 model in the [model catalog](concept-model-catalog.md).
 
 The Nixtla TimeGEN-1 is a generative, pretrained forecasting and anomaly detection model for time series data. TimeGEN-1 can produce accurate forecasts for new time series without training, using only historical values and exogenous covariates as inputs.
 
 [!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
-## Deploy TimeGEN-1 as a serverless API
+## Deploy TimeGEN-1 as a standard deployment
 
-Certain models in the model catalog can be deployed as a serverless API with pay-as-you-go billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription.
+Certain models in the model catalog can be deployed as a standard deployment with pay per token offer. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription.
 
-You can deploy TimeGEN-1 as a serverless API with pay-as-you-go billing. Nixtla offers TimeGEN-1 through the Microsoft Azure Marketplace. Nixtla can change or update the terms of use and pricing of this model.
+You can deploy TimeGEN-1 as a standard deployment with pay per token offer. Nixtla offers TimeGEN-1 through the Microsoft Azure Marketplace. Nixtla can change or update the terms of use and pricing of this model.
 
 ### Prerequisites
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
-- An Azure Machine Learning workspace. If you don't have a workspace, use the steps in the [Quickstart: Create workspace resources](quickstart-create-resources.md) article to create one. The serverless API model deployment offering for TimeGEN-1 is only available with workspaces created in these regions:
+- An Azure Machine Learning workspace. If you don't have a workspace, use the steps in the [Quickstart: Create workspace resources](quickstart-create-resources.md) article to create one. The standard deployment model deployment offering for TimeGEN-1 is only available with workspaces created in these regions:
 
     > [!div class="checklist"]
     > * East US
@@ -44,7 +44,7 @@ You can deploy TimeGEN-1 as a serverless API with pay-as-you-go billing. Nixtla 
     > * West US 3
     > * Sweden Central
 
-    For a list of  regions that are available for each of the models supporting serverless API endpoint deployments, see [Region availability for models in serverless API endpoints](concept-endpoint-serverless-availability.md).
+    For a list of  regions that are available for each of the models supporting standard deployment , see [Region availability for models in standard deployment](concept-endpoint-serverless-availability.md).
 
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure Machine Learning. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Manage access to an Azure Machine Learning workspace](how-to-assign-roles.md).
 
@@ -88,9 +88,9 @@ There are four pricing meters that determine the price you pay. These meters are
 These steps demonstrate the deployment of TimeGEN-1. To create a deployment:
 
 1. Go to [Azure Machine Learning studio](https://ml.azure.com/home).
-1. Select the workspace in which you want to deploy your models. To use the serverless API model deployment offering, your workspace must belong to one of the regions listed in the [Prerequisites](#prerequisites) section.
+1. Select the workspace in which you want to deploy your models. To use the standard deployment offering, your workspace must belong to one of the regions listed in the [Prerequisites](#prerequisites) section.
 1. Choose the model **TimeGEN-1**, from the [model catalog](https://ml.azure.com/model/catalog). 
-1. On the model's overview page in the model catalog, select **Deploy** to open up the serverless API deployment window.
+1. On the model's overview page in the model catalog, select **Deploy** to open up the standard deployment window.
 
    Alternatively, you can initiate deployment by going to your workspace and selecting **Endpoints** > **Serverless endpoints** > **Create**. Then, you can select a model.
 
@@ -100,13 +100,13 @@ These steps demonstrate the deployment of TimeGEN-1. To create a deployment:
 1. Once you subscribe the workspace for the particular Azure Marketplace offering, subsequent deployments of the _same_ offering in the _same_ workspace don't require subscribing again. If this scenario applies to you, you'll see a **Continue to deploy** option to select.
 1. Give the deployment a name. This name becomes part of the deployment API URL. This URL must be unique in each Azure region. 
 1. Select **Deploy**. Wait until the deployment is ready and you're redirected to the Deployments page.
-1. Take note of the **Target URI** and the secret **Key**, which you can use to call the deployment and generate completions. For more information on using the APIs, see the [reference](#reference-for-timegen-1-deployed-as-a-serverless-api) section.
+1. Take note of the **Target URI** and the secret **Key**, which you can use to call the deployment and generate completions. For more information on using the APIs, see the [reference](#reference-for-timegen-1-deployed-as-a-standard-deployment) section.
 1. Select the **Test** tab to start interacting with the model.  
 1. You can always find the endpoint's details, URI, and access keys by navigating to **Workspace** > **Endpoints** > **Serverless endpoints**.
 
-To learn about billing for the TimeGEN-1 model deployed as a serverless API with pay-as-you-go token-based billing, see [Cost and quota considerations for TimeGEN-1 deployed as a serverless API](#cost-and-quota-considerations-for-timegen-1-deployed-as-a-serverless-api).
+To learn about billing for the TimeGEN-1 model deployed as a standard deployment with pay per token offer billing, see [Cost and quota considerations for TimeGEN-1 deployed as a standard deployment](#cost-and-quota-considerations-for-timegen-1-deployed-as-a-standard-deployment).
 
-### Consume the TimeGEN-1 model as a service
+### Consume the TimeGEN-1 model 
 
 You can consume TimeGEN-1 models by using the forecast API.
 
@@ -126,9 +126,9 @@ You can consume TimeGEN-1 models by using the forecast API.
 |Exogenous Variables|Exogenous variables are external factors that can influence forecasts. These variables take on one of a limited, fixed number of possible values, and induce a grouping of your observations. For example, if you're forecasting daily product demand for a retailer, you could benefit from an event variable that may tell you what kind of event takes place on a given day, for example 'None', Sporting', or 'Cultural'. Or you might also include external factors such as weather.|[Exogenous Variables](https://aka.ms/exogenous-variables)|
 |Demand Forecasting|Demand forecasting involves application of historical data and other analytical information, to build models that help predict future estimates of customer demand, for specific products, over a specific time period. It helps shape product road map, inventory production, and inventory allocation, among other things.|[Demand Forecasting](https://aka.ms/demand-forecasting-with-TimeGEN1)|
 
-For more information about use of the APIs, visit the [Reference](#reference-for-timegen-1-deployed-as-a-serverless-api) section.
+For more information about use of the APIs, visit the [Reference](#reference-for-timegen-1-deployed-as-a-standard-deployment) section.
 
-### Reference for TimeGEN-1 deployed as a serverless API
+### Reference for TimeGEN-1 deployed as a standard deployment
 
 #### Forecast API
 
@@ -270,9 +270,9 @@ This JSON sample is an example response:
 
 ## Cost and quotas
 
-### Cost and quota considerations for TimeGEN-1 deployed as a serverless API
+### Cost and quota considerations for TimeGEN-1 deployed as a standard deployment
 
-Nixtla offers TimeGEN-1 deployed as a serverless API through the Azure Marketplace. TimeGEN-1 is integrated with Azure Machine Learning for use. You can find more information about Azure Marketplace pricing when you deploy the model.
+Nixtla offers TimeGEN-1 deployed as a standard deployment through the Azure Marketplace. TimeGEN-1 is integrated with Azure Machine Learning for use. You can find more information about Azure Marketplace pricing when you deploy the model.
 
 Each time a workspace subscribes to a given offer from the Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference; however, multiple meters are available to track each scenario independently.
 
@@ -285,4 +285,4 @@ Quota is managed per deployment. Each deployment has a rate limit of 200,000 tok
 - [Model Catalog and Collections](concept-model-catalog.md)
 - [Deploy and score a machine learning model by using an online endpoint](how-to-deploy-online-endpoints.md)
 - [Plan and manage costs for Azure AI Foundry](/azure/ai-studio/how-to/costs-plan-manage)
-- [Region availability for models in serverless API endpoints](concept-endpoint-serverless-availability.md)
+- [Region availability for models in standard deployment](concept-endpoint-serverless-availability.md)

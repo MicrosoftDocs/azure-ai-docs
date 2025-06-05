@@ -9,7 +9,7 @@ ms.author: ssalgado
 ms.reviewer: ratanase
 ms.subservice: training
 ms.custom: build-2023
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 12/05/2024
 ---
 
@@ -37,7 +37,7 @@ In this approach, the data is divided into partitions, where the number of parti
 
 The following diagram shows this approach.
 
-:::image type="content" source="media/concept-distributed-training/distributed-training.svg" alt-text="Diagram of data parrallelism showing the model copied into worker nodes.":::
+:::image type="content" source="media/concept-distributed-training/distributed-training.svg" alt-text="Diagram of data parallelism showing the model copied into worker nodes.":::
 
 Each node independently computes the errors between its predictions for its training samples and the labeled outputs. In turn, each node updates its model based on the errors and must communicate all of its changes to the other nodes to update their corresponding models. Worker nodes need to synchronize the model parameters, or gradients, at the end of the batch computation to ensure they're training a consistent model. 
 

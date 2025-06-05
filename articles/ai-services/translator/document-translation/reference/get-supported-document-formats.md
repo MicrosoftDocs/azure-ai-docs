@@ -2,29 +2,28 @@
 title: Get supported document formats method
 titleSuffix: Azure AI services
 description: The get supported document formats method returns a list of supported document formats.
-#services: cognitive-services
 manager: nitinme
 ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 02/09/2024
+ms.date: 04/14/2025
 ---
 
 # Get supported document formats
 
 Reference</br>
-Feature: **Azure AI Translator → Document Translation**</br>
+Feature: **Azure AI Translator → Document translation**</br>
 API Version: **2024-05-01**</br>
 HTTP method: **GET**
 
-This method returns a list of document formats supported by the Document Translation feature. The list includes common file extensions and content-type if using the upload API.
+This method returns a list of document formats supported by the Document translation feature. The list includes common file extensions and content-type if using the upload API.
 
 ## Request URL
 
 > [!IMPORTANT]
 >
-> **All API requests to the Document Translation feature require a custom domain endpoint that is located on your resource overview page in the Azure portal**.
+> **All API requests to the Document translation feature require a custom domain endpoint that is located on your resource overview page in the Azure portal**.
 
 ```bash
  curl -i -X GET "{document-translation-endpoint}/translator/document/formats?api-version={date}&type=document"
@@ -67,7 +66,7 @@ The following information is returned in a successful response.
 
 |Name|Type|Description|
 |--- |--- |--- |
- |code|string|Enums containing high-level error codes. Possible values: &bullet; InternalServerError<br>&bullet; InvalidArgument<br>&bullet; InvalidRequest<br>&bullet; RequestRateTooHigh<br>&bullet; ResourceNotFound<br>&bullet; ServiceUnavailable<br>&bullet; Unauthorized|
+ |code|string|Enums containing high-level error codes. Accepted values: &bullet; InternalServerError<br>&bullet; InvalidArgument<br>&bullet; InvalidRequest<br>&bullet; RequestRateTooHigh<br>&bullet; ResourceNotFound<br>&bullet; ServiceUnavailable<br>&bullet; Unauthorized|
 |message|string|Gets high-level error message.|
 |innerError|InnerTranslationError|New Inner Error format that conforms to Azure AI services API Guidelines. This error message contains required properties ErrorCode, message, and optional properties target, details(key value pair), inner error(it can be nested).|
 |innerError.code|string|Gets code error string.|
@@ -320,7 +319,7 @@ Status code: 500
 
 ## Next steps
 
-Follow our quickstart to learn more about using Document Translation and the client library.
+Follow our quickstart to learn more about using Document translation and the client library.
 
 > [!div class="nextstepaction"]
-> [Get started with Document Translation](../how-to-guides/use-rest-api-programmatically.md)
+> [Get started with Document translation](../how-to-guides/use-rest-api-programmatically.md)

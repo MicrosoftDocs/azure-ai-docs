@@ -1,12 +1,12 @@
 ---
-title: 'How to generate reproducible output with Azure OpenAI Service'
+title: 'How to generate reproducible output with Azure OpenAI in Azure AI Foundry Models'
 titleSuffix: Azure OpenAI
-description: Learn how to generate reproducible output (preview) with Azure OpenAI Service.
+description: Learn how to generate reproducible output (preview) with Azure OpenAI.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 09/20/2024
+ms.date: 03/26/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -50,7 +50,7 @@ from openai import AzureOpenAI
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
   api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2024-02-01"
+  api_version="2024-10-21"
 )
 
 for i in range(3):
@@ -79,7 +79,7 @@ for i in range(3):
 $openai = @{
    api_key     = $Env:AZURE_OPENAI_API_KEY
    api_base    = $Env:AZURE_OPENAI_ENDPOINT # like the following https://YOUR_RESOURCE_NAME.openai.azure.com/
-   api_version = '2024-02-01' # may change in the future
+   api_version = '2024-10-21' # may change in the future
    name        = 'YOUR-DEPLOYMENT-NAME-HERE' # name you chose for your deployment
 }
 
@@ -145,7 +145,7 @@ from openai import AzureOpenAI
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
   api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2024-02-01"
+  api_version="2024-10-21"
 )
 
 for i in range(3):
@@ -174,7 +174,7 @@ for i in range(3):
 $openai = @{
    api_key     = $Env:AZURE_OPENAI_API_KEY
    api_base    = $Env:AZURE_OPENAI_ENDPOINT # like the following https://YOUR_RESOURCE_NAME.openai.azure.com/
-   api_version = '2024-02-01' # may change in the future
+   api_version = '2024-10-21' # may change in the future
    name        = 'YOUR-DEPLOYMENT-NAME-HERE' # name you chose for your deployment
 }
 

@@ -301,10 +301,10 @@ During a run, there are two applications of an identity:
     token = credential.get_token('https://storage.azure.com/')
     ```
 
-To configure a kubernetes cluster compute, make sure that it has the [necessary AML extension deployed in it](https://learn.microsoft.com/azure/machine-learning/how-to-deploy-kubernetes-extension?view=azureml-api-2&tabs=deploy-extension-with-cli) and follow the documentation on [how to attach the kubernetes cluster compute to your AML workspace](https://learn.microsoft.com/azure/machine-learning/how-to-attach-kubernetes-to-workspace?view=azureml-api-2&tabs=cli).
+To configure a kubernetes cluster compute, make sure that it has the [necessary AML extension deployed in it](how-to-deploy-kubernetes-extension.md?view=azureml-api-2&preserve-view=true&tabs=deploy-extension-with-cli) and follow the documentation on [how to attach the kubernetes cluster compute to your AML workspace](how-to-attach-kubernetes-to-workspace.md?view=azureml-api-2&preserve-view=true&tabs=cli).
 
 > [!IMPORTANT] 
-> For Training purposes (Machine Learning Jobs), the identity that is used is the one assigned to the Kubernetes Cluster Compute. However, in the case of inferencing (Managed Online Endpoints), the identity that is used is the one assigned to the endpoint. For more information see [How to Access Azure Resources from an Online Endpoint](https://learn.microsoft.com/azure/machine-learning/how-to-access-resources-from-endpoints-managed-identities?view=azureml-api-2&tabs=system-identity-cli).
+> For Training purposes (Machine Learning Jobs), the identity that is used is the one assigned to the Kubernetes Cluster Compute. However, in the case of inferencing (Managed Online Endpoints), the identity that is used is the one assigned to the endpoint. For more information see [How to Access Azure Resources from an Online Endpoint](how-to-access-resources-from-endpoints-managed-identities.md?view=azureml-api-2&preserve-view=true&tabs=system-identity-cli).
 
 ---
 
@@ -625,11 +625,6 @@ az ml environment create --file <yaml file>
 ```
 
 You can now use the environment in a [training job](how-to-train-cli.md).
-
-### Build Azure Machine Learning managed environment into base image from private ACR for training or inference
-
-> [!NOTE]
-> Connecting to a private ACR using user-assigned managed identity is not currently supported. **Admin key** is the only auth type supported for private ACR.
 
 <!-- 20240725: this commented block will be restored at a later date TBD . . .
 

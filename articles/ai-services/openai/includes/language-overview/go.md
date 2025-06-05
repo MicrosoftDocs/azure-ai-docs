@@ -1,11 +1,11 @@
 ---
 title: Azure OpenAI Go support
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Azure OpenAI Go support
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 11/18/2024
+ms.date: 03/27/2025
 ---
 
 [Source code](https://github.com/Azure/azure-sdk-for-go/tree/main/sdk/ai/azopenai) | [Package (pkg.go.dev)](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/ai/azopenai) | [API reference documentation](../../reference.md) | [Package reference documentation](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/ai/azopenai)   [Samples](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/ai/azopenai#pkg-examples)
@@ -15,9 +15,9 @@ ms.date: 11/18/2024
 
 Unlike the Azure OpenAI client libraries for Python and JavaScript, the Azure OpenAI Go library is targeted to a specific Azure OpenAI API version. Having access to the latest API versions impacts feature availability.
 
-Current Azure OpenAI API version target: `2024-10-01-preview`
+Current Azure OpenAI API version target: `2025-01-01-preview`
 
-This is defined in the [**custom_client.go**](https://github.com/Azure/azure-sdk-for-go/blob/9ebef43f64796118ae206a42821d9f541a231daa/sdk/ai/azopenai/custom_client.go#L37) file.
+This is defined in the [**custom_client.go**](https://github.com/Azure/azure-sdk-for-go/blob/main/sdk/ai/azopenai/custom_client.go) file.
 
 ## Installation
 
@@ -190,12 +190,12 @@ import (
 )
 
 func main() {
-	azureOpenAIKey := os.Getenv("AOAI_WHISPER_API_KEY")
+	azureOpenAIKey := os.Getenv("AOAI_AUDIO_API_KEY")
 
 	// Ex: "https://<your-azure-openai-host>.openai.azure.com"
-	azureOpenAIEndpoint := os.Getenv("AOAI_WHISPER_ENDPOINT")
+	azureOpenAIEndpoint := os.Getenv("AOAI_AUDIO_ENDPOINT")
 
-	modelDeploymentID := os.Getenv("AOAI_WHISPER_MODEL")
+	modelDeploymentID := os.Getenv("AOAI_AUDIO_MODEL")
 
 	if azureOpenAIKey == "" || azureOpenAIEndpoint == "" || modelDeploymentID == "" {
 		fmt.Fprintf(os.Stderr, "Skipping example, environment variables missing\n")

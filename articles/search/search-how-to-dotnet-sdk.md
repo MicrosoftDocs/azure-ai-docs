@@ -1,7 +1,7 @@
 ---
-title: Use Azure.Search.Documents (v11) in .NET
+title: Use Azure.Search.Documents in .NET
 titleSuffix: Azure AI Search
-description: Learn how to create and manage search objects in a .NET application using C# and the Azure.Search.Documents (v11) client library.
+description: Learn how to create and manage search objects in a .NET application using C# and the Azure.Search.Documents client library.
 
 manager: nitinme
 author: HeidiSteen
@@ -9,7 +9,7 @@ ms.author: heidist
 ms.devlang: csharp
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/23/2024
+ms.date: 04/14/2025
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet
@@ -18,13 +18,9 @@ ms.custom:
 
 # How to use Azure.Search.Documents in a .NET application
 
-This article explains how to create and manage search objects using C# and the [**Azure.Search.Documents**](/dotnet/api/overview/azure/search) (version 11) client library in the Azure SDK for .NET.
+This article explains how to create and manage search objects using C# and the [**Azure.Search.Documents**](/dotnet/api/overview/azure/search) client library in the Azure SDK for .NET.
 
-## About version 11
-
-Azure SDK for .NET includes an [**Azure.Search.Documents**](/dotnet/api/overview/azure/search) client library from the Azure SDK team that is functionally equivalent to the previous client library, [Microsoft.Azure.Search](/dotnet/api/microsoft.azure.search). Version 11 is more consistent in terms of Azure programmability. Some examples include [`AzureKeyCredential`](/dotnet/api/azure.azurekeycredential) key authentication, and [System.Text.Json.Serialization](/dotnet/api/system.text.json.serialization) for JSON serialization.
-
-As with previous versions, you can use this library to:
+You can use this library for data plane operations, including:
 
 + Create and manage search indexes, data sources, indexers, skillsets, and synonym maps
 + Load and manage search documents in an index
@@ -40,19 +36,13 @@ The client library defines classes like `SearchIndex`, `SearchField`, and `Searc
 + [`Azure.Search.Documents.Indexes.Models`](/dotnet/api/azure.search.documents.indexes.models)
 + [`Azure.Search.Documents.Models`](/dotnet/api/azure.search.documents.models)
 
-Version 11 targets the [2020-06-30 search service specification](https://github.com/Azure/azure-rest-api-specs/tree/main/specification/search/data-plane/Azure.Search/stable/2020-06-30). 
-
-The client library doesn't provide [service management operations](/rest/api/searchmanagement/), such as creating and scaling search services and managing API keys. If you need to manage your search resources from a .NET application, use the [Microsoft.Azure.Management.Search](/dotnet/api/microsoft.azure.management.search) library in the Azure SDK for .NET.
-
-## Upgrade to v11
-
-If you've been using the previous version of the .NET SDK and you'd like to upgrade to the current generally available version, see [Upgrade to Azure AI Search .NET SDK version 11](search-dotnet-sdk-migration-version-11.md).
+The **Azure.Search.Documents** client library doesn't provide [service management operations](/rest/api/searchmanagement/), such as creating and scaling search services and managing API keys. If you need to manage your search resources from a .NET application, use the [Azure.ResourceManager.Search](/dotnet/api/overview/azure/resourcemanager.search-readme) library in the Azure SDK for .NET.
 
 ## SDK requirements
 
 + Visual Studio 2019 or later.
 
-+ Your own Azure AI Search service. In order to use the SDK, you need the name of your service and one or more API keys. [Create a service in the Azure portal](search-create-service-portal.md) if you don't have one.
++ [Azure AI Search](search-create-service-portal.md)
 
 + Download the [NuGet package](https://www.nuget.org/packages/Azure.Search.Documents) using **Tools** > **NuGet Package Manager** > **Manage NuGet Packages for Solution** in Visual Studio. Search for the package name `Azure.Search.Documents`.
 

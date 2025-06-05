@@ -41,10 +41,10 @@ You need the following to get started:
 
 * An Azure subscription—you can [create one for free](https://azure.microsoft.com/free/cognitive-services/)
 
-* An Azure AI services or Document Intelligence resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer), or [multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) Document Intelligence resource in the Azure portal to get your key and endpoint. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
+* An Azure AI services or Document Intelligence resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer), or [multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) Document Intelligence resource in the Azure portal to get your key and endpoint. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
     > [!TIP]
-    > Create an Azure AI services resource if you plan to access multiple Azure AI services under a single endpoint/key. For Document Intelligence access only, create a Document Intelligence resource. Please note that you'll need a single-service resource if you intend to use [Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication).
+    > Create an Azure AI Foundry resource if you plan to access multiple Azure AI services under a single endpoint/key. For Document Intelligence access only, create a Document Intelligence resource. Please note that you'll need a single-service resource if you intend to use [Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication).
 
 ## Create a Document Intelligence resource
 
@@ -181,7 +181,7 @@ Configure the **Project Settings** fields with the following values:
 
 1. **Display Name**. Name your project.
 
-1. **Security Token**. Each project autogenerates a security token that can be used to encrypt/decrypt sensitive project settings. You can find security tokens in the Application Settings by selecting the gear icon at the bottom of the left navigation bar.
+1. **Security Token**. Each project autogenerates a security token that can be used to encrypt/decrypt sensitive project settings. You can find security tokens in the Application Settings by selecting the gear icon at the bottom of the left pane.
 
 1. **Source connection**. The Sample Labeling tool connects to a source (your original uploaded forms) and a target (created labels and output data). Connections can be set up and shared across projects. They use an extensible provider model, so you can easily add new source/target providers.
 

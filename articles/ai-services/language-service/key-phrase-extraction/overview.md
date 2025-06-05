@@ -2,13 +2,12 @@
 title: What is key phrase extraction in Azure AI Language?
 titleSuffix: Azure AI services
 description: An overview of key phrase extraction in Azure AI services, which helps you identify main concepts in unstructured text
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
 ms.date: 02/17/2025
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-key-phrase
 ---
 
@@ -39,5 +38,5 @@ An AI system includes not only the technology, but also the people who use it, t
 ## Next steps
 
 There are two ways to get started using the entity linking feature:
-* [Azure AI Foundry](../../../ai-foundry/what-is-ai-foundry.md) is a web-based platform that lets you use several Azure AI Language features without needing to write code.
+* [Azure AI Foundry](../../../ai-foundry/what-is-azure-ai-foundry.md) is a web-based platform that lets you use several Azure AI Language features without needing to write code.
 * The [quickstart article](quickstart.md) for instructions on making requests to the service using the REST API and client library SDK.  

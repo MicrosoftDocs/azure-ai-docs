@@ -1,11 +1,10 @@
 ---
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
 ms.date: 12/19/2023
-ms.author: jboback
+ms.author: lajanuar
 ---
 Use the following **GET** request to get your project details. You can use the URL you received from the previous step, or replace the placeholder values below with your own values. 
 

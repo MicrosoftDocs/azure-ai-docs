@@ -3,12 +3,12 @@ title: How to label your data for custom classification - Azure AI services
 titleSuffix: Azure AI services
 description: Learn about how to label your data for use with the custom text classification.
 #services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
 
@@ -80,7 +80,7 @@ Use the following steps to label your data:
 7. In the bottom section of the right side pane you can add the current file you are viewing to the training set or the testing set. By default all the documents are added to your training set. Learn more about [training and testing sets](train-model.md#data-splitting) and how they are used for model training and evaluation.
 
     > [!TIP]
-    > If you are planning on using **Automatic** data spliting use the default option of assigning all the documents into your training set.
+    > If you are planning on using **Automatic** data splitting use the default option of assigning all the documents into your training set.
 
 8. Under the **Distribution** pivot you can view the distribution across training and testing sets. You have two options for viewing:
    * *Total instances* where you can view count of all labeled instances of a specific class.

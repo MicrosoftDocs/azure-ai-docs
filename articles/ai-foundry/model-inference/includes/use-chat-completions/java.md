@@ -1,13 +1,13 @@
 ---
-title: How to use chat completions with Azure AI model inference
+title: How to use chat completions with Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
-description: Learn how to generate chat completions with Azure AI model inference
+description: Learn how to generate chat completions with Azure AI Foundry Models
 manager: scottpolly
 author: mopeakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
-ms.topic: how-to
-ms.date: 1/21/2025
+ms.topic: include
+ms.date: 05/29/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 ms.custom: references_regions, tool_generated
@@ -16,7 +16,7 @@ zone_pivot_groups: azure-ai-inference-samples
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use chat completions API with models deployed to Azure AI model inference in Azure AI services.
+This article explains how to use chat completions API with models deployed in Azure AI Foundry Models.
 
 ## Prerequisites
 
@@ -24,57 +24,60 @@ To use chat completion models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 
-* A chat completions model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
+[!INCLUDE [how-to-prerequisites-java](../how-to-prerequisites-java.md)]
 
-* Add the [Azure AI inference package](https://aka.ms/azsdk/azure-ai-inference/java/reference) to your project:
+* A chat completions model deployment. If you don't have one, read [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
 
-  ```xml
-  <dependency>
-      <groupId>com.azure</groupId>
-      <artifactId>azure-ai-inference</artifactId>
-      <version>1.0.0-beta.1</version>
-  </dependency>
-  ```
-  
-* If you are using Entra ID, you also need the following package:
-
-  ```xml
-  <dependency>
-      <groupId>com.azure</groupId>
-      <artifactId>azure-identity</artifactId>
-      <version>1.13.3</version>
-  </dependency>
-  ```
-
-* Import the following namespace:
-  
-  ```java
-  package com.azure.ai.inference.usage;
-  
-  import com.azure.ai.inference.EmbeddingsClient;
-  import com.azure.ai.inference.EmbeddingsClientBuilder;
-  import com.azure.ai.inference.models.EmbeddingsResult;
-  import com.azure.ai.inference.models.EmbeddingItem;
-  import com.azure.core.credential.AzureKeyCredential;
-  import com.azure.core.util.Configuration;
-  
-  import java.util.ArrayList;
-  import java.util.List;
-  ```
+    * This example uses `mistral-large-2407`.
 
 ## Use chat completions
 
 First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
 
-If you have configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
+```java
+ChatCompletionsClient client = new ChatCompletionsClientBuilder()
+    .credential(new AzureKeyCredential("{key}"))
+    .endpoint("https://<resource>.services.ai.azure.com/api/models")
+    .buildClient();
+```
+
+If you've configured the resource with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
+
+```java
+TokenCredential defaultCredential = new DefaultAzureCredentialBuilder().build();
+ChatCompletionsClient client = new ChatCompletionsClientBuilder()
+    .credential(defaultCredential)
+    .endpoint("https://<resource>.services.ai.azure.com/api/models")
+    .buildClient();
+```
+
 
 ### Create a chat completion request
 
 The following example shows how you can create a basic chat completions request to the model.
+
+```java
+List<ChatRequestMessage> chatMessages = new ArrayList<>();
+chatMessages.add(new ChatRequestSystemMessage("You are a helpful assistant."));
+chatMessages.add(new ChatRequestUserMessage("How many languages are in the world?"));
+
+ChatCompletions response = client.complete(new ChatCompletionsOptions(chatMessages));
+```
+
 > [!NOTE]
 > Some models don't support system messages (`role="system"`). When you use the Azure AI model inference API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
 
 The response is as follows, where you can see the model's usage statistics:
+
+```java
+System.out.printf("Model ID=%s is created at %s.%n", chatCompletions.getId(), chatCompletions.getCreated());
+for (ChatChoice choice : chatCompletions.getChoices()) {
+    ChatResponseMessage message = choice.getMessage();
+    System.out.printf("Index: %d, Chat Role: %s.%n", choice.getIndex(), message.getRole());
+    System.out.println("Message:");
+    System.out.println(message.getContent());
+}
+```
 
 ```console
 Response: As of now, it's estimated that there are about 7,000 languages spoken around the world. However, this number can vary as some languages become extinct and new ones develop. It's also important to note that the number of speakers can greatly vary between languages, with some having millions of speakers and others only a few hundred.
@@ -93,12 +96,31 @@ By default, the completions API returns the entire generated content in a single
 
 You can _stream_ the content to get it as it's being generated. Streaming content allows you to start processing the completion as content becomes available. This mode returns an object that streams back the response as [data-only server-sent events](https://html.spec.whatwg.org/multipage/server-sent-events.html#server-sent-events). Extract chunks from the delta field, rather than the message field.
 
-You can visualize how streaming generates content:
+```java
+List<ChatRequestMessage> chatMessages = new ArrayList<>();
+chatMessages.add(new ChatRequestSystemMessage("You are a helpful assistant."));
+chatMessages.add(new ChatRequestUserMessage("How many languages are in the world?"));
+
+client.completeStream(new ChatCompletionsOptions(chatMessages))
+    .forEach(chatCompletions -> {
+        if (CoreUtils.isNullOrEmpty(chatCompletions.getChoices())) {
+            return;
+        }
+        StreamingChatResponseMessageUpdate delta = chatCompletions.getChoice().getDelta();
+        if (delta.getRole() != null) {
+            System.out.println("Role = " + delta.getRole());
+        }
+        if (delta.getContent() != null) {
+            String content = delta.getContent();
+            System.out.print(content);
+        }
+    });
+```
 
 #### Explore more parameters supported by the inference client
 
 Explore other parameters that you can specify in the inference client. For a full list of all the supported parameters and their corresponding documentation, see [Azure AI Model Inference API reference](https://aka.ms/azureai/modelinference).
-Some models don't support JSON output formatting. You can always prompt the model to generate JSON outputs. However, such outputs are not guaranteed to be valid JSON.
+Some models don't support JSON output formatting. You can always prompt the model to generate JSON outputs. However, such outputs aren't guaranteed to be valid JSON.
 
 If you want to pass a parameter that isn't in the list of supported parameters, you can pass it to the underlying model using *extra parameters*. See [Pass extra parameters to the model](#pass-extra-parameters-to-the-model).
 
@@ -133,7 +155,7 @@ Now, it's time to call the appropriate function to handle the tool call. The fol
 
 View the response from the model:
 
-### Apply content safety
+### Apply Guardrails and controls
 
 The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
@@ -141,29 +163,3 @@ The following example shows how to handle events when the model detects harmful 
 
 > [!TIP]
 > To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
-
-## Use chat completions with images
-
-Some models can reason across text and images and generate text completions based on both kinds of input. In this section, you explore the capabilities of Some models for vision in a chat fashion:
-
-> [!IMPORTANT]
-> Some models support only one image for each turn in the chat conversation and only the last image is retained in context. If you add multiple images, it results in an error.
-
-To see this capability, download an image and encode the information as `base64` string. The resulting data should be inside of a [data URL](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs):
-
-Visualize the image:
-
-:::image type="content" source="../../../../ai-foundry/media/how-to/sdks/small-language-models-chart-example.jpg" alt-text="A chart displaying the relative capabilities between large language models and small language models." lightbox="../../../../ai-foundry/media/how-to/sdks/small-language-models-chart-example.jpg":::
-
-Now, create a chat completion request with the image:
-
-The response is as follows, where you can see the model's usage statistics:
-
-```console
-ASSISTANT: The chart illustrates that larger models tend to perform better in quality, as indicated by their size in billions of parameters. However, there are exceptions to this trend, such as Phi-3-medium and Phi-3-small, which outperform smaller models in quality. This suggests that while larger models generally have an advantage, there might be other factors at play that influence a model's performance.
-Model: mistral-large-2407
-Usage: 
-  Prompt tokens: 2380
-  Completion tokens: 126
-  Total tokens: 2506
-```

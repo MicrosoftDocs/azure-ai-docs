@@ -4,7 +4,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: include
-ms.date: 02/03/2025
+ms.date: 03/28/2025
 ms.custom: devx-track-js
 ---
 
@@ -13,18 +13,9 @@ ms.custom: devx-track-js
 
 ## Prerequisites
 
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
-* [Node.js LTS](https://nodejs.org/)
-* Ensure that the individual deploying the template has the **Azure AI Developer** role assigned at the resource group level where the template is being deployed.
-* Additionally, to deploy the template, you need to have the preset **Role Based Access Administrator** role at the subscription level.
-   * The **Owner** role at the subscription level satisfies this requirement.
-   * The specific admin role that is needed is `Microsoft.Authorization/roleAssignments/write`
-* Ensure that each team member who wants to use the Agent Playground or Agent SDK to create or edit agents has been assigned the built-in **Azure AI Developer** [RBAC role](../../../ai-foundry/concepts/rbac-ai-foundry.md) for the project.
-    * Note: assign these roles after the template has been deployed
-    * The minimum set of permissions required is: **agents/*/read**, **agents/*/action**, **agents/*/delete**  
-* Install [the Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli). If you have the CLI already installed, make sure it's updated to the latest version.
+[!INCLUDE [universal-prerequisites](universal-prerequisites.md)]
 
-[!INCLUDE [bicep-setup](bicep-setup.md)]
+
 
 ## Configure and run an agent
 
@@ -37,6 +28,12 @@ ms.custom: devx-track-js
 | Run       | Activation of an agent to begin running based on the contents of Thread. The agent uses its configuration and Thread’s Messages to perform tasks by calling models and tools. As part of a Run, the agent appends Messages to the Thread. |
 | Run Step  | A detailed list of steps the agent took as part of a Run. An agent can call tools or create Messages during its run. Examining Run Steps allows you to understand how the agent is getting to its results.                                |
 
+Key objects in this code include: 
+
+* [AIProjectsClient](/javascript/api/@azure/ai-projects/aiprojectsclient)
+* [ToolUtility](/javascript/api/@azure/ai-projects/toolutility)
+* [Agent operations](/javascript/api/@azure/ai-projects/agentsoperations)
+
 First, initialize a new project by running:
 
 ```console
@@ -46,8 +43,7 @@ npm init -y
 Run the following commands to install the npm packages required.
 
 ```console
-npm install @azure/ai-projects
-npm install @azure/identity
+npm install @azure/ai-agents @azure/identity
 npm install dotenv
 ```
 
@@ -57,23 +53,17 @@ Next, to authenticate your API requests and run the program, use the [az login](
 az login
 ```
 
-Use the following code to create and run an agent. To run this code, you will need to create a connection string using information from your project. This string is in the format:
+Use the following code to create and run an agent. To run this code, you will need to get the endpoint for your project. This string is in the format:
 
-`<HostName>;<AzureSubscriptionId>;<ResourceGroup>;<ProjectName>`
+`https://<AIFoundryResourceName>.services.ai.azure.com/api/projects/<ProjectName>`
 
-[!INCLUDE [connection-string-portal](connection-string-portal.md)]
+[!INCLUDE [endpoint-string-portal](endpoint-string-portal.md)]
 
-`HostName` can be found by navigating to your `discovery_url` and removing the leading `https://` and trailing `/discovery`. To find your `discovery_url`, run this CLI command:
+For example, your endpoint may look something like:
 
-```azurecli
-az ml workspace show -n {project_name} --resource-group {resource_group_name} --query discovery_url
-```
+`https://myresource.services.ai.azure.com/api/projects/myproject`
 
-For example, your connection string may look something like:
-
-`eastus.api.azureml.ms;12345678-abcd-1234-9fc6-62780b3d3e05;my-resource-group;my-project-name`
-
-Set this connection string as an environment variable named `PROJECT_CONNECTION_STRING` in a `.env` file.
+Set this endpoint as an environment variable named `PROJECT_ENDPOINT` in a `.env` file.
 
 > [!IMPORTANT] 
 > * This quickstart code uses environment variables for sensitive configuration. Never commit your `.env` file to version control by making sure `.env` is listed in your `.gitignore` file.
@@ -82,67 +72,74 @@ Set this connection string as an environment variable named `PROJECT_CONNECTION_
 
 Next, create an `index.js` file and paste in the code below:
 
-```javascript
-// index.js
+<!--
+:::code language="JavaScript" source="~/azure-typescript-e2e-apps/quickstarts/ai-agents/js/src/index.js":::
+-->
 
-import {
-  AIProjectsClient,
+```javascript
+const {
+  RunStreamEvent,
+  MessageStreamEvent,
   DoneEvent,
   ErrorEvent,
+  AgentsClient,
   isOutputOfType,
-  MessageStreamEvent,
-  RunStreamEvent,
   ToolUtility,
-} from "@azure/ai-projects";
-import { DefaultAzureCredential } from "@azure/identity";
-import dotenv from 'dotenv';
+} = require("@azure/ai-agents");
+const { DefaultAzureCredential } = require("@azure/identity");
 
-dotenv.config();
+const fs = require("fs");
+const path = require("node:path");
+require("dotenv/config");
 
-// Set the connection string from the environment variable
-const connectionString = process.env.PROJECT_CONNECTION_STRING;
+const projectEndpoint = process.env["PROJECT_ENDPOINT"];
+const modelDeploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "gpt-4o";
 
-// Throw an error if the connection string is not set
-if (!connectionString) {
-  throw new Error("Please set the PROJECT_CONNECTION_STRING environment variable.");
-}
+async function main() {
+  // Create an Azure AI Client
+  const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());
 
-export async function main() {
-  const client = AIProjectsClient.fromConnectionString(
-    connectionString || "",
-    new DefaultAzureCredential(),
-  );
+  // Upload file and wait for it to be processed
+  const filePath = "./data/nifty500QuarterlyResults.csv";
+  const localFileStream = fs.createReadStream(filePath);
+  const localFile = await client.files.upload(localFileStream, "assistants", {
+    fileName: "myLocalFile",
+  });
 
-  // Step 1 code interpreter tool
-  const codeInterpreterTool = ToolUtility.createCodeInterpreterTool();
+  console.log(`Uploaded local file, file ID : ${localFile.id}`);
 
-  // Step 2 an agent
-  const agent = await client.agents.createAgent("gpt-4o-mini", {
+  // Create code interpreter tool
+  const codeInterpreterTool = ToolUtility.createCodeInterpreterTool([localFile.id]);
+
+  // Notice that CodeInterpreter must be enabled in the agent creation, otherwise the agent will not be able to see the file attachment
+  const agent = await client.createAgent(modelDeploymentName, {
     name: "my-agent",
     instructions: "You are a helpful agent",
     tools: [codeInterpreterTool.definition],
     toolResources: codeInterpreterTool.resources,
   });
+  console.log(`Created agent, agent ID: ${agent.id}`);
 
-  // Step 3 a thread
-  const thread = await client.agents.createThread();
+  // Create a thread
+  const thread = await client.threads.create();
+  console.log(`Created thread, thread ID: ${thread.id}`);
 
-  // Step 4 a message to thread
-  await client.agents.createMessage(
-    thread.id, {
-    role: "user",
-    content: "I need to solve the equation `3x + 11 = 14`. Can you help me?",
-  });
+  // Create a message
+  const message = await client.messages.create(
+    thread.id,
+    "user",
+    "Could you please create a bar chart in the TRANSPORTATION sector for the operating profit from the uploaded CSV file and provide the file to me?",
+  );
 
-  // Intermission is now correlated with thread
-  // Intermission messages will retrieve the message just added
+  console.log(`Created message, message ID: ${message.id}`);
 
-  // Step 5 the agent
-  const streamEventMessages = await client.agents.createRun(thread.id, agent.id).stream();
+  // Create and execute a run
+  const streamEventMessages = await client.runs.create(thread.id, agent.id).stream();
 
   for await (const eventMessage of streamEventMessages) {
     switch (eventMessage.event) {
       case RunStreamEvent.ThreadRunCreated:
+        console.log(`ThreadRun status: ${eventMessage.data.status}`);
         break;
       case MessageStreamEvent.ThreadMessageDelta:
         {
@@ -151,42 +148,89 @@ export async function main() {
             if (contentPart.type === "text") {
               const textContent = contentPart;
               const textValue = textContent.text?.value || "No text";
+              console.log(`Text delta received:: ${textValue}`);
             }
           });
         }
         break;
 
       case RunStreamEvent.ThreadRunCompleted:
+        console.log("Thread Run Completed");
         break;
       case ErrorEvent.Error:
         console.log(`An error occurred. Data ${eventMessage.data}`);
         break;
       case DoneEvent.Done:
+        console.log("Stream completed.");
         break;
     }
   }
 
-  // 6. Print the messages from the agent
-  const messages = await client.agents.listMessages(thread.id);
+  // Delete the original file from the agent to free up space (note: this does not delete your version of the file)
+  await client.files.delete(localFile.id);
+  console.log(`Deleted file, file ID : ${localFile.id}`);
 
-  // Messages iterate from oldest to newest
-  // messages[0] is the most recent
-  for (let i = messages.data.length - 1; i >= 0; i--) {
-    const m = messages.data[i];
-    if (m.content && m.content.length > 0 && isOutputOfType(m.content[0], "text")) {
-      const textContent = m.content[0];
-      console.log(`${textContent.text.value}`);
-      console.log(`---------------------------------`);
+  // Print the messages from the agent
+  const messagesIterator = client.messages.list(thread.id);
+  const messagesArray = [];
+  for await (const m of messagesIterator) {
+    messagesArray.push(m);
+  }
+  console.log("Messages:", messagesArray);
+
+  // Get most recent message from the assistant
+  const assistantMessage = messagesArray.find((msg) => msg.role === "assistant");
+  if (assistantMessage) {
+    const textContent = assistantMessage.content.find((content) => isOutputOfType(content, "text"));
+    if (textContent) {
+      // Save the newly created file
+      console.log(`Saving new files...`);
+      const imageFileOutput = messagesArray[0].content[0];
+      const imageFile = imageFileOutput.imageFile.fileId;
+      const imageFileName = path.resolve(
+        "./data/" + (await client.files.get(imageFile)).filename + "ImageFile.png",
+      );
+      console.log(`Image file name : ${imageFileName}`);
+
+      const fileContent = await (await client.files.getContent(imageFile).asNodeStream()).body;
+      if (fileContent) {
+        const chunks = [];
+        for await (const chunk of fileContent) {
+          chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+        }
+        const buffer = Buffer.concat(chunks);
+        fs.writeFileSync(imageFileName, buffer);
+      } else {
+        console.log("No file content available");
+      }
     }
   }
 
-  // 7. Delete the agent once done
-  await client.agents.deleteAgent(agent.id);
+  // Iterate through messages and print details for each annotation
+  console.log(`Message Details:`);
+  messagesArray.forEach((m) => {
+    console.log(`File Paths:`);
+    console.log(`Type: ${m.content[0].type}`);
+    if (isOutputOfType(m.content[0], "text")) {
+      const textContent = m.content[0];
+      console.log(`Text: ${textContent.text.value}`);
+    }
+    console.log(`File ID: ${m.id}`);
+    // firstId and lastId are properties of the paginator, not the messages array
+    // Removing these references as they don't exist in this context
+  });
+
+  // Delete the agent once done
+  await client.deleteAgent(agent.id);
+  console.log(`Deleted agent, agent ID: ${agent.id}`);
 }
 
 main().catch((err) => {
   console.error("The sample encountered an error:", err);
 });
+
+module.exports = { main };
 ```
+
 
 Run the code using `node index.js` and observe.

@@ -28,7 +28,7 @@ This sample shows how to use MAS with all default enhancement options on input f
 ### [C#](#tab/csharp)
 
 ```csharp
-var speechConfig = SpeechConfig.FromSubscription("YourSubscriptionKey", "YourServiceRegion");
+var speechConfig = SpeechConfig.FromEndpoint(new Uri("YourSpeechEndpoint"), "YourSpeechKey");
 
 var audioProcessingOptions = AudioProcessingOptions.Create(AudioProcessingConstants.AUDIO_INPUT_PROCESSING_ENABLE_DEFAULT);
 var audioInput = AudioConfig.FromDefaultMicrophoneInput(audioProcessingOptions);
@@ -39,7 +39,7 @@ var recognizer = new SpeechRecognizer(speechConfig, audioInput);
 ### [C++](#tab/cpp)
 
 ```cpp
-auto speechConfig = SpeechConfig::FromSubscription("YourSubscriptionKey", "YourServiceRegion");
+auto speechConfig = SpeechConfig::FromEndpoint("YourServiceEndpoint", "YourSpeechResoureKey");
 
 auto audioProcessingOptions = AudioProcessingOptions::Create(AUDIO_INPUT_PROCESSING_ENABLE_DEFAULT);
 auto audioInput = AudioConfig::FromDefaultMicrophoneInput(audioProcessingOptions);
@@ -50,7 +50,7 @@ auto recognizer = SpeechRecognizer::FromConfig(speechConfig, audioInput);
 ### [Java](#tab/java)
 
 ```java
-SpeechConfig speechConfig = SpeechConfig.fromSubscription("YourSubscriptionKey", "YourServiceRegion");
+SpeechConfig speechConfig = SpeechConfig.fromEndpoint(new java.net.URI("YourSpeechEndpoint"), "YourSpeechKey");
 
 AudioProcessingOptions audioProcessingOptions = AudioProcessingOptions.create(AudioProcessingConstants.AUDIO_INPUT_PROCESSING_ENABLE_DEFAULT);
 AudioConfig audioInput = AudioConfig.fromDefaultMicrophoneInput(audioProcessingOptions);
@@ -69,7 +69,7 @@ This sample shows how to use MAS with a predefined microphone geometry on a spec
 ### [C#](#tab/csharp)
 
 ```csharp
-var speechConfig = SpeechConfig.FromSubscription("YourSubscriptionKey", "YourServiceRegion");
+var speechConfig = SpeechConfig.FromEndpoint(new Uri("YourSpeechEndpoint"), "YourSpeechKey");
 
 var audioProcessingOptions = AudioProcessingOptions.Create(AudioProcessingConstants.AUDIO_INPUT_PROCESSING_ENABLE_DEFAULT, PresetMicrophoneArrayGeometry.Linear2);
 var audioInput = AudioConfig.FromMicrophoneInput("hw:0,1", audioProcessingOptions);
@@ -80,7 +80,7 @@ var recognizer = new SpeechRecognizer(speechConfig, audioInput);
 ### [C++](#tab/cpp)
 
 ```cpp
-auto speechConfig = SpeechConfig::FromSubscription("YourSubscriptionKey", "YourServiceRegion");
+auto speechConfig = SpeechConfig::FromEndpoint("YourServiceEndpoint", "YourSpeechResoureKey");
 
 auto audioProcessingOptions = AudioProcessingOptions::Create(AUDIO_INPUT_PROCESSING_ENABLE_DEFAULT, PresetMicrophoneArrayGeometry::Linear2);
 auto audioInput = AudioConfig::FromMicrophoneInput("hw:0,1", audioProcessingOptions);
@@ -91,7 +91,7 @@ auto recognizer = SpeechRecognizer::FromConfig(speechConfig, audioInput);
 ### [Java](#tab/java)
 
 ```java
-SpeechConfig speechConfig = SpeechConfig.fromSubscription("YourSubscriptionKey", "YourServiceRegion");
+SpeechConfig speechConfig = SpeechConfig.fromEndpoint(new java.net.URI("YourSpeechEndpoint"), "YourSpeechKey");
 
 AudioProcessingOptions audioProcessingOptions = AudioProcessingOptions.create(AudioProcessingConstants.AUDIO_INPUT_PROCESSING_ENABLE_DEFAULT, PresetMicrophoneArrayGeometry.Linear2);
 AudioConfig audioInput = AudioConfig.fromMicrophoneInput("hw:0,1", audioProcessingOptions);
@@ -110,7 +110,7 @@ This sample shows how to use MAS with a custom microphone geometry on a specifie
 ### [C#](#tab/csharp)
 
 ```csharp
-var speechConfig = SpeechConfig.FromSubscription("YourSubscriptionKey", "YourServiceRegion");
+var speechConfig = SpeechConfig.FromEndpoint(new Uri("YourSpeechEndpoint"), "YourSpeechKey");
 
 MicrophoneCoordinates[] microphoneCoordinates = new MicrophoneCoordinates[7]
 {
@@ -132,7 +132,7 @@ var recognizer = new SpeechRecognizer(speechConfig, audioInput);
 ### [C++](#tab/cpp)
 
 ```cpp
-auto speechConfig = SpeechConfig::FromSubscription("YourSubscriptionKey", "YourServiceRegion");
+auto speechConfig = SpeechConfig::FromEndpoint("YourServiceEndpoint", "YourSpeechResoureKey");
 
 MicrophoneArrayGeometry microphoneArrayGeometry
 {
@@ -148,7 +148,7 @@ auto recognizer = SpeechRecognizer::FromConfig(speechConfig, audioInput);
 ### [Java](#tab/java)
 
 ```java
-SpeechConfig speechConfig = SpeechConfig.fromSubscription("YourSubscriptionKey", "YourServiceRegion");
+SpeechConfig speechConfig = SpeechConfig.fromEndpoint(new java.net.URI("YourSpeechEndpoint"), "YourSpeechKey");
 
 MicrophoneCoordinates[] microphoneCoordinates = new MicrophoneCoordinates[7];
 microphoneCoordinates[0] = new MicrophoneCoordinates(0, 0, 0);
@@ -177,7 +177,7 @@ In this example:
 ### [C#](#tab/csharp)
 
 ```csharp
-var speechConfig = SpeechConfig.FromSubscription("YourSubscriptionKey", "YourServiceRegion");
+var speechConfig = SpeechConfig.FromEndpoint(new Uri("YourSpeechEndpoint"), "YourSpeechKey");
 
 var audioProcessingOptions = AudioProcessingOptions.Create(AudioProcessingConstants.AUDIO_INPUT_PROCESSING_DISABLE_ECHO_CANCELLATION | AudioProcessingConstants.AUDIO_INPUT_PROCESSING_DISABLE_NOISE_SUPPRESSION | AudioProcessingConstants.AUDIO_INPUT_PROCESSING_ENABLE_DEFAULT);
 var audioInput = AudioConfig.FromDefaultMicrophoneInput(audioProcessingOptions);
@@ -188,7 +188,7 @@ var recognizer = new SpeechRecognizer(speechConfig, audioInput);
 ### [C++](#tab/cpp)
 
 ```cpp
-auto speechConfig = SpeechConfig::FromSubscription("YourSubscriptionKey", "YourServiceRegion");
+auto speechConfig = SpeechConfig::FromEndpoint("YourServiceEndpoint", "YourSpeechResoureKey");
 
 auto audioProcessingOptions = AudioProcessingOptions::Create(AUDIO_INPUT_PROCESSING_DISABLE_ECHO_CANCELLATION | AUDIO_INPUT_PROCESSING_DISABLE_NOISE_SUPPRESSION | AUDIO_INPUT_PROCESSING_ENABLE_DEFAULT);
 auto audioInput = AudioConfig::FromDefaultMicrophoneInput(audioProcessingOptions);
@@ -199,7 +199,7 @@ auto recognizer = SpeechRecognizer::FromConfig(speechConfig, audioInput);
 ### [Java](#tab/java)
 
 ```java
-SpeechConfig speechConfig = SpeechConfig.fromSubscription("YourSubscriptionKey", "YourServiceRegion");
+SpeechConfig speechConfig = SpeechConfig.fromEndpoint(new java.net.URI("YourSpeechEndpoint"), "YourSpeechKey");
 
 AudioProcessingOptions audioProcessingOptions = AudioProcessingOptions.create(AudioProcessingConstants.AUDIO_INPUT_PROCESSING_DISABLE_ECHO_CANCELLATION | AudioProcessingConstants.AUDIO_INPUT_PROCESSING_DISABLE_NOISE_SUPPRESSION | AudioProcessingConstants.AUDIO_INPUT_PROCESSING_ENABLE_DEFAULT);
 AudioConfig audioInput = AudioConfig.fromDefaultMicrophoneInput(audioProcessingOptions);
@@ -221,7 +221,7 @@ In the following code example, the start angle is set to 70 degrees and the end 
 ### [C#](#tab/csharp)
 
 ```csharp
-var speechConfig = SpeechConfig.FromSubscription("YourSubscriptionKey", "YourServiceRegion");
+var speechConfig = SpeechConfig.FromEndpoint(new Uri("YourSpeechEndpoint"), "YourSpeechKey");
 
 MicrophoneCoordinates[] microphoneCoordinates = new MicrophoneCoordinates[4]
 {
@@ -241,7 +241,7 @@ var recognizer = new SpeechRecognizer(speechConfig, audioInput);
 ### [C++](#tab/cpp)
 
 ```cpp
-auto speechConfig = SpeechConfig::FromSubscription("YourSubscriptionKey", "YourServiceRegion");
+auto speechConfig = SpeechConfig::FromEndpoint("YourServiceEndpoint", "YourSpeechResoureKey");
 
 MicrophoneArrayGeometry microphoneArrayGeometry
 {
@@ -260,7 +260,7 @@ auto recognizer = SpeechRecognizer::FromConfig(speechConfig, audioInput);
 ### [Java](#tab/java)
 
 ```java
-SpeechConfig speechConfig = SpeechConfig.fromSubscription("YourSubscriptionKey", "YourServiceRegion");
+SpeechConfig speechConfig = SpeechConfig.fromEndpoint(new java.net.URI("YourSpeechEndpoint"), "YourSpeechKey");
 
 MicrophoneCoordinates[] microphoneCoordinates = new MicrophoneCoordinates[4];
 microphoneCoordinates[0] = new MicrophoneCoordinates(-60, 0, 0);

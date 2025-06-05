@@ -2,13 +2,12 @@
 title: "How to: Use Language service features asynchronously"
 titleSuffix: Azure AI services
 description: Learn how to send Language service API requests asynchronously.
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ---
 
 # How to use Language service features asynchronously

@@ -2,13 +2,12 @@
 title: Evaluate a Custom Named Entity Recognition (NER) model
 titleSuffix: Azure AI services
 description: Learn how to evaluate and score your Custom Named Entity Recognition (NER) model
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-custom-ner
 ---
 
@@ -18,7 +17,7 @@ ms.custom: language-service-custom-ner
 After your model has finished training, you can view the model performance and see the extracted entities for the documents in the test set. 
 
 > [!NOTE]
-> Using the **Automatically split the testing set from training data** option may result in different model evaluation result every time you [train a new model](train-model.md), as the test set is selected randomly from the data. To make sure that the evaulation is calcualted on the same test set every time you train a model, make sure to use the **Use a manual split of training and testing data** option when starting a training job and define your **Test** documents when [labeling data](tag-data.md).
+> Using the **Automatically split the testing set from training data** option may result in different model evaluation result every time you [train a new model](train-model.md), as the test set is selected randomly from the data. To make sure that the evaluation is calculated on the same test set every time you train a model, make sure to use the **Use a manual split of training and testing data** option when starting a training job and define your **Test** documents when [labeling data](tag-data.md).
 
 ## Prerequisites
 

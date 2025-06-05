@@ -1,11 +1,10 @@
 ---
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ---
 
 Create a **DELETE** request using the following URL, headers, and JSON body to delete a trained model.

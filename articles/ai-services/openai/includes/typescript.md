@@ -1,8 +1,7 @@
 ---
-title: 'Quickstart: Use Azure OpenAI Service with the JavaScript SDK and the completions API'
+title: 'Quickstart: Use Azure OpenAI in Azure AI Foundry Models with the JavaScript SDK and the completions API'
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with the JavaScript SDK. 
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
@@ -22,7 +21,7 @@ ms.date: 10/22/2024
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
 - [TypeScript](https://www.typescriptlang.org/download/)
 - [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
-- An Azure OpenAI Service resource with the `gpt-35-turbo-instruct` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
+- An Azure OpenAI in Azure AI Foundry Models resource with the `gpt-35-turbo-instruct` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
 
 ## Retrieve resource information

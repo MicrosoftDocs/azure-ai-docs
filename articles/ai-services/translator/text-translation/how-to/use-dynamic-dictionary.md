@@ -2,12 +2,11 @@
 title: Dynamic Dictionary - Azure AI Translator
 titleSuffix: Azure AI services
 description: Learn how to use the dynamic dictionary feature of the Azure AI Translator.
-#services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: how-to
-ms.date: 02/11/2025
+ms.date: 05/19/2025
 ms.author: lajanuar
 ---
 

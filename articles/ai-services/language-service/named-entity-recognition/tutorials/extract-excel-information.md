@@ -2,23 +2,22 @@
 title: Extract information in Excel using Power Automate
 titleSuffix: Azure AI services
 description: Learn how to Extract Excel text without having to write code, using Named Entity Recognition and Power Automate.
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: tutorial
-ms.date: 09/27/2024
-ms.author: jboback
+ms.date: 03/24/2025
+ms.author: lajanuar
 ms.custom: language-service-ner, cogserv-non-critical-language
 ---
 
 # Extract information in Excel using Named Entity Recognition(NER) and Power Automate 
 
-In this tutorial, you'll create a Power Automate flow to extract text in an Excel spreadsheet without having to write code. 
+In this tutorial, you create a Power Automate flow to extract text in an Excel spreadsheet without having to write code. 
 
-This flow will take a spreadsheet of issues reported about an apartment complex, and classify them into two categories: plumbing and other. It will also extract the names and phone numbers of the tenants who sent them. Lastly, the flow will append this information to the Excel sheet. 
+This flow takes a spreadsheet of issues reported about an apartment complex, and classify them into two categories: plumbing and other. It also extracts the names and phone numbers of the tenants who sent them. Lastly, the flow appends this information to the Excel sheet. 
 
-In this tutorial, you'll learn how to:
+In this tutorial, you learn how to:
 
 > [!div class="checklist"]
 > * Use Power Automate to create a flow
@@ -40,7 +39,7 @@ Download the example Excel file from [GitHub](https://github.com/Azure-Samples/c
 
 :::image type="content" source="../media/tutorials/excel/example-data.png" alt-text="Examples from the Excel file" lightbox="../media/tutorials/excel/example-data.png":::
 
-The issues are reported in raw text. We will use the NER feature to extract the person name and phone number. Then the flow will look for the word "plumbing" in the description to categorize the issues. 
+The issues are reported in raw text. We use the NER feature to extract the person name and phone number. Then the flow looks for the word "plumbing" in the description to categorize the issues. 
 
 ## Create a new Power Automate workflow
 
@@ -58,7 +57,7 @@ On the **Build a scheduled cloud flow** page, initialize your flow with the foll
 
 ## Add variables to the flow
 
-Create variables representing the information that will be added to the Excel file. Select **New Step** and search for **Initialize variable**. Do this four times, to create four variables.
+Create variables representing the information that is added to the Excel file. Select **New Step** and search for **Initialize variable**. Do this four times, to create four variables.
 
 :::image type="content" source="../media/tutorials/excel/initialize-variables.png" alt-text="The step for initializing variables" lightbox="../media/tutorials/excel/initialize-variables.png":::
 
@@ -116,7 +115,7 @@ In your flow, enter the following information to create a new Language connectio
 
 ## Extract the excel content 
 
-After the connection is created, search for **Text Analytics** and select **Named Entity Recognition**. This will extract information from the description column of the issue.
+After the connection is created, search for **Text Analytics** and select **Named Entity Recognition**. This extracts information from the description column of the issue.
 
 :::image type="content" source="../media/tutorials/excel/extract-info.png" alt-text="Extract the entities from the Excel sheet" lightbox="../media/tutorials/excel/extract-info.png":::
 
@@ -132,7 +131,7 @@ Within the **Apply to each**, select **Add an action** and create another **Appl
 
 ## Extract the person name
 
-Next, we will find the person entity type in the NER output. Within the **Apply to each 2**, select **Add an action**, and create another **Apply to each** action. Select inside the text box and select **Entities** in the Dynamic Content window that appears.
+Next, we find the person entity type in the NER output. Within the **Apply to each 2**, select **Add an action**, and create another **Apply to each** action. Select inside the text box and select **Entities** in the Dynamic Content window that appears.
 
 :::image type="content" source="../media/tutorials/excel/add-apply-action-2.png" alt-text="Find the person entity in the NER output" lightbox="../media/tutorials/excel/add-apply-action-2.png":::
 
@@ -156,21 +155,21 @@ In the **If yes** condition, type in Excel then select **Update a Row**.
 
 :::image type="content" source="../media/tutorials/excel/yes-column-action.png" alt-text="Update the yes condition" lightbox="../media/tutorials/excel/yes-column-action.png":::
 
-Enter the Excel information, and update the **Key Column**, **Key Value** and **PersonName** fields. This will append the name detected by the API to the Excel sheet. 
+Enter the Excel information, and update the **Key Column**, **Key Value** and **PersonName** fields. This appends the name detected by the API to the Excel sheet. 
 
 :::image type="content" source="../media/tutorials/excel/yes-column-action-options.png" alt-text="Add the excel information" lightbox="../media/tutorials/excel/yes-column-action-options.png":::
 
 ## Get the phone number
 
-Minimize the **Apply to each 3** action by clicking on the name. Then add another **Apply to each** action to **Apply to each 2**, like before. it will be named **Apply to each 4**. Select the text box, and add **entities** as the output for this action. 
+Minimize the **Apply to each 3** action by clicking on the name. Then add another **Apply to each** action to **Apply to each 2**, like before. its named **Apply to each 4**. Select the text box, and add **entities** as the output for this action. 
 
 :::image type="content" source="../media/tutorials/excel/add-apply-action-phone.png" alt-text="Add the entities from the NER output to another apply to each action." lightbox="../media/tutorials/excel/add-apply-action-phone.png":::
 
-Within **Apply to each 4**, add a **Condition** control. It will be named **Condition 2**. In the first text box, search for, and add **categories** from the Dynamic content window. Be sure the center box is set to **is equal to**. Then, in the right text box, enter `var_phone`. 
+Within **Apply to each 4**, add a **Condition** control. Its be named **Condition 2**. In the first text box, search for, and add **categories** from the Dynamic content window. Be sure the center box is set to **is equal to**. Then, in the right text box, enter `var_phone`. 
 
 :::image type="content" source="../media/tutorials/excel/condition-2-options.png" alt-text="Add a second condition control" lightbox="../media/tutorials/excel/condition-2-options.png":::
 
-In the **If yes** condition, add an **Update a row** action. Then enter the information like we did above, for the phone numbers column of the Excel sheet. This will append the phone number detected by the API to the Excel sheet. 
+In the **If yes** condition, add an **Update a row** action. Then enter the information like we did above, for the phone numbers column of the Excel sheet. This appends the phone number detected by the API to the Excel sheet. 
 
 :::image type="content" source="../media/tutorials/excel/condition-2-yes-column.png" alt-text="Add the excel information to the second if yes condition" lightbox="../media/tutorials/excel/condition-2-yes-column.png":::
 
@@ -180,15 +179,15 @@ Minimize **Apply to each 4** by clicking on the name. Then create another **Appl
 
 :::image type="content" source="../media/tutorials/excel/add-apply-action-plumbing.png" alt-text="Create another apply to each action" lightbox="../media/tutorials/excel/add-apply-action-plumbing.png":::
 
-Next, the flow will check if the issue description from the Excel table row contains the word "plumbing". If yes, it will add "plumbing" in the IssueType column. If not, we will enter "other."
+Next, the flow checks if the issue description from the Excel table row contains the word "plumbing". If yes, it adds "plumbing" in the IssueType column. If not, we enter "other."
 
-Inside the **Apply to each 4** action, add a **Condition** Control. It will be named **Condition 3**. In the first text box, search for, and add **Description** from the Excel file, using the Dynamic content window. Be sure the center box says **contains**. Then, in the right text box, find and select `var_plumbing`. 
+Inside the **Apply to each 4** action, add a **Condition** Control. Its named **Condition 3**. In the first text box, search for, and add **Description** from the Excel file, using the Dynamic content window. Be sure the center box says **contains**. Then, in the right text box, find and select `var_plumbing`. 
 
 :::image type="content" source="../media/tutorials/excel/condition-3-options.png" alt-text="Create a new condition control" lightbox="../media/tutorials/excel/condition-3-options.png":::
 
-In the **If yes** condition, select **Add an action**, and select **Update a row**. Then enter the information like before. In the IssueType column, select `var_plumbing`. This will apply a "plumbing" label to the row.
+In the **If yes** condition, select **Add an action**, and select **Update a row**. Then enter the information like before. In the IssueType column, select `var_plumbing`. This applies a "plumbing" label to the row.
 
-In the **If no** condition, select **Add an action**, and select **Update a row**. Then enter the information like before. In the IssueType column, select `var_other`. This will apply an "other" label to the row.
+In the **If no** condition, select **Add an action**, and select **Update a row**. Then enter the information like before. In the IssueType column, select `var_other`. This applies an "other" label to the row.
 
 :::image type="content" source="../media/tutorials/excel/plumbing-issue-condition.png" alt-text="Add information to both conditions" lightbox="../media/tutorials/excel/plumbing-issue-condition.png":::
 
@@ -196,7 +195,7 @@ In the **If no** condition, select **Add an action**, and select **Update a row*
 
 In the top-right corner of the screen, select **Save**, then **Test**. Under **Test Flow**, select **manually**. Then select **Test**, and **Run flow**.
 
-The Excel file will get updated in your OneDrive account. It will look like the below.
+The Excel file gets updated in your OneDrive account. It looks like the below.
 
 :::image type="content" source="../media/tutorials/excel/updated-excel-sheet.png" alt-text="Test the workflow and view the output" lightbox="../media/tutorials/excel/updated-excel-sheet.png":::
 

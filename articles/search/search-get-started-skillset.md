@@ -29,7 +29,7 @@ To prepare, you create a few resources and upload sample files before running th
 + An Azure Storage account with Azure Blob Storage.
 
 > [!NOTE]
-> This quickstart uses [Azure AI services](https://azure.microsoft.com/services/cognitive-services/) for AI transformations. Because the workload is so small, Azure AI services is tapped behind the scenes for free processing for up to 20 transactions. You can complete this exercise without having to create an Azure AI multi-service resource.
+> This quickstart uses [Azure AI services](https://azure.microsoft.com/services/cognitive-services/) for AI transformations. Because the workload is so small, Azure AI services is tapped behind the scenes for free processing for up to 20 transactions. You can complete this exercise without having to create an Azure AI services multi-service resource.
 
 ## Set up your data
 
@@ -129,7 +129,7 @@ The indexer drives the indexing process. It specifies the data source name, a ta
 
 ## Monitor status
 
-Select **Indexers** from the left navigation pane to monitor status, and then select the indexer. Skills-based indexing takes longer than text-based indexing, especially OCR and image analysis.
+Select **Indexers** from the left pane to monitor status, and then select the indexer. Skills-based indexing takes longer than text-based indexing, especially OCR and image analysis.
 
   :::image type="content" source="media/search-get-started-skillset/indexer-notification.png" alt-text="Screenshot of the indexer status page." border="true":::
 

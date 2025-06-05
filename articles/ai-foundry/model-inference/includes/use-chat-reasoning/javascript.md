@@ -2,14 +2,14 @@
 manager: nitinme
 ms.service: azure-ai-model-inference
 ms.topic: include
-ms.date: 1/31/2025
+ms.date: 05/29/2025
 ms.author: fasantia
 author: santiagxf
 ---
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use the reasoning capabilities of chat completions models deployed to Azure AI model inference in Azure AI services.
+This article explains how to use the reasoning capabilities of chat completions models deployed in Azure AI Foundry Models.
 
 [!INCLUDE [about-reasoning](about-reasoning.md)]
 
@@ -19,49 +19,36 @@ To complete this tutorial, you need:
 
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 
-* A model with reasoning capabilities model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a reasoning model. 
+[!INCLUDE [how-to-prerequisites-javascript](../how-to-prerequisites-javascript.md)]
 
-  * This examples use `DeepSeek-R1`.
+* A model with reasoning capabilities model deployment. If you don't have one read [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add a reasoning model. 
 
-* Install the [Azure Inference library for JavaScript](https://aka.ms/azsdk/azure-ai-inference/javascript/reference) with the following command:
-
-  ```bash
-  npm install @azure-rest/ai-inference
-  ```
+  * This example uses `DeepSeek-R1`.
       
 ## Use reasoning capabilities with chat
 
 First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
 
 ```javascript
-import ModelClient from "@azure-rest/ai-inference";
-import { isUnexpected } from "@azure-rest/ai-inference";
-import { AzureKeyCredential } from "@azure/core-auth";
-
-const client = new ModelClient(
-    process.env.AZURE_INFERENCE_ENDPOINT, 
+const client = ModelClient(
+    "https://<resource>.services.ai.azure.com/models", 
     new AzureKeyCredential(process.env.AZURE_INFERENCE_CREDENTIAL)
 );
 ```
 
-> [!TIP]
-> Verify that you have deployed the model to Azure AI Services resource with the Azure AI model inference API. `Deepseek-R1` is also available as Serverless API Endpoints. However, those endpoints don't take the parameter `model` as explained in this tutorial. You can verify that by going to [Azure AI Foundry portal]() > Models + endpoints, and verify that the model is listed under the section **Azure AI Services**.
-
-If you have configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
+If you've configured the resource with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
 
 ```javascript
-import ModelClient from "@azure-rest/ai-inference";
-import { isUnexpected } from "@azure-rest/ai-inference";
-import { DefaultAzureCredential } from "@azure/identity";
+const clientOptions = { credentials: { "https://cognitiveservices.azure.com/.default" } };
 
-const clientOptions = { credentials: { "https://cognitiveservices.azure.com" } };
-
-const client = new ModelClient(
+const client = ModelClient(
     "https://<resource>.services.ai.azure.com/models", 
-    new DefaultAzureCredential(),
+    new DefaultAzureCredential()
     clientOptions,
 );
 ```
+
+[!INCLUDE [best-practices](best-practices.md)]
 
 ### Create a chat completion request
 
@@ -79,8 +66,6 @@ var response = await client.path("/chat/completions").post({
     }
 });
 ```
-
-[!INCLUDE [best-practices](best-practices.md)]
 
 The response is as follows, where you can see the model's usage statistics:
 
@@ -160,6 +145,7 @@ var response = await client.path("/chat/completions").post({
     body: {
         model: "DeepSeek-R1",
         messages: messages,
+        stream: true
     }
 }).asNodeStream();
 ```
@@ -167,7 +153,7 @@ var response = await client.path("/chat/completions").post({
 To visualize the output, define a helper function to print the stream. The following example implements a routing that stream only the answer without the reasoning content:
 
 ```javascript
-function printStream(sses) {
+async function printStream(sses) {
     let isThinking = false;
     
     for await (const event of sses) {
@@ -195,7 +181,7 @@ You can visualize how streaming generates content:
 
 ```javascript
 var sses = createSseStream(response.body);
-printStream(result)
+await printStream(sses)
 ```
 
 ### Parameters
@@ -210,11 +196,11 @@ In general, reasoning models don't support the following parameters you can find
 Some models support the use of tools or structured outputs (including JSON-schemas). Read the [Models](../../concepts/models.md) details page to understand each model's support.
 
 
-### Apply content safety
+### Apply Guardrails and controls
 
-The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
+The Azure AI Model Inference API supports [Azure AI Content Safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI Content Safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
-The following example shows how to handle events when the model detects harmful content in the input prompt and content safety is enabled.
+The following example shows how to handle events when the model detects harmful content in the input prompt.
 
 
 ```javascript
@@ -248,4 +234,4 @@ catch (error) {
 ```
 
 > [!TIP]
-> To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
+> To learn more about how you can configure and control Azure AI Content Safety settings, check the [Azure AI Content Safety documentation](https://aka.ms/azureaicontentsafety).

@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 03/11/2025
+ms.date: 05/08/2025
 ---
 
 # Vector storage in Azure AI Search
@@ -76,7 +76,7 @@ Vector stores require more fields besides vector fields. For example, a key fiel
 ]
 ```
 
-Other fields, such as the `"content"` field, provide the human readable equivalent of the `"content_vector"` field. If you're using language models exclusively for response formulation, you can omit nonvector content fields, but solutions that push search results directly to client apps should have nonvector content. 
+Other fields, such as the `"content"` field, provide the human readable equivalent of the `"content_vector"` field. If you're using language models exclusively for response formulation, you can omit nonvector content fields, but solutions that push search results directly to client apps should have nonvector content.
 
 Metadata fields are useful for filters, especially if metadata includes origin information about the source document. You can't filter on a vector field directly, but you can set prefilter or postfilter modes to filter before or after vector query execution.
 
@@ -84,7 +84,7 @@ Metadata fields are useful for filters, especially if metadata includes origin i
 
 We recommend the [Import and vectorize data wizard](search-get-started-portal-import-vectors.md) for evaluation and proof-of-concept testing. The wizard generates the example schema in this section.
 
-The bias of this schema is that search documents are built around data chunks. If a language model formulates the response, as is typical for RAG apps, you want a schema designed around data chunks. 
+The bias of this schema is that search documents are built around data chunks. If a language model formulates the response, as is typical for RAG apps, you want a schema designed around data chunks.
 
 Data chunking is necessary for staying within the input limits of language models, but it also improves precision in similarity search when queries can be matched against smaller chunks of content pulled from multiple parent documents. Finally, if you're using semantic ranker, the semantic ranker also has token limits, which are more easily met if data chunking is part of your approach.
 
@@ -160,11 +160,11 @@ The following screenshot shows an S1 service configured with one partition and o
 
 :::image type="content" source="media/vector-search-overview/usage-tiles-storage-vector-index.png" alt-text="Screenshot of usage tiles showing storage, vector index, and index count.":::
 
-Vector index limits and estimations are covered in [another article](vector-search-index-size.md), but two points to emphasize up front is that maximum storage varies by service tier, and also by when the search service was created. Newer same-tier services have significantly more capacity for vector indexes. For these reasons, take the following actions:
+Vector index limits and estimations are covered in [another article](vector-search-index-size.md), but two points to emphasize are that maximum storage varies by service tier and by when the search service was created. Newer same-tier services have significantly more capacity for vector indexes. For these reasons, take the following actions:
 
-+ [Check the deployment date of your search service](vector-search-index-size.md#how-to-check-service-creation-date). If it was created before April 3, 2024, consider creating a new search service for greater capacity.
++ [Check the deployment date of your search service](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date). If it was created before April 3, 2024, you might be able to [upgrade your service](search-how-to-upgrade.md) for greater capacity.
 
-+ [Choose a scalable tier](search-sku-tier.md) if you anticipate fluctuations in vector storage requirements. The Basic tier is fixed at one partition on older search services. Consider Standard 1 (S1) and above for more flexibility and faster performance, or create a new search service that uses higher limits and more partitions at every nillable tier.
++ [Choose a scalable tier](search-sku-tier.md) if you anticipate fluctuations in vector storage requirements. The Basic tier is fixed at one partition on older search services. Consider Standard 1 (S1) and above for more flexibility and faster performance. In the 2025-02-01-preview, you can also [switch from a lower tier to a higher tier](search-capacity-planning.md#change-your-pricing-tier).
 
 ## Basic operations and interaction
 

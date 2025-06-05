@@ -1,11 +1,11 @@
 ---
 title: Azure OpenAI JavaScript support
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Azure OpenAI JavaScript support
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 02/13/2025
+ms.date: 03/27/2025
 ---
 
 [Source code](https://github.com/openai/openai-node) | [Package (npm)](https://www.npmjs.com/package/openai) | [Reference](../../reference.md) |
@@ -17,7 +17,7 @@ Feature availability in Azure OpenAI is dependent on what version of the REST AP
 
 | Latest GA API | Latest Preview API|
 |:-----|:------|
-|`2024-10-21` |`2025-01-01-preview`|
+|`2024-10-21` |`2025-03-01-preview`|
 
 ## Installation
 
@@ -29,7 +29,7 @@ npm install openai
 
 # [Microsoft Entra ID](#tab/secure)
 
-There are several ways to authenticate with the Azure OpenAI service using Microsoft Entra ID tokens. The default way is to use the `DefaultAzureCredential` class from the `@azure/identity` package.
+There are several ways to authenticate with the Azure OpenAI using Microsoft Entra ID tokens. The default way is to use the `DefaultAzureCredential` class from the `@azure/identity` package.
 
 ```typescript
 import { DefaultAzureCredential } from "@azure/identity";

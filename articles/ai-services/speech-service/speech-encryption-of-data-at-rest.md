@@ -26,7 +26,7 @@ When you use custom speech and custom voice, Speech service might store the foll
 * Speech trace data - only if your turn the trace on for your custom endpoint
 * Uploaded training and test data
 
-By default, your data are stored in Microsoft's storage and your subscription uses Microsoft-managed encryption keys. You also have an option to prepare your own storage account. Access to the store is managed by the Managed Identity, and Speech service can't directly access to your own data, such as speech trace data, customization training data and custom models.
+By default, your data are stored in Microsoft's storage and your Speech resource uses Microsoft-managed encryption keys. You also have an option to prepare your own storage account. Access to the store is managed by the Managed Identity, and Speech service can't directly access to your own data, such as speech trace data, customization training data and custom models.
 
 For more information about Managed Identity, see [What are managed identities](/azure/active-directory/managed-identities-azure-resources/overview).
 

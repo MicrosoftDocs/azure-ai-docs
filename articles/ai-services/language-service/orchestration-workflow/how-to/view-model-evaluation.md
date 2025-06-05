@@ -2,13 +2,12 @@
 title: How to view orchestration workflow models details
 description: Learn how to view details for your model and evaluate its performance.
 titleSuffix: Azure AI services
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
 
@@ -17,7 +16,7 @@ ms.custom: language-service-custom-classification
 After model training is completed, you can view your model details and see how well it performs against the test set. Observing how well your model performed is called evaluation. The test set consists of data that wasn't introduced to the model during the training process.
 
 > [!NOTE]
-> Using the **Automatically split the testing set from training data** option may result in different model evaluation result every time you [train a new model](train-model.md), as the test set is selected randomly from your utterances. To make sure that the evaulation is calcualted on the same test set every time you train a model, make sure to use the **Use a manual split of training and testing data** option when starting a training job and define your **Testing set** when [add your utterances](tag-utterances.md).
+> Using the **Automatically split the testing set from training data** option may result in different model evaluation result every time you [train a new model](train-model.md), as the test set is selected randomly from your utterances. To make sure that the evaluation is calculated on the same test set every time you train a model, make sure to use the **Use a manual split of training and testing data** option when starting a training job and define your **Testing set** when [add your utterances](tag-utterances.md).
 
 
 ## Prerequisites

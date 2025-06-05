@@ -5,7 +5,7 @@ description: Learn how to create an Azure AI Translator resource and obtain your
 author: laujan
 ms.author: lajanuar
 manager: nitinme
-ms.date: 01/27/2025
+ms.date: 04/14/2025
 ms.service: azure-ai-translator
 ms.topic: how-to
 
@@ -35,12 +35,12 @@ After you decide which resource type you want use to access the Translator servi
 
 1. **Resource Group**. You can create a new resource group or add your resource to a preexisting resource group that shares the same lifecycle, permissions, and policies.
 
-1. **Resource Region**. Choose **Global** unless your business or application requires a specific region. If you're planning on using the Document Translation feature with [managed identity authorization](../document-translation/how-to-guides/create-use-managed-identities.md), choose a geographic region such as **East US**.
+1. **Resource Region**. Choose **Global** unless your business or application requires a specific region. If you're planning on using the Document translation feature with [managed identity authorization](../document-translation/how-to-guides/create-use-managed-identities.md), choose a geographic region such as **East US**.
 
 1. **Name**. Enter a name for your resource. The name you choose must be unique within Azure.
 
    > [!NOTE]
-   > If you're using a Translator feature that needs a custom domain endpoint, such as Document Translation, the input in the `name` field it the custom domain name parameter for the endpoint.
+   > If you're using a Translator feature that needs a custom domain endpoint, such as Document translation, the input in the `name` field it the custom domain name parameter for the endpoint.
   > Make sure to enter the correct value in the `name` field to ensure proper functionality.
 
 1. **Pricing tier**. Select a [pricing tier](https://azure.microsoft.com/pricing/details/cognitive-services/translator) that meets your needs:
@@ -48,7 +48,7 @@ After you decide which resource type you want use to access the Translator servi
    * Each subscription has a free tier.
    * The free tier has the same features and functionality as the paid plans and doesn't expire.
    * Only one free tier resource is available per subscription.
-   * Document Translation is supported in paid tiers. The Language Studio only supports the S1 or D3 instance tiers. If you just want to try Document Translation, select the Standard S1 instance tier.
+   * Document translation is supported in paid tiers. The Language Studio only supports the S1 or D3 instance tiers. If you just want to try Document translation, select the Standard S1 instance tier.
 
 1. If you created a multi-service resource, the links at the bottom of the **Basics** tab provides technical documentation regarding the appropriate operation of the service.
 
@@ -71,14 +71,14 @@ All Azure AI services API requests require an endpoint URL and a read-only key f
 To authenticate your connection to your Translator resource, you need the key and endpoint for your resource.
 
 1. After your new resource deploys, select **Go to resource** or go to your resource page.
-1. In the left navigation pane, under **Resource Management**, select **Keys and Endpoint**.
+1. In the left pane, under **Resource Management**, select **Keys and Endpoint**.
 1. Copy and paste your keys and endpoint URL in a convenient location, such as Notepad.
 
 :::image type="content" source="../media/keys-and-endpoint-resource.png" alt-text="Screenshot of the Azure portal showing the Keys and Endpoint page of a Translator resource. The keys and endpoints are highlighted.":::
 
-## Create a Text Translation client
+## Create a Text translation client
 
-Text Translation supports both [global and regional endpoints](#complete-your-project-and-instance-details). Once you have your [authentication keys](#authentication-keys-and-endpoint-url), you need to create an instance of the `TextTranslationClient`, using an `AzureKeyCredential` for authentication, to interact with the Text Translation service:
+Text translation supports both [global and regional endpoints](#complete-your-project-and-instance-details). Once you have your [authentication keys](#authentication-keys-and-endpoint-url), you need to create an instance of the `TextTranslationClient`, using an `AzureKeyCredential` for authentication, to interact with the Text translation service:
 
 * To create a `TextTranslationClient` using a global resource endpoint, you need your resource **API key**:
 
@@ -125,6 +125,6 @@ In our quickstart, you learn how to use the Translator service with REST APIs.
 
 Learn more about Azure AI Translator features:
 
-* [Text Translation](../text-translation/overview.md)
-* [Document Translation](../document-translation/overview.md)
+* [Text translation](../text-translation/overview.md)
+* [Document translation](../document-translation/overview.md)
 * [Custom Translation](../custom-translator/overview.md)

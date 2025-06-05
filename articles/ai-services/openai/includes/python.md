@@ -1,12 +1,11 @@
 ---
 title: 'Quickstart: Use the OpenAI Service via the Python SDK'
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with the Python SDK. 
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 01/03/2024
+ms.date: 03/26/2025
 ---
 
 <a href="https://github.com/openai/openai-python" target="_blank">Library source code</a> | <a href="https://pypi.org/project/openai/" target="_blank">Package (PyPi)</a> |
@@ -16,35 +15,23 @@ ms.date: 01/03/2024
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>
 - <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>
 - The following Python libraries: os, requests, json
-- An Azure OpenAI Service resource with a `gpt-35-turbo-instruct` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
+- An Azure OpenAI in Azure AI Foundry Models resource with a `gpt-35-turbo-instruct` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
 
 ## Set up
 
 Install the OpenAI Python client library with:
 
-# [OpenAI Python 1.x](#tab/python-new)
-
 ```console
 pip install openai
 ```
-
-# [OpenAI Python 0.28.1](#tab/python)
-
-[!INCLUDE [Deprecation](../includes/deprecation.md)]
-
-```console
-pip install openai==0.28.1
-```
-
----
 
 > [!NOTE]
 > This library is maintained by OpenAI. Refer to the [release history](https://github.com/openai/openai-python/releases) to track the latest updates to the library.
 
 ## Retrieve key and endpoint
 
-To successfully make a call against the Azure OpenAI Service, you'll need the following:
+To successfully make a call against the Azure OpenAI, you'll need the following:
 
 |Variable name | Value |
 |--------------------------|-------------|
@@ -65,7 +52,35 @@ Go to your resource in the Azure portal. The **Keys and Endpoint** can be found 
 
 2. Replace the contents of quickstart.py with the following code. Modify the code to add your key, endpoint, and deployment name: 
 
-# [OpenAI Python 1.x](#tab/python-new)
+# [Microsoft Entra ID](#tab/entra)
+
+```python
+import os
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+    
+client = AzureOpenAI(
+    azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
+    azure_ad_token_provider=token_provider,
+    api_version="2024-10-21"
+    )
+    
+deployment_name='REPLACE_WITH_YOUR_DEPLOYMENT_NAME' #This will correspond to the custom name you chose for your deployment when you deployed a model. Use a gpt-35-turbo-instruct deployment. 
+    
+# Send a completion call to generate an answer
+print('Sending a test completion job')
+start_phrase = 'Write a tagline for an ice cream shop. '
+response = client.completions.create(model=deployment_name, prompt=start_phrase, max_tokens=10)
+print(start_phrase+response.choices[0].text)
+```
+
+# [API Key](#tab/key)
+
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
 ```python
 import os
@@ -73,7 +88,7 @@ from openai import AzureOpenAI
     
 client = AzureOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-02-01",
+    api_version="2024-10-21",
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     )
     
@@ -86,31 +101,10 @@ response = client.completions.create(model=deployment_name, prompt=start_phrase,
 print(start_phrase+response.choices[0].text)
 ```
 
-# [OpenAI Python 0.28.1](#tab/python)
-
-```python
-import os
-import openai
-
-openai.api_key = os.getenv("AZURE_OPENAI_API_KEY")
-openai.api_base = os.getenv("AZURE_OPENAI_ENDPOINT") # your endpoint should look like the following https://YOUR_RESOURCE_NAME.openai.azure.com/
-openai.api_type = 'azure'
-openai.api_version = '2024-02-01' # this might change in the future
-
-deployment_name='REPLACE_WITH_YOUR_DEPLOYMENT_NAME' #This will correspond to the custom name you chose for your deployment when you deployed a model. 
-
-# Send a completion call to generate an answer
-print('Sending a test completion job')
-start_phrase = 'Write a tagline for an ice cream shop. '
-response = openai.Completion.create(engine=deployment_name, prompt=start_phrase, max_tokens=10)
-text = response['choices'][0]['text'].replace('\n', '').replace(' .', '.').strip()
-print(start_phrase+text)
-```
-
 ---
 
 > [!IMPORTANT]
-> For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see the Azure AI services [security](../../security-features.md) article.
+> For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see this [security](../../security-features.md) article.
 
 1. Run the application with the `python` command on your quickstart file:
 
@@ -128,7 +122,6 @@ Write a tagline for an ice cream shop. The coldest ice cream in town!
 ```
 
 Run the code a few more times to see what other types of responses you get as the response won't always be the same.
-
 
 ### Understanding your results
 

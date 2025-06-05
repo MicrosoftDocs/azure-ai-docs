@@ -2,8 +2,8 @@
 title: Integrate custom question answering and conversational language understanding with orchestration workflow
 description: Learn how to connect different projects with orchestration workflow. 
 keywords: conversational language understanding, bot framework, bot, language understanding, nlu
-author: jboback
-ms.author: jboback
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.reviewer: cahann, hazemelh
 ms.service: azure-ai-language
@@ -37,7 +37,7 @@ This tutorial will include creating a **chit chat** knowledge base and **email c
     
     :::image type="content" source="../media/chit-chat.png" alt-text="A screenshot of the chit chat popup." lightbox="../media/chit-chat.png":::
     
-5. Go to **Deploy knowledge base** from the left navigation menu and select **Deploy** and confirm the popup that shows up.
+5. Go to **Deploy knowledge base** from the left pane and select **Deploy** and confirm the popup that shows up.
 
 You are now done with deploying your knowledge base for chit chat. You can explore the type of questions and answers to expect in the **Edit knowledge base** page.
 

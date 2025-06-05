@@ -1,8 +1,7 @@
 ---
-title: 'Quickstart: Use Azure OpenAI Service with the REST API'
+title: 'Quickstart: Use Azure OpenAI in Azure AI Foundry Models with the REST API'
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with Azure OpenAI and make your first completions call with the REST API. 
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
@@ -16,7 +15,7 @@ ms.date: 03/21/2023
 ## Prerequisites
 
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true).
-- An Azure OpenAI Service resource with either the `gpt-35-turbo` or the `gpt-4` models deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
+- An Azure OpenAI in Azure AI Foundry Models resource with either the `gpt-35-turbo` or the `gpt-4` models deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
 ## Set up
 
@@ -34,7 +33,7 @@ In a bash shell, run the following command. You will need to replace `gpt-35-tur
 curl $AZURE_OPENAI_ENDPOINT/openai/deployments/gpt-35-turbo/chat/completions?api-version=2024-02-01 \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
-  -d '{"messages":[{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},{"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},{"role": "user", "content": "Do other Azure AI services support this too?"}]}'
+  -d '{"messages":[{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},{"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},{"role": "user", "content": "Do other Azure services support this too?"}]}'
 
 ```
 
@@ -43,7 +42,7 @@ The format of your first line of the command with an example endpoint would appe
 If you want to run this command in a normal Windows command prompt you would need to alter the text to remove the `\` and line breaks.
 
 > [!IMPORTANT]
-> For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see the Azure AI services [security](../../security-features.md) article.
+> For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see this [security](../../security-features.md) article.
 
 ## Output
 
@@ -55,7 +54,7 @@ If you want to run this command in a normal Windows command prompt you would nee
 "completion_tokens":68,
 "total_tokens":126},
 "choices":[{"message":{"role":"assistant",
-"content":"Yes, other Azure AI services also support customer managed keys. Azure AI services offer multiple options for customers to manage keys, such as using Azure Key Vault, customer-managed keys in Azure Key Vault or customer-managed keys through Azure Storage service. This helps customers ensure that their data is secure and access to their services is controlled."},"finish_reason":"stop","index":0}]}
+"content":"Yes, many other Azure services also support customer managed keys. Azure OpenAI offers multiple options for customers to manage keys, such as using Azure Key Vault, customer-managed keys in Azure Key Vault or customer-managed keys through Azure Storage service. This helps customers ensure that their data is secure and access to their services is controlled."},"finish_reason":"stop","index":0}]}
 ```
 
 Output formatting adjusted for ease of reading, actual output is a single block of text without line breaks.

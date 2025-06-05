@@ -2,13 +2,12 @@
 title: "Quickstart: Use Summarization"
 titleSuffix: Azure AI services
 description: Use this quickstart to start using Summarization.
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
 ms.date: 02/17/2025
-ms.author: jboback
+ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
 ms.custom: language-service-summarization, mode-api, devx-track-extended-java, devx-track-js, devx-track-python, build-2024
@@ -33,7 +32,7 @@ zone_pivot_groups: programming-languages-text-analytics
 
 ::: zone pivot="programming-language-javascript"
 
-[!INCLUDE [NodeJS quickstart](includes/quickstarts/nodejs-sdk.md)]
+[!INCLUDE [Node.js quickstart](includes/quickstarts/nodejs-sdk.md)]
 
 ::: zone-end
 

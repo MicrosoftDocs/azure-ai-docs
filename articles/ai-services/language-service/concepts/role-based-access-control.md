@@ -2,13 +2,12 @@
 title: Role-based access control for the Language service
 titleSuffix: Azure AI services
 description: Learn how to use Azure RBAC for managing individual access to Azure resources.
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ---
 
 
@@ -30,7 +29,7 @@ Azure RBAC can be assigned to a Language resource. To grant access to an Azure r
    > [!NOTE]
    > You can also set up Azure RBAC for whole resource groups, subscriptions, or management groups. Do this by selecting the desired scope level and then navigating to the desired item. For example, selecting **Resource groups** and then navigating to a specific resource group.
 
-1. Select **Access control (IAM)** on the left navigation pane.
+1. Select **Access control (IAM)** on the left pane.
 1. Select **Add**, then select **Add role assignment**.
 1. On the **Role** tab on the next screen, select a role you want to add.
 1. On the **Members** tab, select a user, group, service principal, or managed identity.

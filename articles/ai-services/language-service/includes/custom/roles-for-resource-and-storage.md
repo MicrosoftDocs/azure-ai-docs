@@ -2,13 +2,12 @@
 title: How to create custom text classification projects
 titleSuffix: Azure AI services
 description: Learn about the steps for using Azure resources with custom text classification.
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
 ms.date: 12/19/2023
-ms.author: jboback
+ms.author: lajanuar
 ---
 
 Use the following steps to set the required roles for your Language resource and storage account.
@@ -18,7 +17,7 @@ Use the following steps to set the required roles for your Language resource and
 ### Roles for your Azure AI Language resource
 
 1. Go to your storage account or Language resource in the [Azure portal](https://portal.azure.com/).
-2. Select **Access Control (IAM)** in the left navigation menu.
+2. Select **Access Control (IAM)** in the left pane.
 3. Select **Add** to **Add Role Assignments**, and choose the appropriate role for your account.
 
     You should have the **owner** or **contributor** role assigned on your Language resource.
@@ -31,7 +30,7 @@ Use the following steps to set the required roles for your Language resource and
 ### Roles for your storage account
 
 1. Go to your storage account page in the [Azure portal](https://portal.azure.com/).
-2. Select **Access Control (IAM)** in the left navigation menu.
+2. Select **Access Control (IAM)** in the left pane.
 3. Select **Add** to **Add Role Assignments**, and choose the **Storage blob data contributor** role on the storage account.
 4. Within **Assign access to**, select **Managed identity**. 
 5. Select **Select members**

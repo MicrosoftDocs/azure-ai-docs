@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 12/10/2024
+ms.date: 05/29/2025
 ---
 
 # Index data from Azure Cosmos DB for MongoDB for queries in Azure AI Search
@@ -99,7 +99,7 @@ Avoid port numbers in the endpoint URL. If you include the port number, the conn
 | Full access connection string |
 |-----------------------------------------------|
 |`{ "connectionString" : "AccountEndpoint=https://<Cosmos DB account name>.documents.azure.com;AccountKey=<Cosmos DB auth key>;Database=<Cosmos DB database id>;ApiKind=MongoDb" }` |
-| You can get the *Cosmos DB auth key* from the Azure Cosmos DB account page in the Azure portal by selecting **Connection String** in the left navigation pane. Make sure to copy **Primary Password** and replace *Cosmos DB auth key* value with it. |
+| You can get the *Cosmos DB auth key* from the Azure Cosmos DB account page in the Azure portal by selecting **Connection String** in the left pane. Make sure to copy **Primary Password** and replace *Cosmos DB auth key* value with it. |
 
 | Managed identity connection string |
 |------------------------------------|

@@ -26,7 +26,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Set up
 
-1. Create a new folder `audio-completions-quickstart` to contain the application and open Visual Studio Code in that folder with the following command:
+1. Create a new folder `audio-completions-quickstart` and go to the quickstart folder with the following command:
 
     ```shell
     mkdir audio-completions-quickstart && cd audio-completions-quickstart

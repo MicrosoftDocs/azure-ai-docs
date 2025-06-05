@@ -1,8 +1,6 @@
 ---
 title: Role-based access control for Azure OpenAI
-titleSuffix: Azure AI services
 description: Learn how to use Azure RBAC for managing individual access to Azure OpenAI resources.
-#services: cognitive-services
 author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-language
@@ -12,9 +10,9 @@ ms.author: mbullwin
 recommendations: false
 ---
 
-# Role-based access control for Azure OpenAI Service
+# Role-based access control for Azure OpenAI in Azure AI Foundry Models
 
-Azure OpenAI Service supports Azure role-based access control (Azure RBAC), an authorization system for managing individual access to Azure resources. Using Azure RBAC, you assign different team members different levels of permissions based on their needs for a given project. For more information, see the [Azure RBAC documentation](/azure/role-based-access-control/).
+Azure OpenAI supports Azure role-based access control (Azure RBAC), an authorization system for managing individual access to Azure resources. Using Azure RBAC, you assign different team members different levels of permissions based on their needs for a given project. For more information, see the [Azure RBAC documentation](/azure/role-based-access-control/).
 
 ## Add role assignment to an Azure OpenAI resource
 
@@ -24,7 +22,7 @@ Azure RBAC can be assigned to an Azure OpenAI resource. To grant access to an Az
    > [!NOTE]
    > You can also set up Azure RBAC for whole resource groups, subscriptions, or management groups. Do this by selecting the desired scope level and then navigating to the desired item. For example, selecting **Resource groups** and then navigating to a specific resource group.
 
-1. Select **Access control (IAM)** on the left navigation pane.
+1. Select **Access control (IAM)** on the left pane.
 1. Select **Add**, then select **Add role assignment**.
 1. On the **Role** tab on the next screen, select a role you want to add.
 1. On the **Members** tab, select a user, group, service principal, or managed identity.
@@ -50,8 +48,8 @@ If a user were granted role-based access to only this role for an Azure OpenAI r
 
 ✅ View the resource in [Azure portal](https://portal.azure.com) <br>
 ✅ View the resource endpoint under **Keys and Endpoint** <br>
-✅ Ability to view the resource and associated model deployments in [Azure AI Foundry portal](https://ai.azure.com/). <br>
-✅ Ability to view what models are available for deployment in [Azure AI Foundry portal](https://ai.azure.com/). <br>
+✅ Ability to view the resource and associated model deployments in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). <br>
+✅ Ability to view what models are available for deployment in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). <br>
 ✅ Use the Chat, Completions, and DALL-E (preview) playground experiences to generate text and images with any models that have already been deployed to this Azure OpenAI resource. <br>
 ✅ Make inference API calls with Microsoft Entra ID.
 
@@ -93,7 +91,7 @@ This role is typically granted access at the resource group level for a user in 
 ✅ View resources in the assigned resource group in the [Azure portal](https://portal.azure.com). <br>
 ✅ View the resource endpoint under **Keys and Endpoint** <br>
 ✅ View/Copy/Regenerate keys under **Keys and Endpoint** <br>
-✅ Ability to view what models are available for deployment in [Azure AI Foundry portal](https://ai.azure.com/) <br>
+✅ Ability to view what models are available for deployment in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) <br>
 ✅ Use the Chat, Completions, and DALL-E (preview) playground experiences to generate text and images with any models that have already been deployed to this Azure OpenAI resource <br>
 ✅ Create customized content filters <br>
 ✅ Add data sources to Azure OpenAI On Your Data. **You must also have the [Cognitive Services OpenAI Contributor](#cognitive-services-openai-contributor) role as well**.
@@ -114,7 +112,7 @@ Viewing quota requires the **Cognitive Services Usages Reader** role. This role 
 
 This role can be found in the Azure portal under **Subscriptions** > ***Access control (IAM)** > **Add role assignment** > search for **Cognitive Services Usages Reader**. The role must be applied at the subscription level, it does not exist at the resource level.
 
-If you don't wish to use this role, the subscription **Reader** role provides equivalent access, but it also grants read access beyond the scope of what is needed for viewing quota. Model deployment via the [Azure AI Foundry portal](https://ai.azure.com/) is also partially dependent on the presence of this role.
+If you don't wish to use this role, the subscription **Reader** role provides equivalent access, but it also grants read access beyond the scope of what is needed for viewing quota. Model deployment via the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) is also partially dependent on the presence of this role.
 
 This role provides little value by itself and is instead typically assigned in combination with one or more of the previously described roles.
 
@@ -122,19 +120,19 @@ This role provides little value by itself and is instead typically assigned in c
 
 All the capabilities of Cognitive Services OpenAI User plus the ability to:
 
-✅ View quota allocations in [Azure AI Foundry portal](https://ai.azure.com/)
+✅ View quota allocations in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs)
 
 #### Cognitive Services Usages Reader + Cognitive Services OpenAI Contributor
 
 All the capabilities of Cognitive Services OpenAI Contributor plus the ability to:
 
-✅ View quota allocations in [Azure AI Foundry portal](https://ai.azure.com/)
+✅ View quota allocations in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs)
 
 #### Cognitive Services Usages Reader + Cognitive Services Contributor
 
 All the capabilities of Cognitive Services Contributor plus the ability to:
 
-✅ View & edit quota allocations in [Azure AI Foundry portal](https://ai.azure.com/) <br>
+✅ View & edit quota allocations in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) <br>
 ✅ Create new model deployments or edit existing model deployments (via Azure AI Foundry) <br>
 
 ## Summary
@@ -143,8 +141,8 @@ All the capabilities of Cognitive Services Contributor plus the ability to:
 |-------------|--------------------|------------------------|------------------|-------------------------|
 |View the resource in Azure portal |✅|✅|✅| ➖ |
 |View the resource endpoint under “Keys and Endpoint” |✅|✅|✅| ➖ |
-|View the resource and associated model deployments in [Azure AI Foundry portal](https://ai.azure.com/) |✅|✅|✅| ➖ |
-|View what models are available for deployment in [Azure AI Foundry portal](https://ai.azure.com/)|✅|✅|✅| ➖ |
+|View the resource and associated model deployments in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) |✅|✅|✅| ➖ |
+|View what models are available for deployment in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs)|✅|✅|✅| ➖ |
 |Use the Chat, Completions, and DALL-E (preview) playground experiences with any models that have already been deployed to this Azure OpenAI resource.|✅|✅|✅| ➖ |
 |Create or edit model deployments|❌|✅|✅| ➖ |
 |Create or deploy custom fine-tuned models|❌|✅|✅| ➖ |
@@ -162,7 +160,7 @@ All the capabilities of Cognitive Services Contributor plus the ability to:
 
 **Issue:**
 
-When selecting an existing Azure Cognitive Search resource the search indices don't load, and the loading wheel spins continuously. In [Azure AI Foundry portal](https://ai.azure.com/), go to **Playground Chat** > **Add your data (preview)** under Assistant setup. Selecting **Add a data source** opens a modal that allows you to add a data source through either Azure Cognitive Search or Blob Storage. Selecting the Azure Cognitive Search option and an existing Azure Cognitive Search resource should load the available Azure Cognitive Search indices to select from.
+When selecting an existing Azure Cognitive Search resource the search indices don't load, and the loading wheel spins continuously. In [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), go to **Playground Chat** > **Add your data (preview)** under Assistant setup. Selecting **Add a data source** opens a modal that allows you to add a data source through either Azure Cognitive Search or Blob Storage. Selecting the Azure Cognitive Search option and an existing Azure Cognitive Search resource should load the available Azure Cognitive Search indices to select from.
 
 **Root cause** 
 
@@ -188,7 +186,7 @@ For this API call, you need a **subscription-level scope** role. You can use the
 
 **Root cause:**
 
-Insufficient subscription-level access for the user attempting to access the blob storage in [Azure AI Foundry portal](https://ai.azure.com/). The user may **not** have the necessary permissions to call the Azure Management API endpoint: ```https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listAccountSas?api-version=2022-09-01```
+Insufficient subscription-level access for the user attempting to access the blob storage in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). The user may **not** have the necessary permissions to call the Azure Management API endpoint: ```https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listAccountSas?api-version=2022-09-01```
 
 Public access to the blob storage is disabled by the owner of the Azure subscription for security reasons.
 

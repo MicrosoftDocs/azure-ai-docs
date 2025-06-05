@@ -1,4 +1,4 @@
-2---
+---
 manager: nitinme
 ms.service: azure-ai-model-inference
 ms.topic: include
@@ -13,7 +13,7 @@ author: santiagxf
   <dependency>
       <groupId>com.azure</groupId>
       <artifactId>azure-ai-inference</artifactId>
-      <version>1.0.0-beta.1</version>
+      <version>1.0.0-beta.4</version>
   </dependency>
   ```
   
@@ -23,7 +23,7 @@ author: santiagxf
   <dependency>
       <groupId>com.azure</groupId>
       <artifactId>azure-identity</artifactId>
-      <version>1.13.3</version>
+      <version>1.15.3</version>
   </dependency>
   ```
 
@@ -34,8 +34,11 @@ author: santiagxf
   
   import com.azure.ai.inference.EmbeddingsClient;
   import com.azure.ai.inference.EmbeddingsClientBuilder;
+  import com.azure.ai.inference.ChatCompletionsClient;
+  import com.azure.ai.inference.ChatCompletionsClientBuilder;
   import com.azure.ai.inference.models.EmbeddingsResult;
   import com.azure.ai.inference.models.EmbeddingItem;
+  import com.azure.ai.inference.models.ChatCompletions;
   import com.azure.core.credential.AzureKeyCredential;
   import com.azure.core.util.Configuration;
   

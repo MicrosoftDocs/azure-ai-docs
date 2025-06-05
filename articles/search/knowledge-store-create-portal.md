@@ -34,7 +34,7 @@ First, you set up sample data in Azure Storage. Next, you run the **Import data*
   + [Upload the file to a blob container](/azure/storage/blobs/storage-quickstart-blobs-portal) in Azure Storage.
 
 > [!NOTE]
-> This quickstart uses [Azure AI services](https://azure.microsoft.com/services/cognitive-services/) for AI enrichment. Because the workload is so small, Azure AI services is tapped behind the scenes for free processing for up to 20 transactions. This means that you can complete this exercise without having to create an extra Azure AI multi-service resource.
+> This quickstart uses [Azure AI services](https://azure.microsoft.com/services/cognitive-services/) for AI enrichment. Because the workload is so small, Azure AI services is tapped behind the scenes for free processing for up to 20 transactions. This means that you can complete this exercise without having to create an extra Azure AI services multi-service resource.
 
 ## Start the wizard
 
@@ -145,7 +145,7 @@ In the **Overview** page, open the **Indexers** tab in the middle of the page, a
 
 1. In the Azure portal, [open the Storage account](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Storage%2storageAccounts/) used to create the knowledge store.
 
-1. In the storage account's left navigation pane, select **Storage browser** to view the new tables. 
+1. In the storage account's left pane, select **Storage browser** to view the new tables. 
 
    You should see three tables, one for each projection that was offered in the "Save enrichments" section of the "Add enrichments" page.
 

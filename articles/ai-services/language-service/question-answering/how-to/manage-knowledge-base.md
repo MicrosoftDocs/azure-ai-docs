@@ -3,8 +3,8 @@ title: Manage projects - custom question answering
 description: Custom question answering allows you to manage projects by providing access to the project settings and content.
 ms.service: azure-ai-language
 ms.topic: how-to
-author: jboback
-ms.author: jboback
+author: laujan
+ms.author: lajanuar
 ms.date: 11/21/2024
 ms.custom: language-service-question-answering
 ---
@@ -52,7 +52,7 @@ From the main custom question answering page in Language Studio you can:
 
 ## Manage sources
 
-1. Select **Manage sources** in the left navigation bar.
+1. Select **Manage sources** in the left pane.
 
 1.  There are three types of sources: **URLS**, **Files**, and **Chitchat**
 

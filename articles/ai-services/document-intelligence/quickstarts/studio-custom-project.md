@@ -5,10 +5,8 @@ description: Form and document processing, data extraction, and analysis using D
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.custom:
-  - ignite-2024
 ms.topic: quickstart
-ms.date: 11/19/2024
+ms.date: 03/14/2025
 ms.author: lajanuar
 monikerRange: '>=doc-intel-3.0.0'
 ---
@@ -16,7 +14,7 @@ monikerRange: '>=doc-intel-3.0.0'
 
 <!-- markdownlint-disable MD001 -->
 
-# Get started with custom projects in Document Intelligence Studio
+# Document Intelligence Studio custom projects
 
 [!INCLUDE [applies to v4.0 v3.1 v3.0](../includes/applies-to-v40-v31-v30.md)]
 
@@ -24,11 +22,11 @@ monikerRange: '>=doc-intel-3.0.0'
 
 ## Prerequisites for new users
 
-Please refer to the following [documentation](../studio-overview.md#prerequisites) for subscription and resource creation, as well as authentication setup.
+For details on subscription, resource, and authentication setup, *see* [Get started with Document Intelligence Studio](get-started-studio.md#prerequisites-for-new-users).
 
 ## Additional prerequisites for custom projects
 
-In addition to the Azure account and a Document Intelligence or Azure AI services resource, you need:
+In addition to the Azure account and a Document Intelligence or Azure AI Foundry resource, you need:
 
 ### Azure Blob Storage container
 
@@ -42,14 +40,14 @@ A **standard performance** [**Azure Blob Storage account**](https://portal.azure
 For custom projects, the following role assignments are required for different scenarios.
 
 * Basic
-  * **Cognitive Services User**: You need this role for Document Intelligence or Azure AI services resource to train the custom model or do analysis with trained models.
+  * **Cognitive Services User**: You need this role for Document Intelligence or Azure AI Foundry resource to train the custom model or do analysis with trained models.
   * **Storage Blob Data Contributor**: You need this role for the Storage Account to create a project and label data.
 * Advanced
   * **Storage Account Contributor**: You need this role for the Storage Account to set up CORS settings (this action is a one-time effort if the same storage account is reused).
   * **Contributor**: You need this role to create a resource group and resources.
 
   > [!NOTE]
-  > If local (key-based) authentication is disabled for your Document Intelligence service resource and storage account, be sure to obtain **Cognitive Services User** and **Storage Blob Data Contributor** roles respectively, so you have enough permissions to use Document Intelligence Studio.  The **Storage Account Contributor** and **Contributor** roles only allow you to list keys but does not give you permission to use the resources when key-access is disabled.
+  > If local (key-based) authentication is disabled for your Document Intelligence service resource and storage account, be sure to obtain **Cognitive Services User** and **Storage Blob Data Contributor** roles respectively, so you have enough permissions to use Document Intelligence Studio. The **Storage Account Contributor** and **Contributor** roles only allow you to list keys but don't give you permission to use the resources when key-access is disabled.
 
 ### Configure CORS
 
@@ -97,7 +95,7 @@ CORS should now be configured to use the storage account from Document Intellige
     :::image border="true" type="content" source="../media/sas-tokens/upload-blob-window.png" alt-text="Screenshot of upload blob window in the Azure portal.":::
 
 > [!NOTE]
-> By default, the Studio will use documents that are located at the root of your container. However, you can use data organized in folders by specifying the folder path in the Custom form project creation steps. *See* [**Organize your data in subfolders**](../how-to-guides/build-a-custom-model.md?view=doc-intel-2.1.0&preserve-view=true#organize-your-data-in-subfolders-optional)
+> By default, the Studio uses documents that are located at the root of your container. However, you can use data organized in folders by specifying the folder path in the Custom form project creation steps. *See* [**Organize your data in subfolders**](../how-to-guides/build-a-custom-model.md?view=doc-intel-2.1.0&preserve-view=true#organize-your-data-in-subfolders-optional)
 
 ## Use Document Intelligence Studio features
 

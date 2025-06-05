@@ -7,12 +7,12 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 11/01/2024
+ms.date: 05/19/2025
 ---
 
 # Create an index in Azure AI Search
 
-In this article, learn the steps for defining a schema for a [**search index**](search-what-is-an-index.md) and pushing it to a search service. Creating an index establishes the physical data structures on your search service. Once the index exists, [**load the index**](search-what-is-data-import.md) as a separate task. 
+In this article, learn the steps for defining a schema for a [**search index**](search-what-is-an-index.md) and pushing it to a search service. Creating an index establishes the physical data structures on your search service. Once the index exists, [**load the index**](search-what-is-data-import.md) as a separate task.
 
 ## Prerequisites
 
@@ -51,6 +51,8 @@ Use this checklist to assist the design decisions for your search index.
 1. Review [naming conventions](/rest/api/searchservice/naming-rules) so that index and field names conform to the naming rules.
 
 1. Review [supported data types](/rest/api/searchservice/supported-data-types). The data type affects how the field is used. For example, numeric content is filterable but not full text searchable. The most common data type is `Edm.String` for searchable text, which is tokenized and queried using the full text search engine. The most common data type for a vector field is `Edm.Single` but you can use other types as well.
+
+1. Provide a description of the index (preview), 4,000 character maximum. This human-readable text is invaluable when a system must access several indexes and make a decision based on the description. Consider a Model Context Protocol (MCP) server that must pick the correct index at run time. The decision can be  based on the description rather than on index name alone. An index Description field is available in the [2025-05-01-preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true), the Azure portal, or a prerelease package of an Azure SDK that provides the feature. For more information, see [Add an index description](search-howto-reindex.md#add-an-index-description-preview).
 
 1. Identify a [document key](#document-keys). A document key is an index requirement. It's a single string field populated from a source data field that contains unique values. For example, if you're indexing from Blob Storage, the metadata storage path is often used as the document key because it uniquely identifies each blob in the container.
 
@@ -110,7 +112,7 @@ Default field attributions for the REST APIs are summarized in the following tab
 
 String fields can also be optionally associated with [analyzers](search-analyzers.md) and [synonym maps](search-synonyms.md). Fields of type `Edm.String` that are filterable, sortable, or facetable can be at most 32 kilobytes in length. This is because values of such fields are treated as a single search term, and the maximum length of a term in Azure AI Search is 32 kilobytes. If you need to store more text than this in a single string field, you should explicitly set filterable, sortable, and facetable to `false` in your index definition.
 
-Vector fields must be associated with [dimensions and vector profiles](vector-search-how-to-create-index.md). Retrievable default is true if you add the vector field using the [Import and vectorize wizard](search-get-started-portal-import-vectors.md) in the Azure portal, otherwise it's false if you use the REST API.
+Vector fields must be associated with [dimensions and vector profiles](vector-search-how-to-create-index.md). Retrievable is true by default if you add the vector field using the [Import and vectorize data wizard](search-get-started-portal-import-vectors.md) in the Azure portal. If you use the REST API, it's false.
 
 Field attributes are described in the following table.
 
@@ -144,18 +146,18 @@ Index design through the Azure portal enforces requirements and schema rules for
 
 1. Check for space. Search services are subject to [maximum number of indexes](search-limits-quotas-capacity.md), varying by service tier. Make sure you have room for a second index.
 
-1. In the search service **Overview** page, choose either option for creating a search index: 
+1. In the search service **Overview** page, choose either option for creating a search index:
 
    + **Add index**, an embedded editor for specifying an index schema
    + [**Import wizards**](search-import-data-portal.md)
 
    The wizard is an end-to-end workflow that creates an indexer, a data source, and a finished index. It also loads the data. If this is more than what you want, use **Add index** instead.
 
-The following screenshot highlights where **Add index**, **Import data**, and **Import and vectorize data** appear on the command bar. 
+The following screenshot highlights where **Add index**, **Import data**, and **Import and vectorize data wizard** appear on the command bar.
 
 :::image type="content" source="media/search-what-is-an-index/add-index.png" alt-text="Screenshot of the options to add an index." border="true":::
 
-After an index is created, you can find it again on the **Indexes** page from the left navigation pane.
+After an index is created, you can find it again on the **Indexes** page from the left pane.
 
 > [!TIP]
 > After creating an index in the Azure portal, you can copy the JSON representation and add it to your application code.

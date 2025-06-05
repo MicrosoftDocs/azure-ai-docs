@@ -1,13 +1,12 @@
 ---
 titleSuffix: Azure AI services
 description: Learn about the steps for using Azure resources with custom NER.
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ---
 
 You can use an existing Language resource to get started with custom NER as long as this resource meets the below requirements:

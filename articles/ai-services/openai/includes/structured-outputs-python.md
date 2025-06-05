@@ -1,7 +1,7 @@
 ---
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 02/10/2025
+ms.date: 05/25/2025
 author: mrbullwinkle
 ms.author: mbullwin
 zone_pivot_groups: structured-outputs
@@ -17,9 +17,10 @@ You can use [`Pydantic`](https://docs.pydantic.dev/latest/) to define object sch
 pip install openai pydantic --upgrade
 ```
 
-If you are new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI Service with Microsoft Entra ID authentication](../how-to/managed-identity.md).
+If you are new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI in Azure AI Foundry Models with Microsoft Entra ID authentication](../how-to/managed-identity.md).
 
 ```python
+import os
 from pydantic import BaseModel
 from openai import AzureOpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
@@ -105,6 +106,7 @@ pip install openai pydantic --upgrade
 ```
 
 ```python
+import os
 from pydantic import BaseModel
 from openai import AzureOpenAI
 

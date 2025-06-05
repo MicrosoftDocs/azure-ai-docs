@@ -7,7 +7,7 @@ ms.service: azure-ai-openai
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 03/10/2025
+ms.date: 05/30/2025
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -23,7 +23,7 @@ This article is intended for existing users of the provisioned throughput offeri
 
 
 > [!IMPORTANT]
-> The changes in this article don't apply to the older *"Provisioned Classic (PTU-C)"* offering. They only affect the Provisioned (also known as the Provisioned Managed) offering.
+> The changes in this article describe changes made to provisioned managed offering in August and December 2024. These changes don't apply to the older *"Provisioned Classic (PTU-C)"* offering. They only affect the Provisioned (also known as the Provisioned Managed) offering.
 
 ### Usability improvements
 
@@ -33,6 +33,7 @@ This article is intended for existing users of the provisioned throughput offeri
 |Self-service quota requests | Request quota increases without engaging the sales team – many can be autoapproved. |
 |Default provisioned-managed quota in many regions | Get started quickly without having to first request quota. |
 |Transparent information on real-time capacity availability + New deployment flow | Reduced negotiation around availability accelerates time-to-market. |
+| Data zone provisioned deployments | Allows you to leverage Azure's global infrastructure to dynamically route traffic to the data center within the Microsoft defined data zone with the best availability for each request. For more information, see the [deployment types](../how-to/deployment-types.md#data-zone-provisioned) article. |
 
 ### New hourly/reservation commercial model
 
@@ -41,8 +42,9 @@ This article is intended for existing users of the provisioned throughput offeri
 |Non-binding, Hourly option | Hourly payment option without any binding enables short-term deployment scenarios. Ideal for testing new models and assessing benefits of Provisioned Throughput. |
 |Term discounts via Azure Reservations | Azure reservations provide substantial discounts over the hourly rate for one month and one year terms, and provide flexible scopes that minimize administration and associated with today’s resource-bound commitments.|
 | Default provisioned-managed quota in many regions | Get started quickly in new regions without having to first request quota. |
-| Flexible choice of payment model for existing provisioned customers | Customers with commitments can stay on the commitment model till the end of life of the currently supported models, and can choose to migrate existing commitments to hourly/reservations via managed process. We recommend migrating to hourly/ reservations to take advantage of term discounts and to work with the latest models. |
+| Flexible choice of payment model for existing provisioned customers | Customers with commitments can stay on the commitment model until the end of life of the currently supported models, and can choose to migrate existing commitments to hourly/reservations via managed process. We recommend migrating to hourly/ reservations to take advantage of term discounts and to work with the latest models. |
 | Supports latest model generations | The latest models are available only on hourly/ reservations in provisioned offering. |
+| Differentiated pricing | Greater flexibility and control of pricing and performance. In December 2024, we introduced  differentiated hourly pricing across [global provisioned](../how-to/deployment-types.md#global-provisioned), [data zone provisioned](../how-to/deployment-types.md#data-zone-provisioned), and [regional provisioned](../how-to/deployment-types.md#regional-provisioned) deployment types with the option to purchase [Azure Reservations](#new-azure-reservations-for-global-and-data-zone-provisioned-deployments) to support additional discounts. For more information on the hourly price for each provisioned deployment type, see the [Pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) page. |
 
 ## Usability improvement details
 
@@ -79,14 +81,27 @@ We also recommend that customers using commitments now create their deployments 
 See the following links for more information. The guidance for reservations and commitments is the same:
 
 * [Capacity Transparency](#self-service-migration)
-* [Sizing reservations](../how-to/provisioned-throughput-onboarding.md#important-sizing-azure-openai-provisioned-reservations)
+* [Sizing reservations](../how-to/provisioned-throughput-onboarding.md#important-sizing-azure-ai-foundry-provisioned-throughput-reservation)
 
 ## New hourly reservation payment model
 
 > [!NOTE]
 > The following description of payment models doesn't apply to the older "Provisioned Classic (PTU-C)" offering. They only affect the Provisioned (also known as Provisioned Managed) offering. Provisioned Classic continues to be governed by the unchanged monthly commitment payment model.
 
-Microsoft has introduced a new "Hourly/reservation" payment model for provisioned deployments. This is in addition to the current **Commitment** payment model, which will continue to be supported until end of life of the currently supported limited model list. Refer to the [supported models on **Commitment payment model**](./provisioned-migration.md#supported-models-on-commitment-payment-model) for the list of supported models on Commitment payment model.
+Microsoft has introduced a new "Hourly/reservation" payment model for provisioned deployments. This is in addition to the current **Commitment** payment model, which will continue to be supported until end of life of the currently supported limited model list. Refer to the [supported models on **Commitment payment model**](./provisioned-migration.md#supported-models-on-commitment-payment-model) for the list of supported models on Commitment payment model. You also have the option to purchase Azure Reservations to support additional discounts.
+
+### New Azure Reservations for global and data zone provisioned deployments
+
+In addition to the updates for the hourly payment model, in December 2024 new [Azure Reservations](https://aka.ms/oai/docs/ptum-reservations) were introduced specifically for global and data zone provisioned deployment types. With these new Azure Reservations, every provisioned deployment type will have a separate Azure Reservation that can be purchased to support additional discounts. The mapping between each provisioned deployment type and the associated Azure Reservation are as follows:
+
+| Provisioned deployment type | Sku name in code  | Azure Reservation product name |
+|---|---|---|
+| Global provisioned | `GlobalProvisionedManaged`  | Provisioned Managed Global  |
+| Data zone provisioned | `DataZoneProvisionedManaged`  | Provisioned Managed Data Zone  |
+| Provisioned | `ProvisionedManaged`  | Provisioned Managed Regional |
+
+> [!IMPORTANT]
+> Azure Reservations for Azure OpenAI provisioned offers are not interchangeable across deployment types. The Azure Reservation purchased must match the provisioned deployment type. If the Azure Reservation purchased does not match the provisioned deployment type, the provisioned deployment will default to the hourly payment model until a matching Azure Reservation product is purchased. For more information, see the [Azure Reservations for Azure OpenAI in Azure AI Foundry Models provisioned guidance](https://aka.ms/oai/docs/ptum-reservations).
 
 ### Commitment payment model
 
@@ -97,7 +112,7 @@ Microsoft has introduced a new "Hourly/reservation" payment model for provisione
 - Commitments can't be canceled or altered during their term, except to add new PTUs.
 
 #### Supported models on commitment payment model:
-  Only the following list of Azure OpenAI models are supported in Commitments. For onboarding any other models that aren't in the list below, or any newer models on provisioned throughput offering,  refer to the [Azure OpenAI provisioned onboarding guide](../how-to/provisioned-throughput-onboarding.md) and [Azure Reservations for Azure OpenAI provisioned deployments](../how-to/provisioned-throughput-onboarding.md#azure-reservations-for-azure-openai-provisioned-deployments)
+  Only the following list of Azure OpenAI models are supported in Commitments. For onboarding any other models that aren't in the list below, or any newer models on provisioned throughput offering,  refer to the [Azure OpenAI provisioned onboarding guide](../how-to/provisioned-throughput-onboarding.md) and [Azure Reservations for Azure OpenAI provisioned deployments](../how-to/provisioned-throughput-onboarding.md#azure-reservations-for-azure-ai-foundry-provisioned-throughput)
     
 |Supported models on Commitment plan |Versions|
 |-|-|
@@ -105,7 +120,7 @@ Microsoft has introduced a new "Hourly/reservation" payment model for provisione
 |gpt-4| 0613, 1106-Preview, 0125-Preview|
 |gpt-4-turbo| 2024-04-09|
 |gpt-4-32k| 0613|
-|gpt-4o| 2042-05-13, 2024-08-06|
+|gpt-4o| 2024-05-13, 2024-08-06|
 |gpt-4o-mini| 2024-07-18|
 
 
@@ -172,7 +187,7 @@ Customers using Azure OpenAI Provisioned offer prior to August 2024 can use eith
 
 **Resource has an active Commitment** 
 
-* The commitment discounts all deployments on the resource up to the number of PTUs on the commitment. Any excess PTUs is billed hourly unless the excess PTUs aren't in the scope of an active reservation. If the excess PTUs exist in the scope of an active reservation, will be discounted as a group up to the number of PTUs on the reservation and any excess spill still leftover will be billed hourly. 
+* The commitment discounts all deployments on the resource up to the number of PTUs on the commitment. Any excess PTUs is billed hourly unless the excess PTUs aren't in the scope of an active reservation. If the excess PTUs exist in the scope of an active reservation, will be discounted as a group, up to the number of PTUs on the reservation and any excess spill still leftover will be billed hourly. 
 
 **Resource does not have an active commitment** 
 
@@ -219,34 +234,33 @@ An alternative approach to self-service migration is to switch the reservation p
 * There will be a short period of double-billing or hourly charges during the switchover from committed to hourly/reservation billing.
 
 > [!IMPORTANT]
-> Self-service approach generates additional charges as the payment mode is switched from Committed to Hourly/Reservation. This is the characteristics of this migration approaches and customers aren't credited for these charges. Alternately, Customers can choose to use the managed migration approach described below to avoid additional charges.
+> Self-service approach generates additional charges as the payment mode is switched from Committed to Hourly/Reservation. This is the characteristics of this migration approaches and customers aren't credited for these charges.
 
-### Managed migration
+## Migrating existing deployments to global or data zone provisioned
+Existing customers of provisioned deployments can choose to migrate to global or data zone provisioned deployments to benefit from the lower deployment minimums, granular scale increments, or differentiated pricing available for these deployment types. To learn more about how global and data zone provisioned deployments handle data processing across Azure geographies, see the Azure OpenAI deployment [data processing documentation](https://aka.ms/aoai/docs/data-processing-locations).
 
-The managed migration approach involves the customer partnering with Microsoft to bulk-migrate all the PTU commitments in a subscription/region at the same time. It works like this:
+Two approaches are available for customers to migrate from provisioned deployments to global or data zone provisioned deployments. 
 
-1. The customer will engage their account team and request a managed migration. A migration owner from the Microsoft team will be assigned to assist the customer with migration.
-2. A date will be selected when all resources within each of the customers' subscriptions and regions containing current PTU commitments will be migrated from committed to hourly/reservation billing model. Multiple subscriptions and regions can be migrated on the same date.
-3. On the agreed-upon date:
-    * The customer will purchase regional reservations to cover the committed PTUs that will be converted and pass the reservation information to their Microsoft migration contact.
-    * Within 2-3 business days, all commitments will be proactively canceled and deployments previously under commitments will begin using the hourly/reservation payment model.
-    * In the billing period after the one with the reservation purchase, the customer will receive a credit for the reservation purchase covering the portions of the commitments that were canceled, starting from the time of the reservation purchase.
+### Zero downtime migration 
+The zero downtime migration approach allows customers to migrate their existing provisioned deployments to global or data zone provisioned deployments without interrupting the existing inference traffic on their deployment. This migration approach minimizes workload interruptions, but does require a customer to have multiple coexisting deployments while shifting traffic over. The process to migrate a provisioned deployment using the zero downtime migration approach is as follows:
+- Create a new deployment using the global or data zone provisioned deployment types in the target Azure OpenAI resource.
+- Transition traffic from the existing regional provisioned deployment type to the newly created global or data zone provisioned deployment until all traffic is offloaded from the existing regional provisioned deployment.
+- Once traffic is migrated over to the new deployment, validate that there are no inference requests being processed on the previous provisioned deployment by ensuring the Azure OpenAI Requests metric does not show any API calls made within 5-10 minutes of the inference traffic being migrated over to the new deployment. For more information on this metric, [see the Monitor Azure OpenAI documentation](https://aka.ms/aoai/docs/monitor-azure-openai).
+- Once you confirm that no inference calls have been made, delete the regional provisioned deployment.
 
-Customers must reach out to their account teams to schedule a managed migration.
+### Migration with downtime 
+The migration with downtime approach involves migrating existing provisioned deployments to global or data zone provisioned deployments while stopping any existing inference traffic on the original provisioned deployment. This migration approach does not require coexistence of multiple deployments to support but does require workload interruption to complete. The process to migrate a provisioned deployment using the migration with downtime approach is as follows:
+- Validate that there are no inference requests being processed on the previous provisioned deployment by ensuring the Azure OpenAI Requests metric does not show any API calls made within the last 5-10 minutes. For more information on this metric, [see the Monitor Azure OpenAI documentation](https://aka.ms/aoai/docs/monitor-azure-openai).
+- Once you confirm that no inference calls have been made, delete the regional provisioned deployment.
+- Create a new deployment using the global or data zone deployment types in the target Azure OpenAI resource.
+- Once your new deployment has succeeded, you can resume inference traffic on the new global or data zone deployment.
 
-**Managed migration advantages:**
-
-- Bulk migration of all commitments in an subscription/region is beneficial for customers with many commitments.
-- Seamless cost migration: No possibility of double-billing or extra hourly charges.
-
-**Managed migration disadvantages:**
-
-- All commitments in a subscription/region must be migrated at the same time.
-- Needing to coordinate a time for migration with the Microsoft team.
+## How do I migrate my existing Azure Reservation to the new Azure Reservation products?
+Azure Reservations for Azure OpenAI provisioned offers are specific to the provisioned deployment type. If the Azure Reservation purchased does not match the provisioned deployment type, the deployment will default to the hourly payment model. If you choose to migrate to global or data zone provisioned deployments, you might need to purchase a new Azure Reservation for these deployments to support additional discounts. For more information on how to purchase a new Azure Reservation or make changes to an existing Azure Reservation, see the [Azure Reservations for Azure OpenAI Provisioned guidance](https://aka.ms/aoai/reservation-transition).
 
 ## Managing Provisioned Throughput Commitments
 
-Provisioned throughput commitments are created and managed by selecting **Management center** in the [Azure AI Foundry portal](https://ai.azure.com/)'s navigation menu > **Quota** > **Manage Commitments**. 
+Provisioned throughput commitments are created and managed by selecting **Management center** in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs)'s navigation menu > **Quota** > **Manage Commitments**. 
 
 :::image type="content" source="../media/how-to/provisioned-onboarding/notifications.png" alt-text="Screenshot of commitment purchase UI with notifications." lightbox="../media/how-to/provisioned-onboarding/notifications.png":::
 
@@ -315,20 +329,20 @@ Commitment renewal settings can be changed at any time before the expiration dat
 
 ## Monitor commitments and prevent unexpected billings
 
-The manage commitments pane provides a subscription wide overview of all resources with commitments and PTU usage within a given Azure Subscription. Of particular importance are:
+The **Manage Commitments** section provides a subscription wide overview of all resources with commitments and PTU usage within a given Azure Subscription. Of particular importance are:
 
 - **PTUs Committed, Deployed and Usage** – These figures provide the sizes of your commitments, and how much is in use by deployments. Maximize your investment by using all of your committed PTUs.
 - **Expiration policy and date** - The expiration date and policy tell you when a commitment will expire and what will happen when it does. A commitment set to autorenew will generate a billing event on the renewal date. For commitments that are expiring, be sure you delete deployments from these resources prior to the expiration date to prevent hourly overage billingThe current renewal settings for a commitment. 
 - **Notifications** - Alerts regarding important conditions like unused commitments, and configurations that might result in billing overages. Billing overages can be caused by situations such as when a commitment has expired and deployments are still present, but have shifted to hourly billing.
 
 > [!IMPORTANT]
-> If you set a commitment to *auto-renew* the renewal date will be the same date next month. If the date doesn't exist then the renewal date will be end of month.
+> If you set a commitment to *auto-renew* the renewal date will be the same date next month. If the date doesn't exist, then the renewal date will be end of month.
 > Examples -  
-> *Scenario 1:* If you purchase a commitment on February 21st, and set the commitment on *auto-renew*, the next renewal date for the commitment will be March 21st.
+> *Scenario 1:* If you purchase a commitment on February 21, and set the commitment on *auto-renew*, the next renewal date for the commitment will be March 21.
 >
-> *Scenario 2:* If you purchase the commitment on May 31st, and set the commitment on *auto-renew*, the next renewal date for the commitment will be 30th June (end of month) as there's no 31st in the month of June.
+> *Scenario 2:* If you purchase the commitment on May 31, and set the commitment on *auto-renew*, the next renewal date for the commitment will be June 30 (end of month) as there's no 31st in the month of June.
 >
-> *Scenario 3:* If you purchase the commitment on January 31st, and set the commitment on *auto-renew*, the next renewal date for the commitment will be February 28th (end of month) as there's no 31st or 30th or 29th (in non-leap years) and the renewal date would be February 29th (in a leap-year) in the month of February. 
+> *Scenario 3:* If you purchase the commitment on January 31, and set the commitment on *auto-renew*, the next renewal date for the commitment will be February 28 (end of month) as there's no 31st or 30th or 29th (in non-leap years) and the renewal date would be February 29 (in a leap-year) in the month of February. 
 
 ## Common Commitment Management Scenarios
 

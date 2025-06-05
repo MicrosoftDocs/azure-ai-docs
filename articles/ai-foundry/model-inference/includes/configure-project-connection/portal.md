@@ -12,7 +12,7 @@ zone_pivot_groups: azure-ai-models-deployment
 
 * An AI project resource.
 
-* The feature **Deploy models to Azure AI model inference service** on.
+* The **Deploy models to Azure AI model inference service** feature is turned on.
 
    :::image type="content" source="../../media/quickstart-ai-project/ai-project-inference-endpoint.gif" alt-text="An animation showing how to turn on the Deploy models to Azure AI model inference service feature in Azure AI Foundry portal." lightbox="../../media/quickstart-ai-project/ai-project-inference-endpoint.gif":::
 
@@ -20,7 +20,7 @@ zone_pivot_groups: azure-ai-models-deployment
 
 You can create a connection to an Azure AI services resource using the following steps:
 
-1. Go to [Azure AI Foundry Portal](https://ai.azure.com).
+1. Go to [Azure AI Foundry Portal](https://ai.azure.com/?cid=learnDocs).
 
 2. In the lower left corner of the screen, select **Management center**.
 
@@ -42,9 +42,9 @@ You can create a connection to an Azure AI services resource using the following
 
 You can see the model deployments available in the connected resource by following these steps:
 
-1. Go to [Azure AI Foundry Portal](https://ai.azure.com).
+1. Go to [Azure AI Foundry Portal](https://ai.azure.com/?cid=learnDocs).
 
-2. On the left navigation bar, select **Models + endpoints**.
+2. On the left pane, select **Models + endpoints**.
 
 3. The page displays the model deployments available to your, grouped by connection name. Locate the connection you have just created, which should be of type **Azure AI Services**.
 

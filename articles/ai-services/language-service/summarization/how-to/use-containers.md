@@ -2,13 +2,12 @@
 title: Use summarization Docker containers on-premises
 titleSuffix: Azure AI services
 description: Use Docker containers for the summarization API to summarize text, on-premises.
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 keywords: on-premises, Docker, container
 ---
 

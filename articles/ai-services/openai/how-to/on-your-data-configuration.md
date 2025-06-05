@@ -2,13 +2,12 @@
 title: 'Network and access configuration for Azure OpenAI On Your Data'
 titleSuffix: Azure OpenAI
 description: Use this article to learn about configuring Azure OpenAI when using your data for text generation.
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
 author: aahill
 ms.author: aahi
-ms.date: 12/03/2024
+ms.date: 04/15/2025
 recommendations: false
 ---
 
@@ -17,7 +16,7 @@ recommendations: false
 > [!NOTE]
 > As of June 2024, the application form for the Microsoft managed private endpoint to Azure AI Search is no longer needed.
 >
-> The managed private endpoint will be deleted from the Microsoft managed virtual network at July 2025. If you have already provisioned a managed private endpoint through the application process before June 2024, enable [Azure AI Search trusted service](#enable-trusted-service-1) as early as possible to avoid service disruption. 
+> The managed private endpoint will be deleted from the Microsoft managed virtual network in July 2025. If you have already provisioned a managed private endpoint through the application process before June 2024, enable [Azure AI Search trusted service](#enable-trusted-service-1) as early as possible to avoid service disruption. 
 
 Use this article to learn how to configure networking and access when using Azure OpenAI On Your Data with Microsoft Entra ID role-based access control, virtual networks, and private endpoints.
 
@@ -29,7 +28,7 @@ When you use Azure OpenAI On Your Data to ingest data from Azure blob storage, l
 
 * Steps 1 and 2 are only used for file upload.
 * Downloading URLs to your blob storage is not illustrated in this diagram. After web pages are downloaded from the internet and uploaded to blob storage, steps 3 onward are the same.
-* One indexer, one index, and one data source in the Azure AI Search resource is created using prebuilt skills and [integrated vectorization](/azure/search/vector-search-integrated-vectorization.md).
+* One indexer, one index, and one data source in the Azure AI Search resource is created using prebuilt skills and [integrated vectorization](/azure/search/vector-search-integrated-vectorization).
 * Azure AI Search handles the extraction, chunking, and vectorization of chunked documents through integrated vectorization. If a scheduling interval is specified, the indexer will run accordingly. 
 
 For the managed identities used in service calls, only system assigned managed identities are supported. User assigned managed identities aren't supported.
@@ -59,15 +58,11 @@ Azure OpenAI On Your Data lets you restrict the documents that can be used in re
     `group_ids` is the default field name. If you use a different field name like `my_group_ids`, you can map the field in [index field mapping](../concepts/use-your-data.md#index-field-mapping).
 
 1. Make sure each sensitive document in the index has this security field value set to the permitted groups of the document.
-1. In [Azure AI Foundry portal](https://oai.azure.com/portal), add your data source. in the [index field mapping](../concepts/use-your-data.md#index-field-mapping) section, you can map zero or one value to the **permitted groups** field, as long as the schema is compatible. If the **permitted groups** field isn't mapped, document level access is disabled. 
+1. In the [Azure AI Foundry portal](https://ai.azure.com/portal), add your data source. In the [index field mapping](../concepts/use-your-data.md#index-field-mapping) section, you can map zero or one value to the **permitted groups** field, as long as the schema is compatible. If the **permitted groups** field isn't mapped, document level access is disabled. 
 
 **Azure AI Foundry portal**
 
 Once the Azure AI Search index is connected, your responses in the studio have document access based on the Microsoft Entra permissions of the logged in user.
-
-**Web app**
-
-If you are using a published [web app](./use-web-app.md), you need to redeploy it to upgrade to the latest version. The latest version of the web app includes the ability to retrieve the groups of the logged in user's Microsoft Entra account, cache it, and include the group IDs in each API request.
 
 **API**
 
@@ -75,7 +70,7 @@ When using the API, pass the `filter` parameter in each API request. For example
 
 [!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
-For more information about AI services security, see [Authenticate requests to Azure AI services](/azure/ai-services/authentication).
+For more information about security, see [Authenticate requests](/azure/ai-services/authentication).
 
 ```json
 {
@@ -99,7 +94,7 @@ For more information about AI services security, see [Authenticate requests to A
 }
 ```
 * `my_group_ids` is the field name that you selected for **Permitted groups** during [fields mapping](../concepts/use-your-data.md#index-field-mapping).
-* `group_id1, group_id2` are groups attributed to the logged in user. The client application can retrieve and cache users' groups.
+* `group_id1, group_id2` are groups attributed to the logged in user. The client application can retrieve and cache users' groups using the [Microsoft Graph API](/graph/api/user-list-transitivememberof).
 
 
 ## Resource configuration
@@ -138,7 +133,7 @@ The [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains) 
 
 ### Enable managed identity
 
-To allow your Azure AI Search and Storage Account to recognize your Azure OpenAI Service via Microsoft Entra ID authentication, you need to assign a managed identity for your Azure OpenAI Service. The easiest way is to toggle on system assigned managed identity on Azure portal.
+To allow your Azure AI Search and Storage Account to recognize your Azure OpenAI in Azure AI Foundry Models via Microsoft Entra ID authentication, you need to assign a managed identity for your Azure OpenAI in Azure AI Foundry Models. The easiest way is to toggle on system assigned managed identity on Azure portal.
 :::image type="content" source="../media/use-your-data/openai-managed-identity.png" alt-text="A screenshot showing the system assigned managed identity option in the Azure portal." lightbox="../media/use-your-data/openai-managed-identity.png":::
 
 To set the managed identities via the management API, see [the management API reference documentation](/rest/api/aiservices/accountmanagement/accounts/update#identity).
@@ -169,7 +164,7 @@ This step can be skipped only if you have a [shared private link](#create-shared
 
 You can disable public network access of your Azure OpenAI resource in the Azure portal. 
 
-To allow access to your Azure OpenAI Service from your client machines, like using [Azure AI Foundry portal](https://ai.azure.com/), you need to create [private endpoint connections](/azure/ai-services/cognitive-services-virtual-networks?tabs=portal#use-private-endpoints) that connect to your Azure OpenAI resource.
+To allow access to your Azure OpenAI from your client machines, like using [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), you need to create [private endpoint connections](/azure/ai-services/cognitive-services-virtual-networks?tabs=portal#use-private-endpoints) that connect to your Azure OpenAI resource.
 
 
 ## Configure Azure AI Search
@@ -193,7 +188,7 @@ For more information, see the [Azure AI Search RBAC article](/azure/search/searc
 
 You can disable public network access of your Azure AI Search resource in the Azure portal. 
 
-To allow access to your Azure AI Search resource from your client machines, like using [Azure AI Foundry portal](https://ai.azure.com/), you need to create [private endpoint connections](/azure/search/service-create-private-endpoint) that connect to your Azure AI Search resource.
+To allow access to your Azure AI Search resource from your client machines, like using [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), you need to create [private endpoint connections](/azure/search/service-create-private-endpoint) that connect to your Azure AI Search resource.
 
 
 ### Enable trusted service
@@ -247,7 +242,7 @@ In the Azure portal, navigate to your storage account networking tab, choose "Se
 
 You can disable public network access of your Storage Account in the Azure portal. 
 
-To allow access to your Storage Account from your client machines, like using [Azure AI Foundry portal](https://ai.azure.com/), you need to create [private endpoint connections](/azure/storage/common/storage-private-endpoints) that connect to your blob storage.
+To allow access to your Storage Account from your client machines, like using [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), you need to create [private endpoint connections](/azure/storage/common/storage-private-endpoints) that connect to your blob storage.
 
 
 
@@ -276,15 +271,15 @@ To enable the developers to use these resources to build applications, the admin
 
 |Role| Resource | Description |
 |--|--|--|
-| `Cognitive Services OpenAI Contributor` | Azure OpenAI | Call public ingestion API from [Azure AI Foundry portal](https://ai.azure.com/). The `Contributor` role is not enough, because if you only have `Contributor` role, you cannot call data plane API via Microsoft Entra ID authentication, and Microsoft Entra ID authentication is required in the secure setup described in this article. |
-| `Contributor` | Azure AI Search | List API-Keys to list indexes from [Azure AI Foundry portal](https://ai.azure.com/).|
-| `Contributor` | Storage Account | List Account SAS to upload files from [Azure AI Foundry portal](https://ai.azure.com/).|
+| `Cognitive Services OpenAI Contributor` | Azure OpenAI | Call public ingestion API from [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). The `Contributor` role is not enough, because if you only have `Contributor` role, you cannot call data plane API via Microsoft Entra ID authentication, and Microsoft Entra ID authentication is required in the secure setup described in this article. |
+| `Contributor` | Azure AI Search | List API-Keys to list indexes from [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).|
+| `Contributor` | Storage Account | List Account SAS to upload files from [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).|
 | `Contributor` | The resource group or Azure subscription where the developer need to deploy the web app to | Deploy web app to the developer's Azure subscription.|
 | `Role Based Access Control Administrator` | Azure OpenAI | Permission to configure the necessary role assignment on the Azure OpenAI resource. Enables the web app to call Azure OpenAI. |
 
 ## Configure gateway and client
 
-To access the Azure OpenAI Service from your on-premises client machines, one of the approaches is to configure Azure VPN Gateway and Azure VPN Client.
+To access the Azure OpenAI from your on-premises client machines, one of the approaches is to configure Azure VPN Gateway and Azure VPN Client.
 
 Follow [this guideline](/azure/vpn-gateway/tutorial-create-gateway-portal#VNetGateway) to create virtual network gateway for your virtual network.
 
@@ -302,7 +297,7 @@ Configure your local machine `hosts` file to point your resources host names to 
 
 ## Azure AI Foundry portal
 
-You should be able to use all [Azure AI Foundry portal](https://ai.azure.com/) features, including both ingestion and inference, from your on-premises client machines.
+You should be able to use all [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) features, including both ingestion and inference, from your on-premises client machines.
 
 ## Web app
 The web app communicates with your Azure OpenAI resource. Since your Azure OpenAI resource has public network disabled, the web app needs to be set up to use the private endpoint in your virtual network to access your Azure OpenAI resource.
@@ -313,7 +308,7 @@ The web app needs to resolve your Azure OpenAI host name to the private IP of th
 1. [Add a DNS record](/azure/dns/private-dns-getstarted-portal#create-an-additional-dns-record). The IP is the private IP of the private endpoint for your Azure OpenAI resource, and you can get the IP address from the network interface associated with the private endpoint for your Azure OpenAI.
 1. [Link the private DNS zone to your virtual network](/azure/dns/private-dns-getstarted-portal#link-the-virtual-network) so the web app integrated in this virtual network can use this private DNS zone.
 
-When deploying the web app from [Azure AI Foundry portal](https://ai.azure.com/), select the same location with the virtual network, and select a proper SKU, so it can support the [virtual network integration feature](/azure/app-service/overview-vnet-integration). 
+When deploying the web app from [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), select the same location with the virtual network, and select a proper SKU, so it can support the [virtual network integration feature](/azure/app-service/overview-vnet-integration). 
 
 After the web app is deployed, from the Azure portal networking tab, configure the web app outbound traffic virtual network integration, choose the third subnet that you reserved for web app.
 

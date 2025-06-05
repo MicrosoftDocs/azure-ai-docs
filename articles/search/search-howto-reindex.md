@@ -11,7 +11,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 12/09/2024
+ms.date: 05/19/2025
 ---
 
 # Update or rebuild an index in Azure AI Search
@@ -24,9 +24,13 @@ For schema changes on applications already in production, we recommend creating 
 
 ## Update content
 
-Incremental indexing and synchronizing an index against changes in source data is fundamental to most search applications. This section explains the workflow for updating field contents in a search index through the REST API, but the Azure SDKs provide equivalent functionality.
+Incremental indexing and synchronizing an index against changes in source data is fundamental to most search applications. This section explains the workflow for adding, removing, or overwriting the content of a search index through the REST API, but the Azure SDKs provide equivalent functionality.
 
-The body of the request contains one or more documents to be indexed. Documents are identified by a unique case-sensitive key. Each document is associated with an action: "upload", "delete", "merge", or "mergeOrUpload". Upload requests must include the document data as a set of key/value pairs.
+The body of the request contains one or more documents to be indexed. Within the request, each document in the index is:
+
++ Identified by a unique case-sensitive key.
++ Associated with an action: "upload", "delete", "merge", or "mergeOrUpload". 
++ Populated with a set of name/value pairs for each field that you're adding or updating.
 
 ```json
 {  
@@ -34,7 +38,7 @@ The body of the request contains one or more documents to be indexed. Documents 
     {  
       "@search.action": "upload (default) | merge | mergeOrUpload | delete",  
       "key_field_name": "unique_key_of_document", (key/value pair for key field from index schema)  
-      "field_name": field_value (key/value pairs matching index schema)  
+      "field_name": field_value (name/value pairs matching index schema)  
         ...  
     },  
     ...  
@@ -130,11 +134,12 @@ The following table explains the various per-document status codes that can be r
 | 404 | The document couldn't be merged because the given key doesn't exist in the index. | No | This error doesn't occur for uploads since they create new documents, and it doesn't occur for deletes because they're idempotent. |
 | 409 | A version conflict was detected when attempting to index a document.| Yes | This can happen when you're trying to index the same document more than once concurrently. |
 | 422 | The index is temporarily unavailable because it was updated with the 'allowIndexDowntime' flag set to 'true'. | Yes | |
+|429 | Too Many Requests | Yes | If you get this error code during indexing, it usually means that you're running low on storage. As you near [storage limits](search-limits-quotas-capacity.md), the service can enter a state where you can't add or update until you delete some documents. For more information, see [Plan and manage capacity](search-capacity-planning.md#how-to-upgrade-capacity) if you want more storage, or free up space by deleting documents. |  
 | 503 | Your search service is temporarily unavailable, possibly due to heavy load. | Yes | Your code should wait before retrying in this case or you risk prolonging the service unavailability.|
 
 If your client code frequently encounters a 207 response, one possible reason is that the system is under load. You can confirm this by checking the statusCode property for 503. If the statusCode is 503, we recommend throttling indexing requests. Otherwise, if indexing traffic doesn't subside, the system could start rejecting all requests with 503 errors.
 
-Status code 429 indicates that you have exceeded your quota on the number of documents per index. You must either create a new index or upgrade for higher capacity limits.
+Status code 429 indicates that you've exceeded your quota on the number of documents per index. You must either [upgrade for higher capacity limits](search-how-to-upgrade.md) or create a new index.
 
 > [!NOTE]
 > When you upload `DateTimeOffset` values with time zone information to your index, Azure AI Search normalizes these values to UTC. For example, 2024-01-13T14:03:00-08:00 is stored as 2024-01-13T22:03:00Z. If you need to store time zone information, add an extra column to your index for this data point.
@@ -194,6 +199,7 @@ The index schema defines the physical data structures created on the search serv
 
 The following list enumerates the schema changes that can be introduced seamlessly into an existing index. Generally, the list includes new fields and functionality used during query execution.
 
++ Add an [index description (preview)]()
 + Add a new field
 + Set the `retrievable` attribute on an existing field
 + Update `searchAnalyzer` on a field having an existing `indexAnalyzer`
@@ -228,7 +234,7 @@ Some modifications require an index drop and rebuild, replacing a current index 
 | Assign an analyzer to a field | [Analyzers](search-analyzers.md) are defined in an index, assigned to fields, and then invoked during indexing to inform how tokens are created. You can add a new analyzer definition to an index at any time, but you can only *assign* an analyzer when the field is created. This is true for both the **analyzer** and **indexAnalyzer** properties. The **searchAnalyzer** property is an exception (you can assign this property to an existing field). |
 | Update or delete an analyzer definition in an index | You can't delete or change an existing analyzer configuration (analyzer, tokenizer, token filter, or char filter) in the index unless you rebuild the entire index. |
 | Add a field to a suggester | If a field already exists and you want to add it to a [Suggesters](index-add-suggesters.md) construct, rebuild the index. |
-| Switch tiers | In-place upgrades aren't supported. If you require more capacity, create a new service and rebuild your indexes from scratch. To help automate this process, you can use a code sample that backs up your index to a series of JSON files. You can then recreate the index in a search service you specify.|
+| Upgrade your service or tier | If you need more capacity, check if you can [upgrade your service](search-how-to-upgrade.md) or [switch to a higher pricing tier](search-capacity-planning.md#change-your-pricing-tier). If not, you must create a new service and rebuild your indexes from scratch. To help automate this process, you can use a code sample that backs up your index to a series of JSON files. You can then recreate the index in a search service you specify. |
 
 The order of operations is:
 
@@ -247,6 +253,47 @@ The order of operations is:
 When you create the index, physical storage is allocated for each field in the index schema, with an inverted index created for each searchable field and a vector index created for each vector field. Fields that aren't searchable can be used in filters or expressions, but don't have inverted indexes and aren't full-text or fuzzy searchable. On an index rebuild, these inverted indexes and vector indexes are deleted and recreated based on the index schema you provide.
 
 To minimize disruption to application code, consider [creating an index alias](search-how-to-alias.md). Application code references the alias, but you can update the name of the index that the alias points to.
+
+## Add an index description (preview)
+
+Beginning with REST API version 2025-05-01-preview, a `ddescription` is now supported. This human-readable text is invaluable when a system must access several indexes and make a decision based on the description. Consider a Model Context Protocol (MCP) server that must pick the correct index at run time. The decision can be  based on the description rather than on the index name alone.
+
+An index description is a schema update, and you can add it without having to rebuild the entire index.
+
++ String length is 4,000 characters maximum.
++ Content must be human-readable, in Unicode. Your use-case should determine which language to use.
+
+Support for an index description is provided in the preview REST API, the Azure portal, or in a prerelease Azure SDK package that provides the feature.
+
+### [**Azure portal**](#tab/portal)
+
+The Azure portal supports the latest preview API.
+
+1. Sign in to the Azure portal and find your search service.
+
+1. Under **Search management** > **Indexes**, select an index.
+
+1. Select **Edit JSON**.
+
+1. Insert `"description"`, followed by the description. The value must be less than 4,000 characters and in Unicode.
+
+   :::image type="content" source="media/search-how-to-index/edit-index-json.png" alt-text="Screenshot of the JSON definition of an index in the Azure portal.":::
+
+1. Save the index.
+
+### [**REST**](#tab/rest)
+
+1. [GET an index definition](/rest/api/searchservice/indexes/get).
+
+1. Copy the JSON so that you can use it as the basis of a new request.
+
+1. [Formulate an index update using a PUT request](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) and the preview API.
+
+1. Provide the *full* JSON of the existing schema, plus the new `description` field. The field must be a top-level field, on the same level as `name` or `fields`. The value must be less than 4,000 characters and in Unicode.
+
+1. To confirm the change, issue another [GET using the 2025-05-01-preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true).
+
+---
 
 ## Balancing workloads
 

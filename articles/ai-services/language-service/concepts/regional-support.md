@@ -2,13 +2,12 @@
 title: Regional support for Azure AI Language
 titleSuffix: Azure AI services
 description: Learn which Azure regions are supported by the Language service.
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 10/21/2024
-ms.author: jboback
+ms.date: 04/29/2025
+ms.author: lajanuar
 ms.custom: references_regions 
 ---
 
@@ -31,7 +30,8 @@ Conversational language understanding and orchestration workflow are only availa
 |--------------------|-----------|-------------|
 | Australia East     | ✓         | ✓           |
 | Brazil South       |           | ✓           |
-| Canada Central     |           | ✓           |
+| Canada Central     | ✓         | ✓           |
+| Canada East        |           | ✓           |
 | Central India      | ✓         | ✓           |
 | Central US         |           | ✓           |
 | China East 2       | ✓         | ✓           |
@@ -40,8 +40,11 @@ Conversational language understanding and orchestration workflow are only availa
 | East US            | ✓         | ✓           |
 | East US 2          | ✓         | ✓           |
 | France Central     |           | ✓           |
+| Germany West Central|           | ✓           |
+| Italy North        |           | ✓           |
 | Japan East         |           | ✓           |
 | Japan West         |           | ✓           |
+| Jio India Central  |           | ✓           |
 | Jio India West     |           | ✓           |
 | Korea Central      |           | ✓           |
 | North Central US   |           | ✓           |
@@ -55,6 +58,7 @@ Conversational language understanding and orchestration workflow are only availa
 | Switzerland North  | ✓         | ✓           |
 | UAE North          |           | ✓           |
 | UK South           | ✓         | ✓           |
+| UK West            |           | ✓           |
 | West Central US    |           | ✓           |
 | West Europe        | ✓         | ✓           |
 | West US            |            | ✓           |
@@ -69,15 +73,18 @@ Custom named entity recognition is only available in some Azure regions. Some re
 |--------------------|-----------|-------------|
 | Australia East     | ✓         | ✓           |
 | Brazil South       |           | ✓           |
-| Canada Central     |           | ✓           |
+| Canada Central     | ✓         | ✓           |
+| Canada East        |           | ✓           |
 | Central India      | ✓         | ✓           |
 | Central US         |           | ✓           |
 | East Asia          |           | ✓           |
 | East US            | ✓         | ✓           |
 | East US 2          | ✓         | ✓           |
 | France Central     |           | ✓           |
+| Germany West Central|           | ✓           |
 | Japan East         |           | ✓           |
 | Japan West         |           | ✓           |
+| Jio India Central  |           | ✓           |
 | Jio India West     |           | ✓           |
 | Korea Central      |           | ✓           |
 | North Central US   |           | ✓           |
@@ -91,6 +98,7 @@ Custom named entity recognition is only available in some Azure regions. Some re
 | Switzerland North  | ✓         | ✓           |
 | UAE North          |           | ✓           |
 | UK South           | ✓         | ✓           |
+| UK West            |           | ✓           |
 | West Central US    |           | ✓           |
 | West Europe        | ✓         | ✓           |
 | West US            |            | ✓           |
@@ -106,15 +114,18 @@ Custom text classification is only available in some Azure regions. Some regions
 |--------------------|-----------|-------------|
 | Australia East     | ✓         | ✓           |
 | Brazil South       |           | ✓           |
-| Canada Central     |           | ✓           |
+| Canada Central     | ✓         | ✓           |
+| Canada East        |           | ✓           |
 | Central India      | ✓         | ✓           |
 | Central US         |           | ✓           |
 | East Asia          |           | ✓           |
 | East US            | ✓         | ✓           |
 | East US 2          | ✓         | ✓           |
 | France Central     |           | ✓           |
+| Germany West Central|           | ✓           |
 | Japan East         |           | ✓           |
 | Japan West         |           | ✓           |
+| Jio India Central  |           | ✓           |
 | Jio India West     |           | ✓           |
 | Korea Central      |           | ✓           |
 | North Central US   |           | ✓           |
@@ -128,6 +139,7 @@ Custom text classification is only available in some Azure regions. Some regions
 | Switzerland North  | ✓         | ✓           |
 | UAE North          |           | ✓           |
 | UK South           | ✓         | ✓           |
+| UK West            |           | ✓           |
 | West Central US    |           | ✓           |
 | West Europe        | ✓         | ✓           |
 | West US            |            | ✓           |

@@ -12,7 +12,7 @@ ms.author: eur
 
 ## Prerequisites
 
-[!INCLUDE [Prerequisites](../../common/azure-prerequisites.md)]
+[!INCLUDE [Prerequisites](../../common/azure-prerequisites-resourcekey-endpoint.md)]
 
 ## Set up the environment
 
@@ -44,7 +44,7 @@ To set up your environment, [install the Speech SDK](~/articles/ai-services/spee
            <dependency>
            <groupId>com.microsoft.cognitiveservices.speech</groupId>
            <artifactId>client-sdk</artifactId>
-           <version>1.42.0</version>
+           <version>1.43.0</version>
            </dependency>
        </dependencies>
    </project>
@@ -58,7 +58,7 @@ To set up your environment, [install the Speech SDK](~/articles/ai-services/spee
 
 ### Set environment variables
 
-[!INCLUDE [Environment variables](../../common/environment-variables.md)]
+[!INCLUDE [Environment variables](../../common/environment-variables-resourcekey-endpoint.md)]
 
 ## Recognize speech from a microphone
 
@@ -75,12 +75,12 @@ Follow these steps to create a console application for speech recognition.
    import java.util.concurrent.Future;
 
    public class SpeechRecognition {
-       // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
+       // This example requires environment variables named "SPEECH_KEY" and "ENDPOINT"
        private static String speechKey = System.getenv("SPEECH_KEY");
-       private static String speechRegion = System.getenv("SPEECH_REGION");
+       private static String endpoint = System.getenv("ENDPOINT");
 
        public static void main(String[] args) throws InterruptedException, ExecutionException {
-           SpeechConfig speechConfig = SpeechConfig.fromSubscription(speechKey, speechRegion);
+           SpeechConfig speechConfig = SpeechConfig.fromEndpoint(speechKey, endpoint);
            speechConfig.setSpeechRecognitionLanguage("en-US");
            recognizeFromMicrophone(speechConfig);
        }
@@ -106,7 +106,7 @@ Follow these steps to create a console application for speech recognition.
                if (cancellation.getReason() == CancellationReason.Error) {
                    System.out.println("CANCELED: ErrorCode=" + cancellation.getErrorCode());
                    System.out.println("CANCELED: ErrorDetails=" + cancellation.getErrorDetails());
-                   System.out.println("CANCELED: Did you set the speech resource key and region values?");
+                   System.out.println("CANCELED: Did you set the speech resource key and endpoint values?");
                }
            }
 
@@ -125,7 +125,7 @@ Follow these steps to create a console application for speech recognition.
    ```
 
    > [!IMPORTANT]
-   > Make sure that you set the `SPEECH_KEY` and `SPEECH_REGION` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
+   > Make sure that you set the `SPEECH_KEY` and `ENDPOINT` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
 
 1. Speak into your microphone when prompted. What you speak should appear as text:
 

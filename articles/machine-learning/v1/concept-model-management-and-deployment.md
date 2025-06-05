@@ -5,7 +5,7 @@ description: 'Learn about model management (MLOps) with Azure Machine Learning. 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.topic: conceptual
+ms.topic: concept-article
 author: msakande
 ms.author: mopeakande
 ms.reviewer: sehan
@@ -18,7 +18,9 @@ ms.date: 08/12/2024
 
 [!INCLUDE [dev v1](../includes/machine-learning-dev-v1.md)]
 
-[!INCLUDE [cli-version-info](../includes/machine-learning-cli-v1-deprecation.md)]
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
+[!INCLUDE [cli v1 deprecation](../includes/machine-learning-cli-v1-deprecation.md)]
 
 In this article, learn how to apply machine learning operations (MLOps) practices in Azure Machine Learning to manage the lifecycle of your models. Machine learning operations practices can improve the quality and consistency of your machine learning solutions.
 

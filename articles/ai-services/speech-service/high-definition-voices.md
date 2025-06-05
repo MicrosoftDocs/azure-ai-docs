@@ -8,14 +8,12 @@ ms.reviewer: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 10/9/2024
+ms.date: 4/8/2025
 ms.custom: references_regions
 #customer intent: As a user who implements text to speech, I want to understand the options and differences between available neural text to speech HD voices in Azure AI Speech.
 ---
 
-# What are high definition voices? (Preview)
-
-[!INCLUDE [Feature preview](../includes/preview-feature.md)]
+# What are high definition voices?
 
 Azure AI Speech continues to advance in the field of text to speech technology with the introduction of neural text to speech high definition (HD) voices. The HD voices can understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real-time to match the sentiment. HD voices maintain a consistent voice persona from their neural (and non HD) counterparts, and deliver even more value through enhanced features.
 
@@ -29,7 +27,6 @@ The following are the key features of Azure AI Speech HD voices:
 | **Conversational** | Neural text to speech HD voices can replicate natural speech patterns, including spontaneous pauses and emphasis. When given conversational text, the model can reproduce common phonemes like pauses and filler words. The generated voice sounds as if someone is conversing directly with you. |
 | **Prosody variations** | Neural text to speech HD voices introduce slight variations in each output to enhance realism. These variations make the speech sound more natural, as human voices naturally exhibit variation. |
 | **High fidelity** | The primary objective of neural text to speech HD voices is to generate high-fidelity audio. The synthetic speech produced by our system can closely mimic human speech in both quality and naturalness. |
-| **Version control** | With neural text to speech HD voices, we release different versions of the same voice, each with a unique base model size and recipe. This offers you the opportunity to experience new voice variations or continue using a specific version of a voice. |
 
 ## Comparison of Azure AI Speech HD voices to other Azure text to speech voices
 
@@ -40,8 +37,8 @@ Here's a comparison of features between Azure AI Speech HD voices, Azure OpenAI 
 | Feature | Azure AI Speech HD voices  | Azure OpenAI HD voices | Azure AI Speech voices (not HD) |
 |---------|---------------|------------------------|------------------------|
 | **Region** | East US, Southeast Asia, West Europe | North Central US, Sweden Central | Available in dozens of regions. See the [region list](regions.md#regions).|
-| **Number of voices** | 12 | 6 | More than 500 |
-| **Multilingual**  | No (perform on primary language only) | Yes  | Yes (applicable only to multilingual voices)  |
+| **Number of voices** | 30 | 6 | More than 500 |
+| **Multilingual**  | Yes | Yes  | Yes (applicable only to multilingual voices)  |
 | **SSML support** | Support for [a subset of SSML elements](#supported-and-unsupported-ssml-elements-for-azure-ai-speech-hd-voices).|  Support for [a subset of SSML elements](openai-voices.md#ssml-elements-supported-by-openai-text-to-speech-voices-in-azure-ai-speech).  | Support for the [full set of SSML](speech-synthesis-markup-structure.md) in Azure AI Speech.  |
 | **Development options** | Speech SDK, Speech CLI, REST API  | Speech SDK, Speech CLI, REST API  | Speech SDK, Speech CLI, REST API  |
 | **Deployment options**  | Cloud only | Cloud only | Cloud, embedded, hybrid, and containers. |
@@ -61,21 +58,37 @@ For example, for the persona `en-US-Ava` you can specify the following HD voice 
 
 The following table lists the Azure AI Speech HD voices that are currently available.
 
-| Neural voice persona | HD voices | 
-|----------------------|-----------|
-| de-DE-Seraphina | de-DE-Seraphina:DragonHDLatestNeural|
-| en-US-Andrew | en-US-Andrew:DragonHDLatestNeural|
-| en-US-Andrew2 | en-US-Andrew2:DragonHDLatestNeural|
-| en-US-Aria | en-US-Aria:DragonHDLatestNeural |
-| en-US-Ava | en-US-Ava:DragonHDLatestNeural|
-| en-US-Brian | en-US-Brian:DragonHDLatestNeural|
-| en-US-Davis | en-US-Davis:DragonHDLatestNeural|
-| en-US-Emma | en-US-Emma:DragonHDLatestNeural |
-| en-US-Emma2 | en-US-Emma2:DragonHDLatestNeural |
-| en-US-Jenny | en-US-Jenny:DragonHDLatestNeural |
-| en-US-Steffan | en-US-Steffan:DragonHDLatestNeural |
-| ja-JP-Masaru | ja-JP-Masaru:DragonHDLatestNeural|
-| zh-CN-Xiaochen | zh-CN-Xiaochen:DragonHDLatestNeural |
+| Voice Name                                 | Gender | Status  | Note                                  |
+|-------------------------------------------|--------|---------|---------------------------------------|
+| de-DE-Florian:DragonHDLatestNeural        | Male   | GA      |                                       |
+| de-DE-Seraphina:DragonHDLatestNeural      | Female | GA      |                                       |
+| en-US-Adam:DragonHDLatestNeural           | Male   | GA      |                                       |
+| en-US-Alloy:DragonHDLatestNeural          | Male   | Preview |                                       |
+| en-US-Andrew:DragonHDLatestNeural         | Male   | GA      |                                       |
+| en-US-Andrew2:DragonHDLatestNeural        | Male   | GA      | Optimized for conversational content  |
+| en-US-Andrew3:DragonHDLatestNeural        | Male   | Preview | Optimized for podcast content         |
+| en-US-Aria:DragonHDLatestNeural           | Female | Preview |                                       |
+| en-US-Ava:DragonHDLatestNeural            | Female | GA      |                                       |
+| en-US-Ava3:DragonHDLatestNeural           | Female | Preview | Optimized for podcast content         |
+| en-US-Brian:DragonHDLatestNeural          | Male   | GA      |                                       |
+| en-US-Davis:DragonHDLatestNeural          | Male   | GA      |                                       |
+| en-US-Emma:DragonHDLatestNeural           | Female | GA      |                                       |
+| en-US-Emma2:DragonHDLatestNeural          | Female | GA      | Optimized for conversational content  |
+| en-US-Jenny:DragonHDLatestNeural          | Female | Preview |                                       |
+| en-US-MultiTalker-Ava-Andrew:DragonHDLatestNeural | Male | Preview |                                       |
+| en-US-Nova:DragonHDLatestNeural           | Female | Preview |                                       |
+| en-US-Phoebe:DragonHDLatestNeural         | Female | Preview |                                       |
+| en-US-Serena:DragonHDLatestNeural         | Female | Preview |                                       |
+| en-US-Steffan:DragonHDLatestNeural        | Male   | GA      |                                       |
+| es-ES-Tristan:DragonHDLatestNeural        | Male   | GA      |                                       |
+| es-ES-Ximena:DragonHDLatestNeural         | Female | GA      |                                       |
+| fr-FR-Remy:DragonHDLatestNeural           | Male   | GA      |                                       |
+| fr-FR-Vivienne:DragonHDLatestNeural       | Female | GA      |                                       |
+| ja-JP-Masaru:DragonHDLatestNeural         | Male   | GA      |                                       |
+| ja-JP-Nanami:DragonHDLatestNeural         | Female | GA      |                                       |
+| zh-CN-Xiaochen:DragonHDLatestNeural       | Female | GA      |                                       |
+| zh-CN-Yunfan:DragonHDLatestNeural         | Male   | GA      |                                       |
+
 
 ## How to use Azure AI Speech HD voices
 

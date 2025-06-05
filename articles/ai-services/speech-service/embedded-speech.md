@@ -27,7 +27,7 @@ Embedded speech is included with the Speech SDK (version 1.24.1 and higher) for 
 
 # [Android](#tab/android-target)
 
-Requires Android 7.0 (API level 24) or higher on Arm64 (`arm64-v8a`) or Arm32 (`armeabi-v7a`) hardware.
+Requires Android 8.0 (API level 26) or higher on Arm64 (`arm64-v8a`) or Arm32 (`armeabi-v7a`) hardware.
 
 Embedded TTS with neural voices is only supported on Arm64.
 
@@ -129,7 +129,7 @@ Follow these steps to install the Speech SDK for Java using Apache Maven:
             <dependency>
             <groupId>com.microsoft.cognitiveservices.speech</groupId>
             <artifactId>client-sdk-embedded</artifactId>
-            <version>1.42.0</version>
+            <version>1.43.0</version>
             </dependency>
         </dependencies>
     </project>
@@ -150,7 +150,7 @@ Be sure to use the `@aar` suffix when the dependency is specified in `build.grad
 
 ```
 dependencies {
-    implementation 'com.microsoft.cognitiveservices.speech:client-sdk-embedded:1.42.0@aar'
+    implementation 'com.microsoft.cognitiveservices.speech:client-sdk-embedded:1.43.0@aar'
 }
 ```
 ::: zone-end
@@ -166,7 +166,7 @@ All text to speech locales [here](language-support.md?tabs=tts) (except fa-IR, P
 
 ## Embedded speech configuration
 
-For cloud connected applications, as shown in most Speech SDK samples, you use the `SpeechConfig` object with an API key and region. For embedded speech, you don't use an AI Services resource for Speech. Instead of a cloud resource, you use the [models and voices](#models-and-voices) that you download to your local device.
+For cloud connected applications, as shown in most Speech SDK samples, you use the `SpeechConfig` object with an API key and endpoint. For embedded speech, you don't use an AI Foundry resource for Speech. Instead of a cloud resource, you use the [models and voices](#models-and-voices) that you download to your local device.
 
 Use the `EmbeddedSpeechConfig` object to set the location of the models or voices. If your application is used for both speech to text and text to speech, you can use the same `EmbeddedSpeechConfig` object to set the location of the models and voices.
 

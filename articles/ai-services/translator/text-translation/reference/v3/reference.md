@@ -2,12 +2,11 @@
 title: Translator V3.0 Reference
 titleSuffix: Azure AI services
 description: Reference documentation for the Translator V3.0. Version 3.0 of the Translator provides a modern JSON-based Web API.
-#services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/29/2024
+ms.date: 05/19/2025
 ms.author: lajanuar
 ---
 
@@ -167,7 +166,7 @@ An authentication token is valid for 10 minutes. The token should be reused when
 
 ## Authentication with Microsoft Entra ID
 
- Translator v3.0 supports Microsoft Entra authentication, Microsoft's cloud-based identity and access management solution.  Authorization headers enable the Translator service to validate that the requesting client is authorized to use the resource and to complete the request.
+ Translator v3.0 supports Microsoft Entra authentication, Microsoft's cloud-based identity and access management solution. Authorization headers enable the Translator service to validate that the requesting client is authorized to use the resource and to complete the request.
 
 ### **Prerequisites**
 
@@ -246,7 +245,7 @@ curl -X POST https://<your-custom-domain>.cognitiveservices.azure.com/translator
 
 ## Virtual Network support
 
-The Translator service is now available with Virtual Network (VNET) capabilities in all regions of the Azure public cloud. To enable Virtual Network, *See* [Configuring Azure AI services virtual networks](../../../../cognitive-services-virtual-networks.md?tabs=portal).
+The Translator service is now available with Virtual Network (`VNET`) capabilities in all regions of the Azure public cloud. To enable Virtual Network, *See* [Configuring Azure AI services virtual networks](../../../../cognitive-services-virtual-networks.md?tabs=portal).
 
 Once you turn on this capability, you must use the custom endpoint to call the Translator. You can't use the global translator endpoint ("api.cognitive.microsofttranslator.com") and you can't authenticate with an access token.
 
@@ -261,7 +260,7 @@ You can find the custom endpoint after you create a [translator resource](https:
 1. Select **Save** to apply your changes.
 1. Select **Keys and Endpoint** from the **Resource Management** section.
 1. Select the **Virtual Network** tab.
-1. Listed there are the endpoints for Text Translation and Document Translation.
+1. Listed there are the endpoints for Text translation and Document translation.
 
    :::image type="content" source="../../../media/virtual-network-endpoint.png" alt-text="Screenshot of the virtual network endpoint.":::
 
@@ -327,25 +326,25 @@ The error code is a 6-digit number combining the 3-digit HTTP status code follow
 | 400073| The script parameter isn't valid.|
 | 400074| The body of the request isn't valid JSON.|
 | 400075| The language pair and category combination isn't valid.|
-| 400077| The maximum request size has been exceeded. View [request limits](../../../service-limits.md).|
+| 400077| The maximum request size is exceeded. View [request limits](../../../service-limits.md).|
 | 400079| The custom system requested for translation between from and to language doesn't exist.|
 | 400080| Transliteration isn't supported for the language or script.|
 | 401000| The request isn't authorized because credentials are missing or invalid.|
 | 401015| "The credentials provided are for the Speech API. This request requires credentials for the Text API. Use a subscription to Translator."|
 | 403000| The operation isn't allowed.|
-| 403001| The operation isn't allowed because the subscription has exceeded its free quota.|
+| 403001| The operation isn't allowed because the subscription exceeded its free quota.|
 | 405000| The request method isn't supported for the requested resource.|
 | 408001| The translation system requested is being prepared. Retry in a few minutes.|
 | 408002| Request timed out waiting on incoming stream. The client didn't produce a request within the time that the server was prepared to wait. The client may repeat the request without modifications at any later time.|
 | 415000| The Content-Type header is missing or invalid.|
-| 429000, 429001, 429002| The server rejected the request because the client has exceeded request limits.|
+| 429000, 429001, 429002| The server rejected the request because the client exceeded request limits.|
 | 500000| An unexpected error occurred. If the error persists, report it with date/time of error, request identifier from response header X-RequestId, and client identifier from request header X-ClientTraceId.|
 | 503000| Service is temporarily unavailable. Retry. If the error persists, report it with date/time of error, request identifier from response header X-RequestId, and client identifier from request header X-ClientTraceId.|
 
 ## Metrics
-Metrics allow you to view the translator usage and availability information in Azure portal, under metrics section as shown in the below screenshot. For more information, see [Data and platform metrics](/azure/azure-monitor/essentials/data-platform-metrics).
+Metrics allow you to view the translator usage and availability information in Azure portal. For more information, see [Data and platform metrics](/azure/azure-monitor/essentials/data-platform-metrics).
 
-![Translator Metrics](../../../media/translatormetrics.png)
+![Translator Metrics](../../../media/azure-portal-metrics-v3.png)
 
 This table lists available metrics with description of how they're used to monitor translation API calls.
 

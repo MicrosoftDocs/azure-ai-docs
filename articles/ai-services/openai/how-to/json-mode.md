@@ -1,12 +1,12 @@
 ---
-title: 'How to use JSON mode with Azure OpenAI Service'
+title: 'How to use JSON mode with Azure OpenAI in Azure AI Foundry Models'
 titleSuffix: Azure OpenAI
 description: Learn how to improve your chat completions with Azure OpenAI JSON mode
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 08/29/2024
+ms.date: 03/26/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -51,7 +51,7 @@ from openai import AzureOpenAI
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
   api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2024-03-01-preview"
+  api_version="2025-03-01-preview"
 )
 
 response = client.chat.completions.create(

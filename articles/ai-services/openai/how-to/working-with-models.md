@@ -1,10 +1,10 @@
 ---
-title: Azure OpenAI Service working with models
+title: Azure OpenAI in Azure AI Foundry Models working with models
 titleSuffix: Azure OpenAI
 description: Learn about managing model deployment life cycle, updates, & retirement.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 08/29/2024
+ms.date: 03/31/2025
 ms.custom: references_regions, build-2023, build-2023-dataai, devx-track-azurepowershell
 manager: nitinme
 author: mrbullwinkle #ChrisHMSFT
@@ -14,13 +14,13 @@ recommendations: false
 
 # Working with Azure OpenAI models
 
-Azure OpenAI Service is powered by a diverse set of models with different capabilities and price points. [Model availability varies by region](../concepts/models.md).
+Azure OpenAI in Azure AI Foundry Models is powered by a diverse set of models with different capabilities and price points. [Model availability varies by region](../concepts/models.md).
 
 You can get a list of models that are available for both inference and fine-tuning by your Azure OpenAI resource by using the [Models List API](/rest/api/azureopenai/models/list).
 
 ## Model updates
 
-Azure OpenAI now supports automatic updates for select model deployments. On models where automatic update support is available, a model version drop-down is visible in [Azure AI Foundry portal](https://ai.azure.com/) under **Deployments** and **Edit**:
+Azure OpenAI now supports automatic updates for select model deployments. On models where automatic update support is available, a model version drop-down is visible in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) under **Deployments** and **Edit**:
 
 :::image type="content" source="../media/models/auto-update-new.png" alt-text="Screenshot of the deploy model UI in the Azure AI Foundry portal." lightbox="../media/models/auto-update-new.png":::
 
@@ -43,13 +43,13 @@ When you select a specific model version for a deployment, this version remains 
 
 ## Viewing retirement dates
 
-For currently deployed models, in the [Azure AI Foundry portal](https://ai.azure.com/) select **Deployments**:
+For currently deployed models, in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) select **Deployments**:
 
 :::image type="content" source="../media/models/deployments-new.png" alt-text="Screenshot of the deployment UI of the Azure AI Foundry portal." lightbox="../media/models/deployments-new.png":::
 
 ## Model deployment upgrade configuration
 
-You can check what model upgrade options are set for previously deployed models in the [Azure AI Foundry portal](https://ai.azure.com). Select **Deployments** > Under the deployment name column select one of the deployment names that are highlighted in blue.
+You can check what model upgrade options are set for previously deployed models in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). Select **Deployments** > Under the deployment name column select one of the deployment names that are highlighted in blue.
 
 Selecting a deployment name opens the **Properties** for the model deployment. You can view what upgrade options are set for your deployment under **Version update policy**:
 
@@ -289,10 +289,10 @@ Provisioned deployments support distinct model management practices. Provisioned
 ### Prerequisites
 - Validate that the target model version or model family is supported for your existing deployment type. Migrations can only occur between provisioned deployments of the same deployment type. For more information on deployment types, review the [deployment type documentation](./deployment-types.md).
 - Validate capacity availability for your target model version or model family prior to attempting a migration. For more information on determining capacity availability, review the [capacity transparency documentation](../concepts/provisioned-throughput.md#capacity-transparency).
-- For multi-deployment migrations, validate that you have sufficient quota to support multiple deployments simultaneously. For more information on how to validate quota for each provisioned deployment type, review the [provisioned quota documentation](../concepts/provisioned-throughput.md#quota).
+- For multi-deployment migrations, validate that you have sufficient quota to support multiple deployments simultaneously. For more information on how to validate quota for each provisioned deployment type, review the [provisioned throughput cost documentation](../how-to/provisioned-throughput-onboarding.md).
 
 ### In-place migrations for provisioned deployments
-In-place migrations allow you to maintain the same provisioned deployment name and size while changing the model version or model family assigned to that deployment. With in-place migrations, Azure OpenAI Service takes care of migrating any existing traffic between model versions or model families throughout the migration over a 20-30 minute window. Throughout the migration window, your provisioned deployment will display an "updating" provisioned state. You can continue to use your provisioned deployment as you normally would. Once the in-place migration is complete, the provisioned state will be updated to "succeeded", indicating that all traffic has been migrated over to the target model version or model family. 
+In-place migrations allow you to maintain the same provisioned deployment name and size while changing the model version or model family assigned to that deployment. With in-place migrations, Azure OpenAI takes care of migrating any existing traffic between model versions or model families throughout the migration over a 20-30 minute window. Throughout the migration window, your provisioned deployment will display an "updating" provisioned state. You can continue to use your provisioned deployment as you normally would. Once the in-place migration is complete, the provisioned state will be updated to "succeeded", indicating that all traffic has been migrated over to the target model version or model family. 
 
 #### In-place migration: model version update
 In-place migrations that target updating an existing provisioned deployment to a new model version within the same model family are supported through Azure AI Foundry, REST API, and Azure CLI. To perform an in-place migration targeting a model version update within Azure AI Foundry, select **Deployments** > under the deployment name column select the deployment name of the provisioned deployment you would like to migrate.

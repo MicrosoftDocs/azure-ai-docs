@@ -19,6 +19,8 @@ ms.custom: UpdateFrequency5, data4ml
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 [!INCLUDE [cli v1](../includes/machine-learning-cli-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In this article, learn how to connect to data storage services on Azure with Azure Machine Learning datastores and the [Azure Machine Learning Python SDK](/python/api/overview/azure/ml/intro).
 
 A datastore securely connects to your storage service on Azure, and it avoids risk to your authentication credentials or the integrity of your original data store. A datastore stores connection information - for example, your subscription ID or token authorization - in the [Key Vault](https://azure.microsoft.com/services/key-vault/) associated with the workspace. With a datastore, you can securely access your storage because you can avoid hard-coding connection information in your scripts. You can create datastores that connect to [these Azure storage solutions](#supported-data-storage-service-types).

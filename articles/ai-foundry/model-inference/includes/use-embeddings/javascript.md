@@ -1,13 +1,13 @@
 ---
-title: How to generate embeddings with Azure AI model inference
+title: How to generate embeddings with Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
-description: Learn how to generate embeddings with Azure AI model inference
+description: Learn how to generate embeddings with Azure AI Foundry Models
 manager: scottpolly
 author: mopeakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
-ms.topic: how-to
-ms.date: 1/21/2025
+ms.topic: include
+ms.date: 05/29/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 ms.custom: references_regions, tool_generated
@@ -16,7 +16,7 @@ zone_pivot_groups: azure-ai-inference-samples
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use embeddings API with models deployed to Azure AI model inference in Azure AI services.
+This article explains how to use embeddings API with models deployed in Azure AI Foundry Models.
 
 ## Prerequisites
 
@@ -24,46 +24,30 @@ To use embedding models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 
-* An embeddings model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add an embeddings model to your resource.
+[!INCLUDE [how-to-prerequisites-javascript](../how-to-prerequisites-javascript.md)]
 
-* Install the Azure Inference library for JavaScript with the following command:
-
-  ```bash
-  npm install @azure-rest/ai-inference
-  ```
-      
-  > [!TIP]
-  > Read more about the [Azure AI inference package and reference](https://aka.ms/azsdk/azure-ai-inference/javascript/reference).
+* An embeddings model deployment. If you don't have one read [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add an embeddings model to your resource.
 
 ## Use embeddings
 
 First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
 
-
 ```javascript
-import ModelClient from "@azure-rest/ai-inference";
-import { isUnexpected } from "@azure-rest/ai-inference";
-import { AzureKeyCredential } from "@azure/core-auth";
-
-const client = new ModelClient(
-    process.env.AZURE_INFERENCE_ENDPOINT, 
-    new AzureKeyCredential(process.env.AZURE_INFERENCE_CREDENTIAL),
-    "text-embedding-3-small"
+const client = ModelClient(
+    "https://<resource>.services.ai.azure.com/models", 
+    new AzureKeyCredential(process.env.AZURE_INFERENCE_CREDENTIAL)
 );
 ```
 
-If you have configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
-
+If you've configured the resource with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
 
 ```javascript
-import ModelClient from "@azure-rest/ai-inference";
-import { isUnexpected } from "@azure-rest/ai-inference";
-import { DefaultAzureCredential }  from "@azure/identity";
+const clientOptions = { credentials: { "https://cognitiveservices.azure.com" } };
 
-const client = new ModelClient(
-    process.env.AZURE_INFERENCE_ENDPOINT, 
-    new DefaultAzureCredential(),
-    "text-embedding-3-small"
+const client = ModelClient(
+    "https://<resource>.services.ai.azure.com/models", 
+    new DefaultAzureCredential()
+    clientOptions,
 );
 ```
 
@@ -74,6 +58,7 @@ Create an embedding request to see the output of the model.
 ```javascript
 var response = await client.path("/embeddings").post({
     body: {
+        model: "text-embedding-3-small",
         input: ["The ultimate answer to the question of life"],
     }
 });
@@ -101,6 +86,7 @@ It can be useful to compute embeddings in input batches. The parameter `inputs` 
 ```javascript
 var response = await client.path("/embeddings").post({
     body: {
+        model: "text-embedding-3-small",
         input: [
             "The ultimate answer to the question of life", 
             "The largest planet in our solar system is Jupiter",
@@ -133,6 +119,7 @@ You can specify the number of dimensions for the embeddings. The following examp
 ```javascript
 var response = await client.path("/embeddings").post({
     body: {
+        model: "text-embedding-3-small",
         input: ["The ultimate answer to the question of life"],
         dimensions: 1024,
     }
@@ -149,6 +136,7 @@ The following example shows how to create embeddings that are used to create an 
 ```javascript
 var response = await client.path("/embeddings").post({
     body: {
+        model: "text-embedding-3-small",
         input: ["The answer to the ultimate question of life, the universe, and everything is 42"],
         input_type: "document",
     }
@@ -161,6 +149,7 @@ When you work on a query to retrieve such a document, you can use the following 
 ```javascript
 var response = await client.path("/embeddings").post({
     body: {
+        model: "text-embedding-3-small",
         input: ["What's the ultimate meaning of life?"],
         input_type: "query",
     }

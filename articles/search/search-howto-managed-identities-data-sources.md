@@ -11,15 +11,15 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: how-to
-ms.date: 11/22/2024
+ms.date: 05/29/2025
 ---
 
 # Configure a search service to connect using a managed identity in Azure AI Search
 
 > [!IMPORTANT]
-> User-assigned managed identity assignment is in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [Management preview REST API](/rest/api/searchmanagement/services/update?view=rest-searchmanagement-2024-03-01-preview&preserve-view=true#identity) provides user-assigned managed identity assignment for Azure AI Search. Support for a *system-assigned* managed identity is generally available.
+> User-assigned managed identity assignment is in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [Management preview REST API](/rest/api/searchmanagement/services/update?view=rest-searchmanagement-2025-02-01-preview&preserve-view=true#identity) provides user-assigned managed identity assignment for Azure AI Search. Support for a *system-assigned* managed identity is generally available.
 
-You can use Microsoft Entra ID and role assignments for outbound connections from Azure AI Search to resources providing data, applied AI, or vectorization during indexing or queries. 
+You can use Microsoft Entra ID and role assignments for outbound connections from Azure AI Search to resources providing data, applied AI, or vectorization during indexing or queries.
 
 To use roles on an outbound connection, first configure your search service to use either a [system-assigned or user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview) as the security principal for your search service in a Microsoft Entra tenant. Once you have a managed identity, you can assign roles for authorized access. Managed identities and role assignments eliminate the need for passing secrets and credentials in a connection string or code.
 
@@ -131,7 +131,7 @@ For more information, see [Create or Update Service (Management REST API)](/rest
 ## Create a user-assigned managed identity
 
 > [!IMPORTANT]
-> Part of this scenario is in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [Management preview REST API](/rest/api/searchmanagement/services/update?view=rest-searchmanagement-2024-03-01-preview&preserve-view=true#identity) provides user-assigned managed identity configuration for Azure AI Search.
+> Part of this scenario is in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [Management preview REST API](/rest/api/searchmanagement/services/update?view=rest-searchmanagement-2025-02-01-preview&preserve-view=true#identity) provides user-assigned managed identity configuration for Azure AI Search.
 
 A user-assigned managed identity is a resource on Azure. You can create multiple user-assigned managed identities if you want more granularity in role assignments. For example, you might want separate identities for different applications and scenarios.
 
@@ -170,12 +170,12 @@ Associating a user-assigned managed identity is supported in the Azure portal, i
 
 ### [**REST API**](#tab/rest-user)
 
-You can use a preview Management REST API instead of the Azure portal to assign a user-assigned managed identity. Use API versions `2021-04-01-preview` or later. This example uses `2024-06-01-preview`.
+You can use a preview Management REST API instead of the Azure portal to assign a user-assigned managed identity. Use API versions `2021-04-01-preview` or later. This example uses `2025-05-01-preview`.
 
-1. Formulate a request to [UPDATE](/rest/api/searchmanagement/services/update?view=rest-searchmanagement-2024-06-01-preview&preserve-view=true#identity) a search service.
+1. Formulate a request to [UPDATE](/rest/api/searchmanagement/services/update?view=rest-searchmanagement-2025-05-01-preview&preserve-view=true#identity) a search service.
 
     ```http
-    PUT https://management.azure.com/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Search/searchServices/mysearchservice?api-version=2024-06-01-preview
+    PUT https://management.azure.com/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Search/searchServices/mysearchservice?api-version=2025-05-01-preview
     {
       "location": "[region]",
       "sku": {
@@ -315,7 +315,7 @@ A [custom skill](cognitive-search-custom-skill-web-api.md) targets the endpoint 
 
 [**Azure OpenAI embedding skill**](cognitive-search-skill-azure-openai-embedding.md) and [**Azure OpenAI vectorizer:**](vector-search-how-to-configure-vectorizer.md)
 
- An Azure OpenAI embedding skill and vectorizer in AI Search target the endpoint of an Azure OpenAI service hosting an embedding model. The endpoint is specified in the [Azure OpenAI embedding skill definition](cognitive-search-skill-azure-openai-embedding.md) and/or in the [Azure OpenAI vectorizer definition](vector-search-how-to-configure-vectorizer.md). 
+ An Azure OpenAI embedding skill and vectorizer in AI Search target the endpoint of an Azure OpenAI hosting an embedding model. The endpoint is specified in the [Azure OpenAI embedding skill definition](cognitive-search-skill-azure-openai-embedding.md) and/or in the [Azure OpenAI vectorizer definition](vector-search-how-to-configure-vectorizer.md). 
 
 The system-managed identity is used automatically if `"apikey"` and `"authIdentity"` are empty, as demonstrated in the following example. The `"authIdentity"` property is used for user-assigned managed identity only.
 

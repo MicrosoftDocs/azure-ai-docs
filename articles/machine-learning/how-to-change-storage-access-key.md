@@ -22,6 +22,10 @@ monikerRange: 'azureml-api-2 || azureml-api-1'
 :::moniker range="azureml-api-1"
 [!INCLUDE [cli v1](includes/machine-learning-dev-v1.md)]
 [!INCLUDE [SDK v1](includes/machine-learning-sdk-v1.md)]
+
+[!INCLUDE [v1 deprecation](includes/sdk-v1-deprecation.md)]
+
+[!INCLUDE [v1 cli deprecation](includes/machine-learning-cli-v1-deprecation.md)]
 :::moniker-end
 
 Learn how to change the access keys for Azure Storage accounts used by Azure Machine Learning. Azure Machine Learning can use storage accounts to store data or trained models.

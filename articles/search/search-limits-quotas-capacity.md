@@ -1,14 +1,14 @@
 ---
-title: Service limits for tiers and skus
+title: Service Limits for Tiers and SKUs
 titleSuffix: Azure AI Search
 description: Service limits used for capacity planning and maximum limits on requests and responses for Azure AI Search.
 
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 03/11/2025
+ms.date: 04/30/2025
 ms.custom:
   - references_regions
   - build-2024
@@ -47,6 +47,7 @@ Maximum limits on storage, workloads, and quantities of indexes and other object
 | Maximum depth of complex fields |10 |10 |10 |10 |10 |10 |10 |10 |
 | Maximum [suggesters](/rest/api/searchservice/suggesters) per index |1 |1 |1 |1 |1 |1 |1 |1 |
 | Maximum [scoring profiles](/rest/api/searchservice/add-scoring-profiles-to-a-search-index) per index |100 |100 |100 |100 |100 |100 |100 |100 |
+| Maximum [semantic configurations](semantic-how-to-configure.md) per index |100 |100 |100 |100 |100 |100 |100 |100 |
 | Maximum functions per profile |8 |8 |8 |8 |8 |8 |8 |8 |
 | Maximum index size&nbsp;<sup>4</sup> | N/A | N/A | N/A | 1.88&nbsp;TB | 2.34&nbsp;TB | 100 GB| N/A | N/A |
 
@@ -56,7 +57,7 @@ Maximum limits on storage, workloads, and quantities of indexes and other object
 
 <sup>3</sup> An upper limit exists for elements because having a large number of them significantly increases the storage required for your index. An element of a complex collection is defined as a member of that collection. For example, assume a [Hotel document with a Rooms complex collection](search-howto-complex-data-types.md#complex-collection-limits), each room in the Rooms collection is considered an element. During indexing, the indexing engine can safely process a maximum of 3,000 elements across the document as a whole. [This limit](search-api-migration.md#upgrade-to-2019-05-06) was introduced in `api-version=2019-05-06` and applies to complex collections only, and not to string collections or to complex fields.
 
-<sup>4</sup> On most tiers, maximum index size is all available storage on your search service. For S2, S3, and S3 HD, the maximum size of any index is the number provided in the table. Applies to search services created after April 3, 2024.
+<sup>4</sup> For most tiers, the maximum index size is the total available storage on your search service. For S2, S3, and S3 HD services with multiple partitions, and therefore more storage, the maximum size of a single index is provided in the table. Applies to search services created after April 3, 2024.
 
 You might find some variation in maximum limits if your service happens to be provisioned on a more powerful cluster. The limits here represent the common denominator. Indexes built to the above specifications are portable across equivalent service tiers in any region.
 
@@ -81,12 +82,12 @@ When you index documents with vector fields, Azure AI Search constructs internal
 
 Vector limits vary by:
 
-+ [service creation date](vector-search-index-size.md#how-to-check-service-creation-date)
-+ [region](search-region-support.md)
++ [Service creation date](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date)
++ [Region](search-region-support.md)
 
-Higher vector limits from April 2024 onwards exist on *new search services* in regions providing the extra capacity, which is most of them.
+Higher vector limits from April 2024 onwards exist on *new search services* in regions providing the extra capacity, which is most of them. If you have an older service in a supported region, check if you can [upgrade your service](search-how-to-upgrade.md) to the higher vector limits.
 
-This table shows the progression of vector quota increases in GB over time. The quota is per partition, so if you scale a new Standard (S1) service to 6 partitions, total vector quota is 35 multiplied by 6.
+This table shows the progression of vector quota increases in GB over time. The quota is per partition, so if you scale a new Standard (S1) service to 6 partitions, the total vector quota is 35 multiplied by 6.
 
 | Service creation date |Basic | S1| S2 | S3/HD | L1 | L2 |
 |-----------------------|------|---|----|----|----|----|
@@ -106,7 +107,12 @@ This table shows the progression of vector quota increases in GB over time. The 
 The service enforces a vector index size quota *for every partition* in your search service. Each extra partition increases the available vector index size quota. This quota is a hard limit to ensure your service remains healthy, which means that further indexing attempts once the limit is exceeded results in failure. You can resume indexing once you free up available quota by either deleting some vector documents or by scaling up in partitions.
 
 > [!IMPORTANT]
-> Higher vector limits are tied to larger partition sizes. Regions that run on older infrastructure are subject to the July-April limits. Review the [regions list](search-region-support.md) for status on partition storage limits.
+> Higher vector limits are tied to [larger partition sizes](#partition-storage-gb). Currently, higher vector limits aren't available in the following regions, which are subject to the July–April limits.
+> 
+> + Israel Central
+> + Qatar Central
+> + ⁠Spain Central
+> + South India
 
 ## Indexer limits
 
@@ -150,9 +156,9 @@ Indexers can access other Azure resources [over private endpoints](search-indexe
 | Maximum private endpoints | N/A | 10 or 30 | 100 | 400 | 400 | N/A | 20 | 20 |
 | Maximum distinct resource types <sup>3</sup> | N/A | 4 | 7 | 15 | 15 | N/A | 4 | 4 |
 
-<sup>1</sup> AI enrichment and image analysis are computationally intensive and consume disproportionate amounts of available processing power. For this reason, private connections are disabled on lower tiers to ensure the performance and stability of the search service itself. On basic services, private connections to an Azure AI multi-service resource are unsupported to preserve service stability. For the S1 tier, make sure the service was created with [higher limits](search-limits-quotas-capacity.md#partition-storage-gb) after April 3, 2024. 
+<sup>1</sup> AI enrichment and image analysis are computationally intensive and consume disproportionate amounts of available processing power. For this reason, private connections are disabled on lower tiers to ensure the performance and stability of the search service itself. On Basic services, private connections to an Azure AI services multi-service resource are unsupported to preserve service stability. For the S1 tier, make sure the service was created with [higher limits](search-limits-quotas-capacity.md#partition-storage-gb) after April 3, 2024.
 
-<sup>2</sup> Private connections to an embedding model are supported on basic and S1 high-capacity search services created after April 3, 2024, with the [higher limits](search-limits-quotas-capacity.md#partition-storage-gb) for storage and computational processing. 
+<sup>2</sup> Private connections to an embedding model are supported on Basic and S1 high-capacity search services created after April 3, 2024, with the [higher limits](search-limits-quotas-capacity.md#partition-storage-gb) for storage and computational processing.
 
 <sup>3</sup> The number of distinct resource types are computed as the number of unique `groupId` values used across all shared private link resources for a given search service, irrespective of the status of the resource.
 
@@ -167,7 +173,7 @@ Maximum number of synonym maps varies by tier. Each rule can have up to 20 expan
 
 ## Index alias limits
 
-Maximum number of [index aliases](search-how-to-alias.md) varies by tier and [service creation date](vector-search-index-size.md#how-to-check-service-creation-date). In all tiers, if the service was created after October 2022 the maximum number of aliases is double the maximum number of indexes allowed. If the service was created before October 2022, the limit is the number of indexes allowed.
+Maximum number of [index aliases](search-how-to-alias.md) varies by tier and [service creation date](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date). In all tiers, if the service was created after October 2022 the maximum number of aliases is double the maximum number of indexes allowed. If the service was created before October 2022, the limit is the number of indexes allowed.
 
 | Service Creation Date | Free | Basic | S1 | S2 | S3 | S3-HD |L1 | L2 |
 |----------|------|-------|----|----|----|-------|----|----|
@@ -235,6 +241,7 @@ Indexing APIs:
 
 Query APIs:
 
++ Maximum 10 fields in a vector query
 + Maximum 32 fields in $orderby clause.
 + Maximum 100,000 characters in a search clause.
 + Maximum number of clauses in search is 3,000.

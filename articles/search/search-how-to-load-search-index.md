@@ -9,12 +9,12 @@ ms.author: heidist
 
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/31/2024
+ms.date: 05/08/2025
 ---
 
 # Load data into a search index in Azure AI Search
 
-This article explains how to import documents into a predefined search index. In Azure AI Search, a [search index is created first](search-how-to-create-search-index.md) with [data import](search-what-is-data-import.md) following as a second step. The exception is [Import wizards](search-import-data-portal.md) in the Azure portal and indexer pipelines, which create and load an index in one workflow.
+This article explains how to import documents into a predefined search index. In Azure AI Search, a [search index is created first](search-how-to-create-search-index.md) with [data import](search-what-is-data-import.md) following as a second step. The exception is [Import wizards](search-import-data-portal.md) in the Azure portal and [indexer pipelines](search-indexer-overview.md), which create and load an index in one workflow.
 
 ## How data import works
 
@@ -28,7 +28,7 @@ You can prepare these documents yourself, but if content resides in a [supported
 
 Once data is indexed, the physical data structures of the index are locked in. For guidance on what can and can't be changed, see [Update and rebuild an index](search-howto-reindex.md).
 
-Indexing isn't a background process. A search service will balance indexing and query workloads, but if [query latency is too high](search-performance-analysis.md#impact-of-indexing-on-queries), you can either [add capacity](search-capacity-planning.md#adjust-capacity) or identify periods of low query activity for loading an index.
+Indexing isn't a background process. A search service will balance indexing and query workloads, but if [query latency is too high](search-performance-analysis.md#impact-of-indexing-on-queries), you can either [add capacity](search-capacity-planning.md#add-or-remove-partitions-and-replicas) or identify periods of low query activity for loading an index.
 
 For more information, see [Data import strategies](search-what-is-data-import.md).
 
@@ -38,7 +38,7 @@ In the Azure portal, use the [import wizards](search-import-data-portal.md) to c
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) with your Azure account and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
-1. On the Overview page, select **Import data** or **Import and vectorize data** on the command bar to create and populate a search index. 
+1. On the **Overview** page, select **Import data** or **Import and vectorize data wizard** on the command bar to create and populate a search index.
 
    :::image type="content" source="media/search-import-data-portal/import-data-cmd.png" alt-text="Screenshot of the Import data command" border="true":::
 

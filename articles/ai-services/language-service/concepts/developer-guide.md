@@ -2,18 +2,17 @@
 title: Use the Language SDK and REST API
 titleSuffix: Azure AI services
 description: Learn about how to integrate the Language service SDK and REST API into your applications.
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 11/21/2024
-ms.author: jboback
+ms.date: 06/04/2025
+ms.author: lajanuar
 ---
 
 # SDK and REST developer guide for the Language service
 
-Use this article to find information on integrating the Language service SDKs and REST API into your applications. 
+Use this article to find information on integrating the Language service SDK and REST API into your applications. 
 
 ## Development options
 
@@ -23,14 +22,14 @@ The Language service provides support through a REST API, and client libraries i
 
 ## Client libraries (Azure SDK)
 
-The Language service provides three namespaces for using the available features. Depending on which features and programming language you're using, you will need to download one or more of the following packages, and have the following framework/language version support:
+The Language service provides three namespaces for using the available features. Depending on which features and programming language you're using, you'll need to download one or more of the following packages, and have the following framework/language version support:
 
 |Framework/Language  | Minimum supported version  |
 |---------|---------|
-|.NET     | .NET Framework 4.6.1 or newer, or .NET (formerly .NET Core) 2.0 or newer.       |
-|Java     | v8 or later        |
-|JavaScript     | v14 LTS or later        |
-|Python| v3.7 or later        |
+|.NET     | .NET Framework `4.6.1` or newer, or .NET (formerly .NET Core) `2.0` or newer.       |
+|Java     | `v8` or later        |
+|JavaScript     | `v14 LTS` or later        |
+|Python| `v3.7` or later        |
 
 ### Azure.AI.TextAnalytics  
 
@@ -39,7 +38,7 @@ The Language service provides three namespaces for using the available features.
 > * [Custom named entity recognition](../custom-named-entity-recognition/quickstart.md)
 > * [Custom text classification](../custom-text-classification/quickstart.md)
 
-The `Azure.AI.TextAnalytics` namespace enables you to use the following Language features. Use the links below for articles to help you send API requests using the SDK.
+The `Azure.AI.TextAnalytics` namespace enables you to use the following Language features. Use the following links for articles to help you send API requests using the SDK.
 
 * [Custom named entity recognition](../custom-named-entity-recognition/how-to/call-api.md?tabs=client#send-an-entity-recognition-request-to-your-model)
 * [Custom text classification](../custom-text-classification/how-to/call-api.md?tabs=client-libraries#send-a-text-classification-request-to-your-model)
@@ -64,11 +63,11 @@ As you use these features in your application, use the following documentation a
 ### Azure.AI.Language.Conversations 
 
 > [!NOTE] 
-> If you're using conversational language understanding or orchestration workflow, you will need to create a project and train a model before using the SDK. The SDK only provides the ability to analyze text using models you create. See the following quickstarts for more information. 
+> If you're using conversational language understanding or orchestration workflow, you'll need to create a project and train a model before using the SDK. The SDK only provides the ability to analyze text using models you create. See the following quickstarts for more information. 
 > * [Conversational language understanding](../conversational-language-understanding/quickstart.md)
 > * [Orchestration workflow](../orchestration-workflow/quickstart.md)
 
-The `Azure.AI.Language.Conversations` namespace enables you to use the following Language features. Use the links below for articles to help you send API requests using the SDK.
+The `Azure.AI.Language.Conversations` namespace enables you to use the following Language features. Use the following links for articles to help you send API requests using the SDK.
 
 * [Conversational language understanding](../conversational-language-understanding/how-to/call-api.md?tabs=azure-sdk#send-a-conversational-language-understanding-request)
 * [Orchestration workflow](../orchestration-workflow/how-to/call-api.md?tabs=azure-sdk#send-an-orchestration-workflow-request)

@@ -2,14 +2,14 @@
 manager: nitinme
 ms.service: azure-ai-model-inference
 ms.topic: include
-ms.date: 1/31/2025
+ms.date: 05/29/2025
 ms.author: fasantia
 author: santiagxf
 ---
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use the reasoning capabilities of chat completions models deployed to Azure AI model inference in Azure AI services.
+This article explains how to use the reasoning capabilities of chat completions models deployed in Azure AI Foundry Models.
 
 [!INCLUDE [about-reasoning](about-reasoning.md)]
 
@@ -19,45 +19,12 @@ To complete this tutorial, you need:
 
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 
-* A model with reasoning capabilities model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a reasoning model. 
+[!INCLUDE [how-to-prerequisites-java](../how-to-prerequisites-java.md)]
 
-  * This examples use `DeepSeek-R1`.
+* A model with reasoning capabilities model deployment. If you don't have one read [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add a reasoning model. 
 
-* Add the [Azure AI inference package](https://aka.ms/azsdk/azure-ai-inference/java/reference) to your project:
+  * This example uses `DeepSeek-R1`.
 
-  ```xml
-  <dependency>
-      <groupId>com.azure</groupId>
-      <artifactId>azure-ai-inference</artifactId>
-      <version>1.0.0-beta.2</version>
-  </dependency>
-  ```
-  
-* If you are using Entra ID, you also need the following package:
-
-  ```xml
-  <dependency>
-      <groupId>com.azure</groupId>
-      <artifactId>azure-identity</artifactId>
-      <version>1.13.3</version>
-  </dependency>
-  ```
-
-* Import the following namespace:
-  
-  ```java
-  package com.azure.ai.inference.usage;
-  
-  import com.azure.ai.inference.EmbeddingsClient;
-  import com.azure.ai.inference.EmbeddingsClientBuilder;
-  import com.azure.ai.inference.models.EmbeddingsResult;
-  import com.azure.ai.inference.models.EmbeddingItem;
-  import com.azure.core.credential.AzureKeyCredential;
-  import com.azure.core.util.Configuration;
-  
-  import java.util.ArrayList;
-  import java.util.List;
-  ```
 
 ## Use reasoning capabilities with chat
 
@@ -70,7 +37,7 @@ ChatCompletionsClient client = new ChatCompletionsClient(
 ```
 
 > [!TIP]
-> Verify that you have deployed the model to Azure AI Services resource with the Azure AI model inference API. `Deepseek-R1` is also available as Serverless API Endpoints. However, those endpoints don't take the parameter `model` as explained in this tutorial. You can verify that by going to [Azure AI Foundry portal]() > Models + endpoints, and verify that the model is listed under the section **Azure AI Services**.
+> Verify that you have deployed the model to Azure AI Services resource with the Azure AI Foundry Models API. `Deepseek-R1` is also available as standard deployments. However, those endpoints don't take the parameter `model` as explained in this tutorial. You can verify that by going to [Azure AI Foundry portal]() > Models + endpoints, and verify that the model is listed under the section **Azure AI Services**.
 
 If you have configured the resource to with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
 
@@ -80,6 +47,8 @@ client = new ChatCompletionsClient(
         new DefaultAzureCredentialBuilder().build()
 );
 ```
+
+[!INCLUDE [best-practices](best-practices.md)]
 
 ### Create a chat completion request
 
@@ -94,8 +63,6 @@ ChatCompletionsOptions requestOptions = new ChatCompletionsOptions()
 
 Response<ChatCompletions> response = client.complete(requestOptions);
 ```
-
-[!INCLUDE [best-practices](best-practices.md)]
 
 The response is as follows, where you can see the model's usage statistics:
 

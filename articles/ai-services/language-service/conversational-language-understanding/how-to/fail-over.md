@@ -2,13 +2,12 @@
 title: Back up and recover your conversational language understanding models
 titleSuffix: Azure AI services
 description: Learn how to save and recover your conversational language understanding models.
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-clu
 ---
 

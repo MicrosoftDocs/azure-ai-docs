@@ -5,7 +5,7 @@ description: Learn how to securely connect to your data storage on Azure with Az
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
-ms.topic: conceptual
+ms.topic: concept-article
 ms.reviewer: franksolomon
 author: ssalgadodev
 ms.author: xunwan
@@ -18,6 +18,8 @@ ms.custom: UpdateFrequency5, data4ml
 
 [!INCLUDE [CLI v1](../includes/machine-learning-cli-v1.md)]
 [!INCLUDE [SDK v1](../includes/machine-learning-sdk-v1.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 Azure Machine Learning makes it easy to connect to your data in the cloud. It provides an abstraction layer over the underlying storage service, so that you can securely access and work with your data without the need to write code specific to your storage type. Azure Machine Learning also provides these data capabilities:
 

@@ -4,8 +4,8 @@ description: The default answer is returned when there is no match to the questi
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/21/2024
-author: jboback
-ms.author: jboback
+author: laujan
+ms.author: lajanuar
 ms.custom: language-service-question-answering
 ---
 
@@ -32,7 +32,7 @@ For a client application, such as a bot with the [Azure AI Bot Service](/azure/b
 The project default answer is returned when no answer is returned from custom question answering.
 
 1. Sign in to the [Language Studio](https://language.azure.com). Go to custom question answering and select your project from the list.
-1. Select **Settings** from the left navigation bar.
+1. Select **Settings** from the left pane.
 1. Change the value of **Default answer when no answer found** > Select **Save**.
 
 > [!div class="mx-imgBorder"]

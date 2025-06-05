@@ -5,7 +5,7 @@ description: Learn how data access works with Azure Machine Learning studio when
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
-ms.topic: conceptual
+ms.topic: concept-article
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: meerakurup
@@ -18,6 +18,8 @@ ms.date: 11/16/2022
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 [!INCLUDE [cli v1](../includes/machine-learning-cli-v1.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 Data access is complex and it's important to recognize that there are many pieces to it. For example, accessing data from Azure Machine Learning studio is different than using the SDK. When using the SDK on your local development environment, you're directly accessing data in the cloud. When using studio, you aren't always directly accessing the data store from your client. Studio relies on the workspace to access data on your behalf.
 

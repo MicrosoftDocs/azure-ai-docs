@@ -2,12 +2,11 @@
 title: "Quickstart: Azure AI Translator client libraries"
 titleSuffix: Azure AI services
 description: "Learn to translate text with the Translator service SDks in a programming language of your choice: C#, Java, JavaScript, or Python."
-#services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 09/26/2024
+ms.date: 05/19/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
@@ -49,7 +48,7 @@ You need an active Azure subscription. If you don't have an Azure subscription, 
 
 ::: zone pivot="programming-language-javascript"
 
-[!INCLUDE [NodeJS programming](includes/client-libraries-sdk/javascript.md)]
+[!INCLUDE [Node.js programming](includes/client-libraries-sdk/javascript.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-python"
@@ -57,11 +56,11 @@ You need an active Azure subscription. If you don't have an Azure subscription, 
 [!INCLUDE [Python programming](includes/client-libraries-sdk/python.md)]
 ::: zone-end
 
-That's it, congratulations! In this quickstart, you used a Text Translation SDK to translate text.
+That's it, congratulations! In this quickstart, you used a Text translation SDK to translate text.
 
 ## Next steps
 
-Learn more about Text Translation development options:
+Learn more about Text translation development options:
 
 > [!div class="nextstepaction"]
->[Text Translation SDK overview](../../text-sdk-overview.md) </br></br>[Text Translation V3 reference](../reference/v3/reference.md)
+>[Text translation SDK overview](../../text-sdk-overview.md) </br></br>[Text translation V3 reference](../reference/v3/reference.md)

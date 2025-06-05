@@ -1,13 +1,13 @@
 ---
-title: How to generate embeddings with Azure AI model inference
+title: How to generate embeddings with Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
-description: Learn how to generate embeddings with Azure AI model inference
+description: Learn how to generate embeddings with Azure AI Foundry Models
 manager: scottpolly
 author: mopeakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
-ms.topic: how-to
-ms.date: 1/21/2025
+ms.topic: include
+ms.date: 05/29/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 ms.custom: references_regions, tool_generated
@@ -16,7 +16,7 @@ zone_pivot_groups: azure-ai-inference-samples
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use embeddings API with models deployed to Azure AI model inference in Azure AI services.
+This article explains how to use embeddings API with models deployed in Azure AI Foundry Models.
 
 ## Prerequisites
 
@@ -24,22 +24,10 @@ To use embedding models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
 
-* An embeddings model deployment. If you don't have one read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add an embeddings model to your resource.
+[!INCLUDE [how-to-prerequisites-csharp](../how-to-prerequisites-csharp.md)]
 
-* Install the Azure AI inference package with the following command:
+* An embeddings model deployment. If you don't have one read [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add an embeddings model to your resource.
 
-    ```bash
-    dotnet add package Azure.AI.Inference --prerelease
-    ```
-    
-    > [!TIP]
-    > Read more about the [Azure AI inference package and reference](https://aka.ms/azsdk/azure-ai-inference/python/reference).
-
-* If you are using Entra ID, you also need the following package:
-
-    ```bash
-    dotnet add package Azure.Identity
-    ```
 
 ## Use embeddings
 

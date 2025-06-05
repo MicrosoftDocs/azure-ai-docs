@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 12/10/2024
+ms.date: 05/29/2025
 ---
 
 # Index data from Azure Data Lake Storage Gen2
@@ -19,6 +19,9 @@ In this article, learn how to configure an [**indexer**](search-indexer-overview
 This article supplements [**Create an indexer**](search-howto-create-indexers.md) with information that's specific to indexing from ADLS Gen2. It uses the REST APIs to demonstrate a three-part workflow common to all indexers: create a data source, create an index, create an indexer. Data extraction occurs when you submit the Create Indexer request.
 
 For a code sample in C#, see [Index Data Lake Gen2 using Microsoft Entra ID](https://github.com/Azure-Samples/azure-search-dotnet-utilities/blob/main/data-lake-gen2-acl-indexing/README.md) on GitHub.
+
+> [!NOTE]
+> ADLS Gen2 supports an [access control model](/azure/storage/blobs/data-lake-storage-access-control) with Azure role-based access control (Azure RBAC) and POSIX-like access control lists (ACLs) at the blob level. Azure AI Search can now recognize document-level permissions in ADLS Gen2 blobs during indexing and transfers those permissions to indexed content in the search index. For more information about ACL ingestion and RBAC scope during indexing, see [Indexing Access Control Lists and Azure Role-Based Access Control scope using Indexers](search-indexer-access-control-lists-and-role-based-access.md).
 
 ## Prerequisites
 
@@ -31,9 +34,6 @@ For a code sample in C#, see [Index Data Lake Gen2 using Microsoft Entra ID](htt
 + Read permissions on Azure Storage. A "full access" connection string includes a key that grants access to the content, but if you're using Azure roles instead, make sure the [search service managed identity](search-howto-managed-identities-data-sources.md) has **Storage Blob Data Reader** permissions.
 
 + Use a [REST client](search-get-started-rest.md) to formulate REST calls similar to the ones shown in this article.
-
-> [!NOTE]
-> ADLS Gen2 implements an [access control model](/azure/storage/blobs/data-lake-storage-access-control) that supports both Azure role-based access control (Azure RBAC) and POSIX-like access control lists (ACLs) at the blob level. Azure AI Search does not support document-level permissions. All users have the same level of access to all searchable and retrievable content in the index. If document-level permissions are an application requirement, consider [security trimming](search-security-trimming-for-azure-search.md) as a potential solution.
 
 <a name="SupportedFormats"></a>
 
@@ -124,7 +124,7 @@ Indexers can connect to a blob container using the following connections.
 | Full access storage account connection string |
 |-----------------------------------------------|
 |`{ "connectionString" : "DefaultEndpointsProtocol=https;AccountName=<your storage account>;AccountKey=<your account key>;" }` |
-| You can get the connection string from the Storage account page in Azure portal by selecting **Access keys** in the left navigation pane. Make sure to select a full connection string and not just a key. |
+| You can get the connection string from the Storage account page in Azure portal by selecting **Access keys** in the left pane. Make sure to select a full connection string and not just a key. |
 
 | Managed identity connection string |
 |------------------------------------|

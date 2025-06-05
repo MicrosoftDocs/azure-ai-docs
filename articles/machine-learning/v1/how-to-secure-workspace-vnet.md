@@ -17,6 +17,7 @@ ms.custom: UpdateFrequency5, tracking-python, security, cliv1, sdkv1, build-2023
 
 [!INCLUDE [sdk/cli v1](../includes/machine-learning-dev-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 In this article, you learn how to secure an Azure Machine Learning workspace and its associated resources in an Azure Virtual Network.
 
@@ -293,7 +294,7 @@ The following table lists the services that you need to skip validation for:
 | Azure Data Lake Store Gen1 | No |
 | Azure Data Lake Store Gen2 | No |
 | Azure SQL Database | Yes |
-| PostgreSql | Yes |
+| PostgreSQL | Yes |
 
 > [!NOTE]
 > Azure Data Lake Store Gen1 and Azure Data Lake Store Gen2 skip validation by default, so you don't have to do anything.

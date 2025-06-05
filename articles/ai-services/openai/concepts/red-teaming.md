@@ -1,14 +1,15 @@
 ---
-title: Planning red teaming for large language models (LLMs) and their applications 
-titleSuffix: Azure OpenAI Service
+title: Planning red teaming for large language models (LLMs) and their applications
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn about how red teaming and adversarial testing are an essential practice in the responsible development of systems and features using large language models (LLMs)
-ms.service: azure-ai-openai
-ms.topic: conceptual
-ms.date: 11/30/2024
-manager: nitinme
 author: mrbullwinkle
 ms.author: mbullwin
-recommendations: false
+manager: nitinme
+ms.date: 03/27/2025
+ms.service: azure-ai-openai
+ms.topic: conceptual
+ms.custom:
+  - build-2025
 ---
 
 # Planning red teaming for large language models (LLMs) and their applications
@@ -23,7 +24,7 @@ The term *red teaming* has historically described systematic adversarial attacks
 
 Red teaming is a best practice in the responsible development of systems and features using LLMs. While not a replacement for systematic measurement and mitigation work, red teamers help to uncover and identify harms and, in turn, enable measurement strategies to validate the effectiveness of mitigations.
 
-While Microsoft has conducted red teaming exercises and implemented safety systems (including [content filters](./content-filter.md) and other [mitigation strategies](./prompt-engineering.md)) for its Azure OpenAI Service models (see this [Overview of responsible AI practices](/legal/cognitive-services/openai/overview)), the context of each LLM application will be unique and you also should conduct red teaming to:
+While Microsoft has conducted red teaming exercises and implemented safety systems (including [content filters](./content-filter.md) and other [mitigation strategies](./prompt-engineering.md)) for its Azure OpenAI in Azure AI Foundry Models (see this [Overview of responsible AI practices](/legal/cognitive-services/openai/overview)), the context of each LLM application will be unique and you also should conduct red teaming to:
 
 - Test the LLM base model and determine whether there are gaps in the existing safety systems, given the context of your application.
 

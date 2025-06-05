@@ -7,7 +7,7 @@ ms.service: azure-ai-openai
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/10/2024
+ms.date: 03/27/2025
 author: mrbullwinkle
 ms.author: mbullwin
 ---
@@ -87,7 +87,7 @@ Give your Azure OpenAI resource the **Key Vault Secrets Officer** role.
 
 ## Link Weights & Biases with Azure OpenAI
 
-1. Navigate to the [Azure AI Foundry portal](https://ai.azure.com) and select your Azure OpenAI fine-tuning resource.
+1. Navigate to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your Azure OpenAI fine-tuning resource.
 
     :::image type="content" source="../media/how-to/weights-and-biases/manage-integrations.png" alt-text="Screenshot of the manage integrations button." lightbox="../media/how-to/weights-and-biases/manage-integrations.png":::
 

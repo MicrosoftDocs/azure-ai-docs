@@ -1,12 +1,11 @@
 ---
 titleSuffix: Azure AI services
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
 ms.date: 12/19/2023
-ms.author: jboback
+ms.author: lajanuar
 ---
 
 1. After the deployment job is completed successfully, select the deployment you want to use and from the top menu select **Get prediction URL**.

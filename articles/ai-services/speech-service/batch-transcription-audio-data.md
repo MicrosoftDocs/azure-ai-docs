@@ -7,7 +7,7 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
+ms.date: 5/25/2025
 ms.devlang: csharp
 ms.custom: devx-track-csharp, devx-track-azurecli
 # Customer intent: As a user who implements audio transcription, I want to learn how to locate audio files for batch transcription.
@@ -27,7 +27,7 @@ You can specify one or multiple audio files when creating a transcription. We re
 
 ## Supported audio formats and codecs
 
-The batch transcription API (and [fast transcription API](./fast-transcription-create.md)) supports multiple formats and codecs, such as:
+The [batch transcription API](./batch-transcription.md) and [fast transcription API](./fast-transcription-create.md) support multiple formats and codecs, such as:
 
 - WAV
 - MP3
@@ -39,14 +39,12 @@ The batch transcription API (and [fast transcription API](./fast-transcription-c
 - MULAW in WAV container
 - AMR
 - WebM
-- M4A
 - SPEEX
 
-
 > [!NOTE]
-> Batch transcription service integrates [GStreamer](./how-to-use-codec-compressed-audio-input-streams.md) and might accept more formats and codecs without returning errors. We suggest to use lossless formats such as WAV (PCM encoding) and FLAC to ensure best transcription quality.
+> Batch transcription service integrates [GStreamer](./how-to-use-codec-compressed-audio-input-streams.md) and might accept more formats and codecs without returning errors. We suggest using lossless formats such as WAV (PCM encoding) and FLAC to ensure best transcription quality.
 
-## Azure Blob Storage upload
+## Upload to Azure Blob Storage
 
 When audio files are located in an [Azure Blob Storage](/azure/storage/blobs/storage-blobs-overview) account, you can request transcription of individual audio files or an entire Azure Blob Storage container. You can also [write transcription results](batch-transcription-create.md#specify-a-destination-container-url) to a Blob container.
 
@@ -90,7 +88,7 @@ Follow these steps to create a storage account and upload wav files from your lo
     ```
 
     > [!TIP]
-    > When you are finished with batch transcriptions and want to delete your storage account, use the [`az storage delete create`](/cli/azure/storage/account#az-storage-account-delete) command.
+    > When you're finished with batch transcriptions and want to delete your storage account, use the [`az storage delete create`](/cli/azure/storage/account#az-storage-account-delete) command.
 
 1. Get your new storage account keys with the [`az storage account keys list`](/cli/azure/storage/account#az-storage-account-keys-list) command. 
 
@@ -126,7 +124,7 @@ Follow these steps to create a storage account and upload wav files from your lo
 This section explains how to set up and limit access to your batch transcription source audio files in an Azure Storage account using the [trusted Azure services security mechanism](/azure/storage/common/storage-network-security#trusted-access-based-on-a-managed-identity). 
 
 > [!NOTE]
-> With the trusted Azure services security mechanism, you need to use [Azure Blob storage](/azure/storage/blobs/storage-blobs-overview) to store audio files. Usage of [Azure Files](/azure/storage/files/storage-files-introduction) is not supported.
+> With the trusted Azure services security mechanism, you need to use [Azure Blob storage](/azure/storage/blobs/storage-blobs-overview) to store audio files. Usage of [Azure Files](/azure/storage/files/storage-files-introduction) isn't supported.
 
 If you perform all actions in this section, your Storage account is configured as follows:
 - Access to all external network traffic is prohibited.
@@ -244,7 +242,7 @@ A shared access signature (SAS) is a URI that grants restricted access to an Azu
 
 Follow these steps to generate a SAS URL that you can use for batch transcriptions.
 
-1. Complete the steps in [Azure Blob Storage upload](#azure-blob-storage-upload) to create a Storage account and upload audio files to a new container.
+1. Complete the steps in [Azure Blob Storage upload](#upload-to-azure-blob-storage) to create a Storage account and upload audio files to a new container.
 1. Select the new container.
 1. In the **Settings** group in the left pane, select **Shared access tokens**.
 1. Select **+ Container**.
@@ -259,7 +257,7 @@ Follow these steps to generate a SAS URL that you can use for batch transcriptio
 
 Follow these steps to generate a SAS URL that you can use for batch transcriptions.
 
-1. Complete the steps in [Azure Blob Storage upload](#azure-blob-storage-upload) to create a Storage account and upload audio files to a new container.
+1. Complete the steps in [Azure Blob Storage upload](#upload-to-azure-blob-storage) to create a Storage account and upload audio files to a new container.
 1. Generate a SAS URL with read (r) and list (l) permissions for the container with the [`az storage container generate-sas`](/cli/azure/storage/container#az-storage-container-generate-sas) command. Choose a new expiry date and replace `<mycontainer>` with the name of your container.
 
     ```azurecli-interactive
@@ -289,9 +287,9 @@ You could otherwise specify individual files in the container. You must generate
 }
 ```
 
-## Next steps
+## Related content
 
-- [Batch transcription overview](batch-transcription.md)
+- [Learn more about batch transcription](batch-transcription.md)
 - [Create a batch transcription](batch-transcription-create.md)
 - [Get batch transcription results](batch-transcription-get.md)
 - [See batch transcription code samples at GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/batch/)

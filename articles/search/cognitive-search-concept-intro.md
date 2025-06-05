@@ -108,7 +108,7 @@ In Azure Storage, a [knowledge store](knowledge-store-concept-intro.md) can assu
 
 Enrichment is available in regions that have Azure AI services. You can check the availability of enrichment on the [regions list](search-region-support.md) page. 
 
-Billing follows a pay-as-you-go pricing model. The costs of using built-in skills are passed on when a multi-region Azure AI services key is specified in the skillset. There are also costs associated with image extraction, as metered by Azure AI Search. Text extraction and utility skills, however, aren't billable. For more information, see [How you're charged for Azure AI Search](search-sku-manage-costs.md#how-youre-charged-for-azure-ai-search).
+Billing follows a Standard pricing model. The costs of using built-in skills are passed on when a multi-region Azure AI services key is specified in the skillset. There are also costs associated with image extraction, as metered by Azure AI Search. Text extraction and utility skills, however, aren't billable. For more information, see [How you're charged for Azure AI Search](search-sku-manage-costs.md#how-youre-charged-for-azure-ai-search).
 
 ## Checklist: A typical workflow
 
@@ -118,7 +118,7 @@ Start with a subset of data in a [supported data source](search-indexer-overview
 
 1. Create a [data source](/rest/api/searchservice/data-sources/create) that specifies a connection to your data.
 
-1. [Create a skillset](cognitive-search-defining-skillset.md). Unless your project is small, you should [attach an Azure AI multi-service resource](cognitive-search-attach-cognitive-services.md). If you're [creating a knowledge store](knowledge-store-create-rest.md), define it within the skillset.
+1. [Create a skillset](cognitive-search-defining-skillset.md). Unless your project is small, you should [attach an Azure AI services multi-service resource](cognitive-search-attach-cognitive-services.md). If you're [creating a knowledge store](knowledge-store-create-rest.md), define it within the skillset.
 
 1. [Create an index schema](search-how-to-create-search-index.md) that defines a search index.
 

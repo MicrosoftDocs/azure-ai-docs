@@ -1,11 +1,10 @@
 ---
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ---
 
 1. Go to your resource overview page in the [Azure portal](https://portal.azure.com/#home)

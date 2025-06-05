@@ -1,22 +1,22 @@
 ---
-title: 'Quickstart - Get started using Provisioned Deployments with Azure OpenAI Service'
-titleSuffix: Azure OpenAI Service
-description: Walkthrough on how to get started provisioned deployments on Azure OpenAI Service.
+title: 'Quickstart - Get started using Provisioned Deployments with Azure OpenAI in Azure AI Foundry Models'
+titleSuffix: Azure OpenAI
+description: Walkthrough on how to get started provisioned deployments on Azure OpenAI.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: openai
 ms.topic: how-to
-author: mrbullwinkle
-ms.author: mbullwin
-ms.date: 09/20/2024
+author: aahill
+ms.author: aahi
+ms.date: 03/31/2025
 recommendations: false
 ---
 
-# Get started using Provisioned Deployments on the Azure OpenAI Service
+# Get started using provisioned deployments on the Azure OpenAI in Azure AI Foundry Models
 
-The following guide walks you through key steps in creating a provisioned deployment with your Azure OpenAI Service resource. For more details on the concepts discussed here, see:
-* [Azure OpenAI Provisioned Onboarding Guide](./provisioned-throughput-onboarding.md)
-* [Azure OpenAI Provisioned Concepts](../concepts/provisioned-throughput.md) 
+The following guide walks you through key steps in creating a provisioned deployment with your Azure AI Foundry resource. For more details on the concepts discussed here, see:
+* [Azure AI Foundry Provisioned Throughput Onboarding Guide](./provisioned-throughput-onboarding.md)
+* [Azure AI Foundry Provisioned Throughput Concepts](../concepts/provisioned-throughput.md) 
 
 ## Prerequisites
 
@@ -32,55 +32,67 @@ Creating a new deployment requires available (unused) quota to cover the desired
 * Total PTU Quota = 500 PTUs 
 * Deployments: 
     * 100 PTUs: GPT-4o, 2024-05-13 
-    * 100 PTUs: GPT-4, 0613 
+    * 100 PTUs: DeepSeek-R1, 1
 
 Then 200 PTUs of quota are considered used, and there are 300 PTUs available for use to create new deployments. 
 
-A default amount of global, data zone, and regional provisioned quota is assigned to eligible subscriptions in several regions. You can view the quota available to you in a region by visiting the Quotas pane in [Azure AI Foundry portal](https://ai.azure.com/) and selecting the desired subscription and region. For example, the screenshot below shows a quota limit of 500 PTUs in West US for the selected subscription. Note that you might see lower values of available default quotas. 
+A default amount of global, data zone, and regional provisioned quota is assigned to eligible subscriptions in several regions. You can view the quota available to you in a region by visiting the Quotas pane in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and selecting the desired subscription and region. For example, the screenshot below shows a quota limit of 300 Global Provisioned Throughput PTUs in West US for the selected subscription. The total usage of this Global PTUs is 50, then you will have 250 PTU units available to deploy Global Provisioned Throughput deployment type.
 
 :::image type="content" source="../media/provisioned/available-quota.png" alt-text="A screenshot of the available quota in Azure AI Foundry portal." lightbox="../media/provisioned/available-quota.png":::
 
-Additional quota can be requested by clicking the Request Quota link to the right of the “Usage/Limit” column.  (This is off-screen in the screenshot above). 
+Additional quota can be requested by clicking the "Request Quota" Button.
 
-## Create an Azure OpenAI resource 
+## Create an Azure AI Foundry resource 
 
-Provisioned deployments are created via Azure OpenAI resource objects within Azure. You must have an Azure OpenAI resource in each region where you intend to create a deployment. Use the Azure portal to [create a resource](./create-resource.md) in a region with available quota, if required.  
+Provisioned deployments are created via Azure AI Foundry resource objects within Azure. You must have an Azure AI Foundry resource in each region where you intend to create a deployment. Use the Azure portal to [create a resource](./create-resource.md) in a region with available quota, if required.  
 
 > [!NOTE]
-> Azure OpenAI resources can support multiple types of Azure OpenAI deployments at the same time.  It is not necessary to dedicate new resources for your provisioned deployments. 
+> Azure AI Foundry resources can support multiple types of Azure AI Foundry deployments at the same time.  It is not necessary to dedicate new resources for your provisioned deployments. 
+
+## Discover models with provisioned deployment option
+
+Once you have verified your quota, you can create a deployment. Navigate to Azure AI Foundry model catalog to discover the models with provisioned deployment options. 
+
+1. Sign into the [Azure AI Foundry portal](https://ai.azure.com/). 
+2. Choose the subscription that was enabled for provisioned deployments & select the desired resource in a region where you have the quota. 
+3. You can select models by filtering **Direct from Microsoft** in the model collections filter. Those are models held and served by Azure directly and support provisioned throughput deployment option. 
+4. Select the model that you want to deploy and check the model details in the model card. 
+
 
 ## Create your provisioned deployment - capacity is available
 
-once you have verified your quota, you can create a deployment. To create a provisioned deployment, you can follow these steps; the choices described reflect the entries shown in the screenshot. 
+To create a provisioned deployment, you can follow these steps; the choices described reflect the entries shown in the screenshot.
 
 :::image type="content" source="../media/provisioned/deployment-screen.png" alt-text="Screenshot of the Azure AI Foundry portal deployment page for a provisioned deployment." lightbox="../media/provisioned/deployment-screen.png":::
 
 
 
-1. Sign into the [Azure AI Foundry portal](https://ai.azure.com).
-1. Choose the subscription that was enabled for provisioned deployments & select the desired resource in a region where you have the quota.
-1. Under **Management** in the left-nav select **Deployments**.
-1. Select Create new deployment and configure the following fields. Expand the **advanced options** drop-down menu.
-1. Fill out the values in each field. Here's an example:
+1. Click **Use this model** and configure the following fields. 
 
-| Field | Description |	Example |
+2. Select "Global Provisioned Throughput"," Data Zone Provisioned Throughput" or" Regional Provisioned Throughput" as you required in the Deployment type drop-down for your provisioned deployment. 
+
+3. Expand the **advanced options** drop-down menu. 
+
+4. Fill out the values in each field. Here's an example: 
+
+| Field | Description |    Example |
 |--|--|--|
-| Select a model|	Choose the specific model you wish to deploy.	| GPT-4 |
-| Model version |	Choose the version of the model to deploy.	 | 0613 |
-| Deployment Name	 | The deployment name is used in your code to call the model by using the client libraries and the REST APIs.	| gpt-4|
-| Content filter	| Specify the filtering policy to apply to the deployment. Learn more on our [Content Filtering](../concepts/content-filter.md) how-to. | 	Default |
-| Deployment Type	|This impacts the throughput and performance. Choose Global Provisioned-Managed, DataZone Provisioned-Managed or Provisioned-Managed from the deployment dialog dropdown for your deployment 	| Provisioned-Managed |
-| Provisioned Throughput Units |	Choose the amount of throughput you wish to include in the deployment. |	100 |
+| Select a model|    Choose the specific model you wish to deploy.    | GPT-4 |
+| Model version |    Choose the version of the model to deploy.     | 0613 |
+| Deployment Name     | The deployment name is used in your code to call the model by using the client libraries and the REST APIs.    | gpt-4|
+| Content filter    | Specify the filtering policy to apply to the deployment. Learn more on our [Content Filtering](../concepts/content-filter.md) how-to. |     Default |
+| Deployment Type    |This impacts the throughput and performance. Choose Global Provisioned Throughput, Data Zone Provisioned Throughput or Regional Provisioned Throughput from the deployment dialog dropdown for your deployment     | Global Provisioned Throughput |
+| Provisioned Throughput Units |    Choose the amount of throughput you wish to include in the deployment. |    100 |
 
 > [!NOTE]
-> The deployment dialog contains a reminder that you can purchase an Azure Reservation for Azure OpenAI Provisioned to obtain a significant discount for a term commitment. 
+> The deployment dialog contains a reminder that you can purchase an Azure Reservation for Azure AI Foundry Provisioned Throughput to obtain a significant discount for a term commitment. 
 
 Once you have entered the deployment settings, click **Confirm Pricing** to continue.  A pricing confirmation dialog will appear that will display the list price for the deployment, if you choose to pay for it on an hourly basis, with no Azure Reservation to provide a term discount.
 
 If you are unsure of the costs, cancel the deployment and proceed once you understand the payment model and underlying costs for provisioned deployment. This step may prevent unexpected, high charges on your payment invoice. Resources to educate yourself include: 
 
 * [Azure Pricing Portal](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) 
-* [Understanding the provisioned throughput purchase model](provisioned-throughput-onboarding.md#understanding-the-provisioned-throughput-purchase-model) 
+* [Understanding the provisioned throughput costs](provisioned-throughput-onboarding.md) 
 
 The image below shows the pricing confirmation you will see. The price shown is an example only. 
 
@@ -106,27 +118,39 @@ REST, ARM template, Bicep, and Terraform can also be used to create deployments.
 
 Due to the dynamic nature of capacity availability, it is possible that the region of your selected resource might not have the service capacity to create the deployment of the specified model, version, and number of PTUs. 
 
-In this event, the wizard in [Azure AI Foundry portal](https://ai.azure.com/) will direct you to other regions with available quota and capacity to create a deployment of the desired model. If this happens, the deployment dialog will look like this: 
+In this event, the wizard in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) will direct you to other regions with available quota and capacity to create a deployment of the desired model. If this happens, the deployment dialog will look like this: 
 
 :::image type="content" source="../media/provisioned/deployment-screen-2.png" alt-text="Screenshot of the Azure AI Foundry portal deployment page for a provisioned deployment with no capacity available." lightbox="../media/provisioned/deployment-screen-2.png":::
 
 Things to notice: 
 
 * A message displays showing you many PTUs you have in available quota, and how many can currently be deployed at this time. 
-* If you select a number of PTUs greater than service capacity, a message will appear that provides options for you to obtain more capacity, and a button to allow you to select an alternate region. Clicking the "See other regions" button will display a dialog that shows a list of Azure OpenAI resources where you can create a deployment, along with the maximum sized deployment that can be created based on available quota and service capacity in each region. 
+* If you select a number of PTUs greater than service capacity, a message will appear that provides options for you to obtain more capacity, and a button to allow you to select an alternate region. Clicking the "See other regions" button will display a dialog that shows a list of Azure AI Foundry resources where you can create a deployment, along with the maximum sized deployment that can be created based on available quota and service capacity in each region. 
 
 :::image type="content" source="../media/provisioned/choose-different-resource.png" alt-text="Screenshot of the Azure AI Foundry portal deployment page for choosing a different resource and region." lightbox="../media/provisioned/choose-different-resource.png":::
 
 Selecting a resource and clicking **Switch resource** will cause the deployment dialog to redisplay using the selected resource. You can then proceed to create your deployment in the new region. 
+
+## Create a new deployment or exchange models with your quota
+
+If you still have quota available under the subscription and region, you can create new provisioned deployments for other models that direct host and sold from Microsoft. 
+
+The steps are the same as the above example. When you create a new deployment, you will see the total available quota you can use in the deployment widget. In the screenshot below, the available quota is 250 units. 
+
+:::image type="content" source="../media/provisioned/deepseek-deployment.png" alt-text="Screenshot of the fungible PTU to deploy flagship models." lightbox="../media/provisioned/deepseek-deployment.png":::
+
+After you deployed the new model, you can check the quota usage in [AI Foundry portal](https://ai.azure.com/managementCenter/quota?wsid=/subscriptions/6a6fff00-4464-4eab-a6b1-0b533c7202e0/resourceGroups/rg-fokikioluai/providers/Microsoft.CognitiveServices/accounts/ai-fokikioluai889906014325&tid=72f988bf-86f1-41af-91ab-2d7cd011db47#aoaiProvisionedManaged). You can manage your quota by either requesting new quota or deleting existing deployments to free up PTU quotas for new provisioned deployments. 
+
+:::image type="content" source="../media/provisioned/fungible-quota.png" alt-text="Screenshot of the fungible PTU quota in quota page." lightbox="../media/provisioned/fungible-quota.png":::
 
 ## Optionally purchase a reservation 
 
 Following the creation of your deployment, you might want to purchase a term discount via an Azure Reservation.  An Azure Reservation can provide a substantial discount on the hourly rate for users intending to use the deployment beyond a few days.   
 
 For more information on the purchase model and reservations, see:
-* [Save costs with Microsoft Azure OpenAI service provisioned reservations](/azure/cost-management-billing/reservations/azure-openai).
-* [Azure OpenAI provisioned onboarding guide](./provisioned-throughput-onboarding.md) 
-* [Guide for Azure OpenAI provisioned reservations](../concepts/provisioned-throughput.md) 
+* [Save costs with Microsoft Azure AI Foundry provisioned throughput reservations](/azure/cost-management-billing/reservations/azure-openai).
+* [Azure AI Foundry provisioned throughput onboarding guide](./provisioned-throughput-onboarding.md) 
+* [Guide for Azure AI Foundry provisioned throughput reservations](../concepts/provisioned-throughput.md) 
 
 > [!IMPORTANT]
 > Capacity availability for model deployments is dynamic and changes frequently across regions and models. To prevent you from purchasing a reservation for more PTUs than you can use, create deployments first, and then purchase the Azure Reservation to cover the PTUs you have deployed. This best practice will ensure that you can take full advantage of the reservation discount and prevent you from purchasing a term commitment that you cannot use.
@@ -136,14 +160,13 @@ The inferencing code for provisioned deployments is the same a standard deployme
 
 
 ```python
-    #Note: The openai-python library support for Azure OpenAI is in preview. 
     import os
     from openai import AzureOpenAI
 
     client = AzureOpenAI(
         azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
         api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-        api_version="2024-02-01"
+        api_version="2024-10-21"
     )
 
     response = client.chat.completions.create(
@@ -152,7 +175,7 @@ The inferencing code for provisioned deployments is the same a standard deployme
             {"role": "system", "content": "You are a helpful assistant."},
             {"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
             {"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},
-            {"role": "user", "content": "Do other Azure AI services support this too?"}
+            {"role": "user", "content": "Do other Azure services support this too?"}
         ]
     )
 
@@ -160,12 +183,12 @@ The inferencing code for provisioned deployments is the same a standard deployme
 ```
 
 > [!IMPORTANT]
-> For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see the Azure AI services [security](../../security-features.md) article.
+> For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see this [security](../../security-features.md) article.
 
 
 ## Understanding expected throughput
 The amount of throughput that you can achieve on the endpoint is a factor of the number of PTUs deployed, input size, output size, and call rate. The number of concurrent calls and total tokens processed can vary based on these values. Our recommended way for determining the throughput for your deployment is as follows:
-1. Use the Capacity calculator for a sizing estimate. You can find the capacity calculator in [Azure AI Foundry portal](https://ai.azure.com/) under the quotas page and Provisioned tab.  
+1. Use the Capacity calculator for a sizing estimate. You can find the capacity calculator in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) under the quotas page and Provisioned tab.  
 1. Benchmark the load using real traffic workload. For more information about benchmarking, see the [benchmarking](#run-a-benchmark) section.
 
 
@@ -178,16 +201,16 @@ You can find the utilization measure in the Azure-Monitor section for your resou
 
 :::image type="content" source="../media/provisioned/azure-monitor-utilization.jpg" alt-text="Screenshot of the provisioned managed utilization on the resource's metrics blade in the Azure portal." lightbox="../media/provisioned/azure-monitor-utilization.jpg":::
 
-For more information about monitoring your deployments, see the [Monitoring Azure OpenAI Service](./monitoring.md) page.
+For more information about monitoring your deployments, see the [Monitoring Azure OpenAI](./monitoring.md) page.
 
 
 ## Handling high utilization
-Provisioned deployments provide you with an allocated amount of compute capacity to run a given model. The ‘Provisioned-Managed Utilization V2’ metric in Azure Monitor measures the utilization of the deployment in one-minute increments. Provisioned-Managed deployments are also optimized so that calls accepted are processed with a consistent per-call max latency. When the workload exceeds its allocated capacity, the service returns a 429 HTTP status code until the utilization drops down below 100%. The time before retrying is provided in the `retry-after` and `retry-after-ms` response headers that provide the time in seconds and milliseconds respectively. This approach maintains the per-call latency targets while giving the developer control over how to handle high-load situations – for example retry or divert to another experience/endpoint. 
+Provisioned deployments provide you with an allocated amount of compute capacity to run a given model. The 'Provisioned-Managed Utilization V2' metric in Azure Monitor measures the utilization of the deployment in one-minute increments. Provisioned-Managed deployments are also optimized so that calls accepted are processed with a consistent per-call max latency. When the workload exceeds its allocated capacity, the service returns a 429 HTTP status code until the utilization drops down below 100%. The time before retrying is provided in the `retry-after` and `retry-after-ms` response headers that provide the time in seconds and milliseconds respectively. This approach maintains the per-call latency targets while giving the developer control over how to handle high-load situations – for example retry or divert to another experience/endpoint. 
 
 ### What should  I do when I receive a 429 response?
 A 429 response indicates that the allocated PTUs are fully consumed at the time of the call. The response includes the `retry-after-ms` and `retry-after` headers that tell you the time to wait before the next call will be accepted. How you choose to handle a 429 response depends on your application requirements. Here are some considerations:
--	If you are okay with longer per-call latencies, implement client-side retry logic to wait the `retry-after-ms` time and retry. This approach lets you maximize the throughput on the deployment. Microsoft-supplied client SDKs already handle it with reasonable defaults. You might still need further tuning based on your use-cases.
--	Consider redirecting the traffic to other models, deployments, or experiences. This approach is the lowest-latency solution because this action can be taken as soon as you receive the 429 signal.
+-    If you are okay with longer per-call latencies, implement client-side retry logic to wait the `retry-after-ms` time and retry. This approach lets you maximize the throughput on the deployment. Microsoft-supplied client SDKs already handle it with reasonable defaults. You might still need further tuning based on your use-cases.
+-    Consider redirecting the traffic to other models, deployments, or experiences. This approach is the lowest-latency solution because this action can be taken as soon as you receive the 429 signal.
 The 429 signal isn't an unexpected error response when pushing to high utilization but instead part of the design for managing queuing and high load for provisioned deployments. 
 
 ### Modifying retry logic within the client libraries
@@ -203,7 +226,7 @@ from openai import AzureOpenAI
 client = AzureOpenAI(
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"),
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-    api_version="2024-02-01",
+    api_version="2024-10-21",
     max_retries=5,# default is 2
 )
 
@@ -214,7 +237,7 @@ client.with_options(max_retries=5).chat.completions.create(
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
         {"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},
-        {"role": "user", "content": "Do other Azure AI services support this too?"}
+        {"role": "user", "content": "Do other Azure services support this too?"}
     ]
 )
 ```

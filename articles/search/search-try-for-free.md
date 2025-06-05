@@ -31,13 +31,13 @@ Once you sign up, you can immediately use either of these links to access Azure 
 
 + [Sign in to Azure portal](https://portal.azure.com/) to view, manage, and create more resources. You can also use the Azure portal to track your credits and projected costs.
 
-+ [Sign in to Azure AI Foundry](https://ai.azure.com) for a no-code approach to deploying models on Azure OpenAI and using Azure AI Search for information retrieval. **We recommend you start here first.**
++ [Sign in to Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) for a no-code approach to deploying models on Azure OpenAI and using Azure AI Search for information retrieval. **We recommend you start here first.**
 
 ## Step two: "Day One" tasks
 
 [**How to build and consume vector indexes in Azure AI Foundry portal**](/azure/ai-foundry/how-to/index-add) is a great place to start.
 
-1. [Sign in to Azure AI Foundry](https://ai.azure.com).
+1. [Sign in to Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
 1. Create a new hub and project.
 
@@ -84,7 +84,7 @@ Start here if you want to use built-in vectorization or chat models:
 
 Continue with the following link to confirm region and tier availability for AI Search:
 
-- [Azure AI Search region list](search-region-support.md). This list identifies region support for Azure AI Search, applied AI (Azure AI multi-service), and semantic ranking. You don't need a separate region check for applied AI.
+- [Azure AI Search region list](search-region-support.md). This list identifies region support for Azure AI Search, applied AI (Azure AI services multi-service), and semantic ranking. You don't need a separate region check for applied AI.
 
 > [!TIP]
 > Currently, these regions provide the most overlap and capacity: **East US**, **East US2**, **Central US​​**, and **South Central** in the Americas; **UK South** or **Switzerland North** in Europe; **Australia East** in Asia Pacific.
@@ -102,7 +102,7 @@ Continue with the following link to confirm region and tier availability for AI 
 
 1. [Create an Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource?pivots=web-portal) as your model provider.
 
-1. [Create an Azure AI multiservice account](/azure/ai-services/multi-service-resource?pivots=azportal) to use applied AI in your indexing workloads and Azure AI Vision multimodal APIs as an embedding model provider. You can create and transform content during indexing if applied AI can be attached. For multimodal APIs, make sure you choose a region that provides those APIs. Look for this tile in Azure Marketplace:
+1. [Create an Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills?pivots=azportal) to use applied AI in your indexing workloads and Azure AI Vision multimodal APIs as an embedding model provider. You can create and transform content during indexing if applied AI can be attached. For multimodal APIs, make sure you choose a region that provides those APIs. Look for this tile in Azure Marketplace:
 
    :::image type="content" source="./media/search-try-for-free/azure-ai-service-marketplace.png" alt-text="Screenshot of the Azure AI Services offering in Azure Marketplace.":::
 
@@ -127,7 +127,7 @@ Many samples and [accelerators](resource-tools.md) come with bicep scripts that 
 
 ## Step four: Track your credits 
 
-During the trial period, you want to stay under the USD 200 credit allocation. Most services are pay-as-you-go, so you won't be charged while they're not in use, but an Azure AI Search service on the Basic tier is provisioned on dedicated clusters and it can only be used by you. It's billable during its lifetime. If you provision a basic tier search service, expect Azure AI Search to consume about one third of your available credits during the trial period.
+During the trial period, you want to stay under the USD 200 credit allocation. Most services are Standard, so you won't be charged while they're not in use, but an Azure AI Search service on the Basic tier is provisioned on dedicated clusters and it can only be used by you. It's billable during its lifetime. If you provision a basic tier search service, expect Azure AI Search to consume about one third of your available credits during the trial period.
 
 During the trial period, the Azure portal provides a notification on the top right that tells you how many credits are used up and what remains. 
 

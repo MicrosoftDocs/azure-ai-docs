@@ -51,7 +51,7 @@ Now we'll add some basic UI for input boxes, reference the Speech SDK's JavaScri
         <td><h1 style="font-weight:500;">Microsoft Azure AI Speech SDK JavaScript Quickstart</h1></td>
       </tr>
       <tr>
-        <td align="right"><a href="https://learn.microsoft.com/azure/ai-services/speech-service/overview" target="_blank">Subscription</a>:</td>
+        <td align="right"><a href="/azure/ai-services/speech-service/overview" target="_blank">Subscription</a>:</td>
         <td><input id="subscriptionKey" type="text" size="40" value="subscription"></td>
       </tr>
       <tr>
@@ -80,8 +80,8 @@ Now we'll add some basic UI for input boxes, reference the Speech SDK's JavaScri
   <script src="microsoft.cognitiveservices.speech.sdk.bundle.js"></script>
 
   <script>
-  // Note: Replace the URL with a valid endpoint to retrieve
-  //       authorization tokens for your subscription.
+  // Replace the URL with a valid endpoint to retrieve
+  // authorization tokens for your Speech resource.
   var authorizationEndpoint = "token.php";
 
   function RequestAuthorizationToken() {
@@ -146,7 +146,7 @@ Now we'll add some basic UI for input boxes, reference the Speech SDK's JavaScri
 
 ## Create a Speech configuration
 
-Before you can initialize a `SpeechRecognizer` object, you need to create a configuration that uses your subscription key and subscription region. Insert this code in the `startRecognizeOnceAsyncButton.addEventListener()` method.
+Before you can initialize a `SpeechRecognizer` object, you need to create a configuration that uses your Speech resource key and subscription region. Insert this code in the `startRecognizeOnceAsyncButton.addEventListener()` method.
 
 > [!NOTE]
 > The Speech SDK will default to recognizing using en-us for the language, see [How to recognize speech](../../../how-to-recognize-speech.md) for information on choosing the source language.
@@ -265,7 +265,7 @@ Insert this code below the model addition:
 ## Create the token source (optional)
 
 In case you want to host the web page on a web server, you can optionally provide a token source for your demo application.
-That way, your subscription key will never leave your server while allowing users to use speech capabilities without entering any authorization code themselves.
+That way, your Speech resource key will never leave your server while allowing users to use speech capabilities without entering any authorization code themselves.
 
 Create a new file named `token.php`. In this example we assume your web server supports the PHP scripting language with curl enabled. Enter the following code:
 
@@ -274,7 +274,7 @@ Create a new file named `token.php`. In this example we assume your web server s
 header('Access-Control-Allow-Origin: ' . $_SERVER['SERVER_NAME']);
 
 // Replace with your own subscription key and service region (e.g., "westus").
-$subscriptionKey = 'YourSubscriptionKey';
+$subscriptionKey = 'YourSpeechResoureKey';
 $region = 'YourServiceRegion';
 
 $ch = curl_init();

@@ -1,11 +1,11 @@
 ---
 title: Azure OpenAI Java support
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Azure OpenAI Java support
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 11/18/2024
+ms.date: 03/27/2025
 ---
 
 
@@ -19,7 +19,7 @@ Version selection is controlled by the [`OpenAIServiceVersion`](/java/api/com.az
 
 The latest Azure OpenAI preview API supported is:
 
--`2024-08-01-preview`
+-`2025-01-01-preview`
 
 The latest stable (GA) release supported is:
 
@@ -33,13 +33,13 @@ The latest stable (GA) release supported is:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-openai</artifactId>
-    <version>1.0.0-beta.12</version>
+    <version>1.0.0-beta.16</version>
 </dependency>
 ```
 
 ## Authentication
 
-In order to interact with the Azure OpenAI Service you'll need to create an instance of client class, [`OpenAIAsyncClient`](https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.12/sdk/openai/azure-ai-openai/src/main/java/com/azure/ai/openai/OpenAIAsyncClient.java) or [`OpenAIClient`](https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.12/sdk/openai/azure-ai-openai/src/main/java/com/azure/ai/openai/OpenAIClient.java) by using [`OpenAIClientBuilder`](https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.12/sdk/openai/azure-ai-openai/src/main/java/com/azure/ai/openai/OpenAIClientBuilder.java). To configure a client for use with Azure OpenAI, provide a valid endpoint URI to an Azure OpenAI resource along with a corresponding key credential, token credential, or Azure Identity credential that's authorized to use the Azure OpenAI resource.
+In order to interact with the Azure OpenAI in Azure AI Foundry Models you'll need to create an instance of client class, [`OpenAIAsyncClient`](https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.12/sdk/openai/azure-ai-openai/src/main/java/com/azure/ai/openai/OpenAIAsyncClient.java) or [`OpenAIClient`](https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.12/sdk/openai/azure-ai-openai/src/main/java/com/azure/ai/openai/OpenAIClient.java) by using [`OpenAIClientBuilder`](https://github.com/Azure/azure-sdk-for-java/blob/azure-ai-openai_1.0.0-beta.12/sdk/openai/azure-ai-openai/src/main/java/com/azure/ai/openai/OpenAIClientBuilder.java). To configure a client for use with Azure OpenAI, provide a valid endpoint URI to an Azure OpenAI resource along with a corresponding key credential, token credential, or Azure Identity credential that's authorized to use the Azure OpenAI resource.
 
 # [Microsoft Entra ID](#tab/secure)
 
@@ -229,7 +229,7 @@ Refer to the instructions in this reference document on how to [configure loggin
 
 ### Enable HTTP request/response logging
 
-Reviewing the HTTP request sent or response received over the wire to/from the Azure OpenAI service can be
+Reviewing the HTTP request sent or response received over the wire to/from the Azure OpenAI can be
 useful in troubleshooting issues. To enable logging the HTTP request and response payload, the [OpenAIClient][openai_client]
 can be configured as shown below. If there's no SLF4J's `Logger` on the class path, set an environment variable
 [AZURE_LOG_LEVEL][azure_log_level] in your machine to enable logging.
@@ -273,7 +273,7 @@ clientBuilder.httpLogOptions(new HttpLogOptions().addAllowedHeaderName("safe-to-
 ```
 
 ### Troubleshooting exceptions
-Azure OpenAI service methods throw a`[HttpResponseException` or its subclass on failure.
+Azure OpenAI methods throw a`[HttpResponseException` or its subclass on failure.
 The `HttpResponseException` thrown by the OpenAI client library includes detailed response error object
 that provides specific useful insights into what went wrong and includes corrective actions to fix common issues.
 This error information can be found inside the message property of the `HttpResponseException` object.

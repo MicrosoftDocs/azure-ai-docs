@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 11/19/2024
+ms.date: 03/14/2025
 ms.author: lajanuar
 ---
 
@@ -36,7 +36,7 @@ ms.author: lajanuar
 ::: moniker-end
 
 ::: moniker range=">=doc-intel-2.1.0"
- Azure AI Document Intelligence supports a wide variety of models that enable you to add intelligent document processing to your apps and flows. You can use a prebuilt domain-specific model or train a custom model tailored to your specific business need and use cases. Document Intelligence can be used with the REST API or Python, C#, Java, and JavaScript client libraries.
+ Azure AI Document Intelligence supports a wide variety of models that enable you to add intelligent document processing to your apps and flows. You can use a prebuilt domain-specific model or train a custom model tailored to your specific business needs and use cases. Document Intelligence can be used with the REST API or Python, C#, Java, and JavaScript client libraries.
 ::: moniker-end
 
 > [!NOTE]
@@ -48,11 +48,11 @@ ms.author: lajanuar
 
 The following table shows the available models for each stable API:
 
-|**Model Type**| **Model**|&bullet; [2024-11-30 (GA)](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true)|[2023-07-31 (GA)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)|[2022-08-31 (GA)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)|[v2.1 (GA)](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)|
+|**Model Type**| **Model**|[2024-11-30 (GA)](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true)|[2023-07-31 (GA)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)|[2022-08-31 (GA)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)|[v2.1 (GA)](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)|
 |----------------|-----------|---|--|---|---|
 |Document analysis models|[Read](prebuilt/read.md)                                  | ✔️| ✔️| ✔️| n/a|
 |Document analysis models|[Layout](prebuilt/layout.md)                              | ✔️| ✔️| ✔️| ✔️|
-|Document analysis models|[General document](prebuilt/general-document.md)          |moved to layout**| ✔️| ✔️| n/a|
+|Document analysis models|[** General document](prebuilt/general-document.md)          |**supported in<br>layout model**| ✔️| ✔️| n/a|
 |Prebuilt models|[Bank Check](concept-bank-check.md)   | ✔️| n/a| n/a| n/a|
 |Prebuilt models|[Bank Statement](concept-bank-statement.md)   | ✔️| n/a| n/a| n/a|
 |Prebuilt models|[Paystub](concept-pay-stub.md)   | ✔️| n/a| n/a| n/a|
@@ -82,8 +82,8 @@ The following table shows the available models for each stable API:
 |Custom extraction model|[Custom composed](train/composed-models.md)            | ✔️| ✔️| ✔️| ✔️|
 |All models|[Add-on capabilities](concept-add-on-capabilities.md)    | ✔️| ✔️| n/a| n/a|
 
-\* - Contains submodels. See the model specific information for supported variations and subtypes. </br>
-\**- All the capabilites of General Document model are available in layout model. General model is no longer supported. 
+\* Contains submodels. See the model specific information for supported variations and subtypes.</br>
+\** All the General Document model capabilities are available in layout model. General model is no longer supported. 
 
 ### Latency
 
@@ -252,7 +252,7 @@ The US mortgage document models analyze and extract key fields including borrowe
 
  The contract model analyzes and extracts key fields from check including check details, account details, amount, memo, is extracted from US bank checks.
  
-***Sample bank check processed using [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio/prebuilt?formCategory=check.us)***:
+***A bank check sample processed using [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio/prebuilt?formCategory=check.us)***:
 
 :::image type="content" source="media/studio/analyze-bank-check.png" alt-text="Screenshot of bank check model extraction using Document Intelligence Studio.":::
 
@@ -263,7 +263,7 @@ The US mortgage document models analyze and extract key fields including borrowe
 
 :::image type="icon" source="media/overview/icon-contract.png":::
 
- The bank statement model analyzes and extracts key fields and line items from US bank statements account number, bank details, statement details and transaction details.
+ The bank statement model analyzes and extracts key fields and line items from US bank statements account number, bank details, statement details, and transaction details.
 
 ***Sample bank statement processed using [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio/prebuilt?formCategory=bankStatement.us)***:
 
@@ -410,7 +410,7 @@ A composed model is created by taking a collection of custom models and assignin
 [!INCLUDE [input requirements](./includes/input-requirements.md)]
 
 > [!NOTE]
-> The [Sample Labeling tool](https://fott-2-1.azurewebsites.net/) does not support the BMP file format. This is a limitation of the tool not the Document Intelligence Service.
+> The [Sample Labeling tool](https://fott-2-1.azurewebsites.net/) doesn't support the BMP file format. The limitation is derived from the tool not the Document Intelligence Service.
 
 ### Version migration
 
@@ -531,7 +531,7 @@ A composed model is created by taking a collection of custom models and assignin
 [!INCLUDE [input requirements](./includes/input-requirements.md)]
 
 > [!NOTE]
-> The [Sample Labeling tool](https://fott-2-1.azurewebsites.net/) does not support the BMP file format. This is a limitation of the tool not the Document Intelligence Service.
+> The [Sample Labeling tool](https://fott-2-1.azurewebsites.net/) doesn't support the BMP file format. The limitation is derived from the tool not the Document Intelligence Service.
 
 ### Version migration
 

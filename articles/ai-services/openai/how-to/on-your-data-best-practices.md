@@ -1,10 +1,10 @@
 ---
 title: Best practices for using Azure OpenAI On Your Data
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn about the best practices for using Azure OpenAI On Your Data, along with how to fix common problems.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 01/28/2025
+ms.date: 04/29/2025
 ms.custom: references_regions, build-2023, build-2023-dataai, refefences_regions
 manager: nitinme
 author: aahill
@@ -14,7 +14,7 @@ recommendations: false
 
 # Troubleshooting and best practices for Azure OpenAI On Your Data
 
-This article can help guide you through common problems in developing a solution by using Azure OpenAI Service On Your Data, a feature that allows you to use the power of OpenAI models with your own data. By following the best practices and tips in this article, you can optimize your output with Azure OpenAI On Your Data and achieve the best AI quality possible.
+This article can help guide you through common problems in developing a solution by using Azure OpenAI in Azure AI Foundry Models On Your Data, a feature that allows you to use the power of OpenAI models with your own data. By following the best practices and tips in this article, you can optimize your output with Azure OpenAI On Your Data and achieve the best AI quality possible.
 
 ## Azure OpenAI On Your Data: Workflow
 
@@ -62,7 +62,7 @@ If the correct document chunks don't appear in the retrieved documents, you need
 
 * It's possible that a correct document chunk wasn't part of the `topNDocuments` parameter. In this case, increase the parameter.
 
-* It's possible that your index fields are incorrectly mapped, so retrieval might not work well. This mapping is particularly relevant if you're using a pre-existing data source. (That is, you didn't create the index by using the studio or offline scripts available on [GitHub](https://github.com/microsoft/sample-app-aoai-chatGPT/tree/main/scripts).) For more information on mapping index fields, see the [how-to article](../concepts/use-your-data.md?tabs=ai-search#index-field-mapping).
+* It's possible that your index fields are incorrectly mapped, so retrieval might not work well. This mapping is particularly relevant if you're using a preexisting data source. (That is, you didn't create the index by using the studio or offline scripts available on [GitHub](https://github.com/microsoft/sample-app-aoai-chatGPT/tree/main/scripts).) For more information on mapping index fields, see the [how-to article](../concepts/use-your-data.md?tabs=ai-search#index-field-mapping).
 
 * It's possible that the intent generation step isn't working well. In the API response, check the `intents` fields in the `tool` message.
 
@@ -80,7 +80,7 @@ If the correct document chunks don't appear in the retrieved documents, you need
 
 ## Common problems
 
-The following sections list possible solutions to problems that you might encounter when you're developing a solution by using Azure OpenAI Service On Your Data.
+The following sections list possible solutions to problems that you might encounter when you're developing a solution by using Azure OpenAI On Your Data.
 
 ### The information is correct, but the model responds with "The requested information isn't present in the retrieved documents. Please try a different query or topic."
 

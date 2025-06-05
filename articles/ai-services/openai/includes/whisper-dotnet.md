@@ -10,7 +10,7 @@ ms.date: 3/11/2025
 ## Prerequisites
 
 - An Azure subscription. You can [create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true).
-- An Azure OpenAI resource with a Whisper model deployed in a [supported region](../concepts/models.md#whisper-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
+- An Azure OpenAI resource with a speech to text model deployed in a [supported region](../concepts/models.md?tabs=standard-audio#standard-deployment-regional-models-by-endpoint). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 - [The .NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download)
 
 ### Microsoft Entra ID prerequisites
@@ -21,7 +21,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Set up
 
-1. Create a new folder `whisper-quickstart` to contain the application and open Visual Studio Code in that folder with the following command:
+1. Create a new folder `whisper-quickstart` and go to the quickstart folder with the following command:
 
     ```shell
     mkdir whisper-quickstart && cd whisper-quickstart

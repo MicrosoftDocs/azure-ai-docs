@@ -2,7 +2,6 @@
 title: What's new in Azure AI Vision?
 titleSuffix: Azure AI services
 description: Stay up to date on recent releases and updates to Azure AI Vision.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
@@ -12,6 +11,7 @@ ms.custom:
 ms.topic: whats-new
 ms.date: 03/11/2024
 ms.collection: ce-skilling-fresh-tier2
+ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 

@@ -127,8 +127,8 @@ To make the right decision on which networking set-up works best for your scenar
 
 | | Managed network (recommended) | Custom network |
 | --- | --- | --- |
-| __Benefits__ | - Minimize set-up and maintenance overhead. </br>- Supports managed online endpoints. </br>- Supports serverless spark. </br>- Access to HTTPs endpoint resources located on-premises or in your custom virtual network. </br>- Focus for new feature development. | - Customize network to your requirements. </br>- Bring your own non-Azure resources. </br>- Connect to on-premises resources. |
-| __Limitations__ | - Extra costs for Azure Firewall and FQDN rules. </br>- Logging of the virtual network firewall and NSG rules isn't supported. </br>- Access to non-HTTPs endpoint resources isn't supported. | - New feature support might be delayed. </br>-Managed online endpoints aren't supported. </br>- Serverless spark isn't supported. </br>- Foundational models aren't supported. </br>- No code MLFlow isn't supported. </br>- Implementation complexity. </br>- Maintenance overhead. |
+| __Benefits__ | - Minimize set-up and maintenance overhead. </br>- Supports managed online endpoints. </br>- Supports serverless spark. </br>- Access to HTTPS endpoint resources located on-premises or in your custom virtual network. </br>- Focus for new feature development. | - Customize network to your requirements. </br>- Bring your own non-Azure resources. </br>- Connect to on-premises resources. |
+| __Limitations__ | - Extra costs for Azure Firewall and FQDN rules. </br>- Logging of the virtual network firewall and NSG rules isn't supported. </br>- Access to non-HTTPS endpoint resources isn't supported. | - New feature support might be delayed. </br>-Managed online endpoints aren't supported. </br>- Serverless spark isn't supported. </br>- Foundational models aren't supported. </br>- No code MLFlow isn't supported. </br>- Implementation complexity. </br>- Maintenance overhead. |
 
 ### Use a public workspace
 
@@ -144,11 +144,11 @@ If you have your own DNS server hosted in Azure or on-premises, you need to crea
 
 We have two types of outbound; read only and read/write. Malicious actor's can't expoilt read only outbound, but read/write outbound can be. Azure Storage and Azure Frontdoor (the frontdoor.frontend service tag) are read/write outbound in our case. 
 
-You can mitigate this data exfiltration risk using our data exfiltration prevention solution. We use a service endpoint policy with an Azure Machine Learning alias to allow outbound to only Azure Machine Learning managed storage accounts. You don't need to open outbound to Storage on your firewall. 
+You can mitigate this data exfiltration risk using our data exfiltration prevention solution. We use a service endpoint policy with an Azure Machine Learning alias to allow outbound to only Azure Machine Learning managed storage accounts.
 
 :::image type="content" source="./media/how-to-network-isolation-planning/data-exfiltration-protection-diagram.png" alt-text="Diagram of network with exfiltration protection configuration.":::
 
-In this diagram, the compute instance and cluster need to access Azure Machine Learning managed storage accounts to get set-up scripts. Instead of opening the outbound to storage, you can use service endpoint policy with Azure Machine Learning alias to allow the storage access only to Azure Machine Learning storage accounts.
+In this diagram, the compute instance and cluster need to access Azure Machine Learning managed storage accounts to get set-up scripts. When opening the outbound to storage, you can use service endpoint policy with Azure Machine Learning alias to allow the storage access only to Azure Machine Learning storage accounts.
 
 ### Managed online endpoints
 

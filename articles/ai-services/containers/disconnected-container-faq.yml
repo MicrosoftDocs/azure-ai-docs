@@ -10,7 +10,7 @@ metadata:
   ms.custom:
     - ignite-2023
   ms.topic: faq
-  ms.date: 02/27/2025
+  ms.date: 04/08/2025
   ms.author: aahi
 title: FAQ for Azure AI services disconnected containers
 summary: |
@@ -20,21 +20,9 @@ sections:
       - question: Which services are available as disconnected containers?
         answer: |
           Azure AI containers allow developers to use the same intelligent APIs that are available in Azure, but with the [benefits](../cognitive-services-container-support.md#features-and-benefits) of containerization. 
-          Disconnected containers are offered through commitment tier pricing, each offering a discounted rate compared to the pay-as-you-go pricing model. With commitment tier pricing, you can commit to using the following Azure AI services features for a fixed fee, enabling you to have a predictable total cost based on the needs of your workload.
-          * Azure AI Speech
-            *	Speech to text
-            *	Custom Speech to text
-            * Neural Text to speech
-          *	Text Translation (Standard)
-          *	Azure AI Language
-              *	Sentiment Analysis
-              *	Key Phrase Extraction
-              *	Language Detection
-              * Named Entity Recognition (NER)
-          *	Azure AI Vision - Read
-          *	Document Intelligence
+          [Disconnected containers](./disconnected-containers.md) are offered through commitment tier pricing, each offering a discounted rate compared to the Standard pricing model. With commitment tier pricing, you can commit to using the following Azure AI services features for a fixed fee, enabling you to have a predictable total cost based on the needs of your workload.
 
-          For more information about commitment tier pricing, reach out to your Microsoft account team or contact at Microsoft. You can also email azureaicontainergating@service.microsoft.com.
+          For more information about commitment tier pricing, reach out to your Microsoft account team or contact at Microsoft. You can also email azureaicontainergating@service.microsoft.com. For information on the available disconnected containers, see [Use Docker containers in disconnected environments](./disconnected-containers.md).
       - question: Will containers be available for other Azure AI services offerings, and what's the next set of containers I should expect?
         answer: |
           We'd like to make more Azure AI services offerings available as containers. Contact your local Microsoft account manager to get updates on new container releases and other Azure AI services announcements.
@@ -123,7 +111,7 @@ sections:
         answer: |
           Customers are charged based on the commitment tier they purchase. Choose an annual commitment plan based on the needs of your workload. You can customize the "Commitment tier disconnected containers DC0" pricing tier by selecting one of several commitment tier options. 
           
-          Each commitment tier offers a discounted rate as compared to the pay-as-you-go pricing model. Commitment plans are charged annually starting from the day the resource was created. Additional units can be added at any time in the year and are charged pro-rated based on the number of days remaining in the billing year. For more information, see the following pricing pages:
+          Each commitment tier offers a discounted rate as compared to the Standard pricing model. Commitment plans are charged annually starting from the day the resource was created. Additional units can be added at any time in the year and are charged pro-rated based on the number of days remaining in the billing year. For more information, see the following pricing pages:
           > [!TIP]
           > To find the pricing information for disconnected containers on these pricing pages, scroll down to **Commitment Tiers** section.
 

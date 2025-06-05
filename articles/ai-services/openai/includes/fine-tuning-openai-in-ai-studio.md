@@ -1,22 +1,21 @@
 ---
- title: Include file
- description: Include file
- author: mrbullwinkle
- ms.author: mbullwin
- ms.service: azure-ai-foundry
- ms.topic: include
- ms.date: 02/27/2025
-ms.custom: include, build-2024
+title: Include file
+description: Include file
+author: mrbullwinkle
+ms.author: mbullwin
+ms.date: 02/27/2025
+ms.service: azure-ai-foundry
+ms.topic: include
+ms.custom:
+  - include
+  - build-2024
+  - build-2025
 ---
-
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
 ## Prerequisites
 
 - Read the [When to use Azure OpenAI fine-tuning guide](../concepts/fine-tuning-considerations.md).
-
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
-- An [Azure AI hub resource](../../../ai-foundry/how-to/create-azure-ai-resource.md).
 - An [Azure AI project](../../../ai-foundry/how-to/create-projects.md) in Azure AI Foundry portal.
 - An [Azure OpenAI connection](/azure/ai-foundry/how-to/connections-add?tabs=azure-openai#connection-details) to a resource in a [region where fine-tuning is supported](/azure/ai-services/openai/concepts/models#fine-tuning-models).
     > [!NOTE]
@@ -26,28 +25,18 @@ ms.custom: include, build-2024
 
 ### Supported models
 
-The following models support fine-tuning:
-
-- `gpt-35-turbo` (0613)
-- `gpt-35-turbo` (1106)
-- `gpt-35-turbo` (0125)
-- `gpt-4` (0613)**<sup>*</sup>**
-- `gpt-4o` (2024-08-06)
-- `gpt-4o-mini` (2024-07-18)
-
-**<sup>*</sup>** Fine-tuning for this model is currently in public preview.
+Consult the [models page](../concepts/models.md#fine-tuning-models) to check which regions currently support fine-tuning.
 
 Or you can fine tune a previously fine-tuned model, formatted as base-model.ft-{jobid}.
-
-Consult the [models page](../concepts/models.md#fine-tuning-models) to check which regions currently support fine-tuning.
 
 ## Review the workflow for Azure AI Foundry
 
 Take a moment to review the fine-tuning workflow for using Azure AI Foundry:
 
 1. Prepare your training and validation data.
-1. Use the **Fine-tune model** wizard in Azure AI Foundry portal to train your custom model.
-    1. Select a model to finetune.
+1. Use the **Create a fine-tuned model** wizard in Azure AI Foundry portal to train your custom model.
+    1. Select a training method.
+    1. Select a base model.
     1. [Choose your training data](#choose-your-training-data).
     1. Optionally, [choose your validation data](#choose-your-validation-data).
     1. Optionally, [configure your parameters](#configure-your-parameters) for your fine-tuning job.
@@ -62,7 +51,7 @@ Take a moment to review the fine-tuning workflow for using Azure AI Foundry:
 
 Your training data and validation data sets consist of input and output examples for how you would like the model to perform.
 
-The training and validation data you use **must** be formatted as a JSON Lines (JSONL) document. For `gpt-35-turbo-0613` the fine-tuning dataset must be formatted in the conversational format that is used by the [Chat completions](../how-to/chatgpt.md) API.
+The training and validation data you use **must** be formatted as a JSON Lines (JSONL) document and must be formatted in the conversational format that is used by the [Chat completions](../how-to/chatgpt.md) API.
 
 It's generally recommended to use the instructions and prompts that you found worked best in every training example. This will help you get the best results, especially if you have fewer than a hundred examples.
 
@@ -109,7 +98,7 @@ In general, doubling the dataset size can lead to a linear increase in model qua
 
 To fine-tune an Azure OpenAI model in an existing Azure AI Foundry project, follow these steps:
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com) and select your project. If you don't have a project already, first [create a project](../../../ai-foundry/how-to/create-projects.md).
+1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and select your project. If you don't have a project already, first [create a project](../../../ai-foundry/how-to/create-projects.md).
 
 1. From the collapsible left menu, select **Fine-tuning** > **+ Fine-tune model**.
 
@@ -117,7 +106,7 @@ To fine-tune an Azure OpenAI model in an existing Azure AI Foundry project, foll
 
 1. Select a base model to fine-tune. Your choice influences both the performance and the cost of your model. In this example, we are choosing the `gpt-35-turbo` model. Then select **Confirm**.
 
-1. For `gpt-35-turbo` we have different versions available for fine-tuning, so please choose which version you'd like to fine-tune. We will choose (0301). 
+1. For `gpt-35-turbo` we have different versions available for fine-tuning, so please choose which version you'd like to fine-tune. We will choose (0125). 
 
 1. We also recommend including the `suffix` parameter to make it easier to distinguish between different iterations of your fine-tuned model. `suffix` takes a string, and is set to identify the fine-tuned model. With the OpenAI Python API a string of up to 18 characters is supported that will be added to your fine-tuned model name.
 
@@ -204,7 +193,7 @@ The result file is a CSV file that contains a header row and a row for each trai
 | `full_valid_loss` | The validation loss calculated at the end of each epoch. When training goes well, loss should decrease. |
 |`full_valid_mean_token_accuracy` | The valid mean token accuracy calculated at the end of each epoch. When training is going well, token accuracy should increase. |
 
-You can also view the data in your results.csv file as plots in Azure AI Foundry portal under the **Metrics** tab of your fine-tuned model. Select the link for your trained model, and you will see two charts: loss, and token accuracy. If you provided validation data, both datasets will appear on the same plot.
+You can also view the data in your results.csv file as plots in Azure AI Foundry portal under the **Monitoring** tab of your fine-tuned model. Select the link for your trained model, and you will see two charts: loss, and token accuracy. If you provided validation data, both datasets will appear on the same plot.
 
 :::image type="content" source="../media/fine-tuning/metrics.png" alt-text="Screenshot of metrics UI." lightbox="../media/fine-tuning/metrics.png":::
 
@@ -223,7 +212,7 @@ You can monitor the progress of your deployment on the **Deployments** page in A
 
 ### Use a deployed fine-tuned model
 
-After your fine-tuned model deploys, you can use it like any other deployed model. You can use the **Playground** in [Azure AI Foundry](https://ai.azure.com) to experiment with your new deployment. You can also use the REST API to call your fine-tuned model from your own application. You can even begin to use this new fine-tuned model in your prompt flow to build your generative AI application.
+After your fine-tuned model deploys, you can use it like any other deployed model. You can use the **Playground** in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) to experiment with your new deployment. You can also use the REST API to call your fine-tuned model from your own application. You can even begin to use this new fine-tuned model in your prompt flow to build your generative AI application.
 
 > [!NOTE]
 > For chat models, the [system message that you use to guide your fine-tuned model](../concepts/system-message.md) (whether it's deployed or available for testing in the playground) must be the same as the system message you used for training. If you use a different system message, the model might not perform as expected.
