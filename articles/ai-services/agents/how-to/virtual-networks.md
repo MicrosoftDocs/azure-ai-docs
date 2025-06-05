@@ -105,6 +105,36 @@ For customers without an existing virtual network, the Standard Setup with Priva
         ```console
         az deployment group create --resource-group {my_resource_group} --template-file main-create.bicep
         ```
+
+1. Run the CheckCapabilityHostReadiness.ps1 and edit the command to add your subscription ID, resource group name, and your newly deployed AI Services account resource name.
+   
+   ```
+   .\CheckCapabilityHostReadiness.ps1 -subscriptionId "<your-sub-id>" -resourcegroup "<new-rg-name>" -accountname "<your-aiservices-name>"
+   ```
+   
+   If you don't want to run the PowerShell script, you can run a bash script instead, from the file CheckCapabilityHostReadiness.sh. Run the following two commands:
+   
+      ```
+      chmod +x CheckCapabilityHostReadiness.sh
+      ./CheckCapabilityHostReadiness.sh "<your-sub-id>" "<new-rg-name>" "<your-aiservices-name>"
+      ```
+      
+1. Deploy the main-project-caphost-create.bicep
+   
+   ```
+   az deployment group create --resource-group <new-rg-name> --template-file main-project-caphost-create.bicep
+   ```
+   
+   After running this script, you're required to input the following values:
+   
+   ```
+   Please provide string value for 'accountName' (? for help): <your-account-name>
+   Please provide string value for 'projectName' (? for help): <your-project-name>
+   Please provide string value for 'aiSearchName' (? for help): <your-search-name>
+   Please provide string value for 'azureStorageName' (? for help): <your-storage-name>
+   Please provide string value for 'cosmosDBName' (? for help): <your-cosmosdb-name>
+   ```
+
 For more details, see the [README](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/15-private-network-standard-agent-setup).
 
 ## Deep Dive Standard Setup with Private Networking Template
