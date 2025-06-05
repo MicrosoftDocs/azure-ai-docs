@@ -22,10 +22,10 @@ Use this article to learn how to set up these requirements and create a project.
 
 ### Create a Language resource
 
-Before you start using CLU, you need an Azure AI Language resource.
+Before you start using conversational language understanding (CLU), you need an Azure AI Language resource.
 
 > [!NOTE]
-> You need to have an Owner role assigned on the resource group to create a Language resource.
+> You need to have an Owner role assigned for the resource group to create a Language resource.
 
 [!INCLUDE [create a new resource from the Azure portal](../includes/resource-creation-azure-portal.md)]
 

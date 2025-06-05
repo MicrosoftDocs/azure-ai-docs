@@ -19,8 +19,8 @@ In conversational language understanding projects, the *schema* is defined as th
 
 Consider the following guidelines when you choose intents for your project:
 
-  - Create distinct, separable intents. An intent is best described as action that the user wants to perform. Think of the project you're building and identify all the different actions that your users might take when they interact with your project. Sending, calling, and canceling are all actions that are best represented as different intents. "Canceling an order" and "canceling an appointment" are similar, with the distinction being *what* they're canceling. Those two actions should be represented under the same intent, *cancel*.
-  - Create entities to extract relevant pieces of information within your text. The entities should be used to capture the relevant information that's needed to fulfill your user's action. For example, *order* or *appointment* could be different things that a user is trying to cancel, and you should create an entity to capture that piece of information.
+  - **Create distinct, separable intents.** An intent is best described as action that the user wants to perform. Think of the project you're building and identify all the different actions that your users might take when they interact with your project. Sending, calling, and canceling are all actions that are best represented as different intents. "Canceling an order" and "canceling an appointment" are similar, with the distinction being *what* they're canceling. Those two actions should be represented under the same intent, *cancel*.
+  - **Create entities to extract relevant pieces of information within your text.** The entities should be used to capture the relevant information that's needed to fulfill your user's action. For example, *order* or *appointment* could be different things that a user is trying to cancel, and you should create an entity to capture that piece of information.
 
 You can "send a message," "send an email," or "send a package." Creating an intent to capture each of those requirements won't scale over time, and you should use entities to identify *what* the user was sending. The combination of intents and entities should determine your conversation flow.
 
@@ -70,7 +70,7 @@ To add a prebuilt component, select the prebuilt type from the dropdown menu in 
 
    <!--:::image type="content" source="../media/add-prebuilt-component.png" alt-text="A screenshot that shows a prebuilt component in Language Studio." lightbox="../media/add-prebuilt-component.png":::-->
 
-### Add list component
+### Add a list component
 
 To add a list component, select **Add list**. You can add multiple lists to each entity:
 
@@ -80,7 +80,7 @@ To add a list component, select **Add list**. You can add multiple lists to each
 
    <!--:::image type="content" source="../media/add-list-component.png" alt-text="A screenshot that shows a list component in Language Studio." lightbox="../media/add-list-component.png":::-->
 
-### Add regex component
+### Add a regex component
 
 To add a regex component, select **Add expression**. Name the regex key, and enter a regular expression that matches the entity to be extracted.
 
