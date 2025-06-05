@@ -67,7 +67,8 @@ To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)] in [Azure AI Foun
 
 1. [!INCLUDE [create-project-access](create-project-access.md)]
 
-1. Select **Azure AI Foundry resource**.
+1. Select **Azure AI Foundry resource**, then select **Next**.
+1. Provide a name for your project and select **Create**.  Or see next section for advanced options.
 
 ### Advanced options
 

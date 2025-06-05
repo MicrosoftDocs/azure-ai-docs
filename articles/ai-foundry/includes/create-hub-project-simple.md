@@ -16,7 +16,7 @@ ms.custom: include, build-2024, ignite-2024
 
 1. [!INCLUDE [create-project-access](create-project-access.md)]
 
-1. Select **AI hub resource**.
+1. Select **AI hub resource**, then select **Next**.
 1. Enter a name for the project.
 1. If you have a hub, you'll see the one you most recently used selected.  
    * If you have access to more than one hub, you can select a different hub from the dropdown.
