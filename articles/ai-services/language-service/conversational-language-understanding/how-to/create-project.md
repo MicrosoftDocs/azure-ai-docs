@@ -1,7 +1,7 @@
 ---
 title: Create Projects in Conversational Language Understanding
 titleSuffix: Azure AI services
-description: Use this article to learn how to create projects in conversational language understanding (CLU).
+description: This article shows you how to create projects in conversational language understanding (CLU).
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
