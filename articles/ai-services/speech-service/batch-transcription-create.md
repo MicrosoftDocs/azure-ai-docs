@@ -7,7 +7,7 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 5/25/2025
+ms.date: 6/5/2025
 zone_pivot_groups: speech-cli-rest
 ms.custom: devx-track-csharp
 # Customer intent: As a user who implements audio transcription, I want create transcriptions in bulk so that I don't have to submit audio content repeatedly.
@@ -17,9 +17,14 @@ ms.custom: devx-track-csharp
 
 With batch transcriptions, you submit [audio data](batch-transcription-audio-data.md) in a batch. The service transcribes the audio data and stores the results in a storage container. You can then [retrieve the results](batch-transcription-get.md) from the storage container.
 
+Batch transcription completion can take several minutes to hours, depending on the size of the audio data and the number of files submitted. Even the same size of audio data can take different amounts of time to transcribe, depending on service load and other factors. The service doesn't provide a way to estimate the time it takes to transcribe a batch of audio data.
+
+> [!TIP]
+> If you need consistent fast speed for audio files less than 2 hours long and less than 300 MB in size, consider using the [fast transcription API](fast-transcription.md) instead. 
+
 ## Prerequisites
 
-You need a standard (S0) Azure AI Foundry resource. 
+You need an [Azure AI Foundry resource for Speech](../multi-service-resource.md). 
 
 ## Create a transcription job
 
