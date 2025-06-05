@@ -438,7 +438,7 @@
       },
       "open_to_public_contributors": {
         "articles/ai-services/personalizer/**.*": false,
-        "articles/ai-services/responsible-ai/**.*": false
+        "articles/ai-foundry/responsible-ai/**.*": false
       },
       "recommendations": {
         "articles/ai-services/translator/**/*.md": false
