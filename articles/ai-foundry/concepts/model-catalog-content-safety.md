@@ -4,7 +4,7 @@ titleSuffix: Azure AI Foundry
 description: Learn about content safety for models deployed using standard deployments, using Azure AI Foundry.
 manager: scottpolly
 ms.service: azure-ai-foundry
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 05/19/2025
 ms.author: mopeakande 
 author: msakande

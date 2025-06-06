@@ -8,7 +8,7 @@ manager: scottpolly
 ms.reviewer: deeikele
 ms.date: 04/28/2025
 ms.service: azure-ai-foundry
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom:
   - ignite-2023
   - build-2024

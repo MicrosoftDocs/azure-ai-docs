@@ -32,11 +32,11 @@ items:
     href: search-get-started-rbac.md
   - name: Azure portal
     items:
-    - name: Keyword search wizard
+    - name: Create a search index
       href: search-get-started-portal.md
-    - name: RAG wizard
+    - name: Create a vector index
       href: search-get-started-portal-import-vectors.md
-    - name: Multimodal RAG wizard
+    - name: Create a multimodal index
       href: search-get-started-portal-image-search.md
     - name: Create a demo app
       href: search-create-app-portal.md
@@ -251,14 +251,14 @@ items:
         href: search-manage-rest.md
       - name: Move service across regions
         href: search-howto-move-across-regions.md
-  - name: Index management
+  - name: Indexing
     items:
+    - name: Index via portal wizards
+      href: search-import-data-portal.md
     - name: Create an index
       href: search-how-to-create-search-index.md
     - name: Load an index
       href: search-how-to-load-search-index.md
-    - name: Index via portal wizards
-      href: search-import-data-portal.md
     - name: Update or rebuild an index
       href: search-howto-reindex.md
     - name: Alias an index
@@ -337,7 +337,7 @@ items:
         href: search-how-to-index-onelake-files.md
       - name: SharePoint Online
         href: search-howto-index-sharepoint-online.md
-    - name: Skillsets
+    - name: Skillsets (indexers)
       items:
       - name: Create a skillset
         href: cognitive-search-defining-skillset.md
@@ -371,133 +371,135 @@ items:
           href: cognitive-search-custom-skill-scale.md
         - name: Example - Bing Entity Search
           href: cognitive-search-create-custom-skill-example.md
-  - name: Agentic retrieval
+  - name: Retrieval
     items:
-    - name: Create a knowledge agent
-      href: search-agentic-retrieval-how-to-create.md
-    - name: Use a knowledge agent to retrieve data
-      href: search-agentic-retrieval-how-to-retrieve.md
-    - name: Define an index for agentic retrieval
-      href: search-agentic-retrieval-how-to-index.md
-    - name: Build an agentic retrieval pipeline
-      href: search-agentic-retrieval-how-to-pipeline.md
-  - name: Vector search
-    items:
-    - name: Create a vector index
-      href: vector-search-how-to-create-index.md
-    - name: Chunk documents
-      href: vector-search-how-to-chunk-documents.md
-    - name: Chunk and vectorize by document layout
-      href: search-how-to-semantic-chunking.md
-    - name: Generate embeddings
-      href: vector-search-how-to-generate-embeddings.md
-    - name: Use integrated vectorization
-      href: search-how-to-integrated-vectorization.md
-    - name: Use embedding models from Azure AI Foundry
-      href: vector-search-integrated-vectorization-ai-studio.md
-    - name: Reduce vector size
+    - name: Agentic retrieval
       items:
-      - name: Understand vector quotas and limits
-        href: vector-search-index-size.md
-      - name: Choose an optimization strategy
-        href: vector-search-how-to-configure-compression-storage.md
-      - name: Compress using binary or scalar quantization
-        href: vector-search-how-to-quantization.md
-      - name: Index binary data for vector search
-        href: vector-search-how-to-index-binary-data.md
-      - name: Assign narrow data types
-        href: vector-search-how-to-assign-narrow-data-types.md
-      - name: Eliminate redundant storage
-        href: vector-search-how-to-storage-options.md
-      - name: Truncate dimensions
-        href: vector-search-how-to-truncate-dimensions.md
-    - name: Query vectors
-      href: vector-search-how-to-query.md
-    - name: Use multi-vector fields
-      href: vector-search-multi-vector-fields.md
-    - name: Add a vectorizer for text-to-vector queries
-      displayName: query
-      href: vector-search-how-to-configure-vectorizer.md
-    - name: Filter on vector queries
-      displayName: query
-      href: vector-search-filters.md
-  - name: Keyword search
-    items:
-    - name: Full text query
-      href: search-query-create.md
-    - name: Typeahead query
-      href: search-add-autocomplete-suggestions.md
-    - name: Query examples (simple syntax)
-      href: search-query-simple-examples.md
-    - name: Add spell check
-      href: speller-how-to-add.md
-    - name: Add synonyms
-      href: search-synonyms.md
-    - name: Add a suggester for typeahead
-      href: index-add-suggesters.md
-    - name: Design a multilingual index
-      href: search-language-support.md
-    - name: Model complex data types
-      href: search-howto-complex-data-types.md
-    - name: Model relational data
-      href: index-sql-relational-data.md
-    - name: Analyzers
+      - name: Design an index for agentic retrieval
+        href: search-agentic-retrieval-how-to-index.md
+      - name: Create a knowledge agent
+        href: search-agentic-retrieval-how-to-create.md
+      - name: Retrieve data using a knowledge agent
+        href: search-agentic-retrieval-how-to-retrieve.md
+      - name: Build a retrieval pipeline
+        href: search-agentic-retrieval-how-to-pipeline.md
+    - name: Vector search
       items:
-      - name: Analyzers overview
-        href: search-analyzers.md
-      - name: Add a language analyzer
-        href: index-add-language-analyzers.md
-      - name: Add a custom analyzer
-        href: index-add-custom-analyzers.md
-    - name: Filters and facets
-      items:
-      - name: Filters in text queries
+      - name: Create a vector index
+        href: vector-search-how-to-create-index.md
+      - name: Chunk documents
+        href: vector-search-how-to-chunk-documents.md
+      - name: Chunk and vectorize by document layout
+        href: search-how-to-semantic-chunking.md
+      - name: Generate embeddings
+        href: vector-search-how-to-generate-embeddings.md
+      - name: Use integrated vectorization
+        href: search-how-to-integrated-vectorization.md
+      - name: Use embedding models from Azure AI Foundry
+        href: vector-search-integrated-vectorization-ai-studio.md
+      - name: Reduce vector size
+        items:
+        - name: Understand vector quotas and limits
+          href: vector-search-index-size.md
+        - name: Choose an optimization strategy
+          href: vector-search-how-to-configure-compression-storage.md
+        - name: Compress using binary or scalar quantization
+          href: vector-search-how-to-quantization.md
+        - name: Index binary data for vector search
+          href: vector-search-how-to-index-binary-data.md
+        - name: Assign narrow data types
+          href: vector-search-how-to-assign-narrow-data-types.md
+        - name: Eliminate redundant storage
+          href: vector-search-how-to-storage-options.md
+        - name: Truncate dimensions
+          href: vector-search-how-to-truncate-dimensions.md
+      - name: Query vectors
+        href: vector-search-how-to-query.md
+      - name: Use multi-vector fields
+        href: vector-search-multi-vector-fields.md
+      - name: Add a vectorizer for text-to-vector queries
         displayName: query
-        href: search-filters.md
-      - name: Understand collection filters
-        href: search-query-understand-collection-filters.md
-      - name: Troubleshoot collection filters
-        href: search-query-troubleshoot-collection-filters.md
-      - name: Normalize text for filters
-        href: search-normalizers.md
-      - name: Add faceted navigation
-        href: search-faceted-navigation.md
-      - name: Faceted navigation examples
-        href: search-faceted-navigation-examples.md
-    - name: Search results
+        href: vector-search-how-to-configure-vectorizer.md
+      - name: Filter on vector queries
+        displayName: query
+        href: vector-search-filters.md
+    - name: Keyword search
       items:
-      - name: Page, sort, and shape results
-        href: search-pagination-page-layout.md
-      - name: Return a semantic answer
-        href: semantic-answers.md
-    - name: Advanced queries
+      - name: Full text query
+        href: search-query-create.md
+      - name: Typeahead query
+        href: search-add-autocomplete-suggestions.md
+      - name: Query examples (simple syntax)
+        href: search-query-simple-examples.md
+      - name: Add spell check
+        href: speller-how-to-add.md
+      - name: Add synonyms
+        href: search-synonyms.md
+      - name: Add a suggester for typeahead
+        href: index-add-suggesters.md
+      - name: Design a multilingual index
+        href: search-language-support.md
+      - name: Model complex data types
+        href: search-howto-complex-data-types.md
+      - name: Model relational data
+        href: index-sql-relational-data.md
+      - name: Analyzers
+        items:
+        - name: Analyzers overview
+          href: search-analyzers.md
+        - name: Add a language analyzer
+          href: index-add-language-analyzers.md
+        - name: Add a custom analyzer
+          href: index-add-custom-analyzers.md
+      - name: Filters and facets
+        items:
+        - name: Filters in text queries
+          displayName: query
+          href: search-filters.md
+        - name: Understand collection filters
+          href: search-query-understand-collection-filters.md
+        - name: Troubleshoot collection filters
+          href: search-query-troubleshoot-collection-filters.md
+        - name: Normalize text for filters
+          href: search-normalizers.md
+        - name: Add faceted navigation
+          href: search-faceted-navigation.md
+        - name: Faceted navigation examples
+          href: search-faceted-navigation-examples.md
+      - name: Search results
+        items:
+        - name: Page, sort, and shape results
+          href: search-pagination-page-layout.md
+        - name: Return a semantic answer
+          href: semantic-answers.md
+      - name: Advanced queries
+        items:
+        - name: Use full Lucene (examples)
+          href: search-query-lucene-examples.md
+        - name: Partial terms and special characters
+          href: search-query-partial-matching.md
+        - name: Fuzzy search
+          href: search-query-fuzzy.md
+    - name: Hybrid search
+      href: hybrid-search-how-to-query.md
+    - name: Ranking and relevance
       items:
-      - name: Use full Lucene (examples)
-        href: search-query-lucene-examples.md
-      - name: Partial terms and special characters
-        href: search-query-partial-matching.md
-      - name: Fuzzy search
-        href: search-query-fuzzy.md
-  - name: Hybrid search
-    href: hybrid-search-how-to-query.md
-  - name: Ranking and relevance
-    items:
-    - name: Add a scoring profile
-      href: index-add-scoring-profiles.md
-    - name: Configure BM25 ranking
-      href: index-ranking-similarity.md
-    - name: Enable or disable semantic ranker
-      href: semantic-how-to-enable-disable.md
-    - name: Configure semantic ranker
-      href: semantic-how-to-configure.md
-    - name: Add semantic ranking to queries
-      href: semantic-how-to-query-request.md
-    - name: Rewrite queries with semantic ranker
-      href: semantic-how-to-query-rewrite.md
-    - name: Migrate semantic ranking code
-      href: semantic-code-migration.md
-    - name: Enable scoring profiles in semantic ranker
-      href: semantic-how-to-enable-scoring-profiles.md
+      - name: Add a scoring profile
+        href: index-add-scoring-profiles.md
+      - name: Configure BM25 ranking
+        href: index-ranking-similarity.md
+      - name: Enable or disable semantic ranker
+        href: semantic-how-to-enable-disable.md
+      - name: Configure semantic ranker
+        href: semantic-how-to-configure.md
+      - name: Add semantic ranking to queries
+        href: semantic-how-to-query-request.md
+      - name: Rewrite queries with semantic ranker
+        href: semantic-how-to-query-rewrite.md
+      - name: Migrate semantic ranking code
+        href: semantic-code-migration.md
+      - name: Enable scoring profiles in semantic ranker
+        href: semantic-how-to-enable-scoring-profiles.md
   - name: Security
     items:
     - name: Configure network access

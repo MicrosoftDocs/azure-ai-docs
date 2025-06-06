@@ -9,14 +9,14 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: quickstart
-ms.date: 05/22/2025
+ms.date: 06/04/2025
 ---
 
 # Quickstart: Vectorize text in the Azure portal
 
-In this quickstart, you use the **Import and vectorize data** wizard in the Azure portal to get started with [integrated vectorization](vector-search-integrated-vectorization.md). The wizard chunks your content and calls an embedding model to vectorize content during indexing and for queries.
+In this quickstart, you use the **Import and vectorize data** wizard in the Azure portal to get started with [integrated vectorization](vector-search-integrated-vectorization.md). The wizard chunks your content and calls an embedding model to vectorize the chunks at indexing and query time.
 
-The sample data for this quickstart consists of text-based PDFs, but you can also use images and follow this quickstart to vectorize them.
+This quickstart uses text-based PDFs from the [azure-search-sample-data](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/sustainable-ai-pdf) repo. However, you can use images and still complete this quickstart.
 
 ## Prerequisites
 
@@ -52,9 +52,9 @@ For integrated vectorization, you must use one of the following embedding models
 
 <sup>1</sup> The endpoint of your Azure OpenAI resource must have a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains), such as `https://my-unique-name.openai.azure.com`. If you created your resource in the [Azure portal](https://portal.azure.com/), this subdomain was automatically generated during resource setup.
 
-<sup>2</sup> Azure OpenAI resources (with access to embedding models) that were created in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) aren't supported. Only Azure OpenAI resources created in the Azure portal are compatible with the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) integration.
+<sup>2</sup> Azure OpenAI resources (with access to embedding models) that were created in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) aren't supported. Only Azure OpenAI resources created in the Azure portal are compatible with the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md).
 
-<sup>3</sup> For billing purposes, you must [attach your Azure AI multi-service resource](cognitive-search-attach-cognitive-services.md) to the skillset in your Azure AI Search service. Unless you use a [keyless connection (preview)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) to create the skillset, both resources must be in the same region.
+<sup>3</sup> For billing purposes, you must [attach your multi-service resource](cognitive-search-attach-cognitive-services.md) to the skillset in your Azure AI Search service. Unless you use a [keyless connection (preview)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) to create the skillset, both resources must be in the same region.
 
 <sup>4</sup> The Azure AI Vision multimodal embedding model is available in [select regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
 
@@ -265,19 +265,15 @@ For the model catalog, you should have an [Azure AI Foundry project](/azure/ai-f
 
 ## Start the wizard
 
+To start the wizard for vector search:
+
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure AI Search service.
 
 1. On the **Overview** page, select **Import and vectorize data**.
 
    :::image type="content" source="media/search-get-started-portal-import-vectors/command-bar.png" alt-text="Screenshot of the command to open the wizard for importing and vectorizing data.":::
 
-1. Select your data source:
-
-   + Azure Blob Storage
-
-   + ADLS Gen2
-
-   + OneLake
+1. Select your data source: **Azure Blob Storage**, **ADLS Gen2**, or **OneLake**.
 
 1. Select **RAG**.
 

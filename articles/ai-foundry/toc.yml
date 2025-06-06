@@ -595,12 +595,25 @@ items:
     - name: Plan and manage costs for AI Foundry resources
       href: how-to/costs-plan-manage.md
       displayName: pricing, budget, estimate
-    - name: Manage quotas and limits for Foundry Models
-      href: ../ai-foundry/model-inference/quotas-limits.md?context=/azure/ai-foundry/context/context
     - name: Manage quotas
       href: how-to/quota.md
     - name: Increase rate limit
       href: how-to/autoscale.md
+  - name: Cost management for Foundry Models
+    items:
+    - name: Manage quotas and limits for Foundry Models
+      href: ../ai-foundry/model-inference/quotas-limits.md?context=/azure/ai-foundry/context/context
+    - name: What is the Provisioned Throughput offering (PTU)?
+      href: ../ai-services/openai/concepts/provisioned-throughput.md?context=/azure/ai-foundry/context/context
+      displayName: PTU, provisioned, provisioned throughput units
+    - name: Understanding and calculating PTU costs 
+      href: ../ai-services/openai/how-to/provisioned-throughput-onboarding.md?context=/azure/ai-foundry/context/context
+      displayName: PTU, provisioned, provisioned throughput units
+    - name: Get started with Provisioned Deployments
+      href: ../ai-services/openai/how-to/provisioned-get-started.md?context=/azure/ai-foundry/context/context
+      displayName: PTU, provisioned, provisioned throughput units
+    - name: Provisioned spillover
+      href: ../ai-services/openai/how-to/spillover-traffic-management.md?context=/azure/ai-foundry/context/context
 - name: Security & Governance
   items:
   - name: Identity & access management

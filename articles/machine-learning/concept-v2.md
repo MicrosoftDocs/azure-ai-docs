@@ -5,7 +5,7 @@ description: This article explains the difference between the v1 and v2 versions
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.topic: conceptual
+ms.topic: concept-article
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: balapv

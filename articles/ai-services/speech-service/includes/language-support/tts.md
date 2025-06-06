@@ -1,7 +1,7 @@
 ---
 author: eric-urban
 ms.service: azure-ai-speech
-ms.date: 2/13/2025
+ms.date: 6/5/2025
 ms.topic: include
 ms.author: eur
 ms.custom: references_regions
@@ -67,7 +67,7 @@ ms.custom: references_regions
 | `es-GQ` | Spanish (Equatorial Guinea) | `es-GQ-TeresaNeural` (Female)<br/>`es-GQ-JavierNeural` (Male) |
 | `es-GT` | Spanish (Guatemala) | `es-GT-MartaNeural` (Female)<br/>`es-GT-AndresNeural` (Male) |
 | `es-HN` | Spanish (Honduras) | `es-HN-KarlaNeural` (Female)<br/>`es-HN-CarlosNeural` (Male) |
-| `es-MX` | Spanish (Mexico) | `es-MX-DaliaNeural` (Female)<br/>`es-MX-JorgeNeural` (Male)<br/>`es-MX-BeatrizNeural` (Female)<br/>`es-MX-CandelaNeural` (Female)<br/>`es-MX-CarlotaNeural` (Female)<br/>`es-MX-CecilioNeural` (Male)<br/>`es-MX-GerardoNeural` (Male)<br/>`es-MX-LarissaNeural` (Female)<br/>`es-MX-LibertoNeural` (Male)<br/>`es-MX-LucianoNeural` (Male)<br/>`es-MX-MarinaNeural` (Female)<br/>`es-MX-NuriaNeural` (Female)<br/>`es-MX-PelayoNeural` (Male)<br/>`es-MX-RenataNeural` (Female)<br/>`es-MX-YagoNeural` (Male)<br/>`es-MX-DaliaMultilingualNeural`<sup>1,4</sup> (Female)<br/>`es-MX-JorgeMultilingualNeural`<sup>1,4</sup> (Male) |
+| `es-MX` | Spanish (Mexico) | `es-MX-DaliaNeural` (Female)<br/>`es-MX-JorgeNeural` (Male)<br/>`es-MX-BeatrizNeural` (Female)<br/>`es-MX-CandelaNeural` (Female)<br/>`es-MX-CarlotaNeural` (Female)<br/>`es-MX-CecilioNeural` (Male)<br/>`es-MX-GerardoNeural` (Male)<br/>`es-MX-LarissaNeural` (Female)<br/>`es-MX-LibertoNeural` (Male)<br/>`es-MX-LucianoNeural` (Male)<br/>`es-MX-MarinaNeural` (Female, Child)<br/>`es-MX-NuriaNeural` (Female)<br/>`es-MX-PelayoNeural` (Male)<br/>`es-MX-RenataNeural` (Female)<br/>`es-MX-YagoNeural` (Male)<br/>`es-MX-DaliaMultilingualNeural`<sup>1,4</sup> (Female)<br/>`es-MX-JorgeMultilingualNeural`<sup>1,4</sup> (Male) |
 | `es-NI` | Spanish (Nicaragua) | `es-NI-YolandaNeural` (Female)<br/>`es-NI-FedericoNeural` (Male) |
 | `es-PA` | Spanish (Panama) | `es-PA-MargaritaNeural` (Female)<br/>`es-PA-RobertoNeural` (Male) |
 | `es-PE` | Spanish (Peru) | `es-PE-CamilaNeural` (Female)<br/>`es-PE-AlexNeural` (Male) |
@@ -96,7 +96,7 @@ ms.custom: references_regions
 | `hy-AM` | Armenian (Armenia) | `hy-AM-AnahitNeural`<sup>3</sup> (Female)<br/>`hy-AM-HaykNeural`<sup>3</sup> (Male) |
 | `id-ID` | Indonesian (Indonesia) | `id-ID-GadisNeural` (Female)<br/>`id-ID-ArdiNeural` (Male) |
 | `is-IS` | Icelandic (Iceland) | `is-IS-GudrunNeural`<sup>3</sup> (Female)<br/>`is-IS-GunnarNeural`<sup>3</sup> (Male) |
-| `it-IT` | Italian (Italy) | `it-IT-ElsaNeural` (Female)<br/>`it-IT-IsabellaNeural` (Female)<br/>`it-IT-DiegoNeural` (Male)<br/>`it-IT-AlessioMultilingualNeural`<sup>4</sup> (Male)<br/>`it-IT-IsabellaMultilingualNeural`<sup>4</sup> (Female)<br/>`it-IT-GiuseppeMultilingualNeural`<sup>4</sup> (Male)<br/>`it-IT-MarcelloMultilingualNeural`<sup>4</sup> (Male)<br/>`it-IT-BenignoNeural` (Male)<br/>`it-IT-CalimeroNeural` (Male)<br/>`it-IT-CataldoNeural` (Male)<br/>`it-IT-FabiolaNeural` (Female)<br/>`it-IT-FiammaNeural` (Female)<br/>`it-IT-GianniNeural` (Male)<br/>`it-IT-GiuseppeNeural` (Male)<br/>`it-IT-ImeldaNeural` (Female)<br/>`it-IT-IrmaNeural` (Female)<br/>`it-IT-LisandroNeural` (Male)<br/>`it-IT-PalmiraNeural` (Female)<br/>`it-IT-PierinaNeural` (Female)<br/>`it-IT-RinaldoNeural` (Male) |
+| `it-IT` | Italian (Italy) | `it-IT-ElsaNeural` (Female)<br/>`it-IT-IsabellaNeural` (Female)<br/>`it-IT-DiegoNeural` (Male)<br/>`it-IT-AlessioMultilingualNeural`<sup>4</sup> (Male)<br/>`it-IT-IsabellaMultilingualNeural`<sup>4</sup> (Female)<br/>`it-IT-GiuseppeMultilingualNeural`<sup>4</sup> (Male)<br/>`it-IT-MarcelloMultilingualNeural`<sup>4</sup> (Male)<br/>`it-IT-BenignoNeural` (Male)<br/>`it-IT-CalimeroNeural` (Male)<br/>`it-IT-CataldoNeural` (Male)<br/>`it-IT-FabiolaNeural` (Female)<br/>`it-IT-FiammaNeural` (Female)<br/>`it-IT-GianniNeural` (Male)<br/>`it-IT-GiuseppeNeural` (Male)<br/>`it-IT-ImeldaNeural` (Female)<br/>`it-IT-IrmaNeural` (Female)<br/>`it-IT-LisandroNeural` (Male)<br/>`it-IT-PalmiraNeural` (Female)<br/>`it-IT-PierinaNeural` (Female, Child)<br/>`it-IT-RinaldoNeural` (Male) |
 | `iu-CANS-CA` | Inuktitut (Syllabics, Canada) | `iu-Cans-CA-SiqiniqNeural`<sup>3</sup> (Female)<br/>`iu-Cans-CA-TaqqiqNeural`<sup>3</sup> (Male) |
 | `iu-LATN-CA` | Inuktitut (Latin, Canada) | `iu-Latn-CA-SiqiniqNeural`<sup>3</sup> (Female)<br/>`iu-Latn-CA-TaqqiqNeural`<sup>3</sup> (Male) |
 | `ja-JP` | Japanese (Japan) | `ja-JP-NanamiNeural` (Female)<br/>`ja-JP-KeitaNeural` (Male)<br/>`ja-JP-AoiNeural` (Female)<br/>`ja-JP-DaichiNeural` (Male)<br/>`ja-JP-MayuNeural` (Female)<br/>`ja-JP-NaokiNeural` (Male)<br/>`ja-JP-ShioriNeural` (Female)<br/>`ja-JP-MasaruMultilingualNeural`<sup>1,4</sup> (Male)<br/>`ja-JP-Masaru:DragonHDLatestNeural` (Male)<br/>`ja-JP-Nanami:DragonHDLatestNeural` (Female) |
@@ -124,7 +124,7 @@ ms.custom: references_regions
 | `pa-IN` | Punjabi (India) | `pa-IN-OjasNeural`<sup>3</sup> (Male)<br/>`pa-IN-VaaniNeural`<sup>3</sup> (Female) |
 | `pl-PL` | Polish (Poland) | `pl-PL-AgnieszkaNeural` (Female)<br/>`pl-PL-MarekNeural` (Male)<br/>`pl-PL-ZofiaNeural` (Female) |
 | `ps-AF` | Pashto (Afghanistan) | `ps-AF-LatifaNeural`<sup>3</sup> (Female)<br/>`ps-AF-GulNawazNeural`<sup>3</sup> (Male) |
-| `pt-BR` | Portuguese (Brazil) | `pt-BR-FranciscaNeural` (Female)<br/>`pt-BR-AntonioNeural` (Male)<br/>`pt-BR-MacerioMultilingualNeural`<sup>4</sup> (Male)<br/>`pt-BR-ThalitaMultilingualNeural`<sup>4</sup> (Female)<br/>`pt-BR-BrendaNeural` (Female)<br/>`pt-BR-DonatoNeural` (Male)<br/>`pt-BR-ElzaNeural` (Female)<br/>`pt-BR-FabioNeural` (Male)<br/>`pt-BR-GiovannaNeural` (Female)<br/>`pt-BR-HumbertoNeural` (Male)<br/>`pt-BR-JulioNeural` (Male)<br/>`pt-BR-LeilaNeural` (Female)<br/>`pt-BR-LeticiaNeural` (Female)<br/>`pt-BR-ManuelaNeural` (Female)<br/>`pt-BR-NicolauNeural` (Male)<br/>`pt-BR-ThalitaNeural` (Female)<br/>`pt-BR-ValerioNeural` (Male)<br/>`pt-BR-YaraNeural` (Female) |
+| `pt-BR` | Portuguese (Brazil) | `pt-BR-FranciscaNeural` (Female)<br/>`pt-BR-AntonioNeural` (Male)<br/>`pt-BR-MacerioMultilingualNeural`<sup>4</sup> (Male)<br/>`pt-BR-ThalitaMultilingualNeural`<sup>4</sup> (Female)<br/>`pt-BR-BrendaNeural` (Female)<br/>`pt-BR-DonatoNeural` (Male)<br/>`pt-BR-ElzaNeural` (Female)<br/>`pt-BR-FabioNeural` (Male)<br/>`pt-BR-GiovannaNeural` (Female)<br/>`pt-BR-HumbertoNeural` (Male)<br/>`pt-BR-JulioNeural` (Male)<br/>`pt-BR-LeilaNeural` (Female)<br/>`pt-BR-LeticiaNeural` (Female, Child)<br/>`pt-BR-ManuelaNeural` (Female)<br/>`pt-BR-NicolauNeural` (Male)<br/>`pt-BR-ThalitaNeural` (Female)<br/>`pt-BR-ValerioNeural` (Male)<br/>`pt-BR-YaraNeural` (Female) |
 | `pt-PT` | Portuguese (Portugal) | `pt-PT-RaquelNeural` (Female)<br/>`pt-PT-DuarteNeural` (Male)<br/>`pt-PT-FernandaNeural` (Female) |
 | `ro-RO` | Romanian (Romania) | `ro-RO-AlinaNeural` (Female)<br/>`ro-RO-EmilNeural` (Male) |
 | `ru-RU` | Russian (Russia) | `ru-RU-SvetlanaNeural` (Female)<br/>`ru-RU-DmitryNeural` (Male)<br/>`ru-RU-DariyaNeural` (Female) |
