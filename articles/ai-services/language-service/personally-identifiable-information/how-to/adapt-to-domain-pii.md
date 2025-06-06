@@ -219,6 +219,6 @@ Logging:Console:LogLevel:Default=Debug
 ### Regex rule constraints
 
 - Rule names must begin with "CE_"  
-- Rule names must be unique. 
+- Rule names must be unique
 - Rule names may only use alphanumeric characters and underscores ("_")
-- Regex patterns follow the .NET regular Expressions format. See [our documentation on .NET regular expressions](https://learn.microsoft.com/dotnet/standard/base-types/regular-expressions) for more information. 
+- Regex patterns follow the .NET regular Expressions format
