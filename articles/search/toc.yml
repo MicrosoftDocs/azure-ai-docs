@@ -506,7 +506,7 @@ items:
         href: troubleshoot-shared-private-link-resources.md
       - name: Connect using Network Security Perimeter
         href: search-security-network-security-perimeter.md
-    - name: Authentication
+    - name: Authentication and authorization
       items:
       - name: Enable role-based access
         href: search-security-enable-roles.md
