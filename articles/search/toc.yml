@@ -504,7 +504,7 @@ items:
         href: service-create-private-endpoint.md
       - name: Troubleshoot private connections
         href: troubleshoot-shared-private-link-resources.md
-      - name: Connect using Network Security Perimeter
+      - name: Join a network security perimeter
         href: search-security-network-security-perimeter.md
     - name: Authentication and authorization
       items:
