@@ -1299,7 +1299,7 @@ groups:
     title: C#
   - id: programming-language-rust
     title: Rust
-- id: foundry-local-sdk-with-csharp
+- id: foundry-local-langchain
   title: Programming languages
   prompt: Choose a programming language
   pivots:
@@ -1307,8 +1307,6 @@ groups:
     title: JavaScript
   - id: programming-language-python
     title: Python
-  - id: programming-language-csharp
-    title: C#
 # Owner: haileytapia
 - id: search-get-started-agentic-retrieval
   title: Python and REST
