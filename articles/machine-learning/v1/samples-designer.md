@@ -63,51 +63,51 @@ Here's how to use a designer sample:
 
 Explore these built-in regression samples.
 
-| Sample title | Description | 
+| Sample pipeline | Description | 
 | --- | --- |
-| [Basic: Use regression to predict car prices with Azure Machine Learning designer](https://github.com/Azure/MachineLearningDesigner/blob/master/articles/samples/regression-automobile-price-prediction-basic.md) | Predict car prices using linear regression. |
-| [Advanced: Train & compare multiple regression models to predict car prices with Azure Machine Learning designer](https://github.com/Azure/MachineLearningDesigner/blob/master/articles/samples/regression-automobile-price-prediction-compare-algorithms.md) | Predict car prices using decision forest and boosted decision tree regressors. Compare models to find the best algorithm.
+| [Regression - Automobile Price Prediction (Basic)](https://github.com/Azure/MachineLearningDesigner/blob/master/articles/samples/regression-automobile-price-prediction-basic.md) | Predict car prices using linear regression. |
+| [Regression - Automobile Price Prediction (Advanced)](https://github.com/Azure/MachineLearningDesigner/blob/master/articles/samples/regression-automobile-price-prediction-compare-algorithms.md) | Predict car prices using decision forest and boosted decision tree regressors. Compare models to find the best algorithm.
 
 ## Classification
 
 Explore these built-in classification samples. Open the samples to learn more and view the component comments in the designer.
 
-| Sample title | Description | 
+| Sample pipeline | Description | 
 | --- | --- |
-| [Predict income by using binary classification with feature selection](https://github.com/Azure/MachineLearningDesigner/blob/master/articles/samples/binary-classification-feature-selection-income-prediction.md) | Predict income as high or low, using a two-class boosted decision tree. Use Pearson correlation to select features. |
-| [Predict credit risk by using binary classification with custom Python script](https://github.com/Azure/MachineLearningDesigner/blob/master/articles/samples/binary-classification-python-credit-prediction.md) | Classify credit applications as high or low risk. Use the Execute Python Script component to weight your data. |
-| [Predict customer churn by using boosted decision tree](https://github.com/Azure/MachineLearningDesigner/blob/master/articles/samples/binary-classification-customer-relationship-prediction.md) | Predict customer churn using two-class boosted decision trees. Use SMOTE to sample biased data. |
-| [Predict company category by using text classification](https://github.com/Azure/MachineLearningDesigner/blob/master/articles/samples/text-classification-wiki.md) | Classify company types from Wikipedia articles with multiclass logistic regression. |
-| Multiclass classification with letter recognition | Create an ensemble of binary classifiers to classify written letters. |
+| [Binary Classification with Feature Selection - Income Prediction](https://github.com/Azure/MachineLearningDesigner/blob/master/articles/samples/binary-classification-feature-selection-income-prediction.md) | Predict income as high or low, using a two-class boosted decision tree. Use Pearson correlation to select features. |
+| [Binary Classification with custom Python script - Credit Risk Prediction](https://github.com/Azure/MachineLearningDesigner/blob/master/articles/samples/binary-classification-python-credit-prediction.md) | Classify credit applications as high or low risk. Use the Execute Python Script component to weight your data. |
+| [Binary Classification - Customer Relationship Prediction](https://github.com/Azure/MachineLearningDesigner/blob/master/articles/samples/binary-classification-customer-relationship-prediction.md) | Predict customer churn using two-class boosted decision trees. Use SMOTE to sample biased data. |
+| [Text Classification - Wikipedia SP 500 Dataset](https://github.com/Azure/MachineLearningDesigner/blob/master/articles/samples/text-classification-wiki.md) | Classify company types from Wikipedia articles with multiclass logistic regression. |
+| Multiclass Classification - Letter Recognition | Create an ensemble of binary classifiers to classify written letters. |
 
 ## Computer vision
 
 Explore these built-in computer vision samples. Open the samples to learn more and view the component comments in the designer.
 
-| Sample title | Description | 
+| Sample pipeline | Description | 
 | --- | --- |
-| Image classification using DenseNet | Use computer vision components to build image classification model based on PyTorch DenseNet.| 
+| Image Classification using DenseNet | Use computer vision components to build image classification model based on PyTorch DenseNet.| 
 
 ## Recommender
 
 Explore these built-in recommender samples. Open the samples to learn more and view the component comments in the designer.
 
-| Sample title | Description | 
+| Sample pipeline | Description | 
 | --- | --- |
-| Predict restaurant rating by using wide & deep-based recommendation | Build a restaurant recommender engine from restaurant/user features and ratings.|
-| Rate movie rating tweets | Build a movie recommender engine from movie/user features and ratings.|
+| Wide & Deep-based Recommendation - Restaurant Rating Prediction | Build a restaurant recommender engine from restaurant/user features and ratings.|
+| Recommendation - Movie Rating Tweets | Build a movie recommender engine from movie/user features and ratings.|
 
 ## Utility
 
 Learn more about the samples that demonstrate machine learning utilities and features. Open the samples to learn more and view the component comments in the designer.
 
-| Sample title | Description | 
+| Sample pipeline | Description | 
 | --- | --- |
-| Predict adult income by using binary classification with the Vowpal Wabbit Model | Vowpal Wabbit is a machine learning system that pushes the frontier of machine learning with techniques such as online, hashing, allreduce, reductions, learning2search, active, and interactive learning. This sample shows how to use Vowpal Wabbit model to build binary classification model. |
-| Predict flight delays by using [custom R script](https://github.com/Azure/MachineLearningDesigner/blob/master/articles/samples/r-script-flight-delay-prediction.md) | Use customized R script to predict if a scheduled passenger flight will be delayed by more than 15 minutes. |
-| Predict adult income by using cross validation for binary classification | Use cross validation to build a binary classifier for adult income. |
-| Permutation feature importance | Use permutation feature importance to compute importance scores for the test dataset.  |
-| Predict adult income by using tune parameters for binary classification | Use Tune Model Hyperparameters to find optimal hyperparameters to build a binary classifier. |
+| Binary Classification using Vowpal Wabbit Model - Adult Income Prediction | Vowpal Wabbit is a machine learning system that pushes the frontier of machine learning with techniques such as online, hashing, allreduce, reductions, learning2search, active, and interactive learning. This sample shows how to use Vowpal Wabbit model to build binary classification model. |
+| [Use Custom R Script - Flight Delay Prediction](https://github.com/Azure/MachineLearningDesigner/blob/master/articles/samples/r-script-flight-delay-prediction.md) | Use customized R script to predict if a scheduled passenger flight will be delayed by more than 15 minutes. |
+| Cross Validation for Binary Classification - Adult Income Prediction | Use cross validation to build a binary classifier for adult income. |
+| Permutation Feature Importance | Use permutation feature importance to compute importance scores for the test dataset.  |
+| Tune Parameters for Binary Classification - Adult Income Prediction | Use Tune Model Hyperparameters to find optimal hyperparameters to build a binary classifier. |
 
 ## Datasets
 
