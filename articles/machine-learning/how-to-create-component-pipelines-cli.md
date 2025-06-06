@@ -153,24 +153,24 @@ This table defines the most commonly used fields of component YAML. To learn mor
 |`outputs`|A dictionary of component outputs. The key is a name for the output within the context of the component, and the value is the component output definition. You can reference outputs in the command by using the `${{ outputs.<output_name> }}` expression.|
 |`is_deterministic`|Whether to reuse the previous job's result if the component inputs don't change. The default value is `true`. This setting is also known as *reuse by default*. The common scenario when set to `false` is to force reload data from cloud storage or a URL.|
 
-In the example in *3b_pipeline_with_data/componentA.yml*, component A has one data input and one data output, which can be connected to other steps in the parent pipeline. All the files in the `code` section in the component YAML will be uploaded to Azure Machine Learning when the pipeline job is submitted. In this example, files under `./componentA_src` will be uploaded (line 16 in *componentA.yml*). You can see the uploaded source code in the studio UI: double-click the **componentA** step in the graph and go to the **Code** tab, as shown in the following screenshot. You can see that it's a hello-world script doing some simple printing, and that it writes the current date and time to the `componentA_output` path. The component takes input and provides output via the command line It's handled in *hello.py* via `argparse`.
+In the example in *3b_pipeline_with_data/componentA.yml*, component A has one data input and one data output, which can be connected to other steps in the parent pipeline. All the files in the `code` section in the component YAML will be uploaded to Azure Machine Learning when the pipeline job is submitted. In this example, files under `./componentA_src` will be uploaded (line 16 in *componentA.yml*). You can see the uploaded source code in the studio UI: double-click the **componentA** step in the graph and go to the **Code** tab, as shown in the following screenshot. You can see that it's a hello-world script doing some simple printing, and that it writes the current date and time to the `componentA_output` path. The component takes input and provides output via the command line. It's handled in *hello.py* via `argparse`.
   
 :::image type="content" source="./media/how-to-create-component-pipelines-cli/component-snapshot.png" alt-text="Screenshot of the pipeline with data example. It shows component A." lightbox="./media/how-to-create-component-pipelines-cli/component-snapshot.png":::
 
 ### Input and output
 
-Input and output define the interface of a component. Input and output can be literal values (of type `string`, `number`, `integer`, or `boolean`) or an object containing that contains an input schema.
+Input and output define the interface of a component. Input and output can be literal values (of type `string`, `number`, `integer`, or `boolean`) or an object that contains an input schema.
 
 **Object input** (of type `uri_file`, `uri_folder`, `mltable`, `mlflow_model`, or `custom_model`) can connect to other steps in the parent pipeline job to pass data/models to other steps. In the pipeline graph, the object type input renders as a connection dot.
 
-**Literal value inputs** (`string`, `number`, `integer`, `boolean`) are the parameters you can pass to the component at runtime. You can add a default value of literal inputs in the `default` field. For `number` and `integer` types, you can also add minimum and maximum values by using the `min` and `max` fields. If the input value is less than the minimum or more than the maximum, the pipeline fails at validation. Validation occurs before you submit a pipeline job, which can save time. Validation works for CLI, the Python SDK, and the Designer UI. The following screenshot shows a validation example in Designer UI. Similarly, you can define allowed values in `enum` fields.
+**Literal value inputs** (`string`, `number`, `integer`, `boolean`) are the parameters you can pass to the component at runtime. You can add a default value of literal inputs in the `default` field. For `number` and `integer` types, you can also add minimum and maximum values by using the `min` and `max` fields. If the input value is less than the minimum or more than the maximum, the pipeline fails at validation. Validation occurs before you submit a pipeline job, which can save time. Validation works for the CLI, the Python SDK, and the Designer UI. The following screenshot shows a validation example in the Designer UI. Similarly, you can define allowed values in `enum` fields.
 
 :::image type="content" source="./media/how-to-create-component-pipelines-cli/component-input-output.png" alt-text="Screenshot of the input and output of the train linear regression model component." lightbox= "./media/how-to-create-component-pipelines-cli/component-input-output.png":::
 
 If you want to add an input to a component, you need to make edits in three places:
 
 - The `inputs` field in the component YAML.
-- The `command` field in component YAML.
+- The `command` field in the component YAML.
 - In component source code to handle the command-line input. 
 
 These locations are marked with green boxes in the preceding screenshot.  
@@ -213,7 +213,7 @@ On the **Jobs** tab, you see the history of all jobs that use the component.
 
 You'll now use `1b_e2e_registered_components` as an example of how to use registered component in pipeline YAML. Go to the `1b_e2e_registered_components` directory and open the `pipeline.yml` file. The keys and values in the `inputs` and `outputs` fields are similar to those already discussed. The only significant difference is the value of the `component` field in the `jobs.<job_name>.component` entries. The `component` value is in the form `azureml:<component_name>:<component_version>`. The `train-job` definition, for example, specifies that the latest version of the registered component `my_train` should be used:
 
-:::code language="yaml" source="~/azureml-examples-main/cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components/pipeline.yml" range="24-36" highlight="4":::
+:::code language="yaml" source="~/azureml-examples-main/cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components/pipeline.yml" range="24-36" highlight="2":::
 
 ### Manage components
 
