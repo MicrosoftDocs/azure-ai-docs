@@ -8,7 +8,7 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: keli19
-ms.date: 12/30/2023
+ms.date: 06/12/2025
 ms.custom:
   - devx-track-python
   - sdkv2
