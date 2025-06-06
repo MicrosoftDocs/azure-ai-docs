@@ -55,12 +55,12 @@ In the `cli/jobs/pipelines-with-components/basics` directory of the [`azureml-ex
 
 - **pipeline.yml**. This YAML file defines the machine learning pipeline. It describes how to break a full machine learning task into a multistep workflow. For example, consider the simple machine learning task of using historical data to train a sales forecasting model. You might want to build a sequential workflow that contains data processing, model training, and model evaluation steps.  Each step is a component that has a well-defined interface and can be developed, tested, and optimized independently. The pipeline YAML also defines how the child steps connect to other steps in the pipeline. For example, the model training step generates a model file and the model file is passed to a model evaluation step.
 
-- **component*.yml**.  This YAML file defines the component. It packages the following information:
+- **component.yml**.  These YAML files define the components. They contain the following information:
   - Metadata: Name, display name, version, description, type, and so on. The metadata helps to describe and manage the component.
   - Interface: Inputs and outputs. For example, a model training component takes training data and number of epochs as input and generates a trained model file as output. After the interface is defined, different teams can develop and test the component independently.
   - Command, code, and environment: The command, code, and environment to run the component. The command is the shell command to run the component. The code usually refers to a source code directory. The environment can be an Azure Machine Learning environment (curated or customer created), Docker image, or conda environment.  
 
-- **component_src**. This is the source code directory for a specific component. It contains the source code that's executed in the component. You can use your preferred language, including Python, R, and others. The code must be run by a shell command. The source code can take a few inputs from the shell command line to control how this step is run. For example, a training step might take training data, learning rate, and the number of epochs to control the training process. The argument of a shell command is used to pass inputs and outputs to the code.
+- **component_src**. These are the source code directories for specific components. They contain the source code that's run in the component. You can use your preferred language, including Python, R, and others. The code must be run by a shell command. The source code can take a few inputs from the shell command line to control how this step is run. For example, a training step might take training data, learning rate, and the number of epochs to control the training process. The argument of a shell command is used to pass inputs and outputs to the code.
 
  You'll now create a pipeline by using the `3b_pipeline_with_data` example. Each file is explained further in the following sections.
 
@@ -94,7 +94,7 @@ You should receive a JSON dictionary with information about the pipeline job, in
 | `services.Studio.endpoint` | A URL for monitoring and reviewing the pipeline job.         |
 | `status`             | The status of the job. It will probably be `Preparing` at this point. |
 
-Open the `services.Studio.endpoint` URL to see a visualization of the pipeline:
+Go to the `services.Studio.endpoint` URL to see a visualization of the pipeline:
 
 :::image type="content" source="./media/how-to-create-component-pipelines-cli/pipeline-graph-dependencies.png" alt-text="Screenshot of a visualization of the pipeline.":::
 
@@ -113,14 +113,14 @@ The table describes the most commonly used fields of the pipeline YAML schema. T
 |------|------|
 |`type`|**Required**. The job type. It must be `pipeline` for pipeline jobs.|
 |`display_name`|The display name of the pipeline job in the studio UI. Editable in the studio UI. It doesn't have to be unique across all jobs in the workspace.|
-|`jobs`|**Required**. A dictionary of the set of individual jobs to run as steps within the pipeline. These jobs are considered child jobs of the parent pipeline job. In the current release, supported job types in pipeline are `command` and `sweep`|
+|`jobs`|**Required**. A dictionary of the set of individual jobs to run as steps within the pipeline. These jobs are considered child jobs of the parent pipeline job. In the current release, supported job types in pipeline are `command` and `sweep`.|
 |`inputs`|A dictionary of inputs to the pipeline job. The key is a name for the input within the context of the job, and the value is the input value. You can reference these pipeline inputs by the inputs of an individual step job in the pipeline by using the `${{ parent.inputs.<input_name> }}` expression.|
 |`outputs`|A dictionary of output configurations of the pipeline job. The key is a name for the output in the context of the job, and the value is the output configuration. You can reference these pipeline outputs by the outputs of an individual step job in the pipeline by using the `${{ parents.outputs.<output_name> }}` expression. |
 
 The *3b_pipeline_with_data* example, contains a three-step pipeline.
 
 - The three steps are defined under `jobs`. All three steps are of type `command`. Each step's definition is in a corresponding `component*.yml` file. You can see the component YAML files in the *3b_pipeline_with_data* directory. `componentA.yml` is described in the next section.
-- This pipeline has data dependency, which is common in real-world pipelines. Component A takes data input from a local folder under `./data` (lines 17-20) and passes its output to component B (line 29). Component A's output can be referenced as `${{parent.jobs.component_a.outputs.component_a_output}}`.
+- This pipeline has data dependency, which is common in real-world pipelines. Component A takes data input from a local folder under `./data` (lines 18-21) and passes its output to component B (line 29). Component A's output can be referenced as `${{parent.jobs.component_a.outputs.component_a_output}}`.
 - `default_compute` defines the default compute for the pipeline. If a component under `jobs` defines a different compute, component-specific settings are respected.
 
 :::image type="content" source="./media/how-to-create-component-pipelines-cli/pipeline-inputs-and-outputs.png" alt-text="Screenshot of the pipeline with data example." lightbox ="./media/how-to-create-component-pipelines-cli/pipeline-inputs-and-outputs.png":::
@@ -153,7 +153,7 @@ This table defines the most commonly used fields of component YAML. To learn mor
 |`outputs`|A dictionary of component outputs. The key is a name for the output within the context of the component, and the value is the component output definition. You can reference outputs in the command by using the `${{ outputs.<output_name> }}` expression.|
 |`is_deterministic`|Whether to reuse the previous job's result if the component inputs don't change. The default value is `true`. This setting is also known as *reuse by default*. The common scenario when set to `false` is to force reload data from cloud storage or a URL.|
 
-In the example in *3b_pipeline_with_data/componentA.yml*, component A has one data input and one data output, which can be connected to other steps in the parent pipeline. All the files in the `code` section in the component YAML will be uploaded to Azure Machine Learning when the pipeline job is submitted. In this example, files under `./componentA_src` will be uploaded (line 16 in *componentA.yml*). You can see the uploaded source code in the studio UI: double-click the **componentA** step in the graph and go to the **Snapshot** tab, as shown in the following screenshot. You can see that it's a hello-world script doing some simple printing, and that it writes the current date and time to the `componentA_output` path. The component takes input and provides output via the command line It's handled in *hello.py* via `argparse`.
+In the example in *3b_pipeline_with_data/componentA.yml*, component A has one data input and one data output, which can be connected to other steps in the parent pipeline. All the files in the `code` section in the component YAML will be uploaded to Azure Machine Learning when the pipeline job is submitted. In this example, files under `./componentA_src` will be uploaded (line 16 in *componentA.yml*). You can see the uploaded source code in the studio UI: double-click the **componentA** step in the graph and go to the **Code** tab, as shown in the following screenshot. You can see that it's a hello-world script doing some simple printing, and that it writes the current date and time to the `componentA_output` path. The component takes input and provides output via the command line It's handled in *hello.py* via `argparse`.
   
 :::image type="content" source="./media/how-to-create-component-pipelines-cli/component-snapshot.png" alt-text="Screenshot of the pipeline with data example. It shows component A." lightbox="./media/how-to-create-component-pipelines-cli/component-snapshot.png":::
 
