@@ -5,13 +5,13 @@ ms.service: azure-ai-language
 ms.topic: how-to
 author: jboback
 ms.author: jboback
-ms.date: 11/21/2024
+ms.date: 06/06/2025
 ms.custom: language-service-question-answering
 ---
 
 #  Network isolation and private endpoints
 
-The steps below describe how to restrict public access to custom question answering resources as well as how to enable Azure Private Link. Protect an AI Foundry resource from public access by [configuring the virtual network](../../../cognitive-services-virtual-networks.md?tabs=portal).
+The following steps describe how to restrict public access to custom question answering resources and how to enable Azure Private Link. Protect an AI Foundry resource from public access by [configuring the virtual network](../../../cognitive-services-virtual-networks.md?tabs=portal).
 
 ## Private Endpoints
 
@@ -21,14 +21,14 @@ Private endpoints are provided by [Azure Private Link](/azure/private-link/priva
 
 ## Steps to enable private endpoint
 
-1. Assign *Contributer* role to language resource (Depending on the context this may appear as a Text Analytics resource) in the Azure Search Service instance. This operation requires *Owner* access to the subscription. Go to Identity tab in the service resource to get the identity.
+1. Assign the *contributer* role to the resource in the Azure Search Service instance. This operation requires *Owner* access to the subscription. Go to Identity tab in the service resource to get the identity.
 
 > [!div class="mx-imgBorder"]
 > ![Text Analytics Identity](../../../QnAMaker/media/qnamaker-reference-private-endpoints/private-endpoints-identity.png)
 
-2. Add the above identity as *Contributer* by going to Azure Search Service IAM tab.
+2. Add the identity as a *contributer* by going to Azure Search Service access control tab.
 
-![Managed service IAM](../../../QnAMaker/media/qnamaker-reference-private-endpoints/private-endpoint-access-control.png)
+![Managed service](../../../QnAMaker/media/qnamaker-reference-private-endpoints/private-endpoint-access-control.png)
 
 3. Select on *Add role assignments*, add the identity and select *Save*.
 
@@ -38,7 +38,7 @@ Private endpoints are provided by [Azure Private Link](/azure/private-link/priva
 
 ![Managed Azure search networking](../../../QnAMaker/media/qnamaker-reference-private-endpoints/private-endpoint-networking.png)
 
-5. Go to *Networking* tab of language resource and under the *Allow access from*, select the *Selected Networks and private endpoints* option and select *save*.
+5. Go to the **Networking** tab of the resource. Under the **Allow access from** section, select the **Selected Networks and private endpoints** option and select **save**.
  
 > [!div class="mx-imgBorder"]
 > ![Text Analytics networking](../../../QnAMaker/media/qnamaker-reference-private-endpoints/private-endpoint-networking-custom-qna.png)
@@ -56,7 +56,7 @@ This will establish a private endpoint connection between language resource and 
 
 Follow the steps below to restrict public access to custom question answering language resources. Protect an AI Foundry resource from public access by [configuring the virtual network](../../../cognitive-services-virtual-networks.md?tabs=portal).
 
-After restricting access to an AI Foundry resource based on VNet, To browse projects on Language Studio from your on-premises network or your local browser.
+After you restrict access to an AI Foundry resource based on virtual network, to browse projects on Language Studio from your on-premises network or your local browser.
 - Grant access to [on-premises network](../../../cognitive-services-virtual-networks.md?tabs=portal#configure-access-from-on-premises-networks).
 - Grant access to your [local browser/machine](../../../cognitive-services-virtual-networks.md?tabs=portal#managing-ip-network-rules).
 - Add the **public IP address of the machine  under the Firewall** section of the **Networking** tab. By default `portal.azure.com` shows the current browsing machine's public IP (select this entry) and then select **Save**.

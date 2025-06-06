@@ -6,7 +6,7 @@ author: jboback
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 11/21/2024
+ms.date: 06/06/2025
 ms.author: jboback
 ms.custom: language-service-language-detection, ignite-2024
 ---
