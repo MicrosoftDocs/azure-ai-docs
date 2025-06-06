@@ -532,18 +532,20 @@ items:
         href: search-indexer-howto-access-private.md
       - name: Connect to a SQL managed instance private endpoint
         href: search-indexer-how-to-access-private-sql.md
-    - name: Document-level permissions
+    - name: Document-level access
       items:
       - name: Document-level security overview
         href: search-document-level-access-overview.md
       - name: Use security filters
         href: search-security-trimming-for-azure-search.md
-      - name: Push document-level permissions to an index
-        href: search-index-access-control-lists-and-rbac-push-api.md
-      - name: Pull ADLS Gen2 permissions into an index
-        href: search-indexer-access-control-lists-and-role-based-access.md
-      - name: Query with permission filters
-        href: search-query-access-control-rbac-enforcement.md
+      - name: Use ACLs
+        items:
+        - name: Push document-level permissions to an index
+          href: search-index-access-control-lists-and-rbac-push-api.md
+        - name: Pull ADLS Gen2 permissions into an index
+          href: search-indexer-access-control-lists-and-role-based-access.md
+        - name: Query with permission filters
+          href: search-query-access-control-rbac-enforcement.md
     - name: Advanced options
       items:
       - name: Create a private endpoint
