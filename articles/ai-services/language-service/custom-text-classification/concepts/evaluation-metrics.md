@@ -26,12 +26,12 @@ Model evaluation is triggered automatically after training is completed successf
 
     `Recall = #True_Positive / (#True_Positive + #False_Negatives)`
 
-* **F1 score**: The F1 score is a function of Precision and Recall. It's needed when you seek a balance between Precision and Recall.
+* **F1 score**: The F1 score is a function of precision and recall. It's needed when you seek a balance between precision and recall.
 
     `F1 Score = 2 * Precision * Recall / (Precision + Recall)` <br> 
 
 >[!NOTE]
-> Precision, recall and F1 score are calculated for each class separately (*class-level* evaluation) and for the model collectively (*model-level* evaluation).
+> Precision, recall, and F1 score are calculated for each class separately (*class-level* evaluation) and for the model collectively (*model-level* evaluation).
 ## Model-level and Class-level evaluation metrics
 
 The definitions of precision, recall, and evaluation are the same for both class-level and model-level evaluations. However, the count of *True Positive*, *False Positive*, and *False Negative* differ as shown in the following example.
@@ -89,7 +89,7 @@ The below sections use the following example dataset:
 **F1 Score** = `2 * Precision * Recall / (Precision + Recall) =  (2 * 0.8 * 0.67) / (0.8 + 0.67) = 0.73`
 
 > [!NOTE] 
-> For single-label classification models, the count of false negatives and false positives are always equal. Custom single-label classification models always predict one class for each document. If the prediction is not correct, FP count of the predicted class increases by one and FN of the actual class increases by one, overall count of FP and FN for the model will always be equal. This is not the case for multi-label classification, because failing to predict one of the classes of a document is counted as a false negative. 
+> For single-label classification models, the number of false negatives and false positives are always equal. Custom single-label classification models always predict one class for each document. If the prediction is not correct, FP count of the predicted class increases by one and FN of the actual class increases by one, overall count of FP and FN for the model will always be equal. This is not the case for multi-label classification, because failing to predict one of the classes of a document is counted as a false negative. 
 ## Interpreting class-level evaluation metrics
 
 So what does it actually mean to have a high precision or a high recall for a certain class?
