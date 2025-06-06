@@ -5,7 +5,7 @@ description: Learn how deep learning relates to machine learning and AI. In Azur
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: training
-ms.topic: conceptual
+ms.topic: concept-article
 ms.author: lagayhar
 author: lgayhardt
 ms.reviewer: lagayhar

@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 04/03/2025
 ms.reviewer: sgilley
 ms.author: sgilley

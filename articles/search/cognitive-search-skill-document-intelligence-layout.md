@@ -24,9 +24,9 @@ This article is the reference documentation for the Document Layout skill. For u
 
 It's common to use this skill on content such as PDFs that have structure and images. The following tutorials demonstrate several scenarios: 
 
-+ [Tutorial: Index mixed content using image verbalizations and the Document Layout skill](tutorial-multimodal-index-image-verbalization-skill.md)
++ [Tutorial: Index mixed content using image verbalizations and the Document Layout skill](tutorial-document-layout-image-verbalization.md)
 
-+ [Tutorial: Index mixed content using multimodal embeddings and the Document Layout skill](tutorial-multimodal-index-embeddings-skill.md)
++ [Tutorial: Index mixed content using multimodal embeddings and the Document Layout skill](tutorial-document-layout-multimodal-embeddings.md)
 
 > [!NOTE]
 > This skill uses the [Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout) provided in [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview).

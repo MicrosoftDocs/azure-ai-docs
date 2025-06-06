@@ -41,7 +41,7 @@ Foundry Models is a capability in Azure AI Foundry resources in Azure. You can c
 To create an Azure AI project that supports deployment for DeepSeek-R1, follow these steps. You can also create the resources using [Azure CLI](../how-to/quickstart-create-resources.md?pivots=programming-language-cli) or [infrastructure as code with Bicep](../how-to/quickstart-create-resources.md?pivots=programming-language-bicep).
 
 
-1. Go to [Azure AI Foundry portal](https://ai.azure.com) and log in with your account.
+1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and log in with your account.
 
 2. On the landing page, select **Create project**.
 

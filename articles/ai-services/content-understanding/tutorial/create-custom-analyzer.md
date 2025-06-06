@@ -5,19 +5,18 @@ description: Learn to create a custom analyzer with Azure AI Content Understandi
 author: laujan
 ms.author: paulhsu
 manager: nitinme
+ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 05/19/2025
+ms.custom:
+  - build-2025
 ---
 
 # Create a custom analyzer via REST APIs
 
 Content Understanding analyzers define how to process and extract insights from your content. They ensure uniform processing and output structure across all your content to deliver reliable and predictable results. We offer [prebuilt analyzers](../concepts/prebuilt-analyzers.md) for common use cases. This guide shows how these analyzers can be customized to better fit your needs.
 
-In this guide, we use the cURL command line tool. If it isn't installed, you can download the appropriate version for your dev environment:
-
-  * [Windows](https://curl.haxx.se/windows/)
-  * [Mac or Linux](https://learn2torials.com/thread/how-to-install-curl-on-mac-or-linux-(ubuntu)-or-windows)
+In this guide, we use the cURL command line tool. If it isn't installed, you can [download](https://everything.curl.dev/install/index.html) the appropriate version for your dev environment.
 
 ## Define an analyzer schema
 
@@ -222,25 +221,25 @@ Before running the cURL command, make the following changes to the HTTP request:
 
 # [Document](#tab/document)
 
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
+1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Foundry instance.
 1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
 1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/receipt.png`.
 
 # [Image](#tab/image)
 
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
+1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Foundry instance.
 1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
 1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/pieChart.jpg`.
 
 # [Audio](#tab/audio)
 
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
+1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Foundry instance.
 1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
 1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/audio.wav`.
 
 # [Video](#tab/video)
 
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
+1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Foundry instance.
 1. Replace `{analyzerId}` with the name of the custom analyzer created earlier.
 1. Replace `{fileUrl}` with a publicly accessible URL of the file to analyze, such as a path to an Azure Storage Blob with a shared access signature (SAS) or the sample URL `https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/FlightSimulator.mp4`.
 
@@ -274,7 +273,7 @@ The `202 Accepted` response includes the `{resultId}` which you can use to track
 
 ### Get Analyze Result
 
-1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Services instance.
+1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Foundry instance.
 2. Replace `{resultId}` with the `resultId` in `POST` response.
 
 #### GET Request

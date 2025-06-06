@@ -5,9 +5,11 @@ description: Learn about Azure AI Content Understanding standard and pro modes.
 author: laujan
 ms.author: kabrow
 manager: nitinme
+ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 05/19/2025
+ms.custom:
+  - build-2025
 ---
 
 # Azure AI Content Understanding pro and standard modes

@@ -4,7 +4,7 @@ titleSuffix: Azure AI Foundry
 description: This article lists Azure AI Foundry feature availability across clouds regions.
 manager: scottpolly
 ms.service: azure-ai-foundry
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 04/28/2025
 ms.reviewer: deeikele
 ms.author: sgilley
@@ -14,7 +14,7 @@ ms.custom: references_regions, build-2024
 
 # Azure AI Foundry feature availability across clouds regions
 
-[Azure AI Foundry](https://ai.azure.com) brings together various Azure AI capabilities that previously were only available as standalone Azure services. While we strive to make all features available in all regions where Azure AI Foundry is supported at the same time, feature availability may vary by region. In this article, you'll learn what Azure AI Foundry features are available across cloud regions.  
+[Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) brings together various Azure AI capabilities that previously were only available as standalone Azure services. While we strive to make all features available in all regions where Azure AI Foundry is supported at the same time, feature availability may vary by region. In this article, you'll learn what Azure AI Foundry features are available across cloud regions.  
 
 ## Azure AI Foundry projects
 

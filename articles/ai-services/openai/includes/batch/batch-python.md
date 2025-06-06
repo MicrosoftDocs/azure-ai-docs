@@ -3,9 +3,11 @@ title: Azure OpenAI Global Batch Python
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Azure OpenAI model global batch Python
 manager: nitinme
+ms.date: 10/15/2024
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 10/15/2024
+ms.custom:
+  - build-2025
 ---
 
 ## Prerequisites

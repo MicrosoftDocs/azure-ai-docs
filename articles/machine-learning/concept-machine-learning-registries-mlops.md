@@ -9,7 +9,7 @@ ms.author: larryfr
 author: Blackmist
 ms.reviewer: kritifaujdar
 ms.date: 06/06/2024
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom: build-2023
 ---
 
