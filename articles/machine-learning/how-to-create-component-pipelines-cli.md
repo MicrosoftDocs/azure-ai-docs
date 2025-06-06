@@ -107,7 +107,7 @@ You'll now look at the pipeline definition in the *3b_pipeline_with_data/pipelin
 
 :::code language="yaml" source="~/azureml-examples-main/cli/jobs/pipelines-with-components/basics/3b_pipeline_with_data/pipeline.yml":::
 
-The table describes the most commonly used fields of the pipeline YAML schema. To learn more, see the [full pipeline YAML schema](reference-yaml-job-pipeline.md).  
+The following table describes the most commonly used fields of the pipeline YAML schema. To learn more, see the [full pipeline YAML schema](reference-yaml-job-pipeline.md).  
 
 |Key|Description|
 |------|------|
@@ -153,7 +153,7 @@ This table defines the most commonly used fields of component YAML. To learn mor
 |`outputs`|A dictionary of component outputs. The key is a name for the output within the context of the component, and the value is the component output definition. You can reference outputs in the command by using the `${{ outputs.<output_name> }}` expression.|
 |`is_deterministic`|Whether to reuse the previous job's result if the component inputs don't change. The default value is `true`. This setting is also known as *reuse by default*. The common scenario when set to `false` is to force reload data from cloud storage or a URL.|
 
-In the example in *3b_pipeline_with_data/componentA.yml*, component A has one data input and one data output, which can be connected to other steps in the parent pipeline. All the files in the `code` section in the component YAML will be uploaded to Azure Machine Learning when the pipeline job is submitted. In this example, files under `./componentA_src` will be uploaded (line 16 in *componentA.yml*). You can see the uploaded source code in the studio UI: double-click the **componentA** step in the graph and go to the **Code** tab, as shown in the following screenshot. You can see that it's a hello-world script doing some simple printing, and that it writes the current date and time to the `componentA_output` path. The component takes input and provides output via the command line. It's handled in *hello.py* via `argparse`.
+In the example in *3b_pipeline_with_data/componentA.yml*, component A has one data input and one data output, which can be connected to other steps in the parent pipeline. All the files in the `code` section in the component YAML will be uploaded to Azure Machine Learning when the pipeline job is submitted. In this example, files under `./componentA_src` will be uploaded. (Line 16 in *componentA.yml*.) You can see the uploaded source code in the studio UI: double-click the **componentA** step in the graph and go to the **Code** tab, as shown in the following screenshot. You can see that it's a hello-world script doing some simple printing, and that it writes the current date and time to the `componentA_output` path. The component takes input and provides output via the command line. It's handled in *hello.py* via `argparse`.
   
 :::image type="content" source="./media/how-to-create-component-pipelines-cli/component-snapshot.png" alt-text="Screenshot of the pipeline with data example. It shows component A." lightbox="./media/how-to-create-component-pipelines-cli/component-snapshot.png":::
 
@@ -177,7 +177,7 @@ These locations are marked with green boxes in the preceding screenshot.
 
 To learn more about inputs and outputs, see [Manage inputs and outputs for components and pipelines](./how-to-manage-inputs-outputs-pipeline.md).
 
-### Environment
+### Environments
 
 The environment is the environment in which the component runs. It could be an Azure Machine Learning environment (curated or custom registered), a Docker image, or a conda environment. See the following examples:
 
@@ -189,7 +189,7 @@ The environment is the environment in which the component runs. It could be an A
 
 Although some components are specific to a particular pipeline, the real benefit of components comes from reuse and sharing. You can register a component in your Machine Learning workspace to make it available for reuse. Registered components support automatic versioning so you can update the component but ensure that pipelines that require an older version will continue to work.  
 
-In the azureml-examples repository, go to the `cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components` directory. 
+In the `azureml-examples repository`, go to the `cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components` directory. 
 
 To register a component, use the `az ml component create` command:
 
