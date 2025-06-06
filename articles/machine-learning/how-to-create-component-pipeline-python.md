@@ -1,5 +1,5 @@
 ---
-title: 'Create and run machine learning pipelines using components with the Azure Machine Learning SDK v2'
+title: 'Create and Run Machine Learning Pipelines Using Components with the Machine Learning SDK v2'
 titleSuffix: Azure Machine Learning
 description: Build a machine learning pipeline for image classification. Focus on machine learning instead of infrastructure and automation.
 ms.service: azure-machine-learning
@@ -15,38 +15,40 @@ ms.custom:
   - build-2023
   - ignite-2023
   - update-code
+
+#customer intent: As a machine learning engineer, I want to create a component-based machine learning pipeline so that I can take advantage of the flexibility and reuse provided by components.
 ---
 
-# Create and run machine learning pipelines using components with the Azure Machine Learning SDK v2
+# Create and run machine learning pipelines by using components with the Machine Learning SDK v2
 
 [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
 
-In this article, you learn how to build an [Azure Machine Learning pipeline](concept-ml-pipelines.md) using Python SDK v2 to complete an image classification task containing three steps: prepare data, train an image classification model, and score the model. Machine learning pipelines optimize your workflow with speed, portability, and reuse, so you can focus on machine learning instead of infrastructure and automation.  
+In this article, you learn how to build an [Azure Machine Learning pipeline](concept-ml-pipelines.md) by using the Azure Machine Learning Python SDK v2 to complete an image classification task that contains three steps: prepare data, train an image classification model, and score the model. Machine Learning pipelines optimize your workflow with speed, portability, and reuse, so you can focus on machine learning instead of infrastructure and automation.  
 
-The example trains a small [Keras](https://keras.io/) convolutional neural network to classify images in the [Fashion MNIST](https://github.com/zalandoresearch/fashion-mnist) dataset. The pipeline looks like following.
+The example pipeline trains a small [Keras](https://keras.io/) convolutional neural network to classify images in the [Fashion MNIST](https://github.com/zalandoresearch/fashion-mnist) dataset. The pipeline looks like this:
 
-:::image type="content" source="./media/how-to-create-component-pipeline-python/pipeline-graph.png" alt-text="Screenshot showing pipeline graph of the image classification Keras example." lightbox ="./media/how-to-create-component-pipeline-python/pipeline-graph.png":::
+:::image type="content" source="./media/how-to-create-component-pipeline-python/pipeline-graph.png" alt-text="Screenshot showing a pipeline graph of the image classification example." lightbox ="./media/how-to-create-component-pipeline-python/pipeline-graph.png":::
 
 In this article, you complete the following tasks:
 
 > [!div class="checklist"]
 > * Prepare input data for the pipeline job
-> * Create three components to prepare the data, train and score
-> * Compose a Pipeline from the components
-> * Get access to workspace with compute
+> * Create three components to prepare the data, train an image, and score the model
+> * Build a pipeline from the components
+> * Get access to a workspace with compute
 > * Submit the pipeline job
 > * Review the output of the components and the trained neural network
-> * (Optional) Register the component for further reuse and sharing within workspace
+> * (Optional) Register the component for further reuse and sharing within the workspace
 
 If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/) today.
 
 ## Prerequisites
 
-* Azure Machine Learning workspace - if you don't have one, complete the [Create resources tutorial](quickstart-create-resources.md).
-* A Python environment in which you've installed Azure Machine Learning Python SDK v2 - [install instructions](https://github.com/Azure/azureml-examples/tree/sdk-preview/sdk#getting-started) - check the getting started section. This environment is for defining and controlling your Azure Machine Learning resources and is separate from the environment used at runtime for training.
-* Clone examples repository
+* An Azure Machine Learning workspace. If you don't have one, complete the [Create resources tutorial](quickstart-create-resources.md).
+* A Python environment in which you've installed Azure Machine Learning Python SDK v2. For installation instructions, see [Getting started](https://github.com/Azure/azureml-examples/tree/sdk-preview/sdk#getting-started). This environment is for defining and controlling your Azure Machine Learning resources and is separate from the environment that's used at runtime for training.
+* A clone of the examples repository.
 
-    To run the training examples, first clone the examples repository and change into the `sdk` directory:
+    To run the training examples, first clone the examples repository and go to the `sdk` directory:
 
     ```bash
     git clone --depth 1 https://github.com/Azure/azureml-examples
@@ -55,78 +57,76 @@ If you don't have an Azure subscription, create a free account before you begin.
 
 ## Start an interactive Python session
 
-This article uses the Python SDK for Azure Machine Learning to create and control an Azure Machine Learning pipeline. The article assumes that you'll be running the code snippets interactively in either a Python REPL environment or a Jupyter notebook.
+This article uses the Azure Machine Learning Python SDK to create and control an Azure Machine Learning pipeline. The article is written based on the assumption that you'll be running the code snippets interactively in either a Python REPL environment or a Jupyter notebook.
 
-This article is based on the [image_classification_keras_minist_convnet.ipynb](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet/image_classification_keras_minist_convnet.ipynb) notebook found in the `sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet` directory of the [Azure Machine Learning Examples](https://github.com/azure/azureml-examples) repository.
+This article is based on the [image_classification_keras_minist_convnet.ipynb](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet/image_classification_keras_minist_convnet.ipynb) notebook, which you can find in the `sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet` directory of the [Azure Machine Learning examples](https://github.com/azure/azureml-examples) repository.
 
 ## Import required libraries
 
-Import all the Azure Machine Learning required libraries that you'll need for this article:
+Import all the Azure Machine Learning libraries that you need for this article:
 
 [!notebook-python[] (~/azureml-examples-main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet/image_classification_keras_minist_convnet.ipynb?name=required-library)]
 
 ## Prepare input data for your pipeline job
 
-You need to prepare the input data for this image classification pipeline.
+You need to prepare the input data for the image classification pipeline.
 
-Fashion-MNIST is a dataset of fashion images divided into 10 classes. Each image is a 28x28 grayscale image and there are 60,000 training and 10,000 test images. As an image classification problem, Fashion-MNIST is harder than the classic MNIST handwritten digit database. It's distributed in the same compressed binary form as the original [handwritten digit database](http://yann.lecun.com/exdb/mnist/).
-
-Import all the Azure Machine Learning required libraries that you'll need.
+Fashion-MNIST is a dataset of fashion images divided into 10 classes. Each image is a 28 x 28 grayscale image. There are 60,000 training images and 10,000 test images. As an image classification problem, Fashion-MNIST is more challenging than the classic MNIST handwritten digit database. It's distributed in the same compressed binary form as the original [handwritten digit database](http://yann.lecun.com/exdb/mnist/).
 
 By defining an `Input`, you create a reference to the data source location. The data remains in its existing location, so no extra storage cost is incurred.
 
-## Create components for building pipeline
+## Create components for building the pipeline
 
-The image classification task can be split into three steps: prepare data, train model and score model.
+The image classification task can be split into three steps: prepare data, train the model, and score the model.
 
-[Azure Machine Learning component](concept-component.md) is a self-contained piece of code that does one step in a machine learning pipeline. In this article, you'll create three components for the image classification task:
+An [Azure Machine Learning component](concept-component.md) is a self-contained piece of code that completes one step in a machine learning pipeline. In this article, you create three components for the image classification task:
 
-* Prepare data for training and test
-* Train a neural network for image classification using training data
-* Score the model using test data
+* Prepare data for training and test it.
+* Train a neural network for image classification by using training data.
+* Score the model by using test data.
 
-For each component, you need to prepare the following:
+For each component, you need to complete these steps:
 
-1. Prepare the Python script containing the execution logic
+1. Prepare the Python script that contains the execution logic.
 
-1. Define the interface of the component
+1. Define the interface of the component.
 
-1. Add other metadata of the component, including run-time environment, command to run the component, and etc.
+1. Add other metadata of the component, including the runtime environment and the command to run the component.
 
-The next section will show the create components in two different ways: the first two components using Python function and the third component using YAML definition.
+The next section shows how to create the components in two ways. For the first two components, you use a Python function. For the third component you use YAML definition.
 
 ### Create the data-preparation component
 
-The first component in this pipeline will convert the compressed data files of `fashion_ds` into two csv files, one for training and the other for scoring. You'll use Python function to define this component.
+The first component in this pipeline converts the compressed data files of `fashion_ds` into two .csv files, one for training and the other for scoring. You use a Python function to define this component.
 
-If you're following along with the example in the [Azure Machine Learning examples repo](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet), the source files are already available in `prep/` folder. This folder contains two files to construct the component: `prep_component.py`, which defines the component and `conda.yaml`, which defines the run-time environment of the component.
+If you're following along with the example in the [Azure Machine Learning examples repo](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet), the source files are already available in the `prep/` folder. This folder contains two files to construct the component: `prep_component.py`, which defines the component, and `conda.yaml`, which defines the runtime environment of the component.
 
-#### Define component using Python function
+#### Define component by using a Python function
 
-By using `command_component()` function as a decorator, you can easily define the component's interface, metadata and code to execute from a Python function. Each decorated Python function will be transformed into a single static specification (YAML) that the pipeline service can process.
+By using the `command_component()` function as a decorator, you can easily define the component's interface, its metadata, and the code to run from a Python function. Each decorated Python function will be transformed into a single static specification (YAML) that the pipeline service can process.
 
 :::code language="python" source="~/azureml-examples-main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet/prep/prep_component.py":::
 
-The code above define a component with display name `Prep Data` using `@command_component` decorator:
+The preceding code defines a component with display name `Prep Data` by using the `@command_component` decorator:
 
 * `name` is the unique identifier of the component.
 * `version` is the current version of the component. A component can have multiple versions.
-* `display_name` is a friendly display name of the component in UI, which isn't unique.
-* `description` usually describes what task this component can complete.
-* `environment` specifies the run-time environment for this component. The environment of this component specifies a docker image and refers to the `conda.yaml` file.
+* `display_name` is a friendly display name of the component for UI. It isn't unique.
+* `description` usually describes the task the component can complete.
+* `environment` specifies the runtime environment for the component. The environment of this component specifies a Docker image and refers to the `conda.yaml` file.
 
-    The `conda.yaml` file contains all packages used for the component like following:
+    The `conda.yaml` file contains all packages used for the component:
 
     :::code language="python" source="~/azureml-examples-v2samplesreorg/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet/prep/conda.yaml":::
 
 * The `prepare_data_component` function defines one input for `input_data` and two outputs for `training_data` and `test_data`. 
 `input_data` is input data path. `training_data` and `test_data` are output data paths for training data and test data. 
-* This component converts the data from `input_data` into a training data csv to `training_data` and a test data csv to `test_data`.
+* The component converts the data from `input_data` into a `training_data` .csv to train data and a `test_data` .csv to test data.
 
-Following is what a component looks like in the studio UI.
+This is what a component looks like in the studio UI:
 
 * A component is a block in a pipeline graph.
-* The `input_data`, `training_data` and `test_data` are ports of the component, which connects to other components for data streaming.
+* `input_data`, `training_data`, and `test_data` are ports of the component, which connect to other components for data streaming.
 
 :::image type="content" source="./media/how-to-create-component-pipeline-python/prep-data-component.png" alt-text="Screenshot of the Prep Data component in the UI and code." lightbox ="./media/how-to-create-component-pipeline-python/prep-data-component.png":::
 
