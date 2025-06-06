@@ -11,13 +11,12 @@ ms.author: lajanuar
 ms.custom: language-service-pii
 ---
 
-# Supported PII entity categories
-
+# Supported PII entities
 Use this article to find the entity categories that the [personally identifiable information (PII) detection feature](../how-to-call.md) returns. This feature runs a predictive model to identify, categorize, and redact sensitive information from an input document.
 
 The PII feature includes the ability to detect personal (`PII`) and health (`PHI`) information.
 
-## Entity categories
+## Supported entities
 
 > [!NOTE]
 > * To detect protected health information (PHI), use the `domain=phi` parameter and model version `2020-04-01` or later.
@@ -28,36 +27,6 @@ The following entity categories are returned when you're sending API requests PI
 # [Preview API](#tab/preview-api)
 
 ## Type: Person
-
-This category contains the following entity:
-
-:::row:::
-    :::column span="":::
-        **Entity**
-
-        Person
-
-    :::column-end:::
-    :::column span="2":::
-        **Details**
-
-        Names of people. Returned as both PII and PHI.
-
-        To get this entity category, add `Person` to the `piiCategories` parameter. `Person` is returned in the API response if detected.
-
-    :::column-end:::
-
-    :::column span="":::
-      **Supported languages**
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
-
-   :::column-end:::
-:::row-end:::
-
-# [GA API](#tab/ga-api)
-
-## Category: Person
 
 This type contains the following entity:
 
@@ -84,13 +53,43 @@ This type contains the following entity:
 
    :::column-end:::
 :::row-end:::
+
+# [GA API](#tab/ga-api)
+
+## Category: Person
+
+This category contains the following entity:
+
+:::row:::
+    :::column span="":::
+        **Entity**
+
+        Person
+
+    :::column-end:::
+    :::column span="2":::
+        **Details**
+
+        Names of people. Returned as both PII and PHI.
+
+        To get this entity category, add `Person` to the `piiCategories` parameter. `Person` is returned in the API response if detected.
+
+    :::column-end:::
+
+    :::column span="":::
+      **Supported languages**
+
+      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
+
+   :::column-end:::
+:::row-end:::
 ---
 
 # [Preview API](#tab/preview-api)
 
 ## Type: PersonType
 
-This category contains the following entity:
+This type contains the following entity:
 
 
 :::row:::
@@ -121,7 +120,7 @@ This category contains the following entity:
 
 ## Category: PersonType
 
-This type contains the following entity:
+This category contains the following entity:
 
 
 :::row:::
@@ -147,13 +146,14 @@ This type contains the following entity:
 
    :::column-end:::
 :::row-end:::
+
 ---
 
 # [Preview API](#tab/preview-api)
 
 ## Type: PhoneNumber
 
-This category contains the following entity:
+This type contains the following entity:
 
 :::row:::
     :::column span="":::
@@ -184,7 +184,7 @@ This category contains the following entity:
 
 ## Category: PhoneNumber
 
-This type contains the following entity:
+This category contains the following entity:
 
 :::row:::
     :::column span="":::
@@ -216,7 +216,7 @@ This type contains the following entity:
 
 ## Type: Organization
 
-This category contains the following entity:
+This type contains the following entity:
 
 :::row:::
     :::column span="":::
@@ -243,13 +243,13 @@ This category contains the following entity:
 
 :::row-end:::
 
-#### Subcategories
+#### Subtype
 
-The entity in this category can have the following subcategories.
+The entity in this type can have the following subcategories.
 
 :::row:::
     :::column span="":::
-        **Entity subcategory**
+        **Entity subtype**
 
         Medical
 
@@ -318,7 +318,7 @@ The entity in this category can have the following subcategories.
 
 ## Category: Organization
 
-This type contains the following entity:
+This category contains the following entity:
 
 :::row:::
     :::column span="":::
@@ -345,13 +345,13 @@ This type contains the following entity:
 
 :::row-end:::
 
-#### Subtypes
+#### Subcategory
 
-The entity in this type can have the following subtypes.
+The entity in this category can have the following subcategories.
 
 :::row:::
     :::column span="":::
-        **Entity subtype**
+        **Entity subcategory**
 
         Medical
 
@@ -424,7 +424,7 @@ The entity in this type can have the following subtypes.
 ## Type: Address
 
 
-This category contains the following entity:
+This type contains the following entity:
 
 :::row:::
     :::column span="":::
@@ -438,7 +438,7 @@ This category contains the following entity:
 
         Full mailing address. Returned as both PII and PHI.
 
-        To get this entity category, add `Address` to the `piiCategories` parameter. `Address` is returned in the API response if detected.
+        To get this entity type, add `Address` to the `piiCategories` parameter. `Address` is returned in the API response if detected.
 
     :::column-end:::
 
@@ -469,7 +469,7 @@ This type contains the following entity:
 
         Full mailing address. Returned as both PII and PHI.
 
-        To get this entity type, add `Address` to the `piiCategories` parameter. `Address` is returned in the API response if detected.
+        To get this entity category, add `Address` to the `piiCategories` parameter. `Address` is returned in the API response if detected.
 
     :::column-end:::
 
@@ -502,7 +502,7 @@ This category contains the following entity:
 
         Email addresses. Returned as both PII and PHI.
 
-        To get this entity category, add `Email` to the `piiCategories` parameter. `Email` is returned in the API response if detected.
+        To get this entity type, add `Email` to the `piiCategories` parameter. `Email` is returned in the API response if detected.
 
     :::column-end:::
     :::column span="":::
@@ -531,7 +531,7 @@ This type contains the following entity:
 
         Email addresses. Returned as both PII and PHI.
 
-        To get this entity type, add `Email` to the `piiCategories` parameter. `Email` is returned in the API response if detected.
+        To get this category type, add `Email` to the `piiCategories` parameter. `Email` is returned in the API response if detected.
 
     :::column-end:::
     :::column span="":::
@@ -541,46 +541,12 @@ This type contains the following entity:
 
     :::column-end:::
 :::row-end:::
-
----
-
 
 ---
 
 # [Preview API](#tab/preview-api)
 
 ## Type: URL
-
-This category contains the following entity:
-
-:::row:::
-    :::column span="":::
-        **Entity**
-
-        URL
-
-    :::column-end:::
-    :::column span="2":::
-        **Details**
-
-        URLs to websites. Returned as both PII and PHI.
-
-        To get this entity category, add `URL` to the `piiCategories` parameter. `URL` is returned in the API response if detected.
-
-    :::column-end:::
-
-    :::column span="":::
-      **Supported languages**
-
-      `en`, `es`, `fr`, `de`, `it`, `zh`, `ja`, `ko`, `pt-pt`, `pt-br`, `nl`, `sv`, `tr`, `hi`
-
-    :::column-end:::
-
-:::row-end:::
-
-# [GA API](#tab/ga-api)
-
-## Category: URL
 
 This type contains the following entity:
 
@@ -597,6 +563,37 @@ This type contains the following entity:
         URLs to websites. Returned as both PII and PHI.
 
         To get this entity type, add `URL` to the `piiCategories` parameter. `URL` is returned in the API response if detected.
+
+    :::column-end:::
+
+    :::column span="":::
+      **Supported languages**
+
+      `en`, `es`, `fr`, `de`, `it`, `zh`, `ja`, `ko`, `pt-pt`, `pt-br`, `nl`, `sv`, `tr`, `hi`
+
+    :::column-end:::
+
+:::row-end:::
+
+# [GA API](#tab/ga-api)
+
+## Category: URL
+
+This category contains the following entity:
+
+:::row:::
+    :::column span="":::
+        **Entity**
+
+        URL
+
+    :::column-end:::
+    :::column span="2":::
+        **Details**
+
+        URLs to websites. Returned as both PII and PHI.
+
+        To get this entity category, add `URL` to the `piiCategories` parameter. `URL` is returned in the API response if detected.
 
     :::column-end:::
 
@@ -628,7 +625,7 @@ This category contains the following entity:
 
         Network IP addresses. Returned as both PII and PHI.
 
-        To get this entity category, add `IPAddress` to the `piiCategories` parameter. `IPAddress` is returned in the API response if detected.
+        To get this entity type, add `IPAddress` to the `piiCategories` parameter. `IPAddress` is returned in the API response if detected.
 
     :::column-end:::
 
@@ -644,7 +641,7 @@ This category contains the following entity:
 
 ## Category: IP Address
 
-This type contains the following entity:
+This category contains the following entity:
 
 :::row:::
     :::column span="":::
@@ -658,7 +655,7 @@ This type contains the following entity:
 
         Network IP addresses. Returned as both PII and PHI.
 
-        To get this entity type, add `IPAddress` to the `piiCategories` parameter. `IPAddress` is returned in the API response if detected.
+        To get this entity category, add `IPAddress` to the `piiCategories` parameter. `IPAddress` is returned in the API response if detected.
 
     :::column-end:::
 
@@ -676,6 +673,134 @@ This type contains the following entity:
 # [Preview API](#tab/preview-api)
 
 ## Type: DateTime
+
+This type contains the following entities:
+
+:::row:::
+    :::column span="":::
+        **Entity**
+
+        DateTime
+
+    :::column-end:::
+    :::column span="2":::
+        **Details**
+
+        Dates and times of day.
+
+        To get this entity type, add `DateTime` to the `piiCategories` parameter. `DateTime` is returned in the API response if detected.
+
+    :::column-end:::
+:::column span="":::
+      **Supported languages**
+
+      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
+
+   :::column-end:::
+:::row-end:::
+
+### Subtypes
+
+The entity in this type can have the following subtypes.
+
+:::row:::
+    :::column span="":::
+        **Entity subtypes**
+
+        Date
+
+    :::column-end:::
+    :::column span="2":::
+        **Details**
+
+        Calendar dates. Returned as both PII and PHI.
+
+        To get this entity type, add `Date` to the `piiCategories` parameter. `Date` is returned in the API response if detected.
+
+    :::column-end:::
+    :::column span="2":::
+      **Supported languages**
+
+      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
+
+    :::column-end:::
+:::row-end:::
+
+:::row:::
+    :::column span="":::
+
+        DateAndTime
+
+
+    :::column-end:::
+    :::column span="2":::
+
+        Dates and times of day.
+
+        To get this entity category, add `DateAndTime` to the `piiCategories` parameter. `DateAndTime` is returned in the API response if detected.
+
+
+    :::column-end:::
+    :::column span="2":::
+      **Supported languages**
+
+      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
+      :::column-end:::
+:::row-end:::
+
+#### Subtype: Age
+
+The PII service supports the Age subtype within the broader Quantity type (since Age is the personally identifiable piece of information).
+
+:::row:::
+    :::column span="":::
+        **Entity subtype**
+
+        Age
+
+    :::column-end:::
+    :::column span="2":::
+        **Details**
+
+        Ages.
+
+    :::column-end:::
+    :::column span="2":::
+      **Supported languages**
+
+      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
+
+   :::column-end:::
+:::row-end:::
+
+#### Subtype: DateOfBirth
+
+:::row:::
+    :::column span="":::
+        **Entity subtype**
+
+        Date of birth.
+
+    :::column-end:::
+    :::column span="2":::
+        **Details**
+
+      Date
+
+      To get this entity type, add `DateOfBirth` to the `piiCategories` parameter. `DateOfBirth` is returned in the API response if detected. 
+
+    :::column-end:::
+    :::column span="2":::
+      **Supported languages**
+
+      `en`
+
+   :::column-end:::
+:::row-end:::
+
+# [GA API](#tab/ga-api)
+
+## Category: DateTime
 
 This category contains the following entities:
 
@@ -704,7 +829,7 @@ This category contains the following entities:
 
 ### Subcategories
 
-The entity in this category can have the following subcategories.
+The entity in this category can have the following subcategory:
 
 :::row:::
     :::column span="":::
@@ -716,7 +841,7 @@ The entity in this category can have the following subcategories.
     :::column span="2":::
         **Details**
 
-        Calendar dates. Returned as both PII and PHI.
+        Calender dates. Returned as both PII and PHI.
 
         To get this entity category, add `Date` to the `piiCategories` parameter. `Date` is returned in the API response if detected.
 
@@ -750,137 +875,9 @@ The entity in this category can have the following subcategories.
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
       :::column-end:::
 :::row-end:::
-#### Subtype: Age
-
-The PII service supports the Age subcategory within the broader Quantity category (since Age is the personally identifiable piece of information).
-
-:::row:::
-    :::column span="":::
-        **Entity subcategory**
-
-        Age
-
-    :::column-end:::
-    :::column span="2":::
-        **Details**
-
-        Ages.
-
-    :::column-end:::
-    :::column span="2":::
-      **Supported languages**
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
-
-   :::column-end:::
-:::row-end:::
-
-#### Subtype: DateOfBirth
-
-:::row:::
-    :::column span="":::
-        **Entity subcategory**
-
-        Date of birth.
-
-    :::column-end:::
-    :::column span="2":::
-        **Details**
-
-      Date
-
-      To get this entity category, add `DateOfBirth` to the `piiCategories` parameter. `DateOfBirth` is returned in the API response if detected. 
-
-    :::column-end:::
-    :::column span="2":::
-      **Supported languages**
-
-      `en`
-
-   :::column-end:::
-:::row-end:::
-
-# [GA API](#tab/ga-api)
-
-## Category: DateTime
-
-This type contains the following entities:
-
 :::row:::
     :::column span="":::
         **Entity**
-
-        DateTime
-
-    :::column-end:::
-    :::column span="2":::
-        **Details**
-
-        Dates and times of day.
-
-        To get this entity type, add `DateTime` to the `piiCategories` parameter. `DateTime` is returned in the API response if detected.
-
-    :::column-end:::
-:::column span="":::
-      **Supported languages**
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
-
-   :::column-end:::
-:::row-end:::
-
-### Subtypes
-
-The entity in this type can have the following subtypes.
-
-:::row:::
-    :::column span="":::
-        **Entity subtype**
-
-        Date
-
-    :::column-end:::
-    :::column span="2":::
-        **Details**
-
-        Calender dates. Returned as both PII and PHI.
-
-        To get this entity type, add `Date` to the `piiCategories` parameter. `Date` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="2":::
-      **Supported languages**
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
-
-    :::column-end:::
-:::row-end:::
-
-:::row:::
-    :::column span="":::
-
-        DateAndTime
-
-
-    :::column-end:::
-    :::column span="2":::
-
-        Dates and times of day.
-
-        To get this entity type, add `DateAndTime` to the `piiCategories` parameter. `DateAndTime` is returned in the API response if detected.
-
-
-    :::column-end:::
-    :::column span="2":::
-      **Supported languages**
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
-      :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
-
-        DateOfBirth
 
     :::column-end:::
     :::column span="2":::
@@ -897,11 +894,11 @@ The entity in this type can have the following subtypes.
 
 #### Subcategory: Age
 
-The PII service supports the Age subtype within the broader Quantity type (since Age is the personally identifiable piece of information).
+The PII service supports the Age subcategory within the broader Quantity type (since Age is the personally identifiable piece of information).
 
 :::row:::
     :::column span="":::
-        **Entity subtype**
+        **Entity subcategory**
 
         Age
 
@@ -924,7 +921,7 @@ The PII service supports the Age subtype within the broader Quantity type (since
 
 # [Preview API](#tab/preview-api)
 
-## Identification
+### Identification
 
 ## Type: BankAccountNumber
 
@@ -936,7 +933,7 @@ The PII service supports the Age subtype within the broader Quantity type (since
     :::column span="2":::
         **Details**
 
-        To get this entity category, add `BankAccountNumber` to the `piiCategories` parameter. `BankAccountNumber` is returned in the API response if detected.
+        To get this entity type, add `BankAccountNumber` to the `piiCategories` parameter. `BankAccountNumber` is returned in the API response if detected.
 
     :::column-end:::
     :::column span="":::
@@ -957,7 +954,7 @@ The PII service supports the Age subtype within the broader Quantity type (since
     :::column span="2":::
         **Details**
 
-        To get this entity category, add `DriversLicenseNumber` to the `piiCategories` parameter. `DriversLicenseNumber` is returned in the API response if detected.
+        To get this entity type, add `DriversLicenseNumber` to the `piiCategories` parameter. `DriversLicenseNumber` is returned in the API response if detected.
 
     :::column-end:::
     :::column span="":::
@@ -978,7 +975,7 @@ The PII service supports the Age subtype within the broader Quantity type (since
     :::column span="2":::
         **Details**
 
-        To get this entity category, add `PassportNumber` to the `piiCategories` parameter. `PassportNumber` is returned in the API response if detected.
+        To get this entity type, add `PassportNumber` to the `piiCategories` parameter. `PassportNumber` is returned in the API response if detected.
 
     :::column-end:::
     :::column span="":::
@@ -997,206 +994,6 @@ The PII service supports the Age subtype within the broader Quantity type (since
 ---
 
 # [Preview API](#tab/preview-api)
-
-## Azure information
-
-These entity categories include identifiable Azure information like authentication information and connection strings. Not returned as PHI.
-
-:::row:::
-    :::column span="":::
-        **Entity**
-
-        Azure DocumentDB Auth Key
-
-    :::column-end:::
-    :::column span="2":::
-        **Details**
-
-        Authorization key for an Azure Cosmos DB server.
-
-        To get this entity category, add `AzureDocumentDBAuthKey` to the `piiCategories` parameter. `AzureDocumentDBAuthKey` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-      **Supported languages**
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-
-    :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
-
-        Azure IAAS Database Connection String and Azure SQL Connection String.
-
-
-    :::column-end:::
-    :::column span="2":::
-
-        Connection string for an Azure infrastructure as a service (IaaS) database, and SQL connection string.
-
-        To get this entity category, add `AzureIAASDatabaseConnectionAndSQLString` to the `piiCategories` parameter. `AzureIAASDatabaseConnectionAndSQLString` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-
-    :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
-
-        Azure IoT Connection String
-
-    :::column-end:::
-    :::column span="2":::
-
-        Connection string for Azure IoT.
-
-        To get this entity category, add `AzureIoTConnectionString` to the `piiCategories` parameter. `AzureIoTConnectionString` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-
-    :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
-
-        Azure Publish Setting Password
-
-    :::column-end:::
-    :::column span="2":::
-
-        Password for Azure publish settings.
-
-        To get this entity category, add `AzurePublishSettingPassword` to the `piiCategories` parameter. `AzurePublishSettingPassword` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-
-    :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
-
-        Azure Redis Cache Connection String
-
-    :::column-end:::
-    :::column span="2":::
-
-        Connection string for a Redis cache.
-
-        To get this entity category, add `AzureRedisCacheString` to the `piiCategories` parameter. `AzureRedisCacheString` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-
-    :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
-
-        Azure SAS
-
-    :::column-end:::
-    :::column span="2":::
-
-        Connection string for Azure software as a service (SaaS).
-
-        To get this entity category, add `AzureSAS` to the `piiCategories` parameter. `AzureSAS` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-
-    :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
-
-        Azure Service Bus Connection String
-
-    :::column-end:::
-    :::column span="2":::
-
-        Connection string for an Azure service bus.
-
-        To get this entity category, add `AzureServiceBusString` to the `piiCategories` parameter. `AzureServiceBusString` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-
-    :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
-
-        Azure Storage Account Key
-
-    :::column-end:::
-    :::column span="2":::
-
-        Account key for an Azure storage account.
-
-        To get this entity category, add `AzureStorageAccountKey` to the `piiCategories` parameter. `AzureStorageAccountKey` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-
-    :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
-
-        Azure Storage Account Key (Generic)
-
-    :::column-end:::
-    :::column span="2":::
-
-        Generic account key for an Azure storage account.
-
-        To get this entity category, add `AzureStorageAccountGeneric` to the `piiCategories` parameter. `AzureStorageAccountGeneric` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-
-    :::column-end:::
-:::row-end:::
-:::row:::
-    :::column span="":::
-
-        SQL Server Connection String
-
-    :::column-end:::
-    :::column span="2":::
-
-        Connection string for a computer running SQL Server.
-
-        To get this entity category, add `SQLServerConnectionString` to the `piiCategories` parameter. `SQLServerConnectionString` is returned in the API response if detected.
-
-    :::column-end:::
-    :::column span="":::
-
-      `en`
-
-    :::column-end:::
-:::row-end:::
-# [GA API](#tab/ga-api)
 
 ## Azure information
 
@@ -1388,6 +1185,207 @@ These entity types include identifiable Azure information like authentication in
         Connection string for a computer running SQL Server.
 
         To get this entity type, add `SQLServerConnectionString` to the `piiCategories` parameter. `SQLServerConnectionString` is returned in the API response if detected.
+
+    :::column-end:::
+    :::column span="":::
+
+      `en`
+
+    :::column-end:::
+:::row-end:::
+
+# [GA API](#tab/ga-api)
+
+## Azure information
+
+These entity categories include identifiable Azure information like authentication information and connection strings. Not returned as PHI.
+
+:::row:::
+    :::column span="":::
+        **Entity**
+
+        Azure DocumentDB Auth Key
+
+    :::column-end:::
+    :::column span="2":::
+        **Details**
+
+        Authorization key for an Azure Cosmos DB server.
+
+        To get this entity category, add `AzureDocumentDBAuthKey` to the `piiCategories` parameter. `AzureDocumentDBAuthKey` is returned in the API response if detected.
+
+    :::column-end:::
+    :::column span="":::
+      **Supported languages**
+
+      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
+
+    :::column-end:::
+:::row-end:::
+:::row:::
+    :::column span="":::
+
+        Azure IAAS Database Connection String and Azure SQL Connection String.
+
+
+    :::column-end:::
+    :::column span="2":::
+
+        Connection string for an Azure infrastructure as a service (IaaS) database, and SQL connection string.
+
+        To get this entity category, add `AzureIAASDatabaseConnectionAndSQLString` to the `piiCategories` parameter. `AzureIAASDatabaseConnectionAndSQLString` is returned in the API response if detected.
+
+    :::column-end:::
+    :::column span="":::
+
+      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
+
+    :::column-end:::
+:::row-end:::
+:::row:::
+    :::column span="":::
+
+        Azure IoT Connection String
+
+    :::column-end:::
+    :::column span="2":::
+
+        Connection string for Azure IoT.
+
+        To get this entity category, add `AzureIoTConnectionString` to the `piiCategories` parameter. `AzureIoTConnectionString` is returned in the API response if detected.
+
+    :::column-end:::
+    :::column span="":::
+
+      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
+
+    :::column-end:::
+:::row-end:::
+:::row:::
+    :::column span="":::
+
+        Azure Publish Setting Password
+
+    :::column-end:::
+    :::column span="2":::
+
+        Password for Azure publish settings.
+
+        To get this entity category, add `AzurePublishSettingPassword` to the `piiCategories` parameter. `AzurePublishSettingPassword` is returned in the API response if detected.
+
+    :::column-end:::
+    :::column span="":::
+
+      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
+
+    :::column-end:::
+:::row-end:::
+:::row:::
+    :::column span="":::
+
+        Azure Redis Cache Connection String
+
+    :::column-end:::
+    :::column span="2":::
+
+        Connection string for a Redis cache.
+
+        To get this entity category, add `AzureRedisCacheString` to the `piiCategories` parameter. `AzureRedisCacheString` is returned in the API response if detected.
+
+    :::column-end:::
+    :::column span="":::
+
+      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
+
+    :::column-end:::
+:::row-end:::
+:::row:::
+    :::column span="":::
+
+        Azure SAS
+
+    :::column-end:::
+    :::column span="2":::
+
+        Connection string for Azure software as a service (SaaS).
+
+        To get this entity category, add `AzureSAS` to the `piiCategories` parameter. `AzureSAS` is returned in the API response if detected.
+
+    :::column-end:::
+    :::column span="":::
+
+      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
+
+    :::column-end:::
+:::row-end:::
+:::row:::
+    :::column span="":::
+
+        Azure Service Bus Connection String
+
+    :::column-end:::
+    :::column span="2":::
+
+        Connection string for an Azure service bus.
+
+        To get this entity category, add `AzureServiceBusString` to the `piiCategories` parameter. `AzureServiceBusString` is returned in the API response if detected.
+
+    :::column-end:::
+    :::column span="":::
+
+      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
+
+    :::column-end:::
+:::row-end:::
+:::row:::
+    :::column span="":::
+
+        Azure Storage Account Key
+
+    :::column-end:::
+    :::column span="2":::
+
+        Account key for an Azure storage account.
+
+        To get this entity category, add `AzureStorageAccountKey` to the `piiCategories` parameter. `AzureStorageAccountKey` is returned in the API response if detected.
+
+    :::column-end:::
+    :::column span="":::
+
+      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
+
+    :::column-end:::
+:::row-end:::
+:::row:::
+    :::column span="":::
+
+        Azure Storage Account Key (Generic)
+
+    :::column-end:::
+    :::column span="2":::
+
+        Generic account key for an Azure storage account.
+
+        To get this entity category, add `AzureStorageAccountGeneric` to the `piiCategories` parameter. `AzureStorageAccountGeneric` is returned in the API response if detected.
+
+    :::column-end:::
+    :::column span="":::
+
+      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
+
+    :::column-end:::
+:::row-end:::
+:::row:::
+    :::column span="":::
+
+        SQL Server Connection String
+
+    :::column-end:::
+    :::column span="2":::
+
+        Connection string for a computer running SQL Server.
+
+        To get this entity category, add `SQLServerConnectionString` to the `piiCategories` parameter. `SQLServerConnectionString` is returned in the API response if detected.
 
     :::column-end:::
     :::column span="":::
