@@ -98,10 +98,8 @@ items:
     items:
     - name: Index encrypted blobs
       href: search-howto-index-encrypted-blobs.md
-    - name: Index permissioned ADLS Gen2 blobs
+    - name: Index permissioned ADLS Gen2 files
       href: tutorial-adls-gen2-indexer-acls.md
-    - name: Index any permission metadata
-      href: search-index-access-control-lists-and-rbac-push-api.md
   - name: Multimodal indexing tutorials
     items:
     - name: Use document extraction and multimodal embeddings
@@ -211,10 +209,6 @@ items:
       href: ./security-controls-policy.md
     - name: Security baseline
       href: /security/benchmark/azure/baselines/cognitive-search-security-baseline?toc=/azure/search/TOC.json
-    - name: Document-level security
-      href: search-document-level-access-overview.md
-    - name: Query with permission filters
-      href: search-query-access-control-rbac-enforcement.md
 - name: How-to guides
   items:
   - name: Service management
@@ -540,10 +534,16 @@ items:
         href: search-indexer-how-to-access-private-sql.md
     - name: Document-level permissions
       items:
-      - name: Security filters
+      - name: Document-level security overview
+        href: search-document-level-access-overview.md
+      - name: Use security filters
         href: search-security-trimming-for-azure-search.md
-      - name: ADLS Gen2 permission filters
+      - name: Push document-level permissions to an index
+        href: search-index-access-control-lists-and-rbac-push-api.md
+      - name: Pull ADLS Gen2 permissions into an index
         href: search-indexer-access-control-lists-and-role-based-access.md
+      - name: Query with permission filters
+        href: search-query-access-control-rbac-enforcement.md
     - name: Advanced options
       items:
       - name: Create a private endpoint
