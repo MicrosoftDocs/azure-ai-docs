@@ -20,7 +20,7 @@ The PII feature includes the ability to detect personal (`PII`) and health (`PHI
 
 > [!NOTE]
 > * To detect protected health information (PHI), use the `domain=phi` parameter and model version `2020-04-01` or later.
-> The `Type` and `Subtype` are new designations introduced in preview
+> * The `Type` and `Subtype` are new designations introduced in the `2025-05-15-preview` version.
 
 The following entity categories are returned when you're sending API requests PII feature:
 
