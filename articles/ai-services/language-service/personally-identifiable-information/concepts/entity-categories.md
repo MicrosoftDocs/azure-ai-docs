@@ -22,7 +22,7 @@ The PII feature includes the ability to detect personal (`PII`) and health (`PHI
 > * To detect protected health information (PHI), use the `domain=phi` parameter and model version `2020-04-01` or later.
 > The `Type` and `Subtype` are new designations introduced in preview
 
-The following entity categories are returned when you're sending API requests PII feature.
+The following entity categories are returned when you're sending API requests PII feature:
 
 # [Preview API](#tab/preview-api)
 
@@ -245,7 +245,7 @@ This type contains the following entity:
 
 #### Subtype
 
-The entity in this type can have the following subcategories.
+The entity in this type can have the following subcategories:
 
 :::row:::
     :::column span="":::
@@ -347,7 +347,7 @@ This category contains the following entity:
 
 #### Subcategory
 
-The entity in this category can have the following subcategories.
+The entity in this category can have the following subcategories:
 
 :::row:::
     :::column span="":::
@@ -701,7 +701,7 @@ This type contains the following entities:
 
 ### Subtypes
 
-The entity in this type can have the following subtypes.
+The entity in this type can have the following subtypes:
 
 :::row:::
     :::column span="":::
