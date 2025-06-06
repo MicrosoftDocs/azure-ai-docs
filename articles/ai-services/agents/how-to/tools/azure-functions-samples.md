@@ -22,6 +22,8 @@ Azure AI Agents supports function calling, which allows you to describe the stru
 
 * A prepared environment. See the [overview](./azure-functions.md) article for details.
 
+> [!NOTE] 
+> You must have a [A deployed agent with the standard setup](../../environment-setup.md#choose-your-setup). The basic agent setup is not supported.
 
 ::: zone pivot="python"
 
@@ -30,38 +32,30 @@ Azure AI Agents supports function calling, which allows you to describe the stru
 
 ## Define a function for your agent to call
 
-Start by defining an Azure Function queue trigger function that will process function calls from the queue. For example this sample in Python:
+Start by defining an Azure Function queue trigger function that will process function calls from the queue. For example:
 
 ```python
-# Function to get the weather from an Azure Storage queue where the AI Agent will send function call information
-# It returns the mock weather to an output queue with the correlation id for the Foundry Agent Service to pick up the result of the function call
-@app.function_name(name="GetWeather")
-@app.queue_trigger(arg_name="msg", queue_name="input", connection="STORAGE_CONNECTION")  
-def process_queue_message(msg: func.QueueMessage) -> None:
-    logging.info('Python queue trigger function processed a queue item')
+app = func.FunctionApp()
 
-    # Queue to send message to
-    queue_client = QueueClient(
-        os.environ["STORAGE_CONNECTION__queueServiceUri"],
-        queue_name="output",
-        credential=DefaultAzureCredential(),
-        message_encode_policy=BinaryBase64EncodePolicy(),
-        message_decode_policy=BinaryBase64DecodePolicy()
-    )
+@app.queue_trigger(arg_name="msg", queue_name="azure-function-foo-input", connection="STORAGE_CONNECTION")
+@app.queue_output(arg_name="outputQueue", queue_name="azure-function-foo-output", connection="STORAGE_CONNECTION")  
 
-    # Get the content of the function call message
-    messagepayload = json.loads(msg.get_body().decode('utf-8'))
-    location = messagepayload['location']
-    correlation_id = messagepayload['CorrelationId']
+def queue_trigger(inputQueue: func.QueueMessage, outputQueue: func.Out[str]):
+    try:
+        messagepayload = json.loads(inputQueue.get_body().decode("utf-8"))
+        logging.info(f'The function receives the following message: {json.dumps(messagepayload)}')
+        location = messagepayload["location"]
+        weather_result = f"Weather is {len(location)} degrees and sunny in {location}"
+        response_message = {
+            "Value": weather_result,
+            "CorrelationId": messagepayload["CorrelationId"]
+        }
+        logging.info(f'The function returns the following message through the {outputQueue} queue: {json.dumps(response_message)}')
 
-    # Send message to queue. Sends a mock message for the weather
-    result_message = {
-        'Value': 'Weather is 74 degrees and sunny in ' + location,
-        'CorrelationId': correlation_id
-    }
-    queue_client.send_message(json.dumps(result_message).encode('utf-8'))
+        outputQueue.set(json.dumps(response_message))
 
-    logging.info(f"Sent message to output queue with message {result_message}")
+    except Exception as e:
+        logging.error(f"Error processing message: {e}")
 ```
 
 ## Configure the Azure Function tool
@@ -93,7 +87,7 @@ azure_function_tool = AzureFunctionTool(
         storage_service_endpoint=storage_service_endpoint,
     ),
     output_queue=AzureFunctionStorageQueue(  # Output queue configuration
-        queue_name="azure-function-tool-output",
+        queue_name="azure-function-foo-output",
         storage_service_endpoint=storage_service_endpoint,
     ),
 )

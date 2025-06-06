@@ -1040,10 +1040,8 @@ groups:
     title: Foundry portal
   - id: programming-language-csharp
     title: C#
-  - id: programming-language-javascript
-    title: JavaScript
   - id: programming-language-python-azure
-    title: Python (Azure SDK)
+    title: Python
   - id: programming-language-typescript
     title: TypeScript
   - id: rest-api

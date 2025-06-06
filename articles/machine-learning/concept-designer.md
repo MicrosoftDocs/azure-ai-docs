@@ -4,7 +4,7 @@ titleSuffix: Azure Machine Learning
 description: Learn about the drag-and-drop Designer UI in Machine Learning studio, and how it uses Designer v2 custom components to build and edit machine learning pipelines.
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.topic: conceptual
+ms.topic: concept-article
 ms.author: lagayhar
 ms.reviewer: lagayhar
 author: lgayhardt

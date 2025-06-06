@@ -1,15 +1,16 @@
 ---
-title: 'How to configure Azure Blob Storage with Azure OpenAI Batch'
+title: "How to configure Azure Blob Storage with Azure OpenAI Batch"
 titleSuffix: Azure OpenAI
 description: Learn how to configure Azure Blob Storage with Azure OpenAI Batch
-manager: nitinme
-ms.service: azure-ai-openai
-ms.custom: references_regions
-ms.topic: how-to
-ms.date: 05/18/2025
 author: mrbullwinkle
 ms.author: mbullwin
-recommendations: false
+manager: nitinme
+ms.date: 05/18/2025
+ms.service: azure-ai-openai
+ms.topic: how-to
+ms.custom:
+  - references_regions
+  - build-2025
 ---
 
 # Configuring Azure Blob Storage for Azure OpenAI

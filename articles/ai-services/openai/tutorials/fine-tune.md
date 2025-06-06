@@ -34,7 +34,7 @@ In this tutorial you learn how to:
 - [Jupyter Notebooks](https://jupyter.org/)
 - An Azure OpenAI resource in a [region where `gpt-4o-mini-2024-07-18` fine-tuning is available](../concepts/models.md). If you don't have a resource the process of creating one is documented in our resource [deployment guide](../how-to/create-resource.md).
 - Fine-tuning access requires **Cognitive Services OpenAI Contributor**.
-- If you don't already have access to view quota and deploy models in [Azure AI Foundry portal](https://ai.azure.com/), then you need [more permissions](../how-to/role-based-access-control.md).
+- If you don't already have access to view quota and deploy models in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), then you need [more permissions](../how-to/role-based-access-control.md).
 
 > [!IMPORTANT]
 > We recommend reviewing the [pricing information](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing) for fine-tuning to familiarize yourself with the associated costs. Testing of this tutorial resulted in 48,000 tokens being billed (4,800 training tokens * 10 epochs of training). Training costs are in addition to the costs that are associated with fine-tuning inference, and the hourly hosting costs of having a fine-tuned model deployed. Once you have completed the tutorial, you should delete your fine-tuned model deployment otherwise you continue to incur the hourly hosting cost.
@@ -694,7 +694,7 @@ fine_tuned_model = response.fine_tuned_model
 
 Unlike the previous Python SDK commands in this tutorial, since the introduction of the quota feature, model deployment must be done using the [REST API](/rest/api/aiservices/accountmanagement/deployments/create-or-update?tabs=HTTP), which requires separate authorization, a different API path, and a different API version.
 
-Alternatively, you can deploy your fine-tuned model using any of the other common deployment methods like [Azure AI Foundry portal](https://ai.azure.com/), or [Azure CLI](/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-create()).
+Alternatively, you can deploy your fine-tuned model using any of the other common deployment methods like [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), or [Azure CLI](/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-create()).
 
 |variable      | Definition|
 |--------------|-----------|
@@ -745,13 +745,13 @@ print(r.reason)
 print(r.json())
 ```
 
-You can check on your deployment progress in the [Azure AI Foundry portal](https://ai.azure.com/).
+You can check on your deployment progress in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 It isn't uncommon for this process to take some time to complete when dealing with deploying fine-tuned models.
 
 ## Use a deployed customized model
 
-After your fine-tuned model is deployed, you can use it like any other deployed model in either the [Chat Playground of Azure AI Foundry portal](https://ai.azure.com), or via the chat completion API. For example, you can send a chat completion call to your deployed model, as shown in the following Python example. You can continue to use the same parameters with your customized model, such as temperature and max_tokens, as you can with other deployed models.
+After your fine-tuned model is deployed, you can use it like any other deployed model in either the [Chat Playground of Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), or via the chat completion API. For example, you can send a chat completion call to your deployed model, as shown in the following Python example. You can continue to use the same parameters with your customized model, such as temperature and max_tokens, as you can with other deployed models.
 
 ```python
 # Use the deployed customized model
@@ -784,7 +784,7 @@ Unlike other types of Azure OpenAI models, fine-tuned/customized models have [an
 
 Deleting the deployment won't affect the model itself, so you can re-deploy the fine-tuned model that you trained for this tutorial at any time.
 
-You can delete the deployment in [Azure AI Foundry portal](https://ai.azure.com/), via [REST API](/rest/api/aiservices/accountmanagement/deployments/delete?tabs=HTTP), [Azure CLI](/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-delete()), or other supported deployment methods.
+You can delete the deployment in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), via [REST API](/rest/api/aiservices/accountmanagement/deployments/delete?tabs=HTTP), [Azure CLI](/cli/azure/cognitiveservices/account/deployment#az-cognitiveservices-account-deployment-delete()), or other supported deployment methods.
 
 ## Troubleshooting
 

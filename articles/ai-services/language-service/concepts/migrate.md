@@ -2,12 +2,12 @@
 title: "Migrate to Azure AI Language from: LUIS, QnA Maker, and Text Analytics"
 titleSuffix: Azure AI services
 description: Use this article to learn if you need to migrate your applications from LUIS, QnA Maker, and Text Analytics.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ---
 
 # Migrating to Azure AI Language

@@ -2,16 +2,22 @@
 title: Get started with Foundry Local
 titleSuffix: Foundry Local
 description: Learn how to install, configure, and run your first AI model with Foundry Local
+author: samuel100
+ms.author: samkemp
 manager: scottpolly
-keywords: Azure AI services, cognitive, AI models, local inference
+ms.reviewer: samkemp
+ms.date: 05/23/2025
 ms.service: azure-ai-foundry
 ms.topic: quickstart
-ms.date: 05/23/2025
-ms.reviewer: samkemp
-ms.author: samkemp
-author: samuel100
-ms.custom: build-2025
-#customer intent: As a developer, I want to get started with Foundry Local so that I can run AI models locally.
+ms.custom:
+  - build-2025
+  - build-aifnd
+keywords:
+  - Azure AI services
+  - cognitive
+  - AI models
+  - local inference
+# customer intent: As a developer, I want to get started with Foundry Local so that I can run AI models locally.
 ---
 
 # Get started with Foundry Local

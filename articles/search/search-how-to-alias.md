@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 12/10/2024
+ms.date: 05/29/2025
 ---
 
 # Create an index alias in Azure AI Search
@@ -16,17 +16,35 @@ ms.date: 12/10/2024
 > [!IMPORTANT]
 > Index aliases are currently in public preview and available under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-In Azure AI Search, an index alias is a secondary name that can be used to refer to an index for querying, indexing, and other operations. You can create an alias that maps to a search index and substitute the alias name in places where you would otherwise reference an index name. An alias adds flexibility if you need to change which index your application is pointing to. Instead of updating the references in your application, you can just update the mapping for your alias.
+An index alias in Azure AI Search is an alternate name for an index. You can use the alias instead of the index name in your application, which minimizes future updates to production code. If you need to switch to a newer index, you can update the alias mapping.
 
-The main goal of index aliases is to make it easier to manage your production indexes. For example, if you need to make a change to your index definition, such as editing a field or adding a new analyzer, you'll have to create a new search index because all search indexes are immutable. This means you either need to [drop and rebuild your index](search-howto-reindex.md) or create a new index and then migrate your application over to that index.
+Before using an alias, your application sends requests directly to `hotel-samples-index`.
 
-Instead of dropping and rebuilding your index, you can use index aliases. A typical workflow would be to: 
+```http
+POST /indexes/hotel-samples-index/docs/search?api-version=2025-05-01-preview
+{
+    "search": "pool spa +airport",
+    "select": "HotelId, HotelName, Category, Description",
+    "count": true
+}
+```
 
-1. Create your search index
-1. Create an alias that maps to your search index
-1. Have your application send querying/indexing requests to the alias rather than the index name
-1. When you need to make a change to your index that requires a rebuild, create a new search index 
-1. When your new index is ready to go, update the alias to map to the new index and requests will automatically be routed to the new index
+After using an alias, your application sends requests to `my-alias`, which maps to `hotel-samples-index`.
+
+```http
+POST /indexes/my-alias/docs/search?api-version=2025-05-01-preview
+{
+    "search": "pool spa +airport",
+    "select": "HotelId, HotelName, Category, Description",
+    "count": true
+}
+```
+
+## Supported scenarios
+
+You can only use an alias with document operations or to get and update an index definition. 
+
+Aliases can't be used to [delete an index](/rest/api/searchservice/indexes/delete), or [test text tokenization](/rest/api/searchservice/indexes/analyze), or referenced as the `targetIndexName` on an [indexer](/rest/api/searchservice/indexers/create-or-update).
 
 ## Create an index alias
 
@@ -34,10 +52,10 @@ You can create an alias using the preview REST API, the preview SDKs, or through
 
 ### [**REST API**](#tab/rest)
 
-You can use the [Create or Update Alias (REST preview)](/rest/api/searchservice/aliases/create-or-update?view=rest-searchservice-2024-05-01-preview&preserve-view=true) to create an index alias.
+You can use the [Create or Update Alias (REST preview)](/rest/api/searchservice/aliases/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) to create an index alias.
 
 ```http
-POST /aliases?api-version=2024-05-01-preview
+POST /aliases?api-version=2025-05-01-preview
 {
     "name": "my-alias",
     "indexes": ["hotel-samples-index"]
@@ -75,12 +93,12 @@ Index aliases are also supported in the latest preview SDKs for [Java](https://c
 
 ## Send requests to an index alias
 
-Once you've created your alias, you're ready to start using it. Aliases can be used for all document operations including querying, indexing, suggestions, and autocomplete.
+Aliases can be used for all document operations including querying, indexing, suggestions, and autocomplete.
 
-In the query below, instead of sending the request to `hotel-samples-index`, you can instead send the request to `my-alias` and it will be routed accordingly. 
+This query sends the request to `my-alias`, which is mapped to an actual index on your search service. 
 
 ```http
-POST /indexes/my-alias/docs/search?api-version=2024-05-01-preview
+POST /indexes/my-alias/docs/search?api-version=2025-05-01-preview
 {
     "search": "pool spa +airport",
     "searchMode": any,
@@ -90,29 +108,19 @@ POST /indexes/my-alias/docs/search?api-version=2024-05-01-preview
 }
 ```
 
-If you expect to make updates to a production index, specify an alias rather than the index name in your client-side application. Scenarios that require an index rebuild are outlined in [Drop and rebuild an index](search-howto-reindex.md).
+## Update an alias
 
-> [!NOTE]
-> You can only use an alias with document operations or to get and update an index definition. Aliases can't be used to delete an index, can't be used with the Analyze Text API, and can't be used as the `targetIndexName` on an indexer.
-> 
-> An update to an alias may take up to 10 seconds to propagate through the system so you should wait at least 10 seconds before performing any operation in the index that has been mapped or recently was mapped to the alias.
-
-## Swap indexes
-
-Now, whenever you need to update your application to point to a new index, all you need to do is update the mapping in your alias. PUT is required for updates as described in [Create or Update Alias (REST preview)](/rest/api/searchservice/aliases/create-or-update?view=rest-searchservice-2024-05-01-preview&preserve-view=true).
+PUT is required for alias updates as described in [Create or Update Alias (REST preview)](/rest/api/searchservice/aliases/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true).
 
 ```http
-PUT /aliases/my-alias?api-version=2024-05-01-preview
+PUT /aliases/my-alias?api-version=2025-05-01-preview
 {
     "name": "my-alias",
     "indexes": ["hotel-samples-index2"]
 }
 ```
 
-After you make the update to the alias, requests will automatically start to be routed to the new index.
-
-> [!NOTE]
-> An update to an alias may take up to 10 seconds to propagate through the system so you should wait at least 10 seconds before deleting the index that the alias was previously mapped to.
+An update to an alias may take up to 10 seconds to propagate through the system so you should wait at least 10 seconds before deleting the index that the alias was previously mapped to.
 
 ## See also
 

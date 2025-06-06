@@ -32,11 +32,11 @@ items:
     href: search-get-started-rbac.md
   - name: Azure portal
     items:
-    - name: Keyword search wizard
+    - name: Create a search index
       href: search-get-started-portal.md
-    - name: RAG wizard
+    - name: Create a vector index
       href: search-get-started-portal-import-vectors.md
-    - name: Multimodal RAG wizard
+    - name: Create a multimodal index
       href: search-get-started-portal-image-search.md
     - name: Create a demo app
       href: search-create-app-portal.md
@@ -105,13 +105,13 @@ items:
   - name: Multimodal indexing tutorials
     items:
     - name: Use document extraction and multimodal embeddings
-      href: tutorial-multimodal-indexing-with-embedding-and-doc-extraction.md
+      href: tutorial-document-extraction-multimodal-embeddings.md
     - name: Use document extraction and image verbalizations
-      href: tutorial-multimodal-indexing-with-image-verbalization-and-doc-extraction.md
+      href: tutorial-document-extraction-image-verbalization.md
     - name: Use semantic chunking and multimodal embeddings
-      href: tutorial-multimodal-index-embeddings-skill.md
+      href: tutorial-document-layout-multimodal-embeddings.md
     - name: Use semantic chunking and image verbalizations
-      href: tutorial-multimodal-index-image-verbalization-skill.md      
+      href: tutorial-document-layout-image-verbalization.md      
   - name: RAG tutorials
     items:
     - name: Build a RAG solution

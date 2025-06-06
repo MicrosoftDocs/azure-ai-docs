@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 ms.topic: how-to
 author: laujan
 ms.author: lajanuar
-ms.date: 11/21/2024
+ms.date: 06/04/2025
 ms.custom: language-service-question-answering, mode-other
 ---
 
@@ -23,12 +23,12 @@ You can create a custom question answering project from your own content, such a
 
 1. Sign in to the [Language Studio](https://language.azure.com/) with your Azure credentials.
 
-2. Scroll down to the **Understand questions and conversational language** section and select **Open custom question answering**.
+2. Scroll down to **Understand questions and conversational language** and select **Open custom question answering**.
 
     > [!div class="mx-imgBorder"]
     > ![Open custom question answering](../media/create-test-deploy/open-custom-question-answering.png)
 
-3. If your resource is not yet connected to Azure Search select **Connect to Azure Search**. This will open a new browser tab to **Features** pane of your resource in the Azure portal.
+3. If your resource isn't yet connected to Azure Search select **Connect to Azure Search**. This opens a new browser tab to **Features** pane of your resource in the Azure portal.
 
     > [!div class="mx-imgBorder"]
     > ![Connect to Azure Search](../media/create-test-deploy/connect-to-azure-search.png)
@@ -52,9 +52,9 @@ You can create a custom question answering project from your own content, such a
 
     |URL Name|URL Value|
     |--------|---------|
-    |Surface Book User Guide |https://download.microsoft.com/download/7/B/1/7B10C82E-F520-4080-8516-5CF0D803EEE0/surface-book-user-guide-EN.pdf |
+    |Surface Book User Guide |`https://download.microsoft.com/download/7/B/1/7B10C82E-F520-4080-8516-5CF0D803EEE0/surface-book-user-guide-EN.pdf` |
 
-    The extraction process takes a few moments to read the document and identify questions and answers. Question and answering will determine if the underlying content is structured or unstructured.
+    The extraction process takes a few moments to read the document and identify questions and answers. The service determines if the underlying content is structured or unstructured.
 
     After successfully adding the source, you can then edit the source contents to add more custom question answer sets.
 
@@ -78,7 +78,7 @@ You can create a custom question answering project from your own content, such a
 
 ## Deploy your project
 
-1. Select the Deploy project icon to enter the deploy project menu.
+1. Select the **Deploy** project icon to enter the deploy project menu.
 
     > [!div class="mx-imgBorder"]
     > ![Deploy project](../media/create-test-deploy/deploy-knowledge-base.png)

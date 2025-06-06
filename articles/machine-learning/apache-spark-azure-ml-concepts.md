@@ -5,7 +5,7 @@ description: This article explains the available options to access Apache Spark 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
-ms.topic: conceptual
+ms.topic: concept-article
 author: fbsolo-ms1 
 ms.author: franksolomon 
 ms.reviewer: yogipandey

@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 11/19/2024
+ms.date: 06/02/2025
 ms.author: lajanuar
 monikerRange: '>=doc-intel-3.1.0'
 ---
@@ -22,7 +22,9 @@ With the v3.1 (GA) and later APIs, custom models introduce a expirationDateTime 
 
 ## Models trained with GA API version
 
-With the v3.1 API, custom models introduce a new model expiration property. The model expiration is set to two years from the date the model is built for all requests that use a GA API to build a model. To continue to use the model past the expiration date, you need to  train the model with a current GA API version. The API version can be the one that the model was originally trained with or a later API version. The following figure illustrates the options when you need to retrain an expiring or expired model.
+With the v3.1 API, custom models introduce a new model expiration property. The model is configured to expire two years after its creation for all requests utilizing a GA API to build it. The API version can be the one that the model was originally trained with or a later API version. The following figure illustrates the options when you need to retrain an expiring or expired model.
+
+> Note: The model expiration date for v3.1/4.0 models is only set if the training is done post release of v3.1/v4.0. If the models were created earlier with no expiration date associated with them and were not retrained after v3.1/v4.0, the expiration date will be null. The models with expiration date property will still be available until the API retires. Notification of retirement of any particular GA API version will be communicated at least 3 years before expiration.
 
 :::image type="content" source="../media/model-lifecycle.png" alt-text="Screenshot showing how to choose an API version and retrain a model.":::
 

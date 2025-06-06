@@ -1,13 +1,14 @@
 ---
-title: 'Customize o4-mini model with Azure OpenAI and reinforcement fine-tuning (Preview)'
+title: "Customize o4-mini model with Azure OpenAI and reinforcement fine-tuning (Preview)"
 description: Learn how to use reinforcement fine-tuning with Azure OpenAI
-manager: nitinme
-ms.service: azure-ai-openai
-ms.custom: 
-ms.topic: how-to
-ms.date: 05/11/2025
 author: mrbullwinkle
 ms.author: mbullwin
+manager: nitinme
+ms.date: 05/11/2025
+ms.service: azure-ai-openai
+ms.topic: how-to
+ms.custom:
+  - build-2025
 ---
 
 # Reinforcement fine-tuning (RFT) with Azure OpenAI o4-mini (Preview)
@@ -175,11 +176,11 @@ Models which we're supporting as grader models are:
     "model": string,
     "pass_threshold": number,
     "range": number[],
-    "sampling_parameters": {
+    "sampling_params": {
         "seed": number,
         "top_p": number,
         "temperature": number,
-        "max_completion_tokens": number,
+        "max_completions_tokens": number,
         "reasoning_effort": "low" | "medium" | "high"
     }
 }

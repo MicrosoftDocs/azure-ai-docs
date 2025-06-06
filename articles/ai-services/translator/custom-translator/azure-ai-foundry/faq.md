@@ -12,7 +12,7 @@ ms.topic: faq
 
 # Azure AI Foundry custom translation frequently asked questions
 
-This article contains answers to frequently asked questions about custom translation in [Azure AI Foundry](https://ai.azure.com/).
+This article contains answers to frequently asked questions about custom translation in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
 ## What are the current restrictions in custom translation?
 

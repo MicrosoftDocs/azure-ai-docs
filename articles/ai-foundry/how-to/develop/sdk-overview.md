@@ -33,13 +33,13 @@ The Azure AI Foundry SDK is a set of client libraries and services designed to w
 
 * An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
 * [Create a [!INCLUDE [fdp-project-name](../../includes/fdp-project-name.md)]](../create-projects.md?pivots=fdp-project) if you don't have one already.
+* [!INCLUDE [find-endpoint](../../includes/find-endpoint.md)]
 * Sign in with the Azure CLI using the same account that you use to access your project:
 
     ```bash
     az login
     ```
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 ## Unified Projects client library
 
@@ -59,7 +59,7 @@ The Azure AI Foundry Projects client library is a unified library that enables y
     from azure.identity import DefaultAzureCredential
     from azure.ai.projects import AIProjectClient
     
-    project = AIProjectClient.from_connection_string(
+    project = AIProjectClient(
       endpoint="your_project_endpoint",  # Replace with your endpoint
       credential=DefaultAzureCredential())
     ```
@@ -68,6 +68,7 @@ The Azure AI Foundry Projects client library is a unified library that enables y
 
 ::: zone pivot="programming-language-java"
 
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 * Add these packages to your installation (preview):
     * `com.azure.ai.projects`
@@ -93,6 +94,8 @@ The Azure AI Foundry Projects client library is a unified library that enables y
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
+
+[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 * Install dependencies (preview):
 
