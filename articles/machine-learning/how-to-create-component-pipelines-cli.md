@@ -51,11 +51,11 @@ In this article, you learn how to create and run [machine learning pipelines](co
 
 First, you'll create a pipeline with components by using an example. Doing so gives you an initial impression of what a pipeline and component look like in Azure Machine Learning.
 
-From the `cli/jobs/pipelines-with-components/basics` directory of the [`azureml-examples` repository](https://github.com/Azure/azureml-examples), go to the `3b_pipeline_with_data` subdirector. There are three types of files in this directory. These are the files that you need to create when you build your own pipeline.
+In the `cli/jobs/pipelines-with-components/basics` directory of the [`azureml-examples` repository](https://github.com/Azure/azureml-examples), go to the `3b_pipeline_with_data` subdirectory. There are three types of files in this directory. These are the files that you need to create when you build your own pipeline.
 
 - **pipeline.yml**. This YAML file defines the machine learning pipeline. It describes how to break a full machine learning task into a multistep workflow. For example, consider the simple machine learning task of using historical data to train a sales forecasting model. You might want to build a sequential workflow that contains data processing, model training, and model evaluation steps.  Each step is a component that has a well-defined interface and can be developed, tested, and optimized independently. The pipeline YAML also defines how the child steps connect to other steps in the pipeline. For example, the model training step generates a model file and the model file is passed to a model evaluation step.
 
-- **component.yml**.  This YAML file defines the component. It packages the following information:
+- **component*.yml**.  This YAML file defines the component. It packages the following information:
   - Metadata: Name, display name, version, description, type, and so on. The metadata helps to describe and manage the component.
   - Interface: Inputs and outputs. For example, a model training component takes training data and number of epochs as input and generates a trained model file as output. After the interface is defined, different teams can develop and test the component independently.
   - Command, code, and environment: The command, code, and environment to run the component. The command is the shell command to run the component. The code usually refers to a source code directory. The environment can be an Azure Machine Learning environment (curated or customer created), Docker image, or conda environment.  
