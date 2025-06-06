@@ -19,7 +19,7 @@ Integrate your agents with the **Microsoft Sharepoint** to chat with your privat
 
 |Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
-| ✔️ | ✔️ | - | - | ✔️ | ✔️ | ✔️ |
+| ✔️ | - | - | - | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 1. Developers and end users have Microsoft 365 copilot license
