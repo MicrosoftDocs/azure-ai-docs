@@ -5,7 +5,7 @@ description: Learn about the default Guardrails & controls policies that Azure A
 author: msakande
 ms.author: mopeakande
 ms.service: azure-ai-model-inference
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 05/19/2025
 manager: scottpolly
 ms.reviewer: fasantia

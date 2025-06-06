@@ -6,7 +6,7 @@ author: msakande
 manager: scottpolly
 ms.service: azure-ai-model-inference
 ms.custom: ignite-2024, github-universe-2024
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 05/19/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
