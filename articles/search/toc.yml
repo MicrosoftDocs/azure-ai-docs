@@ -496,16 +496,26 @@ items:
         href: semantic-how-to-enable-scoring-profiles.md
   - name: Security
     items:
-    - name: Configure network access
-      href: service-configure-firewall.md
-    - name: Enable role-based access
-      href: search-security-enable-roles.md
-    - name: Assign roles (users)
-      href: search-security-rbac.md
-    - name: Assign roles (apps)
-      href: keyless-connections.md
-    - name: Authenticate with keys
-      href: search-security-api-keys.md
+    - name: Network access
+      items:
+      - name: Configure network access
+        href: service-configure-firewall.md
+      - name: Create a private endpoint
+        href: service-create-private-endpoint.md
+      - name: Troubleshoot private connections
+        href: troubleshoot-shared-private-link-resources.md
+      - name: Connect using Network Security Perimeter
+        href: search-security-network-security-perimeter.md
+    - name: Authentication
+      items:
+      - name: Enable role-based access
+        href: search-security-enable-roles.md
+      - name: Assign roles (users)
+        href: search-security-rbac.md
+      - name: Assign roles (apps)
+        href: keyless-connections.md
+      - name: Authenticate with keys
+        href: search-security-api-keys.md
     - name: Outbound connections
       items:
       - name: Configure a managed identity
@@ -524,8 +534,6 @@ items:
           href: search-howto-managed-identities-azure-functions.md
       - name: Connect through a firewall
         href: search-indexer-howto-access-ip-restricted.md
-      - name: Connect using Network Security Perimeter
-        href: search-security-network-security-perimeter.md
       - name: Connect as a trusted service
         href: search-indexer-howto-access-trusted-service-exception.md
       - name: Connect through a shared private link
@@ -546,18 +554,12 @@ items:
           href: search-indexer-access-control-lists-and-role-based-access.md
         - name: Query with permission filters
           href: search-query-access-control-rbac-enforcement.md
-    - name: Advanced options
+    - name: Data encryption
       items:
-      - name: Create a private endpoint
-        href: service-create-private-endpoint.md
-      - name: Troubleshoot private connections
-        href: troubleshoot-shared-private-link-resources.md
-      - name: Data encryption
-        items:
-        - name: Customer-managed keys
-          href: search-security-manage-encryption-keys.md
-        - name: Find encrypted objects
-          href: search-security-get-encryption-keys.md
+      - name: Customer-managed keys
+        href: search-security-manage-encryption-keys.md
+      - name: Find encrypted objects
+        href: search-security-get-encryption-keys.md
   - name: Development
     items:
     - name: API versions
