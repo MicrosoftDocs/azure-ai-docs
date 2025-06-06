@@ -63,7 +63,7 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 
 To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)] in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), follow these steps:
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com).
+1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
 1. [!INCLUDE [create-project-access](create-project-access.md)]
 
