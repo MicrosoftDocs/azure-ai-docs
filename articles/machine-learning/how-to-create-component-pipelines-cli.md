@@ -153,40 +153,43 @@ This table defines the most commonly used fields of component YAML. To learn mor
 |`outputs`|A dictionary of component outputs. The key is a name for the output within the context of the component, and the value is the component output definition. You can reference outputs in the command by using the `${{ outputs.<output_name> }}` expression.|
 |`is_deterministic`|Whether to reuse the previous job's result if the component inputs don't change. The default value is `true`. This setting is also known as *reuse by default*. The common scenario when set to `false` is to force reload data from cloud storage or a URL.|
 
-In the example in *3b_pipeline_with_data/componentA.yml*, component A has one data input and one data output. The output can be connected to other steps in the parent pipeline. All the files in the `code` section in the component YAML will be uploaded to Azure Machine Learning when the pipeline job is submitted. In this example, files under `./componentA_src` will be uploaded (line 16 in *componentA.yml*). You can see the uploaded source code in the studio UI: double-click the **componentA** step in the graph and go to the **Snapshot** tab, as shown in the following screenshot. We can see it's a hello-world script just doing some simple printing, and write current datetime to the `componentA_output` path. The component takes input and output through command line argument, and it's handled in the *hello.py* using `argparse`.
+In the example in *3b_pipeline_with_data/componentA.yml*, component A has one data input and one data output, which can be connected to other steps in the parent pipeline. All the files in the `code` section in the component YAML will be uploaded to Azure Machine Learning when the pipeline job is submitted. In this example, files under `./componentA_src` will be uploaded (line 16 in *componentA.yml*). You can see the uploaded source code in the studio UI: double-click the **componentA** step in the graph and go to the **Snapshot** tab, as shown in the following screenshot. You can see that it's a hello-world script doing some simple printing, and that it writes the current date and time to the `componentA_output` path. The component takes input and provides output via the command line It's handled in *hello.py* via `argparse`.
   
-:::image type="content" source="./media/how-to-create-component-pipelines-cli/component-snapshot.png" alt-text="Screenshot of pipeline with data example showing componentA." lightbox="./media/how-to-create-component-pipelines-cli/component-snapshot.png":::
+:::image type="content" source="./media/how-to-create-component-pipelines-cli/component-snapshot.png" alt-text="Screenshot of the pipeline with data example. It shows component A." lightbox="./media/how-to-create-component-pipelines-cli/component-snapshot.png":::
 
 ### Input and output
-Input and output define the interface of a component. Input and output could be either of a literal value(of type `string`,`number`,`integer`, or `boolean`) or an object containing input schema.
 
-**Object input** (of type `uri_file`, `uri_folder`,`mltable`,`mlflow_model`,`custom_model`) can connect to other steps in the parent pipeline job and hence pass data/model to other steps. In pipeline graph, the object type input renders as a connection dot.
+Input and output define the interface of a component. Input and output can be literal values (of type `string`, `number`, `integer`, or `boolean`) or an object containing that contains an input schema.
 
-**Literal value inputs** (`string`,`number`,`integer`,`boolean`) are the parameters you can pass to the component at run time. You can add default value of literal inputs under `default` field. For `number` and `integer` type, you can also add minimum and maximum value of the accepted value using `min` and `max` fields. If the input value exceeds the min and max, pipeline fails at validation. Validation happens before you submit a pipeline job to save your time. Validation works for CLI, Python SDK and designer UI. The following screenshot shows a validation example in designer UI. Similarly, you can define allowed values in `enum` field.
+**Object input** (of type `uri_file`, `uri_folder`, `mltable`, `mlflow_model`, or `custom_model`) can connect to other steps in the parent pipeline job to pass data/models to other steps. In the pipeline graph, the object type input renders as a connection dot.
+
+**Literal value inputs** (`string`, `number`, `integer`, `boolean`) are the parameters you can pass to the component at runtime. You can add a default value of literal inputs in the `default` field. For `number` and `integer` types, you can also add minimum and maximum values by using the `min` and `max` fields. If the input value is less than the minimum or more than the maximum, the pipeline fails at validation. Validation occurs before you submit a pipeline job, which can save time. Validation works for CLI, the Python SDK, and the Designer UI. The following screenshot shows a validation example in Designer UI. Similarly, you can define allowed values in `enum` fields.
 
 :::image type="content" source="./media/how-to-create-component-pipelines-cli/component-input-output.png" alt-text="Screenshot of the input and output of the train linear regression model component." lightbox= "./media/how-to-create-component-pipelines-cli/component-input-output.png":::
 
-If you want to add an input to a component, remember to edit three places:
+If you want to add an input to a component, you need to make edits in three places:
 
-- `inputs` field in component YAML
-- `command` field in component YAML.
-- Component source code to handle the command line input. It's marked in green box in the previous screenshot.  
+- The `inputs` field in the component YAML.
+- The `command` field in component YAML.
+- In component source code to handle the command-line input. 
 
-To learn more about inputs and outputs, see [Manage inputs and outputs of component and pipeline](./how-to-manage-inputs-outputs-pipeline.md).
+These locations are marked with green boxes in the preceding screenshot.  
+
+To learn more about inputs and outputs, see [Manage inputs and outputs for components and pipelines](./how-to-manage-inputs-outputs-pipeline.md).
 
 ### Environment
 
-Environment defines the environment to execute the component. It could be an Azure Machine Learning environment(curated or custom registered), docker image or conda environment. See the following examples.
+The environment is the environment in which the component runs. It could be an Azure Machine Learning environment (curated or custom registered), a Docker image, or a conda environment. See the following examples:
 
-- [Azure Machine Learning registered environment asset](https://github.com/Azure/azureml-examples/tree/sdk-preview/cli/jobs/pipelines-with-components/basics/5b_env_registered). It's referenced in component following `azureml:<environment-name>:<environment-version>` syntax.
-- [public docker image](https://github.com/Azure/azureml-examples/tree/sdk-preview/cli/jobs/pipelines-with-components/basics/5a_env_public_docker_image)
-- [conda file](https://github.com/Azure/azureml-examples/tree/sdk-preview/cli/jobs/pipelines-with-components/basics/5c_env_conda_file) Conda file needs to be used together with a base image.
+- [Registered Azure Machine Learning environment asset](https://github.com/Azure/azureml-examples/tree/sdk-preview/cli/jobs/pipelines-with-components/basics/5b_env_registered). The environment is referenced in the component with `azureml:<environment-name>:<environment-version>` syntax.
+- [Public docker image](https://github.com/Azure/azureml-examples/tree/sdk-preview/cli/jobs/pipelines-with-components/basics/5a_env_public_docker_image).
+- [Conda file](https://github.com/Azure/azureml-examples/tree/sdk-preview/cli/jobs/pipelines-with-components/basics/5c_env_conda_file). The conda file needs to be used together with a base image.
 
-## Register component for reuse and sharing
+## Register a component for reuse and sharing
 
-While some components are specific to a particular pipeline, the real benefit of components comes from reuse and sharing. Register a component in your Machine Learning workspace to make it available for reuse. Registered components support automatic versioning so you can update the component but assure that pipelines that require an older version will continue to work.  
+Although some components are specific to a particular pipeline, the real benefit of components comes from reuse and sharing. You can register a component in your Machine Learning workspace to make it available for reuse. Registered components support automatic versioning so you can update the component but ensure that pipelines that require an older version will continue to work.  
 
-In the azureml-examples repository, navigate to the `cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components` directory. 
+In the azureml-examples repository, go to the `cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components` directory. 
 
 To register a component, use the `az ml component create` command:
 
@@ -196,35 +199,35 @@ az ml component create --file score.yml
 az ml component create --file eval.yml
 ```
 
-After these commands run to completion, you can see the components in Studio, under Asset -> Components:
+After these commands run to completion, you can see the components in studio, under **Assets** > **Components**:
 
-:::image type="content" source="./media/how-to-create-component-pipelines-cli/registered-components.png" alt-text="Screenshot of Studio showing the components that were just registered." lightbox ="./media/how-to-create-component-pipelines-cli/registered-components.png":::
+:::image type="content" source="./media/how-to-create-component-pipelines-cli/registered-components.png" alt-text="Screenshot of studio. It shows the registered components." lightbox ="./media/how-to-create-component-pipelines-cli/registered-components.png":::
 
 Select a component. You see detailed information for each version of the component.
 
-Under **Details** tab, you see basic information of the component like name, created by, version etc. You see editable fields for Tags and Description. The tags can be used for adding rapidly searched keywords. The description field supports Markdown formatting and should be used to describe your component's functionality and basic use.
+The **Details** tab shows basic information like the component name, who created it, and the version. There are editable fields for **Tags** and **Description**. You can use tags to add search keywords. The description field supports Markdown formatting. You should use it to describe your component's functionality and basic use.
 
-Under **Jobs** tab, you see the history of all jobs that use this component.
+On the **Jobs** tab, you see the history of all jobs that use the component.
 
 ### Use registered components in a pipeline job YAML file
 
-Let's use `1b_e2e_registered_components` to demo how to use registered component in pipeline YAML. Navigate to `1b_e2e_registered_components` directory, open the `pipeline.yml` file. The keys and values in the `inputs` and `outputs` fields are similar to those already discussed. The only significant difference is the value of the `component` field in the `jobs.<JOB_NAME>.component` entries. The `component` value is of the form `azureml:<COMPONENT_NAME>:<COMPONENT_VERSION>`. The `train-job` definition, for instance, specifies the latest version of the registered component `my_train` should be used:
+You'll now use `1b_e2e_registered_components` as an example of how to use registered component in pipeline YAML. Go to the `1b_e2e_registered_components` directory and open the `pipeline.yml` file. The keys and values in the `inputs` and `outputs` fields are similar to those already discussed. The only significant difference is the value of the `component` field in the `jobs.<job_name>.component` entries. The `component` value is in the form `azureml:<component_name>:<component_version>`. The `train-job` definition, for example, specifies that the latest version of the registered component `my_train` should be used:
 
 :::code language="yaml" source="~/azureml-examples-main/cli/jobs/pipelines-with-components/basics/1b_e2e_registered_components/pipeline.yml" range="24-36" highlight="4":::
 
 ### Manage components
 
-You can check component details and manage the component using CLI (v2). Use `az ml component -h` to get detailed instructions on component command. The following table lists all available commands. See more examples in [Azure CLI reference](/cli/azure/ml/component?view=azure-cli-latest&preserve-view=true).
+You can check component details and manage components by using CLI v2. Use `az ml component -h` to get detailed instructions on component commands. The following table lists all available commands. See more examples in [Azure CLI reference](/cli/azure/ml/component?view=azure-cli-latest&preserve-view=true).
 
-|commands|description|
+|Command|Description|
 |------|------|
-|`az ml component create`|Create a component|
-|`az ml component list`|List components in a workspace|
-|`az ml component show`|Show details of a component|
-|`az ml component update`|Update a component. Only a few fields(description, display_name) support update|
-|`az ml component archive`|Archive a component container|
-|`az ml component restore`|Restore an archived component|
+|`az ml component create`|Create a component.|
+|`az ml component list`|List the components in a workspace.|
+|`az ml component show`|Show a component's details.|
+|`az ml component update`|Update a component. Only a few fields (description,  display_name) support update.|
+|`az ml component archive`|Archive a component container.|
+|`az ml component restore`|Restore an archived component.|
 
-## Next steps
+## Next step
 
-- Try out [CLI v2 component example](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components)
+- Try the [CLI v2 component example](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines-with-components)
