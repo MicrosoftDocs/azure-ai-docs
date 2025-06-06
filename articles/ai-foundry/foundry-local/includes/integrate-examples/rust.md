@@ -29,7 +29,7 @@ cargo add tokio --features full
 
 The following example demonstrates how to inference using a request to the Foundry Local service. The code initializes the Foundry Local service, loads a model, and generates a response using the `reqwest` library.
 
-Copy-and-paste the following code the Rust file named `main.rs`:
+Copy-and-paste the following code into the Rust file named `main.rs`:
 
 ```rust
 use foundry_local::FoundryLocalManager;
