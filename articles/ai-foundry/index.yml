@@ -178,8 +178,8 @@ additionalContent:
               url: ../ai-services/document-intelligence/index.yml
             - text: Face
               url: ../ai-services/computer-vision/overview-identity.md
-            - text: Custom Vision
-              url: ../ai-services/translator/index.yml
+            - text: Vision
+              url: ../ai-services/computer-vision/index.yml
             - text: Immersive Reader
               url: ../ai-services/immersive-reader/index.yml
         - title: Training & certification
