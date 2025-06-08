@@ -5,7 +5,7 @@ description: Learn how to use the GPT-4o Realtime API for speech and audio via W
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 4/28/2025
+ms.date: 6/7/2025
 author: eric-urban
 ms.author: eur
 ms.custom: references_regions
@@ -156,7 +156,7 @@ The sample code is an HTML page that allows you to start a session with the GPT-
     		
             // The deployment name might not be the same as the model name.
             const DEPLOYMENT = "gpt-4o-mini-realtime-preview"
-    		    const VOICE = "verse"
+    		const VOICE = "verse"
     
             async function StartSession() {
                 try {
@@ -170,8 +170,6 @@ The sample code is an HTML page that allows you to start a session with the GPT-
                     const response = await fetch(SESSIONS_URL, {
                         method: "POST",
                         headers: {
-                            // The Authorization header is commented out because
-                            // currently it isn't supported with the sessions API. 
                             //"Authorization": `Bearer ${ACCESS_TOKEN}`,
                             "api-key": API_KEY,
                             "Content-Type": "application/json"
@@ -188,13 +186,13 @@ The sample code is an HTML page that allows you to start a session with the GPT-
     
                     const data = await response.json();
     				
-            				const sessionId = data.id;
-            				const ephemeralKey = data.client_secret?.value; 
-            				console.error("Ephemeral key:", ephemeralKey);
+                    const sessionId = data.id;
+                    const ephemeralKey = data.client_secret?.value; 
+                    console.error("Ephemeral key:", ephemeralKey);
     				
                     // Mask the ephemeral key in the log message.
                     logMessage("Ephemeral Key Received: " + "***");
-    		            logMessage("WebRTC Session Id = " + sessionId );
+    		        logMessage("WebRTC Session Id = " + sessionId );
                     
                     // Set up the WebRTC connection using the ephemeral key.
                     init(ephemeralKey); 
