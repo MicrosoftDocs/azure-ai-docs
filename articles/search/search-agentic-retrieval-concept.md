@@ -31,6 +31,8 @@ The *retrieval* component is the ability to run subqueries simultaneously, merge
 
 Query expansion and parallel execution, plus the retrieval response, are the key capabilities of agentic retrieval that make it the best choice for generative AI (RAG) applications.
 
+:::image type="content" source="media/agentic-retrieval/agentric-retrieval-example.png" alt-text="Diagram of a complex query with implied context and an intentional typo." lightbox="media/agentic-retrieval/agentric-retrieval-example.png" :::
+
 Agentic retrieval adds latency to query processing, but it makes up for it by adding these capabilities:
 
 + Reads in chat history as an input to the retrieval pipeline.
