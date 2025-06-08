@@ -5,7 +5,7 @@ description: Learn about agentic retrieval concepts, architecture, and use cases
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 05/19/2025
+ms.date: 06/08/2025
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.custom:
@@ -17,13 +17,13 @@ ms.custom:
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In Azure AI Search, *agentic retrieval* is a new parallel query processing architecture that incorporates user conversation history and Azure OpenAI models to plan, retrieve and synthesize queries for improved results. It produces high-quality grounding data for custom chat and generative AI solutions that include knowledge agents.
+In Azure AI Search, *agentic retrieval* is a new query pipeline designed for complex questions posed by users or agents in chat and copilot apps. It uses a large language model (LLM) to break down a question into smaller subqueries, often using chat history for context. These subqueries run in parallel, each searching for the most relevant content in your index. The results are ranked for semantic relevance, combined, and sent back to your LLM to help generate accurate answers using your proprietary content.
 
 Programmatically, agentic retrieval is supported through a new Knowledge Agents object in the 2025-05-01-preview data plane REST API and in Azure SDK prerelease packages that provide the feature. A knowledge agent's retrieval response is designed for downstream consumption by other agents and chat apps.
 
 ## Why use agentic retrieval
 
-You should use agentic retrieval when you want to send high quality data to an agent or to ground a chat experience with inputs that include your proprietary content.
+You should use agentic retrieval when you want to provide agents and apps with the most relevant content for answering harder questions, leveraging chat context and your proprietary content.
 
 The *agentic* aspect is a reasoning step in query planning processing that's performed by a supported large language model (LLM) that you provide. The LLM analyzes the entire chat thread to identify the underlying information need. Instead of a single, catch-all query, the model breaks down compound questions into focused subqueries based on: user questions, chat history, and parameters on the request. The subqueries target your indexed documents (plain text and vectors) in Azure AI Search.This hybrid approach ensures you surface both keyword matches and semantic similarities at once, dramatically improving recall. 
 
