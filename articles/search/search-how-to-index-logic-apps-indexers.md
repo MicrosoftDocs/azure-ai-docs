@@ -52,7 +52,7 @@ Review the following requirements before you start:
 
 + You must be an **Owner** or **Contributor** in your Azure subscription, with permissions to create resources.
 
-+ Azure AI Search, basic tier or higher if you want to use a search service identity for connections to an Azure data source, otherwise you can use any tier, subject to tier limits. 
++ Azure AI Search, Basic pricing tier or higher if you want to use a search service identity for connections to an Azure data source, otherwise you can use any tier, subject to tier limits. 
 
 + Azure OpenAI, with a [supported embedding model](#supported-models) deployment. Vectorization is integrated into the workflow. If you don't need vectors, you can ignore the fields or try another indexing strategy.
 
