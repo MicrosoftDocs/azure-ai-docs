@@ -16,6 +16,8 @@ ms.custom: build-2025 ai-assisted
 
 # Azure AI Foundry Playgrounds
 
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+
 As you build with state-of-the-art models and build agents and apps with them, Azure AI Foundry playgrounds provide an on-demand, zero-setup environment designed for rapid prototyping, API exploration, and technical validation before you commit a single line of code to your production codebase.
 
 ## Some highlights of the Azure AI Foundry playgrounds experience
@@ -119,7 +121,7 @@ For all reasoning models, the chat playground provides a chain-of-thought summar
 
 ## Audio playground
 
-The audio playground let's you use text-to-speech and transcription capabilities with the latest audio models from Azure OpenAI.
+The audio playground (preview) let's you use text-to-speech and transcription capabilities with the latest audio models from Azure OpenAI.
 
 Follow these steps to try the text to speech capability:
 
@@ -142,25 +144,26 @@ Follow these steps to try the transcription capability:
 
 ## Images playground
 
+The images playground is ideal for developers who build image generation flows. This playground is a full-featured, controlled environment for high-fidelity experiments designed for model-specific APIs to generate and edit images.
+
 > [!TIP]  
 > See the [60-second reel of the Images playground for gpt-image-1](https://youtu.be/btA8njJjLXY) and our DevBlog for how to transform your [enterprise-ready use case by industry.](https://devblogs.microsoft.com/foundry/images-playground-may-2025/)
 
-The images playground is ideal for developers who build image generation flows. This playground is a full-featured, controlled environment for high-fidelity experiments designed for model-specific APIs to generate and edit images.
+You can use the images playground with these models:
+
+- [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai) from Azure OpenAI.
+- [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai), [Stable Image Core](https://ai.azure.com/explore/models/Stable-Image-Core/version/1/registry/azureml-stabilityai), [Stable Image Ultra](https://ai.azure.com/explore/models/Stable-Image-Ultra/version/1/registry/azureml-stabilityai) from Stability AI.
+- [Bria 2.3 Fast](https://ai.azure.com/explore/models/Bria-2.3-Fast/version/1/registry/azureml-bria) from Bria AI.
 
 Follow these steps to use the images playground:
 
+1. Select **Try the Images playground** to open it.
+1. If you don't have a deployment already, select **Create new deployment** and deploy a model such as `gpt-image-1`.
 1. **Start with a pre-built text prompt**: Select an option to get started with a prebuilt text prompt that automatically fills the prompt bar.
 1. **Explore the model API-specific generation controls after model deployment:** Adjust key controls (e.g. number of variants, quality, strength) to deeply understand specific model responsiveness and constraints.
 1. **Side-by-side observations in grid view:** Visually observe outputs across prompt tweaks or parameter changes.
 1. **Transform with API tooling:** Inpainting with text transformation is available for gpt-image-1. Alter parts of your original image with inpainting selection. Use text prompts to specify the change.
 1. **Port to production with multi-lingual code samples:** Use Python, Java, JavaScript, C# code samples with "View Code". Images playground is your launchpad to development work in VS Code.
-
-
-### Applicable models
-
-- [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai) from Azure OpenAI.
-- [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai), [Stable Image Core](https://ai.azure.com/explore/models/Stable-Image-Core/version/1/registry/azureml-stabilityai), [Stable Image Ultra](https://ai.azure.com/explore/models/Stable-Image-Ultra/version/1/registry/azureml-stabilityai) from Stability AI.
-- [Bria 2.3 Fast](https://ai.azure.com/explore/models/Bria-2.3-Fast/version/1/registry/azureml-bria) from Bria AI.
 
 ### What to validate when experimenting in Images playground
 
@@ -195,30 +198,31 @@ By using the images playground, you can explore and validate the following as yo
     - Will this image meet the constraints of my product's UI (aspect ratio, resolution, content safety)?
     - Does the output conform to brand guidelines or customer expectations?
 
+
 ## Video playground
 
-> [!NOTE]  
-> See the [60-second reel of Video playground for Azure OpenAI Sora](https://aka.ms/VideoPlaygroundReel) and our DevBlog for how to transform your [enterprise-ready use case by industry](https://aka.ms/VideoPlaygroundDevBlog).
+The video playground (preview) is your rapid iteration environment for exploring, refining, and validating generative video workflows—designed for developers who need to go from idea to prototype with precision, control, and speed. The playground gives you a low-friction interface to test prompt structures, assess motion fidelity, evaluate model consistency across frames, and compare outputs across models—without writing boilerplate or wasting compute cycles. It's aso a great demo interface for your Chief Product Officer and Engineering VP.
 
-The Video playground is your rapid iteration environment for exploring, refining, and validating generative video workflows—designed for developers who need to go from idea to prototype with precision, control, and speed. The playground gives you a low-friction interface to test prompt structures, assess motion fidelity, evaluate model consistency across frames, and compare outputs across models—without writing boilerplate or wasting compute cycles – and a great demo interface for your Chief Product Officer and Engineering VP.
+You can use the video playground with the **Azure OpenAI Sora** model.
 
+> [!TIP]  
+> See the [60-second reel of the video playground for Azure OpenAI Sora](https://aka.ms/VideoPlaygroundReel) and the DevBlog for how to transform your [enterprise-ready use case by industry](https://aka.ms/VideoPlaygroundDevBlog).
 
-### Applicable models
-
-- Azure OpenAI Sora.
-
-### How to use the Video playground:
+Follow these steps to use the video playground:
 
 > [!CAUTION]
-> Videos generated are retained for 24 hours due to data privacy. Download videos to local for longer retention.
+> Videos generated are retained for 24 hours due to data privacy. Download videos to your local computer for longer retention.
 
-1. Once your model is deployed, navigate to the Video playground and get inspired by **pre-built prompts sorted by industry filter**. From here, you can view the videos in full display and copy the prompt to build from it.
+1. Select **Try the Video playground** to open it.
+1. If you don't have a deployment already, select **Deploy now** from the top righ side of the homepage and deploy the `sora` model.
+1. On the homepage of the video playground, get inspired by **pre-built prompts** sorted by the **industry** filter. From here, you can view the videos in full display and copy the prompt to build from it.
+    :::image type="content" source="../media/concept-playgrounds/video-playground-copy-prompt.png" alt-text="Screenshot of the video playground highlighting the Use prompt button to copy a prompt." lightbox="../media/concept-playgrounds/video-playground-copy-prompt.png":::
 
-1.  **Understand the model API specific generation controls in your prompt bar:** Enter your text prompt and adjust key controls (e.g. aspect ratio, resolution) to deeply understand specific model responsiveness and constraints.
+1. Copying the prompt pastes it in the prompt bar. Adjust key controls (e.g. aspect ratio, resolution) to deeply understand specific model responsiveness and constraints.
 
-1. **Rewrite your text prompt** syntax with gpt-4o using "Rewrite with AI" with industry based system prompts. Switch on the capability, select the industry and specify the change required for your original prompt.
+1. Rewrite your text prompt syntax with gpt-4o using **Re-write with AI** with industry based system prompts. Switch on the capability, select the industry and specify the change required for your original prompt.
 
-1. From the Generation history tab, review your generations as a Grid or List view. When you select  the videos, open them in full screen mode for full immersion. Visually observe outputs across prompt tweaks or parameter changes.
+1. From the Generation history tab, review your generations as a Grid or List view. When you select the videos, open them in full screen mode for full immersion. Visually observe outputs across prompt tweaks or parameter changes.
 1. In Full Screen mode, edit the prompt and submit for regeneration.
 1. Either in Full Screen mode or through the overflow button, download to local, view the information generation tag, or delete the video.
 1. **Port to production with multi-lingual code samples:** Use Python, Java, JavaScript, C# contextual code samples with "View Code" that reflect your generations and copy into VS Code.
