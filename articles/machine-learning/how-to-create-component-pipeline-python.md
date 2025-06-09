@@ -71,7 +71,7 @@ Import all the Azure Machine Learning libraries that you need for this article:
 
 You need to prepare the input data for the image classification pipeline.
 
-Fashion-MNIST is a dataset of fashion images divided into 10 classes. Each image is a 28 x 28 grayscale image. There are 60,000 training images and 10,000 test images. As an image classification problem, Fashion-MNIST is more challenging than the classic MNIST handwritten digit database. It's distributed in the same compressed binary form as the original [handwritten digit database](http://yann.lecun.com/exdb/mnist/).
+Fashion MNIST is a dataset of fashion images that's divided into 10 classes. Each image is a 28 x 28 grayscale image. There are 60,000 training images and 10,000 test images. As an image classification problem, Fashion MNIST is more challenging than the classic MNIST handwritten digit database. It's distributed in the same compressed binary form as the original [handwritten digit database](http://yann.lecun.com/exdb/mnist/).
 
 By defining an `Input`, you create a reference to the data source location. The data remains in its existing location, so no extra storage cost is incurred.
 
@@ -93,7 +93,7 @@ For each component, you need to complete these steps:
 
 1. Add other metadata of the component, including the runtime environment and the command to run the component.
 
-The next section shows how to create the components in two ways. For the first two components, you use a Python function. For the third component you use YAML definition.
+The next section shows how to create the components in two ways. For the first two components, you use a Python function. For the third component, you use YAML definition.
 
 ### Create the data preparation component
 
@@ -120,7 +120,7 @@ The preceding code defines a component with display name `Prep Data` by using th
     :::code language="python" source="~/azureml-examples-v2samplesreorg/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet/prep/conda.yaml":::
 
 * The `prepare_data_component` function defines one input for `input_data` and two outputs for `training_data` and `test_data`. 
-`input_data` is input data path. `training_data` and `test_data` are output data paths for training data and test data. 
+`input_data` is the input data path. `training_data` and `test_data` are output data paths for training data and test data. 
 * The component converts the data from `input_data` into a `training_data` .csv to train data and a `test_data` .csv to test data.
 
 This is what a component looks like in the studio UI:
@@ -233,7 +233,7 @@ The pipeline contains three nodes: `prepare_data_node`, `train_node`, and `score
 
 - The `input_data` of `prepare_data_node` uses the value of `pipeline_input_data`.
 
-- The `input_data` of `train_node` is the `training_data` output of the `prepare_data_node`. 
+- The `input_data` of `train_node` is the `training_data` output of `prepare_data_node`. 
 
 - The `input_data` of `score_node` is the `test_data` output of `prepare_data_node`, and the `input_model` is the `output_model` of `train_node`. 
     
@@ -294,7 +294,7 @@ You can check the logs and outputs of each component by right-clicking the compo
 
 ## (Optional) Register components to the workspace
 
-In the previous section, you built a pipeline by using three components to complete an image classification task. You can also register components to your workspace so that they can be shared and reused within the workspace. The following example shows how to register the date preparation component.
+In the previous section, you built a pipeline by using three components to complete an image classification task. You can also register components to your workspace so that they can be shared and reused within the workspace. The following example shows how to register the data preparation component:
 
 [!notebook-python[] (~/azureml-examples-main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet/image_classification_keras_minist_convnet.ipynb?name=register-component)]
 
