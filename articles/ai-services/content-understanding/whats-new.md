@@ -58,6 +58,12 @@ This release introduces a new [classification API](concepts/classifier.md). This
 * Added support for face identification on extracted face thumbnails. The identity enhances the description and downstream tasks like search and retrieval. Learn more about [face detection in videos](video/overview.md#content-extraction---grouping-and-identification)
 * Added support for disabling face blurring in analyzer configuration. Learn more about [video processing improvements](video/overview.md#field-extraction--face-description).
 
+* ### Improvements to audio processing
+
+* Added additional locales for audio transcription. Learn more about [audio capabilities](audio/overview.md).
+* Added support for multilingual audio processing. Learn more about [language handling improvements in audio](audio/overview.md#language-handling).
+* Increased maximum supported file-size to ≤ 1 GB and length of ≤ 4 hours. Learn more about [audio service limits](service-limits.md).
+
 ### Face API
 
 This release adds new face detection and recognition capabilities to Content Understanding. You can create a directory of faces and persons. The directory can be used to recognize the faces in the processed content. Learn more about [detecting and recognizing faces](face/overview.md).
