@@ -14,12 +14,10 @@ ms.author: jagoerge
 
 Azure AI Speech is updated regularly and we're continually improving and enhancing its features and capabilities. This page details known issues related to Azure AI Speech and provides steps to resolve them. Before submitting a support request, review the following list to see if your problem is already being addressed and to find a possible solution.
 
-## Active known issues
-
 * For more information regarding service-level outages, *see* the [Azure status page](https://azure.status.microsoft/en-us/status). 
 * To set up outage notifications and alerts, *see* the [Azure Service Health Portal](/azure/service-health/service-health-portal-update).
 
-### Speech to text (STT)
+## Active known issues speech to text (STT)
 
 This table lists the current known issues for the Speech to text feature:
 
@@ -31,7 +29,7 @@ This table lists the current known issues for the Speech to text feature:
 | 1004   | Model | STT transcriptions with inaccurate spellings of language specific names and words | Inaccurate transcription of language specific names due to lack of entity coverage in base model for tier 2 locales (scenario specific to when our base models didn't see a specific word before). | Customers can train [Custom Speech](/azure/ai-services/speech-service/custom-speech-overview) models to include unknown names and words as training data. As a second step, unknown words can be added as [Phrase List](/azure/ai-services/speech-service/improve-accuracy-phrase-list?tabs=terminal&pivots=programming-language-csharp) at runtime. Biasing phrase list to a word known in the training corpus can greatly improve recognition accuracy. | June 6, 2025 |
 | 1005   | File types | Words out of context added in STT real time output occasionally | Audio files that consist solely of background noise can result in inaccurate transcriptions. Ideally, only spoken sentences should be transcribed, but this isn't occurring with the nl-NL model. | Audio files that consist of background noise, captured echo reflections from surfaces in an environment or audio playback from a device while device microphone is active can result in inaccurate transcriptions. Customers can use the Microsoft Audio Stack built into the Speech SDK for noise suppression of observed background noise and echo cancellation. This should help optimize the audio being fed to the STT service: [Use the Microsoft Audio Stack (MAS) - Speech service - Azure AI services \| Microsoft Learn](/azure/ai-services/speech-service/audio-processing-speech-sdk?tabs=java). | June 6, 2025 |
 
-### Text to speech (TTS)
+## Active known issues text to speech (TTS)
 
 This table lists the current known issues for the Text-to-Speech feature. 
 
@@ -42,7 +40,7 @@ This table lists the current known issues for the Text-to-Speech feature.
 | 2003   | TTS Avatar | Missing Blob file names | The 'outputs': 'result' url of Batch avatar synthesis job doesn't have the blob file name. | Customers should use 'subtitleType = soft_embedded' as a temporary workaround. | June 6, 2025 |
 | 2004   | TTS Avatar | Batch synthesis unsupported for TTS | Batch synthesis for avatar doesn't support bring-your-own-storage (BYOS) and it requires the storage account to allow external traffic. | N/A | June 6, 2025 |
 
-### Speech SDK/Runtime
+## Active known issues speech SDK/Runtime
 
 This table lists the current known issues for the Speech SDK/Runtime feature.
 
