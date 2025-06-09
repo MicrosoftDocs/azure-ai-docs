@@ -668,10 +668,11 @@ Edits an image from a text caption on a given gpt-image-1 model deployment
 | mask | string | An additional image whose fully transparent areas (e.g., where alpha is zero) indicate where the image should be edited. If there are multiple images provided, the mask will be applied to the first image. Must be a valid PNG file, less than 4MB, and have the same dimensions as the image. | No |  |
 | n | integer | The number of images to generate. | No | 1 |
 | prompt | string | A text description of the desired image(s). The maximum length is 32000 characters. | Yes |  |
-| quality | [imageQuality](#imagequality) | The quality of the image that will be generated. | No | auto |
-| response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which the generated images are returned. | No | url |
-| size | [imageSize](#imagesize) | The size of the generated images. | No | auto |
-| user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
+| quality | enum | The quality of the image that will be generated. `high`, `medium` and `low` are only supported for `gpt-image-1`. `dall-e-2` only supports `standard` quality. Defaults to `auto`.<br>Possible values: `standard`, `low`, `medium`, `high`, `auto` | No |  |
+| response_format | enum | The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. This parameter is only supported for `dall-e-2`, as `gpt-image-1` will always return base64-encoded images.<br>Possible values: `url`, `b64_json` | No |  |
+| size | enum | The size of the generated images. Must be one of `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), or `auto` (default value) for `gpt-image-1`, and one of `256x256`, `512x512`, or `1024x1024` for `dall-e-2`.<br>Possible values: `256x256`, `512x512`, `1024x1024`, `1536x1024`, `1024x1536`, `auto` | No |  |
+| user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
+
 
 ### Responses
 
@@ -689,7 +690,7 @@ Edits an image from a text caption on a given gpt-image-1 model deployment
 
 |**Content-Type**|**Type**|**Description**|
 |:---|:---|:---|
-|application/json | [dalleErrorResponse](#dalleerrorresponse) | |
+|application/json | [azureerrorresponse](#azureerrorresponse) | |
 
 
 ## Create image
