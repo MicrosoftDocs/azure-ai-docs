@@ -39,12 +39,7 @@ items:
     - name: Try Content Understanding REST API
       displayName: quickstart, extract, text, images, OCR, optical character recognition, rest, standard, mode
       href: quickstart/use-rest-api.md
-  - name: Azure AI Foundry portal
-    items:
-      - name: Analyzer templates
-        displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
-        href: concepts/analyzer-templates.md
-  - name: Analyzers
+  - name: Modalities
     items:
       - name: Document
         items:
@@ -66,17 +61,20 @@ items:
       - name: Video
         href: video/overview.md
         displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
-      - name: Concepts
-        items:
-          - name: Prebuilt analyzers 🆕
-            displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
-            href: concepts/prebuilt-analyzers.md
-          - name: "Modes: standard and pro 🆕"
-            displayName: standard, pro, modes, analyzers, optimization, fields
-            href: concepts/standard-pro-modes.md
-          - name: Best practices
-            displayName: best practices, analyzers, optimization, fields
-            href: concepts/best-practices.md
+  - name: Concepts
+    items:
+      - name: Analyzer templates in Azure AI Foundry
+        displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
+        href: concepts/analyzer-templates.md
+      - name: Prebuilt analyzers 🆕
+        displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
+        href: concepts/prebuilt-analyzers.md
+      - name: "Modes: standard and pro 🆕"
+        displayName: standard, pro, modes, analyzers, optimization, fields
+        href: concepts/standard-pro-modes.md
+      - name: Best practices
+        displayName: best practices, analyzers, optimization, fields
+        href: concepts/best-practices.md
       - name: Tutorials
         items:
           - name: Create a custom analyzer 🆕
