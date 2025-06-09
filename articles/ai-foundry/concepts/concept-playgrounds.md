@@ -77,7 +77,8 @@ Available on the multi-lingual sample code samples, "Open in VS Code" enables th
 1. Ensure that your deployment is selected in the Deployment box.
 1. Select **View code** to see the code sample.
 1. Select **Open in VS Code** to open VS Code in a new tab of your browser window.
-    :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-foundry.png" alt-text="Screenshot showing the "Open in VS Code" button in Azure AI Foundry playground for seamless code integration." lightbox="../media/concept-playgrounds/open-in-vs-code-foundry.png":::
+    :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-foundry.png" alt-text="Screenshot showing the Open in VS Code button in Azure AI Foundry playground for seamless code integration." lightbox="../media/concept-playgrounds/open-in-vs-code-foundry.png":::
+
 
 1. You're redirected to the `/azure` environment of VS Code where your code sample, API endpoint and key are already imported from the Azure AI Foundry playground.
     :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-vscode.png" alt-text="Screenshot of the VS Code environment showing imported code sample, API endpoint, and key from the Azure AI Foundry playground." lightbox="../media/concept-playgrounds/open-in-vs-code-vscode.png":::
