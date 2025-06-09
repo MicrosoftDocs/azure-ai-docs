@@ -36,11 +36,9 @@ items:
         - name: Try Content Understanding with multiple files"
           displayName: quickstart, extract, text, images, OCR, optical character recognition, foundry, pro, mode
           href: quickstart/use-ai-foundry-pro-mode.md
-    - name: Azure AI Content Understanding REST API
-      items:
-        - name: Try Content Understanding REST API
-          displayName: quickstart, extract, text, images, OCR, optical character recognition, rest, standard, mode
-          href: quickstart/use-rest-api.md
+    - name: Try Content Understanding REST API
+      displayName: quickstart, extract, text, images, OCR, optical character recognition, rest, standard, mode
+      href: quickstart/use-rest-api.md
   - name: Azure AI Foundry portal
     items:
       - name: Analyzer templates
