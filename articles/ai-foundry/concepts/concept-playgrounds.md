@@ -4,7 +4,7 @@ titleSuffix: Azure AI Foundry
 description: Learn to use Azure AI Foundry playgrounds for exploration, experimentation, and iteration with different models.
 manager: scottpolly
 ms.service: azure-ai-foundry
-ms.topic: concept-article
+ms.topic: concept-articl
 ms.date: 06/09/2025
 ms.reviewer: mopeakande
 reviewer: msakande
@@ -16,57 +16,71 @@ ms.custom: build-2025 ai-assisted
 
 # Azure AI Foundry Playgrounds
 
-In today's development cycle, speed and clarity are everything. As you build with the latest state-of-the-art models - and build agents and apps with them - Azure AI Foundry playgrounds are your on-demand, zero-setup environment designed for rapid prototyping, API exploration, and technical validation—before committing a single line to your production codebase. Think of the playground as your technical sketchpad—built to help you build better, faster, and smarter.
+As you build with state-of-the-art models and build agents and apps with them, Azure AI Foundry playgrounds provide an on-demand, zero-setup environment designed for rapid prototyping, API exploration, and technical validation before you commit a single line of code to your production codebase.
 
-> [!IMPORTANT]  
-> The Azure AI Foundry playground experience has been updated to include:
->   - **AgentOps support** for Evaluations and Tracing in the **Agents playground.**
->   - **Open in VS Code** for Chat and Agents playground; automatic endpoint and key importing from Foundry to VS Code for multi-lingual code samples. Save time from going from six clicks to  one click.
->   - Introducing **[Images Playground 2.0](https://devblogs.microsoft.com/foundry/images-playground-may-2025/)** for [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai), [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai) and [Bria 2.3 Fast](https://ai.azure.com/explore/models/Bria-2.3-Fast/version/1/registry/azureml-bria).
->   - Revamped **Audio playground** for [gpt-4o-audio](https://ai.azure.com/explore/models/gpt-4o-transcribe/version/2025-03-20/registry/azure-openai), [gpt-4o-transcribe](https://ai.azure.com/explore/models/gpt-4o-transcribe/version/2025-03-20/registry/azure-openai), [gpt-4o-mini-tts](https://ai.azure.com/explore/models/gpt-4o-mini-tts/version/2025-03-20/registry/azure-openai) models.
->   - Introducing the new **Video playground** for Azure OpenAI Sora.
+## Some highlights of the Azure AI Foundry playgrounds experience
+
+Some highlights of the Azure AI Foundry playground experience includes:
+
+- **AgentOps support** for Evaluations and Tracing in the **Agents playground.**
+- **Open in VS Code** for Chat and Agents playground. This feature saves you time by automatically importing your endpoint and key from Azure AI Foundry to VS Code for multi-lingual code samples.
+- **Images Playground 2.0** for [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai), [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai) and [Bria 2.3 Fast](https://ai.azure.com/explore/models/Bria-2.3-Fast/version/1/registry/azureml-bria) models.
+- **Audio playground** for [gpt-4o-audio](https://ai.azure.com/explore/models/gpt-4o-transcribe/version/2025-03-20/registry/azure-openai), [gpt-4o-transcribe](https://ai.azure.com/explore/models/gpt-4o-transcribe/version/2025-03-20/registry/azure-openai), and [gpt-4o-mini-tts](https://ai.azure.com/explore/models/gpt-4o-mini-tts/version/2025-03-20/registry/azure-openai) models.
+- **Video playground** for Azure OpenAI Sora.
 
 :::image type="content" source="../media/concept-playgrounds/playground-landing-page.png" alt-text="Screenshot of the Azure AI Foundry playground landing page showcasing features for rapid prototyping and experimentation. The left pane of the portal has been customized to show the Playgrounds tab." lightbox="../media/concept-playgrounds/playground-landing-page.png":::
 
 > [!TIP]
 > In the screenshot of the playground landing page, the left pane of the portal has been customized to show the Playgrounds tab. To learn more about seeing the other items in the left pane, see [Customize the left pane](../what-is-azure-ai-foundry.md#left-pane).
 
-## Playground as the prelude to production
+## Playgrounds as the prelude to production
 
-Modern development involves working across multiple systems—APIs, services, SDKs, and data models—often before you're ready to fully commit to a framework, write tests, or spin up infrastructure. As the complexity of software ecosystems increases, the need for safe, lightweight environments to validate ideas becomes critical. The playground was built to meet this need.
+Modern development involves working across multiple systems—APIs, services, SDKs, and data models—often before you're ready to fully commit to a framework, write tests, or spin up infrastructure. As the complexity of software ecosystems increases, the need for safe, lightweight environments to validate ideas becomes critical. The playgrounds were built to meet this need.
 
-The playground provides a ready-to-use environment with all necessary tools and features pre-installed, eliminating the need to set up projects, manage dependencies, or solve compatibility issues.
+The playgrounds provide ready-to-use environments with all the necessary tools and features pre-installed, eliminating the need to set up projects, manage dependencies, or solve compatibility issues. The Azure AI Foundry playgrounds help provide clarity quickly when you have questions and they can accelerate developer velocity.
 
 #### Get clarity quicker
 
-The playground is ideal for quickly answering questions like:
+The playgrounds are ideal for quickly answering questions like:
 
 - How does this endpoint behave under edge conditions?
+
 - What's the minimal prompt I need to get the output I want?
+
 - Will this logic work before I write a full integration?
+
 - How does latency or token usage change with different configurations?
+
 - What model provides the best price-to-performance ratio before I evolve it into an agent?
+
 - How do I evaluate performance and safety metrics for my agent?
   
-You can get these answers in seconds, not hours. Think of the playground as the place where you test and validate ideas before you commit to building at scale. 
+The playgrounds help you to get answers to these questions in seconds, rather than hours—allowing you to test and validate ideas before you commit to building at scale. 
 
-#### Accelerating developer velocity
+#### Accelerate developer velocity
 
-- **Reduce cost of experimentation:** In traditional workflows, the cost of experimentation is high: setting up the project, writing scaffolding code, waiting on builds, and rolling back changes. As a result, many developers skip the experiment phase entirely, which leads to brittle assumptions, broken behavior, or inefficient code. The playground changes this dynamic by removing risk from experimentation. It compresses the distance between intention and insight, so you can validate before you invest. It also acts as a bridge between development and documentation. The examples you build in the Playground often become the reference points for future code, internal tooling, or user education.
+- **Reduce cost of experimentation:** In traditional workflows, the cost of experimentation is high, as it includes setting up the project, writing scaffolding code, waiting on builds, and rolling back changes. This cost makes many developers to skip the experiment phase entirely, which leads to brittle assumptions, broken behavior, or inefficient code. The playgrounds change this dynamic by removing risk from experimentation, so you can validate before you invest. Playgrounds also act as the bridge between development and documentation. The examples you build in the playgrounds often become the reference points for future code, internal tooling, or user education.
+ 
 - **Iterate faster:** Experiment with text prompts, adjust generation parameters, and explore editing variations — all in real time with model-specific native API support.
+
 - **Accelerate integration:** Validate API behavior, test edge cases, and inspect responses directly in an interactive console.
-- **Prompt optimization:** Debug and tune prompts, and build your own prompt variations available in the playground, grounded in model behavior.
-- **Consistent model interface:** Common foundations established. No matter what model or agent, no matter the model provider.
-- **Go to code quicker:** Using the "View Code" multi-lingual code samples for your output, prompts and generation controls within the API structure, what you create within Foundry playgrounds can be easily ported into VS Code - with predictability and repeatability.
-- **Reduce time to ship:** No need to find, build, or configure a custom UI to localhost just for image generation, hope that it will automatically work for the next state-of-the-art model, or spend time resolving cascading build errors due to packages or code changes required for new models. The images playground in Azure AI Foundry gives you version-aware access. Build with the latest and most performant models with API updates surfaced in a consistent UI.
-- **Collaboration & feedback:** Share your visual experiments directly with stakeholders, artists, or PMs without requiring them to install tools.
-- **Human-in-the-loop refinement:** You can explore subtle tweaks with immediate visual feedback before hardcoding or automating anything.
 
-Whether you're prototyping with the latest LLM from Foundry Models, validating prompts for edge cases, or optimizing output consistency, Foundry playgrounds removes friction from early experimentation. It's where ideas are pressure-tested before they're shipped into production. Optimize for prompt adherence, latency, and use cases through experimentation; accelerate your "Build-Measure-Learn" development loop; and ship faster with higher confidence.
+- **Optimize prompts:** Debug and tune prompts; build prompt variations available in the playgrounds and grounded in model behavior.
 
-Let's look through the various capabilities available.
+- **Provide a consistent model interface:** Common foundations established. No matter what model or agent, no matter the model provider.
 
-## Open in VS Code
+- **Go to code quicker:** Using the "View Code" multi-lingual code samples for your output, prompts and generation controls within the API structure, what you create within Azure AI Foundry playgrounds can be easily ported into VS Code—with predictability and repeatability.
+
+- **Reduce time to ship:** No need to find, build, or configure a custom UI to localhost just for image generation, hope that it automatically works for the next state-of-the-art model, or spend time resolving cascading build errors due to packages or code changes required for new models. The images playground in Azure AI Foundry gives you version-aware access. Build with the latest and most performant models with API updates surfaced in a consistent UI.
+
+- **Collaborate and get feedback easily:** Share your visual experiments directly with stakeholders, artists, or product managers, without requiring them to install tools.
+
+- **Provides human-in-the-loop refinement:** You can explore subtle tweaks with immediate visual feedback before hardcoding or automating anything.
+
+Whether you're prototyping with the latest LLM from Azure AI Foundry Models, validating prompts for edge cases, or optimizing output consistency, Azure AI Foundry playgrounds remove friction from early experimentation. It's where ideas are pressure-tested before they're shipped into production. Optimize for prompt adherence, latency, and use cases through experimentation; accelerate your "Build-Measure-Learn" development loop; and ship faster with higher confidence.
+
+
+## Open in VS Code capability
 
 The **Chat playground** and **Agents playground** allow you to work in VS Code, by using the **Open in VS Code** button that's available through the Azure AI Foundry extension in VS Code. 
 
@@ -74,7 +88,7 @@ Available on the multi-lingual sample code samples, "Open in VS Code" enables th
 
 Follow these steps to use the "Open in VS Code" functionality from the chat and agents playgrounds:
 
-1. Select **Try the Chat playground** to open it. Alternatively, you could follow these steps in the Agents playground by selecting **Let's go** in the Agents playground box.
+1. Select **Try the Chat playground** to open it. Alternatively, you could follow these steps in the Agents playground by selecting **Let's go** on the Agents playground card.
 1. If you don't have a deployment already, select **Create new deployment** and deploy a model such as `gpt-4o-mini`.
 1. Ensure that your deployment is selected in the Deployment box.
 1. Select **View code** to see the code sample.
@@ -93,7 +107,7 @@ Follow these steps to use the "Open in VS Code" functionality from the chat and 
 
 The agents playground allows you to explore, prototype, and test agents without needing to run any code. From this page, you can quickly iterate and experiment with new ideas. to get started with the Agents playground, see the [Quickstart: Create a new agent](../../ai-services/agents/quickstart.md).
 
-:::image type="content" source="../media/concept-playgrounds/agents-playground.png" alt-text="Screenshot of the Agents playground interface for exploring, prototyping, and testing agents without code." lightbox="../media/concept-playgrounds/agents-playground.png":::
+:::image type="content" source="../media/concept-playgrounds/agents-playground.png" alt-text="Screenshot of the agents playground interface for exploring, prototyping, and testing agents without code." lightbox="../media/concept-playgrounds/agents-playground.png":::
 
 ## Chat playground
 
