@@ -132,25 +132,25 @@ This is what a component looks like in the studio UI:
 
 Now, you've prepared all source files for the `Prep Data` component.
 
-### Create the train-model component
+### Create the train model component
 
-In this section, you'll create a component for training the image classification model in the Python function like the `Prep Data` component.
+In this section, you'll create a component for training the image classification model in a Python function, as you did with the `Prep Data` component.
 
-The difference is that since the training logic is more complicated, you can put the original training code in a separate Python file.
+Because the training logic is more complicated, you'll put the training code in a separate Python file.
 
-The source files of this component are under `train/` folder in the [Azure Machine Learning examples repo](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet). This folder contains three files to construct the component:
+The source files for this component are in the `train` folder in the [Azure Machine Learning examples repo](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet). This folder contains three files to construct the component:
 
-* `train.py`: contains the actual logic to train model.
-* `train_component.py`: defines the interface of the component and imports the function in `train.py`.
-* `conda.yaml`: defines the run-time environment of the component.
+* `train.py` contains the logic to train the model.
+* `train_component.py` defines the interface of the component and imports the function that's in `train.py`.
+* `conda.yaml` defines the runtime environment of the component.
 
-#### Get a script containing execution logic
+#### Get a script that contains execution logic
 
-The `train.py` file contains a normal Python function, which performs the training model logic to train a Keras neural network for image classification. To view the code, see the [train.py file on GitHub](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet/train/train.py).
+The `train.py` file contains a normal Python function that performs the logic for training a Keras neural network for image classification. To view the code, see the [train.py file on GitHub](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet/train/train.py).
 
-#### Define component using Python function
+#### Define the component by using a Python function
 
-After defining the training function successfully, you can use `@command_component` in Azure Machine Learning SDK v2 to wrap your function as a component, which can be used in Azure Machine Learning pipelines.
+After defining the training function successfully, you can use `@command_component` in Azure Machine Learning SDK v2 to wrap your function as a component that can be used in Azure Machine Learning pipelines:
 
 :::code language="python" source="~/azureml-examples-main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet/train/train_component.py":::
 
