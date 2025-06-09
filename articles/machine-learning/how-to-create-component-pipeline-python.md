@@ -32,13 +32,13 @@ The example pipeline trains a small [Keras](https://keras.io/) convolutional neu
 In this article, you complete the following tasks:
 
 > [!div class="checklist"]
-> * Prepare input data for the pipeline job
-> * Create three components to prepare the data, train an image, and score the model
-> * Build a pipeline from the components
-> * Get access to a workspace with compute
-> * Submit the pipeline job
-> * Review the output of the components and the trained neural network
-> * (Optional) Register the component for further reuse and sharing within the workspace
+> * Prepare input data for the pipeline job.
+> * Create three components to prepare the data, train an image, and score the model.
+> * Build a pipeline from the components.
+> * Get access to a workspace that has compute.
+> * Submit the pipeline job.
+> * Review the output of the components and the trained neural network.
+> * (Optional) Register the component for further reuse and sharing within the workspace.
 
 If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/) today.
 
@@ -95,11 +95,11 @@ For each component, you need to complete these steps:
 
 The next section shows how to create the components in two ways. For the first two components, you use a Python function. For the third component you use YAML definition.
 
-### Create the data-preparation component
+### Create the data preparation component
 
 The first component in this pipeline converts the compressed data files of `fashion_ds` into two .csv files, one for training and the other for scoring. You use a Python function to define this component.
 
-If you're following along with the example in the [Azure Machine Learning examples repo](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet), the source files are already available in the `prep/` folder. This folder contains two files to construct the component: `prep_component.py`, which defines the component, and `conda.yaml`, which defines the runtime environment of the component.
+If you're following along with the example in the [Azure Machine Learning examples repo](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet), the source files are already available in the `prep` folder. This folder contains two files to construct the component: `prep_component.py`, which defines the component, and `conda.yaml`, which defines the runtime environment of the component.
 
 #### Define component by using a Python function
 
@@ -130,9 +130,9 @@ This is what a component looks like in the studio UI:
 
 :::image type="content" source="./media/how-to-create-component-pipeline-python/prep-data-component.png" alt-text="Screenshot of the Prep Data component in the UI and code." lightbox ="./media/how-to-create-component-pipeline-python/prep-data-component.png":::
 
-Now, you've prepared all source files for the `Prep Data` component.
+You've now prepared all source files for the `Prep Data` component.
 
-### Create the train model component
+### Create the model training component
 
 In this section, you'll create a component for training the image classification model in a Python function, as you did with the `Prep Data` component.
 
@@ -144,7 +144,7 @@ The source files for this component are in the `train` folder in the [Azure Mach
 * `train_component.py` defines the interface of the component and imports the function that's in `train.py`.
 * `conda.yaml` defines the runtime environment of the component.
 
-#### Get a script that contains execution logic
+#### Get a script that contains the logic
 
 The `train.py` file contains a normal Python function that performs the logic for training a Keras neural network for image classification. To view the code, see the [train.py file on GitHub](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet/train/train.py).
 
@@ -181,7 +181,7 @@ The `score.py` file contains a normal Python function that performs the training
 :::code language="python" source="~/azureml-examples-main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet/score/score.py":::
 
 
-The code in score.py takes three command-line arguments: `input_data`, `input_model`, and `output_result`. The program scores the input model by using input data and then outputs the result.
+The code in `score.py` takes three command-line arguments: `input_data`, `input_model`, and `output_result`. The program scores the input model by using input data and then outputs the result.
 
 #### Define the component via YAML
 
@@ -199,7 +199,7 @@ In this section, you'll learn how to create a component specification in the val
 * The `command` section specifies the command to execute when the component runs. 
 * The `environment` section contains a Docker image and a conda YAML file. The source file is in the [sample repository](https://github.com/Azure/azureml-examples/blob/v2samplesreorg/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet/score/conda.yaml).
 
-You now have all the source files for model scoring component.
+You now have all the source files for the model scoring component.
 
 ## Load the components to build a pipeline
 
@@ -265,7 +265,7 @@ Create an `MLClient` object to manage Azure Machine Learning services. If you us
 
 #### Submit the pipeline job to the workspace
 
-Now you have a handle to your workspace, you can submit your pipeline job:
+Now that you have a handle to your workspace, you can submit your pipeline job:
 
 [!notebook-python[] (~/azureml-examples-main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet/image_classification_keras_minist_convnet.ipynb?name=submit-pipeline)]
 
@@ -284,7 +284,7 @@ You can monitor the pipeline run by selecting the link. Or you can block it unti
 > [!IMPORTANT]
 > The first pipeline run takes about 15 minutes. All dependencies are downloaded, a Docker image is created, and the Python environment is provisioned and created. Running the pipeline again takes significantly less time because those resources are reused instead of created. However, total runtime for the pipeline depends on the workload of your scripts and the processes that run in each pipeline step.
 
-### Checkout outputs and debug your pipeline in the UI
+### Check outputs and debug your pipeline in the UI
 
 You can select the `Link to Azure Machine Learning studio`, which is the job detail page of your pipeline. You'll see the pipeline graph:
 
