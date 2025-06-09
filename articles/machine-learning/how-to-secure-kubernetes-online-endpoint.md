@@ -176,12 +176,12 @@ TLS/SSL certificates expire and must be renewed. Typically, this happens every y
 
 To disable TLS for a model deployed to Kubernetes:
 
-1. Update the Azure Machine Learning extension with `allowInsercureconnection` set to `True`.
+1. Update the Azure Machine Learning extension with `allowInsecureConnections` set to `True`.
 1. Remove the `sslCname` configuration setting, along with the `sslSecret` or `sslPem` configuration settings.
 1. Run the following Azure CLI command in your Kubernetes cluster, and then perform an update. This command assumes that you're using AKS.
 
    ```azurecli
-      az k8s-extension update --name <extension-name> --extension-type Microsoft.AzureML.Kubernetes --config enableInference=True inferenceRouterServiceType=LoadBalancer allowInsercureconnection=True --cluster-type managedClusters --cluster-name <your-AKS-cluster-name> --resource-group <your-RG-name> --scope cluster
+      az k8s-extension update --name <extension-name> --extension-type Microsoft.AzureML.Kubernetes --config enableInference=True inferenceRouterServiceType=LoadBalancer allowInsecureConnections=True --cluster-type managedClusters --cluster-name <your-AKS-cluster-name> --resource-group <your-RG-name> --scope cluster
    ```
 
 > [!WARNING]
