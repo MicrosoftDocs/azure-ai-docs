@@ -26,46 +26,48 @@ items:
       - name: Glossary
         displayName: glossary, definition, updates, previews
         href: glossary.md
+  - name: Quickstarts
+    items:
+    - name: Azure AI Foundry portal
+      items:
+        - name: Try Content Understanding with a single file"
+          displayName: quickstart, extract, text, images, OCR, optical character recognition, foundry, standard, mode
+          href: quickstart/use-ai-foundry.md
+        - name: Try Content Understanding with multiple files"
+          displayName: quickstart, extract, text, images, OCR, optical character recognition, foundry, pro, mode
+          href: quickstart/use-ai-foundry-pro-mode.md
+    - name: Azure AI Content Understanding REST API
+      items:
+        - name: Try Content Understanding REST API
+          displayName: quickstart, extract, text, images, OCR, optical character recognition, rest, standard, mode
+          href: quickstart/use-rest-api.md
   - name: Azure AI Foundry portal
     items:
       - name: Analyzer templates
         displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
         href: concepts/analyzer-templates.md
-      - name: Quickstarts
-        items:
-          - name: Try Content Understanding with a single file"
-            displayName: quickstart, extract, text, images, OCR, optical character recognition, foundry, standard, mode
-            href: quickstart/use-ai-foundry.md
-          - name: Try Content Understanding with multiple files"
-            displayName: quickstart, extract, text, images, OCR, optical character recognition, foundry, pro, mode
-            href: quickstart/use-ai-foundry-pro-mode.md
   - name: Analyzers
     items:
-      - name: Quickstart
-        displayName: quickstart, extract, text, images, OCR, optical character recognition, content filtering, filter
-        href: quickstart/use-rest-api.md
-      - name: Modalities
+      - name: Document
         items:
-          - name: Document
-            items:
-              - name: Overview
-                displayName: document, text, images, video, audio, visual, structured, content, field, extraction
-                href: document/overview.md
-              - name: Elements 🆕
-                displayName: document, text, images, video, audio, visual, structured, content, field, extraction
-                href: document/elements.md
-              - name: Markdown 🆕
-                displayName: document, text, images, video, audio, visual, structured, content, field, extraction
-                href: document/markdown.md
-          - name: Image
-            displayName: image, OCR, optical character recognition, text, extraction, analysis, detection, recognition, model
-            href: image/overview.md
-          - name: Audio
-            displayName: speech, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
-            href: audio/overview.md
-          - name: Video
-            href: video/overview.md
-            displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
+          - name: Overview
+            displayName: document, text, images, video, audio, visual, structured, content, field, extraction
+            href: document/overview.md
+          - name: Elements 🆕
+            displayName: document, text, images, video, audio, visual, structured, content, field, extraction
+            href: document/elements.md
+          - name: Markdown 🆕
+            displayName: document, text, images, video, audio, visual, structured, content, field, extraction
+            href: document/markdown.md
+      - name: Image
+        displayName: image, OCR, optical character recognition, text, extraction, analysis, detection, recognition, model
+        href: image/overview.md
+      - name: Audio
+        displayName: speech, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
+        href: audio/overview.md
+      - name: Video
+        href: video/overview.md
+        displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
       - name: Concepts
         items:
           - name: Prebuilt analyzers 🆕
