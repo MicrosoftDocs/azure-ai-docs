@@ -682,7 +682,7 @@ Edits an image from a text caption on a given gpt-image-1 model deployment
 
 |**Content-Type**|**Type**|**Description**|
 |:---|:---|:---|
-|application/json | [generateImagesResponse](#generateimagesresponse) | |
+|application/json | [AzureImagesResponse](#azureimagesresponse) | |
 
 **Status Code:** default
 
