@@ -50,7 +50,7 @@ The Azure AI Foundry Projects client library is a unified library that enables y
 * Install the project client library 
 
     ```bash
-    pip install azure-ai-projects azure-ai-identity
+    pip install azure-ai-projects azure-identity
     ```
 
 * Create a project client in code. **Copy** the Azure AI Foundry project endpoint from the Overview page of the project and update the connections string value.
