@@ -54,7 +54,7 @@ items:
               - name: Elements 🆕
                 displayName: document, text, images, video, audio, visual, structured, content, field, extraction
                 href: document/elements.md
-              - name: xMarkdown 🆕
+              - name: Markdown 🆕
                 displayName: document, text, images, video, audio, visual, structured, content, field, extraction
                 href: document/markdown.md
           - name: Image
