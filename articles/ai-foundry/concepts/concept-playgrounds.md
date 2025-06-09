@@ -68,9 +68,11 @@ Let's look through the various capabilities available.
 
 ## Open in VS Code
 
-**For Chat and Agents playground**, we're introducing the **"Open in VS Code"** button through the Azure AI Foundry extension in VS Code. 
+The **Chat playground** and **Agents playground** allow you to work in VS Code, by using the **Open in VS Code** button that's available through the Azure AI Foundry extension in VS Code. 
 
-Available on the multi-lingual sample code samples, "Open in VS Code" enables the automatic import of your code sample, API endpoint and key to a VS Code workspace in /azure environment. Instead of going back and forth between Foundry and IDE, "Open in VS Code" reduces six clicks to one click:
+Available on the multi-lingual sample code samples, "Open in VS Code" enables the automatic import of your code sample, API endpoint, and key to a VS Code workspace in an `/azure` environment. This functionality makes it easy to work in the VS Code IDE from the Azure AI Foundry portal.
+
+Follow these steps to use the "Open in VS Code" functionality from the chat and agents playgrounds:
 
 1. Select **Try the Chat playground** to open it. Alternatively, you could follow these steps in the Agents playground by selecting **Let's go** in the Agents playground box.
 1. If you don't have a deployment already, select **Create new deployment** and deploy a model such as `gpt-4o-mini`.
@@ -78,7 +80,6 @@ Available on the multi-lingual sample code samples, "Open in VS Code" enables th
 1. Select **View code** to see the code sample.
 1. Select **Open in VS Code** to open VS Code in a new tab of your browser window.
     :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-foundry.png" alt-text="Screenshot showing the Open in VS Code button in Azure AI Foundry playground for seamless code integration." lightbox="../media/concept-playgrounds/open-in-vs-code-foundry.png":::
-
 
 1. You're redirected to the `/azure` environment of VS Code where your code sample, API endpoint and key are already imported from the Azure AI Foundry playground.
     :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-vscode.png" alt-text="Screenshot of the VS Code environment showing imported code sample, API endpoint, and key from the Azure AI Foundry playground." lightbox="../media/concept-playgrounds/open-in-vs-code-vscode.png":::
@@ -90,41 +91,49 @@ Available on the multi-lingual sample code samples, "Open in VS Code" enables th
 
 ## Agents playground
 
-The Agents playground allows you to explore, prototype, and test agents without needing to run any code. From this page, you can quickly iterate and experiment with new ideas. to get started with the Agents playground, see the [Quickstart: Create a new agent](../../ai-services/agents/quickstart.md).
+The agents playground allows you to explore, prototype, and test agents without needing to run any code. From this page, you can quickly iterate and experiment with new ideas. to get started with the Agents playground, see the [Quickstart: Create a new agent](../../ai-services/agents/quickstart.md).
 
 :::image type="content" source="../media/concept-playgrounds/agents-playground.png" alt-text="Screenshot of the Agents playground interface for exploring, prototyping, and testing agents without code." lightbox="../media/concept-playgrounds/agents-playground.png":::
 
 ## Chat playground
 
-Test the latest reasoning models from Azure OpenAI, DeepSeek, and Meta with the chat playground experience through this [Quickstart: Use the chat playground in Azure AI Foundry portal](../quickstarts/get-started-playground.md).
+The chat playground is the place to test the latest reasoning models from Azure OpenAI, DeepSeek, and Meta. To learn more about the chat playground, see the [Quickstart: Use the chat playground in Azure AI Foundry portal](../quickstarts/get-started-playground.md).
 
-For all reasoning models, we introduce a chain-of-thought summary drop-down to see how the model was thinking through its response ahead of sharing the output.
+For all reasoning models, the chat playground provides a chain-of-thought summary drop-down that let's you see how the model was thinking through its response ahead of sharing the output.
 
-:::image type="content" source="../media/concept-playgrounds/chat-playground-cot-summary.png" alt-text="Screenshot of the Chat Playground interface for exploring, prototyping, and testing chat models without code." lightbox="../media/concept-playgrounds/agents-playground.png":::
+:::image type="content" source="../media/concept-playgrounds/chat-playground-cot-summary.png" alt-text="Screenshot of the Chat playground interface for exploring, prototyping, and testing chat models without code." lightbox="../media/concept-playgrounds/chat-playground-cot-summary.png":::
 
 ## Audio playground
 
-With the audio playground, you can use text-to-speech and transcription capabilities with the latest audio models from Azure OpenAI.
+The audio playground let's you use text-to-speech and transcription capabilities with the latest audio models from Azure OpenAI.
 
-1. Start with a text input prompt and rewrite the input with AI (coming soon).
-1. Adjust model parameters like voice and language.
-1. Receive a speech output with playback controls (play, rewind, forward, adjust speed and volume).
-1. Download to local as a .wav file.
+Follow these steps to try the text to speech capability:
+
+1. Select **Try the Audio playground** to open it.
+1. If you don't have a deployment already, select **Create new deployment** and deploy a model such as `gpt-4o-mini-tts`.
+1. Ensure that your deployment is selected in the Deployment box.
+1. Input a text prompt.
+1. Adjust model parameters such as voice and response format.
+1. Select **Generate** to receive a speech output with playback controls that include play, rewind, forward, adjust speed, and volume.
+1. Download the audio file to your local computer.
     :::image type="content" source="../media/concept-playgrounds/audio-playground-text-to-speech.png" alt-text="Screenshot of the Audio playground interface showcasing text-to-speech capabilities with playback controls." lightbox="../media/concept-playgrounds/audio-playground-text-to-speech.png":::
 
-1. Start with an audio file by either upload audio file, recording the audio from the prompt bar or speaking directly to the model.
-1. Include a phrase list as a text mechanism to guide the audio input.
-1. Once the audio input has been sent to the model, receive a transcribed output as text and JSON.
+Follow these steps to try the transcription capability:
+
+1. If you don't have a deployment already, select **Create new deployment** and deploy a model such as `gpt-4o-transcribe`.
+1. (Optional) Include a phrase list as a text mechanism to guide your audio input.
+1. Input an audio file, by either uploading one or recording the audio from the prompt bar.
+1. Select **Generate transcription** to send the audio input to the model and receive a transcribed output in both text and JSON formats.
     :::image type="content" source="../media/concept-playgrounds/audio-playground-transcribe.png" alt-text="Screenshot of the Audio playground interface demonstrating transcription output from audio input." lightbox="../media/concept-playgrounds/audio-playground-transcribe.png":::
 
 ## Images playground
 
-> [!NOTE]  
-> See the [60-second reel of Images playground for gpt-image-1](https://youtu.be/btA8njJjLXY) and our DevBlog for how to transform your [enterprise-ready use case by industry.](https://devblogs.microsoft.com/foundry/images-playground-may-2025/)
+> [!TIP]  
+> See the [60-second reel of the Images playground for gpt-image-1](https://youtu.be/btA8njJjLXY) and our DevBlog for how to transform your [enterprise-ready use case by industry.](https://devblogs.microsoft.com/foundry/images-playground-may-2025/)
 
-We built the images playground for developers who build image generation flows. The Images playground is a full-featured, controlled environment for high-fidelity experiments designed for model-specific APIs for generation and editing.
+The images playground is ideal for developers who build image generation flows. This playground is a full-featured, controlled environment for high-fidelity experiments designed for model-specific APIs to generate and edit images.
 
-### How to use images playground
+Follow these steps to use the images playground:
 
 1. **Start with a pre-built text prompt**: Select an option to get started with a prebuilt text prompt that automatically fills the prompt bar.
 1. **Explore the model API-specific generation controls after model deployment:** Adjust key controls (e.g. number of variants, quality, strength) to deeply understand specific model responsiveness and constraints.
