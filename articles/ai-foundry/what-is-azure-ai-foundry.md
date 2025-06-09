@@ -58,7 +58,7 @@ This table summarizes features available in the two project types:
 | Capability | [!INCLUDE [fdp](includes/fdp-project-name.md)] | [!INCLUDE[hub](includes/hub-project-name.md)] |
 | --- | --- | --- |
 | Agents | ✅ (GA) | ✅ (Preview only) |
-| Azure OpenAI models | ✅ (Native support) | Available via connections |
+| Azure AI Foundry models including Azure OpenAI models | ✅ (Native support) | Available via connections |
 | AI Foundry API to work with agents and across models| ✅ (Native support) | Available via connections |
 | Project files (directly upload files and start experimenting) | ✅ | |
 | Project-level isolation of files and outputs | ✅ | ✅|
