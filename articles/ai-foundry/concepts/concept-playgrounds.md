@@ -5,7 +5,7 @@ description: Learn to use Azure AI Foundry playgrounds for exploration, experime
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 05/06/2025
+ms.date: 06/09/2025
 ms.reviewer: mopeakande
 reviewer: msakande
 ms.author: tgokal
@@ -26,9 +26,12 @@ In today's development cycle, speed and clarity are everything. As you build wit
 >   - Revamped **Audio playground** for [gpt-4o-audio](https://ai.azure.com/explore/models/gpt-4o-transcribe/version/2025-03-20/registry/azure-openai), [gpt-4o-transcribe](https://ai.azure.com/explore/models/gpt-4o-transcribe/version/2025-03-20/registry/azure-openai), [gpt-4o-mini-tts](https://ai.azure.com/explore/models/gpt-4o-mini-tts/version/2025-03-20/registry/azure-openai) models.
 >   - Introducing the new **Video playground** for Azure OpenAI Sora.
 
-:::image type="content" source="../media/concept-playgrounds/playground-landing-page.png" alt-text="Screenshot of the Azure AI Foundry playground landing page showcasing features for rapid prototyping and experimentation." lightbox="../media/concept-playgrounds/playground-landing-page.png":::
+:::image type="content" source="../media/concept-playgrounds/playground-landing-page.png" alt-text="Screenshot of the Azure AI Foundry playground landing page showcasing features for rapid prototyping and experimentation. The left pane of the portal has been customized to show the Playgrounds tab." lightbox="../media/concept-playgrounds/playground-landing-page.png":::
 
-## The playground; the prelude to production
+> [!TIP]
+> In the screenshot of the playground landing page, the left pane of the portal has been customized to show the Playgrounds tab. To learn more about seeing the other items in the left pane, see [Customize the left pane](../what-is-azure-ai-foundry.md#left-pane).
+
+## Playground as the prelude to production
 
 Modern development involves working across multiple systems—APIs, services, SDKs, and data models—often before you're ready to fully commit to a framework, write tests, or spin up infrastructure. As the complexity of software ecosystems increases, the need for safe, lightweight environments to validate ideas becomes critical. The playground was built to meet this need.
 
@@ -69,26 +72,24 @@ Let's look through the various capabilities available.
 
 Available on the multi-lingual sample code samples, "Open in VS Code" enables the automatic import of your code sample, API endpoint and key to a VS Code workspace in /azure environment. Instead of going back and forth between Foundry and IDE, "Open in VS Code" reduces six clicks to one click:
 
-1. Select  View Code in Chat playground and Agents playground to see the code sample.
-1. Select  "Open in VS Code" button.
-    :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-foundry.png" alt-text="Screenshot of the Open in VS Code button in Azure AI Foundry playground for seamless code integration." lightbox="../media/concept-playgrounds/open-in-vs-code-foundry.png":::
+1. Select **Try the Chat playground** to open it. Alternatively, you could follow these steps in the Agents playground by selecting **Let's go** in the Agents playground box.
+1. If you don't have a deployment already, select **Create new deployment** and deploy a model such as `gpt-4o-mini`.
+1. Ensure that your deployment is selected in the Deployment box.
+1. Select **View code** to see the code sample.
+1. Select **Open in VS Code** to open VS Code in a new tab of your browser window.
+    :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-foundry.png" alt-text="Screenshot showing the "Open in VS Code" button in Azure AI Foundry playground for seamless code integration." lightbox="../media/concept-playgrounds/open-in-vs-code-foundry.png":::
 
-1. You're redirected to /azure environment of VS Code with importing of your code sample, API endpoint and key.
-    :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-vscode.png" alt-text="Screenshot of the VS Code environment showing imported code sample, API endpoint, and key from Foundry playground." lightbox="../media/concept-playgrounds/open-in-vs-code-vscode.png":::
+1. You're redirected to the `/azure` environment of VS Code where your code sample, API endpoint and key are already imported from the Azure AI Foundry playground.
+    :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-vscode.png" alt-text="Screenshot of the VS Code environment showing imported code sample, API endpoint, and key from the Azure AI Foundry playground." lightbox="../media/concept-playgrounds/open-in-vs-code-vscode.png":::
 
-1. Browse through the `READ.ME` file for instructions to run your model.
-    :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-readme.png" alt-text="Screenshot of the README file in VS Code with instructions for running the imported model." lightbox="../media/concept-playgrounds/open-in-vs-code-readme.png":::
-
-1. Your code sample is automatically transferred to the `run_model.py`.
-    :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-run-model.png" alt-text="Screenshot showing that the code sample automatically transferred to run_model.py in VS Code." lightbox="../media/concept-playgrounds/open-in-vs-code-run-model.png":::
-   
-1. Relevant dependencies in the `requirements.txt` file.
-    :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-requirements.png" alt-text="Screenshot showing the relevant dependencies listed in the requirements.txt file in VS Code." lightbox="../media/concept-playgrounds/open-in-vs-code-requirements.png":::
+1. Browse the `READ.ME` file for instructions to run your model.
+1. View your code sample in the `run_model.py`.
+1. View relevant dependencies in the `requirements.txt` file.
 
 
 ## Agents playground
 
-The Agents playground allows you to explore, prototype, and test agents without needing to run any code. From this page, you can quickly iterate and experiment with new ideas. Get started with Agents playground with this [quickstart](../../ai-services/agents/quickstart.md).
+The Agents playground allows you to explore, prototype, and test agents without needing to run any code. From this page, you can quickly iterate and experiment with new ideas. to get started with the Agents playground, see the [Quickstart: Create a new agent](../../ai-services/agents/quickstart.md).
 
 :::image type="content" source="../media/concept-playgrounds/agents-playground.png" alt-text="Screenshot of the Agents playground interface for exploring, prototyping, and testing agents without code." lightbox="../media/concept-playgrounds/agents-playground.png":::
 
