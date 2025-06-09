@@ -20,13 +20,13 @@ ms.custom: build-2025 ai-assisted
 
 As you build with state-of-the-art models and build agents and apps with them, Azure AI Foundry playgrounds provide an on-demand, zero-setup environment designed for rapid prototyping, API exploration, and technical validation before you commit a single line of code to your production codebase.
 
-## Some highlights of the Azure AI Foundry playgrounds experience
+## Highlights of the Azure AI Foundry playgrounds experience
 
-Some highlights of the Azure AI Foundry playground experience includes:
+Some highlights of the Azure AI Foundry playgrounds experience include:
 
 - **AgentOps support** for Evaluations and Tracing in the **Agents playground.**
 - **Open in VS Code** for Chat and Agents playground. This feature saves you time by automatically importing your endpoint and key from Azure AI Foundry to VS Code for multi-lingual code samples.
-- **Images Playground 2.0** for [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai), [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai) and [Bria 2.3 Fast](https://ai.azure.com/explore/models/Bria-2.3-Fast/version/1/registry/azureml-bria) models.
+- **Images Playground 2.0** for [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai), [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai), and [Bria 2.3 Fast](https://ai.azure.com/explore/models/Bria-2.3-Fast/version/1/registry/azureml-bria) models.
 - **Audio playground** for [gpt-4o-audio](https://ai.azure.com/explore/models/gpt-4o-transcribe/version/2025-03-20/registry/azure-openai), [gpt-4o-transcribe](https://ai.azure.com/explore/models/gpt-4o-transcribe/version/2025-03-20/registry/azure-openai), and [gpt-4o-mini-tts](https://ai.azure.com/explore/models/gpt-4o-mini-tts/version/2025-03-20/registry/azure-openai) models.
 - **Video playground** for Azure OpenAI Sora.
 
@@ -63,7 +63,7 @@ The playgrounds help you to get answers to these questions in seconds, rather th
 
 - **Reduce cost of experimentation:** In traditional workflows, the cost of experimentation is high, as it includes setting up the project, writing scaffolding code, waiting on builds, and rolling back changes. This cost makes many developers to skip the experiment phase entirely, which leads to brittle assumptions, broken behavior, or inefficient code. The playgrounds change this dynamic by removing risk from experimentation, so you can validate before you invest. Playgrounds also act as the bridge between development and documentation. The examples you build in the playgrounds often become the reference points for future code, internal tooling, or user education.
  
-- **Iterate faster:** Experiment with text prompts, adjust generation parameters, and explore editing variations — all in real time with model-specific native API support.
+- **Iterate faster:** Experiment with text prompts, adjust generation parameters, and explore editing variations—all in real time with model-specific native API support.
 
 - **Accelerate integration:** Validate API behavior, test edge cases, and inspect responses directly in an interactive console.
 
@@ -71,7 +71,7 @@ The playgrounds help you to get answers to these questions in seconds, rather th
 
 - **Provide a consistent model interface:** Common foundations established. No matter what model or agent, no matter the model provider.
 
-- **Go to code quicker:** Using the "View Code" multi-lingual code samples for your output, prompts and generation controls within the API structure, what you create within Azure AI Foundry playgrounds can be easily ported into VS Code—with predictability and repeatability.
+- **Go to code quicker:** When you use the "View Code" multi-lingual code samples for your output, prompts and generation controls within the API structure, what you create within Azure AI Foundry playgrounds can be easily ported into VS Code—with predictability and repeatability.
 
 - **Reduce time to ship:** No need to find, build, or configure a custom UI to localhost just for image generation, hope that it automatically works for the next state-of-the-art model, or spend time resolving cascading build errors due to packages or code changes required for new models. The images playground in Azure AI Foundry gives you version-aware access. Build with the latest and most performant models with API updates surfaced in a consistent UI.
 
@@ -107,7 +107,7 @@ Follow these steps to use the "Open in VS Code" functionality from the chat and 
 
 ## Agents playground
 
-The agents playground allows you to explore, prototype, and test agents without needing to run any code. From this page, you can quickly iterate and experiment with new ideas. to get started with the Agents playground, see the [Quickstart: Create a new agent](../../ai-services/agents/quickstart.md).
+The agents playground allows you to explore, prototype, and test agents without needing to run any code. From this page, you can quickly iterate and experiment with new ideas. To get started with the Agents playground, see the [Quickstart: Create a new agent](../../ai-services/agents/quickstart.md).
 
 :::image type="content" source="../media/concept-playgrounds/agents-playground.png" alt-text="Screenshot of the agents playground interface for exploring, prototyping, and testing agents without code." lightbox="../media/concept-playgrounds/agents-playground.png":::
 
@@ -121,7 +121,7 @@ For all reasoning models, the chat playground provides a chain-of-thought summar
 
 ## Audio playground
 
-The audio playground (preview) let's you use text-to-speech and transcription capabilities with the latest audio models from Azure OpenAI.
+The audio playground (preview) lets you use text-to-speech and transcription capabilities with the latest audio models from Azure OpenAI.
 
 Follow these steps to try the text to speech capability:
 
@@ -160,12 +160,12 @@ Follow these steps to use the images playground:
 1. Select **Try the Images playground** to open it.
 1. If you don't have a deployment already, select **Create new deployment** and deploy a model such as `gpt-image-1`.
 1. **Start with a pre-built text prompt**: Select an option to get started with a prebuilt text prompt that automatically fills the prompt bar.
-1. **Explore the model API-specific generation controls after model deployment:** Adjust key controls (e.g. number of variants, quality, strength) to deeply understand specific model responsiveness and constraints.
+1. **Explore the model API-specific generation controls after model deployment:** Adjust key controls (for example, number of variants, quality, strength) to deeply understand specific model responsiveness and constraints.
 1. **Side-by-side observations in grid view:** Visually observe outputs across prompt tweaks or parameter changes.
 1. **Transform with API tooling:** Inpainting with text transformation is available for gpt-image-1. Alter parts of your original image with inpainting selection. Use text prompts to specify the change.
 1. **Port to production with multi-lingual code samples:** Use Python, Java, JavaScript, C# code samples with "View Code". Images playground is your launchpad to development work in VS Code.
 
-### What to validate when experimenting in Images playground
+### What to validate when experimenting in images playground
 
 By using the images playground, you can explore and validate the following as you plan your production workload:
 
@@ -183,7 +183,7 @@ By using the images playground, you can explore and validate the following as yo
     - How can I balance creativity vs. prompt fidelity?
 
 - **Model Comparison**
-    - How do results differ between models (e.g., SDXL vs. DALL·E)?
+    - How do results differ between models (for example, SDXL vs. DALL·E)?
     - Which model performs better for realistic faces vs. artistic compositions?
 
 - **Composition Control**
@@ -201,7 +201,7 @@ By using the images playground, you can explore and validate the following as yo
 
 ## Video playground
 
-The video playground (preview) is your rapid iteration environment for exploring, refining, and validating generative video workflows—designed for developers who need to go from idea to prototype with precision, control, and speed. The playground gives you a low-friction interface to test prompt structures, assess motion fidelity, evaluate model consistency across frames, and compare outputs across models—without writing boilerplate or wasting compute cycles. It's aso a great demo interface for your Chief Product Officer and Engineering VP.
+The video playground (preview) is your rapid iteration environment for exploring, refining, and validating generative video workflows—designed for developers who need to go from idea to prototype with precision, control, and speed. The playground gives you a low-friction interface to test prompt structures, assess motion fidelity, evaluate model consistency across frames, and compare outputs across models—without writing boilerplate or wasting compute cycles. It's also a great demo interface for your Chief Product Officer and Engineering VP.
 
 You can use the video playground with the **Azure OpenAI Sora** model.
 
@@ -214,11 +214,11 @@ Follow these steps to use the video playground:
 > Videos generated are retained for 24 hours due to data privacy. Download videos to your local computer for longer retention.
 
 1. Select **Try the Video playground** to open it.
-1. If you don't have a deployment already, select **Deploy now** from the top righ side of the homepage and deploy the `sora` model.
+1. If you don't have a deployment already, select **Deploy now** from the top right side of the homepage and deploy the `sora` model.
 1. On the homepage of the video playground, get inspired by **pre-built prompts** sorted by the **industry** filter. From here, you can view the videos in full display and copy the prompt to build from it.
     :::image type="content" source="../media/concept-playgrounds/video-playground-copy-prompt.png" alt-text="Screenshot of the video playground highlighting the Use prompt button to copy a prompt." lightbox="../media/concept-playgrounds/video-playground-copy-prompt.png":::
 
-1. Copying the prompt pastes it in the prompt bar. Adjust key controls (e.g. aspect ratio, resolution) to deeply understand specific model responsiveness and constraints.
+1. Copying the prompt pastes it in the prompt bar. Adjust key controls (for example, aspect ratio, resolution) to deeply understand specific model responsiveness and constraints.
 
 1. Rewrite your text prompt syntax with gpt-4o using **Re-write with AI** with industry based system prompts. Switch on the capability, select the industry and specify the change required for your original prompt.
 
@@ -226,9 +226,9 @@ Follow these steps to use the video playground:
 1. In Full Screen mode, edit the prompt and submit for regeneration.
 1. Either in Full Screen mode or through the overflow button, download to local, view the information generation tag, or delete the video.
 1. **Port to production with multi-lingual code samples:** Use Python, Java, JavaScript, C# contextual code samples with "View Code" that reflect your generations and copy into VS Code.
-1. **Azure AI Content Safety integration:** With all model endpoints integrated with Azure AI Content Safety, harmful and unsafe images are filtered out prior to being surfaced in video playground. If your text prompt and video generation is flagged by content moderation policies, you get a warning notification appear.
+1. **Azure AI Content Safety integration:** With all model endpoints integrated with Azure AI Content Safety, harmful and unsafe images are filtered out before being surfaced in the video playground. If your text prompt and video generation are flagged by content moderation policies, you get a warning notification appear.
    
-### Video generation: what you can validate or de-risk
+### What to validate when experimenting in video playground
 
 When using the video playground as you plan your production workload, you can explore and validate the following:
 
