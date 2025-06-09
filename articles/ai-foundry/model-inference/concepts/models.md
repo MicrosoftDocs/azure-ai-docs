@@ -59,7 +59,7 @@ DeepSeek family of models includes DeepSeek-R1, which excels at reasoning tasks 
 
 | Model  | Type | Tier | Capabilities |
 | ------ | ---- | ---- | ------------ |
-| [DeepSeek-R1-0528]() <br /> | chat-completion | Global standard | - **Input:** text (  tokens) <br /> - **Output:**  ( tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:**  <br /> - **Response formats:**  |
+| [DeepSeek-R1-0528]() <br /> | chat-completion | Global standard | - **Input:** text (163,840 tokens) <br /> - **Output:** text (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No  <br /> - **Response formats:** Text  |
 | [DeepSeek-V3-0324](https://ai.azure.com/explore/models/deepseek-v3-0324/version/1/registry/azureml-deepseek) | chat-completion | Global standard | - **Input:** text (131,072 tokens) <br /> - **Output:**  (131,072 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 | [DeepSeek-R1](https://ai.azure.com/explore/models/deepseek-r1/version/1/registry/azureml-deepseek) | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | Global standard | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |
 | [DeepSeek-V3](https://ai.azure.com/explore/models/deepseek-v3/version/1/registry/azureml-deepseek) <br />(Legacy) | chat-completion | Global standard | - **Input:** text (131,072 tokens) <br /> - **Output:**  (131,072 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
