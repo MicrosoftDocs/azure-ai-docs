@@ -24,3 +24,9 @@ The Foundry Local SDK simplifies AI model management in local environments by pr
 ::: zone pivot="programming-language-javascript"
 [!INCLUDE [JavaScript](../includes/sdk-reference/javascript.md)]
 ::: zone-end
+::: zone pivot="programming-language-csharp"
+[!INCLUDE [C#](../includes/sdk-reference/csharp.md)]
+::: zone-end
+::: zone pivot="programming-language-rust"
+[!INCLUDE [Rust](../includes/sdk-reference/rust.md)]
+::: zone-end
