@@ -1,6 +1,6 @@
 ---
-title: Azure OpenAI Service getting started with customizing a large language model (LLM)
-titleSuffix: Azure OpenAI Service
+title: Azure OpenAI in Azure AI Foundry Models getting started with customizing a large language model (LLM)
+titleSuffix: Azure OpenAI
 description: Learn more about the concepts behind customizing an LLM with Azure OpenAI.
 ms.topic: conceptual
 ms.date: 03/27/2025
@@ -62,7 +62,7 @@ A corporate HR department is looking to provide an intelligent assistant that an
 
 ### Getting started
 
-- [Retrieval Augmented Generation in [Azure AI Foundry portal](https://ai.azure.com/) - Azure AI Foundry | Microsoft Learn](../../../ai-foundry/concepts/retrieval-augmented-generation.md)
+- [Retrieval Augmented Generation in Azure AI Foundry portal](../../../ai-foundry/concepts/retrieval-augmented-generation.md)
 - [Retrieval Augmented Generation (RAG) in Azure AI Search](/azure/search/retrieval-augmented-generation-overview)
 - [Retrieval Augmented Generation using Azure Machine Learning prompt flow (preview)](/azure/machine-learning/concept-retrieval-augmented-generation)
 

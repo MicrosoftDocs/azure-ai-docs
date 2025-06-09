@@ -5,9 +5,7 @@ description: Custom Translator releases, improvements, bug fixes, and known issu
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.custom:
-  - ignite-2023
-ms.date: 11/01/2024
+ms.date: 05/19/2025
 ms.author: lajanuar
 ms.topic: release-notes
 ---
@@ -308,7 +306,7 @@ This page presents the latest feature, improvement, bug fix, and known issue rel
 
 #### June language model updates
 
-&emsp; Current supported language pairs are listed in the following table. For higher quality, we encourage you to retrain your models accordingly. For more information, *see* [Language support](../language-support.md).
+&emsp; Current supported language pairs are listed in the following table. For higher quality, we encourage you to retrain your models accordingly. For more information, *see* [Language support](../../language-support.md).
 
 |Source Language|Target Language|
 |:----|:----|

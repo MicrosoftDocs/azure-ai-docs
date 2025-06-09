@@ -3,8 +3,8 @@ title: Authoring API - custom question answering
 titleSuffix: Azure AI services
 description: Use the custom question answering Authoring API to automate common tasks like adding new question answer pairs, and creating, and publishing projects. 
 ms.service: azure-ai-language
-author: jboback
-ms.author: jboback
+author: laujan
+ms.author: lajanuar
 ms.topic: how-to
 ms.date: 11/21/2024
 ---

@@ -3,12 +3,12 @@ title: How to use Text Analytics for health containers
 titleSuffix: Azure AI services
 description: Learn how to extract and label medical information on premises using Text Analytics for health Docker container.
 #services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-health, devx-track-azurecli
 ms.devlang: azurecli
 ---

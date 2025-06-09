@@ -10,6 +10,7 @@ metadata:
   ms.topic: hub-page
   author: PatrickFarley
   ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
+  ms.update-cycle: 365-days
   ms.author: pafarley
   ms.date: 08/21/2024
 
@@ -31,27 +32,6 @@ highlightedContent:
 
 conceptualContent:
   items:
-    - title: Optical character recognition
-      links:
-        - itemType: overview
-          text: About OCR
-          url: overview-ocr.md
-        - itemType: quickstart
-          text: Get started with OCR
-          url: quickstarts-sdk/client-library.md
-        - itemType: how-to-guide
-          text: Call the Read API
-          url: how-to/call-read-api.md
-        - itemType: deploy
-          text: Use the Read OCR container
-          url: computer-vision-how-to-install-containers.md
-        - itemType: learn
-          text: Microsoft Learn training
-          url: /training/modules/read-text-images-documents-with-computer-vision-service/
-        - itemType: reference
-          text: OCR API reference
-          url: /rest/api/computervision/recognize-printed-text?view=rest-computervision-v3.2
-
     - title: Image Analysis
       links:
         - itemType: overview
@@ -69,12 +49,6 @@ conceptualContent:
         - itemType: concept
           text: Optical Character Recognition
           url: concept-ocr.md
-        - itemType: concept
-          text: Model customization
-          url: concept-model-customization.md
-        - itemType: concept
-          text: Background removal
-          url: concept-background-removal.md
         #- itemType: tutorial
         #  text: Generate metadata for images
         #  url: Tutorials/storage-lab-tutorial.md
@@ -116,14 +90,27 @@ conceptualContent:
       footerLink:
         text: More
         url: overview-identity.md
-    - title: Video Analysis
+    - title: Optical character recognition (legacy)
       links:
         - itemType: overview
-          text: About Video Analysis
-          url: intro-to-spatial-analysis-public-preview.md
+          text: About OCR
+          url: overview-ocr.md
+        - itemType: quickstart
+          text: Get started with OCR
+          url: quickstarts-sdk/client-library.md
         - itemType: how-to-guide
-          text: Call the Video Retrieval APIs
-          url: how-to/video-retrieval.md
+          text: Call the Read API
+          url: how-to/call-read-api.md
+        - itemType: deploy
+          text: Use the Read OCR container
+          url: computer-vision-how-to-install-containers.md
+        - itemType: learn
+          text: Microsoft Learn training
+          url: /training/modules/read-text-images-documents-with-computer-vision-service/
+        - itemType: reference
+          text: OCR API reference
+          url: /rest/api/computervision/recognize-printed-text?view=rest-computervision-v3.2
+
 
 tools:
   title: Software development kits (SDKs)

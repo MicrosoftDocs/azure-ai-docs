@@ -47,7 +47,7 @@ sections:
           
           For hardware, we use standard Azure VM `DS13_v2` as a reference (each core must be 2.6 GHz or better, with AVX2 instruction set enabled).
           
-          | Instance  | vCPU(s) | RAM    | Temp storage | Pay-as-you-go with AHB | 1-year reserve with AHB (% Savings) | 3-year reserved with AHB (% Savings) |
+          | Instance  | vCPU(s) | RAM    | Temp storage | Standard pricing with AHB | 1-year reserve with AHB (% Savings) | 3-year reserved with AHB (% Savings) |
           |-----------|---------|--------|--------------|------------------------|-------------------------------------|--------------------------------------|
           | `DS13 v2` | 8       | 56 GiB | 112 GiB      | $0.598/hour            | $0.3528/hour (~41%)                 | $0.2333/hour (~61%)                  |
           
@@ -118,7 +118,7 @@ sections:
           }
           ```
           
-          You reed to create an AI Services resource for Speech, not an Azure AI services resource.
+          You reed to create an AI Foundry resource for Speech, not an AI Foundry resource.
           
           
       - question: |
@@ -202,6 +202,7 @@ sections:
           > Also, the first run of either container might take longer because models are being paged into memory.
 
           - Real-time performance varies depending on concurrency. With a concurrency of 1, an NTTS container instance can achieve 10x real-time performance. However, when concurrency increases to 5, real-time performance drops to 3x or lower. We recommended sending less than 5 concurrent requests in one container. Start more containers for increased concurrency.
+          - If you intend to use our TTS Image in your online service, to maintain the stability of the service, please ensure that these pods are restarted weekly. In this context, 'restart' means terminating the existing pods and replacing them by launching new ones.
           
           # [Speech language identification](#tab/lid)
 

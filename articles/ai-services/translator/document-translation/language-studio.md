@@ -1,29 +1,29 @@
 ---
-title: Try Document Translation in Language Studio
-description: "Document Translation in Azure AI Language Studio."
+title: Try Document translation in Language Studio
+description: "Document translation in Azure AI Language Studio."
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 01/28/2025
+ms.date: 04/14/2025
 ms.author: lajanuar
 ms.custom: references_regions, build-2023
 recommendations: false
 ---
 
-# Document Translation in Language Studio (Preview)
+# Document translation in Language Studio (preview)
 
 > [!IMPORTANT]
 >
-> * Document Translation in Language Studio is currently in Public Preview. Features, approaches, and processes can change, before General Availability (GA) release, based on user feedback.
+> * Document translation in Language Studio is currently in Public Preview. Features, approaches, and processes can change, before General Availability (GA) release, based on user feedback.
 >
-> * Currently, virtual network connectivity isn't supported for the Document Translation feature in the Language Studio.
+> * Currently, virtual network connectivity isn't supported for the Document translation feature in the Language Studio.
 
- Document Translation in [**Azure AI Language Studio**](https://language.cognitive.azure.com/home) is a no-code user interface that lets you interactively translate documents from local or Azure Blob Storage.
+ Document translation in [**Azure AI Language Studio**](https://language.cognitive.azure.com/home) is a no-code user interface that lets you interactively translate documents from local or Azure Blob Storage.
 
 ## Supported regions
 
-The Document Translation feature in the Language Studio is currently available in the following regions;
+The Document translation feature in the Language Studio is currently available in the following regions;
 
 |DisplayName|Name|
 |-----------|------|
@@ -45,22 +45,22 @@ If you or an administrator have previously setup a Translator resource with a **
 
 > [!NOTE]
 >
-> * Document Translation is currently supported in the Translator (single-service) resource only, and is **not** included in the Azure AI services (multi-service) resource.
+> * Document translation is currently supported in the Translator (single-service) resource only, and is **not** included in the Azure AI services (multi-service) resource.
 >
-> * Document Translation is supported in the S1 Standard Service Plan (Pay-as-you-go) or in the D3 Volume Discount Plan. *See* [Azure AI services pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
+> * Document translation is supported in the S1 Standard Service Plan or in the D3 Volume Discount Plan. *See* [Azure AI services pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
 >
 
-Document Translation in Language Studio requires the following resources:
+Document translation in Language Studio requires the following resources:
 
 * An active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/). If you don't have one, you can [**create a free account**](https://azure.microsoft.com/free/).
 
-* A [**single-service Translator resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) (**not** a multi-service Azure AI services resource) with [**system-assigned managed identity**](how-to-guides/create-use-managed-identities.md#enable-a-system-assigned-managed-identity) enabled and a [**Storage Blob Data Contributor**](how-to-guides/create-use-managed-identities.md#grant-storage-account-access-for-your-translator-resource) role assigned. For more information, *see* [**Managed identities for Document Translation**](how-to-guides/create-use-managed-identities.md). Also, make sure the region and pricing sections are completed as follows:
+* A [**single-service Translator resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) (**not** a multi-service Azure AI Foundry resource) with [**system-assigned managed identity**](how-to-guides/create-use-managed-identities.md#enable-a-system-assigned-managed-identity) enabled and a [**Storage Blob Data Contributor**](how-to-guides/create-use-managed-identities.md#grant-storage-account-access-for-your-translator-resource) role assigned. For more information, *see* [**Managed identities for Document translation**](how-to-guides/create-use-managed-identities.md). Also, make sure the region and pricing sections are completed as follows:
 
-  * **Resource Region**. For this project, choose a geographic region such as **East US**. For Document Translation, [system-assigned managed identity](how-to-guides/create-use-managed-identities.md) isn't supported for the **Global** region.
+  * **Resource Region**. For this project, choose a geographic region such as **East US**. For Document translation, [system-assigned managed identity](how-to-guides/create-use-managed-identities.md) isn't supported for the **Global** region.
 
-  * **Pricing tier**. Select Standard S1 or D3. Document Translation isn't supported in the free tier.
+  * **Pricing tier**. Select Standard S1 or D3. Document translation isn't supported in the free tier.
 
-* An [**Azure Blob Storage account**](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM). An active Azure Blob Storage account is required to use Document Translation in the Language Studio.
+* An [**Azure Blob Storage account**](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM). An active Azure Blob Storage account is required to use Document translation in the Language Studio.
 
 Now that you completed the prerequisites, let's start translating documents!
 
@@ -82,11 +82,11 @@ At least one **source document** is required. You can download our [document tra
     > [!TIP]
     > You can update your selected directory and resource by selecting the Translator settings icon located in the left navigation section.
 
-1. Navigate to Language Studio and select the **Document Translation** tile:
+1. Navigate to Language Studio and select the **Document translation** tile:
 
     :::image type="content" source="media/language-studio/welcome-home-page.png" alt-text="Screenshot of the language studio home page.":::
 
-1. If you're using the Document Translation feature for the first time, start with the **Initial Configuration** to select your **Azure AI Translator resource** and **Document storage** account:
+1. If you're using the Document translation feature for the first time, start with the **Initial Configuration** to select your **Azure AI Translator resource** and **Document storage** account:
 
    :::image type="content" source="media/language-studio/initial-configuration.png" alt-text="Screenshot of the initial configuration page.":::
 
@@ -156,4 +156,4 @@ That's it! You now know how to translate documents using Azure AI Language Studi
 
 > [!div class="nextstepaction"]
 >
-> [Use Document Translation REST APIs programmatically](how-to-guides/use-rest-api-programmatically.md)
+> [Use Document translation REST APIs programmatically](how-to-guides/use-rest-api-programmatically.md)

@@ -1,19 +1,19 @@
 ---
-title: Azure OpenAI Service model versions
+title: Azure OpenAI in Azure AI Foundry Models model versions
 titleSuffix: Azure OpenAI
 description: Learn about model versions in Azure OpenAI. 
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 01/09/2025
+ms.date: 04/30/2025
 manager: nitinme
 author: mrbullwinkle #ChrisHMSFT
 ms.author: mbullwin #chrhoder
 recommendations: false
 ---
 
-# Azure OpenAI Service model versions
+# Azure OpenAI in Azure AI Foundry Models model versions
 
-Azure OpenAI Service is committed to providing the best generative AI models for customers. As part of this commitment, Azure OpenAI Service regularly releases new model versions to incorporate the latest features and improvements from OpenAI.
+Azure OpenAI is committed to providing the best generative AI models for customers. As part of this commitment, Azure OpenAI regularly releases new model versions to incorporate the latest features and improvements from OpenAI.
 
 ## How model versions work
 
@@ -45,7 +45,7 @@ As a customer of Azure OpenAI models, you might notice some changes in the model
 
 Yes, even in cases where the latest model version is not yet available in a region, we will automatically 
 upgrade deployments during the scheduled upgrade window. Our engineering team will begin rollout of the new model version starting on the announced 
-upgrade date. For example, if `gpt-35-turbo-0125` is not yet available in Japan East, we will deploy it to Japan East to upgrade older model 
+upgrade date. For example, if `gpt-35-turbo-0125` is not yet available in Japan East, we will deploy `gpt-35-turbo-0125` to Japan East to upgrade older model 
 versions as part of the default model version upgrade process. 
 
 

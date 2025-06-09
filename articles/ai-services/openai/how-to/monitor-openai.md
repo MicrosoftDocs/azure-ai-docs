@@ -1,6 +1,6 @@
 ---
-title: Monitor Azure OpenAI Service
-description: Start here to learn how to use Azure Monitor tools like Log Analytics to capture and analyze metrics and data logs for your Azure OpenAI Service.
+title: Monitor Azure OpenAI in Azure AI Foundry Models
+description: Start here to learn how to use Azure Monitor tools like Log Analytics to capture and analyze metrics and data logs for your Azure OpenAI.
 ms.date: 03/26/2025
 ms.custom: horz-monitor, subject-monitoring
 ms.topic: conceptual
@@ -74,7 +74,7 @@ After you configure the diagnostic settings, you can work with metrics and log d
 
 [!INCLUDE [horz-monitor-kusto-queries](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-kusto-queries.md)]
 
-After you deploy an Azure OpenAI model, you can send some completions calls by using the **playground** environment in [Azure AI Foundry](https://ai.azure.com/).
+After you deploy an Azure OpenAI model, you can send some completions calls by using the **playground** environment in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
 Any text that you enter in the **Completions playground** or the **Chat completions playground** generates metrics and log data for your Azure OpenAI resource. In the Log Analytics workspace for your resource, you can query the monitoring data by using the [Kusto](/azure/data-explorer/kusto/query/) query language.
 

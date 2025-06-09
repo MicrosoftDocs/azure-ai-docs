@@ -1,13 +1,13 @@
 ---
-title: How to use chat completions with Azure AI model inference
+title: How to use chat completions with Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
-description: Learn how to generate chat completions with Azure AI model inference
+description: Learn how to generate chat completions with Azure AI Foundry Models
 manager: scottpolly
 author: mopeakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
-ms.topic: how-to
-ms.date: 03/20/2025
+ms.topic: include
+ms.date: 05/29/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 ms.custom: references_regions, tool_generated
@@ -16,7 +16,7 @@ zone_pivot_groups: azure-ai-inference-samples
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-This article explains how to use chat completions API with models deployed to Azure AI model inference in Azure AI services.
+This article explains how to use chat completions API with models deployed in Azure AI Foundry Models.
 
 ## Prerequisites
 
@@ -26,35 +26,28 @@ To use chat completion models in your application, you need:
 
 [!INCLUDE [how-to-prerequisites-javascript](../how-to-prerequisites-javascript.md)]
 
-* A chat completions model deployment. If you don't have one, read [Add and configure models to Azure AI services](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
+* A chat completions model deployment. If you don't have one, read [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
       
 ## Use chat completions
 
 First, create the client to consume the model. The following code uses an endpoint URL and key that are stored in environment variables.
 
-
 ```javascript
-import ModelClient from "@azure-rest/ai-inference";
-import { isUnexpected } from "@azure-rest/ai-inference";
-import { AzureKeyCredential } from "@azure/core-auth";
-
-const client = new ModelClient(
-    process.env.AZURE_INFERENCE_ENDPOINT, 
+const client = ModelClient(
+    "https://<resource>.services.ai.azure.com/api/models", 
     new AzureKeyCredential(process.env.AZURE_INFERENCE_CREDENTIAL)
 );
 ```
 
 If you've configured the resource with **Microsoft Entra ID** support, you can use the following code snippet to create a client.
 
-
 ```javascript
-import ModelClient from "@azure-rest/ai-inference";
-import { isUnexpected } from "@azure-rest/ai-inference";
-import { DefaultAzureCredential }  from "@azure/identity";
+const clientOptions = { credentials: { "https://cognitiveservices.azure.com" } };
 
-const client = new ModelClient(
-    process.env.AZURE_INFERENCE_ENDPOINT, 
+const client = ModelClient(
+    "https://<resource>.services.ai.azure.com/api/models", 
     new DefaultAzureCredential()
+    clientOptions,
 );
 ```
 
@@ -70,6 +63,7 @@ var messages = [
 
 var response = await client.path("/chat/completions").post({
     body: {
+        model: "mistral-large-2407",
         messages: messages,
     }
 });
@@ -122,7 +116,9 @@ var messages = [
 
 var response = await client.path("/chat/completions").post({
     body: {
+        model: "mistral-large-2407",
         messages: messages,
+        stream: true,
     }
 }).asNodeStream();
 ```
@@ -148,7 +144,7 @@ for await (const event of sses) {
         return;
     }
     for (const choice of (JSON.parse(event.data)).choices) {
-        console.log(choice.delta?.content ?? "");
+        process.stdout.write(choice.delta?.content ?? "");
     }
 }
 ```
@@ -165,6 +161,7 @@ var messages = [
 
 var response = await client.path("/chat/completions").post({
     body: {
+        model: "mistral-large-2407",
         messages: messages,
         presence_penalty: "0.1",
         frequency_penalty: "0.8",
@@ -195,6 +192,7 @@ var messages = [
 
 var response = await client.path("/chat/completions").post({
     body: {
+        model: "mistral-large-2407",
         messages: messages,
         response_format: { type: "json_object" }
     }
@@ -217,6 +215,7 @@ var response = await client.path("/chat/completions").post({
         "extra-params": "pass-through"
     },
     body: {
+        model: "mistral-large-2407",
         messages: messages,
         logprobs: true
     }
@@ -280,6 +279,7 @@ Prompt the model to book flights with the help of this function:
 ```javascript
 var result = await client.path("/chat/completions").post({
     body: {
+        model: "mistral-large-2407",
         messages: messages,
         tools: tools,
         tool_choice: "auto"
@@ -349,7 +349,7 @@ var result = await client.path("/chat/completions").post({
 });
 ```
 
-### Apply content safety
+### Apply Guardrails and controls
 
 The Azure AI model inference API supports [Azure AI content safety](https://aka.ms/azureaicontentsafety). When you use deployments with Azure AI content safety turned on, inputs and outputs pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions.
 
@@ -387,4 +387,3 @@ catch (error) {
 
 > [!TIP]
 > To learn more about how you can configure and control Azure AI content safety settings, check the [Azure AI content safety documentation](https://aka.ms/azureaicontentsafety).
-

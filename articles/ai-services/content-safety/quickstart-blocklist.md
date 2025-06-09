@@ -20,6 +20,12 @@ Get started using Azure AI Content Safety to create a custom text blocklist and 
 > 
 > The sample data and code may contain offensive content. User discretion is advised.
 
+::: zone pivot="programming-language-foundry-portal"
+
+[!INCLUDE [Foundry portal quickstart](./includes/quickstarts/foundry-quickstart-blocklist.md)]
+
+::: zone-end
+
 ::: zone pivot="programming-language-rest"
 
 [!INCLUDE [REST API quickstart](./includes/quickstarts/rest-quickstart-blocklist.md)]

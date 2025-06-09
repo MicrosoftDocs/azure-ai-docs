@@ -12,7 +12,7 @@ ms.author: eur
 
 ## Prerequisites
 
-[!INCLUDE [Prerequisites](../../common/azure-prerequisites.md)]
+[!INCLUDE [Prerequisites](../../common/azure-prerequisites-resourcekey-endpoint.md)]
 
 ## Set up the environment
 
@@ -20,7 +20,7 @@ The Speech SDK is available as a [NuGet package](https://www.nuget.org/packages/
 
 ### Set environment variables
 
-[!INCLUDE [Environment variables](../../common/environment-variables.md)]
+[!INCLUDE [Environment variables](../../common/environment-variables-resourcekey-endpoint.md)]
 
 ## Implement diarization from file with conversation transcription
 
@@ -50,16 +50,16 @@ Follow these steps to create a console application and install the Speech SDK.
 
     int main()
     {
-        // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
+        // This example requires environment variables named "SPEECH_KEY" and "ENDPOINT"
         auto speechKey = GetEnvironmentVariable("SPEECH_KEY");
-        auto speechRegion = GetEnvironmentVariable("SPEECH_REGION");
+        auto endpoint = GetEnvironmentVariable("ENDPOINT");
 
-        if ((size(speechKey) == 0) || (size(speechRegion) == 0)) {
-            std::cout << "Please set both SPEECH_KEY and SPEECH_REGION environment variables." << std::endl;
+        if ((size(speechKey) == 0) || (size(endpoint) == 0)) {
+            std::cout << "Please set both SPEECH_KEY and ENDPOINT environment variables." << std::endl;
             return -1;
         }
 
-        auto speechConfig = SpeechConfig::FromSubscription(speechKey, speechRegion);
+        auto speechConfig = SpeechConfig::FromEndpoint(speechKey, endpoint);
         speechConfig->SetProperty(PropertyId::SpeechServiceResponse_DiarizeIntermediateResults, "true"); 
 
         speechConfig->SetSpeechRecognitionLanguage("en-US");
@@ -99,7 +99,7 @@ Follow these steps to create a console application and install the Speech SDK.
                 {
                     std::cout << "CANCELED: ErrorCode=" << (int)cancellation->ErrorCode << std::endl;
                     std::cout << "CANCELED: ErrorDetails=" << cancellation->ErrorDetails << std::endl;
-                    std::cout << "CANCELED: Did you set the speech resource key and region values?" << std::endl;
+                    std::cout << "CANCELED: Did you set the speech resource key and endpoint values?" << std::endl;
                 }
                 else if (cancellation->Reason == CancellationReason::EndOfStream)
                 {
@@ -146,10 +146,10 @@ Follow these steps to create a console application and install the Speech SDK.
 
 1. To change the speech recognition language, replace `en-US` with another [supported language](/azure/cognitive-services/speech-service/supported-languages). For example, `es-ES` for Spanish (Spain). The default language is `en-US` if you don't specify a language. For details about how to identify one of multiple languages that might be spoken, see [language identification](/azure/cognitive-services/speech-service/language-identification).
 
-1. [Build and run](/cpp/build/vscpp-step-2-build) your application to start conversation transcription:
+1. To start conversation transcription, [Build and run](/cpp/build/vscpp-step-2-build) your application:
 
    > [!IMPORTANT]
-   > Make sure that you set the `SPEECH_KEY` and `SPEECH_REGION` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
+   > Make sure that you set the `SPEECH_KEY` and `ENDPOINT` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
 
 The transcribed conversation should be output as text:
 
@@ -316,7 +316,7 @@ Speaker ID=Guest-2
 Speakers are identified as Guest-1, Guest-2, and so on, depending on the number of speakers in the conversation.
 
 > [!NOTE]
-> You might see `Speaker ID=Unknown` in some of the early intermediate results when the speaker is not yet identified. Without intermediate diarization results (if you don't set the `PropertyId::SpeechServiceResponse_DiarizeIntermediateResults` property to "true"), the speaker ID is always "Unknown".
+> You might see `Speaker ID=Unknown` in some of the early intermediate results when the speaker isn't yet identified. Without intermediate diarization results (if you don't set the `PropertyId::SpeechServiceResponse_DiarizeIntermediateResults` property to "true"), the speaker ID is always "Unknown."
 
 ## Clean up resources
 

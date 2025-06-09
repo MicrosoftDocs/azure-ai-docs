@@ -8,19 +8,249 @@ ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
-ms.topic: conceptual
-ms.date: 03/04/2025
+ms.topic: concept-article
+ms.date: 06/04/2025
 ms.reviewer: deeikele
 ms.author: larryfr
 author: Blackmist
+zone_pivot_groups: project-type
 ---
 
 # Role-based access control in Azure AI Foundry portal
 
-In this article, you learn how to manage access (authorization) to an [Azure AI Foundry](https://ai.azure.com) hub. Azure role-based access control (Azure RBAC) is used to manage access to Azure resources, such as the ability to create new resources or use existing ones. Users in your Microsoft Entra ID are assigned specific roles, which grant access to resources. Azure provides both built-in roles and the ability to create custom roles. 
+In this article, you learn how to manage access (authorization) to your [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) resources. Azure role-based access control (Azure RBAC) is used to manage access to Azure resources, such as the ability to create new resources or use existing ones. Users in your Microsoft Entra ID are assigned specific roles, which grant access to resources. Azure provides both built-in roles and the ability to create custom roles.
+
+Azure AI Foundry supports two types of projects: a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** and a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. For more information about the differences between these two project types, see [Types of projects](../what-is-azure-ai-foundry.md#project-types). Use the selector at the top of this article to switch between the two project types.
 
 > [!WARNING]
 > Applying some roles might limit UI functionality in Azure AI Foundry portal for other users. For example, if a user's role doesn't have the ability to create a compute instance, the option to create a compute instance isn't available in studio. This behavior is expected, and prevents the user from attempting operations that would return an access denied error. 
+
+::: zone pivot="fdp-project"
+
+## Azure AI Foundry project roles
+
+In the Azure AI Foundry portal, there are two levels of access:
+
+- **Account**: The account is home to the infrastructure (including virtual network setup, customer-managed keys, managed identities, and policies) for your Azure AI Foundry resource.
+- **Project**: Projects are a subset of the account, and allow you to build and deploy Agents. Project access lets you develop AI end-to-end while taking advantage of the infrastructure setup on the account.
+
+The Azure AI Foundry resource has built-in roles that are available by default for both the account and project. Here's a table of the built-in roles and their permissions.
+
+| Role                     | Description                                                                                                                                                                                                 |
+|--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Azure AI User**            | This role grants reader access to AI projects, reader access to AI accounts, and data actions for an AI project. This role is automatically assigned to the user if they can assign roles. If not, this role must be granted by your subscription Owner or user with role assignment privileges. |
+| **Azure AI Project Manager** | This role lets you perform management actions on Azure AI Foundry projects, build and develop with projects, and grants conditional assignment of the Azure AI User role to other user principles.          |
+| **Azure AI Account Owner**   | This role grants full access to manage AI projects and accounts and grants conditional assignment of the Azure AI User role to other user principles.                                                       |
+
+The key difference between **Azure AI Project Manager** and **Azure AI Account Owner** is the ability to:
+
+- Create new Foundry account resources, which only the **Azure AI Account Owner** can do.
+- Get started building and developing with AI Foundry projects.
+
+The second difference is seen in the role definition where the data action of `Microsoft.CognitiveServices/*`. This data action allows the user to complete any read, write, or delete data actions within a project. The **Azure AI Project Manager** can perform this action, but not the **Azure AI Account Owner**. Only **Azure AI User** and **Azure AI Project Manager** are given data actions for an AI Project. You can think of **Azure AI Project Manager** as an elevated **Azure AI User**.
+ 
+In addition to these built-in role assignments, there are the Azure Privileged administrator roles such as Owner, Contributor, and Reader. These roles aren't specific to Azure AI Foundry resources permissions, so consider using the above built-in roles for least privilege access.
+ 
+Use the following table to help understand what privileges are given to each new built-in role, including the Azure Privileged Administrator roles:
+
+| Built-in role                         | Create Foundry projects | Create Foundry accounts | Build and develop in a project (data actions) | Complete role-assignments                          | Reader access to projects and accounts |
+|--------------------------|-------------------------|--------------------------|-----------------------------------------------|---------------------------------------------------|-----------------------------------------|
+| **Azure AI User**        |                         |                          | ✔                                             |                                                 | ✔                                       |
+| **Azure AI Project Manager** | ✔                     |                          | ✔                                             | ✔ (only assign Azure AI User role)               | ✔                                       |
+| **Azure AI Account Owner**   | ✔                     | ✔                        |                                               | ✔ (only assign Azure AI User role)               | ✔                                       |
+| **Owner**                | ✔                     | ✔                        |                                               | ✔ (assign any role to any user)                  | ✔                                       |
+| **Contributor**          | ✔                     | ✔                        |                                               |                                                 | ✔                                       |
+| **Reader**               |                         |                          |                                               |                                                 | ✔                                       |
+
+
+## Default roles for the project
+
+### Azure AI User
+
+The full set of permissions for the new **Azure AI User** role are as follows:
+
+```json
+{
+    "id": "/providers/Microsoft.Authorization/roleDefinitions/53ca6127-db72-4b80-b1b0-d745d6d5456d",
+    "properties": {
+        "roleName": "Azure AI User",
+        "description": "Grants reader access to AI projects, reader access to AI accounts, and data actions for an AI project.",
+        "assignableScopes": [
+            "/"
+        ],
+        "permissions": [
+            {
+                "actions": [
+                    "Microsoft.CognitiveServices/*/read",
+                    "Microsoft.CognitiveServices/accounts/listkeys/action",
+                    "Microsoft.Insights/alertRules/read",
+                    "Microsoft.Insights/diagnosticSettings/read",
+                    "Microsoft.Insights/logDefinitions/read",
+                    "Microsoft.Insights/metricdefinitions/read",
+                    "Microsoft.Insights/metrics/read",
+                    "Microsoft.ResourceHealth/availabilityStatuses/read",
+                    "Microsoft.Resources/deployments/*",
+                    "Microsoft.Resources/subscriptions/operationresults/read",
+                    "Microsoft.Resources/subscriptions/read",
+                    "Microsoft.Resources/subscriptions/resourceGroups/read",
+                    "Microsoft.Support/*"
+                ],
+                "notActions": [],
+                "dataActions": [
+                    "Microsoft.CognitiveServices/*"
+                ],
+                "notDataActions": []
+            }
+        ]
+    }
+}
+```
+
+### Azure AI Project Manager
+
+The Azure AI Project Manager role utilizes delegated Azure role assignment management to others with conditions. Because of the conditional delegation, the Azure AI Project Manager role can assign only the Azure AI User role to other user principals in the resource group. Conditional delegation allows the admin of your enterprise to delegate the work of role assignments to get started building and developing with AI Foundry projects. For more information on role assignments with conditions, see [Delegate Azure role assignment management to others with conditions](/azure/role-based-access-control/delegate-role-assignments-portal). 
+
+The full set of permissions for the new **Azure AI Project Manager** role are as follows:
+
+```json
+{
+    "id": "/providers/Microsoft.Authorization/roleDefinitions/eadc314b-1a2d-4efa-be10-5d325db5065e",
+    "properties": {
+        "roleName": "Azure AI Project Manager",
+        "description": "Lets you perform developer actions and management actions on Azure AI Foundry Projects. Allows for making role assignments, but limited to Cognitive Service User role.",
+        "assignableScopes": [
+            "/"
+        ],
+        "permissions": [
+            {
+                "actions": [
+                    "Microsoft.Authorization/roleAssignments/write",
+                    "Microsoft.Authorization/roleAssignments/delete",
+                    "Microsoft.CognitiveServices/accounts/*/read",
+                    "Microsoft.CognitiveServices/accounts/projects/*",
+                    "Microsoft.CognitiveServices/locations/*/read",
+                    "Microsoft.Authorization/*/read",
+                    "Microsoft.Insights/alertRules/*",
+                    "Microsoft.Resources/deployments/*",
+                    "Microsoft.Resources/subscriptions/resourceGroups/read"
+                ],
+                "notActions": [],
+                "dataActions": [
+                    "Microsoft.CognitiveServices/*"
+                ],
+                "notDataActions": [],
+                "conditionVersion": "2.0",
+                "condition": "((!(ActionMatches{'Microsoft.Authorization/roleAssignments/write'})) OR (@Request[Microsoft.Authorization/roleAssignments:RoleDefinitionId] ForAnyOfAnyValues:GuidEquals{53ca6127-db72-4b80-b1b0-d745d6d5456d})) AND ((!(ActionMatches{'Microsoft.Authorization/roleAssignments/delete'})) OR (@Resource[Microsoft.Authorization/roleAssignments:RoleDefinitionId] ForAnyOfAnyValues:GuidEquals{53ca6127-db72-4b80-b1b0-d745d6d5456d}))"
+            }
+        ]
+    }
+}
+```
+
+## Azure AI Account Owner
+
+The Azure AI Account Owner role utilizes delegated Azure role assignment management to others with conditions. Because of the conditional delegation, the Azure AI Account Owner role can assign only the Azure AI User role to other user principals in the resource group. Conditional delegation allows the admin of your enterprise to delegate the work of role assignments to get started building and developing with AI Foundry projects. For more information on role assignments with conditions, see [Delegate Azure role assignment management to others with conditions](/azure/role-based-access-control/delegate-role-assignments-portal).
+
+The full set of permissions for the new "Azure AI Account Owner" role are as follows:
+
+```json
+{
+    "id": "/providers/Microsoft.Authorization/roleDefinitions/e47c6f54-e4a2-4754-9501-8e0985b135e1",
+    "properties": {
+        "roleName": "Azure AI Account Owner",
+        "description": "Grants full access to manage AI projects and accounts. Grants conditional assignment of the Azure AI User role to other user principles.",
+        "assignableScopes": [
+            "/"
+        ],
+        "permissions": [
+            {
+                "actions": [
+                    "Microsoft.Authorization/*/read",
+                    "Microsoft.Authorization/roleAssignments/write",
+                    "Microsoft.Authorization/roleAssignments/delete",
+                    "Microsoft.CognitiveServices/*",
+                    "Microsoft.Features/features/read",
+                    "Microsoft.Features/providers/features/read",
+                    "Microsoft.Features/providers/features/register/action",
+                    "Microsoft.Insights/alertRules/*",
+                    "Microsoft.Insights/diagnosticSettings/*",
+                    "Microsoft.Insights/logDefinitions/read",
+                    "Microsoft.Insights/metricdefinitions/read",
+                    "Microsoft.Insights/metrics/read",
+                    "Microsoft.ResourceHealth/availabilityStatuses/read",
+                    "Microsoft.Resources/deployments/*",
+                    "Microsoft.Resources/deployments/operations/read",
+                    "Microsoft.Resources/subscriptions/operationresults/read",
+                    "Microsoft.Resources/subscriptions/read",
+                    "Microsoft.Resources/subscriptions/resourcegroups/deployments/*",
+                    "Microsoft.Resources/subscriptions/resourceGroups/read",
+                    "Microsoft.Support/*"
+                ],
+                "notActions": [],
+                "dataActions": [],
+                "notDataActions": [],
+                "conditionVersion": "2.0",
+                "condition": "((!(ActionMatches{'Microsoft.Authorization/roleAssignments/write'})) OR (@Request[Microsoft.Authorization/roleAssignments:RoleDefinitionId] ForAnyOfAnyValues:GuidEquals{53ca6127-db72-4b80-b1b0-d745d6d5456d})) AND ((!(ActionMatches{'Microsoft.Authorization/roleAssignments/delete'})) OR (@Resource[Microsoft.Authorization/roleAssignments:RoleDefinitionId] ForAnyOfAnyValues:GuidEquals{53ca6127-db72-4b80-b1b0-d745d6d5456d}))"
+            }
+        ]
+    }
+}
+```
+
+## Sample enterprise RBAC setup
+
+The following table is an example of how to set up role-based access control for your Azure AI Foundry resource for an enterprise.
+
+| Persona                  | Role                                      | Purpose                                                                                                                                                                                                                     |
+|--------------------------|------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| IT admin                 | Subscription Owner                       | The IT admin can ensure the hub is set up to their enterprise standards. They can assign managers the **Azure AI Account Owner** role on the resource if they want to enable managers to make new Foundry accounts. They can assign managers the Azure AI Project Manager role on the resource to allow for project creation within an account. |
+| Managers                 | Azure AI Account Owner on Foundry resource | Managers can manage the hub, audit compute resources, audit connections, and create shared connections. They can't begin building within the projects, but can assign the Azure AI User role to themselves and others to start building. |
+| Team lead/Lead developer | Azure AI Project Manager on Foundry resource | Lead developers can create projects for their team and start building in the projects. After project creation, project owners can invite other members and assign the Azure AI User role.                                   |
+| Team members/developers  | Azure AI User on Foundry resource         | Developers can build and deploy AI models within a project and build Agents.                                                                                                                                               |
+
+## Access to resources created outside of AI Foundry
+
+When you create a Foundry resource, the built-in role-based access control permissions grant you access to use the resource. However, if you wish to use resources outside of what was created on your behalf, you need to ensure both:
+
+- The resource you're trying to use has permissions set up to allow you to access it.
+- Your Foundry account resource is allowed to access it.
+
+For example, if you're trying to consume a new Blob storage, you need to ensure that the Foundry account resource’s managed identity is added to the Blob Storage Reader role for the Blob. If you're trying to use a new Azure AI Search source, you might need to add the hub to the Azure AI Search's role assignments.
+
+
+## Manage access with roles
+
+If you're an owner of a Foundry account resource, you can add and remove roles for Azure AI Foundry. From the **Home** page in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), select your Foundry resource. Then select **Users** to add and remove users for the hub. You can also manage permissions from the [Azure portal](https://portal.azure.com) under **Access Control (IAM)** or through the Azure CLI.
+
+For example, the following command assigns Azure AI User role to `joe@contoso.com` for resource group `this-rg` in the subscription with an ID of `00000000-0000-0000-0000-000000000000`:
+
+```azurecli
+az role assignment create --role "Azure AI User" --assignee "joe@contoso.com" --scope /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/this-rg 
+```
+
+## Create custom roles
+
+If the built-in roles are insufficient, you can create custom roles. Custom roles might have the read, write, delete, and compute resource permissions in that Azure AI Foundry. You can make the role available at a specific project level, a specific resource group level, or a specific subscription level.
+
+> [!NOTE]
+> You must be an owner of the resource at that level to create custom roles within that resource.
+
+For steps on creating a custom role, use one of the following articles:
+
+- [Azure portal](/azure/role-based-access-control/custom-roles-portal)
+- [Azure CLI](/azure/role-based-access-control/custom-roles-cli)
+- [Azure PowerShell](/azure/role-based-access-control/custom-roles-powershell)
+
+For more information on creating custom roles in general, visit the [Azure custom roles](/azure/role-based-access-control/custom-roles) article.
+
+## Next steps
+
+- [Create a project](../how-to/create-projects.md)
+- [How to add a new connection in Azure AI Foundry portal](../how-to/connections-add.md)
+
+::: zone-end
+
+::: zone pivot="hub-project"
 
 ## Azure AI Foundry hub vs project
 
@@ -51,7 +281,7 @@ Only the Owner and Contributor roles allow you to make a hub. At this time, cust
 
 ### Azure AI Administrator role (preview)
 
-Prior to 11/19/2024, the system-assigned managed identity created for the hub was automatically assigned the __Contributor__ role for the resource group that contains the hub and projects. Hubs created after this date have the system-assigned managed identity assigned to the __Azure AI Administrator__ role. This role is more narrowly scoped to the minimum permissions needed for the managed identity to perform its tasks.
+Before 11/19/2024, the system-assigned managed identity created for the hub was automatically assigned the __Contributor__ role for the resource group that contains the hub and projects. Hubs created after this date have the system-assigned managed identity assigned to the __Azure AI Administrator__ role. This role is more narrowly scoped to the minimum permissions needed for the managed identity to perform its tasks.
 
 The __Azure AI Administrator__ role is currently in public preview.
 
@@ -231,10 +461,10 @@ For example, if you're trying to consume a new Blob storage, you need to ensure 
 
 ## Manage access with roles 
 
-If you're an owner of a hub, you can add and remove roles for Azure AI Foundry. Go to the **Home** page in [Azure AI Foundry](https://ai.azure.com) and select your hub. Then select **Users** to add and remove users for the hub. You can also manage permissions from the Azure portal under **Access Control (IAM)** or through the Azure CLI. For example, use the [Azure CLI](/cli/azure/) to assign the Azure AI Developer role to "joe@contoso.com" for resource group "this-rg" with the following command: 
+If you're an owner of a hub, you can add and remove roles for Azure AI Foundry. Go to the **Home** page in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and select your hub. Then select **Users** to add and remove users for the hub. You can also manage permissions from the Azure portal under **Access Control (IAM)** or through the Azure CLI. For example, to assign the Azure AI Developer role to "joe@contoso.com" for resource group "this-rg" in the subscription with an ID of `00000000-0000-0000-0000-000000000000`, you can use the following Azure CLI command: 
  
 ```azurecli-interactive
-az role assignment create --role "Azure AI Developer" --assignee "joe@contoso.com" --resource-group this-rg 
+az role assignment create --role "Azure AI Developer" --assignee "joe@contoso.com" --scope /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/this-rg 
 ```
 
 ## Create custom roles
@@ -536,3 +766,5 @@ If you create a new hub and encounter errors with the new default role assignmen
 - [How to create an Azure AI Foundry hub](../how-to/create-azure-ai-resource.md)
 - [How to create an Azure AI Foundry project](../how-to/create-projects.md)
 - [How to create a connection in Azure AI Foundry portal](../how-to/connections-add.md)
+
+::: zone-end

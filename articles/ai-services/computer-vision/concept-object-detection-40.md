@@ -7,8 +7,9 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: conceptual
-ms.date: 10/31/2024
+ms.date: 05/31/2025
 ms.author: pafarley
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ---
 
 # Object detection (version 4.0)
@@ -67,7 +68,7 @@ The following JSON response illustrates what the Image Analysis 4.0 API returns 
 
 ## Limitations
 
-It's important to note the limitations of object detection so you can avoid or mitigate the effects of false negatives (missed objects) and limited detail.
+Note the limitations of object detection so you can avoid or mitigate the effects of false negatives (missed objects) and limited detail.
 
 * Objects are generally not detected if they're small (less than 5% of the image).
 * Objects are generally not detected if they're arranged closely together (a stack of plates, for example).

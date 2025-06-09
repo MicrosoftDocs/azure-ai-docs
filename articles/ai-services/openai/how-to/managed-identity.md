@@ -1,17 +1,17 @@
 ---
-title: How to configure Azure OpenAI Service with Microsoft Entra ID authentication
+title: How to configure Azure OpenAI in Azure AI Foundry Models with Microsoft Entra ID authentication
 titleSuffix: Azure OpenAI
 description: Provides guidance on how to set managed identity with Microsoft Entra ID
 ms.service: azure-ai-openai
 ms.topic: how-to 
-ms.date: 01/31/2025
+ms.date: 04/30/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
 ms.custom: devx-track-azurecli
 ---
 
-# How to configure Azure OpenAI Service with Microsoft Entra ID authentication
+# How to configure Azure OpenAI in Azure AI Foundry Models with Microsoft Entra ID authentication
 
 More complex security scenarios require Azure role-based access control (Azure RBAC). This document covers how to authenticate to your Azure OpenAI resource using Microsoft Entra ID.
 
@@ -50,18 +50,18 @@ token_provider = get_bearer_token_provider(
 )
 
 client = AzureOpenAI(
-    api_version="2024-02-15-preview",
+    api_version="2024-04-01-preview",
     azure_endpoint="https://{your-custom-endpoint}.openai.azure.com/",
     azure_ad_token_provider=token_provider
 )
 
 response = client.chat.completions.create(
-    model="gpt-35-turbo-0125", # model = "deployment_name".
+    model="gpt-4o", # model = "deployment_name".
     messages=[
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
         {"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},
-        {"role": "user", "content": "Do other Azure AI services support this too?"}
+        {"role": "user", "content": "Do other Azure services support this too?"}
     ]
 )
 
@@ -94,11 +94,11 @@ print(json.dumps(data, indent=4))
 
 ## Authorize access to managed identities
 
-OpenAI supports Microsoft Entra authentication with [managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). Managed identities for Azure resources can authorize access to Azure AI services resources using Microsoft Entra credentials from applications running in Azure virtual machines (VMs), function apps, virtual machine scale sets, and other services. By using managed identities for Azure resources together with Microsoft Entra authentication, you can avoid storing credentials with your applications that run in the cloud.  
+OpenAI supports Microsoft Entra authentication with [managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). Managed identities for Azure resources can authorize access to Azure OpenAI resources using Microsoft Entra credentials from applications running in Azure virtual machines (VMs), function apps, virtual machine scale sets, and other services. By using managed identities for Azure resources together with Microsoft Entra authentication, you can avoid storing credentials with your applications that run in the cloud.  
 
 ## Enable managed identities on a VM
 
-Before you can use managed identities for Azure resources to authorize access to Azure AI services resources from your VM, you must enable managed identities for Azure resources on the VM. To learn how to enable managed identities for Azure Resources, see:
+Before you can use managed identities for Azure resources to authorize access to Azure OpenAI resources from your VM, you must enable managed identities for Azure resources on the VM. To learn how to enable managed identities for Azure Resources, see:
 
 - [Azure portal](/azure/active-directory/managed-identities-azure-resources/qs-configure-portal-windows-vm)
 - [Azure PowerShell](/azure/active-directory/managed-identities-azure-resources/qs-configure-powershell-windows-vm)

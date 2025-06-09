@@ -1,10 +1,10 @@
 ---
-title: Azure OpenAI Service deprecated models
+title: Azure OpenAI in Azure AI Foundry Models deprecated models
 titleSuffix: Azure OpenAI
 description: Learn about the deprecated models in Azure OpenAI.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 01/31/2025
+ms.date: 04/30/2025
 ms.custom: references_regions, build-2023, build-2023-dataai
 manager: nitinme
 author: mrbullwinkle 
@@ -12,9 +12,9 @@ ms.author: mbullwin
 recommendations: false
 ---
 
-# Azure OpenAI Service deprecated models
+# Azure OpenAI in Azure AI Foundry Models deprecated models
 
-Azure OpenAI Service offers a variety of models for different use cases. The following models were deprecated on July 6, 2023 and will be retired on June 14, 2024.  These models are no longer available for new deployments. Deployments created prior to July 6, 2023 remain available to customers until June 14, 2024. We recommend customers migrate their applications to deployments of replacement models prior to the June 14, 2024 retirement.
+Azure OpenAI offers a variety of models for different use cases. The following models were deprecated on July 6, 2023 and will be retired on June 14, 2024.  These models are no longer available for new deployments. Deployments created prior to July 6, 2023 remain available to customers until June 14, 2024. We recommend customers migrate their applications to deployments of replacement models prior to the June 14, 2024 retirement.
 
 At the time of retirement, deployments of these models will stop returning valid API responses.
 

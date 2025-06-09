@@ -7,7 +7,7 @@ manager: nitinme
 
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 06/06/2024
+ms.date: 05/19/2025
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD033 -->
@@ -107,7 +107,7 @@ A successful response is a JSON array with one result for each string in the inp
   * `frequencyCount`: An integer representing the frequency of this translation pair in the data. The main purpose of this field is to provide a user interface with a means to sort back-translations so the most frequent terms are first.
 
     > [!NOTE]
-    > If the term being looked-up does not exist in the dictionary, the response is 200 (OK) but the `translations` list is an empty list.
+    > If the term being looked-up doesn't exist in the dictionary, the response is 200 (OK) but the `translations` list is an empty list.
 
 ## Examples
 

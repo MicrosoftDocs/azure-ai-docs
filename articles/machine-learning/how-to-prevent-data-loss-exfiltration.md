@@ -159,7 +159,7 @@ Use the following steps to enable a storage endpoint for the subnet that contain
 When using Azure Machine Learning curated environments, make sure to use the latest environment version. The container registry for the environment must also be `mcr.microsoft.com`. To check the container registry, use the following steps:
 
 1. From [Azure Machine Learning studio](https://ml.azure.com), select your workspace and then select __Environments__.
-1. Verify that the __Azure container registry__ begins with a value of `mcr.microsoft.com`.
+1. Verify that the __Azure Container Registry__ begins with a value of `mcr.microsoft.com`.
 
     > [!IMPORTANT]
     > If the container registry is `viennaglobal.azurecr.io` you cannot use the curated environment with the data exfiltration. Try upgrading to the latest version of the curated environment.

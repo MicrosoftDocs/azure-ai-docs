@@ -8,6 +8,7 @@ ms.service: azure-ai-vision
 ms.topic: how-to
 ms.date: 09/25/2024
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
+ms.update-cycle: 365-days
 ms.author: pafarley
 ms.custom: devx-track-python
 ---
@@ -19,9 +20,6 @@ ms.custom: devx-track-python
 Image Analysis 4.0 allows you to train a custom model using your own training images. By manually labeling your images, you can train a model to apply custom tags to the images (image classification) or detect custom objects (object detection). Image Analysis 4.0 models are especially effective at *few-shot* learning, so you can get accurate models with less training data.
 
 This guide shows you how to create and train a custom image classification model. The few differences between training an image classification model and object detection model are noted.
-
-> [!NOTE]
-> Model customization is available through the REST API and Vision Studio, but not through the client language SDKs.
 
 ## Prerequisites
 
@@ -264,7 +262,7 @@ To train a custom model, you need to associate it with a **Dataset** where you p
 
 To create a new dataset, select **add new dataset**. In the popup window, enter a name and select a dataset type for your use case. **Image classification** models apply content labels to the entire image, while **Object detection** models apply object labels to specific locations in the image. **Product recognition** models are a subcategory of object detection models that are optimized for detecting retail products.
 
-:::image type="content" source="../media/customization/create-dataset.png" alt-text="Screenshoot of dialog box to Create new dataset.":::
+:::image type="content" source="../media/customization/create-dataset.png" alt-text="Screenshot of dialog box to Create new dataset.":::
 
 Then, select the container from the Azure Blob Storage account where you stored the training images. Check the box to allow Vision Studio to read and write to the blob storage container. This is a necessary step to import labeled data. Create the dataset.
 

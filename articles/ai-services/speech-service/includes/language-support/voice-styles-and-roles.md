@@ -14,14 +14,19 @@ ms.author: eur
 |en-IN-NeerjaNeural|`cheerful`, `empathetic`, `newscast`|Not supported|
 |en-US-AndrewMultilingualNeural|`empathetic`, `relieved`|Not supported|
 |en-US-AriaNeural|`angry`, `chat`, `cheerful`, `customerservice`, `empathetic`, `excited`, `friendly`, `hopeful`, `narration-professional`, `newscast-casual`, `newscast-formal`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
+|en-US-AvaNeural|`angry`, `fearful`, `sad`|Not supported|
+|en-US-DavisMultilingualNeural<sup>1</sup>|`empathetic`, `funny`, `relieved`|Not supported|
 |en-US-DavisNeural|`angry`, `chat`, `cheerful`, `excited`, `friendly`, `hopeful`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
+|en-US-DerekMultilingualNeural<sup>1</sup>|`empathetic`, `excited`, `relieved`, `shy`|Not supported|
 |en-US-GuyNeural|`angry`, `cheerful`, `excited`, `friendly`, `hopeful`, `newscast`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
 |en-US-JaneNeural|`angry`, `cheerful`, `excited`, `friendly`, `hopeful`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
 |en-US-JasonNeural|`angry`, `cheerful`, `excited`, `friendly`, `hopeful`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
 |en-US-JennyNeural|`angry`, `assistant`, `chat`, `cheerful`, `customerservice`, `excited`, `friendly`, `hopeful`, `newscast`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
 |en-US-KaiNeural|`conversation`|Not supported|
 |en-US-LunaNeural|`conversation`|Not supported|
+|en-US-NancyMultilingualNeural<sup>1</sup>|`excited`, `friendly`, `funny`, `relieved`, `shy`|Not supported|
 |en-US-NancyNeural|`angry`, `cheerful`, `excited`, `friendly`, `hopeful`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
+|en-US-PhoebeMultilingualNeural<sup>1</sup>|`empathetic`, `sad`, `serious`|Not supported|
 |en-US-SaraNeural|`angry`, `cheerful`, `excited`, `friendly`, `hopeful`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
 |en-US-SerenaMultilingualNeural<sup>1</sup>|`empathetic`, `excited`, `friendly`, `relieved`, `sad`, `serious`, `shy`|Not supported|
 |en-US-TonyNeural|`angry`, `cheerful`, `excited`, `friendly`, `hopeful`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|

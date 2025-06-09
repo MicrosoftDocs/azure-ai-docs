@@ -14,6 +14,9 @@ ms.reviewer: chenlujiao
 
 # How to trace your application with prompt flow SDK | Azure Machine Learning
 
+> [!CAUTION]
+> **Deprecation notice:** The prompt flow tracing SDK has been has been deprecated in favor of [tracing with Azure AI Foundry project library](../../ai-foundry/how-to/develop/trace-local-sdk.md). The prompt flow config `set trace.destination` attribute is not supported to send traces to Azure Machine Learning workspaces, use the Azure AI Inference SDK with Azure AI Foundry project library to trace your application code.
+
 [!INCLUDE [machine-learning-preview-generic-disclaimer](../includes/machine-learning-preview-generic-disclaimer.md)]
 
 Tracing is a powerful tool that offers developers an in-depth understanding of the execution process of their generative AI applications such as agents, [AutoGen](https://microsoft.github.io/autogen/docs/Use-Cases/agent_chat), and retrieval augmented generation (RAG) use cases. It provides a detailed view of the execution flow, including the inputs and outputs of each node within the application. This essential information proves critical while debugging complex applications or optimizing performance.

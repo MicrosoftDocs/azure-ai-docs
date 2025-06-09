@@ -78,7 +78,7 @@ You can create a workspace [directly in Azure Machine Learning studio](./quickst
 
    [!notebook-python[](~/azureml-examples-main/sdk/python/resources/workspace/workspace.ipynb?name=basic_ex_workspace_name)]
 
-* **(Preview) Use existing hub workspace**. Instead of creating a default workspace with its own security settings and [associated resources](concept-workspace.md#associated-resources), you can reuse a [hub workspace](concept-hub-workspace.md)'s shared environment. Your new 'project' workspace obtains security settings and shared configurations from the hub including compute and connections. This example assumes that the hub workspace already exists.
+* **Use existing hub workspace**. Instead of creating a default workspace with its own security settings and [associated resources](concept-workspace.md#associated-resources), you can reuse a [hub workspace](concept-hub-workspace.md)'s shared environment. Your new 'project' workspace obtains security settings and shared configurations from the hub including compute and connections. This example assumes that the hub workspace already exists.
 
    ```python
    from azure.ai.ml.entities import Project
@@ -147,7 +147,7 @@ If you have problems in accessing your subscription, see [Set up authentication 
 
 1. Provide a friendly name for displaying your workspace in Studio.
 
-1. (Preview) Optionally, select a [hub workspace](concept-hub-workspace.md), to host your workspace in a shared environment for your team, with preconfigured security, access to company resources, and shared compute. 
+1. Optionally, select a [hub workspace](concept-hub-workspace.md), to host your workspace in a shared environment for your team, with preconfigured security, access to company resources, and shared compute. 
 
    :::image type="content" source="media/concept-hub-workspace/project-workspace-create.png" alt-text="Screenshot of creating a workspace using hub in Azure Machine Learning studio.":::
 
@@ -185,7 +185,7 @@ This class requires an existing virtual network.
 
 # [Studio](#tab/studio)
 
-1. To create a workspace with disabled internet connectivity via Studio, you should specify a hub workspace that has public network access disabled. Workspaces created without a hub in [Azure AI Foundry portal](https://ai.azure.com/), have public internet access enabled. A private hub has a 'lock' icon.
+1. To create a workspace with disabled internet connectivity via Studio, you should specify a hub workspace that has public network access disabled. Workspaces created without a hub in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), have public internet access enabled. A private hub has a 'lock' icon.
 
    :::image type="content" source="media/how-to-manage-workspace/studio-private-hub-selection.png" alt-text="Screenshot of the private hub with the 'lock' icon.":::
  
@@ -238,7 +238,7 @@ ml_client.workspaces.begin_create(ws)
 
 # [Portal](#tab/azure-portal)
 
-1. Select **Encrypt data using a ustomer-managed key**, and then select **Click to select key**. This configuration creates Azure resources used to encrypt data in your Azure subscription. Alternatively, select **Use service-side encryption (preview)** to use service-side resources for encryption. For more information, see [Customer-managed keys](concept-customer-managed-keys.md).
+1. Select **Encrypt data using a ustomer-managed key**, and then select **Click to select key**. This configuration creates Azure resources used to encrypt data in your Azure subscription. Alternatively, select **Use service-side encryption** to use service-side resources for encryption. For more information, see [Customer-managed keys](concept-customer-managed-keys.md).
 
     :::image type="content" source="media/how-to-manage-workspace/advanced-workspace.png" alt-text="Screenshot of the customer-managed keys.":::
 

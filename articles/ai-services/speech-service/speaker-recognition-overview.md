@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 3/10/2025
+ms.date: 6/5/2025
 ms.author: eur
 keywords: speaker recognition, voice biometry
 #customer intent: As a developer, I want to learn about speaker recognition in Azure AI Speech to verify and identify speakers by their unique voice characteristics.
@@ -53,9 +53,9 @@ Enrollment for speaker identification is text-independent. There are no restrict
 
 Speaker enrollment data is stored in a secured system, including the speech audio for enrollment and the voice signature features. The speech audio for enrollment is only used when the algorithm is upgraded, and the features need to be extracted again. The service doesn't retain the speech recording or the extracted voice features that are sent to the service during the recognition phase. 
 
-You control how long data should be retained. You can create, update, and delete enrollment data for individual speakers through API calls. When the subscription is deleted, all the speaker enrollment data associated with the subscription is also deleted. 
+You control how long data should be retained. You can create, update, and delete enrollment data for individual speakers through API calls. When the Speech resource is deleted, all the speaker enrollment data associated with the Speech resource is also deleted. 
 
-As with all of the Azure AI services resources, developers who use the speaker recognition feature must be aware of Microsoft policies on customer data. You should ensure that you received the appropriate permissions from the users. You can find more details in [Data and privacy for speaker recognition](/legal/cognitive-services/speech-service/speaker-recognition/data-privacy-speaker-recognition). For more information, see the [Azure AI services page](https://azure.microsoft.com/support/legal/cognitive-services-compliance-and-privacy/) on the Microsoft Trust Center. 
+As with all of the Azure AI Foundry resources, developers who use the speaker recognition feature must be aware of Microsoft policies on customer data. You should ensure that you received the appropriate permissions from the users. You can find more details in [Data and privacy for speaker recognition](/legal/cognitive-services/speech-service/speaker-recognition/data-privacy-speaker-recognition). For more information, see the [Azure AI services page](https://azure.microsoft.com/support/legal/cognitive-services-compliance-and-privacy/) on the Microsoft Trust Center. 
 
 ## Common questions and solutions
 

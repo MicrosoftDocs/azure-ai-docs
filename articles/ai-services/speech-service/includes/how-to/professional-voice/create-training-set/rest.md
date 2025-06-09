@@ -5,7 +5,7 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 12/1/2023
+ms.date: 5/19/2025
 ms.custom: include
 ---
 
@@ -55,7 +55,7 @@ You should receive a response body in the following format:
 
 To upload a training set of audio and scripts, use the [TrainingSets_UploadData](/rest/api/aiservices/speechapi/training-sets/upload-data) operation of the custom voice API.
 
-Before calling this API, please store recording and script files in Azure Blob. In the example below, recording files are https://contoso.blob.core.windows.net/voicecontainer/jessica300/*.wav, script files are
+Before calling this API, please store recording and script files in Azure Blob. In the following example, recording files are https://contoso.blob.core.windows.net/voicecontainer/jessica300/*.wav, script files are
 https://contoso.blob.core.windows.net/voicecontainer/jessica300/*.txt. 
 
 Construct the request body according to the following instructions:

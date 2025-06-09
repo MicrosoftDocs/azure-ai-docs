@@ -13,6 +13,7 @@ ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
 ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
+ms.update-cycle: 180-days
 ---
 
 # Serp API tool for flows in Azure AI Foundry portal
@@ -24,6 +25,8 @@ The prompt flow Serp API tool provides a wrapper to the [Serp API Google Search 
 You can use the tool to retrieve search results from many different search engines, including Google and Bing. You can specify a range of search parameters, such as the search query, location, and device type.
 
 ## Prerequisites
+
+[!INCLUDE [hub-only-prereq](../../includes/hub-only-prereq.md)]
 
 Sign up on the [Serp API home page](https://serpapi.com/).
 
@@ -45,7 +48,7 @@ The connection is the model used to establish connections with the Serp API. Get
 
 ## Build with the Serp API tool
 
-1. Create or open a flow in [Azure AI Foundry](https://ai.azure.com). For more information, see [Create a flow](../flow-develop.md).
+1. Create or open a flow in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). For more information, see [Create a flow](../flow-develop.md).
 1. Select **+ More tools** > **Serp API** to add the Serp API tool to your flow.
 
     :::image type="content" source="../../media/prompt-flow/serp-api-tool.png" alt-text="Screenshot that shows the Serp API tool added to a flow in Azure AI Foundry portal." lightbox="../../media/prompt-flow/serp-api-tool.png":::

@@ -1,5 +1,5 @@
 ---
-title: Azure OpenAI Service embeddings tutorial
+title: Azure OpenAI in Azure AI Foundry Models embeddings tutorial
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI's embeddings API for document search with the BillSum dataset
 manager: nitinme
@@ -13,7 +13,7 @@ recommendations: false
 ms.custom: devx-track-python
 ---
 
-# Tutorial: Explore Azure OpenAI Service embeddings and document search
+# Tutorial: Explore Azure OpenAI in Azure AI Foundry Models embeddings and document search
 
 This tutorial will walk you through using the Azure OpenAI [embeddings](../concepts/understand-embeddings.md) API to perform **document search** where you'll query a knowledge base to find the most relevant document.
 
@@ -47,7 +47,7 @@ If you created an Azure OpenAI resource solely for completing this tutorial and 
 
 Learn more about Azure OpenAI's models:
 > [!div class="nextstepaction"]
-> [Azure OpenAI Service models](../concepts/models.md)
+> [Azure OpenAI models](../concepts/models.md)
 * Store your embeddings and perform vector (similarity) search using your choice of Azure service:
   * [Azure AI Search](/azure/search/vector-search-overview)
   * [Azure SQL Database](/azure/azure-sql/database/ai-artificial-intelligence-intelligent-applications?view=azuresql&preserve-view=true#vector-search)

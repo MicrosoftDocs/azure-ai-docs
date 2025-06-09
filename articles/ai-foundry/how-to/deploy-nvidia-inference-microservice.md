@@ -25,37 +25,39 @@ NVIDIA inference microservices are containers built by NVIDIA for optimized pret
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-- An [Azure AI Foundry project](create-projects.md).
+- If you don't have one, [create a [!INCLUDE [hub](../includes/hub-project-name.md)]](create-projects.md?pivots=hub-project).
 
 - Marketplace purchases enabled for your Azure subscription. Learn more [here](/azure/cost-management-billing/manage/enable-marketplace-purchases).
 
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned a _custom role_ with the following permissions. User accounts assigned the _Owner_ or _Contributor_ role for the Azure subscription can also create NIM deployments. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../concepts/rbac-azure-ai-foundry.md).
 
-    -	On the Azure subscription—**to subscribe the workspace to the Azure Marketplace offering**, once for each workspace/project:
-        -	Microsoft.MarketplaceOrdering/agreements/offers/plans/read
-        -	Microsoft.MarketplaceOrdering/agreements/offers/plans/sign/action
-        -	Microsoft.MarketplaceOrdering/offerTypes/publishers/offers/plans/agreements/read
-        -	Microsoft.Marketplace/offerTypes/publishers/offers/plans/agreements/read
-        -	Microsoft.SaaS/register/action
+    -    On the Azure subscription—**to subscribe the workspace to the Azure Marketplace offering**, once for each workspace/project:
+        -    Microsoft.MarketplaceOrdering/agreements/offers/plans/read
+        -    Microsoft.MarketplaceOrdering/agreements/offers/plans/sign/action
+        -    Microsoft.MarketplaceOrdering/offerTypes/publishers/offers/plans/agreements/read
+        -    Microsoft.Marketplace/offerTypes/publishers/offers/plans/agreements/read
+        -    Microsoft.SaaS/register/action
 
-    -	On the resource group—**to create and use the SaaS resource**:
+    -    On the resource group—**to create and use the SaaS resource**:
         -   Microsoft.SaaS/resources/read
-        -	Microsoft.SaaS/resources/write
+        -    Microsoft.SaaS/resources/write
 
-    -	On the workspace—**to deploy endpoints**:
-        -	Microsoft.MachineLearningServices/workspaces/marketplaceModelSubscriptions/*
-        -	Microsoft.MachineLearningServices/workspaces/onlineEndpoints/* 
+    -    On the workspace—**to deploy endpoints**:
+        -    Microsoft.MachineLearningServices/workspaces/marketplaceModelSubscriptions/*
+        -    Microsoft.MachineLearningServices/workspaces/onlineEndpoints/* 
 
 
-## NVIDIA NIM pay-as-you-go offer on Azure Marketplace by NVIDIA
+## NVIDIA NIM Standard deployment on Azure Marketplace by NVIDIA
 
- NVIDIA NIMs available on Azure AI Foundry model catalog can be deployed with a pay-as-you-go subscription to the [NVIDIA NIM SaaS offer](https://aka.ms/nvidia-nims-plan) on Azure Marketplace. This offer includes a 90-day trial and a pay-as-you-go price of $1 per GPU hour post the trial period. The trial applies to all NIMs associated with a particular SaaS subscription, and starts from the time the SaaS subscription was created. SaaS subscriptions scope to an Azure AI Foundry project, so you have to subscribe to the NIM offer only once within a project, then you are able to deploy all NIMs offered by NVIDIA in the AI Foundry model catalog. If you want to deploy NIM in a different project with no existing SaaS subscription, you will have to resubscribe to the offer.  
+ NVIDIA NIMs available on Azure AI Foundry model catalog can be deployed with a Standard subscription to the [NVIDIA NIM SaaS offer](https://aka.ms/nvidia-nims-plan) on Azure Marketplace. This offer includes a 90-day trial and a Standard price of $1 per GPU hour post the trial period. The trial applies to all NIMs associated with a particular SaaS subscription, and starts from the time the SaaS subscription was created. SaaS subscriptions scope to an Azure AI Foundry project, so you have to subscribe to the NIM offer only once within a project, then you are able to deploy all NIMs offered by NVIDIA in the AI Foundry model catalog. If you want to deploy NIM in a different project with no existing SaaS subscription, you will have to resubscribe to the offer.  
 
  Azure AI Foundry enables a seamless purchase experience of the NVIDIA NIM offering on Marketplace from the NVIDIA collection in the model catalog, and further deployment on managed compute.
 
 ## Deploy NVIDIA Inference Microservices on Managed Compute
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com) and go to the **Home** page.
+[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
+
+1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and go to the **Home** page.
 2. Select **Model catalog** from the left sidebar.
 3. In the filters section, select **Collections** and select **NVIDIA**.
 
@@ -81,7 +83,7 @@ After your deployment is successfully created, you can go to **Models + Endpoint
 
 NVIDIA NIMs on Foundry expose an OpenAI compatible API. Learn more about the payload supported [here](https://docs.nvidia.com/nim/large-language-models/latest/api-reference.html#). The 'model' parameter for NIMs on Foundry is set to a default value within the container, and is not required to be passed in the request payload to your online endpoint. The **Consume** tab of the NIM deployment on Foundry includes code samples for inference with the target URL of your deployment. 
 
-You can also consume NIM deployments using the [Azure AI Model Inference SDK](/python/api/overview/azure/ai-inference-readme), with limitations such as no support for [creating and authenticating clients using `load_client`](/python/api/overview/azure/ai-inference-readme#create-and-authenticate-clients-using-load_client) and calling client method `get_model_info` to [retrieve model information](/python/api/overview/azure/ai-inference-readme#get-ai-model-information).
+You can also consume NIM deployments using the [Azure AI Foundry Models SDK](/python/api/overview/azure/ai-inference-readme), with limitations such as no support for [creating and authenticating clients using `load_client`](/python/api/overview/azure/ai-inference-readme#create-and-authenticate-clients-using-load_client) and calling client method `get_model_info` to [retrieve model information](/python/api/overview/azure/ai-inference-readme#get-ai-model-information).
 
 ### Develop and run agents with NIM endpoints
 

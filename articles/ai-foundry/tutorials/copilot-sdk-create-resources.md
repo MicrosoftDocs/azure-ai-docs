@@ -7,16 +7,17 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: tutorial
-ms.date: 02/12/2025
+ms.date: 04/07/2025
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
+
 #customer intent: As a developer, I want to create a project and set up my development environment to build a custom knowledge retrieval (RAG) app with the Azure AI Foundry SDK.
 ---
 
 # Tutorial:  Part 1 - Set up project and development environment to build a custom knowledge retrieval (RAG) app with the Azure AI Foundry SDK
 
-In this tutorial, you use the [Azure AI Foundry](https://ai.azure.com) SDK (and other libraries) to build, configure, and evaluate a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
+In this tutorial, you use the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) SDK (and other libraries) to build, configure, and evaluate a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
 
 This tutorial is part one of a three-part tutorial.  This part one gets you ready to write code in part two and evaluate your chat app in part three. In this part, you:
 
@@ -32,30 +33,24 @@ If you've completed other tutorials or quickstarts, you might have already creat
 
 This tutorial is part one of a three-part tutorial.
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
-
 ## Prerequisites
+
+[!INCLUDE [hub-only-tutorial](../includes/hub-only-tutorial.md)]
 
 * An Azure account with an active subscription. If you don't have one, [create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
-## Create a project
 
-To create a project in [Azure AI Foundry](https://ai.azure.com), follow these steps:
+## Create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]
 
-1. Go to the **Home** page of [Azure AI Foundry](https://ai.azure.com).
-1. Select **+ Create project**.
-1. Enter a name for the project.  Keep all the other settings as default.
-1. Projects are created in hubs.  If you see **Create a new hub** select it and specify a name.  Then select **Next**. (If you don't see **Create new hub**, don't worry; it's because a new one is being created for you.) 
-1. Select **Customize** to specify properties of the hub.
-1. Use any values you want, except for **Region**.  We recommend you use either **East US2** or **Sweden Central** for the region for this tutorial series.
-1. Select **Next**.
-1. Select **Create project**.
+[!INCLUDE [create-hub-project-simple](../includes/create-hub-project-simple.md)]
 
 ## Deploy models
 
 You need two models to build a RAG-based chat app: an Azure OpenAI chat model (`gpt-4o-mini`) and an Azure OpenAI embedding model (`text-embedding-ada-002`). Deploy these models in your Azure AI Foundry project, using this set of steps for each model.
 
 These steps deploy a model to a real-time endpoint from the Azure AI Foundry portal [model catalog](../how-to/model-catalog-overview.md):
+
+[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
 1. On the left pane, select **Model catalog**.
 1. Select the **gpt-4o-mini** model from the list of models. You can use the search bar to find it. 
@@ -98,7 +93,7 @@ If you already have an Azure AI Search connection in your project, you can skip 
 
 In the Azure AI Foundry portal, check for an Azure AI Search connected resource.
 
-1. In [Azure AI Foundry](https://ai.azure.com), go to your project and select **Management center** from the left pane.
+1. In [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), go to your project and select **Management center** from the left pane.
 1. In the **Connected resources** section, look to see if you have a connection of type **Azure AI Search**.
 1. If you have an Azure AI Search connection, you can skip ahead to the next section.
 1. Otherwise, select **New connection** and then **Azure AI Search**.
@@ -119,7 +114,7 @@ In the IDE of your choice, create a new folder for your project.  Open a termina
 
 ## Install packages
 
-Install `azure-ai-projects`(preview) and `azure-ai-inference` (preview), along with other required packages.
+Install required packages.
 
 1. First, create a file named **requirements.txt** in your project folder. Add the following packages to the file:
 

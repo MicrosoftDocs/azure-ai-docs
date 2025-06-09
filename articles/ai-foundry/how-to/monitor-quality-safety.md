@@ -9,11 +9,11 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 7/31/2024
+ms.date: 04/23/2025
 ms.reviewer: alehughes
 reviewer: ahughes-msft
-ms.author: mopeakande
-author: msakande
+ms.author: lagayhar  
+author: lgayhardt
 ---
 
 # Monitor quality and token usage of deployed prompt flow applications
@@ -42,8 +42,7 @@ Integrations for monitoring a prompt flow deployment allow you to:
 
 Before you follow the steps in this article, make sure that you have the following prerequisites:
 
-- An Azure subscription with a valid payment method. Free or trial Azure subscriptions aren't supported for this scenario. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
-- An [Azure AI Foundry project](create-projects.md).
+[!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 - A prompt flow ready for deployment. If you don't have one, see [Develop a prompt flow](flow-develop.md).
 - Azure role-based access controls are used to grant access to operations in the Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the Azure AI Developer role on the resource group. For more information on permissions, see [Role-based access control in the Azure AI Foundry portal](../concepts/rbac-azure-ai-foundry.md).
   
@@ -109,8 +108,12 @@ To set up monitoring for your prompt flow application, you first have to deploy 
 
 In this section, you learn how to deploy your prompt flow with inferencing data collection enabled. For more information on how to deploy your prompt flow, see [Deploy a flow for real-time inference](flow-deploy.md).
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com).
+[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
+
+1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 1. If you're not already in your project, select it.
+   [!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
+
 1. On the left pane, select **Prompt flow**.
 1. Select the prompt flow that you created previously.
 

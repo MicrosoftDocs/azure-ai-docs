@@ -23,7 +23,7 @@ sections:
       - question: |
           How do I get started with Content Safety? What are the first steps?
         answer: |
-          For references on how to start submitting text and images to Azure AI Content Safety, and view model responses and results, visit the [Azure AI Foundry portal](https://ai.azure.com/explore/contentsafety) page. You can use the sidebar to navigate to the Safety+Security page. 
+          For references on how to start submitting text and images to Azure AI Content Safety, and view model responses and results, visit the [Azure AI Foundry portal](https://ai.azure.com/explore/contentsafety) page. You can use the sidebar to navigate to the Guardrails + controls page. 
 
       - question: |
           What types of media can Azure AI Content Safety classify/moderate? 

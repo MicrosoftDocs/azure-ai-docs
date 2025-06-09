@@ -1,10 +1,10 @@
 ---
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/21/2024
-ms.author: jboback
+ms.date: 05/23/2025
+ms.author: lajanuar
 ---
 
 ## Prerequisites
@@ -23,8 +23,6 @@ ms.author: jboback
 2. From the menu on the left side, select **Keys and Endpoint**. You will use the endpoint and key for the API requests 
 
     :::image type="content" source="../../../media/azure-portal-resource-credentials.png" alt-text="A screenshot showing the key and endpoint page in the Azure portal" lightbox="../../../media/azure-portal-resource-credentials.png":::
-
-
 
 ## Import a new CLU sample project
 
