@@ -133,54 +133,52 @@ In this section, you learn how to update and delete pipeline parameters.
 
 ### Update pipeline parameters
 
-Use the following steps to update a component pipeline parameter:
+Complete the following steps to update a component pipeline parameter:
 
 1. At the top of the canvas, select the gear icon.
-1. In the **Pipeline parameters** section, you can view and update the name and default value for all of your pipeline parameter.
+1. In the **Pipeline parameters** section, you can view and update the name and default value for all of your pipeline parameters.
 
 ### Delete a dataset pipeline parameter
 
-Use the following steps to delete a dataset pipeline parameter:
+Complete the following steps to delete a dataset pipeline parameter:
 
 1. Select the dataset component.
-1. Uncheck the option **Set as pipeline parameter**.
-
+1. Clear the **Set as pipeline parameter** option.
 
 ### Delete component pipeline parameters
 
-Use the following steps to delete a component pipeline parameter:
+Complete the following steps to delete a component pipeline parameter:
 
 1. At the top of the canvas, select the gear icon.
 
-1. Select the ellipses (**...**) next to the pipeline parameter.
+1. Select the ellipsis button (**...**) next to the pipeline parameter.
 
-    This view shows you which components the pipeline parameter is attached to.
+    This view displays components that the pipeline parameter is attached to.
 
-    ![Screenshot that shows the current pipeline parameter applied to a component](media/how-to-use-pipeline-parameter/delete-pipeline-parameter2.png)
+    :::image type="content" source="media/how-to-use-pipeline-parameter/delete-pipeline-parameter2.png" alt-text="Screenshot that shows the current pipeline parameter applied to a component." lightbox ="media/how-to-use-pipeline-parameter/delete-pipeline-parameter2.png":::
 
-1. Select **Delete parameter** to delete the pipeline parameter.
+1. Select **Delete parameter**.
 
     > [!NOTE]
-    > Deleting a pipeline parameter will cause all attached component parameters to be detached and the value of detached component parameters will keep current pipeline parameter value.     
+    > Deleting a pipeline parameter causes all attached component parameters to be detached. The values of detached component parameters will keep current pipeline parameter values.
 
-## Trigger a pipeline job with pipeline parameters 
+## Supply pipeline parameters when you trigger a pipeline job
 
-In this section, you learn how to submit a pipeline job while setting pipeline parameters.
+In this section, you learn how to supply pipeline paramaters when you submit a pipeline job.
 
 ### Resubmit a pipeline job
 
-After submitting a pipeline with pipeline parameters, you can resubmit a pipeline job with different parameters:
+After you submit a pipeline with pipeline parameters, you can resubmit the job with different parameters:
 
-1. Go to pipeline detail page. In the **Pipeline job overview** window, you can check current pipeline parameters and values.
-
+1. Go to pipeline detail page. In the **Pipeline run overview** pane, you can check current pipeline parameters and values.
 1. Select **Resubmit**.
-1. In the **Setup pipeline job**, specify your new pipeline parameters. 
+1. In the **Set up pipleine run** window, specify your new pipeline parameters. 
 
-![Screenshot that shows resubmit pipeline with pipeline parameters](media/how-to-use-pipeline-parameter/resubmit-pipeline-run.png)
+ :::image type="content" source="media/how-to-use-pipeline-parameter/resubmit-pipeline-run.png" alt-text="Screenshot that shows how to resubmit a pipeline with pipeline parameters." lightbox ="media/how-to-use-pipeline-parameter/resubmit-pipeline-run.png":::
 
 ### Use published pipelines
 
-You can also publish a pipeline to use its pipeline parameters. A **published pipeline** is a pipeline that has been deployed to a compute resource, which client applications can invoke via a REST endpoint.
+You can also publish a pipeline to use its pipeline parameters. A *published pipeline* is a pipeline that has been deployed to a compute resource. Client applications can invoke the pipeline via a REST endpoint.
 
 Published endpoints are especially useful for retraining and batch prediction scenarios. For more information, see [How to retrain models in the designer](how-to-retrain-designer.md) or [Run batch predictions in the designer](how-to-run-batch-predictions-designer.md).
 
