@@ -31,9 +31,12 @@ items:
   - name: What is Text translation?
     displayName: features,develop,development,free
     href: text-translation/overview.md
-  - name: "2025-05-01-preview 🆕"
+  - name: "Azure AI Translator 2025-05-01-preview 🆕"
     displayName: gpt, adaptive, tone, gender
     href: text-translation/reference/preview/reference-overview.md
+  - name: "Migrate to 2025-05-01-preview 🆕"
+    displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
+    href: text-translation/how-to/migrate-to-preview.md
   - name: Text translation SDK
     displayName: get started,sdk,keys,endpoint
     href: text-sdk-overview.md
@@ -50,9 +53,6 @@ items:
     - name: Use the Text translation APIs
       displayName: detection,detect,translation,transliteration,identification,length,sentence length,alternate,usage,headers,set up,status,401
       href: text-translation/how-to/use-rest-api.md
-    - name: "Migrate to 2025-05-01-preview 🆕"
-      displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
-      href: text-translation/how-to/migrate-to-preview.md
     - name: Enable Microsoft Entra ID authentication
       href: how-to/microsoft-entra-id-auth.md
     - name: Add profanity filtering
@@ -74,7 +74,7 @@ items:
     href: text-translation/reference/authentication.md
   - name: Reference
     items:
-    - name: Azure AI Translator 2025-05-01-preview 🆕
+    - name: 2025-05-01-preview 🆕
       items:
       - name: Languages
         href: text-translation/reference/preview/get-languages.md
