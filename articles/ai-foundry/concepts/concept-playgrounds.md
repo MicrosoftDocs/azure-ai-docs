@@ -86,7 +86,7 @@ The agents playground allows you to explore, prototype, and test agents without 
 
 The chat playground is the place to test the latest reasoning models from Azure OpenAI, DeepSeek, and Meta. To learn more about the chat playground, see the [Quickstart: Use the chat playground in Azure AI Foundry portal](../quickstarts/get-started-playground.md).
 
-For all reasoning models, the chat playground provides a chain-of-thought summary drop-down that let's you see how the model was thinking through its response ahead of sharing the output.
+For all reasoning models, the chat playground provides a chain-of-thought summary drop-down that lets you see how the model was thinking through its response ahead of sharing the output.
 
 :::image type="content" source="../media/concept-playgrounds/chat-playground-cot-summary.png" alt-text="Screenshot of the Chat playground interface for exploring, prototyping, and testing chat models without code." lightbox="../media/concept-playgrounds/chat-playground-cot-summary.png":::
 
@@ -144,7 +144,7 @@ Follow these steps to use the video playground:
 
 1. Go to the **Generation history** tab to review your generations as a grid or list view. When you select the videos, open them in full screen mode for full immersion. Visually observe outputs across prompt tweaks or parameter changes.
 1. In full screen mode, edit the prompt and submit for regeneration.
-1. Either in full screen mode or through the options button that show up when you hover across the video, download the videos to your local computer, view the generation information generation tag, view code, or delete the video.
+1. Either in full screen mode or through the options button that shows up when you hover across the video, download the videos to your local computer, view the generation information generation tag, view code, or delete the video.
     :::image type="content" source="../media/concept-playgrounds/options-menu-for-generated-video.png" alt-text="Screenshot showing the options button for downloading, viewing details, and deleting a generated image." lightbox="../media/concept-playgrounds/options-menu-for-generated-video.png":::
 
 1. Select **View code**  from the options menu to view contextual sample code for your video generations in several languages, including Python, Java,  JavaScript, C# **Port to production with multi-lingual code samples:** Use Python, JavaScript, C#, and more. Copy your code into VS Code.
@@ -152,7 +152,7 @@ Follow these steps to use the video playground:
    
 ### What to validate when experimenting in video playground
 
-When using the video playground as you plan your production workload, you can explore and validate the following:
+When using the video playground as you plan your production workload, you can explore and validate the following attributes:
 
 - **Prompt-to-Motion Translation**
     - Does the video model interpret my prompt in a way that makes logical and temporal sense?
