@@ -23,7 +23,7 @@ Integrate your agents with the **Microsoft SharePoint** to chat with your privat
 
 ## Prerequisites
 
-* Developers and end users have Microsoft 365 copilot license
+* Developers and end users have Microsoft 365 Copilot license.
 * Developers and end users have at least `Azure AI User` RBAC role. 
 * Developers and end users have at least `READ` access to the SharePoint site.
 
