@@ -47,6 +47,8 @@ The following table summarizes the risk categories supported by Azure OpenAI's c
 | [Groundedness](/azure/ai-services/openai/concepts/content-filter-groundedness)<sup>2</sup> | Groundedness detection flags whether the text responses of large language models (LLMs) are grounded in the source materials provided by the users. Ungrounded material refers to instances where the LLMs produce information that is non-factual or inaccurate from what was present in the source materials. Requires [document embedding and formatting](./content-filter-document-embedding.md). |
 | [Protected Material for Text](/azure/ai-services/openai/concepts/content-filter-protected-material)<sup>1</sup> | Protected material text describes known text content (for example, song lyrics, articles, recipes, and selected web content) that can be outputted by large language models.|
 | [Protected Material for Code](/azure/ai-services/openai/concepts/content-filter-protected-material) | Protected material code describes source code that matches a set of source code from public repositories, which can be outputted by large language models without proper citation of source repositories.|
+| [Personally identifiable information (PII)](/azure/ai-services/openai/concepts/content-filter-personal-information) | Personally identifiable information (PII) refers to any information that can be used to identify a particular individual. PII detection involves analyzing text content in LLM completions and filtering any PII that was returned. |
+
 
 <sup>1</sup> If you're an owner of text material and want to submit text content for protection, [file a request](https://aka.ms/protectedmaterialsform).
 

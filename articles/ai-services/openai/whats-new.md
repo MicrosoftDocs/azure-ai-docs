@@ -18,6 +18,13 @@ ms.custom:
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
+## June 2025
+
+### PII detection content filter
+
+Personally identifiable information (PII) detection is now available as a built-in content filter. This feature allows you to identify and block sensitive information in LLM outputs, enhancing data privacy. For more information, see the [PII detection](./concepts/content-filter-personal-information.md) documentation.
+
+
 ## May 2025
 
 ### Sora video generation released (preview)
