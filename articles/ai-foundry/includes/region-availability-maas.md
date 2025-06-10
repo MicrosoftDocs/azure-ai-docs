@@ -2,13 +2,19 @@
 title: Include file
 description: Include file
 author: s-polly
-ms.reviewer: scottpolly
 ms.author: scottpolly
+ms.reviewer: scottpolly
+ms.date: 03/24/2024
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 03/24/2024
-ms.custom: include, references_regions
+ms.custom:
+  - include
+  - references_regions
+  - build-aifnd
+  - build-2025
 ---
+
+[!INCLUDE [uses-hub-only](uses-hub-only.md)]
 
 ### AI21 models
 
@@ -43,10 +49,10 @@ Cohere Embed v3 -  Multilingual    |  [Microsoft Managed Countries/Regions](/par
 
 | Model | Offer Availability Region  | Hub/Project Region for Deployment  | Hub/Project Region for Fine tuning  |
 |---------|---------|---------|---------|
+DeepSeek-R1-0528                  | Not applicable | East US <br> East US 2 <br> North Central US <br> South Central US <br> West US <br> West US 3  | Not available       |
 DeepSeek-V3-0324                  | Not applicable | East US <br> East US 2 <br> North Central US <br> South Central US <br> West US <br> West US 3  | Not available       |
 DeepSeek-V3                       | Not applicable | East US <br> East US 2 <br> North Central US <br> South Central US <br> West US <br> West US 3  | Not available       |
 DeepSeek-R1                       | Not applicable | East US <br> East US 2 <br> North Central US <br> South Central US <br> West US <br> West US 3  | Not available       |
-
 
 ### Gretel models
 

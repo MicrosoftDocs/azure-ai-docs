@@ -1,11 +1,14 @@
 ---
 title: Configure access to Models from Partners and Community
 description: Learn how to configure access to Models from Partners and Community.
-author: santiagxf
-ms.author: fasantia 
+author: ssalgadodev
+ms.author: ssalgado
 ms.service: azure-ai-model-inference
 ms.topic: how-to
 ms.date: 5/11/2025
+manager: scottpolly
+ms.reviewer: fasantia
+reviewer: santiagxf
 ---
 
 # Configure access to Models from Partners and Community

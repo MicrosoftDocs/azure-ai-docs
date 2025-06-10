@@ -7,13 +7,15 @@ brand: azure
 metadata:
   title: Azure AI Foundry documentation
   description: The agent factory - Design, customize, manage, and support AI applications and agents at scale.
-  ms.service: azure-ai-foundry
-  ms.topic: hub-page
   author: eric-urban
   ms.author: eur
   manager: nitinme
-  ms.custom: build-2025
   ms.date: 5/19/2025
+  ms.service: azure-ai-foundry
+  ms.topic: hub-page
+  ms.custom:
+    - build-2025
+    - build-aifnd
 highlightedContent:
 # itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | whats-new
   items:
@@ -104,7 +106,7 @@ productDirectory:
           text: Speech
         - url: ../ai-services/computer-vision/index.yml
           text: Vision
-        - url: ../ai-services/custom-vision-service/index.yml
+        - url: ../ai-services/translator/index.yml
           text: Translator
         - url: ../ai-services/language-service/index.yml
           text: Language
@@ -168,6 +170,8 @@ additionalContent:
               url: https://aka.ms/azureaifoundry/vscode
         - title: Explore more Azure AI
           links:
+            - text: What are Azure AI services?
+              url: ../ai-services/what-are-ai-services.md
             - text: Semantic Kernel
               url: /semantic-kernel/
             - text: Document Intelligence

@@ -2,12 +2,12 @@
 title: Create custom NER projects and use Azure resources
 titleSuffix: Azure AI services
 description: Learn how to create and manage projects and Azure resources for custom NER.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
 ms.date: 11/21/2024
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-custom-ner, references_regions
 ---
 

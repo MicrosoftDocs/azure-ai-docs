@@ -1,13 +1,15 @@
 ---
-title: 'Customize a model with Azure OpenAI in Azure AI Foundry Models and the REST API'
+title: "Customize a model with Azure OpenAI in Azure AI Foundry Models and the REST API"
 titleSuffix: Azure OpenAI
 description: Learn how to create your own customized model with Azure OpenAI by using the REST APIs.
-manager: nitinme
-ms.service: azure-ai-openai
-ms.topic: include
-ms.date: 02/27/2025
 author: mrbullwinkle
 ms.author: mbullwin
+manager: nitinme
+ms.date: 02/27/2025
+ms.service: azure-ai-openai
+ms.topic: include
+ms.custom:
+  - build-2025
 ---
 
 ## Prerequisites

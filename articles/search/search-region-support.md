@@ -2,15 +2,15 @@
 title: Supported Regions
 titleSuffix: Azure AI Search
 description: Shows supported regions and feature availability across regions for Azure AI Search.
-
-manager: nitinme
 author: haileytap
 ms.author: haileytapia
+manager: nitinme
+ms.date: 05/29/2025
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.custom: references_regions
-ms.date: 05/15/2025
-
+ms.custom:
+  - references_regions
+  - build-2025
 ---
 
 # Azure AI Search regions list
@@ -39,49 +39,49 @@ You can create an Azure AI Search service in any of the following Azure public r
 
 | Region | AI enrichment | Availability zones | Agentic retrieval | Semantic ranker | Query rewrite |
 |--|--|--|--|--|--|
-| Brazil South​​ ​| ✅ |  | ✅ | ✅ |  |
-| Canada Central​​ | ✅ | ✅ | ✅ | ✅ |  |
+| Brazil South​​ ​| ✅ |  | ✅ | ✅ | ✅ |
+| Canada Central​​ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Canada East​​ ​|  |  | ✅ | ✅ |  |
-| ​Central US​​ | ✅ | ✅ | ✅ | ✅ |  |
+| ​Central US​​ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | East US​ | ✅ | ✅ | ✅ | ✅ |  |
-| East US 2 ​ | ✅ | ✅ | ✅ | ✅ |  |
+| East US 2 ​ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Mexico Central |  | ✅ |  |  |  |
-| North Central US​ ​| ✅ |  | ✅ | ✅ |  |
-| South Central US​ | ✅ | ✅ | ✅ | ✅ |  |
-| West US​​ | ✅ |  | ✅ | ✅ |  |
-| West US 2​ <sup>1</sup>​| ✅ | ✅ | ✅ | ✅ |  |
-| West US 3​ | ✅ | ✅ | ✅ | ✅ |  |
+| North Central US​ ​| ✅ |  | ✅ | ✅ | ✅ |
+| South Central US​ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| West US​​ | ✅ |  | ✅ | ✅ | ✅ |
+| West US 2​ <sup>1</sup>​| ✅ | ✅ | ✅ | ✅ | ✅ |
+| West US 3​ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | West Central US​ ​ | ✅ |  | ✅ | ✅ |  |
+
+<sup>1</sup> This region has capacity constraints on all tiers.
 
 ### Europe
 
 | Region | AI enrichment | Availability zones | Agentic retrieval | Semantic ranker | Query rewrite |
 |--|--|--|--|--|--|
 | North Europe​​ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| West Europe​​ | ✅ | ✅ | ✅ | ✅ |  |
-| France Central​​ | ✅ | ✅ | ✅ | ✅ |  |
-| Germany West Central​ ​| ✅ | ✅ |  |  |  |
-| Italy North​​ |  | ✅ |  |  |  |
+| West Europe​​ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| France Central​​ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Germany West Central​ ​| ✅ | ✅ | ✅ | ✅ |  |
+| Italy North​​ |  | ✅ | ✅ | ✅ |  |
 | Norway East​​ | ✅ | ✅ |  |  |  |
-| Poland Central​​ |  |  |  |  |  |
-| Spain Central <sup>2</sup> |  | ✅ |  |  |  |
+| Poland Central​​ |  |  | ✅ | ✅ |  |
+| Spain Central <sup>1</sup> |  | ✅ |  |  |  |
 | Sweden Central​​ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Switzerland North​ | ✅ | ✅ | ✅ | ✅ |  |
+| Switzerland North​ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Switzerland West​ | ✅ | ✅ | ✅ | ✅ |  |
-| UK South​ | ✅ | ✅ | ✅ | ✅ |  |
+| UK South​ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | UK West​ ​|  |  | ✅ | ✅ |  |
 
-<sup>1</sup> This region has capacity constraints on the following tiers: S2, S3, L1, and L2.
-
-<sup>2</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) aren't available in this region. If you want higher limits, choose a different region.
+<sup>1</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) aren't available in this region. If you want higher limits, choose a different region.
 
 ### Middle East
 
 | Region | AI enrichment | Availability zones | Agentic retrieval | Semantic ranker | Query rewrite |
 |--|--|--|--|--|--|
 | Israel Central​ <sup>1</sup> |  | ✅ |  |  |  |
-| Qatar Central​ <sup>1</sup> |  | ✅ |  |  |  |
-| UAE North​​ | ✅ | ✅ |  |  |  |
+| Qatar Central​ <sup>1</sup> |  | ✅ | ✅ | ✅ |  |
+| UAE North​​ | ✅ | ✅ | ✅ | ✅ |  |
 
 <sup>1</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) aren't available in this region. If you want higher limits, choose a different region.
 
@@ -89,34 +89,34 @@ You can create an Azure AI Search service in any of the following Azure public r
 
 | Region | AI enrichment | Availability zones | Agentic retrieval | Semantic ranker | Query rewrite |
 |--|--|--|--|--|--|
-| South Africa North​ | ✅ | ✅ |  |  |  |
+| South Africa North​ | ✅ | ✅ | ✅ | ✅ |  |
 
 ### Asia Pacific
 
 | Region | AI enrichment | Availability zones | Agentic retrieval | Semantic ranker | Query rewrite |
 |--|--|--|--|--|--|
-| Australia East​ ​| ✅ | ✅ | ✅ | ✅ |  |
+| Australia East​ ​| ✅ | ✅ | ✅ | ✅ | ✅ |
 | Australia Southeast​​​ |  |  | ✅ | ✅ |  |
-| East Asia​ | ✅ | ✅ | ✅ | ✅ |  |
+| East Asia​ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Southeast Asia​​ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Central India | ✅ | ✅ | ✅ | ✅ |  |
-| Jio India West​​ | ✅ |  | ✅ | ✅ |  |
-| South India <sup>1</sup> |  | ✅ |  |  |  |
-| Japan East | ✅ | ✅ | ✅ | ✅ |  |
+| Central India | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Jio India West​​ | ✅ |  | ✅ | ✅ | ✅ |
+| South India |  | ✅ |  |  |  |
+| Japan East <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Japan West​ | ✅ |  | ✅ | ✅ |  |
-| Korea Central | ✅ | ✅ | ✅ | ✅ |  |
+| Korea Central | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Korea South​​ |  |  | ✅ | ✅ |  |
 | Indonesia Central |  | ✅ |  |  |  |
 
-<sup>1</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) aren't available in this region. If you want higher limits, choose a different region.
+<sup>1</sup> This region has capacity constraints on all tiers.
 
 ## Azure Government regions
 
 | Region | AI enrichment | Availability zones | Agentic retrieval | Semantic ranker | Query rewrite |
 |--|--|--|--|--|--|
-| Arizona | ✅ |  | ✅ | ✅ |  |
+| Arizona | ✅ |  | ✅ | ✅ | ✅ |
 | Texas |  |  |  |  |  |
-| Virginia | ✅ | ✅ | ✅ | ✅ |  |
+| Virginia | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 ## Azure operated by 21Vianet
 
@@ -127,7 +127,7 @@ You can create an Azure AI Search service in any of the following Azure public r
 | China East 3 |  |  |  |  |  |
 | China North |  |  |  |  |  |
 | China North 2 <sup>1</sup> |  |  |  |  |  |
-| China North 3 |  | ✅ | ✅ | ✅ |  |
+| China North 3 |  | ✅ | ✅ | ✅ | ✅ |
 
 <sup>1</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) aren't available in this region. If you want higher limits, choose a different region.
 

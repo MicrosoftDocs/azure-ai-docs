@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 12/10/2024
+ms.date: 06/04/2025
 ---
 
 # Set up an indexer connection to Azure SQL Managed Instance using a managed identity
@@ -18,7 +18,7 @@ This article describes how to set up an Azure AI Search indexer connection to [S
 
 You can use a system-assigned managed identity or a user-assigned managed identity (preview). Managed identities are Microsoft Entra logins and require Azure role assignments to access data in SQL Managed Instance.
 
-Before learning more about this feature, it's recommended that you understand what an indexer is and how to set up an indexer for your data source. More information can be found at the following links:
+Before learning more about this feature, we recommended that you understand what an indexer is and how to set up an indexer for your data source. More information can be found at the following links:
 
 * [Indexer overview](search-indexer-overview.md)
 * [SQL Managed Instance indexer](search-how-to-index-sql-database.md)
@@ -29,31 +29,29 @@ Before learning more about this feature, it's recommended that you understand wh
 
 * Microsoft Entra admin role on SQL Managed Instance:
 
-  To assign read permissions on SQL Managed Instance, you must be an Azure Global Admin with a SQL Managed Instance. See [Configure and manage Microsoft Entra authentication with SQL Managed Instance](/azure/azure-sql/database/authentication-aad-configure) and follow the steps to provision a Microsoft Entra admin (SQL Managed Instance). 
+  To assign read permissions on SQL Managed Instance, you must be an Azure Global Admin with a SQL Managed Instance. See [Configure and manage Microsoft Entra authentication with SQL Managed Instance](/azure/azure-sql/database/authentication-aad-configure) and follow the steps to provision a Microsoft Entra admin (SQL Managed Instance).
 
-* [Configure a public endpoint and network security group in SQL Managed Instance](search-how-to-index-sql-managed-instance.md) to allow connections from Azure AI Search. Connecting through a Shared Private Link when using a managed identity isn't currently supported.
+* [Configure a public endpoint and network security group in SQL Managed Instance](search-how-to-index-sql-managed-instance.md) to allow connections from Azure AI Search. Connecting through a shared private link when using a managed identity isn't currently supported.
 
-## 1 - Assign permissions to read the database
+## Assign permissions to read the database
 
 Follow these steps to assign the search service system managed identity permission to read the SQL Managed database.
 
 1. Connect to your SQL Managed Instance through SQL Server Management Studio (SSMS) by using one of the following methods:
 
     - [Configure a point-to-site connection from on-premises](/azure/azure-sql/managed-instance/point-to-site-p2s-configure)
-    - [Configure an Azure VM](/azure/azure-sql/managed-instance/connect-vm-instance-configure)
+    - [Configure an Azure virtual machine](/azure/azure-sql/managed-instance/connect-vm-instance-configure)
 
 1. Authenticate with your Microsoft Entra account.
 
    :::image type="content" source="./media/search-index-azure-sql-managed-instance-with-managed-identity/sql-login.png" alt-text="Showing screenshot of the Connect to Server dialog.":::
 
-3. From the left pane, locate the SQL database you are using as data source for indexing and right-click it. Select **New Query**. 
+1. From the left pane, locate the SQL database you're using as data source for indexing and right-click it. Select **New Query**.
 
    :::image type="content" source="./media/search-index-azure-sql-managed-instance-with-managed-identity/new-sql-query.png" alt-text="Showing screenshot of new SQL query.":::
 
+1. In the T-SQL window, copy the following commands and include the brackets around your search service name. Select **Execute**.
 
-4. In the T-SQL window, copy the following commands and include the brackets around your search service name. Click on **Execute**.
-
-    
     ```sql
     CREATE USER [insert your search service name here or user-assigned managed identity name] FROM EXTERNAL PROVIDER;
     EXEC sp_addrolemember 'db_datareader', [insert your search service name here or user-assigned managed identity name];
@@ -69,9 +67,9 @@ sp_droprolemember 'db_datareader', [insert your search service name or user-assi
 DROP USER IF EXISTS [insert your search service name or user-assigned managed identity name];
 ```
 
-## 2 - Add a role assignment
+## Add a role assignment
 
-In this step, you'll give your Azure AI Search service permission to read data from your SQL Managed Instance.
+In this step, you give your Azure AI Search service permission to read data from your SQL Managed Instance.
 
 1. In the Azure portal, navigate to your SQL Managed Instance page.
 1. Select **Access control (IAM)**.
@@ -79,8 +77,7 @@ In this step, you'll give your Azure AI Search service permission to read data f
 
    :::image type="content" source="./media/search-index-azure-sql-managed-instance-with-managed-identity/access-control-add-role-assignment.png" alt-text="Showing screenshot of the Access Control page." lightbox="media/search-index-azure-sql-managed-instance-with-managed-identity/access-control-add-role-assignment.png":::
 
-
-4. Select **Reader** role.
+1. Select **Reader** role.
 1. Leave **Assign access to** as **Microsoft Entra user, group, or service principal**.
 1. If you're using a system-assigned managed identity, search for your search service, then select it. If you're using a user-assigned managed identity, search for the name of the user-assigned managed identity, then select it. Select **Save**.
 
@@ -88,20 +85,20 @@ In this step, you'll give your Azure AI Search service permission to read data f
 
     :::image type="content" source="./media/search-index-azure-sql-managed-instance-with-managed-identity/add-role-assignment.png" alt-text="Showing screenshot of the member role assignment.":::
 
-## 3 - Create the data source
+## Create the data source
 
 Create the data source and provide a system-assigned managed identity. 
 
 ### System-assigned managed identity
 
-The [REST API](/rest/api/searchservice/data-sources/create), Azure portal, and the [.NET SDK](/dotnet/api/azure.search.documents.indexes.models.searchindexerdatasourceconnection) support system-assigned managed identity. 
+The [REST API](/rest/api/searchservice/data-sources/create), Azure portal, and the [.NET SDK](/dotnet/api/azure.search.documents.indexes.models.searchindexerdatasourceconnection) support system-assigned managed identity.
 
-When you're connecting with a system-assigned managed identity, the only change to the data source definition is the format of the "credentials" property. You'll provide an Initial Catalog or Database name and a `ResourceId` that has no account key or password. The `ResourceId` must include the subscription ID of SQL Managed Instance, the resource group of SQL Managed instance, and the name of the SQL database. 
+When you're connecting with a system-assigned managed identity, the only change to the data source definition is the format of the "credentials" property. You provide an Initial Catalog or Database name and a `ResourceId` that has no account key or password. The `ResourceId` must include the subscription ID of SQL Managed Instance, the resource group of SQL Managed instance, and the name of the SQL database.
 
 Here's an example of how to create a data source to index data from a storage account using the [Create Data Source](/rest/api/searchservice/data-sources/create) REST API and a managed identity connection string. The managed identity connection string format is the same for the REST API, .NET SDK, and the Azure portal.  
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2020-06-30
+POST https://[service name].search.windows.net/datasources?api-version=2024-07-01
 Content-Type: application/json
 api-key: [admin key]
 
@@ -117,14 +114,14 @@ api-key: [admin key]
 } 
 ```
 
-## 4 - Create the index
+## Create the index
 
 The index specifies the fields in a document, attributes, and other constructs that shape the search experience.
 
-Here's a [Create Index](/rest/api/searchservice/indexes/create) REST API call with a searchable `booktitle` field:   
+Here's a [Create Index](/rest/api/searchservice/indexes/create) REST API call with a searchable `booktitle` field:
 
 ```http
-POST https://[service name].search.windows.net/indexes?api-version=2020-06-30
+POST https://[service name].search.windows.net/indexes?api-version=2024-07-01
 Content-Type: application/json
 api-key: [admin key]
 
@@ -137,14 +134,14 @@ api-key: [admin key]
 }
 ```
 
-## 5 - Create the indexer
+## Create the indexer
 
-An indexer connects a data source with a target search index, and provides a schedule to automate the data refresh. Once the index and data source have been created, you're ready to create the indexer.
+An indexer connects a data source with a target search index, and provides a schedule to automate the data refresh. Once the index and data source are created, you're ready to create the indexer.
 
 Here's a [Create Indexer](/rest/api/searchservice/indexers/create) REST API call with an Azure SQL indexer definition. The indexer runs when you submit the request.
 
 ```http
-POST https://[service name].search.windows.net/indexers?api-version=2020-06-30
+POST https://[service name].search.windows.net/indexers?api-version=2024-07-01
 Content-Type: application/json
 api-key: [admin key]
 
@@ -157,7 +154,7 @@ api-key: [admin key]
 
 ## Troubleshooting
 
-If you get an error when the indexer tries to connect to the data source that says that the client is not allowed to access the server, take a look at [common indexer errors](./search-indexer-troubleshooting.md).
+If you get an error when the indexer tries to connect to the data source that says that the client isn't allowed to access the server, see the [common indexer errors](./search-indexer-troubleshooting.md).
 
 You can also rule out any firewall issues by trying the connection with and without restrictions in place.
 

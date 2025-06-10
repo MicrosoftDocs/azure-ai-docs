@@ -2,12 +2,15 @@
 title: Include file
 description: Include file
 author: sdgilley
-ms.reviewer: deeikele
 ms.author: sgilley
+ms.reviewer: deeikele
+ms.date: 05/05/2025
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 05/05/2025
-ms.custom: include
+ms.custom:
+  - include
+  - build-aifnd
+  - build-2025
 ---
 
 > [!TIP]
@@ -18,12 +21,15 @@ ms.custom: include
 * This project type gives you the best support for:
 
     * Agents
-    * AI Model Inference including Azure Open AI	
+    * AI Model Inference including Azure OpenAI	
     * AI Foundry API that works with agents and across models	
     * Project files (directly upload files and start experimenting)
     * Evaluations
     * Fine-tuning
     * Playgrounds
+
+* You can also [Use a Bicep file](../how-to/create-azure-ai-project-template.md) to create a [!INCLUDE [fdp-project-name](fdp-project-name.md)].
+
 
 ## Prerequisites
 
@@ -51,21 +57,22 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 
 ---
 
-## Create a project
+## Create a [!INCLUDE [fdp-project-name](fdp-project-name.md)]
 
 # [Azure AI Foundry portal](#tab/ai-foundry)
 
-To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)] in [Azure AI Foundry](https://ai.azure.com), follow these steps:
+To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)] in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), follow these steps:
 
-1. Go to [Azure AI Foundry](https://ai.azure.com). If you are in a project, select **Azure AI Foundry** at the top left of the page to go to the **Home** page.
-1. In the middle of the page, select **Start building**. This creates a project and also include steps to start working with a basic agent.
-1. Or select **+ Create project** in the top right corner of the page if you have existing projects. This creates the project alone, without extra steps to start working with an agent.
-1. Enter a name for the project.
-1. Select **Create**. Or, if you want to customize your settings, follow the steps in the next section.
+1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+
+1. [!INCLUDE [create-project-access](create-project-access.md)]
+
+1. Select **Azure AI Foundry resource**, then select **Next**.
+1. Provide a name for your project and select **Create**.  Or see next section for advanced options.
 
 ### Advanced options
 
-A [!INCLUDE [fdp-project-name](fdp-project-name.md)] is created on an `AIServices` resource. This resource is created for you automatically when you create the project. 
+A [!INCLUDE [fdp-project-name](fdp-project-name.md)] is created on an `AI Foundry` resource. This resource is created for you automatically when you create the project. 
 
 To customize the settings for your project, follow these steps:
 
@@ -84,8 +91,8 @@ To customize the settings for your project, follow these steps:
 
 To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
-1. Install azure-identity: `pip install azure-identity azure_mgmt_cognitiveservices`. If in a notebook cell, use `%pip install azure-identity azure_mgmt_cognitiveservices`.
-
+1. Install packages: `pip install azure-identity azure-mgmt-cognitiveservices`. If in a notebook cell, use `%pip install azure-identity azure-mgmt-cognitiveservices`.
+1. Use `pip show azure-mgmt-cognitiveservices` to verify your version is 13.7 or greater.
 1. Use the following code to create a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)].  This example creates the project in West US:
 
     ```python
@@ -166,9 +173,9 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
     [!INCLUDE [cli-create-project](cli-create-project.md)]
  -->
 
----
+CLI commands not currently available for creating a [!INCLUDE [fdp-project-name](fdp-project-name.md)].
 
-CLI comannds not currently available for creating a [!INCLUDE [fdp-project-name](fdp-project-name.md)].
+---
 
 ## Create multiple projects on the same resource
 
@@ -180,7 +187,7 @@ CLI comannds not currently available for creating a [!INCLUDE [fdp-project-name]
 
 On the project **Home** page, you can find information about the project.
 
-- Name: The name of the project appears in the top left corner. You can rename the project using the edit tool.
+- Name: The name of the project appears in the top left corner. 
 - Subscription: The subscription that hosts the hub that hosts the project.
 - Resource group: The resource group that hosts the hub that hosts the project.
 

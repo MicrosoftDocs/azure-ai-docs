@@ -2,13 +2,15 @@
 title: Content filtering for Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
 description: Learn about the content filtering capabilities of Azure AI Foundry Models.
-author: santiagxf
-ms.author: fasantia
+author: msakande
+ms.author: mopeakande
 ms.service: azure-ai-model-inference
-ms.topic: conceptual 
-ms.date: 1/21/2025
+ms.topic: concept-article
+ms.date: 05/19/2025
 ms.custom: ignite-2024, github-universe-2024
-manager: nitinme
+manager: scottpolly
+ms.reviewer: fasantia
+reviewer: santiagxf
 ---
 
 

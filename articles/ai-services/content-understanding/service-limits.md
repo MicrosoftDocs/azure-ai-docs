@@ -3,11 +3,13 @@ title: Service quotas and limits - Content Understanding
 titleSuffix: Azure AI services
 description: Quick reference, detailed description, and best practices for working within Azure AI Content Understanding service Quotas and Limits
 author: laujan
+ms.author: lajanuar
 manager: nitinme
+ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: conceptual
-ms.date: 05/19/2025
-ms.author: lajanuar
+ms.custom:
+  - build-2025
 ---
 
 
@@ -46,7 +48,8 @@ This article offers a quick reference of the quotas and limits for the Azure AI 
 | Supported File Types | File Size | Length |
 | --- | --- | --- |
 | ✓ `.pdf`<br> ✓ `.tiff`<br> ✓ `.jpg`, `.png`, `.bmp`, `.heif` | ≤ 200 MB | ≤ 300 pages |
-| ✓ `.txt`<br> ✓ `.docx`, `.xlsx`, `.pptx` <br/> ✓ `.html`, `.md`, `.rtf` <br/> ✓ `.eml`, `.msg` <br/> ✓ `.xml`| ≤ 1 MB | ≤ 1M characters |
+| ✓ `.docx`, `.xlsx`, `.pptx` | ≤ 200 MB | ≤ 1M characters |
+| ✓ `.txt` <br/> ✓ `.html`, `.md`, `.rtf` <br/> ✓ `.eml`, `.msg` <br/> ✓ `.xml`| ≤ 1 MB | ≤ 1M characters |
 
 > [!NOTE]
 > [Pro mode](./concepts/standard-pro-modes.md) currently only supports .pdf, .tiff, and image file types as input.

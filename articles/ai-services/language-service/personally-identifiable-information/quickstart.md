@@ -2,12 +2,12 @@
 title: "Quickstart: Detect Personally Identifying Information (PII) in text"
 titleSuffix: Azure AI services
 description: Use this quickstart to start using the PII detection API.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 04/29/2025
-ms.author: jboback
+ms.date: 05/23/2025
+ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
 ms.custom: language-service-pii, mode-other, devx-track-extended-java, devx-track-js, devx-track-python

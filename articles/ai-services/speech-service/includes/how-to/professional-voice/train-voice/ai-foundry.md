@@ -9,47 +9,47 @@ ms.date: 5/19/2025
 ms.custom: include
 ---
 
-In this article, you learn how to train a custom neural voice through the Azure AI Foundry portal.
+In this article, you learn how to fine-tune a professional voice through the Azure AI Foundry portal.
 
 > [!IMPORTANT]
-> Custom neural voice training is currently only available in some regions. After your voice model is trained in a supported region, you can [copy](#copy-your-voice-model-to-another-project) it to an AI Services resource for Speech in another region as needed. For more information, see the footnotes in the [Speech service table](../../../../regions.md#regions).
+> Professional voice fine-tuning is currently only available in some regions. After your voice model is trained in a supported region, you can [copy the professional voice model](#copy-your-voice-model-to-another-project) to an Azure AI Foundry resource in another region as needed. For more information, see the footnotes in the [Speech service table](../../../../regions.md#regions).
 
-Training duration varies depending on how much data you use. It takes about 40 compute hours on average to train a custom neural voice. With an Azure AI Foundry standard (S0) resource, you can train four voices simultaneously. If you reach the limit, wait until at least one of your voice models finishes training, and then try again.
+Training duration varies depending on how much data you use. It takes about 40 compute hours on average to fine-tune a professional voice. With an Azure AI Foundry standard (S0) resource, you can train four voices simultaneously. If you reach the limit, wait until at least one of your voice models finishes training, and then try again.
 
 > [!NOTE]
 > Although the total number of hours required per [training method](#choose-a-training-method) varies, the same unit price applies to each. For more information, see the [custom neural training pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
 
 ## Choose a training method
 
-After you validate your data files, use them to build your custom neural voice model. When you create a custom neural voice, you can choose to train it with one of the following methods:
+After you validate your data files, use them to build your custom voice model. When you create a custom voice, you can choose to train it with one of the following methods:
 
-- [Neural](?tabs=neural#train-your-custom-neural-voice-model): Create a voice in the same language of your training data.
+- [Neural](?tabs=neural#train-your-custom-voice-model): Create a voice in the same language of your training data.
 
-- [Neural - cross lingual](?tabs=crosslingual#train-your-custom-neural-voice-model): Create a voice that speaks a different language from your training data. For example, with the `zh-CN` training data, you can create a voice that speaks `en-US`.
+- [Neural - cross lingual](?tabs=crosslingual#train-your-custom-voice-model): Create a voice that speaks a different language from your training data. For example, with the `zh-CN` training data, you can create a voice that speaks `en-US`.
 
-  The language of the training data and the target language must both be one of the [languages that are supported](../../../../language-support.md?tabs=tts#custom-neural-voice) for cross lingual voice training. You don't need to prepare training data in the target language, but your test script must be in the target language.
+  The language of the training data and the target language must both be one of the [languages that are supported](../../../../language-support.md?tabs=tts#professional-voice) for cross lingual voice training. You don't need to prepare training data in the target language, but your test script must be in the target language.
 
-- [Neural - multi style](?tabs=multistyle#train-your-custom-neural-voice-model): Create a custom neural voice that speaks in multiple styles and emotions, without adding new training data. Multiple style voices are useful for video game characters, conversational chatbots, audiobooks, content readers, and more.
+- [Neural - multi style](?tabs=multistyle#train-your-custom-voice-model): Create a custom voice that speaks in multiple styles and emotions, without adding new training data. Multiple style voices are useful for video game characters, conversational chatbots, audiobooks, content readers, and more.
 
   To create a multiple style voice, you need to prepare a set of general training data, at least 300 utterances. Select one or more of the preset target speaking styles. You can also create multiple custom styles by providing style samples, of at least 100 utterances per style, as extra training data for the same voice. The supported preset styles vary according to different languages. See [available preset styles across different languages](?tabs=multistyle#available-preset-styles-across-different-languages).
 
-- [Neural - multi lingual (preview)](?tabs=multilingual#train-your-custom-neural-voice-model): Create a voice that speaks multiple languages using the single-language training data. For example, with the `en-US` primary training data, you can create a voice that speaks `en-US`, `de-DE`, `zh-CN` etc. secondary languages.
+- [Neural - multi lingual (preview)](?tabs=multilingual#train-your-custom-voice-model): Create a voice that speaks multiple languages using the single-language training data. For example, with the `en-US` primary training data, you can create a voice that speaks `en-US`, `de-DE`, `zh-CN` etc. secondary languages.
 
-  The primary language of the training data and the secondary languages must be in the [languages that are supported](../../../../language-support.md?tabs=tts#custom-neural-voice) for multi lingual voice training. You don't need to prepare training data in the secondary languages.
+  The primary language of the training data and the secondary languages must be in the [languages that are supported](../../../../language-support.md?tabs=tts#professional-voice) for multi lingual voice training. You don't need to prepare training data in the secondary languages.
 
-The language of the training data must be one of the [languages that are supported](../../../../language-support.md?tabs=tts) for custom neural voice, cross-lingual, or multiple style training.
+The language of the training data must be one of the [languages that are supported](../../../../language-support.md?tabs=tts) for custom voice, cross-lingual, or multiple style training.
 
-## Train your custom neural voice model
+## Train your custom voice model
 
-To create a custom neural voice in Azure AI Foundry portal, follow these steps for one of the following methods:
+To create a custom voice in Azure AI Foundry portal, follow these steps for one of the following methods:
 
 # [Neural](#tab/neural)
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the professional voice fine-tuning task (by model name) that you [started as described in the create professional voice article](/azure/ai-services/speech-service/professional-voice-create-project).
 1. Select **Train model** > **+ Train model**. 
-1. Select **Neural** as the [training method](#choose-a-training-method) for your model. To use a different training method, see [Neural - cross lingual](?tabs=crosslingual#train-your-custom-neural-voice-model), [Neural - multi style](?tabs=multistyle#train-your-custom-neural-voice-model), [Neural - multi lingual (preview)](?tabs=multilingual#train-your-custom-neural-voice-model), or [Neural - HD Voice (preview)](?tabs=hdvoice#train-your-custom-neural-voice-model).
+1. Select **Neural** as the [training method](#choose-a-training-method) for your model. To use a different training method, see [Neural - cross lingual](?tabs=crosslingual#train-your-custom-voice-model), [Neural - multi style](?tabs=multistyle#train-your-custom-voice-model), [Neural - multi lingual (preview)](?tabs=multilingual#train-your-custom-voice-model), or [Neural - HD Voice (preview)](?tabs=hdvoice#train-your-custom-voice-model).
 
    :::image type="content" source="../../../../media/custom-voice/professional-voice/cnv-train-neural.png" alt-text="Screenshot that shows how to select neural training." lightbox="../../../../media/custom-voice/professional-voice/cnv-train-neural.png":::
 
@@ -78,11 +78,11 @@ To create a custom neural voice in Azure AI Foundry portal, follow these steps f
 
 # [Neural - cross lingual](#tab/crosslingual)
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the professional voice fine-tuning task (by model name) that you [started as described in the create professional voice article](/azure/ai-services/speech-service/professional-voice-create-project).
 1. Select **Train model** > **+ Train model**. 
-1. Select **Neural - Cross lingual** as the [training method](#choose-a-training-method) for your model. To use a different training method, see [Neural](?tabs=neural#train-your-custom-neural-voice-model), [Neural - multi style](?tabs=multistyle#train-your-custom-neural-voice-model), [Neural - multi lingual (preview)](?tabs=multilingual#train-your-custom-neural-voice-model), or [Neural - HD Voice (preview)](?tabs=hdvoice#train-your-custom-neural-voice-model).
+1. Select **Neural - Cross lingual** as the [training method](#choose-a-training-method) for your model. To use a different training method, see [Neural](?tabs=neural#train-your-custom-voice-model), [Neural - multi style](?tabs=multistyle#train-your-custom-voice-model), [Neural - multi lingual (preview)](?tabs=multilingual#train-your-custom-voice-model), or [Neural - HD Voice (preview)](?tabs=hdvoice#train-your-custom-voice-model).
 
    :::image type="content" source="../../../../media/custom-voice/professional-voice/cnv-train-neural-cross-lingual.png" alt-text="Screenshot that shows how to select neural cross lingual training." lightbox="../../../../media/custom-voice/professional-voice/cnv-train-neural-cross-lingual.png":::
 
@@ -107,11 +107,11 @@ To create a custom neural voice in Azure AI Foundry portal, follow these steps f
 
 # [Neural - multi style](#tab/multistyle)
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the professional voice fine-tuning task (by model name) that you [started as described in the create professional voice article](/azure/ai-services/speech-service/professional-voice-create-project).
 1. Select **Train model** > **+ Train model**. 
-1. Select **Neural - multi style** as the [training method](#choose-a-training-method) for your model. To use a different training method, see [Neural](?tabs=neural#train-your-custom-neural-voice-model), [Neural - cross lingual](?tabs=crosslingual#train-your-custom-neural-voice-model), [Neural - multi lingual (preview)](?tabs=multilingual#train-your-custom-neural-voice-model), or [Neural - HD Voice (preview)](?tabs=hdvoice#train-your-custom-neural-voice-model).
+1. Select **Neural - multi style** as the [training method](#choose-a-training-method) for your model. To use a different training method, see [Neural](?tabs=neural#train-your-custom-voice-model), [Neural - cross lingual](?tabs=crosslingual#train-your-custom-voice-model), [Neural - multi lingual (preview)](?tabs=multilingual#train-your-custom-voice-model), or [Neural - HD Voice (preview)](?tabs=hdvoice#train-your-custom-voice-model).
 
    :::image type="content" source="../../../../media/custom-voice/professional-voice/cnv-train-neural-multi-style.png" alt-text="Screenshot that shows how to select neural multi style training." lightbox="../../../../media/custom-voice/professional-voice/cnv-train-neural-multi-style.png":::
 
@@ -150,11 +150,11 @@ The following table summarizes the different preset styles according to differen
 
 # [Neural - multi lingual (preview)](#tab/multilingual)
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the professional voice fine-tuning task (by model name) that you [started as described in the create professional voice article](/azure/ai-services/speech-service/professional-voice-create-project).
 1. Select **Train model** > **+ Train model**. 
-1. Select **Neural - multi lingual** as the [training method](#choose-a-training-method) for your model. To use a different training method, see [Neural](?tabs=neural#train-your-custom-neural-voice-model), [Neural - cross lingual](?tabs=crosslingual#train-your-custom-neural-voice-model), [Neural - multi style](?tabs=multistyle#train-your-custom-neural-voice-model), or [Neural - HD Voice (preview)](?tabs=hdvoice#train-your-custom-neural-voice-model).
+1. Select **Neural - multi lingual** as the [training method](#choose-a-training-method) for your model. To use a different training method, see [Neural](?tabs=neural#train-your-custom-voice-model), [Neural - cross lingual](?tabs=crosslingual#train-your-custom-voice-model), [Neural - multi style](?tabs=multistyle#train-your-custom-voice-model), or [Neural - HD Voice (preview)](?tabs=hdvoice#train-your-custom-voice-model).
 
    :::image type="content" source="../../../../media/custom-voice/professional-voice/cnv-train-neural-multi-lingual.png" alt-text="Screenshot that shows how to select neural multi lingual training." lightbox="../../../../media/custom-voice/professional-voice/cnv-train-neural-multi-lingual.png":::
 
@@ -178,7 +178,7 @@ The following table summarizes the different preset styles according to differen
 
 # [Neural - HD Voice (preview)](#tab/hdvoice)
 
-HD voice training isn't yet supported in the Azure AI Foundry portal. To train an HD voice, you must use the [Speech Studio](https://speech.microsoft.com/portal). For more information, see [the corresponding Speech Studio documentation](?tabs=hdvoice&pivots=speech-studio#train-your-custom-neural-voice-model).
+HD voice training isn't yet supported in the Azure AI Foundry portal. To train an HD voice, you must use the [Speech Studio](https://speech.microsoft.com/portal). For more information, see [the corresponding Speech Studio documentation](?tabs=hdvoice&pivots=speech-studio#train-your-custom-voice-model).
 
 ---
 
@@ -213,7 +213,7 @@ You have to clone your model to rename it. You can't rename the model directly.
 After your voice model is successfully built, you can use the generated sample audio files to test it before you deploy it.
 
 > [!NOTE]
-> [Neural - multi lingual (preview)](?tabs=multilingual#train-your-custom-neural-voice-model) and [Neural - HD Voice (preview)](?tabs=hdvoice#train-your-custom-neural-voice-model) do not support this type of testing.
+> [Neural - multi lingual (preview)](?tabs=multilingual#train-your-custom-voice-model) and [Neural - HD Voice (preview)](?tabs=hdvoice#train-your-custom-voice-model) do not support this type of testing.
 
 The quality of the voice depends on many factors, such as:
 
@@ -266,18 +266,18 @@ Updating the engine creates a new version of the model at no extra cost. After y
 
 After you create a new endpoint, you need to [transfer the traffic to the new endpoint in your product](../../../../professional-voice-deploy-endpoint.md#switch-to-a-new-voice-model-in-your-product).
 
-To learn more about the capabilities and limits of this feature, and the best practice to improve your model quality, see [Characteristics and limitations for using custom neural voice](/legal/cognitive-services/speech-service/custom-neural-voice/characteristics-and-limitations-custom-neural-voice?context=%2fazure%2fcognitive-services%2fspeech-service%2fcontext%2fcontext).
+To learn more about the capabilities and limits of this feature, and the best practice to improve your model quality, see [Characteristics and limitations for using custom voice](/legal/cognitive-services/speech-service/custom-neural-voice/characteristics-and-limitations-custom-neural-voice?context=%2fazure%2fcognitive-services%2fspeech-service%2fcontext%2fcontext).
 
 ## Copy your voice model to another project
 
 > [!NOTE]
 > In this context "project" refers to a fine-tuning task rather than an Azure AI Foundry project. 
 
-Custom neural voice training is currently only [available in some regions](../../../../regions.md#regions). After training you can copy a fine-tuned custom voice from a supported region to another region.
+After training you can copy your voice model to another project for the same region or another region. 
 
-You can copy your voice model to another project for the same region or another region. For example, you can copy a neural voice model that was trained in one region, to a project for another region.
+For example, you can copy a proffessional voice model that was trained in one region, to a project for another region. Professional voice fine-tuning is currently only [available in some regions](../../../../regions.md#regions). 
 
-To copy your custom neural voice model to another project:
+To copy your custom voice model to another project:
 
 1. On the **Train model** tab, select a voice model that you want to copy, and then select **Copy to project**.
 1. Select the **Subscription**, **Target region**, **Connected AI Service resource** (AI Foundry resource), and **Target fine-tuning task** where you want to copy the model. 

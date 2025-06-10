@@ -72,10 +72,8 @@ items:
           href: how-to/develop/semantic-kernel.md
   - name: Deploy Azure OpenAI in Foundry Models
     items:
-    - name: Azure OpenAI in Azure AI Foundry portal
-      href: azure-openai-in-azure-ai-foundry.md
     - name: Use Azure OpenAI in Azure AI Foundry portal
-      href: ai-services/how-to/connect-azure-openai.md
+      href: ai-services/how-to/connect-azure-openai.md?context=/azure/ai-foundry/context/context
     - name: Supported Azure OpenAI models
       href: ../ai-services/openai/concepts/models.md?context=/azure/ai-foundry/context/context
     - name: Azure OpenAI deployment types
@@ -276,8 +274,6 @@ items:
       href: ../ai-services/speech-service/pronunciation-assessment-tool.md?context=/azure/ai-foundry/context/context
     - name: Speech translation
       href: ../ai-services/speech-service/get-started-speech-translation.md?context=/azure/ai-foundry/context/context
-    - name: Hear and speak with chat in the playground
-      href: quickstarts/hear-speak-playground.md
   - name:  Translator
     items:
     - name: What is Azure AI Translator?
@@ -415,10 +411,14 @@ items:
         displayName: accuracy,metrics
    - name: AI red teaming
      items:
-      - name: AI red teaming overview
+      - name: AI red teaming agent overview
         href: concepts/ai-red-teaming-agent.md
-      - name: Run automated scans with AI Red Teaming Agent
+      - name: Run red teaming scans locally (Azure AI Evaluation SDK)
         href: how-to/develop/run-scans-ai-red-teaming-agent.md
+      - name: Run red teaming scans in the cloud (Azure AI Foundry SDK)
+        href: how-to/develop/run-ai-red-teaming-cloud.md
+      - name: View red teaming results in the portal
+        href: how-to/view-ai-red-teaming-results.md
    - name: CI/CD evaluations 
      items:
       - name: Evaluation in GitHub Actions 
@@ -595,12 +595,25 @@ items:
     - name: Plan and manage costs for AI Foundry resources
       href: how-to/costs-plan-manage.md
       displayName: pricing, budget, estimate
-    - name: Manage quotas and limits for Foundry Models
-      href: ../ai-foundry/model-inference/quotas-limits.md?context=/azure/ai-foundry/context/context
     - name: Manage quotas
       href: how-to/quota.md
     - name: Increase rate limit
       href: how-to/autoscale.md
+  - name: Cost management for Foundry Models
+    items:
+    - name: Manage quotas and limits for Foundry Models
+      href: ../ai-foundry/model-inference/quotas-limits.md?context=/azure/ai-foundry/context/context
+    - name: What is the Provisioned Throughput offering (PTU)?
+      href: ../ai-services/openai/concepts/provisioned-throughput.md?context=/azure/ai-foundry/context/context
+      displayName: PTU, provisioned, provisioned throughput units
+    - name: Understanding and calculating PTU costs 
+      href: ../ai-services/openai/how-to/provisioned-throughput-onboarding.md?context=/azure/ai-foundry/context/context
+      displayName: PTU, provisioned, provisioned throughput units
+    - name: Get started with Provisioned Deployments
+      href: ../ai-services/openai/how-to/provisioned-get-started.md?context=/azure/ai-foundry/context/context
+      displayName: PTU, provisioned, provisioned throughput units
+    - name: Provisioned spillover
+      href: ../ai-services/openai/how-to/spillover-traffic-management.md?context=/azure/ai-foundry/context/context
 - name: Security & Governance
   items:
   - name: Identity & access management

@@ -5,10 +5,12 @@ description: Learn about Azure AI Content Understanding face solutions.
 author: laujan
 ms.author: quentinm
 manager: nitinme
+ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 05/19/2025
-ms.custom: build-2025-understanding-refresh
+ms.custom:
+  - build-2025-understanding-refresh
+  - build-2025
 ---
 
 # Azure AI Content Understanding face solutions (preview)
@@ -92,4 +94,4 @@ Azure AI Content Understanding adheres to Microsoft's strict policies on custome
 ## Next steps
 
 * Learn how to build a [**person directory**](../tutorial/build-person-directory.md).
-* Review code sample: [**person directory**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/zhizho/face/notebooks/build_person_directory.ipynb).
+* Review code sample: [**person directory**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/notebooks/build_person_directory.ipynb).

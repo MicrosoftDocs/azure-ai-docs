@@ -5,7 +5,7 @@ description: Learn how Azure Machine Learning integrates with a local Git reposi
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.topic: conceptual
+ms.topic: concept-article
 author: Blackmist
 ms.author: larryfr
 ms.reviewer: osiotugo

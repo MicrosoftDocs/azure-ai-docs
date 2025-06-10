@@ -1,15 +1,17 @@
 ---
 title: Model versions in Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
-description: Learn about model versions in Foundry Models. 
+description: Learn about model versions in Foundry Models.
 ms.service: azure-ai-model-inference
-ms.topic: conceptual
-ms.custom: ignite-2024, github-universe-2024 
-ms.date: 1/21/2025
-manager: nitinme
-author: santiagxf
-ms.author: fasantia
+ms.topic: concept-article
+ms.custom: ignite-2024, github-universe-2024
+ms.date: 05/19/2025
+manager: scottpolly
+author: msakande
+ms.author: mopeakande
 recommendations: false
+ms.reviewer: fasantia
+reviewer: santiagxf
 ---
 
 # Model versions in Azure AI Foundry Models

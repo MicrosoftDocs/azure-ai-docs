@@ -1,14 +1,15 @@
 ---
-title: Planning red teaming for large language models (LLMs) and their applications 
+title: Planning red teaming for large language models (LLMs) and their applications
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn about how red teaming and adversarial testing are an essential practice in the responsible development of systems and features using large language models (LLMs)
-ms.service: azure-ai-openai
-ms.topic: conceptual
-ms.date: 03/27/2025
-manager: nitinme
 author: mrbullwinkle
 ms.author: mbullwin
-recommendations: false
+manager: nitinme
+ms.date: 03/27/2025
+ms.service: azure-ai-openai
+ms.topic: conceptual
+ms.custom:
+  - build-2025
 ---
 
 # Planning red teaming for large language models (LLMs) and their applications

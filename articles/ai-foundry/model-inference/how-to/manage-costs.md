@@ -1,12 +1,15 @@
 ---
 title: Plan to manage costs for Azure AI Foundry Models
 description: Learn how to plan for and manage costs for Azure AI Foundry Models by using cost analysis in the Azure portal.
-author: santiagxf
-ms.author: fasantia 
+author: ssalgadodev
+ms.author: ssalgado
 ms.custom: subject-cost-optimization
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 1/21/2025
+ms.date: 05/19/2025
+manager: scottpolly
+ms.reviewer: fasantia
+reviewer: santiagxf
 ---
 
 # Plan to manage costs for Azure AI Foundry Models
@@ -33,7 +36,7 @@ Costs per token vary depending on which model series you choose but in all cases
 
 To understand the breakdown of what makes up the cost, it can be helpful to use **Cost Analysis** tool in Azure portal. Follow these steps to understand the cost of inference:
 
-1. Go to [Azure AI Foundry Portal](https://ai.azure.com).
+1. Go to [Azure AI Foundry Portal](https://ai.azure.com/?cid=learnDocs).
 
 2. In the upper right corner of the screen, select on the name of your Azure AI Foundry resource (formerly known as Azure AI Services), or if you're working on an AI project, on the name of the project.
 
@@ -88,7 +91,7 @@ You can get more detailed billing information by using **Cost Analysis**:
 
 To understand the breakdown of what makes up that cost, it can be helpful to use **Cost Analysis** tool in Azure portal.
 
-1. Go to [Azure AI Foundry Portal](https://ai.azure.com).
+1. Go to [Azure AI Foundry Portal](https://ai.azure.com/?cid=learnDocs).
 
 2. In the upper right corner of the screen, select on the name of your Azure AI Services resource, or if you're working on an AI project, on the name of the project.
 

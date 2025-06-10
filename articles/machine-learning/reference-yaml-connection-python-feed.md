@@ -1,17 +1,18 @@
 ---
-title: 'CLI (v2) Python feed connection YAML schema'
+title: "CLI (v2) Python feed connection YAML schema"
 titleSuffix: Azure Machine Learning
 description: Reference documentation for the CLI (v2) Python feed connections YAML schema.
-services: machine-learning
-ms.service: azure-machine-learning
-ms.subservice: core
-ms.custom: build-2024, devx-track-python
-ms.topic: reference
-
 author: Blackmist
 ms.author: larryfr
-ms.date: 05/09/2024
 ms.reviewer: ambadal
+ms.date: 05/09/2024
+ms.service: azure-machine-learning
+ms.subservice: core
+ms.topic: reference
+ms.custom:
+  - build-2024
+  - devx-track-python
+  - build-2025
 ---
 
 # CLI (v2) Python feed connection YAML schema

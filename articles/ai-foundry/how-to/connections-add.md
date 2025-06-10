@@ -23,7 +23,7 @@ zone_pivot_groups: project-type
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In this article, you learn how to add a new connection in [Azure AI Foundry portal](https://ai.azure.com).
+In this article, you learn how to add a new connection in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 Connections are a way to authenticate and consume both Microsoft and other resources within your Azure AI Foundry projects. They're required for scenarios such as building Standard Agents or building with Agent knowledge tools.
 
@@ -53,7 +53,7 @@ Here's a table of some of the available connection types in Azure AI Foundry por
 |-------------------------------|:-------:|:--------------------------------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Azure AI Search               |         | ✓                                      | Azure AI Search is an Azure resource that supports information retrieval over your vector and textual data stored in search indexes.                                                   |
 | Azure Storage                 |         | ✓                                      | Azure Storage is a cloud storage solution for storing unstructured data like documents, images, videos, and application installers.                                                   |
-| Azure Cosmos DB                |         | ✓                                      | Azure Cosmos DB is a globally distributed, multi-model database service that offers low latency, high availability, and scalability across multiple geographical regions.                |
+| Azure Cosmos DB               | ✓       | ✓                                      | Azure Cosmos DB is a globally distributed, multi-model database service that offers low latency, high availability, and scalability across multiple geographical regions.                |
 | Azure OpenAI                  |         |                                        | Azure OpenAI is a service that provides access to OpenAI's models including the GPT-4o, GPT-4o mini, GPT-4, GPT-4 Turbo with Vision, GPT-3.5-Turbo, DALLE-3, and Embeddings model series with the security and enterprise capabilities of Azure. |
 | Application Insights          |         |                                        | Azure Application Insights is a service within Azure Monitor that enables developers and DevOps teams to automatically detect performance anomalies, diagnose issues, and gain deep insights into application usage and behavior through powerful telemetry and analytics tools. |
 | API key                       |         |                                        | API Key connections handle authentication to your specified target on an individual basis. |
@@ -63,7 +63,7 @@ Here's a table of some of the available connection types in Azure AI Foundry por
 
 ## Agent knowledge tool connections
 
-To help AI Agents make well-informed decisions with confidence, knowledge serves as the foundation for generating accurate and grounded responses. Connections are supported to the following knowledge tools to build your Agents. Connections to the following knowledge tools can be created through [Azure AI Foundry](https://ai.azure.com):
+To help AI Agents make well-informed decisions with confidence, knowledge serves as the foundation for generating accurate and grounded responses. Connections are supported to the following knowledge tools to build your Agents. Connections to the following knowledge tools can be created through [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs):
 
 - Microsoft Fabric
 - Grounding with Bing Search
@@ -80,7 +80,7 @@ To learn more about Agent Knowledge tools, see [Knowledge tool overview](https:/
 
 Follow these steps to create a new connection that's only available for the current project.
 
-1. Go to your project in [Azure AI Foundry portal](https://ai.azure.com). If you don't have a project, [create a new project](./create-projects.md).
+1. Go to your project in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). If you don't have a project, [create a new project](./create-projects.md).
 1. Select __Management center__ from the bottom left navigation.
 1. Select __Connected resources__ from the __Project__ section.
 1. Select __+ New connection__ from the __Connected resources__ section.

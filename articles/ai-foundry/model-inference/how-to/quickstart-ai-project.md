@@ -4,12 +4,14 @@ titleSuffix: Azure AI Foundry
 description: Learn how to upgrade your AI project to use models deployed in Azure AI Foundry Models in Azure AI Foundry Service
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 1/21/2025
+ms.date: 05/19/2025
 ms.custom: ignite-2024, github-universe-2024
-manager: nitinme
-author: santiagxf
-ms.author: fasantia 
+manager: scottpolly
+author: ssalgadodev
+ms.author: ssalgado
 recommendations: false
+ms.reviewer: fasantia
+reviewer: santiagxf
 ---
 
 # Configure your AI project to use Azure AI Foundry Models
@@ -39,14 +41,14 @@ To complete this tutorial, you need:
 * An Azure AI project and Azure AI Hub.
 
     > [!TIP]
-    > When your AI hub is provisioned, an Azure AI services resource is created with it and the two resources connected. To see which Azure AI services resource is connected to your project, go to the [Azure AI Foundry portal](https://ai.azure.com) > **Management center** > **Connected resources**, and find the connections of type **AI Services**. 
+    > When your AI hub is provisioned, an Azure AI services resource is created with it and the two resources connected. To see which Azure AI services resource is connected to your project, go to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) > **Management center** > **Connected resources**, and find the connections of type **AI Services**. 
 
 
 ## Configure the project to use Foundry Models
 
 To configure the project to use the Foundry Models capability in Azure AI Foundry Services, follow these steps:
 
-1. Go to [Azure AI Foundry portal](https://ai.azure.com).
+1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 2. At the top navigation bar, over the right corner, select the **Preview features** icon. A contextual blade shows up at the right of the screen.
 
@@ -169,7 +171,7 @@ After you refactored your code, you might want to delete the existing standard d
 
 For each model deployed as standard deployments, follow these steps:
 
-1. Go to [Azure AI Foundry portal](https://ai.azure.com).
+1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 2. Select **Models + endpoints**.
 

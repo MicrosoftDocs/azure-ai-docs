@@ -1,9 +1,9 @@
 ---
-author: charles-fu
+author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 03/18/2025
-ms.author: changfu001
+ms.author: eur
 ---
 
 [!INCLUDE [Introduction](intro.md)]

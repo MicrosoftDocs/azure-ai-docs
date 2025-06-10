@@ -20,7 +20,7 @@ In this how-to guide, you learn how to use text to speech avatar with real-time 
 To get started, make sure you have the following prerequisites:
 
 - **Azure subscription:** [Create one for free](https://azure.microsoft.com/free/cognitive-services).
-- **Speech resource:** <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices"  title="Create an AI Foundry resource for Speech"  target="_blank">Create a speech resource</a> in the Azure portal. Select "Standard S0" pricing tier if you want to create speech resource to access avatar. 
+- **Speech resource:** <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry"  title="Create an AI Foundry resource for Speech"  target="_blank">Create a speech resource</a> in the Azure portal. Select "Standard S0" pricing tier if you want to create speech resource to access avatar. 
 - **Your speech resource key and region:** After your Speech resource is deployed, select **Go to resource** to view and manage keys. 
 
 ## Set up environment
@@ -65,7 +65,7 @@ The default voice is the first voice returned per locale from the [voice list AP
 
 ## Select avatar character and style
 
-The supported avatar characters and styles can be found [here](avatar-gestures-with-ssml.md#supported-prebuilt-avatar-characters-styles-and-gestures).
+The supported avatar characters and styles can be found [here](avatar-gestures-with-ssml.md#supported-standard-avatar-characters-styles-and-gestures).
 
 The following code snippet shows how to set avatar character and style:
 

@@ -24,7 +24,7 @@ Azure OpenAI provides REST API access to OpenAI's powerful language models inclu
 | Price | [Available here](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) <br> For details on vision-enabled chat models, see the [special pricing information](../openai/concepts/gpt-with-vision.md#special-pricing-information).|
 | Virtual network support & private link support | Yes.  |
 | Managed Identity| Yes, via Microsoft Entra ID | 
-| UI experience | [Azure portal](https://portal.azure.com) for account & resource management, <br> [Azure AI Foundry](https://ai.azure.com) for model exploration and fine-tuning |
+| UI experience | [Azure portal](https://portal.azure.com) for account & resource management, <br> [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) for model exploration and fine-tuning |
 | Model regional availability | [Model availability](./concepts/models.md) |
 | Content filtering | Prompts and completions are evaluated against our content policy with automated systems. High severity content is filtered. |
 
@@ -41,7 +41,7 @@ Start with the [Create and deploy an Azure OpenAI resource](./how-to/create-reso
 1. When you have an Azure OpenAI resource, you can deploy a model such as GPT-4o.
 1. When you have a deployed model, you can:
 
-    - Try out the [Azure AI Foundry portal](https://ai.azure.com/) playgrounds to explore the capabilities of the models. 
+    - Try out the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) playgrounds to explore the capabilities of the models. 
     - You can also just start making API calls to the service using the REST API or SDKs.
     
     For example, you can try [real-time audio](./realtime-audio-quickstart.md) and [assistants](./assistants-quickstart.md) in the playgrounds or via code.
@@ -86,7 +86,7 @@ The total number of tokens processed in a given request depends on the length of
  
 #### Image tokens
 
-Azure OpenAI's image processing capabilities with GPT-4o, GPT-4o mini, and GPT-4 Turbo with Vision models uses image tokenization to determine the total number of tokens consumed by image inputs. The number of tokens consumed is calculated based on two main factors: the level of image detail (low or high) and the image’s dimensions. Here's how token costs are calculated:
+Azure OpenAI's image processing capabilities with GPT-4o, GPT-4o-mini, and GPT-4 Turbo with Vision models uses image tokenization to determine the total number of tokens consumed by image inputs. The number of tokens consumed is calculated based on two main factors: the level of image detail (low or high) and the image’s dimensions. Here's how token costs are calculated:
 
 - **Low resolution mode**
   - Low detail allows the API to return faster responses for scenarios that don't require high image resolution analysis. The tokens consumed for low detail images are:

@@ -1,13 +1,15 @@
 ---
-title: 'Customize a model with Azure OpenAI in Azure AI Foundry Models and the Python SDK'
+title: "Customize a model with Azure OpenAI in Azure AI Foundry Models and the Python SDK"
 titleSuffix: Azure OpenAI
 description: Learn how to create your own customized model with Azure OpenAI by using the Python SDK.
-manager: nitinme
-ms.service: azure-ai-openai
-ms.topic: include
-ms.date: 04/30/2025
 author: mrbullwinkle
 ms.author: mbullwin
+manager: nitinme
+ms.date: 04/30/2025
+ms.service: azure-ai-openai
+ms.topic: include
+ms.custom:
+  - build-2025
 ---
 
 ## Prerequisites

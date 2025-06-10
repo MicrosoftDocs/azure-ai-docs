@@ -2,13 +2,15 @@
 title: Connect to Azure Logic Apps
 titleSuffix: Azure AI Search
 description: Use an Azure Logic Apps workflow for indexer-based indexing in Azure AI Search.
-manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: azure-ai-search
-ms.custom: references_regions
-ms.topic: how-to
+manager: nitinme
 ms.date: 05/19/2025
+ms.service: azure-ai-search
+ms.topic: how-to
+ms.custom:
+  - references_regions
+  - build-2025
 ---
 
 # Use an Azure Logic Apps workflow for indexer-based indexing in Azure AI Search
@@ -50,7 +52,7 @@ Review the following requirements before you start:
 
 + You must be an **Owner** or **Contributor** in your Azure subscription, with permissions to create resources.
 
-+ Azure AI Search, basic tier or higher if you want to use a search service identity for connections to an Azure data source, otherwise you can use any tier, subject to tier limits. 
++ Azure AI Search, Basic pricing tier or higher if you want to use a search service identity for connections to an Azure data source, otherwise you can use any tier, subject to tier limits. 
 
 + Azure OpenAI, with a [supported embedding model](#supported-models) deployment. Vectorization is integrated into the workflow. If you don't need vectors, you can ignore the fields or try another indexing strategy.
 

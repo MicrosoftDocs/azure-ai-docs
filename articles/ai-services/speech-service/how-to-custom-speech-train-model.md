@@ -32,7 +32,7 @@ You can use a custom model for a limited time after it was trained. You must per
 
 ::: zone pivot="ai-foundry-portal"
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the custom speech fine-tuning task (by model name) that you [started as described in the how to start custom speech fine-tuning article](./how-to-custom-speech-create-project.md).
 1. Select **Train model** > **+ Train model**. 
@@ -78,10 +78,10 @@ After you upload [training datasets](./how-to-custom-speech-test-and-train.md), 
 
 To create a model with datasets for training, use the `spx csr model create` command. Construct the request parameters according to the following instructions:
 
-- Set the `project` property to the ID of an existing project. This property is recommended so that you can also view and manage the model in the [Azure AI Foundry portal](https://ai.azure.com). You can run the `spx csr project list` command to get available projects.
+- Set the `project` property to the ID of an existing project. This property is recommended so that you can also view and manage the model in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). You can run the `spx csr project list` command to get available projects.
 - Set the required `dataset` property to the ID of a dataset that you want used for training. To specify multiple datasets, set the `datasets` (plural) parameter and separate the IDs with a semicolon.
 - Set the required `language` property. The dataset locale must match the locale of the project. The locale can't be changed later. The Speech CLI `language` property corresponds to the `locale` property in the JSON request and response.
-- Set the required `name` property. This parameter is the name that is displayed in the [Azure AI Foundry portal](https://ai.azure.com). The Speech CLI `name` property corresponds to the `displayName` property in the JSON request and response.
+- Set the required `name` property. This parameter is the name that is displayed in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). The Speech CLI `name` property corresponds to the `displayName` property in the JSON request and response.
 - Optionally, you can set the `base` property. For example: `--base 5988d691-0893-472c-851e-8e36a0fe7aaf`. If you don't specify the `base`, the default base model for the locale is used. The Speech CLI `base` property corresponds to the `baseModel` property in the JSON request and response.
 
 Here's an example Speech CLI command that creates a model with datasets for training:
@@ -157,16 +157,16 @@ spx help csr model
 
 To create a model with datasets for training, use the [Models_Create](/rest/api/speechtotext/models/create) operation of the [Speech to text REST API](rest-speech-to-text.md). Construct the request body according to the following instructions:
 
-- Set the `project` property to the URI of an existing project. This property is recommended so that you can also view and manage the model in the [Azure AI Foundry portal](https://ai.azure.com). You can make a [Projects_List](/rest/api/speechtotext/projects/list) request to get available projects.
+- Set the `project` property to the URI of an existing project. This property is recommended so that you can also view and manage the model in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). You can make a [Projects_List](/rest/api/speechtotext/projects/list) request to get available projects.
 - Set the required `datasets` property to the URI of the datasets that you want used for training.
 - Set the required `locale` property. The model locale must match the locale of the project and base model. The locale can't be changed later.
-- Set the required `displayName` property. This property is the name that is displayed in the [Azure AI Foundry portal](https://ai.azure.com).
+- Set the required `displayName` property. This property is the name that is displayed in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 - Optionally, you can set the `baseModel` property. For example: `"baseModel": {"self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/5988d691-0893-472c-851e-8e36a0fe7aaf"}`. If you don't specify the `baseModel`, the default base model for the locale is used. 
 
-Make an HTTP POST request using the URI as shown in the following example. Replace `YourSubscriptionKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, and set the request body properties as previously described.
+Make an HTTP POST request using the URI as shown in the following example. Replace `YourSpeechResoureKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, and set the request body properties as previously described.
 
 ```azurecli-interactive
-curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey" -H "Content-Type: application/json" -d '{
+curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content-Type: application/json" -d '{
   "project": {
     "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
   },
@@ -269,7 +269,7 @@ After the model is successfully copied, you'll be notified and can view it in th
 
 ::: zone pivot="speech-cli"
 
-Copying a model directly to a project in another region isn't supported with the Speech CLI. You can copy a model to a project in another region using the [Azure AI Foundry portal](https://ai.azure.com), [Speech Studio](https://aka.ms/speechstudio/customspeech), or [Speech to text REST API](rest-speech-to-text.md).
+Copying a model directly to a project in another region isn't supported with the Speech CLI. You can copy a model to a project in another region using the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), [Speech Studio](https://aka.ms/speechstudio/customspeech), or [Speech to text REST API](rest-speech-to-text.md).
 
 ::: zone-end
 
@@ -279,10 +279,10 @@ To copy a model to another Speech resource, use the [Models_Copy](/rest/api/spee
 
 - Set the required `targetSubscriptionKey` property to the key of the destination Speech resource.
 
-Make an HTTP POST request using the URI as shown in the following example. Use the region and URI of the model you want to copy from. Replace `YourModelId` with the model ID, replace `YourSubscriptionKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, and set the request body properties as previously described.
+Make an HTTP POST request using the URI as shown in the following example. Use the region and URI of the model you want to copy from. Replace `YourModelId` with the model ID, replace `YourSpeechResoureKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, and set the request body properties as previously described.
 
 ```azurecli-interactive
-curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey" -H "Content-Type: application/json" -d '{
+curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content-Type: application/json" -d '{
   "targetSubscriptionKey": "ModelDestinationSpeechResourceKey"
 } '  "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/models/YourModelId:copy"
 ```
@@ -350,7 +350,7 @@ If you're prompted in Speech Studio, you can connect them by selecting the **Con
 
 To connect a model to a project, use the `spx csr model update` command. Construct the request parameters according to the following instructions:
 
-- Set the `project` property to the URI of an existing project. This property is recommended so that you can also view and manage the model in the [Azure AI Foundry portal](https://ai.azure.com). You can run the `spx csr project list` command to get available projects.
+- Set the `project` property to the URI of an existing project. This property is recommended so that you can also view and manage the model in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). You can run the `spx csr project list` command to get available projects.
 - Set the required `modelId` property to the ID of the model that you want to connect to the project.
 
 Here's an example Speech CLI command that connects a model to a project:
@@ -381,12 +381,12 @@ spx help csr model
 
 To connect a new model to a project of the Speech resource where the model was copied, use the [Models_Update](/rest/api/speechtotext/models/update) operation of the [Speech to text REST API](rest-speech-to-text.md). Construct the request body according to the following instructions:
 
-- Set the required `project` property to the URI of an existing project. This property is recommended so that you can also view and manage the model in the [Azure AI Foundry portal](https://ai.azure.com). You can make a [Projects_List](/rest/api/speechtotext/projects/list) request to get available projects.
+- Set the required `project` property to the URI of an existing project. This property is recommended so that you can also view and manage the model in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). You can make a [Projects_List](/rest/api/speechtotext/projects/list) request to get available projects.
 
-Make an HTTP PATCH request using the URI as shown in the following example. Use the URI of the new model. You can get the new model ID from the `self` property of the [Models_Copy](/rest/api/speechtotext/models/copy) response body. Replace `YourSubscriptionKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, and set the request body properties as previously described.
+Make an HTTP PATCH request using the URI as shown in the following example. Use the URI of the new model. You can get the new model ID from the `self` property of the [Models_Copy](/rest/api/speechtotext/models/copy) response body. Replace `YourSpeechResoureKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, and set the request body properties as previously described.
 
 ```azurecli-interactive
-curl -v -X PATCH -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey" -H "Content-Type: application/json" -d '{
+curl -v -X PATCH -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content-Type: application/json" -d '{
   "project": {
     "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
   },

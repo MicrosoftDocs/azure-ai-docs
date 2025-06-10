@@ -6,6 +6,17 @@ ms.date: 4/28/2025
 ms.author: eur
 ---
 
+### 2025-May release
+
+Add support for the latest model versions:
+- [Neural text to speech 3.10.0](../../speech-container-ntts.md)
+
+For text to speech:
+- Updated the text to speech backend and frontend engine to the latest versions.
+- Added support for multilingual custom lexicons.
+- Improved the health check functionality. The health check endpoint is now `/synthesize/health`. When the service is healthy, this endpoint returns HTTP status 200; if the service is unhealthy, it returns HTTP status 503.
+- Updated the base image to AspNet 8.0.16 to address security vulnerabilities from the March/April 2025 Microsoft ASP.NET Core Security Update.
+
 ### 2025-March release
 
 Add support for the latest model versions:
@@ -194,7 +205,7 @@ Fix the `tr-TR` capitalization issue
 
 Upgrade the speech to text `en-US` display models
 
-Add support for prebuilt neural Neural text to speech locale voice `ar-AE-HamdanNeural`
+Add support for the `ar-AE-HamdanNeural` standard voice.
 
 ### 2023-February release
 
@@ -305,7 +316,7 @@ Regular monthly updates including security upgrades and vulnerability fixes.
 
 #### Neural text to speech v2.5.0
 
-Add support for these [prebuilt neural voices](../../language-support.md?tabs=tts):
+Add support for these [standard voices](../../language-support.md?tabs=tts):
    * `az-az-babekneural`
    * `az-az-banuneural`
    * `fa-ir-dilaraneural`
@@ -341,7 +352,7 @@ Add support for using containers in [disconnected environments](../../../contain
 Regular monthly updates including security upgrades and vulnerability fixes.
 
 #### Neural-Neural text to speech Container v1.12.0
-Add support for these prebuilt neural voices: `am-et-amehaneural`, `am-et-mekdesneural`, `so-so-muuseneural`, and `so-so-ubaxneural`.
+Add support for these standard voices: `am-et-amehaneural`, `am-et-mekdesneural`, `so-so-muuseneural`, and `so-so-ubaxneural`.
 
 Regular monthly updates including security upgrades and vulnerability fixes.
 

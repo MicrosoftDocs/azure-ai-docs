@@ -136,9 +136,9 @@ items:
     - name: Use high definition (HD) voices
       href: high-definition-voices.md
       displayName: hd voice
-    - name: Custom neural voice
+    - name: Custom voice
       items:
-        - name: Custom neural voice overview
+        - name: Custom voice overview
           href: custom-neural-voice.md
           displayName: cnv
         - name: Create a professional voice
@@ -160,7 +160,7 @@ items:
             href: professional-voice-train-voice.md
           - name: "Part 5: Deploy and use your voice model"
             href: professional-voice-deploy-endpoint.md
-        - name: Custom neural voice lite
+        - name: Custom voice lite
           href: custom-neural-voice-lite.md
         - name: Personal voice
           items:
@@ -415,16 +415,6 @@ items:
         href: resiliency-and-recovery-plan.md
     - name: Migration
       items:
-        - name: Neural voice migration
-          items:
-            - name: Migration overview
-              href: migration-overview-neural-voice.md
-            - name: Migrate to custom neural voice
-              href: how-to-migrate-to-custom-neural-voice.md
-            - name: Migrate to prebuilt neural voice
-              href: how-to-migrate-to-prebuilt-neural-voice.md
-            - name: Migrate to custom voice API
-              href: migrate-to-custom-voice-api.md
         - name: Speech to text REST API migration
           items:
           - name: From Speech to text v3.2 to 2024-11-15
@@ -438,6 +428,8 @@ items:
             displayName: migrate,migration,deprecate,retire,sunset
         - name: From Long Audio API to Batch synthesis API
           href: migrate-to-batch-synthesis.md
+        - name: Migrate to custom voice API
+          href: migrate-to-custom-voice-api.md
 - name: Speech CLI
   items:
     - name: Speech CLI overview
@@ -541,13 +533,13 @@ items:
         href: /legal/cognitive-services/speech-service/disclosure-voice-talent?context=/azure/ai-services/speech-service/context/context
       - name: Disclosure design guidelines
         items:
-        - name: Custom neural voice
+        - name: Custom voice
           href: /legal/cognitive-services/speech-service/custom-neural-voice/concepts-disclosure-guidelines?context=/azure/ai-services/speech-service/context/context
         - name: Text to speech avatar
           href: /legal/cognitive-services/speech-service/custom-neural-voice/concepts-disclosure-guidelines-avatar?context=/azure/ai-services/speech-service/context/context
       - name: Disclosure design patterns
         items:
-        - name: Custom neural voice
+        - name: Custom voice
           href: /legal/cognitive-services/speech-service/custom-neural-voice/concepts-disclosure-patterns?context=/azure/ai-services/speech-service/context/context
         - name: Text to speech avatar
           href: /legal/cognitive-services/speech-service/custom-neural-voice/concepts-disclosure-patterns-avatar?context=/azure/ai-services/speech-service/context/context
@@ -581,6 +573,8 @@ items:
         href: /legal/cognitive-services/speech-service/speaker-recognition/data-privacy-speaker-recognition?context=/azure/ai-services/speech-service/context/context
 - name: Resources
   items:
+    - name: Known issues
+      href: known-issues.md
     - name: Support and help options
       href: ../cognitive-services-support-options.md?context=/azure/ai-services/speech-service/context/context
     - name: Pricing calculator

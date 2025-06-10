@@ -320,10 +320,10 @@ agentClient.Administration.DeleteAgent(agent.Id);
 :::zone pivot="javascript"
 
 ## Create an Azure AI Client
-First, create an Azure AI Client using the connection string of your project.
+First, create an Azure AI Client using the endpoint your project.
 
 ```javascript
-const projectEndpoint = process.env["PROJECT_ENDPOINT"] || "<project connection string>";
+const projectEndpoint = process.env["PROJECT_ENDPOINT"];
 
 if (!projectString) {
   throw new Error("AZURE_AI_PROJECTS_CONNECTION_STRING must be set in the environment variables");

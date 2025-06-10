@@ -2,24 +2,26 @@
 title: Create a project
 titleSuffix: Azure AI Foundry
 description: This article describes how to create an Azure AI Foundry project so you can work with generative AI in the cloud.
+author: sdgilley
+ms.author: sgilley
 manager: scottpolly
+ms.reviewer: deeikele
+ms.date: 05/20/2025
 ms.service: azure-ai-foundry
+ms.topic: how-to
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
-ms.topic: how-to
-ms.date: 04/11/2025
-ms.reviewer: deeikele
-ms.author: sgilley
-author: sdgilley
+  - build-aifnd
+  - build-2025
 zone_pivot_groups: project-type
 # customer intent: As a developer, I want to create an Azure AI Foundry project so I can work with generative AI.
 ---
 
 # Create a project for Azure AI Foundry
 
-This article describes how to create an [Azure AI Foundry](https://ai.azure.com) project. Projects are folders that let you organize your work for exploring new ideas, and as you're prototyping on a particular use cases.
+This article describes how to create an [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) project. Projects let you organize your work for exploring new ideas and as you prototype on a particular use case.
 
 Azure AI Foundry supports two types of projects: a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** and a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. For more information about the differences between these two project types, see [Types of projects](../what-is-azure-ai-foundry.md#project-types).
 
@@ -43,7 +45,6 @@ Azure AI Foundry supports two types of projects: a **[!INCLUDE [fdp](../includes
     * Project-level isolation of files and outputs
     * Evaluations
     * Playgrounds
-
 
 ## Prerequisites
 
@@ -70,7 +71,7 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 
 ---
 
-## Create a project
+## Create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]
 
 # [Azure AI Foundry portal](#tab/ai-foundry)
 
@@ -129,7 +130,7 @@ On the project **Overview** page, you can find information about the project.
 
 :::image type="content" source="../media/how-to/projects/project-settings.png" alt-text="Screenshot of an Azure AI Foundry project settings page." lightbox = "../media/how-to/projects/project-settings.png":::
 
-- Name: The name of the project appears in the top left corner. You can rename the project using the edit tool.
+- Name: The name of the project appears in the top left corner.
 - Subscription: The subscription that hosts the hub that hosts the project.
 - Resource group: The resource group that hosts the hub that hosts the project.
 
@@ -176,9 +177,7 @@ In addition, many resources are only accessible by users in your project workspa
 
 ## Related content
 
-- [Quickstart: Get started with Azure AI Foundry](../quickstarts/get-started-code.md?pivots=hub-project)
-
-- [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
+- [Quickstart: Use the chat playground in Azure AI Foundry portal](../quickstarts/get-started-playground.md)
 
 - [Learn more about hubs](../concepts/ai-resources.md)
 

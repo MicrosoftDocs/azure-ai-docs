@@ -2,10 +2,10 @@
 title: Best practices - custom question answering
 description: Use these best practices to improve your project and provide better results to your application/chat bot's end users.
 ms.service: azure-ai-language
-author: jboback
-ms.author: jboback
+author: laujan
+ms.author: lajanuar
 ms.topic: conceptual
-ms.date: 06/06/2025
+ms.date: 11/21/2024
 ms.custom: language-service-question-answering
 ---
 
@@ -55,7 +55,7 @@ Users can add as many alternate questions as they want, but only first 5 will be
 
 Semantic understanding in custom question answering should be able to take care of similar alternate questions.
 
-The return on investment will start diminishing once you exceed 10 questions. Even if you’re adding more than 10 alternate questions, try to make the initial 10 questions as semantically dissimilar as possible so that all kinds of intents for the answer are captured by these 10 questions. For the project at the beginning of this section, in question answer pair #1, adding alternate questions such as “How can I buy a car,” “I wanna buy a car” aren’t required. Whereas adding alternate questions such as “How to purchase a car,” “What are the options of buying a vehicle” can be useful.
+The return on investment will start diminishing once you exceed 10 questions. Even if you’re adding more than 10 alternate questions, try to make the initial 10 questions as semantically dissimilar as possible so that all kinds of intents for the answer are captured by these 10 questions.  For the project at the beginning of this section, in question answer pair #1, adding alternate questions such as “How can I buy a car”, “I wanna buy a car” aren’t required. Whereas adding alternate questions such as “How to purchase a car”, “What are the options of buying a vehicle” can be useful.
 
 ### When to add synonyms to a project?
 
@@ -67,11 +67,11 @@ For better relevance, you need to provide a list of acronyms that the end user i
 * `ID` – Identification
 * `ETA` – Estimated time of Arrival
 
-Other than acronyms, if you think your words are similar in context of a particular domain and generic language models won’t consider them similar, it’s better to add them as synonyms. For instance, if an auto company producing a car model X receives queries such as “my car’s audio isn’t working” and the project has questions on “fixing audio for car X,” then we need to add ‘X’ and ‘car’ as synonyms.
+Other than acronyms, if you think your words are similar in context of a particular domain and generic language models won’t consider them similar, it’s better to add them as synonyms. For instance, if an auto company producing a car model X receives queries such as “my car’s audio isn’t working” and the project has questions on “fixing audio for car X”, then we need to add ‘X’ and ‘car’ as synonyms.
 
 The transformer-based model already takes care of most of the common synonym cases, for example: `Purchase – Buy`, `Sell - Auction`, `Price – Value`. For another example, consider the following question answer pair: Q: “What is the price of Microsoft Stock?” A: “$200”.  
 
-If we receive user queries like “Microsoft stock value,”” Microsoft share value,” “Microsoft stock worth,” “Microsoft share worth,” “stock value,” etc., you should be able to get the correct answer even though these queries have words like "share", "value", and "worth", which aren’t originally present in the project.
+If we receive user queries like “Microsoft stock value”,” Microsoft share value”, “Microsoft stock worth”, “Microsoft share worth”, “stock value”, etc., you should be able to get the correct answer even though these queries have words like "share", "value", and "worth", which aren’t originally present in the project.
 
 Special characters are not allowed in synonyms.
 

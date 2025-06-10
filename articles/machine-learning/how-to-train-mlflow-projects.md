@@ -9,7 +9,7 @@ ms.reviewer: fasantia
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.date: 11/04/2022
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom: how-to, sdkv2
 ---
 

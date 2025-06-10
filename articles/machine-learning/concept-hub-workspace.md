@@ -5,7 +5,7 @@ description: Hubs provide a central way to govern security, connectivity, and co
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.topic: conceptual
+ms.topic: concept-article
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: namanjoshi
@@ -84,11 +84,11 @@ Features that are supported using hub/project workspaces differ from regular wor
 | Feature | Default workspace | Hub workspace | Project workspace | Note |
 |--|--|--|--|--|
 |Self-serve create project workspaces from Studio| - | X | X | - |
-|Create shared connections on hub | |X|X| Only in [Azure AI Foundry portal](https://ai.azure.com/) |
+|Create shared connections on hub | |X|X| Only in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) |
 |Consume shared connections from hub | |X|X| - |
 |Reuse compute instance across workspaces|-|X|X| |
 |Share compute quota across workspaces|-|X|X||
-|Build GenAI apps in [Azure AI Foundry portal](https://ai.azure.com/)|-|X|X||
+|Build GenAI apps in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs)|-|X|X||
 |Single private link endpoint across workspaces|-|X|X||
 |Managed virtual network|X|X|X|-|
 |BYO virtual network|X|-|-|Use alternative [managed virtual network](how-to-managed-network.md)|
@@ -109,6 +109,6 @@ To learn more about setting up Azure Machine Learning, see:
 + [Create and manage a workspace](how-to-manage-workspace.md)
 + [Get started with Azure Machine Learning](quickstart-create-resources.md)
 
-To learn more about hub workspace support in [Azure AI Foundry portal](https://ai.azure.com/), see:
+To learn more about hub workspace support in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), see:
 
 + [How to configure a managed network for hubs](/azure/ai-studio/how-to/configure-managed-network)

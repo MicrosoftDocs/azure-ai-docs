@@ -5,9 +5,11 @@ description: Learn about prebuilt analyzers, their scenarios, customization opti
 author: laujan
 ms.author: admaheshwari
 manager: nitinme
+ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 05/19/2025
+ms.custom:
+  - build-2025
 ---
 
 # Prebuilt analyzers in Azure AI Content Understanding
@@ -37,7 +39,7 @@ Azure AI Content Understanding offers prebuilt analyzers that extract raw conten
 
 * Extracts transcripts from video files.
 * Identifies keyframes and camera shots.
-* Divides/segments the video into meaningful sections.
+* Segments the video into meaningful sections.
 * Generates a summary for each video segment.
 
 

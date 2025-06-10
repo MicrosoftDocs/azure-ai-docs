@@ -5,9 +5,11 @@ description: Learn about Azure AI Content Understanding's document layout analys
 author: laujan
 ms.author: paulhsu
 manager: nitinme
+ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 05/19/2025
+ms.custom:
+  - build-2025
 ---
 
 # Document analysis: extracting structured content
@@ -51,14 +53,14 @@ Content Understanding generates richly formatted markdown that preserves the ori
 
 #### Words
 
-A `word` is a content element composed of a sequence of characters. Content Understanding uses word boundaries defined by [Unicode Standard Annex #29](https://www.unicode.org/reports/tr29/#Word_Boundaries). For Latin languages, words may be split from punctuation even without intervening spaces. In some language, such as Chinese, supplemental word dictionaries are used to enable word breaking at semantic boundaries. For more information, *see* [Boundary Analysis](https://unicode-org.github.io/icu/userguide/boundaryanalysis/).
+A `word` is a content element composed of a sequence of characters. Content Understanding uses word boundaries defined by [Unicode Standard Annex #29](https://www.unicode.org/reports/tr29/#Word_Boundaries). For Latin languages, words might be split from punctuation even without intervening spaces. In some language, such as Chinese, supplemental word dictionaries are used to enable word breaking at semantic boundaries. For more information, *see* [Boundary Analysis](https://unicode-org.github.io/icu/userguide/boundaryanalysis/).
 
 
 :::image type="content" source="../media/document/word-boundaries.png" alt-text="Screenshot of detected words.":::
 
 #### Selection marks
 
-A `selection mark` is a content element that represents a visual glyph indicating the state of a selection. They may be represented as check boxes, check marks, radio buttons, etc. The state of a selection mark can be selected or unselected, with different visual representation to indicate the state. They're encoded as words in the document analysis result using `☒` (selected) and `☐` (unselected).
+A `selection mark` is a content element that represents a visual glyph indicating the state of a selection. They might appear in the document as check boxes, check marks, radio buttons, etc. The state of a selection mark can be selected or unselected, with different visual representation to indicate the state. They're encoded as words in the document analysis result using `☒` (selected) and `☐` (unselected).
 
 Content Understanding detects check marks inside table cell as selection marks in the selected state. However, it doesn't detect empty table cells as selection marks in the unselected state.
 
@@ -85,7 +87,7 @@ A `barcode` is a content element that describes both linear (ex. UPC, EAN) and 2
 
 #### Formulas
 
-A `formula` is a content element representing mathematical expressions in the document. It may be an `inline` formula embedded with other text, or an `display` formula that takes up an entire line. Multiline formulas are represented as multiple `display` formula elements grouped into `paragraphs` to preserve mathematical relationships.
+A `formula` is a content element representing mathematical expressions in the document. It might be an `inline` formula embedded with other text, or an `display` formula that takes up an entire line. Multiline formulas are represented as multiple `display` formula elements grouped into `paragraphs` to preserve mathematical relationships.
 
 #### Images
 
@@ -97,14 +99,14 @@ Document layout elements are visual and structural components, such as pages, ta
 
 #### Pages
 
-A `page` is a grouping of content that typically corresponds to one side of a sheet of paper. A rendered page is characterized via `width` and `height` in the specified `unit`. In general, images use pixel while PDFs use inch. The `angle` property describes the overall text angle in degrees for pages that may be rotated.
+A `page` is a grouping of content that typically corresponds to one side of a sheet of paper. A rendered page is characterized via `width` and `height` in the specified `unit`. In general, images use pixel while PDFs use inch. The `angle` property describes the overall text angle in degrees for pages that might be rotated.
 
 > [!NOTE]
 > For spreadsheets like Excel, each sheet is mapped to a page. For presentations, like PowerPoint, each slide is mapped to a page. For file formats like HTML or Word documents, which lack a native page concept without rendering, the entire main content is treated as a single page.
 
 #### Paragraphs
 
-A `paragraph` is an ordered sequence of lines that form a logical unit. Typically, the lines share common alignment and spacing between lines. Paragraphs are often delimited via indentation, added spacing, or bullets/numbering. Some paragraphs may have special functional `role` in the document. Currently supported roles include page header, page footer, page number, title, section heading, footnote, and formula block.
+A `paragraph` is an ordered sequence of lines that form a logical unit. Typically, the lines share common alignment and spacing between lines. Paragraphs are often delimited via indentation, added spacing, or bullets/numbering. Some paragraphs have special functional `role` in the document. Currently supported roles include page header, page footer, page number, title, section heading, footnote, and formula block.
 
 #### Lines
 
@@ -112,7 +114,7 @@ A `line` is an ordered sequence of consecutive content elements, often separated
 
 #### Tables
 
-A `table` organizes content into a group of cells in a grid layout. The rows and columns may be visually separated by grid lines, color banding, or greater spacing. The position of a table cell is specified via its row and column indices. A cell can span across multiple rows and columns.
+A `table` organizes content into a group of cells in a grid layout. The rows and columns might be visually separated by grid lines, color banding, or greater spacing. The position of a table cell is specified via its row and column indices. A cell can span across multiple rows and columns.
 
 Based on its position and styling, a cell can be classified as general content, row header, column header, stub head, or description:
 
@@ -128,7 +130,7 @@ Based on its position and styling, a cell can be classified as general content, 
 
 A table caption specifies content that explains the table. A table can further have a set of footnotes. Unlike a description cell, a caption typically lies outside the grid layout. Table footnotes annotate content inside the table, often marked with footnote symbols. They're often found below the table grid.
 
-A table may span across consecutive pages of a document. In this situation, table continuations in subsequent pages generally maintain the same column count, width, and styling. They often repeat the column headers. Other than page headers, footers, and page numbers, there's generally no intervening content between the initial table and its continuations.
+A table might span across consecutive pages of a document. In this situation, table continuations in subsequent pages generally maintain the same column count, width, and styling. They often repeat the column headers. Other than page headers, footers, and page numbers, there's generally no intervening content between the initial table and its continuations.
 
 > [!NOTE]
 > The span for tables covers only the core content and exclude associated caption and footnotes.
@@ -137,7 +139,7 @@ A table may span across consecutive pages of a document. In this situation, tabl
 
 #### Sections
 
-A `section` is a logical grouping of related content elements that form a hierarchical structure within the document. It often starts with a section heading as the first paragraph. A section may contain subsections, creating a nested document structure that preserves semantic relationships.
+A `section` is a logical grouping of related content elements that form a hierarchical structure within the document. It often starts with a section heading as the first paragraph. A section might contain subsections, creating a nested document structure that preserves semantic relationships.
 
 ### Element properties
 
@@ -149,26 +151,16 @@ The `span` property specifies the logical position of the element in the documen
 
 #### Source
 
-The `source` property describes the visual position of the element in the file using an encoded string. For documents, the source string may be in one of the following formats:
+The `source` property describes the visual position of the element in the file using an encoded string. For documents, the source string can be in one of the following formats:
 * Bounding polygon: `D({pageNumber},{x1},{y1},{x2},{y2},{x3},{y3},{x4},{y4})`
 * Axis-aligned bounding box: `D({pageNumber},{left},{top},{width},{height})`
 
-Page numbers are `1-indexed`. The bounding polygon describes a sequence of points, clockwise from the left relative to the natural orientation of the element. For quadrilaterals, the points represent the top-left, top-right, bottom-right, and bottom-left corners. Each point represents the **x**, **y** coordinate in the length unit specified by the `unit` property. In general, the unit of measure for images is pixels while PDFs use inches.
+Page numbers are 1-indexed. The bounding polygon describes a sequence of points, clockwise from the left relative to the natural orientation of the element. For quadrilaterals, the points represent the top-left, top-right, bottom-right, and bottom-left corners. Each point represents the **x**, **y** coordinate in the length unit specified by the `unit` property. In general, the unit of measure for images is pixels while PDFs use inches.
 
 :::image type="content" source="../media/document/bounding-regions.png" alt-text="Screenshot of detected bounding regions.":::
 
 > [!NOTE]
-> Currently, Content Understanding only returns `4-point` quadrilaterals as bounding polygons. Future versions may return different number of points to describe more complex shapes, such as curved lines or nonrectangular images. Currently, source is only returned for elements from rendered files (pdf/image).
-
-## Supported content and layout elements
-
-Different file formats support different subsets of content and layout elements. The following table lists the currently supported elements for each file type.
-
-|Document type|Supported format|
-|-----|-----|
-|**Portable Document Format**|`.pdf`|
-|**Image**|`.jpeg/.jpg`, `.png`, `.bmp`, `.tiff`, `.heif`|
-|**Microsoft Office**|`.docx`, `.pptx`, `.xls`|
+> Currently, Content Understanding only returns 4-point quadrilaterals as bounding polygons. Future versions might return different number of points to describe more complex shapes, such as curved lines or nonrectangular images. Currently, source is only returned for elements from rendered files (pdf/image).
 
 ## Next steps
 

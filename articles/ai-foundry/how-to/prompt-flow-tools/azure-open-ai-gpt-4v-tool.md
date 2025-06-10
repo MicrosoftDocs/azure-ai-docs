@@ -30,7 +30,7 @@ The prompt flow Azure OpenAI GPT-4 Turbo with Vision tool enables you to use you
 
 ## Build with the Azure OpenAI GPT-4 Turbo with Vision tool
 
-1. Create or open a flow in [Azure AI Foundry](https://ai.azure.com). For more information, see [Create a flow](../flow-develop.md).
+1. Create or open a flow in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). For more information, see [Create a flow](../flow-develop.md).
 1. Select **+ More tools** > **Azure OpenAI GPT-4 Turbo with Vision** to add the Azure OpenAI GPT-4 Turbo with Vision tool to your flow.
 
     :::image type="content" source="../../media/prompt-flow/azure-openai-gpt-4-vision-tool.png" alt-text="Screenshot that shows the Azure OpenAI GPT-4 Turbo with Vision tool added to a flow in Azure AI Foundry portal." lightbox="../../media/prompt-flow/azure-openai-gpt-4-vision-tool.png":::

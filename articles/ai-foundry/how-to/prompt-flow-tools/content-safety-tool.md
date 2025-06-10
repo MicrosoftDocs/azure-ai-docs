@@ -37,7 +37,7 @@ To create an Azure Content Safety connection:
 
 ## Build with the Content Safety tool
 
-1. Create or open a flow in [Azure AI Foundry](https://ai.azure.com). For more information, see [Create a flow](../flow-develop.md).
+1. Create or open a flow in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). For more information, see [Create a flow](../flow-develop.md).
 1. Select **+ More tools** > **Content Safety (Text)** to add the Content Safety tool to your flow.
 
     :::image type="content" source="../../media/prompt-flow/content-safety-tool.png" alt-text="Screenshot that shows the Content Safety tool added to a flow in Azure AI Foundry portal." lightbox="../../media/prompt-flow/content-safety-tool.png":::
