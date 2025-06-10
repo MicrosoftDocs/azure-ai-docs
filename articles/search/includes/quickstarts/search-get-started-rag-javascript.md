@@ -182,29 +182,21 @@ A search index provides grounding data for the chat model. We recommend the hote
    ]}
    ```
 
-### Get service information for programmatic access
+## Get service endpoints
 
-To use the Azure AI Search and Azure OpenAI APIs, you need to know the service endpoints and API keys. You can get this information from the Azure portal.
+In the remaining sections, you set up API calls to Azure OpenAI and Azure AI Search. Get the service endpoints so that you can provide them as variables in your code.
 
-Sign in to the [Azure portal](https://portal.azure.com).
-
-
-### Get Azure AI service information
+1. Sign in to the [Azure portal](https://portal.azure.com).
 
 1. [Find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
-1. On the **Overview** home page, copy the URL. An example endpoint might look like `https://example.search.windows.net`. This is your AZURE_SEARCH_ENDPOINT used in the next section.
-1. On the left menu, select **Keys** to view the API keys. Copy the key value. This is your AZURE_SEARCH_API_KEY used in the next section.
-
-
-### Get Azure OpenAI service information
+1. On the **Overview** home page, copy the URL. An example endpoint might look like `https://example.search.windows.net`. 
 
 1. [Find your Azure OpenAI service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.CognitiveServices%2Faccounts).
 
-1. On the **Overview** home page, select the link to view the endpoints. Copy the URL. An example endpoint might look like `https://example.openai.azure.com/`. This is your AZURE_OPENAI_ENDPOINT used in the next section.
-1. **TBD** - key, api version, and deployment model in foundry
+1. On the **Overview** home page, select the link to view the endpoints. Copy the URL. An example endpoint might look like `https://example.openai.azure.com/`.
 
-### Set up environment variables for local development
+## Set up environment variables for local development
 
 1. Create a `.env` file.
 1. Add the following environment variables to the `.env` file, replacing the values with your own service endpoints and keys.
@@ -243,7 +235,7 @@ Setup project with Visual Studio Code and TypeScript.
    npm install @azure/identity @azure/search-documents openai dotenv
    ```
 
-## Authenticate to Azure locally
+## Sign in to Azure
 
 You're using Microsoft Entra ID and role assignments for the connection. Make sure you're logged in to the same tenant and subscription as Azure AI Search and Azure OpenAI. You can use the Azure CLI on the command line to show current properties, change properties, and to sign in. For more information, see [Connect without keys](../../search-get-started-rbac.md). 
 
