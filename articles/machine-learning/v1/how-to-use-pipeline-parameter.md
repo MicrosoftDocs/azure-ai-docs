@@ -71,10 +71,9 @@ After you create a pipeline parameter, you must [attach it to the component para
 
 The easiest way to create a pipeline parameter for a component value is to promote a component parameter. Use the following steps to promote a component parameter to a pipeline parameter:
 
-1. Select the component you want to attach a pipeline parameter to.
-1. In the component detail pane, hover over the parameter you want to specify.
-1. Select the ellipsis button (**...**) that appears.
-1. Select **Add to pipeline parameter**.
+1. Double-click the component you want to attach a pipeline parameter to.
+1. Select the ellipsis button (**...**) next to the parameter that you want to specify.
+1. Select **Add to pipeline input**.
 
    :::image type="content" source="media/how-to-use-pipeline-parameter/promote-module-para-to-pipeline-para.png" alt-text="Screenshot that shows how to promote a component parameter to a pipeline parameter." lightbox ="media/how-to-use-pipeline-parameter/promote-module-para-to-pipeline-para.png":::
 
@@ -89,7 +88,7 @@ If you want to submit your pipeline with variable datasets, you need to promote 
 
 1. Select the dataset you want to turn into a pipeline parameter.
 
-1. In the details pane of the dataset, select **Set as pipeline parameter**.
+1. In the details pane of the dataset, select **Set as pipeline input**.
 
    :::image type="content" source="media/how-to-use-pipeline-parameter/set-dataset-as-pipeline-parameter.png" alt-text="Screenshot that shows how to set dataset as pipeline parameter." lightbox ="media/how-to-use-pipeline-parameter/set-dataset-as-pipeline-parameter.png":::
 
