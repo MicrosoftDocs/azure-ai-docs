@@ -113,7 +113,9 @@ sections:
           How do I fix Server error (500): Unexpected special token
         answer: |
           This is a a known issue. You can minimize the occurrence of these errors by reducing the temperature of your prompts to less than 1 and ensuring you're using a client with retry logic. Reattempting the request often results in a successful response. 
+          
           If reducing temperature to less than 1 does not reduce the frequency of this error an alternative workaround is set presence/frequency penalties and logit biases to their default values. In some cases, it may help to set `top_p` to a non-default, lower value to encourage the model to avoid sampling tokens with lower probability tokens.  
+          
           Another way to solve this issue is to add logit_bias in the payload. For example, if error is `Unexpected special token: 100266`, then we can add "logit_bias": {100266:-100} to reduce the issue by using token 100266 mentioned in the service side error message. 
       - question: |
           We noticed charges associated with API calls that failed to complete with status code 400. Why are failed API calls generating a charge? 
