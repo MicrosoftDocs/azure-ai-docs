@@ -34,6 +34,12 @@ It's common to use this skill on content such as PDFs that have structure and im
 > This skill is bound to a [billable Azure AI multi-service resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI services Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
 >
 
+## Limitations
+
+During the public preview, this skill has the following restrictions:
+
++ The skill isn't suitable for large documents requiring more than 5 minutes of processing in the AI Document Intelligence layout model. The skill times out, but charges still apply to the AI Services multi-services resource if it attaches to the skillset for billing purposes. Ensure documents are optimized to stay within processing limits to avoid unnecessary costs.
+
 ## Supported regions
 
 The Document Layout skill calls the [Document Intelligence Public preview version 2024-07-31-preview](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-07-31-preview)&preserve-view=true). 
@@ -61,6 +67,10 @@ This skill recognizes the following file formats.
 + .PPTX
 + .HTML
 
+## Supported languages
+
+Refer to [Azure AI Document Intelligence layout model supported languages](/azure/ai-services/document-intelligence/language-support/ocr?view=doc-intel-3.1.0&tabs=read-print%2Clayout-print%2Cgeneral#layout&preserve-view=true) for printed text.
+
 ## Supported parameters
 
 Several parameters are version-specific. The skills parameter table notes the API version in which a parameter was introduced so that you know how to configure the skill. To use version-specific features such as image and location metadata extraction in [2025-05-01-preview REST API](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2025-05-01-preview&preserve-view=true), you can use the Azure portal, or target 2025-05-01-preview, or check an Azure SDK change log to see if it supports the new parameters.
@@ -77,16 +87,6 @@ Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill
 + Even if the file size for analyzing documents is 500 MB for [Azure AI Document Intelligence paid (S0) tier](https://azure.microsoft.com/pricing/details/cognitive-services/) and 4 MB for [Azure AI Document Intelligence free (F0) tier](https://azure.microsoft.com/pricing/details/cognitive-services/), indexing is subject to the [indexer limits](search-limits-quotas-capacity.md#indexer-limits) of your search service tier.
 + Image dimensions must be between 50 pixels x 50 pixels or 10,000 pixels x 10,000 pixels.
 + If your PDFs are password-locked, remove the lock before running the indexer.
-
-## Supported languages
-
-Refer to [Azure AI Document Intelligence layout model supported languages](/azure/ai-services/document-intelligence/language-support/ocr?view=doc-intel-3.1.0&tabs=read-print%2Clayout-print%2Cgeneral#layout&preserve-view=true) for printed text.
-
-## Limitations
-
-During the public preview, this skill has the following restrictions:
-
-+ The skill isn't suitable for large documents requiring more than 5 minutes of processing in the AI Document Intelligence layout model. The skill times out, but charges still apply to the AI Services multi-services resource if it attaches to the skillset for billing purposes. Ensure documents are optimized to stay within processing limits to avoid unnecessary costs.
   
 ## Skill parameters
 
@@ -145,7 +145,7 @@ The file reference object can be generated in one of following ways:
 | `text_sections`    | Only applies if `outputFormat` is set to `text`. A collection of text chunk objects, which represent the text within the bounds of a page (factoring in any more chunking configured), *inclusive* of any section headers themselves. The text chunk object includes `locationMetadata` if applicable.|
 | `normalized_images`    | Only applies if `outputFormat` is set to `text` and `extractionOptions` includes `images`. A collection of images that were extracted from the document, including `locationMetadata` if applicable.|
 
-## Sample definition for markdown output mode
+### Sample definition for markdown output mode
 
 ```json
 {
@@ -173,7 +173,7 @@ The file reference object can be generated in one of following ways:
 }
 ```
 
-## Sample output for markdown output mode
+### Sample output for markdown output mode
 
 ```json
 {
