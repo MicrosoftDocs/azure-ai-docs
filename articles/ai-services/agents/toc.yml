@@ -93,12 +93,12 @@ items:
               displayName: azure functions, functions
             - name: How to use Azure Functions
               href: how-to/tools/azure-functions-samples.md
-        - name: Sharepoint
+        - name: SharePoint
           items:
             - name: Overview
               href: how-to/tools/sharepoint.md
               displayName: sharepoint
-            - name: How to use Sharepoint
+            - name: How to use SharePoint
               href: how-to/tools/sharepoint-samples.md
     - name: Enterprise features
       items: 
