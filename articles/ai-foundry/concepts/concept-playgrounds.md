@@ -39,19 +39,14 @@ Some highlights of the Azure AI Foundry playgrounds experience include:
 
 Modern development involves working across multiple systems—APIs, services, SDKs, and data models—often before you're ready to fully commit to a framework, write tests, or spin up infrastructure. As the complexity of software ecosystems increases, the need for safe, lightweight environments to validate ideas becomes critical. The playgrounds were built to meet this need.
 
-The playgrounds provide ready-to-use environments with all the necessary tools and features pre-installed, eliminating the need to set up projects, manage dependencies, or solve compatibility issues. The Azure AI Foundry playgrounds help to accelerate developer velocity by reducing cost of experimentation and time to ship, accelerating integration, optimizing prompts, and more.
+The Azure AI Foundry playgrounds provide ready-to-use environments with all the necessary tools and features pre-installed, eliminating the need to set up projects, manage dependencies, or solve compatibility issues. The playgrounds can *accelerate developer velocity* by validating API behavior, going quicker to code, reducing cost of experimentation and time to ship, accelerating integration, optimizing prompts, and more.
 
-Playgrounds also provide clarity quickly when you have questions. For example, the playgrounds are ideal for quickly answering questions like:
+Playgrounds also *provide clarity quickly* when you have questions, by providing answers in seconds—rather than hours—and allowing you to test and validate ideas before you commit to building at scale. For example, the playgrounds are ideal for quickly answering questions like:
 
 - What's the minimal prompt I need to get the output I want?
-
 - Will this logic work before I write a full integration?
-
 - How does latency or token usage change with different configurations?
-
 - What model provides the best price-to-performance ratio before I evolve it into an agent?
-
-The playgrounds help you to get answers to these kinds of questions in seconds, rather than hours—allowing you to test and validate ideas before you commit to building at scale. 
 
 ## Open in VS Code capability
 
@@ -122,7 +117,7 @@ Follow these steps to try the transcription capability:
 
 The video playground (preview) is your rapid iteration environment for exploring, refining, and validating generative video workflows—designed for developers who need to go from idea to prototype with precision, control, and speed. The playground gives you a low-friction interface to test prompt structures, assess motion fidelity, evaluate model consistency across frames, and compare outputs across models—without writing boilerplate or wasting compute cycles. It's also a great demo interface for your Chief Product Officer and Engineering VP.
 
-All model endpoints are integrated with Azure AI Content Safety. As a result, harmful and unsafe images are filtered out before being surfaced in the video playground. If your text prompt and video generation are flagged by content moderation policies, you get a warning notification.
+All model endpoints are integrated with **Azure AI Content Safety**. As a result, harmful and unsafe images are filtered out before being surfaced in the video playground. If your text prompt and video generation are flagged by content moderation policies, you get a warning notification.
 
 You can use the video playground with the **Azure OpenAI Sora** model.
 
