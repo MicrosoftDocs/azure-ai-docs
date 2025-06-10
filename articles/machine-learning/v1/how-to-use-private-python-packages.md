@@ -9,7 +9,7 @@ ms.reviewer: laobri
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: how-to
-ms.date: 07/09/2024
+ms.date: 06/10/2025
 ms.custom: UpdateFrequency5, sdkv1, devx-track-python
 ---
 
@@ -72,7 +72,7 @@ with token based authentication, such as private GitHub repositories.
         value = pat_token) 
      ```
 
- 3. Create an Azure Machine Learning environment and add Python packages from the feed.
+ 3. Create an Azure Machine Learning environment, add Python packages from the feed, and then register the workspace.
     
     ```python
     from azureml.core import Environment
@@ -81,8 +81,10 @@ with token based authentication, such as private GitHub repositories.
     env = Environment(name="my-env")
     cd = CondaDependencies()
     cd.add_pip_package("<my-package>")
-    cd.set_pip_option("--extra-index-url https://pkgs.dev.azure.com/<MY-ORG>/_packaging/<MY-FEED>/pypi/simple")")
+    cd.set_pip_option("--extra-index-url https://pkgs.dev.azure.com/<MY-ORG>/pythonfeed/_packaging/feed/pypi/simple")
     env.python.conda_dependencies=cd
+
+    env.register(ws)
     ```
 
 The environment is now ready to be used in training runs or web service endpoint deployments. When building the environment, Azure Machine Learning service uses the PAT to authenticate against the feed with the matching base URL.
