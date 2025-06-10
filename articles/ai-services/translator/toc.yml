@@ -126,7 +126,7 @@ items:
         - name: PHP
           href: https://github.com/MicrosoftTranslator/Text-Translation-API-v3-PHP
         - name: Ruby
-          href: https://github.com/MicrosoftTranslator/Text-Translation-API-v3-Ruby  
+          href: https://github.com/MicrosoftTranslator/Text-Translation-API-v3-Ruby
   - name: Status codes
     displayName: 401000,405000,400000
     href: text-translation/reference/status-response-codes.md
@@ -154,6 +154,9 @@ items:
     - name: Use Document translation APIs programmatically
       displayName: get started,batch,sdk,c#,.net,dotnet,python,javascript,java,go,source,target,blob,set up,storage
       href: document-translation/how-to-guides/use-rest-api-programmatically.md
+    - name: Create and use glossaries
+    displayName: glossary, dictionary, case-sensitive, match
+    href: document-translation/how-to-guides/create-use-glossaries.md
   - name: Authentication and authorization
     items:
     - name: Create and use managed identities
@@ -184,9 +187,6 @@ items:
         href: document-translation/reference/get-supported-document-formats.md
       - name: Get supported glossary formats
         href: document-translation/reference/get-supported-glossary-formats.md
-  - name: Create and use glossaries
-    displayName: glossary, dictionary, case-sensitive, match
-    href: document-translation/how-to-guides/create-use-glossaries.md
   - name: Document translation FAQ
     href: document-translation/faq.md
 - name: Containers
