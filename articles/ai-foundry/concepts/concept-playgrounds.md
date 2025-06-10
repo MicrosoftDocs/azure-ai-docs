@@ -39,13 +39,9 @@ Some highlights of the Azure AI Foundry playgrounds experience include:
 
 Modern development involves working across multiple systems—APIs, services, SDKs, and data models—often before you're ready to fully commit to a framework, write tests, or spin up infrastructure. As the complexity of software ecosystems increases, the need for safe, lightweight environments to validate ideas becomes critical. The playgrounds were built to meet this need.
 
-The playgrounds provide ready-to-use environments with all the necessary tools and features pre-installed, eliminating the need to set up projects, manage dependencies, or solve compatibility issues. The Azure AI Foundry playgrounds help provide clarity quickly when you have questions and they can accelerate developer velocity.
+The playgrounds provide ready-to-use environments with all the necessary tools and features pre-installed, eliminating the need to set up projects, manage dependencies, or solve compatibility issues. The Azure AI Foundry playgrounds help to accelerate developer velocity by reducing cost of experimentation and time to ship, accelerating integration, optimizing prompts, and more.
 
-#### Get clarity quicker
-
-The playgrounds are ideal for quickly answering questions like:
-
-- How does this endpoint behave under edge conditions?
+Playgrounds also provide clarity quickly when you have questions. For example, the playgrounds are ideal for quickly answering questions like:
 
 - What's the minimal prompt I need to get the output I want?
 
@@ -55,32 +51,7 @@ The playgrounds are ideal for quickly answering questions like:
 
 - What model provides the best price-to-performance ratio before I evolve it into an agent?
 
-- How do I evaluate performance and safety metrics for my agent?
-  
-The playgrounds help you to get answers to these questions in seconds, rather than hours—allowing you to test and validate ideas before you commit to building at scale. 
-
-#### Accelerate developer velocity
-
-- **Reduce cost of experimentation:** In traditional workflows, the cost of experimentation is high, as it includes setting up the project, writing scaffolding code, waiting on builds, and rolling back changes. This cost makes many developers to skip the experiment phase entirely, which leads to brittle assumptions, broken behavior, or inefficient code. The playgrounds change this dynamic by removing risk from experimentation, so you can validate before you invest. Playgrounds also act as the bridge between development and documentation. The examples you build in the playgrounds often become the reference points for future code, internal tooling, or user education.
- 
-- **Iterate faster:** Experiment with text prompts, adjust generation parameters, and explore editing variations—all in real time with model-specific native API support.
-
-- **Accelerate integration:** Validate API behavior, test edge cases, and inspect responses directly in an interactive console.
-
-- **Optimize prompts:** Debug and tune prompts; build prompt variations available in the playgrounds and grounded in model behavior.
-
-- **Provide a consistent model interface:** Common foundations established. No matter what model or agent, no matter the model provider.
-
-- **Go to code quicker:** When you use the "View Code" multi-lingual code samples for your output, prompts and generation controls within the API structure, what you create within Azure AI Foundry playgrounds can be easily ported into VS Code—with predictability and repeatability.
-
-- **Reduce time to ship:** No need to find, build, or configure a custom UI to localhost just for image generation, hope that it automatically works for the next state-of-the-art model, or spend time resolving cascading build errors due to packages or code changes required for new models. The images playground in Azure AI Foundry gives you version-aware access. Build with the latest and most performant models with API updates surfaced in a consistent UI.
-
-- **Collaborate and get feedback easily:** Share your visual experiments directly with stakeholders, artists, or product managers, without requiring them to install tools.
-
-- **Provides human-in-the-loop refinement:** You can explore subtle tweaks with immediate visual feedback before hardcoding or automating anything.
-
-Whether you're prototyping with the latest LLM from Azure AI Foundry Models, validating prompts for edge cases, or optimizing output consistency, Azure AI Foundry playgrounds remove friction from early experimentation. It's where ideas are pressure-tested before they're shipped into production. Optimize for prompt adherence, latency, and use cases through experimentation; accelerate your "Build-Measure-Learn" development loop; and ship faster with higher confidence.
-
+The playgrounds help you to get answers to these kinds of questions in seconds, rather than hours—allowing you to test and validate ideas before you commit to building at scale. 
 
 ## Open in VS Code capability
 
