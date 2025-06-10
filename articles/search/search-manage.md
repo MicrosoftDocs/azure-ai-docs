@@ -76,7 +76,7 @@ By default, a search service is created with one replica and one partition. You 
 
 Semantic ranker increases the cost of running your service. If you don't want to use this feature, you can [disable semantic ranker](semantic-how-to-enable-disable.md) at the service level.
 
-To learn about other features that affect billing, see [How you're charged for Azure AI Search](search-sku-manage-costs.md#how-youre-charged-for-azure-ai-search).
+To learn about other features that affect billing, see [How you're charged for Azure AI Search](search-sku-manage-costs.md#how-youre-charged-for-the-base-service).
 
 ## Enable diagnostic logging
 

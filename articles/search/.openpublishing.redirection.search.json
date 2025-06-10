@@ -415,6 +415,11 @@
             "source_path_from_root": "/articles/search/tutorial-multimodal-index-image-verbalization-skill.md",
             "redirect_url": "/azure/search/tutorial-document-layout-image-verbalization",
             "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-sku-manage-costs.md#how-youre-charged-for-azure-ai-search",
+            "redirect_url": "/azure/search/search-sku-manage-costs#how-youre-charged-for-the-base-service",
+            "redirect_document_id": true
         }
     ]
   }
