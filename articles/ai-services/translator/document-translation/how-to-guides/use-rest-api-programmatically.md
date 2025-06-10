@@ -5,7 +5,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 06/03/2025
+ms.date: 06/10/2025
 ms.author: lajanuar
 recommendations: false
 ms.devlang: csharp
