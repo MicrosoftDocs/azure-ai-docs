@@ -31,7 +31,7 @@ Azure AI Search runs on Azure infrastructure that accrues costs when you deploy 
 
 Costs for Azure AI Search are only a portion of the monthly costs in your Azure bill. Although this article focuses on planning and managing Azure AI Search costs, you're billed for all Azure services and resources used in your Azure subscription, including non-Microsoft services.
 
-### Charges for Azure AI Search
+### How you're charged for Azure AI Search
 
 When you create or use search resources, you're charged for:
 
@@ -39,7 +39,7 @@ When you create or use search resources, you're charged for:
 
 + The number of [search units](search-capacity-planning.md) (SUs) allocated to your search service. SUs are units of capacity that equal the product of replicas and partitions (R × P = SU) used by your service.
 
-### Charges for premium features
+### How you're charged for premium features
 
 Premium features are charged in addition to the base cost of your search service. The following table lists premium features and their billing units. All of these features are optional, so if you don't use them, you don't incur any charges.
 
@@ -51,15 +51,15 @@ Premium features are charged in addition to the base cost of your search service
 | [Semantic ranker](semantic-search-overview.md) | Number of queries of `queryType=semantic`. Billed at a progressive rate. See the [pricing page](https://azure.microsoft.com/pricing/details/search/#pricing). |
 | [Shared private link](search-indexer-howto-access-private.md) | [Billed for bandwidth](https://azure.microsoft.com/pricing/details/private-link/) as long as the shared private link exists and is used. |
 
-<sup>1</sup> Refers to images extracted from a file within the indexer pipeline. Text extraction is free. Image extraction is billed when you [enable the `indexAction` parameter](cognitive-search-concept-image-scenarios.md#configure-indexers-for-image-processing) for document cracking or when you call the [Document Extraction skill](cognitive-search-skill-document-extraction.md).
+<sup>1</sup> Refers to images extracted from a file within the indexer pipeline. Text extraction is free. Image extraction is billed when you [enable the `indexAction` parameter](cognitive-search-concept-image-scenarios.md#configure-indexers-for-image-processing) or when you call the [Document Extraction skill](cognitive-search-skill-document-extraction.md).
 
-### Potential charges
+### How you're otherwise charged
 
-Depending on your search configuration and usage, the following charges might apply:
+Depending on your configuration and usage, the following charges might apply:
 
 + Data traffic might incur networking costs. See the [bandwidth pricing](https://azure.microsoft.com/pricing/details/bandwidth/).
 
-+ Several premium features, such as [knowledge store](knowledge-store-concept-intro.md), [debug sessions](cognitive-search-debug-session.md), and [enrichment cache](cognitive-search-incremental-indexing-conceptual.md), depend on Azure Storage and incur storage costs. Meters for using these features are included in the Azure Storage bill.
++ Several premium features, such as [knowledge stores](knowledge-store-concept-intro.md), [debug sessions](cognitive-search-debug-session.md), and [enrichment caches](cognitive-search-incremental-indexing-conceptual.md), depend on Azure Storage and incur storage costs. Meters for these features are included in the Azure Storage bill.
 
 + [Customer-managed keys](search-security-manage-encryption-keys.md), which provide double encryption of sensitive content, require a billable [Azure Key Vault](https://azure.microsoft.com/pricing/details/key-vault/).
 
@@ -72,7 +72,7 @@ Depending on your search configuration and usage, the following charges might ap
 
 ## Estimate and plan costs
 
-Use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/) to estimate your baseline costs for Azure AI Search. You can also  find estimated costs and tier comparisons on the [Select a pricing tier](search-create-service-portal.md#choose-a-tier) page during service creation.
+Use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/) to estimate your baseline costs for Azure AI Search. You can also  find estimated costs and tier comparisons on the [Select Pricing Tier](search-create-service-portal.md#choose-a-tier) page during service creation.
 
 For initial testing, we recommend that you create a capacity-planning worksheet. The worksheet helps you understand the index-to-source ratio and the effect of enrichment or vector features on both capacity and cost.
 
@@ -96,7 +96,7 @@ To minimize the costs of your Azure AI Search solution, use the following strate
 
 + Choose the lightest [pricing tier](search-sku-tier.md) that meets your needs. Basic and S1 offer full access to the modern API at the lowest hourly rate per SU.
 
-+ Use [Azure Web App](/azure/app-service/overview) for your front-end application to keep requests and responses within the data center boundary.
++ Use [Azure Web Apps](/azure/app-service/overview) for your front-end application to keep requests and responses within the data center boundary.
 
 ### Scaling
 
@@ -143,6 +143,6 @@ Existing services can be switched between Basic and Standard (S1, S2, and S3) ti
 ## Related content
 
 + [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/)
-+ [Choose a service tier for Azure AI Search](search-sku-tier.md)
++ [Choose a pricing tier for Azure AI Search](search-sku-tier.md)
 + [Optimize your cloud investment with Cost Management](/azure/cost-management-billing/costs/cost-mgt-best-practices?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn)
 + [Quickstart: Start using Cost analysis](/azure/cost-management-billing/costs/quick-acm-cost-analysis?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn)
