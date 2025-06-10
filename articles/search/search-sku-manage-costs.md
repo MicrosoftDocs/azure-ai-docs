@@ -14,7 +14,7 @@ ms.date: 06/10/2025
 
 # Plan and manage costs of an Azure AI Search service
 
-This article explains how Azure AI Search is billed, including base and potential charges, and provides guidance for cost management.
+This article explains how Azure AI Search is billed, including fixed and variable costs, and provides guidance for cost management.
 
 Before you create a search service, use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/) to estimate costs based on your planned [capacity](search-capacity-planning.md) and features. Another resource is a capacity-planning worksheet that models your expected index size, indexing throughput, and indexing costs.
 
@@ -27,17 +27,13 @@ As your search workload evolves, follow our tips to minimize costs during both d
 
 ## Understand the billing model
 
-Azure AI Search runs on Azure infrastructure that accrues costs when you deploy new resources. Other infrastructure costs might also accrue.
+Azure AI Search has both fixed and pay-as-you-go billing. You pay a fixed rate for your search service as long as it exists, while premium features are billed according to your usage.
 
 Costs for Azure AI Search are only a portion of the monthly costs in your Azure bill. Although this article focuses on planning and managing Azure AI Search costs, you're billed for all Azure services and resources used in your Azure subscription, including non-Microsoft services.
 
-### How you're charged for Azure AI Search
+### How you're charged for the base service
 
-When you create or use search resources, you're charged for:
-
-+ The [pricing tier](search-sku-tier.md) of your search service. This is a prorated hourly rate.
-
-+ The number of [search units](search-capacity-planning.md) (SUs) allocated to your search service. SUs are units of capacity that equal the product of replicas and partitions (R × P = SU) used by your service.
+When you create or use search resources, you're charged for the minimum required replica and partition combination (R × P) at the prorated hourly rate of your [pricing tier](search-sku-tier.md). As your search units increase or decrease, so do your costs. For more information and an example of the billing model, see [Billing rates](search-sku-tier.md#billing-rates).
 
 ### How you're charged for premium features
 
@@ -47,11 +43,14 @@ Premium features are charged in addition to the base cost of your search service
 |-------|------|
 | Image extraction (AI enrichment) <sup>1</sup> | Per 1,000 images. See the [pricing page](https://azure.microsoft.com/pricing/details/search/#pricing). |
 | [Custom Entity Lookup skill](cognitive-search-skill-custom-entity-lookup.md) (AI enrichment) | Per 1,000 text records. See the [pricing page](https://azure.microsoft.com/pricing/details/search/#pricing) |
-| [Built-in skills](cognitive-search-predefined-skills.md)  (AI enrichment) | Number of transactions. Billed at the same rate as calling Azure AI services directly. You can process 20 documents per indexer per day for free. Larger or more frequent workloads require an Azure AI services multi-service resource key. |
+| [Built-in or custom skills](cognitive-search-predefined-skills.md) (AI enrichment) <sup>2</sup> | Number of transactions. Billed at the rate of the model provider: Azure AI services, Azure OpenAI, or Azure AI Foundry. |
 | [Semantic ranker](semantic-search-overview.md) | Number of queries of `queryType=semantic`. Billed at a progressive rate. See the [pricing page](https://azure.microsoft.com/pricing/details/search/#pricing). |
+| [Vectorizers](vector-search-how-to-configure-vectorizer.md) <sup>2</sup> | Number of vectorization operations. Billed at the rate of the model provider: Azure AI Vision, Azure OpenAI, or Azure AI Foundry. |
 | [Shared private link](search-indexer-howto-access-private.md) | [Billed for bandwidth](https://azure.microsoft.com/pricing/details/private-link/) as long as the shared private link exists and is used. |
 
 <sup>1</sup> Refers to images extracted from a file within the indexer pipeline. Text extraction is free. Image extraction is billed when you [enable the `indexAction` parameter](cognitive-search-concept-image-scenarios.md#configure-indexers-for-image-processing) or when you call the [Document Extraction skill](cognitive-search-skill-document-extraction.md).
+
+<sup>2</sup> Charges for Azure OpenAI models and Azure AI Foundry models appear on your bill for those services.
 
 ### How you're otherwise charged
 
@@ -59,7 +58,7 @@ Depending on your configuration and usage, the following charges might apply:
 
 + Data traffic might incur networking costs. See the [bandwidth pricing](https://azure.microsoft.com/pricing/details/bandwidth/).
 
-+ Several premium features, such as [knowledge stores](knowledge-store-concept-intro.md), [debug sessions](cognitive-search-debug-session.md), and [enrichment caches](cognitive-search-incremental-indexing-conceptual.md), depend on Azure Storage and incur storage costs. Meters for these features are included in the Azure Storage bill.
++ Several premium features, such as [knowledge stores](knowledge-store-concept-intro.md), [debug sessions](cognitive-search-debug-session.md), and [enrichment caches](cognitive-search-incremental-indexing-conceptual.md), depend on Azure Storage and incur storage costs. Charges for these features appear on your Azure Storage bill.
 
 + [Customer-managed keys](search-security-manage-encryption-keys.md), which provide double encryption of sensitive content, require a billable [Azure Key Vault](https://azure.microsoft.com/pricing/details/key-vault/).
 
