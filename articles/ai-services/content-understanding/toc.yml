@@ -75,14 +75,14 @@ items:
       - name: Best practices
         displayName: best practices, analyzers, optimization, fields
         href: concepts/best-practices.md
-      - name: Tutorials
-        items:
-          - name: Create a custom analyzer 🆕
-            displayName: custom, analyzer, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
-            href: tutorial/create-custom-analyzer.md
-          - name: Build a retrieval-augmented solution
-            displayName: RAG, retrieval, augmented, generation, knowledge, base, search, index, vector
-            href: tutorial/build-rag-solution.md
+  - name: Tutorials
+    items:
+      - name: Create a custom analyzer 🆕
+        displayName: custom, analyzer, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
+        href: tutorial/create-custom-analyzer.md
+      - name: Build a retrieval-augmented solution
+        displayName: RAG, retrieval, augmented, generation, knowledge, base, search, index, vector
+        href: tutorial/build-rag-solution.md
   - name: Classifiers 🆕
     items:
       - name: Overview
