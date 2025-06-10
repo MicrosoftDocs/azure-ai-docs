@@ -1,7 +1,7 @@
 ---
-title: 'How to use the Sharepoint tool'
+title: 'How to use the SharePoint tool'
 titleSuffix: Azure AI Foundry
-description: Find examples on how to ground agents with Sharepoint.
+description: Find examples on how to ground agents with SharePoint.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
@@ -13,11 +13,11 @@ ms.custom: azure-ai-agents-code
 zone_pivot_groups: selection-sharepoint
 ---
 
-# How to use the Sharepoint tool
+# How to use the SharePoint tool
 
-Use this article to find step-by-step instructions and code samples for using the Sharepoint tool in Azure AI Foundry Agent Service.
+Use this article to find step-by-step instructions and code samples for using the SharePoint tool in Azure AI Foundry Agent Service.
 
-## Step 1: Create an agent
+## Create an agent
 
 Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
 

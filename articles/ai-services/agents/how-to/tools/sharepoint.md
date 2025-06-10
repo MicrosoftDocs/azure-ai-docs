@@ -13,7 +13,7 @@ ms.custom: azure-ai-agents
 ---
 # Use the Microsoft SharePoint tool (preview)
 
-Integrate your agents with the **Microsoft Sharepoint** to chat with your private documents securely. You can connect to your SharePoint site, such as `contoso.sharepoint.com/sites/policies` to ground your Agents with that data. When a user sends a query, the agent will determine if SharePoint should be leveraged or not. If so, it will send a query using the SharePoint tool, which checks if the user has a Microsoft 365 copilot license and use managed identity to retrieve relevant documents they have access to. The scope of retrieval includes all supported documents in this SharePoint site. Lastly, the agent will generate responses based on retrieved information. With identity passthrough (On-Behalf-Of) authorization, this integration simplifies access to enterprise data in SharePoint while maintaining robust security, ensuring proper access control and enterprise-grade protection. 
+Integrate your agents with the **Microsoft SharePoint** to chat with your private documents securely. You can connect to your SharePoint site, such as `contoso.sharepoint.com/sites/policies` to ground your Agents with that data. When a user sends a query, the agent will determine if SharePoint should be leveraged or not. If so, it will send a query using the SharePoint tool, which checks if the user has a Microsoft 365 Copilot license and use managed identity to retrieve relevant documents they have access to. The scope of retrieval includes all supported documents in this SharePoint site. Lastly, the agent will generate responses based on retrieved information. With identity passthrough (On-Behalf-Of) authorization, this integration simplifies access to enterprise data in SharePoint while maintaining robust security, ensuring proper access control and enterprise-grade protection. 
 
 ## Usage support
 
@@ -22,17 +22,16 @@ Integrate your agents with the **Microsoft Sharepoint** to chat with your privat
 | ✔️ | - | - | - | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
-1. Developers and end users have Microsoft 365 copilot license
 
-1. Developers and end users have at least `Azure AI User` RBAC role. 
-
-1. Developers and end users have at least `READ` access to the SharePoint site.
+* Developers and end users have Microsoft 365 copilot license
+* Developers and end users have at least `Azure AI User` RBAC role. 
+* Developers and end users have at least `READ` access to the SharePoint site.
 
 ## Setup  
 
 > [!NOTE]
-> 1. Supported document types: text data in the following format: `.pdf`, `.docx`, `.ppt`, `.txt`, `.aspx` 
-> 2. We recommend you start with SharePoint sites that have: a simple folder structure and a small number of short documents. 
+> * Supported document types: text data in the following format: `.pdf`, `.docx`, `.ppt`, `.txt`, `.aspx` 
+> * We recommend you start with SharePoint sites that have: a simple folder structure and a small number of short documents. 
 
 1. Create an agent by following the steps in the [quickstart](../../quickstart.md).
 
