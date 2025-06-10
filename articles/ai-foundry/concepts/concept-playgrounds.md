@@ -66,9 +66,11 @@ Follow these steps to use the "Open in VS Code" functionality from the chat and 
 1. Ensure that your deployment is selected in the Deployment box.
 1. Select **View code** to see the code sample.
 1. Select **Open in VS Code** to open VS Code in a new tab of your browser window.
+
     :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-foundry.png" alt-text="Screenshot showing the Open in VS Code button in Azure AI Foundry playground for seamless code integration." lightbox="../media/concept-playgrounds/open-in-vs-code-foundry.png":::
 
 1. You're redirected to the `/azure` environment of VS Code where your code sample, API endpoint and key are already imported from the Azure AI Foundry playground.
+    
     :::image type="content" source="../media/concept-playgrounds/open-in-vs-code-vscode.png" alt-text="Screenshot of the VS Code environment showing imported code sample, API endpoint, and key from the Azure AI Foundry playground." lightbox="../media/concept-playgrounds/open-in-vs-code-vscode.png":::
 
 1. Browse the `READ.ME` file for instructions to run your model.
@@ -103,6 +105,7 @@ Follow these steps to try the text to speech capability:
 1. Adjust model parameters such as voice and response format.
 1. Select **Generate** to receive a speech output with playback controls that include play, rewind, forward, adjust speed, and volume.
 1. Download the audio file to your local computer.
+
     :::image type="content" source="../media/concept-playgrounds/audio-playground-text-to-speech.png" alt-text="Screenshot of the Audio playground interface showcasing text-to-speech capabilities with playback controls." lightbox="../media/concept-playgrounds/audio-playground-text-to-speech.png":::
 
 Follow these steps to try the transcription capability:
@@ -111,6 +114,7 @@ Follow these steps to try the transcription capability:
 1. (Optional) Include a phrase list as a text mechanism to guide your audio input.
 1. Input an audio file, by either uploading one or recording the audio from the prompt bar.
 1. Select **Generate transcription** to send the audio input to the model and receive a transcribed output in both text and JSON formats.
+
     :::image type="content" source="../media/concept-playgrounds/audio-playground-transcribe.png" alt-text="Screenshot of the Audio playground interface demonstrating transcription output from audio input." lightbox="../media/concept-playgrounds/audio-playground-transcribe.png":::
 
 
@@ -133,6 +137,7 @@ Follow these steps to use the video playground:
 1. Select **Try the Video playground** to open it.
 1. If you don't have a deployment already, select **Deploy now** from the top right side of the homepage and deploy the `sora` model.
 1. On the homepage of the video playground, get inspired by **pre-built prompts** sorted by the **industry** filter. From here, you can view the videos in full display and copy the prompt to build from it.
+
     :::image type="content" source="../media/concept-playgrounds/video-playground-copy-prompt.png" alt-text="Screenshot of the video playground highlighting the Use prompt button to copy a prompt." lightbox="../media/concept-playgrounds/video-playground-copy-prompt.png":::
 
 1. Copying the prompt pastes it in the prompt bar. Adjust key controls (for example, aspect ratio or resolution) to deeply understand specific model responsiveness and constraints.
@@ -140,14 +145,17 @@ Follow these steps to use the video playground:
 1. Rewrite your text prompt syntax with gpt-4o using **Re-write with AI**. 
 1. Switch on the **Start with an industry system prompt** capability, choose an industry, and specify the change required for your original prompt.
 1. Select **Update** to update the prompt, and then select **Generate** to create a new video.
+
     :::image type="content" source="../media/concept-playgrounds/video-playground-rewrite-prompt-with-ai.png" alt-text="Screenshot showing the controls used to rewrite a prompt with AI and generate an updated image." lightbox="../media/concept-playgrounds/video-playground-rewrite-prompt-with-ai.png":::
 
 1. Go to the **Generation history** tab to review your generations as a grid or list view. When you select the videos, open them in full screen mode for full immersion. Visually observe outputs across prompt tweaks or parameter changes.
 1. In full screen mode, edit the prompt and submit for regeneration.
-1. Either in full screen mode or through the options button that shows up when you hover across the video, download the videos to your local computer, view the generation information generation tag, view code, or delete the video.
+1. Either in full screen mode or through the options button that shows up when you hover across the video, download the videos to your local computer, view the video generation information tag, view code, or delete the video.
+
     :::image type="content" source="../media/concept-playgrounds/options-menu-for-generated-video.png" alt-text="Screenshot showing the options button for downloading, viewing details, and deleting a generated image." lightbox="../media/concept-playgrounds/options-menu-for-generated-video.png":::
 
-1. Select **View code**  from the options menu to view contextual sample code for your video generations in several languages, including Python, Java,  JavaScript, C# **Port to production with multi-lingual code samples:** Use Python, JavaScript, C#, and more. Copy your code into VS Code.
+1. Select **View code**  from the options menu to view contextual sample code for your video generations in several languages, including Python, JavaScript, C#, JSON, Curl, and Go.  
+1. Port the code samples to production by copying them into VS Code.
 
    
 ### What to validate when experimenting in video playground
