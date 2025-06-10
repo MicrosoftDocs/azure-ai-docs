@@ -83,9 +83,6 @@ items:
         href: text-translation/reference/preview/translate-api.md
       - name: Transliterate
         href: text-translation/reference/preview/transliterate-api.md
-    - name: Status codes
-      displayName: 401000,405000,400000
-      href: text-translation/reference/status-response-codes.md
     - name: Azure AI Translator v3
       items:
       - name: v3 overview
@@ -112,24 +109,27 @@ items:
       - name: Migrate to v3 Text translation API
         displayName: "speech,error,version,endpoint,compatibility,json,authentication,pricing"
         href: text-translation/how-to/migrate-to-v3.md
-  - name: V3 code samples
-    items:
-    - name: Code Sample page
-      href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples
-    - name: C# samples
-      href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/blob/main/C%23-Code-Samples
-    - name: Java
-      href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/Java-Code-Samples
-    - name: Python
-      href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/Python-Code-Samples
-    - name: Node.js
-      href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/NodeJS-Code-Samples
-    - name: Go
-      href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/GO-Code-Samples
-    - name: PHP
-      href: https://github.com/MicrosoftTranslator/Text-Translation-API-v3-PHP
-    - name: Ruby
-      href: https://github.com/MicrosoftTranslator/Text-Translation-API-v3-Ruby
+      - name: V3 code samples
+        items:
+        - name: Code Sample page
+          href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples
+        - name: C# samples
+          href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/blob/main/C%23-Code-Samples
+        - name: Java
+          href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/Java-Code-Samples
+        - name: Python
+          href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/Python-Code-Samples
+        - name: Node.js
+          href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/NodeJS-Code-Samples
+        - name: Go
+          href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/GO-Code-Samples
+        - name: PHP
+          href: https://github.com/MicrosoftTranslator/Text-Translation-API-v3-PHP
+        - name: Ruby
+          href: https://github.com/MicrosoftTranslator/Text-Translation-API-v3-Ruby  
+  - name: Status codes
+    displayName: 401000,405000,400000
+    href: text-translation/reference/status-response-codes.md
 - name: Document translation
   items:
   - name: What is Document translation?
