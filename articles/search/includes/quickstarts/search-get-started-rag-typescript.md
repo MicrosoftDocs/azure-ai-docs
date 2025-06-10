@@ -254,7 +254,7 @@ Setup project with Visual Studio Code and TypeScript.
 
 1. Create a `tsconfig.json` file in the project directory for ESM with the following content.
 
-       ```json
+    ```json
     {
       "compilerOptions": {
         "target": "esnext",
