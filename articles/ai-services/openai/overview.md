@@ -30,7 +30,7 @@ Azure OpenAI provides REST API access to OpenAI's powerful language models inclu
 
 ## Responsible AI
 
-At Microsoft, we're committed to the advancement of AI driven by principles that put people first. Generative models such as the ones available in Azure OpenAI have significant potential benefits, but without careful design and thoughtful mitigations, such models have the potential to generate incorrect or even harmful content. Microsoft has made significant investments to help guard against abuse and unintended harm, which includes incorporating Microsoft’s <a href="https://www.microsoft.com/ai/responsible-ai?activetab=pivot1:primaryr6" target="_blank">principles for responsible AI use</a>, adopting a [Code of Conduct](/legal/ai-code-of-conduct?context=/azure/ai-services/openai/context/context) for use of the service, building [content filters](/azure/ai-services/content-safety/overview) to support customers, and providing responsible AI [information and guidance](/legal/cognitive-services/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=image) that customers should consider when using Azure OpenAI.
+At Microsoft, we're committed to the advancement of AI driven by principles that put people first. Generative models such as the ones available in Azure OpenAI have significant potential benefits, but without careful design and thoughtful mitigations, such models have the potential to generate incorrect or even harmful content. Microsoft has made significant investments to help guard against abuse and unintended harm, which includes incorporating Microsoft’s <a href="https://www.microsoft.com/ai/responsible-ai?activetab=pivot1:primaryr6" target="_blank">principles for responsible AI use</a>, adopting a [Code of Conduct](/legal/ai-code-of-conduct?context=/azure/ai-services/openai/context/context) for use of the service, building [content filters](/azure/ai-services/content-safety/overview) to support customers, and providing responsible AI [information and guidance](/azure/ai-foundry/responsible-ai/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=image) that customers should consider when using Azure OpenAI.
 
 ## Get started with Azure OpenAI
 
@@ -47,7 +47,7 @@ Start with the [Create and deploy an Azure OpenAI resource](./how-to/create-reso
     For example, you can try [real-time audio](./realtime-audio-quickstart.md) and [assistants](./assistants-quickstart.md) in the playgrounds or via code.
 
 > [!NOTE]
-> A Limited Access registration form is required to access some Azure OpenAI models or features. Learn more on the [Azure OpenAI Limited Access page](/legal/cognitive-services/openai/limited-access?context=/azure/ai-services/openai/context/context).
+> A Limited Access registration form is required to access some Azure OpenAI models or features. Learn more on the [Azure OpenAI Limited Access page](/azure/ai-foundry/responsible-ai/openai/limited-access?context=/azure/ai-services/openai/context/context).
 
 ## Comparing Azure OpenAI and OpenAI
 

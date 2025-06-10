@@ -367,7 +367,7 @@ items:
     - name: Responsible AI and compliance
       items:
       - name: Transparency note
-        href: /legal/cognitive-services/translator/translator-pro-transparency-note?context=/azure/ai-services/translator/context/context
+        href: /azure/ai-foundry/responsible-ai/translator/translator-pro-transparency-note?context=/azure/ai-services/translator/context/context
   - name: Translator v3 connector
     items:
     - name: "Automate document translation (preview)"
@@ -379,9 +379,9 @@ items:
 - name: Responsible AI
   items:
   - name: Transparency note
-    href: /legal/cognitive-services/translator/transparency-note?context=/azure/ai-services/translator/context/context
+    href: /azure/ai-foundry/responsible-ai/translator/transparency-note?context=/azure/ai-services/translator/context/context
   - name: Data, privacy, and security
-    href: /legal/cognitive-services/translator/data-privacy-security?context=/azure/ai-services/translator/context/context
+    href: /azure/ai-foundry/responsible-ai/translator/data-privacy-security?context=/azure/ai-services/translator/context/context
 - name: Resources
   items:
   - name: Translator in sovereign clouds

@@ -31,13 +31,13 @@ items:
   - name: Transparency notes
     items:
     - name: Custom Vision use cases
-      href: /legal/cognitive-services/custom-vision/custom-vision-cvs-transparency-note?context=/azure/ai-services/custom-vision-service/context/context
+      href: /azure/ai-foundry/responsible-ai/custom-vision/custom-vision-cvs-transparency-note?context=/azure/ai-services/custom-vision-service/context/context
     - name: Characteristics and limitations
-      href: /legal/cognitive-services/custom-vision/custom-vision-cvs-characteristics-and-limitations?context=/azure/ai-services/custom-vision-service/context/context
+      href: /azure/ai-foundry/responsible-ai/custom-vision/custom-vision-cvs-characteristics-and-limitations?context=/azure/ai-services/custom-vision-service/context/context
   - name: Integration and responsible use
-    href: /legal/cognitive-services/custom-vision/custom-vision-cvs-guidance-integration-responsible-use?context=/azure/ai-services/custom-vision-service/context/context
+    href: /azure/ai-foundry/responsible-ai/custom-vision/custom-vision-cvs-guidance-integration-responsible-use?context=/azure/ai-services/custom-vision-service/context/context
   - name: Data, privacy, and security
-    href: /legal/cognitive-services/custom-vision/custom-vision-cvs-data-privacy-security?context=/azure/ai-services/custom-vision-service/context/context
+    href: /azure/ai-foundry/responsible-ai/custom-vision/custom-vision-cvs-data-privacy-security?context=/azure/ai-services/custom-vision-service/context/context
 - name: How-to guides
   items:
   - name: Test your model

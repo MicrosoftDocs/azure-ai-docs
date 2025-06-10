@@ -518,59 +518,59 @@ items:
     - name: Speech to text
       items:
       - name: Transparency note
-        href: /legal/cognitive-services/speech-service/speech-to-text/transparency-note?context=/azure/ai-services/speech-service/context/context
+        href: /azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note?context=/azure/ai-services/speech-service/context/context
       - name: Data, privacy, and security
-        href: /legal/cognitive-services/speech-service/speech-to-text/data-privacy-security?context=/azure/ai-services/speech-service/context/context
+        href: /azure/ai-foundry/responsible-ai/speech-service/speech-to-text/data-privacy-security?context=/azure/ai-services/speech-service/context/context
     - name: Text to speech
       items:
       - name: Transparency note
-        href: /legal/cognitive-services/speech-service/text-to-speech/transparency-note?context=/azure/ai-services/speech-service/context/context
+        href: /azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note?context=/azure/ai-services/speech-service/context/context
       - name: Code of conduct
         href: /legal/ai-code-of-conduct?context=/azure/ai-services/speech-service/context/context
       - name: Limited access
-        href: /legal/cognitive-services/speech-service/custom-neural-voice/limited-access-custom-neural-voice?context=/azure/ai-services/speech-service/context/context
+        href: /azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/limited-access-custom-neural-voice?context=/azure/ai-services/speech-service/context/context
       - name: Disclosure for voice and avatar talent
-        href: /legal/cognitive-services/speech-service/disclosure-voice-talent?context=/azure/ai-services/speech-service/context/context
+        href: /azure/ai-foundry/responsible-ai/speech-service/disclosure-voice-talent?context=/azure/ai-services/speech-service/context/context
       - name: Disclosure design guidelines
         items:
         - name: Custom voice
-          href: /legal/cognitive-services/speech-service/custom-neural-voice/concepts-disclosure-guidelines?context=/azure/ai-services/speech-service/context/context
+          href: /azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-guidelines?context=/azure/ai-services/speech-service/context/context
         - name: Text to speech avatar
-          href: /legal/cognitive-services/speech-service/custom-neural-voice/concepts-disclosure-guidelines-avatar?context=/azure/ai-services/speech-service/context/context
+          href: /azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-guidelines-avatar?context=/azure/ai-services/speech-service/context/context
       - name: Disclosure design patterns
         items:
         - name: Custom voice
-          href: /legal/cognitive-services/speech-service/custom-neural-voice/concepts-disclosure-patterns?context=/azure/ai-services/speech-service/context/context
+          href: /azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-patterns?context=/azure/ai-services/speech-service/context/context
         - name: Text to speech avatar
-          href: /legal/cognitive-services/speech-service/custom-neural-voice/concepts-disclosure-patterns-avatar?context=/azure/ai-services/speech-service/context/context
+          href: /azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-patterns-avatar?context=/azure/ai-services/speech-service/context/context
       - name: Data, privacy, and security
-        href: /legal/cognitive-services/speech-service/custom-neural-voice/data-privacy-security-custom-neural-voice?context=/azure/ai-services/speech-service/context/context
+        href: /azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/data-privacy-security-custom-neural-voice?context=/azure/ai-services/speech-service/context/context
     - name: Pronunciation Assessment
       items:
       - name: Transparency Note
         items:
         - name: Use cases for Pronunciation Assessment
-          href: /legal/cognitive-services/speech-service/pronunciation-assessment/transparency-note-pronunciation-assessment?context=/azure/ai-services/speech-service/context/context
+          href: /azure/ai-foundry/responsible-ai/speech-service/pronunciation-assessment/transparency-note-pronunciation-assessment?context=/azure/ai-services/speech-service/context/context
         - name: Characteristics and limitations
-          href: /legal/cognitive-services/speech-service/pronunciation-assessment/characteristics-and-limitations-pronunciation-assessment?context=/azure/ai-services/speech-service/context/context
+          href: /azure/ai-foundry/responsible-ai/speech-service/pronunciation-assessment/characteristics-and-limitations-pronunciation-assessment?context=/azure/ai-services/speech-service/context/context
     - name: Embedded speech
-      href: /legal/cognitive-services/speech-service/embedded-speech/limited-access-embedded-speech?context=/azure/ai-services/speech-service/context/context
+      href: /azure/ai-foundry/responsible-ai/speech-service/embedded-speech/limited-access-embedded-speech?context=/azure/ai-services/speech-service/context/context
     - name: Speaker Recognition
       items:
       - name: Transparency note
         items:
         - name: Use cases for Speaker Recognition
-          href: /legal/cognitive-services/speech-service/speaker-recognition/transparency-note-speaker-recognition?context=/azure/ai-services/speech-service/context/context
+          href: /azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/transparency-note-speaker-recognition?context=/azure/ai-services/speech-service/context/context
         - name: Characteristics and limitations
-          href: /legal/cognitive-services/speech-service/speaker-recognition/characteristics-and-limitations-speaker-recognition?context=/azure/ai-services/speech-service/context/context
+          href: /azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/characteristics-and-limitations-speaker-recognition?context=/azure/ai-services/speech-service/context/context
       - name: Integration and responsible use
         items:
         - name: Limited access
-          href: /legal/cognitive-services/speech-service/speaker-recognition/limited-access-speaker-recognition?context=/azure/ai-services/speech-service/context/context
+          href: /azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/limited-access-speaker-recognition?context=/azure/ai-services/speech-service/context/context
         - name: General guidelines
-          href: /legal/cognitive-services/speech-service/speaker-recognition/guidance-integration-responsible-use-speaker-recognition?context=/azure/ai-services/speech-service/context/context
+          href: /azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/guidance-integration-responsible-use-speaker-recognition?context=/azure/ai-services/speech-service/context/context
       - name: Data, privacy, and security
-        href: /legal/cognitive-services/speech-service/speaker-recognition/data-privacy-speaker-recognition?context=/azure/ai-services/speech-service/context/context
+        href: /azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/data-privacy-speaker-recognition?context=/azure/ai-services/speech-service/context/context
 - name: Resources
   items:
     - name: Known issues

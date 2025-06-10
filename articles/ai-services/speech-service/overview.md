@@ -144,35 +144,35 @@ An AI system includes not only the technology, but also the people who use it, t
 
 ### Speech to text
 
-* [Transparency note and use cases](/legal/cognitive-services/speech-service/speech-to-text/transparency-note?context=/azure/ai-services/speech-service/context/context)
-* [Characteristics and limitations](/legal/cognitive-services/speech-service/speech-to-text/characteristics-and-limitations?context=/azure/ai-services/speech-service/context/context)
-* [Integration and responsible use](/legal/cognitive-services/speech-service/speech-to-text/guidance-integration-responsible-use?context=/azure/ai-services/speech-service/context/context)
-* [Data, privacy, and security](/legal/cognitive-services/speech-service/speech-to-text/data-privacy-security?context=/azure/ai-services/speech-service/context/context)
+* [Transparency note and use cases](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note?context=/azure/ai-services/speech-service/context/context)
+* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/characteristics-and-limitations?context=/azure/ai-services/speech-service/context/context)
+* [Integration and responsible use](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/guidance-integration-responsible-use?context=/azure/ai-services/speech-service/context/context)
+* [Data, privacy, and security](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/data-privacy-security?context=/azure/ai-services/speech-service/context/context)
 
 ### Pronunciation Assessment
 
-* [Transparency note and use cases](/legal/cognitive-services/speech-service/pronunciation-assessment/transparency-note-pronunciation-assessment?context=/azure/ai-services/speech-service/context/context)
-* [Characteristics and limitations](/legal/cognitive-services/speech-service/pronunciation-assessment/characteristics-and-limitations-pronunciation-assessment?context=/azure/ai-services/speech-service/context/context)
+* [Transparency note and use cases](/azure/ai-foundry/responsible-ai/speech-service/pronunciation-assessment/transparency-note-pronunciation-assessment?context=/azure/ai-services/speech-service/context/context)
+* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/speech-service/pronunciation-assessment/characteristics-and-limitations-pronunciation-assessment?context=/azure/ai-services/speech-service/context/context)
 
 ### Custom voice
 
-* [Transparency note and use cases](/legal/cognitive-services/speech-service/custom-neural-voice/transparency-note-custom-neural-voice?context=/azure/ai-services/speech-service/context/context)
-* [Characteristics and limitations](/legal/cognitive-services/speech-service/custom-neural-voice/characteristics-and-limitations-custom-neural-voice?context=/azure/ai-services/speech-service/context/context)
-* [Limited access](/legal/cognitive-services/speech-service/custom-neural-voice/limited-access-custom-neural-voice?context=/azure/ai-services/speech-service/context/context)
-* [Responsible deployment of synthetic speech](/legal/cognitive-services/speech-service/custom-neural-voice/concepts-guidelines-responsible-deployment-synthetic?context=/azure/ai-services/speech-service/context/context)
-* [Disclosure of voice talent](/legal/cognitive-services/speech-service/disclosure-voice-talent?context=/azure/ai-services/speech-service/context/context)
-* [Disclosure of design guidelines](/legal/cognitive-services/speech-service/custom-neural-voice/concepts-disclosure-guidelines?context=/azure/ai-services/speech-service/context/context)
-* [Disclosure of design patterns](/legal/cognitive-services/speech-service/custom-neural-voice/concepts-disclosure-patterns?context=/azure/ai-services/speech-service/context/context)
-* [Code of conduct](/legal/cognitive-services/speech-service/tts-code-of-conduct?context=/azure/ai-services/speech-service/context/context)
-* [Data, privacy, and security](/legal/cognitive-services/speech-service/custom-neural-voice/data-privacy-security-custom-neural-voice?context=/azure/ai-services/speech-service/context/context)
+* [Transparency note and use cases](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/transparency-note-custom-neural-voice?context=/azure/ai-services/speech-service/context/context)
+* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/characteristics-and-limitations-custom-neural-voice?context=/azure/ai-services/speech-service/context/context)
+* [Limited access](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/limited-access-custom-neural-voice?context=/azure/ai-services/speech-service/context/context)
+* [Responsible deployment of synthetic speech](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-guidelines-responsible-deployment-synthetic?context=/azure/ai-services/speech-service/context/context)
+* [Disclosure of voice talent](/azure/ai-foundry/responsible-ai/speech-service/disclosure-voice-talent?context=/azure/ai-services/speech-service/context/context)
+* [Disclosure of design guidelines](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-guidelines?context=/azure/ai-services/speech-service/context/context)
+* [Disclosure of design patterns](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-patterns?context=/azure/ai-services/speech-service/context/context)
+* [Code of conduct](/azure/ai-foundry/responsible-ai/speech-service/tts-code-of-conduct?context=/azure/ai-services/speech-service/context/context)
+* [Data, privacy, and security](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/data-privacy-security-custom-neural-voice?context=/azure/ai-services/speech-service/context/context)
 
 ### Speaker Recognition
 
-* [Transparency note and use cases](/legal/cognitive-services/speech-service/speaker-recognition/transparency-note-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
-* [Characteristics and limitations](/legal/cognitive-services/speech-service/speaker-recognition/characteristics-and-limitations-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
-* [Limited access](/legal/cognitive-services/speech-service/speaker-recognition/limited-access-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
-* [General guidelines](/legal/cognitive-services/speech-service/speaker-recognition/guidance-integration-responsible-use-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
-* [Data, privacy, and security](/legal/cognitive-services/speech-service/speaker-recognition/data-privacy-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
+* [Transparency note and use cases](/azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/transparency-note-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
+* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/characteristics-and-limitations-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
+* [Limited access](/azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/limited-access-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
+* [General guidelines](/azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/guidance-integration-responsible-use-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
+* [Data, privacy, and security](/azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/data-privacy-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
 
 ## Next steps
 

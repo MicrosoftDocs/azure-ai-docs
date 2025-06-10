@@ -131,9 +131,9 @@ items:
 - name: Responsible AI
   items:
     - name: Transparency note
-      href: /legal/cognitive-services/agents/transparency-note?context=/azure/ai-services/agents/context/context
+      href: /azure/ai-foundry/responsible-ai/agents/transparency-note?context=/azure/ai-services/agents/context/context
     - name: Data, privacy, and security For Azure AI Foundry Agent Service
-      href: /legal/cognitive-services/agents/data-privacy-security?context=/azure/ai-services/agents/context/context
+      href: /azure/ai-foundry/responsible-ai/agents/data-privacy-security?context=/azure/ai-services/agents/context/context
 - name: Reference
   items:
     - name: REST API

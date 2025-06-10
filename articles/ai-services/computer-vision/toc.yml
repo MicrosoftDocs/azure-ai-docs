@@ -65,11 +65,11 @@ items:
   - name: Responsible use of AI
     items:
     - name: Transparency note
-      href: /legal/cognitive-services/computer-vision/imageanalysis-transparency-note?context=/azure/ai-services/computer-vision/context/context
+      href: /azure/ai-foundry/responsible-ai/computer-vision/imageanalysis-transparency-note?context=/azure/ai-services/computer-vision/context/context
     - name: Data, privacy, and security 
-      href: /legal/cognitive-services/computer-vision/imageanalysis-data-privacy-security?context=/azure/ai-services/computer-vision/context/context
+      href: /azure/ai-foundry/responsible-ai/computer-vision/imageanalysis-data-privacy-security?context=/azure/ai-services/computer-vision/context/context
     - name: Limited Access features
-      href: /legal/cognitive-services/computer-vision/limited-access?context=/azure/ai-services/computer-vision/context/context
+      href: /azure/ai-foundry/responsible-ai/computer-vision/limited-access?context=/azure/ai-services/computer-vision/context/context
   - name: How-to guides
     items:
     - name: Version 4.0
@@ -270,19 +270,19 @@ items:
     - name: Transparency notes
       items:
       - name: Face use cases
-        href: /legal/cognitive-services/face/transparency-note?context=/azure/ai-services/computer-vision/context/context
+        href: /azure/ai-foundry/responsible-ai/face/transparency-note?context=/azure/ai-services/computer-vision/context/context
       - name: Characteristics and limitations
-        href: /legal/cognitive-services/face/characteristics-and-limitations?context=/azure/ai-services/computer-vision/context/context
+        href: /azure/ai-foundry/responsible-ai/face/characteristics-and-limitations?context=/azure/ai-services/computer-vision/context/context
     - name: Integration and responsible use
-      href: /legal/cognitive-services/face/guidance-integration-responsible-use?context=/azure/ai-services/computer-vision/context/context
+      href: /azure/ai-foundry/responsible-ai/face/guidance-integration-responsible-use?context=/azure/ai-services/computer-vision/context/context
     - name: Best practices for enrolling users
       href: enrollment-overview.md
     - name: Code of conduct
       href: /legal/ai-code-of-conduct?context=/azure/ai-services/computer-vision/context/context
     - name: Data privacy and security
-      href: /legal/cognitive-services/face/data-privacy-security?context=/azure/ai-services/computer-vision/context/context
+      href: /azure/ai-foundry/responsible-ai/face/data-privacy-security?context=/azure/ai-services/computer-vision/context/context
     - name: Limited Access features
-      href: /legal/cognitive-services/computer-vision/limited-access-identity?context=/azure/ai-services/computer-vision/context/context
+      href: /azure/ai-foundry/responsible-ai/computer-vision/limited-access-identity?context=/azure/ai-services/computer-vision/context/context
     - name: Shared responsibility for face liveness detection
       href: liveness-detection-shared-responsibility.md
 
@@ -319,17 +319,17 @@ items:
   - name: Responsible use of AI
     items:
     - name: Transparency note
-      href: /legal/cognitive-services/computer-vision/transparency-note-spatial-analysis?context=/azure/ai-services/computer-vision/context/context
+      href: /azure/ai-foundry/responsible-ai/computer-vision/transparency-note-spatial-analysis?context=/azure/ai-services/computer-vision/context/context
     - name: Integration and responsible use
       items:
       - name: Responsible use in AI deployment 
-        href: /legal/cognitive-services/computer-vision/responsible-use-deployment?context=/azure/ai-services/computer-vision/context/context
+        href: /azure/ai-foundry/responsible-ai/computer-vision/responsible-use-deployment?context=/azure/ai-services/computer-vision/context/context
       - name: Disclosure design guidelines
-        href: /legal/cognitive-services/computer-vision/disclosure-design?context=/azure/ai-services/computer-vision/context/context
+        href: /azure/ai-foundry/responsible-ai/computer-vision/disclosure-design?context=/azure/ai-services/computer-vision/context/context
       - name: Research insights
-        href: /legal/cognitive-services/computer-vision/research-insights?context=/azure/ai-services/computer-vision/context/context
+        href: /azure/ai-foundry/responsible-ai/computer-vision/research-insights?context=/azure/ai-services/computer-vision/context/context
     - name: Data, privacy, and security
-      href: /legal/cognitive-services/computer-vision/compliance-privacy-security-2?context=/azure/ai-services/computer-vision/context/context
+      href: /azure/ai-foundry/responsible-ai/computer-vision/compliance-privacy-security-2?context=/azure/ai-services/computer-vision/context/context
   - name: How-to guides
     items:
     - name: Call the Video Retrieval APIs
@@ -351,13 +351,13 @@ items:
     - name: Transparency notes
       items:
       - name: OCR use cases
-        href: /legal/cognitive-services/computer-vision/ocr-transparency-note?context=/azure/ai-services/computer-vision/context/context
+        href: /azure/ai-foundry/responsible-ai/computer-vision/ocr-transparency-note?context=/azure/ai-services/computer-vision/context/context
       - name: Characteristics and limitations
-        href: /legal/cognitive-services/computer-vision/ocr-characteristics-and-limitations?context=/azure/ai-services/computer-vision/context/context
+        href: /azure/ai-foundry/responsible-ai/computer-vision/ocr-characteristics-and-limitations?context=/azure/ai-services/computer-vision/context/context
     - name: Integration and responsible use
-      href: /legal/cognitive-services/computer-vision/ocr-guidance-integration-responsible-use?context=/azure/ai-services/computer-vision/context/context
+      href: /azure/ai-foundry/responsible-ai/computer-vision/ocr-guidance-integration-responsible-use?context=/azure/ai-services/computer-vision/context/context
     - name: Data, privacy, and security
-      href: /legal/cognitive-services/computer-vision/ocr-data-privacy-security?context=/azure/ai-services/computer-vision/context/context
+      href: /azure/ai-foundry/responsible-ai/computer-vision/ocr-data-privacy-security?context=/azure/ai-services/computer-vision/context/context
   - name: How-to guides
     items:
     - name: Call the Read API

@@ -85,4 +85,4 @@ Running the sample yields performance metrics outputted to the console. The full
 ## Related content
 
 - [Read about text to speech on devices for disconnected and hybrid scenarios](https://techcommunity.microsoft.com/t5/ai-cognitive-services-blog/azure-neural-tts-now-available-on-devices-for-disconnected-and/ba-p/3716797)
-- [Limited Access to embedded Speech](/legal/cognitive-services/speech-service/embedded-speech/limited-access-embedded-speech?context=/azure/ai-services/speech-service/context/context)
+- [Limited Access to embedded Speech](/azure/ai-foundry/responsible-ai/speech-service/embedded-speech/limited-access-embedded-speech?context=/azure/ai-services/speech-service/context/context)

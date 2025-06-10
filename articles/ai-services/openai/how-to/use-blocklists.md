@@ -258,7 +258,7 @@ If the completion itself is blocked, the response returns `200`, as the completi
 
 ## Related content
 
-- Learn more about Responsible AI practices for Azure OpenAI: [Overview of Responsible AI practices for Azure OpenAI models](/legal/cognitive-services/openai/overview?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext). 
+- Learn more about Responsible AI practices for Azure OpenAI: [Overview of Responsible AI practices for Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/overview?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext). 
 
 - Read more about [content filtering categories and severity levels](/azure/ai-services/openai/concepts/content-filter?tabs=python) with Azure OpenAI in Azure AI Foundry Models. 
 
