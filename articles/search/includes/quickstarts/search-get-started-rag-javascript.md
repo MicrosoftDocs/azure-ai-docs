@@ -182,34 +182,43 @@ A search index provides grounding data for the chat model. We recommend the hote
    ]}
    ```
 
-## Get service endpoints
+### Get service information for programmamtic access
 
-In the remaining sections, you set up API calls to Azure OpenAI and Azure AI Search. Get the service endpoints so that you can provide them as variables in your code.
+To use the Azure AI Search and Azure OpenAI APIs, you need to know the service endpoints and API keys. You can get this information from the Azure portal.
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
+Sign in to the [Azure portal](https://portal.azure.com).
+
+
+### Get Azure AI service information
 
 1. [Find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
-1. On the **Overview** home page, copy the URL. An example endpoint might look like `https://example.search.windows.net`. 
+1. On the **Overview** home page, copy the URL. An example endpoint might look like `https://example.search.windows.net`. This is your AZURE_SEARCH_ENDPOINT used in the next section.
+1. On the left menu, select **Keys** to view the API keys. Copy the key value. This is your AZURE_SEARCH_API_KEY used in the next section.
+
+
+## Get Azure OpenAI service information
 
 1. [Find your Azure OpenAI service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.CognitiveServices%2Faccounts).
 
-1. On the **Overview** home page, select the link to view the endpoints. Copy the URL. An example endpoint might look like `https://example.openai.azure.com/`.
+1. On the **Overview** home page, select the link to view the endpoints. Copy the URL. An example endpoint might look like `https://example.openai.azure.com/`. This is your AZURE_OPENAI_ENDPOINT used in the next section.
+1. **TBD** - key, api version, and deployment model in foundry
 
+## Set up environment variables for local development
 
-You're using Microsoft Entra ID and role assignments for the connection. Make sure you're logged in to the same tenant and subscription as Azure AI Search and Azure OpenAI. You can use the Azure CLI on the command line to show current properties, change properties, and to sign in. For more information, see [Connect without keys](../../search-get-started-rbac.md). 
+1. Create a `.env` file.
+1. Add the following environment variables to the `.env` file, replacing the values with your own service endpoints and keys.
 
-Run each of the following commands in sequence.
+   ```plaintext
+   AZURE_SEARCH_ENDPOINT=<YOUR AZURE AI SEARCH ENDPOINT>
+   AZURE_SEARCH_API_KEY=<YOUR AZURE AI SEARCH API KEY>
+   AZURE_SEARCH_INDEX_NAME=hotels-sample-index
 
-```azure-cli
-az account show
-
-az account set --subscription <PUT YOUR SUBSCRIPTION ID HERE>
-
-az login --tenant <PUT YOUR TENANT ID HERE>
-```
-
-You should now be logged in to Azure from your local device.
+   AZURE_OPENAI_ENDPOINT=<YOUR AZURE OPENAI ENDPOINT>
+   AZURE_OPENAI_API_KEY=<YOUR AZURE OPENAI API KEY>
+   AZURE_OPENAI_VERSION=<YOUR AZURE OPENAI API VERSION>
+   AZURE_DEPLOYMENT_MODEL=<YOUR DEPLOYMENT NAME>
+   ```
 
 ## Set up the Node.js project
 
@@ -225,7 +234,7 @@ Setup project with Visual Studio Code and TypeScript.
 
    ```bash
    npm init -y
-   npm set type=module
+   npm pkg set type=module
    ```
 
    This creates a `package.json` file with default values.
@@ -233,157 +242,179 @@ Setup project with Visual Studio Code and TypeScript.
 1. Install the following npm packages.
 
    ```bash
-   npm install @azure/search-documents openai
-   ``` 
+   npm install @azure/search-documents openai dotenv
+   ```
+
+## Authenticate to Azure locally
+
+You're using Microsoft Entra ID and role assignments for the connection. Make sure you're logged in to the same tenant and subscription as Azure AI Search and Azure OpenAI. You can use the Azure CLI on the command line to show current properties, change properties, and to sign in. For more information, see [Connect without keys](../../search-get-started-rbac.md). 
+
+Run each of the following commands in sequence.
+
+```azure-cli
+az account show
+
+az account set --subscription <PUT YOUR SUBSCRIPTION ID HERE>
+
+az login --tenant <PUT YOUR TENANT ID HERE>
+```
+
+You should now be logged in to Azure from your local device.
 
 ## Set up query and chat thread
 
 Create a query script that uses the Azure AI Search index and the chat model to generate responses based on grounding data. The following steps guide you through setting up the query script.
 
-Create a `query.js` file with the following code.
-
-```javascript
-import { SearchClient, AzureKeyCredential, SearchDocumentsResult } from "@azure/search-documents";
-import { AzureOpenAI } from "openai";
-
-function getClients() {
-
-    const AZURE_SEARCH_ENDPOINT = process.env.AZURE_SEARCH_ENDPOINT;
-    const AZURE_SEARCH_API_KEY = process.env.AZURE_SEARCH_API_KEY;
-    const AZURE_SEARCH_INDEX_NAME = process.env.AZURE_SEARCH_INDEX_NAME;
-
-    const AZURE_OPENAI_ENDPOINT = process.env.AZURE_OPENAI_ENDPOINT;
-    const AZURE_OPENAI_API_KEY = process.env.AZURE_OPENAI_API_KEY;
-    const AZURE_OPENAI_VERSION = process.env.AZURE_OPENAI_VERSION;
-    const AZURE_OPENAI_DEPLOYMENT_MODEL = process.env.AZURE_DEPLOYMENT_MODEL;
-
-    if (
-        !AZURE_OPENAI_ENDPOINT ||
-        !AZURE_SEARCH_ENDPOINT ||
-        !AZURE_SEARCH_INDEX_NAME ||
-        !AZURE_OPENAI_DEPLOYMENT_MODEL ||
-        !AZURE_SEARCH_API_KEY ||
-        !AZURE_OPENAI_VERSION ||
-        !AZURE_OPENAI_API_KEY
-    ) {
-        throw new Error("Missing required environment variables.");
-    }
-
-    const openaiClient = new AzureOpenAI({
-        apiKey: AZURE_OPENAI_API_KEY,
-        endpoint: AZURE_OPENAI_ENDPOINT,
-        apiVersion: AZURE_OPENAI_VERSION
-    });
-
-    const searchClient = new SearchClient(
-        AZURE_SEARCH_ENDPOINT,
-        AZURE_SEARCH_INDEX_NAME,
-        new AzureKeyCredential(AZURE_SEARCH_API_KEY)
-    );
-
-
-    return { openaiClient, searchClient, modelName: AZURE_OPENAI_DEPLOYMENT_MODEL };
-}
-
-async function queryAISearchForSources(searchClient, query) {
-    console.log(`Searching for: "${query}"\n`);
-    const searchResults = await searchClient.search(query, {
-        top: 5,
-        select: ["Description", "HotelName", "Tags"]
-    });
-
-    const sources = [];
-    for await (const result of searchResults.results) {
-        const doc = result.document;
-        sources.push(
-            `Hotel: ${doc.HotelName}\n` +
-            `Description: ${doc.Description}\n` +
-            `Tags: ${Array.isArray(doc.Tags) ? doc.Tags.join(', ') : doc.Tags}\n`
+1. Create a `query.js` file with the following code.
+    
+    ```javascript
+    import { SearchClient, AzureKeyCredential } from "@azure/search-documents";
+    import { AzureOpenAI } from "openai";
+    
+    function getClients() {
+    
+        const AZURE_SEARCH_ENDPOINT = process.env.AZURE_SEARCH_ENDPOINT;
+        const AZURE_SEARCH_API_KEY = process.env.AZURE_SEARCH_API_KEY;
+        const AZURE_SEARCH_INDEX_NAME = process.env.AZURE_SEARCH_INDEX_NAME;
+    
+        const AZURE_OPENAI_ENDPOINT = process.env.AZURE_OPENAI_ENDPOINT;
+        const AZURE_OPENAI_API_KEY = process.env.AZURE_OPENAI_API_KEY;
+        const AZURE_OPENAI_VERSION = process.env.AZURE_OPENAI_VERSION;
+        const AZURE_OPENAI_DEPLOYMENT_MODEL = process.env.AZURE_DEPLOYMENT_MODEL;
+    
+        if (
+            !AZURE_OPENAI_ENDPOINT ||
+            !AZURE_SEARCH_ENDPOINT ||
+            !AZURE_SEARCH_INDEX_NAME ||
+            !AZURE_OPENAI_DEPLOYMENT_MODEL ||
+            !AZURE_SEARCH_API_KEY ||
+            !AZURE_OPENAI_VERSION ||
+            !AZURE_OPENAI_API_KEY
+        ) {
+            throw new Error("Missing required environment variables.");
+        }
+    
+        const openaiClient = new AzureOpenAI({
+            apiKey: AZURE_OPENAI_API_KEY,
+            endpoint: AZURE_OPENAI_ENDPOINT,
+            apiVersion: AZURE_OPENAI_VERSION
+        });
+    
+        const searchClient = new SearchClient(
+            AZURE_SEARCH_ENDPOINT,
+            AZURE_SEARCH_INDEX_NAME,
+            new AzureKeyCredential(AZURE_SEARCH_API_KEY)
         );
+    
+    
+        return { openaiClient, searchClient, modelName: AZURE_OPENAI_DEPLOYMENT_MODEL };
     }
-    const sourcesFormatted = sources.join("\n---\n");
-    return sourcesFormatted;
-}
-async function queryOpenAIForResponse(openaiClient, query, sourcesFormatted, modelName) {
-
-    const GROUNDED_PROMPT = `
- You are a friendly assistant that recommends hotels based on activities and amenities.
- Answer the query using only the sources provided below in a friendly and concise bulleted manner.
- Answer ONLY with the facts listed in the list of sources below.
- If there isn't enough information below, say you don't know.
- Do not generate answers that don't use the sources below.
-
-Query: {query}
-Sources: {sources}
-`;
-
-    return openaiClient.chat.completions.create({
-        model: modelName,
-        messages: [
-            {
-                role: "user",
-                content: GROUNDED_PROMPT.replace("{query}", query).replace("{sources}", sourcesFormatted),
-            }
-        ],
-        temperature: 0.7,
-        max_tokens: 800,
+    
+    async function queryAISearchForSources(searchClient, query) {
+        console.log(`Searching for: "${query}"\n`);
+        const searchResults = await searchClient.search(query, {
+            top: 5,
+            select: ["Description", "HotelName", "Tags"]
+        });
+    
+        const sources = [];
+        for await (const result of searchResults.results) {
+            const doc = result.document;
+            sources.push(
+                `Hotel: ${doc.HotelName}\n` +
+                `Description: ${doc.Description}\n` +
+                `Tags: ${Array.isArray(doc.Tags) ? doc.Tags.join(', ') : doc.Tags}\n`
+            );
+        }
+        const sourcesFormatted = sources.join("\n---\n");
+        return sourcesFormatted;
+    }
+    async function queryOpenAIForResponse(openaiClient, query, sourcesFormatted, modelName) {
+    
+        const GROUNDED_PROMPT = `
+     You are a friendly assistant that recommends hotels based on activities and amenities.
+     Answer the query using only the sources provided below in a friendly and concise bulleted manner.
+     Answer ONLY with the facts listed in the list of sources below.
+     If there isn't enough information below, say you don't know.
+     Do not generate answers that don't use the sources below.
+    
+    Query: {query}
+    Sources: {sources}
+    `;
+    
+        return openaiClient.chat.completions.create({
+            model: modelName,
+            messages: [
+                {
+                    role: "user",
+                    content: GROUNDED_PROMPT.replace("{query}", query).replace("{sources}", sourcesFormatted),
+                }
+            ],
+            temperature: 0.7,
+            max_tokens: 800,
+        });
+    }
+    
+    async function main() {
+    
+        const { openaiClient, searchClient, modelName } = getClients();
+    
+        const query = "Can you recommend a few hotels with complimentary breakfast?";
+    
+        const sources = await queryAISearchForSources(searchClient, query);
+        const response = await queryOpenAIForResponse(openaiClient, query, sources, modelName);
+    
+        // Print the response from the chat model
+        const content = response.choices[0].message.content;
+        if (content) {
+            console.log(content);
+        } else {
+            console.log("No content available in the response.");
+        }
+    }
+    
+    main().catch((error) => {
+        console.error("An error occurred:", error);
+        process.exit(1);
     });
-}
+    ```
 
-async function main() {
+    The preceding code does the following:
+    - Imports the necessary libraries for Azure AI Search and Azure OpenAI.
+    - Uses environment variables to configure the Azure AI Search and Azure OpenAI clients.
+    - Defines a function to get the clients for Azure AI Search and Azure OpenAI, using environment variables for configuration.
+    - Defines a function to query Azure AI Search for sources based on the user query.
+    - Defines a function to query Azure OpenAI for a response based on the user query and the sources retrieved from Azure AI Search.
+    - The `main` function orchestrates the flow by calling the search and OpenAI functions, and then prints the response.    
+     
+1. Run the following command in a terminal to execute the query script:
 
-    const { openaiClient, searchClient, modelName } = getClients();
+    ```bash
+    node -r dotenv/config query.js
+    ```
 
-    const query = "Can you recommend a few hotels with complimentary breakfast?";
+    The `.env` is passed into the runtime using the `-r dotenv/config`. 
 
-    const sources = await queryAISearchForSources(searchClient, query);
-    const response = await queryOpenAIForResponse(openaiClient, query, sources, modelName);
-
-    // Print the response from the chat model
-    const content = response.choices[0].message.content;
-    if (content) {
-        console.log(content);
-    } else {
-        console.log("No content available in the response.");
-    }
-}
-
-main().catch((error) => {
-    console.error("An error occurred:", error);
-    process.exit(1);
-});
-```
-
-The preceding code does the following:
-- Imports the necessary libraries for Azure AI Search and Azure OpenAI.
-- Uses environment variables to configure the Azure AI Search and Azure OpenAI clients.
-- Defines a function to get the clients for Azure AI Search and Azure OpenAI, using environment variables for configuration.
-- Defines a function to query Azure AI Search for sources based on the user query.
-- Defines a function to query Azure OpenAI for a response based on the user query and the sources retrieved from Azure AI Search.
-- The `main` function orchestrates the flow by calling the search and OpenAI functions, and then prints the response.    
- 
-
-
-The output consists of recommendations for several hotels. Here's an example of what the output might look like:
-
-```
-Sure! Here are a few hotels that offer complimentary breakfast:
-
-- **Head Wind Resort**
-- Complimentary continental breakfast in the lobby
-- Free Wi-Fi throughout the hotel
-
-- **Double Sanctuary Resort**
-- Continental breakfast included
-
-- **White Mountain Lodge & Suites**
-- Continental breakfast available
-
-- **Swan Bird Lake Inn**
-- Continental-style breakfast each morning with a variety of food and drinks 
-    such as caramel cinnamon rolls, coffee, orange juice, milk, cereal, 
-    instant oatmeal, bagels, and muffins
-```
+1. View the output, which consists of recommendations for several hotels. Here's an example of what the output might look like:
+    
+    ```
+    Sure! Here are a few hotels that offer complimentary breakfast:
+    
+    - **Head Wind Resort**
+    - Complimentary continental breakfast in the lobby
+    - Free Wi-Fi throughout the hotel
+    
+    - **Double Sanctuary Resort**
+    - Continental breakfast included
+    
+    - **White Mountain Lodge & Suites**
+    - Continental breakfast available
+    
+    - **Swan Bird Lake Inn**
+    - Continental-style breakfast each morning with a variety of food and drinks 
+        such as caramel cinnamon rolls, coffee, orange juice, milk, cereal, 
+        instant oatmeal, bagels, and muffins
+    ```
 
 ## Troubleshooting
 
@@ -410,172 +441,181 @@ Can you recommend a few hotels that offer complimentary breakfast?
 Tell me their description, address, tags, and the rate for one room that sleeps 4 people.
 ```
 
-Modify the `queryAISearchForSources` function to include the complex types in the search results. The chat model can then use these fields in its response.
+1. Create a new file `queryComplex.js`. 
+1. Copy the following code to the file:
 
-```javascript
-import { SearchClient, AzureKeyCredential, SearchDocumentsResult } from "@azure/search-documents";
-import { AzureOpenAI } from "openai";
-
-function getClients(): { openaiClient: AzureOpenAI; searchClient: SearchClient<{ HotelName: string; Description: string; Tags: string[] | string; Address: string; Rooms: string }>; modelName: string }  {
-
-    const AZURE_SEARCH_ENDPOINT = process.env.AZURE_SEARCH_ENDPOINT!;
-    const AZURE_SEARCH_API_KEY = process.env.AZURE_SEARCH_API_KEY!;
-    const AZURE_SEARCH_INDEX_NAME = process.env.AZURE_SEARCH_INDEX_NAME!;
-
-    const AZURE_OPENAI_ENDPOINT = process.env.AZURE_OPENAI_ENDPOINT!;
-    const AZURE_OPENAI_API_KEY = process.env.AZURE_OPENAI_API_KEY!;
-    const AZURE_OPENAI_VERSION = process.env.AZURE_OPENAI_VERSION!;
-    const AZURE_OPENAI_DEPLOYMENT_MODEL = process.env.AZURE_DEPLOYMENT_MODEL!;
-
-    if (
-        !AZURE_OPENAI_ENDPOINT ||
-        !AZURE_SEARCH_ENDPOINT ||
-        !AZURE_SEARCH_INDEX_NAME ||
-        !AZURE_OPENAI_DEPLOYMENT_MODEL ||
-        !AZURE_SEARCH_API_KEY ||
-        !AZURE_OPENAI_VERSION ||
-        !AZURE_OPENAI_API_KEY
+    ```javascript
+    import { SearchClient, AzureKeyCredential } from "@azure/search-documents";
+    import { AzureOpenAI } from "openai";
+    
+    function getClients() {
+    
+        const AZURE_SEARCH_ENDPOINT = process.env.AZURE_SEARCH_ENDPOINT;
+        const AZURE_SEARCH_API_KEY = process.env.AZURE_SEARCH_API_KEY;
+        const AZURE_SEARCH_INDEX_NAME = process.env.AZURE_SEARCH_INDEX_NAME;
+    
+        const AZURE_OPENAI_ENDPOINT = process.env.AZURE_OPENAI_ENDPOINT;
+        const AZURE_OPENAI_API_KEY = process.env.AZURE_OPENAI_API_KEY;
+        const AZURE_OPENAI_VERSION = process.env.AZURE_OPENAI_VERSION;
+        const AZURE_OPENAI_DEPLOYMENT_MODEL = process.env.AZURE_DEPLOYMENT_MODEL;
+    
+        if (
+            !AZURE_OPENAI_ENDPOINT ||
+            !AZURE_SEARCH_ENDPOINT ||
+            !AZURE_SEARCH_INDEX_NAME ||
+            !AZURE_OPENAI_DEPLOYMENT_MODEL ||
+            !AZURE_SEARCH_API_KEY ||
+            !AZURE_OPENAI_VERSION ||
+            !AZURE_OPENAI_API_KEY
+        ) {
+            throw new Error("Missing required environment variables.");
+        }
+    
+        const openaiClient = new AzureOpenAI({
+            apiKey: AZURE_OPENAI_API_KEY,
+            endpoint: AZURE_OPENAI_ENDPOINT,
+            apiVersion: AZURE_OPENAI_VERSION
+        });
+    
+        const searchClient = new SearchClient(
+            AZURE_SEARCH_ENDPOINT,
+            AZURE_SEARCH_INDEX_NAME,
+            new AzureKeyCredential(AZURE_SEARCH_API_KEY)
+        );
+    
+    
+        return { openaiClient, searchClient, modelName: AZURE_OPENAI_DEPLOYMENT_MODEL };
+    }
+    
+    async function queryAISearchForSources(
+        searchClient,
+        query
     ) {
-        throw new Error("Missing required environment variables.");
+        console.log(`Searching for: "${query}"\n`);
+    
+        const selectedFields = ["HotelName", "Description", "Address", "Rooms", "Tags"];
+        const searchResults = await searchClient.search(query, {
+            top: 5,
+            select: selectedFields,
+            queryType: "semantic",
+            semanticSearchOptions: {},
+        });
+    
+        return searchResults;
     }
-
-    const openaiClient = new AzureOpenAI({
-        apiKey: AZURE_OPENAI_API_KEY,
-        endpoint: AZURE_OPENAI_ENDPOINT,
-        apiVersion: AZURE_OPENAI_VERSION
-    });
-
-    const searchClient = new SearchClient<{ HotelName: string; Description: string; Tags: string[] | string; Address: string; Rooms: string }>(
-        AZURE_SEARCH_ENDPOINT,
-        AZURE_SEARCH_INDEX_NAME,
-        new AzureKeyCredential(AZURE_SEARCH_API_KEY)
-    );
-
-
-    return { openaiClient, searchClient, modelName: AZURE_OPENAI_DEPLOYMENT_MODEL };
-}
-
-async function queryAISearchForSources(
-    searchClient: SearchClient<{ HotelName: string; Description: string; Tags: string[] | string; Address: string; Rooms: string }>,
-    query: string
-): Promise<SearchDocumentsResult<{ HotelName: string; Description: string; Tags: string[] | string; Address: string; Rooms: string }>> {
-    console.log(`Searching for: "${query}"\n`);
-
-    const selectedFields: readonly ["HotelName", "Description", "Address", "Rooms", "Tags"] = ["HotelName", "Description", "Address", "Rooms", "Tags"];
-    const searchResults = await searchClient.search(query, {
-        top: 5,
-        select: selectedFields,
-        queryType: "semantic",
-        semanticSearchOptions: {},
-    });
-
-    return searchResults;
-}
-async function queryOpenAIForResponse(
-    openaiClient: AzureOpenAI, 
-    query: string, 
-    sourcesFormatted: string, 
-    modelName: string
-): Promise<{ choices: { message: { content: string | null } }[] }> {
-
-    const GROUNDED_PROMPT = `
- You are a friendly assistant that recommends hotels based on activities and amenities.
- Answer the query using only the sources provided below in a friendly and concise bulleted manner.
- Answer ONLY with the facts listed in the list of sources below.
- If there isn't enough information below, say you don't know.
- Do not generate answers that don't use the sources below.
-
-Query: {query}
-Sources: {sources}
-`;
-
-    return openaiClient.chat.completions.create({
-        model: modelName,
-        messages: [
-            {
-                role: "user",
-                content: GROUNDED_PROMPT.replace("{query}", query).replace("{sources}", sourcesFormatted),
-            }
-        ],
-        temperature: 0.7,
-        max_tokens: 800,
-    });
-}
-
-async function main(): Promise<void> {
-
-    const { openaiClient, searchClient, modelName } = getClients();
-
-    const query = `
-    Can you recommend a few hotels that offer complimentary breakfast? 
-    Tell me their description, address, tags, and the rate for one room that sleeps 4 people.
+    async function queryOpenAIForResponse(
+        openaiClient, 
+        query, 
+        sourcesFormatted, 
+        modelName
+    ) {
+    
+        const GROUNDED_PROMPT = `
+     You are a friendly assistant that recommends hotels based on activities and amenities.
+     Answer the query using only the sources provided below in a friendly and concise bulleted manner.
+     Answer ONLY with the facts listed in the list of sources below.
+     If there isn't enough information below, say you don't know.
+     Do not generate answers that don't use the sources below.
+    
+    Query: {query}
+    Sources: {sources}
     `;
-
-    const sourcesResult = await queryAISearchForSources(searchClient, query);
-    let sourcesFormatted = "";
-
-    for await (const result of sourcesResult.results) {
-        // Explicitly typing result to ensure compatibility
-        sourcesFormatted += JSON.stringify(result.document) + "\n";
+    
+        return openaiClient.chat.completions.create({
+            model: modelName,
+            messages: [
+                {
+                    role: "user",
+                    content: GROUNDED_PROMPT.replace("{query}", query).replace("{sources}", sourcesFormatted),
+                }
+            ],
+            temperature: 0.7,
+            max_tokens: 800,
+        });
     }
-
-    const response = await queryOpenAIForResponse(openaiClient, query, sourcesFormatted.trim(), modelName);
-
-    // Print the response from the chat model
-    const content = response.choices[0].message.content;
-    if (content) {
-        console.log(content);
-    } else {
-        console.log("No content available in the response.");
+    
+    async function main() {
+    
+        const { openaiClient, searchClient, modelName } = getClients();
+    
+        const query = `
+        Can you recommend a few hotels that offer complimentary breakfast? 
+        Tell me their description, address, tags, and the rate for one room that sleeps 4 people.
+        `;
+    
+        const sourcesResult = await queryAISearchForSources(searchClient, query);
+        let sourcesFormatted = "";
+    
+        for await (const result of sourcesResult.results) {
+            // Explicitly typing result to ensure compatibility
+            sourcesFormatted += JSON.stringify(result.document) + "\n";
+        }
+    
+        const response = await queryOpenAIForResponse(openaiClient, query, sourcesFormatted.trim(), modelName);
+    
+        // Print the response from the chat model
+        const content = response.choices[0].message.content;
+        if (content) {
+            console.log(content);
+        } else {
+            console.log("No content available in the response.");
+        }
     }
-}
+    
+    main().catch((error) => {
+        console.error("An error occurred:", error);
+        process.exit(1);
+    });
+    ```
 
-main().catch((error) => {
-    console.error("An error occurred:", error);
-    process.exit(1);
-});
-```
+1. Run the following command in a terminal to execute the query script:
 
-Output is from Azure OpenAI, and it adds content from complex types.
+    ```bash
+    node -r dotenv/config queryComplex.js
+    ```
 
-```
-Here are a few hotels that offer complimentary breakfast and have rooms that sleep 4 people:
+    The `.env` is passed into the runtime using the `-r dotenv/config`. 
 
-1. **Head Wind Resort**
-   - **Description:** The best of old town hospitality combined with views of the river and 
-   cool breezes off the prairie. Enjoy a complimentary continental breakfast in the lobby, 
-   and free Wi-Fi throughout the hotel.
-   - **Address:** 7633 E 63rd Pl, Tulsa, OK 74133, USA
-   - **Tags:** Coffee in lobby, free Wi-Fi, view
-   - **Room for 4:** Suite, 2 Queen Beds (Amenities) - $254.99
-
-2. **Double Sanctuary Resort**
-   - **Description:** 5-star Luxury Hotel - Biggest Rooms in the city. #1 Hotel in the area 
-   listed by Traveler magazine. Free WiFi, Flexible check in/out, Fitness Center & espresso 
-   in room. Offers continental breakfast.
-   - **Address:** 2211 Elliott Ave, Seattle, WA 98121, USA
-   - **Tags:** View, pool, restaurant, bar, continental breakfast
-   - **Room for 4:** Suite, 2 Queen Beds (Amenities) - $254.99
-
-3. **Swan Bird Lake Inn**
-   - **Description:** Continental-style breakfast featuring a variety of food and drinks. 
-   Locally made caramel cinnamon rolls are a favorite.
-   - **Address:** 1 Memorial Dr, Cambridge, MA 02142, USA
-   - **Tags:** Continental breakfast, free Wi-Fi, 24-hour front desk service
-   - **Room for 4:** Budget Room, 2 Queen Beds (City View) - $85.99
-
-4. **Gastronomic Landscape Hotel**
-   - **Description:** Known for its culinary excellence under the management of William Dough, 
-   offers continental breakfast.
-   - **Address:** 3393 Peachtree Rd, Atlanta, GA 30326, USA
-   - **Tags:** Restaurant, bar, continental breakfast
-   - **Room for 4:** Budget Room, 2 Queen Beds (Amenities) - $66.99
-...
-   - **Tags:** Pool, continental breakfast, free parking
-   - **Room for 4:** Budget Room, 2 Queen Beds (Amenities) - $60.99
-
-Enjoy your stay! Let me know if you need any more information.
-```
+1. View the output from Azure OpenAI, and it adds content from complex types.
+    
+    ```
+    Here are a few hotels that offer complimentary breakfast and have rooms that sleep 4 people:
+    
+    1. **Head Wind Resort**
+       - **Description:** The best of old town hospitality combined with views of the river and 
+       cool breezes off the prairie. Enjoy a complimentary continental breakfast in the lobby, 
+       and free Wi-Fi throughout the hotel.
+       - **Address:** 7633 E 63rd Pl, Tulsa, OK 74133, USA
+       - **Tags:** Coffee in lobby, free Wi-Fi, view
+       - **Room for 4:** Suite, 2 Queen Beds (Amenities) - $254.99
+    
+    2. **Double Sanctuary Resort**
+       - **Description:** 5-star Luxury Hotel - Biggest Rooms in the city. #1 Hotel in the area 
+       listed by Traveler magazine. Free WiFi, Flexible check in/out, Fitness Center & espresso 
+       in room. Offers continental breakfast.
+       - **Address:** 2211 Elliott Ave, Seattle, WA 98121, USA
+       - **Tags:** View, pool, restaurant, bar, continental breakfast
+       - **Room for 4:** Suite, 2 Queen Beds (Amenities) - $254.99
+    
+    3. **Swan Bird Lake Inn**
+       - **Description:** Continental-style breakfast featuring a variety of food and drinks. 
+       Locally made caramel cinnamon rolls are a favorite.
+       - **Address:** 1 Memorial Dr, Cambridge, MA 02142, USA
+       - **Tags:** Continental breakfast, free Wi-Fi, 24-hour front desk service
+       - **Room for 4:** Budget Room, 2 Queen Beds (City View) - $85.99
+    
+    4. **Gastronomic Landscape Hotel**
+       - **Description:** Known for its culinary excellence under the management of William Dough, 
+       offers continental breakfast.
+       - **Address:** 3393 Peachtree Rd, Atlanta, GA 30326, USA
+       - **Tags:** Restaurant, bar, continental breakfast
+       - **Room for 4:** Budget Room, 2 Queen Beds (Amenities) - $66.99
+    ...
+       - **Tags:** Pool, continental breakfast, free parking
+       - **Room for 4:** Budget Room, 2 Queen Beds (Amenities) - $60.99
+    
+    Enjoy your stay! Let me know if you need any more information.
+    ```
 
 ## Troubleshooting errors
 
