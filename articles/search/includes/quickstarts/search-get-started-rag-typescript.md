@@ -183,7 +183,7 @@ A search index provides grounding data for the chat model. We recommend the hote
    ]}
    ```
 
-### Get service information for programmamtic access
+### Get service information for programmatic access
 
 To use the Azure AI Search and Azure OpenAI APIs, you need to know the service endpoints and API keys. You can get this information from the Azure portal.
 
@@ -198,14 +198,14 @@ Sign in to the [Azure portal](https://portal.azure.com).
 1. On the left menu, select **Keys** to view the API keys. Copy the key value. This is your AZURE_SEARCH_API_KEY used in the next section.
 
 
-## Get Azure OpenAI service information
+### Get Azure OpenAI service information
 
 1. [Find your Azure OpenAI service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.CognitiveServices%2Faccounts).
 
 1. On the **Overview** home page, select the link to view the endpoints. Copy the URL. An example endpoint might look like `https://example.openai.azure.com/`. This is your AZURE_OPENAI_ENDPOINT used in the next section.
 1. **TBD** - key, api version, and deployment model in foundry
 
-## Set up environment variables for local development
+### Set up environment variables for local development
 
 1. Create a `.env` file.
 1. Add the following environment variables to the `.env` file, replacing the values with your own service endpoints and keys.
@@ -243,7 +243,7 @@ Setup project with Visual Studio Code and TypeScript.
 1. Install the following npm packages.
 
    ```bash
-   npm install @azure/search-documents openai dotenv
+   npm install @azure/identity @azure/search-documents openai dotenv
    ``` 
 
 1. Create a `src` directory in your project directory.
@@ -301,131 +301,18 @@ Create a query script that uses the Azure AI Search index and the chat model to 
 
 1. Create a `query.ts` file in the `src` directory with the following code.
 
-```typescript
-import { SearchClient, AzureKeyCredential, SearchDocumentsResult } from "@azure/search-documents";
-import { AzureOpenAI } from "openai";
-
-function getClients(): { openaiClient: AzureOpenAI, searchClient: SearchClient<{ HotelName: string; Description: string; Tags: string[] | string }>, modelName: string }  {
-
-    const AZURE_SEARCH_ENDPOINT = process.env.AZURE_SEARCH_ENDPOINT!;
-    const AZURE_SEARCH_API_KEY = process.env.AZURE_SEARCH_API_KEY!;
-    const AZURE_SEARCH_INDEX_NAME = process.env.AZURE_SEARCH_INDEX_NAME!;
-
-    const AZURE_OPENAI_ENDPOINT = process.env.AZURE_OPENAI_ENDPOINT!;
-    const AZURE_OPENAI_API_KEY = process.env.AZURE_OPENAI_API_KEY!;
-    const AZURE_OPENAI_VERSION = process.env.AZURE_OPENAI_VERSION!;
-    const AZURE_OPENAI_DEPLOYMENT_MODEL = process.env.AZURE_DEPLOYMENT_MODEL!;
-
-    if (
-        !AZURE_OPENAI_ENDPOINT ||
-        !AZURE_SEARCH_ENDPOINT ||
-        !AZURE_SEARCH_INDEX_NAME ||
-        !AZURE_OPENAI_DEPLOYMENT_MODEL ||
-        !AZURE_SEARCH_API_KEY ||
-        !AZURE_OPENAI_VERSION ||
-        !AZURE_OPENAI_API_KEY
-    ) {
-        throw new Error("Missing required environment variables.");
-    }
-
-    const openaiClient = new AzureOpenAI({
-        apiKey: AZURE_OPENAI_API_KEY,
-        endpoint: AZURE_OPENAI_ENDPOINT,
-        apiVersion: AZURE_OPENAI_VERSION
-    });
-
-    const searchClient = new SearchClient<{ HotelName: string; Description: string; Tags: string[] | string }>(
-        AZURE_SEARCH_ENDPOINT,
-        AZURE_SEARCH_INDEX_NAME,
-        new AzureKeyCredential(AZURE_SEARCH_API_KEY)
-    );
+    :::code language="typescript" source="code/query-dac.ts" :::
 
 
-    return { openaiClient, searchClient, modelName: AZURE_OPENAI_DEPLOYMENT_MODEL };
-}
 
-async function queryAISearchForSources(searchClient: SearchClient<{ HotelName: string; Description: string; Tags: string[] | string }>, query: string): Promise<string> {
-    console.log(`Searching for: "${query}"\n`);
-    const searchResults: SearchDocumentsResult<{ HotelName: string; Description: string; Tags: string[] | string }> = await searchClient.search(query, {
-        top: 5,
-        select: ["Description", "HotelName", "Tags"]
-    });
-
-    const sources: string[] = [];
-    for await (const result of searchResults.results) {
-        const doc = result.document;
-        sources.push(
-            `Hotel: ${doc.HotelName}\n` +
-            `Description: ${doc.Description}\n` +
-            `Tags: ${Array.isArray(doc.Tags) ? doc.Tags.join(', ') : doc.Tags}\n`
-        );
-    }
-    const sourcesFormatted = sources.join("\n---\n");
-    return sourcesFormatted;
-}
-async function queryOpenAIForResponse(
-    openaiClient: AzureOpenAI, 
-    query: string, 
-    sourcesFormatted: string, 
-    modelName: string
-): Promise<{ choices: { message: { content: string | null } }[] }> {
-
-    const GROUNDED_PROMPT = `
- You are a friendly assistant that recommends hotels based on activities and amenities.
- Answer the query using only the sources provided below in a friendly and concise bulleted manner.
- Answer ONLY with the facts listed in the list of sources below.
- If there isn't enough information below, say you don't know.
- Do not generate answers that don't use the sources below.
-
-Query: {query}
-Sources: {sources}
-`;
-
-    return openaiClient.chat.completions.create({
-        model: modelName,
-        messages: [
-            {
-                role: "user",
-                content: GROUNDED_PROMPT.replace("{query}", query).replace("{sources}", sourcesFormatted),
-            }
-        ],
-        temperature: 0.7,
-        max_tokens: 800,
-    });
-}
-
-async function main():Promise<void> {
-
-    const { openaiClient, searchClient, modelName } = getClients();
-
-    const query = "Can you recommend a few hotels with complimentary breakfast?";
-
-    const sources = await queryAISearchForSources(searchClient, query);
-    const response = await queryOpenAIForResponse(openaiClient, query, sources, modelName);
-
-    // Print the response from the chat model
-    const content = response.choices[0].message.content;
-    if (content) {
-        console.log(content);
-    } else {
-        console.log("No content available in the response.");
-    }
-}
-
-main().catch((error) => {
-    console.error("An error occurred:", error);
-    process.exit(1);
-});
-```
-
-The preceding code does the following:
-- Imports the necessary libraries for Azure AI Search and Azure OpenAI.
-- Uses environment variables to configure the Azure AI Search and Azure OpenAI clients.
-- Defines a function to get the clients for Azure AI Search and Azure OpenAI, using environment variables for configuration.
-- Defines a function to query Azure AI Search for sources based on the user query.
-- Defines a function to query Azure OpenAI for a response based on the user query and the sources retrieved from Azure AI Search.
-- The `main` function orchestrates the flow by calling the search and OpenAI functions, and then prints the response.    
-
+    The preceding code does the following:
+    - Imports the necessary libraries for Azure AI Search and Azure OpenAI.
+    - Uses environment variables to configure the Azure AI Search and Azure OpenAI clients.
+    - Defines a function to get the clients for Azure AI Search and Azure OpenAI, using environment variables for configuration.
+    - Defines a function to query Azure AI Search for sources based on the user query.
+    - Defines a function to query Azure OpenAI for a response based on the user query and the sources retrieved from Azure AI Search.
+    - The `main` function orchestrates the flow by calling the search and OpenAI functions, and then prints the response.    
+    
 1. Build the TypeScript code to JavaScript.
 
    ```bash
@@ -491,130 +378,7 @@ Tell me their description, address, tags, and the rate for one room that sleeps 
 1. Create a new file `queryComplex.ts` in the `src` directory.
 1. Copy the following code to the file:
 
-```typescript
-import { SearchClient, AzureKeyCredential, SearchDocumentsResult } from "@azure/search-documents";
-import { AzureOpenAI } from "openai";
-
-function getClients(): { openaiClient: AzureOpenAI; searchClient: SearchClient<{ HotelName: string; Description: string; Tags: string[] | string; Address: string; Rooms: string }>; modelName: string }  {
-
-    const AZURE_SEARCH_ENDPOINT = process.env.AZURE_SEARCH_ENDPOINT!;
-    const AZURE_SEARCH_API_KEY = process.env.AZURE_SEARCH_API_KEY!;
-    const AZURE_SEARCH_INDEX_NAME = process.env.AZURE_SEARCH_INDEX_NAME!;
-
-    const AZURE_OPENAI_ENDPOINT = process.env.AZURE_OPENAI_ENDPOINT!;
-    const AZURE_OPENAI_API_KEY = process.env.AZURE_OPENAI_API_KEY!;
-    const AZURE_OPENAI_VERSION = process.env.AZURE_OPENAI_VERSION!;
-    const AZURE_OPENAI_DEPLOYMENT_MODEL = process.env.AZURE_DEPLOYMENT_MODEL!;
-
-    if (
-        !AZURE_OPENAI_ENDPOINT ||
-        !AZURE_SEARCH_ENDPOINT ||
-        !AZURE_SEARCH_INDEX_NAME ||
-        !AZURE_OPENAI_DEPLOYMENT_MODEL ||
-        !AZURE_SEARCH_API_KEY ||
-        !AZURE_OPENAI_VERSION ||
-        !AZURE_OPENAI_API_KEY
-    ) {
-        throw new Error("Missing required environment variables.");
-    }
-
-    const openaiClient = new AzureOpenAI({
-        apiKey: AZURE_OPENAI_API_KEY,
-        endpoint: AZURE_OPENAI_ENDPOINT,
-        apiVersion: AZURE_OPENAI_VERSION
-    });
-
-    const searchClient = new SearchClient<{ HotelName: string; Description: string; Tags: string[] | string; Address: string; Rooms: string }>(
-        AZURE_SEARCH_ENDPOINT,
-        AZURE_SEARCH_INDEX_NAME,
-        new AzureKeyCredential(AZURE_SEARCH_API_KEY)
-    );
-
-
-    return { openaiClient, searchClient, modelName: AZURE_OPENAI_DEPLOYMENT_MODEL };
-}
-
-async function queryAISearchForSources(
-    searchClient: SearchClient<{ HotelName: string; Description: string; Tags: string[] | string; Address: string; Rooms: string }>,
-    query: string
-): Promise<SearchDocumentsResult<{ HotelName: string; Description: string; Tags: string[] | string; Address: string; Rooms: string }>> {
-    console.log(`Searching for: "${query}"\n`);
-
-    const selectedFields: readonly ["HotelName", "Description", "Address", "Rooms", "Tags"] = ["HotelName", "Description", "Address", "Rooms", "Tags"];
-    const searchResults = await searchClient.search(query, {
-        top: 5,
-        select: selectedFields,
-        queryType: "semantic",
-        semanticSearchOptions: {},
-    });
-
-    return searchResults;
-}
-async function queryOpenAIForResponse(
-    openaiClient: AzureOpenAI, 
-    query: string, 
-    sourcesFormatted: string, 
-    modelName: string
-): Promise<{ choices: { message: { content: string | null } }[] }> {
-
-    const GROUNDED_PROMPT = `
- You are a friendly assistant that recommends hotels based on activities and amenities.
- Answer the query using only the sources provided below in a friendly and concise bulleted manner.
- Answer ONLY with the facts listed in the list of sources below.
- If there isn't enough information below, say you don't know.
- Do not generate answers that don't use the sources below.
-
-Query: {query}
-Sources: {sources}
-`;
-
-    return openaiClient.chat.completions.create({
-        model: modelName,
-        messages: [
-            {
-                role: "user",
-                content: GROUNDED_PROMPT.replace("{query}", query).replace("{sources}", sourcesFormatted),
-            }
-        ],
-        temperature: 0.7,
-        max_tokens: 800,
-    });
-}
-
-async function main(): Promise<void> {
-
-    const { openaiClient, searchClient, modelName } = getClients();
-
-    const query = `
-    Can you recommend a few hotels that offer complimentary breakfast? 
-    Tell me their description, address, tags, and the rate for one room that sleeps 4 people.
-    `;
-
-    const sourcesResult = await queryAISearchForSources(searchClient, query);
-    let sourcesFormatted = "";
-
-    for await (const result of sourcesResult.results) {
-        // Explicitly typing result to ensure compatibility
-        sourcesFormatted += JSON.stringify(result.document) + "\n";
-    }
-
-    const response = await queryOpenAIForResponse(openaiClient, query, sourcesFormatted.trim(), modelName);
-
-    // Print the response from the chat model
-    const content = response.choices[0].message.content;
-    if (content) {
-        console.log(content);
-    } else {
-        console.log("No content available in the response.");
-    }
-}
-
-main().catch((error) => {
-    console.error("An error occurred:", error);
-    process.exit(1);
-});
-```
-
+    :::code language="typescript" source="code/complex-query-dac.ts" :::
 
 1. Build the TypeScript code to JavaScript.
 
