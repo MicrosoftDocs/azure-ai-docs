@@ -113,62 +113,6 @@ Follow these steps to try the transcription capability:
 1. Select **Generate transcription** to send the audio input to the model and receive a transcribed output in both text and JSON formats.
     :::image type="content" source="../media/concept-playgrounds/audio-playground-transcribe.png" alt-text="Screenshot of the Audio playground interface demonstrating transcription output from audio input." lightbox="../media/concept-playgrounds/audio-playground-transcribe.png":::
 
-## Images playground
-
-The images playground is ideal for developers who build image generation flows. This playground is a full-featured, controlled environment for high-fidelity experiments designed for model-specific APIs to generate and edit images.
-
-> [!TIP]  
-> See the [60-second reel of the Images playground for gpt-image-1](https://youtu.be/btA8njJjLXY) and our DevBlog for how to transform your [enterprise-ready use case by industry.](https://devblogs.microsoft.com/foundry/images-playground-may-2025/)
-
-You can use the images playground with these models:
-
-- [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai) from Azure OpenAI.
-- [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai), [Stable Image Core](https://ai.azure.com/explore/models/Stable-Image-Core/version/1/registry/azureml-stabilityai), [Stable Image Ultra](https://ai.azure.com/explore/models/Stable-Image-Ultra/version/1/registry/azureml-stabilityai) from Stability AI.
-- [Bria 2.3 Fast](https://ai.azure.com/explore/models/Bria-2.3-Fast/version/1/registry/azureml-bria) from Bria AI.
-
-Follow these steps to use the images playground:
-
-1. Select **Try the Images playground** to open it.
-1. If you don't have a deployment already, select **Create new deployment** and deploy a model such as `gpt-image-1`.
-1. **Start with a pre-built text prompt**: Select an option to get started with a prebuilt text prompt that automatically fills the prompt bar.
-1. **Explore the model API-specific generation controls after model deployment:** Adjust key controls (for example, number of variants, quality, strength) to deeply understand specific model responsiveness and constraints.
-1. **Side-by-side observations in grid view:** Visually observe outputs across prompt tweaks or parameter changes.
-1. **Transform with API tooling:** Inpainting with text transformation is available for gpt-image-1. Alter parts of your original image with inpainting selection. Use text prompts to specify the change.
-1. **Port to production with multi-lingual code samples:** Use Python, Java, JavaScript, C# code samples with "View Code". Images playground is your launchpad to development work in VS Code.
-
-### What to validate when experimenting in images playground
-
-By using the images playground, you can explore and validate the following as you plan your production workload:
-
-- **Prompt Effectiveness**
-    - What kind of visual output does this prompt generate for my enterprise use case?
-    - How specific or abstract can my language be and still get good results?
-    - Does the model understand style references like "surrealist" or "cyberpunk" accurately?
-
-- **Stylistic Consistency**
-    - How do I maintain the same character, style, or theme across multiple images?
-    - Can I iterate on variations of the same base prompt with minimal drift?
-
-- **Parameter Tuning**
-    - What's the effect of changing model parameters like guidance scale, seed, steps, etc.?
-    - How can I balance creativity vs. prompt fidelity?
-
-- **Model Comparison**
-    - How do results differ between models (for example, SDXL vs. DALL·E)?
-    - Which model performs better for realistic faces vs. artistic compositions?
-
-- **Composition Control**
-    - What happens when I use spatial constraints like bounding boxes or inpainting masks?
-    - Can I guide the model toward specific layouts or focal points?
-
-- **Input Variation**
-    - How do slight changes in prompt wording or structure impact results?
-    - What's the best way to prompt for symmetry, specific camera angles, or emotions?
-
-- **Integration Readiness**
-    - Will this image meet the constraints of my product's UI (aspect ratio, resolution, content safety)?
-    - Does the output conform to brand guidelines or customer expectations?
-
 
 ## Video playground
 
@@ -235,6 +179,64 @@ When using the video playground as you plan your production workload, you can ex
 - **Latency & Performance**
     - How long does it take to generate video for different prompt types or resolutions?
     - What's the cost-performance tradeoff of generating 5s vs. 15s clips?
+
+
+## Images playground
+
+The images playground is ideal for developers who build image generation flows. This playground is a full-featured, controlled environment for high-fidelity experiments designed for model-specific APIs to generate and edit images.
+
+> [!TIP]  
+> See the [60-second reel of the Images playground for gpt-image-1](https://youtu.be/btA8njJjLXY) and our DevBlog for how to transform your [enterprise-ready use case by industry.](https://devblogs.microsoft.com/foundry/images-playground-may-2025/)
+
+You can use the images playground with these models:
+
+- [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai) from Azure OpenAI.
+- [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai), [Stable Image Core](https://ai.azure.com/explore/models/Stable-Image-Core/version/1/registry/azureml-stabilityai), [Stable Image Ultra](https://ai.azure.com/explore/models/Stable-Image-Ultra/version/1/registry/azureml-stabilityai) from Stability AI.
+- [Bria 2.3 Fast](https://ai.azure.com/explore/models/Bria-2.3-Fast/version/1/registry/azureml-bria) from Bria AI.
+
+Follow these steps to use the images playground:
+
+1. Select **Try the Images playground** to open it.
+1. If you don't have a deployment already, select **Create new deployment** and deploy a model such as `gpt-image-1`.
+1. **Start with a pre-built text prompt**: Select an option to get started with a prebuilt text prompt that automatically fills the prompt bar.
+1. **Explore the model API-specific generation controls after model deployment:** Adjust key controls (for example, number of variants, quality, strength) to deeply understand specific model responsiveness and constraints.
+1. **Side-by-side observations in grid view:** Visually observe outputs across prompt tweaks or parameter changes.
+1. **Transform with API tooling:** Inpainting with text transformation is available for gpt-image-1. Alter parts of your original image with inpainting selection. Use text prompts to specify the change.
+1. **Port to production with multi-lingual code samples:** Use Python, Java, JavaScript, C# code samples with "View Code". Images playground is your launchpad to development work in VS Code.
+
+### What to validate when experimenting in images playground
+
+By using the images playground, you can explore and validate the following as you plan your production workload:
+
+- **Prompt Effectiveness**
+    - What kind of visual output does this prompt generate for my enterprise use case?
+    - How specific or abstract can my language be and still get good results?
+    - Does the model understand style references like "surrealist" or "cyberpunk" accurately?
+
+- **Stylistic Consistency**
+    - How do I maintain the same character, style, or theme across multiple images?
+    - Can I iterate on variations of the same base prompt with minimal drift?
+
+- **Parameter Tuning**
+    - What's the effect of changing model parameters like guidance scale, seed, steps, etc.?
+    - How can I balance creativity vs. prompt fidelity?
+
+- **Model Comparison**
+    - How do results differ between models (for example, SDXL vs. DALL·E)?
+    - Which model performs better for realistic faces vs. artistic compositions?
+
+- **Composition Control**
+    - What happens when I use spatial constraints like bounding boxes or inpainting masks?
+    - Can I guide the model toward specific layouts or focal points?
+
+- **Input Variation**
+    - How do slight changes in prompt wording or structure impact results?
+    - What's the best way to prompt for symmetry, specific camera angles, or emotions?
+
+- **Integration Readiness**
+    - Will this image meet the constraints of my product's UI (aspect ratio, resolution, content safety)?
+    - Does the output conform to brand guidelines or customer expectations?
+
 
 ## Related content
 
