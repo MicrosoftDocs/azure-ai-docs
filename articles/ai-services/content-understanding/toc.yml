@@ -30,10 +30,10 @@ items:
     items:
     - name: Try Azure AI Foundry portal
       items:
-        - name: Use Content Understanding with a single file"
+        - name: Use Content Understanding with a single file
           displayName: quickstart, extract, text, images, OCR, optical character recognition, foundry, standard, mode
           href: quickstart/use-ai-foundry.md
-        - name: Use Content Understanding with multiple files"
+        - name: Use Content Understanding with multiple files
           displayName: quickstart, extract, text, images, OCR, optical character recognition, foundry, pro, mode
           href: quickstart/use-ai-foundry-pro-mode.md
     - name: Try Content Understanding REST API
