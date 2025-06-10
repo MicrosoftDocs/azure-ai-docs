@@ -22,13 +22,13 @@ This article explains how to use the Azure Machine Learning designer to train a 
 To learn more about the designer, see [What is Azure Machine Learning designer?](concept-designer.md)
 
 > [!NOTE]
-> Designer supports two types of components, classic prebuilt components (v1) and custom components (v2). These two types of components are NOT compatible. 
+> Designer supports two types of components: classic prebuilt components (v1) and custom components (v2). These two types of components are NOT compatible. 
 >
->Classic prebuilt components provide prebuilt components majorly for data processing and traditional machine learning tasks like regression and classification. This type of component continues to be supported but will not have any new components added. 
+>Classic prebuilt components are intended primarily for data processing and traditional machine learning tasks like regression and classification. This type of component continues to be supported but will not have any new components added. 
 >
 >Custom components allow you to wrap your own code as a component. It supports sharing components across workspaces and seamless authoring across Studio, CLI v2, and SDK v2 interfaces. 
 >
->For new projects, we highly suggest you use custom components, which are compatible with Azure Machine Learning V2 and will keep receiving new updates. 
+>For new projects, we highly suggest that you use custom components, which are compatible with Azure Machine Learning V2 and will keep receiving new updates. 
 >
 >This article applies to classic prebuilt components and isn't compatible with CLI v2 and SDK v2.
 
@@ -66,7 +66,7 @@ You need an Azure Machine Learning workspace to use the designer. The workspace 
 
 1. Sign in to the [Azure Machine Learning designer](https://ml.azure.com), and select the workspace you want to use.
 
-1. Select **Designer** from the sidebar menu. On the **Classic prebuilt** tab, select **Create a new pipeline using classic prebuilt components**.
+1. Select **Designer** from the sidebar menu. Under **Classic prebuilt**, choose **Create a new pipeline using classic prebuilt components**.
 
     :::image type="content" source="./media/tutorial-designer-automobile-price-train-score/launch-designer.png" alt-text="Screenshot of the visual workspace showing how to access the designer." lightbox="./media/tutorial-designer-automobile-price-train-score/launch-designer.png":::
 
@@ -78,7 +78,7 @@ You need an Azure Machine Learning workspace to use the designer. The workspace 
 
 There are several sample datasets included in the designer for you to experiment with. For this tutorial, use **Automobile price data (Raw)**.
 
-1. To the left of the pipeline canvas is a palette of datasets and components. Select **Component** -> **Sample data**.
+1. To the left of the pipeline canvas is a palette of datasets and components. Select **Component** > **Sample data**.
 
 1. Select the dataset **Automobile price data (Raw)**, and drag it onto the canvas.
 
@@ -100,7 +100,7 @@ Datasets typically require some preprocessing before analysis. You might have no
 
 ### Remove a column
 
-When you train a model, you have to do something about the data that's missing. In this dataset, the **normalized-losses** column is missing many values, so you exclude that column from the model altogether.
+When you train a model, you must do something about the data that's missing. In this dataset, the **normalized-losses** column is missing many values, so you exclude that column from the model altogether.
 
 1. In the datasets and component palette to the left of the canvas, select **Component** and search for the **Select Columns in Dataset** component.
 
@@ -154,9 +154,9 @@ Your dataset still has missing values after you remove the **normalized-losses**
 
 1. Select **Edit column** to the right of the pane.
 
-1. In the **Columns to be cleaned** window that appears, expand the drop-down menu next to **Include**. Select, **All columns**
+1. In the **Columns to be cleaned** window that appears, expand the drop-down menu next to **Include**. Select **All columns**.
 
-1. Select **Save**
+1. Select **Save**.
 
 1. In the **Clean Missing Data** component details pane, under **Cleaning mode**, select **Remove entire row**.
 
@@ -191,7 +191,7 @@ Splitting data is a common task in machine learning. You'll split your data into
 
 1. Select the arrow icon under **Pipeline interface** to the right of the canvas to open the component details pane. Alternatively, you can double-click the **Split Data** component to open the details pane.
 
-1. In the **Split Data** details pane, set the **Fraction of rows in the first output dataset** to 0.7.
+1. In the **Split Data** details pane, set the **Fraction of rows in the first output dataset** to *0.7*.
 
     This option splits 70 percent of the data to train the model and 30 percent for testing it. The 70 percent dataset is accessible through the left output port. The remaining data is available through the right output port.
 
@@ -271,13 +271,13 @@ Use the **Evaluate Model** component to evaluate how well your model scored the 
 
     :::image type="content" source="./media/tutorial-designer-automobile-price-train-score/submission-wizard.png" alt-text="Screenshot showing submission wizard." lightbox ="./media/tutorial-designer-automobile-price-train-score/submission-wizard.png":::
 
-In **Basics** step, you can configure the experiment, job display name, job description, etc.
+    In **Basics**, you can configure the experiment, job display name, job description, etc.
 
-In **Inputs & Outputs** step, you can assign value to the inputs and outputs that are promoted to pipeline level. It's empty in this example because we didn't promote any input or output to pipeline level.
+    In **Inputs & Outputs**, you can assign value to the inputs and outputs that are promoted to pipeline level. It's empty in this example because we didn't promote any input or output to pipeline level.
 
-In **Runtime settings**, you can configure the default datastore and default compute to the pipeline. It's the default datastore and compute for all components in the pipeline. However, if you set a different compute or datastore for a component explicitly, the system respects the component-level setting. Otherwise, it uses the default. 
+    In **Runtime settings**, you can configure the default datastore and default compute to the pipeline. It's the default datastore and compute for all components in the pipeline. However, if you set a different compute or datastore for a component explicitly, the system respects the component-level setting. Otherwise, it uses the default. 
 
-The **Review + Submit** step is the last step to review all settings before submit. The wizard remembers your last configuration if you ever submit the pipeline.
+    The **Review + Submit** step is the last step to review all settings before submit. The wizard remembers your last configuration if you ever submit the pipeline.
 
 After submitting the pipeline job, there is a message on the top with a link to the job detail. You can select this link to review the job details.
 

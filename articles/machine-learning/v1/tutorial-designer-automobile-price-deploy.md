@@ -13,20 +13,20 @@ ms.date: 06/09/2025
 ms.custom: UpdateFrequency5, designer
 ---
 
-# Tutorial: Use the designer to deploy a machine learning model
+# Tutorial: Deploy a machine learning model using designer
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 In [part one of this tutorial](tutorial-designer-automobile-price-train-score.md), you trained a linear regression model that predicts car prices. In this second part, you use the Azure Machine Learning designer to deploy the model so that others can use it.
 
 > [!NOTE]
-> Designer supports two types of components, classic prebuilt components (v1) and custom components (v2). These two types of components are NOT compatible. 
+> Designer supports two types of components: classic prebuilt components (v1) and custom components (v2). These two types of components are NOT compatible. 
 >
->Classic prebuilt components provide prebuilt components majorly for data processing and traditional machine learning tasks like regression and classification. This type of component continues to be supported but will not have any new components added. 
+>Classic prebuilt components are intended primarily for data processing and traditional machine learning tasks like regression and classification. This type of component continues to be supported but will not have any new components added. 
 >
 >Custom components allow you to wrap your own code as a component. It supports sharing components across workspaces and seamless authoring across Studio, CLI v2, and SDK v2 interfaces. 
 >
->For new projects, we highly suggest you use custom components, which are compatible with Azure Machine Learning V2 and will keep receiving new updates. 
+>For new projects, we highly suggest that you use custom components, which are compatible with Azure Machine Learning V2 and will keep receiving new updates. 
 >
 >This article applies to classic prebuilt components and isn't compatible with CLI v2 and SDK v2.
 
@@ -54,7 +54,7 @@ To deploy your pipeline, you must first convert the training pipeline into a rea
 
 ### Create a real-time inference pipeline
 
-1. Select **Jobs** from the side navigation panel, then open the pipeline job that you created. On the detail page, above the pipeline canvas, select the ellipses **...** then choose **Create inference pipeline** > **Real-time inference pipeline**.
+1. Select **Jobs** from the sidebar menu, then open the pipeline job that you created. On the detail page, above the pipeline canvas, select the ellipses **...** then choose **Create inference pipeline** > **Real-time inference pipeline**.
 
      :::image type="content" source="media/tutorial-designer-automobile-price-deploy/create-real-time-inference.png" alt-text="Screenshot of create inference pipeline in pipeline job detail page." lightbox="media/tutorial-designer-automobile-price-deploy/create-real-time-inference.png":::
 
@@ -87,9 +87,9 @@ To deploy your pipeline, you must first convert the training pipeline into a rea
 
 In the dialog box that appears, you can select from any existing Azure Kubernetes Service (AKS) clusters to deploy your model to. If you don't have an AKS cluster, use the following steps to create one.
 
-1. Go to the **Compute** page by selecting **Compute** in the side navigation bar.
+1. Go to the **Compute** page by selecting **Compute** in the sidebar menu.
 
-1. On the navigation ribbon, select **Kubernetes Clusters** > **+ New** > **AksCompute**.
+1. On the navigation ribbon, select **Kubernetes Clusters**. Then select **+ New** > **AksCompute**.
 
     :::image type="content" source="./media/tutorial-designer-automobile-price-deploy/new-inference-cluster.png" alt-text="Screenshot showing how to get to the new inference cluster pane.":::
 
@@ -116,7 +116,7 @@ After your AKS service finishes provisioning, return to the real-time inferencin
 
      :::image type="content" source="./media/tutorial-designer-automobile-price-deploy/setup-endpoint.png" alt-text="Screenshot showing how to set up a new real-time endpoint.":::
 
-    You can also change the **Advanced** setting for your real-time endpoint.
+    You can also change the **Advanced** settings for your real-time endpoint.
 
     |Advanced setting|Description|
     |---|---|
@@ -144,7 +144,7 @@ After your AKS service finishes provisioning, return to the real-time inferencin
 
 After deployment finishes, you can view your real-time endpoint by going to the **Endpoints** page.
 
-1. Select **Endpoints** on the side navigation bar, then select the endpoint you deployed.
+1. Select **Endpoints** on the sidebar menu, then select the endpoint you deployed.
 
     - In the **Details** tab, you can see more information such as the REST URI, Swagger definition, status, and tags.
 
@@ -172,7 +172,7 @@ You can update the online endpoint with new model trained in the designer. On th
 
     Input a name and select **File** type.
 
-    :::image type="content" source="./media/how-to-run-batch-predictions-designer/register-train-model-as-dataset-2.png" alt-text="Screenshot of register as a data asset with new data asset selected.":::
+    :::image type="content" source="./media/how-to-run-batch-predictions-designer/register-train-model-as-dataset-2.png" alt-text="Screenshot of register as a data asset with new data asset selected." lightbox="./media/how-to-run-batch-predictions-designer/register-train-model-as-dataset-2.png":::
 
 1. After the dataset registers successfully, open your inference pipeline draft, or clone the previous inference pipeline job into a new draft. In the inference pipeline draft, replace the previous trained model shown as **MD-xxxx** node connected to the **Score Model** component with the newly registered dataset.
 
@@ -188,7 +188,7 @@ You can update the online endpoint with new model trained in the designer. On th
 
 1. After modifying your inference pipeline with the newly trained model or transformation, submit it. When the job is completed, deploy it to the existing online endpoint deployed previously.
 
-    :::image type="content" source="./media/tutorial-designer-automobile-price-deploy/deploy-to-existing-endpoint.png" alt-text="Screenshot showing how to replace existing real-time endpoint.":::
+    :::image type="content" source="./media/tutorial-designer-automobile-price-deploy/deploy-to-existing-endpoint.png" alt-text="Screenshot showing how to replace existing real-time endpoint." lightbox="./media/tutorial-designer-automobile-price-deploy/deploy-to-existing-endpoint.png":::
 
 ## Limitations
 
