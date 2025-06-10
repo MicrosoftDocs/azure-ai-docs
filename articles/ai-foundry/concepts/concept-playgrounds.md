@@ -174,6 +174,8 @@ By using the images playground, you can explore and validate the following as yo
 
 The video playground (preview) is your rapid iteration environment for exploring, refining, and validating generative video workflows—designed for developers who need to go from idea to prototype with precision, control, and speed. The playground gives you a low-friction interface to test prompt structures, assess motion fidelity, evaluate model consistency across frames, and compare outputs across models—without writing boilerplate or wasting compute cycles. It's also a great demo interface for your Chief Product Officer and Engineering VP.
 
+All model endpoints are integrated with Azure AI Content Safety. As a result, harmful and unsafe images are filtered out before being surfaced in the video playground. If your text prompt and video generation are flagged by content moderation policies, you get a warning notification.
+
 You can use the video playground with the **Azure OpenAI Sora** model.
 
 > [!TIP]  
@@ -189,15 +191,20 @@ Follow these steps to use the video playground:
 1. On the homepage of the video playground, get inspired by **pre-built prompts** sorted by the **industry** filter. From here, you can view the videos in full display and copy the prompt to build from it.
     :::image type="content" source="../media/concept-playgrounds/video-playground-copy-prompt.png" alt-text="Screenshot of the video playground highlighting the Use prompt button to copy a prompt." lightbox="../media/concept-playgrounds/video-playground-copy-prompt.png":::
 
-1. Copying the prompt pastes it in the prompt bar. Adjust key controls (for example, aspect ratio, resolution) to deeply understand specific model responsiveness and constraints.
+1. Copying the prompt pastes it in the prompt bar. Adjust key controls (for example, aspect ratio or resolution) to deeply understand specific model responsiveness and constraints.
+1. Select **Generate** to generate a video based on the copied prompt.
+1. Rewrite your text prompt syntax with gpt-4o using **Re-write with AI**. 
+1. Switch on the **Start with an industry system prompt** capability, choose an industry, and specify the change required for your original prompt.
+1. Select **Update** to update the prompt, and then select **Generate** to create a new video.
+    :::image type="content" source="../media/concept-playgrounds/video-playground-rewrite-prompt-with-ai.png" alt-text="Screenshot showing the controls used to rewrite a prompt with AI and generate an updated image." lightbox="../media/concept-playgrounds/video-playground-rewrite-prompt-with-ai.png":::
 
-1. Rewrite your text prompt syntax with gpt-4o using **Re-write with AI** with industry based system prompts. Switch on the capability, select the industry and specify the change required for your original prompt.
+1. Go to the **Generation history** tab to review your generations as a grid or list view. When you select the videos, open them in full screen mode for full immersion. Visually observe outputs across prompt tweaks or parameter changes.
+1. In full screen mode, edit the prompt and submit for regeneration.
+1. Either in full screen mode or through the options button that show up when you hover across the video, download the videos to your local computer, view the generation information generation tag, view code, or delete the video.
+    :::image type="content" source="../media/concept-playgrounds/options-menu-for-generated-video.png" alt-text="Screenshot showing the options button for downloading, viewing details, and deleting a generated image." lightbox="../media/concept-playgrounds/options-menu-for-generated-video.png":::
 
-1. From the Generation history tab, review your generations as a Grid or List view. When you select the videos, open them in full screen mode for full immersion. Visually observe outputs across prompt tweaks or parameter changes.
-1. In Full Screen mode, edit the prompt and submit for regeneration.
-1. Either in Full Screen mode or through the overflow button, download to local, view the information generation tag, or delete the video.
-1. **Port to production with multi-lingual code samples:** Use Python, Java, JavaScript, C# contextual code samples with "View Code" that reflect your generations and copy into VS Code.
-1. **Azure AI Content Safety integration:** With all model endpoints integrated with Azure AI Content Safety, harmful and unsafe images are filtered out before being surfaced in the video playground. If your text prompt and video generation are flagged by content moderation policies, you get a warning notification appear.
+1. Select **View code**  from the options menu to view contextual sample code for your video generations in several languages, including Python, Java,  JavaScript, C# **Port to production with multi-lingual code samples:** Use Python, JavaScript, C#, and more. Copy your code into VS Code.
+
    
 ### What to validate when experimenting in video playground
 
@@ -229,6 +236,7 @@ When using the video playground as you plan your production workload, you can ex
     - How long does it take to generate video for different prompt types or resolutions?
     - What's the cost-performance tradeoff of generating 5s vs. 15s clips?
 
-## Related resources
+## Related content
+
 - [Use the chat playground in Azure AI Foundry portal](../quickstarts/get-started-playground.md)
 - [Quickstart: Create a new agent (Preview)](../../ai-services/agents/quickstart.md)
