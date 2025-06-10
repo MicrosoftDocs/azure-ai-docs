@@ -31,7 +31,10 @@ items:
   - name: What is Text translation?
     displayName: features,develop,development,free
     href: text-translation/overview.md
-  - name: Text translation SDK overview
+  - name: "2025-05-01-preview 🆕"
+    displayName: gpt, adaptive, tone, gender
+    href: text-translation/reference/preview/reference-overview.md
+  - name: Text translation SDK
     displayName: get started,sdk,keys,endpoint
     href: text-sdk-overview.md
   - name: Quickstarts
@@ -68,15 +71,11 @@ items:
       href: firewalls.md
   - name: Authentication and authorization
     displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
-    href: text-translation/reference/authentication.md    
+    href: text-translation/reference/authentication.md
   - name: Reference
-    expanded: true
     items:
     - name: Azure AI Translator 2025-05-01-preview 🆕
       items:
-      - name: 2025-05-01-preview overview
-        displayName: gpt, adaptive, tone, gender
-        href: text-translation/reference/preview/reference-overview.md
       - name: Languages
         href: text-translation/reference/preview/get-languages.md
       - name: Translate
