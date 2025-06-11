@@ -12,6 +12,8 @@ ms.date: 06/16/2022
 
 # Limited Access to Speaker Recognition
 
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+
 As part of Microsoft's commitment to responsible AI, Speaker Recognition is designed with the intention of protecting the rights of individuals and society and fostering transparent human-computer interaction. For this reason, Microsoft's Speaker Recognition feature is a Limited Access feature available by registration only, and only for certain use cases.
 
 ## Registration process

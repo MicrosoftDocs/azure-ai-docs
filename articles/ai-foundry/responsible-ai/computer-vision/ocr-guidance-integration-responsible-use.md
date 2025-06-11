@@ -12,6 +12,8 @@ ms.date: 05/04/2021
 
 # Guidance for integration and responsible use with OCR technology
 
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+
 As Microsoft works to help customers responsibly develop and deploy solutions using Azure AI Vision Read optical character recognition (OCR) capabilities, we're taking a principled approach to upholding personal agency and dignity. Microsoft is considering the AI systems' fairness, reliability and safety, privacy and security, inclusiveness, transparency, and human accountability. These considerations are in line with our commitment to developing responsible AI.
 
 This article discusses OCR and the key considerations for making use of this technology responsibly. Consider the following factors when you decide how to use and implement AI-powered products and features:

@@ -12,6 +12,8 @@ ms.date: 10/04/2022
 
 # Guidance for integration and responsible use with Image Analysis
 
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+
 Microsoft works to help customers responsibly develop and deploy solutions that use Image Analysis. We're taking a principled approach to upholding personal agency and dignity by considering the AI systems' fairness, reliability and safety, privacy and security, inclusiveness, transparency, and human accountability. These considerations are in line with our commitment to developing Responsible AI.
 
 ## General guidelines for integration and responsible use 

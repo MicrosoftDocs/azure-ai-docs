@@ -12,6 +12,8 @@ ms.date: 10/04/2022
 
 # Data and privacy for Image Analysis 
 
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+
 
 This article provides high-level details regarding how Image Analysis service processes data provided by customers. Image Analysis was designed with compliance, privacy, and security in mind. As an important reminder, you're responsible for the implementation of this technology. It's your responsibility to comply with all applicable laws and regulations in your jurisdiction, including ensuring you have all necessary licenses, permissions or other third-party approvals required to transfer and process your content using Image Analysis.
 

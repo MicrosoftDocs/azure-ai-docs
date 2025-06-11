@@ -12,6 +12,8 @@ ms.date: 02/08/2024
 ---
 # Data and privacy for Language Understanding
 
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+
 ## What data does Language Understanding process?
 
 Language Understanding (LUIS) processes the following types of data:

@@ -12,6 +12,8 @@ ms.date: 02/12/2021
 
 # Capabilities and limitations of optical character recognition
 
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+
 In this section, we'll review what accuracy means for OCR and how to assess it for your context.
 
 ## Word-level accuracy measure

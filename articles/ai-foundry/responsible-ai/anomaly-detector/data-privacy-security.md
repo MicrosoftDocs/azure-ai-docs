@@ -12,6 +12,8 @@ ms.date: 02/21/2024
 
 # Data and privacy for Anomaly Detector
 
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+
 > [!NOTE]
 > While the information in this article only refers to Anomaly Detector, most of the concepts described apply to both Anomaly Detector and Azure AI Metrics Advisor. Metrics Advisor is built on top of the core technology from Anomaly Detector.
 

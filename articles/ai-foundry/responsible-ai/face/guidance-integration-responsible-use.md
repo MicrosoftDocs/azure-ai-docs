@@ -12,6 +12,8 @@ ms.date: 06/21/2022
 
 # Guidance for integration and responsible use of Face
 
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+
 To help customers responsibly develop and integrate biometric solutions using Face, we are offering guidance for responsible use based on Microsoft’s AI principles of fairness, reliability and safety, privacy and security, inclusiveness, transparency, and human accountability.
 
 > [!NOTE]

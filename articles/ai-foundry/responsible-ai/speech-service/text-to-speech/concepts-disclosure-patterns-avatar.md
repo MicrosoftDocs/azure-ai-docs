@@ -13,6 +13,8 @@ ms.author: eur
 
 # Disclosure design patterns for text to speech avatar
 
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+
 ## Overview
 
 There's a spectrum of disclosure design patterns you can apply to your text to speech avatar experience. There is [explicit disclosure](#explicit-disclosure), which means communicating the origins of the text to speech avatar outright, and [Implicit disclosure](#implicit-disclosure), which includes cues and interaction patterns that benefit avatar experiences. 

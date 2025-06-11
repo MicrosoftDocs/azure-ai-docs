@@ -13,6 +13,8 @@ ms.date: 05/12/2024
 
 # Data, privacy, and security for Azure AI Translator
 
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+
 This article provides some high-level details regarding how Azure AI Translator processes data provided by customers.
 
 ## What data does Translator process? 

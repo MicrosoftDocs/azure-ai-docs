@@ -12,6 +12,8 @@ ms.date: 02/23/2021
 
 # Data, privacy, and security for OCR
 
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+
 This article presents some high-level information about how the optical character recognition (OCR) service processes the data provided by customers. As an important reminder, you're responsible for the implementation of this technology and ensuring you have all necessary licenses or permissions to send data to this service. It's your responsibility to comply with all applicable laws and regulations in your jurisdiction.
 
 ## Data collection and processing

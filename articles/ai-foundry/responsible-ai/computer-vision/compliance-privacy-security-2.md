@@ -12,6 +12,8 @@ ms.date: 09/14/2020
 
 # Data, privacy, and security for Spatial Analysis
 
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+
 Azure AI Vision spatial analysis was designed with compliance, privacy, and security in mind, however, the customer is responsible for its use and the implementation of this technology. For example, it is your responsibility to:
 
 - Install and position cameras in your locations, and in doing so take care to avoid sensitive areas and limit collection of data not needed by Spatial Analysis.

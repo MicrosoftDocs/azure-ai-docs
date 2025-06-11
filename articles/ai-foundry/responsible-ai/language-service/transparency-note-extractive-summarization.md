@@ -12,6 +12,8 @@ ms.date: 05/18/2022
 
 # Transparency note for summarization
 
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+
 
 ## What is a transparency note?
 

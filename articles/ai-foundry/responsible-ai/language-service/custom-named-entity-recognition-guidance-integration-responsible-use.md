@@ -12,6 +12,8 @@ ms.date: 09/29/2021
 
 # Guidance for integration and responsible use with custom named entity recognition
 
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+
 Microsoft works to help customers responsibly develop and deploy solutions by using custom named entity recognition. Our principled approach upholds personal agency and dignity by considering the AI system's:
 
 * Fairness, reliability, and safety.

@@ -12,6 +12,8 @@ ms.date: 07/07/2021
 
 # Data and privacy for Custom Vision
 
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+
 ## What data does Custom Vision process?
 
 Custom Vision processes the following types of data:

@@ -12,6 +12,8 @@ ms.date: 02/01/2023
 
 # Transparency note for Text Analytics for health
 
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+
 ## What is a transparency note?
 
 > [!IMPORTANT]

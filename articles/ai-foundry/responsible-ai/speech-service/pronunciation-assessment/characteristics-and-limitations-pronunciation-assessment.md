@@ -12,6 +12,8 @@ ms.date: 05/17/2021
 
 # Characteristics and limitations of Pronunciation Assessment
 
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+
 As a part of the Azure AI Speech service, pronunciation assessment empowers end-to-end education solutions for computer-assisted language learning. Pronunciation Assessment involves multiple criteria to assess learners' performance at multiple levels of detail, with perceptions similar to human judges.
 
 ## How accurate is Pronunciation Assessment?

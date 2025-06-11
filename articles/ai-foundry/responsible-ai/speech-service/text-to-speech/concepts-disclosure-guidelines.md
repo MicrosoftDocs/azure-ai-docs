@@ -13,6 +13,8 @@ ms.author: eur
 
 # Disclosure design guidelines for synthetic voices
 
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+
 Learn how to build and maintain trust with customers by being transparent about the synthetic nature of your voice experience.
 
 ## What is disclosure?

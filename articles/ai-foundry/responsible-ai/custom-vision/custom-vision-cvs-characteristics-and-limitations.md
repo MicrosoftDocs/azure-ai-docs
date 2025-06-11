@@ -12,6 +12,8 @@ ms.date: 07/07/2021
 
 # Characteristics and Limitations of Custom Vision
 
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+
 The quality of your classifier or object detector model built with Azure AI Custom Vision depends on the amount, quality, and variety of the labeled data you provide when training the model. The quality also depends on how balanced the overall dataset is between classes.
 
 After you've trained your model, you can see the estimate of the project's performance [customvision.ai](http://customvision.ai). Custom Vision uses the images that you submitted for training to estimate precision, recall, and mean average precision. These three measurements of an image classifier’s effectiveness are defined as follows:

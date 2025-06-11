@@ -12,6 +12,8 @@ ms.date: 04/26/2023
 
 # Characteristics and limitations for using custom text classification
 
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+
 Performance of custom text classification models will vary based on the scenario and input data. The following sections are designed to help you understand key concepts about performance and evaluation of custom text classification models.
 
 ## Performance evaluation metrics
