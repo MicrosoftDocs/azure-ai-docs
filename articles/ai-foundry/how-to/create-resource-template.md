@@ -124,4 +124,4 @@ See the [Azure AI Foundry Samples](https://github.com/azure-ai-foundry/foundry-s
 
 ## Related content
 
-- [Get started with the SDK](../quickstarts//get-started-code.md?pivots=fdp-project)
+- [Get started with the SDK](../quickstarts/get-started-code.md?pivots=fdp-project)

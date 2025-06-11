@@ -168,7 +168,7 @@ Consider optimizing the endpoint with the preceding considerations to improve th
 
 After you deploy the endpoint, you need to test it on the **Test** tab on the deployment detail page. To get to the **Test** tab, on the left pane, under **My assets**, select **Models + endpoints**. Then select the deployment to view the details. If the **Test** tab shows **Unable to fetch deployment schema**, try the following two methods to mitigate this issue.
 
-:::image type="content" source="../media/prompt-flow//unable-to-fetch-deployment-schema.png" alt-text="Screenshot that shows the Test tab on the deployment detail page." lightbox = "../media/prompt-flow/unable-to-fetch-deployment-schema.png":::
+:::image type="content" source="../media/prompt-flow/unable-to-fetch-deployment-schema.png" alt-text="Screenshot that shows the Test tab on the deployment detail page." lightbox = "../media/prompt-flow/unable-to-fetch-deployment-schema.png":::
 
 - Make sure that you granted the correct permission to the endpoint identity. For more information, see [how to grant permission to the endpoint identity](./flow-deploy.md#grant-permissions-to-the-endpoint).
 - Perhaps you ran your flow in an old version runtime and then deployed the flow, so the deployment used the environment of the runtime that was the old version. To update the runtime, follow the steps in [Update a runtime on the UI](./create-manage-compute-session.md#upgrade-compute-instance-runtime). Rerun the flow in the latest runtime, and then deploy the flow again.

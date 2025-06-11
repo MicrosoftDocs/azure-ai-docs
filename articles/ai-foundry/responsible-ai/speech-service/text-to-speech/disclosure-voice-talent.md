@@ -5,7 +5,6 @@ author: eric-urban
 ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: article
 ms.date: 02/19/2022
 ---
 
@@ -17,33 +16,33 @@ Microsoft is committed to designing AI responsibly. We hope this note will foste
 
 ## Key text to speech terms
 
-**Voice model:** A text to speech computer model that can mimic unique vocal characteristics of a target speaker. A voice model is also called voice font or synthetic voice. A voice model is a set of parameters in binary format that is not human readable and does not contain audio recordings. It cannot be reverse engineered to derive or construct the audio recordings of a human being speaking.
+**Voice model:** A text to speech computer model that can mimic unique vocal characteristics of a target speaker. A voice model is also called voice font or synthetic voice. A voice model is a set of parameters in binary format that is not human readable and does not contain audio recordings. It cannot be reverse engineered to derive or construct the audio recordings of a human being speaking.
 
-**Voice talent:** Individuals or target speakers whose voices are recorded and used to create voice models that are intended to sound like the voice talent's voice.
+**Voice talent:** Individuals or target speakers whose voices are recorded and used to create voice models that are intended to sound like the voice talent's voice.
 
-**Avatar model:** A text to speech avatar computer model that can mimic unique facial characteristics of a target actor. An avatar model is a set of parameters in binary format that is not human readable and does not contain video or audio recordings. It cannot be reverse engineered to derive or construct video recordings of a human being acting. 
+**Avatar model:** A text to speech avatar computer model that can mimic unique facial characteristics of a target actor. An avatar model is a set of parameters in binary format that is not human readable and does not contain video or audio recordings. It cannot be reverse engineered to derive or construct video recordings of a human being acting. 
 
-**Avatar talent:** Custom text to speech avatar model building requires training on a video recording of a real human speaking. This person is the avatar talent. Customers must get sufficient consent under all relevant laws and regulations from the avatar talent to use their image to create a custom avatar.
+**Avatar talent:** Custom text to speech avatar model building requires training on a video recording of a real human speaking. This person is the avatar talent. Customers must get sufficient consent under all relevant laws and regulations from the avatar talent to use their image to create a custom avatar.
 
 ## How neural text to speech works 
 
-**How it works:** Neural text to speech synthesizes speech using deep neural networks that have "learned" the way phonetics are combined in natural human speech rather than using classical programming or statistical methods. In addition to the recordings of a particular voice talent, neural text to speech uses a source library that contains voice recordings from many different speakers.
+**How it works:** Neural text to speech synthesizes speech using deep neural networks that have "learned" the way phonetics are combined in natural human speech rather than using classical programming or statistical methods. In addition to the recordings of a particular voice talent, neural text to speech uses a source library that contains voice recordings from many different speakers.
 
-**What to know about it:** Because of the way it synthesizes voices, neural text to speech can produce styles of speech that were not part of the original recordings, such as changes in tone of voice and affectation. Neural text to speech voices sound fluid and are good at replicating the natural pauses, idiosyncrasies, and hesitancy that people express when they are speaking. Those who hear synthetic voices made via neural text to speech tend to rate them closer to human speech than standard text to speech voices.
+**What to know about it:** Because of the way it synthesizes voices, neural text to speech can produce styles of speech that were not part of the original recordings, such as changes in tone of voice and affectation. Neural text to speech voices sound fluid and are good at replicating the natural pauses, idiosyncrasies, and hesitancy that people express when they are speaking. Those who hear synthetic voices made via neural text to speech tend to rate them closer to human speech than standard text to speech voices.
 
 **Examples of how Microsoft uses it**: 
 - **Prebuilt neural voice** is a feature of text to speech that offers "off-the-shelf" voice models for customer use. Prebuilt neural voices are also used in several Microsoft products including the Edge Browser, Narrator, Office, and Teams.
 - **Custom neural voice** is a feature of text to speech that enables the creation of one-of-a-kind custom synthetic voice models. The following are capabilities of custom neural voice:
-  - **Language transfer** can express in a language different from the original voice recordings.
-  - **Style transfer** can express in a style of speaking different from the original voice recordings. For example, a newscaster voice.
-  - **Voice transformation** can express in a manner different from the original voice recordings. For example, modifying tone or pitch to create different character voices.
+  - **Language transfer** can express in a language different from the original voice recordings.
+  - **Style transfer** can express in a style of speaking different from the original voice recordings. For example, a newscaster voice.
+  - **Voice transformation** can express in a manner different from the original voice recordings. For example, modifying tone or pitch to create different character voices.
   - **Other voices used in Microsoft's products and services**, such as Cortana.
 
-**What to expect when recording:** Contributing at least 300 lines for a proof-of-concept voice model and about 2,000 lines to produce a new voice model for production use.
+**What to expect when recording:** Contributing at least 300 lines for a proof-of-concept voice model and about 2,000 lines to produce a new voice model for production use.
 
 ## How text to speech avatar works 
 
-**How it works:** Text to speech avatar is built on top of prebuilt neural voice and custom neural voice, and synthesizes avatar video content with synchronized text to speech prebuilt neural voice or custom neural voice. The synthesis process uses deep neural networks trained on models that are developed based on video recordings of avatar talent. The models are trained with the acoustic features extracted from the audio elements of the recording, and physical characteristics, mouth movements, facial expressions, and related visual elements extracted from the video elements of the recording. 
+**How it works:** Text to speech avatar is built on top of prebuilt neural voice and custom neural voice, and synthesizes avatar video content with synchronized text to speech prebuilt neural voice or custom neural voice. The synthesis process uses deep neural networks trained on models that are developed based on video recordings of avatar talent. The models are trained with the acoustic features extracted from the audio elements of the recording, and physical characteristics, mouth movements, facial expressions, and related visual elements extracted from the video elements of the recording. 
  
 **What to know about it:** The synthesized text to speech avatar’s face, body, and movements closely resemble the avatar talent, but the text to speech avatar’s voice may be generated from any of the prebuilt neural voices Microsoft makes available or from a custom neural voice, including where the voice talent is the same individual as the avatar talent, if the individual has authorized such use.
 
@@ -52,12 +51,12 @@ Microsoft is committed to designing AI responsibly. We hope this note will foste
 - **Custom text to speech avatar** is a feature of Azure AI Speech text to speech that enables the creation of one-of-a-kind custom synthetic text to speech avatar models.
 
 
-**What to expect when recording**: You will need to contribute at least 10 minutes of video recording for a proof-of-concept custom avatar model and about 20 minutes of video recording to produce a complete custom avatar model for production use. 
+**What to expect when recording**: You will need to contribute at least 10 minutes of video recording for a proof-of-concept custom avatar model and about 20 minutes of video recording to produce a complete custom avatar model for production use. 
 
 
 ## Voice talent and synthetic voices: an evolving relationship 
 
-Recognizing the integral relationship between voice talent and synthetic voices, Microsoft interviewed voice talent to better understand their perspectives on new developments in technology. Research we conducted in 2019 showed that voice talent saw potential benefit from the capabilities introduced by neural text to speech, such as saving studio time to complete recording jobs, and adding capacity to complete more voice acting assignments. At the same time, there were varying degrees of awareness about how developments in text to speech technology could potentially impact their profession.
+Recognizing the integral relationship between voice talent and synthetic voices, Microsoft interviewed voice talent to better understand their perspectives on new developments in technology. Research we conducted in 2019 showed that voice talent saw potential benefit from the capabilities introduced by neural text to speech, such as saving studio time to complete recording jobs, and adding capacity to complete more voice acting assignments. At the same time, there were varying degrees of awareness about how developments in text to speech technology could potentially impact their profession.
 
 Overall, voice talent expressed a desire for transparency and clarity about:
 - Limits on what their voice likeness could and could not be used to express.
@@ -73,7 +72,7 @@ Now, with increasingly realistic-sounding synthetic voices and the uptick in mor
 
 ## Synthetic avatar in wider use  
 
-Similar to text to speech voices, avatars now offer realistic appearances, movements, and facial expressions paired with lifelike sounding voices. These speaking avatars may be used in a variety of situations, such as to present content in an online training, present a speech on behalf of a company, interact with customers in customer service settings, and much more. 
+Similar to text to speech voices, avatars now offer realistic appearances, movements, and facial expressions paired with lifelike sounding voices. These speaking avatars may be used in a variety of situations, such as to present content in an online training, present a speech on behalf of a company, interact with customers in customer service settings, and much more. 
 
 ## Microsoft's approach to responsible use of text to speech  
 
@@ -82,6 +81,8 @@ Every day, people find new ways to apply text to speech technology, and not all 
 We recognize that there's no perfect way to prevent media from being modified or to unequivocally prove where it came from. Therefore, our approach to responsible use has focused on being transparent about Azure AI Speech text to speech features by limiting permitted uses of custom versions of these features and demonstrating our values through action.
 
 ## Requirements and tips for meaningful consent from voice and avatar talent 
+
+If you are using Microsoft products or services to process Biometric Data, you are responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii), deleting the Biometric Data, all as appropriate and required under applicable Data Protection Requirements. "Biometric Data" will have the meaning set forth in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements.
 
 #### [Custom neural voice](#tab/cnv)
 
@@ -97,15 +98,15 @@ We also recommend that customers do the following:
 
 #### [Custom text to speech avatar](#tab/avatar)
 
-To use custom text to speech avatar, we contractually require customers to do the following: 
-- Obtain explicit written permission from avatar talent to use that person's image and voice for the purpose of creating a custom text to speech avatar. 
-- Provide this document to avatar talent so they can understand how custom avatar works, and how their video recording may be used once they complete the video recording process. 
-- Get necessary permissions from avatar talent for Microsoft's processing, use, and retention of the avatar talent’s video files to perform verification against training data and for Microsoft’s use and retention of custom avatar models as described below. 
+To use custom text to speech avatar, we contractually require customers to do the following: 
+- Obtain explicit written permission from avatar talent to use that person's image and voice for the purpose of creating a custom text to speech avatar. 
+- Provide this document to avatar talent so they can understand how custom avatar works, and how their video recording may be used once they complete the video recording process. 
+- Get necessary permissions from avatar talent for Microsoft's processing, use, and retention of the avatar talent’s video files to perform verification against training data and for Microsoft’s use and retention of custom avatar models as described below. 
 
 We also recommend that you do the following:  
-- Share the intended contexts of use with avatar talent so they are aware of who will see their image, in what scenarios, and whether/how people will be able to interact with it. 
-- Ensure avatar talent are aware that an avatar model made from their video recordings can be generated with content that they didn’t specifically record in the studio. 
-- Discuss whether there's anything they'd be uncomfortable with the avatar model being used to say or do. 
+- Share the intended contexts of use with avatar talent so they are aware of who will see their image, in what scenarios, and whether/how people will be able to interact with it. 
+- Ensure avatar talent are aware that an avatar model made from their video recordings can be generated with content that they didn’t specifically record in the studio. 
+- Discuss whether there's anything they'd be uncomfortable with the avatar model being used to say or do. 
 
 ---
 
@@ -117,15 +118,15 @@ We also recommend that you do the following:
 
 Customers must obtain permission from voice talent to use their voice to create custom voice models for a synthetic voice. This technical safeguard is intended to help prevent misuse of our service by, for example, preventing someone from training voice models with audio recordings and using the models to spoof a voice without the speaker's knowledge or consent.
 
-In [Speech Studio](https://speech.microsoft.com/customvoice), you must upload an audio file with a recorded acknowledgement statement from the voice talent. Microsoft reserves the right to use Microsoft's speaker recognition technology on this recorded acknowledgement statement and verify it against the training audio data to confirm that the voices came from the same speaker, or as otherwise necessary to investigate misuse of Azure AI Speech.
+In [Speech Studio](https://speech.microsoft.com/customvoice), you must upload an audio file with a recorded acknowledgement statement from the voice talent. Microsoft reserves the right to use Microsoft's speaker recognition technology on this recorded acknowledgement statement and verify it against the training audio data to confirm that the voices came from the same speaker, or as otherwise necessary to investigate misuse of Azure AI Speech.
 
 The speaker's voice signatures created from the recorded acknowledgement statement files and training audio data are used by Microsoft solely for the purposes stated above. Microsoft will retain the recorded statement file for as long as necessary to preserve the security and integrity of Microsoft's Azure AI services. Learn more about how we process, use, and retain data in the [Data, privacy, and security doc](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/data-privacy-security-custom-neural-voice?context=/azure/ai-services/speech-service/context/context). 
 
 #### [Custom text to speech avatar](#tab/avatar)
 
-### Microsoft's use of avatar talent’s video files for face comparison and speaker verification
+### Microsoft's use of avatar talent’s video files for face comparison and speaker verification.
 
-Customers must obtain permission from avatar talent for use of their image/likeness to create a custom text to speech avatar for a synthetic video. This technical safeguard is intended to help prevent misuse of our service by, for example, preventing someone from training avatar models with video recordings and using the models to spoof an avatar without the person’s knowledge or consent.
+Customers must obtain permission from avatar talent for use of their image/likeness to create a custom text to speech avatar for a synthetic video. This technical safeguard is intended to help prevent misuse of our service by, for example, preventing someone from training avatar models with video recordings and using the models to spoof an avatar without the person’s knowledge or consent.
 
 You must provide a video file with a recorded acknowledgement statement from the avatar talent. Microsoft reserves the right to verify the recorded acknowledgement statement against the training video data to confirm that the images and voices came from the same person, or as otherwise necessary to investigate misuse of Azure AI services.
 
@@ -153,11 +154,11 @@ In addition, before you can deploy any synthetic voice model created using a cus
 
 #### [Custom text to speech avatar](#tab/avatar)
 
-While you maintain the exclusive usage rights to your custom text to speech avatar model, Microsoft may independently retain a copy of your custom avatar models for as long as necessary. Microsoft may use your custom avatar models for the sole purpose of protecting the security and integrity of Azure AI services. 
+While you maintain the exclusive usage rights to your custom text to speech avatar model, Microsoft may independently retain a copy of your custom avatar models for as long as necessary. Microsoft may use your custom avatar models for the sole purpose of protecting the security and integrity of Azure AI services. 
 
-Microsoft will secure and store a copy of custom avatar models with the same high level of security that it uses for its other Azure Services. Learn more at Microsoft Trust Center. 
+Microsoft will secure and store a copy of custom avatar models with the same high level of security that it uses for its other Azure Services. Learn more at Microsoft Trust Center. 
 
-We will continue to identify and be explicit about the intentional, beneficial, and intended uses of avatar that are based upon existing social norms and expectations people have around media when they believe it to be real or fake. In line with Microsoft's trust principles, Microsoft does not actively monitor or moderate the video and audio content generated by your use of custom text to speech avatar. Customers are solely responsible for ensuring that usage complies with all applicable laws and regulations and in accordance with the terms of the customer’s agreement with talent. 
+We will continue to identify and be explicit about the intentional, beneficial, and intended uses of avatar that are based upon existing social norms and expectations people have around media when they believe it to be real or fake. In line with Microsoft's trust principles, Microsoft does not actively monitor or moderate the video and audio content generated by your use of custom text to speech avatar. Customers are solely responsible for ensuring that usage complies with all applicable laws and regulations and in accordance with the terms of the customer’s agreement with talent. 
 
 ---
 
@@ -173,7 +174,7 @@ Because text to speech is an adaptable technology, there are grey areas in deter
 
 Azure AI text to speech must not be used: 
 - To deceive people and/or intentionally misinform;
-- For the purpose of false advertising, including via live commercials;  To claim to be from any person, company, government body, or entity without explicit permission to make that representation;
+- For the purpose of false advertising, including via live commercials;  To claim to be from any person, company, government body, or entity without explicit permission to make that representation;
 - To impersonate any person without explicit permission, including to gain information or privileges;
 - To create, incite, or disguise hate speech, discrimination, defamation, terrorism, or acts of violence;
 - To exploit or manipulate children;
@@ -189,7 +190,7 @@ Appropriate use cases could include, but are not limited to:
 - Accredited educational institutions or educational media. For example, interactive lesson plans or guided museum tours.
 - Assistive technology and real-time translation. For example, ALS-afflicted individuals preserving their voices.
 - Public service announcements using fictional personas. For example, airport or train terminal announcements.
-- Advertising/live streaming: advertising content, live streaming associated with marketing or sale of a product.  
+- Advertising/live streaming: advertising content, live streaming associated with marketing or sale of a product.  
 
 ## See also
 
