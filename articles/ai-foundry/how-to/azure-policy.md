@@ -12,8 +12,7 @@ ms.topic: how-to
 
 # Audit and manage Azure AI Foundry hubs and projects
 
-> [!NOTE]
-> The policies discussed in this article is specific to a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. For more information, see [Types of projects](../what-is-azure-ai-foundry.md#project-types).
+[!INCLUDE [hub-only-alt](../includes/uses-hub-only-alt.md)]
 
 As a platform administrator, you can use policies to lay out guardrails for teams to manage their own resources. [Azure Policy](/azure/governance/policy/) helps audit and govern resource state. This article explains how you can use audit controls and governance practices for [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
