@@ -45,7 +45,7 @@ You need an active Azure subscription. If you don't have an Azure subscription, 
 
 To call the Translator service via the [REST API](../reference/rest-api-guide.md), you need to include the following headers with each request. Don't worry, we include the headers for you in the sample code for each programming language.
 
-For more information on Translator authentication options, _see_ the [Translator v3 reference](..//reference/v3/reference.md#authentication) guide.
+For more information on Translator authentication options, _see_ the [Translator v3 reference](..//reference/authentication.md) guide.
 
 Header|Value| Condition  |
 |--- |:--- |:---|

@@ -56,7 +56,7 @@ Request headers include:
 
 | Headers | Description |
 | --- | --- |
-| Authentication headers | _Required request header_.  <br>See [available options for authentication](./reference.md#authentication). |
+| Authentication headers | _Required request header_.  <br>See [available options for authentication](./../authentication.md). |
 | Content-Type | _Required request header_.  <br>Specifies the content type of the payload.  <br>Accepted value is `application/json; charset=UTF-8`. |
 | Content-Length | _Optional_.  <br>The length of the request body. |
 | X-ClientTraceId | _Optional_.  <br>A client-generated GUID to uniquely identify the request. You can omit this header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |
@@ -136,7 +136,7 @@ The following are the possible HTTP status codes that a request returns.
 |500 |  An unexpected error occurred. If the error persists, report it with: date and time of the failure, request identifier from response header X-RequestId, and client identifier from request header X-ClientTraceId. |
 |503 |Server temporarily unavailable. Retry the request. If the error persists, report it with: date and time of the failure, request identifier from response header X-RequestId, and client identifier from request header X-ClientTraceId. |
 
-If an error occurs, the request returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [v3 Translator reference page](reference.md#errors).
+If an error occurs, the request returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [v3 Translator reference page](../status-response-codes.md).
 
 ## Examples
 
