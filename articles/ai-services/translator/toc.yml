@@ -31,9 +31,6 @@ items:
   - name: What is Text translation?
     displayName: features,develop,development,free
     href: text-translation/overview.md
-  - name: "Azure AI Translator 2025-05-01-preview 🆕"
-    displayName: gpt, adaptive, tone, gender
-    href: text-translation/reference/preview/overview.md
   - name: "Migrate to 2025-05-01-preview 🆕"
     displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
     href: text-translation/how-to/migrate-to-preview.md
@@ -86,6 +83,9 @@ items:
         href: text-translation/reference/preview/translate-api.md
       - name: Transliterate
         href: text-translation/reference/preview/transliterate-api.md
+      - name: "Azure AI Translator 2025-05-01-preview 🆕"
+        displayName: gpt, adaptive, tone, gender
+        href: text-translation/reference/preview/overview.md  
     - name: Azure AI Translator v3
       items:
       - name: v3 overview
