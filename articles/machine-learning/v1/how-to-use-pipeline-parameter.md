@@ -55,13 +55,13 @@ In this section, you create a pipeline parameter in the settings panel.
 
 In this example, you create a pipeline parameter that defines how a pipeline fills in missing data with the **Clean missing data** component.
 
-1. Next to the name of your pipeline draft, select the gear button to open the **Settings** panel.
+1. In your pipeline draft, select **Piepleline interface**.
 
-1. In the **Pipeline parameters** section, select the **+** button.
+1. In the **Pipeline interface** section, select the **+** button and then select an input type, for example, `Double`. 
 
 1. Enter a name for the parameter and a default value. 
 
-   For example, enter `replace-missing-value` as parameter name and `0` as the default value.
+   For example, enter `minimum-missing-value-ratio-2` as parameter name and `0.1` as the default value.
 
    :::image type="content" source="media/how-to-use-pipeline-parameter/create-pipeline-parameter.png" alt-text="Screenshot that shows how to create a pipeline parameter." lightbox ="media/how-to-use-pipeline-parameter/create-pipeline-parameter.png":::
 
@@ -98,21 +98,17 @@ You can now specify a different dataset by using the pipeline parameter the next
 
 In this section, you learn how to attach a component parameter to a pipeline parameter and how to detach a component parameter from a pipeline parameter.
 
-### Attach component parameter to pipeline parameter
+### Attach a component parameter to a pipeline parameter
 
 You can attach the component parameters of duplicated components to the same pipeline parameter if you want to alter the value one time when you trigger the pipeline job.
 
-In the following example, the **Clean Missing Data** component is duplicated. For each **Clean Missing Data** component, attach a **Replacement value** to the pipeline parameter **replace-missing-value**:
+In the following example, the **Clean Missing Data** component is duplicated. For each **Clean Missing Data** component, attach a **Minimum missing value ratio** to the pipeline parameter **minimum-missing-value-ratio-2**:
 
-1. Select the **Clean Missing Data** component.
+1. Double-click the **Clean Missing Data** component.
 
-1. In the component detail pane, to the right of the canvas, set the **Cleaning mode** to **Custom substitution value**.
+1. Select the ellipsis button (**...**) above the **Minimum missing value reatio** box.
 
-1. Hover over the **Replacement value** field.
-
-1. Select the ellipsis button (**...**) that appears.
-
-1. Select the pipeline parameter `replace-missing-value`.
+1. Select the pipeline parameter `minimum-missing-value-ratio-2`.
 
    :::image type="content" source="media/how-to-use-pipeline-parameter/attach-replace-value-to-pipeline-parameter.png" alt-text="Screenshot that shows how to attach a pipeline parameter." lightbox ="media/how-to-use-pipeline-parameter/attach-replace-value-to-pipeline-parameter.png":::
 
@@ -122,7 +118,7 @@ You have successfully attached the **Replacement value** field to your pipeline 
 
 When you detach a **Replacement value** from a pipeline parameter, it's not actionable.
 
-You can detach a component parameter from a pipeline parameter by selecting the ellipsis button (**...**) next to the component parameter and then selecting **Detach from pipeline parameter**.
+You can detach a component parameter from a pipeline parameter by selecting the ellipsis button (**...**) next to the component parameter and then selecting **Detach from pipeline input**.
 
 :::image type="content" source="media/how-to-use-pipeline-parameter/non-actionable-module-parameter.png" alt-text="Screenshot that shows how to detach a component parameter." lightbox ="media/how-to-use-pipeline-parameter/non-actionable-module-parameter.png":::
 
