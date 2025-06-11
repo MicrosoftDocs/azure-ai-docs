@@ -10,7 +10,7 @@ ms.custom: references_regions
 ### June 2025 release
 
 #### Improved speech to text models
-Accuracy of speech to text models for `de-DE`, `en-US`, `en-GB`, `es-ES`, `es-MX`,  `fr-FR`, `it-IT`, `ja-JP`, `ko-KR`, `pt-BR`, and `zh-CN` locales are improved by 10%-25% percent respectively, particularly with improved readaibility and recognition on entities.
+Accuracy of speech to text models in [fast transcription](../../fast-transcription-create.md) for `de-DE`, `en-US`, `en-GB`, `es-ES`, `es-MX`,  `fr-FR`, `it-IT`, `ja-JP`, `ko-KR`, `pt-BR`, and `zh-CN` locales are improved by 10%-25% percent respectively, particularly with improved readaibility and recognition on entities.
 
 ### May 2025 release
 
