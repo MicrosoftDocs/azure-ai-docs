@@ -848,6 +848,7 @@ Private endpoints are currently supported for the following Azure services:
 * Azure Redis Cache
 * Azure SQL Server
 * Azure Storage (all sub resource types)
+* Application Insights (Through [PrivateLinkScopes](https://learn.microsoft.com/azure/azure-monitor/logs/private-link-configure#create-azure-monitor-private-link-scope-ampls))
 
 
 When you create a private endpoint, you provide the _resource type_ and _subresource_ that the endpoint connects to. Some resources have multiple types and subresources. For more information, see [what is a private endpoint](/azure/private-link/private-endpoint-overview).
