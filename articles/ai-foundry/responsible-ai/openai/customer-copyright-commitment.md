@@ -6,6 +6,7 @@ author: mrbullwinkle
 ms.author: mbullwin
 ms.service: azure-ai-openai
 ms.reviewer: nitinme
+ms.topic: article
 ms.date: 05/21/2024
 ---
 
