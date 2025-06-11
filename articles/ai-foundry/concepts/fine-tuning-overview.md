@@ -29,8 +29,6 @@ Consider fine-tuning GenAI models to:
 
 [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) offers several models across model providers enabling you to get access to the latest and greatest in the market. [View this list for more details](#supported-models-for-fine-tuning). 
 
-:::image type="content" source="../media/concepts/model-catalog-fine-tuning.png" alt-text="Screenshot of Azure AI Foundry model catalog and filtering by Fine-tuning tasks." lightbox="../media/concepts/model-catalog-fine-tuning.png":::
-
 ## Getting started with fine-tuning
 
 When starting out on your generative AI journey, we recommend you begin with prompt engineering and RAG to familiarize yourself with base models and its capabilities. 
