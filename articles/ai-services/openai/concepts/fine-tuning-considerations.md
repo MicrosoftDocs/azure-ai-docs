@@ -13,7 +13,7 @@ ms.custom:
 
 # Azure OpenAI in Azure AI Foundry Models fine-tuning considerations
 
-Fine-tuning is the process of taking a pre-trained language model and adapting it to perform a specific task or improve its performance on a particular dataset. This involves training the model on a smaller, task-specific dataset while adjusting the model's weights slightly. Fine-tuning leverages the knowledge the model has already acquired during its initial training on a large, diverse dataset, allowing it to specialize without starting from scratch. This approach is often more efficient and effective than training a new model from scratch, especially for specialized tasks. 
+Fine-tuning is the process of taking a pretrained language model and adapting it to perform a specific task or improve its performance on a particular dataset. This involves training the model on a smaller, task-specific dataset while adjusting the model's weights slightly. Fine-tuning leverages the knowledge the model has already acquired during its initial training on a large, diverse dataset, allowing it to specialize without starting from scratch. This approach is often more efficient and effective than training a new model from scratch, especially for specialized tasks. 
 
 ## Key benefits of fine-tuning
 
@@ -31,7 +31,7 @@ Since fine-tuned models need fewer examples in the prompt, they process requests
 
 ### Scalability and specialization
 
-Fine-tuning leverages the extensive pre-training of language models and hones their capabilities for specific applications, making them more efficient and effective for targeted use cases. 
+Fine-tuning leverages the extensive pretraining of language models and hones their capabilities for specific applications, making them more efficient and effective for targeted use cases. 
 
 Fine-tuning smaller models can achieve performance levels comparable to larger, more expensive models for specific tasks. This approach reduces computational costs and increases speed, making it a cost-effective scalable solution for deploying Al in resource-constrained environments. 
 
@@ -57,13 +57,13 @@ Fine-tuning is suited for times when you have a small amount of data and want to
 
 Azure AI Foundry offers multiple types of fine -tuning techniques:
 
-* **Supervised fine-tuning**: This allows you to provide custom data (prompt/completion or conversational chat, depending on the model) to teach the base model new skills. This process involves further training the model on a high-quality labelled dataset, where each data point is associated with the correct output or answer. The goal is to enhance the model's performance on a particular task by adjusting its parameters based on the labelled data. This technique works best when there are finite ways of solving a problemand you want to teach the model a particular task and improve its accuracy andconciseness.
+* **Supervised fine-tuning**: This allows you to provide custom data (prompt/completion or conversational chat, depending on the model) to teach the base model new skills. This process involves further training the model on a high-quality labeled dataset, where each data point is associated with the correct output or answer. The goal is to enhance the model's performance on a particular task by adjusting its parameters based on the labelled data. This technique works best when there are finite ways of solving a problem and you want to teach the model a particular task and improve its accuracy and conciseness.
 
-* **Reinforcement fine-tuning**: This is a model customization technique, particularly beneficial for optimizing model behaviour in highly complex or dynamic environments, enabling the model to learn and adapt through iterative feedback and decision-making. For example, financial services providers can optimize the model for faster, more accurate risk assessments or personalized investment advice. In healthcare and pharmaceuticals, o3-mini can be tailored to accelerate drug discovery, enabling more efficient data analysis, hypothesis generation, and identification of promising compounds. RFT is a great way to finetune when there are infinite or high number ofways to solve a problem. The grader rewards the model incrementally and makesreasoning better.
+* **Reinforcement fine-tuning**: This is a model customization technique, beneficial for optimizing model behavior in highly complex or dynamic environments, enabling the model to learn and adapt through iterative feedback and decision-making. For example, financial services providers can optimize the model for faster, more accurate risk assessments or personalized investment advice. In healthcare and pharmaceuticals, o3-mini can be tailored to accelerate drug discovery, enabling more efficient data analysis, hypothesis generation, and identification of promising compounds. RFT is a great way to fine-tune when there are infinite or high number of ways to solve a problem. The grader rewards the model incrementally and makes reasoning better.
 
-* **Direct Preference Optimization (DPO)**: This is another new alignment technique for large language models, designed to adjust model weights based on human preferences. Unlike Reinforcement Learning from Human Feedback (RLHF), DPO does not require fitting a reward model and uses binary preferences for training. This method is computationally lighter and faster, making it equally effective at alignment while being more efficient. You will need to share thenon-preferred and preferred response to the training set and use the DPO technique.
+* **Direct Preference Optimization (DPO)**: This is another new alignment technique for large language models, designed to adjust model weights based on human preferences. Unlike Reinforcement Learning from Human Feedback (RLHF), DPO doesn't require fitting a reward model and uses binary preferences for training. This method is computationally lighter and faster, making it equally effective at alignment while being more efficient. You share thenon-preferred and preferred response to the training set and use the DPO technique.
 
-You can also stack techniques: first using SFT to create a customized model – optimized for your use case – then using preference fine tuning to align the responses to your specific preferences. During the SFT step, you will focus on data quality and representativeness of the tasks, while the DPO step adjusts responses with specific comparisons. 
+You can also stack techniques: first using SFT to create a customized model – optimized for your use case – then using preference fine tuning to align the responses to your specific preferences. During the SFT step, you focus on data quality and representativeness of the tasks, while the DPO step adjusts responses with specific comparisons. 
 
 ## Challenges and limitations of fine-tuning
 
