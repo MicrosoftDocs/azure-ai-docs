@@ -53,7 +53,7 @@ There are three ways to create a pipeline parameter in the designer:
 
 In this section, you create a pipeline parameter in the settings panel.
 
-In this example, you create a pipeline parameter that defines how a pipeline fills in missing data by using the **Clean missing data** component.
+In this example, you create a pipeline parameter that defines how a pipeline fills in missing data with the **Clean missing data** component.
 
 1. Next to the name of your pipeline draft, select the gear button to open the **Settings** panel.
 
