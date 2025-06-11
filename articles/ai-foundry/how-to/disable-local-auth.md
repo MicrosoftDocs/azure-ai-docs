@@ -68,7 +68,7 @@ Not applicable.
 
 To use the CLI commands in this document, you need the [Azure CLI](/cli/azure/install-azure-cli) and the [ml extension](../../machine-learning/how-to-configure-cli.md).
 
-If you use the [Azure Cloud Shell](https://azure.microsoft.com/features/cloud-shell/), the CLI is accessed through the browser, and it lives in the cloud.
+If you use the [Azure Cloud Shell](https://azure.microsoft.com//features/cloud-shell/), the CLI is accessed through the browser, and it lives in the cloud.
 
 > [!IMPORTANT]
 > The steps in this article require the Azure CLI extension for machine learning, version **2.27.0 or greater**. To determine the version of the extension you have installed, use the `az version` command from the Azure CLI. In the extensions collection that's returned, find the `ml` extension. This code sample shows an example return value:
