@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
   - ignite-2024
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 04/28/2025
 ms.reviewer: deeikele
 ms.author: larryfr
@@ -16,8 +16,7 @@ author: Blackmist
 
 # Azure AI Foundry architecture 
 
-> [!NOTE]
-> The architecture discussed in this article is specific to a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. For more information, see [Types of projects](../what-is-azure-ai-foundry.md#project-types).
+[!INCLUDE [hub-only-alt](../includes/uses-hub-only-alt.md)]
     
 Azure AI Foundry provides a unified experience for AI developers and data scientists to build, evaluate, and deploy AI models through a web portal, SDK, or CLI. Azure AI Foundry is built on capabilities and services provided by other Azure services.
 

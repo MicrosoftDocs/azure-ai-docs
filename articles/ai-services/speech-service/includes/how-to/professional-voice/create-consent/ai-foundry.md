@@ -11,7 +11,7 @@ ms.custom: include
 
 A voice talent is an individual or target speaker whose voices are recorded and used to create neural voice models. 
 
-Before you can train a neural voice, you must submit a recording of the voice talent's consent statement. The voice talent statement is a recording of the voice talent reading a statement that they consent to the usage of their speech data to train a custom voice model. The consent statement is also used to verify that the voice talent is the same person as the speaker in the training data. 
+Before you can fine-tune a professional voice, you must submit a recording of the voice talent's consent statement. The voice talent statement is a recording of the voice talent reading a statement that they consent to the usage of their speech data for professional voice fine-tuning. The consent statement is also used to verify that the voice talent is the same person as the speaker in the fine-tuning data. 
 
 > [!TIP]
 > Before you get started in Azure AI Foundry portal, define your voice [persona and choose the right voice talent](../../../../record-custom-voice-samples.md#choose-your-voice-talent).
@@ -25,7 +25,7 @@ You can find the verbal consent statement in multiple languages on [GitHub](http
 
 To add a voice talent profile and upload their consent statement, follow these steps:
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the professional voice fine-tuning task (by model name) that you [started as described in the create professional voice article](/azure/ai-services/speech-service/professional-voice-create-project).
 1. Select **Set up voice talent** > **+ Add voice talent**. 
@@ -35,14 +35,14 @@ To add a voice talent profile and upload their consent statement, follow these s
 1. On the **Upload verbal statement** page, follow the instructions to upload the voice talent statement you recorded beforehand. 
 
     - Enter the voice talent name and company name. The voice talent name must be the name of the person who recorded the consent statement. Enter the name in the same language used in the recorded statement. The company name must match the company name that was spoken in the recorded statement. Ensure the company name is entered in the same language as the recorded statement.
-    - Make sure the verbal statement was [recorded](../../../../record-custom-voice-samples.md) with the same settings, environment, and speaking style as your training data.
+    - Make sure the verbal statement was [recorded](../../../../record-custom-voice-samples.md) with the same settings, environment, and speaking style as your fine-tuning data.
 
     :::image type="content" source="../../../../media/custom-voice/professional-voice/upload-verbal-statement.png" alt-text="Screenshot of the voice talent statement upload dialog." lightbox="../../../../media/custom-voice/professional-voice/fine-tune-azure-ai-services.png"::: 
 
 1. Select **Next**.
 1. Review the voice talent and persona details, and select **Add voice talent**.
 
-After the voice talent status is *Succeeded*, you can [add training data](../../../../professional-voice-create-training-set.md).
+After the voice talent status is *Succeeded*, you can [add fine-tuning data](../../../../professional-voice-create-training-set.md).
 
 ## Next steps
 

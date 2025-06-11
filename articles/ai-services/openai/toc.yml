@@ -21,6 +21,8 @@ items:
       href: whats-new.md
     - name: Programming languages/SDKs
       href: ./supported-languages.md
+    - name: API lifecycle
+      href: ./api-version-lifecycle.md
     - name: Azure OpenAI FAQ
       href: faq.yml
     - name: Azure OpenAI in Azure Government
@@ -48,6 +50,102 @@ items:
       href: text-to-speech-quickstart.md
     - name: Completions (legacy)
       href: quickstart.md
+- name: Audio
+  items:
+      - name: Realtime API for speech and audio (preview)
+        href: ./how-to/realtime-audio.md
+      - name: Realtime API via WebRTC (preview)
+        href: ./how-to/realtime-audio-webrtc.md
+      - name: Realtime API via WebSockets (preview)
+        href: ./how-to/realtime-audio-websockets.md
+- name: Batch
+  items:
+     - name: Getting started with batch
+       href: ./how-to/batch.md
+     - name: Batch with Azure Blob Storage
+       href: ./how-to/batch-blob-storage.md   
+- name: Responses & chat completions
+  items:
+    - name: Responses API
+      href: ./how-to/responses.md
+    - name: Reasoning models
+      href: ./how-to/reasoning.md
+    - name: Chat completions API
+      href: ./how-to/chatgpt.md
+      displayName: ChatGPT, chatgpt
+    - name: Computer Use
+      href: ./how-to/computer-use.md
+      displayName: cua, computer using model
+    - name: Model router
+      items:
+      - name: Getting started with model router
+        href: ./how-to/model-router.md
+      - name: Model router concepts
+        href: ./concepts/model-router.md
+    - name: Function calling
+      href: ./how-to/function-calling.md
+    - name: Predicted outputs
+      href: ./how-to/predicted-outputs.md
+    - name: Prompt caching
+      href: ./how-to/prompt-caching.md
+    - name: Structured outputs
+      href: ./how-to/structured-outputs.md
+    - name: Vision-enabled chats
+      href: ./how-to/gpt-with-vision.md
+    - name: Additional features
+      items:
+      - name: JSON mode
+        href: ./how-to/json-mode.md
+      - name: Reproducible output
+        href: ./how-to/reproducible-output.md
+- name: Embeddings
+  items:
+    - name: Embeddings basics
+      href: ./how-to/embeddings.md
+    - name: Getting started with embeddings
+      href: ./tutorials/embeddings.md
+- name: Evaluation
+  href: ./how-to/evaluations.md
+- name: Fine-tuning
+  items:
+      - name: Fine-tuning your model
+        href: ./how-to/fine-tuning.md
+        displayName: finetuning, fine-tuning
+      - name: Deploy for testing
+        href: ./how-to/fine-tune-test.md
+        displayName: finetuning, fine-tuning
+      - name: Deploy your fine-tuned model
+        href: ./how-to/fine-tuning-deploy.md 
+        displayName: finetuning, fine-tuning  
+      - name: Vision fine-tuning
+        href: ./how-to/fine-tuning-vision.md
+        displayName: finetuning, fine-tuning  
+      - name: Preference fine-tuning
+        href: ./how-to/fine-tuning-direct-preference-optimization.md
+        displayName: finetuning, fine-tuning  
+      - name: Reinforcement fine-tuning
+        href: ./how-to/reinforcement-fine-tuning.md
+        displayName: finetuning, fine-tuning
+      - name: Safety evaluation
+        href: ./how-to/fine-tuning-safety-evaluation.md
+        displayName: finetuning, fine-tuning  
+      - name: Tool calling
+        href: ./how-to/fine-tuning-functions.md
+        displayName: fine-tuning, finetuning, function calling
+      - name: Weights & Biases integration (preview)
+        href: ./how-to/weights-and-biases-integration.md
+        displayName: finetuning, fine-tuning  
+      - name: Troubleshooting guidance
+        href: ./how-to/fine-tuning-troubleshoot.md
+        displayName: finetuning, fine-tuning
+- name: Image & video generation
+  items:
+  - name: Image generation
+    href: ./how-to/dall-e.md
+  - name: Video generation (preview)
+    href: ./concepts/video-generation.md
+- name: Stored completions
+  href: ./how-to/stored-completions.md
 - name: Concepts
   items:
     - name: Assistants
@@ -116,8 +214,6 @@ items:
       href: ./concepts/legacy-models.md
 - name: How-to 
   items:
-  - name: API version lifecycle
-    href: ./api-version-lifecycle.md
   - name: Assistants (preview)
     items:
     - name: Getting started with Assistants
@@ -134,108 +230,12 @@ items:
           href: ./how-to/assistants-logic-apps.md
       - name: File search
         href: ./how-to/file-search.md
-  - name: Audio
-    items:
-      - name: Realtime API for speech and audio (preview)
-        href: ./how-to/realtime-audio.md
-      - name: Realtime API via WebRTC (preview)
-        href: ./how-to/realtime-audio-webrtc.md
-      - name: Realtime API via WebSockets (preview)
-        href: ./how-to/realtime-audio-websockets.md
-  - name: Batch
-    items:
-     - name: Getting started with batch
-       href: ./how-to/batch.md
-     - name: Batch with Azure Blob Storage
-       href: ./how-to/batch-blob-storage.md   
-  - name: Responses & chat completions
-    items:
-    - name: Responses API
-      href: ./how-to/responses.md
-    - name: Reasoning models
-      href: ./how-to/reasoning.md
-    - name: GPT-35-Turbo & GPT-4 
-      href: ./how-to/chatgpt.md
-      displayName: ChatGPT, chatgpt
-    - name: Model router
-      href: ./how-to/model-router.md
-    - name: Computer Use
-      href: ./how-to/computer-use.md
-      displayName: cua, computer using model
-    - name: Vision-enabled chats
-      href: ./how-to/gpt-with-vision.md
-    - name: Image generation
-      href: ./how-to/dall-e.md
-    - name: Function calling
-      href: ./how-to/function-calling.md
-    - name: Completions (legacy)
-      href: ./how-to/completions.md
-    - name: JSON mode
-      href: ./how-to/json-mode.md
-    - name: Predicted outputs
-      href: ./how-to/predicted-outputs.md
-    - name: Prompt caching
-      href: ./how-to/prompt-caching.md
-    - name: Reproducible output
-      href: ./how-to/reproducible-output.md
-    - name: Structured outputs
-      href: ./how-to/structured-outputs.md
-    - name: Work with code
-      href: ./how-to/work-with-code.md
-    - name: Deploy and use web apps
-      href: ./how-to/use-web-app.md
-    - name: Legacy
-      items:
-      - name: Chat Markup Language (ChatML)
-        href: ./how-to/chat-markup-language.md 
   - name: Content filtering
     href: ./how-to/content-filters.md
   - name: Use blocklists
     href: ./how-to/use-blocklists.md
   - name: Risks & Safety Monitoring
     href: ./how-to/risks-safety-monitor.md
-  - name: Embeddings
-    items:
-    - name: Embeddings basics
-      href: ./how-to/embeddings.md
-    - name: Getting started with embeddings
-      href: ./tutorials/embeddings.md
-  - name: Evaluation
-    href: ./how-to/evaluations.md
-  - name: Fine-tuning
-    items:
-      - name: Fine-tuning your model
-        href: ./how-to/fine-tuning.md
-        displayName: finetuning, fine-tuning
-      - name: Deploy for testing
-        href: ./how-to/fine-tune-test.md
-        displayName: finetuning, fine-tuning
-      - name: Deploy your fine-tuned model
-        href: ./how-to/fine-tuning-deploy.md 
-        displayName: finetuning, fine-tuning  
-      - name: Vision fine-tuning
-        href: ./how-to/fine-tuning-vision.md
-        displayName: finetuning, fine-tuning  
-      - name: Preference fine-tuning
-        href: ./how-to/fine-tuning-direct-preference-optimization.md
-        displayName: finetuning, fine-tuning  
-      - name: Reinforcement fine-tuning
-        href: ./how-to/reinforcement-fine-tuning.md
-        displayName: finetuning, fine-tuning
-      - name: Safety evaluation
-        href: ./how-to/fine-tuning-safety-evaluation.md
-        displayName: finetuning, fine-tuning  
-      - name: Tool calling
-        href: ./how-to/fine-tuning-functions.md
-        displayName: fine-tuning, finetuning, function calling
-      - name: Weights & Biases integration (preview)
-        href: ./how-to/weights-and-biases-integration.md
-        displayName: finetuning, fine-tuning  
-      - name: Troubleshooting guidance
-        href: ./how-to/fine-tuning-troubleshoot.md
-        displayName: finetuning, fine-tuning
-  - name: Stored completions
-    href: ./how-to/stored-completions.md
   - name: Use your data
     items:
       - name: Text data
@@ -283,7 +283,7 @@ items:
         href: ./how-to/monitor-openai.md
       - name: Provisioned throughput units (PTU)
         items:
-        - name: What is the Provisioned Managed offering (PTU)?
+        - name: What is the Provisioned Throughput offering (PTU)?
           href: ./concepts/provisioned-throughput.md
           displayName: PTU, provisioned, provisioned throughput units
         - name: Understanding and calculating PTU costs 
@@ -304,6 +304,16 @@ items:
         href: ./how-to/role-based-access-control.md
       - name: Business continuity & disaster recovery (BCDR)
         href: ./how-to/business-continuity-disaster-recovery.md
+  - name: Work with code
+    href: ./how-to/work-with-code.md
+  - name: Deploy and use web apps
+    href: ./how-to/use-web-app.md
+  - name: Legacy
+    items:
+    - name: Completions (legacy)
+      href: ./how-to/completions.md
+    - name: Chat Markup Language (ChatML)
+      href: ./how-to/chat-markup-language.md 
 - name: Tutorials
   items:
     - name: Embeddings

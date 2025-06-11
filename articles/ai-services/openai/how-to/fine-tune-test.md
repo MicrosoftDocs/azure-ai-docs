@@ -1,14 +1,15 @@
 ---
-title: 'Test a fine-tuned model'
+title: "Test a fine-tuned model"
 titleSuffix: Azure OpenAI
 description: Learn how to test your fine-tuned model with Azure OpenAI in Azure AI Foundry Models by using Python, the REST APIs, or Azure AI Foundry portal.
-manager: nitinme
-ms.service: azure-ai-openai
-ms.custom: build-2025
-ms.topic: how-to
-ms.date: 05/20/2025
 author: voutilad
 ms.author: davevoutila
+manager: nitinme
+ms.date: 05/20/2025
+ms.service: azure-ai-openai
+ms.topic: how-to
+ms.custom:
+  - build-2025
 ---
 
 # Deploy a fine-tuned model for testing (Preview)
@@ -145,7 +146,7 @@ az cognitiveservices account deployment create
 
 ## [Portal](#tab/portal)
 
-After your custom model deploys, you can use it like any other deployed model. You can use the **Playgrounds** in the [Azure AI Foundry portal](https://ai.azure.com) to experiment with your new deployment. You can continue to use the same parameters with your custom model, such as `temperature` and `max_tokens`, as you can with other deployed models.
+After your custom model deploys, you can use it like any other deployed model. You can use the **Playgrounds** in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) to experiment with your new deployment. You can continue to use the same parameters with your custom model, such as `temperature` and `max_tokens`, as you can with other deployed models.
 
 :::image type="content" source="../media/fine-tuning/chat-playground.png" alt-text="Screenshot of the Playground pane in Azure AI Foundry portal, with sections highlighted." lightbox="../media/fine-tuning/chat-playground.png":::
 

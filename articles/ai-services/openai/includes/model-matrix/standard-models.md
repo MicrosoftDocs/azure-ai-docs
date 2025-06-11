@@ -3,9 +3,11 @@ title: Standard model availability
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Quota and limits for Azure OpenAI by region.
 manager: nitinme
+ms.date: 04/01/2025
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 04/01/2025
+ms.custom:
+  - build-2025
 ---
 
 

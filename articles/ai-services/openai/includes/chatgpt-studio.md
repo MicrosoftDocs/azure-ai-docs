@@ -15,7 +15,7 @@ ms.date: 09/19/2024
 
 ## Go to Azure AI Foundry
 
-Navigate to the [Azure AI Foundry portal](https://ai.azure.com/) and sign-in with credentials that have access to your Azure OpenAI resource. During or after the sign-in workflow, select the appropriate directory, Azure subscription, and Azure OpenAI resource.
+Navigate to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and sign-in with credentials that have access to your Azure OpenAI resource. During or after the sign-in workflow, select the appropriate directory, Azure subscription, and Azure OpenAI resource.
 
 From Azure AI Foundry, select **Chat playground**.
 

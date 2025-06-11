@@ -5,12 +5,13 @@ summary: Content Understanding is a solution that analyzes and comprehends vario
 metadata:
   title: Azure AI Content Understanding documentation
   description: Content Understanding is a solution that analyzes and comprehends various media content—such as documents, images, audio, and video—transforming it into structured, organized, and searchable data.
-  ms.service: azure-ai-content-understanding
-  ms.topic: landing-page
   author: laujan
   ms.author: lajanuar
   ms.date: 05/19/2025
-
+  ms.service: azure-ai-content-understanding
+  ms.topic: landing-page
+  ms.custom:
+    - build-2025
 highlightedContent:
 # itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | whats-new
   items:
@@ -32,8 +33,11 @@ conceptualContent:
     - title: AI Foundry
       links:
         - itemType: quickstart
-          text: Quickstart
+          text: "Quickstart: Content Understanding with a single file"
           url: quickstart/use-ai-foundry.md
+        - itemType: quickstart
+          text: "Quickstart: Content Understanding with multiple files"
+          url: quickstart/use-ai-foundry-pro-mode.md  
         - itemType: concept
           text: Analyzer templates
           url: concepts/analyzer-templates.md

@@ -4,19 +4,21 @@ titleSuffix: Azure AI Foundry
 description: Learn about using customer-managed keys for encryption to improve data security with Azure AI Foundry.
 author: Blackmist
 ms.author: larryfr
+ms.reviewer: deeikele
+ms.date: 05/01/2025
 ms.service: azure-ai-services
+ms.topic: concept-article
 ms.custom:
   - ignite-2023
-ms.topic: concept-article
-ms.date: 05/01/2025
-ms.reviewer: deeikele
+  - build-aifnd
+  - build-2025
 zone_pivot_groups: project-type
 # Customer intent: As an admin, I want to understand how I can use my own encryption keys with Azure AI Foundry.
 ---
 
 # Customer-managed keys for encryption with Azure AI Foundry
 
-Customer-managed keys (CMKs) in [Azure AI Foundry portal](https://ai.azure.com/) provide enhanced control over the encryption of your data. By using CMKs, you can manage your own encryption keys to add an extra layer of protection and meet compliance requirements more effectively.
+Customer-managed keys (CMKs) in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) provide enhanced control over the encryption of your data. By using CMKs, you can manage your own encryption keys to add an extra layer of protection and meet compliance requirements more effectively.
 
 ## About encryption in Azure AI Foundry
 
@@ -66,7 +68,7 @@ Two architecture options are available when using customer-managed keys:
   |-----|-----|-----|
   |Azure Cosmos DB|Stores metadata for your Azure AI projects and tools|Index names, tags; Flow creation timestamps; deployment tags; evaluation metrics|
   |Azure AI Search|Stores indices that are used to help query your Azure AI Foundry content.|An index based off your model deployment names|
-  |Azure Storage Account|Stores instructions for how customization tasks are orchestrated|JSON representation of flows you create in [Azure AI Foundry portal](https://ai.azure.com/)|
+  |Azure Storage Account|Stores instructions for how customization tasks are orchestrated|JSON representation of flows you create in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs)|
 
 
 ::: zone-end
@@ -114,6 +116,9 @@ Managed identity must be enabled as a prerequisite for using customer-managed ke
 ::: zone pivot="fdp-project"
 
 Customer-managed key encryption is configured via Azure portal in a similar way for each Azure resource:
+
+> [!IMPORTANT]
+> The Azure Key Vault used for encryption **must be in the same resource group** as the AI Foundry project. Key Vaults in other resource groups are not currently supported by the deployment wizards or project configuration workflows.
 
 1. Create a new Azure AI Foundry resource in the [Azure portal](https://portal.azure.com/).
 1. Under the **Encryption** tab, select **Customer-managed key**, **Select vault and key**, and then select the key vault and key to use.

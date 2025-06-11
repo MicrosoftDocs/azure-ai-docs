@@ -2,16 +2,18 @@
 title: How to trace your AI application
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to trace your application with Azure AI Inference SDK.
+author: lgayhardt
+ms.author: lagayhar
 manager: scottpolly
+ms.reviewer: amibp
+ms.date: 05/19/2025
 ms.service: azure-ai-foundry
+ms.topic: how-to
 ms.custom:
   - build-2024
   - ignite-2024
-ms.topic: how-to
-ms.date: 05/19/2025
-ms.reviewer: amibp
-ms.author: lagayhar
-author: lgayhardt
+  - build-aifnd
+  - build-2025
 ---
 
 # Tracing your AI application (preview)
@@ -242,7 +244,7 @@ For more information on how to send Azure AI Inference traces to Azure Monitor a
 ## Related content
 
 - [Python samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-inference/samples/sample_chat_completions_with_tracing.py) containing fully runnable Python code for tracing using synchronous and asynchronous clients.
-- [Sample Agents with Console tracing](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/sample_agents_functions_with_console_tracing.py)
-- [Sample Agents with Azure Monitor](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/sample_agents_basics_with_azure_monitor_tracing.py)
+- [Sample Agents with Console tracing](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_telemetry/sample_agents_basics_async_with_console_tracing.py)
+- [Sample Agents with Azure Monitor](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_telemetry/sample_agents_basics_with_azure_monitor_tracing.py)
 - [JavaScript samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples/v1-beta/typescript/src) containing fully runnable JavaScript code for tracing using synchronous and asynchronous clients.
 - [C# Samples](https://github.com/Azure/azure-sdk-for-net/blob/Azure.AI.Inference_1.0.0-beta.2/sdk/ai/Azure.AI.Inference/samples/Sample8_ChatCompletionsWithOpenTelemetry.md) containing fully runnable C# code for doing inference using synchronous and asynchronous methods.

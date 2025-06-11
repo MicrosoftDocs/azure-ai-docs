@@ -9,7 +9,7 @@ ms.reviewer: cacrest
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.date: 09/30/2024
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom: cliv2, sdkv2, FY25Q1-Linter
 #Customer intent: As a data scientist, I want to understand MLflow artifacts and models so I can use MLflow models to enable streamlined deployment workflows.
 ---

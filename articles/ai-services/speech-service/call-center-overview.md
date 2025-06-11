@@ -47,7 +47,7 @@ You might want to further customize and fine-tune the experience for your produc
 | Speech customization | Description |
 | -------------- | ----------- |
 | [Custom speech](./custom-speech-overview.md) | A speech to text feature used to evaluate and improve the speech recognition accuracy of use-case specific entities (such as alpha-numeric customer, case, and contract IDs, license plates, and names). You can also train a custom model with your own product names and industry terminology. |
-| [Custom neural voice](./custom-neural-voice.md) | A text to speech feature that lets you create a one-of-a-kind, customized, synthetic voice for your applications. |
+| [Custom voice](./custom-neural-voice.md) | A text to speech feature that lets you create a one-of-a-kind, customized, synthetic voice for your applications. |
 
 ### Language service
 

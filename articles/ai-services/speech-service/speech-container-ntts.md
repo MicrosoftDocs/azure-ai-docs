@@ -31,7 +31,7 @@ The fully qualified container image name is, `mcr.microsoft.com/azure-cognitive-
 | Version | Path |
 |-----------|------------|
 | Latest | `mcr.microsoft.com/azure-cognitive-services/speechservices/neural-text-to-speech:latest`<br/><br/>The `latest` tag pulls the `en-US` locale and `en-us-arianeural` voice. |
-| 3.9.0 | `mcr.microsoft.com/azure-cognitive-services/speechservices/neural-text-to-speech:3.9.0-amd64-en-us-arianeural` |
+| 3.10.0 | `mcr.microsoft.com/azure-cognitive-services/speechservices/neural-text-to-speech:3.10.0-amd64-en-us-arianeural` |
 
 All tags, except for `latest`, are in the following format and are case sensitive:
 
@@ -46,19 +46,20 @@ The tags are also available [in JSON format](https://mcr.microsoft.com/v2/azure-
   "name": "azure-cognitive-services/speechservices/neural-text-to-speech",
   "tags": [
     <--redacted for brevity-->
-    "3.9.0-amd64-uk-ua-ostapneural",
-    "3.9.0-amd64-zh-cn-xiaochenneural-preview",
-    "3.9.0-amd64-zh-cn-xiaohanneural",
-    "3.9.0-amd64-zh-cn-xiaomoneural",
-    "3.9.0-amd64-zh-cn-xiaoqiuneural-preview",
-    "3.9.0-amd64-zh-cn-xiaoruineural",
-    "3.9.0-amd64-zh-cn-xiaoshuangneural-preview",
-    "3.9.0-amd64-zh-cn-xiaoxiaoneural",
-    "3.9.0-amd64-zh-cn-xiaoyanneural-preview",
-    "3.9.0-amd64-zh-cn-xiaoyouneural",
-    "3.9.0-amd64-zh-cn-yunxineural",
-    "3.9.0-amd64-zh-cn-yunyangneural",
-    "3.9.0-amd64-zh-cn-yunyeneural",
+    "3.10.0-amd64-tr-tr-emelneural",
+    "3.10.0-amd64-uk-ua-ostapneural",
+    "3.10.0-amd64-zh-cn-xiaochenneural-preview",
+    "3.10.0-amd64-zh-cn-xiaohanneural",
+    "3.10.0-amd64-zh-cn-xiaomoneural",
+    "3.10.0-amd64-zh-cn-xiaoqiuneural-preview",
+    "3.10.0-amd64-zh-cn-xiaoruineural",
+    "3.10.0-amd64-zh-cn-xiaoshuangneural-preview",
+    "3.10.0-amd64-zh-cn-xiaoxiaoneural",
+    "3.10.0-amd64-zh-cn-xiaoyanneural-preview",
+    "3.10.0-amd64-zh-cn-xiaoyouneural",
+    "3.10.0-amd64-zh-cn-yunxineural",
+    "3.10.0-amd64-zh-cn-yunyangneural",
+    "3.10.0-amd64-zh-cn-yunyeneural",
     "latest"
   ]
 }

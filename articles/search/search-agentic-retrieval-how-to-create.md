@@ -8,42 +8,50 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/05/2025
+ms.date: 05/30/2025
 ---
 
 # Create a knowledge agent in Azure AI Search
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In Azure AI Search, a *knowledge agent* is a top-level resource representing a connection to a conversational language model for use in agentic retrieval workloads. It specifies a model that provides reasoning capabilities, and it identifies the search index used at query time.
+In Azure AI Search, a *knowledge agent* is a top-level resource representing a connection to a chat completion model for use in agentic retrieval workloads. A knowledge agent is used by the [retrieve method](search-agentic-retrieval-how-to-retrieve.md) in an LLM-powered information retrieval pipeline.
 
-After you can create a knowledge agent, you can update its properties at any time. If the knowledge agent is in use, updates take effect on the next job.
+A knowledge agent specifies:
+
++ A model that provides reasoning capabilities
++ A target search index used at query time
++ Parameters on the index for setting default behaviors and response shaping
+
+After you create a knowledge agent, you can update its properties at any time. If the knowledge agent is in use, updates take effect on the next job.
 
 ## Prerequisites
 
 + Familiarity with [agentic retrieval concepts and use cases](search-agentic-retrieval-concept.md).
 
-+ A conversational language model on Azure OpenAI, either gpt-4o or gpt-4o-mini.
++ A [supported chat completion model](#supported-models) on Azure OpenAI.
 
-+ Azure AI Search, in any [region that provides semantic ranker](search-region-support.md), on basic tier and above. Your search service must have a [managed identity](search-howto-managed-identities-data-sources.md) for role-based access to a chat model.
++ Azure AI Search, in any [region that provides semantic ranker](search-region-support.md), on the basic pricing tier or higher. Your search service must have a [managed identity](search-howto-managed-identities-data-sources.md) for role-based access to the model.
 
-+ Permission requirements on Azure AI Search. An **Owner/Contributor** or **Search Service Contributor** can create and manage a knowledge agent. **Search Index Data Contributor** uploads and indexes document. **Search Index Data Reader** runs queries. Instructions are provided in this article.
++ Permissions on Azure AI Search. **Search Service Contributor** can create and manage a knowledge agent. **Search Index Data Reader** can run queries. Instructions are provided in this article.
 
-+ A search index containing plain text or vectors. The index must [meet requirements for agentic retrieval](search-agentic-retrieval-how-to-index.md), including a [semantic configuration](semantic-how-to-configure.md) with the `defaultConfiguration` specified.
++ A search index containing plain text or vectors. The index must [meet the requirements for agentic retrieval](search-agentic-retrieval-how-to-index.md), including a [semantic configuration](semantic-how-to-configure.md) with the `defaultConfiguration` specified.
 
-+ API requirements. To create or use a knowledge agent, use 2025-05-01-preview data plane REST API or a prerelease package of an Azure SDK that provides knowledge agent APIs.
++ API requirements. To create or use a knowledge agent, use the [2025-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) data plane REST API. Or, use a prerelease package of an Azure SDK that provides knowledge agent APIs: [Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md#1170-beta3-2025-03-25), [Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
 
-To follow the steps in this guide, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending REST API calls to Azure AI Search. There's no portal support at this time.
+To follow the steps in this guide, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending preview REST API calls to Azure AI Search. There's no portal support at this time.
 
 ## Deploy a model for agentic retrieval
 
 Make sure you have a supported model that Azure AI Search can access. The following instruction assumes Azure AI Foundry Model as the provider.
 
-1. Sign in to [Azure AI Foundry portal](https://ai.azure.com/).
+1. Sign in to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 1. Deploy a supported model using [these instructions](/azure/ai-foundry/how-to/deploy-models-openai).
 
-1. Verify the search service managed identity has **Cognitive Services User** permissions on the Azure OpenAI resource. If you're testing locally, you also need **Cognitive Services User** permissions.
+1. Verify the search service managed identity has **Cognitive Services User** permissions on the Azure OpenAI resource. 
+
+   If you're testing locally, you also need **Cognitive Services User** permissions.
 
 ### Supported models
 
@@ -67,7 +75,7 @@ In Azure, you must have **Owner** or **User Access Administrator** permissions o
 
 1. [Configure Azure AI Search to use a managed identity](search-howto-managed-identities-data-sources.md).
 
-1. On your model provider, such Foundry Model, create a role assignment that gives the search service managed identity **Cognitive Services User** permissions. If you're testing locally, assign yourself to the same role. 
+1. On your model provider, such as Foundry Model, create a role assignment that gives the search service managed identity **Cognitive Services User** permissions. If you're testing locally, assign yourself to the same role. 
 
 1. For local testing, follow the steps in [Quickstart: Connect without keys](search-get-started-rbac.md) to get a personal access token and to ensure you're logged in to a specific subscription and tenant. Paste your personal identity token into the `@accessToken` variable. A request that connects using your personal identity should look similar to the following example:
 
@@ -97,34 +105,37 @@ You can use API keys if you don't have permission to create role assignments.
 
    # List Indexes
    GET https://{{search-url}}/indexes?api-version=2025-05-01-preview
-   api-key: {{search-api-key}}
+      Content-Type: application/json
+      @api-key: {{search-api-ke}}
    ```
 
 ## Check for existing knowledge agents
 
-The following request lists knowledge agents by name. Within the knowledge agents collection, all knowledge agents must be uniquely named. It's helpful for knowing about existing knowledge agents for reuse or  naming purposes.
+The following request lists knowledge agents by name. Within the knowledge agents collection, all knowledge agents must be uniquely named. It's helpful to know about existing knowledge agents for reuse or for naming new agents.
 
 <!-- ### [**REST APIs**](#tab/rest-get) -->
 
 ```http
 # List knowledge agents
 GET https://{{search-url}}/agents?api-version=2025-05-01-preview
-api-key: {{search-api-key}}
+   Content-Type: application/json
+   Authorization: Bearer {{accessToken}}
 ```
 
-You can also return a single agent by name.
+You can also return a single agent by name to review its JSON definition.
 
 ```http
 # Get knowledge agent
 GET https://{{search-url}}/agents/{{agent-name}}?api-version=2025-05-01-preview
-api-key: {{search-api-key}}
+   Content-Type: application/json
+   Authorization: Bearer {{accessToken}}
 ```
 
 <!-- --- -->
 
 ## Create a knowledge agent
 
-A knowledge agent represents a connection to a model that you've deployed. Parameters on the model establish the connection.
+A knowledge agent represents a connection between a model that you've deployed in Azure OpenAI and a target index on Azure AI Search. Parameters on the model establish the connection. Parameters on the index establish defaults that inform query execution and the response.
 
 <!-- ### [**REST APIs**](#tab/rest-create) -->
 
@@ -132,16 +143,15 @@ To create an agent, use the 2025-05-01-preview data plane REST API or an Azure S
 
 ```http
 @search-url=<YOUR SEARCH SERVICE URL>
-@search-api-key=<YOUR SEARCH SERVICE ADMIN API KEY>
 @agent-name=<YOUR AGENT NAME>
 @index-name=<YOUR INDEX NAME>
 @model-provider-url=<YOUR AZURE OPENAI RESOURCE URI>
-@model-api-key=<YOUR AZURE OPENAI API KEY>
+@accessToken = <a long GUID>
 
 # Create knowledge agent
 PUT https://{{search-url}}/agents/{{agent-name}}?api-version=2025-05-01-preview
-api-key: {{search-api-key}}
-Content-Type: application/json
+   Content-Type: application/json
+   Authorization: Bearer {{accessToken}}
 
 {
     "name" : "{{agent-name}}",
@@ -174,7 +184,7 @@ Content-Type: application/json
 
 **Key points**:
 
-+ `name` must be unique within the knowledge agents collection it must adhere to [naming rules](/rest/api/searchservice/naming-rules) for objects on Azure AI Search.
++ `name` must be unique within the knowledge agents collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects on Azure AI Search.
 
 + `targetIndexes` is required for knowledge agent creation. It lists the search indexes that can use the knowledge agent. Currently in this preview release, the `targetIndexes` array can contain only one index. *It must have a default semantic configuration* (`defaultConfiguration`). For more information, see [Design an index for agentic retrieval](search-agentic-retrieval-how-to-index.md).
 
@@ -211,10 +221,10 @@ Call the **retrieve** action on the knowledge agent object to confirm the model 
 Replace "What are my vision benefits?" with a query string that's valid for your search index.
 
 ```http
-# Send Grounding Request
+# Send grounding request
 POST https://{{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-05-01-preview
-api-key: {{search-api-key}}
-Content-Type: application/json
+   Content-Type: application/json
+   Authorization: Bearer {{accessToken}}
 
 {
     "messages" : [
@@ -247,14 +257,18 @@ For more information about the **retrieve** API and the shape of the response, s
 
 ## Delete an agent
 
+If you no longer need the agent, or if you need to rebuild it on the search service, use this request to delete the current object.
+
 ```http
-# Delete Agent
+# Delete agent
 DELETE https://{{search-url}}/agents/{{agent-name}}?api-version=2025-05-01-preview
-api-key: {{search-api-key}}
+   Authorization: Bearer {{accessToken}}
 ```
 
 ## Related content
 
 + [Agentic retrieval in Azure AI Search](search-agentic-retrieval-concept.md)
+
++ [Agentic RAG: build a reasoning retrieval engine with Azure AI Search (YouTube video)](https://www.youtube.com/watch?v=PeTmOidqHM8)
 
 + [Azure OpenAI Demo featuring agentic retrieval](https://github.com/Azure-Samples/azure-search-openai-demo)

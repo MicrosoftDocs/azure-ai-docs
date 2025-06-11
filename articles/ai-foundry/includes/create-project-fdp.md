@@ -2,12 +2,15 @@
 title: Include file
 description: Include file
 author: sdgilley
-ms.reviewer: deeikele
 ms.author: sgilley
+ms.reviewer: deeikele
+ms.date: 05/05/2025
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 05/05/2025
-ms.custom: include
+ms.custom:
+  - include
+  - build-aifnd
+  - build-2025
 ---
 
 > [!TIP]
@@ -58,21 +61,14 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 
 # [Azure AI Foundry portal](#tab/ai-foundry)
 
-To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)] in [Azure AI Foundry](https://ai.azure.com), follow these steps:
+To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)] in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), follow these steps:
 
-1. Go to [Azure AI Foundry](https://ai.azure.com).
+1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
-2. What you do next depends on where you are:
+1. [!INCLUDE [create-project-access](create-project-access.md)]
 
-    * **If you don't have any existing projects**: Follow the steps in [Quickstart: Get started with Azure AI Foundry](../quickstarts/get-started-code.md) to create your first project.
-
-    * **If you're in a project**: Select the project breadcrumb, then select **Create new resource**.
-    
-        :::image type="content" source="../media/how-to/projects/create-new-resource.png" alt-text="Screenshot shows creating a new project from a breadcrumb.":::
-    
-    * **If you're not in a project**: Select **Create new** in the top right to create a new [!INCLUDE [fdp-project-name-plural](fdp-project-name.md)]
-    
-        :::image type="content" source="../media/how-to/projects/create-new.png" alt-text="Screenshot shows how to create a new project in Azure AI Foundry.":::
+1. Select **Azure AI Foundry resource**, then select **Next**.
+1. Provide a name for your project and select **Create**.  Or see next section for advanced options.
 
 ### Advanced options
 

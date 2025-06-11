@@ -47,7 +47,7 @@ project_client = AIProjectClient(
 
 ## Register the Logic App
 
-Register the Logic App by providing its name and trigger details.
+Register the Logic App by providing its name and trigger details. You can find code for `AzureLogicAppTool` on[GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/utils/user_functions.py).
 
 ```python
 from user_logic_apps import AzureLogicAppTool
@@ -143,4 +143,4 @@ print("Deleted agent")
 
 ## Next steps
 
-[See the full sample for Logic Apps integration.](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/sample_agents_logic_apps.py)
+[See the full sample for Logic Apps integration.](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_tools/sample_agents_logic_apps.py)

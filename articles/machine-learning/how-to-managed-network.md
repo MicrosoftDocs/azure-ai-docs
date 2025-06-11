@@ -177,7 +177,7 @@ Before following the steps in this article, make sure you have the following pre
 
 ::: zone-end
 
-To establish private endpoint connections in managed virtual networks using Azure Machine Learning, the workspace managed identity, whether system-assigned or user-assigned, must have permissions to approve the Private Endpoint connections on the target resources. After April 30th, 2025, permissions aren't automatically granted to the managed identity and must be assigned manually.
+To establish private endpoint connections in managed virtual networks using Azure Machine Learning, the workspace managed identity, whether system-assigned or user-assigned, and the user identity that initiates the creation of the private endpoint, must have permissions to approve the Private Endpoint connections on the target resources. After April 30th, 2025, permissions aren't automatically granted to the managed identity and must be assigned manually.
 
 Microsoft recommends assigning the _Azure AI Enterprise Network Connection Approver_ role to the managed identity. The following list contains the private endpoint target resource types covered by the __Azure AI Enterprise Network Connection Approver__ role:
 
@@ -1171,6 +1171,8 @@ Private endpoints are currently supported for the following Azure services:
 * Azure Database for PostgreSQL Flexible Server
 * Azure Database for MySQL
 * Azure API Management
+  * Supporting only Classic tier without VNET injection and Standard V2 tier with virtual network integration. For more on API Management virtual networks, see [Virtual Network Concepts](https://learn.microsoft.com/azure/api-management/virtual-network-concepts)
+* Application Insights (Through [PrivateLinkScopes](https://learn.microsoft.com/azure/azure-monitor/logs/private-link-configure#create-azure-monitor-private-link-scope-ampls))
 
 When you create a private endpoint, you provide the _resource type_ and _subresource_ that the endpoint connects to. Some resources have multiple types and subresources. For more information, see [what is a private endpoint](/azure/private-link/private-endpoint-overview).
 

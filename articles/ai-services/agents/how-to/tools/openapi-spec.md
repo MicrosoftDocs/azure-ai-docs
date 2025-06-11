@@ -67,7 +67,7 @@ With API key authentication, you can authenticate your OpenAPI spec using variou
 
 1. Create a `custom keys` connection to store your API key.
 
-    1. Go to the [Azure AI Foundry portal](https://ai.azure.com/) and select the AI Project. Click **connected resources**.
+    1. Go to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select the AI Project. Click **connected resources**.
     :::image type="content" source="../../media/tools/bing/project-settings-button.png" alt-text="A screenshot of the settings button for an AI project." lightbox="../../media/tools/bing/project-settings-button.png":::
 
     1. Select **+ new connection** in the settings page. 

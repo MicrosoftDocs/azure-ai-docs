@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 03/24/2025
+ms.date: 05/19/2025
 ms.reviewer: fasantia 
 reviewer: santiagxf
 ms.author: mopeakande
@@ -16,7 +16,7 @@ author: msakande
 
 # How to deploy and inference a managed compute deployment with code
 
-The Azure AI Foundry portal [model catalog](../how-to/model-catalog-overview.md) offers over 1,600 models, and the most common way to deploy these models is to use the managed compute deployment option, which is also sometimes referred to as a managed online deployment. 
+The Azure AI Foundry portal [model catalog](../how-to/model-catalog-overview.md) offers over 1,600 models, and a common way to deploy these models is to use the managed compute deployment option, which is also sometimes referred to as a managed online deployment. 
 
 Deployment of a large language model (LLM) makes it available for use in a website, an application, or other production environment. Deployment typically involves hosting the model on a server or in the cloud and creating an API or other interface for users to interact with the model. You can invoke the deployment for real-time inference of generative AI applications such as chat and copilot.
 
@@ -36,7 +36,7 @@ You can deploy managed compute models using the Azure Machine Learning SDK, but 
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com) and go to the **Home** page.
+1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and go to the **Home** page.
 1. Select **Model catalog** from the left sidebar.
 1. In the **Deployment options** filter, select **Managed compute**.
 

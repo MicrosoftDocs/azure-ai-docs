@@ -8,6 +8,7 @@ ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 5/19/2025
 ms.author: eur
+ms.custom: references_regions
 zone_pivot_groups: foundry-speech-studio-rest
 #Customer intent: As a developer, I want to learn how to train my professional voice model.
 ---

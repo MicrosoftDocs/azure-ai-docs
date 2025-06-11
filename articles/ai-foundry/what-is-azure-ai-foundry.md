@@ -2,23 +2,30 @@
 title: What is Azure AI Foundry?
 titleSuffix: Azure AI Foundry
 description: Azure AI Foundry is a trusted platform that empowers developers to drive innovation and shape the future with AI in a safe, secure, and responsible way.
+author: sdgilley
+ms.author: sgilley
 manager: scottpolly
-keywords: Azure AI services, cognitive
+ms.reviewer: sgilley
+ms.date: 05/12/2025
 ms.service: azure-ai-foundry
 ms.topic: overview
-ms.date: 05/12/2025
-ms.reviewer: sgilley
-ms.author: sgilley
-author: sdgilley
-ms.custom: ignite-2023, build-2024, ignite-2024
-#customer intent: As a developer, I want to understand what Azure AI Foundry is so that I can use it to build AI applications.
+ms.custom:
+  - ignite-2023
+  - build-2024
+  - ignite-2024
+  - build-aifnd
+  - build-2025
+keywords:
+  - Azure AI services
+  - cognitive
+# customer intent: As a developer, I want to understand what Azure AI Foundry is so that I can use it to build AI applications.
 ---
 
 # What is Azure AI Foundry?
 
-[Azure AI Foundry](https://ai.azure.com) provides a unified platform for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, ensuring organizations can build and operate AI applications with confidence. 
+[Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) provides a unified platform for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, ensuring organizations can build and operate AI applications with confidence. 
 
-[Azure AI Foundry](https://ai.azure.com) is designed for developers to:
+[Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) is designed for developers to:
 
 - Build generative AI applications on an enterprise-grade platform.
 - Explore, build, test, and deploy using cutting-edge AI tools and ML models, grounded in responsible AI practices.
@@ -51,7 +58,8 @@ This table summarizes features available in the two project types:
 | Capability | [!INCLUDE [fdp](includes/fdp-project-name.md)] | [!INCLUDE[hub](includes/hub-project-name.md)] |
 | --- | --- | --- |
 | Agents | ✅ (GA) | ✅ (Preview only) |
-| Azure OpenAI models | ✅ (Native support) | Available via connections |
+| Azure AI Foundry Models including Azure OpenAI models | ✅ (Native support) | Available via connections |
+| AI Foundry API to work with agents and across models| ✅ (Native support) | Available via connections |
 | Project files (directly upload files and start experimenting) | ✅ | |
 | Project-level isolation of files and outputs | ✅ | ✅|
 | Evaluations | ✅ | ✅ |

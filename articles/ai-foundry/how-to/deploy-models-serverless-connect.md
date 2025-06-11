@@ -43,7 +43,7 @@ The need to consume a standard deployments endpoint in a different project or hu
 
     # [Azure AI Foundry portal](#tab/azure-ai-studio)
 
-    You can use any compatible web browser to navigate [Azure AI Foundry](https://ai.azure.com).
+    You can use any compatible web browser to navigate [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
     # [Azure CLI](#tab/cli)
 
@@ -92,7 +92,7 @@ Follow these steps to create a connection:
 
     [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-    Go to [Azure AI Foundry](https://ai.azure.com) and navigate to the project where the endpoint you want to connect to is deployed.
+    Go to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and navigate to the project where the endpoint you want to connect to is deployed.
 
     # [Azure CLI](#tab/cli)
 

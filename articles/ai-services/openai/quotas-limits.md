@@ -2,14 +2,15 @@
 title: Azure OpenAI in Azure AI Foundry Models quotas and limits
 description: Quick reference, detailed description, and best practices on the quotas and limits for the OpenAI service in Azure AI services.
 author: mrbullwinkle
+ms.author: mbullwin
 manager: nitinme
+ms.date: 05/29/2025
 ms.service: azure-ai-openai
+ms.topic: conceptual
 ms.custom:
   - ignite-2023
   - references_regions
-ms.topic: conceptual
-ms.date: 05/29/2025
-ms.author: mbullwin
+  - build-2025
 ---
 
 # Azure OpenAI in Azure AI Foundry Models quotas and limits
@@ -44,8 +45,8 @@ The following sections provide you with a quick guide to the default quotas and 
 | Max number of `/chat/completions` functions | 128 |
 | Max number of `/chat completions` tools | 128 |
 | Maximum number of Provisioned throughput units per deployment | 100,000 |
-| Max files per Assistant/thread | 10,000 when using the API or [Azure AI Foundry portal](https://ai.azure.com/).|
-| Max file size for Assistants & fine-tuning | 512 MB<br/><br/>200 MB via [Azure AI Foundry portal](https://ai.azure.com/) |
+| Max files per Assistant/thread | 10,000 when using the API or [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).|
+| Max file size for Assistants & fine-tuning | 512 MB<br/><br/>200 MB via [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) |
 | Max size for all uploaded files for Assistants |200 GB |
 | Assistants token limit | 2,000,000 token limit |
 | GPT-4o max images per request (# of images in the messages array/conversation history) | 50 |
@@ -196,7 +197,7 @@ M = million | K = thousand
 
 ### gpt-4o audio
 
-The rate limits for each `gpt-4o` audio model deployment are 100 K TPM and 1 K RPM. During the preview, [Azure AI Foundry portal](https://ai.azure.com/) and APIs might inaccurately show different rate limits. Even if you try to set a different rate limit, the actual rate limit is 100 K TPM and 1 K RPM.
+The rate limits for each `gpt-4o` audio model deployment are 100 K TPM and 1 K RPM. During the preview, [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and APIs might inaccurately show different rate limits. Even if you try to set a different rate limit, the actual rate limit is 100 K TPM and 1 K RPM.
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|

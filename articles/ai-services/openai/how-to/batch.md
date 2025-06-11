@@ -1,15 +1,16 @@
 ---
-title: 'How to use global batch processing with Azure OpenAI in Azure AI Foundry Models'
+title: "How to use global batch processing with Azure OpenAI in Azure AI Foundry Models"
 titleSuffix: Azure OpenAI
 description: Learn how to use global batch with Azure OpenAI
-manager: nitinme
-ms.service: azure-ai-openai
-ms.custom: references_regions
-ms.topic: how-to
-ms.date: 05/28/2025
 author: mrbullwinkle
 ms.author: mbullwin
-recommendations: false
+manager: nitinme
+ms.date: 05/28/2025
+ms.service: azure-ai-openai
+ms.topic: how-to
+ms.custom:
+  - references_regions
+  - build-2025
 zone_pivot_groups: openai-fine-tuning-batch
 ---
 
@@ -90,7 +91,7 @@ The following aren't currently supported:
 ### Batch deployment
 
 > [!NOTE]
-> In the [Azure AI Foundry portal](https://ai.azure.com/) the batch deployment types will appear as `Global-Batch` and `Data Zone Batch`. To learn more about Azure OpenAI deployment types, see our [deployment types guide](../how-to/deployment-types.md).
+> In the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) the batch deployment types will appear as `Global-Batch` and `Data Zone Batch`. To learn more about Azure OpenAI deployment types, see our [deployment types guide](../how-to/deployment-types.md).
 
 :::image type="content" source="../media/how-to/global-batch/global-batch.png" alt-text="Screenshot that shows the model deployment dialog in Azure AI Foundry portal with Global-Batch deployment type highlighted." lightbox="../media/how-to/global-batch/global-batch.png":::
 
@@ -162,7 +163,7 @@ Yes. Similar to other deployment types, you can create content filters and assoc
 
 ### Can I request additional quota?
 
-Yes, from the quota page in the [Azure AI Foundry portal](https://ai.azure.com/). Default quota allocation can be found in the [quota and limits article](../quotas-limits.md#batch-quota).
+Yes, from the quota page in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). Default quota allocation can be found in the [quota and limits article](../quotas-limits.md#batch-quota).
 
 ### What happens if the API doesn't complete my request within the 24 hour time frame?
 

@@ -41,7 +41,7 @@ Azure AI Voice Live API is ideal for scenarios where voice-driven interactions i
 The Voice Live API includes a comprehensive set of features to support diverse use cases and ensure superior voice interactions:
 
 - **Broad locale coverage**: Supports over 15 locales for speech to text and offers over 600 standard voices across 140+ locales for text to speech, ensuring global accessibility.
-- **Customizable input and output**: Use phrase list for lightweight just-in-time customization on audio input. Use custom neural voice to create unique, brand-aligned voices for audio output.
+- **Customizable input and output**: Use phrase list for lightweight just-in-time customization on audio input. Use custom voice to create unique, brand-aligned voices for audio output.
 - **Flexible generative AI model options**: [Choose from multiple models](#supported-models-and-regions), including GPT-4o, GPT-4o-mini, and Phi, tailored to conversational requirements.
 - **Advanced conversational features**:
     - Noise suppression: Reduces environmental noise for clearer communication.
@@ -73,12 +73,12 @@ The Voice Live API supports the following models and regions:
 
 | Model | Description | Supported regions |
 | ------------------------------ | ----------- | ----------- |
-| `gpt-4o-realtime-preview`      | GPT-4o realtime + option to use Azure text to speech voices including custom neural voice for audio. | `eastus2`<br/>`swedencentral` |
-| `gpt-4o-mini-realtime-preview` | GPT-4o mini realtime + option to use Azure text to speech voices including custom neural voice for audio. | `eastus2`<br/>`swedencentral` |
-| `gpt-4o` | GPT-4o + audio input through Azure speech to text + audio output through Azure text to speech voices including custom neural voice. | `eastus2`<br/>`swedencentral` |
-| `gpt-4o-mini` | GPT-4o mini + audio input through Azure speech to text + audio output through Azure text to speech voices including custom neural voice. | `eastus2`<br/>`swedencentral` |
-| `phi4-mm-realtime` | Phi4-mm + audio output through Azure text to speech voices including custom neural voice. | `eastus2`<br/>`swedencentral` |
-| `phi4-mini` | Phi4-mm + audio input through Azure speech to text + audio output through Azure text to speech voices including custom neural voice. | `eastus2`<br/>`swedencentral` |
+| `gpt-4o-realtime-preview`      | GPT-4o realtime + option to use Azure text to speech voices including custom voice for audio. | `eastus2`<br/>`swedencentral` |
+| `gpt-4o-mini-realtime-preview` | GPT-4o mini realtime + option to use Azure text to speech voices including custom voice for audio. | `eastus2`<br/>`swedencentral` |
+| `gpt-4o` | GPT-4o + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. | `eastus2`<br/>`swedencentral` |
+| `gpt-4o-mini` | GPT-4o mini + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. | `eastus2`<br/>`swedencentral` |
+| `phi4-mm-realtime` | Phi4-mm + audio output through Azure text to speech voices including custom voice. | `eastus2`<br/>`swedencentral` |
+| `phi4-mini` | Phi4-mm + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. | `eastus2`<br/>`swedencentral` |
 
 ## Comparing Voice Live API with other speech to speech solutions
 
