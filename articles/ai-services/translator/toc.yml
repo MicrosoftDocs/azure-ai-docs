@@ -73,27 +73,27 @@ items:
     items:
     - name: 2025-05-01-preview 🆕
       items:
-      - name: REST API guide (2025-05-01-preview) 🆕
+      - name: Overview 🆕"
+        displayName: gpt, adaptive, tone, gender
+        href: text-translation/reference/preview/overview.md  
+      - name: REST API guide (preview) 🆕
         displayName: resource,endpoint,region,location,resource,token,header,header value,header-value
         href: text-translation/reference/preview/rest-api-guide.md
-      - name: Languages
+      - name: Get /legal/cognitive-services/translator/translator-pro-transparency-noteanguages
         href: text-translation/reference/preview/get-languages.md
       - name: Translate
         displayName: detection,detect
         href: text-translation/reference/preview/translate-api.md
       - name: Transliterate
         href: text-translation/reference/preview/transliterate-api.md
-      - name: "Azure AI Translator 2025-05-01-preview 🆕"
-        displayName: gpt, adaptive, tone, gender
-        href: text-translation/reference/preview/overview.md  
     - name: Azure AI Translator v3
       items:
-      - name: v3 overview
+      - name: Overview
         displayName: resource,endpoint,region,location,resource,token,header,header value,header-value
         href: text-translation/reference/v3/reference.md
       - name: Text Translation v3 REST APIs
         href:  text-translation/reference/rest-api-guide.md
-      - name: Languages
+      - name: Get languages
         href: text-translation/reference/v3/languages.md
       - name: Translate
         displayName: detection,detect
