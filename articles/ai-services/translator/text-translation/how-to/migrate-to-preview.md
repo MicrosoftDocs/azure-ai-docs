@@ -1,7 +1,7 @@
 ---
-title: Migrate from Translator v3 to the latest Azure AI Translator version.
+title: Migrate from Translator v3 to the latest Azure AI Translator text translation version.
 titleSuffix: Azure AI services
-description: This article provides the steps to help you migrate from Azure AI Translator v3 to  2025-05-01-preview Text translation API.
+description: This article provides the steps to help you migrate from Azure AI Translator v3 to  2025-05-01-preview text translation API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -10,7 +10,7 @@ ms.date: 06/19/2025
 ms.author: lajanuar
 ---
 
-# Azure AI Translator 2025-05-01-preview migration
+# Text translation 2025-05-01-preview migration
 
 Azure AI Translator text translation 2025-05-01-preview is our latest cloud-based, multilingual neural machine translation service. As Azure AI Translator matures, we're focused on patterns and practices to best support and add value to our users.
 
@@ -26,7 +26,7 @@ The latest version of Azure AI Translator includes the following enhancements an
 
 * **Adaptive custom translation**. New features enable adaptive custom translations using datasets or reference pairs to ensure more accurate and contextually relevant translations.
 
-* **Expanded translation parameters**. The API supports a range of parameters, including text type, language codes, and options for tone and gender, providing more nuanced translation outputs.
+* **Expanded parameters for translation requests**. The API supports a range of parameters, including text type, language codes, and options for tone and gender, providing more nuanced translation outputs.
 
 ## Method changes
 

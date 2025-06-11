@@ -33,7 +33,7 @@ items:
     href: text-translation/overview.md
   - name: "Azure AI Translator 2025-05-01-preview 🆕"
     displayName: gpt, adaptive, tone, gender
-    href: text-translation/reference/preview/reference-overview.md
+    href: text-translation/reference/preview/overview.md
   - name: "Migrate to 2025-05-01-preview 🆕"
     displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
     href: text-translation/how-to/migrate-to-preview.md
@@ -76,6 +76,9 @@ items:
     items:
     - name: 2025-05-01-preview 🆕
       items:
+      - name: REST API guide (2025-05-01-preview) 🆕
+        displayName: resource,endpoint,region,location,resource,token,header,header value,header-value
+        href: text-translation/reference/preview/rest-api-guide.md
       - name: Languages
         href: text-translation/reference/preview/get-languages.md
       - name: Translate
@@ -86,7 +89,7 @@ items:
     - name: Azure AI Translator v3
       items:
       - name: v3 overview
-        displayName: 401000,405000,400000
+        displayName: resource,endpoint,region,location,resource,token,header,header value,header-value
         href: text-translation/reference/v3/reference.md
       - name: Text Translation v3 REST APIs
         href:  text-translation/reference/rest-api-guide.md

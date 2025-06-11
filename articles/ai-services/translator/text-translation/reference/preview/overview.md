@@ -33,6 +33,26 @@ The Translator service is an optimal solution for managing extensive multilingua
 
 * You need to create an **Azure AI Foundry** resource to use an `LLM` model.
 
+## Base URLs
+
+Requests to Translator are, in most cases, handled by the datacenter that is closest to where the request originated. If there's a datacenter failure when using the global endpoint, the request may be routed outside of the geography.
+
+To force the request to be handled within a specific geography, use the desired geographical endpoint. All requests are processed among the datacenters within the geography.
+
+✔️ Feature: **Translator Text** </br>
+
+| Service endpoint | Request processing data center |
+|------------------|--------------------------|
+|**Global (recommended):**</br>**`api.cognitive.microsofttranslator.com`**|Closest available data center.|
+|**Americas:**</br>**`api-nam.cognitive.microsofttranslator.com`**|East US 2 &bull; West US 2|
+|**Asia Pacific:**</br>**`api-apc.cognitive.microsofttranslator.com`**|Japan East &bull; Southeast Asia|
+|**Europe (except Switzerland):**</br>**`api-eur.cognitive.microsofttranslator.com`**|France Central &bull; West Europe|
+|**Switzerland:**</br> For more information, *see* [Switzerland service endpoints](#switzerland-service-endpoints).|Switzerland North &bull; Switzerland West|
+
+#### Switzerland service endpoints
+
+Customers with a resource located in Switzerland North or Switzerland West can ensure that their Text API requests are served within Switzerland. To ensure that requests are handled in Switzerland, create the Translator resource in the `Resource region` `Switzerland North` or `Switzerland West`, then use the resource's custom endpoint in your API requests.
+
 ## Metrics
 
 Metrics allow you to view the translator usage and availability information in Azure portal, under metrics section as shown in the following screenshot. For more information, see [Data and platform metrics](/azure/azure-monitor/essentials/data-platform-metrics).
