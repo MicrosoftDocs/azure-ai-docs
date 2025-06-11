@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: quickstart
-ms.date: 06/04/2025
+ms.date: 06/11/2025
 ---
 
 # Quickstart: Vectorize text in the Azure portal
@@ -42,7 +42,7 @@ The **Import and vectorize data wizard** [supports a wide range of Azure data so
 
 ### Supported embedding models
 
-For integrated vectorization, you must use one of the following embedding models on an Azure AI platform in the [same region as Azure AI Search](search-create-service-portal.md#regions-with-the-most-overlap). Deployment instructions are provided in a [later section](#prepare-embedding-model).
+For integrated vectorization, you must use one of the following embedding models on an Azure AI platform. Deployment instructions are provided in a [later section](#prepare-embedding-model).
 
 | Provider | Supported models |
 |--|--|
@@ -54,7 +54,7 @@ For integrated vectorization, you must use one of the following embedding models
 
 <sup>2</sup> Azure OpenAI resources (with access to embedding models) that were created in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) aren't supported. Only Azure OpenAI resources created in the Azure portal are compatible with the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md).
 
-<sup>3</sup> For billing purposes, you must [attach your multi-service resource](cognitive-search-attach-cognitive-services.md) to the skillset in your Azure AI Search service. Unless you use a [keyless connection (preview)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) to create the skillset, both resources must be in the same region.
+<sup>3</sup> For billing purposes, you must [attach your Azure AI multi-service resource](cognitive-search-attach-cognitive-services.md) to the skillset in your Azure AI Search service. Unless you use a [keyless connection (preview)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) to create the skillset, both resources must be in the same region.
 
 <sup>4</sup> The Azure AI Vision multimodal embedding model is available in [select regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
 
@@ -375,7 +375,7 @@ In this step, you specify an embedding model to vectorize chunked data. Chunking
 
    + Azure AI Foundry model catalog
 
-   + An Azure AI Vision multimodal resource in the same region as Azure AI Search. If there's no [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-multi-services-resource-for-azure-ai-search-skills) in the same region, this option isn't available.
+   + An Azure AI Vision multimodal resource in the same region as Azure AI Search. If there's no [Azure AI services multi-service resource](/azure/ai-services/multi-service-resource#azure-ai-multi-services-resource-for-azure-ai-search-skills) in the same region, this option isn't available.
 
 1. Specify the Azure subscription.
 
@@ -385,11 +385,11 @@ In this step, you specify an embedding model to vectorize chunked data. Chunking
 
    + For AI Foundry model catalog, select the model you deployed in [Prepare embedding model](#prepare-embedding-model).
 
-   + For AI Vision multimodal embeddings, select your multi-service account.
+   + For AI Vision multimodal embeddings, select your multi-service resource.
 
 1. For the authentication type, select **System assigned identity**.
 
-   + The identity should have a **Cognitive Services User** role on the Azure AI services multi-services account.
+   + The identity should have a **Cognitive Services User** role on the Azure AI services multi-service resource.
 
 1. Select the checkbox that acknowledges the billing effects of using these resources.
 
