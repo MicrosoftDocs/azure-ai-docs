@@ -13,7 +13,7 @@ ms.custom:
 
 # Azure OpenAI in Azure AI Foundry Models fine-tuning considerations
 
-Fine-tuning is the process of taking a pretrained language model and adapting it to perform a specific task or improve its performance on a particular dataset. This involves training the model on a smaller, task-specific dataset while adjusting the model's weights slightly. Fine-tuning leverages the knowledge the model has already acquired during its initial training on a large, diverse dataset, allowing it to specialize without starting from scratch. This approach is often more efficient and effective than training a new model from scratch, especially for specialized tasks. 
+Fine-tuning is the process of taking a pretrained language model and adapting it to perform a specific task or improve its performance on a particular dataset. This involves training the model on a smaller, task-specific dataset while adjusting the model's weights slightly. Fine-tuning leverages the knowledge the model acquired during its initial training on a large, diverse dataset, allowing it to specialize without starting from scratch. This approach is often more efficient and effective than training a new model from scratch, especially for specialized tasks. 
 
 ## Key benefits of fine-tuning
 
@@ -21,17 +21,17 @@ Fine-tuning is the process of taking a pretrained language model and adapting it
 
 Fine-tuning improves the model's performance on particular tasks by training it with task-specific data. This often results in more accurate and relevant high-quality outputs compared to using general prompts. 
 
-Unlike few-shot learning, where only a limited number of examples can be included in a prompt, fine-tuning allows you to train the model on an additional dataset. This helps the model learn more nuanced patterns and improves task performance. 
+Unlike few-shot learning, where only a limited number of examples can be included in a prompt, fine-tuning allows you to train the model on an additional dataset. Fine-tuning helps the model learn more nuanced patterns and improves task performance. 
 
 ### Efficiency and potential cost savings
 
-Fine-tuned models require shorter prompts because they have already been trained on relevant examples. This reduces the number of tokens needed in each request, which can lead to cost savings depending on the use case. 
+Fine-tuned models require shorter prompts because they are trained on relevant examples. This process reduces the number of tokens needed in each request, which can lead to cost savings depending on the use case. 
 
 Since fine-tuned models need fewer examples in the prompt, they process requests faster, resulting in quicker response times. 
 
 ### Scalability and specialization
 
-Fine-tuning leverages the extensive pretraining of language models and hones their capabilities for specific applications, making them more efficient and effective for targeted use cases. 
+Fine-tuning applies the extensive pretraining of language models and hones their capabilities for specific applications, making them more efficient and effective for targeted use cases. 
 
 Fine-tuning smaller models can achieve performance levels comparable to larger, more expensive models for specific tasks. This approach reduces computational costs and increases speed, making it a cost-effective scalable solution for deploying Al in resource-constrained environments. 
 
@@ -39,7 +39,7 @@ Fine-tuning smaller models can achieve performance levels comparable to larger, 
 
 Fine-tuning is suited for times when you have a small amount of data and want to improve the performance of your model. Fine-tuning can be for different kinds of use cases - but they often fall into broader categories. 
 
-* **Reducing prompt engineering overhead**: Many users begin with few-shot learning, appending examples of desired outputs to their system message. Over time, this can lead to increasingly long prompts, driving up token counts and latency. Fine-tuning lets you embed these examples into the model by training on the expected outputs. This is particularly valuable in scenarios with numerous edge cases.
+* **Reducing prompt engineering overhead**: Many users begin with few-shot learning, appending examples of desired outputs to their system message. Over time, this process can lead to increasingly long prompts, driving up token counts and latency. Fine-tuning lets you embed these examples into the model by training on the expected outputs, which is valuable in scenarios with numerous edge cases.
 
 * **Modifying style and tone**: Fine-tuning helps align model outputs with a desired style or tone, ensuring consistency in applications like customer service chatbots and brand-specific communication.
 
@@ -51,7 +51,7 @@ Fine-tuning is suited for times when you have a small amount of data and want to
 
 * **Optimizing for efficiency**: Fine-tuning can also be used to transfer knowledge from a larger model to a smaller one, allowing the smaller model to achieve similar task performance with lower cost and latency. For example, production data from a high-performing model can be used to fine-tune a smaller, more efficient model. This approach helps scale AI solutions while maintaining quality and reducing computational overhead.
 
-* **Distillation**: Model Distillation uses a large model's outputs to fine-tune a smaller model, allowing it to perform similarly on a specific task, for example collecting production traffic from an o1 deployment and using that as training data to fine tune 4o-mini. This can cut cost and latency since smaller models are usually more efficient. 
+* **Distillation**: Model Distillation uses a large model's outputs to fine-tune a smaller model, allowing it to perform similarly on a specific task, for example collecting production traffic from an o1 deployment and using that as training data to fine tune 4o-mini. This process can cut cost and latency since smaller models can be more efficient. 
 
 ## Types of fine-tuning
 
