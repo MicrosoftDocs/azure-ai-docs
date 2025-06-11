@@ -4,7 +4,7 @@ titleSuffix: Azure AI Foundry
 description: This article lists Azure AI Foundry feature availability across clouds regions.
 manager: scottpolly
 ms.service: azure-ai-foundry
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 04/28/2025
 ms.reviewer: deeikele
 ms.author: sgilley
