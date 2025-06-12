@@ -34,6 +34,8 @@ In this article, you learn how to do the following:
 
 * An Azure Machine Learning workspace. See [Create workspace resources](../quickstart-create-resources.md).
 
+* A pipeline draft. 
+
 * For a guided introduction to the designer, complete the [designer tutorial](tutorial-designer-automobile-price-train-score.md). 
 
 > [!IMPORTANT]
