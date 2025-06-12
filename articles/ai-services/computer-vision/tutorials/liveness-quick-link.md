@@ -19,7 +19,7 @@ This article explains the concept of Face liveness quick link, its usage flow, a
 
 ## Introduction
 
-Azure Face Liveness quick link is an optional integration path for [Face liveness detection](concept-face-liveness-detection.md). It exchanges a liveness session’s session-authorization-token for a single-use URL that hosts the face capture experience on an Azure-operated page. The service returns to a developer-supplied callback endpoint after finishing the operation. 
+Azure Face Liveness quick link is an optional integration path for [Face liveness detection](../concept-face-liveness-detection.md). It exchanges a liveness session’s session-authorization-token for a single-use URL that hosts the face capture experience on an Azure-operated page. The service returns to a developer-supplied callback endpoint after finishing the operation. 
 
 Azure Liveness quick link provides multiple benefits to customers: 
 - You don't need to embed the liveness client SDK. That allows for easier integration on the application side.
