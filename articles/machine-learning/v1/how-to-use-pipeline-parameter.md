@@ -57,7 +57,7 @@ In this section, you create a pipeline input in the settings panel.
 
 In this example, you create a pipeline input that defines how a pipeline fills in missing data with the **Clean missing data** component.
 
-1. In your pipeline draft, select **Piepleline interface**.
+1. In your pipeline draft, select **Pipeline interface**.
 
 1. In the **Pipeline interface** section, select the **+** button and then select an input type, for example, `Double`. 
 
@@ -81,7 +81,7 @@ The easiest way to create a pipeline input for a component value is to promote a
 
    :::image type="content" source="media/how-to-use-pipeline-parameter/promote-module-para-to-pipeline-para.png" alt-text="Screenshot that shows how to promote a component input to a pipeline input." lightbox ="media/how-to-use-pipeline-parameter/promote-module-para-to-pipeline-para.png":::
 
-1. Enter a input name and a default value.
+1. Enter an input name and a default value.
 1. Select **Save**.
 
 You can now specify new values for this input anytime you submit the pipeline.
@@ -112,7 +112,7 @@ In the following example, the **Clean Missing Data** component is duplicated. Fo
 
 1. Double-click the **Clean Missing Data** component.
 
-1. Select the ellipsis button (**...**) above the **Minimum missing value reatio** box.
+1. Select the ellipsis button (**...**) above the **Minimum missing value ratio** box.
 
 1. Select the pipeline input `minimum-missing-value-ratio-2`.
 
@@ -166,7 +166,7 @@ Complete the following steps to delete a component pipeline input:
 
 ## Supply pipeline inputs when you trigger a pipeline job
 
-In this section, you learn how to supply pipeline paramaters when you submit a pipeline job.
+In this section, you learn how to supply pipeline inputs when you submit a pipeline job.
 
 ### Resubmit a pipeline job
 
@@ -174,7 +174,7 @@ After you submit a pipeline with pipeline inputs, you can resubmit the job with 
 
 1. Go to pipeline detail page. In the **Pipeline run overview** pane, you can check current pipeline inputs and values.
 1. Select **Resubmit**.
-1. In the **Set up pipleine job** window, specify your new pipeline inputs. 
+1. In the **Set up pipeline job** window, specify your new pipeline inputs. 
 
    :::image type="content" source="media/how-to-use-pipeline-parameter/resubmit-pipeline-run.png" alt-text="Screenshot that shows how to resubmit a pipeline with pipeline inputs." lightbox ="media/how-to-use-pipeline-parameter/resubmit-pipeline-run.png":::
 
