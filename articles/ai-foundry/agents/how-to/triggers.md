@@ -60,13 +60,13 @@ Start by adding the Azure AI Foundry Agent service connectors to your workflow.
 
 1. Depending on your use-case, choose the actions you need. 
 
-    If you want to create a new [thread](./concepts/threads-runs-messages/md#threads) for each new event of your trigger, add the following in sequence: 
+    If you want to create a new [thread](../concepts/threads-runs-messages/md#threads) for each new event of your trigger, add the following in sequence: 
     1. Create thread 
     1. Create run 
     1. Get run 
     1. List messages 
 
-    If you want to create a new [run](./concepts/threads-runs-messages.md#runs) in the same thread for each new event, add the following in sequence: 
+    If you want to create a new [run](../concepts/threads-runs-messages.md#runs) in the same thread for each new event, add the following in sequence: 
 
     1. Create run 
     1. Get run
@@ -91,7 +91,7 @@ The **List Agent** connector only lists all the agents you have in your AI proje
 
 ## Configure the "create thread" connector
 
-The **create thread** connector creates a new [thread](./concepts/threads-runs-messages.md#threads), which is a conversation session between an Agent and a user. Threads store [messages](./concepts/threads-runs-messages.md#messages) and automatically handle truncation to fit content into a model's context. You can configure the **create thread** connector with the following:
+The **create thread** connector creates a new [thread](../concepts/threads-runs-messages.md#threads), which is a conversation session between an Agent and a user. Threads store [messages](../concepts/threads-runs-messages.md#messages) and automatically handle truncation to fit content into a model's context. You can configure the **create thread** connector with the following:
 
 **messages (optional)**: You can add the message you want the AI agent to respond to. Add the role as **user** for the message you want the agent to respond to. It can be the event payload from the trigger, for example a form response field. It can also be a constant message, for example always triggering with the phrase "*what is the latest AI news this week?*"  
 
@@ -120,7 +120,7 @@ The **create thread** connector creates a new [thread](./concepts/threads-runs-m
 
 ## Configure the "create run" connector
 
-The **create run** connector creates a new [run](./concepts/threads-runs-messages.md#runs), which is an activation of an Agent to begin running based on the contents of the thread. The agent uses its configuration (such as tool resources) and the thread's messages to perform tasks by calling models and tools. As part of a run, the agent appends messages to the thread. 
+The **create run** connector creates a new [run](../concepts/threads-runs-messages.md#runs), which is an activation of an Agent to begin running based on the contents of the thread. The agent uses its configuration (such as tool resources) and the thread's messages to perform tasks by calling models and tools. As part of a run, the agent appends messages to the thread. 
 
 To configure the **create run** connector, click on it and provide the following information:
 

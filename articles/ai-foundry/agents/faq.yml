@@ -12,7 +12,7 @@ metadata:
   author: aahill
 title: Azure AI Foundry Agent Service frequently asked questions
 summary: |
-  If you can't find answers to your questions in this document, and still need help check the [Azure AI services support options guide](/azure/ai-services/agents/ai-services/cognitive-services-support-options). Azure AI Foundry Agent Service is part of Azure AI services.
+  If you can't find answers to your questions in this document, and still need help check the [Azure AI services support options guide](../../ai-services/cognitive-services-support-options.md). Azure AI Foundry Agent Service is part of Azure AI services.
 sections:
   - name: General
     questions:

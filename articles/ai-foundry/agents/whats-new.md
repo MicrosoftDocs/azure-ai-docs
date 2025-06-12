@@ -78,7 +78,7 @@ You can now use the Azure AI Foundry Agent Service in the [Azure AI Foundry](htt
 
 ### Azure AI Service public preview
 
-Azure AI Service is now available in preview. The service builds off of the [Assistants API](/azure/ai-services/agents/ai-services/openai/how-to/assistant) in Azure OpenAI, and offers several additional features, such as:
+Azure AI Service is now available in preview. The service builds off of the Assistants API in Azure OpenAI, and offers several additional features, such as:
 
 * Several [additional tools](how-to\tools\overview.md) to enhance your AI agents' functionality, such as the ability to use Bing and as a knowledge source and call functions. 
 * The ability to use non Azure OpenAI [models](concepts\model-region-support.md): 
