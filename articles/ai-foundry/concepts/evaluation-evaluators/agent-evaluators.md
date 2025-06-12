@@ -70,7 +70,7 @@ intent_resolution(
 
 ### Intent resolution output
 
-The numerical score on a likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score <= threshold, or "fail" otherwise. Using the reason and additional fields can help you understand why the score is high or low.
+The numerical score on a likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason and additional fields can help you understand why the score is high or low.
 
 ```python
 {
@@ -137,7 +137,7 @@ tool_call_accuracy(
 
 ### Tool call accuracy output
 
-The numerical score (passing rate of correct tool calls) is 0-1 and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score <= threshold, or "fail" otherwise. Using the reason and tool call detail fields can help you understand why the score is high or low.
+The numerical score (passing rate of correct tool calls) is 0-1 and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason and tool call detail fields can help you understand why the score is high or low.
 
 ```python
 {
@@ -174,7 +174,7 @@ task_adherence(
 
 ### Task adherence output
 
-The numerical score on a likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score <= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
+The numerical score on a likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
 
 ```python
 {

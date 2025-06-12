@@ -7,7 +7,7 @@ ms.date: 04/28/2025
 ms.reviewer: sgilley
 ms.author: jeomhove
 author: jfomhover
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 
 # Ask the Foundry agent for help (preview)
