@@ -1176,183 +1176,183 @@
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/concepts/agent-catalog.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/concepts/agent-catalog",
+      "source_path_from_root": "/articles/ai-services/agents/concepts/agent-catalog.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/concepts/agent-catalog",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/concepts/model-region-support.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/concepts/model-region-support",
+      "source_path_from_root": "/articles/ai-services/agents/concepts/model-region-support.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/concepts/model-region-support",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/concepts/standard-agent-setup.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/concepts/standard-agent-setup",
+      "source_path_from_root": "/articles/ai-services/agents/concepts/standard-agent-setup.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/concepts/standard-agent-setup",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/concepts/threads-runs-messages.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/concepts/threads-runs-messages",
+      "source_path_from_root": "/articles/ai-services/agents/concepts/threads-runs-messages.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/concepts/threads-runs-messages",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/concepts/tracing.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/concepts/tracing",
+      "source_path_from_root": "/articles/ai-services/agents/concepts/tracing.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/concepts/tracing",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/environment-setup.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/environment-setup",
+      "source_path_from_root": "/articles/ai-services/agents/environment-setup.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/environment-setup",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/faq.yml",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/faq",
+      "source_path_from_root": "/articles/ai-services/agents/faq.yml",
+      "redirect_url": "/azure/ai-foundry/agents/agents/faq",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/how-to/connected-agents.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/how-to/connected-agents",
+      "source_path_from_root": "/articles/ai-services/agents/how-to/connected-agents.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/how-to/connected-agents",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/how-to/tools/azure-ai-search-samples.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/how-to/tools/azure-ai-search-samples",
+      "source_path_from_root": "/articles/ai-services/agents/how-to/tools/azure-ai-search-samples.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/how-to/tools/azure-ai-search-samples",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/how-to/tools/azure-ai-search.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/how-to/tools/azure-ai-search",
+      "source_path_from_root": "/articles/ai-services/agents/how-to/tools/azure-ai-search.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/how-to/tools/azure-ai-search",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/how-to/tools/azure-functions-samples.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/how-to/tools/azure-functions-samples",
+      "source_path_from_root": "/articles/ai-services/agents/how-to/tools/azure-functions-samples.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/how-to/tools/azure-functions-samples",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/how-to/tools/azure-functions.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/how-to/tools/azure-functions",
+      "source_path_from_root": "/articles/ai-services/agents/how-to/tools/azure-functions.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/how-to/tools/azure-functions",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/how-to/tools/bing-code-samples.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/how-to/tools/bing-code-samples",
+      "source_path_from_root": "/articles/ai-services/agents/how-to/tools/bing-code-samples.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/how-to/tools/bing-code-samples",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/how-to/tools/bing-custom-search-samples.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/how-to/tools/bing-custom-search-samples",
+      "source_path_from_root": "/articles/ai-services/agents/how-to/tools/bing-custom-search-samples.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/how-to/tools/bing-custom-search-samples",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/how-to/tools/bing-custom-search.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/how-to/tools/bing-custom-search",
+      "source_path_from_root": "/articles/ai-services/agents/how-to/tools/bing-custom-search.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/how-to/tools/bing-custom-search",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/how-to/tools/bing-grounding.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/how-to/tools/bing-grounding",
+      "source_path_from_root": "/articles/ai-services/agents/how-to/tools/bing-grounding.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/how-to/tools/bing-grounding",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/how-to/tools/code-interpreter-samples.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/how-to/tools/code-interpreter-samples",
+      "source_path_from_root": "/articles/ai-services/agents/how-to/tools/code-interpreter-samples.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/how-to/tools/code-interpreter-samples",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/how-to/tools/code-interpreter.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/how-to/tools/code-interpreter",
+      "source_path_from_root": "/articles/ai-services/agents/how-to/tools/code-interpreter.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/how-to/tools/code-interpreter",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/how-to/tools/fabric.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/how-to/tools/fabric",
+      "source_path_from_root": "/articles/ai-services/agents/how-to/tools/fabric.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/how-to/tools/fabric",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/how-to/tools/file-search-upload-files.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/how-to/tools/file-search-upload-files",
+      "source_path_from_root": "/articles/ai-services/agents/how-to/tools/file-search-upload-files.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/how-to/tools/file-search-upload-files",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/how-to/tools/file-search.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/how-to/tools/file-search",
+      "source_path_from_root": "/articles/ai-services/agents/how-to/tools/file-search.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/how-to/tools/file-search",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/how-to/tools/function-calling.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/how-to/tools/function-calling",
+      "source_path_from_root": "/articles/ai-services/agents/how-to/tools/function-calling.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/how-to/tools/function-calling",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/how-to/tools/logic-apps.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/how-to/tools/logic-apps",
+      "source_path_from_root": "/articles/ai-services/agents/how-to/tools/logic-apps.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/how-to/tools/logic-apps",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/how-to/tools/openapi-spec-samples.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/how-to/tools/openapi-spec-samples",
+      "source_path_from_root": "/articles/ai-services/agents/how-to/tools/openapi-spec-samples.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/how-to/tools/openapi-spec-samples",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/how-to/tools/openapi-spec.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/how-to/tools/openapi-spec",
+      "source_path_from_root": "/articles/ai-services/agents/how-to/tools/openapi-spec.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/how-to/tools/openapi-spec",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/how-to/tools/overview.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/how-to/tools/overview",
+      "source_path_from_root": "/articles/ai-services/agents/how-to/tools/overview.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/how-to/tools/overview",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/how-to/tools/sharepoint-samples.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/how-to/tools/sharepoint-samples",
+      "source_path_from_root": "/articles/ai-services/agents/how-to/tools/sharepoint-samples.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/how-to/tools/sharepoint-samples",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/how-to/tools/sharepoint.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/how-to/tools/sharepoint",
+      "source_path_from_root": "/articles/ai-services/agents/how-to/tools/sharepoint.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/how-to/tools/sharepoint",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/how-to/triggers.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/how-to/triggers",
+      "source_path_from_root": "/articles/ai-services/agents/how-to/triggers.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/how-to/triggers",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/how-to/use-your-own-resources.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/how-to/use-your-own-resources",
+      "source_path_from_root": "/articles/ai-services/agents/how-to/use-your-own-resources.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/how-to/use-your-own-resources",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/how-to/virtual-networks.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/how-to/virtual-networks",
+      "source_path_from_root": "/articles/ai-services/agents/how-to/virtual-networks.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/how-to/virtual-networks",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/index.yml",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/index",
+      "source_path_from_root": "/articles/ai-services/agents/index.yml",
+      "redirect_url": "/azure/ai-foundry/agents/agents/index",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/overview.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/overview",
+      "source_path_from_root": "/articles/ai-services/agents/overview.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/overview",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/quickstart.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/quickstart",
+      "source_path_from_root": "/articles/ai-services/agents/quickstart.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/quickstart",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/quotas-limits.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/quotas-limits",
+      "source_path_from_root": "/articles/ai-services/agents/quotas-limits.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/quotas-limits",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "C:/Users/aahi/work/repos/new/azure-ai-docs-pr/articles/ai-services/agents/whats-new.md",
-      "redirect_url": "//azure/ai-foundry/agents//ai-foundry/agents/whats-new",
+      "source_path_from_root": "/articles/ai-services/agents/whats-new.md",
+      "redirect_url": "/azure/ai-foundry/agents/agents/whats-new",
       "redirect_document_id": false
     }
   ]
