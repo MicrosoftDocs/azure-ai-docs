@@ -1,8 +1,7 @@
 ---
 title: Add an Azure OpenAI network security perimeter
 description: Use this article to learn about adding Azure OpenAI to your network security perimeter.
-ms.date: 03/26/2025
-ms.custom: horz-monitor, subject-monitoring
+ms.date: 06/12/2025
 ms.topic: how-to
 author: aahill
 ms.author: aahi
@@ -43,7 +42,7 @@ You can add an Azure OpenAI service to a network security perimeter in the Azure
 
 To check if the feature flags are allowlisted, use command `az feature registration list`.
 
-2. Register the Network Security Perimeter feature from the Azure portal Preview features. The feature name is `AllowNSPInPublicPreview`. After registration, wait for 2 hours to take effect.
+2. Register the Network Security Perimeter feature from the Azure portal Preview features. The feature name is `AllowNSPInPublicPreview`.
 
 ### Configure managed identity on your Azure OpenAI account
 To allow your Storage account to recognize your Azure OpenAI service via Microsoft Entra ID authentication, you need to enable the managed identity for your Azure OpenAI service. The easiest way is to toggle on system assigned managed identity on Azure portal. The required role for your Storage account is “Storage Blob Data Contributor.” Ensure the role is assigned to your Storage account from your Azure OpenAI account.
@@ -171,7 +170,7 @@ To add an inbound access rule in the Azure portal:
 
 5. Select **Add**.
 
-    :::image type="content" source="../media/network-security-perimeter/add-rule.png" alt-text="A screenshot showing the add rule button." lightbox="../media/network-security-perimeter/add-rule.png":::
+    :::image type="content" source="../media/network-security-perimeter/add-rule.png" alt-text="A screenshot showing the rule button." lightbox="../media/network-security-perimeter/add-rule.png":::
 
 6. Enter or select the following values:
     
