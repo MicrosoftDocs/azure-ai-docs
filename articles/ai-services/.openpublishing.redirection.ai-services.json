@@ -1191,11 +1191,6 @@
       "redirect_document_id": true
     },
     {
-      "source_path_from_root": "/articles/ai-services/agents/how-to/metrics.md",
-      "redirect_url": "/azure/ai-foundry/agents/how-to/metrics",
-      "redirect_document_id": true
-    },
-    {
       "source_path_from_root": "/articles/ai-services/agents/concepts/model-region-support.md",
       "redirect_url": "/azure/ai-foundry/agents/concepts/model-region-support",
       "redirect_document_id": true
