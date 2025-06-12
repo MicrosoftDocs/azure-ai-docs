@@ -1,5 +1,5 @@
 ---
-title: Video retrieval deprecation notice
+title: Video Retrieval deprecation notice
 titleSuffix: Azure AI services
 author: PatrickFarley
 manager: nitinme

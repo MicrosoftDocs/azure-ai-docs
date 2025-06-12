@@ -38,7 +38,7 @@ landingContent:
             url: search-manage.md
           - text: Create a search index
             url: search-get-started-portal.md
-          - text: Create a vector index
+          - text: Add vectors to an index
             url: search-get-started-vector.md
           - text: Query a vector index
             url: vector-search-how-to-query.md
@@ -62,10 +62,10 @@ landingContent:
             url: vector-search-how-to-quantization.md
       - linkListType: quickstart
         links:
-          - text: Run an agentic retrieval pipeline
+          - text: 'Classic RAG'
             url: search-get-started-agentic-retrieval.md
-          - text: Retrieve data using an LLM
-            url: search-get-started-rag.md
+          - text: 'Agentic retrieval'
+            url: search-get-started-agentic-retrieval.md
 
 
 

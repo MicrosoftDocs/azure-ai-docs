@@ -117,6 +117,9 @@ Managed identity must be enabled as a prerequisite for using customer-managed ke
 
 Customer-managed key encryption is configured via Azure portal in a similar way for each Azure resource:
 
+> [!IMPORTANT]
+> The Azure Key Vault used for encryption **must be in the same resource group** as the AI Foundry project. Key Vaults in other resource groups are not currently supported by the deployment wizards or project configuration workflows.
+
 1. Create a new Azure AI Foundry resource in the [Azure portal](https://portal.azure.com/).
 1. Under the **Encryption** tab, select **Customer-managed key**, **Select vault and key**, and then select the key vault and key to use.
 

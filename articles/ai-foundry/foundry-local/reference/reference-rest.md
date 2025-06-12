@@ -5,7 +5,7 @@ description: Complete reference guide for the Foundry Local REST API.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: build-2025
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 05/20/2025
 ms.author: samkemp
 author: samuel100
@@ -78,9 +78,6 @@ _---Standard OpenAI Properties---_
       The arguments to pass to the function.
 - `metadata` (object, optional)  
   A dictionary of metadata key-value pairs.
-
-_---Additional Foundry Local Properties---_
-
 - `top_k` (number, optional)  
   The number of highest probability vocabulary tokens to keep for top-k-filtering.
 - `random_seed` (integer, optional)  
@@ -432,10 +429,32 @@ Sets the active GPU device.
 
 Downloads a model to local storage.
 
+> [!NOTE]
+> Model downloads can take significant time, especially for large models. We recommend setting a high timeout for this request to avoid premature termination.
+
 **Request Body:**
 
-- `model` (string)  
-  The model name to download.
+- `model` (`WorkspaceInferenceModel` object)  
+  - `Uri` (string)  
+    The model URI to download.
+  - `Name` (string)
+    The model name.
+  - `ProviderType` (string, optional)  
+    The provider type (e.g., `"AzureFoundryLocal"`,`"HuggingFace"`).
+  - `Path` (string, optional)  
+    The remote path where the model is located stored. For example, in a Hugging Face repository, this would be the path to the model files.
+  - `PromptTemplate` (`Dictionary<string, string>`, optional)  
+    Contains:
+    - `system` (string, optional)  
+      The template for the system message.
+    - `user` (string, optional)
+      The template for the user's message.
+    - `assistant` (string, optional)  
+      The template for the assistant's response.
+    - `prompt` (string, optional)  
+      The template for the user-assistant interaction.
+  - `Publisher` (string, optional)  
+      The publisher of the model.
 - `token` (string, optional)  
   Authentication token for protected models (GitHub or Hugging Face).
 - `progressToken` (object, optional)  
@@ -467,12 +486,22 @@ During download, the server streams progress updates in the format:
 
 - Request body
 
-  ```json
-  {
-    "model": "Phi-4-mini-instruct-generic-cpu",
-    "ignorePipeReport": true
+```json
+{
+  "model":{
+    "Uri": "azureml://registries/azureml/models/Phi-4-mini-instruct-generic-cpu/versions/4",
+    "ProviderType": "AzureFoundryLocal",
+    "Name": "Phi-4-mini-instruct-generic-cpu",
+    "Publisher": "",
+    "promptTemplate" : {
+      "system": "<|system|>{Content}<|end|>",
+      "user": "<|user|>{Content}<|end|>", 
+      "assistant": "<|assistant|>{Content}<|end|>", 
+      "prompt": "<|user|>{Content}<|end|><|assistant|>"
+    }
   }
-  ```
+}
+```
 
 - Response stream
 

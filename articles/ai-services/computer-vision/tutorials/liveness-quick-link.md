@@ -19,7 +19,7 @@ This article explains the concept of Face liveness quick link, its usage flow, a
 
 ## Introduction
 
-Azure Face Liveness quick link is an optional integration path for [Face liveness detection](concept-face-liveness-detection.md). It exchanges a liveness session’s session-authorization-token for a single-use URL that hosts the face capture experience on an Azure-operated page. The service returns to a developer-supplied callback endpoint after finishing the operation. 
+Azure Face Liveness quick link is an optional integration path for [Face liveness detection](../concept-face-liveness-detection.md). It exchanges a liveness session’s session-authorization-token for a single-use URL that hosts the face capture experience on an Azure-operated page. The service returns to a developer-supplied callback endpoint after finishing the operation. 
 
 Azure Liveness quick link provides multiple benefits to customers: 
 - You don't need to embed the liveness client SDK. That allows for easier integration on the application side.
@@ -29,7 +29,7 @@ Azure Liveness quick link provides multiple benefits to customers:
 
 You can use the liveness quick link website, `liveness.face.azure.com`, to turn a liveness session into a shareable, single use link:
 
-:::image type="content" source="media/liveness/liveness-quick-link-diagram.png" alt-text="A diagram illustrates liveness quick link work flow.":::
+:::image type="content" source="../media/liveness/liveness-quick-link-diagram.png" alt-text="A diagram illustrates liveness quick link work flow.":::
 
 1.	Start a session with your server-side code. Your application backend requests a new liveness session from the Face API and receives a short-lived authorization token that represents that session.
 2.	Swap the session token for a link. Your application backend sends the token to the quick link service, which creates a one-time URL connected to the session. Here are examples of the post request:
@@ -114,7 +114,6 @@ You can use the liveness quick link website, `liveness.face.azure.com`, to turn 
       --header 'authorization: Bearer <session-authorization-token>'
     ```
 
-
 The following is an example response:
     
   ```json
@@ -123,9 +122,7 @@ The following is an example response:
   }
   ```
 
-Use that value to construct the liveness quick link web page: `https://liveness.face.azure.com/?s=60c3980c-d9f6-4b16-a7f5-f1f4ad2b506f`
-
-3. Send the link to the user. You can redirect the browser, show a button, or display a QR code—anything that lets the user open the link on a camera-enabled device.
+3. Compose the link and sent it to the user. Use the URL response value to construct the liveness quick link web page. Optionally you can also add a callback URL: `https://liveness.face.azure.com/?s=60c3980c-d9f6-4b16-a7f5-f1f4ad2b506f&&callbackUrl=<encoded url>` You can redirect the browser or show a button—anything that lets the user open the link on a device.
 4. Azure hosts the capture experience. When the link opens, the Azure-operated page guides the user through the liveness check sequence using the latest Liveness web client.
 5. Get the outcome callback. As soon as the check finishes—or if the user abandons or times out—the quick link service notifies your callback endpoint so your application can decide what happens next.
 
