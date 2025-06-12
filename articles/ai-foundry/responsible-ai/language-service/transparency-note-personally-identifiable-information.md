@@ -12,7 +12,7 @@ ms.date: 11/10/2021
 
 # Transparency note for Personally Identifiable Information (PII)
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
 
 ## What is a transparency note?
 

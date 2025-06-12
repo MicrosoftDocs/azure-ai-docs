@@ -13,7 +13,7 @@ ms.date: 02/08/2024
 
 # Use cases for Language Understanding
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
 
 ## What is a Transparency Note?
 

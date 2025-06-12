@@ -12,7 +12,7 @@ ms.date: 06/21/2022
 
 # Use cases for Azure AI Face service
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
 
 ## What is a Transparency Note?
 

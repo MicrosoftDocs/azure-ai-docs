@@ -12,7 +12,7 @@ ms.date: 08/12/2022
 
 # Transparency note for Sentiment Analysis
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
 
 ## What is a transparency note?
 

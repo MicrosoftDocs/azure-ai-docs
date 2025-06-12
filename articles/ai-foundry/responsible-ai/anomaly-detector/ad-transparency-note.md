@@ -13,7 +13,7 @@ recommendations: false
 
 # Transparency note: Anomaly Detector
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
 
 Anomaly Detector is an AI service that enables you to monitor and detect abnormalities in time series data. This article provides transparency information to help you understand how the service works, its capabilities, limitations, and responsible use considerations.
 

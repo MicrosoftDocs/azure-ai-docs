@@ -12,7 +12,7 @@ ms.date: 08/12/2022
 
 # Transparency note for Spatial Analysis
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
 
 This Transparency note discusses Spatial Analysis and the key considerations for making use of this technology responsibly.
 

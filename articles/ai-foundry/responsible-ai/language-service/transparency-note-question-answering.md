@@ -12,7 +12,7 @@ ms.date: 09/29/2021
 
 # Transparency note and use cases for question answering
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
 
 ## What is a transparency note?
 

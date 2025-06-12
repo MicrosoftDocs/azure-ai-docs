@@ -12,7 +12,7 @@ ms.date: 02/21/2024
 
 # Characteristics and limitations of Anomaly Detector
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
 
 In this section, we'll review what accuracy means for Anomaly Detector and how to assess it for your context.
 

@@ -12,7 +12,7 @@ ms.date: 09/29/2021
 
 # Data and privacy for custom named entity recognition
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
 
 This article provides some high-level details regarding how data is processed by custom named entity recognition (NER). You're responsible for how you use and implement this technology, including complying with all laws and regulations that apply to you. For example, it's your responsibility to:
 

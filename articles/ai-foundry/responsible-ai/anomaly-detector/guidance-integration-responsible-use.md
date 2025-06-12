@@ -12,7 +12,7 @@ ms.date: 02/21/2024
 
 # Guidance for integration and responsible use with Anomaly Detector
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
 
 Microsoft works to help customers responsibly develop and deploy solutions that use Anomaly Detector. Our principled approach upholds personal agency and dignity by considering the AI system's fairness, reliability and safety, privacy and security, inclusiveness, transparency, and human accountability. These considerations reflect our commitment to developing responsible AI.
 

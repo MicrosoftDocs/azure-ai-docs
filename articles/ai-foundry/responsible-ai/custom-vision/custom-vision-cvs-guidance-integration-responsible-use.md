@@ -12,7 +12,7 @@ ms.date: 07/07/2021
 
 # Guidance for integration and responsible use with Custom Vision
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
 
 Microsoft wants to help you responsibly develop and deploy solutions that use Azure AI Custom Vision. We're taking a principled approach to upholding personal agency and dignity by considering the AI systems' fairness, reliability and safety, privacy and security, inclusiveness, transparency, and human accountability. These considerations represent our commitment to developing Responsible AI.
 

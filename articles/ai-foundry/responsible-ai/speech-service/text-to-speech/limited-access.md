@@ -12,7 +12,7 @@ ms.date: 06/16/2022
 
 # Limited Access
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
 
 #### [Custom neural voice](#tab/cnv)
 

@@ -12,7 +12,7 @@ ms.date: 06/21/2022
 
 # Characteristics, limitations, and best practices for improving accuracy
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
 
 Azure AI Vision Face API (“Face API”) is a building block for creating a facial AI system to which other building blocks must be added, so it is not possible to provide a universally applicable estimate of accuracy for the actual system you are planning to deploy. Companies may share accuracy as measured by public benchmark competitions, but these accuracies depend on details of each benchmark methodology and therefore won’t be the same as the accuracy of a deployed system. 
 

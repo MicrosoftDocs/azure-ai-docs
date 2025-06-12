@@ -12,7 +12,7 @@ ms.date: 11/14/2023
 
 # Transparency note: text to speech 
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
 
 ## What is a Transparency Note? 
 

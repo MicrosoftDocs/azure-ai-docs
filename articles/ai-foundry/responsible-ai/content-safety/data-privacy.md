@@ -13,7 +13,7 @@ ms.date: 05/15/2023
 
 # Data, privacy, and security for Azure AI Content Safety
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
 
 This article provides details regarding how your data is processed, used, and stored by Azure AI Content Safety.
 

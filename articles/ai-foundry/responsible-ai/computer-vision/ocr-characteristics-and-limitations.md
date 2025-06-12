@@ -12,7 +12,7 @@ ms.date: 02/12/2021
 
 # Capabilities and limitations of optical character recognition
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
 
 In this section, we'll review what accuracy means for OCR and how to assess it for your context.
 

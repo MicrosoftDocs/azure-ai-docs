@@ -13,7 +13,7 @@ ms.author: eur
 
 # Disclosure design patterns for synthetic voices
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
 
 Now that you've determined the right level of disclosure for your text to speech avatar experience, it's a good time to explore potential design patterns.
 

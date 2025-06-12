@@ -12,7 +12,7 @@ ms.date: 02/23/2024
 
 # Data, privacy, and security for Azure OpenAI Service
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
 
 
 This article provides details regarding how data provided by you to the Azure OpenAI service is processed, used, and stored. Azure OpenAI stores and processes data to provide the service and to monitor for uses that violate the applicable product terms. Also see the [Microsoft Products and Services Data Protection Addendum](https://aka.ms/DPA), which governs data processing by the Azure OpenAI Service. Azure OpenAI is an Azure service; [learn more](/compliance/regulatory/offering-home) about applicable Azure compliance offerings.

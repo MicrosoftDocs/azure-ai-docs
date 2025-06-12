@@ -12,7 +12,7 @@ ms.date: 07/07/2021
 
 # Data and privacy for Custom Vision
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
 
 ## What data does Custom Vision process?
 

@@ -12,7 +12,7 @@ ms.date: 09/29/2021
 
 # Guidance for integration and responsible use of question answering
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
 
 Microsoft wants to help you responsibly develop and deploy solutions that use question answering. We're taking a principled approach to upholding personal agency and dignity by considering the AI systems' fairness, reliability and safety, privacy and security, inclusiveness, transparency, and human accountability. These considerations reflect our commitment to developing Responsible AI.
 

@@ -12,7 +12,7 @@ ms.date: 08/15/2022
 
 # Guidance for integration and responsible use with Azure AI Language
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
 
  
 Microsoft wants to help you responsibly develop and deploy solutions that use Azure AI Language. We are taking a principled approach to upholding personal agency and dignity by considering the fairness, reliability & safety, privacy & security, inclusiveness, transparency, and human accountability of our AI systems. These considerations are in line with our commitment to developing Responsible AI.

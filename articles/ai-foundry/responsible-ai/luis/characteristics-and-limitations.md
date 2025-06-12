@@ -13,7 +13,7 @@ ms.date: 02/08/2024
 
 # Characteristics and limitations for using Language Understanding
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
 
 Performance with Language Understanding (LUIS) will vary based on the scenario, input data, and enabled features. The following sections are designed to help the reader understand key concepts about performance as they apply to LUIS.
 

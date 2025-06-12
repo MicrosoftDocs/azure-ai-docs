@@ -14,7 +14,7 @@ ms.date: 5/5/2021
 
 # Transparency note and use cases for QnA Maker
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
 
 ## What is a transparency note?
 

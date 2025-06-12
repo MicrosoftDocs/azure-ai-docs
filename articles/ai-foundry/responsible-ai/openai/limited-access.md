@@ -11,7 +11,7 @@ ms.date: 11/03/2023
 ---
 # Limited access for Azure OpenAI Service
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation.md)]
+[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
 
 As part of Microsoft's commitment to responsible AI, we have designed and operate Azure OpenAI Service with the intention of protecting the rights of individuals and society and fostering transparent human-computer interaction. For this reason, Azure OpenAI is a Limited Access service, and access and use is subject to eligibility criteria determined by Microsoft. Unless otherwise indicated in the service, all Azure customers are eligible for access to Azure OpenAI models, and all uses consistent with the [Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and [Code of Conduct](/legal/ai-code-of-conduct?context=/azure/ai-services/openai/context/context) are permitted, so customers are not required to submit a registration form unless they are requesting approval to modify content filters and/or abuse monitoring. 
 
