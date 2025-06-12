@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 05/29/2025
+ms.date: 06/03/2025
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD024 -->
@@ -20,6 +20,16 @@ Bookmark this page to stay up to date with release notes, feature enhancements, 
 Azure AI Translator is a language service that enables users to translate text and documents, helps entities expand their global outreach, and supports preservation of at-risk and endangered languages. 
 
 Azure AI Translator service supports language translation for more than 100 languages. If your language community is interested in partnering with Microsoft to add your language to Translator, contact us via the [Translator community partner onboarding form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR-riVR3Xj0tOnIRdZOALbM9UOU1aMlNaWFJOOE5YODhRR1FWVzY0QzU1OS4u).
+
+## June 2025
+
+### Document Translation new feature update
+
+Azure AI Translator [Document translation feature](document-translation/overview.md#batch-key-features) now supports [translating text embedded in images](document-translation/how-to-guides/use-rest-api-programmatically.md#translate-text-embedded-within-images-in-documents-) within documents.
+
+* This feature is optional and must be enabled for each translation request.
+* Currently, the feature is available only with the [batch document translation](document-translation/how-to-guides/use-rest-api-programmatically.md#translate-text-embedded-within-images-in-documents-) API for `.docx` file format.
+* An [Azure AI Foundry resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesAIFoundry) (not the standalone Translator resource) is required to use this feature.
 
 ## May 2025
 
