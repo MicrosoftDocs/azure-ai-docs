@@ -29,20 +29,23 @@ You can add an Azure OpenAI service to a network security perimeter in the Azure
 
 * For an Azure OpenAI service within a network security perimeter, the resource must use a system or user-assigned managed identity and have a role assignment that permits read-access to data sources.
 
+* Consider securing with NSP when configuring Azure Blob Storage for Azure OpenAI. Azure OpenAI now supports using Azure Blob Storage for Azure OpenAI Batch input and output files. Secure communications with Blob Storage and Azure OpenAI by placing both resources in the same perimeter. For more on the Azure OpenAI Batch and Blob Storage scenario, see [Configuring Azure Blob Storage for Azure OpenAI](batch-blob-storage).
+
+
 ## Prerequisites
 
 > [!CAUTION] 
 > Make sure you fully understand the limitations and impact to your Azure Subscription listed in the previous section before registering the preview feature.
 
-1. Contact your Microsoft rep to allowlist your Azure subscription with the following feature flags:
+Register the Network Security Perimeter feature from the the Azure portal Preview features. The feature names are the following:
+* OpenAI.NspPreview
+* AllowNSPInPublicPreview
 
-|Namespace  |Feature name  | Description |
-|---------|---------|
-|`Microsoft.CognitiveServices`     | `OpenAI.NspPreview`        | Allow your Azure subscription to add Azure OpenAI resource into NSP.|
+Or use the following CLI comands to register the two Preview features
+* `az feature registration create  --name OpenAI.NspPreview --namespace Microsoft.CognitiveServices`
+* `az feature registration create  --name AllowNSPInPublicPreview --namespace Microsoft.Network`
 
-To check if the feature flags are allowlisted, use command `az feature registration list`.
-
-2. Register the Network Security Perimeter feature from the Azure portal Preview features. The feature name is `AllowNSPInPublicPreview`.
+Ensure the `Microsoft.CognitiveServices` and `Microsoft.Network` providers are registered. To check if the feature flags are allowlisted, use command `az feature registration list`.
 
 ### Configure managed identity on your Azure OpenAI account
 To allow your Storage account to recognize your Azure OpenAI service via Microsoft Entra ID authentication, you need to enable the managed identity for your Azure OpenAI service. The easiest way is to toggle on system assigned managed identity on Azure portal. The required role for your Storage account is “Storage Blob Data Contributor.” Ensure the role is assigned to your Storage account from your Azure OpenAI account.
@@ -50,7 +53,7 @@ To allow your Storage account to recognize your Azure OpenAI service via Microso
 ## Assign an Azure OpenAI account to a network security perimeter
 Azure Network Security Perimeter allows administrators to define a logical network isolation boundary for PaaS resources (for example, Azure Storage and Azure SQL Database) that are deployed outside virtual networks. It restricts communication to resources within the perimeter, and it allows non-perimeter public traffic through inbound and outbound access rules.
 
-You can add Azure OpenAI to a network security perimeter so that all indexing and query requests occur within the security boundary.
+You can add Azure OpenAI to a network security perimeter so that all requests occur within the security boundary.
 
 1. In the Azure portal, find the network security perimeter service for your subscription.
 2. Select **Associated Resources** from the left-hand menu.
@@ -125,9 +128,7 @@ Here's an example of the `network-security-perimeterPublicInboundResourceRulesAl
 
 | **Column Name**       | **Meaning**                                                                 | **Example Value**                              |
 |------------------------|-----------------------------------------------------------------------------|------------------------------------------------|
-| ResultDescription      | Name of the network access operation                                       | `POST /indexes/my-index/docs/Azure OpenAI`      |
 | Profile                | Which network security perimeter the Azure OpenAI service was associated with | `defaultProfile`                                 |
-| ServiceResourceId      | Resource ID of the Azure OpenAI service                                    | `Azure OpenAI-service-resource-id`              |
 | Matched Rule           | JSON description of the rule that was matched by the log                  | `{ "accessRule": "IP firewall" }`               |
 | SourceIPAddress        | Source IP of the inbound network access, if applicable                    | `1.1.1.1`                                       |
 | AccessRuleVersion      | Version of the network-security-perimeter access rules used to enforce the network access rules | 0                                              |
@@ -139,8 +140,6 @@ A network security perimeter profile specifies rules that allow or deny access t
 Within the perimeter, all resources have mutual access at the network level. You must still set up authentication and authorization, but at the network level, connection requests from inside the perimeter are accepted.
 
 For resources outside of the network security perimeter, you must specify inbound and outbound access rules. Inbound rules specify which connections to allow in, and outbound rules specify which requests are allowed out.
-
-The Azure OpenAI service accepts inbound requests from apps like Azure AI Foundry portal, Azure Machine Learning prompt flow, and any app that sends indexing or query requests. The Azure OpenAI service sends outbound requests during indexer-based indexing and skill set execution. This section explains how to set up inbound and outbound access rules for Azure AI Azure OpenAI scenarios.
 
 > [!NOTE] 
 > Any service associated with a network security perimeter implicitly allows inbound and outbound access to any other service associated with the same network security perimeter when that access is authenticated using managed identities and role assignments. Access rules only need to be created when allowing access outside of the network security perimeter, or for authenticated access using API keys.
@@ -187,9 +186,7 @@ To add an inbound access rule in the Azure portal:
 
 ### Add an outbound access rule
 
-The Azure OpenAI service makes outbound calls during indexer-based indexing and skill set execution. If your indexer data sources, Azure AI services, or custom skill logic is outside of the network security perimeter, you should create an outbound access rule that allows your Azure OpenAI service to make the connection.
-
-Recall that in public preview, Azure AI Azure OpenAI can only connect to Azure Storage or Azure Cosmos DB within the security perimeter. If your indexers use other data sources, you need an outbound access rule to support that connection.
+Recall that in public preview, Azure OpenAI can only connect to Azure Storage or Azure Cosmos DB within the security perimeter. If you want to use other data sources, you need an outbound access rule to support that connection.
 
 Network security perimeter supports outbound access rules based on the Fully Qualified Domain Name (FQDN) of the destination. For example, you can allow outbound access from any service associated with your network security perimeter to an FQDN such as `mystorageaccount.blob.core.windows.net`.
 
@@ -239,11 +236,11 @@ To test your connection through network security perimeter, you need access to a
 
 3. Using the IP address, you can create an __inbound access rule__ for that IP address to allow access. You can skip this step if you're using private link.
 
-4. Finally, try navigating to the Azure OpenAI service in the Azure portal. If you can view the indexes successfully, then the network security perimeter is configured correctly.
+4. Finally, try navigating to the Azure OpenAI service in the Azure portal. Open Azure OpenAI service in Azure AI Foundry. Deploy a model and chat with the model in the Chat Playground. If you receive a response, then the network security perimeter is configured correctly.
 
 ## View and manage network security perimeter configuration
 
-You can use the [Network Security Perimeter Configuration REST APIs](/rest/api/searchmanagement/network-security-perimeter-configurations?view=rest-searchmanagement-2024-06-01-preview&preserve-view=true) to review and reconcile perimeter configurations. **Be sure to use preview API version** `2024-10-01`. 
+You can use the Network Security Perimeter Configuration REST APIs to review and reconcile perimeter configurations. **Be sure to use preview API version** `2024-10-01`.
 
 ## See also
 
