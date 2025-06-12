@@ -28,15 +28,16 @@ Use the following URL to create a project. Replace the placeholder values below 
 |`{API-VERSION}`     | The version of the API you are calling. The value referenced here is for the latest version released. See [Model lifecycle](../../../concepts/model-lifecycle.md#choose-the-model-version-used-on-your-data) to learn more about other available API versions.  | `2022-05-01` |
 
 
-### Headers
+### Request headers
 
 Use the following header to authenticate your request. 
 
-|Key|Value|
-|--|--|
-|`Ocp-Apim-Subscription-Key`| The key to your resource. Used for authenticating your API requests.|
+|Key|Required|Type|Value|
+|--|--|--|--|
+|`Ocp-Apim-Subscription-Key`|True|string| The key to your resource. Used for authenticating your API requests.|
+|`Content-Type`|True|string|**application/merge-patch+json**|
 
-### Body
+### Request body
 
 Use the following JSON in your request. Replace the placeholder values below with your own values.
 
