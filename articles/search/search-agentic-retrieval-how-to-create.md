@@ -23,7 +23,7 @@ A knowledge agent specifies:
 + A target search index used at query time
 + Parameters on the index for setting default behaviors and response shaping
 
-After you can create a knowledge agent, you can update its properties at any time. If the knowledge agent is in use, updates take effect on the next job.
+After you create a knowledge agent, you can update its properties at any time. If the knowledge agent is in use, updates take effect on the next job.
 
 ## Prerequisites
 
@@ -37,7 +37,7 @@ After you can create a knowledge agent, you can update its properties at any tim
 
 + A search index containing plain text or vectors. The index must [meet the requirements for agentic retrieval](search-agentic-retrieval-how-to-index.md), including a [semantic configuration](semantic-how-to-configure.md) with the `defaultConfiguration` specified.
 
-+ API requirements. To create or use a knowledge agent, use [2025-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) data plane REST API. Or, use a prerelease package of an Azure SDK that provides knowledge agent APIs: [Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md#1170-beta3-2025-03-25), [Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
++ API requirements. To create or use a knowledge agent, use the [2025-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) data plane REST API. Or, use a prerelease package of an Azure SDK that provides knowledge agent APIs: [Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md#1170-beta3-2025-03-25), [Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
 
 To follow the steps in this guide, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending preview REST API calls to Azure AI Search. There's no portal support at this time.
 
@@ -45,7 +45,7 @@ To follow the steps in this guide, we recommend [Visual Studio Code](https://cod
 
 Make sure you have a supported model that Azure AI Search can access. The following instruction assumes Azure AI Foundry Model as the provider.
 
-1. Sign in to [Azure AI Foundry portal](https://ai.azure.com/).
+1. Sign in to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 1. Deploy a supported model using [these instructions](/azure/ai-foundry/how-to/deploy-models-openai).
 
@@ -75,7 +75,7 @@ In Azure, you must have **Owner** or **User Access Administrator** permissions o
 
 1. [Configure Azure AI Search to use a managed identity](search-howto-managed-identities-data-sources.md).
 
-1. On your model provider, such Foundry Model, create a role assignment that gives the search service managed identity **Cognitive Services User** permissions. If you're testing locally, assign yourself to the same role. 
+1. On your model provider, such as Foundry Model, create a role assignment that gives the search service managed identity **Cognitive Services User** permissions. If you're testing locally, assign yourself to the same role. 
 
 1. For local testing, follow the steps in [Quickstart: Connect without keys](search-get-started-rbac.md) to get a personal access token and to ensure you're logged in to a specific subscription and tenant. Paste your personal identity token into the `@accessToken` variable. A request that connects using your personal identity should look similar to the following example:
 
@@ -111,7 +111,7 @@ You can use API keys if you don't have permission to create role assignments.
 
 ## Check for existing knowledge agents
 
-The following request lists knowledge agents by name on your search service. Within the knowledge agents collection, all knowledge agents are uniquely named. It's helpful for knowing about existing knowledge agents for reuse or naming purposes.
+The following request lists knowledge agents by name. Within the knowledge agents collection, all knowledge agents must be uniquely named. It's helpful to know about existing knowledge agents for reuse or for naming new agents.
 
 <!-- ### [**REST APIs**](#tab/rest-get) -->
 
@@ -143,7 +143,6 @@ To create an agent, use the 2025-05-01-preview data plane REST API or an Azure S
 
 ```http
 @search-url=<YOUR SEARCH SERVICE URL>
-@search-api-key=<YOUR SEARCH SERVICE ADMIN API KEY>
 @agent-name=<YOUR AGENT NAME>
 @index-name=<YOUR INDEX NAME>
 @model-provider-url=<YOUR AZURE OPENAI RESOURCE URI>
@@ -222,7 +221,7 @@ Call the **retrieve** action on the knowledge agent object to confirm the model 
 Replace "What are my vision benefits?" with a query string that's valid for your search index.
 
 ```http
-# Send Grounding Request
+# Send grounding request
 POST https://{{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-05-01-preview
    Content-Type: application/json
    Authorization: Bearer {{accessToken}}
@@ -261,7 +260,7 @@ For more information about the **retrieve** API and the shape of the response, s
 If you no longer need the agent, or if you need to rebuild it on the search service, use this request to delete the current object.
 
 ```http
-# Delete Agent
+# Delete agent
 DELETE https://{{search-url}}/agents/{{agent-name}}?api-version=2025-05-01-preview
    Authorization: Bearer {{accessToken}}
 ```

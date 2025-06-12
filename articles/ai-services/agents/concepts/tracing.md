@@ -53,7 +53,7 @@ After selecting **Thread info**, the screen that appears will be let you view th
 
 Tracing lets you analyze your agent's performance and behavior by using OpenTelemetry and adding an Application Insights resource to your Azure AI Foundry project. 
 
-To add an Application Insights resource, select **Observability** from the left pane in the [Azure AI Foundry portal](https://ai.azure.com/), select **Tracing**, and then and create a new resource if you don't already have one.
+To add an Application Insights resource, select **Observability** from the left pane in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), select **Tracing**, and then and create a new resource if you don't already have one.
 
 :::image type="content" source="../media/ai-foundry-observability.png" alt-text="A screenshot of the tracing screen in the Azure AI Foundry portal." lightbox="../media/ai-foundry-observability.png":::
 
@@ -74,7 +74,7 @@ You will also need an exporter to send results to your observability backend. Yo
 pip install opentelemetry-exporter-otlp
 ```
 
-Once you have the packages installed, you can use one the following Python samples to implement tracing with your agents. Samples that use console tracing display the results locally in the console. Samples that use Azure Monitor send the traces to the Azure Monitor in the [Azure AI Foundry portal](https://ai.azure.com/), in the **Observability** tab in the left pane for the portal.
+Once you have the packages installed, you can use one the following Python samples to implement tracing with your agents. Samples that use console tracing display the results locally in the console. Samples that use Azure Monitor send the traces to the Azure Monitor in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), in the **Observability** tab in the left pane for the portal.
 
 > [!NOTE]
 > There is a known bug in the agents tracing functionality. The bug will cause the agent's function tool to call related info (function names and parameter values, which could contain sensitive information) to be included in the traces even when content recording is not enabled.

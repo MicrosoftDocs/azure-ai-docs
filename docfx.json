@@ -483,6 +483,7 @@
       },
       "titleSuffix": {
         "articles/ai-studio/**/*.md": "Azure AI Foundry",
+        "articles/ai-services/openai/**/*.md": "Azure AI Foundry",
         "articles/ai-services/**/*.md": "Azure AI services",
         "articles/ai-services/LUIS/*.md": "Azure",
         "articles/ai-services/LUIS/*.yml": "Azure",

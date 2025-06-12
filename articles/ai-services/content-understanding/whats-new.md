@@ -3,13 +3,14 @@ title: What's new in Content Understanding?
 titleSuffix: Azure AI services
 description: Learn the latest updates to the Content Understanding API.
 author: laujan
+ms.author: lajanuar
 manager: nitinme
+ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: whats-new
-ms.date: 05/19/2025
-ms.author: lajanuar
 ms.custom:
   - references_regions
+  - build-2025
 ---
 
 # What's new in Azure AI Content Understanding?
@@ -56,6 +57,12 @@ This release introduces a new [classification API](concepts/classifier.md). This
 * Added support for video chapters via segmentation. Learn more about [video processing improvements](video/overview.md#segmentation-mode).
 * Added support for face identification on extracted face thumbnails. The identity enhances the description and downstream tasks like search and retrieval. Learn more about [face detection in videos](video/overview.md#content-extraction---grouping-and-identification)
 * Added support for disabling face blurring in analyzer configuration. Learn more about [video processing improvements](video/overview.md#field-extraction--face-description).
+
+* ### Improvements to audio processing
+
+* Added additional locales for audio transcription. Learn more about [audio capabilities](audio/overview.md).
+* Added support for multilingual audio processing. Learn more about [language handling improvements in audio](audio/overview.md#language-handling).
+* Increased maximum supported file-size to ≤ 1 GB and length of ≤ 4 hours. Learn more about [audio service limits](service-limits.md).
 
 ### Face API
 

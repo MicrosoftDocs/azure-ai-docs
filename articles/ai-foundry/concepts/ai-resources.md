@@ -2,18 +2,20 @@
 title: Hubs and hub-based project overview
 titleSuffix: Azure AI Foundry
 description: This article introduces concepts about Azure AI Foundry hubs for your Azure AI Foundry projects.
+author: Blackmist
+ms.author: larryfr
 manager: scottpolly
+ms.reviewer: deeikele
+ms.date: 04/28/2025
 ms.service: azure-ai-foundry
+ms.topic: concept-article
 ms.custom:
   - ignite-2023
   - build-2024
   - ai-learning-hub
   - ignite-2024
-ms.topic: conceptual
-ms.date: 04/28/2025
-ms.reviewer: deeikele
-ms.author: larryfr
-author: Blackmist
+  - build-aifnd
+  - build-2025
 ---
 
 # Hub resources overview
@@ -23,7 +25,7 @@ author: Blackmist
 
 Azure AI Hub is a resource type that is used in combination with Azure AI Foundry resource type, and is only required for selected use cases. Hub resources provides access to open-source model hosting and finetuning capabilities, as well as Azure Machine Learning capabilities, next to capabilities supported by its associated AI Foundry resource.
 
-When you create an AI Hub, an Azure AI Foundry resource is automatically provisioned. Hub resources can be used in [Azure AI Foundry](https://ai.azure.com) and [Azure Machine Learning studio](https://ml.azure.com).
+When you create an AI Hub, an Azure AI Foundry resource is automatically provisioned. Hub resources can be used in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and [Azure Machine Learning studio](https://ml.azure.com).
 
 Hubs have their own project types that support a differentiated feature set from Foundry projects. See [project types](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need) for an overview of supported features.
 
@@ -35,7 +37,7 @@ Hubs group one or more projects together with common settings including data acc
 
 ## Create a hub-based project
 
-To start developing, [create a project](../how-to/create-projects.md). Hub-projects can be accessed in [AI Foundry Portal](https://ai.azure.com) to build with generative AI tools, and [ML Studio](https://ml.azure.com) to build with tools designed for custom machine learning model training.
+To start developing, [create a project](../how-to/create-projects.md). Hub-projects can be accessed in [AI Foundry Portal](https://ai.azure.com/?cid=learnDocs) to build with generative AI tools, and [ML Studio](https://ml.azure.com) to build with tools designed for custom machine learning model training.
 
 ## Project concepts
 

@@ -2,20 +2,23 @@
 title: Build an agentic retrieval solution
 titleSuffix: Azure AI Search
 description: Learn how to design and build a custom agentic retrieval solution where Azure AI Search handles data retrieval for your custom agents.
-
-manager: nitinme
 author: HeidiSteen
 ms.author: heidist
+manager: nitinme
+ms.date: 06/08/2025
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/21/2025
+ms.custom:
+  - build-2025
 ---
 
 # Build an agent-to-agent retrieval solution using Azure AI Search
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-This article describes an approach or pattern for building a solution that uses Azure AI Search for knowledge retrieval, and how to integrate knowledge retrieval into a custom solution that includes Azure AI Agent.
+This article describes an approach or pattern for building a solution that uses Azure AI Search for knowledge retrieval, and how to integrate knowledge retrieval into a custom solution that includes Azure AI Agent. This pattern uses an agent tool to invoke an agentic retrieval pipeline in Azure AI Search.
+
+:::image type="content" source="media/agentic-retrieval/agent-to-agent-pipeline.png" alt-text="Diagram of Azure AI Search integration with Azure AI Agent service." lightbox="media/agentic-retrieval/agent-to-agent-pipeline.png" :::
 
 This article supports the [agentic-retrieval-pipeline-example](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example) Python sample on GitHub.
 
@@ -25,7 +28,7 @@ This exercise differs from the [Agentic Retrieval Quickstart](search-get-started
 
 The following resources are required for this design pattern:
 
-+ Azure AI Search, basic tier or higher, in a [region that provides semantic ranking](search-region-support.md).
++ Azure AI Search, Basic pricing tier or higher, in a [region that provides semantic ranking](search-region-support.md).
 
 + A search index that satisfies the [index criteria for agentic retrieval](search-agentic-retrieval-how-to-index.md).
 
@@ -127,7 +130,7 @@ You can find endpoints for Azure AI Search and Azure OpenAI in the [Azure portal
 
 You can find the project endpoint in the Azure AI Foundry portal:
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com) and open your project. 
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and open your project. 
 
 1. In the **Overview** tile, find and copy the Azure AI Foundry project endpoint.
 

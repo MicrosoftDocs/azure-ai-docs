@@ -49,7 +49,7 @@ To fix this error, take the following steps to manually assign the ML Data scien
 
 [!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 
-1. Go to your project in [Azure AI Foundry](https://ai.azure.com) and select **Management center** from the left pane to open the settings page.
+1. Go to your project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and select **Management center** from the left pane to open the settings page.
 1. Under the **Project** heading, select **Overview**.
 1. Under **Quick reference**, select the link to your resource group to open it in the Azure portal. 
 1. Select **Access control (IAM)** from the left pane in the Azure portal.
@@ -79,7 +79,7 @@ __Option 1: Find the build log for the Azure default blob storage.__
 
 [!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 
-1. Go to your project in [Azure AI Foundry](https://ai.azure.com) and select **Management center** from the left pane to open the settings page.
+1. Go to your project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and select **Management center** from the left pane to open the settings page.
 1. Under the **Hub** heading, select **Overview**.
 1. In the section for **Connected resources**, select the link to your storage account name. This name should be the name of the storage account listed in the error message you received. You'll be taken to the storage account page in the [Azure portal](https://portal.azure.com).
 1. On the storage account page, select **Data Storage** > **Containers** from the left pane.
@@ -89,7 +89,7 @@ __Option 1: Find the build log for the Azure default blob storage.__
 __Option 2: Find the build log within Azure Machine Learning studio.__
 
 > [!NOTE]
-> This option to access the build log uses [Azure Machine Learning studio](https://ml.azure.com), which is a different portal than [Azure AI Foundry](https://ai.azure.com).
+> This option to access the build log uses [Azure Machine Learning studio](https://ml.azure.com), which is a different portal than [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
 1. Go to [Azure Machine Learning studio](https://ml.azure.com).
 2. Select **Endpoints** from the left pane.

@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 01/15/2025
+ms.date: 06/11/2025
 ms.custom: references_regions
 ---
 
@@ -31,13 +31,13 @@ Once you sign up, you can immediately use either of these links to access Azure 
 
 + [Sign in to Azure portal](https://portal.azure.com/) to view, manage, and create more resources. You can also use the Azure portal to track your credits and projected costs.
 
-+ [Sign in to Azure AI Foundry](https://ai.azure.com) for a no-code approach to deploying models on Azure OpenAI and using Azure AI Search for information retrieval. **We recommend you start here first.**
++ [Sign in to Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) for a no-code approach to deploying models on Azure OpenAI and using Azure AI Search for information retrieval. **We recommend you start here first.**
 
 ## Step two: "Day One" tasks
 
 [**How to build and consume vector indexes in Azure AI Foundry portal**](/azure/ai-foundry/how-to/index-add) is a great place to start.
 
-1. [Sign in to Azure AI Foundry](https://ai.azure.com).
+1. [Sign in to Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
 1. Create a new hub and project.
 
@@ -48,9 +48,6 @@ Once you sign up, you can immediately use either of these links to access Azure 
    + On the **Index Settings**, you can create a new Azure AI Search service. The wizard selects a matching region automatically, but you choose the pricing tier.
 
      We recommend Basic for larger data files and more indexes, or Free if your files are less than 50 MB. Basic has more features and storage, but it's billable for the lifetime of the service and it might consume about one third of your available credits if you retain it for the entire trial period.
-
-> [!TIP]
-> Azure AI Search and Azure OpenAI must be in the [same region](search-create-service-portal.md#regions-with-the-most-overlap).
 
 ## Step three: Have a plan for next steps
 
@@ -72,37 +69,31 @@ Application frontends are useful if you're prototyping a solution for a wider au
 
 ## Check regions
 
-Azure AI Search has integrated operations with applied AI in the Azure cloud. Integration depends on services running within the same region. This is a requirement for data residency and for efficient operations.
+Azure AI Search offers integrated operations with applied AI in the Azure cloud. For data residency and efficient operations, integration typically depends on services running within the same region.
 
-Verifying region availability can save you time and frustration because you need to choose a region that supports all of the services you want to use.
+> [!NOTE]
+> The same-region requirement doesn't apply to Azure OpenAI and Azure AI Foundry for interoperability with Azure AI Search. However, using the same region can improve performance and reduce latency.
 
-Start here if you want to use built-in vectorization or chat models:
+For [AI enrichment](cognitive-search-concept-intro.md), [integrated vectorization](vector-search-integrated-vectorization.md), and [multimodal search](multimodal-search-overview.md) powered by Azure AI services, you must create Azure AI Search and Azure AI services multi-service in the same region. This is required for [billing purposes](cognitive-search-attach-cognitive-services.md).
 
-- [Azure OpenAI region list](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)
-- [Azure AI Vision region list](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0#region-availability)
-- [Azure AI Foundry region list](/azure/ai-foundry/reference/region-support)
+Before you create these resources:
 
-Continue with the following link to confirm region and tier availability for AI Search:
++ Check [Azure AI Search regions](search-region-support.md). The **AI enrichment** column indicates whether Azure AI Search and Azure AI services multi-service are in the same region.
 
-- [Azure AI Search region list](search-region-support.md). This list identifies region support for Azure AI Search, applied AI (Azure AI services multi-service), and semantic ranking. You don't need a separate region check for applied AI.
-
-> [!TIP]
-> Currently, these regions provide the most overlap and capacity: **East US**, **East US2**, **Central US​​**, and **South Central** in the Americas; **UK South** or **Switzerland North** in Europe; **Australia East** in Asia Pacific.
->
-> For Azure AI Vision and AI Search interoperability, choose one of these regions: **East US**, **West US**, **Switzerland North**, **Korea Central**, **South East Asia**, or **Australia East**.
++ Check [Azure AI Vision regions](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0#region-availability). The **Multimodal embeddings** column indicates regional support for the multimodal APIs that enable text and image vectorization. Azure AI Vision provides these APIs, which you access through an Azure AI services multi-service resource. Ensure that your search service and multi-service resource are in the same region as the multimodal APIs.
 
 ### Create services
 
-1. [Create a search service](search-create-service-portal.md) if you don't have one already, choosing the Basic tier and a region that also offers a model provider. Most Azure AI Search regions provide higher capacity storage limits. There are just a few that have older and lower limits. For the Basic tier, as you install, confirm that you have a 15-GB partition.
+1. [Create a search service](search-create-service-portal.md) if you don't have one already. Choose the Basic tier and, if applicable, the same region as Azure AI services multi-service. Most Azure AI Search regions provide higher capacity storage limits. There are just a few that have older and lower limits. For the Basic tier, as you install, confirm that you have a 15-GB partition.
 
    > [!div class="nextstepaction"]
    > [Create a search service](search-create-service-portal.md)
 
-1. [Create an Azure Storage account](/azure/storage/common/storage-account-create?tabs=azure-portal), choosing a general purpose account and using default settings.
+1. [Create an Azure Storage account](/azure/storage/common/storage-account-create?tabs=azure-portal). Choose a general purpose account and use default settings.
 
-1. [Create an Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource?pivots=web-portal) as your model provider.
+1. [Create an Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource?pivots=web-portal).
 
-1. [Create an Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills?pivots=azportal) to use applied AI in your indexing workloads and Azure AI Vision multimodal APIs as an embedding model provider. You can create and transform content during indexing if applied AI can be attached. For multimodal APIs, make sure you choose a region that provides those APIs. Look for this tile in Azure Marketplace:
+1. [Create an Azure AI services multi-service resource](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills?pivots=azportal) to use applied AI in your indexing workloads and Azure AI Vision multimodal APIs as an embedding model provider. You can create and transform content during indexing if applied AI can be attached. For multimodal APIs, make sure you choose a region that provides those APIs. Look for this tile in Azure Marketplace:
 
    :::image type="content" source="./media/search-try-for-free/azure-ai-service-marketplace.png" alt-text="Screenshot of the Azure AI Services offering in Azure Marketplace.":::
 
@@ -127,7 +118,7 @@ Many samples and [accelerators](resource-tools.md) come with bicep scripts that 
 
 ## Step four: Track your credits 
 
-During the trial period, you want to stay under the USD 200 credit allocation. Most services are Standard, so you won't be charged while they're not in use, but an Azure AI Search service on the Basic tier is provisioned on dedicated clusters and it can only be used by you. It's billable during its lifetime. If you provision a basic tier search service, expect Azure AI Search to consume about one third of your available credits during the trial period.
+During the trial period, you want to stay under the USD 200 credit allocation. Most services are Standard, so you won't be charged while they're not in use, but an Azure AI Search service on the Basic tier is provisioned on dedicated clusters and it can only be used by you. It's billable during its lifetime. If you provision a basic search service, expect Azure AI Search to consume about one third of your available credits during the trial period.
 
 During the trial period, the Azure portal provides a notification on the top right that tells you how many credits are used up and what remains. 
 

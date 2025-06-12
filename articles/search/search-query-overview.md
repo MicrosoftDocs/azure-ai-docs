@@ -96,4 +96,4 @@ For a closer look at query implementation, review the examples for each syntax. 
 
 + [Simple query examples](search-query-simple-examples.md)
 + [Lucene syntax query examples for building advanced queries](search-query-lucene-examples.md)
-+ [How full text search works in Azure AI Search](search-lucene-query-architecture.md)git
++ [How full text search works in Azure AI Search](search-lucene-query-architecture.md)

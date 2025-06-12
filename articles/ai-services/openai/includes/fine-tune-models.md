@@ -2,12 +2,14 @@
 title: Fine-tuning model guidance
 titleSuffix: Azure OpenAI
 description: Describes the models that support fine-tuning and the regions where fine-tuning is available.
-author: mrbullwinkle 
-ms.author: mbullwin 
+author: mrbullwinkle
+ms.author: mbullwin
+manager: nitinme
+ms.date: 02/06/2025
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 02/06/2025
-manager: nitinme
+ms.custom:
+  - build-2025
 ---
 
 > [!NOTE]
@@ -24,20 +26,24 @@ manager: nitinme
 | `gpt-4o` (2024-08-06) | East US2 <br> North Central US <br> Sweden Central | - | Input: 128,000 <br> Output: 16,384  <br> Training example context length: 65,536 | Oct 2023 | Text & Vision to Text |
 | `gpt-4.1` (2025-04-14) | North Central US <br> Sweden Central | ✅ | Input: 128,000 <br> Output: 16,384 <br> Training example context length: 65,536 | May 2024 | Text & Vision to Text |
 | `gpt-4.1-mini` (2025-04-14) | North Central US <br> Sweden Central | ✅ | Input: 128,000 <br> Output: 16,384 <br> Training example context length: 65,536 | May 2024 | Text to Text |
-| `gpt-4.1-nano` (2025-04-14) | North Central US <br> Sweden Central | ✅ | Input: 128,000 <br> Output: 16,384 <br> Training example context length: 32,768 | May 2024 | Text to Text |
+| `gpt-4.1-nano` (2025-04-14) | North Central US <br> Sweden Central | - | Input: 128,000 <br> Output: 16,384 <br> Training example context length: 32,768 | May 2024 | Text to Text |
 | `o4-mini` (2025-04-16) | East US2 <br> Sweden Central | - | Input: 128,000 <br> Output: 16,384 <br> Training example context length: 65,536 | May 2024 | Text to Text |
 
 > [!NOTE]
 > **Global** training (in Public Preview) provides [more affordable](https://aka.ms/aoai-pricing) training per-token, but does not offer [data residency](https://aka.ms/data-residency). It is currently available to Azure OpenAI resources in the following regions, with more regions coming soon:
 >- Australia East
 >- Brazil South
+>- EastUS2
 >- France Central
 >- Germany West Central
 >- Italy North
 >- Japan East _(no vision support)_
 >- Korea Central
+>- North Central US
 >- Norway East
 >- Poland Central
 >- Southeast Asia
->- Spain Central
 >- South Africa North
+>- Spain Central
+>- Sweden Central
+>- Switzerland West

@@ -5,7 +5,7 @@ description: 'Learn about model management (MLOps) with Azure Machine Learning. 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.topic: conceptual
+ms.topic: concept-article
 author: msakande
 ms.author: mopeakande
 ms.reviewer: sehan

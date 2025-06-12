@@ -17,7 +17,7 @@ author: sdgilley
 
 LangChain is a development ecosystem that makes as easy possible for developers to build applications that reason. The ecosystem is composed by multiple components. Most of the them can be used by themselves, allowing you to pick and choose whichever components you like best.
 
-Models deployed to [Azure AI Foundry](https://ai.azure.com) can be used with LangChain in two ways:
+Models deployed to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) can be used with LangChain in two ways:
 
 - **Using the Azure AI Foundry Models API:** All models deployed to Azure AI Foundry support the [Foundry Models API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md), which offers a common set of functionalities that can be used for most of the models in the catalog. The benefit of this API is that, since it's the same for all the models, changing from one to another is as simple as changing the model deployment being use. No further changes are required in the code. When working with LangChain, install the extensions `langchain-azure-ai`.
 
@@ -50,7 +50,7 @@ To use LLMs deployed in Azure AI Foundry portal, you need the endpoint and crede
 
 [!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
-1. Go to the [Azure AI Foundry](https://ai.azure.com/).
+1. Go to the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
 1. Open the project where the model is deployed, if it isn't already open.
 
@@ -384,7 +384,7 @@ You can configure your application to send telemetry to Azure Application Insigh
 
 1. Using the connection string to Azure Application Insights directly:
 
-    1. Go to [Azure AI Foundry portal](https://ai.azure.com) and select **Tracing**.
+    1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select **Tracing**.
 
     2. Select **Manage data source**. In this screen you can see the instance that is associated with the project.
 
@@ -400,7 +400,7 @@ You can configure your application to send telemetry to Azure Application Insigh
 
     1. Ensure you have the package `azure-ai-projects` installed in your environment.
 
-    2. Go to [Azure AI Foundry portal](https://ai.azure.com).
+    2. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
     
     3. Copy your project's connection string and set it the following code:
 
@@ -451,7 +451,7 @@ chain.invoke({"topic": "living in a foreign country"})
 
 To see traces:
 
-1. Go to [Azure AI Foundry portal](https://ai.azure.com).
+1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 2. Navigate to **Tracing** section.
 

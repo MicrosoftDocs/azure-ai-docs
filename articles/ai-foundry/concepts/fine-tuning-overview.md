@@ -27,9 +27,7 @@ Consider fine-tuning GenAI models to:
 - Save time and resources with faster and more precise results
 - Get more relevant and context-aware outcomes as models are fine-tuned for specific use cases
 
-[Azure AI Foundry](https://ai.azure.com) offers several models across model providers enabling you to get access to the latest and greatest in the market. [View this list for more details](#supported-models-for-fine-tuning). 
-
-:::image type="content" source="../media/concepts/model-catalog-fine-tuning.png" alt-text="Screenshot of Azure AI Foundry model catalog and filtering by Fine-tuning tasks." lightbox="../media/concepts/model-catalog-fine-tuning.png":::
+[Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) offers several models across model providers enabling you to get access to the latest and greatest in the market. [View this list for more details](#supported-models-for-fine-tuning). 
 
 ## Getting started with fine-tuning
 

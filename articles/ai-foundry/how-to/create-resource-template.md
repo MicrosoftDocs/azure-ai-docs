@@ -6,19 +6,21 @@ author: deeikele
 ms.author: larryfr
 manager: scottpolly
 reviewer: deeikele
+ms.date: 05/18/2025
 ms.service: azure-ai-foundry
 ms.topic: quickstart-bicep
-ms.custom: "subject-bicepqs"
-ms.date: 05/18/2025
+ms.custom:
+  - "subject-bicepqs"
+  - "build-aifnd"
+  - "build-2025"
 # Customer intent: As a DevOps person, I need to automate or customize the creation of an AI Foundry resource by using templates.
 ---
 
 # Quickstart: Create an Azure AI Foundry resource using a Bicep file
 
-> [!NOTE]
-> The Bicep file used in this article is specific to a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**, and doesn't apply for a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. For a template that creates a **[!INCLUDE [hub](../includes/hub-project-name.md)]**, see [Create an Azure AI Foundry hub using a template](create-azure-ai-hub-template.md).
+[!INCLUDE [hub-only-alt](../includes/uses-hub-only-alt.md)]
 
-Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) file (template) to create an [Azure AI Foundry](https://ai.azure.com) resource. A template makes it easy to create resources as a single, coordinated operation. A Bicep file is a text document that defines the resources that are needed for a deployment. It might also specify deployment parameters. Parameters are used to provide input values when using the file to deploy resources.
+Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) file (template) to create an [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) resource. A template makes it easy to create resources as a single, coordinated operation. A Bicep file is a text document that defines the resources that are needed for a deployment. It might also specify deployment parameters. Parameters are used to provide input values when using the file to deploy resources.
 
 ## Prerequisites
 
@@ -81,7 +83,7 @@ When the deployment finishes, you should see a message indicating the deployment
 
 ## Review deployed resources
 
-Use the [Azure AI Foundry portal](https://ai.azure.com) to view the created resources. You can also use the Azure CLI or Azure PowerShell to list the resources.
+Use the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) to view the created resources. You can also use the Azure CLI or Azure PowerShell to list the resources.
 
 # [Azure CLI](#tab/cli)
 

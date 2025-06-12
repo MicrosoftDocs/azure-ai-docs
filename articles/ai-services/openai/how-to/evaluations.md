@@ -135,7 +135,7 @@ When you click into each testing criteria, you will see different types of grade
 
 ## Getting started
 
-1. Select the **Azure OpenAI Evaluation (PREVIEW)** within [Azure AI Foundry portal](https://ai.azure.com/). To see this view as an option may need to first select an existing Azure OpenAI resource in a supported region.
+1. Select the **Azure OpenAI Evaluation (PREVIEW)** within [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). To see this view as an option may need to first select an existing Azure OpenAI resource in a supported region.
 2. Select **+ New evaluation**
 
     :::image type="content" source="../media/how-to/evaluations/new-evaluation.png" alt-text="Screenshot of the Azure OpenAI evaluation UX with new evaluation selected." lightbox="../media/how-to/evaluations/new-evaluation.png":::
