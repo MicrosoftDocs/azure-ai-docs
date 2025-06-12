@@ -16,6 +16,8 @@ zone_pivot_groups: azure-ai-serverless-deployment
 
 # Deploy models as serverless API deployments
 
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+
 In this article, you learn how to deploy a model from the model catalog as a serverless API deployment.
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
