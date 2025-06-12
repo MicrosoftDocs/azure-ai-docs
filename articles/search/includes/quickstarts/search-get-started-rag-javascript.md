@@ -13,16 +13,12 @@ ms.date: 06/05/2025
 - An [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource).
   - [Choose a region](/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#global-standard-model-availability) that supports the chat completion model you want to use (gpt-4o, gpt-4o-mini, or an equivalent model).
   - [Deploy the chat completion model](/azure/ai-foundry/how-to/deploy-models-openai) in Azure AI Foundry or [use another approach](/azure/ai-services/openai/how-to/working-with-models).
-
 - An [Azure AI Search resource](../../search-create-service-portal.md).
-  - Use the same region as your Azure OpenAI resource.
   - We recommend using the Basic tier or higher.
   - [Enable semantic ranking](../../semantic-how-to-enable-disable.md).
-
 - [Visual Studio Code](https://code.visualstudio.com/download).
 - [Node.JS with LTS](https://nodejs.org/en/download/).
 
-To meet the same-region requirement, start by reviewing the [regions for the chat model](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability) you want to use. After you identify a region, confirm that Azure AI Search is available in the [same region](../../search-region-support.md#azure-public-regions).
 
 ## Configure access
 
@@ -232,7 +228,13 @@ Setup project with Visual Studio Code and TypeScript.
 1. Install the following npm packages.
 
    ```bash
-   npm install @azure/identity @azure/search-documents openai dotenv
+   npm install @azure/identity @azure/search-documents openai dotenv 
+   ```
+
+1. Create a `src` directory in your project directory.
+
+   ```bash
+   mkdir src
    ```
 
 ## Sign in to Azure
@@ -255,9 +257,9 @@ You should now be logged in to Azure from your local device.
 
 Create a query script that uses the Azure AI Search index and the chat model to generate responses based on grounding data. The following steps guide you through setting up the query script.
 
-1. Create a `query.js` file with the following code.
+1. Create a `query.ts` file in the `src` directory with the following code.
     
-    :::code language="javascript" source="code/query-dac.js" :::
+    :::code language="javascript" source="~/azure-search-javascript-samples/quickstart-rag-js/src/query.js" :::
 
     The preceding code does the following:
     - Imports the necessary libraries for Azure AI Search and Azure OpenAI.
@@ -324,7 +326,7 @@ Tell me their description, address, tags, and the rate for one room that sleeps 
 1. Create a new file `queryComplex.js`. 
 1. Copy the following code to the file:
 
-    :::code language="javascript" source="code/complex-query-dac.js" :::
+    :::code language="javascript" source="~/azure-search-javascript-samples/quickstart-rag-js/src/queryComplex.js" :::
 
 
 1. Run the following command in a terminal to execute the query script:
