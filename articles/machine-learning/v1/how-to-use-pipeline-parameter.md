@@ -65,7 +65,7 @@ In this example, you create a pipeline parameter that defines how a pipeline fil
 
    :::image type="content" source="media/how-to-use-pipeline-parameter/create-pipeline-parameter.png" alt-text="Screenshot that shows how to create a pipeline parameter." lightbox ="media/how-to-use-pipeline-parameter/create-pipeline-parameter.png":::
 
-After you create a pipeline parameter, you must [attach it to the component parameter](#attach-component-parameter-to-pipeline-parameter) that you want to dynamically set.
+After you create a pipeline parameter, you must [attach it to the component parameter](#attach-a-component-parameter-to-a-pipeline-parameter) that you want to dynamically set.
 
 ### Option 2: Promote a component parameter
 
@@ -112,11 +112,11 @@ In the following example, the **Clean Missing Data** component is duplicated. Fo
 
    :::image type="content" source="media/how-to-use-pipeline-parameter/attach-replace-value-to-pipeline-parameter.png" alt-text="Screenshot that shows how to attach a pipeline parameter." lightbox ="media/how-to-use-pipeline-parameter/attach-replace-value-to-pipeline-parameter.png":::
 
-You have successfully attached the **Replacement value** field to your pipeline parameter. 
+You have successfully attached the **Minimum missing value ratio** field to your pipeline parameter. 
 
 ### Detach a component parameter from a pipeline parameter
 
-When you detach a **Replacement value** from a pipeline parameter, it's not actionable.
+When you detach a component parameter from a pipeline parameter, it's not actionable.
 
 You can detach a component parameter from a pipeline parameter by selecting the ellipsis button (**...**) next to the component parameter and then selecting **Detach from pipeline input**.
 
