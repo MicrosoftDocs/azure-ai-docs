@@ -659,7 +659,7 @@ In the next sections, we run queries against the `hotels-vector-quickstart` inde
 - [Single vector search](#single-vector-search)
 - [Single vector search with filter](#single-vector-search-with-filter)
 - [Hybrid search](#hybrid-search)
-- [Semantic hybrid search with filter](#semantic-hybrid-search-with-a-filter)
+- [Semantic hybrid search](#semantic-hybrid-search)
 
 The example vector queries are based on two strings:
 
@@ -1144,7 +1144,7 @@ Here's the last query in the collection. This hybrid query uses L2 semantic rank
 
 Review the response, semantically reranked to promote results that are closest to the search string query (`historic hotel walk to restaurants and shopping`).
 
-The Swirling Currents Hotel now moves into the top spot. Without semantic ranking, Nordick's Valley Motel is number one. With semantic ranking, the machine comprehension models recognize that *walking access to shopping and dining* is semantically equivalent to *walk to restaurants and shopping*. 
+The Swirling Currents Hotel now moves into the top spot. Without semantic reranking, Sublime Palace, with it's reference to *walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments* is number one. With semantic ranking, the machine comprehension model promotes *walking access to shopping and dining* as a closer match to *walk to restaurants and shopping*. 
 
 ```json
   "@odata.count": 7,
