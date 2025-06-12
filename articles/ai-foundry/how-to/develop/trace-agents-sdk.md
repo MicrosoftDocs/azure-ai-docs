@@ -16,13 +16,11 @@ ms.custom:
   - build-2025
 ---
 
-# Tracing your AI application (preview)
+# Trace your AI agents using Azure AI Foundry SDK (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-Tracing provides deep visibility into execution of your application by capturing detailed telemetry at each execution step. This helps diagnose issues and enhance performance by identifying problems such as inaccurate tool calls, misleading prompts, high latency, low-quality evaluation scores, and more.  
-
-This article walks you through how to instrument tracing in your AI applications using OpenTelemetry and Azure Monitor for enhanced observability and debugging.
+This article walks you through how to instrument tracing in agents using Azure AI Foundry SDK with OpenTelemetry and Azure Monitor for enhanced observability and debugging.
 
 Here's a brief overview of key concepts before getting started:
 

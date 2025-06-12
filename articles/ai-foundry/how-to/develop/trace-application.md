@@ -1,7 +1,7 @@
 ---
 title: How to trace AI applications using OpenAI SDK
 titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to trace your application with Azure AI Inference SDK.
+description: Learn how to trace applications that uses OpenAI SDK in Azure AI Foundry
 author: lgayhardt
 ms.author: lagayhar
 manager: scottpolly
@@ -11,7 +11,7 @@ ms.service: azure-ai-foundry
 ms.topic: how-to
 ---
 
-# How to trace AI applications using OpenAI SDK
+# Trace AI applications using OpenAI SDK
 
 Tracing provides deep visibility into execution of your application by capturing detailed telemetry at each execution step. This helps diagnose issues and enhance performance by identifying problems such as inaccurate tool calls, misleading prompts, high latency, low-quality evaluation scores, and more.  
 
@@ -22,8 +22,6 @@ This article explains how to implement tracing for AI applications using OpenAI 
 To complete this tutorial you need:
 
 * An Azure AI Foundry project created.
-
-    > Azure AI Foundry projects uses Azure Application Insights to store traces for your application. While this tutorial uses an Azure AI Foundry project, you can also send your traces directly to any Azure Application Insight resource.
 
 * An AI application that uses **OpenAI SDK** to make calls to models hosted in Azure AI Foundry.
 
@@ -72,7 +70,7 @@ The following steps show how to configure:
 
 If you are using the OpenAI SDK to develop intelligent applications you can instrument it so traces are sent to Azure AI Foundry. Follow this steps:
 
-1. Install `azure-ai-projects`, `azure-monitor-opentelemetry-exporter`, and `opentelemetry-instrumentation-openai-v2` in your environment. The following example uses `pip`:
+1. Install `azure-ai-projects`, `azure-monitor-opentelemetry`, and `opentelemetry-instrumentation-openai-v2` in your environment. The following example uses `pip`:
 
     ```console
     pip install azure-ai-projects azure-monitor-opentelemetry-exporter opentelemetry-instrumentation-openai-v2
@@ -214,45 +212,12 @@ Configure tracing as follows:
     from opentelemetry import trace
     from opentelemetry.sdk.trace import TracerProvider
     from opentelemetry.sdk.trace.export import SimpleSpanProcessor, ConsoleSpanExporter
+    from azure.ai.projects import enable_telemetry
 
     span_exporter = ConsoleSpanExporter()
     tracer_provider = TracerProvider()
     tracer_provider.add_span_processor(SimpleSpanProcessor(span_exporter))
     trace.set_tracer_provider(tracer_provider)
-    ```
 
-1. You can also make this decision based on if a project context is available:
-
-    ```python
-    from opentelemetry import trace
-    from opentelemetry.sdk.trace import TracerProvider
-    from opentelemetry.sdk.trace.export import SimpleSpanProcessor, BatchSpanProcessor, ConsoleSpanExporter
-    from azure.monitor.opentelemetry.exporter import AzureMonitorTraceExporter
-
-    from azure.ai.projects import AIProjectClient
-    from azure.identity import DefaultAzureCredential
-
-    try:
-        project_client = AIProjectClient.from_connection_string(
-            credential=DefaultAzureCredential(),
-            endpoint="https://<your-resource>.services.ai.azure.com/api/projects/<your-project>",
-        )
-
-        connection_string = project_client.telemetry.get_connection_string()
-    except:
-        connection_string = None
-
-    tracer_provider = TracerProvider()
-
-    if connection_string:
-        # Use Azure
-        exporter = AzureMonitorTraceExporter(connection_string=connection_string)
-        span_processor = BatchSpanProcessor(exporter)
-    else:
-        # Use console
-        span_exporter = ConsoleSpanExporter()
-        span_processor = SimpleSpanProcessor(span_exporter)
-
-    tracer_provider.add_span_processor(span_processor)
-    trace.set_tracer_provider(tracer_provider)
+    enable_telemetry(destination=sys.stdout)
     ```
