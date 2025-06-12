@@ -291,12 +291,12 @@ We are committed to continuously improving our fairness evaluations to gain a de
 ## Evaluating and integrating Image Analysis for your use
 
  
-When integrating Content Understanding for your use case, knowing that Content Understanding is subject to the [Microsoft Generative AI Services Code of Conduct](/azure/ai-foundry/responsible-ai/openai/code-of-conduct), and [Code of Conduct for Azure AI Vision Face](/legal/ai-code-of-conduct?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext) will ensure a successful integration. 
+When integrating Content Understanding for your use case, knowing that Content Understanding is subject to the [Microsoft Generative AI Services Code of Conduct](/legal/ai-code-of-conduct) will ensure a successful integration. 
 
 When you're getting ready to integrate Content Understanding to your product or features, the following activities help to set you up for success: 
 - **Understand what it can do**: Fully assess the potential of Content Understanding to understand its capabilities and limitations. Understand how it will perform in your scenario and context. For example, if you're using audio content extraction, test with real-world recordings from your business processes to analyze and benchmark the results against your existing process metrics. 
 - **Respect an individual's right to privacy**: Only collect data and information from individuals from whom you have obtained consent, and for lawful and justifiable purposes. 
-- **Legal and regulatory considerations**. Organizations need to evaluate potential specific legal and regulatory obligations when using Content Understanding. Content Understanding is not appropriate for use in every industry or scenario. Always use Content Understanding in accordance with the applicable terms of service and the [Microsoft Generative AI Services Code of Conduct](/azure/ai-foundry/responsible-ai/openai/code-of-conduct).  
+- **Legal and regulatory considerations**. Organizations need to evaluate potential specific legal and regulatory obligations when using Content Understanding. Content Understanding is not appropriate for use in every industry or scenario. Always use Content Understanding in accordance with the applicable terms of service and the [Microsoft Generative AI Services Code of Conduct](/legal/ai-code-of-conduct).  
 - **Human-in-the-loop**: Keep a human in the loop, and include human oversight as a consistent pattern area to explore. This means ensuring constant human oversight of the AI-powered product or feature and to maintain the role of humans in decision-making. Ensure that you can have real-time human intervention in the solution to prevent harm. A human in the loop enables you to manage situations when Content Understanding does not perform as required. 
 - **Security**: Ensure your solution is secure and that it has adequate controls to preserve the integrity of your content and prevent unauthorized access. 
 

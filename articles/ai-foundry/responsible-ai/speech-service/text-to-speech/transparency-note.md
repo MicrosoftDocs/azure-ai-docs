@@ -43,7 +43,7 @@ In a text to speech system, customers can turn written information into audible 
 
 ### Introduction 
 
-Prebuilt neural voice provides a wide range of voices, offering over 400 options in more than 140 languages and locales. These text to speech voices enable you to quickly integrate read-aloud functionality into your applications for enhanced accessibility. 
+Prebuilt neural voice provides a wide range of voices, offering over 400 options in more than 140 languages and locales. These text to speech voices enable you to quickly integrate read-aloud functionality into your applications for enhanced accessibility. 
 
 ### Key terms
 
@@ -55,7 +55,7 @@ Prebuilt neural voice provides a wide range of voices, offering over 400 options
 
 ### Introduction 
 
-Custom neural voice is a Limited Access [text to speech](/azure/ai-services/speech-service/text-to-speech) feature that allows customers to create a one-of-a-kind customized synthetic voice for their applications by providing their own audio data of their selected voice talents. For more information on custom neural voice, see [Overview of custom neural voice](https://go.microsoft.com/fwlink/?linkid=2153856).
+Custom neural voice is a Limited Access [text to speech](/azure/ai-services/speech-service/text-to-speech) feature that allows customers to create a one-of-a-kind customized synthetic voice for their applications by providing their own audio data of their selected voice talents. For more information on custom neural voice, see [Overview of custom neural voice](https://go.microsoft.com/fwlink/?linkid=2153856).
 
 ### Key terms 
 
@@ -72,7 +72,7 @@ In addition to the common terms from prebuilt neural voice, the following key te
 
 ### Introduction 
 
-Prebuilt text to speech avatar offers a range of prebuilt avatar choices that can speak using either a [custom neural voice](https://go.microsoft.com/fwlink/?linkid=2153856) or a prebuilt neural Voice. Prebuilt text to speech avatars can be accessed through a UI tool on the Speech Studio or from an API and can be synthesized in real time or in batch mode. Currently we provide a small collection of prebuilt avatars and we aim to continue to expand the number and diversity of prebuilt avatars.
+Prebuilt text to speech avatar offers a range of prebuilt avatar choices that can speak using either a [custom neural voice](https://go.microsoft.com/fwlink/?linkid=2153856) or a prebuilt neural Voice. Prebuilt text to speech avatars can be accessed through the Speech Studio UI or from an API and can be synthesized in real time or in batch mode. Currently we provide a small collection of prebuilt avatars.
 
 ### Key terms 
 
@@ -95,7 +95,7 @@ In addition to the common terms from prebuilt neural voice, custom neural voice,
 
 |Term |Definition |
 |---|---|
-| Avatar talent | Custom text to speech avatar model building requires training on a video recording of a real human speaking. This person is the avatar talent. Customers must get sufficient consent under all relevant laws and regulations from the avatar talent to use their image/likeness to create a custom avatar. |
+| Avatar talent | Custom text to speech avatar model building requires training on a video recording of a real human speaking. This person is the avatar talent. Customers must get sufficient consent under all relevant laws and regulations from the avatar talent to use their image/likeness to create a custom avatar. |
 
 #### [Video translation (preview)](#tab/video)
 
@@ -150,9 +150,9 @@ For more information on custom neural voice, see [Overview of custom neural voic
 
 ### Personal voice
 
-The personal voice feature allows Limited Access customers to create a voice model from a short human voice sample (also called a prompt). The feature can create a voice model based on the prompt in as little as a few seconds. This feature is typically used to power personalized voice experiences for business customers’ applications. Personal voice models can create realistic-sounding voices that can speak in close to 100 languages.
+The personal voice feature allows Limited Access customers to create a voice model from a short human voice sample. The feature can create a voice model based on the prompt in as little as a few seconds. This feature is typically used to power personalized voice experiences for business customers’ applications. Personal voice models can create realistic-sounding voices that can speak in close to 100 languages.
 
-[Watermarks](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/introducing-the-watermark-algorithm-for-synthetic-voice/ba-p/3298548) are added to custom neural voices created with the personal voice feature. Watermarks allow users to identify whether speech is synthesized using Azure AI Speech, and specifically, which voice was used. Eligible customers can use Azure AI Speech watermark detection capabilities. To request to add watermark detection to your applications please contact `mstts[at]microsoft.com`.
+[Watermarks](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/introducing-the-watermark-algorithm-for-synthetic-voice/ba-p/3298548) are added to custom neural voices created with the personal voice feature. Watermarks allow users to identify whether speech is synthesized using Azure AI Speech, and specifically, which voice was used. Eligible customers can use Azure AI Speech watermark detection capabilities. To request to add watermark detection to your applications please contact `mstts[at]microsoft.com`.
 
 For more information on personal voice, see [personal voice](https://aka.ms/InstantVoiceDocs). 
 
@@ -169,11 +169,11 @@ In addition, avatar outputs are automatically watermarked. Watermarks allow appr
 
 ### Video translation (preview)
 
-Video translation can efficiently localize your video content to cater to diverse audiences around the globe. Video translation will automatically extract dialogue audio, transcribe, translate and dub the content with prebuilt or personal voice to the target language, with accurate subtitles for better accessibility. Multi-speaker features will help identify the number of individuals speaking and recommend most suitable voices. Content editing with human in the loop allows for precise alignment with customer preference. Enhanced translation quality  ensures precise audio and video alignment with GPT integration. Video translation enables authentic and personalized dubbing experiences with personal voice.
+Video translation can efficiently localize your video content to cater to diverse audiences around the globe. Video translation will automatically extract dialogue audio, transcribe, translate and dub the content with prebuilt or personal voice to the target language, with accurate subtitles for better accessibility. Multi-speaker features will help identify the number of individuals speaking and recommend suitable voices. Content editing with human in the loop allows for precise alignment with customer preference. Enhanced translation quality ensures precise audio and video alignment with GPT integration. Video translation enables authentic and personalized dubbing experiences with personal voice.
 
 ## Use cases
 
-Text to speech offers a variety of features catering to a wide range of intended uses across industries and domains. All text to speech features including video translation are subject to the terms and conditions applicable to customers’ Azure subscription, including the Azure Acceptable Use Policy and the [Code of conduct for Azure AI Speech text to speech](/legal/ai-code-of-conduct?context=/azure/ai-services/speech-service/context/context).  
+Text to speech offers a variety of features catering to a wide range of intended uses across industries and domains. All text to speech features including video translation are subject to the terms and conditions applicable to customers’ Azure subscription, including the Azure Acceptable Use Policy and the [Code of conduct for Azure AI Speech text to speech](/legal/ai-code-of-conduct).  
 
 
 In addition, custom text to speech features like custom neural voice, personal voice, and custom text to speech avatar are limited to the approved use cases as outlined in the specific scenarios described below:
@@ -196,15 +196,30 @@ The following are the approved use cases for Custom Neural Voice Pro and Custom 
 
 ### Intended uses for personal voice
 
-The personal voice API (see [Personal voice](/azure/ai-services/speech-service/personal-voice-overview) for more information) is available in Limited Access preview. Eligible customers can integrate the personal voice API with their applications supporting personal voices for the following use cases only:  
+The personal voice API (see [Personal voice](/azure/ai-services/speech-service/personal-voice-overview) for more information) is available in Limited Access preview. Only customers who meet Limited Access eligibility criteria can integrate the personal voice API with their applications. These eligible customers are permitted to use personal voices for the following use cases only:  
 
-- In applications where voice output is constrained and defined by customers who meet Limited Access eligibility criteria, and where the voice does not read user-generated or open-ended content. Voice model usage must remain within the application and output must not be publishable or shareable from the application. Some examples of applications that fit this description are voice assistants in smart devices and customizing a character voice in gaming.
-- Dubbing voices for the purpose of translating content to different languages for films, TV, video, and audio, where customers who meet Limited Access eligibility criteria maintain sole control over the creation of, access to, and use of the voice models and their output. 
-- Creating audio and video content for business scenarios to communicate product information, marketing materials, business promotional content, and internal business communications.
+- **Applications**: For use in applications where voice output is constrained and defined by customers, and where the voice does not read user-generated or open-ended content. Voice model usage must remain within the application and output must not be publishable or shareable from the application. Some examples of applications that fit this description are voice assistants in smart devices and customizing a character voice in gaming.
+- **Media, films, and TV**: To dub for films, TV, video, and audio for entertainment scenarios only, where customers maintain sole control over the creation of, access to, and use of the voice models and their output. 
+- **Business content**: To create audio and video content for business scenarios to communicate product information, marketing materials, business promotional content, and internal business communications.
+- **Special use, bundled with video translation**:  To synthesize voices for each speaker in a video. Customers can also edit and generate lip-synced audio content in target languages. Customers are not required to submit to Microsoft  additional [audio consent](/legal/ai-code-of-conduct?context=%2Fazure%2Fai-services%2Fspeech-service%2Fcontext%2Fcontext) for video content in this scenario, but customers must maintain sole control over the creation, access to, and use of the voice models and their outputs. 
 
 All other uses of custom neural voice, including Custom Neural Voice Pro, Custom Neural Voice Lite, and personal voice, are prohibited. In addition, custom neural voice is a Limited Access service, and registration is required for access to this service. To learn more about Microsoft’s Limited Access policy, refer to [Limited Access features for Azure AI services](https://aka.ms/limitedaccesscogservices). Certain features are only available to Microsoft managed customers and partners, and only for certain use cases approved by Microsoft at the time of registration. 
 
-Prebuilt neural voice may also be used for the custom neural voice use cases above, as well as additional use cases selected by customers and consistent with the Azure Acceptable Use Policy and the [Code of conduct for Azure AI Speech text to speech](/legal/ai-code-of-conduct?context=/azure/ai-services/speech-service/context/context). No registration or pre-approval is required for additional use cases for prebuilt neural voice that meet all applicable terms and conditions. 
+Prebuilt neural voice may also be used for the custom neural voice use cases above, as well as additional use cases selected by customers and consistent with the Azure Acceptable Use Policy and the [Code of conduct for Azure AI Speech text to speech](/legal/ai-code-of-conduct). No registration or pre-approval is required for additional use cases for prebuilt neural voice that meet all applicable terms and conditions. 
+
+### Intended use cases for video translation (preview)
+
+Video translation could be used for films, TV, and other visual (including but not limited to video or animation) and audio applications, where customers maintain sole control over the creation of, access to, and use of the voice models and their output. Personal voice and lip syncing are subject to the Limited Access framework, and eligible customers may use these capabilities with Video translation. The following are the approved use cases for Video translation service:
+- **Education & learning**: To translate audio in educational visuals, online courses, training modules, simulation-based learning, or guided museum tour visuals for multilingual learners.  
+- **Media: Entertainment**: To translate audio in films, movies, TV shows, documentaries, video games, mini-series, short-play and AR/VR content for global audiences, ensuring seamless storytelling across languages.  
+- **Media: Marketing**: To translate audio in promotional visuals, product demos, advertisements, and branding campaigns to resonate with international markets and cultures.  
+- **Self-Authored Content**: To translate audio in vlogs, short-form visuals, influencer content, travel guides, destination promotional videos, social media visuals, and cultural highlight reels making them accessible and engaging.  
+- **Corporate Training and Communication**: To translate audio in internal communication visuals, employee onboarding materials, compliance training, and global corporate announcements for international teams.  
+- **E-commerce & Product Demonstrations**: To translate audio in product unboxing visuals, tutorials, customer testimonials, and explainer visuals to cater to international shoppers.  
+- **Public Service and Informational Announcements**: To translate audio in public awareness visuals, event schedules, safety announcements, and government informational broadcasts for multilingual accessibility.  
+- **Accessibility Features**: To broaden the accessibility of video content through multilingual audio and subtitles. 
+- **News and Journalistic Content**: To translate audio in news segments, interviews, press releases, and breaking news reports for diverse linguistic audiences. Customers looking to translate news sources will require additional review.  
+
 
 ### Intended uses for custom text to speech avatar and prebuilt text to speech avatar 
 
@@ -234,7 +249,7 @@ We encourage customers to use text to speech features in their innovative soluti
 - **Disclosure**: Disclose the synthetic nature of voices, images, and/or videos to users such that users are not likely to be deceived or duped—or able to prank others—into believing they are interacting with a real person. 
 - [!INCLUDE [regulatory-considerations](../../includes/regulatory-considerations.md)]
 
-By adhering to these considerations, users can leverage both prebuilt and custom neural voice responsibly.
+By adhering to these considerations, users can leverage both prebuilt and custom neural voice responsibly.  
 
 ## Limitations
 
@@ -250,11 +265,11 @@ It is important to note that certain populations may be more negatively impacted
 
 - **Linguistic limitations**: While we carefully curate and prepare training data to minimize biases, especially related to gender, ethnicity, or regional accents, and while text to speech supports multiple languages and accents, there may be variations in the quality and availability of voices across different languages. Customers should be aware of potential limitations in pronunciation accuracy, intonation, and linguistic nuances specific to certain languages or dialects. 
 - **Context and emotion**: Text to speech may have limitations in accurately conveying contextual information and emotions. Customers should be mindful of the system's inability to understand the emotional nuances or subtle cues present in the input text. Considerations should be made to provide additional context or utilize other methods to convey emotions effectively. 
-- **Availability**: Microsoft will provide customers with 12 months’ notice before removing any prebuilt neural voices from our catalogue, unless security, legal, or system performance considerations require an expedited removal. This does not apply to previews. 
+- **Availability**: Microsoft will provide customers with 12 months’ notice before removing any prebuilt neural voices from our catalog, unless security, legal, or system performance considerations require an expedited removal. This does not apply to previews. 
 
 #### [Custom neural voice](#tab/custom-voice)
 
-- Custom neural voice models are trained using transfer learning technology based on our multi-lingual, multi-speaker base model, with the recording samples of human voices that you provide. The richer the base model, the more powerful the transfer learning, requiring less training data from your voice talent. While our base model is built using a wide range of speech data that incudes different speaking accents, age groups, and genders, across about 100 languages (see list of supported languages [here](/azure/ai-services/speech-service/language-support#neural-voices)), it’s possible that certain demographic groups are not well represented in some languages. For example, we cover less speech data from children than from adults. To accommodate this limitation, we require at least 300 lines of recordings (or, around 30 minutes of speech) to be prepared as training data for custom neural voice, and we recommend 2,000 lines of recordings (2-3 hours of speech) to create a voice for production use. Each line of recording (a.k.a. “utterance”) consists of a normal sentence or a short phrase that is read by your chosen voice talent. With 2,000 utterances, our system can learn the target voice characteristics well even if the base model doesn’t include a similar speaker.
+- Custom neural voice models are trained using transfer learning technology based on our multi-lingual, multi-speaker base model, with the recording samples of human voices that you provide. The richer the base model, the more powerful the transfer learning, requiring less training data from your voice talent. While our base model is built using a wide range of speech data that includes different speaking accents, age groups, and genders, across about 100 languages (see list of supported languages [here](/azure/ai-services/speech-service/language-support#neural-voices)), it’s possible that certain demographic groups are not well represented in some languages. For example, we cover less speech data from children than from adults. To accommodate this limitation, we require at least 300 lines of recordings (or, around 30 minutes of speech) to be prepared as training data for custom neural voice, and we recommend 2,000 lines of recordings (2-3 hours of speech) to create a voice for production use. Each line of recording (a.k.a. “utterance”) consists of a normal sentence or a short phrase that is read by your chosen voice talent. With 2,000 utterances, our system can learn the target voice characteristics well even if the base model doesn’t include a similar speaker.
 - Privacy and data protection: When utilizing custom neural voice, customers should adhere to privacy regulations and ensure that sensitive or personal information is handled securely. It is important to be cautious when processing and storing data, and to follow best practices for data protection and consent management. 
 
     > [!NOTE]
@@ -268,7 +283,7 @@ Technical limitations to consider are the accuracy of lip sync alignment with th
 - **Context and emotion**: Text to speech avatars may have limitations in accurately conveying contextual information and emotions. Customers should be mindful of the system's inability to understand the emotional nuances or subtle cues present in the input text. Considerations should be made to provide additional context or utilize other methods to convey emotions effectively. 
 - **Body movements**: Text to speech avatars are designed to be used in speaking scenarios, such as presenting, so the avatar has limited poses in synthetic video. In general, the avatar is in front facing posture, sitting, or standing.
 - **Gestures**: Avatars may use hand gestures during speaking to deliver a natural speaking experience, but the gestures are not pre-programmed, they are learned from video clips in the training data and are included in synthetic video regardless of the input text. Also, avatars cannot make gestures that were not made by the actor in the training data. Avatars are not able to tailor gestures according to contextual information and emotions, so customers should be mindful of the avatar system’s inability to automatically play a gesture appropriate for the context.  
-- **Availability**: Microsoft will provide customers with 12 months’ notice before removing any prebuilt text to speech avatars from our catalogue, unless security, legal, or system performance considerations require an expedited removal. This does not apply to previews. 
+- **Availability**: Microsoft will provide customers with 12 months’ notice before removing any prebuilt text to speech avatars from our catalog, unless security, legal, or system performance considerations require an expedited removal. This does not apply to previews. 
 - **Privacy and data protection**: When utilizing text to speech avatars, customers should adhere to all applicable privacy laws and regulations and ensure that sensitive or personal information is handled securely. It is important to be cautious when processing and storing data, and to follow best practices for data protection and consent management. 
 
 Each application is different, and our base model may not match your context or cover all scenarios required for your use case. We encourage developers to thoroughly evaluate the quality of text to speech synthetic voice and video with real-world data that reflects your use case, including testing with users from different demographic groups and with different speech characteristics. Please see the [Quality of the voice model trained](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/characteristics-and-limitations-custom-neural-voice?context=%2Fazure%2Fai-services%2Fspeech-service%2Fcontext%2Fcontext#quality-of-the-voice-model-trained) section for best practices for building high quality voice models. 
@@ -319,8 +334,8 @@ Please note that this information represents what we know so far about fairness 
 Performance for the text to speech system refers to how accurately and naturally it can convert written text into synthesized speech. This is measured using various metrics to evaluate the quality and effectiveness of the generated audio output. Some common performance metrics used include:
 
 - **Mean opinion score (MOS)**: A rating system where judges provide a score that represents the overall quality of synthesized speech and avatar video. A higher MOS indicates better quality. 
-- **MOS gap**: The difference between the MOS score of human recordings and the generated audios/videos. A smaller MOS Gap indicates a closer resemblance to human speech/human likeness. 
-- **Similarity MOS (SMOS)**: Measures the similarity of the generated audios/videos to the human recordings. A higher SMOS signifies better similarity. 
+- **MOS gap**: The difference between the MOS score of human recordings and the generated audio tracks/videos. A smaller MOS Gap indicates a closer resemblance to human speech/human likeness. 
+- **Similarity MOS (SMOS)**: Measures the similarity of the generated audio tracks/videos to the human recordings. A higher SMOS signifies better similarity. 
 - **Intelligibility**: The percentage of correctly intelligible words in synthesized speech. 
 
 Even with state-of-the-art models, AI systems like text to speech can produce errors. For example, the system may produce synthesized speech with subtle unnatural intonations or pronunciation errors, leading to a less-than-ideal user experience, or the system may misinterpret text or struggle with unusual linguistic constructs, resulting in unnatural or unintelligible speech.
@@ -352,17 +367,17 @@ Your recording script defines the training dataset for your voice model and is t
 Follow the [guidance here](/azure/ai-services/speech-service/record-custom-voice-samples#create-a-script) to prepare your script. 
 
 > [!NOTE]
-> When preparing your recording script, make sure you include a statement sentence to acquire voice talent’s acknowledgement that you are using their voice data to create a text to speech voice model and generate synthetic speech. You can find the required statement in multiple languages [here](https://github.com/Azure-Samples/Cognitive-Speech-TTS/blob/master/CustomVoice/script/verbal-statement-all-locales.txt). The language of the verbal statement must be the same as the training data language. 
+> When preparing your recording script, make sure you include a statement sentence to acquire voice talent’s acknowledgment that you are using their voice data to create a text to speech voice model and generate synthetic speech. You can find the required statement in multiple languages [here](https://github.com/Azure-Samples/Cognitive-Speech-TTS/blob/master/CustomVoice/script/verbal-statement-all-locales.txt). The language of the verbal statement must be the same as the training data language. 
 >
 > As a technical safeguard intended to prevent misuse of custom neural voice, Microsoft will use this verbal statement to verify that the voice talent’s voice in the verbal statement matches the voice provided in the training data through [Speaker Verification](/azure/ai-services/speech-service/speaker-recognition-overview#speaker-verification). Read more about this process in the [Data and Privacy section here](https://aka.ms/CNV-data-privacy). 
 
 #### Preparing training data 
 
-We recommend that the audio recordings should be captured in a professional quality recording studio so that high signal-to-noise ratio is achieved without distortion, and other defects are minimized. Follow the [recording guidance here](/azure/ai-services/speech-service/record-custom-voice-samples).
+We recommend that the audio recordings should be captured in a professional quality recording studio so that high signal-to-noise ratio is achieved without distortion, and other defects are minimized. Follow the [recording guidance here](/azure/ai-services/speech-service/record-custom-voice-samples).
 
 The quality of the custom voice heavily depends on the recorded voice used for training. Consistent volume, speaking rate, speaking pitch, and consistency in expressive mannerisms of speech are essential to create a high-quality custom neural voice. Custom neural voice creates a synthetic voice model that mimics the voice in the training data. The quality of the recording of the voice talent is the upper bound of the quality of the custom neural voice model. The voice model will capture the styles, accents, and other characteristics of the voice, including defects such as noises and mispronunciations.
 
-Unexpected errors such as mismatching of the transcript to the recordings can introduce mistakes in the pronunciation labeling to the training system. The [Speech Studio](/azure/ai-services/speech-service/how-to-custom-voice) provides capabilities for users to evaluate the pronunciation accuracy, identify noises, check the audio length for each utterance in the training dataset, and filter out unqualified recordings. For example, in the dataset detail view, you can check the pronunciation score, the signal-to-noise ratio and the audio length for your training data.
+Unexpected errors such as mismatching of the transcript to the recordings can introduce mistakes in the pronunciation labeling to the training system. The [Speech Studio](/azure/ai-services/speech-service/how-to-custom-voice) provides capabilities for users to evaluate the pronunciation accuracy, identify noises, check the audio length for each utterance in the training dataset, and filter out unqualified recordings. For example, in the dataset detail view, you can check the pronunciation score, the signal-to-noise ratio and the audio length for your training data.
 
 It is not possible to provide 100% accurate results. As the developer creating the synthetic voice, you are responsible for reviewing and ensuring the audio quality of the training data is sufficient for voice model building and your intended use.
 
@@ -372,7 +387,7 @@ To improve system performance for prebuilt text to speech avatars, we recommend 
 
 #### [Custom text to speech avatar](#tab/cust-avatar)
 
-When building a custom text to speech avatar, preparing high quality training data can help improve the quality of the custom avatar model. We recommend video recording avatar talent in a professional video shooting environment and using a green screen, a bright and even light source, and high signal-to-noise ratio for audio.
+When building a custom text to speech avatar, preparing high quality training data can help improve the quality of the custom avatar model. We recommend video recording avatar talent in a professional video shooting environment and using a green screen, a bright and even light source, and high signal-to-noise ratio for audio.
 
 The quality of the resulting avatar heavily depends on the recorded video used for training. Speaking rate, body posture, facial expression, hand gestures, consistency in actor position, and appropriate lighting are essential to create an engaging and natural custom avatar. The audio recording in the video is used only for custom avatar model training, to enable the avatar model to learn the phoneme of the voice and lip sync match. The audio is not used to create a custom neural voice model, so the avatar talent doesn’t have to read a script; they can talk freely. The audio should be clear, without background noise and other people’s voices. If a customer wishes to use a custom neural voice based on the voice of the same talent for a custom avatar, the customer must build a custom neural voice separately.
 
@@ -388,7 +403,7 @@ The appearance and performance of the avatar talent are also key factors impacti
 Some commonly used metrics for evaluating text to speech overall system performance include: 
 
 - Mean opinion score (MOS) gap with human recording: usually used to compare the quality of the text to speech voice model against a human recording. The quality of a voice model created by custom neural voice compared to that of a human recording is expected to be close, with a gap of no more than 0.5 in the MOS score. 
-- For custom neural voice, you also can use Similarity MOS (SMOS) to measure how similar the custom voice sounds compared to the original human recordings. With SMOS studies, judges are asked to listen to a set of paired audios, one generated using the custom voice, the other from the original human recordings in the training data, and rate if the two audios in each pair are spoken by the same person, using a five-point scale (1 being the lowest, 5 the highest). The average score is reported as the SMOS score. We recommend that a good custom neural voice should achieve an SMOS higher than 4.0.
+- For custom neural voice, you also can use Similarity MOS (SMOS) to measure how similar the custom voice sounds compared to the original human recordings. With SMOS studies, judges are asked to listen to a set of paired audio tracks, one generated using the custom voice, the other from the original human recordings in the training data, and rate if the two audio tracks in each pair are spoken by the same person, using a five-point scale (1 being the lowest, 5 the highest). The average score is reported as the SMOS score. We recommend that a good custom neural voice should achieve an SMOS higher than 4.0.
 - Besides measuring naturalness with MOS and SMOS, you can also assess the intelligibility of the voice model by checking the pronunciation accuracy of the generated speech. This is done by having judges listen to a set of testing samples, determining whether they can understand the meaning and indicate any words that were unintelligible to them. Intelligibility rate is calculated using the percentage of the correctly intelligible words among the total number of words tested (i.e., the number of intelligible words/the total number of words tested \* 100%). Normally a usable text to speech engine needs to reach a score of \> 98% for intelligibility.
 
 ### Evaluation results 
@@ -403,10 +418,10 @@ Here are some recommended tests and score ranges based on our experience:
 
 | Measurement   | Definition   | How it is calculated      | Recommended text size       | Recommended score      | 
 |--------|------------|-----------|-----|---------| 
-| MOS       | Mean opinion score of the quality of the audios     | Average of the rating scores of each judge on each audio | > 30 generated audios       | > 4.0 (normally requires the MOS of the human recording is higher than 4.5) | 
-| MOS gap     | The MOS score difference between human recordings and the generated audios | The MOS score on the human recordings minus the MOS score on the generated audios | > 10 human recordings, > 30 generated audios, > 20 judges on each audio | < 0.5                 | 
-| SMOS   | The similarity of the generated audios to the human recordings | Average of the rating scores of the similarity level on each pair of audios | > 40 pairs, > 20 judges on each pair | > 4.0, > 3.5 (secondary language) | 
-| Intelligibility | The pronunciation accuracy of the generated speech at the word level | Percentage of the correctly intelligible words among the total number of words tested | > 60 generated audios, > 10 judges on each audio | > 98%                 | 
+| MOS       | Mean opinion score of the quality of the audio tracks     | Average of the rating scores of each judge on each audio | > 30 generated audio tracks      | > 4.0 (normally requires the MOS of the human recording is higher than 4.5) | 
+| MOS gap     | The MOS score difference between human recordings and the generated audio tracks | The MOS score on the human recordings minus the MOS score on the generated audio tracks| > 10 human recordings, > 30 generated audio tracks, > 20 judges on each audio | < 0.5                 | 
+| SMOS   | The similarity of the generated audio tracks to the human recordings | Average of the rating scores of the similarity level on each pair of audio tracks | > 40 pairs, > 20 judges on each pair | > 4.0, > 3.5 (secondary language) | 
+| Intelligibility | The pronunciation accuracy of the generated speech at the word level | Percentage of the correctly intelligible words among the total number of words tested | > 60 generated audio tracks, > 10 judges on each audio | > 98%                 | 
 
 ## Evaluating and integrating text to speech for your use 
 

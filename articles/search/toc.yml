@@ -612,7 +612,7 @@ items:
 - name: Responsible AI
   items:
   - name: Transparency note
-    href: /legal/search/transparency-note?context=/azure/search/context/context
+    href: /azure/ai-foundry-responsible-ai/search/transparency-note?context=/azure/search/context/context
 - name: Reference
   items:
   - name: REST API reference

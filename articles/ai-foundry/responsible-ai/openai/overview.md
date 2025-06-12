@@ -142,5 +142,5 @@ This document is not intended to be, and should not be construed as providing, l
 ## Learn more about Azure OpenAI
 
 - [Limited access to Azure OpenAI Service - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/openai/limited-access?context=%2Fazure%2Fcognitive-services%2Fopenai%2Fcontext%2Fcontext) 
-- [Code of Conduct for the Azure OpenAI Service | Microsoft Learn](/azure/ai-foundry/responsible-ai/openai/code-of-conduct?context=%2Fazure%2Fcognitive-services%2Fopenai%2Fcontext%2Fcontext) 
+- [Code of Conduct for the Azure OpenAI Service | Microsoft Learn](/legal/ai-code-of-conduct?context=%2Fazure%2Fcognitive-services%2Fopenai%2Fcontext%2Fcontext) 
 - [Data, privacy, and security for Azure OpenAI Service - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/openai/data-privacy?context=%2Fazure%2Fcognitive-services%2Fopenai%2Fcontext%2Fcontext)
