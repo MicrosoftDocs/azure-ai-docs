@@ -54,6 +54,9 @@ To create a custom voice in Speech Studio, follow these steps for one of the fol
    :::image type="content" source="../../../../media/custom-voice/cnv-train-neural.png" alt-text="Screenshot that shows how to select neural training.":::
 
 1. Select a version of the training recipe for your model. The latest version is selected by default. The supported features and training time can vary by version. Normally, we recommend the latest version. In some cases, you can choose an earlier version to reduce training time. See [Bilingual training](#bilingual-training) for more information about bilingual training and differences between locales.
+
+   > [!NOTE]
+   > Model versions `V3.0`, `V7.0` and `V8.0` will be retired by July 25, 2025. The voice models already created on these retired versions won't be affected.
    
 1. Select the data that you want to use for training. Duplicate audio names are removed from the training. Make sure that the data you select doesn't contain the same audio names across multiple *.zip* files.
 
@@ -82,6 +85,11 @@ To create a custom voice in Speech Studio, follow these steps for one of the fol
 1. Select **Neural - cross lingual** as the [training method](#choose-a-training-method) for your model. To use a different training method, see [Neural](?tabs=neural#train-your-custom-voice-model) or [Neural - multi style](?tabs=multistyle#train-your-custom-voice-model) or [Neural - multi lingual (preview)](?tabs=multilingual#train-your-custom-voice-model) or [Neural - HD Voice (preview)](?tabs=hdvoice#train-your-custom-voice-model).
 
    :::image type="content" source="../../../../media/custom-voice/cnv-train-neural-cross-lingual.png" alt-text="Screenshot that shows how to select neural cross lingual training.":::
+
+1. Select a version of the training recipe for your model. The latest version is selected by default. The supported features and training time can vary by version. Normally, we recommend the latest version.
+
+   > [!NOTE]
+   > Model versions `V3.0` will be retired by July 25, 2025. The voice models already created on these retired versions won't be affected.
 
 1. Select the **Target language** that your voice speaks. The voice speaks a different language from your training data. You can select only one target language for a voice model.
 1. Select the data that you want to use for training. Duplicate audio names are removed from the training. Make sure that the data you select doesn't contain the same audio names across multiple *.zip* files.
