@@ -431,8 +431,10 @@ items:
         href: how-to/monitor-applications.md
       - name: Continuously evaluate your AI agents
         href: how-to/continuous-evaluation-agents.md
-   - name: Trace your application
+   - name: Trace your application 
      href: how-to/develop/trace-application.md
+   - name: Trace your agent
+     href: how-to/develop/trace-agents-sdk.md
    - name: A/B experimentation
      href: concepts/a-b-experimentation.md
    - name: Transparency Note for safety evaluations
