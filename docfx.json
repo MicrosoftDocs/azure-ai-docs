@@ -480,8 +480,12 @@
         "articles/machine-learning/**/*.md": "azureml-api-2",
         "articles/machine-learning/v1/**/*.md": "azureml-api-1"
       },
+      "open_to_public_contributors": {
+        "articles/ai-services/personalizer/**.*": false,
+        "articles/ai-foundry/responsible-ai/**.*": false
+      },
       "recommendations": {
-        "articles/ai-services/Translator/**/*.md": false
+        "articles/ai-services/translator/**/*.md": false
       },
       "titleSuffix": {
         "articles/ai-studio/**/*.md": "Azure AI Foundry",
