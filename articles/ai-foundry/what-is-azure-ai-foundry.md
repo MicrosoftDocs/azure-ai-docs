@@ -6,7 +6,7 @@ author: sdgilley
 ms.author: sgilley
 manager: scottpolly
 ms.reviewer: sgilley
-ms.date: 05/12/2025
+ms.date: 06/12/2025
 ms.service: azure-ai-foundry
 ms.topic: overview
 ms.custom:
@@ -66,7 +66,7 @@ This table summarizes features available in the two project types:
 | Evaluations | ✅ | ✅ |
 | Playground | ✅ | ✅ |
 | Prompt flow |  | ✅ |
-| Managed compute  |  | ✅ |
+| Content understanding  |  | ✅ |
 | Project files (directly upload files and start experimenting) | ✅ | |
 | Project-level isolation of files and outputs | ✅ | ✅|
 | Required Azure dependencies | - | Azure Storage account, Azure Key Vault |
