@@ -60,8 +60,6 @@ This table summarizes features available in the two project types:
 | Agents | ✅ (GA) | ✅ (Preview only) |
 | Azure AI Foundry Models including Azure OpenAI models | ✅ (Native support) | Available via connections |
 | AI Foundry API to work with agents and across models| ✅ (Native support) | Available via connections |
-| Project files (directly upload files and start experimenting) | ✅ | |
-| Project-level isolation of files and outputs | ✅ | ✅|
 | Models sold directly by Azure - Azure OpenAI, DeepSeek, xAI, etc. | ✅ | Available via connections |
 | Models sold through Marketplace - Stability, Bria, Cohere, etc. | ✅ | Available via connections |
 | Open source models e.g. HuggingFace  |  | ✅ |
@@ -69,6 +67,8 @@ This table summarizes features available in the two project types:
 | Playground | ✅ | ✅ |
 | Prompt flow |  | ✅ |
 | Managed compute  |  | ✅ |
+| Project files (directly upload files and start experimenting) | ✅ | |
+| Project-level isolation of files and outputs | ✅ | ✅|
 | Required Azure dependencies | - | Azure Storage account, Azure Key Vault |
 
 ### <a name="how-do-i-know"></a> How do I know which type of project I have?
