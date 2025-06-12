@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 05/30/2025
+ms.date: 6/13/2025
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -22,79 +22,13 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 
 + An [Azure AI Search service](../../search-create-service-portal.md) on the Basic tier or higher with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
 
-+ An [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource).
++ An [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects).
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
-## Deploy models
++ Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
 
-To run agentic retrieval, you must deploy the following models to your Azure OpenAI resource:
-
-+ An LLM for query planning.
-
-+ An LLM for answer generation.
-
-+ (Optional) An embedding model for vector queries.
-
-Agentic retrieval [supports several models](../../search-agentic-retrieval-how-to-create.md#supported-models), but this quickstart assumes `gpt-4o-mini` for the query-planning LLM and `text-embedding-3-large` for the embedding model. To use the answer-generating LLM, see the Python version of this quickstart.
-
-To deploy the Azure OpenAI models:
-
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your Azure OpenAI resource.
-
-1. From the left pane, select **Model catalog**.
-
-1. Select **gpt-4o-mini**, and then select **Use this model**.
-
-1. Specify a deployment name. To simplify your code, we recommend **gpt-4o-mini**.
-
-1. Accept the defaults.
-
-1. Select **Deploy**.
-
-1. Repeat the previous steps for **text-embedding-3-large**.
-
-## Configure role-based access
-
-Azure AI Search needs access to your Azure OpenAI models. For this task, you can use API keys or Microsoft Entra ID with role assignments. Keys are easier to start with, but roles are more secure. This quickstart assumes roles.
-
-To configure the recommended role-based access:
-
-1. Sign in to the [Azure portal](https://portal.azure.com/).
-
-1. [Enable role-based access](../../search-security-enable-roles.md) on your Azure AI Search service.
-
-1. [Create a system-assigned managed identity](../../search-howto-managed-identities-data-sources.md#create-a-system-managed-identity) on your Azure AI Search service.
-
-1. On your Azure AI Search service, [assign the following roles](../../search-security-rbac.md#how-to-assign-roles-in-the-azure-portal) to yourself.
-
-    + **Search Service Contributor**
-
-    + **Search Index Data Contributor**
-
-    + **Search Index Data Reader**
-
-1. On your Azure OpenAI resource, assign **Cognitive Services User** to the managed identity of your search service.
-
-## Get endpoints
-
-In your code, you specify the following endpoints to establish connections with Azure AI Search and Azure OpenAI. These steps assume that you configured role-based access in the previous section.
-
-To obtain your service endpoints:
-
-1. Sign in to the [Azure portal](https://portal.azure.com/).
-
-1. On your Azure AI Search service:
-
-    1. From the left pane, select **Overview**.
-
-    1. Copy the URL, which should be similar to `https://my-service.search.windows.net`.
-
-1. On your Azure OpenAI resource:
-
-    1. From the left pane, select **Resource Management** > **Keys and Endpoint**.
-
-    1. Copy the URL, which should be similar to `https://my-resource.openai.azure.com`.
+[!INCLUDE [Setup](./agentic-retrieval-setup.md)]
 
 ## Connect from your local system
 
@@ -102,14 +36,10 @@ You configured role-based access to interact with Azure AI Search and Azure Open
 
 To connect from your local system:
 
-1. Run the following commands in sequence.
+1. Run the following command and sign in with your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Azure AI Foundry project.
 
     ```azurecli
-    az account show
-
-    az account set --subscription <PUT YOUR SUBSCRIPTION ID HERE>
-    
-    az login --tenant <PUT YOUR TENANT ID HERE>
+    az login
     ```
 
 1. To obtain your Microsoft Entra token, run the following command. You specify this value in the next section.
@@ -124,14 +54,14 @@ Before you send any requests, define credentials, endpoints, and deployment deta
 
 To load the connections:
 
-1. In Visual Studio Code, paste the following placeholders into a `.rest` or `.http` file.
+1. In Visual Studio Code, paste the following placeholders into a `.rest` or `.http` file. For example, you can create a file named `agentic-retrieval.rest`.
 
     ```HTTP
     @baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
     @token = PUT-YOUR-MICROSOFT-ENTRA-TOKEN-HERE
-    @aoaiBaseUrl = PUT-YOUR-AOAI-URL-HERE
-    @aoaiGptModel = gpt-4o-mini
-    @aoaiGptDeployment = gpt-4o-mini
+    @aoaiBaseUrl = PUT-YOUR-AI-FOUNDRY-URL-HERE
+    @aoaiGptModel = gpt-4.1-mini
+    @aoaiGptDeployment = gpt-4.1-mini
     @aoaiEmbeddingModel = text-embedding-3-large
     @aoaiEmbeddingDeployment = text-embedding-3-large
     @index-name = earth_at_night
@@ -143,7 +73,7 @@ To load the connections:
 
 1. Replace `@token` with the Microsoft Entra token you obtained in [Connect from your local system](#connect-from-your-local-system).
 
-1. To verify the variables, send the following request.
+1. In the same file, enter and send the following HTTP request to verify that you can connect to Azure AI Search. The request lists existing indexes in your search service.
 
     ```HTTP
     ### List existing indexes by name
@@ -280,7 +210,7 @@ POST {{baseUrl}}/indexes/{{index-name}}/docs/index?api-version={{api-version}}  
 
 ## Create a knowledge agent
 
-To connect Azure AI Search to your `gpt-4o-mini` deployment and target the `earth_at_night` index at query time, you need a knowledge agent. Use [Create Knowledge Agents](/rest/api/searchservice/knowledge-agents/create?view=rest-searchservice-2025-05-01-preview&preserve-view=true) to define an agent named `earth-search-agent`, which you specified using the `@agent-name` variable in a previous section.
+To connect Azure AI Search to your `gpt-4.1-mini` deployment and target the `earth_at_night` index at query time, you need a knowledge agent. Use [Create Knowledge Agents](/rest/api/searchservice/knowledge-agents/create?view=rest-searchservice-2025-05-01-preview&preserve-view=true) to define an agent named `earth-search-agent`, which you specified using the `@agent-name` variable in a previous section.
 
 To ensure relevant and semantically meaningful responses, `defaultRerankerThreshold` is set to exclude responses with a reranker score of `2.5` or lower.
 
@@ -346,7 +276,7 @@ The output should be similar to the following JSON, where:
 
 + `response` provides a text string of the most relevant documents (or chunks) in the search index based on the user query. You can pass this string to an LLM for use as grounding data in answer generation.
 
-+ `activity` tracks the steps that were taken during the retrieval process, including the subqueries generated by your `gpt-4o-mini` deployment and the tokens used for query planning and execution.
++ `activity` tracks the steps that were taken during the retrieval process, including the subqueries generated by your `gpt-4.1-mini` deployment and the tokens used for query planning and execution.
 
 + `references` lists the documents that contributed to the response, each one identified by their `docKey`.
 
