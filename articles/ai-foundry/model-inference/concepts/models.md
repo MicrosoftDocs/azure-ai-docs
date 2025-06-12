@@ -24,7 +24,7 @@ Azure AI Foundry Models gives you access to flagship models in Azure AI Foundry 
 A selection of models is offered directly by Microsoft under [Models Sold Directly by Azure](#models-sold-directly-by-azure) which brings the most powerful options to developers to build AI applications. We also enable the breath of models by partnering with key players in the industry and bringing [Models from Partners and Community](#models-from-partners-and-community).
 
 
-:::image type="content" source="../media/models/models-catalog.gif" alt-text="An animation showing Azure AI Foundry portal model catalog section and the models available." lightbox="../media/models/models-catalog.gif":::
+:::image type="content" source="../media/models/models-catalog.png" alt-text="An image showing Azure AI Foundry portal model catalog section and the models available." lightbox="../media/models/models-catalog.png":::
 
 
 ## Models Sold Directly by Azure 
