@@ -65,6 +65,8 @@ In this example, you create a pipeline parameter that defines how a pipeline fil
 
    :::image type="content" source="media/how-to-use-pipeline-parameter/create-pipeline-parameter.png" alt-text="Screenshot that shows how to create a pipeline parameter." lightbox ="media/how-to-use-pipeline-parameter/create-pipeline-parameter.png":::
 
+1. Select **Save**.
+
 After you create a pipeline parameter, you must [attach it to the component parameter](#attach-a-component-parameter-to-a-pipeline-parameter) that you want to dynamically set.
 
 ### Option 2: Promote a component parameter
@@ -92,6 +94,8 @@ If you want to submit your pipeline with variable datasets, you need to promote 
 
    :::image type="content" source="media/how-to-use-pipeline-parameter/set-dataset-as-pipeline-parameter.png" alt-text="Screenshot that shows how to set dataset as pipeline parameter." lightbox ="media/how-to-use-pipeline-parameter/set-dataset-as-pipeline-parameter.png":::
 
+1. Select **Save**.
+
 You can now specify a different dataset by using the pipeline parameter the next time you run the pipeline.
 
 ## Attach a component parameter to or detach a component pipeline from a pipeline parameter 
@@ -111,6 +115,8 @@ In the following example, the **Clean Missing Data** component is duplicated. Fo
 1. Select the pipeline parameter `minimum-missing-value-ratio-2`.
 
    :::image type="content" source="media/how-to-use-pipeline-parameter/attach-replace-value-to-pipeline-parameter.png" alt-text="Screenshot that shows how to attach a pipeline parameter." lightbox ="media/how-to-use-pipeline-parameter/attach-replace-value-to-pipeline-parameter.png":::
+
+1. Select **Save**.
 
 You have successfully attached the **Minimum missing value ratio** field to your pipeline parameter. 
 
@@ -139,6 +145,7 @@ Complete the following steps to delete a dataset pipeline parameter:
 
 1. Double-click the dataset component.
 1. Clear the **Set as pipeline input** checkbox.
+1. Select **Save**.
 
 ### Delete component pipeline parameters
 
@@ -146,13 +153,10 @@ Complete the following steps to delete a component pipeline parameter:
 
 1. To the right of the canvas, select **Pipeline interface**.
 
-1. Select the ellipsis button (**...**) next to the pipeline parameter.
-
-    This view displays components that the pipeline parameter is attached to.
+1. Select the recycle bin icon next to the pipeline parameter.
 
     :::image type="content" source="media/how-to-use-pipeline-parameter/delete-pipeline-parameter2.png" alt-text="Screenshot that shows the current pipeline parameter applied to a component." lightbox ="media/how-to-use-pipeline-parameter/delete-pipeline-parameter2.png":::
 
-1. Select the recycle bin icon.
 1. Confirm the deletion in the resulting pop-up window.
 
     > [!NOTE]
