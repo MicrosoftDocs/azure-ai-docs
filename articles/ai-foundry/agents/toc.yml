@@ -105,7 +105,7 @@ items:
         - name: Use your own resources
           href: how-to/use-your-own-resources.md
         - name: Content filtering
-          href: ../openai/how-to/content-filters.md?context=/azure/ai-services/agents/context/context
+          href: ../../ai-services/openai/how-to/content-filters.md?context=/azure/ai-services/agents/context/context
         - name: Use virtual networks
           href: how-to/virtual-networks.md
     - name: Multi-agent workflows
@@ -151,6 +151,6 @@ items:
 - name: Resources
   items: 
     - name: Support and help options
-      href: ../cognitive-services-support-options.md?context=/azure/ai-services/agents/context/context
+      href: ../../ai-services/cognitive-services-support-options.md?context=/azure/ai-services/agents/context/context
     - name: Terms of use
       href: https://www.microsoft.com/licensing/terms/productoffering/MicrosoftAzure/MCA#ServiceSpecificTerms

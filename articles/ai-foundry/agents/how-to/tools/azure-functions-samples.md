@@ -23,7 +23,7 @@ Azure AI Agents supports function calling, which allows you to describe the stru
 * A prepared environment. See the [overview](azure-functions.md) article for details.
 
 > [!NOTE] 
-> You must have a [A deployed agent with the standard setup](/azure/ai-services/agents/ai-services/agents/environment-setupchoose-your-setup). The basic agent setup is not supported.
+> You must have a [A deployed agent with the standard setup](../../environment-setup.md#choose-your-setup). The basic agent setup is not supported.
 
 ::: zone pivot="python"
 

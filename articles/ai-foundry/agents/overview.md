@@ -99,7 +99,7 @@ Azure AI Foundry Agent Service provides a production-ready foundation for deploy
 
 | Capability | Azure AI Foundry Agent Service | 
 |------------|--------------------------------|
-| **1. Visibility into conversations** | Full access to structured [threads](/azure/ai-services/agents/ai-services/agents/concepts/threads-runs-messagesthreads), including both user↔agent and agent↔agent messages. Ideal for UIs, debugging, and training |
+| **1. Visibility into conversations** | Full access to structured [threads](./concepts/threads-runs-messages.md#threads), including both user↔agent and agent↔agent messages. Ideal for UIs, debugging, and training |
 | **2. Multi-agent coordination** | Built-in support for agent-to-agent messaging. |
 | **3. Tool orchestration** | Server-side execution and retry of [tool calls](how-to\tools\overview.md) with structured logging. No manual orchestration required. |
 | **4. Trust and safety** | Integrated [content filters](/azure/ai-services/agents/ai-services/openai/how-to/content-filters) help prevent misuse and mitigate prompt injection risks (XPIA). all outputs are policy-governed. |

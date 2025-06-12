@@ -6,7 +6,7 @@ ms.service: azure-ai-agent-service
 ms.topic: include
 ms.date: 02/15/2025
 ---
-| [Reference documentation](../../openai/assistants-reference.md) |
+| [Reference documentation](/rest/api/aifoundry/aiagents/) |
 
 ## Prerequisites
 

@@ -44,8 +44,6 @@ landingContent:
     linkLists:
       - linkListType: concept
         links:
-          - text: What are agents?
-            url: ./concepts/agents.md
           - text: Tracing with Application Insights
             url: ./concepts/tracing.md
         

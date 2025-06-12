@@ -35,7 +35,7 @@ Use this article to find step-by-step instructions and code samples for using Op
 
 1. Select **Next** and select your authentication method. Choose `connection` for `API key`.
    1. If you choose `connection`, you need to select the custom keys connection you have created before.
-   1. If you choose `managed identity`, you need to input the audience to get your token. An example of an audience would be `https://cognitiveservices.azure.com/` to connect to Azure AI Services. Make sure you have already set up authentication and role assignment (as described in the [section](/azure/ai-services/agents/ai-services/agents/how-to/tools/openapi-specauthenticating-with-managed-identity-microsoft-entra-id) above).
+   1. If you choose `managed identity`, you need to input the audience to get your token. An example of an audience would be `https://cognitiveservices.azure.com/` to connect to Azure AI Services. Make sure you have already set up authentication and role assignment (as described in the [section](./openapi-spec.md#authenticating-with-managed-identity-microsoft-entra-id) above).
       
 1. Copy and paste your OpenAPI specification in the text box.
 
