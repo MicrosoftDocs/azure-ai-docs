@@ -27,18 +27,17 @@ Both standard setup configurations are designed to give you complete control ove
 
 By bundling these BYO features (file storage, search, and thread storage), the standard setup guarantees that your deployment is secure by default. All data processed by Azure AI Foundry Agent Service is automatically stored at rest in your own Azure resources, helping you meet internal policies, compliance requirements, and enterprise security standards. 
 
+### Azure Cosmos DB for NoSQL
+
+Your existing Azure Cosmos DB for NoSQL Account used in standard setup must have a total throughput limit of at least **3000 RU/s**. Both **Provisioned Throughput** and **Serverless** modes are supported.
+
+When you use standard setup, **three containers** will be provisioned in your existing Cosmos DB account, and **each container requires 1000 RU/s**.
+* thread-message-store: End-user conversations
+* system-thread-message-store: Internal system messages
+* agent-entity-store: Agent metadata including their instructions, tools, name, etc.
+
 ## Project-Level Data Isolation
-
-Azure AI Foundry enforces project-level data isolation by default. When you configure your own resources in the project capability host: 
-* **Azure Storage**: Two Blob containers are automatically provisioned: 
-    * One for uploaded files 
-    * One for intermediate system data (for example, chunks, embeddings) 
-* **Azure Cosmos DB**: Three containers are provisioned under a dedicated enterprise_memory database: 
-    * thread-message-store: End-user conversations 
-    * system-thread-message-store: Internal system messages 
-    * agent-entity-store: Model inputs and outputs 
-
-This default behavior was chosen to reduce configuration complexity while still enforcing strict data boundaries—ensuring each project has a clean, isolated storage footprint without requiring manual setup. 
+Standard setup enforces project-level data isolation by default. Two blob storage containers will automatically be provisioned in your storage account, one for files and one for intermediate system data (chunks, embeddings) and three containers will be provisioned in your Cosmos DB, one for user systems, one for system messages, and one for user inputs related to created agents such as their instructions, tools, name, etc. This default behavior was chosen to reduce setup complexity while still enforcing strict data boundaries between projects.
 
 ## Capability hosts
 **Capability hosts** are sub-resources on both the Account and Project, enabling interaction with the Azure AI Foundry Agent Service. 
@@ -85,4 +84,4 @@ This default behavior was chosen to reduce configuration complexity while still 
         * Assign role: Cosmos DB Built-in Data Contributor 
     * Cosmos DB for NoSQL container: `<'${projectWorkspaceId}>-agent-entity-store'` 
         * Assign role: Cosmos DB Built-in Data Contributor 
-11. Once all resources are provisioned, all developers who want to create/edit agents in the project should be assigned the role: Azure AI User on the project scope. 
+11. Once all resources are provisioned, all developers who want to create/edit agents in the project should be assigned the role: Azure AI User on the project scope.

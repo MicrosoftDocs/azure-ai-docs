@@ -18,14 +18,14 @@ Creating your first agent with Azure AI Foundry Agent Service is a two-step proc
 1. Set up your agent environment.
 1. Create and configure your agent using either the SDK of your choice or the Azure Foundry Portal. 
 
-Use this article to learn more about setting up your agents.
+Use this article to learn more about setting up your agent environment.
 
 ### Required permissions 
 
 | Action                                                                 | Required Role                   |
 |------------------------------------------------------------------------|----------------------------------|
 | Create an account and project                                          | Azure AI Account Owner           |
-| **Standard Setup Only:** Assign RBAC for required resources (Cosmos DB, Search, Storage, etc.) | Role Based Access Administrator  |
+| **Standard Setup Only:** Assign RBAC for required resources (Cosmos DB, Search, Storage, etc.) | Role Based Access Control Administrator  |
 | Create and edit agents                                                 | Azure AI User                    |
 
 ## Set up your agent environment
@@ -37,7 +37,7 @@ Agents are scoped at the project level, which ensures data isolation—agents wi
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
 * Ensure that the individual creating the account and project has the **Azure AI Account Owner** role at the subscription scope
 * If configuring **Standard Setup**, the same individual must also have permissions to assign roles to required resources (Cosmos DB, Search, Storage).
-    * The built-in role needed is **Role Based Access Administrator**.
+    * The built-in role needed is **Role Based Access Control Administrator**.
     * Alternatively, having the **Owner** role at the subscription level also satisfies this requirement.
     * The key permission needed is: `Microsoft.Authorization/roleAssignments/write`
 
