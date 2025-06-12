@@ -170,7 +170,7 @@ After you submit a pipeline with pipeline parameters, you can resubmit the job w
 1. Select **Resubmit**.
 1. In the **Set up pipleine job** window, specify your new pipeline parameters. 
 
- :::image type="content" source="media/how-to-use-pipeline-parameter/resubmit-pipeline-run.png" alt-text="Screenshot that shows how to resubmit a pipeline with pipeline parameters." lightbox ="media/how-to-use-pipeline-parameter/resubmit-pipeline-run.png":::
+   :::image type="content" source="media/how-to-use-pipeline-parameter/resubmit-pipeline-run.png" alt-text="Screenshot that shows how to resubmit a pipeline with pipeline parameters." lightbox ="media/how-to-use-pipeline-parameter/resubmit-pipeline-run.png":::
 
 ### Use published pipelines
 
