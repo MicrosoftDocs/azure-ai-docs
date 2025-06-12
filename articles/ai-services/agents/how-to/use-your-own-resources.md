@@ -85,6 +85,9 @@ Use an existing AI Services / Azure OpenAI, Azure Storage account, Azure Cosmos 
     ```
 
 ### Use an existing Azure Cosmos DB for NoSQL account for thread storage
+**Azure Cosmos DB for NoSQL**
+- Your existing Azure Cosmos DB for NoSQL Account used in standard setup must have at least a total throughput limit of at least 3000 RU/s. Both Provisioned Thoughtput and Serverless are supported.
+    - 3 containers will be provisioned in your existing Cosmos DB account and each need 1000 RU/s
 
 1. To get your Azure Cosmos DB account resource ID, sign in to the Azure CLI and select the subscription with your account: 
     
