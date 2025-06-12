@@ -34,9 +34,9 @@ The liveness solution integration involves two distinct components: a frontend m
 
 :::image type="content" source="./media/liveness/liveness-diagram.jpg" alt-text="Diagram of the liveness workflow in Azure AI Face." lightbox="./media/liveness/liveness-diagram.jpg":::
 
-- **Frontend application**: The frontend application receives authorization from the app server to initiate liveness detection. Its primary objective is to activate the camera and guide end-users accurately through the liveness detection process.
-- **App server**: The app server serves as a backend server to create liveness detection sessions and obtain an authorization token from the Face service for a particular session. This token authorizes the frontend application to perform liveness detection. The app server's objectives are to manage the sessions, to grant authorization for frontend application, and to view the results of the liveness detection process.
-
+- **Orchestrate azure AI service in app server**: The app server serves as a backend server to create liveness detection sessions and obtain an short-lived authorization token from the Face service for a particular session. This token authorizes the frontend application to perform liveness detection. The app server's objectives are to manage the sessions, to grant authorization for frontend application, and to view the results of the liveness detection process.
+- **Integrate azure AI vision SDK into frontend application**: The frontend application should embed the Azure AI Vision Face SDK (iOS, Android, or JavaScript). The SDK opens the camera, guides the user through the passive or passive-active flow, encrypts video frames, and streams them—together with the short-lived liveness-session token received from your server—directly to the Azure AI Face endpoint. 
+- **Optional quick link path**: It is possible to avoid embedding the client SDK, the backend service can swap the same session token for a one-time Liveness Quick Link (https://liveness.face.azure.com/?s=…). Redirect the user to that URL and Azure will host the entire capture experience in the browser, then notice the completion through optional call back. This option lowers integration cost and automatically keeps you on Azure’s always-up-to-date experience.
 
 ## Liveness detection modes
 

@@ -123,9 +123,7 @@ The following is an example response:
   }
   ```
 
-Use that value to construct the liveness quick link web page: `https://liveness.face.azure.com/?s=60c3980c-d9f6-4b16-a7f5-f1f4ad2b506f`
-
-3. Send the link to the user. You can redirect the browser, show a button, or display a QR code—anything that lets the user open the link on a camera-enabled device.
+3. Compose the link and sent it to the user. Use url response value to construct the liveness quick link web page, optionally you can also add callback URL: `https://liveness.face.azure.com/?s=60c3980c-d9f6-4b16-a7f5-f1f4ad2b506f&&callbackUrl=<encoded url>` You can redirect the browser or show a button—anything that lets the user open the link on a device.
 4. Azure hosts the capture experience. When the link opens, the Azure-operated page guides the user through the liveness check sequence using the latest Liveness web client.
 5. Get the outcome callback. As soon as the check finishes—or if the user abandons or times out—the quick link service notifies your callback endpoint so your application can decide what happens next.
 
