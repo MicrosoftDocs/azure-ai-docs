@@ -29,19 +29,19 @@ Use this article to find step-by-step instructions and code samples for Groundin
 
 1. In the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) navigate to the **Agents** screen for your agent, scroll down the **Setup** pane on the right to **knowledge**. Then select **Add**.
 
-    :::image type="content" source="..\..\media\tools\knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="..\..\media\tools\knowledge-tools.png":::
+    :::image type="content" source="../../media\tools\knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media\tools\knowledge-tools.png":::
 
 1. Select **Grounding with Bing Search** and follow the prompts to add the tool. Note you can add only one per agent.
 
-    :::image type="content" source="..\..\media\tools\knowledge-tools-list.png" alt-text="A screenshot showing the available knowledge tools in the Azure AI Foundry portal." lightbox="..\..\media\tools\knowledge-tools-list.png":::
+    :::image type="content" source="../../media\tools\knowledge-tools-list.png" alt-text="A screenshot showing the available knowledge tools in the Azure AI Foundry portal." lightbox="../../media\tools\knowledge-tools-list.png":::
 
 1. Click to add new connections. Once you have added a connection, you can directly select from existing list.
    
-   :::image type="content" source="..\..\media\tools\bing\choose-bing-connection.png" alt-text="A screenshot showing the button for creating a new connection." lightbox="..\..\media\tools\bing\choose-bing-connection.png":::
+   :::image type="content" source="../../media\tools\bing\choose-bing-connection.png" alt-text="A screenshot showing the button for creating a new connection." lightbox="../../media\tools\bing\choose-bing-connection.png":::
 
 1. Select the Grounding with Bing Search resource you want to use and click to add connection. 
 
-   :::image type="content" source="..\..\media\tools\bing\create-bing-connection.png" alt-text="A screenshot showing available Grounding with Bing Search connections." lightbox="..\..\media\tools\bing\create-bing-connection.png":::
+   :::image type="content" source="../../media\tools\bing\create-bing-connection.png" alt-text="A screenshot showing available Grounding with Bing Search connections." lightbox="../../media\tools\bing\create-bing-connection.png":::
 
 ::: zone-end
 

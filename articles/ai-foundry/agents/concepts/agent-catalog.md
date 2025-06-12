@@ -20,7 +20,7 @@ With agents you create using these code samples, be sure to assess safety and le
 ## Prerequisites
 
 - [Azure subscription](https://azure.microsoft.com/free)
-- An [Azure AI Foundry project](..\..\how-to\create-projects.md).
+- An [Azure AI Foundry project](../../how-to\create-projects.md).
 
 ## Find the Agent Catalog in the Azure AI Foundry portal
 
@@ -29,7 +29,7 @@ With agents you create using these code samples, be sure to assess safety and le
 1. On the left pane, select **Agents**.
 1. Near the top of the screen, select **Catalog**. Find the code sample you want to use.
 
-    :::image type="content" source="..\media\agent-catalog.png" alt-text="A screenshot of the model catalog." lightbox="..\media\agent-catalog.png":::
+    :::image type="content" source="../media\agent-catalog.png" alt-text="A screenshot of the model catalog." lightbox="../media\agent-catalog.png":::
 
 1. Select **Open in Github** to view the entire sample application.
 

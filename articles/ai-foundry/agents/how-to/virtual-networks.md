@@ -30,7 +30,7 @@ For customers without an existing virtual network, the Standard Setup with Priva
 
 ## Architecture diagram
 
-:::image type="content" source="..\media\private-network-isolation.png" alt-text="A diagram showing virtual network architecture.":::
+:::image type="content" source="../media\private-network-isolation.png" alt-text="A diagram showing virtual network architecture.":::
 ### Known limitations
 
 - Subnet IP address limitation: only class B and C are supported
@@ -44,7 +44,7 @@ For customers without an existing virtual network, the Standard Setup with Priva
     * Alternatively, having the **Owner** role at the subscription level also satisfies this requirement.
     * The key permission needed is: `Microsoft.Authorization/roleAssignments/write`
 * [Python 3.8 or later](https://www.python.org/)
-* Once the agent environment is configured, ensure that each team member who wants to use the Agent Playground or SDK to create or edit agents has been assigned the built-in **Azure AI User** [RBAC role](..\..\concepts\rbac-azure-ai-foundry.md) for the project.
+* Once the agent environment is configured, ensure that each team member who wants to use the Agent Playground or SDK to create or edit agents has been assigned the built-in **Azure AI User** [RBAC role](../../concepts\rbac-azure-ai-foundry.md) for the project.
     * The minimum set of permissions required is: **agents/*/read**, **agents/*/action**, **agents/*/delete**  
 * Register providers. The following providers must be registered:
     * `Microsoft.KeyVault`
@@ -211,4 +211,4 @@ Our goal is to accelerate the development and deployment of AI agents without co
 
 
 ## What's next?
-You’ve now successfully configured a Network Secure Account and project, use the [quickstart](..\quickstart.md) to create your first agent. 
+You’ve now successfully configured a Network Secure Account and project, use the [quickstart](../quickstart.md) to create your first agent. 

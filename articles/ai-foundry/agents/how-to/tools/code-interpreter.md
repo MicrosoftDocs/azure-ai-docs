@@ -21,7 +21,7 @@ Code Interpreter allows the agents to write and run Python code in a sandboxed e
 
 ### Supported models
 
-The [models page](..\..\quotas-limits.md) contains the most up-to-date information on regions/models where agents and code interpreter are supported.
+The [models page](../../quotas-limits.md) contains the most up-to-date information on regions/models where agents and code interpreter are supported.
 
 We recommend using Agents with the latest models to take advantage of the new features, larger context windows, and more up-to-date training data.
 

@@ -93,4 +93,4 @@ The model can now be referenced in your code (`Target URI` + `@` + `Model Name`)
 
 ## Next steps
 
-[Create a new Agent project](..\quickstart.md)
+[Create a new Agent project](../quickstart.md)

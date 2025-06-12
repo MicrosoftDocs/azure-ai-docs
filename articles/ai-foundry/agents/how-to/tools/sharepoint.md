@@ -33,11 +33,11 @@ Integrate your agents with the **Microsoft SharePoint** to chat with your privat
 > * Supported document types: text data in the following format: `.pdf`, `.docx`, `.ppt`, `.txt`, `.aspx` 
 > * We recommend you start with SharePoint sites that have: a simple folder structure and a small number of short documents. 
 
-1. Create an agent by following the steps in the [quickstart](..\..\quickstart.md).
+1. Create an agent by following the steps in the [quickstart](../../quickstart.md).
 
 1. You can add the SharePoint tool to an agent programatically using the code examples listed at the top of this article, or the Azure AI Foundry portal. If you want to use the portal, in either the **Create and debug** or **Agent playground** screen for your agent, scroll down the setup pane on the right to knowledge. Then select **Add**.
 
-   :::image type="content" source="..\..\media\tools\knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="..\..\media\tools\knowledge-tools.png":::
+   :::image type="content" source="../../media\tools\knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media\tools\knowledge-tools.png":::
 
 1. Select **SharePoint** and follow the prompts to add the tool. You can only add one per agent.
 

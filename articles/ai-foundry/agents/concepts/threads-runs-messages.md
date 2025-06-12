@@ -26,7 +26,7 @@ When you use an Agent, there are a series of steps that are involved.
 - **Check the run status:** Monitor the run until it has completed. 
 - **Getting the response:** After the agent has created a response, display it to the user.
 
-:::image type="content" source="..\media\run-thread-model.png" alt-text="A diagram showing an example of an agent run." lightbox="..\media\run-thread-model.png":::
+:::image type="content" source="../media\run-thread-model.png" alt-text="A diagram showing an example of an agent run." lightbox="../media\run-thread-model.png":::
 
 ## Agent
 
@@ -46,4 +46,4 @@ A run involves invoking the agent on the thread, where it processes the messages
 
 ## Next steps
 
-* [Quickstart: create an agent](..\quickstart.md)
+* [Quickstart: create an agent](../quickstart.md)

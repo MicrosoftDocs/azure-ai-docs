@@ -39,7 +39,7 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 > * The model you selected in Azure AI Foundry Agent setup is only used for agent orchestration and response generation. It doesn't impact which model Fabric data agent uses for NL2SQL operation.
 > * To help your model invoke your Microsoft Fabric tool in the expected way, please make sure you update agent instructions with descriptions of your Fabric data agent and what data it has access to. An example is "for customer and product sales related data, please use the Fabric tool". We recommend using a smaller AI model such as `gpt-4o-mini`. You can also use `tool_choice` parameter in SDK or API to force Fabric tool to be invoked at each run. 
 
-1. Create an Azure AI Foundry Agent by following the steps in the [quickstart](..\..\quickstart.md).
+1. Create an Azure AI Foundry Agent by following the steps in the [quickstart](../../quickstart.md).
 
 1. Create and publish a [Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312910)
 
@@ -49,7 +49,7 @@ You can add the Microsoft Fabric tool to an agent programmatically using the cod
 
 1. Navigate to the **Agents** screen for your agent in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), scroll down the Setup pane on the right to **knowledge**. Then select **Add**.
    
-    :::image type="content" source="..\..\media\tools\knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="..\..\media\tools\knowledge-tools.png":::
+    :::image type="content" source="../../media\tools\knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media\tools\knowledge-tools.png":::
 
 1. Select **Microsoft Fabric** and follow the prompts to add the tool. You can add only one per agent.
 
@@ -59,7 +59,7 @@ You can add the Microsoft Fabric tool to an agent programmatically using the cod
 
    1. Then, you can add both to your connection. Make sure you have checked `is secret` for both of them
    
-        :::image type="content" source="..\..\media\tools\fabric-foundry.png" alt-text="A screenshot showing the fabric connection in the Azure AI Foundry portal." lightbox="..\..\media\tools\fabric-foundry.png":::
+        :::image type="content" source="../../media\tools\fabric-foundry.png" alt-text="A screenshot showing the fabric connection in the Azure AI Foundry portal." lightbox="../../media\tools\fabric-foundry.png":::
 
 :::zone-end
 <!--
@@ -370,7 +370,7 @@ for await (const m of messagesIterator) {
 -->
 :::zone pivot="rest"
 
-Follow the [REST API Quickstart](..\..\quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`. For `API_VERSION`, please make sure you are using `2025-05-15-preview`.
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`. For `API_VERSION`, please make sure you are using `2025-05-15-preview`.
 > [!IMPORTANT]
 > The following samples are applicable if you are using **Azure AI Foundry Project** resource with Microsoft Fabric tool through REST API call
 > Your connection id should be in this format: `/subscriptions/<sub-id>/resourceGroups/<your-rg-name>/providers/Microsoft.CognitiveServices/accounts/<your-ai-services-name>/projects/<your-project-name>/connections/<your-fabric-connection-name>`

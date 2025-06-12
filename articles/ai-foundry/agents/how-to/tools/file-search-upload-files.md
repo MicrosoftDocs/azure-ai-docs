@@ -18,7 +18,7 @@ ms.custom: azure-ai-agents-code
 Use this article to find step-by-step instructions and code samples for uploading files using the file search tool.
 
 ## Prerequisites 
-1. Complete the [agent setup](..\..\quickstart.md).
+1. Complete the [agent setup](../../quickstart.md).
 
 2. Ensure that you have the role **Storage Blob Data Contributor** on your project's storage account.
 
@@ -31,13 +31,13 @@ Use this article to find step-by-step instructions and code samples for uploadin
 
 1. Go to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). In the **Agents** screen for your agent, scroll down the **Setup** pane on the right to **knowledge**. Then select **Add**.
 
-    :::image type="content" source="..\..\media\tools\knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="..\..\media\tools\knowledge-tools.png":::
+    :::image type="content" source="../../media\tools\knowledge-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media\tools\knowledge-tools.png":::
 
 1. Select **Files** and follow the prompts to add the tool. 
 
-    :::image type="content" source="..\..\media\tools\knowledge-tools-list.png" alt-text="A screenshot showing the available knowledge tools in the Azure AI Foundry portal." lightbox="..\..\media\tools\knowledge-tools-list.png":::
+    :::image type="content" source="../../media\tools\knowledge-tools-list.png" alt-text="A screenshot showing the available knowledge tools in the Azure AI Foundry portal." lightbox="../../media\tools\knowledge-tools-list.png":::
 
-    :::image type="content" source="..\..\media\tools\file-upload.png" alt-text="A screenshot showing the file upload page." lightbox="..\..\media\tools\file-upload.png":::
+    :::image type="content" source="../../media\tools\file-upload.png" alt-text="A screenshot showing the file upload page." lightbox="../../media\tools\file-upload.png":::
 
 ::: zone-end
 
@@ -462,7 +462,7 @@ console.log(`Deleted agent, agent ID: ${agent.id}`);
 
 To access your files, the file search tool uses the vector store object. Upload your files and create a vector store. After creating the vector store, poll its status until all files are out of the in_progress state to ensure that all content is fully processed. The SDK provides helpers for uploading and polling.
 
-Follow the [REST API Quickstart](..\..\quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
 
 ### Upload a file
 

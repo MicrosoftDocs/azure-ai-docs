@@ -41,7 +41,7 @@ Tools are optional capabilities you can add to your AI agent for AI models to de
 
 You can add tools at the agent, thread, or run level. By providing tools at a narrower level, the tool resources will **override** tool resources at a broader level. For example, tool resources at the run level override tool resources at thread level. Currently, you can add multiple tools but you can add **one instance of each** of the following tools: File Search, Azure AI Search, Grounding with Bing Search, Grounding with Bing Custom Search, Microsoft Fabric, and other tools under `knowledge` section. 
 
-When a user sends a query to the agent, it will create a [thread, run, and message](..\..\concepts\threads-runs-messages.md). For each run, the AI model decides what tools to invoke based on the user intent and available tool resources. Based on the tool outputs, the AI model might decide to invoke another tool or call the same tool again to get more context. For example, when you use Grounding with Bing Search tool, you might see multiple Bing Search queries when [tracing a thread](..\..\concepts\tracing.md). This means the AI model actually calls the Grounding with Bing Search tool multiple times with different queries to get more information. If you want to learn more about what tools are called and how the AI model invokes them, check the run step details.
+When a user sends a query to the agent, it will create a [thread, run, and message](../../concepts\threads-runs-messages.md). For each run, the AI model decides what tools to invoke based on the user intent and available tool resources. Based on the tool outputs, the AI model might decide to invoke another tool or call the same tool again to get more context. For example, when you use Grounding with Bing Search tool, you might see multiple Bing Search queries when [tracing a thread](../../concepts\tracing.md). This means the AI model actually calls the Grounding with Bing Search tool multiple times with different queries to get more information. If you want to learn more about what tools are called and how the AI model invokes them, check the run step details.
 
 There are various ways to influence how your AI agent invokes tools:
 
@@ -50,7 +50,7 @@ There are various ways to influence how your AI agent invokes tools:
 
 ## Prerequisites 
 
-* [A created agent](..\..\quickstart.md)
+* [A created agent](../../quickstart.md)
 * Make sure your AI model has enough Tokens-Per-Minute (TPM) allocated. We recommend having a minimum of 30k TPM. You can change the TPM allocation by going to **models + endpoints** in the [AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and edit your model.
 
 ## Built-in tools 

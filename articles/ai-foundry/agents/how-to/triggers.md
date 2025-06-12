@@ -25,7 +25,7 @@ To check if a specific connector has a trigger capability, view its documentatio
 
 ## Prerequisites
 
-* [An existing agent](..\quickstart.md)
+* [An existing agent](../quickstart.md)
 
 ## Set up 
 
@@ -56,7 +56,7 @@ Start by adding the Azure AI Foundry Agent service connectors to your workflow.
 
 1. Click **add an action** and then search for **Azure AI Foundry Agent Service**. This will let you add connectors to your workflow.
 
-    :::image type="content" source="..\media\triggers\connectors.png" alt-text="A screenshot of the actions added to a workflow." lightbox="..\media\triggers\connectors.png":::
+    :::image type="content" source="../media\triggers\connectors.png" alt-text="A screenshot of the actions added to a workflow." lightbox="../media\triggers\connectors.png":::
 
 1. Depending on your use-case, choose the actions you need. 
 
@@ -126,7 +126,7 @@ To configure the **create run** connector, click on it and provide the following
 
 **Thread ID (required)**: the thread ID of the thread you just created. Click the function icon to select the **ID** parameter from your previous **create thread** connector output.
 
-:::image type="content" source="..\media\triggers\create-run.png" alt-text="A screenshot of the create run connector" lightbox="..\media\triggers\create-run.png":::
+:::image type="content" source="../media\triggers\create-run.png" alt-text="A screenshot of the create run connector" lightbox="../media\triggers\create-run.png":::
 
 **Assistant id (required)**: the ID of the agent you have created. 
 
@@ -159,6 +159,6 @@ To get a response, you need a custom function to retrieve the exact response bod
 
     `body('List_Messages')['data'][0]['content'][0]['text']['value']` 
 
-    :::image type="content" source="..\media\triggers\get-response.png" alt-text="A screenshot showing the compose connector." lightbox="..\media\triggers\get-response.png":::
+    :::image type="content" source="../media\triggers\get-response.png" alt-text="A screenshot showing the compose connector." lightbox="../media\triggers\get-response.png":::
 
 1. Add other connectors if needed. You can click **run** and click **run history** to check the status of your runs. 

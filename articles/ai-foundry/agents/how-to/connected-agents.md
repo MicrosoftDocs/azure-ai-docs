@@ -85,7 +85,7 @@ Checks the contract against internal standards or uploaded guidelines to identif
 2. Select an existing agent from the list or create a new one.
 3. Scroll down to the **Connected agents** section in the agent's setup panel and select **Add +**.
 
-:::image type="content" source="..\media\connected-agents\connected-agents-foundry.png" alt-text="A screenshot of the agents page in the Azure AI Foundry." lightbox="..\media\connected-agents\connected-agents-foundry.png":::
+:::image type="content" source="../media\connected-agents\connected-agents-foundry.png" alt-text="A screenshot of the agents page in the Azure AI Foundry." lightbox="../media\connected-agents\connected-agents-foundry.png":::
 
 4. In the dialog that appears, choose an agent for the main agent to delegate tasks to, and describe:
    - Select an **existing agent** from the dropdown. This is the connected agent that the main agent will delegate tasks to.
@@ -100,7 +100,7 @@ Checks the contract against internal standards or uploaded guidelines to identif
 
     The `research_agent` should delegate this request to `stock_price_bot` based on the routing description you defined.
 
-:::image type="content" source="..\media\connected-agents\connected-agents-foundry-2.png" alt-text="A screenshot of the connected agents screen" lightbox="..\media\connected-agents\connected-agents-foundry-2.png":::
+:::image type="content" source="../media\connected-agents\connected-agents-foundry-2.png" alt-text="A screenshot of the connected agents screen" lightbox="../media\connected-agents\connected-agents-foundry-2.png":::
 
 ::: zone-end
 
