@@ -18,7 +18,7 @@ In this quickstart, you use the [Azure AI Search REST APIs](/rest/api/searchserv
 In Azure AI Search, a [vector store](vector-store.md) has an index schema that defines vector and nonvector fields, a vector search configuration for algorithms that create the embedding space, and settings on vector field definitions that are evaluated at query time. The [Create Index](/rest/api/searchservice/indexes/create-or-update) REST API creates the vector store.
 
 > [!NOTE]
-> This quickstart omits the vectorization step and provides embeddings in sample documents. If you want to add [built-in data chunking and vectorization](vector-search-integrated-vectorization.md) over your own content, try the [**Import and vectorize data wizard**](search-get-started-portal-import-vectors.md) for an end-to-end walkthrough.
+> This quickstart omits the vectorization step and provides inline embeddings. If you want to add [built-in data chunking and vectorization](vector-search-integrated-vectorization.md) over your own content, try the [**Import and vectorize data wizard**](search-get-started-portal-import-vectors.md) for an end-to-end walkthrough.
 
 ## Prerequisites
 
@@ -237,7 +237,7 @@ The index schema in this example is organized around hotel content. Sample data 
         "vectorSearch": {
             "algorithms": [
                 {
-                    "name": "my-hnsw-vector-config-1",
+                    "name": "hnsw-vector-config",
                     "kind": "hnsw",
                     "hnswParameters": 
                     {
@@ -248,16 +248,7 @@ The index schema in this example is organized around hotel content. Sample data 
                     }
                 },
                 {
-                    "name": "my-hnsw-vector-config-2",
-                    "kind": "hnsw",
-                    "hnswParameters": 
-                    {
-                        "m": 4,
-                        "metric": "euclidean"
-                    }
-                },
-                {
-                    "name": "my-eknn-vector-config",
+                    "name": "eknn-vector-config",
                     "kind": "exhaustiveKnn",
                     "exhaustiveKnnParameters": 
                     {
@@ -268,14 +259,14 @@ The index schema in this example is organized around hotel content. Sample data 
             "profiles": [      
                 {
                     "name": "my-vector-profile",
-                    "algorithm": "my-hnsw-vector-config-1"
+                    "algorithm": "hnsw-vector-config"
                 }
           ]
         },
         "semantic": {
             "configurations": [
                 {
-                    "name": "my-semantic-config",
+                    "name": "semantic-config",
                     "prioritizedFields": {
                         "titleField": {
                             "fieldName": "HotelName"
@@ -295,111 +286,102 @@ The index schema in this example is organized around hotel content. Sample data 
 
 1. Select **Send request**. You should have an `HTTP/1.1 201 Created` response. 
 
-The response body should include the JSON representation of the index schema.
-
-```json
-{
-    "@odata.context": "https://my-demo-search.search.windows.net/$metadata#indexes/$entity",
-    "@odata.etag": "\"0x8DD2E70E6C36D8E\"",
-    "name": "hotels-vector-quickstart",
-    "defaultScoringProfile": null,
-    "fields": [
+    The response body should include the JSON representation of the index schema.
+    
+    ```json
     {
-        "name": "HotelId",
-        "type": "Edm.String",
-        "searchable": false,
-        "filterable": true,
-        "retrievable": true,
-        "sortable": false,
-        "facetable": false,
-        "key": true,
-        "indexAnalyzer": null,
-        "searchAnalyzer": null,
-        "analyzer": null,
-        "dimensions": null,
-        "vectorSearchProfile": null,
-        "synonymMaps": []
-    },
-    [MORE FIELD DEFINITIONS OMITTED FOR BREVITY]
-    ],
-    "scoringProfiles": [],
-    "corsOptions": null,
-    "suggesters": [],
-    "analyzers": [],
-    "tokenizers": [],
-    "tokenFilters": [],
-    "charFilters": [],
-    "encryptionKey": null,
-    "similarity": {
-    "@odata.type": "#Microsoft.Azure.Search.BM25Similarity",
-    "k1": null,
-    "b": null
-    },
-    "vectorSearch": {
-    "algorithms": [
+        "@odata.context": "https://my-demo-search.search.windows.net/$metadata#indexes/$entity",
+        "@odata.etag": "\"0x8DD2E70E6C36D8E\"",
+        "name": "hotels-vector-quickstart",
+        "defaultScoringProfile": null,
+        "fields": [
         {
-        "name": "my-hnsw-vector-config-1",
-        "kind": "hnsw",
-        "hnswParameters": {
-            "metric": "cosine",
-            "m": 4,
-            "efConstruction": 400,
-            "efSearch": 500
+            "name": "HotelId",
+            "type": "Edm.String",
+            "searchable": false,
+            "filterable": true,
+            "retrievable": true,
+            "sortable": false,
+            "facetable": false,
+            "key": true,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "analyzer": null,
+            "dimensions": null,
+            "vectorSearchProfile": null,
+            "synonymMaps": []
         },
-        "exhaustiveKnnParameters": null
+        [MORE FIELD DEFINITIONS OMITTED FOR BREVITY]
+        ],
+        "scoringProfiles": [],
+        "corsOptions": null,
+        "suggesters": [],
+        "analyzers": [],
+        "tokenizers": [],
+        "tokenFilters": [],
+        "charFilters": [],
+        "encryptionKey": null,
+        "similarity": {
+        "@odata.type": "#Microsoft.Azure.Search.BM25Similarity",
+        "k1": null,
+        "b": null
         },
-        {
-        "name": "my-hnsw-vector-config-2",
-        "kind": "hnsw",
-        "hnswParameters": {
-            "metric": "euclidean",
-            "m": 4,
-            "efConstruction": 400,
-            "efSearch": 500
-        },
-        "exhaustiveKnnParameters": null
-        },
-        {
-        "name": "my-eknn-vector-config",
-        "kind": "exhaustiveKnn",
-        "hnswParameters": null,
-        "exhaustiveKnnParameters": {
-            "metric": "cosine"
-        }
-        }
-    ],
-    "profiles": [
-        {
-        "name": "my-vector-profile",
-        "algorithm": "my-hnsw-vector-config-1"
-        }
-    ]
-    },
-    "semantic": {
-    "defaultConfiguration": null,
-    "configurations": [
-        {
-        "name": "my-semantic-config",
-        "prioritizedFields": {
-            "titleField": {
-            "fieldName": "HotelName"
+        "vectorSearch": {
+        "algorithms": [
+            {
+            "name": "hnsw-vector-config",
+            "kind": "hnsw",
+            "hnswParameters": {
+                "metric": "cosine",
+                "m": 4,
+                "efConstruction": 400,
+                "efSearch": 500
             },
-            "prioritizedContentFields": [
+            "exhaustiveKnnParameters": null
+            },
+            "exhaustiveKnnParameters": null
+            },
             {
-                "fieldName": "Description"
+            "name": "eknn-vector-config",
+            "kind": "exhaustiveKnn",
+            "hnswParameters": null,
+            "exhaustiveKnnParameters": {
+                "metric": "cosine"
             }
-            ],
-            "prioritizedKeywordsFields": [
+            }
+        ],
+        "profiles": [
             {
-                "fieldName": "Category"
+            "name": "my-vector-profile",
+            "algorithm": "hnsw-vector-config-1"
             }
-            ]
+        ]
+        },
+        "semantic": {
+        "defaultConfiguration": null,
+        "configurations": [
+            {
+            "name": "semantic-config",
+            "prioritizedFields": {
+                "titleField": {
+                "fieldName": "HotelName"
+                },
+                "prioritizedContentFields": [
+                {
+                    "fieldName": "Description"
+                }
+                ],
+                "prioritizedKeywordsFields": [
+                {
+                    "fieldName": "Category"
+                }
+                ]
+            }
+            }
+        ]
         }
-        }
-    ]
     }
-}
-```
+    ```
 
 Key takeaways about the [Create Index](/rest/api/searchservice/indexes/create) REST API:
 
@@ -660,16 +642,13 @@ In Azure AI Search, the index contains all searchable data and queries run on th
     }
     ```
 
-    > [!IMPORTANT]
-    > The code in this example isn't runnable. Several characters or lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
-
 1. Select **Send request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search documents.
 
 Key takeaways about the [Documents - Index REST API](/rest/api/searchservice/documents/) request:
 
 - Documents in the payload consist of fields defined in the index schema.
 
-- Vector fields contain floating point values. The dimensions attribute has a minimum of 2 and a maximum of 3,072 floating point values each. This quickstart sets the dimensions attribute to 1,536 because that's the size of embeddings generated by the Azure OpenAI **text-embedding-ada-002** model.
+- Vector fields contain floating point values. The dimensions attribute has a minimum of 2 and a maximum of 3,072 floating point values each. This quickstart sets the dimensions attribute to 1,536 because that's the size of embeddings generated by the Azure OpenAI **text-embedding-3-small** model.
 
 ## Run queries
 
@@ -720,77 +699,77 @@ The vector query string is semantically similar to the search string, but it inc
 
 1. Select **Send request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
 
-The response for the vector equivalent of `quintessential lodging near running trails, eateries, retail` includes k-5 results although the search engine found 7 matches. Each result provides a search score and the fields listed in `select`. In a similarity search, the response always includes `k` results ordered by the value similarity score.
-
-```json
-{
-  "@odata.context": "https://my-demo-search.search.windows.net/indexes('hotels-vector-quickstart')/$metadata#docs(*)",
-  "@odata.count": 7,
-  "value": [
+    The response for the vector equivalent of `quintessential lodging near running trails, eateries, retail` includes k-5 results although the search engine found 7 matches. Each result provides a search score and the fields listed in `select`. In a similarity search, the response always includes `k` results ordered by the value similarity score.
+    
+    ```json
     {
-      "@search.score": 0.6605852,
-      "HotelId": "48",
-      "HotelName": "Nordick's Valley Motel",
-      "Description": "Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer. Hiking? Wine Tasting? Exploring the caverns? It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley.",
-      "Category": "Boutique",
-      "Tags": [
-        "continental breakfast",
-        "air conditioning",
-        "free wifi"
-      ]
-    },
-    {
-      "@search.score": 0.6333684,
-      "HotelId": "13",
-      "HotelName": "Luxury Lion Resort",
-      "Description": "Unmatched Luxury. Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium and transportation hubs, we feature the best in convenience and comfort.",
-      "Category": "Luxury",
-      "Tags": [
-        "bar",
-        "concierge",
-        "restaurant"
-      ]
-    },
-    {
-      "@search.score": 0.605672,
-      "HotelId": "4",
-      "HotelName": "Sublime Palace Hotel",
-      "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.",
-      "Category": "Boutique",
-      "Tags": [
-        "concierge",
-        "view",
-        "air conditioning"
-      ]
-    },
-    {
-      "@search.score": 0.6026341,
-      "HotelId": "49",
-      "HotelName": "Swirling Currents Hotel",
-      "Description": "Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center. Each room comes equipped with a microwave, a coffee maker and a minifridge. In-room entertainment includes complimentary W-Fi and flat-screen TVs.",
-      "Category": "Suite",
-      "Tags": [
-        "air conditioning",
-        "laundry service",
-        "24-hour front desk service"
-      ]
-    },
-    {
-      "@search.score": 0.57902366,
-      "HotelId": "2",
-      "HotelName": "Old Century Hotel",
-      "Description": "The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.",
-      "Category": "Boutique",
-      "Tags": [
-        "pool",
-        "free wifi",
-        "air conditioning",
-        "concierge"
+      "@odata.context": "https://my-demo-search.search.windows.net/indexes('hotels-vector-quickstart')/$metadata#docs(*)",
+      "@odata.count": 7,
+      "value": [
+        {
+          "@search.score": 0.6605852,
+          "HotelId": "48",
+          "HotelName": "Nordick's Valley Motel",
+          "Description": "Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer. Hiking? Wine Tasting? Exploring the caverns? It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley.",
+          "Category": "Boutique",
+          "Tags": [
+            "continental breakfast",
+            "air conditioning",
+            "free wifi"
+          ]
+        },
+        {
+          "@search.score": 0.6333684,
+          "HotelId": "13",
+          "HotelName": "Luxury Lion Resort",
+          "Description": "Unmatched Luxury. Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium and transportation hubs, we feature the best in convenience and comfort.",
+          "Category": "Luxury",
+          "Tags": [
+            "bar",
+            "concierge",
+            "restaurant"
+          ]
+        },
+        {
+          "@search.score": 0.605672,
+          "HotelId": "4",
+          "HotelName": "Sublime Palace Hotel",
+          "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.",
+          "Category": "Boutique",
+          "Tags": [
+            "concierge",
+            "view",
+            "air conditioning"
+          ]
+        },
+        {
+          "@search.score": 0.6026341,
+          "HotelId": "49",
+          "HotelName": "Swirling Currents Hotel",
+          "Description": "Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center. Each room comes equipped with a microwave, a coffee maker and a minifridge. In-room entertainment includes complimentary W-Fi and flat-screen TVs.",
+          "Category": "Suite",
+          "Tags": [
+            "air conditioning",
+            "laundry service",
+            "24-hour front desk service"
+          ]
+        },
+        {
+          "@search.score": 0.57902366,
+          "HotelId": "2",
+          "HotelName": "Old Century Hotel",
+          "Description": "The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.",
+          "Category": "Boutique",
+          "Tags": [
+            "pool",
+            "free wifi",
+            "air conditioning",
+            "concierge"
+          ]
+        }
       ]
     }
-  ]
-}
-```
+    ```
 
 ### Single vector search with filter
 
@@ -798,10 +777,9 @@ You can add filters, but the filters are applied to the nonvector content in you
 
 1. Formulate the request. This is the same request as the previous, with an extra filter and filter mode parameter.
 
-
     ```http
     ### Run a vector query with a filter
-    POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2023-11-01  HTTP/1.1
+    POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2024-07-01  HTTP/1.1
         Content-Type: application/json
         Authorization: Bearer {{token}}
     
@@ -820,48 +798,45 @@ You can add filters, but the filters are applied to the nonvector content in you
             },
         ]
     }
-    ``` 
-
-    > [!IMPORTANT]
-    > The code in this example isn't runnable. Several characters or lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
+    ```
 
 1. Select **Send request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
 
-The query was the same as the previous [single vector search example](#single-vector-search), but it includes a post-processing exclusion filter and returns only the two hotels that have free Wi-Fi.
-
-```json
-{
-  "@odata.context": "https://my-demo-search.search.windows.net/indexes('hotels-vector-quickstart')/$metadata#docs(*)",
-  "@odata.count": 2,
-  "value": [
+    The query was the same as the previous [single vector search example](#single-vector-search), but it includes a post-processing exclusion filter and returns only the two hotels that have free Wi-Fi.
+    
+    ```json
     {
-      "@search.score": 0.6605852,
-      "HotelId": "48",
-      "HotelName": "Nordick's Valley Motel",
-      "Description": "Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer. Hiking? Wine Tasting? Exploring the caverns? It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley.",
-      "Category": "Boutique",
-      "Tags": [
-        "continental breakfast",
-        "air conditioning",
-        "free wifi"
-      ]
-    },
-    {
-      "@search.score": 0.57902366,
-      "HotelId": "2",
-      "HotelName": "Old Century Hotel",
-      "Description": "The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.",
-      "Category": "Boutique",
-      "Tags": [
-        "pool",
-        "free wifi",
-        "air conditioning",
-        "concierge"
+      "@odata.context": "https://my-demo-search.search.windows.net/indexes('hotels-vector-quickstart')/$metadata#docs(*)",
+      "@odata.count": 2,
+      "value": [
+        {
+          "@search.score": 0.6605852,
+          "HotelId": "48",
+          "HotelName": "Nordick's Valley Motel",
+          "Description": "Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer. Hiking? Wine Tasting? Exploring the caverns? It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley.",
+          "Category": "Boutique",
+          "Tags": [
+            "continental breakfast",
+            "air conditioning",
+            "free wifi"
+          ]
+        },
+        {
+          "@search.score": 0.57902366,
+          "HotelId": "2",
+          "HotelName": "Old Century Hotel",
+          "Description": "The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.",
+          "Category": "Boutique",
+          "Tags": [
+            "pool",
+            "free wifi",
+            "air conditioning",
+            "concierge"
+          ]
+        }
       ]
     }
-  ]
-}
-```
+    ```
 
 ### Hybrid search
 
@@ -874,7 +849,7 @@ Hybrid search consists of keyword queries and vector queries in a single search 
 
     ```http
     ### Run a hybrid query
-    POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2023-11-01  HTTP/1.1
+    POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2024-07-01  HTTP/1.1
         Content-Type: application/json
         Authorization: Bearer {{token}}
         
@@ -894,9 +869,6 @@ Hybrid search consists of keyword queries and vector queries in a single search 
         ]
     }
     ```
-
-    > [!IMPORTANT]
-    > The code in this example isn't runnable. Several characters or lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
 
 1. Select **Send request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
 
@@ -1080,7 +1052,7 @@ Here's the last query in the collection. This hybrid query with semantic ranking
 
     ```http
     ### Run a hybrid query with semantic reranking
-    POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2023-11-01  HTTP/1.1
+    POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2024-07-01  HTTP/1.1
         Content-Type: application/json
         Authorization: Bearer {{token}}
 
@@ -1107,9 +1079,6 @@ Here's the last query in the collection. This hybrid query with semantic ranking
         ]
     }
     ```
-
-    > [!IMPORTANT]
-    > The code in this example isn't runnable. Several characters or lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
 
 1. Select **Send request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
 
@@ -1177,7 +1146,7 @@ If you want to keep the search service, but delete the index and documents, you 
 
 ```http
 ### Delete an index
-DELETE  {{baseUrl}}/indexes/hotels-vector-quickstart?api-version=2023-11-01 HTTP/1.1
+DELETE  {{baseUrl}}/indexes/hotels-vector-quickstart?api-version=2024-07-01 HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{token}}
 ```
