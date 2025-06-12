@@ -24,4 +24,4 @@ ms.author: lajanuar
     |Utterances primary language     | The primary language of your project. Your training data should primarily be in this language.        |
     |Enable multiple languages    |  Whether you want to enable your project to support [multiple languages](../../language-support.md#multi-lingual-option) at once.       |
 
-1. After you're finished, select **Create**. You should now see the **Getting started** landing page for your project.
+1. After you finish, select **Create**. You should now see the **Getting started** landing page for your project.

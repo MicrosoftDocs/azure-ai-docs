@@ -49,7 +49,7 @@ After you create a Language resource, create a CLU project.
 
 ---
 
-## Import project
+## Import a project
 
 ### [Azure AI Foundry](#tab/azure-ai-foundry)
 
@@ -73,11 +73,11 @@ You can import a CLU JSON into the service.
 
 ---
 
-## Export project
+## Export a project
 
 ### [Azure AI Foundry](#tab/azure-ai-foundry)
 
-You can export a CLU project as a JSON file at any time. On the conversation projects page, select a project, and select **Export**.
+You can export a CLU project as a JSON file at any time. On the conversation projects page, select a project, and then select **Export**.
 
 ### [REST APIs](#tab/rest-api)
 
@@ -99,7 +99,7 @@ You can export a CLU project as a JSON file at any time.
 
 ---
 
-## Delete project
+## Delete a project
 
 ### [Azure AI Foundry](#tab/azure-ai-foundry)
 
