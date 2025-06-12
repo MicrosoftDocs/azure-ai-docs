@@ -29,7 +29,7 @@ Azure Liveness quick link provides multiple benefits to customers:
 
 You can use the liveness quick link website, `liveness.face.azure.com`, to turn a liveness session into a shareable, single use link:
 
-:::image type="content" source="media/liveness/liveness-quick-link-diagram.png" alt-text="A diagram illustrates liveness quick link work flow.":::
+:::image type="content" source="../media/liveness/liveness-quick-link-diagram.png" alt-text="A diagram illustrates liveness quick link work flow.":::
 
 1.	Start a session with your server-side code. Your application backend requests a new liveness session from the Face API and receives a short-lived authorization token that represents that session.
 2.	Swap the session token for a link. Your application backend sends the token to the quick link service, which creates a one-time URL connected to the session. Here are examples of the post request:
