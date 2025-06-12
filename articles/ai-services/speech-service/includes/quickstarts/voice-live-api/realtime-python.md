@@ -353,7 +353,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
                     if event.get("type") == "session.created":
                         session = event.get("session")
-                        logger.info(f"Session created: {session.get("id")}")
+                        logger.info(f"Session created: {session.get('id')}")
 
                     elif event.get("type") == "response.audio.delta":
                         if event.get("item_id") != last_audio_item_id:
