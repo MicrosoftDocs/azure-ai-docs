@@ -86,7 +86,7 @@ To add a regex component, select **Add expression**. Name the regex key, and ent
 
 ### Define entity options
 
-Select the **Entity Options** tab on the entity details page. When multiple components are defined for an entity, their predictions might overlap. When an overlap occurs, each entity's final prediction is determined based on the [entity option](../concepts/entity-components.md#entity-options) that you select in this step. Select the option that you want to apply to this entity and select **Save**.
+Select the **Entity Options** tab on the entity details page. When multiple components are defined for an entity, their predictions might overlap. When an overlap occurs, each entity's final prediction is determined based on the [entity option](../concepts/entity-components.md#entity-options) that you select in this step. Select the option that you want to apply to this entity, and then select **Save**.
 
    <!--:::image type="content" source="../media/entity-options.png" alt-text="A screenshot that shows an entity option in Language Studio." lightbox="../media/entity-options.png":::-->
 
