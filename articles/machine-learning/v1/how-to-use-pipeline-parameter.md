@@ -41,7 +41,7 @@ In this article, you learn how to do the following:
 > [!IMPORTANT]
 > If you don't see the UI elements mentioned in this article, such as buttons in studio or designer, you might not have the right level of permissions for the workspace. Contact your Azure subscription administrator to verify that you're granted the correct level of access. For more information, see [Manage users and roles](../how-to-assign-roles.md).
 
-## Create a pipeline parameter
+## Create a pipeline input
 
 There are three ways to create a pipeline input in the designer:
 - Create a pipeline input in the settings panel and bind it to a component.
@@ -54,8 +54,6 @@ There are three ways to create a pipeline input in the designer:
 ### Option 1: Create a pipeline input in the settings panel
 
 In this section, you create a pipeline input in the settings panel.
-
-In this example, you create a pipeline input that defines how a pipeline fills in missing data with the **Clean missing data** component.
 
 1. In your pipeline draft, select **Pipeline interface**.
 
@@ -100,7 +98,7 @@ If you want to submit your pipeline with variable datasets, you need to promote 
 
 You can now specify a different dataset by using the pipeline input the next time you run the pipeline.
 
-## Attach a component input to or detach a component pipeline from a pipeline input 
+## Attach a component input to or detach a component input from a pipeline input 
 
 In this section, you learn how to attach a component input to a pipeline input and how to detach a component input from a pipeline input.
 
