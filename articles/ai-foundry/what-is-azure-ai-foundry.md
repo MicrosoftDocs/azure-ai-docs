@@ -62,6 +62,9 @@ This table summarizes features available in the two project types:
 | AI Foundry API to work with agents and across models| ✅ (Native support) | Available via connections |
 | Project files (directly upload files and start experimenting) | ✅ | |
 | Project-level isolation of files and outputs | ✅ | ✅|
+| Models sold directly by Azure - Azure OpenAI, DeepSeek, xAI, etc. | ✅ | Available via connections |
+| Models sold through Marketplace - Stability, Bria, Cohere, etc. | ✅ | Available via connections |
+| Open source models e.g. HuggingFace  |  | ✅ |
 | Evaluations | ✅ | ✅ |
 | Playground | ✅ | ✅ |
 | Prompt flow |  | ✅ |
