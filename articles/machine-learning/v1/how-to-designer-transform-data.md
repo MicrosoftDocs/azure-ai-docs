@@ -42,7 +42,7 @@ Use these steps to import the sample dataset:
 
 1. Sign in to [Azure Machine Learning studio](https://ml.azure.com), and select the workspace you want to use.
 
-1. Go to the designer. Select **Create a new pipeline using classic prebuilt components** to create a new pipeline.
+1. Select **Designer** from the sidebar menu. Under **Classic prebuilt**, choose **Create a new pipeline using classic prebuilt components**.
 
 1. To the left of the pipeline canvas, in the **Component** tab, expand the **Sample data** node.
 
@@ -54,7 +54,7 @@ Use these steps to import the sample dataset:
 
 ### Split the data
 
-In this section, you use the [Split Data component](../algorithm-module-reference/split-data.md) to identify and split rows that contain *United-States* in the **native-country** column.
+Use the [Split Data component](../algorithm-module-reference/split-data.md) to identify and split rows that contain *United-States* in the **native-country** column.
 
 1. To the left of the canvas, in the component tab, expand the **Data Transformation** section, and find the **Split Data** component.
 

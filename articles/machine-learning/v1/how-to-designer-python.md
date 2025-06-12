@@ -21,7 +21,7 @@ This article explains how to use the [Execute Python Script](../algorithm-module
 
 You can use the in-built code editor to quickly add simple Python logic. You should use the zip file method to add more complex code, or to upload more Python libraries.
 
-The default execution environment uses the Anacondas distribution of Python. See the [Execute Python Script component reference](../algorithm-module-reference/execute-python-script.md) page for a complete list of preinstalled packages.
+The default execution environment uses the Anacondas distribution of Python. See the [Execute Python Script](../algorithm-module-reference/execute-python-script.md) component reference for a complete list of preinstalled packages.
 
 :::image type="content" source="media/how-to-designer-python/execute-python-map.png" alt-text="Diagram that shows the input map for Execute Python Script.":::
 

@@ -41,6 +41,8 @@ This article also assumes that you have some knowledge of building pipelines in 
 
 The pipeline used in this article is an altered version of the [Income prediction](samples-designer.md#classification) sample pipeline. The pipeline uses the [Import Data](../algorithm-module-reference/import-data.md) component instead of the sample dataset to show you how to train models using your own data.
 
+If you're using the pipeline that you built in part one of this series, add the other components in the following example.
+
 :::image type="content" source="./media/how-to-retrain-designer/modified-sample-pipeline.png" alt-text="Screenshot that shows the modified sample pipeline with a box highlighting the Import Data component." lightbox="./media/how-to-retrain-designer/modified-sample-pipeline.png":::
 
 ## Create a pipeline input
@@ -120,8 +122,6 @@ To make a REST call, you need an OAuth 2.0 bearer-type authentication header. Fo
 
 ## Related content
 
-In this article, you learned how to create a parameterized training pipeline endpoint using the designer.
+- [Tutorial: Train a no-code regression model using designer](tutorial-designer-automobile-price-train-score.md)
 
-For a complete walkthrough of how you can deploy a model to make predictions, see the [designer tutorial](tutorial-designer-automobile-price-train-score.md) to train and deploy a regression model.
-
-For how to publish and submit a job to pipeline endpoint using the SDK v1, see [Publish pipelines](how-to-deploy-pipelines.md).
+- [Publish machine learning pipelines](how-to-deploy-pipelines.md)
