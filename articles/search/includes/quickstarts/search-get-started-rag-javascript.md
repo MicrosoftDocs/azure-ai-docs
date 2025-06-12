@@ -208,7 +208,7 @@ In the remaining sections, you set up API calls to Azure OpenAI and Azure AI Sea
 
 ## Set up the Node.JS project
 
-Setup project with Visual Studio Code and TypeScript.
+Set up project with Visual Studio Code and TypeScript.
 
 1. Start Visual Studio Code in a new directory.
 
