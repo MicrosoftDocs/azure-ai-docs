@@ -211,7 +211,7 @@ In the remaining sections, you set up API calls to Azure OpenAI and Azure AI Sea
    AZURE_DEPLOYMENT_MODEL=<YOUR DEPLOYMENT NAME>
    ```
 
-## Set up the Node.js project
+## Set up the Node.JS project
 
 Setup project with Visual Studio Code and TypeScript.
 

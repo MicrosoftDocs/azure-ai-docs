@@ -206,7 +206,7 @@ In the remaining sections, you set up API calls to Azure OpenAI and Azure AI Sea
    AZURE_DEPLOYMENT_MODEL=<YOUR DEPLOYMENT NAME>
    ```
 
-## Set up the Node.js project
+## Set up the Node.JS project
 
 Setup project with Visual Studio Code and TypeScript.
 
@@ -257,7 +257,7 @@ You should now be logged in to Azure from your local device.
 
 Create a query script that uses the Azure AI Search index and the chat model to generate responses based on grounding data. The following steps guide you through setting up the query script.
 
-1. Create a `query.ts` file in the `src` directory with the following code.
+1. Create a `query.js` file in the `src` directory with the following code.
     
     :::code language="javascript" source="~/azure-search-javascript-samples/quickstart-rag-js/src/query.js" :::
 
