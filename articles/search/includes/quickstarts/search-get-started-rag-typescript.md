@@ -20,9 +20,9 @@ ms.date: 06/05/2025
 - [Node.JS with LTS](https://nodejs.org/en/download/).
 - [TypeScript](https://www.typescriptlang.org/download). You can globally install TypeScript using npm:
 
-      ```bash
-      npm install -g typescript
-      ```
+   ```bash
+   npm install -g typescript
+   ```
 
 
 ## Configure access
