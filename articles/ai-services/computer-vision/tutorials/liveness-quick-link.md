@@ -114,7 +114,6 @@ You can use the liveness quick link website, `liveness.face.azure.com`, to turn 
       --header 'authorization: Bearer <session-authorization-token>'
     ```
 
-
 The following is an example response:
     
   ```json
