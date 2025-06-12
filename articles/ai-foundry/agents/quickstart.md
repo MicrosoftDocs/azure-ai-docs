@@ -20,25 +20,25 @@ Azure AI Foundry Agent Service allows you to create AI agents tailored to your n
 
 ::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [quickstart-ai-foundry](includes\quickstart-foundry.md)]
+[!INCLUDE [quickstart-ai-foundry](includes/quickstart-foundry.md)]
 
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"
 
-[!INCLUDE [quickstart-csharp](includes\quickstart-csharp.md)]
+[!INCLUDE [quickstart-csharp](includes/quickstart-csharp.md)]
 
 ::: zone-end
 
 ::: zone pivot="programming-language-python-azure"
 
-[!INCLUDE [quickstart-python-azure](includes\quickstart-python.md)]
+[!INCLUDE [quickstart-python-azure](includes/quickstart-python.md)]
 
 ::: zone-end
 
 ::: zone pivot="programming-language-typescript"
 
-[!INCLUDE [quickstart-typescript](includes\quickstart-typescript.md)]
+[!INCLUDE [quickstart-typescript](includes/quickstart-typescript.md)]
 
 ::: zone-end
 
