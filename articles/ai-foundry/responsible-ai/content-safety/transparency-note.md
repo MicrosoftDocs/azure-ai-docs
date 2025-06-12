@@ -12,7 +12,7 @@ ms.date: 05/15/2023
 
 # Transparency note: Azure AI Content Safety
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 ## What is a Transparency note?
 

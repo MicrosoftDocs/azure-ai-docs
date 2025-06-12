@@ -13,7 +13,7 @@ ms.author: eur
 
 # Disclosure design patterns for text to speech avatar
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 ## Overview
 

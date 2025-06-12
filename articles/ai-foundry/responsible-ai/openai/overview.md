@@ -12,7 +12,7 @@ ms.date: 02/27/2024
 
 # Overview of Responsible AI practices for Azure OpenAI models 
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 Many of the Azure OpenAI models are generative AI models that have demonstrated improvements in advanced capabilities such as content and code generation, summarization, and search. With many of these improvements also come increased responsible AI challenges related to harmful content, manipulation, human-like behavior, privacy, and more. For more information about the capabilities, limitations and appropriate use cases for these models, please review the [Transparency Note](/azure/ai-foundry/responsible-ai/openai/transparency-note?context=%2Fazure%2Fcognitive-services%2Fopenai%2Fcontext%2Fcontext&tabs=text).  
 

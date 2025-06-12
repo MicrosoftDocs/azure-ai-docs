@@ -12,7 +12,7 @@ ms.date: 08/15/2022
 
 # Responsible use in AI deployment for Azure AI Vision spatial analysis
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 As Microsoft works to help customers safely develop and deploy solutions using Azure AI Vision spatial analysis, we are taking a principled approach to upholding personal agency and dignity by considering the AI systems' fairness, reliability & safety, privacy & security, inclusiveness, transparency, and human accountability.
 

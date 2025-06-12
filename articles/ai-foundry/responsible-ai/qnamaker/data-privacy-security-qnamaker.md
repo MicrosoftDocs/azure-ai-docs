@@ -13,7 +13,7 @@ ms.date: 02/25/2021
 
 # Data and privacy for QnA Maker
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 This article provides some high level details regarding how data is processed by QnA Maker. Its important to remember that you are responsible for your use and the implementation of this technology, including complying with all applicable laws and regulations that apply to you. For example, it's your responsibility to:
 

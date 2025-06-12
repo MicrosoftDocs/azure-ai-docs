@@ -12,7 +12,7 @@ ms.date: 06/21/2022
 
 # Use cases for Speaker Recognition
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 ## What is a Transparency Note?
 

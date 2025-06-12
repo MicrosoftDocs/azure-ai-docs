@@ -12,7 +12,7 @@ ms.date: 10/08/2021
 
 # Characteristics and limitations of Speaker Recognition
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 In this section, we'll review what performance means for Speaker Recognition, best practices for improving performance, limitations, and fairness as it relates to the Speaker Recognition feature.
 

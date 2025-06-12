@@ -12,7 +12,7 @@ ms.date: 02/21/2024
 
 # Transparency Note for Anomaly Detector
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 ## What is a Transparency Note?
 

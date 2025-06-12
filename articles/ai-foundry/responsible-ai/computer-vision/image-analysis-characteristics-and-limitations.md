@@ -13,7 +13,7 @@ ms.date: 10/04/2022
 
 # Characteristics and limitations for using Image Analysis
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 Image Analysis service is part of Azure AI services and provides pre-built AI features that are fundamental building blocks of image processing applications. In this section, you will learn about what accuracy means for Image Analysis, and how to assess accuracy for your specific use case and application.
 

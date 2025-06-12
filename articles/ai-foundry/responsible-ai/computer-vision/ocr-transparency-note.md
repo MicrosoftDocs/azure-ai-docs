@@ -12,7 +12,7 @@ ms.date: 02/12/2021
 
 # Transparency note and use cases for optical character recognition
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 This article provides information about use cases for optical character recognition (OCR).
 

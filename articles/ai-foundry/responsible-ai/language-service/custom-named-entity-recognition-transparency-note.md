@@ -12,7 +12,7 @@ ms.date: 09/29/2021
 
 # Use cases for custom named entity recognition
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 ## What is a Transparency Note?
 

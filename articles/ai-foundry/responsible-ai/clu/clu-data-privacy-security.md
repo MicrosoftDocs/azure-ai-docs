@@ -11,7 +11,7 @@ ms.date: 09/15/2021
 ---
 # Data and privacy for conversational language understanding
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 This article provides high-level information about how data is processed by conversational language understanding (CLU). You're responsible for your use and implementation of this technology, which includes complying with all laws and regulations that apply to you. For example, it's your responsibility to:
 

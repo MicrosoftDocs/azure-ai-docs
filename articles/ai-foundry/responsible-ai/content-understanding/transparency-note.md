@@ -12,7 +12,7 @@ ms.date: 03/10/2025
 
 # Transparency note: Content Understanding
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 ## What is a Transparency Note?
 

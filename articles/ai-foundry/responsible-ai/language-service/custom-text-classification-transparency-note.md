@@ -12,7 +12,7 @@ ms.date: 04/26/2023
 
 # Use cases for custom text classification
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 ## What is a Transparency Note?
 

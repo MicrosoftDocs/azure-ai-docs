@@ -12,7 +12,7 @@ ms.date: 06/17/2022
 
 # Limited Access to Face API
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 Our vision is to empower developers and organizations to leverage AI to transform society in positive ways. We encourage responsible AI practices to protect the rights and safety of individuals. Microsoft facial recognition services are Limited Access in order to help prevent the misuse of the services in accordance with our [AI Principles](https://www.microsoft.com/ai/responsible-ai?SilentAuth=1&wa=wsignin1.0) and [facial recognition principles](https://blogs.microsoft.com/on-the-issues/2018/12/17/six-principles-to-guide-microsofts-facial-recognition-work/).
 

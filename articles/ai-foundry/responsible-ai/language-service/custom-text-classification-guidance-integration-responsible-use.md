@@ -12,7 +12,7 @@ ms.date: 04/26/2023
 
 # Guidance for integration and responsible use with custom text classification
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 Microsoft works to help customers responsibly develop and deploy solutions by using custom text classification. Our principled approach upholds personal agency and dignity by considering the AI system's:
 

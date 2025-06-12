@@ -12,7 +12,7 @@ ms.date: 09/15/2021
 
 # Guidance for integration and responsible use with conversational language understanding
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 Microsoft works to help customers responsibly develop and deploy solutions by using conversational language understanding (CLU). Our principled approach upholds personal agency and dignity by considering the AI system's:
 

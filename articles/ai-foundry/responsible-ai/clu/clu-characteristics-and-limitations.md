@@ -12,7 +12,7 @@ ms.date: 09/15/2021
 
 # Characteristics and limitations for using conversational language understanding
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 Performance with conversational language understanding (CLU) varies based on the scenario, input data, and enabled features. The following sections are designed to help the reader understand key concepts about performance as they apply to CLU.
 

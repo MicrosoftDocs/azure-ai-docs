@@ -11,7 +11,7 @@ ms.date: 02/19/2022
 
 # Disclosure for voice and avatar talent
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 The goal of this article is to help voice and avatar talent understand the technology behind the text to speech capabilities that their voices and images help create. It also contains important privacy disclosures for talent about how Microsoft may process, use, and retain audio and video files containing talent’s recorded voices and images and helps Microsoft prevent, and/or respond to complaints of, misuse of Azure AI services.
 

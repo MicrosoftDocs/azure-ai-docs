@@ -12,7 +12,7 @@ ms.date: 06/30/2021
 
 # Use cases for Speech to text
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 ## What is a Transparency Note?
 

@@ -12,7 +12,7 @@ ms.date: 08/15/2022
 
 # Research Insights for Azure AI Vision spatial analysis
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 This section summarizes research insights which apply to applications of AI systems that gather data from the environment to generate insights about how people behave. All sources for the references made in this article are listed in the [references section](#references).
 

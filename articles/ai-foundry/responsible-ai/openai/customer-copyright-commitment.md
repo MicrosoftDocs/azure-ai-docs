@@ -12,7 +12,7 @@ ms.date: 05/21/2024
 
 # Customer Copyright Commitment Required Mitigations
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 > [!NOTE]
 > The requirements described below apply only to customers using Azure OpenAI in Azure AI Foundry Models ("Azure OpenAI") and other Covered Products with configurable Metaprompts or other safety systems ("Configurable GAI Services"). They do not apply to customers using other Covered Products including Copilots with safety systems that are fixed. As of the publication date above, the only Configurable GAI Services are Microsoft Copilot Studio and GitHub Copilot; the Universal Required Mitigations do not apply to these offerings, but service-specific mitigations apply instead.  

@@ -12,7 +12,7 @@ ms.date: 10/27/2022
 
 # Limited Access to embedded Speech
 
-[!INCLUDE [non-english-translation](/azure/ai-foundry/responsible-ai/includes/non-english-translation)]
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
 Embedded Speech is designed for on-device speech to text and text to speech scenarios where cloud connectivity is intermittent or unavailable. Microsoft's embedded Speech feature is a Limited Access feature available by registration only, and only for certain use cases.
 
