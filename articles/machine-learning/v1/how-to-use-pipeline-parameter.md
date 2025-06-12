@@ -130,21 +130,21 @@ In this section, you learn how to update and delete pipeline parameters.
 
 Complete the following steps to update a component pipeline parameter:
 
-1. At the top of the canvas, select the gear icon.
-1. In the **Pipeline parameters** section, you can view and update the name and default value for all of your pipeline parameters.
+1. To the right of the canvas, select **Pipeline interface**.
+1. You can view and update the names and default values for all of your pipeline parameters.
 
 ### Delete a dataset pipeline parameter
 
 Complete the following steps to delete a dataset pipeline parameter:
 
-1. Select the dataset component.
-1. Clear the **Set as pipeline parameter** option.
+1. Double-click the dataset component.
+1. Clear the **Set as pipeline input** checkbox.
 
 ### Delete component pipeline parameters
 
 Complete the following steps to delete a component pipeline parameter:
 
-1. At the top of the canvas, select the gear icon.
+1. To the right of the canvas, select **Pipeline interface**.
 
 1. Select the ellipsis button (**...**) next to the pipeline parameter.
 
@@ -152,7 +152,8 @@ Complete the following steps to delete a component pipeline parameter:
 
     :::image type="content" source="media/how-to-use-pipeline-parameter/delete-pipeline-parameter2.png" alt-text="Screenshot that shows the current pipeline parameter applied to a component." lightbox ="media/how-to-use-pipeline-parameter/delete-pipeline-parameter2.png":::
 
-1. Select **Delete parameter**.
+1. Select the recycle bin icon.
+1. Confirm the deletion in the resulting pop-up window.
 
     > [!NOTE]
     > Deleting a pipeline parameter causes all attached component parameters to be detached. The values of detached component parameters will keep current pipeline parameter values.
@@ -167,7 +168,7 @@ After you submit a pipeline with pipeline parameters, you can resubmit the job w
 
 1. Go to pipeline detail page. In the **Pipeline run overview** pane, you can check current pipeline parameters and values.
 1. Select **Resubmit**.
-1. In the **Set up pipleine run** window, specify your new pipeline parameters. 
+1. In the **Set up pipleine job** window, specify your new pipeline parameters. 
 
  :::image type="content" source="media/how-to-use-pipeline-parameter/resubmit-pipeline-run.png" alt-text="Screenshot that shows how to resubmit a pipeline with pipeline parameters." lightbox ="media/how-to-use-pipeline-parameter/resubmit-pipeline-run.png":::
 
