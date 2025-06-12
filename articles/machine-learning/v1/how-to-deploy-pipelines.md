@@ -11,6 +11,8 @@ ms.reviewer: zhanxia
 ms.date: 06/18/2025
 ms.topic: how-to
 ms.custom: UpdateFrequency5, sdkv1, devx-track-python
+
+#customer intent: As a machine learning engineer, I want to publish a machine learning pipeline so that I can share it.
 ---
 
 # Publish machine learning pipelines
@@ -19,23 +21,23 @@ ms.custom: UpdateFrequency5, sdkv1, devx-track-python
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
-This article will show you how to share a machine learning pipeline with your colleagues or customers.
+This article describes how to share a machine learning pipeline with your colleagues or customers.
 
-Machine learning pipelines are reusable workflows for machine learning tasks. One benefit of pipelines is increased collaboration. You can also version pipelines, allowing customers to use the current model while you're working on a new version. 
+Machine learning pipelines are reusable workflows for machine learning tasks. One benefit of pipelines is increased collaboration. You can also version pipelines to enable customers to use the current model while you're working on a new version. 
 
 ## Prerequisites
 
-* Create an [Azure Machine Learning workspace](../quickstart-create-resources.md) to hold all your pipeline resources
+* Create an [Azure Machine Learning workspace](../quickstart-create-resources.md) to contain your pipeline resources.
 
-* [Configure your development environment](how-to-configure-environment.md) to install the Azure Machine Learning SDK, or use an [Azure Machine Learning compute instance](../concept-compute-instance.md) with the SDK already installed
+* [Configure your development environment](how-to-configure-environment.md) by installing the Azure Machine Learning SDK, or use an [Azure Machine Learning compute instance](../concept-compute-instance.md) that already has the SDK installed.
 
-* Create and run a machine learning pipeline, such as by following [Tutorial: Build an Azure Machine Learning pipeline for batch scoring](../tutorial-pipeline-batch-scoring-classification.md). For other options, see [Create and run machine learning pipelines with Azure Machine Learning SDK](./how-to-create-machine-learning-pipelines.md)
+* Create and run a machine learning pipeline. One way to meet this requirement is to complete [Tutorial: Build an Azure Machine Learning pipeline for batch scoring](../tutorial-pipeline-batch-scoring-classification.md). For other options, see [Create and run machine learning pipelines with Azure Machine Learning SDK](./how-to-create-machine-learning-pipelines.md).
 
 ## Publish a pipeline
 
-Once you have a pipeline up and running, you can publish a pipeline so that it runs with different inputs. For the REST endpoint of an already published pipeline to accept parameters, you must configure your pipeline to use `PipelineParameter` objects for the arguments that will vary.
+After you have a running pipeline, you can publish it so that it runs with different inputs. For the REST endpoint of a published pipeline to accept parameters, you must configure your pipeline to use `PipelineParameter` objects for the arguments that will vary.
 
-1. To create a pipeline parameter, use a [PipelineParameter](/python/api/azureml-pipeline-core/azureml.pipeline.core.graph.pipelineparameter) object with a default value.
+1. To create a pipeline parameter, use a [PipelineParameter](/python/api/azureml-pipeline-core/azureml.pipeline.core.graph.pipelineparameter) object with a default value:
 
    ```python
    from azureml.pipeline.core.graph import PipelineParameter
@@ -45,7 +47,7 @@ Once you have a pipeline up and running, you can publish a pipeline so that it r
      default_value=10)
    ```
 
-2. Add this `PipelineParameter` object as a parameter to any of the steps in the pipeline as follows:
+1. Add the `PipelineParameter` object as a parameter to any of the steps in the pipeline, as shown here:
 
    ```python
    compareStep = PythonScriptStep(
@@ -57,7 +59,7 @@ Once you have a pipeline up and running, you can publish a pipeline so that it r
      source_directory=project_folder)
    ```
 
-3. Publish this pipeline that will accept a parameter when invoked.
+1. Publish this pipeline, which will accept a parameter when invoked:
 
    ```python
    published_pipeline1 = pipeline_run1.publish_pipeline(
@@ -66,18 +68,18 @@ Once you have a pipeline up and running, you can publish a pipeline so that it r
         version="1.0")
    ```
 
-4. After you publish your pipeline, you can check it in the UI. Pipeline ID is the unique identified of the published pipeline.
+1. After you publish your pipeline, you can check it in the UI. Pipeline ID is the unique identifier of the published pipeline.
 
-    :::image type="content" source="./media/how-to-deploy-pipelines/published-pipeline-detail.png" alt-text="Screenshot showing published pipeline detail." lightbox= "./media/how-to-deploy-pipelines/published-pipeline-detail.png":::
+    :::image type="content" source="./media/how-to-deploy-pipelines/published-pipeline-detail.png" alt-text="Screenshot showing details of the published pipeline." lightbox= "./media/how-to-deploy-pipelines/published-pipeline-detail.png":::
 
 ## Run a published pipeline
 
-All published pipelines have a REST endpoint. With the pipeline endpoint, you can trigger a run of the pipeline from any external systems, including non-Python clients. This endpoint enables "managed repeatability" in batch scoring and retraining scenarios.
+All published pipelines have a REST endpoint. By using the pipeline endpoint, you can trigger a run of the pipeline from external systems, including non-Python clients. This endpoint enables managed repeatability in batch scoring and retraining scenarios.
 
 > [!IMPORTANT]
-> If you are using Azure role-based access control (Azure RBAC) to manage access to your pipeline, [set the permissions for your pipeline scenario (training or scoring)](../how-to-assign-roles.md#common-scenarios).
+> If you use Azure role-based access control (RBAC) to manage access to your pipeline, [set the permissions for your pipeline scenario (training or scoring)](../how-to-assign-roles.md#common-scenarios).
 
-To invoke the run of the preceding pipeline, you need a Microsoft Entra authentication header token. Getting such a token is described in the [AzureCliAuthentication class](/python/api/azureml-core/azureml.core.authentication.azurecliauthentication) reference and in the [Authentication in Azure Machine Learning](https://aka.ms/pl-restep-auth) notebook.
+To invoke the run of the preceding pipeline, you need a Microsoft Entra authentication header token. The process for getting a token is described in the [AzureCliAuthentication class](/python/api/azureml-core/azureml.core.authentication.azurecliauthentication) reference and in the [Authentication in Azure Machine Learning](https://aka.ms/pl-restep-auth) notebook.
 
 ```python
 from azureml.pipeline.core import PublishedPipeline
@@ -89,19 +91,19 @@ response = requests.post(published_pipeline1.endpoint,
                                "ParameterAssignments": {"pipeline_arg": 20}})
 ```
 
-The `json` argument to the POST request must contain, for the `ParameterAssignments` key, a dictionary containing the pipeline parameters and their values. In addition, the `json` argument may contain the following keys:
+The `json` argument to the POST request must contain, for the `ParameterAssignments` key, a dictionary that contains the pipeline parameters and their values. In addition, the `json` argument can contain the following keys:
 
 | Key | Description |
 | --- | --- | 
-| `ExperimentName` | The name of the experiment associated with this endpoint |
-| `Description` | Freeform text describing the endpoint | 
-| `Tags` | Freeform key-value pairs that can be used to label and annotate requests  |
-| `DataSetDefinitionValueAssignments` | Dictionary used for changing datasets without retraining (see discussion below) | 
-| `DataPathAssignments` | Dictionary used for changing datapaths without retraining (see discussion below) | 
+| `ExperimentName` | The name of the experiment associated with the endpoint. |
+| `Description` | Freeform text that describes the endpoint. | 
+| `Tags` | Freeform key-value pairs that can be used to label and annotate requests.  |
+| `DataSetDefinitionValueAssignments` | A dictionary that's used for changing datasets without retraining. (See the discussion later in this article.) | 
+| `DataPathAssignments` | A dictionary that's used for changing datapaths without retraining. (See the discussion later in this article.) | 
 
-### Run a published pipeline using C# 
+### Run a published pipeline by using C# 
 
-The following code shows how to call a pipeline asynchronously from C#. The partial code snippet just shows the call structure and isn't part of a Microsoft sample. It doesn't show complete classes or error handling. 
+The following code shows how to call a pipeline asynchronously from C#. The partial code snippet just shows the call structure. It doesn't show complete classes or error handling. It isn't part of a Microsoft sample.
 
 ```csharp
 [DataContract]
@@ -138,7 +140,7 @@ using (HttpClient client = new HttpClient())
     string auth_key = "your-auth-key"; 
     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", auth_key);
 
-    // submit the job
+    // Submit the job
     var requestPayload = JsonConvert.SerializeObject(submitPipelineRunRequest);
     var httpContent = new StringContent(requestPayload, Encoding.UTF8, "application/json");
     var submitResponse = await client.PostAsync(RestEndpoint, httpContent).ConfigureAwait(false);
@@ -154,9 +156,9 @@ using (HttpClient client = new HttpClient())
 }
 ```
 
-### Run a published pipeline using Java
+### Run a published pipeline by using Java
 
-The following code shows a call to a pipeline that requires authentication (see [Set up authentication for Azure Machine Learning resources and workflows](how-to-setup-authentication.md)). If your pipeline is deployed publicly, you don't need the calls that produce `authKey`. The partial code snippet doesn't show Java class and exception-handling boilerplate. The code uses `Optional.flatMap` for chaining together functions that may return an empty `Optional`. The use of `flatMap` shortens and clarifies the code, but note that `getRequestBody()` swallows exceptions.
+The following code shows a call to a pipeline that requires authentication. (See [Set up authentication for Azure Machine Learning resources and workflows](how-to-setup-authentication.md).) If your pipeline is deployed publicly, you don't need the calls that produce `authKey`. The partial code snippet doesn't show Java class and exception-handling boilerplate. The code uses `Optional.flatMap` for chaining together functions that might return an empty `Optional`. The use of `flatMap` shortens and clarifies the code, but note that `getRequestBody()` swallows exceptions.
 
 ```java
 import java.net.URI;
@@ -182,7 +184,7 @@ Optional<String> authBody = getRequestBody(client, tokenAuthenticationRequest);
 Optional<String> authKey = authBody.flatMap(body -> Optional.of(gson.fromJson(body, AuthenticationBody.class).access_token));
 Optional<HttpRequest> scoringRequest = authKey.flatMap(key -> Optional.of(scoringRequest(key, scoringUri, dataToBeScored)));
 Optional<String> scoringResult = scoringRequest.flatMap(req -> getRequestBody(client, req));
-// ... etc (`scoringResult.orElse()`) ... 
+// ... etc. (`scoringResult.orElse()`) ... 
 
 static HttpRequest tokenAuthenticationRequest(String tenantId, String clientId, String clientSecret, String resourceManagerUrl)
 {
@@ -238,9 +240,9 @@ class AuthenticationBody {
 }
 ```
 
-### Changing datasets and datapaths without retraining
+### Change datasets and datapaths without retraining
 
-You might want to train and inference on different datasets and datapaths. For instance, you may wish to train on a smaller dataset but inference on the complete dataset. You switch datasets with the `DataSetDefinitionValueAssignments` key in the request's `json` argument. You switch datapaths with `DataPathAssignments`. The technique for both is similar:
+You might want to train and inference on different datasets and datapaths. For example, you might want to train on a smaller dataset but inference on the complete dataset. You switch can datasets by using the `DataSetDefinitionValueAssignments` key in the request's `json` argument. You can switch datapaths by using `DataPathAssignments`. The technique is similar for both:
 
 1. In your pipeline definition script, create a `PipelineParameter` for the dataset. Create a `DatasetConsumptionConfig` or `DataPath` from the `PipelineParameter`:
 
@@ -250,19 +252,19 @@ You might want to train and inference on different datasets and datapaths. For i
     tabular_ds_consumption = DatasetConsumptionConfig("tabular_dataset", tabular_pipeline_param)
     ```
 
-1. In your ML script, access the dynamically specified dataset using `Run.get_context().input_datasets`:
+1. In your machine learning script, access the dynamically specified dataset by using `Run.get_context().input_datasets`:
 
     ```python
     from azureml.core import Run
     
     input_tabular_ds = Run.get_context().input_datasets['tabular_dataset']
     dataframe = input_tabular_ds.to_pandas_dataframe()
-    # ... etc ...
+    # ... etc. ...
     ```
 
-    Notice that the ML script accesses the value specified for the `DatasetConsumptionConfig` (`tabular_dataset`) and not the value of the `PipelineParameter` (`tabular_ds_param`).
+    Notice that the machine learning script accesses the value specified for `DatasetConsumptionConfig` (`tabular_dataset`) and not the value of `PipelineParameter` (`tabular_ds_param`).
 
-1. In your pipeline definition script, set the `DatasetConsumptionConfig` as a parameter to the `PipelineScriptStep`:
+1. In your pipeline definition script, set `DatasetConsumptionConfig` as a parameter to `PipelineScriptStep`:
 
     ```python
     train_step = PythonScriptStep(
@@ -294,11 +296,11 @@ You might want to train and inference on different datasets and datapaths. For i
                                     }}}})
     ```
 
-The notebooks [Showcasing Dataset and PipelineParameter](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/machine-learning-pipelines/intro-to-pipelines/aml-pipelines-showcasing-dataset-and-pipelineparameter.ipynb) and [Showcasing DataPath and PipelineParameter](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/machine-learning-pipelines/intro-to-pipelines/aml-pipelines-showcasing-datapath-and-pipelineparameter.ipynb) have complete examples of this technique.
+The notebooks [Showcasing Dataset and PipelineParameter](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/machine-learning-pipelines/intro-to-pipelines/aml-pipelines-showcasing-dataset-and-pipelineparameter.ipynb) and [Showcasing DataPath and PipelineParameter](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/machine-learning-pipelines/intro-to-pipelines/aml-pipelines-showcasing-datapath-and-pipelineparameter.ipynb) include complete examples of this technique.
 
 ## Create a versioned pipeline endpoint
 
-You can create a Pipeline Endpoint with multiple published pipelines behind it. This technique gives you a fixed REST endpoint as you iterate on and update your ML pipelines.
+You can create a pipeline endpoint that has multiple published pipelines behind it. This technique gives you a fixed REST endpoint as you iterate on and update your machine learning pipelines.
 
 ```python
 from azureml.pipeline.core import PipelineEndpoint
@@ -325,7 +327,7 @@ run_id = pipeline_endpoint_by_name.submit("PipelineEndpointExperiment", pipeline
 print(run_id)
 ```
 
-The same can be accomplished using the REST API:
+You can accomplish the same thing by using the REST API:
 
 ```python
 rest_endpoint = pipeline_endpoint_by_name.endpoint
@@ -344,16 +346,17 @@ You can also run a published pipeline from the studio:
 
 1. [View your workspace](../how-to-manage-workspace.md#find-a-workspace).
 
-1. On the left, select **Endpoints**.
+1. In the left menu, select **Endpoints**.
 
-1. On the top, select **Pipeline endpoints**.
- ![list of machine learning published pipelines](../media/how-to-create-your-first-pipeline/pipeline-endpoints.png)
+1. Select **Pipeline endpoints**:
+
+   :::image type="content" source="../media/how-to-create-your-first-pipeline/pipeline-endpoints.png" alt-text="Screenshot that shows the list of published endpoints." lightbox ="../media/how-to-create-your-first-pipeline/pipeline-endpoints.png":::
 
 1. Select a specific pipeline to run, consume, or review results of previous runs of the pipeline endpoint.
 
 ## Disable a published pipeline
 
-To hide a pipeline from your list of published pipelines, you disable it, either in the studio or from the SDK:
+To hide a pipeline from your list of published pipelines, you disable it, either in the studio or via the SDK:
 
 ```python
 # Get the pipeline by using its ID from Azure Machine Learning studio
@@ -361,10 +364,10 @@ p = PublishedPipeline.get(ws, id="068f4885-7088-424b-8ce2-eeb9ba5381a6")
 p.disable()
 ```
 
-You can enable it again with `p.enable()`. For more information, see [PublishedPipeline class](/python/api/azureml-pipeline-core/azureml.pipeline.core.publishedpipeline) reference.
+You can enable it again by using `p.enable()`. For more information, see the [PublishedPipeline class](/python/api/azureml-pipeline-core/azureml.pipeline.core.publishedpipeline) reference.
 
 ## Next steps
 
-- Use [these Jupyter notebooks on GitHub](https://aka.ms/aml-pipeline-readme) to explore machine learning pipelines further.
-- See the SDK reference help for the [azureml-pipelines-core](/python/api/azureml-pipeline-core/azureml.pipeline.core) package and the [azureml-pipelines-steps](/python/api/azureml-pipeline-steps/azureml.pipeline.steps) package.
-- See the [how-to](how-to-debug-pipelines.md) for tips on debugging and troubleshooting pipelines.
+- Use [these Jupyter notebooks on GitHub](https://aka.ms/aml-pipeline-readme) to further explore machine learning pipelines.
+- See the SDK reference for the [azureml-pipelines-core](/python/api/azureml-pipeline-core/azureml.pipeline.core) package and the [azureml-pipelines-steps](/python/api/azureml-pipeline-steps/azureml.pipeline.steps) package.
+- See the [how to](how-to-debug-pipelines.md) for tips on debugging and troubleshooting pipelines.
