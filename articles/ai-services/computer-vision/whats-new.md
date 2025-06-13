@@ -213,7 +213,7 @@ Vision Studio provides you with a platform to try several service features, and 
 
 #### Limited Access policy
 
-* As a part of aligning Face to the updated Responsible AI Standard, a new [Limited Access policy](https://aka.ms/AAh91ff) has been implemented for the Face API and Azure AI Vision. Existing customers have one year to apply and receive approval for continued access to the facial recognition services based on their provided use cases. See details on Limited Access for Face [here](/azure/ai-foundry/responsible-ai/computer-vision/limited-access-identity?context=/azure/ai-services/computer-vision/context/context) and for Azure AI Vision [here](/azure/ai-foundry/responsible-ai/computer-vision/limited-access?context=/azure/ai-services/computer-vision/context/context).
+* As a part of aligning Face to the updated Responsible AI Standard, a new [Limited Access policy](https://aka.ms/AAh91ff) has been implemented for the Face API and Azure AI Vision. Existing customers have one year to apply and receive approval for continued access to the facial recognition services based on their provided use cases. See details on Limited Access for Face [here](/azure/ai-foundry/responsible-ai/computer-vision/limited-access-identity).
 
 ### Azure AI Vision 3.2-preview deprecation
 

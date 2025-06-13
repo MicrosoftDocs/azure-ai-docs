@@ -95,10 +95,10 @@ Here are some practical examples of how you can utilize Azure AI speech to text:
 
 An AI system includes not only the technology, but also the people who use it, the people who are affected by it, and the environment in which it's deployed. Read the transparency notes to learn about responsible AI use and deployment in your systems. 
 
-* [Transparency note and use cases](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note?context=/azure/ai-services/speech-service/context/context)
-* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/characteristics-and-limitations?context=/azure/ai-services/speech-service/context/context)
-* [Integration and responsible use](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/guidance-integration-responsible-use?context=/azure/ai-services/speech-service/context/context)
-* [Data, privacy, and security](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/data-privacy-security?context=/azure/ai-services/speech-service/context/context)
+* [Transparency note and use cases](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note)
+* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/characteristics-and-limitations)
+* [Integration and responsible use](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/guidance-integration-responsible-use)
+* [Data, privacy, and security](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/data-privacy-security)
 
 ## Related content
 

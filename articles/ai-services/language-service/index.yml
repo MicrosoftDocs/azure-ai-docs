@@ -25,7 +25,7 @@ highlightedContent:
       url: whats-new.md
     - title: Responsible use of AI
       itemType: concept
-      url: /azure/ai-foundry/responsible-ai/language-service/transparency-note?context=/azure/ai-services/language-service/context/context
+      url: /azure/ai-foundry/responsible-ai/language-service/transparency-note
 
 conceptualContent:
   items:

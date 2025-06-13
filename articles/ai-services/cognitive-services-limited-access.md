@@ -24,11 +24,11 @@ Limited Access services are made available to customers under the terms governin
 
 The following services are Limited Access:
 
-- [Custom Neural Voice](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access?context=/azure/ai-services/speech-service/context/context): Pro features
-- [Custom text to speech avatar](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access?context=/azure/ai-services/speech-service/context/context): All features
-- [Speaker Recognition](/azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/limited-access-speaker-recognition?context=/azure/ai-services/speech-service/context/context): All features 
-- [Azure AI Face](/azure/ai-foundry/responsible-ai/computer-vision/limited-access-identity?context=/azure/ai-services/computer-vision/context/context): Identify and Verify features, face ID property
-- [Azure AI Vision](/azure/ai-foundry/responsible-ai/computer-vision/limited-access?context=/azure/ai-services/computer-vision/context/context): Celebrity Recognition feature
+- [Custom Neural Voice](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access): Pro features
+- [Custom text to speech avatar](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access): All features
+- [Speaker Recognition](/azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/limited-access-speaker-recognition): All features 
+- [Azure AI Face](/azure/ai-foundry/responsible-ai/computer-vision/limited-access-identity): Identify and Verify features, face ID property
+- [Azure AI Vision](/azure/ai-foundry/responsible-ai/computer-vision/limited-access): Celebrity Recognition feature
 - [Azure AI Video Indexer](/azure/azure-video-indexer/limited-access-features): Celebrity Recognition and Face Identify features
 - [Azure OpenAI](/azure/ai-foundry/responsible-ai/openai/limited-access): Azure OpenAI in Azure AI Foundry Models, modified abuse monitoring, and modified content filters
 

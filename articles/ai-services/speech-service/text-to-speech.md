@@ -163,15 +163,15 @@ Here's a table summarizing the key metrics for Azure text to speech.
 
 An AI system includes not only the technology, but also the people who use it, the people who are affected by it, and the environment in which it's deployed. Read the transparency notes to learn about responsible AI use and deployment in your systems. 
 
-* [Transparency note and use cases for custom voice](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/transparency-note-custom-neural-voice?context=/azure/ai-services/speech-service/context/context)  
-* [Characteristics and limitations for using custom voice](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/characteristics-and-limitations-custom-neural-voice?context=/azure/ai-services/speech-service/context/context)   
-* [Limited access to custom voice](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/limited-access-custom-neural-voice?context=/azure/ai-services/speech-service/context/context) 
-* [Guidelines for responsible deployment of synthetic voice technology](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-guidelines-responsible-deployment-synthetic?context=/azure/ai-services/speech-service/context/context)   
-* [Disclosure for voice talent](/azure/ai-foundry/responsible-ai/speech-service/disclosure-voice-talent?context=/azure/ai-services/speech-service/context/context)   
-* [Disclosure design guidelines](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-guidelines?context=/azure/ai-services/speech-service/context/context)   
-* [Disclosure design patterns](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-patterns?context=/azure/ai-services/speech-service/context/context)   
-* [Code of Conduct for Text to speech integrations](/azure/ai-foundry/responsible-ai/speech-service/tts-code-of-conduct?context=/azure/ai-services/speech-service/context/context)   
-* [Data, privacy, and security for custom voice](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/data-privacy-security-custom-neural-voice?context=/azure/ai-services/speech-service/context/context)
+* [Transparency note and use cases for custom voice](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/transparency-note-custom-neural-voice)  
+* [Characteristics and limitations for using custom voice](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/characteristics-and-limitations-custom-neural-voice)   
+* [Limited access to custom voice](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/limited-access-custom-neural-voice) 
+* [Guidelines for responsible deployment of synthetic voice technology](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-guidelines-responsible-deployment-synthetic)   
+* [Disclosure for voice talent](/azure/ai-foundry/responsible-ai/speech-service/disclosure-voice-talent)   
+* [Disclosure design guidelines](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-guidelines)   
+* [Disclosure design patterns](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-patterns)   
+* [Code of Conduct for Text to speech integrations](/azure/ai-foundry/responsible-ai/speech-service/tts-code-of-conduct)   
+* [Data, privacy, and security for custom voice](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/data-privacy-security-custom-neural-voice)
 
 ## Next steps
 
