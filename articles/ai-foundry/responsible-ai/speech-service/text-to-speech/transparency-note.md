@@ -175,7 +175,7 @@ Video translation can efficiently localize your video content to cater to divers
 
 ## Use cases
 
-Text to speech offers a variety of features catering to a wide range of intended uses across industries and domains. All text to speech features including video translation are subject to the terms and conditions applicable to customers’ Azure subscription, including the Azure Acceptable Use Policy and the [Code of conduct for Azure AI Speech text to speech](/legal/ai-code-of-conduct).  
+Text to speech offers a variety of features catering to a wide range of intended uses across industries and domains. All text to speech features including video translation are subject to the terms and conditions applicable to customers’ Azure subscription, including the Azure Acceptable Use Policy and the [Code of conduct for Azure AI Speech text to speech](/legal/ai-code-of-conduct?context=%2Fazure%2Fai-services%2Fspeech-service%2Fcontext%2Fcontext).  
 
 
 In addition, custom text to speech features like custom neural voice, personal voice, and custom text to speech avatar are limited to the approved use cases as outlined in the specific scenarios described below:
@@ -207,7 +207,7 @@ The personal voice API (see [Personal voice](/azure/ai-services/speech-service/p
 
 All other uses of custom neural voice, including Custom Neural Voice Pro, Custom Neural Voice Lite, and personal voice, are prohibited. In addition, custom neural voice is a Limited Access service, and registration is required for access to this service. To learn more about Microsoft’s Limited Access policy, refer to [Limited Access features for Azure AI services](https://aka.ms/limitedaccesscogservices). Certain features are only available to Microsoft managed customers and partners, and only for certain use cases approved by Microsoft at the time of registration. 
 
-Prebuilt neural voice may also be used for the custom neural voice use cases above, as well as additional use cases selected by customers and consistent with the Azure Acceptable Use Policy and the [Code of conduct for Azure AI Speech text to speech](/legal/ai-code-of-conduct). No registration or pre-approval is required for additional use cases for prebuilt neural voice that meet all applicable terms and conditions. 
+Prebuilt neural voice may also be used for the custom neural voice use cases above, as well as additional use cases selected by customers and consistent with the Azure Acceptable Use Policy and the [Code of conduct for Azure AI Speech text to speech](/legal/ai-code-of-conduct?context=%2Fazure%2Fai-services%2Fspeech-service%2Fcontext%2Fcontext). No registration or pre-approval is required for additional use cases for prebuilt neural voice that meet all applicable terms and conditions. 
 
 ### Intended use cases for video translation (preview)
 
@@ -431,20 +431,20 @@ Below are some best practices to help you responsibly integrate text to speech f
 
 ### Disclose when the voice is synthetic 
 
-Disclosing that a voice is computer generated not only minimizes the risk of harmful outcomes from deception but also increases trust in the organization delivering the voice. Learn more about [how to disclose](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-guidelines?context=/azure/ai-services/speech-service/context/context). 
+Disclosing that a voice is computer generated not only minimizes the risk of harmful outcomes from deception but also increases trust in the organization delivering the voice. Learn more about [how to disclose](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-guidelines). 
 
 Microsoft requires its customers to disclose the synthetic nature of text to speech voices to its users. 
 
-- Make sure to provide adequate disclosure to audiences, especially when using the voice of a well-known person. People make judgments about information based in part on the person who delivers it, whether they do so consciously or unconsciously. For example, a disclosure could be verbally shared at the start of a broadcast. For more information, visit [disclosure patterns](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-patterns?context=/azure/ai-services/speech-service/context/context). 
+- Make sure to provide adequate disclosure to audiences, especially when using the voice of a well-known person. People make judgments about information based in part on the person who delivers it, whether they do so consciously or unconsciously. For example, a disclosure could be verbally shared at the start of a broadcast. For more information, visit [disclosure patterns](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-patterns). 
 - Consider proper disclosure to parents or other parties with use cases that are designed for or may be used in situations involving minors and children. If your use case is intended for minors or children, you'll need to ensure that your disclosure is clear and transparent so that parents or legal guardians can understand the role of synthetic media and make an informed decision on behalf of minors or children about whether to use the experience. 
 
 ### Disclose when the avatar video is synthetic  
 
-Disclosing that an avatar speaking video is computer generated not only minimizes the risk of harmful outcomes from deception but also increases trust in the organization delivering the video. Learn more about [how to disclose](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-guidelines?context=/azure/ai-services/speech-service/context/context).  
+Disclosing that an avatar speaking video is computer generated not only minimizes the risk of harmful outcomes from deception but also increases trust in the organization delivering the video. Learn more about [how to disclose](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-guidelines).  
 
 Microsoft requires its customers to disclose the synthetic nature of text to speech avatars to its users.  
 
-- Make sure to provide adequate disclosure to audiences, especially when using the image (and voice) of a well-known person. People make judgments about information based in part on the person who delivers it, whether they do so consciously or unconsciously. **For example, a disclosure could be made with a watermark, such as, “The voice and image in this video are AI-generated,” in text or verbally shared at the start of a video.** For more information visit [disclosure patterns](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-patterns?context=/azure/ai-services/speech-service/context/context).  
+- Make sure to provide adequate disclosure to audiences, especially when using the image (and voice) of a well-known person. People make judgments about information based in part on the person who delivers it, whether they do so consciously or unconsciously. **For example, a disclosure could be made with a watermark, such as, “The voice and image in this video are AI-generated,” in text or verbally shared at the start of a video.** For more information visit [disclosure patterns](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-patterns).  
 - Consider proper disclosure to parents or other parties with use cases that are designed for or may be used in situations involving minors and children. If your use case is intended for minors or children, you'll need to ensure that your disclosure is clear and transparent so that parents or legal guardians can understand the role of synthetic media and make an informed decision on behalf of minors or children about whether to use the experience.  
 
 ### Select appropriate voice types for your scenario 
@@ -499,6 +499,6 @@ Individuals with speech disorders may wish to update their synthetic voice to re
 
 ## Learn more about Azure Speech
 
-- [Limited access to Azure Speech Service - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/limited-access-custom-neural-voice?context=/azure/ai-services/speech-service/context/context) 
+- [Limited access to Azure Speech Service - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/limited-access-custom-neural-voice) 
 - [Code of conduct for Azure Speech Service | Microsoft Learn](/legal/ai-code-of-conduct?context=/azure/ai-services/speech-service/context/context) 
-- [Data, privacy, and security for Azure Speech Service - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/data-privacy-security-custom-neural-voice?context=/azure/ai-services/speech-service/context/context) 
+- [Data, privacy, and security for Azure Speech Service - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/data-privacy-security-custom-neural-voice) 

@@ -24,7 +24,7 @@ The accuracy of a facial recognition system is based on a combination of two thi
 
 | Condition         | Definition      |
 |----|---------|
-| True positive or correct match</br>![True positive or correct match accept](media/Accuracy/1.png) | The person in the [probe image](transparency-note.md?context=/azure/ai-services/computer-vision/context/context) is [enrolled](transparency-note.md?context=/azure/ai-services/computer-vision/context/context) and they are correctly matched.    |
+| True positive or correct match</br>![True positive or correct match accept](media/Accuracy/1.png) | The person in the [probe image](transparency-note.md) is [enrolled](transparency-note.md) and they are correctly matched.    |
 | True negative or correct reject </br> ![True negative or correct reject](media/Accuracy/2.png)       | The person in the probe image is not enrolled and the system finds no match.    |
 | False positive or incorrect match </br> ![False positive or incorrect match](media/Accuracy/3.png)   | Either the person in the probe image is not *enrolled* but is matched to an *enrolled* person OR the person in the probe image is enrolled but is matched with the wrong person. |
 | False negative or incorrect reject </br> ![False negative or incorrect reject](media/Accuracy/4.png) | The person in the probe image is enrolled, but the system finds no match.|
@@ -252,4 +252,4 @@ When a device correlation ID is flagged and no more sessions can be created with
 ## Next steps
 
 * [Quickstart your Face use case development](/azure/ai-services/computer-vision/quickstarts-sdk/identity-client-library)
-* [Responsible deployment of Face](/azure/ai-foundry/responsible-ai/face/guidance-integration-responsible-use?context=/azure/ai-services/computer-vision/context/context)
+* [Responsible deployment of Face](/azure/ai-foundry/responsible-ai/face/guidance-integration-responsible-use)

@@ -229,6 +229,6 @@ Use disclosure as an opportunity to fail gracefully.
 
 ## See also
 
-* [Disclosure for voice and avatar talent](/azure/ai-foundry/responsible-ai/speech-service/disclosure-voice-talent?context=/azure/ai-services/speech-service/context/context)
-* [Guidelines for responsible deployment of synthetic voice technology](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-guidelines-responsible-deployment-synthetic?context=/azure/ai-services/speech-service/context/context)
-* [How to disclose](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-guidelines?context=/azure/ai-services/speech-service/context/context)
+* [Disclosure for voice and avatar talent](/azure/ai-foundry/responsible-ai/speech-service/disclosure-voice-talent)
+* [Guidelines for responsible deployment of synthetic voice technology](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-guidelines-responsible-deployment-synthetic)
+* [How to disclose](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-guidelines)

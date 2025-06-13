@@ -45,4 +45,4 @@ To learn more about the Translator no-trace policy and compliance, visit [Transl
 
 ## Next steps
 
-* [Azure AI Translator transparency note](/azure/ai-foundry/responsible-ai/translator/transparency-note?context=/azure/ai-services/translator/context/context)
+* [Azure AI Translator transparency note](/azure/ai-foundry/responsible-ai/translator/transparency-note)

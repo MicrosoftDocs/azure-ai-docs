@@ -62,7 +62,7 @@ Based on a case study of scenarios that use facial recognition to grant building
 ### Supporting security and reception personnel
 Our research shows that you can support security and reception personnel by helping them be prepared to answer questions about the system, handle system failures, and have a forum to provide feedback about the system. You might:
 * Ask for regular updates from security specialists and reception personnel on the system performance, challenges, and frustrations.
-* Provide regular training that uses multiple channels such as webinars and Q&A sessions to reach people with different preferences for learning. Possible content for this training material can be found in the [Transparency Note](transparency-note.md?context=/azure/ai-services/computer-vision/context/context).
+* Provide regular training that uses multiple channels such as webinars and Q&A sessions to reach people with different preferences for learning. Possible content for this training material can be found in the [Transparency Note](transparency-note.md).
 * Provide role-specific training modules to address the diverse needs of security personnel (for example, security system monitoring specialists and ground operation teams).
 * Provide clear talking points about what user data will be stored, for how long, and who has access to allow so that security specialists and reception personnel can be able to answer users' questions.
 
@@ -75,6 +75,6 @@ Our research shows that you can support security and reception personnel by help
 ## Next steps
 
 * [Meaningful consent guidelines](/azure/ai-services/computer-vision/enrollment-overview).
-* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/face/characteristics-and-limitations?context=/azure/ai-services/computer-vision/context/context)
-* [Data, privacy, and security for Face](/azure/ai-foundry/responsible-ai/face/data-privacy-security?context=/azure/ai-services/computer-vision/context/context)
+* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/face/characteristics-and-limitations)
+* [Data, privacy, and security for Face](/azure/ai-foundry/responsible-ai/face/data-privacy-security)
 * [Quickstart your Face use case development](/azure/ai-services/computer-vision/quickstarts-sdk/identity-client-library)

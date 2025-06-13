@@ -78,4 +78,4 @@ To learn more about Microsoft's privacy and security commitments visit the Micro
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Responsible use deployment guidance for spatial analysis](/azure/ai-foundry/responsible-ai/computer-vision/responsible-use-deployment?context=%2fazure%2fcognitive-services%2fComputer-vision%2fcontext%2fcontext)
+> [Responsible use deployment guidance for spatial analysis](/azure/ai-foundry/responsible-ai/computer-vision/responsible-use-deployment)

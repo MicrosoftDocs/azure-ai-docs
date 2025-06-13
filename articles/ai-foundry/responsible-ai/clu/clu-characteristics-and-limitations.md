@@ -99,7 +99,7 @@ Not all features are at the same language parity. For example, language support 
 ## Next steps
 
 * [Introduction to conversational language understanding](/azure/ai-services/language-service/conversational-language-understanding/overview)
-* [Language Understanding transparency note](/azure/ai-foundry/responsible-ai/luis/luis-transparency-note?context=/azure/ai-services/LUIS/context/context)
+* [Language Understanding transparency note](/azure/ai-foundry/responsible-ai/luis/luis-transparency-note)
 
 * [Microsoft AI principles](https://www.microsoft.com/ai/responsible-ai?rtc=1&activetab=pivot1%3aprimaryr6)
 * [Building responsible bots](https://www.microsoft.com/research/uploads/prod/2018/11/Bot_Guidelines_Nov_2018.pdf)

@@ -123,7 +123,7 @@ Customers must obtain permission from voice talent to use their voice to create 
 
 In [Speech Studio](https://speech.microsoft.com/customvoice), you must upload an audio file with a recorded acknowledgement statement from the voice talent. Microsoft reserves the right to use Microsoft's speaker recognition technology on this recorded acknowledgement statement and verify it against the training audio data to confirm that the voices came from the same speaker, or as otherwise necessary to investigate misuse of Azure AI Speech.
 
-The speaker's voice signatures created from the recorded acknowledgement statement files and training audio data are used by Microsoft solely for the purposes stated above. Microsoft will retain the recorded statement file for as long as necessary to preserve the security and integrity of Microsoft's Azure AI services. Learn more about how we process, use, and retain data in the [Data, privacy, and security doc](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/data-privacy-security-custom-neural-voice?context=/azure/ai-services/speech-service/context/context). 
+The speaker's voice signatures created from the recorded acknowledgement statement files and training audio data are used by Microsoft solely for the purposes stated above. Microsoft will retain the recorded statement file for as long as necessary to preserve the security and integrity of Microsoft's Azure AI services. Learn more about how we process, use, and retain data in the [Data, privacy, and security doc](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/data-privacy-security-custom-neural-voice). 
 
 #### [Custom text to speech avatar](#tab/avatar)
 
@@ -133,7 +133,7 @@ Customers must obtain permission from avatar talent for use of their image/liken
 
 You must provide a video file with a recorded acknowledgement statement from the avatar talent. Microsoft reserves the right to verify the recorded acknowledgement statement against the training video data to confirm that the images and voices came from the same person, or as otherwise necessary to investigate misuse of Azure AI services.
 
-The avatar talent’s video signatures created from the recorded acknowledgement statement files and training video data are used by Microsoft solely for the purposes stated above. Microsoft will retain the recorded statement file for as long as necessary to preserve the security and integrity of Microsoft's Azure AI services. Learn more about how we process, use, and retain data in the [Data, privacy, and security doc](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/data-privacy-security-custom-neural-voice?context=/azure/ai-services/speech-service/context/context). 
+The avatar talent’s video signatures created from the recorded acknowledgement statement files and training video data are used by Microsoft solely for the purposes stated above. Microsoft will retain the recorded statement file for as long as necessary to preserve the security and integrity of Microsoft's Azure AI services. Learn more about how we process, use, and retain data in the [Data, privacy, and security doc](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/data-privacy-security-custom-neural-voice). 
 
 ---
 
@@ -197,8 +197,8 @@ Appropriate use cases could include, but are not limited to:
 
 ## See also
 
-- [Transparency note and use cases for custom neural voice](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/transparency-note-custom-neural-voice?context=/azure/ai-services/speech-service/context/context)
-- [Responsible deployment of synthetic speech](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-guidelines-responsible-deployment-synthetic?context=/azure/ai-services/speech-service/context/context)
-- [Disclosure design guidelines](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-guidelines?context=/azure/ai-services/speech-service/context/context)
-- [Disclosure design patterns](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-patterns?context=/azure/ai-services/speech-service/context/context)
-- [Data, privacy, and security for custom neural voice](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/data-privacy-security-custom-neural-voice?context=/azure/ai-services/speech-service/context/context)
+- [Transparency note and use cases for custom neural voice](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/transparency-note-custom-neural-voice)
+- [Responsible deployment of synthetic speech](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-guidelines-responsible-deployment-synthetic)
+- [Disclosure design guidelines](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-guidelines)
+- [Disclosure design patterns](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-patterns)
+- [Data, privacy, and security for custom neural voice](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/data-privacy-security-custom-neural-voice)

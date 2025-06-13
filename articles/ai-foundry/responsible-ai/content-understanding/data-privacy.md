@@ -61,7 +61,7 @@ Data does not get stored outside the designated region that the user selected fo
 
 ### Face 
 
-Face is a gated feature as it processes biometric data. We detect faces in the input files and group them by their similarity. All intermediate data do not persist beyond the processing of the request. The face groupings associated with analysis results are persisted for 48 hours unless the user explicitly deletes face data. For more information, please refer to the [Data and Privacy for Face documentation](/azure/ai-foundry/responsible-ai/face/data-privacy-security?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext). 
+Face is a gated feature as it processes biometric data. We detect faces in the input files and group them by their similarity. All intermediate data do not persist beyond the processing of the request. The face groupings associated with analysis results are persisted for 48 hours unless the user explicitly deletes face data. For more information, please refer to the [Data and Privacy for Face documentation](/azure/ai-foundry/responsible-ai/face/data-privacy-security). 
 
  
 
