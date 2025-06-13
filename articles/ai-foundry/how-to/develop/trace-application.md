@@ -19,7 +19,7 @@ This article explains how to implement tracing for AI applications using OpenAI 
 
 ## Prerequisites
 
-Ensure you have the following:
+You need the following to complete this tutorial:
 
 * An Azure AI Foundry project created.
 
@@ -28,7 +28,7 @@ Ensure you have the following:
 
 ## Enable tracing in your project
 
-Azure AI Foundry stores traces in Azure Application Insight resources using OpenTelemetry. By default, new Azure AI Foundry resources don't provision these resources. You can connect them to an existing Azure Application Insights resource or create a new one from within the project. You only need to do this once per each Azure AI Foundry resource.
+Azure AI Foundry stores traces in Azure Application Insight resources using OpenTelemetry. By default, new Azure AI Foundry resources don't provision these resources. You can connect them to an existing Azure Application Insights resource or create a new one from within the project. You do such configuration once per each Azure AI Foundry resource.
 
 The following steps show how to configure:
 
@@ -52,13 +52,13 @@ The following steps show how to configure:
     2. By default, the new resource is created in the same resource group where the Azure AI Foundry resource was created. Use the **Advance settings** option to configure a different resource group or subscription.
 
         > [!TIP]
-        > To create a new Azure Application Insight resource, you also need contributor role to the resource group you have selected (or the default one).
+        > To create a new Azure Application Insight resource, you also need contributor role to the resource group you selected (or the default one).
 
     3. Select **Create** to create the resource and connect it to the Azure AI Foundry resource.
 
 4. Once the connection is configured, you are ready to use tracing in this project.
 
-5. Go to the landing page of your project and copy the project's endpoint URI. You'll need it later in the tutorial.
+5. Go to the landing page of your project and copy the project's endpoint URI. You need it later in the tutorial.
 
     :::image type="content" source="../../media/how-to/projects/fdp-project-overview.png" alt-text="A screenshot showing how to copy the project endpoint URI." lightbox="../../media/how-to/projects/fdp-project-overview.png":::
 
@@ -68,7 +68,7 @@ The following steps show how to configure:
 
 ## Instrument the OpenAI SDK
 
-If you are using the OpenAI SDK to develop intelligent applications you can instrument it so traces are sent to Azure AI Foundry. Follow these steps:
+When developing using the OpenAI SDK you can instrument your code so traces are sent to Azure AI Foundry. Follow these steps:
 
 1. Install `azure-ai-projects`, `azure-monitor-opentelemetry`, and `opentelemetry-instrumentation-openai-v2` in your environment. The following example uses `pip`:
 
@@ -167,7 +167,7 @@ If you are using the OpenAI SDK to develop intelligent applications you can inst
         return responses
     ```
 
-1. Then, traces will look as follows:
+1. Traces look as follows:
 
     :::image type="content" source="../../media/how-to/develop/trace-application/tracing-display-decorator.png" alt-text="A screenshot showing how a method using a decorator is displayed in the trace." lightbox="../../media/how-to/develop/trace-application/tracing-display-decorator.png":::
 
