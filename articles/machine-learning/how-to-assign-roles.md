@@ -289,9 +289,9 @@ The following table is a summary of Azure Machine Learning activities and the pe
 
 3. These scenarios don't include the permissions needed to create workspace dependent resources. For more information, see the write permissions for [Storage](https://learn.microsoft.com/azure/role-based-access-control/permissions/storage#microsoftstorage), [OperationalInsights](https://learn.microsoft.com/azure/role-based-access-control/permissions/monitor#microsoftoperationalinsights), [Key Vault](https://learn.microsoft.com/azure/role-based-access-control/permissions/security#microsoftkeyvault) and [Container Registry](https://learn.microsoft.com/azure/role-based-access-control/permissions/containers#microsoftcontainerregistry).
 
-4. When attaching user managed identities, you also need to have `Microsoft.ManagedIdentity/userAssignedIdentities/assign/action` permission on the identities. For more information, please see [Azure built-in roles for Identity](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles/identity)
+4. When attaching user-managed identities, you also need to have `Microsoft.ManagedIdentity/userAssignedIdentities/assign/action` permission on the identities. For more information, see [Azure built-in roles for Identity](/azure/role-based-access-control/built-in-roles/identity).
 
-5. When specifying serverless compute custom subnet, you also need to have `Microsoft.Network/virtualNetworks/subnets/join/action` on the virtual network. For more information, please see [Azure permissions for Networking](https://learn.microsoft.com/azure/role-based-access-control/permissions/networking)
+5. When specifying a serverless compute custom subnet, you also need to have `Microsoft.Network/virtualNetworks/subnets/join/action` on the virtual network. For more information, see [Azure permissions for Networking](/azure/role-based-access-control/permissions/networking).
 
 ###  Deploy into a virtual network or subnet
 
