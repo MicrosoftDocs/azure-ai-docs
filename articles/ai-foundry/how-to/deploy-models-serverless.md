@@ -18,13 +18,9 @@ zone_pivot_groups: azure-ai-serverless-deployment
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In this article, you learn how to deploy an Azure AI Foundry Model as a serverless API deployment.
+In this article, you learn how to deploy an Azure AI Foundry Model as a serverless API deployment. [Certain models in the model catalog](deploy-models-serverless-availability.md) can be deployed as a serverless API deployment. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription.
 
 [!INCLUDE [deploy-models-to-foundry-resources](../includes/deploy-models-to-foundry-resources.md)]
-
-[Certain models in the model catalog](deploy-models-serverless-availability.md) can be deployed as a serverless API deployment. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription.
-
-[!INCLUDE [models-preview](../includes/models-preview.md)]
 
 ## Prerequisites
 
@@ -69,7 +65,7 @@ In this article, you learn how to deploy an Azure AI Foundry Model as a serverle
 
 ### Subscribe your project to the model offering
 
-For models from partners and community, e.g., the AI21-Jamba-1.5-Large model, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from the Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending.
+For models from partners and community, e.g., the AI21-Jamba-1.5-Large model, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from the Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
 
 Furthermore, models offered through the Azure Marketplace are available for deployment to standard deployment in specific regions. Check [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) to verify available regions for the particular model. If the region in which your project is located isn't listed, you can deploy to a project in a supported region and then [consume standard deployment from a different project](deploy-models-serverless-connect.md).
 
@@ -87,7 +83,7 @@ Furthermore, models offered through the Azure Marketplace are available for depl
     
     :::image type="content" source="../media/deploy-models-serverless/model-subscribed-to-marketplace.png" alt-text="Deployment page for a model that is already subscribed to Azure marketplace." lightbox="../media/deploy-models-serverless/model-subscribed-to-marketplace.png":::    
 
-1. (Optional) Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again. At any point, you can see the model offers to which your project is currently subscribed:
+1. (Optional) At any point, you can see the model offers to which your project is currently subscribed:
     
     1. Go to the [Azure portal](https://portal.azure.com).
     1. Navigate to the resource group where the project belongs.
@@ -109,7 +105,9 @@ In this section, you create an endpoint for your model.
 1. To see the endpoints deployed to your project, in the **My assets** section of the left pane, select **Models + endpoints**.
 
 1. The created endpoint uses key authentication for authorization. To get the keys associated with a given endpoint, follow these steps:
+
     1. Select the deployment, and note the endpoint's Target URI and Key. 
+    
     1. Use these credentials to call the deployment and generate predictions.
 
 1. If you need to consume this deployment from a different project or hub, or you plan to use Prompt flow to build intelligent applications, you need to create a connection to the serverless API deployment. To learn how to configure an existing standard deployment on a new project or hub, see [Consume deployed standard deployment from a different project or from Prompt flow](deploy-models-serverless-connect.md).
@@ -146,9 +144,7 @@ To delete the associated model subscription:
 1. Select the subscription you want to delete.
 1. Select **Delete**.
 
- 
 ::: zone-end
-
 
 ::: zone pivot="programming-language-cli"
 
@@ -170,6 +166,121 @@ To delete the associated model subscription:
     az account set --subscription <subscription>
     az configure --defaults workspace=<project-name> group=<resource-group> location=<location>
     ```
+
+## Find your model in the model catalog
+
+[!INCLUDE [open-catalog](../includes/open-catalog.md)]
+
+# [Models sold directly by Azure](#tab/azure-direct)
+
+4. Select the model card of the model you want to deploy. In this article, you select a **DeepSeek-R1** model.
+
+1. Copy the **Model ID** without the including the model version, since standard deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-deepseek/models/DeepSeek-R1/versions/1`, copy `azureml://registries/azureml-deepseek/models/DeepSeek-R1`.
+
+    :::image type="content" source="../media/deploy-models-serverless/model-card.png" alt-text="A screenshot showing a model's details page for a model sold directly by Azure." lightbox="../media/deploy-models-serverless/model-card.png":::
+    
+   
+# [Models from Partners and Community](#tab/partner-models)
+
+4. Select the model card of the model you want to deploy. In this article, you select the **AI21-Jamba-1.5-Large** model.
+
+    > [!NOTE]
+    > [Models from Partners and Community](../concepts/foundry-models-overview.md#models-from-partners-and-community) are offered through the Azure Marketplace. For these models, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings), as you're required to subscribe your project to the particular model offering.
+
+1. Copy the **Model ID** without the including the model version, since standard deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large/versions/1`, copy `azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large`.
+
+    :::image type="content" source="../media/deploy-models-serverless/partner-model-card.png" alt-text="A screenshot showing a model's details page for a partner model." lightbox="../media/deploy-models-serverless/partner-model-card.png":::
+
+### Subscribe your project to the model offering
+
+For models from partners and community, e.g., the AI21-Jamba-1.5-Large model, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from the Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
+
+Furthermore, models offered through the Azure Marketplace are available for deployment to standard deployment in specific regions. Check [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) to verify available regions for the particular model. If the region in which your project is located isn't listed, you can deploy to a project in a supported region and then [consume standard deployment from a different project](deploy-models-serverless-connect.md).
+
+1. Create the model's marketplace subscription. When you create a subscription, you accept the terms and conditions associated with the model offer.
+
+    __subscription.yml__
+    
+        ```yml
+        name: AI21-Jamba-1-5-Large-suawp
+        model_id: azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large
+        ```
+    
+        Use the previous file to create the subscription:
+    
+        ```azurecli
+        az ml marketplace-subscription create -f subscription.yml
+        ```
+
+1. (Optional) At any point, you can see the model offers to which your project is currently subscribed:
+
+    ```azurecli
+    az ml marketplace-subscription list
+    ```
+
+---
+
+## Deploy the model to a serverless API
+
+In this section, you create an endpoint for your model with the name **AI21-Jamba-1-5-Large-suawp**.
+
+1. Create the serverless endpoint.
+
+    __endpoint.yml__
+
+    ```yml
+    name: AI21-Jamba-1-5-Large-suawp
+    model_id: azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large
+    ```
+
+    Use the _endpoint.yml_ file to create the endpoint:
+
+    ```azurecli
+    az ml serverless-endpoint create -f endpoint.yml
+    ```
+
+1. At any point, you can see the endpoints deployed to your project:
+
+    ```azurecli
+    az ml serverless-endpoint list
+    ```
+
+1. The created endpoint uses key authentication for authorization. Use the following steps to get the keys associated with a given endpoint.
+
+    ```azurecli
+    az ml serverless-endpoint get-credentials -n AI21-Jamba-1-5-Large-suawp
+    ```
+
+1. If you need to consume this deployment from a different project or hub, or you plan to use Prompt flow to build intelligent applications, you need to create a connection to the standard deployment. To learn how to configure an existing standard deployment on a new project or hub, see [Consume deployed standard deployment from a different project or from Prompt flow](deploy-models-serverless-connect.md).
+
+    > [!TIP]
+    > If you're using Prompt flow in the same project or hub where the deployment was deployed, you still need to create the connection. 
+
+
+## Use the standard deployment
+
+Models deployed in Azure Machine Learning and Azure AI Foundry in standard deployments support the [Azure AI Foundry Models API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md) that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way. 
+
+Read more about the [capabilities of this API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md#capabilities) and how [you can use it when building applications](../../ai-foundry/model-inference/reference/reference-model-inference-api.md#getting-started). 
+
+
+## Delete endpoints and subscriptions
+
+You can delete model subscriptions and endpoints. Deleting a model subscription makes any associated endpoint become *Unhealthy* and unusable.
+
+To delete a standard deployment:
+
+```azurecli
+az ml serverless-endpoint delete \
+    --name "AI21-Jamba-1-5-Large-suawp"
+```
+
+To delete the associated model subscription:
+
+```azurecli
+az ml marketplace-subscription delete \
+    --name "AI21-Jamba-1.5-Large"
+```
 
 ::: zone-end
 
@@ -197,6 +308,132 @@ To delete the associated model subscription:
     )
     ```
 
+## Find your model in the model catalog
+
+[!INCLUDE [open-catalog](../includes/open-catalog.md)]
+
+# [Models sold directly by Azure](#tab/azure-direct)
+
+4. Select the model card of the model you want to deploy. In this article, you select a **DeepSeek-R1** model.
+
+1. Copy the **Model ID** without the including the model version, since standard deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-deepseek/models/DeepSeek-R1/versions/1`, copy `azureml://registries/azureml-deepseek/models/DeepSeek-R1`.
+
+    :::image type="content" source="../media/deploy-models-serverless/model-card.png" alt-text="A screenshot showing a model's details page for a model sold directly by Azure." lightbox="../media/deploy-models-serverless/model-card.png":::
+    
+   
+# [Models from Partners and Community](#tab/partner-models)
+
+4. Select the model card of the model you want to deploy. In this article, you select the **AI21-Jamba-1.5-Large** model.
+
+    > [!NOTE]
+    > [Models from Partners and Community](../concepts/foundry-models-overview.md#models-from-partners-and-community) are offered through the Azure Marketplace. For these models, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings), as you're required to subscribe your project to the particular model offering.
+
+1. Copy the **Model ID** without the including the model version, since standard deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large/versions/1`, copy `azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large`.
+
+    :::image type="content" source="../media/deploy-models-serverless/partner-model-card.png" alt-text="A screenshot showing a model's details page for a partner model." lightbox="../media/deploy-models-serverless/partner-model-card.png":::
+
+### Subscribe your project to the model offering
+
+For models from partners and community, e.g., the AI21-Jamba-1.5-Large model, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from the Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
+
+Furthermore, models offered through the Azure Marketplace are available for deployment to standard deployment in specific regions. Check [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) to verify available regions for the particular model. If the region in which your project is located isn't listed, you can deploy to a project in a supported region and then [consume standard deployment from a different project](deploy-models-serverless-connect.md).
+
+1. Create the model's marketplace subscription. When you create a subscription, you accept the terms and conditions associated with the model offer.
+
+    ```python
+    model_id="azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large"
+    subscription_name="AI21-Jamba-1.5-Large"
+
+    marketplace_subscription = MarketplaceSubscription(
+        model_id=model_id,
+        name=subscription_name,
+    )
+
+    marketplace_subscription = client.marketplace_subscriptions.begin_create_or_update(
+        marketplace_subscription
+    ).result()
+    ```
+
+1. (Optional) At any point, you can see the model offers to which your project is currently subscribed:
+
+    ```python
+    marketplace_sub_list = client.marketplace_subscriptions.list()
+
+    for sub in marketplace_sub_list:
+        print(sub.as_dict())
+    ```
+
+---
+
+## Deploy the model to a serverless API
+
+In this section, you create an endpoint for your model with the name **AI21-Jamba-1-5-Large-suawp**.
+
+1. Create the serverless endpoint.
+
+    ```python
+    endpoint_name="AI21-Jamba-1-5-Large-suawp"
+    
+    serverless_endpoint = ServerlessEndpoint(
+        name=endpoint_name,
+        model_id=model_id
+    )
+
+    created_endpoint = client.serverless_endpoints.begin_create_or_update(
+        serverless_endpoint
+    ).result()
+    ```
+
+1. At any point, you can see the endpoints deployed to your project:
+
+    ```python
+    endpoint_name="AI21-Jamba-1-5-Large-suawp"
+    
+    serverless_endpoint = ServerlessEndpoint(
+        name=endpoint_name,
+        model_id=model_id
+    )
+
+    created_endpoint = client.serverless_endpoints.begin_create_or_update(
+        serverless_endpoint
+    ).result()
+    ```
+
+1. The created endpoint uses key authentication for authorization. Use the following steps to get the keys associated with a given endpoint.
+
+    ```python
+    endpoint_keys = client.serverless_endpoints.get_keys(endpoint_name)
+    print(endpoint_keys.primary_key)
+    print(endpoint_keys.secondary_key)
+    ```
+
+1. If you need to consume this deployment from a different project or hub, or you plan to use Prompt flow to build intelligent applications, you need to create a connection to the standard deployment. To learn how to configure an existing standard deployment on a new project or hub, see [Consume deployed standard deployment from a different project or from Prompt flow](deploy-models-serverless-connect.md).
+
+    > [!TIP]
+    > If you're using Prompt flow in the same project or hub where the deployment was deployed, you still need to create the connection. 
+
+
+## Use the standard deployment
+
+Models deployed in Azure Machine Learning and Azure AI Foundry in standard deployments support the [Azure AI Foundry Models API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md) that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way. 
+
+Read more about the [capabilities of this API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md#capabilities) and how [you can use it when building applications](../../ai-foundry/model-inference/reference/reference-model-inference-api.md#getting-started). 
+
+
+## Delete endpoints and subscriptions
+
+You can delete model subscriptions and endpoints. Deleting a model subscription makes any associated endpoint become *Unhealthy* and unusable.
+
+```python
+client.serverless_endpoints.begin_delete(endpoint_name).wait()
+```
+
+To delete the associated model subscription:
+
+```python
+client.marketplace_subscriptions.begin_delete(subscription_name).wait()
+```
+
 ::: zone-end
 
 
@@ -211,104 +448,44 @@ To delete the associated model subscription:
     LOCATION="eastus2" 
     ```  
 
-::: zone-end
 
-
-
-
-<!-- 
-
-## Find your model and model ID in the model catalog
+## Find your model in the model catalog
 
 [!INCLUDE [open-catalog](../includes/open-catalog.md)]
 
-> [!NOTE]
-> For models offered through the Azure Marketplace, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings).
->
-> Models that are offered by non-Microsoft providers (for example, Llama and Mistral models) are billed through the Azure Marketplace. For such models, you're required to subscribe your project to the particular model offering. Models that are offered by Microsoft (for example, Phi-3 models) don't have this requirement, as billing is done differently. For details about billing for serverless deployment of models in the model catalog, see [Billing for standard deployments](model-catalog-overview.md#billing).
+# [Models sold directly by Azure](#tab/azure-direct)
 
-4. Select the model card of the model you want to deploy. In this article, you select a **Meta-Llama-3-8B-Instruct** model.
+4. Select the model card of the model you want to deploy. In this article, you select a **DeepSeek-R1** model.
+
+1. Copy the **Model ID** without the including the model version, since standard deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-deepseek/models/DeepSeek-R1/versions/1`, copy `azureml://registries/azureml-deepseek/models/DeepSeek-R1`.
+
+    :::image type="content" source="../media/deploy-models-serverless/model-card.png" alt-text="A screenshot showing a model's details page for a model sold directly by Azure." lightbox="../media/deploy-models-serverless/model-card.png":::
     
-    1. If you're deploying the model using Azure CLI, Python, or ARM, copy the **Model ID**.
+   
+# [Models from Partners and Community](#tab/partner-models)
 
-        > [!IMPORTANT]
-        > Do not include the version when copying the **Model ID**. Standard deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-meta/models/Meta-Llama-3-8B-Instruct/versions/3`, copy `azureml://registries/azureml-meta/models/Meta-Llama-3-8B-Instruct`.
+4. Select the model card of the model you want to deploy. In this article, you select the **AI21-Jamba-1.5-Large** model.
 
-    :::image type="content" source="../media/deploy-monitor/serverless/model-card.png" alt-text="A screenshot showing a model's details page." lightbox="../media/deploy-monitor/serverless/model-card.png":::
+    > [!NOTE]
+    > [Models from Partners and Community](../concepts/foundry-models-overview.md#models-from-partners-and-community) are offered through the Azure Marketplace. For these models, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings), as you're required to subscribe your project to the particular model offering.
 
+1. Copy the **Model ID** without the including the model version, since standard deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large/versions/1`, copy `azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large`.
 
-The next section covers the steps for subscribing your project to a model offering. You can skip this section and go to [Deploy the model to a standard deployment](#deploy-the-model-to-a-standard-deployment), if you're deploying a Microsoft model.
+    :::image type="content" source="../media/deploy-models-serverless/partner-model-card.png" alt-text="A screenshot showing a model's details page for a partner model." lightbox="../media/deploy-models-serverless/partner-model-card.png":::
 
-## Subscribe your project to the model offering
+### Subscribe your project to the model offering
 
-Standard deployments can deploy both Microsoft and non-Microsoft offered models. For Microsoft models (such as Phi-3 models), you don't need to create an Azure Marketplace subscription and you can [deploy them to standard deployment directly](#deploy-the-model-to-a-standard-deployment) to consume their predictions. For non-Microsoft models, you need to create the subscription first. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from the Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending.
+For models from partners and community, e.g., the AI21-Jamba-1.5-Large model, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from the Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
 
-> [!TIP]
-> Skip this step if you are deploying models from the Phi-3 family of models. Directly [deploy the model to a standard deployment](#deploy-the-model-to-a-standard-deployment).
+Furthermore, models offered through the Azure Marketplace are available for deployment to standard deployment in specific regions. Check [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) to verify available regions for the particular model. If the region in which your project is located isn't listed, you can deploy to a project in a supported region and then [consume standard deployment from a different project](deploy-models-serverless-connect.md).
 
-> [!NOTE]
-> Models offered through the Azure Marketplace are available for deployment to standard deployment in specific regions. Check [Model and region availability for standard deployment](deploy-models-serverless-availability.md) to verify which models and regions are available. If the one you need is not listed, you can deploy to a workspace in a supported region and then [consume standard deployment from a different workspace](deploy-models-serverless-connect.md).
-
-1. Create the model's marketplace subscription. When you create a subscription, you accept the terms and conditions associated with the model offer.
-
-    # [Azure AI Foundry portal](#tab/azure-ai-studio)
-
-    1. On the model's **Details** page, select **Deploy**. A **Deployment options** window opens up, giving you the choice between standard deployment and deployment using a managed compute.
-
-        > [!NOTE]
-        > For models that can be deployed only via standard deployment, the standard deployment wizard opens up right after you select **Deploy** from the model's details page.
-
-    1. Select **standard deployment with Azure AI Content Safety (preview)** to open the standard deployment wizard.
-    1. Select the project in which you want to deploy your models. To use the standard deployment model deployment offering, your project must belong to one of the [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) for the particular model.
-
-        :::image type="content" source="../media/deploy-monitor/serverless/deploy-pay-as-you-go.png" alt-text="A screenshot showing how to deploy a model with the standard deployment option." lightbox="../media/deploy-monitor/serverless/deploy-pay-as-you-go.png"::: 
-
-    1. If you see the note *You already have an Azure Marketplace subscription for this project*, you don't need to create the subscription since you already have one. You can proceed to [Deploy the model to a standard deployment](#deploy-the-model-to-a-standard-deployment).
-
-    1. In the deployment wizard, select the link to **Azure Marketplace Terms** to learn more about the terms of use. You can also select the **Pricing and terms** tab to learn about pricing for the selected model.
-
-    1. Select **Subscribe and Deploy**.
-
-    # [Azure CLI](#tab/cli)
-
-    __subscription.yml__
-
-    ```yml
-    name: meta-llama3-8b-qwerty
-    model_id: azureml://registries/azureml-meta/models/Meta-Llama-3-8B-Instruct
-    ```
-
-    Use the previous file to create the subscription:
-
-    ```azurecli
-    az ml marketplace-subscription create -f subscription.yml
-    ```
-
-    # [Python SDK](#tab/python)
-
-    ```python
-    model_id="azureml://registries/azureml-meta/models/Meta-Llama-3-8B-Instruct"
-    subscription_name="Meta-Llama-3-8B-Instruct"
-
-    marketplace_subscription = MarketplaceSubscription(
-        model_id=model_id,
-        name=subscription_name,
-    )
-
-    marketplace_subscription = client.marketplace_subscriptions.begin_create_or_update(
-        marketplace_subscription
-    ).result()
-    ```
-
-    # [Bicep](#tab/bicep)
-
-    Use the following bicep configuration to create a model subscription:
+1. Use the following bicep configuration to create a model subscription. When you create a subscription, you accept the terms and conditions associated with the model offer.
 
     __model-subscription.bicep__
     
     ```bicep
     param projectName string = 'my-project'
-    param modelId string = 'azureml://registries/azureml-meta/models/Meta-Llama-3-8B-Instruct'
+    param modelId string = 'azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large'
     
     var modelName = substring(modelId, (lastIndexOf(modelId, '/') + 1))
     var subscriptionName = '${modelName}-subscription'
@@ -330,160 +507,20 @@ Standard deployments can deploy both Microsoft and non-Microsoft offered models.
     az deployment group create --resource-group $RESOURCE_GROUP --template-file model-subscription.bicep
     ```
 
-    # [ARM](#tab/arm)
-
-    Use the following template to create a model subscription:
-
-    __model-subscription.json__
-
-    ```json
-    {
-        "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-        "contentVersion": "1.0.0.0",
-        "parameters": {
-            "project_name": {
-                "defaultValue": "my-project",
-                "type": "String"
-            },
-            "subscription_name": {
-                "defaultValue": "Meta-Llama-3-8B-Instruct",
-                "type": "String"
-            },
-            "model_id": {
-                "defaultValue": "azureml://registries/azureml-meta/models/Meta-Llama-3-8B-Instruct",
-                "type": "String"
-            }
-        },
-        "variables": {},
-        "resources": [
-            {
-                "type": "Microsoft.MachineLearningServices/workspaces/marketplaceSubscriptions",
-                "apiVersion": "2024-04-01",
-                "name": "[concat(parameters('project_name'), '/', parameters('subscription_name'))]",
-                "properties": {
-                    "modelId": "[parameters('model_id')]"
-                }
-            }
-        ]
-    }
-    ```
-
-    Use the Azure portal or the Azure CLI to create the deployment.
-
-    ```azurecli
-    az deployment group create --resource-group $RESOURCE_GROUP --template-file model-subscription.json
-    ```
-
-1. Once you subscribe the project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
-
-1. At any point, you can see the model offers to which your project is currently subscribed:
-
-    # [Azure AI Foundry portal](#tab/azure-ai-studio)
-
-    1. Go to the [Azure portal](https://portal.azure.com).
-
-    1. Navigate to the resource group where the project belongs.
-
-    1. On the **Type** filter, select **SaaS**.
-
-    1. You see all the offerings to which you're currently subscribed.
-
-    1. Select any resource to see the details.
-
-    # [Azure CLI](#tab/cli)
-
-    ```azurecli
-    az ml marketplace-subscription list
-    ```
-
-    # [Python SDK](#tab/python)
-
-    ```python
-    marketplace_sub_list = client.marketplace_subscriptions.list()
-
-    for sub in marketplace_sub_list:
-        print(sub.as_dict())
-    ```
-
-    # [Bicep](#tab/bicep)
-
-    You can use the resource management tools to query the resources. The following code uses Azure CLI:
+1. (Optional) At any point, you can see the model offers to which your project is currently subscribed. You can use the resource management tools to query the resources. The following code uses Azure CLI:
 
     ```azurecli
     az resource list \
         --query "[?type=='Microsoft.SaaS']"
     ```
 
-    # [ARM](#tab/arm)
+---
 
-    You can use the resource management tools to query the resources. The following code uses Azure CLI:
+## Deploy the model to a serverless API
 
-    ```azurecli
-    az resource list \
-        --query "[?type=='Microsoft.SaaS']"
-    ```
+In this section, you create an endpoint for your model with the name **AI21-Jamba-1-5-Large-suawp**.
 
-## Deploy the model to a standard deployment
-
-Once you've created a subscription for a non-Microsoft model, you can deploy the associated model to a standard deployment. For Microsoft models (such as Phi-3 models), you don't need to create a subscription.
-
-The standard deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance organizations need. This deployment option doesn't require quota from your subscription.
-
-In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
-
-1. Create the serverless endpoint
-
-    # [Azure AI Foundry portal](#tab/azure-ai-studio)
-
-    1. To deploy a Microsoft model that doesn't require subscribing to a model offering:
-        1. Select **Deploy** and then select **standard deployment with Azure AI Content Safety (preview)** to open the deployment wizard.
-        1. Select the project in which you want to deploy your model. Notice that not all the regions are supported.
-
-    1. Alternatively, for a non-Microsoft model that requires a model subscription, if you've just subscribed your project to the model offer in the previous section, continue to select **Deploy**. Alternatively, select **Continue to deploy** (if your deployment wizard had the note *You already have an Azure Marketplace subscription for this project*).
-
-        :::image type="content" source="../media/deploy-monitor/serverless/deploy-pay-as-you-go-subscribed-project.png" alt-text="A screenshot showing a project that is already subscribed to the offering." lightbox="../media/deploy-monitor/serverless/deploy-pay-as-you-go-subscribed-project.png":::
-
-    1. Give the deployment a name. This name becomes part of the deployment API URL. This URL must be unique in each Azure region.
-
-        :::image type="content" source="../media/deploy-monitor/serverless/deployment-name.png" alt-text="A screenshot showing how to specify the name of the deployment you want to create." lightbox="../media/deploy-monitor/serverless/deployment-name.png":::
-       > [!TIP]
-       > The **Content filter** option is enabled by default. Leave the default setting for the service to detect harmful content such as hate, self-harm, sexual, and violent content. For more information about content filtering, see [Content filtering in Azure AI Foundry portal](../concepts/content-filtering.md).
-
-    1. Select **Deploy**. Wait until the deployment is ready and you're redirected to the Deployments page.
-
-    # [Azure CLI](#tab/cli)
-
-    __endpoint.yml__
-
-    ```yml
-    name: meta-llama3-8b-qwerty
-    model_id: azureml://registries/azureml-meta/models/Meta-Llama-3-8B-Instruct
-    ```
-
-    Use the _endpoint.yml_ file to create the endpoint:
-
-    ```azurecli
-    az ml serverless-endpoint create -f endpoint.yml
-    ```
-
-    # [Python SDK](#tab/python)
-
-    ```python
-    endpoint_name="meta-llama3-8b-qwerty"
-    
-    serverless_endpoint = ServerlessEndpoint(
-        name=endpoint_name,
-        model_id=model_id
-    )
-
-    created_endpoint = client.serverless_endpoints.begin_create_or_update(
-        serverless_endpoint
-    ).result()
-    ```
-
-    # [Bicep](#tab/bicep)
-
-    Use the following template to create an endpoint:
+1. Create the serverless endpoint. Use the following template to create an endpoint:
 
     __serverless-endpoint.bicep__
 
@@ -491,7 +528,7 @@ In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
     param projectName string = 'my-project'
     param endpointName string = 'myserverless-text-1234ss'
     param location string = resourceGroup().location
-    param modelId string = 'azureml://registries/azureml-meta/models/Meta-Llama-3-8B-Instruct'
+    param modelId string = 'azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large'
     
     var modelName = substring(modelId, (lastIndexOf(modelId, '/') + 1))
     var subscriptionName = '${modelName}-subscription'
@@ -520,110 +557,8 @@ In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
     ```azurecli
     az deployment group create --resource-group $RESOURCE_GROUP --template-file model-subscription.bicep
     ```
-
-    # [ARM](#tab/arm)
-
-    Use the following template to create an endpoint:
-
-    __template.json__
-
-    ```json
-    {
-        "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-        "contentVersion": "1.0.0.0",
-        "parameters": {
-            "project_name": {
-                "defaultValue": "my-project",
-                "type": "String"
-            },
-            "endpoint_name": {
-                "defaultValue": "meta-llama3-8b-qwerty",
-                "type": "String"
-            },
-            "location": {
-                "defaultValue": "eastus2",
-                "type": "String"
-            },
-            "model_id": {
-                "defaultValue": "azureml://registries/azureml-meta/models/Meta-Llama-3-8B-Instruct",
-                "type": "String"
-            }
-        },
-        "variables": {},
-        "resources": [
-            {
-                "type": "Microsoft.MachineLearningServices/workspaces/serverlessEndpoints",
-                "apiVersion": "2024-04-01",
-                "name": "[concat(parameters('project_name'), '/', parameters('endpoint_name'))]",
-                "location": "[parameters('location')]",
-                "sku": {
-                    "name": "Consumption"
-                },
-                "properties": {
-                    "modelSettings": {
-                        "modelId": "[parameters('model_id')]"
-                    }
-                }
-            }
-        ]
-    }
-    ```
-
-    Then create the deployment:
-
-    ```azurecli
-    az deployment group create \
-        --resource-group $RESOURCE_GROUP \
-        --template-file template.json
-    ```
-
-    The Azure deployment template can take a few minutes to complete. When it finishes, you see a message that includes the result:
-
-    ```output
-    "provisioningState": "Succeeded",
-    ```
-
-1. At any point, you can see the endpoints deployed to your project:
-
-    # [Azure AI Foundry portal](#tab/azure-ai-studio)
-
-    1. Go to your project.
-
-    1. In the **My assets** section, select **Models + endpoints**.
-
-    1. Standard deployments are displayed.
-
-    # [Azure CLI](#tab/cli)
-
-    ```azurecli
-    az ml serverless-endpoint list
-    ```
-
-    # [Python SDK](#tab/python)
-
-    ```python
-    endpoint_name="meta-llama3-8b-qwerty"
     
-    serverless_endpoint = ServerlessEndpoint(
-        name=endpoint_name,
-        model_id=model_id
-    )
-
-    created_endpoint = client.serverless_endpoints.begin_create_or_update(
-        serverless_endpoint
-    ).result()
-    ```
-
-    # [Bicep](#tab/bicep)
-
-    You can use the resource management tools to query the resources. The following code uses Azure CLI:
-
-    ```azurecli
-    az resource list \
-        --query "[?type=='Microsoft.MachineLearningServices/workspaces/serverlessEndpoints']"
-    ```
-
-    # [ARM](#tab/arm)
+1. At any point, you can see the endpoints deployed to your project:
 
     You can use the resource management tools to query the resources. The following code uses Azure CLI:
 
@@ -634,41 +569,13 @@ In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
 
 1. The created endpoint uses key authentication for authorization. Use the following steps to get the keys associated with a given endpoint.
 
-    # [Azure AI Foundry portal](#tab/azure-ai-studio)
-
-    You can select the deployment, and note the endpoint's _Target URI_ and _Key_. Use them to call the deployment and generate predictions.
-
-    > [!NOTE]
-    > When using the [Azure portal](https://portal.azure.com), standard deployments aren't displayed by default on the resource group. Use the **Show hidden types** option to display them on the resource group.
-
-    # [Azure CLI](#tab/cli)
-
-    ```azurecli
-    az ml serverless-endpoint get-credentials -n meta-llama3-8b-qwerty
-    ```
-
-    # [Python SDK](#tab/python)
-
-    ```python
-    endpoint_keys = client.serverless_endpoints.get_keys(endpoint_name)
-    print(endpoint_keys.primary_key)
-    print(endpoint_keys.secondary_key)
-    ```
-
-    # [Bicep](#tab/bicep)
-
     Use REST APIs to query this information.
-
-    # [ARM](#tab/arm)
-
-    Use REST APIs to query this information.
-
-1. At this point, your endpoint is ready to be used.
 
 1. If you need to consume this deployment from a different project or hub, or you plan to use Prompt flow to build intelligent applications, you need to create a connection to the standard deployment. To learn how to configure an existing standard deployment on a new project or hub, see [Consume deployed standard deployment from a different project or from Prompt flow](deploy-models-serverless-connect.md).
 
     > [!TIP]
-    > If you're using Prompt flow in the same project or hub where the deployment was deployed, you still need to create the connection.
+    > If you're using Prompt flow in the same project or hub where the deployment was deployed, you still need to create the connection. 
+
 
 ## Use the standard deployment
 
@@ -676,83 +583,11 @@ Models deployed in Azure Machine Learning and Azure AI Foundry in standard deplo
 
 Read more about the [capabilities of this API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md#capabilities) and how [you can use it when building applications](../../ai-foundry/model-inference/reference/reference-model-inference-api.md#getting-started). 
 
-## Network isolation
-
-Endpoints for models deployed as standard deployment follow the public network access (PNA) flag setting of the Azure AI Foundry portal Hub that has the project in which the deployment exists. To secure your standard deployment, disable the PNA flag on your Azure AI Foundry Hub. You can secure inbound communication from a client to your endpoint by using a private endpoint for the hub.
-
-To set the PNA flag for the Azure AI Foundry hub:
-
-1. Go to the [Azure portal](https://portal.azure.com).
-2. Search for the Resource group to which the hub belongs, and select the **Azure AI hub** from the resources listed for this resource group.
-3. From the hub **Overview** page on the left menu, select **Settings** > **Networking**.
-4. Under the **Public access** tab, you can configure settings for the public network access flag.
-5. Save your changes. Your changes might take up to five minutes to propagate.
 
 ## Delete endpoints and subscriptions
 
-[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
-
 You can delete model subscriptions and endpoints. Deleting a model subscription makes any associated endpoint become *Unhealthy* and unusable.
 
-# [Azure AI Foundry portal](#tab/azure-ai-studio)
-
-To delete a standard deployment:
-
-1. Go to the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
-
-1. Go to your project.
-
-1. In the **My assets** section, select **Models + endpoints**.
-
-1. Open the deployment you want to delete.
-
-1. Select **Delete**.
-
-
-To delete the associated model subscription:
-
-1. Go to the [Azure portal](https://portal.azure.com)
-
-1. Navigate to the resource group where the project belongs.
-
-1. On the **Type** filter, select **SaaS**.
-
-1. Select the subscription you want to delete.
-
-1. Select **Delete**.
-
-# [Azure CLI](#tab/cli)
-
-To delete a standard deployment:
-
-```azurecli
-az ml serverless-endpoint delete \
-    --name "meta-llama3-8b-qwerty"
-```
-
-To delete the associated model subscription:
-
-```azurecli
-az ml marketplace-subscription delete \
-    --name "Meta-Llama-3-8B-Instruct"
-```
-
-# [Python SDK](#tab/python)
-
-To delete a standard deployment:
-
-```python
-client.serverless_endpoints.begin_delete(endpoint_name).wait()
-```
-
-To delete the associated model subscription:
-
-```python
-client.marketplace_subscriptions.begin_delete(subscription_name).wait()
-```
-
-# [Bicep](#tab/bicep)
-
 You can use the resource management tools to manage the resources. The following code uses Azure CLI:
 
 ```azurecli
@@ -760,15 +595,8 @@ az resource delete --name <resource-name>
 ```
 
 
-# [ARM](#tab/arm)
+::: zone-end
 
-You can use the resource management tools to manage the resources. The following code uses Azure CLI:
-
-```azurecli
-az resource delete --name <resource-name>
-```
-
---- -->
 
 ## Cost and quota considerations for Foundry Models deployed as a standard deployment
 
