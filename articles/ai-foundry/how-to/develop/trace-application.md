@@ -36,7 +36,7 @@ The following steps show how to configure:
 
 2. On the side navigation bar, select **Tracing**.
 
-3. If an Azure Application Insights resource has not been associated with your resource, associate one.
+3. If an Azure Application Insights resource isn't associated with your Azure AI Foundry resource, associate one.
 
     :::image type="content" source="../../media/how-to/develop/trace-application/configure-app-insight.png" alt-text="A screenshot showing how to configure Azure Application Insights to the Azure AI Foundry resource." lightbox="../../media/how-to/develop/trace-application/configure-app-insight.png":::
 
