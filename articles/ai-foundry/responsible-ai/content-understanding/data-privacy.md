@@ -67,4 +67,4 @@ Face is a gated feature as it processes biometric data. We detect faces in the i
 
 ### Azure OpenAI 
 
-Content Understanding also utilizes Azure OpenAI model once each modality input is processed through the underlying AI services. Please refer to the [Azure OpenAI Data, privacy, and security documentation](/azure/ai-foundry/responsible-ai/openai/data-privacy?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=azure-portal) for more information. 
+Content Understanding also utilizes Azure OpenAI model once each modality input is processed through the underlying AI services. Please refer to the [Azure OpenAI Data, privacy, and security documentation](/azure/ai-foundry/responsible-ai/openai/data-privacy) for more information. 

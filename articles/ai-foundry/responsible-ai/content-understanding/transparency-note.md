@@ -319,10 +319,10 @@ When you're getting ready to integrate Content Understanding to your product or 
 
 ### Additional transparency notes for underlying services
 
-- [Azure OpenAI](/azure/ai-foundry/responsible-ai/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=text) 
+- [Azure OpenAI](/azure/ai-foundry/responsible-ai/openai/transparency-note) 
 - [Azure AI Document Intelligence](/azure/ai-foundry/responsible-ai/document-intelligence/transparency-note?toc=%2Fazure%2Fai-services%2Fdocument-intelligence%2Ftoc.json&bc=%2Fazure%2Fai-services%2Fdocument-intelligence%2Fbreadcrumb%2Ftoc.json&view=doc-intel-4.0.0&preserve-view=true) 
-- [Azure AI Speech](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note?context=%2Fazure%2Fai-services%2Fspeech-service%2Fcontext%2Fcontext ) 
-- [Azure AI Vision](/azure/ai-foundry/responsible-ai/computer-vision/imageanalysis-transparency-note?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext ) 
+- [Azure AI Speech](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note) 
+- [Azure AI Vision](/azure/ai-foundry/responsible-ai/computer-vision/imageanalysis-transparency-note) 
 - [Azure AI Face](/azure/ai-foundry/responsible-ai/face/transparency-note)  
 - [Azure AI Video Indexer](/legal/azure-video-indexer/transparency-note?context=%2Fazure%2Fazure-video-indexer%2Fcontext%2Fcontext ) 
 

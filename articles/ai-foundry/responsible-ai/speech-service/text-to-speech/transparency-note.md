@@ -288,7 +288,7 @@ Technical limitations to consider are the accuracy of lip sync alignment with th
 - **Availability**: Microsoft will provide customers with 12 months’ notice before removing any prebuilt text to speech avatars from our catalog, unless security, legal, or system performance considerations require an expedited removal. This does not apply to previews. 
 - **Privacy and data protection**: When utilizing text to speech avatars, customers should adhere to all applicable privacy laws and regulations and ensure that sensitive or personal information is handled securely. It is important to be cautious when processing and storing data, and to follow best practices for data protection and consent management. 
 
-Each application is different, and our base model may not match your context or cover all scenarios required for your use case. We encourage developers to thoroughly evaluate the quality of text to speech synthetic voice and video with real-world data that reflects your use case, including testing with users from different demographic groups and with different speech characteristics. Please see the [Quality of the voice model trained](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/characteristics-and-limitations-custom-neural-voice?context=%2Fazure%2Fai-services%2Fspeech-service%2Fcontext%2Fcontext#quality-of-the-voice-model-trained) section for best practices for building high quality voice models. 
+Each application is different, and our base model may not match your context or cover all scenarios required for your use case. We encourage developers to thoroughly evaluate the quality of text to speech synthetic voice and video with real-world data that reflects your use case, including testing with users from different demographic groups and with different speech characteristics. Please see the [Quality of the voice model trained](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/characteristics-and-limitations-custom-neural-voice#quality-of-the-voice-model-trained) section for best practices for building high quality voice models. 
 
 
 #### [Custom text to speech avatar](#tab/cust-avatar)
@@ -309,7 +309,7 @@ Technical limitations to consider are the accuracy of lip sync alignment with th
 
 ---
 
-Each application is different, and our base model may not match your context or cover all scenarios required for your use case. We encourage developers to thoroughly evaluate the quality of text to speech synthetic voice and video with real-world data that reflects your use case, including testing with users from different demographic groups and with different speech characteristics. Please see the [Quality of the voice model trained](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/characteristics-and-limitations-custom-neural-voice?context=%2Fazure%2Fai-services%2Fspeech-service%2Fcontext%2Fcontext#quality-of-the-voice-model-trained) section for best practices for building high quality voice models. 
+Each application is different, and our base model may not match your context or cover all scenarios required for your use case. We encourage developers to thoroughly evaluate the quality of text to speech synthetic voice and video with real-world data that reflects your use case, including testing with users from different demographic groups and with different speech characteristics. Please see the [Quality of the voice model trained](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/characteristics-and-limitations-custom-neural-voice#quality-of-the-voice-model-trained) section for best practices for building high quality voice models. 
 
 In addition to ensuring performance, it is important to consider how to minimize risks of stereotyping and erasure that may result from synthetic voices and avatar. For example, if you are creating a custom neural voice for a smart voice assistant, carefully consider what voice is appropriate to create, and seek diverse perspectives from individuals from a variety of backgrounds. When building and evaluating your system, always seek diverse input. 
 
@@ -431,20 +431,20 @@ Below are some best practices to help you responsibly integrate text to speech f
 
 ### Disclose when the voice is synthetic 
 
-Disclosing that a voice is computer generated not only minimizes the risk of harmful outcomes from deception but also increases trust in the organization delivering the voice. Learn more about [how to disclose](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-guidelines). 
+Disclosing that a voice is computer generated not only minimizes the risk of harmful outcomes from deception but also increases trust in the organization delivering the voice. Learn more about [how to disclose](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-guidelines). 
 
 Microsoft requires its customers to disclose the synthetic nature of text to speech voices to its users. 
 
-- Make sure to provide adequate disclosure to audiences, especially when using the voice of a well-known person. People make judgments about information based in part on the person who delivers it, whether they do so consciously or unconsciously. For example, a disclosure could be verbally shared at the start of a broadcast. For more information, visit [disclosure patterns](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-patterns). 
+- Make sure to provide adequate disclosure to audiences, especially when using the voice of a well-known person. People make judgments about information based in part on the person who delivers it, whether they do so consciously or unconsciously. For example, a disclosure could be verbally shared at the start of a broadcast. For more information, visit [disclosure patterns](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-patterns). 
 - Consider proper disclosure to parents or other parties with use cases that are designed for or may be used in situations involving minors and children. If your use case is intended for minors or children, you'll need to ensure that your disclosure is clear and transparent so that parents or legal guardians can understand the role of synthetic media and make an informed decision on behalf of minors or children about whether to use the experience. 
 
 ### Disclose when the avatar video is synthetic  
 
-Disclosing that an avatar speaking video is computer generated not only minimizes the risk of harmful outcomes from deception but also increases trust in the organization delivering the video. Learn more about [how to disclose](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-guidelines).  
+Disclosing that an avatar speaking video is computer generated not only minimizes the risk of harmful outcomes from deception but also increases trust in the organization delivering the video. Learn more about [how to disclose](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-guidelines).  
 
 Microsoft requires its customers to disclose the synthetic nature of text to speech avatars to its users.  
 
-- Make sure to provide adequate disclosure to audiences, especially when using the image (and voice) of a well-known person. People make judgments about information based in part on the person who delivers it, whether they do so consciously or unconsciously. **For example, a disclosure could be made with a watermark, such as, “The voice and image in this video are AI-generated,” in text or verbally shared at the start of a video.** For more information visit [disclosure patterns](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-patterns).  
+- Make sure to provide adequate disclosure to audiences, especially when using the image (and voice) of a well-known person. People make judgments about information based in part on the person who delivers it, whether they do so consciously or unconsciously. **For example, a disclosure could be made with a watermark, such as, “The voice and image in this video are AI-generated,” in text or verbally shared at the start of a video.** For more information visit [disclosure patterns](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-patterns).  
 - Consider proper disclosure to parents or other parties with use cases that are designed for or may be used in situations involving minors and children. If your use case is intended for minors or children, you'll need to ensure that your disclosure is clear and transparent so that parents or legal guardians can understand the role of synthetic media and make an informed decision on behalf of minors or children about whether to use the experience.  
 
 ### Select appropriate voice types for your scenario 
@@ -499,6 +499,6 @@ Individuals with speech disorders may wish to update their synthetic voice to re
 
 ## Learn more about Azure Speech
 
-- [Limited access to Azure Speech Service - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/limited-access-custom-neural-voice) 
+- [Limited access to Azure Speech Service - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access-custom-neural-voice) 
 - [Code of conduct for Azure Speech Service | Microsoft Learn](/legal/ai-code-of-conduct?context=/azure/ai-services/speech-service/context/context) 
-- [Data, privacy, and security for Azure Speech Service - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/data-privacy-security-custom-neural-voice) 
+- [Data, privacy, and security for Azure Speech Service - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security-custom-neural-voice) 

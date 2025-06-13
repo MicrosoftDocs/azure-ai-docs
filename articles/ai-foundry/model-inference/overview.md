@@ -57,7 +57,7 @@ Microsoft helps guard against abuse and unintended harm by taking the following 
 - Incorporating Microsoft's [principles for responsible AI use](https://www.microsoft.com/ai/responsible-ai)
 - Adopting a [code of conduct](/legal/ai-code-of-conduct?context=/azure/ai-services/openai/context/context) for use of the service
 - Building [content filters](/azure/ai-services/content-safety/overview) to support customers
-- Providing responsible AI [information and guidance](/azure/ai-foundry/responsible-ai/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=image) that customers should consider when using Azure OpenAI.
+- Providing responsible AI [information and guidance](/azure/ai-foundry/responsible-ai/openai/transparency-note) that customers should consider when using Azure OpenAI.
 
 ## Getting started
 

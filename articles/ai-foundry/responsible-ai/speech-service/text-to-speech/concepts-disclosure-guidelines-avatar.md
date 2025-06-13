@@ -43,8 +43,8 @@ This guide helps you determine which disclosure patterns are best fit for your t
 
 Considering the vast body of design guidance on avatar watching or interacting experiences, we focus here specifically on: 
 - [Disclosure assessment](#disclosure-assessment): A process to determine the type of disclosure recommended for your text to speech avatar experience 
-- [How to disclose](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-patterns): Examples of disclosure patterns that can be applied to your text to speech avatar experience 
-- [When to disclose](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-patterns#when-to-disclose): Optimal moments to disclose throughout the user journey
+- [How to disclose](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-patterns): Examples of disclosure patterns that can be applied to your text to speech avatar experience 
+- [When to disclose](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-patterns#when-to-disclose): Optimal moments to disclose throughout the user journey
 
 ## Disclosure assessment
 
@@ -56,6 +56,6 @@ The text to speech avatar is a photorealistic human image that has lip sync and 
 
 ## See also
 
-* [Disclosure design patterns](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-patterns)
+* [Disclosure design patterns](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-patterns)
 * [Disclosure for voice and avatar talent](/azure/ai-foundry/responsible-ai/speech-service/disclosure-voice-talent)
-* [Guidelines for responsible deployment of synthetic voice technology](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-guidelines-responsible-deployment-synthetic)
+* [Guidelines for responsible deployment of synthetic voice technology](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-guidelines-responsible-deployment-synthetic)

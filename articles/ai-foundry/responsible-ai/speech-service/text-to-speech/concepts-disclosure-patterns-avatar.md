@@ -154,5 +154,5 @@ For example, when asked a question that hard to be answered by AI, the avatar ca
 ## See also
 
 * [Disclosure for voice and avatar talent](/azure/ai-foundry/responsible-ai/speech-service/disclosure-voice-talent)
-* [Guidelines for responsible deployment of synthetic voice technology](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-guidelines-responsible-deployment-synthetic)
-* [How to disclose](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-guidelines)
+* [Guidelines for responsible deployment of synthetic voice technology](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-guidelines-responsible-deployment-synthetic)
+* [How to disclose](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-guidelines)
