@@ -1187,7 +1187,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/agents/reference/monitor-service.md",
-      "redirect_url": "/azure/ai-foundry/agents/how-to/reference/monitor-service",
+      "redirect_url": "/azure/ai-foundry/agents/reference/monitor-service",
       "redirect_document_id": true
     },
     {
