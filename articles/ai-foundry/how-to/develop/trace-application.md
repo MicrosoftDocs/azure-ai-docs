@@ -103,7 +103,7 @@ If you are using the OpenAI SDK to develop intelligent applications you can inst
     >
     > :::image type="content" source="../../media/how-to/develop/trace-application/tracing-copy-connection-string.png" alt-text="A screenshot showing how to copy the connection string to the underlying Azure Application Insights resource from a project." lightbox="../../media/how-to/develop/trace-application/tracing-copy-connection-string.png":::
 
-1. We want to send tracing information to Azure AI Foundry. To do that, we need to create an OpenTelemetry exporter and configure it with the connection string to the Azure Application Insights that is used by our project.
+1. Configure OpenTelemetry to send traces to the Azure Application Insights used by Azure AI Foundry:
 
     ```python
     from azure.monitor.opentelemetry import configure_azure_monitor
@@ -111,7 +111,7 @@ If you are using the OpenAI SDK to develop intelligent applications you can inst
     configure_azure_monitor(connection_string=connection_string)
     ```
 
-1. By default, OpenTelemetry doesn't capture the inputs and outputs. To enable that, use the environment variable `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=true`. Ensure this environment variable is configured in the environment level where your code is running.
+1. By default, OpenTelemetry doesn't capture inputs and outputs. Use the environment variable `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=true` to capture it. Ensure this environment variable is configured in the environment level where your code is running.
 
 1. Use the OpenAI SDK in the same way you are used to:
 
