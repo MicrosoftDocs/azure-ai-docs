@@ -7,7 +7,7 @@ ms.author: aahi
 author: aahill
 manager: nitinme
 ms.topic: reference
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 
 # Limits for your LUIS model and keys

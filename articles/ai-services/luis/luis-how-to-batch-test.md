@@ -8,7 +8,7 @@ manager: nitinme
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
 ms.topic: how-to
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 
 # Batch testing with a set of example utterances
