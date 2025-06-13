@@ -7,7 +7,7 @@ ms.author: aahi
 ms.manager: nitinme
 ms.subservice: azure-ai-luis
 ms.topic: conceptual
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 
 # Design with intent and entity models

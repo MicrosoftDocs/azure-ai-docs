@@ -10,7 +10,7 @@ ms.custom: devx-track-js
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
 ms.topic: tutorial
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 
 # Build a LUIS app programmatically using Node.js

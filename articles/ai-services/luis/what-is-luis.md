@@ -5,7 +5,7 @@ keywords: Azure, artificial intelligence, ai, natural language processing, nlp, 
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
 ms.topic: overview
-ms.date: 09/27/2024
+ms.date: 06/12/2025
 ms.author: aahi
 author: aahill
 ms.manager: nitinme

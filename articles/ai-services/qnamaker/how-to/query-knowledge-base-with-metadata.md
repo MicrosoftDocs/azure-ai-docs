@@ -8,7 +8,7 @@ author: jboback
 ms.service: azure-ai-language
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 
 # Filter Responses with Metadata
