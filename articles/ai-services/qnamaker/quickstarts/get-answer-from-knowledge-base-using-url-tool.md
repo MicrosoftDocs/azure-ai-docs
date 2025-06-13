@@ -3,8 +3,8 @@ title: Use URL tool to get answer from knowledge base - QnA Maker
 titleSuffix: Azure AI services
 description: This article walks you through getting an answer from your knowledge base using a URL test tool such as cURL or the Visual Studio Code REST Client extension..
 manager: nitinme
-ms.author: jboback
-author: jboback
+ms.author: lajanuar
+author: laujan
 ms.service: azure-ai-language
 ms.subservice: azure-ai-qna-maker
 zone_pivot_groups: URL-test-interface

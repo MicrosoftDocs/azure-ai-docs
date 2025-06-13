@@ -2,8 +2,8 @@
 title: API HTTP response codes - LUIS
 titleSuffix: Azure AI services
 description:  Understand what HTTP response codes are returned from the LUIS Authoring and Endpoint APIs.
-author: aahill
-ms.author: aahi
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis

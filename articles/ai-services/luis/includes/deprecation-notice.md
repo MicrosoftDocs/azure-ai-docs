@@ -1,7 +1,7 @@
 ---
 titleSuffix: Azure AI services
-author: aahill
-ms.author: aahi
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include

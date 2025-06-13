@@ -4,8 +4,8 @@ description: This quickstart shows you how to create and manage your knowledge b
 ms.service: azure-ai-language
 ms.subservice: azure-ai-qna-maker
 ms.topic: quickstart
-author: jboback
-ms.author: jboback
+author: laujan
+ms.author: lajanuar
 ms.date: 06/12/2025
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python

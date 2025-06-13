@@ -3,8 +3,8 @@ title: Confidence score - QnA Maker
 titleSuffix: Azure AI services
 description: When a user query is matched against a knowledge base, QnA Maker returns relevant answers, along with a confidence score.
 manager: nitinme
-ms.author: jboback
-author: jboback
+ms.author: lajanuar
+author: laujan
 ms.service: azure-ai-language
 ms.subservice: azure-ai-qna-maker
 ms.topic: conceptual

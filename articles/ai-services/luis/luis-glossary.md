@@ -5,8 +5,8 @@ ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
 ms.topic: reference
 ms.date: 06/12/2025
-author: aahill
-ms.author: aahi
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ---
 

@@ -2,8 +2,8 @@
 title: LUIS frequently asked questions
 description: Use this article to see frequently asked questions about LUIS, and troubleshooting information.
 ms.service: azure-ai-language
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 ms.manager: nitinme
 ms.subservice: azure-ai-luis
 ms.topic: conceptual

@@ -3,8 +3,8 @@ title: Data collection
 description: Learn what example data to collect while developing your app
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 manager: nitinme
 ms.topic: conceptual
 ms.date: 06/12/2025

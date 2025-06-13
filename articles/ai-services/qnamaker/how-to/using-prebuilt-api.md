@@ -3,8 +3,8 @@ title: QnA Maker Prebuilt API
 titleSuffix: Azure AI services
 description: Use the Prebuilt API to get answers over text
 manager: nitinme
-ms.author: jboback
-author: jboback
+ms.author: lajanuar
+author: laujan
 ms.service: azure-ai-language
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to

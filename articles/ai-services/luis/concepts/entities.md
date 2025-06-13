@@ -2,8 +2,8 @@
 title: Entities
 titleSuffix: Azure AI services
 description: Entities concepts
-ms.author: jboback
-author: jboback
+ms.author: lajanuar
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis

@@ -2,8 +2,8 @@
 title: portal consolidation include file
 description: portal consolidation include file
 manager: nitinme
-author: aahill
-ms.author: aahi
+author: laujan
+ms.author: lajanuar
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
 ms.date: 06/12/2025
