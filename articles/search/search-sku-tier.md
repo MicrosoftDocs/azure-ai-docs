@@ -54,7 +54,7 @@ You can find out more about the various tiers on the [pricing page](https://azur
 
 ## Region availability by tier
 
-The [regions list](search-region-support.md) provides the locations where Azure AI Search is offered. Some regions might have capacity constraints for specific tiers, which prevents the creation of new search services at those tiers. The list uses footnotes to indicate constrained regions and tiers.
+The [regions list](search-region-support.md) provides the locations where Azure AI Search is offered. Some regions might have capacity constraints for certain tiers, which prevents the creation of new search services on those tiers. The list uses footnotes to indicate constrained regions and tiers.
 
 When you create a search service in the Azure portal, unavailable region–tier combinations are automatically excluded.
 
