@@ -2,8 +2,8 @@
 title: "How to update your LUIS model using the REST API"
 titleSuffix: Azure AI services
 description: In this article, add example utterances to change a model and train the app.
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 manager: nitinme
 ms.devlang: csharp
 # ms.devlang: csharp, golang, java, javascript, python

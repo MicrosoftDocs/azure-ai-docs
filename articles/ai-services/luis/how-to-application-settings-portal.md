@@ -3,8 +3,8 @@ title: "Application settings"
 description: Configure your application and version settings in the LUIS portal such as utterance normalization and app privacy.
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 manager: nitinme
 ms.topic: how-to
 ms.date: 06/12/2025

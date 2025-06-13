@@ -2,8 +2,8 @@
 title: How to improve LUIS application
 description:  Learn how to improve LUIS application
 ms.service: azure-ai-language
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 ms.manager: nitinme
 ms.subservice: azure-ai-luis
 ms.topic: how-to

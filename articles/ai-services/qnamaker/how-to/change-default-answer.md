@@ -3,8 +3,8 @@ title: Get default answer - QnA Maker
 description: The default answer is returned when there is no match to the question. You might want to change the default answer from the standard default answer.
 ms.service: azure-ai-language
 manager: nitinme
-ms.author: jboback
-author: jboback
+ms.author: lajanuar
+author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
 ms.date: 06/12/2025

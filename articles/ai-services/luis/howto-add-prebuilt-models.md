@@ -2,8 +2,8 @@
 title: Prebuilt models for Language Understanding
 titleSuffix: Azure AI services
 description: LUIS includes a set of prebuilt models for quickly adding common, conversational user scenarios.
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis

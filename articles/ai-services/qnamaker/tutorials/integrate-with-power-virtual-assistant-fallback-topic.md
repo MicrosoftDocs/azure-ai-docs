@@ -3,8 +3,8 @@ title: "Tutorial: Integrate with Power Virtual Agents - QnA Maker"
 description: In this tutorial, improve the quality of your knowledge base with active learning. Review, accept or reject, or add without removing or changing existing questions.
 ms.service: azure-ai-language
 manager: nitinme
-ms.author: jboback
-author: jboback
+ms.author: lajanuar
+author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: tutorial
 ms.date: 06/12/2025

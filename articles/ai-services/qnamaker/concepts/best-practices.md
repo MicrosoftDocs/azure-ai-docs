@@ -3,8 +3,8 @@ title: Best practices - QnA Maker
 description: Use these best practices to improve your knowledge base and provide better results to your application/chat bot's end users.
 ms.service: azure-ai-language
 manager: nitinme
-ms.author: jboback
-author: jboback
+ms.author: lajanuar
+author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: conceptual
 ms.date: 06/12/2025

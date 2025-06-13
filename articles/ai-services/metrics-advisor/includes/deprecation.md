@@ -1,12 +1,12 @@
 ---
 title: Deprecation
 titleSuffix: Azure AI services
-author: jboback
+author: nitinme
 manager: nitinme
 ms.service: azure-ai-metrics-advisor
 ms.topic: include
 ms.date: 06/12/2025
-ms.author: jboback
+ms.author: nitinme
 ---
 
 > [!IMPORTANT]

@@ -2,8 +2,8 @@
 title: Sentiment analysis - LUIS
 titleSuffix: Azure AI services
 description: If Sentiment analysis is configured, the LUIS json response includes sentiment analysis.
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
