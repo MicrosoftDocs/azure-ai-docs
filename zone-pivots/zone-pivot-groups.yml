@@ -275,6 +275,16 @@ groups:
     title: REST
   - id: programming-language-typescript
     title: TypeScript
+- id: programming-languages-ai-search-rag-qs
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: javascript
+    title: JavaScript
+  - id: python
+    title: Python
+  - id: typescript
+    title: TypeScript
 # Owner: diberry
 - id: programming-languages-rest-ps-py-js
   title: Programming languages

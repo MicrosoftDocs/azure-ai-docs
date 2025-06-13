@@ -3,11 +3,11 @@ title: Edit a knowledge base - QnA Maker
 description: QnA Maker allows you to manage the content of your knowledge base by providing an easy-to-use editing experience.
 ms.service: azure-ai-language
 manager: nitinme
-ms.author: jboback
-author: jboback
+ms.author: lajanuar
+author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 
 # Edit QnA pairs in your knowledge base

@@ -225,7 +225,7 @@ items:
          href: get-started-speech-translation.md
        - name: How to recognize and translate speech
          href: how-to-translate-speech.md
-    - name: Video translation (preview)
+    - name: Video translation
       items:
        - name: Video translation overview
          href: video-translation-overview.md

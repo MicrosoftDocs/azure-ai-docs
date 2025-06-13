@@ -12,7 +12,7 @@ ms.author: eur
 Follow these steps to install the Speech CLI on Windows:
 
 1. Install the [Microsoft Visual C++ Redistributable for Visual Studio](/cpp/windows/latest-supported-vc-redist#latest-microsoft-visual-c-redistributable-version) for your platform. Installing it for the first time might require a restart.
-1. Install [.NET 6](/dotnet/core/install/windows?tabs=net60#runtime-information).
+1. Install [.NET 8](/dotnet/core/install/windows?tabs=net60#runtime-information).
 1. Install the Speech CLI via the .NET CLI by entering this command:
 
    ```dotnetcli
@@ -44,7 +44,7 @@ The following Linux distributions are supported for x64 architectures that use t
 
 Follow these steps to install the Speech CLI on Linux on an x64 CPU:
 
-1. Install the [.NET 6](/dotnet/core/install/linux).
+1. Install the [.NET 8](/dotnet/core/install/linux).
 2. Install the Speech CLI via the .NET CLI by entering this command:
 
    ```dotnetcli
@@ -64,7 +64,7 @@ Enter `spx` to see help for the Speech CLI.
 
 Follow these steps to install the Speech CLI on macOS 10.14 or later:
 
-1. Install [.NET 6](/dotnet/core/install/macos#runtime-information).
+1. Install [.NET 8](/dotnet/core/install/macos#runtime-information).
 1. Install the Speech CLI via the .NET CLI by entering this command:
 
    ```dotnetcli
