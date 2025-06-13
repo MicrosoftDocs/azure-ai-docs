@@ -58,9 +58,12 @@ Using the connection ID of your Azure AI Search resource, configure the Azure AI
 
 ```python
 from azure.ai.agents.models import AzureAISearchTool, AzureAISearchQueryType
+from azure.ai.projects.models import ConnectionType
 
 # Define the Azure AI Search connection ID and index name
-azure_ai_conn_id = os.environ["AZURE_AI_CONNECTION_ID"]
+azure_ai_conn_id = project_client.connections.get_default(ConnectionType.AZURE_AI_SEARCH).id
+
+# find the index name in your AI Search Azure resource page under Search Management -> Indexes
 index_name = "sample_index"
 
 # Initialize the Azure AI Search tool
