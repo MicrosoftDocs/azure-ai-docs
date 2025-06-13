@@ -18,7 +18,9 @@ zone_pivot_groups: azure-ai-serverless-deployment
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In this article, you learn how to deploy an Azure AI Foundry Model as a serverless API deployment. [Certain models in the model catalog](deploy-models-serverless-availability.md) can be deployed as a serverless API deployment. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription. Although serverless API deployment is one of the ways to deploy Azure AI Foundry Models, we recommend that you deploy Foundry Models to **Azure AI Foundry resources**.
+In this article, you learn how to deploy an Azure AI Foundry Model as a serverless API deployment. [Certain models in the model catalog](deploy-models-serverless-availability.md) can be deployed as a serverless API deployment. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription. 
+
+Although serverless API deployment is one of the ways to deploy Azure AI Foundry Models, we recommend that you deploy Foundry Models to **Azure AI Foundry resources**.
 
 [!INCLUDE [deploy-models-to-foundry-resources](../includes/deploy-models-to-foundry-resources.md)]
 
@@ -28,7 +30,7 @@ In this article, you learn how to deploy an Azure AI Foundry Model as a serverle
 
 - If you don't have one, [create a [!INCLUDE [hub](../includes/hub-project-name.md)]](create-projects.md?pivots=hub-project).
 
-- Ensure that the **Deploy models to Azure AI Foundry resources** (preview) feature is turned off in the Azure AI Foundry portal. When this feature is on, serverless API deployments are not available from the portal.
+- Ensure that the **Deploy models to Azure AI Foundry resources** (preview) feature is turned off in the Azure AI Foundry portal. When this feature is on, serverless API deployments aren't available from the portal.
 
     :::image type="content" source="../media/deploy-models-serverless/foundry-resources-deployment-disabled.png" alt-text="A screenshot of the Azure AI Foundry portal showing where to disable deployment to Azure AI Foundry resources." lightbox="../media/deploy-models-serverless/foundry-resources-deployment-disabled.png":::
 
@@ -60,14 +62,14 @@ In this article, you learn how to deploy an Azure AI Foundry Model as a serverle
 4. Select the model card of the model you want to deploy. In this article, you select the **AI21-Jamba-1.5-Large** model.
 
 > [!NOTE]
-> [Models from Partners and Community](../concepts/foundry-models-overview.md#models-from-partners-and-community) are offered through the Azure Marketplace. For these models, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings), as you're required to subscribe your project to the particular model offering.
+> [Models from Partners and Community](../concepts/foundry-models-overview.md#models-from-partners-and-community) are offered through Azure Marketplace. For these models, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings), as you're required to subscribe your project to the particular model offering.
     
 
 ### Subscribe your project to the model offering
 
-For models from partners and community, e.g., the AI21-Jamba-1.5-Large model, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from the Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
+For models from partners and community, for example, the AI21-Jamba-1.5-Large model, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
 
-Furthermore, models offered through the Azure Marketplace are available for deployment to standard deployment in specific regions. Check [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) to verify available regions for the particular model. If the region in which your project is located isn't listed, you can deploy to a project in a supported region and then [consume standard deployment from a different project](deploy-models-serverless-connect.md).
+Furthermore, models offered through Azure Marketplace are available for deployment to standard deployment in specific regions. Check [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) to verify available regions for the particular model. If the region in which your project is located isn't listed, you can deploy to a project in a supported region and then [consume standard deployment from a different project](deploy-models-serverless-connect.md).
 
 
 1. On the model's **Details** page, select **Use this model** to open the Serverless API deployment window. In the Serverless API deployment window, the **Azure Marketplace Terms** link provides more information about the terms of use. The **Pricing and terms** tab also provides pricing details for the selected model.
@@ -75,13 +77,13 @@ Furthermore, models offered through the Azure Marketplace are available for depl
     > [!TIP]
     > For models that can be deployed via serverless API deployment or [managed compute](deploy-models-managed.md), a **Deployment options** window opens up, giving you the choice between serverless API deployment and deployment using a managed compute. From there, you can select the serverless API deployment option.
     
-1. If you've never deployed the model in your project before, you first have to subscribe to the model's offering in the Azure Marketplace. Select **Subscribe and Deploy** to open the deployment wizard. 
+1. If you've never deployed the model in your project before, you first have to subscribe to the model's offering in Azure Marketplace. Select **Subscribe and Deploy** to open the deployment wizard. 
     
-    :::image type="content" source="../media/deploy-models-serverless/model-marketplace-subscription.png" alt-text="Screenshot showing where to subscribe a model to the Azure marketplace before deployment." lightbox="../media/deploy-models-serverless/model-marketplace-subscription.png":::
+    :::image type="content" source="../media/deploy-models-serverless/model-marketplace-subscription.png" alt-text="Screenshot showing where to subscribe a model to Azure Marketplace before deployment." lightbox="../media/deploy-models-serverless/model-marketplace-subscription.png":::
 
 1. Alternatively, if you see the note *You already have an Azure Marketplace subscription for this project*, you don't need to create the subscription since you already have one. Select **Continue to deploy** to open the deployment wizard. 
     
-    :::image type="content" source="../media/deploy-models-serverless/model-subscribed-to-marketplace.png" alt-text="Deployment page for a model that is already subscribed to Azure marketplace." lightbox="../media/deploy-models-serverless/model-subscribed-to-marketplace.png":::    
+    :::image type="content" source="../media/deploy-models-serverless/model-subscribed-to-marketplace.png" alt-text="Deployment page for a model that is already subscribed to Azure Marketplace." lightbox="../media/deploy-models-serverless/model-subscribed-to-marketplace.png":::    
 
 1. (Optional) At any point, you can see the model offers to which your project is currently subscribed:
     
@@ -185,7 +187,7 @@ To delete the associated model subscription:
 4. Select the model card of the model you want to deploy. In this article, you select the **AI21-Jamba-1.5-Large** model.
 
     > [!NOTE]
-    > [Models from Partners and Community](../concepts/foundry-models-overview.md#models-from-partners-and-community) are offered through the Azure Marketplace. For these models, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings), as you're required to subscribe your project to the particular model offering.
+    > [Models from Partners and Community](../concepts/foundry-models-overview.md#models-from-partners-and-community) are offered through Azure Marketplace. For these models, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings), as you're required to subscribe your project to the particular model offering.
 
 1. Copy the **Model ID** without the including the model version, since standard deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large/versions/1`, copy `azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large`.
 
@@ -193,9 +195,9 @@ To delete the associated model subscription:
 
 ### Subscribe your project to the model offering
 
-For models from partners and community, e.g., the AI21-Jamba-1.5-Large model, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from the Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
+For models from partners and community, for example, the AI21-Jamba-1.5-Large model, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
 
-Furthermore, models offered through the Azure Marketplace are available for deployment to standard deployment in specific regions. Check [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) to verify available regions for the particular model. If the region in which your project is located isn't listed, you can deploy to a project in a supported region and then [consume standard deployment from a different project](deploy-models-serverless-connect.md).
+Furthermore, models offered through Azure Marketplace are available for deployment to standard deployment in specific regions. Check [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) to verify available regions for the particular model. If the region in which your project is located isn't listed, you can deploy to a project in a supported region and then [consume standard deployment from a different project](deploy-models-serverless-connect.md).
 
 1. Create the model's marketplace subscription. When you create a subscription, you accept the terms and conditions associated with the model offer.
 
@@ -326,7 +328,7 @@ az ml marketplace-subscription delete \
 4. Select the model card of the model you want to deploy. In this article, you select the **AI21-Jamba-1.5-Large** model.
 
     > [!NOTE]
-    > [Models from Partners and Community](../concepts/foundry-models-overview.md#models-from-partners-and-community) are offered through the Azure Marketplace. For these models, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings), as you're required to subscribe your project to the particular model offering.
+    > [Models from Partners and Community](../concepts/foundry-models-overview.md#models-from-partners-and-community) are offered through Azure Marketplace. For these models, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings), as you're required to subscribe your project to the particular model offering.
 
 1. Copy the **Model ID** without the including the model version, since standard deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large/versions/1`, copy `azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large`.
 
@@ -334,9 +336,9 @@ az ml marketplace-subscription delete \
 
 ### Subscribe your project to the model offering
 
-For models from partners and community, e.g., the AI21-Jamba-1.5-Large model, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from the Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
+For models from partners and community, for example, the AI21-Jamba-1.5-Large model, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
 
-Furthermore, models offered through the Azure Marketplace are available for deployment to standard deployment in specific regions. Check [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) to verify available regions for the particular model. If the region in which your project is located isn't listed, you can deploy to a project in a supported region and then [consume standard deployment from a different project](deploy-models-serverless-connect.md).
+Furthermore, models offered through Azure Marketplace are available for deployment to standard deployment in specific regions. Check [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) to verify available regions for the particular model. If the region in which your project is located isn't listed, you can deploy to a project in a supported region and then [consume standard deployment from a different project](deploy-models-serverless-connect.md).
 
 1. Create the model's marketplace subscription. When you create a subscription, you accept the terms and conditions associated with the model offer.
 
@@ -467,7 +469,7 @@ client.marketplace_subscriptions.begin_delete(subscription_name).wait()
 4. Select the model card of the model you want to deploy. In this article, you select the **AI21-Jamba-1.5-Large** model.
 
     > [!NOTE]
-    > [Models from Partners and Community](../concepts/foundry-models-overview.md#models-from-partners-and-community) are offered through the Azure Marketplace. For these models, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings), as you're required to subscribe your project to the particular model offering.
+    > [Models from Partners and Community](../concepts/foundry-models-overview.md#models-from-partners-and-community) are offered through Azure Marketplace. For these models, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings), as you're required to subscribe your project to the particular model offering.
 
 1. Copy the **Model ID** without the including the model version, since standard deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large/versions/1`, copy `azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large`.
 
@@ -475,9 +477,9 @@ client.marketplace_subscriptions.begin_delete(subscription_name).wait()
 
 ### Subscribe your project to the model offering
 
-For models from partners and community, e.g., the AI21-Jamba-1.5-Large model, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from the Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
+For models from partners and community, for example, the AI21-Jamba-1.5-Large model, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
 
-Furthermore, models offered through the Azure Marketplace are available for deployment to standard deployment in specific regions. Check [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) to verify available regions for the particular model. If the region in which your project is located isn't listed, you can deploy to a project in a supported region and then [consume standard deployment from a different project](deploy-models-serverless-connect.md).
+Furthermore, models offered through Azure Marketplace are available for deployment to standard deployment in specific regions. Check [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) to verify available regions for the particular model. If the region in which your project is located isn't listed, you can deploy to a project in a supported region and then [consume standard deployment from a different project](deploy-models-serverless-connect.md).
 
 1. Use the following bicep configuration to create a model subscription. When you create a subscription, you accept the terms and conditions associated with the model offer.
 
@@ -602,16 +604,16 @@ az resource delete --name <resource-name>
 
 Quota is managed per deployment. Each deployment has a rate limit of 200,000 tokens per minute and 1,000 API requests per minute. Additionally, we currently limit one deployment per model per project. Contact Microsoft Azure Support if the current rate limits aren't sufficient for your scenarios.
 
-- You can find find pricing information for [Models Sold Directly by Azure](../model-inference/concepts/models.md#models-sold-directly-by-azure?context=/azure/ai-foundry/context/context), on the *Pricing and terms* tab of the _Serverless API deployment_ window.
+- You can find pricing information for [Models Sold Directly by Azure](../model-inference/concepts/models.md#models-sold-directly-by-azure?context=/azure/ai-foundry/context/context), on the *Pricing and terms* tab of the _Serverless API deployment_ window.
 
-- [Models from Partners and Community](../model-inference/concepts/models.md#models-from-partners-and-community?context=/azure/ai-foundry/context/context) are offered through Azure Marketplace and integrated with Azure AI Foundry for use. You can find the Azure Marketplace pricing when deploying or fine-tuning these models. Each time a project subscribes to a given offer from the Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference and fine-tuning; however, multiple meters are available to track each scenario independently. For more information on how to track costs, see [Monitor costs for models offered through the Azure Marketplace](costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace).
+- [Models from Partners and Community](../model-inference/concepts/models.md#models-from-partners-and-community?context=/azure/ai-foundry/context/context) are offered through Azure Marketplace and integrated with Azure AI Foundry for use. You can find Azure Marketplace pricing when deploying or fine-tuning these models. Each time a project subscribes to a given offer from Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference and fine-tuning; however, multiple meters are available to track each scenario independently. For more information on how to track costs, see [Monitor costs for models offered through Azure Marketplace](costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace).
 
 
 ## Permissions required to subscribe to model offerings
 
 Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Owner__, __Contributor__, or __Azure AI Developer__ role for the Azure subscription. Alternatively, your account can be assigned a custom role that has the following permissions:
 
-- On the Azure subscription—to subscribe the workspace to the Azure Marketplace offering, once for each workspace, per offering:
+- On the Azure subscription—to subscribe the workspace to Azure Marketplace offering, once for each workspace, per offering:
   - `Microsoft.MarketplaceOrdering/agreements/offers/plans/read`
   - `Microsoft.MarketplaceOrdering/agreements/offers/plans/sign/action`
   - `Microsoft.MarketplaceOrdering/offerTypes/publishers/offers/plans/agreements/read`
