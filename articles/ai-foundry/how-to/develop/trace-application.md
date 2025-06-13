@@ -73,7 +73,7 @@ If you are using the OpenAI SDK to develop intelligent applications you can inst
 1. Install `azure-ai-projects`, `azure-monitor-opentelemetry`, and `opentelemetry-instrumentation-openai-v2` in your environment. The following example uses `pip`:
 
     ```console
-    pip install azure-ai-projects azure-monitor-opentelemetry-exporter opentelemetry-instrumentation-openai-v2
+    pip install azure-ai-projects azure-monitor-opentelemetry opentelemetry-instrumentation-openai-v2
     ```
 
 1. Instrument the OpenAI SDK by using `OpenAIInstrumentor()`:
