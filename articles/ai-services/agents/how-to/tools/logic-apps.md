@@ -47,7 +47,7 @@ This article demonstrates how to integrate Logic Apps with Azure AI Agents to ex
     > For your logic apps to appear in the Azure AI Foundry portal, they must:
     > * Be in the same subscription and resource group.
     > * Follow a request trigger with a description, and end with a response action. 
-    > * 
+
     :::image type="content" source="../../media/tools/add-logic-apps.png" alt-text="A screenshot showing the screen to add Logic Apps." lightbox="../../media/tools/add-logic-apps.png":::
 
 
