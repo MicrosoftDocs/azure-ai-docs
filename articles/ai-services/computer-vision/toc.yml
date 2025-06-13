@@ -65,9 +65,9 @@ items:
   - name: Responsible use of AI
     items:
     - name: Transparency note
-      href: ../../ai-foundry/responsible-ai/computer-vision/imageanalysis-transparency-note.md
+      href: ../../ai-foundry/responsible-ai/computer-vision/image-analysis-transparency-note.md
     - name: Data, privacy, and security 
-      href: ../../ai-foundry/responsible-ai/computer-vision/imageanalysis-data-privacy-security.md
+      href: ../../ai-foundry/responsible-ai/computer-vision/image-analysis-data-privacy-security.md
     - name: Limited Access features
       href: ../../ai-foundry/responsible-ai/computer-vision/limited-access.md
   - name: How-to guides
