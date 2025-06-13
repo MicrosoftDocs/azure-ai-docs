@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-anomaly-detector
 ms.custom: devx-track-azurecli
 ms.topic: how-to
-ms.date: 01/18/2024
+ms.date: 06/12/2025
 ms.author: mbullwin
 ---
 

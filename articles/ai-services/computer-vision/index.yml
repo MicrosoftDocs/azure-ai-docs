@@ -90,14 +90,6 @@ conceptualContent:
       footerLink:
         text: More
         url: overview-identity.md
-    - title: Video Analysis
-      links:
-        - itemType: overview
-          text: About Video Analysis
-          url: intro-to-spatial-analysis-public-preview.md
-        - itemType: how-to-guide
-          text: Call the Video Retrieval APIs
-          url: how-to/video-retrieval.md
     - title: Optical character recognition (legacy)
       links:
         - itemType: overview

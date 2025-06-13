@@ -5,7 +5,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: include
-ms.date: 10/22/2024
+ms.date: 06/13/2025
 ---
 
 Use a Jupyter notebook and the [**azure-search-documents**](/python/api/overview/azure/search-documents-readme) library in the Azure SDK for Python to learn about semantic ranking.
@@ -20,7 +20,7 @@ We recommend a virtual environment for this quickstart:
 
 1. Start Visual Studio Code.
 
-1. Create a new ipynb file.
+1. Create a new .ipynb file.
 
 1. Open the Command Palette by using **Ctrl+Shift+P**.
 
@@ -76,7 +76,6 @@ fields = [
         SimpleField(name="HotelId", type=SearchFieldDataType.String, key=True),
         SearchableField(name="HotelName", type=SearchFieldDataType.String, sortable=True),
         SearchableField(name="Description", type=SearchFieldDataType.String, analyzer_name="en.lucene"),
-        SearchableField(name="Description_fr", type=SearchFieldDataType.String, analyzer_name="fr.lucene"),
         SearchableField(name="Category", type=SearchFieldDataType.String, facetable=True, filterable=True, sortable=True),
 
         SearchableField(name="Tags", collection=True, type=SearchFieldDataType.String, facetable=True, filterable=True),
@@ -95,7 +94,7 @@ fields = [
     ]
 
 semantic_config = SemanticConfiguration(
-    name="my-semantic-config",
+    name="semantic-config",
     prioritized_fields=SemanticPrioritizedFields(
         title_field=SemanticField(field_name="HotelName"),
         keywords_fields=[SemanticField(field_name="Category")],
@@ -125,12 +124,11 @@ documents = [
     "@search.action": "upload",
     "HotelId": "1",
     "HotelName": "Stay-Kay City Hotel",
-    "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Time's Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
-    "Description_fr": "L'hôtel est idéalement situé sur la principale artère commerciale de la ville en plein cœur de New York. A quelques minutes se trouve la place du temps et le centre historique de la ville, ainsi que d'autres lieux d'intérêt qui font de New York l'une des villes les plus attractives et cosmopolites de l'Amérique.",
+    "Description": "This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
     "Category": "Boutique",
-    "Tags": [ "pool", "air conditioning", "concierge" ],
+    "Tags": [ "view", "air conditioning", "concierge" ],
     "ParkingIncluded": "false",
-    "LastRenovationDate": "1970-01-18T00:00:00Z",
+    "LastRenovationDate": "2022-01-18T00:00:00Z",
     "Rating": 3.60,
     "Address": {
         "StreetAddress": "677 5th Ave",
@@ -144,12 +142,11 @@ documents = [
     "@search.action": "upload",
     "HotelId": "2",
     "HotelName": "Old Century Hotel",
-    "Description": "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts.",
-    "Description_fr": "L'hôtel est situé dans une place du XIXe siècle, qui a été agrandie et rénovée aux plus hautes normes architecturales pour créer un hôtel moderne, fonctionnel et de première classe dans lequel l'art et les éléments historiques uniques coexistent avec le confort le plus moderne.",
+    "Description": "The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.",
     "Category": "Boutique",
     "Tags": [ "pool", "free wifi", "concierge" ],
     "ParkingIncluded": "false",
-    "LastRenovationDate": "1979-02-18T00:00:00Z",
+    "LastRenovationDate": "2019-02-18T00:00:00Z",
     "Rating": 3.60,
     "Address": {
         "StreetAddress": "140 University Town Center Dr",
@@ -163,10 +160,9 @@ documents = [
     "@search.action": "upload",
     "HotelId": "3",
     "HotelName": "Gastronomic Landscape Hotel",
-    "Description": "The Hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel's restaurant services.",
-    "Description_fr": "L'hôtel est situé dans une place du XIXe siècle, qui a été agrandie et rénovée aux plus hautes normes architecturales pour créer un hôtel moderne, fonctionnel et de première classe dans lequel l'art et les éléments historiques uniques coexistent avec le confort le plus moderne.",
-    "Category": "Resort and Spa",
-    "Tags": [ "air conditioning", "bar", "continental breakfast" ],
+    "Description": "The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
+    "Category": "Suite",
+    "Tags": [ "restaurant", "bar", "continental breakfast" ],
     "ParkingIncluded": "true",
     "LastRenovationDate": "2015-09-20T00:00:00Z",
     "Rating": 4.80,
@@ -182,12 +178,11 @@ documents = [
     "@search.action": "upload",
     "HotelId": "4",
     "HotelName": "Sublime Palace Hotel",
-    "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace.",
-    "Description_fr": "Le Sublime Palace Hotel est situé au coeur du centre historique de sublime dans un quartier extrêmement animé et vivant, à courte distance de marche des sites et monuments de la ville et est entouré par l'extraordinaire beauté des églises, des bâtiments, des commerces et Monuments. Sublime Palace fait partie d'un Palace 1800 restauré avec amour.",
+    "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.",
     "Category": "Boutique",
-    "Tags": [ "concierge", "view", "24-hour front desk service" ],
+    "Tags": [ "concierge", "view", "air conditioning" ],
     "ParkingIncluded": "true",
-    "LastRenovationDate": "1960-02-06T00:00:00Z",
+    "LastRenovationDate": "2020-02-06T00:00:00Z",
     "Rating": 4.60,
     "Address": {
         "StreetAddress": "7400 San Pedro Ave",
@@ -239,12 +234,12 @@ for result in results:
 
 For comparison purposes, run a text query with BM25 relevance scoring. Full text search is invoked when you provide a query string. The response consists of ranked results, where higher scores are awarded to documents having more instances of matching terms, or more important terms.
 
-In this query for *what hotel has a good restaurant on site*, Sublime Palace Hotel comes out on top because its description includes *site*. Terms that occur infrequently raise the search score of the document. 
+In this query for *restaurant on site*, Sublime Palace Hotel comes out on top because its description includes *site*. Terms that occur infrequently raise the search score of the document. 
 
 ```python
 # Run a text query (returns a BM25-scored result set)
 results =  search_client.search(query_type='simple',
-    search_text="what hotel has a good restaurant on site" ,
+    search_text="restaurant on site" ,
     select='HotelName,HotelId,Description',
     include_total_count=True)
     
@@ -262,8 +257,8 @@ It's the same query, but notice that the semantic ranker correctly identifies Ga
 
 ```python
 # Runs a semantic query (runs a BM25-ranked query and promotes the most relevant matches to the top)
-results =  search_client.search(query_type='semantic', semantic_configuration_name='my-semantic-config',
-    search_text="what hotel has a good restaurant on site", 
+results =  search_client.search(query_type='semantic', semantic_configuration_name='semantic-config',
+    search_text="restaurant on site", 
     select='HotelName,Description,Category', query_caption='extractive')
 
 for result in results:
@@ -288,7 +283,7 @@ Semantic ranker can generate answers to a query string that has the characterist
 
 ```python
 # Run a semantic query that returns semantic answers  
-results =  search_client.search(query_type='semantic', semantic_configuration_name='my-semantic-config',
+results =  search_client.search(query_type='semantic', semantic_configuration_name='semantic-config',
  search_text="what hotel is in a historic building",
  select='HotelName,Description,Category', query_caption='extractive', query_answer="extractive",)
 

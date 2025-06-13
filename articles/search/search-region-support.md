@@ -5,7 +5,7 @@ description: Shows supported regions and feature availability across regions for
 author: haileytap
 ms.author: haileytapia
 manager: nitinme
-ms.date: 05/29/2025
+ms.date: 06/12/2025
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.custom:
@@ -29,6 +29,7 @@ When you create an Azure AI Search service, your region selection might depend o
 | [Semantic ranker](semantic-search-overview.md) | Takes a dependency on Microsoft-hosted models in specific regions. | Regional support is noted in this article. |
 | [Query rewrite](semantic-how-to-query-rewrite.md) | Takes a dependency on Microsoft-hosted models in specific regions. | Regional support is noted in this article. |
 | [Extra capacity](search-limits-quotas-capacity.md#service-limits) | Higher-capacity partitions became available in select regions starting in April 2024, with a second wave following in May 2024. Currently, there are just a few regions that *don't* offer higher-capacity partitions.<p>If you have an older search service in a supported region, check if you can [upgrade your service](search-how-to-upgrade.md). Otherwise, create a new search service to benefit from more capacity at the same billing rate. | Regional support is noted in the footnotes of this article. |
+| Capacity constraints | In some regions, insufficient capacity prevents you from creating search services on certain tiers. The Azure portal automatically hides regions and tiers that aren't available for new deployments. | Regional support is noted in the footnotes of this article. |
 | [Azure AI Vision 4.0 multimodal APIs](search-get-started-portal-image-search.md) | Refers to the Azure AI Vision multimodal embeddings skill and vectorizer that call the multimodal embedding API. | Check the [Azure AI Vision region list](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) first, and then verify Azure AI Search is available in the same region.|
 
 ## Azure Public regions
@@ -102,13 +103,11 @@ You can create an Azure AI Search service in any of the following Azure public r
 | Central India | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Jio India West​​ | ✅ |  | ✅ | ✅ | ✅ |
 | South India |  | ✅ |  |  |  |
-| Japan East <sup>1</sup> | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Japan East | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Japan West​ | ✅ |  | ✅ | ✅ |  |
 | Korea Central | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Korea South​​ |  |  | ✅ | ✅ |  |
 | Indonesia Central |  | ✅ |  |  |  |
-
-<sup>1</sup> This region has capacity constraints on all tiers.
 
 ## Azure Government regions
 

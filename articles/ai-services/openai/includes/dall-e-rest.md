@@ -18,7 +18,7 @@ Use this guide to get started calling the Azure OpenAI in Azure AI Foundry Model
 - <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>.
 - The following Python libraries installed: `os`, `requests`, `json`.
 - An Azure OpenAI resource created in a supported region. See [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability).
-- Then, you need to deploy a `dalle3` model with your Azure resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
+- Then, you need to deploy a `gpt-image-1` or `dalle3` model with your Azure resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
 ## Setup 
 
@@ -40,6 +40,98 @@ Go to your resource in the Azure portal. On the navigation pane, select **Keys a
 ## Create a new Python application
 
 Create a new Python file named _quickstart.py_. Open the new file in your preferred editor or IDE.
+
+#### [GPT-image-1](#tab/gpt-image-1)
+
+1. Replace the contents of _quickstart.py_ with the following code. Change the value of `prompt` to your preferred text. Also set `deployment` to the deployment name you chose when you deployed the GPT-image-1 model.
+    
+    ```python
+    import os
+    import requests
+    import base64
+    from PIL import Image
+    from io import BytesIO
+    
+    # set environment variables
+    endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+    subscription_key = os.getenv("AZURE_OPENAI_API_KEY")
+    
+    deployment = "gpt-image-1" # the name of your GPT-image-1 deployment
+    api_version = "2025-04-01-preview" # or later version
+    
+    def decode_and_save_image(b64_data, output_filename):
+      image = Image.open(BytesIO(base64.b64decode(b64_data)))
+      image.show()
+      image.save(output_filename)
+    
+    def save_all_images_from_response(response_data, filename_prefix):
+      for idx, item in enumerate(response_data['data']):
+        b64_img = item['b64_json']
+        filename = f"{filename_prefix}_{idx+1}.png"
+        decode_and_save_image(b64_img, filename)
+        print(f"Image saved to: '{filename}'")
+    
+    base_path = f'openai/deployments/{deployment}/images'
+    params = f'?api-version={api_version}'
+    
+    generation_url = f"{endpoint}{base_path}/generations{params}"
+    generation_body = {
+      "prompt": "girl falling asleep",
+      "n": 1,
+      "size": "1024x1024",
+      "quality": "medium",
+      "output_format": "png"
+    }
+    generation_response = requests.post(
+      generation_url,
+      headers={
+        'Api-Key': subscription_key,
+        'Content-Type': 'application/json',
+      },
+      json=generation_body
+    ).json()
+    save_all_images_from_response(generation_response, "generated_image")
+    
+    # In addition to generating images, you can edit them.
+    edit_url = f"{endpoint}{base_path}/edits{params}"
+    edit_body = {
+      "prompt": "girl falling asleep",
+      "n": 1,
+      "size": "1024x1024",
+      "quality": "medium"
+    }
+    files = {
+      "image": ("generated_image_1.png", open("generated_image_1.png", "rb"), "image/png"),
+      # You can use a mask to specify which parts of the image you want to edit.
+      # The mask must be the same size as the input image.
+      # "mask": ("mask.png", open("mask.png", "rb"), "image/png"),
+    }
+    edit_response = requests.post(
+      edit_url,
+      headers={'Api-Key': subscription_key},
+      data=edit_body,
+      files=files
+    ).json()
+    save_all_images_from_response(edit_response, "edited_image")
+    ```
+
+    The script makes a synchronous image generation API call.
+
+    > [!IMPORTANT]
+    > Remember to remove the key from your code when you're done, and never post your key publicly. For production, use a secure way of storing and accessing your credentials. For more information, see [Azure Key Vault](/azure/key-vault/general/overview).
+
+1. Run the application with the `python` command:
+
+    ```console
+    python quickstart.py
+    ```
+
+    Wait a few moments to get the response.
+
+
+
+#### [DALL-E](#tab/dall-e-3)
+
 
 1. Replace the contents of _quickstart.py_ with the following code. Change the value of `prompt` to your preferred text.
 
@@ -83,6 +175,8 @@ Create a new Python file named _quickstart.py_. Open the new file in your prefer
 
     Wait a few moments to get the response.
 
+---
+
 ## Output
 
 The output from a successful image generation API call looks like the following example. The `url` field contains a URL where you can download the generated image. The URL stays active for 24 hours.
@@ -99,7 +193,7 @@ The output from a successful image generation API call looks like the following 
 } 
 ```
 
-The Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it doesn't generate an image. For more information, see [Content filtering](../concepts/content-filter.md). For examples of error responses, see the [DALL-E how-to guide](../how-to/dall-e.md).
+The Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it doesn't generate an image. For more information, see [Content filtering](../concepts/content-filter.md). For examples of error responses, see the [Image generation how-to guide](../how-to/dall-e.md).
 
 The system returns an operation status of `Failed` and the `error.code` value in the message is set to `contentFilter`. Here's an example:
 

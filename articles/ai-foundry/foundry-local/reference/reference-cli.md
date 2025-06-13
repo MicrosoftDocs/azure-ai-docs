@@ -52,10 +52,7 @@ The following table summarizes the commands related to managing and running mode
 | `foundry model info <model> --license` | Displays the license information for a specific model.                           |
 | `foundry model download <model>`       | Downloads a model to the local cache without running it.                         |
 | `foundry model load <model>`           | Loads a model into the service.                                                  |
-| `foundry model unload <model>`         | Unloads a model from the service. **You must provide a valid model ID (not an alias).**.     |
-
-> [!IMPORTANT]
-> **For the `foundry model unload` command, you must provide a valid model ID (not an alias)** because you could have multiple models loaded with the same alias. For example, if you have `qwen2.5-0.5b-instruct-generic-cpu` *and*`qwen2.5-0.5b-instruct-cuda-gpu` loaded with both CPU and CUDA, you need to specify which one to unload.
+| `foundry model unload <model>`         | Unloads a model from the service.     |
 
 
 ## Service commands
@@ -83,7 +80,4 @@ The following table summarizes the commands related to managing the local cache 
 | `foundry cache location`                | Displays the current cache directory.                          |
 | `foundry cache list`                    | Lists all models stored in the local cache.                    |
 | `foundry cache cd <path>`               | Changes the cache directory.                                   |
-| `foundry cache remove <model>` | Deletes a model from the local cache. **You must provide a valid model ID (not an alias).**      |
-
-> [!IMPORTANT]
-> **For the `foundry cache remove` command, you must provide a valid model ID (not an alias)** because you could have multiple models on disk with the same alias. For example, if you downloaded both `qwen2.5-0.5b-instruct-generic-cpu` *and* `qwen2.5-0.5b-instruct-cuda-gpu`, you need to specify which one to remove.
+| `foundry cache remove <model>` | Deletes a model from the local cache.      |

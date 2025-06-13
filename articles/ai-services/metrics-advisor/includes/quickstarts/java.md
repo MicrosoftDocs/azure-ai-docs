@@ -5,7 +5,7 @@ author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-metrics-advisor
 ms.topic: include
-ms.date: 09/20/2024
+ms.date: 06/12/2025
 ms.author: mbullwin
 ---
 

@@ -223,8 +223,6 @@ items:
       href: concept-face-liveness-detection.md
     - name: Face liveness abuse monitoring
       href: concept-liveness-abuse-monitoring.md
-    - name: Face liveness quick link (preview)
-      href: concept-face-liveness-quick-link.md
   
   - name: How-to guides
     items:
@@ -262,6 +260,8 @@ items:
       href: Tutorials/liveness.md
     - name: Add users to a Face identification app
       href: Tutorials/build-enrollment-app.md
+    - name: Face liveness quick link (preview)
+      href: Tutorials/liveness-quick-link.md
   - name: Samples
     href: https://aka.ms/FaceSamples
 
@@ -312,9 +312,9 @@ items:
         href: https://aka.ms/azure-ai-vision-face-liveness-client-sdk-web-api-reference
       - name: Understand the liveness versions
         href: sdk/understand-the-liveness-sdk-versions.md
-- name: Video Analysis
+- name: Video Retrieval
   items:
-  - name: Video Analysis overview
+  - name: Video Retrieval overview
     href: intro-to-spatial-analysis-public-preview.md
   - name: Responsible use of AI
     items:
