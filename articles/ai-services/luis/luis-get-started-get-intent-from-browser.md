@@ -3,11 +3,11 @@ title: "How to query for predictions using a browser - LUIS"
 description: In this article, use an available public LUIS app to determine a user's intention from conversational text in a browser.
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 manager: nitinme
 ms.topic: how-to
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ms.custom: mode-other
 #Customer intent: As a developer familiar with how to use a browser but new to the LUIS service, I want to query the LUIS endpoint of a published model so that I can see the JSON prediction response.
 ---

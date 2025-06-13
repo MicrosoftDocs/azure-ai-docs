@@ -3,11 +3,11 @@ title: Data alteration - LUIS
 description: Learn how data can be changed before predictions in Language Understanding (LUIS)
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 manager: nitinme
 ms.topic: conceptual
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ms.devlang: csharp
 ms.custom: devx-track-csharp
 ---

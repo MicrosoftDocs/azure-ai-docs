@@ -8,7 +8,7 @@ ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
 ms.devlang: rest-api
-ms.date: 03/04/2025
+ms.date: 06/12/2025
 ms.custom:
   - mode-api
   - ignite-2023
@@ -180,86 +180,85 @@ To push documents, use an HTTP POST request to your index's URL endpoint. The RE
 
     ```powershell
     $body = @"
-    {
-        "value": [
         {
-        "@search.action": "upload",
-        "HotelId": "1",
-        "HotelName": "Stay-Kay City Hotel",
-        "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Time's Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
-        "Category": "Boutique",
-        "Tags": [ "pool", "air conditioning", "concierge" ],
-        "ParkingIncluded": false,
-        "LastRenovationDate": "1970-01-18T00:00:00Z",
-        "Rating": 3.60,
-        "Address": 
+            "value": [
             {
-            "StreetAddress": "677 5th Ave",
-            "City": "New York",
-            "StateProvince": "NY",
-            "PostalCode": "10022",
-            "Country": "USA"
-            } 
-        },
-        {
-        "@search.action": "upload",
-        "HotelId": "2",
-        "HotelName": "Old Century Hotel",
-        "Description": "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts.",
-        "Category": "Boutique",
-        "Tags": [ "pool", "free wifi", "concierge" ],
-        "ParkingIncluded": false,
-        "LastRenovationDate": "1979-02-18T00:00:00Z",
-        "Rating": 3.60,
-        "Address": 
+            "@search.action": "upload",
+            "HotelId": "1",
+            "HotelName": "Stay-Kay City Hotel",
+            "Description": "This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
+            "Category": "Boutique",
+            "Tags": [ "view", "air conditioning", "concierge" ],
+            "ParkingIncluded": false,
+            "LastRenovationDate": "2022-01-18T00:00:00Z",
+            "Rating": 3.60,
+            "Address": 
+                {
+                "StreetAddress": "677 5th Ave",
+                "City": "New York",
+                "StateProvince": "NY",
+                "PostalCode": "10022",
+                "Country": "USA"
+                } 
+            },
             {
-            "StreetAddress": "140 University Town Center Dr",
-            "City": "Sarasota",
-            "StateProvince": "FL",
-            "PostalCode": "34243",
-            "Country": "USA"
-            } 
-        },
-        {
-        "@search.action": "upload",
-        "HotelId": "3",
-        "HotelName": "Gastronomic Landscape Hotel",
-        "Description": "The Hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
-        "Category": "Resort and Spa",
-        "Tags": [ "air conditioning", "bar", "continental breakfast" ],
-        "ParkingIncluded": true,
-        "LastRenovationDate": "2015-09-20T00:00:00Z",
-        "Rating": 4.80,
-        "Address": 
+            "@search.action": "upload",
+            "HotelId": "2",
+            "HotelName": "Old Century Hotel",
+            "Description": "The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.",
+             "Category": "Boutique",
+            "Tags": [ "pool", "free wifi", "concierge" ],
+            "ParkingIncluded": false,
+            "LastRenovationDate": "2019-02-18T00:00:00Z",
+            "Rating": 3.60,
+            "Address": 
+                {
+                "StreetAddress": "140 University Town Center Dr",
+                "City": "Sarasota",
+                "StateProvince": "FL",
+                "PostalCode": "34243",
+                "Country": "USA"
+                } 
+            },
             {
-            "StreetAddress": "3393 Peachtree Rd",
-            "City": "Atlanta",
-            "StateProvince": "GA",
-            "PostalCode": "30326",
-            "Country": "USA"
-            } 
-        },
-        {
-        "@search.action": "upload",
-        "HotelId": "4",
-        "HotelName": "Sublime Palace Hotel",
-        "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace.",
-        "Category": "Boutique",
-        "Tags": [ "concierge", "view", "24-hour front desk service" ],
-        "ParkingIncluded": true,
-        "LastRenovationDate": "1960-02-06T00:00:00Z",
-        "Rating": 4.60,
-        "Address": 
+            "@search.action": "upload",
+            "HotelId": "3",
+            "HotelName": "Gastronomic Landscape Hotel",
+            "Description": "The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
+            "Category": "Suite",
+            "Tags": [ "restaurant", "bar", "continental breakfast" ],
+            "ParkingIncluded": true,
+            "LastRenovationDate": "2015-09-20T00:00:00Z",
+            "Rating": 4.80,
+            "Address": 
+                {
+                "StreetAddress": "3393 Peachtree Rd",
+                "City": "Atlanta",
+                "StateProvince": "GA",
+                "PostalCode": "30326",
+                "Country": "USA"
+                } 
+            },
             {
-            "StreetAddress": "7400 San Pedro Ave",
-            "City": "San Antonio",
-            "StateProvince": "TX",
-            "PostalCode": "78216",
-            "Country": "USA"
+            "@search.action": "upload",
+            "HotelId": "4",
+            "HotelName": "Sublime Palace Hotel",
+            "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.",
+            "Tags": [ "concierge", "view", "air conditioning" ],
+            "ParkingIncluded": true,
+            "LastRenovationDate": "2020-02-06T00:00:00Z",
+            "Rating": 4.60,
+            "Address": 
+                {
+                "StreetAddress": "7400 San Pedro Ave",
+                "City": "San Antonio",
+                "StateProvince": "TX",
+                "PostalCode": "78216",
+                "Country": "USA"
+                }
             }
+          ]
         }
-    ]
-    }
     "@
     ```
 
@@ -343,7 +342,7 @@ Be sure to use single quotation marks on search `$urls`. Query strings include `
                       "Category":  "Boutique",
                       "Tags":  "pool free wifi concierge",
                       "ParkingIncluded":  false,
-                      "LastRenovationDate":  "1979-02-18T00:00:00Z",
+                      "LastRenovationDate":  "2019-02-18T00:00:00Z",
                       "Rating":  3.6,
                       "Address":  "@{StreetAddress=140 University Town Center Dr; City=Sarasota; StateProvince=FL; PostalCode=34243; Country=USA}"
                   },
@@ -351,9 +350,9 @@ Be sure to use single quotation marks on search `$urls`. Query strings include `
                       "@search.score":  0.009068266,
                       "HotelId":  "3",
                       "HotelName":  "Gastronomic Landscape Hotel",
-                      "Description":  "The Hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel\u0027s restaurant services.",
-                      "Category":  "Resort and Spa",
-                      "Tags":  "air conditioning bar continental breakfast",
+                      "Description":  "The Hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel's restaurant services.",
+                      "Category":  "Suite",
+                      "Tags":  "restaurant", "bar", "continental breakfast",
                       "ParkingIncluded":  true,
                       "LastRenovationDate":  "2015-09-20T00:00:00Z",
                       "Rating":  4.8,
@@ -383,7 +382,6 @@ $url = 'https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/hotels-quicksta
 
 # Query example 4
 # Sort by a specific field (Address/City) in ascending order
-
 $url = 'https://<YOUR-SEARCH-SERVICE>.search.windows.net/indexes/hotels-quickstart/docs?api-version=2024-07-01&search=pool&$orderby=Address/City asc&$select=HotelName, Address/City, Tags, Rating'
 ```
 
