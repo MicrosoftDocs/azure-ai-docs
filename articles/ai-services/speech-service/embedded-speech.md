@@ -248,7 +248,7 @@ embeddedSpeechConfig.setSpeechSynthesisOutputFormat(SpeechSynthesisOutputFormat.
 
 You can find ready to use embedded speech samples at [GitHub](https://aka.ms/embedded-speech-samples). For remarks on projects from scratch, see samples specific documentation:
 
-- [C# (.NET 6.0)](https://aka.ms/embedded-speech-samples-csharp)
+- [C# (.NET 8.0)](https://aka.ms/embedded-speech-samples-csharp)
 - [C# (.NET MAUI)](https://aka.ms/embedded-speech-samples-csharp-maui)
 - [C# for Unity](https://aka.ms/embedded-speech-samples-csharp-unity)
 ::: zone-end
