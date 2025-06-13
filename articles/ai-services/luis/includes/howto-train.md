@@ -1,11 +1,11 @@
 ---
 title: include file
 description: include file
-author: aahill
-ms.author: aahi
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ms.subservice: azure-ai-luis
 ms.topic: include
 ---

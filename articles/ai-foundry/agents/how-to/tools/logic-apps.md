@@ -28,9 +28,37 @@ This article demonstrates how to integrate Logic Apps with Azure AI Agents to ex
    - `SUBSCRIPTION_ID`: Your Azure subscription ID.
    - `resource_group_name`: The name of your resource group.
 
+:::zone pivot="portal"
+
+
+## Add a Logic Apps workflow to an agent using the Azure AI Foundry portal
+
+1. Go to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). In the **Agents** screen for your agent, scroll down the **Setup** pane on the right to **Actions**. Then select **Add**.
+
+    :::image type="content" source="../../media/tools/action-tools.png" alt-text="A screenshot showing the available tool categories in the Azure AI Foundry portal." lightbox="../../media/tools/action-tools.png":::
+
+1. Select **Azure Logic Apps** and follow the prompts to add the tool. 
+
+    :::image type="content" source="../../media/tools/action-tools-list.png" alt-text="A screenshot showing the available action tools in the Azure AI Foundry portal." lightbox="../../media/tools/action-tools-list.png":::
+
+    You can choose to add Microsoft authored workflows, or add your own.
+    
+    > [!NOTE]
+    > For your logic apps to appear in the Azure AI Foundry portal, they must:
+    > * Be in the same subscription and resource group.
+    > * Follow a request trigger with a description, and end with a response action. 
+
+    :::image type="content" source="../../media/tools/add-logic-apps.png" alt-text="A screenshot showing the screen to add Logic Apps." lightbox="../../media/tools/add-logic-apps.png":::
+
+
+:::zone-end
+
+:::zone pivot="python"
+
 ## Create a project client
 
 Create a client object to connect to your AI project and other resources.
+
 
 ```python
 import os
@@ -140,6 +168,8 @@ Delete the agent after use to clean up resources.
 project_client.agents.delete_agent(agent.id)
 print("Deleted agent")
 ```
+
+:::zone-end
 
 ## Next steps
 

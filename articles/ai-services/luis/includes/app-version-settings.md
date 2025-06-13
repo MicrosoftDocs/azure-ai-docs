@@ -1,7 +1,7 @@
 ---
 ms.topic: include
 ms.custom: include file
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 
 Learn [concepts](../concepts/utterances.md#utterance-normalization) of normalization and how to use [version](/rest/api/luis/versions) APIs to update these settings or use the LUIS portal's **Manage** section, **Settings** page.

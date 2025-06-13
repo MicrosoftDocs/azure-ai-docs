@@ -2,13 +2,13 @@
 title: Geography V2 prebuilt entity - LUIS
 titleSuffix: Azure AI services
 description: This article contains geographyV2 prebuilt entity information in Language Understanding (LUIS).
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
 ms.topic: reference
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 
 # GeographyV2 prebuilt entity for a LUIS app

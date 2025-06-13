@@ -5,9 +5,9 @@ ms.service: azure-ai-language
 ms.subservice: azure-ai-qna-maker
 ms.topic: conceptual
 manager: nitinme
-ms.author: jboback
-author: jboback
-ms.date: 01/19/2024
+ms.author: lajanuar
+author: laujan
+ms.date: 06/12/2025
 ---
 
 # Collaborate with other authors and editors
