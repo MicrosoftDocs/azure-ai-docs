@@ -67,6 +67,7 @@ curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" -H "Operati
     "speakerCount": 1,
     "subtitleMaxCharCountPerSegment": 50,
     "exportSubtitleInVideo": false,
+    "enableLipSync": false,
     "videoFileUrl": "https://speechstudioprodpublicsa.blob.core.windows.net/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4"
   }
 }' "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id?api-version=2024-05-20"
@@ -85,7 +86,8 @@ You should receive a response body in the following format:
     "voiceKind": "PlatformVoice",
     "speakerCount": 1,
     "subtitleMaxCharCountPerSegment": 50,
-    "exportSubtitleInVideo": false
+    "exportSubtitleInVideo": false,
+    "enableLipSync": false
   },
   "status": "NotStarted",
   "lastActionDateTime": "2025-03-06T19:13:35.669Z",
