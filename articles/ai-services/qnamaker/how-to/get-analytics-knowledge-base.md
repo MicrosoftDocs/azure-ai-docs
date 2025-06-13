@@ -9,7 +9,7 @@ displayName: chat history, history, chat logs, logs
 ms.service: azure-ai-language
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 
 # Get analytics on your knowledge base
