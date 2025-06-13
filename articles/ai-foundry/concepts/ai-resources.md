@@ -37,7 +37,7 @@ Hubs group one or more projects together with common settings including data acc
 
 ## Create a hub-based project
 
-To start developing, [create a project](../how-to/create-projects.md). Hub-projects can be accessed in [AI Foundry Portal](https://ai.azure.com/?cid=learnDocs) to build with generative AI tools, and [ML Studio](https://ml.azure.com) to build with tools designed for custom machine learning model training.
+To start developing, [create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]](../how-to/create-projects.md?pivots=hub-project). Hub-projects can be accessed in [AI Foundry Portal](https://ai.azure.com/?cid=learnDocs) to build with generative AI tools, and [ML Studio](https://ml.azure.com) to build with tools designed for custom machine learning model training.
 
 ## Project concepts
 
@@ -89,6 +89,7 @@ If not provided by you, the following dependent resources are automatically crea
 
 ## Next steps
 
+- [Create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]](../how-to/create-projects.md?pivots=hub-project)
 - [Quickstart: Analyze images and video in the chat playground](/azure/ai-services/openai/gpt-v-quickstart)
 - [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
 - [Learn more about projects](../how-to/create-projects.md?pivots=hub-project)
