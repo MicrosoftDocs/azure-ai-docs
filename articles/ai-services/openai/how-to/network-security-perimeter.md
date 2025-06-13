@@ -230,9 +230,9 @@ To test your connection through network security perimeter, you need access to a
 
 2. Decide if you want to use a local computer or an Azure VM.
 
-    1. If you're using a local computer, you need to know your public IP address.
+    - If you're using a local computer, you need to know your public IP address.
 
-    1. If you're using an Azure virtual machine, you can either use a [private link](/azure/private-link/private-link-overview) or [check the IP address using the Azure portal](/azure/virtual-network/ip-services/virtual-network-network-interface-addresses).
+    - If you're using an Azure virtual machine, you can either use a [private link](/azure/private-link/private-link-overview) or [check the IP address using the Azure portal](/azure/virtual-network/ip-services/virtual-network-network-interface-addresses).
 
 3. Using the IP address, you can create an __inbound access rule__ for that IP address to allow access. You can skip this step if you're using private link.
 
