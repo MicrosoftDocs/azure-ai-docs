@@ -331,17 +331,17 @@ items:
 - name: Responsible AI
   items:
     - name: Overview
-      href: /azure/ai-foundry/responsible-ai/openai/overview?context=/azure/ai-services/openai/context/context
+      href: /azure/ai-foundry/responsible-ai/openai/overview
     - name : Transparency note
-      href: /azure/ai-foundry/responsible-ai/openai/transparency-note?context=/azure/ai-services/openai/context/context
+      href: /azure/ai-foundry/responsible-ai/openai/transparency-note
     - name: Limited access
-      href: /azure/ai-foundry/responsible-ai/openai/limited-access?context=/azure/ai-services/openai/context/context
+      href: /azure/ai-foundry/responsible-ai/openai/limited-access
     - name: Code of conduct
-      href: /legal/ai-code-of-conduct?context=/azure/ai-services/openai/context/context
+      href: /legal/ai-code-of-conduct
     - name: Data, privacy, and security
-      href: /azure/ai-foundry/responsible-ai/openai/data-privacy?context=/azure/ai-services/openai/context/context
+      href: /azure/ai-foundry/responsible-ai/openai/data-privacy
     - name: Customer Copyright Commitment
-      href: /azure/ai-foundry/responsible-ai/openai/customer-copyright-commitment?context=/azure/ai-services/openai/context/context
+      href: /azure/ai-foundry/responsible-ai/openai/customer-copyright-commitment
 - name: Reference
   items:
     - name: Latest Inference Preview API
