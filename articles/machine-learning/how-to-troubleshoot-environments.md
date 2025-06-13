@@ -8,7 +8,7 @@ ms.subservice: mlops
 author: Blackmist
 ms.author: larryfr
 ms.reviewer: ericadebarge
-ms.date: 06/10/2024
+ms.date: 06/13/2025
 ms.topic: troubleshooting
 ms.custom: devx-track-python
 monikerRange: 'azureml-api-1 || azureml-api-2'
@@ -27,9 +27,9 @@ monikerRange: 'azureml-api-1 || azureml-api-2'
 [!INCLUDE [cli v1 deprecation](./includes/machine-learning-cli-v1-deprecation.md)]
 :::moniker-end
 
-In this article, learn how to troubleshoot common problems you may encounter with environment image builds and learn about AzureML environment vulnerabilities.
+In this article, learn how to troubleshoot common problems you might encounter with environment image builds and learn about Azure Machine Learning environment vulnerabilities.
 
-We are actively seeking your feedback! If you navigated to this page via your Environment Definition or Build Failure Analysis logs, we'd like to know if the feature was helpful to you, or if you'd like to report a failure scenario that isn't yet covered by our analysis. You can also leave feedback on this documentation. Leave your thoughts [here](https://aka.ms/azureml/environment/log-analysis-feedback). 
+We're actively seeking your feedback! If you navigated to this page via your Environment Definition or Build Failure Analysis logs, we'd like to know if the feature was helpful to you, or if you'd like to report a failure scenario that isn't yet covered by our analysis. You can also leave feedback on this documentation. Leave your thoughts [here](https://aka.ms/azureml/environment/log-analysis-feedback). 
 
 ## Azure Machine Learning environments
 
@@ -62,11 +62,11 @@ They aren't listed but you can retrieve them by version or label.
 
 Azure Machine Learning builds environment definitions into Docker images.
 It also caches the images in the Azure Container Registry associated with your Azure Machine Learning Workspace so they can be reused in subsequent training jobs and service endpoint deployments.
-Multiple environments with the same definition may result in the same cached image.
+Multiple environments with the same definition might result in the same cached image.
 
 Running a training script remotely requires the creation of a Docker image.
 
-## Vulnerabilities in AzureML Environments
+## Vulnerabilities in Azure Machine Learning Environments
 
 You can address vulnerabilities by upgrading to a newer version of a dependency (base image, Python package, etc.) or by migrating to a different dependency that satisfies security
 requirements. Mitigating vulnerabilities is time consuming and costly since it can require refactoring of code and infrastructure. With the prevalence
@@ -94,7 +94,7 @@ user-managed, and system-managed.
 
 ### *Curated Environments*
 
-Curated environments are pre-created environments that Azure Machine Learning manages and are available by default in every Azure Machine Learning workspace provisioned. New versions are released by Azure Machine Learning to address vulnerabilities. Whether you use the latest image may be a tradeoff between reproducibility and vulnerability management. 
+Curated environments are pre-created environments that Azure Machine Learning manages and are available by default in every Azure Machine Learning workspace provisioned. New versions are released by Azure Machine Learning to address vulnerabilities. Whether you use the latest image might be a tradeoff between reproducibility and vulnerability management. 
 
 Curated Environments contain collections of Python packages and settings to help you get started with various machine learning frameworks. You're meant to use them as is. These pre-created environments also allow for faster deployment time.
 
@@ -111,21 +111,21 @@ Once you install more dependencies on top of a Microsoft-provided image, or brin
 ### *System-managed Environments* 
 
 You use system-managed environments when you want conda to manage the Python environment for you. Azure Machine Learning creates a new isolated conda environment by materializing your conda specification on top of a base Docker image. While Azure Machine Learning patches base images with each release, whether you use the
-latest image may be a tradeoff between reproducibility and vulnerability management. So, it's your responsibility to choose the environment version used
+latest image might be a tradeoff between reproducibility and vulnerability management. So, it's your responsibility to choose the environment version used
 for your jobs or model deployments while using system-managed environments.
 
 ### Vulnerabilities: Common Issues 
 
 ### *Vulnerabilities in Base Docker Images* 
 
-System vulnerabilities in an environment are usually introduced from the base image. For example, vulnerabilities marked as "Ubuntu" or "Debian" are from the system level of the environment–the base Docker image. If the base image is from a third-party issuer, please check if the latest version has fixes for the flagged vulnerabilities. Most common sources for the base images in Azure Machine Learning are:
+System vulnerabilities in an environment are usually introduced from the base image. For example, vulnerabilities marked as "Ubuntu" or "Debian" are from the system level of the environment–the base Docker image. If the base image is from a third-party issuer, check if the latest version has fixes for the flagged vulnerabilities. Most common sources for the base images in Azure Machine Learning are:
 
-- Microsoft Artifact Registry (MAR) aka Microsoft Container Registry (mcr.microsoft.com). 
+- Microsoft Artifact Registry (MAR) also known as Microsoft Container Registry (mcr.microsoft.com). 
     - Images can be listed from MAR homepage, calling _catalog API, or [/tags/list](https://mcr.microsoft.com/v2/azureml/openmpi4.1.0-ubuntu20.04/tags/list)_
-    - Source and release notes for training base images from AzureML can be found in [Azure/AzureML-Containers](https://github.com/Azure/AzureML-Containers)
-- NVIDIA (nvcr.io, or [nvidia's Profile](https://hub.docker.com/u/nvidia/#!))
+    - Source and release notes for training base images from Azure Machine Learning can be found in [Azure/AzureML-Containers](https://github.com/Azure/AzureML-Containers)
+- NVIDIA (nvcr.io, or [Nvidia's Profile](https://hub.docker.com/u/nvidia/#!))
 
-If the latest version of your base image does not resolve your vulnerabilities, base image vulnerabilities can be addressed by installing versions recommended by a vulnerability scan:
+If the latest version of your base image doesn't resolve your vulnerabilities, base image vulnerabilities can be addressed by installing versions recommended by a vulnerability scan:
 
 ```
 apt-get install -y library_name
@@ -135,7 +135,7 @@ apt-get install -y library_name
 
 Vulnerabilities can also be from installed Python packages on top of the system-managed base image. These Python-related vulnerabilities should be resolved by updating your Python dependencies. Python (pip) vulnerabilities in the image usually come from user-defined dependencies.
 
-To search for known Python vulnerabilities and solutions please see [GitHub Advisory Database](https://github.com/advisories). To address Python vulnerabilities, update the package to the version that has fixes for the flagged issue:
+To search for known Python vulnerabilities and solutions, see [GitHub Advisory Database](https://github.com/advisories). To address Python vulnerabilities, update the package to the version that has fixes for the flagged issue:
 
 ```
 pip install -u my_package=={good.version}
@@ -143,7 +143,7 @@ pip install -u my_package=={good.version}
 
 If you're using a conda environment, update the reference in the conda dependencies file.
 
-In some cases, Python packages will be automatically installed during conda's setup of your environment on top of a base Docker image. Mitigation steps for those are the same as those for user-introduced packages. Conda installs necessary dependencies for every environment it materializes. Packages like cryptography, setuptools, wheel, etc. will be automatically installed from conda's default channels. There's a known issue with the default anaconda channel missing latest package versions, so it's recommended to prioritize the community-maintained conda-forge channel. Otherwise, please explicitly specify packages and versions, even if you don't reference them in the code you plan to execute on that environment.
+In some cases, Python packages are automatically installed during conda's setup of your environment on top of a base Docker image. Mitigation steps for those are the same as those for user-introduced packages. Conda installs necessary dependencies for every environment it materializes. Packages like cryptography, setuptools, wheel, etc. will be automatically installed from conda's default channels. There's a known issue with the default anaconda channel missing latest package versions, so it's recommended to prioritize the community-maintained conda-forge channel. Otherwise, explicitly specify packages and versions, even if you don't reference them in the code you plan to execute on that environment.
 
 ### *Cache issues* 
 
@@ -205,7 +205,7 @@ To create a new environment, you must use one of the following approaches (see [
     * Provide a conda specification
 * Docker build context
     * Provide the location of the build context (URL)
-    * The build context must contain at least a Dockerfile, but may contain other files as well
+    * The build context must contain at least a Dockerfile, but might contain other files as well
 :::moniker-end
 
 :::moniker range="azureml-api-2"
@@ -378,7 +378,7 @@ ml_client.environments.create_or_update(env_docker_image)
 
 **Potential causes:**
 
-* You've specified either a username or a password for your container registry in your environment definition, but not both
+* You specified either a username or a password for your container registry in your environment definition, but not both
 
 **Affected areas (symptoms):**
 * Failure in registering your environment
@@ -433,7 +433,7 @@ az ml connection create --file connection.yml --resource-group my-resource-group
 
 **Potential causes:**
 
-* You've specified more than one set of credentials for your base image registry
+* You specified more than one set of credentials for your base image registry
 
 **Affected areas (symptoms):**
 * Failure in registering your environment
@@ -444,7 +444,7 @@ az ml connection create --file connection.yml --resource-group my-resource-group
 :::moniker range="azureml-api-1"
 [!INCLUDE [machine-learning-sdk-v1](includes/machine-learning-sdk-v1.md)]
 
-If you're using workspace connections, view the connections you have set, and delete whichever one(s) you don't want to use
+If you're using workspace connections, view the connections you set, and delete whichever one(s) you don't want to use
 
 ```python
 from azureml.core import Workspace
@@ -453,7 +453,7 @@ ws.list_connections()
 ws.delete_connection("myConnection2")
 ```
 
-If you've specified credentials in your environment definition, choose one set of credentials to use, and set all others to null
+If you specified credentials in your environment definition, choose one set of credentials to use, and set all others to null
 
 ```python
 myEnv.docker.base_image_registry.registry_identity = None
@@ -480,7 +480,7 @@ myEnv.docker.base_image_registry.registry_identity = None
 
 **Potential causes:**
 
-* You've specified credentials in your environment definition
+* You specified credentials in your environment definition
 
 **Affected areas (symptoms):**
 * Failure in registering your environment
@@ -526,7 +526,7 @@ az ml connection create --file connection.yml --resource-group my-resource-group
 
 **Potential causes:**
 
-* You've specified Docker attributes in your environment definition that are now deprecated
+* You specified Docker attributes in your environment definition that are now deprecated
 * The following are deprecated properties:
     * `enabled`
     * `arguments`
@@ -631,7 +631,7 @@ Specify a Dockerfile path
 
 ### Not allowed to specify attribute with Docker build context
 <!--issueDescription-->
-This issue can happen when you've specified properties in your environment definition that can't be included with a Docker build context.
+This issue can happen when you specified properties in your environment definition that can't be included with a Docker build context.
 
 **Potential causes:**
 * You specified a Docker build context, along with at least one of the following properties in your environment definition:
@@ -703,7 +703,7 @@ For scenarios in which you're storing your Docker build context in a storage acc
 
     `https://<storage-account>.blob.core.windows.net/<container>/<path>`
 * Ensure that the location you provided is a valid URL
-* Ensure that you've specified a container and a path
+* Ensure that you specified a container and a path
     
 **Resources**
 * See [DockerBuildContext Class](/python/api/azureml-core/azureml.core.environment.dockerbuildcontext)
@@ -856,7 +856,7 @@ channels:
 ### Multiple Python versions
 <!--issueDescription-->
 **Potential causes:**
-* You've specified more than one Python version in your environment definition
+* You specified more than one Python version in your environment definition
 
 **Affected areas (symptoms):**
 * Failure in registering your environment
@@ -888,7 +888,7 @@ If you're using a YAML for your conda specification, include only one Python ver
 ### Python version not supported
 <!--issueDescription-->
 **Potential causes:**
-* You've specified a Python version that is at or near its end-of-life and is no longer supported
+* You specified a Python version that is at or near its end-of-life and is no longer supported
 
 **Affected areas (symptoms):**
 * Failure in registering your environment
@@ -901,7 +901,7 @@ Specify a [python version](https://aka.ms/azureml/environment/python-versions) t
 ### Python version not recommended
 <!--issueDescription-->
 **Potential causes:**
-* You've specified a Python version that is at or near its end-of-life
+* You specified a Python version that is at or near its end-of-life
 
 **Affected areas (symptoms):**
 * Failure in registering your environment
@@ -1186,7 +1186,7 @@ Define an environment using a standard conda YAML configuration file
 
 **Troubleshooting steps**
 
-If you don't specify a dependency version, the conda package resolver may choose a different version of the package on subsequent builds of the same environment. This breaks reproducibility of the environment and can lead to unexpected errors.
+If you don't specify a dependency version, the conda package resolver might choose a different version of the package on subsequent builds of the same environment. This breaks reproducibility of the environment and can lead to unexpected errors.
 
 :::moniker range="azureml-api-1"
 
@@ -1273,7 +1273,7 @@ channels:
 
 **Troubleshooting steps**
 
-If you don't specify a pip version, a different version may be used on subsequent builds of the same environment. This behavior can cause reproducibility issues and other unexpected errors if different versions of pip resolve your packages differently.
+If you don't specify a pip version, a different version might be used on subsequent builds of the same environment. This behavior can cause reproducibility issues and other unexpected errors if different versions of pip resolve your packages differently.
 
 :::moniker range="azureml-api-1"
 
@@ -1373,7 +1373,7 @@ This issue can happen when there's a failure in accessing a workspace's associat
 * Ensure the compute cluster is CPU based.
 
 > [!NOTE]
-> * Only Azure Machine Learning compute clusters are supported. Compute, Azure Kubernetes Service (AKS), or other instance types are not supported for image build compute.
+> * Only Azure Machine Learning compute clusters are supported. Compute, Azure Kubernetes Service (AKS), or other instance types aren't supported for image build compute.
 
 **Resources**
 * [Enable Azure Container Registry (ACR)](https://aka.ms/azureml/environment/acr-private-endpoint)
@@ -1425,7 +1425,7 @@ If your container registry is behind a virtual network or is using a private end
 * After you put the container registry behind a virtual network, run the [Azure Resource Manager template](https://aka.ms/azureml/environment/secure-resources-using-vnet) so the workspace can communicate with the container registry instance
 
 If the image you're trying to reference doesn't exist in the container registry you specified
-* Check that you've used the correct tag and that you've set `user_managed_dependencies` to `True`. Setting [user_managed_dependencies](https://aka.ms/azureml/environment/environment-python-section) to `True` disables conda and uses the user's installed packages
+* Check that you used the correct tag and that you set `user_managed_dependencies` to `True`. Setting [user_managed_dependencies](https://aka.ms/azureml/environment/environment-python-section) to `True` disables conda and uses the user's installed packages
 
 If you haven't provided credentials for a private registry you're trying to pull from, or the provided credentials are incorrect
 * Set [workspace connections](https://github.com/Azure/azureml-examples/blob/main/sdk/python/resources/connections/connections.ipynb) for the container registry if needed
@@ -1453,16 +1453,16 @@ Add the host to the firewall rules
 * See [configure inbound and outbound network traffic](how-to-access-azureml-behind-firewall.md) to learn how to use Azure Firewall for your workspace and resources behind a VNet
 
 Assess your workspace set-up. Are you using a virtual network, or are any of the resources you're trying to access during your image build behind a virtual network?
-* Ensure that you've followed the steps in this article on [securing a workspace with virtual networks](https://aka.ms/azureml/environment/acr-private-endpoint)
+* Ensure that you followed the steps in this article on [securing a workspace with virtual networks](https://aka.ms/azureml/environment/acr-private-endpoint)
 * Azure Machine Learning requires both inbound and outbound access to the public internet. If there's a problem with your virtual network setup, there might be an issue with accessing certain repositories required during your image build  
 
-If you aren't using a virtual network, or if you've configured it correctly
+If you aren't using a virtual network, or if you configured it correctly
 * Try rebuilding your image. If the timeout was due to a network issue, the problem might be transient, and a rebuild could fix the problem
 
 ## *Conda issues during build*
 ### Bad spec
 <!--issueDescription-->
-This issue can happen when a package listed in your conda specification is invalid or when you've executed a conda command incorrectly.
+This issue can happen when a package listed in your conda specification is invalid or when you executed a conda command incorrectly.
 
 **Potential causes:**
 * The syntax you used in your conda specification is incorrect
@@ -1488,7 +1488,7 @@ This issue can happen when there's a failure in communicating with the entity fr
 
 **Potential causes:**
 * Failed to communicate with a conda channel or a package repository
-* These failures may be due to transient network failures 
+* These failures might be due to transient network failures 
 
 **Affected areas (symptoms):**
 * Failure in building environments from UI, SDK, and CLI.
@@ -1498,7 +1498,7 @@ This issue can happen when there's a failure in communicating with the entity fr
 **Troubleshooting steps**
 
 Ensure that the conda channels/repositories you're using in your conda specification are correct
-* Check that they exist and that you've spelled them correctly
+* Check that they exist and that you spelled them correctly
 
 If the conda channels/repositories are correct
 * Try to rebuild the image--there's a chance that the failure is transient, and a rebuild might fix the issue
@@ -1525,7 +1525,7 @@ If you're using a compiler
 * Verify the version of your compiler and check that all commands or options you're using are compatible with the compiler version
 * If necessary, upgrade your compiler version
 
-Ensure that you've spelled all listed packages correctly and that you've pinned versions correctly
+Ensure that you spelled all listed packages correctly and that you pinned versions correctly
 
 **Resources**
 * [Dockerfile reference on running commands](https://docs.docker.com/engine/reference/builder/#run)
@@ -1546,8 +1546,8 @@ This issue can happen when a command isn't recognized during an image build or i
 
 **Troubleshooting steps**
 
-* Ensure that you've spelled the command correctly
-* Ensure that you've installed any packages needed to execute the command you're trying to perform
+* Ensure that you spelled the command correctly
+* Ensure that you installed any packages needed to execute the command you're trying to perform
 * If needed, add an installation step to your Dockerfile
 
 **Resources**
@@ -1560,7 +1560,7 @@ This issue can happen when conda package resolution takes too long to complete.
 **Potential causes:**
 * There's a large number of packages listed in your conda specification and unnecessary packages are included
 * You haven't pinned your dependencies (you included tensorflow instead of tensorflow=2.8)
-* You've listed packages for which there's no solution (you included package X=1.3 and Y=2.8, but X's version is incompatible with Y's version)
+* You listed packages for which there's no solution (you included package X=1.3 and Y=2.8, but X's version is incompatible with Y's version)
 
 **Affected areas (symptoms):**
 * Failure in building environments from UI, SDK, and CLI.
@@ -1579,7 +1579,7 @@ This issue can happen when conda package resolution fails due to available memor
 **Potential causes:**
 * There's a large number of packages listed in your conda specification and unnecessary packages are included
 * You haven't pinned your dependencies (you included tensorflow instead of tensorflow=2.8)
-* You've listed packages for which there's no solution (you included package X=1.3 and Y=2.8, but X's version is incompatible with Y's version)
+* You listed packages for which there's no solution (you included package X=1.3 and Y=2.8, but X's version is incompatible with Y's version)
 
 **Affected areas (symptoms):**
 * Failure in building environments from UI, SDK, and CLI.
@@ -1605,9 +1605,9 @@ This issue can happen when one or more conda packages listed in your specificati
 <!--/issueDescription-->
 
 **Troubleshooting steps**
-* Ensure that you've spelled the package correctly and that the specified version exists
+* Ensure that you spelled the package correctly and that the specified version exists
 * Ensure that the package exists on the channel you're targeting
-* Ensure that you've listed the channel/repository in your conda specification so the package can be pulled correctly during package resolution
+* Ensure that you listed the channel/repository in your conda specification so the package can be pulled correctly during package resolution
 
 Specify channels in your conda specification:
 
@@ -1638,9 +1638,9 @@ This issue can happen when a Python module listed in your conda specification do
 <!--/issueDescription-->
 
 **Troubleshooting steps**
-* Ensure that you've spelled the module correctly and that it exists
-* Check to make sure that the module is compatible with the Python version you've specified in your conda specification
-* If you haven't listed a specific Python version in your conda specification, make sure to list a specific version that's compatible with your module otherwise a default may be used that isn't compatible
+* Ensure that you spelled the module correctly and that it exists
+* Check to make sure that the module is compatible with the Python version you specified in your conda specification
+* If you haven't listed a specific Python version in your conda specification, make sure to list a specific version that's compatible with your module. Otherwise a default might be used that isn't compatible
 
 Pin a Python version that's compatible with the pip module you're using:
 ```yaml
@@ -1670,9 +1670,9 @@ This issue can happen when there's no package found that matches the version you
 
 **Troubleshooting steps**
 
-* Ensure that you've spelled the package correctly and that it exists
+* Ensure that you spelled the package correctly and that it exists
 * Ensure that the version you specified for the package exists
-* Ensure that you've specified the channel from which the package will be installed. If you don't specify a channel, defaults are used and those defaults may or may not have the package you're looking for
+* Ensure that you specified the channel from which the package will be installed. If you don't specify a channel, defaults are used and those defaults might or might not have the package you're looking for
 
 How to list channels in a conda yaml specification:
 
@@ -1696,7 +1696,7 @@ This issue can happen when building wheels for mpi4py fails.
 
 **Potential causes:**
 * Requirements for a successful mpi4py installation aren't met
-* There's something wrong with the method you've chosen to install mpi4py
+* There's something wrong with the method you used to install mpi4py
 
 **Affected areas (symptoms):**
 * Failure in building environments from UI, SDK, and CLI.
@@ -1721,7 +1721,7 @@ Ensure that you're using a compatible python version
 This issue can happen when pip attempts interactive authentication during package installation.
 
 **Potential causes:**
-* You've listed a package that requires authentication, but you haven't provided credentials
+* You a package that requires authentication, but you haven't provided credentials
 * During the image build, pip tried to prompt you to authenticate which failed the build
 because you can't provide interactive authentication during a build
 
@@ -1831,7 +1831,7 @@ This issue can happen when the conda command isn't recognized during conda envir
 Ensure that you have a conda installation step in your Dockerfile before trying to execute any conda commands
 * Review this [list of conda installers](https://docs.conda.io/en/latest/miniconda.html) to determine what you need for your scenario
 
-If you've tried installing conda and are experiencing this issue, ensure that you've added conda to your path
+If you tried installing conda and are experiencing this issue, ensure that you added conda to your path
 * Review this [example](https://stackoverflow.com/questions/58269375/how-to-install-packages-with-miniconda-in-dockerfile) for guidance
 * Review how to set [environment variables in a Dockerfile](https://docs.docker.com/engine/reference/builder/#env)
 
@@ -1851,7 +1851,7 @@ This issue can happen when there's a package specified in your conda environment
 
 Use a different version of the package that's compatible with your specified Python version
 
-Alternatively, use a different version of Python that's compatible with the package you've specified
+Alternatively, use a different version of Python that's compatible with the package you specified
 * If you're changing your Python version, use a version that's supported and that isn't nearing its end-of-life soon
 * See Python [end-of-life dates](https://aka.ms/azureml/environment/python-end-of-life)
 
@@ -1860,7 +1860,7 @@ Alternatively, use a different version of Python that's compatible with the pack
 
 ### Conda bare redirection
 <!--issueDescription-->
-This issue can happen when you've specified a package on the command line using "<" or ">" without using quotes. This syntax can cause conda environment creation or update to fail.
+This issue can happen when you specified a package on the command line using "<" or ">" without using quotes. This syntax can cause conda environment creation or update to fail.
 
 **Affected areas (symptoms):**
 * Failure in building environments from UI, SDK, and CLI.
@@ -1946,7 +1946,7 @@ This issue can happen when pip fails to install a Python package due to an inval
 <!--/issueDescription-->
 
 **Troubleshooting steps**
-* Ensure that you've spelled the package correctly and that the specified version exists
+* Ensure that you spelled the package correctly and that the specified version exists
 * Ensure that your package version specifier is formatted correctly and that you're using valid comparison operators. See [Version specifiers](https://peps.python.org/pep-0440/#version-specifiers)
 * Replace the invalid operator with the operator recommended in the error message
 
@@ -1965,7 +1965,7 @@ This issue can happen when there's no package found that matches the version you
 <!--/issueDescription-->
 
 **Troubleshooting steps**
-* Ensure that you've spelled the package correctly and that it exists
+* Ensure that you spelled the package correctly and that it exists
 * Ensure that the version you specified for the package exists
 * Run `pip install --upgrade pip` and then run the original command again
 * Ensure the pip you're using can install packages for the desired Python version. See [Should I use pip or pip3?](https://stackoverflow.com/questions/61664673/should-i-use-pip-or-pip3)
@@ -1977,7 +1977,7 @@ This issue can happen when there's no package found that matches the version you
 
 ### Invalid wheel filename
 <!--issueDescription-->
-This issue can happen when you've specified a wheel file incorrectly.
+This issue can happen when you specified a wheel file incorrectly.
 
 **Potential causes:**
 * You spelled the wheel filename incorrectly or used improper formatting
@@ -1989,8 +1989,8 @@ This issue can happen when you've specified a wheel file incorrectly.
 <!--/issueDescription-->
 
 **Troubleshooting steps**
-* Ensure that you've spelled the filename correctly and that it exists
-* Ensure that you're following the [format for wheel filenames](https://peps.python.org/pep-0491/#file-format)
+* Ensure that you spelled the filename correctly and that it exists
+* Ensure that you followed the [format for wheel filenames](https://peps.python.org/pep-0491/#file-format)
 
 ## *Make issues*
 ### No targets specified and no makefile found
@@ -2007,12 +2007,12 @@ This issue can happen when you haven't specified any targets and no makefile is 
 <!--/issueDescription-->
 
 **Troubleshooting steps**
-* Ensure that you've spelled the makefile correctly
+* Ensure that you spelled the makefile correctly
 * Ensure that the makefile exists in the current directory
 * If you have a custom makefile, specify it using ```make -f custommakefile```
 * Specify targets in the makefile or in the command line
 * Configure your build and generate a makefile
-* Ensure that you've formatted your makefile correctly and that you've used tabs for indentation
+* Ensure that you formatted your makefile correctly and that you used tabs for indentation
 
 **Resources**
 * [GNU Make](https://www.gnu.org/software/make/manual/make.html)
@@ -2091,7 +2091,7 @@ If your container registry is behind a virtual network or is using a private end
 * Configure the container registry by using the service endpoint (public access) from the portal and retry
 * After you put the container registry behind a virtual network, run the [Azure Resource Manager template](https://aka.ms/azureml/environment/secure-resources-using-vnet) so the workspace can communicate with the container registry instance
 
-If you aren't using a virtual network, or if you've configured it correctly, test that your credentials are correct for your ACR by attempting a simple local build
+If you aren't using a virtual network, or if you configured it correctly, test that your credentials are correct for your ACR by attempting a simple local build
 * Get credentials for your workspace ACR from the Azure portal
 * Log in to your ACR using `docker login <myregistry.azurecr.io> -u "username" -p "password"`
 * For an image "helloworld", test pushing to your ACR by running `docker push helloworld`
@@ -2138,7 +2138,7 @@ This issue can happen when the command being run isn't recognized.
 Ensure that you have an installation step for the command in your Dockerfile before trying to execute the command
 * Review this [example](https://stackoverflow.com/questions/67186341/make-install-in-dockerfile)
 
-If you've tried installing the command and are experiencing this issue, ensure that you've added the command to your path 
+If you tried installing the command and are experiencing this issue, ensure that you added the command to your path 
 * Review this [example](https://stackoverflow.com/questions/27093612/in-a-dockerfile-how-to-update-path-environment-variable)
 * Review how to set [environment variables in a Dockerfile](https://docs.docker.com/engine/reference/builder/#env)
 
@@ -2158,7 +2158,7 @@ If you've tried installing the command and are experiencing this issue, ensure t
 
 **Troubleshooting steps**
 
-A rebuild may fix the issue if it's transient
+A rebuild might fix the issue if it's transient
 
 ### Image not found
 <!--issueDescription-->
