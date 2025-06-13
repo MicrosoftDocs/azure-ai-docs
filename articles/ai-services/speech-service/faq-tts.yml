@@ -28,7 +28,7 @@ sections:
       - question: |
           How would we disclose to the end user that the voice is a synthetic voice?
         answer: |
-          We recommend that every user should follow our [code of conduct](/azure/ai-foundry/responsible-ai/speech-service/tts-code-of-conduct?context=/azure/ai-services/speech-service/context/context) when using the text to speech capability. There are several ways to disclose the synthetic nature of the voice including implicit and explicit byline. Refer to [Disclosure design guidelines](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-guidelines?context=/azure/ai-services/speech-service/context/context).
+          We recommend that every user should follow our [code of conduct](/azure/ai-foundry/responsible-ai/speech-service/tts-code-of-conduct) when using the text to speech capability. There are several ways to disclose the synthetic nature of the voice including implicit and explicit byline. Refer to [Disclosure design guidelines](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-guidelines).
       - question: |
           How can I reduce the latency for my voice app?
         answer: |
@@ -98,11 +98,11 @@ sections:
       - question: |
           Can Microsoft add a mechanism to prevent unauthorized use or misuse of our voice when it's created?
         answer: |
-          The voice model can only be used by yourselves using your own token. Microsoft also doesn't use your data. See [Data, privacy, and security](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/data-privacy-security-custom-neural-voice?context=/azure/ai-services/speech-service/context/context). You can also request to add watermarks to your voice to protect your model. See [Microsoft Azure Neural TTS introduces the watermark algorithm for synthetic voice identification](https://techcommunity.microsoft.com/t5/ai-cognitive-services-blog/introducing-the-watermark-algorithm-for-synthetic-voice/ba-p/3298548).
+          The voice model can only be used by yourselves using your own token. Microsoft also doesn't use your data. See [Data, privacy, and security](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security-custom-neural-voice). You can also request to add watermarks to your voice to protect your model. See [Microsoft Azure Neural TTS introduces the watermark algorithm for synthetic voice identification](https://techcommunity.microsoft.com/t5/ai-cognitive-services-blog/introducing-the-watermark-algorithm-for-synthetic-voice/ba-p/3298548).
       - question: |
           Do you have any tips about contracts or negotiation with voice actors?
         answer: |
-          We have no recommendations on contracts and it's up to the customer and the voice talent to negotiate the terms. However, you should make sure the voice talent understands the capabilities of text to speech, including its potential risks, and provide explicit consent to create a synthetic version of their voice in both the contract and a verbal statement. See [Disclosure for voice talent](/azure/ai-foundry/responsible-ai/speech-service/disclosure-voice-talent?context=/azure/ai-services/speech-service/context/context). 
+          We have no recommendations on contracts and it's up to the customer and the voice talent to negotiate the terms. However, you should make sure the voice talent understands the capabilities of text to speech, including its potential risks, and provide explicit consent to create a synthetic version of their voice in both the contract and a verbal statement. See [Disclosure for voice talent](/azure/ai-foundry/responsible-ai/speech-service/disclosure-voice-talent). 
       - question: |
           Do we need to return the written permission from the voice talent back to Microsoft?
         answer: |

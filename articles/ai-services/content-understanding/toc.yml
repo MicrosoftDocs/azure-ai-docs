@@ -99,9 +99,9 @@ items:
   - name: Responsible AI
     items:
       - name: Transparency note
-        href: /azure/ai-foundry/responsible-ai/content-understanding/transparency-note?toc=/azure/ai-services/content-understanding/toc.json&bc=/azure/ai-services/content-understanding/breadcrumb/toc.json
+        href: ../../ai-foundry/responsible-ai/content-understanding/transparency-note.md
       - name: Data, privacy, and security
-        href: /azure/ai-foundry/responsible-ai/content-understanding/data-privacy?toc=/azure/ai-services/content-understanding/toc.json&bc=/azure/ai-services/content-understanding/breadcrumb/toc.json
+        href: ../../ai-foundry/responsible-ai/content-understanding/data-privacy.md
   - name: Reference
     items:
       - name: REST API

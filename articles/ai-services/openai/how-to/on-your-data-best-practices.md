@@ -92,7 +92,7 @@ See the preceding debugging process, starting at [step 1](#step-1-check-for-retr
 
 ### The model isn't following the role information or system message
 
-* Make sure that instructions in the role information are consistent with the [Responsible AI guidelines](/azure/ai-foundry/responsible-ai/openai/overview?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext). The model likely won't follow role information if it contradicts those guidelines.
+* Make sure that instructions in the role information are consistent with the [Responsible AI guidelines](/azure/ai-foundry/responsible-ai/openai/overview). The model likely won't follow role information if it contradicts those guidelines.
 
 * Ensure that your role information follows the [established limits](../concepts/use-your-data.md#token-usage-estimation-for-azure-openai-on-your-data) for it. Each model has an implicit token limit for the role information. Beyond that limit, the information is truncated.
 

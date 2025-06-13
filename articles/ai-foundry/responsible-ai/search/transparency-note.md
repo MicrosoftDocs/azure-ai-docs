@@ -111,14 +111,14 @@ Agentic retrieval |This refers to an AI agent planning and executing a sequence 
 
 Several [built-in skills](/azure/search/cognitive-search-predefined-skills) for AI enrichment in Azure AI Search take advantage of Azure AI services. See the Transparency Notes for each built-in skill linked below for considerations when choosing to use a skill:
 
-- Key Phrase Extraction Skill: [Azure AI Language - Key Phrase Extraction](/azure/ai-foundry/responsible-ai/language-service/transparency-note-key-phrase-extraction?context=/azure/ai-services/language-service/context/context)
-- Language Detection Skill: [Azure AI Language - Language Detection](/azure/ai-foundry/responsible-ai/language-service/transparency-note-language-detection?context=/azure/ai-services/language-service/context/context)
-- Entity Linking Skill: [Azure AI Language - Entity Linking](/azure/ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use?context=/azure/ai-services/language-service/context/context)
-- Entity Recognition Skill: [Azure AI Language - Named Entity Recognition (NER)](/azure/ai-foundry/responsible-ai/language-service/transparency-note-named-entity-recognition?context=/azure/ai-services/language-service/context/context)
-- PII Detection Skill: [Azure AI Language - PII Detection](/azure/ai-foundry/responsible-ai/language-service/transparency-note-personally-identifiable-information?context=/azure/ai-services/language-service/context/context)
-- Sentiment Skill: [Azure AI Language - Sentiment Analysis](/azure/ai-foundry/responsible-ai/language-service/transparency-note-sentiment-analysis?context=/azure/ai-services/language-service/context/context)
-- Image Analysis Skill: [Azure AI Vision - Image Analysis](/azure/ai-foundry/responsible-ai/computer-vision/imageanalysis-transparency-note?context=/azure/ai-services/computer-vision/context/context)
-- OCR Skill: [Azure AI Vision - OCR](/azure/ai-foundry/responsible-ai/computer-vision/ocr-transparency-note?context=/azure/ai-services/computer-vision/context/context)
+- Key Phrase Extraction Skill: [Azure AI Language - Key Phrase Extraction](/azure/ai-foundry/responsible-ai/language-service/transparency-note-key-phrase-extraction)
+- Language Detection Skill: [Azure AI Language - Language Detection](/azure/ai-foundry/responsible-ai/language-service/transparency-note-language-detection)
+- Entity Linking Skill: [Azure AI Language - Entity Linking](/azure/ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use)
+- Entity Recognition Skill: [Azure AI Language - Named Entity Recognition (NER)](/azure/ai-foundry/responsible-ai/language-service/transparency-note-named-entity-recognition)
+- PII Detection Skill: [Azure AI Language - PII Detection](/azure/ai-foundry/responsible-ai/language-service/transparency-note-personally-identifiable-information)
+- Sentiment Skill: [Azure AI Language - Sentiment Analysis](/azure/ai-foundry/responsible-ai/language-service/transparency-note-sentiment-analysis)
+- Image Analysis Skill: [Azure AI Vision - Image Analysis](/azure/ai-foundry/responsible-ai/computer-vision/imageanalysis-transparency-note)
+- OCR Skill: [Azure AI Vision - OCR](/azure/ai-foundry/responsible-ai/computer-vision/ocr-transparency-note)
 
 See the documentation for each skill to learn more about their respective capabilities, limitations, performance, evaluations, and methods for integration and responsible use. Note that using these skills in combination may lead to compounding effects (for example, errors introduced when using OCR will carry through when using key phrase extraction).
 
@@ -337,7 +337,7 @@ While many limitations of vector search stem from the model used to generate emb
 ### Best practices for improving system performance
 
 - Do spend time A/B testing your application with the different content and query types you expect your application to support. Figure out which query experience is best for your needs.
-- Do spend time testing your models with a full range of input content to understand how it behaves in many situations. This content could include potentially sensitive input to understand whether there is any bias inherent in the model. The [Azure OpenAI Responsible AI](/azure/ai-foundry/responsible-ai/openai/overview?context=/azure/ai-services/openai/context/context) overview provides guidance for how to responsibly use AI.
+- Do spend time testing your models with a full range of input content to understand how it behaves in many situations. This content could include potentially sensitive input to understand whether there is any bias inherent in the model. The [Azure OpenAI Responsible AI](/azure/ai-foundry/responsible-ai/openai/overview) overview provides guidance for how to responsibly use AI.
 - Do consider adding [Azure AI Content Safety](/azure/ai-services/content-safety/overview) to your application architecture. It includes an API to detect harmful user-generated and AI-generated text or images in applications and services.
 
 ## Evaluating and integrating vector search for your use

@@ -19,7 +19,7 @@ feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 
 Azure AI Face liveness detection lets you detect and mitigate instances of recurring content and/or behaviors that indicate a violation of the [Code of Conduct](/legal/ai-code-of-conduct?context=/azure/ai-services/computer-vision/context/context) or other applicable product terms. This guide shows you how to work with these features to ensure your application is compliant with Azure policy.
 
-Details on how data is handled can be found on the [Data, Privacy, and Security](/azure/ai-foundry/responsible-ai/face/data-privacy-security?context=/azure/ai-services/computer-vision/context/context) page.
+Details on how data is handled can be found on the [Data, Privacy, and Security](/azure/ai-foundry/responsible-ai/face/data-privacy-security) page.
 
 [!INCLUDE [liveness-sdk-gate](./includes/liveness-sdk-gate.md)]
 
@@ -35,5 +35,5 @@ There are several components to Face liveness abuse monitoring:
 ## Related content
 
 - [Learn more about understanding and mitigating risks associated with identity management](/azure/security/fundamentals/identity-management-overview)
-- [Learn more about how data is processed for abuse monitoring](/azure/ai-foundry/responsible-ai/face/data-privacy-security?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext)
-- [Learn more about supporting human judgment in your application system](/azure/ai-foundry/responsible-ai/face/characteristics-and-limitations?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext#design-the-system-to-support-human-judgment)
+- [Learn more about how data is processed for abuse monitoring](/azure/ai-foundry/responsible-ai/face/data-privacy-security)
+- [Learn more about supporting human judgment in your application system](/azure/ai-foundry/responsible-ai/face/characteristics-and-limitations#design-the-system-to-support-human-judgment)

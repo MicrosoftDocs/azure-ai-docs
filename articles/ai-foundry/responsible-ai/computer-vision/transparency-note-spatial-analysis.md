@@ -225,5 +225,5 @@ The evaluation of Spatial Analysis and Video Retrieval models is essential to en
 ## Learn more about Spatial Analysis
 
 - [Spatial Analysis overview](/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview)
-- [Data, privacy, and security for Spatial Analysis](/azure/ai-foundry/responsible-ai/computer-vision/compliance-privacy-security-2?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext)
+- [Data, privacy, and security for Spatial Analysis](/azure/ai-foundry/responsible-ai/computer-vision/compliance-privacy-security-2)
 

@@ -81,7 +81,7 @@ sections:
         answer: |
           No input texts or images are stored by the model during detection (except for customer-supplied blocklists), and user inputs are not used to train, retrain, or improve the Azure AI Content Safety models. 
           
-          To learn more about Microsoft's privacy and security commitments visit [Data, privacy, and security for Azure AI Content Safety](/azure/ai-foundry/responsible-ai/content-safety/data-privacy?context=%2Fazure%2Fai-services%2Fcontent-safety%2Fcontext%2Fcontext).
+          To learn more about Microsoft's privacy and security commitments visit [Data, privacy, and security for Azure AI Content Safety](/azure/ai-foundry/responsible-ai/content-safety/data-privacy).
       - question: |
           Is customer data processed by Azure AI Content Safety transmitted outside of the Azure AI Content Safety service or the selected region? 
         answer: |

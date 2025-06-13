@@ -17,7 +17,7 @@ zone_pivot_groups: programming-languages-set-thirteen
 Embedded Speech is designed for on-device [speech to text](speech-to-text.md) and [text to speech](text-to-speech.md) scenarios where cloud connectivity is intermittent or unavailable. For example, you can use embedded speech in industrial equipment, a voice enabled air conditioning unit, or a car that might travel out of range. You can also develop hybrid cloud and offline solutions. For scenarios where your devices must be in a secure environment like a bank or government entity, you should first consider [disconnected containers](../containers/disconnected-containers.md).
 
 > [!IMPORTANT]
-> Microsoft limits access to embedded speech. You can apply for access through the Azure AI Speech [embedded speech limited access review](https://aka.ms/csgate-embedded-speech). For more information, see [Limited access for embedded speech](/azure/ai-foundry/responsible-ai/speech-service/embedded-speech/limited-access-embedded-speech?context=/azure/ai-services/speech-service/context/context).
+> Microsoft limits access to embedded speech. You can apply for access through the Azure AI Speech [embedded speech limited access review](https://aka.ms/csgate-embedded-speech). For more information, see [Limited access for embedded speech](/azure/ai-foundry/responsible-ai/speech-service/embedded-speech/limited-access-embedded-speech).
 
 ## Platform requirements
 
@@ -325,4 +325,4 @@ For embedded voices, it's essential to note that certain [Speech synthesis marku
 ## Related content
 
 - [Read about text to speech on devices for disconnected and hybrid scenarios](https://techcommunity.microsoft.com/t5/ai-cognitive-services-blog/azure-neural-tts-now-available-on-devices-for-disconnected-and/ba-p/3716797)
-- [Limited Access to embedded Speech](/azure/ai-foundry/responsible-ai/speech-service/embedded-speech/limited-access-embedded-speech?context=/azure/ai-services/speech-service/context/context)
+- [Limited Access to embedded Speech](/azure/ai-foundry/responsible-ai/speech-service/embedded-speech/limited-access-embedded-speech)

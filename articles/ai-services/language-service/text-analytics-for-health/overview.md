@@ -75,6 +75,6 @@ Text Analytics for health works with a variety of input languages. For more info
 
 ## Responsible use of AI 
 
-An AI system includes the technology, the people who will use it, the people who will be affected by it, and the environment in which it is deployed. Read the [transparency note for Text Analytics for health](/azure/ai-foundry/responsible-ai/language-service/transparency-note-health?context=/azure/ai-services/language-service/context/context) to learn about responsible AI use and deployment in your systems. You can also refer to the following articles for more information:
+An AI system includes the technology, the people who will use it, the people who will be affected by it, and the environment in which it is deployed. Read the [transparency note for Text Analytics for health](/azure/ai-foundry/responsible-ai/language-service/transparency-note-health) to learn about responsible AI use and deployment in your systems. You can also refer to the following articles for more information:
 
 [!INCLUDE [Responsible AI links](../includes/overview-responsible-ai-links.md)]

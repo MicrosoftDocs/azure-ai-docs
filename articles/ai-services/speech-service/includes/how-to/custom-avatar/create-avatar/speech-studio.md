@@ -46,7 +46,7 @@ You must provide a video file with a recorded statement from your avatar talent,
 - If you want to create a voice sync for avatar during avatar training, a custom voice resembling your avatar is created alongside the custom avatar. The voice is used exclusively with the specified avatar. Your consent statement must include both the custom avatar and the voice sync for avatar.
 - If you don't create a voice sync for avatar, only the custom avatar is trained, and your consent statement must reflect this scope.
 
-You can find the verbal consent statement in multiple languages via the [Azure-Samples/cognitive-services-speech-sdk](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/sampledata/customavatar/verbal-statement-all-locales.txt) GitHub repository. The language of the verbal statement must be the same as your recording. See also the [Disclosure for voice talent](/azure/ai-foundry/responsible-ai/speech-service/disclosure-voice-talent?context=/azure/ai-services/speech-service/context/context).
+You can find the verbal consent statement in multiple languages via the [Azure-Samples/cognitive-services-speech-sdk](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/sampledata/customavatar/verbal-statement-all-locales.txt) GitHub repository. The language of the verbal statement must be the same as your recording. See also the [Disclosure for voice talent](/azure/ai-foundry/responsible-ai/speech-service/disclosure-voice-talent).
 
 For more information about recording the consent video, see [How to record video samples](../../../../text-to-speech-avatar/custom-avatar-record-video-samples.md).
 

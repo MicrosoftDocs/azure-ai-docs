@@ -89,7 +89,7 @@ sections:
       - question: |
          Are evaluation metrics and testing protocols implemented to ensure the accuracy and cultural sensitivity of translations, especially in critical areas like legal documents or emergency communications?
         answer: |
-          Translation quality is always relative to a test set. We recommend that you measure quality for a representative test set for a given scenario. For more information, *see* [Azure AI Translator evaluation methods](/azure/ai-foundry/responsible-ai/translator/transparency-note?context=%2Fazure%2Fai-services%2Ftranslator%2Fcontext%2Fcontext#evaluation-of-azure-ai-translator).
+          Translation quality is always relative to a test set. We recommend that you measure quality for a representative test set for a given scenario. For more information, *see* [Azure AI Translator evaluation methods](/azure/ai-foundry/responsible-ai/translator/transparency-note#evaluation-of-azure-ai-translator).
 
       - question: |
          How does Microsoft Translator Pro ensure the quality and accuracy of translations in real-world, high-stakes environments?

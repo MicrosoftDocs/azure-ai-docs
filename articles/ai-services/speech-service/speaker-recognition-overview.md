@@ -73,11 +73,11 @@ As with all of the Azure AI Foundry resources, developers who use the speaker re
 
 An AI system includes not only the technology, but also the people who use it, the people who are affected by it, and the environment in which it's deployed. Read the transparency notes to learn about responsible AI use and deployment in your systems. 
 
-* [Transparency note and use cases](/azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/transparency-note-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
-* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/characteristics-and-limitations-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
-* [Limited access](/azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/limited-access-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
-* [General guidelines](/azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/guidance-integration-responsible-use-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
-* [Data, privacy, and security](/azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/data-privacy-speaker-recognition?context=/azure/ai-services/speech-service/context/context)
+* [Transparency note and use cases](/azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/transparency-note-speaker-recognition)
+* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/characteristics-and-limitations-speaker-recognition)
+* [Limited access](/azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/limited-access-speaker-recognition)
+* [General guidelines](/azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/guidance-integration-responsible-use-speaker-recognition)
+* [Data, privacy, and security](/azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/data-privacy-speaker-recognition)
 
 ## Related content
 

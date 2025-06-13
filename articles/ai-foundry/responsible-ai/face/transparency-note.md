@@ -30,16 +30,16 @@ Depending on the specific capability, Azure AI Vision Face API (“Face API”) 
 
 When used responsibly, Face API is an important and useful building block technology that can improve efficiency, security, and customer experiences when used to create systems that analyze the face. 
 
-Certain Face API features, such as facial recognition, generate unique identifying numerical (or other) representations of the face known as facial templates. Learn more about the process, including data retention periods, at the [Data and privacy for Azure AI Vision Face API](/azure/ai-foundry/responsible-ai/face/data-privacy-security?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext) documentation page. 
+Certain Face API features, such as facial recognition, generate unique identifying numerical (or other) representations of the face known as facial templates. Learn more about the process, including data retention periods, at the [Data and privacy for Azure AI Vision Face API](/azure/ai-foundry/responsible-ai/face/data-privacy-security) documentation page. 
 
 > [!WARNING]
 > On June 11, 2020, Microsoft announced that it will not sell facial recognition technology to police departments in the United States until strong regulation, grounded in human rights, has been enacted. As such, customers may not use facial recognition features or functionality included in Azure Services, such as Face or Video Indexer, if a customer is, or is allowing use of such services by or for, a police department in the United States. When you create a new Face resource, you must acknowledge and agree in the Azure Portal that you will not use the service by or for a police department in the United States and that you have reviewed the Responsible AI documentation and will use this service in accordance with it.
 
 > [!CAUTION]
-> Face service access is limited based on eligibility and usage criteria in order to support our Responsible AI principles. Face service is only available to Microsoft managed customers and partners. Use the [Face Recognition intake form](https://aka.ms/facerecognition) to apply for access. For more information, see the [Face limited access](/azure/ai-foundry/responsible-ai/computer-vision/limited-access-identity?context=%2Fazure%2Fcognitive-services%2Fcomputer-vision%2Fcontext%2Fcontext) page.
+> Face service access is limited based on eligibility and usage criteria in order to support our Responsible AI principles. Face service is only available to Microsoft managed customers and partners. Use the [Face Recognition intake form](https://aka.ms/facerecognition) to apply for access. For more information, see the [Face limited access](/azure/ai-foundry/responsible-ai/computer-vision/limited-access-identity) page.
 
 > [!IMPORTANT]
-> If you are using Microsoft products or services to process Biometric Data, you are responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate and required under applicable Data Protection Requirements. "Biometric Data" will have the meaning set forth in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and Privacy for Face](/azure/ai-foundry/responsible-ai/face/data-privacy-security?context=/azure/ai-services/computer-vision).
+> If you are using Microsoft products or services to process Biometric Data, you are responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate and required under applicable Data Protection Requirements. "Biometric Data" will have the meaning set forth in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and Privacy for Face](/azure/ai-foundry/responsible-ai/face/data-privacy-security).
 
 
 ### Key terms
@@ -152,7 +152,7 @@ The following use cases are approved for the public sector:
 
 ## Next steps
 
-* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/face/characteristics-and-limitations?context=/azure/ai-services/computer-vision/context/context)
-* [Responsible deployment of Face](/azure/ai-foundry/responsible-ai/face/guidance-integration-responsible-use?context=/azure/ai-services/computer-vision/context/context)
-* [Data, privacy, and security for Face](/azure/ai-foundry/responsible-ai/face/data-privacy-security?context=/azure/ai-services/computer-vision/context/context)
+* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/face/characteristics-and-limitations)
+* [Responsible deployment of Face](/azure/ai-foundry/responsible-ai/face/guidance-integration-responsible-use)
+* [Data, privacy, and security for Face](/azure/ai-foundry/responsible-ai/face/data-privacy-security)
 * [Quickstart your Face use case development](/azure/ai-services/computer-vision/quickstarts-sdk/identity-client-library)

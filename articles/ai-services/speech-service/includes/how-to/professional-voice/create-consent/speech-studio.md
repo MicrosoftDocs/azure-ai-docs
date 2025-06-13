@@ -16,7 +16,7 @@ Before you can fine-tune a professional voice, you must submit a recording of th
 > [!TIP]
 > Before you get started in Speech Studio, define your voice [persona and choose the right voice talent](../../../../record-custom-voice-samples.md#choose-your-voice-talent).
 
-You can find the verbal consent statement in multiple languages on [GitHub](https://github.com/Azure-Samples/Cognitive-Speech-TTS/blob/master/CustomVoice/script/verbal-statement-all-locales.txt). The language of the verbal statement must be the same as your recording. See also the [disclosure for voice talent](/azure/ai-foundry/responsible-ai/speech-service/disclosure-voice-talent?context=/azure/ai-services/speech-service/context/context).
+You can find the verbal consent statement in multiple languages on [GitHub](https://github.com/Azure-Samples/Cognitive-Speech-TTS/blob/master/CustomVoice/script/verbal-statement-all-locales.txt). The language of the verbal statement must be the same as your recording. See also the [disclosure for voice talent](/azure/ai-foundry/responsible-ai/speech-service/disclosure-voice-talent).
 
 ## Add voice talent
 

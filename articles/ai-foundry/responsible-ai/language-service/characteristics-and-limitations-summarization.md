@@ -78,10 +78,10 @@ You can use conversation summarization in a wide range of applications, each wit
 
 ## Next steps
 
-* [Transparency note for Azure AI Language](/azure/ai-foundry/responsible-ai/language-service/transparency-note?context=/azure/ai-services/language-service/context/context)
-* [Transparency note for named entity recognition](/azure/ai-foundry/responsible-ai/language-service/transparency-note-named-entity-recognition?context=/azure/ai-services/language-service/context/context)
-* [Transparency note for health](/azure/ai-foundry/responsible-ai/language-service/transparency-note-health?context=/azure/ai-services/language-service/context/contextt)
-* [Transparency note for key phrase extraction](/azure/ai-foundry/responsible-ai/language-service/transparency-note-key-phrase-extraction?context=/azure/ai-services/language-service/context/context)
-* [Transparency note for sentiment analysis](/azure/ai-foundry/responsible-ai/language-service/transparency-note-sentiment-analysis?context=/azure/ai-services/language-service/context/context)
-* [Guidance for integration and responsible use with language](/azure/ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use?context=/azure/ai-services/language-service/context/context)
-* [Data privacy for language](/azure/ai-foundry/responsible-ai/language-service/data-privacy?context=/azure/ai-services/language-service/context/context)
+* [Transparency note for Azure AI Language](/azure/ai-foundry/responsible-ai/language-service/transparency-note)
+* [Transparency note for named entity recognition](/azure/ai-foundry/responsible-ai/language-service/transparency-note-named-entity-recognition)
+* [Transparency note for health](/azure/ai-foundry/responsible-ai/language-service/transparency-note-health)
+* [Transparency note for key phrase extraction](/azure/ai-foundry/responsible-ai/language-service/transparency-note-key-phrase-extraction)
+* [Transparency note for sentiment analysis](/azure/ai-foundry/responsible-ai/language-service/transparency-note-sentiment-analysis)
+* [Guidance for integration and responsible use with language](/azure/ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use)
+* [Data privacy for language](/azure/ai-foundry/responsible-ai/language-service/data-privacy)
