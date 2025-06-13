@@ -282,6 +282,8 @@ The following table is a summary of Azure Machine Learning activities and the pe
 | Create new custom role | Owner, contributor, or custom role allowing `Microsoft.Authorization/roleDefinitions/write` | Not required | Owner, contributor, or custom role allowing: `/workspaces/computes/write` |
 | Create/manage online endpoints and deployments | Not required | To deploy on studio,  `Microsoft.Resources/deployments/write` | Owner, contributor, or custom role allowing `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*`.  |
 | Retrieve authentication credentials for online endpoints | Not required | Not required | Owner, contributor, or custom role allowing `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/token/action` and `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/listkeys/action` |
+| Attach user managed identitys | Not required | Not required | `Microsoft.ManagedIdentity/userAssignedIdentities/assign/action` |
+| Specify serverless compute custom subnet | Not required | Not required | `Microsoft.Network/virtualNetworks/subnets/join/action` |
 
 1. If you receive a failure when trying to create a workspace for the first time, make sure that your role allows `Microsoft.MachineLearningServices/register/action`. This action allows you to register the Azure Machine Learning resource provider with your Azure subscription.
 
