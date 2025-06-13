@@ -7,7 +7,7 @@ ms.author: aahi
 author: aahill
 manager: nitinme
 ms.topic: how-to
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ms.custom: mode-other
 #Customer intent: As a developer familiar with how to use a browser but new to the LUIS service, I want to query the LUIS endpoint of a published model so that I can see the JSON prediction response.
 ---

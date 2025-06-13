@@ -7,7 +7,7 @@ ms.author: jboback
 author: jboback
 ms.subservice: azure-ai-qna-maker
 ms.topic: overview
-ms.date: 09/27/2024
+ms.date: 06/12/2025
 keywords: "qna maker, low code chat bots, multi-turn conversations"
 ---
 

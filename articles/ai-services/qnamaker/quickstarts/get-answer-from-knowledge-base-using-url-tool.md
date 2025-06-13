@@ -9,7 +9,7 @@ ms.service: azure-ai-language
 ms.subservice: azure-ai-qna-maker
 zone_pivot_groups: URL-test-interface
 ms.topic: how-to
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 
 # Get an answer from a QNA Maker knowledge base
