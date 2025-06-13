@@ -8,7 +8,7 @@ ms.author: larryfr
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.reviewer: roastala
-ms.date: 09/30/2022
+ms.date: 06/13/2025
 ms.topic: how-to
 ms.custom: UpdateFrequency5, devx-track-python, devx-track-azurecli, sdkv1, build-2023
 ---
