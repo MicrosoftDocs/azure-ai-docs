@@ -72,7 +72,7 @@ Use the [Split Data component](../algorithm-module-reference/split-data.md) to i
 
 Your pipeline should resemble this screenshot:
 
-:::image type="content" source="./media/how-to-designer-transform-data/split-data.png" alt-text="Screenshot that shows how to configure the pipeline and the Split Data component" lightbox="./media/how-to-designer-transform-data/split-data.png":::
+:::image type="content" source="./media/how-to-designer-transform-data/split-data.png" alt-text="Screenshot that shows how to configure the pipeline and the Split Data component." lightbox="./media/how-to-designer-transform-data/split-data.png":::
 
 ## Save the datasets
 
