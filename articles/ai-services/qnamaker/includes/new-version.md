@@ -1,6 +1,6 @@
 ---
-ms.author: jboback
-author: jboback
+ms.author: lajanuar
+author: laujan
 ms.topic: include
 ms.custom: include file
 ms.service: azure-ai-language

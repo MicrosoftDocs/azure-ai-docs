@@ -2,8 +2,8 @@
 title: Number Prebuilt entity - LUIS
 titleSuffix: Azure AI services
 description: This article contains number prebuilt entity information in Language Understanding (LUIS).
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis

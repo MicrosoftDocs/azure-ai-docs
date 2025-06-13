@@ -3,8 +3,8 @@ title: What's new in QnA Maker service?
 titleSuffix: Azure AI services
 description: This article contains news about QnA Maker.
 manager: nitinme
-ms.author: jboback
-author: jboback
+ms.author: lajanuar
+author: laujan
 ms.service: azure-ai-language
 ms.subservice: azure-ai-qna-maker
 ms.topic: overview

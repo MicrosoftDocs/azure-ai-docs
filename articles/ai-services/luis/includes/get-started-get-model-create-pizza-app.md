@@ -1,14 +1,14 @@
 ---
 title: include file
 description: include file
-author: aahill
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.date: 06/12/2025
 ms.subservice: azure-ai-luis
 ms.topic: include
 ms.custom: include file
-ms.author: aahi
+ms.author: lajanuar
 ms.reviewer: roy-har
 ---
 Create the pizza app.

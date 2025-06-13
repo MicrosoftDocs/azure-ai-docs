@@ -1,7 +1,7 @@
 ---
 title: Switch Azure directories using the LUIS portal
 description: Steps for changing Azure directories when using LUIS
-ms.author: aahi
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis

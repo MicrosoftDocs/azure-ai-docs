@@ -1,8 +1,8 @@
 ---
 title: include file
 description: include file
-author: aahill
-ms.author: aahi
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.date: 06/12/2025

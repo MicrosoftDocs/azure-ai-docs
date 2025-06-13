@@ -5,8 +5,8 @@ ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
 ms.topic: conceptual
 ms.date: 06/12/2025
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 ms.manager: nitinme
 ---
 
