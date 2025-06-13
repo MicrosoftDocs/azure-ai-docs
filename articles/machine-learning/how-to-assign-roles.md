@@ -282,14 +282,16 @@ The following table is a summary of Azure Machine Learning activities and the pe
 | Create new custom role | Owner, contributor, or custom role allowing `Microsoft.Authorization/roleDefinitions/write` | Not required | Owner, contributor, or custom role allowing: `/workspaces/computes/write` |
 | Create/manage online endpoints and deployments | Not required | To deploy on studio,  `Microsoft.Resources/deployments/write` | Owner, contributor, or custom role allowing `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*`.  |
 | Retrieve authentication credentials for online endpoints | Not required | Not required | Owner, contributor, or custom role allowing `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/token/action` and `Microsoft.MachineLearningServices/workspaces/onlineEndpoints/listkeys/action` |
-| Attach user managed identities | Not required | Not required | `Microsoft.ManagedIdentity/userAssignedIdentities/assign/action` |
-| Specify serverless compute custom subnet | Not required | Not required | `Microsoft.Network/virtualNetworks/subnets/join/action` |
 
 1. If you receive a failure when trying to create a workspace for the first time, make sure that your role allows `Microsoft.MachineLearningServices/register/action`. This action allows you to register the Azure Machine Learning resource provider with your Azure subscription.
 
 2. When attaching an AKS cluster, you also need to have the [Azure Kubernetes Service Cluster Admin Role](/azure/role-based-access-control/built-in-roles#azure-kubernetes-service-cluster-admin-role) on the cluster.
 
 3. These scenarios don't include the permissions needed to create workspace dependent resources. For more information, see the write permissions for [Storage](https://learn.microsoft.com/azure/role-based-access-control/permissions/storage#microsoftstorage), [OperationalInsights](https://learn.microsoft.com/azure/role-based-access-control/permissions/monitor#microsoftoperationalinsights), [Key Vault](https://learn.microsoft.com/azure/role-based-access-control/permissions/security#microsoftkeyvault) and [Container Registry](https://learn.microsoft.com/azure/role-based-access-control/permissions/containers#microsoftcontainerregistry).
+
+4. When attaching user managed identities, you also need to have `Microsoft.ManagedIdentity/userAssignedIdentities/assign/action` permission on the identities. For more information, please see [Azure built-in roles for Identity](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles/identity)
+
+5. When specifying serverless compute custom subnet, you also need to have `Microsoft.Network/virtualNetworks/subnets/join/action` on the virtual network. For more information, please see [Azure permissions for Networking](https://learn.microsoft.com/azure/role-based-access-control/permissions/networking)
 
 ###  Deploy into a virtual network or subnet
 
