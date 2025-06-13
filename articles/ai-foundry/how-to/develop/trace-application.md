@@ -1,7 +1,7 @@
 ---
 title: How to trace AI applications using OpenAI SDK
 titleSuffix: Azure AI Foundry
-description: Learn how to trace applications that uses OpenAI SDK in Azure AI Foundry
+description: Learn how to trace applications that use OpenAI SDK in Azure AI Foundry
 author: lgayhardt
 ms.author: lagayhar
 manager: scottpolly
@@ -13,13 +13,13 @@ ms.topic: how-to
 
 # Trace AI applications using OpenAI SDK
 
-Tracing provides deep visibility into execution of your application by capturing detailed telemetry at each execution step. This helps diagnose issues and enhance performance by identifying problems such as inaccurate tool calls, misleading prompts, high latency, low-quality evaluation scores, and more.  
+Tracing provides deep visibility into execution of your application by capturing detailed telemetry at each execution step. Such helps diagnose issues and enhance performance by identifying problems such as inaccurate tool calls, misleading prompts, high latency, low-quality evaluation scores, and more.  
 
 This article explains how to implement tracing for AI applications using OpenAI SDK with OpenTelemetry in Azure AI Foundry.
 
 ## Prerequisites
 
-To complete this tutorial you need:
+Ensure you have the following:
 
 * An Azure AI Foundry project created.
 
@@ -40,7 +40,7 @@ The following steps show how to configure:
 
     :::image type="content" source="../../media/how-to/develop/trace-application/configure-app-insight.png" alt-text="A screenshot showing how to configure Azure Application Insights to the Azure AI Foundry resource." lightbox="../../media/how-to/develop/trace-application/configure-app-insight.png":::
 
-4. To reuse an existing Azure Application Insights, use the drop down **Application Insights resource name** to locate the resource and select **Connect**.
+4. To reuse an existing Azure Application Insights, use the drop-down **Application Insights resource name** to locate the resource and select **Connect**.
 
     > [!TIP]
     > To connect to an existing Azure Application Insights, you need at least contributor access to the Azure AI Foundry resource (or Hub). 
@@ -68,7 +68,7 @@ The following steps show how to configure:
 
 ## Instrument the OpenAI SDK
 
-If you are using the OpenAI SDK to develop intelligent applications you can instrument it so traces are sent to Azure AI Foundry. Follow this steps:
+If you are using the OpenAI SDK to develop intelligent applications you can instrument it so traces are sent to Azure AI Foundry. Follow these steps:
 
 1. Install `azure-ai-projects`, `azure-monitor-opentelemetry`, and `opentelemetry-instrumentation-openai-v2` in your environment. The following example uses `pip`:
 
@@ -111,7 +111,7 @@ If you are using the OpenAI SDK to develop intelligent applications you can inst
     configure_azure_monitor(connection_string=connection_string)
     ```
 
-1. By default, OpenTelemetry doesn't capture the inputs and outputs. To enable that, use the environment variable `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=true`. Ensure this environment variable is configure in the environment level where you code is running.
+1. By default, OpenTelemetry doesn't capture the inputs and outputs. To enable that, use the environment variable `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=true`. Ensure this environment variable is configured in the environment level where your code is running.
 
 1. Use the OpenAI SDK in the same way you are used to:
 
@@ -130,7 +130,7 @@ If you are using the OpenAI SDK to develop intelligent applications you can inst
 
     :::image type="content" source="../../media/how-to/develop/trace-application/tracing-display-simple.png" alt-text="A screenshot showing how a simple chat completion request is displayed in the trace." lightbox="../../media/how-to/develop/trace-application/tracing-display-simple.png":::
 
-1. When developing complex applications, it may be useful to capture sections of your code that mixes business logic with models. You can do that by first getting an instance of the current tracer.
+1. It may be useful to capture sections of your code that mixes business logic with models when developing complex applications. You can do that by first getting an instance of the current tracer.
 
     ```python
     from opentelemetry import trace
@@ -138,7 +138,7 @@ If you are using the OpenAI SDK to develop intelligent applications you can inst
     tracer = trace.get_tracer(__name__)
     ```
 
-1. Then, use decorators in your method to capture specific scenarios in your code that you are interested in. The following example assess if a list of claims with a list of contexts.
+1. Then, use decorators in your method to capture specific scenarios in your code that you are interested in. The following example assesses if a list of claims with a list of contexts.
 
     ```python
     def build_prompt_with_context(claim: str, context: str) -> str:
@@ -167,7 +167,7 @@ If you are using the OpenAI SDK to develop intelligent applications you can inst
         return responses
     ```
 
-1. Then, traces will look as follow:
+1. Then, traces will look as follows:
 
     :::image type="content" source="../../media/how-to/develop/trace-application/tracing-display-decorator.png" alt-text="A screenshot showing how a method using a decorator is displayed in the trace." lightbox="../../media/how-to/develop/trace-application/tracing-display-decorator.png":::
 
