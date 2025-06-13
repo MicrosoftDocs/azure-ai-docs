@@ -528,23 +528,23 @@ items:
       - name: Code of conduct
         href: /legal/ai-code-of-conduct?context=/azure/ai-services/speech-service/context/context
       - name: Limited access
-        href: ../../ai-foundry/responsible-ai/speech-service/custom-neural-voice/limited-access-custom-neural-voice.md
+        href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access.md
       - name: Disclosure for voice and avatar talent
-        href: ../../ai-foundry/responsible-ai/speech-service/disclosure-voice-talent.md
+        href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/disclosure-voice-talent.md
       - name: Disclosure design guidelines
         items:
         - name: Custom voice
-          href: ../../ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-guidelines.md
+          href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-guidelines.md
         - name: Text to speech avatar
-          href: ../../ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-guidelines-avatar.md
+          href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-guidelines-avatar.md
       - name: Disclosure design patterns
         items:
         - name: Custom voice
-          href: ../../ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-patterns.md
+          href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-patterns.md
         - name: Text to speech avatar
-          href: ../../ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-patterns-avatar.md
+          href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-patterns-avatar.md
       - name: Data, privacy, and security
-        href: ../../ai-foundry/responsible-ai/speech-service/custom-neural-voice/data-privacy-security-custom-neural-voice.md
+        href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security.md
     - name: Pronunciation Assessment
       items:
       - name: Transparency Note
