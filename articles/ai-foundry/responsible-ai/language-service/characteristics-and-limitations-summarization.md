@@ -12,6 +12,8 @@ ms.date: 04/09/2022
 
 # Characteristics and limitations for Summarization
 
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
+
 Large-scale, natural language models are trained with publicly available text data which typically contain societal biases. Such data can potentially behave in ways that are unfair, unreliable, or offensive. This behavior, in turn, may cause harms of varying severities. These types of harms aren't mutually exclusive. A single model can exhibit more than one type of harm, potentially relating to multiple groups of people. For example:
 
 * **Allocation:** It's possible to use language models in ways that lead to unfair allocation of resources or opportunities. For example, automated systems that screen resumes can withhold employment opportunities from women, if these systems are trained on resume data that reflects the existing gender imbalance in the technology industries.

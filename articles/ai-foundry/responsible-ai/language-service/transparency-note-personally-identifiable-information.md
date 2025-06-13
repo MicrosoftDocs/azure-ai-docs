@@ -12,6 +12,8 @@ ms.date: 11/10/2021
 
 # Transparency note for Personally Identifiable Information (PII)
 
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
+
 ## What is a transparency note?
 
 > [!IMPORTANT]

@@ -13,6 +13,8 @@ ms.date: 05/15/2023
 
 # Data, privacy, and security for Azure AI Content Safety
 
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
+
 This article provides details regarding how your data is processed, used, and stored by Azure AI Content Safety.
 
 Azure AI Content Safety was designed with privacy and security in mind; however, the customer is responsible for its use and the implementation of this technology.

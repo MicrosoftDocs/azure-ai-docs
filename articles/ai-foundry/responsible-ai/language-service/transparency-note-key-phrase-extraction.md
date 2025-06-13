@@ -12,6 +12,8 @@ ms.date: 09/29/2021
 
 # Transparency note for Key Phrase Extraction
 
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
+
 ## What is a transparency note?
 
 > [!IMPORTANT]

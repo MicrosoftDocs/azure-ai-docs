@@ -12,6 +12,8 @@ ms.date: 08/12/2022
 
 # Transparency note for Spatial Analysis
 
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
+
 This Transparency note discusses Spatial Analysis and the key considerations for making use of this technology responsibly.
 
 ## What is a Transparency note?

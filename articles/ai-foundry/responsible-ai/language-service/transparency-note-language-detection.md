@@ -12,6 +12,8 @@ ms.date: 01/31/2024
 
 # Transparency note for Language Detection
 
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
+
 ## What is a transparency note?
 
 > [!IMPORTANT]

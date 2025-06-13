@@ -13,6 +13,8 @@ recommendations: false
 
 # Transparency note: Anomaly Detector
 
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
+
 Anomaly Detector is an AI service that enables you to monitor and detect abnormalities in time series data. This article provides transparency information to help you understand how the service works, its capabilities, limitations, and responsible use considerations.
 
 ## What is a Transparency Note?

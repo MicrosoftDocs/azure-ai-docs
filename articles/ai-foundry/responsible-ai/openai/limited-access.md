@@ -11,6 +11,8 @@ ms.date: 11/03/2023
 ---
 # Limited access for Azure OpenAI Service
 
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
+
 As part of Microsoft's commitment to responsible AI, we have designed and operate Azure OpenAI Service with the intention of protecting the rights of individuals and society and fostering transparent human-computer interaction. For this reason, Azure OpenAI is a Limited Access service, and access and use is subject to eligibility criteria determined by Microsoft. Unless otherwise indicated in the service, all Azure customers are eligible for access to Azure OpenAI models, and all uses consistent with the [Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) and [Code of Conduct](/legal/ai-code-of-conduct?context=/azure/ai-services/openai/context/context) are permitted, so customers are not required to submit a registration form unless they are requesting approval to modify content filters and/or abuse monitoring. 
 
 Azure OpenAI Service is made available to customers under the terms governing their subscription to Microsoft Azure Services, including [Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage) such as the Universal License Terms applicable to Microsoft Generative AI Services and the product offering terms for Azure OpenAI. Please review these terms carefully as they contain important conditions and obligations governing your use of Azure OpenAI Service.

@@ -12,6 +12,8 @@ ms.date: 10/08/2021
 
 # Data and privacy for Speaker Recognition
 
+[!INCLUDE [non-english-translation](../../includes/non-english-translation.md)]
+
 > [!NOTE]
 > This article is provided for informational purposes only and not for the purpose of providing legal advice. We strongly recommend seeking specialist legal advice when implementing Speaker Recognition.
 

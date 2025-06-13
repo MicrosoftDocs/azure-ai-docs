@@ -11,6 +11,8 @@ ms.date: 02/19/2022
 
 # Disclosure for voice and avatar talent
 
+[!INCLUDE [non-english-translation](../../includes/non-english-translation.md)]
+
 The goal of this article is to help voice and avatar talent understand the technology behind the text to speech capabilities that their voices and images help create. It also contains important privacy disclosures for talent about how Microsoft may process, use, and retain audio and video files containing talent’s recorded voices and images and helps Microsoft prevent, and/or respond to complaints of, misuse of Azure AI services.
 
 Microsoft is committed to designing AI responsibly. We hope this note will foster a greater shared understanding among tech builders, voice talent, avatar talent, and the general public about the intended and beneficial uses of this technology.

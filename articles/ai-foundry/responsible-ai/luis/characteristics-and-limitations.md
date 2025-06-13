@@ -13,6 +13,8 @@ ms.date: 02/08/2024
 
 # Characteristics and limitations for using Language Understanding
 
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
+
 Performance with Language Understanding (LUIS) will vary based on the scenario, input data, and enabled features. The following sections are designed to help the reader understand key concepts about performance as they apply to LUIS.
 
 ## Understand and measure performance

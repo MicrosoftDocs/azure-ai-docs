@@ -12,6 +12,8 @@ ms.date: 06/16/2022
 
 # Limited Access
 
+[!INCLUDE [non-english-translation](../../includes/non-english-translation.md)]
+
 #### [Custom neural voice](#tab/cnv)
 
 As part of Microsoft’s commitment to responsible AI, custom neural voice is designed with the intention of protecting the rights of individuals and society, fostering transparent human-computer interaction, and counteracting the proliferation of harmful deepfakes and misleading content. For this reason, custom neural voice is a Limited Access feature available by registration only, and only for certain use cases.

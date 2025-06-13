@@ -12,6 +12,8 @@ ms.date: 08/15/2022
 
 # Disclosure design guidelines for Azure AI Vision spatial analysis
 
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
+
 This document outlines helpful tips and guidance to facilitate responsible and ethical use of the Azure AI Vision spatial analysis service.
 
 ## Background

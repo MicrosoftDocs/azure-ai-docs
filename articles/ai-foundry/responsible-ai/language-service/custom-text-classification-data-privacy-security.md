@@ -12,6 +12,8 @@ ms.date: 04/26/2023
 
 # Data and privacy for Custom text classification
 
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
+
 This article provides high-level details about how data is processed by custom text classification. Remember that you're responsible for your use and the implementation of this technology, which includes complying with all laws and regulations that apply to you. For example, it's your responsibility to:
 
 * Understand where your data is processed and stored by the custom text classification service to meet regulatory obligations for your application.

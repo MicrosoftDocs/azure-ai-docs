@@ -13,6 +13,8 @@ ms.author: eur
 
 # Disclosure design patterns for synthetic voices
 
+[!INCLUDE [non-english-translation](../../includes/non-english-translation.md)]
+
 Now that you've determined the right level of disclosure for your text to speech avatar experience, it's a good time to explore potential design patterns.
 
 ## Overview

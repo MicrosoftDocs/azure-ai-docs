@@ -13,6 +13,8 @@ ms.date: 02/25/2021
 
 # Guidance for integration and responsible use of QnA Maker
 
+[!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
+
 Microsoft wants to help you responsibly develop and deploy solutions that use QnA Maker. We're taking a principled approach to upholding personal agency and dignity by considering the AI systems' fairness, reliability and safety, privacy and security, inclusiveness, transparency, and human accountability. These considerations reflect our commitment to developing Responsible AI.
 
 ## General deployment principles

@@ -13,6 +13,8 @@ ms.author: eur
 
 # Disclosure design guidelines for avatars
 
+[!INCLUDE [non-english-translation](../../includes/non-english-translation.md)]
+
 Learn how to build and maintain trust with customers by being transparent about the synthetic nature of your avatar experience.
 
 ## What is disclosure?
