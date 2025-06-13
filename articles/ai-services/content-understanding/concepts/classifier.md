@@ -39,7 +39,7 @@ Content Understanding classifier can analyze a single- or multi-file documents t
 * A single file containing one document type, such as a loan application form.
 * A single file containing multiple document types. For instance, a loan application package that contains a loan application form, payslip, and bank statement.
 * A single file containing multiple instances of the same document. For instance, a collection of scanned invoices.
-* By default, there's an `$OTHER` class as well, which we utilize to categorize the pages into for cases where any of the defined categories doesn't seem suitable.
+* By default, there's an `$OTHER` class as well, which we utilize for cases where any of the defined categories doesn't seem suitable.
 
 
 ### How to use Content Understanding classifier
