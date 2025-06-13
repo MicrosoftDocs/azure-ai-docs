@@ -48,4 +48,7 @@ Integrate your agents with the **Microsoft SharePoint** to chat with your privat
 
 ## Next steps
 
-[See the full sample for SharePoint.](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/sample_agents_sharepoint.py)
+[How to use the SharePoint tool](./sharepoint-samples.md)
+* Reference articles for content retrieval used by the tool:
+    * [Overview of the Microsoft 365 Copilot Retrieval API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
+    * [Semantic indexing for Microsoft 365 Copilot](/microsoftsearch/semantic-index-for-copilot)
