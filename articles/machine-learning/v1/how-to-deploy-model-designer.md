@@ -1,5 +1,5 @@
 ---
-title: Use the studio to deploy models trained in the designer
+title: Use Studio to Deploy Models Trained in Designer
 titleSuffix: Azure Machine Learning
 description: Use Azure Machine Learning studio to deploy machine learning models without writing a single line of code.
 services: machine-learning
@@ -8,12 +8,12 @@ ms.subservice: core
 ms.author: lagayhar
 author: lgayhardt
 ms.reviewer: keli19
-ms.date: 08/15/2022
+ms.date: 06/13/2025
 ms.topic: how-to
 ms.custom: UpdateFrequency5, deploy, studio, designer
 ---
 
-# Use the studio to deploy models trained in the designer
+# Use Azure Machine Learning studio to deploy models trained in the designer
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
@@ -28,7 +28,7 @@ Deployment in the studio consists of the following steps:
 1. (Optional) Configure the entry script.
 1. Deploy the model to a compute target.
 
-You can also deploy models directly in the designer to skip model registration and file download steps. This can be useful for rapid deployment. For more information see, [Deploy a model with the designer](tutorial-designer-automobile-price-deploy.md).
+You can also deploy models directly in the designer to skip model registration and file download steps. This can be useful for rapid deployment. For more information, see [Deploy a model with the designer](tutorial-designer-automobile-price-deploy.md).
 
 Models trained in the designer can also be deployed through the SDK or command-line interface (CLI). For more information, see [Deploy your existing model with Azure Machine Learning](how-to-deploy-and-where.md).
 
@@ -37,6 +37,7 @@ Models trained in the designer can also be deployed through the SDK or command-l
 * [An Azure Machine Learning workspace](../quickstart-create-resources.md)
 
 * A completed training pipeline containing one of following components:
+
     - [Train Model Component](../algorithm-module-reference/train-model.md)
     - [Train Anomaly Detection Model component](../algorithm-module-reference/train-anomaly-detection-model.md)
     - [Train Clustering Model component](../algorithm-module-reference/train-clustering-model.md)
@@ -45,47 +46,59 @@ Models trained in the designer can also be deployed through the SDK or command-l
     - [Train Vowpal Wabbit Model component](../algorithm-module-reference/train-vowpal-wabbit-model.md)
     - [Train Wide & Deep Model component](../algorithm-module-reference/train-wide-and-deep-recommender.md)
 
+    To learn more about pipelines, see [What are Azure Machine Learning pipelines?](../concept-ml-pipelines.md)
+
 ## Register the model
 
 After the training pipeline completes, register the trained model to your Azure Machine Learning workspace to access the model in other projects.
 
-1. Select the [Train Model component](../algorithm-module-reference/train-model.md).
-1. Select the **Outputs + logs** tab in the right pane.
-1. Select the **Register Model** icon ![Screenshot of the gear icon](./media/how-to-deploy-model-designer/register-model-icon.png).
+1. Sign in to [Azure Machine Learning studio](https://ml.azure.com), and select your completed pipeline.
 
-    ![Screenshot of right pane of Train Model component](./media/how-to-deploy-model-designer/train-model-right-pane.png)
+1. Double-click the [Train Model component](../algorithm-module-reference/train-model.md) to open the details pane.
+
+1. Select the **Outputs + logs** tab in the details pane.
+
+1. Select **+ Register model**.
+
+    :::image type="content" source="./media/how-to-deploy-model-designer/train-model-right-pane.png" alt-text="Screenshot of right pane of Train Model component." lightbox="./media/how-to-deploy-model-designer/train-model-right-pane.png":::
 
 1. Enter a name for your model, then select **Save**.
 
 After registering your model, you can find it in the **Models** asset page in the studio.
-    
-![Screenshot of registered model in the Models asset page](./media/how-to-deploy-model-designer/models-asset-page.png)
+
+:::image type="content" source="./media/how-to-deploy-model-designer/models-asset-page.png" alt-text="Screenshot of registered model in the Models asset page.":::
 
 ## Download the entry script file and conda dependencies file
 
 You need the following files to deploy a model in Azure Machine Learning studio:
 
-- **Entry script file** - loads the trained model, processes input data from requests, does real-time inferences, and returns the result. The designer automatically generates a `score.py` entry script file when the **Train Model** component completes.
+- **Entry script file**: loads the trained model, processes input data from requests, does real-time inferences, and returns the result. The designer automatically generates a `score.py` entry script file when the **Train Model** component completes.
 
-- **Conda dependencies file** - specifies which pip and conda packages your webservice depends on. The designer automatically creates a `conda_env.yaml` file when the **Train Model** component completes.
+- **Conda dependencies file**: specifies which pip and conda packages your webservice depends on. The designer automatically creates a `conda_env.yaml` file when the **Train Model** component completes.
 
 You can download these two files in the right pane of the **Train Model** component:
 
 1. Select the **Train Model** component.
+
 1. In the **Outputs + logs** tab, select the folder `trained_model_outputs`.
+
 1. Download the `conda_env.yaml` file and `score.py` file.
 
-    ![Screenshot of download files for deployment in right pane](./media/how-to-deploy-model-designer/download-artifacts-in-right-pane.png)
+    :::image type="content" source="./media/how-to-deploy-model-designer/download-artifacts-in-right-pane.png" alt-text="Screenshot of download files for deployment in right pane." lightbox="./media/how-to-deploy-model-designer/download-artifacts-in-right-pane.png":::
 
 Alternatively, you can download the files from the **Models** asset page after registering your model:
 
 1. Navigate to the **Models** asset page.
+
 1. Select the model you want to deploy.
+
 1. Select the **Artifacts** tab.
+
 1. Select the `trained_model_outputs` folder.
+
 1. Download the `conda_env.yaml` file and `score.py` file.  
 
-    ![Screenshot of download files for deployment in model detail page](./media/how-to-deploy-model-designer/download-artifacts-in-models-page.png)
+    :::image type="content" source="./media/how-to-deploy-model-designer/download-artifacts-in-models-page.png" alt-text="Screenshot of download files for deployment in model detail page." lightbox="./media/how-to-deploy-model-designer/download-artifacts-in-models-page.png":::
 
 > [!NOTE]
 > The `score.py` file provides nearly the same functionality as the **Score Model** components. However, some components like [Score SVD Recommender](../algorithm-module-reference/score-svd-recommender.md), [Score Wide and Deep Recommender](../algorithm-module-reference/score-wide-and-deep-recommender.md), and [Score Vowpal Wabbit Model](../algorithm-module-reference/score-vowpal-wabbit-model.md) have parameters for different scoring modes. You can also change those parameters in the entry script.
@@ -97,21 +110,25 @@ Alternatively, you can download the files from the **Models** asset page after r
 After downloading the necessary files, you're ready to deploy the model.
 
 1. In the **Models** asset page, select the registered model.
-1. Select **Deploy** and select **Deploy to web service**.
-    ![Screenshot of deploy button in model asset page](./media/how-to-deploy-model-designer/open-deploy-wizard.png)
+
+1. Select **Use this model**, then select **Web service** from the drop-down menu.
+
+    :::image type="content" source="./media/how-to-deploy-model-designer/open-deploy-wizard.png" alt-text="Screenshot of deploy button in model asset page." lightbox="./media/how-to-deploy-model-designer/open-deploy-wizard.png":::
+
 1. In the configuration menu, enter the following information:
 
     - Input a name for the endpoint.
-    - Select to deploy the model to [Azure Kubernetes Service](how-to-deploy-azure-kubernetes-service.md) or [Azure Container Instance](how-to-deploy-azure-container-instance.md).
+    - Select the [AksCompute](how-to-deploy-azure-kubernetes-service.md) or [Azure Container Instance](how-to-deploy-azure-container-instance.md) compute type.
+    - Select a compute name.
     - Upload the `score.py` for the **Entry script file**.
     - Upload the `conda_env.yml` for the **Conda dependencies file**. 
 
     >[!TIP]
-    > In **Advanced** setting, you can set CPU/Memory capacity and other parameters for deployment. These settings are important for certain models such as PyTorch models, which consume considerable amount of memery (about 4 GB).
+    > In the **Advanced** setting, you can set CPU/Memory capacity and other parameters for deployment. These settings are important for certain models such as PyTorch models, which consume considerable amount of memory (about 4 GB).
 
 1. Select **Deploy** to deploy your model as an online endpoint.
 
-    ![Screenshot of deploy model in model asset page](./media/how-to-deploy-model-designer/deploy-model.png)
+    :::image type="content" source="./media/how-to-deploy-model-designer/deploy-model.png" alt-text="Screenshot of deploy model in model asset page.":::
 
 ## Consume the online endpoint
 
@@ -143,7 +160,7 @@ score_result = service.run(json.dumps(sample_data))
 print(f'Inference result = {score_result}')
 ```
 
-### Consume computer vision related online endpoints
+### Consume computer vision-related online endpoints
 
 When consuming computer vision related online endpoints, you need to convert images to bytes, since web service only accepts string as input. Following is the sample code:
 
@@ -203,12 +220,11 @@ with open(data_file_path, 'w') as f:
 
 Some components in the designer like [Score SVD Recommender](../algorithm-module-reference/score-svd-recommender.md), [Score Wide and Deep Recommender](../algorithm-module-reference/score-wide-and-deep-recommender.md), and [Score Vowpal Wabbit Model](../algorithm-module-reference/score-vowpal-wabbit-model.md) have parameters for different scoring modes. 
 
-In this section, you learn how to update these parameters in the entry script file too.
+In this section, you learn how to update these parameters in the entry script file.
 
-The following example updates the default behavior for a trained **Wide & Deep recommender** model. By default, the `score.py` file tells the web service to predict ratings between users and items. 
+The following example updates the default behavior for a trained **Wide & Deep Recommender** model. By default, the `score.py` file tells the web service to predict ratings between users and items. 
 
-You can modify the entry script file to make item recommendations, and return recommended items by changing the `recommender_prediction_kind` parameter.
-
+You can modify the entry script file to make item recommendations, and to return recommended items, by changing the `recommender_prediction_kind` parameter.
 
 ```python
 import os
@@ -260,22 +276,22 @@ def run(data):
     return json.dumps(result_df.to_dict("list"))
 ```
 
-For **Wide & Deep recommender** and **Vowpal Wabbit** models, you can configure the scoring mode parameter using the following methods:
+For **Wide & Deep Recommender** and **Vowpal Wabbit** models, you can configure the scoring mode parameter by using the following methods:
 
 - The parameter names are the lowercase and underscore combinations of parameter names for [Score Vowpal Wabbit Model](../algorithm-module-reference/score-vowpal-wabbit-model.md) and [Score Wide and Deep Recommender](../algorithm-module-reference/score-wide-and-deep-recommender.md);
-- Mode type parameter values are strings of the corresponding option names. Take **Recommender prediction kind** in the above codes as example, the value can be `'Rating Prediction'`or `'Item Recommendation'`. Other values are not allowed.
+- Mode-type parameter values are strings of the corresponding option names. Take **Recommender prediction kind** in the preceding codes as an example, the value can be `'Rating Prediction'`or `'Item Recommendation'`. Other values aren't allowed.
 
-For **SVD recommender** trained model, the parameter names and values maybe less obvious, and you can look up the tables below to decide how to set parameters.
+For **SVD Recommender** trained model, the parameter names and values might be less obvious, and you can look up the following tables to decide how to set parameters.
 
-| Parameter name in [Score SVD Recommender](../algorithm-module-reference/score-svd-recommender.md)                           | Parameter name in the entry script file |
+| Parameter name in **Score SVD Recommender**                  | Parameter name in the entry script file |
 | ------------------------------------------------------------ | --------------------------------------- |
 | Recommender prediction kind                                  | prediction_kind                         |
 | Recommended item selection                                   | recommended_item_selection              |
 | Minimum size of the recommendation pool for a single user    | min_recommendation_pool_size            |
 | Maximum number of items to recommend to a user               | max_recommended_item_count              |
-| Whether to return the predicted ratings of the items along with the labels | return_ratings                          |
+| Whether to return the predicted ratings of the items along with the labels | return_ratings            |
 
-The following code shows you how to set parameters for an SVD recommender, which uses all six parameters to recommend rated items with predicted ratings attached.
+The following code shows how to set parameters for an SVD Recommender, which uses all six parameters to recommend rated items with predicted ratings attached.
 
 ```python
 score_params = dict(
@@ -294,12 +310,11 @@ score_params = dict(
     )
 ```
 
+## Related content
 
-## Next steps
-
-* [Train a model in the designer](tutorial-designer-automobile-price-train-score.md)
-* [Deploy models with Azure Machine Learning SDK](how-to-deploy-and-where.md)
-* [Troubleshoot a failed deployment](how-to-troubleshoot-deployment.md)
-* [Deploy to Azure Kubernetes Service](how-to-deploy-azure-kubernetes-service.md)
+* [Tutorial: Train a no-code regression model using designer](tutorial-designer-automobile-price-train-score.md)
+* [Deploy machine learning models to Azure](how-to-deploy-and-where.md)
+* [Troubleshooting remote model deployment](how-to-troubleshoot-deployment.md)
+* [Deploy a model to an Azure Kubernetes Service cluster](how-to-deploy-azure-kubernetes-service.md)
 * [Create client applications to consume web services](how-to-consume-web-service.md)
-* [Update web service](how-to-deploy-update-web-service.md)
+* [Update a deployed web service](how-to-deploy-update-web-service.md)
