@@ -702,11 +702,11 @@ private static void UploadDocuments(SearchClient searchClient)
             {
                 HotelId = "1",
                 HotelName = "Stay-Kay City Hotel",
-                Description = "The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Time's Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
+                Description = "This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
                 Category = "Boutique",
-                Tags = new[] { "pool", "air conditioning", "concierge" },
+                Tags = new[] { "view", "air conditioning", "concierge" },
                 ParkingIncluded = false,
-                LastRenovationDate = new DateTimeOffset(1970, 1, 18, 0, 0, 0, TimeSpan.Zero),
+                LastRenovationDate = new DateTimeOffset(2022, 1, 18, 0, 0, 0, TimeSpan.Zero),
                 Rating = 3.6,
                 Address = new Address()
                 {

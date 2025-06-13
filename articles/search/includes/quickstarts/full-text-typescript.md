@@ -530,7 +530,6 @@ interface Hotel {
     HotelId: string;
     HotelName: string;
     Description: string;
-    Description_fr: string;
     Category: string;
     Tags: string[];
     ParkingIncluded: string | boolean;
