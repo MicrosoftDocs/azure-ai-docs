@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 03/04/2025
+ms.date: 06/13/2025
 ---
 
 [!INCLUDE [Full text introduction](full-text-intro.md)]
@@ -172,13 +172,12 @@ AzureKeyCredential credential = new AzureKeyCredential("<Your search service adm
                         new Hotel()
                         {
                             HotelId = "1",
-                            HotelName = "Secret Point Motel",
-                            Description = "The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Time's Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
-                            DescriptionFr = "L'hôtel est idéalement situé sur la principale artère commerciale de la ville en plein cœur de New York. A quelques minutes se trouve la place du temps et le centre historique de la ville, ainsi que d'autres lieux d'intérêt qui font de New York l'une des villes les plus attractives et cosmopolites de l'Amérique.",
+                            HotelName = "Stay-Kay City Hotel",
+                            Description = "This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
                             Category = "Boutique",
-                            Tags = new[] { "pool", "air conditioning", "concierge" },
+                            Tags = new[] { "view", "air conditioning", "concierge" },
                             ParkingIncluded = false,
-                            LastRenovationDate = new DateTimeOffset(1970, 1, 18, 0, 0, 0, TimeSpan.Zero),
+                            LastRenovationDate = new DateTimeOffset(2022, 1, 18, 0, 0, 0, TimeSpan.Zero),
                             Rating = 3.6,
                             Address = new Address()
                             {
@@ -193,13 +192,12 @@ AzureKeyCredential credential = new AzureKeyCredential("<Your search service adm
                         new Hotel()
                         {
                             HotelId = "2",
-                            HotelName = "Twin Dome Motel",
-                            Description = "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts.",
-                            DescriptionFr = "L'hôtel est situé dans une place du XIXe siècle, qui a été agrandie et rénovée aux plus hautes normes architecturales pour créer un hôtel moderne, fonctionnel et de première classe dans lequel l'art et les éléments historiques uniques coexistent avec le confort le plus moderne.",
+                            HotelName = "Old Century Hotel",
+                            Description = "The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.",
                             Category = "Boutique",
                             Tags = new[] { "pool", "free wifi", "concierge" },
                             ParkingIncluded = false,
-                            LastRenovationDate = new DateTimeOffset(1979, 2, 18, 0, 0, 0, TimeSpan.Zero),
+                            LastRenovationDate = new DateTimeOffset(2019, 2, 18, 0, 0, 0, TimeSpan.Zero),
                             Rating = 3.60,
                             Address = new Address()
                             {
@@ -214,11 +212,10 @@ AzureKeyCredential credential = new AzureKeyCredential("<Your search service adm
                         new Hotel()
                         {
                             HotelId = "3",
-                            HotelName = "Triple Landscape Hotel",
-                            Description = "The Hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
-                            DescriptionFr = "L'hôtel est situé dans une place du XIXe siècle, qui a été agrandie et rénovée aux plus hautes normes architecturales pour créer un hôtel moderne, fonctionnel et de première classe dans lequel l'art et les éléments historiques uniques coexistent avec le confort le plus moderne.",
-                            Category = "Resort and Spa",
-                            Tags = new[] { "air conditioning", "bar", "continental breakfast" },
+                            HotelName = "Gastronomic Landscape Hotel",
+                            Description = "The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
+                            Category = "Suite",
+                            Tags = new[] { "restaurant", "bar", "continental breakfast" },
                             ParkingIncluded = true,
                             LastRenovationDate = new DateTimeOffset(2015, 9, 20, 0, 0, 0, TimeSpan.Zero),
                             Rating = 4.80,
@@ -235,13 +232,12 @@ AzureKeyCredential credential = new AzureKeyCredential("<Your search service adm
                         new Hotel()
                         {
                             HotelId = "4",
-                            HotelName = "Sublime Cliff Hotel",
-                            Description = "Sublime Cliff Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 1800 palace.",
-                            DescriptionFr = "Le sublime Cliff Hotel est situé au coeur du centre historique de sublime dans un quartier extrêmement animé et vivant, à courte distance de marche des sites et monuments de la ville et est entouré par l'extraordinaire beauté des églises, des bâtiments, des commerces et Monuments. Sublime Cliff fait partie d'un Palace 1800 restauré avec amour.",
+                            HotelName = "Sublime Palace Hotel",
+                            Description = "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.",
                             Category = "Boutique",
-                            Tags = new[] { "concierge", "view", "24-hour front desk service" },
+                            Tags = new[] { "concierge", "view", "air conditioning" },
                             ParkingIncluded = true,
-                            LastRenovationDate = new DateTimeOffset(1960, 2, 06, 0, 0, 0, TimeSpan.Zero),
+                            LastRenovationDate = new DateTimeOffset(2020, 2, 06, 0, 0, 0, TimeSpan.Zero),
                             Rating = 4.60,
                             Address = new Address()
                             {
@@ -400,10 +396,6 @@ AzureKeyCredential credential = new AzureKeyCredential("<Your search service adm
             [SearchableField(AnalyzerName = LexicalAnalyzerName.Values.EnLucene)]
             public string Description { get; set; }
     
-            [SearchableField(AnalyzerName = LexicalAnalyzerName.Values.FrLucene)]
-            [JsonPropertyName("Description_fr")]
-            public string DescriptionFr { get; set; }
-    
             [SearchableField(IsFilterable = true, IsSortable = true, IsFacetable = true)]
             public string Category { get; set; }
     
@@ -445,10 +437,6 @@ AzureKeyCredential credential = new AzureKeyCredential("<Your search service adm
     
             [SearchableField(AnalyzerName = LexicalAnalyzerName.Values.EnLucene)]
             public string Description { get; set; }
-    
-            [SearchableField(AnalyzerName = LexicalAnalyzerName.Values.FrLucene)]
-            [JsonPropertyName("Description_fr")]
-            public string DescriptionFr { get; set; }
     
             [SearchableField(IsFilterable = true, IsSortable = true, IsFacetable = true)]
             public string Category { get; set; }
@@ -527,11 +515,6 @@ AzureKeyCredential credential = new AzureKeyCredential("<Your search service adm
                     builder.AppendFormat("Description: {0}\n", Description);
                 }
     
-                if (!String.IsNullOrEmpty(DescriptionFr))
-                {
-                    builder.AppendFormat("Description (French): {0}\n", DescriptionFr);
-                }
-    
                 if (!String.IsNullOrEmpty(Category))
                 {
                     builder.AppendFormat("Category: {0}\n", Category);
@@ -608,7 +591,6 @@ AzureKeyCredential credential = new AzureKeyCredential("<Your search service adm
     ```
 
 Output includes messages from [Console.WriteLine](/dotnet/api/system.console.writeline), with the addition of query information and results.
-
 
 ## Explaining the code
 
@@ -720,12 +702,11 @@ private static void UploadDocuments(SearchClient searchClient)
             {
                 HotelId = "1",
                 HotelName = "Stay-Kay City Hotel",
-                Description = "The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Time's Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
-                DescriptionFr = "L'hôtel est idéalement situé sur la principale artère commerciale de la ville en plein cœur de New York. A quelques minutes se trouve la place du temps et le centre historique de la ville, ainsi que d'autres lieux d'intérêt qui font de New York l'une des villes les plus attractives et cosmopolites de l'Amérique.",
+                Description = "This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
                 Category = "Boutique",
-                Tags = new[] { "pool", "air conditioning", "concierge" },
+                Tags = new[] { "view", "air conditioning", "concierge" },
                 ParkingIncluded = false,
-                LastRenovationDate = new DateTimeOffset(1970, 1, 18, 0, 0, 0, TimeSpan.Zero),
+                LastRenovationDate = new DateTimeOffset(2022, 1, 18, 0, 0, 0, TimeSpan.Zero),
                 Rating = 3.6,
                 Address = new Address()
                 {
@@ -849,6 +830,7 @@ WriteDocuments(response);
 ```
 
 #### Query example 3
+
 The third query demonstrates `searchFields`, used to scope a full text search operation to specific fields.
 
 ```csharp
