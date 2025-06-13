@@ -1,6 +1,8 @@
 ---
 title: Query the knowledge base - QnA Maker
 description: A knowledge base must be published. Once published, the knowledge base is queried at the runtime prediction endpoint using the generateAnswer API.
+ms.service: azure-ai-language
+ms.subservice: azure-ai-qna-maker
 ms.topic: conceptual
 manager: nitinme
 ms.author: jboback

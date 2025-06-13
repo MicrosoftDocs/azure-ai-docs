@@ -7,7 +7,7 @@ author: aahill
 manager: nitinme
 ms.subservice: azure-ai-luis
 ms.topic: conceptual
-ms.date: 01/19/202406/12/2025
+ms.date: 06/12/2025
 ---
 # Extend app at prediction runtime
 
