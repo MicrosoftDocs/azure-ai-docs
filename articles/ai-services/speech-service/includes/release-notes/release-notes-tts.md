@@ -1202,8 +1202,8 @@ The [bookmark element](../../speech-synthesis-markup-structure.md#bookmark-eleme
 
 **Custom neural voice GA**
 
-Custom neural voice is GA in February in 13 languages: Chinese (Mandarin, Simplified), English (Australia), English (India), English (United Kingdom), English (United States), French (Canada), French (France), German (Germany), Italian (Italy), Japanese (Japan), Korean (Korea), Portuguese (Brazil), Spanish (Mexico), and Spanish (Spain). Learn more about [what is custom neural voice](../../custom-neural-voice.md) and [how to use it responsibly](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-guidelines-responsible-deployment-synthetic).
-Custom neural voice feature requires registration and Microsoft may limit access based on Microsoft's eligibility criteria. Learn more about the [limited access](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/limited-access-custom-neural-voice).
+Custom neural voice is GA in February in 13 languages: Chinese (Mandarin, Simplified), English (Australia), English (India), English (United Kingdom), English (United States), French (Canada), French (France), German (Germany), Italian (Italy), Japanese (Japan), Korean (Korea), Portuguese (Brazil), Spanish (Mexico), and Spanish (Spain). Learn more about [what is custom neural voice](../../custom-neural-voice.md) and [how to use it responsibly](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-guidelines-responsible-deployment-synthetic).
+Custom neural voice feature requires registration and Microsoft may limit access based on Microsoft's eligibility criteria. Learn more about the [limited access](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access-custom-neural-voice).
 
 
 ### December 2020 release

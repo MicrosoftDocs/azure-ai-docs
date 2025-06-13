@@ -25,7 +25,7 @@ The following table summarizes the difference between personal voice and profess
 | Comparison | Personal voice | Professional voice |
 |-------|-------------------------|-----|
 | Target scenarios | Business customers to build an app to allow their users to create and use their own personal voice in the app. | Professional scenarios like brand and character voices for chat bots, or audio content reading. |
-| Use cases | Restricted to limited use cases. See the [transparency note](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/transparency-note). |
+| Use cases | Restricted to limited use cases. See the [transparency note](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note). |
 | Training data | Make sure you follow the code of conduct. | Bring your own data. Recording in a professional studio is recommended. |
 | Required data size | One minute of human speech. | 300-2000 utterances (about 30 minutes to 3 hours of human speech). |
 | Training time | Less than 5 seconds | Approximately 20-40 compute hours. |

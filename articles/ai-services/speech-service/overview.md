@@ -156,15 +156,15 @@ An AI system includes not only the technology, but also the people who use it, t
 
 ### Custom voice
 
-* [Transparency note and use cases](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/transparency-note-custom-neural-voice)
-* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/characteristics-and-limitations-custom-neural-voice)
-* [Limited access](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/limited-access-custom-neural-voice)
-* [Responsible deployment of synthetic speech](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-guidelines-responsible-deployment-synthetic)
+* [Transparency note and use cases](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note-custom-neural-voice)
+* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/characteristics-and-limitations-custom-neural-voice)
+* [Limited access](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access-custom-neural-voice)
+* [Responsible deployment of synthetic speech](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-guidelines-responsible-deployment-synthetic)
 * [Disclosure of voice talent](/azure/ai-foundry/responsible-ai/speech-service/disclosure-voice-talent)
-* [Disclosure of design guidelines](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-guidelines)
-* [Disclosure of design patterns](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/concepts-disclosure-patterns)
+* [Disclosure of design guidelines](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-guidelines)
+* [Disclosure of design patterns](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-patterns)
 * [Code of conduct](/azure/ai-foundry/responsible-ai/speech-service/tts-code-of-conduct)
-* [Data, privacy, and security](/azure/ai-foundry/responsible-ai/speech-service/custom-neural-voice/data-privacy-security-custom-neural-voice)
+* [Data, privacy, and security](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security-custom-neural-voice)
 
 ### Speaker Recognition
 
