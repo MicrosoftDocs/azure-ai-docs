@@ -48,7 +48,7 @@ Integrate your agents with the **Microsoft SharePoint** to chat with your privat
 
 ## Next steps
 
-[How to use the SharePoint tool](./sharepoint-samples.md)
+* [How to use the SharePoint tool](./sharepoint-samples.md)
 * Reference articles for content retrieval used by the tool:
     * [Overview of the Microsoft 365 Copilot Retrieval API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview).
     * [Semantic indexing for Microsoft 365 Copilot](/microsoftsearch/semantic-index-for-copilot)
