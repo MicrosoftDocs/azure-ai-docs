@@ -212,12 +212,66 @@ Configure tracing as follows:
     from opentelemetry import trace
     from opentelemetry.sdk.trace import TracerProvider
     from opentelemetry.sdk.trace.export import SimpleSpanProcessor, ConsoleSpanExporter
-    from azure.ai.projects import enable_telemetry
 
     span_exporter = ConsoleSpanExporter()
     tracer_provider = TracerProvider()
     tracer_provider.add_span_processor(SimpleSpanProcessor(span_exporter))
     trace.set_tracer_provider(tracer_provider)
-
-    enable_telemetry(destination=sys.stdout)
     ```
+
+1. Use OpenAI SDK as usual:
+
+    ```python
+    response = client.chat.completions.create(
+        model="deepseek-v3-0324",
+        messages=[
+            {"role": "user", "content": "Write a short poem on open telemetry."},
+        ],
+    )
+    ```
+
+    ```console
+    {
+        "name": "chat deepseek-v3-0324",
+        "context": {
+            "trace_id": "0xaaaa0a0abb1bcc2cdd3d",
+            "span_id": "0xaaaa0a0abb1bcc2cdd3d",
+            "trace_state": "[]"
+        },
+        "kind": "SpanKind.CLIENT",
+        "parent_id": null,
+        "start_time": "2025-06-13T00:02:04.271337Z",
+        "end_time": "2025-06-13T00:02:06.537220Z",
+        "status": {
+            "status_code": "UNSET"
+        },
+        "attributes": {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.system": "openai",
+            "gen_ai.request.model": "deepseek-v3-0324",
+            "server.address": "my-project.services.ai.azure.com",
+            "gen_ai.response.model": "DeepSeek-V3-0324",
+            "gen_ai.response.finish_reasons": [
+                "stop"
+            ],
+            "gen_ai.response.id": "aaaa0a0abb1bcc2cdd3d",
+            "gen_ai.usage.input_tokens": 14,
+            "gen_ai.usage.output_tokens": 91
+        },
+        "events": [],
+        "links": [],
+        "resource": {
+            "attributes": {
+                "telemetry.sdk.language": "python",
+                "telemetry.sdk.name": "opentelemetry",
+                "telemetry.sdk.version": "1.31.1",
+                "service.name": "unknown_service"
+            },
+            "schema_url": ""
+        }
+    }
+    ```
+
+## Next steps
+
+* [Trace agents using Azure AI Foundry SDK](trace-agents-sdk.md)
