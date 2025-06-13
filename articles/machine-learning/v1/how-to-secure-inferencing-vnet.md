@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.reviewer: None
 ms.author: larryfr
 author: Blackmist
-ms.date: 01/31/2024
+ms.date: 06/13/2025
 ms.custom: UpdateFrequency5, tracking-python, devx-track-azurecli, sdkv1
 ---
 
@@ -55,11 +55,11 @@ In this article you learn how to secure the following inferencing resources in a
 
 ### Azure Container Instances
 
-When your Azure Machine Learning workspace is configured with a private endpoint, deploying to Azure Container Instances in a VNet is not supported. Instead, consider using a [Managed online endpoint with network isolation](../how-to-secure-online-endpoint.md).
+When your Azure Machine Learning workspace is configured with a private endpoint, deploying to Azure Container Instances in a VNet isn't supported. Instead, consider using a [Managed online endpoint with network isolation](../how-to-secure-online-endpoint.md).
 
 ### Azure Kubernetes Service
 
-* If your AKS cluster is behind of a VNET, your workspace and its associated resources (storage, key vault, Azure Container Registry) must have private endpoints or service endpoints in the same VNET as AKS cluster's VNET. Please read tutorial [create a secure workspace](../tutorial-create-secure-workspace.md) to add those private endpoints or service endpoints to your VNET.
+* If your AKS cluster is behind of a VNET, your workspace and its associated resources (storage, key vault, Azure Container Registry) must have private endpoints or service endpoints in the same VNET as AKS cluster's VNET. Read tutorial [create a secure workspace](../tutorial-create-secure-workspace.md) to add those private endpoints or service endpoints to your VNET.
 * If your workspace has a __private endpoint__, the Azure Kubernetes Service cluster must be in the same Azure region as the workspace.
 * Using a [public fully qualified domain name (FQDN) with a private AKS cluster](/azure/aks/private-clusters) is __not supported__ with Azure Machine Learning.
 
@@ -106,7 +106,7 @@ To add AKS in a virtual network to your workspace, use the following steps:
    :::image type="content" source="./media/how-to-secure-inferencing-vnet/aks-vnet-inbound-nsg-scoring.png" alt-text="Screenshot that shows an inbound security rule." lightbox="./media/how-to-secure-inferencing-vnet/aks-vnet-inbound-nsg-scoring.png":::
 
     > [!IMPORTANT]
-    > The IP address shown in the image for the scoring endpoint will be different for your deployments. While the same IP is shared by all deployments to one AKS cluster, each AKS cluster will have a different IP address.
+    > The IP address shown in the image for the scoring endpoint will be different for your deployments. While the same IP is shared by all deployments to one AKS cluster, each AKS cluster has a different IP address.
 
 You can also use the Azure Machine Learning SDK to add Azure Kubernetes Service in a virtual network. If you already have an AKS cluster in a virtual network, attach it to the workspace as described in [How to deploy to AKS](how-to-deploy-and-where.md). The following code creates a new AKS instance in the `default` subnet of a virtual network named `mynetwork`:
 
@@ -188,7 +188,7 @@ A private load balancer is enabled by configuring AKS to use an _internal load b
 #### Enable private load balancer
 
 > [!IMPORTANT]
-> You cannot enable private IP when creating the Azure Kubernetes Service cluster in Azure Machine Learning studio. You can create one with an internal load balancer when using the Python SDK or Azure CLI extension for machine learning.
+> You can't enable private IP when creating the Azure Kubernetes Service cluster in Azure Machine Learning studio. You can create one with an internal load balancer when using the Python SDK or Azure CLI extension for machine learning.
 
 The following examples demonstrate how to __create a new AKS cluster with a private IP/internal load balancer__ using the SDK and CLI:
 
