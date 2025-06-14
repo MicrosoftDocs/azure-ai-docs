@@ -6,7 +6,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 6/13/2025
+ms.date: 6/15/2025
 zone_pivot_groups: search-get-started-agentic-retrieval
 ---
 

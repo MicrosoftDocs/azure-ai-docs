@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 6/13/2025
+ms.date: 6/15/2025
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -21,11 +21,11 @@ This quickstart is based on the [Quickstart-Agentic-Retrieval](https://github.co
 
 + An [Azure AI Search service](../../search-create-service-portal.md) on the Basic tier or higher with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
 
-+ An [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects).
++ An [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects). You get an Azure AI Foundry resource (that's needed for model deployments) when you create an Azure AI Foundry project.
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and [Jupyter package](https://pypi.org/project/jupyter/).
 
-+ Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
++ The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
 [!INCLUDE [Setup](./agentic-retrieval-setup.md)]
 
@@ -33,11 +33,14 @@ This quickstart is based on the [Quickstart-Agentic-Retrieval](https://github.co
 
 You configured role-based access to interact with Azure AI Search and Azure OpenAI. 
 
-Run the following Azure CLI command and sign in with your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Azure AI Foundry project.
+To connect from your local system:
 
-```azurecli
-az login
-```
+1. Open a new terminal in Visual Studio Code and change to the directory where you want to save your files.
+1. Run the following Azure CLI command and sign in with your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Azure AI Foundry project.
+
+    ```azurecli
+    az login
+    ```
 
 For more information, see [Quickstart: Connect without keys](../../search-get-started-rbac.md).
 
@@ -47,7 +50,7 @@ Before you run any code, install Python packages and define credentials, endpoin
 
 To install the packages and load the connections:
 
-1. Open Visual Studio Code and create a `.ipynb` file. For example, you can name the file `quickstart-agentic-retrieval.ipynb`.
+1. In Visual Studio Code, create a `.ipynb` file. For example, you can name the file `quickstart-agentic-retrieval.ipynb`.
 
 1. In the first code cell, paste the following code to install the required packages. 
 
@@ -83,7 +86,7 @@ To install the packages and load the connections:
     api_version = "2025-05-01-Preview"
     ```
 
-1. Replace `endpoint` and `azure_openai_endpoint` with the values you obtained in [Get endpoints](#get-endpoints). Set `endpoint` to your Azure AI Search service endpoint, which looks like `https://<your-search-service-name>.search.windows.net`, and `azure_openai_endpoint` to your Azure AI Foundry endpoint, which looks like `https://<your-foundry-resource-name>.openai.azure.com`.
+1. Set `endpoint` to your Azure AI Search endpoint, which looks like `https://<your-search-service-name>.search.windows.net.` Set `azure_openai_endpoint` to your Azure AI Foundry endpoint, which looks like `https://<your-foundry-resource-name>.openai.azure.com.` You obtained both values in the [Get endpoints](#get-endpoints) section. 
 
 1. To verify the variables, run the code cell.
 

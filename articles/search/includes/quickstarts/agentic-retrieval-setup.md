@@ -4,26 +4,18 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 6/13/2025
+ms.date: 6/15/2025
 ---
 
 ## Configure role-based access
 
-Azure AI Search needs access to your Azure OpenAI models. For this task, you can use API keys or Microsoft Entra ID with role assignments. Keys are easier to start with, but roles are more secure. This quickstart assumes roles.
+You can use search service API keys or Microsoft Entra ID with role assignments. Keys are easier to start with, but roles are more secure. This quickstart assumes roles.
 
 To configure the recommended role-based access:
 
 1. Sign in to the [Azure portal](https://portal.azure.com/).
 
 1. [Enable role-based access](../../search-security-enable-roles.md) on your Azure AI Search service.
-
-1. [Create a system-assigned managed identity](../../search-howto-managed-identities-data-sources.md#create-a-system-managed-identity) on your Azure AI Search service. Here's how to do it using the Azure CLI:
-
-   ```azurecli
-   az search service update --name YOUR-SEARCH-SERVICE-NAME --resource-group YOUR-RESOURCE-GROUP-NAME --identity-type SystemAssigned
-   ```
-   
-    If you already have a managed identity, you can skip this step.
 
 1. On your Azure AI Search service, [assign the following roles](../../search-security-rbac.md#how-to-assign-roles-in-the-azure-portal) to yourself.
 
@@ -33,7 +25,17 @@ To configure the recommended role-based access:
 
     + **Search Index Data Reader**
 
-1. On your Azure AI Foundry resource, assign **Cognitive Services User** to the managed identity that you created for your search service.
+For agentic retrieval, Azure AI Search also needs access to your Azure OpenAI Foundry resource. 
+
+1. [Create a system-assigned managed identity](../../search-howto-managed-identities-data-sources.md#create-a-system-managed-identity) on your Azure AI Search service. Here's how to do it using the Azure CLI:
+
+   ```azurecli
+   az search service update --name YOUR-SEARCH-SERVICE-NAME --resource-group YOUR-RESOURCE-GROUP-NAME --identity-type SystemAssigned
+   ```
+   
+    If you already have a managed identity, you can skip this step.
+
+1. On your Azure AI Foundry resource, assign **Cognitive Services User** to the managed identity that you created for your search service. 
 
 ## Deploy models
 
@@ -57,11 +59,11 @@ To deploy the Azure OpenAI models:
 
 1. Select **Deploy**.
 
-Repeat the previous steps via the model catalog to deploy the **text-embedding-3-large** embedding model.
+1. Repeat the previous steps, but this time deploy the **text-embedding-3-large** embedding model.
 
 ## Get endpoints
 
-In your code, you specify the following endpoints to establish connections with Azure AI Search and Azure OpenAI. These steps assume that you configured role-based access in the previous section.
+In your code, you specify the following endpoints to establish connections with you Azure AI Search service and Azure AI Foundry resource. These steps assume that you [configured role-based access as described previously](#configure-role-based-access). 
 
 To obtain your service endpoints:
 
@@ -75,6 +77,6 @@ To obtain your service endpoints:
 
 1. On your Azure AI Foundry resource:
 
-    1. From the left pane, select **Resource Management** > **Keys and Endpoint**.
+    1. From the left pane, select **Resource Management** > **Keys and Endpoint**. 
 
-    1. Copy the URL, which should be similar to `https://my-resource.openai.azure.com`.
+    1. Select the **OpenAI** tab and copy the URL that looks similar to `https://my-resource.openai.azure.com`.

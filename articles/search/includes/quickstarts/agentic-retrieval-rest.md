@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 6/13/2025
+ms.date: 6/15/2025
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -22,11 +22,11 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 
 + An [Azure AI Search service](../../search-create-service-portal.md) on the Basic tier or higher with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
 
-+ An [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects).
++ An [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects). You get an Azure AI Foundry resource (that's needed for model deployments) when you create an Azure AI Foundry project.
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
-+ Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
++ The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
 [!INCLUDE [Setup](./agentic-retrieval-setup.md)]
 
@@ -35,6 +35,8 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 You configured role-based access to interact with Azure AI Search and Azure OpenAI. From the command line, use the Azure CLI to sign in to the same subscription and tenant for both services. For more information, see [Quickstart: Connect without keys](../../search-get-started-rbac.md).
 
 To connect from your local system:
+
+1. Open a new terminal in Visual Studio Code and change to the directory where you want to save your files.
 
 1. Run the following command and sign in with your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Azure AI Foundry project.
 
@@ -54,7 +56,8 @@ Before you send any requests, define credentials, endpoints, and deployment deta
 
 To load the connections:
 
-1. In Visual Studio Code, paste the following placeholders into a `.rest` or `.http` file. For example, you can create a file named `agentic-retrieval.rest`.
+1. In Visual Studio Code create a `.rest` or `.http` file. For example, you can name the file `agentic-retrieval.rest`.
+1. Paste these placeholders into the new file:
 
     ```HTTP
     @baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
@@ -69,7 +72,7 @@ To load the connections:
     @api-version = 2025-05-01-Preview
     ```
 
-1. Replace `@baseUrl` and `@aoaiBaseUrl` with the values you obtained in [Get endpoints](#get-endpoints).
+1. Set `@baseUrl` to your Azure AI Search endpoint, which looks like `https://<your-search-service-name>.search.windows.net.` Set `@aoaiBaseUrl` to your Azure AI Foundry endpoint, which looks like `https://<your-foundry-resource-name>.openai.azure.com.` You obtained both values in the [Get endpoints](#get-endpoints) section. 
 
 1. Replace `@token` with the Microsoft Entra token you obtained in [Connect from your local system](#connect-from-your-local-system).
 
