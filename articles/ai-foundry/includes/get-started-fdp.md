@@ -36,18 +36,14 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 ## Start with a project and model
 
 1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
-1. On the home page, select **Create an agent**. 
+1. On the home page, search and then select the **gpt-4o** model. 
     
     :::image type="content" source="../media/quickstarts/start-building.png" alt-text="Screenshot shows how to start building an Agent in Azure AI Foundry portal.":::
 
+1. On the model details page, select **Use this model**.
 1. Fill in a name to use for your project and select **Create**. 
-1. Once your resources are created, you are in the agent playground. 
-1. If you're asked to select a model, search for and select **gpt-4o**. 
-    1. Select **Confirm**.
-    1. Don't change the default settings. Select **Deploy**.
+1. Once your resources are created, you are in the chat playground. 
     
-You now have both a project and a model available for your agent.
-
 ## Set up your environment  
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
@@ -134,6 +130,42 @@ No installation is necessary to use the Azure AI Foundry portal.
 
 ---
 
+## Run a chat completion
+
+Chat completions are the basic building block of AI applications. Using chat completions you can send a list of messages and get a response from the model.
+
+# [Azure AI Foundry portal](#tab/azure-ai-foundry)
+
+1. In the chat playground, fill in the prompt and select the **Send** button.
+1. The model returns a response in the **Response** pane.
+
+# [Python](#tab/python)
+
+Substitute your endpoint for the `endpoint` in this code:
+
+:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="chat_completion":::
+
+
+# [Java (preview)](#tab/java)
+
+:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/ChatCompletionSample.java" :::
+
+# [JavaScript (preview)](#tab/javascript)
+
+:::code language="javascript" source="~/foundry-samples-main/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="chat_completion":::
+
+
+# [C#](#tab/csharp)
+
+:::code language="csharp" source="~/foundry-samples-main/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/SimpleInference.cs" id="chat_completion":::
+
+# [REST API](#tab/rest)
+
+Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
+
+:::code language="console" source="~/foundry-samples-main/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="chat_completion":::
+
+---
 
 ## Chat with an agent
 
@@ -141,8 +173,10 @@ Agents have powerful capabilities through the use of tools. Start by chatting wi
  
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
-After the preceding steps, you're now in the agents playground. 
+When you create a project from the model catalog, the model is deployed and an agent is created using this model. To chat with this agent:
 
+1. On the left pane, select **Playgrounds**.
+1. In the **Agents playground** card, select **Let's go**.
 1. Add instructions, such as, "You are a helpful writing assistant."
 1. Start chatting with your agent, for example, "Write me a poem about flowers."
 
@@ -218,44 +252,6 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
 
 ---
 
-## Run a chat completion
-
-Chat completions are the basic building block of AI applications. Using chat completions you can send a list of messages and get a response from the model instead of the agent.
-
-# [Azure AI Foundry portal](#tab/azure-ai-foundry)
-
-1. In the left pane, select **Playgrounds**. 
-1. Select **Try the chat playground**.
-1. Fill in the prompt and select the **Send** button.
-1. The model returns a response in the **Response** pane.
-
-# [Python](#tab/python)
-
-Substitute your endpoint for the `endpoint` in this code:
-
-:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="chat_completion":::
-
-
-# [Java (preview)](#tab/java)
-
-:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/ChatCompletionSample.java" :::
-
-# [JavaScript (preview)](#tab/javascript)
-
-:::code language="javascript" source="~/foundry-samples-main/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="chat_completion":::
-
-
-# [C#](#tab/csharp)
-
-:::code language="csharp" source="~/foundry-samples-main/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/SimpleInference.cs" id="chat_completion":::
-
-# [REST API](#tab/rest)
-
-Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
-
-:::code language="console" source="~/foundry-samples-main/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="chat_completion":::
-
----
 
 ## Clean up resources
 
