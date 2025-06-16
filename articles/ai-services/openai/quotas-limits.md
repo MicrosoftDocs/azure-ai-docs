@@ -208,6 +208,18 @@ The rate limits for each `gpt-4o` audio model deployment are 100 K TPM and 1 K R
 
 M = million | K = thousand
 
+## GPT-image-1 rate limits 
+
+### GPT0-image-1 global standard
+
+| Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
+|---|---|:---:|:---:|
+|`gpt-image-1`|Enterprise agreement | N/A | 20 |
+|`gpt-image-1` |Default | N/A | 6 |
+
+
+M = million | K = thousand
+
 ## Usage tiers
 
 Global standard deployments use Azure's global infrastructure, dynamically routing customer traffic to the data center with best availability for the customer’s inference requests. Similarly, Data zone standard deployments allow you to use Azure global infrastructure to dynamically route traffic to the data center within the Microsoft defined data zone with the best availability for each request. This enables more consistent latency for customers with low to medium levels of traffic. Customers with high sustained levels of usage might see greater variability in response latency.
