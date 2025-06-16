@@ -5,7 +5,7 @@ description: Learn to deploy models as serverless API deployments, using Azure A
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 06/13/2025
+ms.date: 06/16/2025
 ms.author: mopeakande
 author: msakande
 ms.reviewer: fasantia
@@ -69,7 +69,7 @@ Although serverless API deployment is one option for deploying Azure AI Foundry 
 
 For models from partners and community, for example, _Cohere-command-r-08-2024_, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
 
-Furthermore, models offered through Azure Marketplace are available for deployment to standard deployment in specific regions. Check [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) to verify available regions for the particular model. If the region in which your project is located isn't listed, you can deploy to a project in a supported region and then [consume standard deployment from a different project](deploy-models-serverless-connect.md).
+Furthermore, models offered through Azure Marketplace are available for deployment to serverless API deployment in specific regions. Check [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) to verify available regions for the particular model. If the region in which your project is located isn't listed, you can deploy to a project in a supported region and then [consume serverless API deployment from a different project](deploy-models-serverless-connect.md).
 
 
 1. On the model's **Details** page, select **Use this model** to open the Serverless API deployment window. In the Serverless API deployment window, the **Azure Marketplace Terms** link provides more information about the terms of use. The **Pricing and terms** tab also provides pricing details for the selected model.
@@ -112,14 +112,14 @@ In this section, you create an endpoint for your model.
     
     1. Use these credentials to call the deployment and generate predictions.
 
-1. If you need to consume this deployment from a different project or hub, or you plan to use Prompt flow to build intelligent applications, you need to create a connection to the serverless API deployment. To learn how to configure an existing standard deployment on a new project or hub, see [Consume deployed standard deployment from a different project or from Prompt flow](deploy-models-serverless-connect.md).
+1. If you need to consume this deployment from a different project or hub, or you plan to use Prompt flow to build intelligent applications, you need to create a connection to the serverless API deployment. To learn how to configure an existing serverless API deployment on a new project or hub, see [Consume deployed serverless API deployment from a different project or from Prompt flow](deploy-models-serverless-connect.md).
 
     > [!TIP]
     > If you're using Prompt flow in the same project or hub where the deployment was deployed, you still need to create the connection.
 
-## Use the standard deployment
+## Use the serverless API deployment
 
-Models deployed in Azure Machine Learning and Azure AI Foundry in standard deployments support the [Azure AI Foundry Models API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md) that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way. 
+Models deployed in Azure Machine Learning and Azure AI Foundry in serverless API deployments support the [Azure AI Foundry Models API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md) that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way. 
 
 Read more about the [capabilities of this API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md#capabilities) and how [you can use it when building applications](../../ai-foundry/model-inference/reference/reference-model-inference-api.md#getting-started). 
 
@@ -130,7 +130,7 @@ Read more about the [capabilities of this API](../../ai-foundry/model-inference/
 
 You can delete model subscriptions and endpoints. Deleting a model subscription makes any associated endpoint become *Unhealthy* and unusable.
 
-To delete a standard deployment:
+To delete a serverless API deployment:
 
 1. Go to the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 1. Go to your project.
@@ -177,7 +177,7 @@ To delete the associated model subscription:
 
 4. Select the model card of the model you want to deploy. In this article, you select a **DeepSeek-R1** model.
 
-1. Copy the **Model ID** without the including the model version, since standard deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-deepseek/models/DeepSeek-R1/versions/1`, copy `azureml://registries/azureml-deepseek/models/DeepSeek-R1`.
+1. Copy the **Model ID** without including the model version, since serverless API deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-deepseek/models/DeepSeek-R1/versions/1`, copy `azureml://registries/azureml-deepseek/models/DeepSeek-R1`.
 
     :::image type="content" source="../media/deploy-models-serverless/model-card.png" alt-text="A screenshot showing a model's details page for a model sold directly by Azure." lightbox="../media/deploy-models-serverless/model-card.png":::
     
@@ -189,7 +189,7 @@ To delete the associated model subscription:
     > [!NOTE]
     > [Models from Partners and Community](../concepts/foundry-models-overview.md#models-from-partners-and-community) are offered through Azure Marketplace. For these models, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings), as you're required to subscribe your project to the particular model offering.
 
-1. Copy the **Model ID** without the including the model version, since standard deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-cohere/models/Cohere-command-r-08-2024/versions/1`, copy `azureml://registries/azureml-cohere/models/Cohere-command-r-08-2024`.
+1. Copy the **Model ID** without including the model version, since serverless API deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-cohere/models/Cohere-command-r-08-2024/versions/1`, copy `azureml://registries/azureml-cohere/models/Cohere-command-r-08-2024`.
 
     :::image type="content" source="../media/deploy-models-serverless/partner-model-card.png" alt-text="A screenshot showing a model's details page for a partner model." lightbox="../media/deploy-models-serverless/partner-model-card.png":::
 
@@ -197,7 +197,7 @@ To delete the associated model subscription:
 
 For models from partners and community, for example, _Cohere-command-r-08-2024_, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
 
-Furthermore, models offered through Azure Marketplace are available for deployment to standard deployment in specific regions. Check [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) to verify available regions for the particular model. If the region in which your project is located isn't listed, you can deploy to a project in a supported region and then [consume standard deployment from a different project](deploy-models-serverless-connect.md).
+Furthermore, models offered through Azure Marketplace are available for deployment to serverless API deployment in specific regions. Check [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) to verify available regions for the particular model. If the region in which your project is located isn't listed, you can deploy to a project in a supported region and then [consume serverless API deployment from a different project](deploy-models-serverless-connect.md).
 
 1. Create the model's marketplace subscription. When you create a subscription, you accept the terms and conditions associated with the model offer.
 
@@ -256,14 +256,14 @@ In this section, you create an endpoint for your model. Name the endpoint **Deep
     az ml serverless-endpoint get-credentials -n DeepSeek-R1-qwerty
     ```
 
-1. If you need to consume this deployment from a different project or hub, or you plan to use Prompt flow to build intelligent applications, you need to create a connection to the standard deployment. To learn how to configure an existing standard deployment on a new project or hub, see [Consume deployed standard deployment from a different project or from Prompt flow](deploy-models-serverless-connect.md).
+1. If you need to consume this deployment from a different project or hub, or you plan to use Prompt flow to build intelligent applications, you need to create a connection to the serverless API deployment. To learn how to configure an existing serverless API deployment on a new project or hub, see [Consume deployed serverless API deployment from a different project or from Prompt flow](deploy-models-serverless-connect.md).
 
     > [!TIP]
     > If you're using Prompt flow in the same project or hub where the deployment was deployed, you still need to create the connection. 
 
-## Use the standard deployment
+## Use the serverless API deployment
 
-Models deployed in Azure Machine Learning and Azure AI Foundry in standard deployments support the [Azure AI Foundry Models API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md) that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way. 
+Models deployed in Azure Machine Learning and Azure AI Foundry in serverless API deployments support the [Azure AI Foundry Models API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md) that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way. 
 
 Read more about the [capabilities of this API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md#capabilities) and how [you can use it when building applications](../../ai-foundry/model-inference/reference/reference-model-inference-api.md#getting-started). 
 
@@ -272,7 +272,7 @@ Read more about the [capabilities of this API](../../ai-foundry/model-inference/
 
 You can delete model subscriptions and endpoints. Deleting a model subscription makes any associated endpoint become *Unhealthy* and unusable.
 
-To delete a standard deployment:
+To delete a serverless API deployment:
 
 ```azurecli
 az ml serverless-endpoint delete \
@@ -320,7 +320,7 @@ az ml marketplace-subscription delete \
 
 4. Select the model card of the model you want to deploy. In this article, you select a **DeepSeek-R1** model.
 
-1. Copy the **Model ID** without the including the model version, since standard deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-deepseek/models/DeepSeek-R1/versions/1`, copy `azureml://registries/azureml-deepseek/models/DeepSeek-R1`.
+1. Copy the **Model ID** without including the model version, since serverless API deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-deepseek/models/DeepSeek-R1/versions/1`, copy `azureml://registries/azureml-deepseek/models/DeepSeek-R1`.
 
     :::image type="content" source="../media/deploy-models-serverless/model-card.png" alt-text="A screenshot showing a model's details page for a model sold directly by Azure." lightbox="../media/deploy-models-serverless/model-card.png":::
     
@@ -332,7 +332,7 @@ az ml marketplace-subscription delete \
     > [!NOTE]
     > [Models from Partners and Community](../concepts/foundry-models-overview.md#models-from-partners-and-community) are offered through Azure Marketplace. For these models, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings), as you're required to subscribe your project to the particular model offering.
 
-1. Copy the **Model ID** without the including the model version, since standard deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-cohere/models/Cohere-command-r-08-2024/versions/1`, copy `azureml://registries/azureml-cohere/models/Cohere-command-r-08-2024`.
+1. Copy the **Model ID** without including the model version, since serverless API deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-cohere/models/Cohere-command-r-08-2024/versions/1`, copy `azureml://registries/azureml-cohere/models/Cohere-command-r-08-2024`.
 
     :::image type="content" source="../media/deploy-models-serverless/partner-model-card.png" alt-text="A screenshot showing a model's details page for a partner model." lightbox="../media/deploy-models-serverless/partner-model-card.png":::
 
@@ -340,7 +340,7 @@ az ml marketplace-subscription delete \
 
 For models from partners and community, for example, _Cohere-command-r-08-2024_, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
 
-Furthermore, models offered through Azure Marketplace are available for deployment to standard deployment in specific regions. Check [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) to verify available regions for the particular model. If the region in which your project is located isn't listed, you can deploy to a project in a supported region and then [consume standard deployment from a different project](deploy-models-serverless-connect.md).
+Furthermore, models offered through Azure Marketplace are available for deployment to serverless API deployment in specific regions. Check [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) to verify available regions for the particular model. If the region in which your project is located isn't listed, you can deploy to a project in a supported region and then [consume serverless API deployment from a different project](deploy-models-serverless-connect.md).
 
 1. Create the model's marketplace subscription. When you create a subscription, you accept the terms and conditions associated with the model offer.
 
@@ -414,15 +414,15 @@ In this section, you create an endpoint for your model. Name the endpoint **Deep
     print(endpoint_keys.secondary_key)
     ```
 
-1. If you need to consume this deployment from a different project or hub, or you plan to use Prompt flow to build intelligent applications, you need to create a connection to the standard deployment. To learn how to configure an existing standard deployment on a new project or hub, see [Consume deployed standard deployment from a different project or from Prompt flow](deploy-models-serverless-connect.md).
+1. If you need to consume this deployment from a different project or hub, or you plan to use Prompt flow to build intelligent applications, you need to create a connection to the serverless API deployment. To learn how to configure an existing serverless API deployment on a new project or hub, see [Consume deployed serverless API deployment from a different project or from Prompt flow](deploy-models-serverless-connect.md).
 
     > [!TIP]
     > If you're using Prompt flow in the same project or hub where the deployment was deployed, you still need to create the connection. 
 
 
-## Use the standard deployment
+## Use the serverless API deployment
 
-Models deployed in Azure Machine Learning and Azure AI Foundry in standard deployments support the [Azure AI Foundry Models API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md) that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way. 
+Models deployed in Azure Machine Learning and Azure AI Foundry in serverless API deployments support the [Azure AI Foundry Models API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md) that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way. 
 
 Read more about the [capabilities of this API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md#capabilities) and how [you can use it when building applications](../../ai-foundry/model-inference/reference/reference-model-inference-api.md#getting-started). 
 
@@ -464,7 +464,7 @@ client.marketplace_subscriptions.begin_delete(subscription_name).wait()
 
 4. Select the model card of the model you want to deploy. In this article, you select a **DeepSeek-R1** model.
 
-1. Copy the **Model ID** without the including the model version, since standard deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-deepseek/models/DeepSeek-R1/versions/1`, copy `azureml://registries/azureml-deepseek/models/DeepSeek-R1`.
+1. Copy the **Model ID** without including the model version, since serverless API deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-deepseek/models/DeepSeek-R1/versions/1`, copy `azureml://registries/azureml-deepseek/models/DeepSeek-R1`.
 
     :::image type="content" source="../media/deploy-models-serverless/model-card.png" alt-text="A screenshot showing a model's details page for a model sold directly by Azure." lightbox="../media/deploy-models-serverless/model-card.png":::
     
@@ -476,7 +476,7 @@ client.marketplace_subscriptions.begin_delete(subscription_name).wait()
     > [!NOTE]
     > [Models from Partners and Community](../concepts/foundry-models-overview.md#models-from-partners-and-community) are offered through Azure Marketplace. For these models, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings), as you're required to subscribe your project to the particular model offering.
 
-1. Copy the **Model ID** without the including the model version, since standard deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-cohere/models/Cohere-command-r-08-2024/versions/1`, copy `azureml://registries/azureml-cohere/models/Cohere-command-r-08-2024`.
+1. Copy the **Model ID** without including the model version, since serverless API deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-cohere/models/Cohere-command-r-08-2024/versions/1`, copy `azureml://registries/azureml-cohere/models/Cohere-command-r-08-2024`.
 
     :::image type="content" source="../media/deploy-models-serverless/partner-model-card.png" alt-text="A screenshot showing a model's details page for a partner model." lightbox="../media/deploy-models-serverless/partner-model-card.png":::
 
@@ -484,7 +484,7 @@ client.marketplace_subscriptions.begin_delete(subscription_name).wait()
 
 For models from partners and community, for example, _Cohere-command-r-08-2024_, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
 
-Furthermore, models offered through Azure Marketplace are available for deployment to standard deployment in specific regions. Check [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) to verify available regions for the particular model. If the region in which your project is located isn't listed, you can deploy to a project in a supported region and then [consume standard deployment from a different project](deploy-models-serverless-connect.md).
+Furthermore, models offered through Azure Marketplace are available for deployment to serverless API deployment in specific regions. Check [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) to verify available regions for the particular model. If the region in which your project is located isn't listed, you can deploy to a project in a supported region and then [consume serverless API deployment from a different project](deploy-models-serverless-connect.md).
 
 1. Use the following bicep configuration to create a model subscription. When you create a subscription, you accept the terms and conditions associated with the model offer.
 
@@ -579,15 +579,15 @@ In this section, you create an endpoint for your model. Name the endpoint **myse
 
 1. The created endpoint uses key authentication for authorization. Get the keys associated with the given endpoint by using REST APIs to query this information.
 
-1. If you need to consume this deployment from a different project or hub, or you plan to use Prompt flow to build intelligent applications, you need to create a connection to the standard deployment. To learn how to configure an existing standard deployment on a new project or hub, see [Consume deployed standard deployment from a different project or from Prompt flow](deploy-models-serverless-connect.md).
+1. If you need to consume this deployment from a different project or hub, or you plan to use Prompt flow to build intelligent applications, you need to create a connection to the serverless API deployment. To learn how to configure an existing serverless API deployment on a new project or hub, see [Consume deployed serverless API deployment from a different project or from Prompt flow](deploy-models-serverless-connect.md).
 
     > [!TIP]
     > If you're using Prompt flow in the same project or hub where the deployment was deployed, you still need to create the connection. 
 
 
-## Use the standard deployment
+## Use the serverless API deployment
 
-Models deployed in Azure Machine Learning and Azure AI Foundry in standard deployments support the [Azure AI Foundry Models API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md) that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way. 
+Models deployed in Azure Machine Learning and Azure AI Foundry in serverless API deployments support the [Azure AI Foundry Models API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md) that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way. 
 
 Read more about the [capabilities of this API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md#capabilities) and how [you can use it when building applications](../../ai-foundry/model-inference/reference/reference-model-inference-api.md#getting-started). 
 
@@ -605,7 +605,7 @@ az resource delete --name <resource-name>
 ::: zone-end
 
 
-## Cost and quota considerations for Foundry Models deployed as a standard deployment
+## Cost and quota considerations for Foundry Models deployed as a serverless API deployment
 
 Quota is managed per deployment. Each deployment has a rate limit of 200,000 tokens per minute and 1,000 API requests per minute. Additionally, we currently limit one deployment per model per project. Contact Microsoft Azure Support if the current rate limits aren't sufficient for your scenarios.
 
@@ -639,5 +639,5 @@ For more information on permissions, see [Role-based access control in Azure AI 
 
 ## Related content
 
-* [Region availability for models as standard deployments](deploy-models-serverless-availability.md)
-* [Fine-tune models using standard deployment](../how-to/fine-tune-serverless.md)
+* [Region availability for models as serverless API deployments](deploy-models-serverless-availability.md)
+* [Fine-tune models using serverless API deployment](../how-to/fine-tune-serverless.md)
