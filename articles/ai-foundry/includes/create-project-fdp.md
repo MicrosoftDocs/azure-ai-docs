@@ -167,15 +167,7 @@ On the project **Home** page, you can find information about the project.
 
 # [Python SDK](#tab/python)
 
-```python
-    # Get project
-    project = client.projects.get(
-        resource_group_name=rgp,
-        account_name=account_name,
-        project_name=project_name
-    )
-    print(project)
-```
+:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="show_project":::
 
 # [Azure CLI](#tab/azurecli)
 
