@@ -17,7 +17,7 @@ ms.custom: UpdateFrequency5, deploy, studio, designer
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
-In this article, you learn how to deploy a designer model as an online (real-time) endpoint in Azure Machine Learning studio.
+In this article, you learn how to deploy a designer model as a real-time, online endpoint in Azure Machine Learning studio.
 
 Once registered or downloaded, you can use designer trained models just like any other model. Exported models can be deployed in use cases such as internet of things (IoT) and local deployments.
 
@@ -28,9 +28,9 @@ Deployment in the studio consists of the following steps:
 1. (Optional) Configure the entry script.
 1. Deploy the model to a compute target.
 
-You can also deploy models directly in the designer to skip model registration and file download steps. This can be useful for rapid deployment. For more information, see [Deploy a model with the designer](tutorial-designer-automobile-price-deploy.md).
+You can also deploy models directly in the designer to skip model registration and file-download steps. This can be useful for rapid deployment. For more information, see [Tutorial: Deploy a machine learning model using designer](tutorial-designer-automobile-price-deploy.md).
 
-Models trained in the designer can also be deployed through the SDK or command-line interface (CLI). For more information, see [Deploy your existing model with Azure Machine Learning](how-to-deploy-and-where.md).
+Models trained in the designer can also be deployed through the SDK or command-line interface (CLI). For more information, see [Deploy machine learning models to Azure](how-to-deploy-and-where.md).
 
 ## Prerequisites
 
@@ -58,7 +58,7 @@ After the training pipeline completes, register the trained model to your Azure 
 
 1. Select the **Outputs + logs** tab in the details pane.
 
-1. Select **+ Register model**.
+1. Select **Register model**.
 
     :::image type="content" source="./media/how-to-deploy-model-designer/train-model-right-pane.png" alt-text="Screenshot of right pane of Train Model component." lightbox="./media/how-to-deploy-model-designer/train-model-right-pane.png":::
 
@@ -278,7 +278,7 @@ def run(data):
 
 For **Wide & Deep Recommender** and **Vowpal Wabbit** models, you can configure the scoring mode parameter by using the following methods:
 
-- The parameter names are the lowercase and underscore combinations of parameter names for [Score Vowpal Wabbit Model](../algorithm-module-reference/score-vowpal-wabbit-model.md) and [Score Wide and Deep Recommender](../algorithm-module-reference/score-wide-and-deep-recommender.md);
+- The parameter names are the lowercase and underscore combinations of parameter names for [Score Vowpal Wabbit Model](../algorithm-module-reference/score-vowpal-wabbit-model.md) and [Score Wide and Deep Recommender](../algorithm-module-reference/score-wide-and-deep-recommender.md).
 - Mode-type parameter values are strings of the corresponding option names. Take **Recommender prediction kind** in the preceding codes as an example, the value can be `'Rating Prediction'`or `'Item Recommendation'`. Other values aren't allowed.
 
 For **SVD Recommender** trained model, the parameter names and values might be less obvious, and you can look up the following tables to decide how to set parameters.

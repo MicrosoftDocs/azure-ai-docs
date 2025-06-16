@@ -17,9 +17,9 @@ ms.custom: UpdateFrequency5, designer
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
-In this article, you learn how to import your own data in the designer to create custom solutions. There are two ways you can import data into the designer: 
+In this article, you learn how to import your own data into the Azure Machine Learning designer to create custom solutions. There are two ways you can import data into the designer: 
 
-* **Azure Machine Learning datasets**: Register [datasets](concept-data.md) in Azure Machine Learning to enable advanced features that help you manage your data.
+* **Azure Machine Learning datasets**: Register [datasets](concept-data.md#reference-data-in-storage-with-datasets) in Azure Machine Learning to enable advanced features that help you manage your data.
 * **Import Data component**: Use the [Import Data](../algorithm-module-reference/import-data.md) component to directly access data from online data sources.
 
 > [!IMPORTANT]
@@ -27,7 +27,7 @@ In this article, you learn how to import your own data in the designer to create
 
 ## Use Azure Machine Learning datasets
 
-We recommend that you use [datasets](concept-data.md) to import data into the designer. When you register a dataset, you can take full advantage of advanced data features like [versioning and tracking](how-to-version-track-datasets.md) and [data monitoring](how-to-monitor-datasets.md).
+We recommend that you use [datasets](concept-data.md#reference-data-in-storage-with-datasets) to import data into the designer. When you register a dataset, you can take full advantage of advanced data features like [versioning and tracking](how-to-version-track-datasets.md) and [data monitoring](how-to-monitor-datasets.md).
 
 ### Register a dataset
 
@@ -62,9 +62,9 @@ If you register a file dataset, the output port type of the dataset is **AnyDire
 
 ### Limitations 
 
-- Currently you can only visualize tabular dataset in the designer. If you register a file dataset outside designer, you can't visualize it in the designer canvas.
-- Currently the designer only supports preview outputs which are stored in **Azure blob storage**. You can check and change your output datastore in the **Output settings** under **Parameters** tab in the right panel of the component.
-- If your data is stored in virtual network and you want to preview, you need to enable workspace managed identity of the datastore.
+- Currently you can only visualize a tabular dataset in the designer. If you register a file dataset outside designer, you can't visualize it in the designer canvas.
+- Currently the designer only supports preview outputs that are stored in **Azure blob storage**. You can check and change your output datastore in the **Output settings** under **Parameters** tab in the right panel of the component.
+- If your data is stored in a virtual network and you want to preview, you need to enable workspace managed identity of the datastore.
     1. Go the related datastore and select **Update authentication**.
     :::image type="content" source="../media/resource-known-issues/datastore-update-credential.png" alt-text="Screenshot that shows how to update credentials.":::
     1. Select the toggle switch to use workspace managed identity.
@@ -81,7 +81,7 @@ For detailed information on how to use the Import Data component, see the [Impor
 
 ## Supported sources
 
-This section lists the data sources supported by the designer. Data comes into the designer from either a datastore or from [tabular dataset](how-to-create-register-datasets.md#dataset-types).
+This section lists the data sources supported by the designer. Data comes into the designer from either a datastore or from a [tabular dataset](how-to-create-register-datasets.md#dataset-types).
 
 ### Datastore sources
 

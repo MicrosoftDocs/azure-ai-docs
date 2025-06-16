@@ -301,6 +301,8 @@ items:
     - name: Connect to data (UI)
       displayName: blob, get, fileshare, access, mount, download, data lake, datastore, dataset, data set
       href: ./v1/how-to-connect-data-ui.md
+    - name: Enable log metrics
+      href: ./v1/how-to-track-designer-experiments.md
     - name: Manage & consume data
       items:
         - name: Train with datasets

@@ -17,7 +17,7 @@ ms.custom: UpdateFrequency5, designer, sdkv1, devx-track-python
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
-In this article, you learn how to add logging code to designer pipelines. You also learn how to view those logs using the Azure Machine Learning studio web portal.
+In this article, you learn how to add code to designer pipelines to enable log metrics. You also learn how to view those logs using the Azure Machine Learning studio web portal.
 
 For more information on logging metrics using the SDK authoring experience, see [Log & view metrics and log files](../how-to-log-view-metrics.md).
 
