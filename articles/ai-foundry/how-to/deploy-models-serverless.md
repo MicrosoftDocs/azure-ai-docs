@@ -59,7 +59,7 @@ Although serverless API deployment is one option for deploying Azure AI Foundry 
    
 # [Models from Partners and Community](#tab/partner-models)
 
-4. Select the model card of the model you want to deploy. In this article, you select the **AI21-Jamba-1.5-Large** model.
+4. Select the model card of the model you want to deploy. In this article, you select **Cohere-command-r-08-2024**.
 
 > [!NOTE]
 > [Models from Partners and Community](../concepts/foundry-models-overview.md#models-from-partners-and-community) are offered through Azure Marketplace. For these models, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings), as you're required to subscribe your project to the particular model offering.
@@ -67,7 +67,7 @@ Although serverless API deployment is one option for deploying Azure AI Foundry 
 
 ### Subscribe your project to the model offering
 
-For models from partners and community, for example, the AI21-Jamba-1.5-Large model, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
+For models from partners and community, for example, _Cohere-command-r-08-2024_, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
 
 Furthermore, models offered through Azure Marketplace are available for deployment to standard deployment in specific regions. Check [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) to verify available regions for the particular model. If the region in which your project is located isn't listed, you can deploy to a project in a supported region and then [consume standard deployment from a different project](deploy-models-serverless-connect.md).
 
@@ -184,18 +184,18 @@ To delete the associated model subscription:
    
 # [Models from Partners and Community](#tab/partner-models)
 
-4. Select the model card of the model you want to deploy. In this article, you select the **AI21-Jamba-1.5-Large** model.
+4. Select the model card of the model you want to deploy. In this article, you select **Cohere-command-r-08-2024**.
 
     > [!NOTE]
     > [Models from Partners and Community](../concepts/foundry-models-overview.md#models-from-partners-and-community) are offered through Azure Marketplace. For these models, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings), as you're required to subscribe your project to the particular model offering.
 
-1. Copy the **Model ID** without the including the model version, since standard deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large/versions/1`, copy `azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large`.
+1. Copy the **Model ID** without the including the model version, since standard deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-cohere/models/Cohere-command-r-08-2024/versions/1`, copy `azureml://registries/azureml-cohere/models/Cohere-command-r-08-2024`.
 
     :::image type="content" source="../media/deploy-models-serverless/partner-model-card.png" alt-text="A screenshot showing a model's details page for a partner model." lightbox="../media/deploy-models-serverless/partner-model-card.png":::
 
 ### Subscribe your project to the model offering
 
-For models from partners and community, for example, the AI21-Jamba-1.5-Large model, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
+For models from partners and community, for example, _Cohere-command-r-08-2024_, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
 
 Furthermore, models offered through Azure Marketplace are available for deployment to standard deployment in specific regions. Check [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) to verify available regions for the particular model. If the region in which your project is located isn't listed, you can deploy to a project in a supported region and then [consume standard deployment from a different project](deploy-models-serverless-connect.md).
 
@@ -204,8 +204,8 @@ Furthermore, models offered through Azure Marketplace are available for deployme
     __subscription.yml__
     
     ```yml
-    name: AI21-Jamba-1-5-Large-qwerty
-    model_id: azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large
+    name: Cohere-command-r-08-2024-qwerty
+    model_id: azureml://registries/azureml-cohere/models/Cohere-command-r-08-2024
     ```
     
     Use the previous file to create the subscription:
@@ -222,9 +222,10 @@ Furthermore, models offered through Azure Marketplace are available for deployme
 
 ---
 
-## Deploy the model to a serverless API
+The steps in this section of the article use the _DeepSeek-R1_ model for illustration. The steps are the same, whether you're using Foundry Models sold directly by Azure or Foundry Models from partners and community. For example, if you choose to deploy the _Cohere-command-r-08-2024_
+model instead, you can replace the model credentials in the code snippets with the credentials for Cohere.
 
-# [Models sold directly by Azure](#tab/azure-direct)
+## Deploy the model to a serverless API
 
 In this section, you create an endpoint for your model. Name the endpoint **DeepSeek-R1-qwerty**.
 
@@ -260,44 +261,6 @@ In this section, you create an endpoint for your model. Name the endpoint **Deep
     > [!TIP]
     > If you're using Prompt flow in the same project or hub where the deployment was deployed, you still need to create the connection. 
 
-# [Models from Partners and Community](#tab/partner-models)
-
-In this section, you create an endpoint for your model. Name the endpoint **AI21-Jamba-1-5-Large-qwerty**.
-
-1. Create the serverless endpoint.
-
-    __endpoint.yml__
-
-    ```yml
-    name: AI21-Jamba-1-5-Large-qwerty
-    model_id: azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large
-    ```
-
-    Use the _endpoint.yml_ file to create the endpoint:
-
-    ```azurecli
-    az ml serverless-endpoint create -f endpoint.yml
-    ```
-
-1. At any point, you can see the endpoints deployed to your project:
-
-    ```azurecli
-    az ml serverless-endpoint list
-    ```
-
-1. The created endpoint uses key authentication for authorization. Use the following steps to get the keys associated with a given endpoint.
-
-    ```azurecli
-    az ml serverless-endpoint get-credentials -n AI21-Jamba-1-5-Large-qwerty
-    ```
-
-1. If you need to consume this deployment from a different project or hub, or you plan to use Prompt flow to build intelligent applications, you need to create a connection to the standard deployment. To learn how to configure an existing standard deployment on a new project or hub, see [Consume deployed standard deployment from a different project or from Prompt flow](deploy-models-serverless-connect.md).
-
-    > [!TIP]
-    > If you're using Prompt flow in the same project or hub where the deployment was deployed, you still need to create the connection. 
-
----
-
 ## Use the standard deployment
 
 Models deployed in Azure Machine Learning and Azure AI Foundry in standard deployments support the [Azure AI Foundry Models API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md) that exposes a common set of capabilities for foundational models and that can be used by developers to consume predictions from a diverse set of models in a uniform and consistent way. 
@@ -308,8 +271,6 @@ Read more about the [capabilities of this API](../../ai-foundry/model-inference/
 ## Delete endpoints and subscriptions
 
 You can delete model subscriptions and endpoints. Deleting a model subscription makes any associated endpoint become *Unhealthy* and unusable.
-
-# [Models sold directly by Azure](#tab/azure-direct)
 
 To delete a standard deployment:
 
@@ -324,24 +285,6 @@ To delete the associated model subscription:
 az ml marketplace-subscription delete \
     --name "DeepSeek-R1"
 ```
-
-# [Models from Partners and Community](#tab/partner-models)
-
-To delete a standard deployment:
-
-```azurecli
-az ml serverless-endpoint delete \
-    --name "AI21-Jamba-1-5-Large-qwerty"
-```
-
-To delete the associated model subscription:
-
-```azurecli
-az ml marketplace-subscription delete \
-    --name "AI21-Jamba-1.5-Large"
-```
-
----
 
 ::: zone-end
 
@@ -384,26 +327,26 @@ az ml marketplace-subscription delete \
    
 # [Models from Partners and Community](#tab/partner-models)
 
-4. Select the model card of the model you want to deploy. In this article, you select the **AI21-Jamba-1.5-Large** model.
+4. Select the model card of the model you want to deploy. In this article, you select **Cohere-command-r-08-2024**.
 
     > [!NOTE]
     > [Models from Partners and Community](../concepts/foundry-models-overview.md#models-from-partners-and-community) are offered through Azure Marketplace. For these models, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings), as you're required to subscribe your project to the particular model offering.
 
-1. Copy the **Model ID** without the including the model version, since standard deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large/versions/1`, copy `azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large`.
+1. Copy the **Model ID** without the including the model version, since standard deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-cohere/models/Cohere-command-r-08-2024/versions/1`, copy `azureml://registries/azureml-cohere/models/Cohere-command-r-08-2024`.
 
     :::image type="content" source="../media/deploy-models-serverless/partner-model-card.png" alt-text="A screenshot showing a model's details page for a partner model." lightbox="../media/deploy-models-serverless/partner-model-card.png":::
 
 ### Subscribe your project to the model offering
 
-For models from partners and community, for example, the AI21-Jamba-1.5-Large model, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
+For models from partners and community, for example, _Cohere-command-r-08-2024_, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
 
 Furthermore, models offered through Azure Marketplace are available for deployment to standard deployment in specific regions. Check [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) to verify available regions for the particular model. If the region in which your project is located isn't listed, you can deploy to a project in a supported region and then [consume standard deployment from a different project](deploy-models-serverless-connect.md).
 
 1. Create the model's marketplace subscription. When you create a subscription, you accept the terms and conditions associated with the model offer.
 
     ```python
-    model_id="azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large"
-    subscription_name="AI21-Jamba-1.5-Large"
+    model_id="azureml://registries/azureml-cohere/models/Cohere-command-r-08-2024"
+    subscription_name="Cohere-command-r-08-2024"
 
     marketplace_subscription = MarketplaceSubscription(
         model_id=model_id,
@@ -426,9 +369,10 @@ Furthermore, models offered through Azure Marketplace are available for deployme
 
 ---
 
-## Deploy the model to a serverless API
+The steps in this section of the article use the _DeepSeek-R1_ model for illustration. The steps are the same, whether you're using Foundry Models sold directly by Azure or Foundry Models from partners and community. For example, if you choose to deploy the _Cohere-command-r-08-2024_
+model instead, you can replace the model credentials in the code snippets with the credentials for Cohere.
 
-# [Models sold directly by Azure](#tab/azure-direct)
+## Deploy the model to a serverless API
 
 In this section, you create an endpoint for your model. Name the endpoint **DeepSeek-R1-qwerty**.
 
@@ -475,54 +419,6 @@ In this section, you create an endpoint for your model. Name the endpoint **Deep
     > [!TIP]
     > If you're using Prompt flow in the same project or hub where the deployment was deployed, you still need to create the connection. 
 
-# [Models from Partners and Community](#tab/partner-models)
-
-In this section, you create an endpoint for your model with the name **AI21-Jamba-1-5-Large-qwerty**.
-
-1. Create the serverless endpoint.
-
-    ```python
-    endpoint_name="AI21-Jamba-1-5-Large-qwerty"
-    
-    serverless_endpoint = ServerlessEndpoint(
-        name=endpoint_name,
-        model_id=model_id
-    )
-
-    created_endpoint = client.serverless_endpoints.begin_create_or_update(
-        serverless_endpoint
-    ).result()
-    ```
-
-1. At any point, you can see the endpoints deployed to your project:
-
-    ```python
-    endpoint_name="AI21-Jamba-1-5-Large-qwerty"
-    
-    serverless_endpoint = ServerlessEndpoint(
-        name=endpoint_name,
-        model_id=model_id
-    )
-
-    created_endpoint = client.serverless_endpoints.begin_create_or_update(
-        serverless_endpoint
-    ).result()
-    ```
-
-1. The created endpoint uses key authentication for authorization. Use the following steps to get the keys associated with a given endpoint.
-
-    ```python
-    endpoint_keys = client.serverless_endpoints.get_keys(endpoint_name)
-    print(endpoint_keys.primary_key)
-    print(endpoint_keys.secondary_key)
-    ```
-
-1. If you need to consume this deployment from a different project or hub, or you plan to use Prompt flow to build intelligent applications, you need to create a connection to the standard deployment. To learn how to configure an existing standard deployment on a new project or hub, see [Consume deployed standard deployment from a different project or from Prompt flow](deploy-models-serverless-connect.md).
-
-    > [!TIP]
-    > If you're using Prompt flow in the same project or hub where the deployment was deployed, you still need to create the connection. 
-
----
 
 ## Use the standard deployment
 
@@ -575,18 +471,18 @@ client.marketplace_subscriptions.begin_delete(subscription_name).wait()
    
 # [Models from Partners and Community](#tab/partner-models)
 
-4. Select the model card of the model you want to deploy. In this article, you select the **AI21-Jamba-1.5-Large** model.
+4. Select the model card of the model you want to deploy. In this article, you select **Cohere-command-r-08-2024**.
 
     > [!NOTE]
     > [Models from Partners and Community](../concepts/foundry-models-overview.md#models-from-partners-and-community) are offered through Azure Marketplace. For these models, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings), as you're required to subscribe your project to the particular model offering.
 
-1. Copy the **Model ID** without the including the model version, since standard deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large/versions/1`, copy `azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large`.
+1. Copy the **Model ID** without the including the model version, since standard deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-cohere/models/Cohere-command-r-08-2024/versions/1`, copy `azureml://registries/azureml-cohere/models/Cohere-command-r-08-2024`.
 
     :::image type="content" source="../media/deploy-models-serverless/partner-model-card.png" alt-text="A screenshot showing a model's details page for a partner model." lightbox="../media/deploy-models-serverless/partner-model-card.png":::
 
 ### Subscribe your project to the model offering
 
-For models from partners and community, for example, the AI21-Jamba-1.5-Large model, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
+For models from partners and community, for example, _Cohere-command-r-08-2024_, you must create a subscription before you can deploy them. If it's your first time deploying the model in the project, you have to subscribe your project for the particular model offering from Azure Marketplace. Each project has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending. Once you subscribe a project for the particular Azure Marketplace offering, subsequent deployments of the same offering in the same project don't require subscribing again.
 
 Furthermore, models offered through Azure Marketplace are available for deployment to standard deployment in specific regions. Check [regions that are supported for serverless deployment](deploy-models-serverless-availability.md) to verify available regions for the particular model. If the region in which your project is located isn't listed, you can deploy to a project in a supported region and then [consume standard deployment from a different project](deploy-models-serverless-connect.md).
 
@@ -596,7 +492,7 @@ Furthermore, models offered through Azure Marketplace are available for deployme
     
     ```bicep
     param projectName string = 'my-project'
-    param modelId string = 'azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large'
+    param modelId string = 'azureml://registries/azureml-cohere/models/Cohere-command-r-08-2024'
     
     var modelName = substring(modelId, (lastIndexOf(modelId, '/') + 1))
     var subscriptionName = '${modelName}-subscription'
@@ -627,9 +523,10 @@ Furthermore, models offered through Azure Marketplace are available for deployme
 
 ---
 
-## Deploy the model to a serverless API
+The steps in this section of the article use the _DeepSeek-R1_ model for illustration. The steps are the same, whether you're using Foundry Models sold directly by Azure or Foundry Models from partners and community. For example, if you choose to deploy the _Cohere-command-r-08-2024_
+model instead, you can replace the model credentials in the code snippets with the credentials for Cohere.
 
-# [Models sold directly by Azure](#tab/azure-direct)
+## Deploy the model to a serverless API
 
 In this section, you create an endpoint for your model. Name the endpoint **myserverless-text-1234ss**.
 
@@ -687,65 +584,6 @@ In this section, you create an endpoint for your model. Name the endpoint **myse
     > [!TIP]
     > If you're using Prompt flow in the same project or hub where the deployment was deployed, you still need to create the connection. 
 
-# [Models from Partners and Community](#tab/partner-models)
-
-In this section, you create an endpoint for your model with the name **myserverless-text-1234ss**.
-
-1. Create the serverless endpoint. Use the following template to create an endpoint:
-
-    __serverless-endpoint.bicep__
-
-    ```bicep
-    param projectName string = 'my-project'
-    param endpointName string = 'myserverless-text-1234ss'
-    param location string = resourceGroup().location
-    param modelId string = 'azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large'
-    
-    var modelName = substring(modelId, (lastIndexOf(modelId, '/') + 1))
-    var subscriptionName = '${modelName}-subscription'
-    
-    resource projectName_endpoint 'Microsoft.MachineLearningServices/workspaces/serverlessEndpoints@2024-04-01-preview' = {
-      name: '${projectName}/${endpointName}'
-      location: location
-      sku: {
-        name: 'Consumption'
-      }
-      properties: {
-        modelSettings: {
-          modelId: modelId
-        }
-      }
-      dependsOn: [
-        projectName_subscription
-      ]
-    }
-    
-    output endpointUri string = projectName_endpoint.properties.inferenceEndpoint.uri
-    ```
-
-    Create the deployment as follows:
-
-    ```azurecli
-    az deployment group create --resource-group $RESOURCE_GROUP --template-file model-subscription.bicep
-    ```
-    
-1. At any point, you can see the endpoints deployed to your project:
-
-    You can use the resource management tools to query the resources. The following code uses Azure CLI:
-
-    ```azurecli
-    az resource list \
-        --query "[?type=='Microsoft.MachineLearningServices/workspaces/serverlessEndpoints']"
-    ```
-
-1. The created endpoint uses key authentication for authorization. Get the keys associated with the given endpoint by using REST APIs to query this information.
-
-1. If you need to consume this deployment from a different project or hub, or you plan to use Prompt flow to build intelligent applications, you need to create a connection to the standard deployment. To learn how to configure an existing standard deployment on a new project or hub, see [Consume deployed standard deployment from a different project or from Prompt flow](deploy-models-serverless-connect.md).
-
-    > [!TIP]
-    > If you're using Prompt flow in the same project or hub where the deployment was deployed, you still need to create the connection. 
-
----
 
 ## Use the standard deployment
 
