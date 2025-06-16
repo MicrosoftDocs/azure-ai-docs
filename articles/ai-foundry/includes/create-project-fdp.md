@@ -20,15 +20,14 @@ ms.custom:
 
 * This project type gives you the best support for:
 
-    * Agents
-    * AI Model Inference including Azure OpenAI	
-    * AI Foundry API that works with agents and across models	
+    * Agents 
+    * AI Foundry API to work with agents and across models
+    * Models sold directly by Azure - Azure OpenAI, DeepSeek, xAI, etc.
+    * Partner & Community Models sold through Marketplace - Stability, Bria, Cohere, etc. 
     * Project files (directly upload files and start experimenting)
     * Evaluations
     * Fine-tuning
     * Playgrounds
-
-* You can also [Use a Bicep file](../how-to/create-azure-ai-project-template.md) to create a [!INCLUDE [fdp-project-name](fdp-project-name.md)].
 
 
 ## Prerequisites
@@ -61,7 +60,12 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 
 # [Azure AI Foundry portal](#tab/ai-foundry)
 
-These steps provide a way to create a new Azure resource with basic, defaulted, settings. If your organization requires customized Azure configurations like alternative names, security controls or cost tags, you may need to instead use ([Create your first AI Foundry resource](../../ai-services/multi-service-resource.md))  or [Create an Azure AI Foundry resource using a Bicep file](../how-to/create-resource-template.md) to comply with your organization's Azure Policy compliance.
+These steps provide a way to create a new Azure resource with basic, defaulted, settings. 
+
+> [!TIP]
+> If your organization requires customized Azure configurations like alternative names, security controls or cost tags, use one of these methods instead to comply with your organization's Azure Policy compliance:
+> * [Create your first AI Foundry resource](../../ai-services/multi-service-resource.md) 
+> * [Create an Azure AI Foundry resource using a Bicep file](../how-to/create-resource-template.md) 
 
 To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)] in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), follow these steps:
 
