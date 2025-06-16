@@ -20,7 +20,7 @@ zone_pivot_groups: azure-ai-serverless-deployment
 
 In this article, you learn how to deploy an Azure AI Foundry Model as a serverless API deployment. [Certain models in the model catalog](deploy-models-serverless-availability.md) can be deployed as a serverless API deployment. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription. 
 
-Although serverless API deployment is one of the ways to deploy Azure AI Foundry Models, we recommend that you deploy Foundry Models to **Azure AI Foundry resources**.
+Although serverless API deployment is one option for deploying Azure AI Foundry Models, we recommend that you deploy Foundry Models to **Azure AI Foundry resources**.
 
 [!INCLUDE [deploy-models-to-foundry-resources](../includes/deploy-models-to-foundry-resources.md)]
 
@@ -203,16 +203,16 @@ Furthermore, models offered through Azure Marketplace are available for deployme
 
     __subscription.yml__
     
-        ```yml
-        name: AI21-Jamba-1-5-Large-suawp
-        model_id: azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large
-        ```
+    ```yml
+    name: AI21-Jamba-1-5-Large-qwerty
+    model_id: azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large
+    ```
     
-        Use the previous file to create the subscription:
+    Use the previous file to create the subscription:
     
-        ```azurecli
-        az ml marketplace-subscription create -f subscription.yml
-        ```
+    ```azurecli
+    az ml marketplace-subscription create -f subscription.yml
+    ```
 
 1. (Optional) At any point, you can see the model offers to which your project is currently subscribed:
 
@@ -224,14 +224,52 @@ Furthermore, models offered through Azure Marketplace are available for deployme
 
 ## Deploy the model to a serverless API
 
-In this section, you create an endpoint for your model with the name **AI21-Jamba-1-5-Large-suawp**.
+# [Models sold directly by Azure](#tab/azure-direct)
+
+In this section, you create an endpoint for your model. Name the endpoint **DeepSeek-R1-qwerty**.
 
 1. Create the serverless endpoint.
 
     __endpoint.yml__
 
     ```yml
-    name: AI21-Jamba-1-5-Large-suawp
+    name: DeepSeek-R1-qwerty
+    model_id: azureml://registries/azureml-deepseek/models/DeepSeek-R1
+    ```
+
+    Use the _endpoint.yml_ file to create the endpoint:
+
+    ```azurecli
+    az ml serverless-endpoint create -f endpoint.yml
+    ```
+
+1. At any point, you can see the endpoints deployed to your project:
+
+    ```azurecli
+    az ml serverless-endpoint list
+    ```
+
+1. The created endpoint uses key authentication for authorization. Use the following steps to get the keys associated with a given endpoint.
+
+    ```azurecli
+    az ml serverless-endpoint get-credentials -n DeepSeek-R1-qwerty
+    ```
+
+1. If you need to consume this deployment from a different project or hub, or you plan to use Prompt flow to build intelligent applications, you need to create a connection to the standard deployment. To learn how to configure an existing standard deployment on a new project or hub, see [Consume deployed standard deployment from a different project or from Prompt flow](deploy-models-serverless-connect.md).
+
+    > [!TIP]
+    > If you're using Prompt flow in the same project or hub where the deployment was deployed, you still need to create the connection. 
+
+# [Models from Partners and Community](#tab/partner-models)
+
+In this section, you create an endpoint for your model. Name the endpoint **AI21-Jamba-1-5-Large-qwerty**.
+
+1. Create the serverless endpoint.
+
+    __endpoint.yml__
+
+    ```yml
+    name: AI21-Jamba-1-5-Large-qwerty
     model_id: azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large
     ```
 
@@ -250,7 +288,7 @@ In this section, you create an endpoint for your model with the name **AI21-Jamb
 1. The created endpoint uses key authentication for authorization. Use the following steps to get the keys associated with a given endpoint.
 
     ```azurecli
-    az ml serverless-endpoint get-credentials -n AI21-Jamba-1-5-Large-suawp
+    az ml serverless-endpoint get-credentials -n AI21-Jamba-1-5-Large-qwerty
     ```
 
 1. If you need to consume this deployment from a different project or hub, or you plan to use Prompt flow to build intelligent applications, you need to create a connection to the standard deployment. To learn how to configure an existing standard deployment on a new project or hub, see [Consume deployed standard deployment from a different project or from Prompt flow](deploy-models-serverless-connect.md).
@@ -258,6 +296,7 @@ In this section, you create an endpoint for your model with the name **AI21-Jamb
     > [!TIP]
     > If you're using Prompt flow in the same project or hub where the deployment was deployed, you still need to create the connection. 
 
+---
 
 ## Use the standard deployment
 
@@ -270,11 +309,29 @@ Read more about the [capabilities of this API](../../ai-foundry/model-inference/
 
 You can delete model subscriptions and endpoints. Deleting a model subscription makes any associated endpoint become *Unhealthy* and unusable.
 
+# [Models sold directly by Azure](#tab/azure-direct)
+
 To delete a standard deployment:
 
 ```azurecli
 az ml serverless-endpoint delete \
-    --name "AI21-Jamba-1-5-Large-suawp"
+    --name "DeepSeek-R1-qwerty"
+```
+
+To delete the associated model subscription:
+
+```azurecli
+az ml marketplace-subscription delete \
+    --name "DeepSeek-R1"
+```
+
+# [Models from Partners and Community](#tab/partner-models)
+
+To delete a standard deployment:
+
+```azurecli
+az ml serverless-endpoint delete \
+    --name "AI21-Jamba-1-5-Large-qwerty"
 ```
 
 To delete the associated model subscription:
@@ -283,6 +340,8 @@ To delete the associated model subscription:
 az ml marketplace-subscription delete \
     --name "AI21-Jamba-1.5-Large"
 ```
+
+---
 
 ::: zone-end
 
@@ -369,12 +428,12 @@ Furthermore, models offered through Azure Marketplace are available for deployme
 
 ## Deploy the model to a serverless API
 
-In this section, you create an endpoint for your model with the name **AI21-Jamba-1-5-Large-suawp**.
+In this section, you create an endpoint for your model with the name **AI21-Jamba-1-5-Large-qwerty**.
 
 1. Create the serverless endpoint.
 
     ```python
-    endpoint_name="AI21-Jamba-1-5-Large-suawp"
+    endpoint_name="AI21-Jamba-1-5-Large-qwerty"
     
     serverless_endpoint = ServerlessEndpoint(
         name=endpoint_name,
@@ -389,7 +448,7 @@ In this section, you create an endpoint for your model with the name **AI21-Jamb
 1. At any point, you can see the endpoints deployed to your project:
 
     ```python
-    endpoint_name="AI21-Jamba-1-5-Large-suawp"
+    endpoint_name="AI21-Jamba-1-5-Large-qwerty"
     
     serverless_endpoint = ServerlessEndpoint(
         name=endpoint_name,
@@ -520,7 +579,7 @@ Furthermore, models offered through Azure Marketplace are available for deployme
 
 ## Deploy the model to a serverless API
 
-In this section, you create an endpoint for your model with the name **AI21-Jamba-1-5-Large-suawp**.
+In this section, you create an endpoint for your model with the name **AI21-Jamba-1-5-Large-qwerty**.
 
 1. Create the serverless endpoint. Use the following template to create an endpoint:
 
@@ -569,9 +628,7 @@ In this section, you create an endpoint for your model with the name **AI21-Jamb
         --query "[?type=='Microsoft.MachineLearningServices/workspaces/serverlessEndpoints']"
     ```
 
-1. The created endpoint uses key authentication for authorization. Use the following steps to get the keys associated with a given endpoint.
-
-    Use REST APIs to query this information.
+1. The created endpoint uses key authentication for authorization. Get the keys associated with the given endpoint by using REST APIs to query this information.
 
 1. If you need to consume this deployment from a different project or hub, or you plan to use Prompt flow to build intelligent applications, you need to create a connection to the standard deployment. To learn how to configure an existing standard deployment on a new project or hub, see [Consume deployed standard deployment from a different project or from Prompt flow](deploy-models-serverless-connect.md).
 
