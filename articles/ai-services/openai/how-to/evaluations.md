@@ -50,7 +50,7 @@ Azure OpenAI evaluation enables developers to create evaluation runs to test aga
 - West US 2
 - West US 3
 
-If your preferred region is missing, refer to [Azure OpenAI regions](https://learn.microsoft.com/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#global-standard-model-availability) and check if it is one of the Azure OpenAI regional availability zones.
+If your preferred region is missing, refer to [Azure OpenAI regions](/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#global-standard-model-availability) and check if it is one of the Azure OpenAI regional availability zones.
 
 ### Supported deployment types
 
@@ -63,7 +63,7 @@ If your preferred region is missing, refer to [Azure OpenAI regions](https://lea
 
 ## Evaluation API (preview)
 
-Evaluation API lets you test model outputs directly through API calls, and programmatically assess model quality and performance. To use Evaluation API, check out the [REST API documentation](https://learn.microsoft.com/azure/ai-services/openai/authoring-reference-preview#evaluation---get-list). 
+Evaluation API lets you test model outputs directly through API calls, and programmatically assess model quality and performance. To use Evaluation API, check out the [REST API documentation](/azure/ai-services/openai/authoring-reference-preview#evaluation---get-list). 
 
 ## Evaluation pipeline
 
