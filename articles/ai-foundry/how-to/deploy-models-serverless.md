@@ -428,6 +428,55 @@ Furthermore, models offered through Azure Marketplace are available for deployme
 
 ## Deploy the model to a serverless API
 
+# [Models sold directly by Azure](#tab/azure-direct)
+
+In this section, you create an endpoint for your model. Name the endpoint **DeepSeek-R1-qwerty**.
+
+1. Create the serverless endpoint.
+
+    ```python
+    endpoint_name="DeepSeek-R1-qwerty"
+    
+    serverless_endpoint = ServerlessEndpoint(
+        name=endpoint_name,
+        model_id=model_id
+    )
+
+    created_endpoint = client.serverless_endpoints.begin_create_or_update(
+        serverless_endpoint
+    ).result()
+    ```
+
+1. At any point, you can see the endpoints deployed to your project:
+
+    ```python
+    endpoint_name="DeepSeek-R1-qwerty"
+    
+    serverless_endpoint = ServerlessEndpoint(
+        name=endpoint_name,
+        model_id=model_id
+    )
+
+    created_endpoint = client.serverless_endpoints.begin_create_or_update(
+        serverless_endpoint
+    ).result()
+    ```
+
+1. The created endpoint uses key authentication for authorization. Use the following steps to get the keys associated with a given endpoint.
+
+    ```python
+    endpoint_keys = client.serverless_endpoints.get_keys(endpoint_name)
+    print(endpoint_keys.primary_key)
+    print(endpoint_keys.secondary_key)
+    ```
+
+1. If you need to consume this deployment from a different project or hub, or you plan to use Prompt flow to build intelligent applications, you need to create a connection to the standard deployment. To learn how to configure an existing standard deployment on a new project or hub, see [Consume deployed standard deployment from a different project or from Prompt flow](deploy-models-serverless-connect.md).
+
+    > [!TIP]
+    > If you're using Prompt flow in the same project or hub where the deployment was deployed, you still need to create the connection. 
+
+# [Models from Partners and Community](#tab/partner-models)
+
 In this section, you create an endpoint for your model with the name **AI21-Jamba-1-5-Large-qwerty**.
 
 1. Create the serverless endpoint.
@@ -473,6 +522,7 @@ In this section, you create an endpoint for your model with the name **AI21-Jamb
     > [!TIP]
     > If you're using Prompt flow in the same project or hub where the deployment was deployed, you still need to create the connection. 
 
+---
 
 ## Use the standard deployment
 
@@ -579,7 +629,67 @@ Furthermore, models offered through Azure Marketplace are available for deployme
 
 ## Deploy the model to a serverless API
 
-In this section, you create an endpoint for your model with the name **AI21-Jamba-1-5-Large-qwerty**.
+# [Models sold directly by Azure](#tab/azure-direct)
+
+In this section, you create an endpoint for your model. Name the endpoint **myserverless-text-1234ss**.
+
+1. Create the serverless endpoint. Use the following template to create an endpoint:
+
+    __serverless-endpoint.bicep__
+
+    ```bicep
+    param projectName string = 'my-project'
+    param endpointName string = 'myserverless-text-1234ss'
+    param location string = resourceGroup().location
+    param modelId string = 'azureml://registries/azureml-deepseek/models/DeepSeek-R1'
+    
+    var modelName = substring(modelId, (lastIndexOf(modelId, '/') + 1))
+    var subscriptionName = '${modelName}-subscription'
+    
+    resource projectName_endpoint 'Microsoft.MachineLearningServices/workspaces/serverlessEndpoints@2024-04-01-preview' = {
+      name: '${projectName}/${endpointName}'
+      location: location
+      sku: {
+        name: 'Consumption'
+      }
+      properties: {
+        modelSettings: {
+          modelId: modelId
+        }
+      }
+      dependsOn: [
+        projectName_subscription
+      ]
+    }
+    
+    output endpointUri string = projectName_endpoint.properties.inferenceEndpoint.uri
+    ```
+
+    Create the deployment as follows:
+
+    ```azurecli
+    az deployment group create --resource-group $RESOURCE_GROUP --template-file model-subscription.bicep
+    ```
+    
+1. At any point, you can see the endpoints deployed to your project:
+
+    You can use the resource management tools to query the resources. The following code uses Azure CLI:
+
+    ```azurecli
+    az resource list \
+        --query "[?type=='Microsoft.MachineLearningServices/workspaces/serverlessEndpoints']"
+    ```
+
+1. The created endpoint uses key authentication for authorization. Get the keys associated with the given endpoint by using REST APIs to query this information.
+
+1. If you need to consume this deployment from a different project or hub, or you plan to use Prompt flow to build intelligent applications, you need to create a connection to the standard deployment. To learn how to configure an existing standard deployment on a new project or hub, see [Consume deployed standard deployment from a different project or from Prompt flow](deploy-models-serverless-connect.md).
+
+    > [!TIP]
+    > If you're using Prompt flow in the same project or hub where the deployment was deployed, you still need to create the connection. 
+
+# [Models from Partners and Community](#tab/partner-models)
+
+In this section, you create an endpoint for your model with the name **myserverless-text-1234ss**.
 
 1. Create the serverless endpoint. Use the following template to create an endpoint:
 
@@ -635,6 +745,7 @@ In this section, you create an endpoint for your model with the name **AI21-Jamb
     > [!TIP]
     > If you're using Prompt flow in the same project or hub where the deployment was deployed, you still need to create the connection. 
 
+---
 
 ## Use the standard deployment
 
@@ -652,7 +763,6 @@ You can use the resource management tools to manage the resources. The following
 ```azurecli
 az resource delete --name <resource-name>
 ```
-
 
 ::: zone-end
 
