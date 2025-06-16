@@ -37,7 +37,7 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 # [Azure AI Foundry portal](#tab/ai-foundry)
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
-- You must be **Owner** of the subscription to receive the appropriate access control needed to use the project.
+- You must be **Owner** of the subscription to have appropriate access control necessary to create the Azure AI Foundry resource that is the parent of the project.  If you don't have this access, have your administrator [create an AI Foundry resource](../../ai-services/multi-service-resource.md) for you to use.  Then skip to [Create multiple projects on the same resource](#create-multiple) to create your project.
 
 
 # [Python SDK](#tab/python)
@@ -183,7 +183,7 @@ CLI commands not currently available for creating a [!INCLUDE [fdp-project-name]
 
 ---
 
-## Create multiple projects on the same resource
+## <a name="create-multiple"></a> Create multiple projects on the same resource
 
 [!INCLUDE [create-second-fdp-project](create-second-fdp-project.md)]
 
