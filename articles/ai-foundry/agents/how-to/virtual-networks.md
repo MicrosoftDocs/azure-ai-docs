@@ -78,7 +78,10 @@ For customers without an existing virtual network, the Standard Setup with Priva
 * A Microsoft-managed key vault is used by default. 
 
 
-### Option 1: manually deploy the bicep template
+### Manually deploy the bicep template
+
+> [!NOTE]
+> Using the Bicep template is the only way to deploy a network secured environment for Azure AI Foundry Agent Service.
 
 1. To deploy and customize the bicep templates, [download the template from GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/15-private-network-standard-agent-setup). Download the following from the `private-network-standard-agent-setup` folder:
     1. `main-create.bicep`
