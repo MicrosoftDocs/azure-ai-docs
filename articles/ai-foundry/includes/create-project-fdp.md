@@ -46,6 +46,26 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 - You must be **Owner** of the subscription to receive the appropriate access control needed to use the project.
 - [Set up your development environment](../how-to/develop/install-cli-sdk.md?tabs=python)
 - Authenticate with `az login` or `az login --use-device-code` in your environment before running code.
+- Complete these steps to start your Python script:
+    1. Install packages: `pip install azure-identity azure-mgmt-cognitiveservices`. If in a notebook cell, use `%pip install azure-identity azure-mgmt-cognitiveservices`.
+    1. Use `pip show azure-mgmt-cognitiveservices` to verify your version is 13.7 or greater.
+    1. Start your script with the following code to create the `client` connection and variables used throughout this article.  This example creates the project in West US:
+    
+        ```python
+        from azure.identity import DefaultAzureCredential
+        from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
+        
+        sub_id = 'your-sub'
+        rgp = 'your-resource-group'
+        resource_name = 'your-resource'
+        project_name = 'your-project'
+        location = 'westus'
+        
+        client = CognitiveServicesManagementClient(
+            credential=DefaultAzureCredential(), 
+            subscription_id=sub_id,
+            api_version="2025-04-01-preview"
+        )
 
 
 # [Azure CLI](#tab/azurecli)
@@ -97,27 +117,11 @@ To customize the settings for your project, follow these steps:
 
 To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
-1. Install packages: `pip install azure-identity azure-mgmt-cognitiveservices`. If in a notebook cell, use `%pip install azure-identity azure-mgmt-cognitiveservices`.
-1. Use `pip show azure-mgmt-cognitiveservices` to verify your version is 13.7 or greater.
-1. Use the following code to create a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)].  This example creates the project in West US:
+
+1. Add this code to create a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)], using the variables and `client` connection from the [Prerequisites](#prerequisites).
 
     ```python
-    from azure.identity import DefaultAzureCredential
-    from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
-    import os
-    import json
-    
-    sub_id = 'your-sub'
-    rgp = 'your-resource-group'
-    resource_name = 'your-resource'
-    project_name = 'your-project'
-    location = 'westus'
-    
-    client = CognitiveServicesManagementClient(
-        credential=DefaultAzureCredential(), 
-        subscription_id=sub_id,
-        api_version="2025-04-01-preview"
-    )
+
     # Create resource
     resource = client.accounts.begin_create(
         resource_group_name=rgp,
