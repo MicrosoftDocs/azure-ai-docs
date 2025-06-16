@@ -51,21 +51,8 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
     1. Use `pip show azure-mgmt-cognitiveservices` to verify your version is 13.7 or greater.
     1. Start your script with the following code to create the `client` connection and variables used throughout this article.  This example creates the project in West US:
     
-        ```python
-        from azure.identity import DefaultAzureCredential
-        from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
-        
-        sub_id = 'your-sub'
-        rgp = 'your-resource-group'
-        resource_name = 'your-resource'
-        project_name = 'your-project'
-        location = 'westus'
-        
-        client = CognitiveServicesManagementClient(
-            credential=DefaultAzureCredential(), 
-            subscription_id=sub_id,
-            api_version="2025-04-01-preview"
-        )
+    :::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="create_client":::
+
 
 
 # [Azure CLI](#tab/azurecli)
@@ -120,32 +107,8 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
 1. Add this code to create a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)], using the variables and `client` connection from the [Prerequisites](#prerequisites).
 
-    ```python
+  :::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="create_resource_project":::
 
-    # Create resource
-    resource = client.accounts.begin_create(
-        resource_group_name=rgp,
-        account_name=resource_name,
-        account={
-            "location": location,
-            "kind": "AIServices",
-            "sku": {"name": "S0",},
-            "identity": {"type": "SystemAssigned"},
-            "properties": {"allowProjectManagement": True}
-        }
-    )
-    # Create default project
-    project = client.projects.begin_create(
-        resource_group_name=rgp,
-        account_name=resource_name,
-        project_name=project_name,
-        project={
-            "location": location,
-            "identity": {"type": "SystemAssigned"},
-            "properties": {}
-        }
-    )
-    ```
 1. (Optional) If you have multiple accounts, add the tenant ID of the Microsoft Entra ID you wish to use into the `DefaultAzureCredential`. Find your tenant ID from the [Azure portal](https://portal.azure.com) under **Microsoft Entra ID, External Identities**.
         
     ```python
