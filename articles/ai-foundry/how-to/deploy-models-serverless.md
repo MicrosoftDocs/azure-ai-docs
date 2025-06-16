@@ -609,7 +609,7 @@ az resource delete --name <resource-name>
 
 Quota is managed per deployment. Each deployment has a rate limit of 200,000 tokens per minute and 1,000 API requests per minute. Additionally, we currently limit one deployment per model per project. Contact Microsoft Azure Support if the current rate limits aren't sufficient for your scenarios.
 
-- You can find pricing information for [Models Sold Directly by Azure](../model-inference/concepts/models.md#models-sold-directly-by-azure?), on the *Pricing and terms* tab of the _Serverless API deployment_ window.
+- You can find pricing information for [Models Sold Directly by Azure](../model-inference/concepts/models.md#models-sold-directly-by-azure), on the *Pricing and terms* tab of the _Serverless API deployment_ window.
 
 - [Models from Partners and Community](../model-inference/concepts/models.md#models-from-partners-and-community) are offered through Azure Marketplace and integrated with Azure AI Foundry for use. You can find Azure Marketplace pricing when deploying or fine-tuning these models. Each time a project subscribes to a given offer from Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference and fine-tuning; however, multiple meters are available to track each scenario independently. For more information on how to track costs, see [Monitor costs for models offered through Azure Marketplace](costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace).
 
