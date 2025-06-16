@@ -61,6 +61,8 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 
 # [Azure AI Foundry portal](#tab/ai-foundry)
 
+These steps provide a way to create a new Azure resource with basic, defaulted, settings. If your organization requires customized Azure configurations like alternative names, security controls or cost tags, you may need to instead use ([Create your first AI Foundry resource](../../ai-services/multi-service-resource.md))  or [Create an Azure AI Foundry resource using a Bicep file](../how-to/create-resource-template.md) to comply with your organization's Azure Policy compliance.
+
 To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)] in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), follow these steps:
 
 1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
