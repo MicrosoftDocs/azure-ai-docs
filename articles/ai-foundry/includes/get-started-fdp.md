@@ -173,7 +173,7 @@ Agents have powerful capabilities through the use of tools. Start by chatting wi
  
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
-When you create a project from the model catalog, the model is deployed and an agent is created using this model. To chat with this agent:
+When you're ready to try an agent, a default agent is created for you. To chat with this agent:
 
 1. On the left pane, select **Playgrounds**.
 1. In the **Agents playground** card, select **Let's go**.
