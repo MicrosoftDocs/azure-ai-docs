@@ -28,7 +28,7 @@ You need the following to complete this tutorial:
 
 ## Enable tracing in your project
 
-Azure AI Foundry stores traces in Azure Application Insight resources using OpenTelemetry. By default, new Azure AI Foundry resources don't provision these resources. You can connect rpojects to an existing Azure Application Insights resource or create a new one from within the project. You do such configuration once per each Azure AI Foundry resource.
+Azure AI Foundry stores traces in Azure Application Insight resources using OpenTelemetry. By default, new Azure AI Foundry resources don't provision these resources. You can connect projects to an existing Azure Application Insights resource or create a new one from within the project. You do such configuration once per each Azure AI Foundry resource.
 
 The following steps show how to configure your resource:
 
@@ -130,7 +130,7 @@ When developing with the OpenAI SDK, you can instrument your code so traces are 
 
     :::image type="content" source="../../media/how-to/develop/trace-application/tracing-display-simple.png" alt-text="A screenshot showing how a simple chat completion request is displayed in the trace." lightbox="../../media/how-to/develop/trace-application/tracing-display-simple.png":::
 
-1. It may be useful to capture sections of your code that mixes business logic with models when developing complex applications. OpenTelemetry uses the concept of spans to capture sections you're interested in. To start emmiting your own spans, get an instance of the current **tracer** object.
+1. It may be useful to capture sections of your code that mixes business logic with models when developing complex applications. OpenTelemetry uses the concept of spans to capture sections you're interested in. To start generating your own spans, get an instance of the current **tracer** object.
 
     ```python
     from opentelemetry import trace
