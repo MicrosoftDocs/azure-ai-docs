@@ -6,7 +6,7 @@ author: sdgilley
 ms.author: sgilley
 manager: scottpolly
 ms.reviewer: sgilley
-ms.date: 05/12/2025
+ms.date: 06/12/2025
 ms.service: azure-ai-foundry
 ms.topic: overview
 ms.custom:
@@ -58,14 +58,16 @@ This table summarizes features available in the two project types:
 | Capability | [!INCLUDE [fdp](includes/fdp-project-name.md)] | [!INCLUDE[hub](includes/hub-project-name.md)] |
 | --- | --- | --- |
 | Agents | ✅ (GA) | ✅ (Preview only) |
-| Azure AI Foundry Models including Azure OpenAI models | ✅ (Native support) | Available via connections |
 | AI Foundry API to work with agents and across models| ✅ (Native support) | Available via connections |
-| Project files (directly upload files and start experimenting) | ✅ | |
-| Project-level isolation of files and outputs | ✅ | ✅|
+| Models sold directly by Azure - Azure OpenAI, DeepSeek, xAI, etc. | ✅ | Available via connections |
+| Partner & Community Models sold through Marketplace - Stability, Bria, Cohere, etc. | ✅ | Available via connections |
+| Open source models e.g. HuggingFace  |  | ✅ |
 | Evaluations | ✅ | ✅ |
 | Playground | ✅ | ✅ |
 | Prompt flow |  | ✅ |
-| Managed compute  |  | ✅ |
+| Content understanding  |  | ✅ |
+| Project files (directly upload files and start experimenting) | ✅ | |
+| Project-level isolation of files and outputs | ✅ | ✅|
 | Required Azure dependencies | - | Azure Storage account, Azure Key Vault |
 
 ### <a name="how-do-i-know"></a> How do I know which type of project I have?
