@@ -29,7 +29,6 @@ ms.custom:
     * Fine-tuning
     * Playgrounds
 
-
 ## Prerequisites
 
 Use the following tabs to select the method you plan to use to create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
@@ -51,7 +50,7 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
     1. Use `pip show azure-mgmt-cognitiveservices` to verify your version is 13.7 or greater.
     1. Start your script with the following code to create the `client` connection and variables used throughout this article.  This example creates the project in West US:
     
-    :::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="create_client":::
+    :::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/create_project.py" id="create_client":::
 
 
 
@@ -107,7 +106,7 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
 1. Add this code to create a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)], using the variables and `client` connection from the [Prerequisites](#prerequisites).
 
-  :::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="create_resource_project":::
+    :::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/create_project.py" id="create_resource_project":::
 
 1. (Optional) If you have multiple accounts, add the tenant ID of the Microsoft Entra ID you wish to use into the `DefaultAzureCredential`. Find your tenant ID from the [Azure portal](https://portal.azure.com) under **Microsoft Entra ID, External Identities**.
         
@@ -167,7 +166,7 @@ On the project **Home** page, you can find information about the project.
 
 # [Python SDK](#tab/python)
 
-:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="show_project":::
+:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/create_project.py" id="show_project":::
 
 # [Azure CLI](#tab/azurecli)
 

@@ -53,7 +53,7 @@ Your first project (default project) plays a special role and has access to more
     
     Add this code to your script to create a new project on your existing 
 
-    :::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="create_additional":::
+    :::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/create_project.py" id="create_additional":::
     
     
     # [Azure CLI](#tab/azurecli)
