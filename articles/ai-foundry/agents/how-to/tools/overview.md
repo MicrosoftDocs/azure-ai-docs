@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 05/08/2025
+ms.date: 06/17/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
@@ -45,7 +45,16 @@ When a user sends a query to the agent, it will create a [thread, run, and messa
 
 There are various ways to influence how your AI agent invokes tools:
 
-- The `tool_choice` parameter: Most deterministic, controls which (if any) tool is called by the model. By default, it is set to `auto`, which means the AI model will decide. If you want to **force** the model to call a specific tool, you can provide the specification of this tool, for example `{"type": "function", "function": {"name": "my_function"}}`.
+- The `tool_choice` parameter: Most deterministic way of controlling which (if any) tool is called by the model. By default, it is set to `auto`, which means the AI model will decide. If you want to **force** the model to call a specific tool, you can provide the specification of this tool, for example
+
+  ```python
+  run = project_client.agents.runs.create_and_process(
+        thread_id=thread.id, 
+        agent_id=agent.id,
+        tool_choice={"type": "bing_grounding"}  # specify the tool to use
+        )
+  ```
+
 - The `instructions` parameter: Nondeterministic. Use the instructions to help the AI model understand your use case and the purposes of each tool. You want to tell the AI model what information or actions each tool can do. For example "*use the AI Search tool `<tool_name>` for product related information, use the Fabric tool `<tool_name>` for sales related information*." Sometimes the user query can be responded by the model's base knowledge or by the tools, you want to provide instructions like "*use the tool outputs to generate a response, don't use your own knowledge.*"
 
 ## Prerequisites 
@@ -65,7 +74,7 @@ The Foundry Agent Service provides the following built-in tools. You can use the
 |[File Search](file-search.md)     | Augment agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.          |
 |[Function calling](function-calling.md)     |Describe the structure of functions you create to an agent and have them be called when appropriate during the agent's interactions with users.         |
 |[Grounding with Bing Search](bing-grounding.md)     | Enable your agent to use Grounding with Bing Search to access and return information from the internet.         |
-| [Grounding with Bing Custom Search](bing-custom-search.md) | Enhance your Agent response with selected web domains |
+| [Grounding with Bing Custom Search (preview)](bing-custom-search.md) | Enhance your Agent response with selected web domains |
 | [Microsoft Fabric (preview)](fabric.md) | Integrate your agent with the [Microsoft Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. |
 | [OpenAPI 3.0 Specified tool ](openapi-spec.md) | Connect your Azure AI Agent to external APIs using functions with an OpenAPI 3.0 specification. |
 
@@ -88,3 +97,25 @@ The following tools are authored by third-party partners. Use the links below to
 | [Morningstar](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/getting-started-agents/3p-tools/Morningstar) | Access up-to-date investment research and data such as analyst research, expert commentary, and essential Morningstar data. |
 | [Trademo](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/getting-started-agents/3p-tools/Trademo_Glocal_trade) | Provide latest duties and past shipment data for trade between multiple countries |
 | [Tripadvisor](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/getting-started-agents/3p-tools/Tripadvisor) | Get travel data, guidance and reviews |
+
+## Best Practices
+
+### Use system instruction to help model invoke the right tool
+
+In order for the model to understand which tools to use, you want to provide detailed instruction for the model to describe when and how to use the tool. You might want to consider providing the following information:
+- Primary Objective: what is the objective of this agent? what is the goal of related tasks? what are the expected outcomes?
+- Your responsibilities: what tasks you expect the agent to perform. For example, calling Grounding with Bing Search tool to get the latest information about local events.
+- Inputs you may receive: what inputs do you expect the agent to receive?
+- For each tool:
+   - The tool name
+   - A description of the tool
+   - Triggers: when do you expect this tool to be called? What type of information will be searched? What will queries contain?
+   - An example of a query
+
+For example, you might provide tool instructions like the following for the Grounding with Bing Search tool:
+
+Grounding with Bing Search tool
+- Use: Gather external trends or news to enrich the post with real-time insights. 
+- Trigger this when:
+    - The user asks to reference recent data or competitive context.
+    - Example: "Can you reference the latest industry trends?" or "What are competitors doing?".
