@@ -23,11 +23,11 @@ Fine-tuning customizes a pretrained AI model with additional training on a speci
 
 :::image type="content" source="../media/concepts/model-catalog-fine-tuning.png" alt-text="Screenshot of Azure AI Foundry model catalog and filtering by Fine-tuning tasks." lightbox="../media/concepts/model-catalog-fine-tuning.png":::
 
-## Getting started with fine-tuning
+## Getting started 
 
 To find steps to fine-tuning a model in AI Foundry, see [Fine-tune Models in AI Foundry](../how-to/fine-tune-serverless.md) or [Fine-tune models using managed compute](how-to/fine-tune-managed-compute.md).
 
-## Data preparation
+### Data preparation
 
 The fine-tuning process begins by selecting a pretrained model and preparing a relevant dataset tailored to the target task. This dataset should reflect the kind of inputs the model will see in deployment. 
 
