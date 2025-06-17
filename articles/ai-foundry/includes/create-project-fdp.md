@@ -29,7 +29,6 @@ ms.custom:
     * Fine-tuning
     * Playgrounds
 
-
 ## Prerequisites
 
 Use the following tabs to select the method you plan to use to create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
@@ -49,23 +48,23 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 - Complete these steps to start your Python script:
     1. Install packages: `pip install azure-identity azure-mgmt-cognitiveservices`. If in a notebook cell, use `%pip install azure-identity azure-mgmt-cognitiveservices`.
     1. Use `pip show azure-mgmt-cognitiveservices` to verify your version is 13.7 or greater.
-    1. Start your script with the following code to create the `client` connection and variables used throughout this article.  This example creates the project in West US:
+    1. Start your script with the following code to create the `client` connection and variables used throughout this article.  This example creates the project in East US:
     
+        :::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/create_project.py" id="create_client":::
+
+    1. (Optional) If you have multiple accounts, add the tenant ID of the Microsoft Entra ID you wish to use into the `DefaultAzureCredential`. Find your tenant ID from the [Azure portal](https://portal.azure.com) under **Microsoft Entra ID, External Identities**.
+            
         ```python
-        from azure.identity import DefaultAzureCredential
-        from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
-        
-        sub_id = 'your-sub'
-        rgp = 'your-resource-group'
-        resource_name = 'your-resource'
-        project_name = 'your-project'
-        location = 'westus'
-        
-        client = CognitiveServicesManagementClient(
-            credential=DefaultAzureCredential(), 
-            subscription_id=sub_id,
-            api_version="2025-04-01-preview"
-        )
+        DefaultAzureCredential(interactive_browser_tenant_id="<TENANT_ID>")
+        ```
+            
+    1. (Optional) If you're working on in the [Azure Government - US](/azure/azure-government/documentation-government-welcome) or [Azure China 21Vianet](https://azure.microsoft.com/global-infrastructure/services/?regions=china-east-2%2cchina-non-regional&products=all) regions, specify the region into which you want to authenticate. You can specify the region with `DefaultAzureCredential`. The following example authenticates to the Azure Government - US region:
+            
+        ```python
+        from azure.identity import AzureAuthorityHosts
+        DefaultAzureCredential(authority=AzureAuthorityHosts.AZURE_GOVERNMENT)
+        ```
+    
 
 
 # [Azure CLI](#tab/azurecli)
@@ -120,44 +119,7 @@ To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
 1. Add this code to create a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)], using the variables and `client` connection from the [Prerequisites](#prerequisites).
 
-    ```python
-
-    # Create resource
-    resource = client.accounts.begin_create(
-        resource_group_name=rgp,
-        account_name=resource_name,
-        account={
-            "location": location,
-            "kind": "AIServices",
-            "sku": {"name": "S0",},
-            "identity": {"type": "SystemAssigned"},
-            "properties": {"allowProjectManagement": True}
-        }
-    )
-    # Create default project
-    project = client.projects.begin_create(
-        resource_group_name=rgp,
-        account_name=resource_name,
-        project_name=project_name,
-        project={
-            "location": location,
-            "identity": {"type": "SystemAssigned"},
-            "properties": {}
-        }
-    )
-    ```
-1. (Optional) If you have multiple accounts, add the tenant ID of the Microsoft Entra ID you wish to use into the `DefaultAzureCredential`. Find your tenant ID from the [Azure portal](https://portal.azure.com) under **Microsoft Entra ID, External Identities**.
-        
-    ```python
-    DefaultAzureCredential(interactive_browser_tenant_id="<TENANT_ID>")
-    ```
-        
-1. (Optional) If you're working on in the [Azure Government - US](/azure/azure-government/documentation-government-welcome) or [Azure China 21Vianet](https://azure.microsoft.com/global-infrastructure/services/?regions=china-east-2%2cchina-non-regional&products=all) regions, specify the region into which you want to authenticate. You can specify the region with `DefaultAzureCredential`. The following example authenticates to the Azure Government - US region:
-        
-    ```python
-    from azure.identity import AzureAuthorityHosts
-    DefaultAzureCredential(authority=AzureAuthorityHosts.AZURE_GOVERNMENT)
-    ```
+    :::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/create_project.py" id="create_resource_project":::
 
 
 # [Azure CLI](#tab/azurecli)
@@ -204,15 +166,7 @@ On the project **Home** page, you can find information about the project.
 
 # [Python SDK](#tab/python)
 
-```python
-    # Get project
-    project = client.projects.get(
-        resource_group_name=rgp,
-        account_name=account_name,
-        project_name=project_name
-    )
-    print(project)
-```
+:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/create_project.py" id="show_project":::
 
 # [Azure CLI](#tab/azurecli)
 
