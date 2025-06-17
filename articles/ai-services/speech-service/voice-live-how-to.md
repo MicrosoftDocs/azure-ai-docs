@@ -16,7 +16,7 @@ ms.custom: references_regions
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-The Voice Live API provides a capable WebSocket interface compared to the [Azure OpenAI Realtime API](../openai/how-to/realtime-audio.md). 
+The Voice Live API provides a capable WebSocket interface compared to the [Azure OpenAI Realtime API](../openai/how-to/realtime-audio.md).
 
 Unless otherwise noted, the Voice Live API uses the same events as the [Azure OpenAI Realtime API](/azure/ai-services/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context). This document provides a reference for the event message properties that are specific to the Voice Live API.
 
@@ -26,7 +26,7 @@ For a table of supported models and regions, see the [Voice Live API overview](.
 
 ## Authentication
 
-An [Azure AI Foundry resource](../multi-service-resource.md) is required to access the Voice Live API. 
+An [Azure AI Foundry resource](../multi-service-resource.md) is required to access the Voice Live API.
 
 ### WebSocket endpoint
 
@@ -66,8 +66,8 @@ Here's an example `session.update` message that configures several aspects of th
         "remove_filler_words": false,
         "end_of_utterance_detection": {
             "model": "semantic_detection_v1",
-            "threshold": 0.1,
-            "timeout": 4,
+            "threshold": 0.01,
+            "timeout": 2,
         },
     },
     "input_audio_noise_reduction": {"type": "azure_deep_noise_suppression"},
@@ -84,10 +84,10 @@ The server responds with a [`session.updated`](../openai/realtime-audio-referenc
 
 ## Session Properties
 
-The following sections describe the properties of the `session` object that can be configured in the `session.update` message. 
+The following sections describe the properties of the `session` object that can be configured in the `session.update` message.
 
 > [!TIP]
-> For comprehensive descriptions of supported events and properties, see the [Azure OpenAI Realtime API events reference documentation](../openai/realtime-audio-reference.md?context=/azure/ai-services/speech-service/context/context). This document provides a reference for the event message properties that are enhancements via the Voice Live API. 
+> For comprehensive descriptions of supported events and properties, see the [Azure OpenAI Realtime API events reference documentation](../openai/realtime-audio-reference.md?context=/azure/ai-services/speech-service/context/context). This document provides a reference for the event message properties that are enhancements via the Voice Live API.
 
 ### Input audio properties
 
@@ -99,7 +99,7 @@ You can use input audio properties to configure the input audio stream.
 | `input_audio_echo_cancellation` | object   | Optional | Enhances the input audio quality by removing the echo from the model's own voice without requiring any client-side echo cancellation.<br/><br/>Set the `type` property of `input_audio_echo_cancellation` to enable echo cancellation.<br/><br/>The supported value for `type` is `server_echo_cancellation` which is used when the model's voice is played back to the end-user through a speaker, and the microphone picks up the model's own voice.  |
 | `input_audio_noise_reduction`   | object   | Optional | Enhances the input audio quality by suppressing or removing environmental background noise.<br/><br/>Set the `type` property of `input_audio_noise_reduction` to enable noise suppression.<br/><br/>The supported value for `type` is `azure_deep_noise_suppression` which optimizes for speakers closest to the microphone. |
 
-Here's an example of input audio properties is a session object: 
+Here's an example of input audio properties is a session object:
 
 ```json
 {
@@ -137,7 +137,7 @@ The Voice Live API offers conversational enhancements to provide robustness to t
 
 ### Turn Detection Parameters
 
-Turn detection is the process of detecting when the end-user started or stopped speaking. The Voice Live API builds on the Azure OpenAI Realtime API `turn_detection` property to configure turn detection. The `azure_semantic_vad` type is one differentiator between the Voice Live API and the Azure OpenAI Realtime API. 
+Turn detection is the process of detecting when the end-user started or stopped speaking. The Voice Live API builds on the Azure OpenAI Realtime API `turn_detection` property to configure turn detection. The `azure_semantic_vad` type is one differentiator between the Voice Live API and the Azure OpenAI Realtime API.
 
 | Property | Type | Required or optional | Description |
 |----------|----------|----------|------------|
@@ -145,7 +145,7 @@ Turn detection is the process of detecting when the end-user started or stopped 
 | `threshold` | number | Optional | A higher threshold requires a higher confidence signal of the user trying to speak. |
 | `prefix_padding_ms` | integer | Optional  | The amount of audio, measured in milliseconds, to include before the start of speech detection signal. |
 | `silence_duration_ms` | integer  | Optional | The duration of user's silence, measured in milliseconds, to detect the end of speech. |
-| `end_of_utterance_detection` | object | Optional | Configuration for end of utterance detection. The Voice Live API offers advanced end-of-turn detection to indicate when the end-user stopped speaking while allowing for natural pauses. End of utterance detection can significantly reduce premature end-of-turn signals without adding user-perceivable latency. End of utterance detection is only available when using `azure_semantic_vad`.<br/><br/>Properties of `end_of_utterance_detection` include:<br/>-`model`: The model to use for end of utterance detection. The supported value is `semantic_detection_v1`.<br/>- `threshold`: Threshold to determine the end of utterance (0.0 to 1.0). The default value is 0.1.<br/>- `timeout`: Timeout in seconds. The default value is 4 seconds.|
+| `end_of_utterance_detection` | object | Optional | Configuration for end of utterance detection. The Voice Live API offers advanced end-of-turn detection to indicate when the end-user stopped speaking while allowing for natural pauses. End of utterance detection can significantly reduce premature end-of-turn signals without adding user-perceivable latency. End of utterance detection is only available when using `azure_semantic_vad`.<br/><br/>Properties of `end_of_utterance_detection` include:<br/>-`model`: The model to use for end of utterance detection. The supported value is `semantic_detection_v1`.<br/>- `threshold`: Threshold to determine the end of utterance (0.0 to 1.0). The default value is 0.01.<br/>- `timeout`: Timeout in seconds. The default value is 2 seconds.|
 
 Here's an example of end of utterance detection in a session object:
 
@@ -160,8 +160,8 @@ Here's an example of end of utterance detection in a session object:
             "remove_filler_words": false,
             "end_of_utterance_detection": {
                 "model": "semantic_detection_v1",
-                "threshold": 0.1,
-                "timeout": 4
+                "threshold": 0.01,
+                "timeout": 2
             }
         }
     }
@@ -170,7 +170,7 @@ Here's an example of end of utterance detection in a session object:
 
 ### Audio output through Azure text to speech
 
-You can use the `voice` parameter to specify a standard or custom voice. The voice is used for audio output. 
+You can use the `voice` parameter to specify a standard or custom voice. The voice is used for audio output.
 
 The `voice` object has the following properties:
 
@@ -357,7 +357,7 @@ To configure the viseme, you can set the `animation.outputs` in the `session.upd
 }
 ```
 
-The `output_audio_timestamp_types` parameter is optional. It configures which audio timestamps should be returned for generated audio. Currently, it only supports `word`. 
+The `output_audio_timestamp_types` parameter is optional. It configures which audio timestamps should be returned for generated audio. Currently, it only supports `word`.
 
 The service returns the viseme alignment in the response when the audio is generated.
 
