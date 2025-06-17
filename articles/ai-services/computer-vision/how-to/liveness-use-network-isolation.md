@@ -1,7 +1,7 @@
 ---
 title: "Use liveness detection with network isolation - Face"
 titleSuffix: Azure AI services
-description: Learn how to use the face liveness detection feature with resources that have public network access disabled, so you can support end users on public networks while keeping your service private.
+description: Learn how to use the face liveness detection feature when your resource has public network access disabled. This guide shows how you can support end users on public networks while keeping your Azure AI services private.
 author: dipidoo
 manager: 
 #customer intent: As a developer, I want to use Face API Liveness Detection but also want to disable public network access to satisfy network isolation requirements of my organization or industry.
@@ -28,12 +28,16 @@ Before proceeding, make sure you have the following prerequisites in place:
 
 * __Face API resource with Limited Access enabled__ – You need a Face or Azure AI services resource within a subscription approved for the Face Liveness Detection Limited Access feature. For more information, see the [Face limited access](/legal/cognitive-services/computer-vision/limited-access-identity?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext) page.
 * __Private network configuration__ – The Face or Azure AI services resource should be configured so that __Public network access__ is __Disabled__. Ensure that your networking setup is complete and tested (for example, your app server or proxy can communicate with the Face or Azure AI services resource over the [private link](../cognitive-services-virtual-networks.md#use-private-endpoints)).
-* __Reverse proxy with a custom domain__ – Deploy a reverse proxy service that acts as the bridge between public clients and your Face or Azure AI services resource. This proxy should be hosted in a network that can access your Face resource, such as in the same virtual network or via private endpoint, and exposed via a publicly reachable domain name that you control. Importantly, configure the proxy to forward the Face liveness routes without modifying existing headers or payload. Ensure your proxy passes these requests directly to your Face or Azure AI services resource's private endpoint, including all authorization headers, query parameters, and body content unchanged. The proxy must support the following REST paths used by the liveness feature, which correspond to creating a session, ending a session attempt, performing a liveness check, and performing a liveness check with face verification, respectively:
+* __Reverse proxy with a custom domain__ – Deploy a reverse proxy service that acts as a bridge between public clients and your Face or Azure AI services resource. Host this proxy in a network that can access your Face resource, such as the same virtual network or through a private endpoint. Expose the proxy using a public domain name that you control.
 
-  * `/face/[version]/session/start`
-  * `/face/[version]/session/attempt/end`
-  * `/face/[version]/detectLiveness/singleModal`
-  * `/face/[version]/detectLivenessWithVerify/singleModal`
+    Configure your proxy to forward Face liveness routes without changing existing headers or payloads. Make sure the proxy passes requests directly to your Face or Azure AI services resource's private endpoint. All authorization headers, query parameters, and body content must remain unchanged.
+
+    The proxy must support the following REST paths used by the liveness feature. These paths are for creating a session, ending a session attempt, performing a liveness check, and performing a liveness check with face verification:
+
+    * `/face/[version]/session/start`
+    * `/face/[version]/session/attempt/end`
+    * `/face/[version]/detectLiveness/singleModal`
+    * `/face/[version]/detectLivenessWithVerify/singleModal`
 
 * Domain Name System (DNS) administration access – Because you need to prove ownership of the proxy's domain, you should have the ability to create DNS records (specifically, TXT records) for that domain.
 * Azure support plan – The process for enabling a reverse proxy with a private Face or Azure AI services resource currently involves coordination with Microsoft support. Make sure you have the appropriate support access for creating an Azure support request.
@@ -44,10 +48,10 @@ With these prerequisites satisfied, you're ready to proceed with configuring liv
 
 Using the Face Liveness Detection feature with Face or Azure AI services resource within isolated network involves a few key steps. At a high level, you register your proxy's information with Microsoft via a support request, verify domain ownership, update your client application to use the new proxy endpoint, and then test the end-to-end functionality.
 
-1. Submit Reverse Proxy Registration – Request Open an Azure support request to register your custom proxy domain for Face Liveness Detection. Include details of your Face or Azure AI services resource and proxy hostname.
+1. Submit Reverse Proxy Registration – Begin registration of your custom proxy domain for Face Liveness Detection by opening an Azure support request. Include details of your Face or Azure AI services resource and proxy hostname.
 1. Verify Domain Ownership – Azure support provides a verification code. You prove ownership by adding a DNS TXT record on a specific subdomain of your proxy's domain.
-1. Azure Enables Proxy Access – Azure verifies the DNS record and configure your Face or Azure AI services resource to recognize the proxy. Once completed, the service is aware of your proxy domain for liveness detection traffic.
-1. Test the Liveness Detection Workflow – To ensure the setup works, run a liveness detection session from a client device. Verify that the client's requests go through the proxy and that you receive a successful liveness result.
+1. Wait for Azure to Enable Proxy Access – Azure verifies the DNS record and configure your Face or Azure AI services resource to recognize the proxy. Once completed, the service is aware of your proxy domain for liveness detection traffic.
+1. Test the Liveness Detection Workflow – Ensure the setup works by running a liveness detection session from a client device. Verify that the client's requests go through the proxy and that you receive a successful liveness result.
 
 The following sections provide detailed instructions for each step.
 
@@ -72,7 +76,7 @@ In the __New support request__ page:
     * When did the problem start? – Fill in an appropriate time, or __Not sure, use current time__
     * Description – Fill in the details, such as:
       * Reverse proxy hostname that you set up (for example, `liveness.contoso.com`)
-      * Confirmation of prerequisites outlined above
+      * Confirmation of prerequisites
       * Justification or context, and if you have a specific compliance standard or policy document, you might reference it here to help us evaluate if this preview program is appropriate for you
     * Preferred contact method – __Email__ is more suitable for this purpose given the expected turnaround time and the complexity of spelling long randomized string over the phone
     * Fill in other fields as appropriate
@@ -86,11 +90,11 @@ After you initiate the request, Azure support engineer will reach out with a dom
 
 ### Await verification string
 
-Azure support engineer updates your ticket and email you a randomly generated verification string. Create a DNS TXT record under a particular subdomain to confirm your domain ownership. Typically, the subdomain used is a dedicated one like `azaiverify` on your domain. For example, if your proxy domain is `liveness.contoso.com`, create a TXT record for the name `azaiverify.liveness.contoso.com` (the emailed instructions contain the exact subdomain for this step). The TXT record's value should be the provided verification string.
+Azure support engineer updates your ticket and email you a randomly generated verification string. Confirm your domain ownership by creating a DNS TXT record under a particular subdomain. Typically, the subdomain used is a dedicated one like `azaiverify` on your domain. For example, if your proxy domain is `liveness.contoso.com`, create a TXT record for the name `azaiverify.liveness.contoso.com` (the emailed instructions contain the exact subdomain for this step). The TXT record's value should be the provided verification string.
 
 ### Create the DNS TXT record
 
-Using your DNS provider's management portal or CLI, add the new TXT record as instructed. Paste the verification string exactly as given. Do not alter the string, and ensure it's under the correct subdomain. After publishing the TXT record, respond to the support engineer to let them know the record is in place. This step needs to be done within a certain time window (usually within 48 hours) because the verification string may expire.
+Using your DNS provider's management portal or CLI, add the new TXT record as instructed. Paste the verification string exactly as given. Don't alter the string, and ensure it's under the correct subdomain. After publishing the TXT record, respond to the support engineer to let them know the record is in place. This step needs to be done within a certain time window (usually within 48 hours) because the verification string may expire.
 
 > [!NOTE]
 >
@@ -147,4 +151,4 @@ By using a custom reverse proxy for Face API, you're effectively taking on more 
 
 * For details on Limited Access Features of Azure Face API, see [Face limited access](/legal/cognitive-services/computer-vision/limited-access-identity?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext) page.
 
-* [NS-2: Secure cloud native services with network controls](/security/benchmark/azure/mcsb-network-security#ns-2-secure-cloud-native-services-with-network-controls)
+* For related security control by Microsoft, see [NS-2: Secure cloud native services with network controls](/security/benchmark/azure/mcsb-network-security#ns-2-secure-cloud-native-services-with-network-controls) page.
