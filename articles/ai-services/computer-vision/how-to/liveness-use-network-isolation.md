@@ -27,7 +27,7 @@ If a Face or Azure AI services resource's public access is disabled, any direct 
 Before proceeding, make sure you have the following prerequisites in place:
 
 * __Face API resource with Limited Access enabled__ – You need a Face or Azure AI services resource within a subscription approved for the Face Liveness Detection Limited Access feature. For more information, see the [Face limited access](/legal/cognitive-services/computer-vision/limited-access-identity?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext) page.
-* __Private network configuration__ – The Face or Azure AI services resource should be configured so that __Public network access__ is __Disabled__. Ensure that your networking setup is complete and tested (for example, your app server or proxy can communicate with the Face or Azure AI services resource over the [private link](../cognitive-services-virtual-networks.md#use-private-endpoints)).
+* __Private network configuration__ – The Face or Azure AI services resource should be configured so that __Public network access__ is __Disabled__. Ensure that your networking setup is complete and tested (for example, your app server or proxy can communicate with the Face or Azure AI services resource over the [private link](../../cognitive-services-virtual-networks.md#use-private-endpoints)).
 * __Reverse proxy with a custom domain__ – Deploy a reverse proxy service that acts as a bridge between public clients and your Face or Azure AI services resource. Host this proxy in a network that can access your Face resource, such as the same virtual network or through a private endpoint. Expose the proxy using a public domain name that you control.
 
     Configure your proxy to forward Face liveness routes without changing existing headers or payloads. Make sure the proxy passes requests directly to your Face or Azure AI services resource's private endpoint. All authorization headers, query parameters, and body content must remain unchanged.
@@ -147,7 +147,7 @@ By using a custom reverse proxy for Face API, you're effectively taking on more 
 
 ## Related content
 
-* For guidance on how to secure Azure AI service resources (like Face API) using network isolation, see [Use private endpoints section of Configure Azure AI services virtual networks](../cognitive-services-virtual-networks.md#use-private-endpoints) page.
+* For guidance on how to secure Azure AI service resources (like Face API) using network isolation, see [Use private endpoints section of Configure Azure AI services virtual networks](../../cognitive-services-virtual-networks.md#use-private-endpoints) page.
 
 * For details on Limited Access Features of Azure Face API, see [Face limited access](/legal/cognitive-services/computer-vision/limited-access-identity?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext) page.
 
