@@ -23,7 +23,7 @@ Details on how data is handled can be found on the [Data, Privacy, and Security]
 
 [!INCLUDE [liveness-sdk-gate](./includes/liveness-sdk-gate.md)]
 
-## Components of abuse monitoring in Face API V1.2 and earlier
+## Components of abuse monitoring in Face API v1.2 and earlier
 
 There are several components to Face liveness abuse monitoring:
 - **Session management**: Your backend application system creates liveness detection sessions on behalf of your end-users. The Face service issues authorization tokens for a particular session, and each is valid for a limited number of API calls. When the end-user encounters a failure during liveness detection, a new token is requested. This allows the backend application to assess the risk of allowing more liveness retries. An excessive number of retries may indicate a brute force adversarial attempt to bypass the liveness detection system.
