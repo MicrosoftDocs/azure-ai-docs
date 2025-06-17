@@ -17,7 +17,7 @@ ms.date: 06/17/2025
 > [!IMPORTANT]
 > SharePoint Online indexer support is in public preview. It's offered "as-is", under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) and supported on best effort only. Preview features aren't recommended for production workloads and aren't guaranteed to become generally available.
 >
-> Be sure to visit the [known limitations](#limitations-and-considerations) section before you start.
+> See [known limitations](#limitations-and-considerations) section before you start.
 >
 > [Fill out this form](https://aka.ms/azure-cognitive-search/indexer-preview) to register for the preview. All requests are approved automatically. After you fill out the form, use a [preview REST API](search-api-preview.md) to index your content. 
 
@@ -25,10 +25,10 @@ This article explains how to configure a [search indexer](search-indexer-overvie
 
 In Azure AI Search, an indexer extracts searchable data and metadata from a data source. The SharePoint Online indexer connects to your SharePoint site and indexes documents from one or more document libraries. The indexer provides the following functionality:
 
-+ Index files and metadata from one or more document libraries.
-+ Index incrementally, picking up just the new and changed files and metadata. 
-+ Automatically detects deleted content. Deletion in a document library is picked up on the next indexer run, and the document is removed from the index.
-+ Automatically extracts text and normalized images from indexed documents. Optionally, you can add a [skillset](cognitive-search-working-with-skillsets.md) for deeper [AI enrichment](cognitive-search-concept-intro.md), like OCR or text translation. 
++ Indexes files and metadata from one or more document libraries.
++ Indexes incrementally, picking up just the new and changed files and metadata. 
++ Detects deleted content automatically. Document deletion in the library is picked up on the next indexer run, and the corresponding search document is removed from the index.
++ Extracts text and normalized images from indexed documents automatically. Optionally, you can add a [skillset](cognitive-search-working-with-skillsets.md) for deeper [AI enrichment](cognitive-search-concept-intro.md), like OCR or text translation. 
 
 ## Prerequisites
 
