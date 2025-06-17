@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 04/14/2025
+ms.date: 06/17/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -22,6 +22,8 @@ Predicted outputs can improve model response latency for chat completions calls 
 - `gpt-4o` version: `2024-08-06`
 - `gpt-4o` version: `2024-11-20`
 - `gpt-4.1` version: `2025-04-14`
+- `gpt-4.1-nano` version: `2025-04-14`
+- `gpt-4.1-mini` version: `2025-04-14`
 
 ## API support
 
