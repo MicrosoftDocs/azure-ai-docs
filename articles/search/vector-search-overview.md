@@ -9,18 +9,18 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 05/08/2025
+ms.date: 06/17/2025
 ---
 
-# Vectors in Azure AI Search
+# Vector search in Azure AI Search
 
-Vector search is an approach in information retrieval that supports indexing and query execution over numeric representations of content. Because the content is numeric rather than plain text, matching is based on vectors that are most similar to the query vector, which enables matching across:
+Vector search is an information retrieval approach that supports indexing and querying over numeric representations of content. Because the content is numeric rather than plain text, matching is based on vectors that are most similar to the query vector, which enables matching across:
 
-+ semantic or conceptual likeness ("dog" and "canine", conceptually similar yet linguistically distinct)
-+ multilingual content ("dog" in English and "hund" in German)
-+ multiple content types ("dog" in plain text and a photograph of a dog in an image file)
++ Semantic or conceptual likeness. For example, "dog" and "canine" are conceptually similar but linguistically distinct.
++ Multilingual content, such as "dog" in English and "hund" in German.
++ Multiple content types, such as "dog" in plain text and an image of a dog.
 
-This article provides [a high-level introduction to vector support](#vector-search-concepts) in Azure AI Search. It also explains integration with other Azure services and covers [terminology and concepts](#vector-search-concepts) related to vector search development.
+This article provides a high-level introduction to vector support in Azure AI Search. It also explains integration with other Azure services and covers [terminology and concepts](#vector-search-concepts) related to vector search development.
 
 We recommend this article for background, but if you'd rather get started, follow these steps:
 
@@ -29,7 +29,7 @@ We recommend this article for background, but if you'd rather get started, follo
 > + [Create a vector index](vector-search-how-to-create-index.md)
 > + [Run vector queries](vector-search-how-to-query.md)
 
-You could also begin with the [vector quickstart](search-get-started-vector.md) or the [code samples on GitHub](https://github.com/Azure/azure-search-vector-samples). 
+You can also begin with the [vector quickstart](search-get-started-vector.md) or the [code samples on GitHub](https://github.com/Azure/azure-search-vector-samples).
 
 ## What scenarios can vector search support?
 

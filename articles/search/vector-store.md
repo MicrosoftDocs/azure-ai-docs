@@ -31,9 +31,9 @@ This article covers the key concepts for creating and managing a vector index, i
 
 Azure AI Search supports two patterns for vector retrieval:
 
-+ **Classic search.** After users enter queries into a search bar, your application code or the search engine vectorizes the input and performs a vector search over the vector fields in your index. The search engine returns results as a flattened row set, and you can choose which fields to include in the response. Because there's no chat model or extra reasoning, you should include nonvector fields in your index to present human-readable results to users. For more information, see [Create a vector query](vector-search-how-to-query.md) and [Create a hybrid query](hybrid-search-how-to-query.md).
++ **Classic search**. After users enter queries into a search bar, your application code or the search engine vectorizes the input and performs a vector search over the vector fields in your index. The search engine returns results as a flattened row set, and you can choose which fields to include in the response. Because there's no chat model or extra reasoning, you should include nonvector fields in your index to present human-readable results to users. For more information, see [Create a vector query](vector-search-how-to-query.md) and [Create a hybrid query](hybrid-search-how-to-query.md).
 
-+ **Generative search.** Language models use data from Azure AI Search to respond to user queries. An orchestration layer typically coordinates prompts and maintains context, feeding search results into chat models like GPT. This pattern is based on the [retrieval-augmented generation (RAG)](retrieval-augmented-generation-overview.md) architecture, where the search index supplies grounding data.
++ **Generative search**. Language models use data from Azure AI Search to respond to user queries. An orchestration layer typically coordinates prompts and maintains context, feeding search results into chat models like GPT. This pattern is based on the [retrieval-augmented generation (RAG)](retrieval-augmented-generation-overview.md) architecture, where the search index supplies grounding data.
 
 ## Schema of a vector index
 
@@ -85,7 +85,7 @@ Vector indexes require more than just vector fields. For example, all indexes mu
 ]
 ```
 
-Other fields, such as `content`, provide the human-readable equivalent of the `content_vector` field. If you're using language models exclusively for response formulation, you can omit nonvector content fields, but solutions that push search results directly to client apps should have nonvector content.
+Other fields, such as the `content` field, provide the human-readable equivalent of the `content_vector` field. If you're using language models exclusively for response formulation, you can omit nonvector content fields, but solutions that push search results directly to client apps should have nonvector content.
 
 Metadata fields are useful for filters, especially if they include origin information about the source document. Although you can't filter directly on a vector field, you can set prefilter or postfilter modes to filter before or after vector query execution.
 
