@@ -9,41 +9,48 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 06/16/2025
+ms.date: 06/17/2025
 ---
 
 # Vector indexes in Azure AI Search
 
 Vectors are high-dimensional embeddings that capture the underlying meaning of content, such as text or images. Azure AI Search stores vectors at the field level, allowing vector and nonvector content to coexist within the same [search index](search-what-is-an-index.md).
 
-A search index becomes a vector index when you define vector fields, nonvector fields, and a vector configuration. You can populate vector fields by pushing precomputed embeddings into them or by using [built-in vectorization](vector-search-integrated-vectorization.md) to generate embeddings during indexing.
+A search index becomes a vector index when you define vector fields and a vector configuration. To populate vector fields, you can push [precomputed embeddings](vector-search-how-to-generate-embeddings.md) into them or use [integrated vectorization](vector-search-integrated-vectorization.md), a built-in Azure AI Search capability that generates embeddings during indexing.
 
-When it comes to vector storage, you should:
+At query time, the vector fields in your index enable similarity search, where the system retrieves documents whose vectors are most similar to the vector query. You can use [vector search](vector-search-overview.md) for similarity matching alone or [hybrid search](hybrid-search-overview.md) for a combination of similarity and keyword matching.
 
-+ Design an index schema based on your intended vector retrieval pattern.
-+ Estimate your index size and check your search service's capacity.
-+ Manage your vector index, including updates and monitoring.
-+ Secure access to your vector index.
+This article covers the key concepts for creating and managing a vector index, including:
 
-At query time, the vector fields in your index enable similarity search, where the system retrieves documents whose vectors are most similar to the vector query. You can use [vector search](vector-search-overview.md) for semantic matching alone, or you can use [hybrid search](hybrid-search-overview.md) for a combination of semantic and keyword matching.
++ Vector retrieval patterns
++ Content (vector fields and configuration)
++ Physical data structure
++ Basic operations
 
 ## Vector retrieval patterns
 
-In Azure AI Search, there are two vector-based patterns for working with search results:
+Azure AI Search supports two patterns for vector retrieval:
+
++ **Classic search.** After users enter queries into a search bar, your application code or the search engine vectorizes the input and performs a vector search over the vector fields in your index. The search engine returns results as a flattened row set, and you can choose which fields to include in the response. Because there's no chat model or extra reasoning, you should include nonvector fields in your index to present human-readable results to users. For more information, see [Create a vector query](vector-search-how-to-query.md) and [Create a hybrid query](hybrid-search-how-to-query.md).
 
 + **Generative search.** Language models use data from Azure AI Search to respond to user queries. An orchestration layer typically coordinates prompts and maintains context, feeding search results into chat models like GPT. This pattern is based on the [retrieval-augmented generation (RAG)](retrieval-augmented-generation-overview.md) architecture, where the search index supplies grounding data.
 
-+ **Classic search.** Users enter queries into a search bar. At query time, your application code or the search engine vectorizes the input and performs a vector search over the vector fields in your index. The search engine returns results as a flattened row set, and you can choose which fields to include in the response. The search engine matches on vectors, but you should include human-readable, nonvector fields in your index to present results to users. For more information, see [Create a vector query](vector-search-how-to-query.md) and [Create a hybrid query](hybrid-search-how-to-query.md).
+## Schema of a vector index
 
-Your index schema should reflect your primary use case. The following section highlights the differences in field composition for solutions built for generative AI or classic search.
+The schema of a vector index requires the following:
 
-## Schema of a vector store
++ Name
++ Key field (string)
++ One or more vector fields
++ Vector configuration
 
-A vector store is just a search index with vector fields. Your schema needs a name, a key field, one or more vector fields, and a vector configuration. Non-vector fields are recommended for hybrid queries or for returning readable content.
+Nonvector fields aren't required, but we recommend including them for hybrid queries or for returning verbatim content that doesn't go through a language model. For more information, see [Create a vector index](vector-search-how-to-create-index.md).
+
+Your index schema should reflect your [vector retrieval pattern](#vector-retrieval-patterns). This section mostly covers field composition for classic search, but it also provides schema guidance for generative search.
 
 ### Basic vector field configuration
 
-A vector field is defined by its data type and vector-specific properties. For example:
+Vector fields have unique data types and properties. Here's what a vector field looks like in a fields collection:
 
 ```json
 {
@@ -56,27 +63,187 @@ A vector field is defined by its data type and vector-specific properties. For e
 }
 ```
 
-A vector field must be searchable and retrievable. It cannot be filterable, facetable, or sortable, and cannot use analyzers or synonym maps. The `dimensions` property must match the output of your embedding model.
+Only [certain data types](/rest/api/searchservice/supported-data-types#edm-data-types-for-vector-fields) are supported for vector fields. The most common type is `Collection(Edm.Single)`, but using narrow types can save on storage.
 
-### Example: basic fields for a vector index
+Vector fields must be searchable and retrievable, but they can't be filterable, facetable, or sortable. They also can't have analyzers, normalizers, or synonym map assignments.
 
-A typical index includes a key field, one or more vector fields, and fields for readable content or metadata:
+The `dimensions` property must be set to the number of embeddings generated by the embedding model. For example, text-embedding-ada-002 generates 1,536 embeddings for each chunk of text.
+
+Vector fields are indexed using algorithms specified in a *vector search profile*, which is defined elsewhere in the index and not shown in this example. For more information, see [Add a vector search configuration](vector-search-how-to-create-index.md#add-a-vector-search-configuration).
+
+### Fields collection for basic vector workloads
+
+Vector indexes require more than just vector fields. For example, all indexes must have a key field, which is `id` in the following example:
 
 ```json
+"name": "example-basic-vector-idx",
 "fields": [
-  { "name": "id", "type": "Edm.String", "key": true },
+  { "name": "id", "type": "Edm.String", "searchable": false, "filterable": true, "retrievable": true, "key": true },
   { "name": "content_vector", "type": "Collection(Edm.Single)", "searchable": true, "retrievable": true, "dimensions": 1536, "vectorSearchProfile": null },
-  { "name": "content", "type": "Edm.String", "searchable": true, "retrievable": true },
-  { "name": "metadata", "type": "Edm.String", "searchable": true, "filterable": true, "retrievable": true }
+  { "name": "content", "type": "Edm.String", "searchable": true, "retrievable": true, "analyzer": null },
+  { "name": "metadata", "type": "Edm.String", "searchable": true, "filterable": true, "retrievable": true, "sortable": true, "facetable": true }
 ]
 ```
 
-The `content` field provides the human-readable version of the vectorized content. If you only use language models for responses, you can omit non-vector content fields. If you return results directly to users, include readable content fields.
+Other fields, such as `content`, provide the human-readable equivalent of the `content_vector` field. If you're using language models exclusively for response formulation, you can omit nonvector content fields, but solutions that push search results directly to client apps should have nonvector content.
 
-Metadata fields are useful for filtering, especially if they include source information. You cannot filter directly on a vector field, but you can filter before or after a vector query using other fields.
+Metadata fields are useful for filters, especially if they include origin information about the source document. Although you can't filter directly on a vector field, you can set prefilter or postfilter modes to filter before or after vector query execution.
+
+### Schema generated by the Import and vectorize data wizard
+
+We recommend the [Import and vectorize data wizard](search-get-started-portal-import-vectors.md) for evaluation and proof-of-concept testing. The wizard generates the example schema in this section.
+
+The wizard-generated schema chunks your content into smaller search documents, which benefits RAG apps that use language models to formulate responses. Chunking helps you stay within the input limits of language models and the token limits of semantic ranker. It also improves precision in similarity search by matching queries against chunks pulled from multiple parent documents. For more information, see [Chunk large documents for vector search solutions](vector-search-how-to-chunk-documents.md).
+
+For each search document in the following example, there's one chunk ID, parent ID, chunk, title, and vector field. The wizard:
+
++ Populates the `chunk_id` and `parent_id` fields with base64-encoded blob metadata (path).
+
++ Extracts the `chunk` and `title` fields from the blob content and blob name, respectively.
+
++ Creates the `vector` field by calling an Azure OpenAI embedding model that you provide to vectorize the `chunk` field. Only the vector field is fully generated during this process.
+
+```json
+"name": "example-index-from-import-wizard",
+"fields": [
+  { "name": "chunk_id", "type": "Edm.String", "key": true, "searchable": true, "filterable": true, "retrievable": true, "sortable": true, "facetable": true, "analyzer": "keyword"},
+  { "name": "parent_id", "type": "Edm.String", "searchable": true, "filterable": true, "retrievable": true, "sortable": true},
+  { "name": "chunk", "type": "Edm.String", "searchable": true, "filterable": false, "retrievable": true, "sortable": false},
+  { "name": "title", "type": "Edm.String", "searchable": true, "filterable": true, "retrievable": true, "sortable": false},
+  { "name": "vector", "type": "Collection(Edm.Single)", "searchable": true, "retrievable": true, "dimensions": 1536, "vectorSearchProfile": "vector-1707768500058-profile"}
+]
+```
+
+### Schema for generative search
+
+If you're designing storage for RAG and chat-style apps, you can create two indexes:
+
++ One for static content that you indexed and vectorized.
++ One for conversations that can be used in prompt flows.
+
+For illustration purposes, this section uses the [chat-with-your-data-solution-accelerator](https://github.com/Azure-Samples/azure-search-openai-solution-accelerator) to create the `chat-index` and `conversations` indexes.
+
+:::image type="content" source="media/vector-search-overview/accelerator-indexes.png" alt-text="Screenshot of the indexes created by the accelerator.":::
+
+The following fields from `chat-index` support generative search experiences:
+
+```json
+"name": "example-index-from-accelerator",
+"fields": [
+  { "name": "id", "type": "Edm.String", "searchable": false, "filterable": true, "retrievable": true },
+  { "name": "content", "type": "Edm.String", "searchable": true, "filterable": false, "retrievable": true },
+  { "name": "content_vector", "type": "Collection(Edm.Single)", "searchable": true, "retrievable": true, "dimensions": 1536, "vectorSearchProfile": "my-vector-profile"},
+  { "name": "metadata", "type": "Edm.String", "searchable": true, "filterable": false, "retrievable": true },
+  { "name": "title", "type": "Edm.String", "searchable": true, "filterable": true, "retrievable": true, "facetable": true },
+  { "name": "source", "type": "Edm.String", "searchable": true, "filterable": true, "retrievable": true  },
+  { "name": "chunk", "type": "Edm.Int32", "searchable": false, "filterable": true, "retrievable": true },
+  { "name": "offset", "type": "Edm.Int32", "searchable": false, "filterable": true, "retrievable": true }
+]
+```
+
+The following fields from `conversations` support orchestration and chat history:
+
+```json
+"fields": [
+    { "name": "id", "type": "Edm.String", "key": true, "searchable": false, "filterable": true, "retrievable": true, "sortable": false, "facetable": false },
+    { "name": "conversation_id", "type": "Edm.String", "searchable": false, "filterable": true, "retrievable": true, "sortable": false, "facetable": true },
+    { "name": "content", "type": "Edm.String", "searchable": true, "filterable": false, "retrievable": true },
+    { "name": "content_vector", "type": "Collection(Edm.Single)", "searchable": true, "retrievable": true, "dimensions": 1536, "vectorSearchProfile": "default-profile" },
+    { "name": "metadata", "type": "Edm.String", "searchable": true, "filterable": false, "retrievable": true },
+    { "name": "type", "type": "Edm.String", "searchable": false, "filterable": true, "retrievable": true, "sortable": false, "facetable": true },
+    { "name": "user_id", "type": "Edm.String", "searchable": false, "filterable": true, "retrievable": true, "sortable": false, "facetable": true },
+    { "name": "sources", "type": "Collection(Edm.String)", "searchable": false, "filterable": true, "retrievable": true, "sortable": false, "facetable": true },
+    { "name": "created_at", "type": "Edm.DateTimeOffset", "searchable": false, "filterable": true, "retrievable": true },
+    { "name": "updated_at", "type": "Edm.DateTimeOffset", "searchable": false, "filterable": true, "retrievable": true }
+]
+```
+
+The following screenshot shows search results for `conversations` in [Search explorer](search-explorer.md):
+
+:::image type="content" source="media/vector-search-overview/vector-schema-search-results.png" alt-text="Screenshot of Search Explorer with results from an index designed for RAG apps.":::
+
+In this example, the search score is 1.00 because the search is unqualified. Several fields support orchestration and prompt flows:
+
++ `conversation_id` identifies each chat session.
++ `type` indicates whether the content is from the user or the assistant.
++ `created_at` and `updated_at` age out chats from the history.
+
+## Physical structure and size
+
+In Azure AI Search, the physical structure of an index is largely an internal implementation. You can access its schema, load and query its content, monitor its size, and manage capacity. However, Microsoft manages the clusters themselves, such as inverted indexes, vector indexes, and other files and folders.
+
+The size and substance of an index are determined by the:
+
++ Quantity and composition of your documents.
+
++ Attributes on individual fields. For example, more storage is required for filterable fields.
+
++ Index configuration, including the vector configuration that specifies how the internal navigation structures are created. You can choose HNSW or exhaustive KNN for similarity search.
+
+Azure AI Search imposes limits on vector storage, which helps maintain a balanced and stable system for all workloads. To help you stay under the limits, vector usage is tracked and reported separately in the Azure portal and programmatically through service and index statistics.
+
+The following screenshot shows an S1 service configured with one partition and one replica. This service has 24 small indexes, each with an average of one vector field consisting of 1,536 embeddings. The second tile shows the quota and usage for vector indexes. Because a vector index is an internal data structure created for each vector field, storage for vector indexes is always a fraction of the overall storage used by the index. Other nonvector fields and data structures consume the rest.
+
+:::image type="content" source="media/vector-search-overview/usage-tiles-storage-vector-index.png" alt-text="Screenshot of usage tiles showing storage, vector index, and index count.":::
+
+Vector index limits and estimations are covered in [another article](vector-search-index-size.md), but two points to emphasize are that maximum storage depends on the creation date of your search service and its pricing tier. Newer same-tier services have significantly more capacity for vector indexes. For these reasons, you should:
+
++ [Check the creation date of your search service](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date). If it was created before April 3, 2024, you might be able to [upgrade your service](search-how-to-upgrade.md) for greater capacity.
+
++ [Choose a scalable tier](search-sku-tier.md) if you anticipate fluctuations in vector storage requirements. For older search services, the Basic tier is fixed at one partition. Consider Standard 1 (S1) and higher for more flexibility and faster performance. In the 2025-02-01-preview, you can also [switch from a lower tier to a higher tier](search-capacity-planning.md#change-your-pricing-tier).
+
+## Basic operations and interaction
+
+This section introduces vector runtime operations, including connecting to and securing a single index.
+
+> [!NOTE]
+> There's no portal or API support for moving or copying an index. Typically, customers either point their application deployment to a different search service (using the same index name) or revise the name to create a copy on their current search service and then build it.
+
+### Index isolation
+  
+In Azure AI Search, you work with one index at a time. All index-related operations target a single index. There's no concept of related indexes or the joining of independent indexes for either indexing or querying.
+
+### Continuously available
+
+An index is immediately available for queries as soon as the first document is indexed, but it's not fully operational until all documents are indexed. Internally, an index is [distributed across partitions and executes on replicas](search-capacity-planning.md#concepts-search-units-replicas-partitions). The physical index is managed internally. You manage the logical index.
+
+An index is continuously available and can't be paused or taken offline. Because it's designed for continuous operation, updates to its content and additions to the index itself happen in real time. If a request coincides with a document update, queries might temporarily return incomplete results.
+
+Query continuity exists for document operations, such as refreshing or deleting, and for modifications that don't affect the existing structure or integrity of an index, such as adding new fields. Structural updates, such as changing existing fields, are typically managed using a drop-and-rebuild workflow in a development environment or by creating a new version of the index on the production service.
+
+To avoid an [index rebuild](search-howto-reindex.md), some customers who are making small changes "version" a field by creating a new one that coexists with a previous version. Over time, this leads to orphaned content by way of obsolete fields and obsolete custom analyzer definitions, especially in a production index that's expensive to replicate. You can address these issues during planned updates to the index as part of index lifecycle management.
+
+### Endpoint connection
+
+All vector indexing and query requests target an index. Endpoints are usually one of the following:
+
+| Endpoint | Connection and access control |
+|----------|-------------------------------|
+| `<your-service>.search.windows.net/indexes` | Targets the indexes collection. Used when creating, listing, or deleting an index. Admin rights are required for these operations and available through admin [API keys](search-security-api-keys.md) or a [Search Contributor role](search-security-rbac.md#built-in-roles-used-in-search). |
+| `<your-service>.search.windows.net/indexes/<your-index>/docs` | Targets the documents collection of a single index. Used when querying an index or data refresh. For queries, read rights are sufficient and available through query API keys or a data reader role. For data refresh, admin rights are required. |
+
+### How to connect to Azure AI Search
+
+1. [Make sure you have permissions](search-security-rbac.md) or an [API access key](search-security-api-keys.md). Unless you're querying an existing index, you need admin rights or a Contributor role assignment to manage and view content on a search service.
+
+1. [Start with the Azure portal](https://portal.azure.com). The person who created the search service can view and manage the search service, including granting access to others on the **Access control (IAM)** page.
+
+1. Move on to other clients for programmatic access. For first steps, we recommend [Quickstart: Vector searching using REST](search-get-started-vector.md) and the [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples/blob/main/README.md) repo.
+
+### Manage vector stores
+
+Azure provides a [monitoring platform](monitor-azure-cognitive-search.md) that includes diagnostic logging and alerting. We recommend that you:
+
++ [Enable diagnostic logging](search-monitor-enable-logging.md).
++ [Set up alerts](/azure/azure-monitor/alerts/tutorial-metric-alert).
++ [Analyze query and index performance](search-performance-analysis.md).
+
+### Secure access to vector data
+
+Azure AI Search implements data encryption, private connections for no-internet scenarios, and role assignments for secure access through Microsoft Entra ID. For more information about enterprise security features, see [Security in Azure AI Search](search-security-overview.md).
 
 ## Related content
 
-+ [Create a vector store using REST APIs (Quickstart)](search-get-started-vector.md)
-+ [Create a vector store](vector-search-how-to-create-index.md)
++ [Quickstart: Vector search using REST](search-get-started-vector.md)
++ [Create a vector index](vector-search-how-to-create-index.md)
 + [Query a vector index](vector-search-how-to-query.md)
