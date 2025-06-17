@@ -226,7 +226,9 @@ The following tables list the timelines for models that are on track for retirem
 
 | Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
 |-------|-------------------|------------------------|-----------------------|-----------------------------|
-| Jamba Instruct | February 1, 2025 | February 1, 2025 | March 1, 2025 | [AI21-Jamba-1.5-Large](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Large/version/1/registry/azureml-ai21) <br> [AI21-Jamba-1.5-Mini](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Mini/version/1/registry/azureml-staging) |
+| Jamba Instruct | February 1, 2025 | February 1, 2025 | March 1, 2025 | N/A |
+| [AI21-Jamba-1.5-Large](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Large/version/1/registry/azureml-ai21) | May 1, 2025 | July 1, 2025 | August 1, 2025 | N/A |
+| [AI21-Jamba-1.5-Mini](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Mini/version/1/registry/azureml-ai21) | May 1, 2025 | July 1, 2025 | August 1, 2025 | N/A |
 
 #### Cohere
 
@@ -242,6 +244,12 @@ The following tables list the timelines for models that are on track for retirem
 | Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
 |-------|-------------------|------------------------|-----------------------|-----------------------------|
 | [DeepSeek-V3](https://aka.ms/azureai/landing/DeepSeek-V3) | April 10, 2025 | May 31, 2025 | August 31, 2025 | [DeepSeek-V3-0324](https://aka.ms/azureai/landing/DeepSeek-V3-0324) |
+
+#### Gretel
+
+| Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
+|-------|-------------------|------------------------|-----------------------|-----------------------------|
+| [Gretel-Navigator-Tabular](https://ai.azure.com/explore/models/Gretel-Navigator-Tabular/version/1/registry/azureml-gretel) | N/A | June 16, 2025 | September 16, 2025 | N/A |
 
 #### Meta
 

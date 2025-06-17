@@ -162,7 +162,7 @@ To enable logging of telemetry to your project:
 
 1. Add an Application Insights resource to your project.  Navigate to the **Tracing** tab in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), and create a new resource if you don't already have one.
 
-    :::image type="content" source="../../ai-services/agents/media/ai-foundry-tracing.png" alt-text="A screenshot of the tracing screen in the Azure AI Foundry portal." lightbox="../../ai-services/agents/media/ai-foundry-tracing.png":::
+    :::image type="content" source="../agents/media/ai-foundry-tracing.png" alt-text="A screenshot of the tracing screen in the Azure AI Foundry portal." lightbox="../agents/media/ai-foundry-tracing.png":::
 
 1. Install `azure-monitor-opentelemetry`:
 
