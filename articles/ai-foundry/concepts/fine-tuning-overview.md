@@ -25,14 +25,7 @@ Fine-tuning customizes a pretrained AI model with additional training on a speci
 
 ## Getting started with fine-tuning
 
-To find steps
-
-
-## Steps to fine-tune a model
-
-For steps on fine-tuning a model within AI Foundry, see foundry models for serverless API Steps and foundry models for managed compute steps. 
-
-:::image type="content" source="../media/concepts/data-pipeline.png" alt-text="Screenshot of the fine-tuning data pipeline for adapting pre-trained models to a specific task." lightbox="../media/concepts/data-pipeline.png":::
+To find steps to fine-tuning a model in AI Foundry, see [Fine-tune Models in AI Foundry](../how-to/fine-tune-serverless.md) or [Fine-tune models using managed compute](how-to/fine-tune-managed-compute.md).
 
 ## Data preparation
 
