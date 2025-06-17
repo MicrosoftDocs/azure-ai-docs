@@ -110,6 +110,8 @@ productDirectory:
           text: Translator
         - url: ../ai-services/language-service/index.yml
           text: Language
+        - url: ../ai-services/document-intelligence/index.yml
+          text: Document Intelligence
         - url: ../ai-services/content-understanding/index.yml
           text: Content Understanding
     # Card
