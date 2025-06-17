@@ -159,8 +159,8 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
                         "remove_filler_words": False,
                         "end_of_utterance_detection": {
                             "model": "semantic_detection_v1",
-                            "threshold": 0.1,
-                            "timeout": 4,
+                            "threshold": 0.01,
+                            "timeout": 2,
                         },
                     },
                     "input_audio_noise_reduction": {
