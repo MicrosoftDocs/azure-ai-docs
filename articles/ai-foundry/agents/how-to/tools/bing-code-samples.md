@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 04/09/2025
+ms.date: 06/17/2025
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-bing-grounding-code
@@ -114,7 +114,11 @@ Create a run and observe that the model uses the Grounding with Bing Search tool
 
 ```python
 # Create and process an agent run
-run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
+run = project_client.agents.runs.create_and_process(
+    thread_id=thread.id,
+    agent_id=agent.id,
+    # tool_choice={"type": "bing_grounding"}  # optional, you can force the model to use Grounding with Bing Search tool
+)
 print(f"Run finished with status: {run.status}")
 
 # Check if the run failed
