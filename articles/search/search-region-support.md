@@ -45,16 +45,16 @@ You can create an Azure AI Search service in any of the following Azure public r
 | Canada East​​ ​|  |  | ✅ | ✅ |  |
 | ​Central US​​ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | East US​ | ✅ | ✅ | ✅ | ✅ |  |
-| East US 2 ​ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| East US 2 ​<sup>1</sup>  | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Mexico Central |  | ✅ |  |  |  |
 | North Central US​ ​| ✅ |  | ✅ | ✅ | ✅ |
 | South Central US​ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | West US​​ | ✅ |  | ✅ | ✅ | ✅ |
-| West US 2​ <sup>1</sup>​| ✅ | ✅ | ✅ | ✅ | ✅ |
+| West US 2​ ​| ✅ | ✅ | ✅ | ✅ | ✅ |
 | West US 3​ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | West Central US​ ​ | ✅ |  | ✅ | ✅ |  |
 
-<sup>1</sup> This region has capacity constraints on all tiers.
+<sup>1</sup> This region has capacity constraints in S2,S3,L1,L2 tiers.
 
 ### Europe
 
