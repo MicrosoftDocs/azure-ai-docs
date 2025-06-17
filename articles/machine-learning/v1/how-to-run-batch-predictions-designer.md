@@ -17,7 +17,7 @@ ms.custom: UpdateFrequency5, designer
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
-In this article, you learn how to use the designer to create a batch prediction pipeline. Batch prediction lets you continuously score large datasets on-demand using a web service that can be triggered from any HTTP library.
+In this article, you learn how to use the designer to create a batch prediction pipeline. Batch prediction lets you continuously score large datasets on demand by using a web service that can be triggered from any HTTP library.
 
 In this how-to guide, you learn to do the following tasks:
 
@@ -43,9 +43,9 @@ Your training pipeline must be run at least once to be able to create an inferen
 
 1. Select the training pipeline that trains the model you want to use to make prediction.
 
-1. Select **Configure & Submit**.
+1. Submit the pipeline.
 
- :::image type="content" source="./media/how-to-run-batch-predictions-designer/run-training-pipeline.png" alt-text="Screenshot showing the set up pipeline job with the experiment drop-down and submit button highlighted." lightbox= "./media/how-to-run-batch-predictions-designer/run-training-pipeline.png":::
+    :::image type="content" source="./media/how-to-run-batch-predictions-designer/run-training-pipeline.png" alt-text="Screenshot showing the set up pipeline job with the experiment drop-down and submit button highlighted." lightbox= "./media/how-to-run-batch-predictions-designer/run-training-pipeline.png":::
 
 You can select the job detail link to go to the job detail page, and after the training pipeline job completes, you can create a batch inference pipeline.
 
@@ -68,11 +68,11 @@ To create predictions on new data, you can either manually connect a different d
 
 In this section, you create a pipeline input to specify a different dataset to make predictions on.
 
-1. Select the dataset component.
+1. Double-click the dataset component.
 
 1. A pane appears to the right of the canvas. At the bottom of the pane, select **Set as pipeline input**.
 
-    Enter a name for the parameter, or accept the default value.
+    Enter a name for the input, or accept the default value.
 
      :::image type="content" source="./media/how-to-run-batch-predictions-designer/create-pipeline-parameter.png" alt-text="Screenshot of cleaned dataset tab with set as pipeline input checked." lightbox= "./media/how-to-run-batch-predictions-designer/create-pipeline-parameter.png":::
 
@@ -82,11 +82,9 @@ In this section, you create a pipeline input to specify a different dataset to m
 
 Now you're ready to deploy the inference pipeline. This deploys the pipeline and makes it available for others to use.
 
-1. Select **Jobs** in the sidebar menu and select your running job.
+1. On the job detail page, select the **Publish** button in the ribbon menu.
 
-1. Select the **Publish** button in the ribbon menu.
-
-1. In the dialog that appears, **Create new**.
+1. In the dialog that appears, select **Create new**.
 
 1. Provide an endpoint name and optional description.
 
@@ -94,7 +92,7 @@ Now you're ready to deploy the inference pipeline. This deploys the pipeline and
 
 1. Select **Publish**.
 
-:::image type="content" source="./media/how-to-run-batch-predictions-designer/publish-inference-pipeline.png" alt-text="Screenshot of set up published pipeline." lightbox= "./media/how-to-run-batch-predictions-designer/publish-inference-pipeline.png":::
+    :::image type="content" source="./media/how-to-run-batch-predictions-designer/publish-inference-pipeline.png" alt-text="Screenshot of set up published pipeline." lightbox= "./media/how-to-run-batch-predictions-designer/publish-inference-pipeline.png":::
 
 ## Consume an endpoint
 
