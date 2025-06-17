@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-c
+ms.date: 06/17/2025
 ---
 
 # Define projections in a knowledge store
