@@ -245,6 +245,12 @@ The following tables list the timelines for models that are on track for retirem
 |-------|-------------------|------------------------|-----------------------|-----------------------------|
 | [DeepSeek-V3](https://aka.ms/azureai/landing/DeepSeek-V3) | April 10, 2025 | May 31, 2025 | August 31, 2025 | [DeepSeek-V3-0324](https://aka.ms/azureai/landing/DeepSeek-V3-0324) |
 
+#### Gretel
+
+| Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
+|-------|-------------------|------------------------|-----------------------|-----------------------------|
+| [Gretel-Navigator-Tabular](https://ai.azure.com/explore/models/Gretel-Navigator-Tabular/version/1/registry/azureml-gretel) | N/A | June 16, 2025 | September 16, 2025 | N/A |
+
 #### Meta
 
 | Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
