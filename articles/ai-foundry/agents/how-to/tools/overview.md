@@ -103,19 +103,19 @@ The following tools are authored by third-party partners. Use the links below to
 ### Use system instruction to help model invoke the right tool
 
 In order for the model to understand which tools to use, you want to provide detailed instruction for the model to describe when and how to use the tool. You might want to consider providing the following information:
-1. Primary Objective: what is the objective of this agent? what is the goal of related tasks? what are the expected outcomes?
-1. Your responsibilities: what tasks you expect the agent to perform. For example, calling Grounding with Bing Search tool to get the latest information about local events.
-1. Inputs you may receive: what inputs do you expect the agent to receive?
-1. For each tool:
-   1. The tool name
-   2. A description of the tool
-   3. Triggers: when do you expect this tool to be called? What type of information will be searched? What will queries contain?
-   4. An example of a query
+- Primary Objective: what is the objective of this agent? what is the goal of related tasks? what are the expected outcomes?
+- Your responsibilities: what tasks you expect the agent to perform. For example, calling Grounding with Bing Search tool to get the latest information about local events.
+- Inputs you may receive: what inputs do you expect the agent to receive?
+- For each tool:
+   - The tool name
+   - A description of the tool
+   - Triggers: when do you expect this tool to be called? What type of information will be searched? What will queries contain?
+   - An example of a query
 
 For example, you might provide tool instructions like the following for the Grounding with Bing Search tool:
 
 Grounding with Bing Search tool
-  1. Use: Gather external trends or news to enrich the post with real-time insights. 
-  1. Trigger this when:
-     1. The user asks to reference recent data or competitive context.
-  1. Example: "Can you reference the latest industry trends?" or "What are competitors doing?".
+- Use: Gather external trends or news to enrich the post with real-time insights. 
+- Trigger this when:
+    - The user asks to reference recent data or competitive context.
+    - Example: "Can you reference the latest industry trends?" or "What are competitors doing?".
