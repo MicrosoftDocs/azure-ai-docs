@@ -57,12 +57,12 @@ Azure OpenAI `o-series` models are designed to tackle reasoning and problem-solv
 | Streaming <sup>4</sup>  | ✅ | - | ✅ | ✅| ✅ | - | - | - |
 
 <sup>1</sup> Reasoning models will only work with the `max_completion_tokens` parameter. <br><br>
-
 <sup>2</sup> The latest o<sup>&#42;</sup> series model support system messages to make migration easier. When you use a system message with `o4-mini`, `o3`, `o3-mini`, and `o1` it will be treated as a developer message. You should not use both a developer message and a system message in the same API request.
-
 <sup>3</sup> Access to the chain-of-thought reasoning summary is limited access only for `o3` & `o4-mini`.
-
 <sup>4</sup> Streaming for `o3` is limited access only.
+
+> [!NOTE]
+> To avoid timeouts [background mode](./responses.md#background-tasks) is recommended for `o3-pro`.
 
 ### Not Supported
 
