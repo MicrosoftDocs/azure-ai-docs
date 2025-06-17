@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 04/16/2025
+ms.date: 06/17/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -25,6 +25,8 @@ Structured outputs make a model follow a [JSON Schema](https://json-schema.org/o
 
 ## Supported models
 
+- `codex-mini-latest` version `2025-05-16`
+- `o3-pro` version `2025-06-10`
 - `gpt-4.5-preview` version `2025-02-27`
 - `o3-mini` version `2025-01-31`
 - `o1` version: `2024-12-17`
