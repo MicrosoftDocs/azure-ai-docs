@@ -27,7 +27,7 @@ Predicted outputs can improve model response latency for chat completions calls 
 
 ## API support
 
-- `2025-01-01-preview`
+First introduced in `2025-01-01-preview`. Supported in all subsequent releases. 
 
 ## Unsupported features
 
