@@ -41,7 +41,7 @@ To fine-tune a model for chat or question answering, your training dataset shoul
 - **Human-generated responses**: Use responses written by humans to teach the model how to generate natural and accurate replies. 
 - **Formatting**: Use a clear structure to separate prompts and responses. For example, `\n\n###\n\n` and ensure the delimiter doesn't appear in the content. 
 
-## Model selection
+### Model selection
 
 Selecting the right model for fine-tuning is a critical decision that impacts performance, efficiency, and cost. Before making a choice, it is essential to clearly define the task and establish the desired performance metrics. A well-defined task ensures that the selected model aligns with specific requirements, optimizing effort and resources. 
 
@@ -55,12 +55,6 @@ Model training can be guided by metrics. For example, BLEU-4 was used to evaluat
 
 **Use intermediate checkpoints for better model selection**. Save checkpoints at regular intervals (e.g., every few epochs) and evaluate their performance. In some cases, an intermediate checkpoint may outperform the final model, allowing you to select the best version rather than relying solely on the last trained iteration. 
 
-## Deployment and monitoring
-
-- Choose a suitable deployment infrastructure, such as cloud-based platforms or on-premises servers. 
-- Continuously monitor the model's performance and make necessary adjustments to ensure optimal performance. 
-- Consider regional deployment needs and latency requirements to meet enterprise SLAs. Implement security guardrails, such as private links, encryption, and access controls, to protect sensitive data and maintain compliance with organizational policies. 
-
 ## Supported models for fine-tuning
 
 Now that you know when to use fine-tuning for your use case, you can go to Azure AI Foundry to find models available to fine-tune.
@@ -71,7 +65,6 @@ Fine-tuning is available in specific Azure regions for some models that are depl
 For more information on fine-tuning using a managed compute (preview), see [Fine-tune models using managed compute (preview)](../how-to/fine-tune-managed-compute.md).
 
 For details about Azure OpenAI in Azure AI Foundry Models that are available for fine-tuning, see the [Azure OpenAI in Foundry Models documentation.](../../ai-services/openai/concepts/models.md#fine-tuning-models)
-
 
 ## Best practices for fine-tuning
 
