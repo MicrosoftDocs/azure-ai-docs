@@ -140,6 +140,9 @@ For customers without an existing virtual network, the Standard Setup with Priva
 
 For more details, see the [README](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/15-private-network-standard-agent-setup).
 
+> [!NOTE]
+> If you want to delete your Foundry resource and Standard Agent with secured network set-up, delete your AI Foundry resource and virtual network last. Before deleting the virutal network, ensure to delete and purge your AI Foundry resource. Navigate to __Manage deleted resources__, then select your subscription and the Foundry resource you would like to purge. 
+
 ## Deep Dive Standard Setup with Private Networking Template
 When you use the Standard Setup with Private Networking Agent Template, the following will automatically be provisioned, unless you bring your own: 
 
