@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 12/10/2024
+ms.date: 06/17/2025
 ---
 
 # Shaping data for projection into a knowledge store
@@ -21,9 +21,9 @@ By itself, the enrichment tree doesn't include logic that would inform how its c
 
 ## Approaches for creating shapes
 
-There are two ways to shape enriched content to that it can be projected into a knowledge store:
+There are two ways to shape enriched content so that it can be projected into a knowledge store:
 
-+ Use the [Shaper skill](cognitive-search-skill-shaper.md) to create nodes in an enrichment tree that are used expressly for projection. Most skills create new content. In contrast, a Shaper skill work with existing nodes, usually to consolidate multiple nodes into a single complex object. This is useful for tables, where you want the output of multiple nodes to be physically expressed as columns in the table. 
++ Use the [Shaper skill](cognitive-search-skill-shaper.md) to create nodes in an enrichment tree that are used expressly for projection. Most skills create new content. In contrast, a Shaper skill works with existing nodes, usually to consolidate multiple nodes into a single complex object. This is useful for tables, where you want the output of multiple nodes to be physically expressed as columns in the table. 
 
 + Use an inline shape within the projection definition itself.
 
@@ -111,11 +111,11 @@ Within a Shaper skill, an input can have a `sourceContext` element. This same pr
 
 `sourceContext` is used to construct multi-level, nested objects in an enrichment pipeline. If the input is at a *different* context than the skill context, use the *sourceContext*. The *sourceContext* requires you to define a nested input with the specific element being addressed as the source. 
 
-In the example above, sentiment analysis and key phrases extraction was performed on text that was split into pages for more efficient analysis. Assuming you want the scores and phrases projected into a table, you'll now need to set the context to nested input that provides the score and phrase.
+In the previous example, sentiment analysis and key phrases extraction was performed on text that was split into pages for more efficient analysis. Assuming you want the scores and phrases projected into a table, you'll now need to set the context to nested input that provides the score and phrase.
 
 ### Projecting a shape into multiple tables
 
-With the `tableprojection` node defined in the `outputs` section above, you can slice parts of the `tableprojection` node into individual, related tables:
+With the `tableprojection` node defined in the `outputs` in the previous section, you can slice parts of the `tableprojection` node into individual, related tables:
 
 ```json
 "projections": [
@@ -145,8 +145,8 @@ With the `tableprojection` node defined in the `outputs` section above, you can 
 
 Inline shaping is the ability to form new shapes within the projection definition itself. Inline shaping has these characteristics:
 
-+ The shape can be used only by the projection that contains it.
-+ The shape can be identical to what a Shaper skill would produce.
++ The shape is used only by the projection that contains it.
++ The shape can be identical to what a Shaper skill produces.
 
 An inline shape is created using `sourceContext` and `inputs`.
 

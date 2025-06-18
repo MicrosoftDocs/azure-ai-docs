@@ -49,7 +49,7 @@ The following sections provide you with a quick guide to the default quotas and 
 | Max file size for Assistants & fine-tuning | 512 MB<br/><br/>200 MB via [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) |
 | Max size for all uploaded files for Assistants |200 GB |
 | Assistants token limit | 2,000,000 token limit |
-| GPT-4o max images per request (# of images in the messages array/conversation history) | 50 |
+| GPT-4o and GPT-4.1 max images per request (# of images in the messages array/conversation history) | 50 |
 | GPT-4 `vision-preview` & GPT-4 `turbo-2024-04-09` default max tokens | 16 <br><br> Increase the `max_tokens` parameter value to avoid truncated responses. GPT-4o max tokens defaults to 4096. |
 | Max number of custom headers in API requests<sup>1</sup> | 10 |
 | Message character limit | 1048576 |
@@ -207,6 +207,16 @@ The rate limits for each `gpt-4o` audio model deployment are 100 K TPM and 1 K R
 |`gpt-4o-mini-realtime-preview` | Default | 800 K | 1 K |
 
 M = million | K = thousand
+
+## GPT-image-1 rate limits 
+
+### GPT0-image-1 global standard
+
+| Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
+|---|---|:---:|:---:|
+|`gpt-image-1`|Enterprise agreement | N/A | 20 |
+|`gpt-image-1` |Default | N/A | 6 |
+
 
 ## Usage tiers
 
