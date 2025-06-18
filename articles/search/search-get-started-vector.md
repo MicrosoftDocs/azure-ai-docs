@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: quickstart
-ms.date: 06/12/2025
+ms.date: 06/18/2025
 ---
 
 # Quickstart: Vector search using REST
@@ -96,12 +96,11 @@ You use one `.rest` or `.http` file to run all the requests in this quickstart. 
 
 1. For the **recommended** keyless authentication via Microsoft Entra ID, you need to replace `api-key: {{apiKey}}` with `Authorization: Bearer {{token}}` in the request headers. Replace all instances of `api-key: {{apiKey}}` that you find in the file.
 
-
 ## Create a vector index
 
 You use the [Create Index](/rest/api/searchservice/indexes/create) REST API to create a vector index and set up the physical data structures on your search service.
 
-The index schema in this example is organized around hotel content. Sample data consists of vector and nonvector names and descriptions of fictitious hotels. This schema includes configurations for vector indexing and queries, and for semantic ranking.
+The index schema in this example is organized around hotel content. Sample data consists of vector and nonvector descriptions of fictitious hotels. This schema includes configurations for vector indexing and queries, and for semantic ranking.
 
 1. In Visual Studio Code, open the `az-search-vector-quickstart.rest` file you [created earlier](#create-or-download-the-code-file).
 
@@ -110,7 +109,7 @@ The index schema in this example is organized around hotel content. Sample data 
 
     ```http
     ### Create a new index
-    POST  {{baseUrl}}/indexes?api-version=2023-11-01  HTTP/1.1
+    POST  {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{token}}
 
@@ -387,7 +386,7 @@ Key takeaways about the [Create Index](/rest/api/searchservice/indexes/create) R
 
 - The `fields` collection includes a required key field and text and vector fields (such as `Description` and `DescriptionVector`) for text and vector search. Colocating vector and nonvector fields in the same index enables hybrid queries. For instance, you can combine filters, text search with semantic ranking, and vectors into a single query operation.
 
-- Vector fields must be `type: Collection(Edm.Single)` with `dimensions` and `vectorSearchProfile` properties.
+- Vector fields must be one of the [EDM data types used for vectors](rest/api/searchservice/supported-data-types#edm-data-types-for-vector-fields), such as `type: Collection(Edm.Single)`. Vector fields also have `dimensions` and `vectorSearchProfile` properties.
 
 - The `vectorSearch` section is an array of approximate nearest neighbor algorithm configurations and profiles. Supported algorithms include hierarchical navigable small world and exhaustive k-nearest neighbor. For more information, see [Relevance scoring in vector search](vector-search-ranking.md).
 
@@ -652,7 +651,7 @@ Key takeaways about the [Documents - Index REST API](/rest/api/searchservice/doc
 
 ## Run queries
 
-Now that documents are loaded, you can issue vector queries against them by using [Documents - Search Post (REST)](/rest/api/searchservice/documents/search-post).
+Now that documents are loaded, you can run vector queries against them by using [Documents - Search Post (REST)](/rest/api/searchservice/documents/search-post).
 
 In the next sections, we run queries against the `hotels-vector-quickstart` index. The queries include:
 
@@ -661,7 +660,7 @@ In the next sections, we run queries against the `hotels-vector-quickstart` inde
 - [Hybrid search](#hybrid-search)
 - [Semantic hybrid search](#semantic-hybrid-search)
 
-The example vector queries are based on two strings:
+The example queries are based on two strings:
 
 - **Search string**: `historic hotel walk to restaurants and shopping`
 - **Vector query string** (vectorized into a mathematical representation): `quintessential lodging near running trails, eateries, retail`
@@ -692,10 +691,15 @@ The vector query string is semantically similar to the search string, but it inc
             ]
         }
     ```
+   Key takeaways about the [Documents - Search Post](/rest/api/searchservice/documents/search-post) REST API:
 
-    The `vectorQueries.vector` contains the vectorized text of the query input, `fields` determines which vector fields are searched, and `k` specifies the number of nearest neighbors to return.
+    + The `vectorQueries.vector` is the vector query string. It's a vector representation of *quintessential lodging near running trails, eateries, retail*, which is vectorized into 1,536 embeddings for this query.
 
-    The query is a vector representation of *quintessential lodging near running trails, eateries, retail*, which is vectorized into 1,536 embeddings for this query.
+    + `fields` determines which vector fields are searched.
+
+    + `kind` set to `vector` means that the query string is a vector. If `kind` was set to `text`, you would need extra capability (a [vectorizer]()) to encode a human readable text string into a vector at query time. Vectorizers are omitted from this quickstart to keep the exercise simple.
+
+    + `k` specifies the number of nearest neighbors to return in the response. A `count` parameter specifies the number of matches found in the index. Including count is a best practice for queries, but it's less useful for similarity search where the algorithm can find some degree of similarity in almost any document. 
 
 1. Select **Send request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
 
@@ -838,7 +842,7 @@ You can add filters, but the filters are applied to the nonvector content in you
     }
     ```
 
-1. Here's another query that uses a geo-filter, limiting results to hotels within 500 kilometers around Washington D.C.
+1. Here's another query that uses a geo-filter, limiting results to hotels within 300 kilometers around Washington D.C.
 
     ```http
     ### Run a vector query with a geo filter
