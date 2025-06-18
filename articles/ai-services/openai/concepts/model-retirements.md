@@ -26,14 +26,14 @@ Azure OpenAI models are continually refreshed with newer and more capable models
 	* When a model is retired, it's no longer available for use. Azure OpenAI deployments of a retired model always return error responses.
 
 ## Notifications
-
+ 
 Azure OpenAI notifies customers of active Azure OpenAI deployments for models with upcoming retirements. We notify customers of upcoming retirements as follows for each deployment:
-
-1. At model launch, we programmatically designate a "not sooner than" retirement date (typically one year out).
+ 
+1. At model launch, we programmatically designate a "not sooner than" retirement date (for preview models this is between 90-120 days from launch, for generally available (GA) models this is 365 days from launch).
 2. At least 60 days notice before model retirement for Generally Available (GA) models.
-3. At least 30 days notice before preview model version upgrades.  
-
-Retirements are done on a rolling basis, region by region. Notifications are sent from an unmonitored mailbox, `azure-noreply@microsoft.com`.
+3. At least 30 days notice before preview model version upgrades.
+ 
+Retirements are done on a rolling basis, region by region. There is no schedule for when a specific region, or SKU will be upgraded.
 
 ## Model availability
 
@@ -63,14 +63,10 @@ Be aware of the following:
     2. for model family changes beyond version updates, such as when moving from `gpt-4 1106-preview` to `gpt-4o (2024-05-13)`. 
 
 ### Who is notified of upcoming retirements
-
-Azure OpenAI notifies those who are members of the following roles for each subscription with a deployment of a model with an upcoming retirement.
-
-* Owner
-* Contributor
-* Reader
-* Monitoring contributor
-* Monitoring reader
+ 
+Azure OpenAI notifies customers via two methods:
+- **Azure Resoruce Health** - Anyone with reader permissions or above can see azure health alerts, as well as configure personalized alerts via email, SMS, etc. See [Create Service Health Alerts] (https://learn.microsoft.com/en-us/azure/service-health/alerts-activity-log-service-notifications-portal)
+- **Email** - email notifications are automatically sent to subscription owners. Any individual with reader permissions may however configure their own alerts by following the guidance above.
 
 ## How to get ready for model retirements and version upgrades
 

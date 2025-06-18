@@ -58,8 +58,10 @@ ms.custom: references_regions, build-2025
 
 | Model                          | Version         | Retirement date                    | Replacement model                    |
 | -------------------------------|-----------------|------------------------------------|--------------------------------------|
-| `dalle-3`                      | 3               | No earlier than September 15, 2025 |                                      |
 | `gpt-image-1`                  | 2025-04-15      | No earlier than August 1, 2025     |                                      |
+| `sora`                         | 2025-05-02      | No earlier than August 15, 2025    |                                      |
+| `dalle-3`                      | 3               | No earlier than September 15, 2025 |                                      |
+
 
 # [Embedding](#tab/embedding)
 
@@ -115,7 +117,7 @@ For fine-tuned models made generally available since `gpt-4o-2024-08-06`, **depl
 
  These models are no longer available for new deployments.
 
-If you're an existing customer looking for information about these models, see [Legacy models](./legacy-models.md).
+If you're an existing customer looking for information about these models, see [Legacy models](../../concepts/legacy-models.md).
 
 | Model | Deprecation date | Retirement date | Suggested replacement |
 | --------- | --------------------- | ------------------- | -------------------- |
