@@ -33,8 +33,8 @@ Use this article to find step-by-step instructions and code samples for using Op
 
    :::image type="content" source="../../media\tools\open-api-details.png" alt-text="A screenshot showing the openAPI tool details in the Azure AI Foundry portal." lightbox="../../media\tools\open-api-details.png":::
 
-1. Select **Next** and select your authentication method. Choose your connection.
-   1. If you choose `connection`, you need to select the custom keys connection you have created before.
+1. Select **Next** and select your authentication method.
+   1. If you choose `connection`, you need to select the custom connection you have created before.
    1. If you choose `managed identity`, you need to input the audience to get your token. An example of an audience would be `https://cognitiveservices.azure.com/` to connect to Azure AI Services. Make sure you have already set up authentication and role assignment (as described in the [section](./openapi-spec.md#authenticating-with-managed-identity-microsoft-entra-id) above).
       
 1. Copy and paste your OpenAPI specification in the text box.
