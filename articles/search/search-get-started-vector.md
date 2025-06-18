@@ -1042,7 +1042,6 @@ Here's the last query in the collection. This hybrid query adds L2 semantic rank
         "select": "HotelName, Description",
         "queryType": "semantic",
         "semanticConfiguration": "semantic-config",
-        "semanticQuery": "historic hotel walk to restaurants and shopping",
         "top": 5,
         "vectorQueries": [
             {
