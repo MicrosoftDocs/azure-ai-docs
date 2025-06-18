@@ -386,7 +386,7 @@ Key takeaways about the [Create Index](/rest/api/searchservice/indexes/create) R
 
 - The `fields` collection includes a required key field and text and vector fields (such as `Description` and `DescriptionVector`) for text and vector search. Colocating vector and nonvector fields in the same index enables hybrid queries. For instance, you can combine filters, text search with semantic ranking, and vectors into a single query operation.
 
-- Vector fields must be one of the [EDM data types used for vectors](rest/api/searchservice/supported-data-types#edm-data-types-for-vector-fields), such as `type: Collection(Edm.Single)`. Vector fields also have `dimensions` and `vectorSearchProfile` properties.
+- Vector fields must be one of the [EDM data types used for vectors](/rest/api/searchservice/supported-data-types#edm-data-types-for-vector-fields), such as `type: Collection(Edm.Single)`. Vector fields also have `dimensions` and `vectorSearchProfile` properties.
 
 - The `vectorSearch` section is an array of approximate nearest neighbor algorithm configurations and profiles. Supported algorithms include hierarchical navigable small world and exhaustive k-nearest neighbor. For more information, see [Relevance scoring in vector search](vector-search-ranking.md).
 
@@ -691,6 +691,7 @@ The vector query string is semantically similar to the search string, but it inc
             ]
         }
     ```
+
    Key takeaways about the [Documents - Search Post](/rest/api/searchservice/documents/search-post) REST API:
 
     + The `vectorQueries.vector` is the vector query string. It's a vector representation of *quintessential lodging near running trails, eateries, retail*, which is vectorized into 1,536 embeddings for this query.
@@ -1028,7 +1029,7 @@ In the vector portion query (*quintessential lodging near running trails, eateri
 
 Here's the last query in the collection. This hybrid query adds L2 semantic ranking that applies machine reading comprehension over the L1-ranked results, promoting more relevant matches to the top.
 
-1. Formulate the request.
+1. Formulate the request. 
 
     ```http
     ### Run a hybrid query with semantic reranking
@@ -1112,15 +1113,9 @@ Before semantic reranking, Sublime Palace, with its reference to *walking distan
 }
 ```
 
-Key takeaways about [Documents - Search Post](/rest/api/searchservice/documents/search-post) REST API:
-
-- Vector search is specified through the `vectors.value` property. Keyword search is specified through the `search` property.
-
-- A hybrid query integrates vector search and keyword search. In a hybrid query, semantic reranking is over the fused results. The semantic ranking models use the text inputs in the query, either the keyword search string or a `semanticQuery` string if you specify it.
-
-- In this final query, there's no semantic `answer` because the system didn't produce one that was sufficiently strong.
-
-- Semantically ranked results can include more detail, including semantic answers, captions, and highlights. Adding more parameters to the request produces the extra detail. For more information, see [Set up a semantic query](semantic-how-to-query-request.md?tabs=rest-query#set-up-the-query).
+> [!TIP]
+>Semantically ranked results can include more detail, including semantic answers, captions, and highlights. Adding more parameters to the request produces the extra detail. For more information, see [Set up a semantic query](semantic-how-to-query-request.md?tabs=rest-query#set-up-the-query).
+>
 
 ## Clean up
 
