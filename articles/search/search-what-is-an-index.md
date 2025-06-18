@@ -11,12 +11,12 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 06/17/2025
+ms.date: 06/18/2025
 ---
 
 # Search indexes in Azure AI Search
 
-In Azure AI Search, a *search index* is your searchable content, available to the search engine for indexing, full text search, vector search, hybrid search, and filtered queries. An index is defined by a schema and saved to the search service, with data import following as a second step. This content exists within your search service, apart from your primary data stores, which is necessary for the millisecond response times expected in modern search applications. Except for indexer-driven indexing scenarios, the search service never connects to or queries your source data.
+In Azure AI Search, a *search index* is your searchable content, available to the search engine for indexing, full-text search, vector search, hybrid search, and filtered queries. An index is defined by a schema and saved to the search service, with data import following as a second step. This content exists within your search service, apart from your primary data stores, which is necessary for the millisecond response times expected in modern search applications. Except for indexer-driven indexing scenarios, the search service never connects to or queries your source data.
 
 This article covers the key concepts for creating and managing a search index, including:
 
@@ -24,7 +24,8 @@ This article covers the key concepts for creating and managing a search index, i
 + Physical data structure
 + Basic operations
 
-Prefer to be hands-on right away? See [Create a search index](search-how-to-create-search-index.md) instead.
+> [!TIP]
+> Want to get started right away? See [Create a search index](search-how-to-create-search-index.md).
 
 ## Schema of a search index
 
@@ -111,21 +112,21 @@ Although you can add new fields at any time, existing field definitions are lock
 
 ## Physical structure and size
 
-In Azure AI Search, the physical structure of an index is largely an internal implementation. You can access its schema, query its content, monitor its size, and manage capacity, but the clusters themselves (inverted indexes, vector indexes, [shards](index-similarity-and-scoring.md#sharding-effects-on-query-results), and other files and folders) are managed internally by Microsoft.
+In Azure AI Search, the physical structure of an index is largely an internal implementation. You can access its schema, load and query its content, monitor its size, and manage its capacity. However, Microsoft manages the clusters themselves (inverted indexes, vector indexes, [shards](index-similarity-and-scoring.md#sharding-effects-on-query-results)) and other files and folders.
 
-You can monitor index size in the **Search management > Indexes** page in the Azure portal, or by issuing a [GET INDEX request](/rest/api/searchservice/indexes/get) against your search service. You can also issue a [Service Statistics request](/rest/api/searchservice/get-service-statistics/get-service-statistics) and check the value of storage size.
+You can monitor index size on the **Search management > Indexes** page in the Azure portal. Alternatively, you can issue a [GET INDEX request](/rest/api/searchservice/indexes/get) against your search service or a [Service Statistics request](/rest/api/searchservice/get-service-statistics/get-service-statistics) to check the value of storage size.
 
-The size of an index is determined by:
+The size of an index is determined by the:
 
-+ Quantity and composition of your documents
-+ Attributes on individual fields
-+ Index configuration (specifically, whether you include suggesters)
++ Quantity and composition of your documents.
++ Attributes on individual fields.
++ Index configuration. Specifically, whether you include suggesters.
 
-Document composition and quantity are determined by what you choose to import. Remember that a search index should only contain searchable content. If source data includes binary fields, omit those fields unless you're using AI enrichment to crack and analyze the content to create text searchable information.
+Document composition and quantity are determined by what you choose to import. Remember that a search index should only contain searchable content. If source data includes binary fields, omit those fields unless you're using AI enrichment to crack and analyze the content to create text-searchable information.
 
-Field attributes determine behaviors. To support those behaviors, the indexing process creates the necessary data structures. For example, for a field of type `Edm.String`, "searchable" invokes [full text search](search-lucene-query-architecture.md), which scans inverted indexes for the tokenized term. In contrast, a "filterable" or "sortable" attribute supports iteration over unmodified strings. The example in the next section shows variations in index size based on the selected attributes.
+Field attributes determine behaviors. To support those behaviors, the indexing process creates the necessary data structures. For example, for a field of type `Edm.String`, "searchable" invokes [full-text search](search-lucene-query-architecture.md), which scans inverted indexes for the tokenized term. In contrast, a "filterable" or "sortable" attribute supports iteration over unmodified strings. The example in the next section shows variations in index size based on the selected attributes.
 
-[**Suggesters**](index-add-suggesters.md) are constructs that support type-ahead or autocomplete queries. As such, when you include a suggester, the indexing process creates the data structures necessary for verbatim character matches. Suggesters are implemented at the field level, so choose only those fields that are reasonable for type-ahead.
+[**Suggesters**](index-add-suggesters.md) are constructs that support type-ahead or autocomplete queries. When you include a suggester, the indexing process creates the data structures necessary for verbatim character matches. Suggesters are implemented at the field level, so choose only those fields that are reasonable for type-ahead.
 
 ### Example demonstrating the storage implications of attributes and suggesters
 

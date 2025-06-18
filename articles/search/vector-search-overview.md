@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 06/17/2025
+ms.date: 06/18/2025
 ---
 
 # Vector search in Azure AI Search
@@ -20,42 +20,101 @@ Vector search is an information retrieval approach that supports indexing and qu
 + Multilingual content, such as "dog" in English and "hund" in German.
 + Multiple content types, such as "dog" in plain text and an image of a dog.
 
-This article provides a high-level introduction to vector support in Azure AI Search. It also explains integration with other Azure services and covers [terminology and concepts](#vector-search-concepts) related to vector search development.
+This article introduces concepts and terminology related to vector search development. It also covers vector support in Azure AI Search, including its integration with other Azure services.
 
-We recommend this article for background, but if you'd rather get started, follow these steps:
+> [!TIP]
+> Want to get started right away? Follow these steps:
+>
+> 1. [Push embeddings](vector-search-how-to-generate-embeddings.md) into your index or [generate embeddings](vector-search-integrated-vectorization.md) in an indexer pipeline.
+> 1. [Create a vector index](vector-search-how-to-create-index.md).
+> 1. [Run vector queries](vector-search-how-to-query.md).
+>
+> You can also begin with [Quickstart: Vector search using REST](search-get-started-vector.md) or the [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples) repo.
 
-> [!div class="checklist"]
-> + [Provide embeddings](vector-search-how-to-generate-embeddings.md) for your index or [generate embeddings](vector-search-integrated-vectorization.md) in an indexer pipeline
-> + [Create a vector index](vector-search-how-to-create-index.md)
-> + [Run vector queries](vector-search-how-to-query.md)
+## Vector search concepts
 
-You can also begin with the [vector quickstart](search-get-started-vector.md) or the [code samples on GitHub](https://github.com/Azure/azure-search-vector-samples).
+Vector search is a method of information retrieval where documents and queries are represented as vectors instead of plain text. In vector search, machine learning models generate the vector representations of source inputs, which can be text, images, or other content.
+
+Having a mathematic representation of content provides a common language for comparing disparate content. If everything is a vector, a query can find a match in vector space, even if the associated original content is in different media or language than the query.
+
+### Why use vector search?
+
+When searchable content is represented as vectors, a query can find close matches in similar content. The embedding model used for vector generation knows which words and concepts are similar, and it places the resulting vectors close together in the embedding space. For example, vectorized source documents about "clouds" and "fog" are more likely to show up in a query about "mist" because they're semantically similar, even if they aren't a lexical match.
+
+### Embeddings and vectorization
+
+Machine learning models create *embeddings*, a specific type of vector representation of content or queries. These models capture the semantic meaning of text or representations of other content, such as images.
+
+Natural-language machine learning models are trained on large amounts of data to identify patterns and relationships between words. During training, the models learn to represent any input as a vector of real numbers in an intermediary step called the *encoder*. After training is completed, the models can be modified so that the intermediary vector representation becomes their output. The resulting embeddings are high-dimensional vectors, where words with similar meanings are closer together in the vector space. For more information about embeddings, see [Understand embeddings in Azure OpenAI in Azure AI Foundry Models](/azure/ai-services/openai/concepts/understand-embeddings).
+
+The effectiveness of vector search in retrieving relevant information depends on how effectively the embedding model distills the meaning of documents and queries into the resulting vector. The best models are well-trained on the types of data they represent. You can evaluate existing models, such as Azure OpenAI text-embedding-ada-002; bring your own model that's trained directly on the problem space; or fine-tune a general-purpose model. Azure AI Search doesn't impose constraints on which model you choose, so pick the best one for your data.
+
+To create effective embeddings for vector search, it's important to consider input size limitations. We recommend following the [guidelines for chunking data](vector-search-how-to-chunk-documents.md) before generating embeddings. This best practice ensures that the embeddings accurately capture the relevant information and enable more efficient vector search.
+
+### What is an embedding space?
+
+An *embedding space* is the corpus for vector queries. Within a [search index](search-what-is-an-index.md), the embedding space is all of the vector fields populated with embeddings from the same embedding model. Machine learning models create the embedding space by mapping individual words, phrases, documents (for natural-language processing), images, or other data into representations comprised of vectors of real numbers that act as coordinates in a high-dimensional space.
+
+In the embedding space, similar items are located close together, while dissimilar items are located farther apart. For example, documents about different species of dogs would be clustered close together. Documents about cats would be close together but farther from the dogs cluster, while still being in the neighborhood for animals. Dissimilar concepts, such as cloud computing, would be much farther away.
+
+In practice, embedding spaces are abstract and don't have well-defined, human-interpretable meanings, but the core idea stays the same.
+
+<a name="eknn"></a>
+
+### Nearest neighbors search
+
+In vector search, the search engine scans vectors within the embedding space to identify vectors that are closest to the query vector. This technique is called [*nearest neighbor search*](https://en.wikipedia.org/wiki/Nearest_neighbor_search).
+
+Nearest neighbors quantify the similarity between items. A high degree of vector similarity indicates that the original data is also similar. To expedite nearest neighbor search and reduce the search space, the search engine uses data structures and data partitioning. Each vector search algorithm solves the nearest neighbor problems differently, optimizing for minimum latency, maximum throughput, recall, and memory. To compute similarity, similarity metrics provide the mechanism for computing distance.
+
+Azure AI Search supports the following algorithms:
+
++ **Hierarchical navigable small world (HNSW)**. HNSW is a leading ANN algorithm optimized for high-recall, low-latency applications with unknown or volatile data distribution. It organizes high-dimensional data points into a hierarchical graph structure that enables fast, scalable similarity search and allows a tunable trade-off between search accuracy and computational cost. Because the algorithm requires all data points to reside in memory for fast random access, HNSW consumes [vector index size](vector-search-index-size.md) quota.
+
++ **Exhaustive K-nearest neighbors (KNN)**. KNN calculates the distances between the query vector and all data points. It's computationally intensive and works best for smaller datasets. Because the algorithm doesn't require fast random access of data points, KNN doesn't consume vector index size quota. However, it provides the global set of nearest neighbors.
+
+To learn how to specify the algorithm, vector profile, and profile assignment for HNSW or KNN, see [Create a vector field](vector-search-how-to-create-index.md).
+
+Algorithm parameters that are used to initialize the index during index creation are immutable and can't be changed after the index is built. However, parameters that affect the query-time characteristics (`efSearch`) can be modified.
+
+Fields that specify the HNSW algorithm also support exhaustive KNN search using the [query request](vector-search-how-to-query.md) parameter `"exhaustive": true`. However, the opposite isn't true. If a field is indexed for `exhaustiveKnn`, you can't use HNSW in the query because the extra data structures that enable efficient search don't exist.
+
+### Approximate nearest neighbors
+
+Approximate nearest neighbor (ANN) is a class of algorithms for finding matches in vector space. This class of algorithms uses different data structures or data partitioning methods to significantly reduce the search space and accelerate query processing.
+
+ANN algorithms sacrifice some accuracy but offer scalable and faster retrieval of approximate nearest neighbors, which makes them ideal for balancing accuracy and efficiency in modern information retrieval applications. You can adjust the parameters of your algorithm to fine-tune the recall, latency, memory, and disk footprint requirements of your search application.
+
+Azure AI Search uses HNSW for its ANN algorithm.
+
+<!-- > [!NOTE]
+> Finding the true set of [nearest neighbors](https://en.wikipedia.org/wiki/Nearest_neighbor_search) requires comparing the input vector exhaustively against all vectors in the dataset. While each vector similarity calculation is relatively fast, performing these exhaustive comparisons across large datasets is computationally expensive and slow due to the sheer number of comparisons. For example, if a dataset contains 10 million 1,000-dimensional vectors, computing the distance between the query vector and all vectors in the dataset would require scanning 37 GB of data (assuming single-precision floating point vectors) and a high number of similarity calculations.
+> 
+> To address this challenge, approximate nearest neighbor (ANN) search methods are used to trade off recall for speed. These methods can efficiently find a small set of candidate vectors that are similar to the query vector and have high likelihood to be in the globally most similar neighbors. Each algorithm has a different approach to reducing the total number of vectors comparisons, but they all share the ability to balance accuracy and efficiency by tweaking the algorithm configuration parameters. -->
 
 ## What scenarios can vector search support?
 
-Scenarios for vector search include:
+Vector search supports the following scenarios:
 
-+ **Similarity search**. Encode text using embedding models such as OpenAI embeddings or open source models such as SBERT, and retrieve documents with queries that are also encoded as vectors.
++ **Similarity search**. Encode text using embedding models or open-source models, such as OpenAI embeddings or SBERT, respectively. You then encode queries and retrieve documents by searching for the most similar results.
 
-+ **Search across different content types (multimodal)**. Encode images and text using multimodal embeddings (for example, with [OpenAI CLIP](https://github.com/openai/CLIP) or [GPT-4 Turbo with Vision](/azure/ai-services/openai/whats-new#gpt-4-turbo-with-vision-now-available) in Azure OpenAI) and query an embedding space composed of vectors from both content types.
++ **Search across different content types (multimodal)**. Encode text and images using multimodal embeddings, such as [OpenAI CLIP](https://github.com/openai/CLIP) or [GPT-4 Turbo with Vision](/azure/ai-services/openai/whats-new#gpt-4-turbo-with-vision-now-available) in Azure OpenAI, and then query an embedding space composed of vectors from both content types.
 
-+ [**Hybrid search**](hybrid-search-overview.md). In Azure AI Search, we define hybrid search as dual vector and keyword query execution in the same request. Vector support is implemented at the field level. If an index contains both vector and non-vector fields, you can write a query that targets both. The queries execute in parallel and the results are merged into a single response and ranked accordingly.
++ [**Hybrid search**](hybrid-search-overview.md). Azure AI Search defines hybrid search as the execution of vector search and [keyword search](search-lucene-query-architecture.md) in the same request. Vector support is implemented at the field level. If an index contains both vector and nonvector fields, you can write a query that targets both. The queries execute in parallel, and the results are merged into a single response and ranked accordingly.
 
-+ **Multilingual search**. Azure AI Search is designed for extensibility. If you have embedding models and chat models trained in multiple languages, you can call them through custom or built-in skills on the indexing side, or vectorizers on the query side. If you need more control over text translation, you can supplement with the [multi-language capabilities](search-language-support.md) that Azure AI Search supports for nonvector content, in hybrid search scenarios.
++ **Multilingual search**. Azure AI Search is designed for extensibility. If you have embedding models and chat models trained in multiple languages, you can call them through custom or built-in skills on the indexing side or vectorizers on the query side. For more control over text translation, use the [multi-language capabilities](search-language-support.md) supported by Azure AI Search for nonvector content in hybrid search scenarios.
 
-+ **Filtered vector search**. A query request can include a vector query and a [filter expression](search-filters.md). Filters apply to text and numeric fields, and are useful for metadata filters, and including or excluding search results based on filter criteria. Although a vector field isn't filterable itself, you can set up a filterable text or numeric field. The search engine can process the filter before or after the vector query executes.
++ **Filtered vector search**. A query request can include a vector query and a [filter expression](search-filters.md). Filters apply to text and numeric fields. They're useful for metadata filters and for including or excluding search results based on filter criteria. Although a vector field isn't filterable, you can set up a filterable text or numeric field. The search engine can process the filter before or after executing the vector query.
 
-+ **Vector database**. Azure AI Search stores the data that you query over. Use it as a [pure vector store](vector-store.md) any time you need long-term memory or a knowledge base, or grounding data for [Retrieval Augmented Generation (RAG) architecture](https://aka.ms/what-is-rag), or any app that uses vectors.
++ **Vector database**. Azure AI Search stores the data that you query over. Use it as a [pure vector index](vector-store.md) when you need long-term memory or a knowledge base, grounding data for the [retrieval-augmented generation (RAG) architecture](https://aka.ms/what-is-rag), or an app that uses vectors.
 
 ## How vector search works in Azure AI Search
 
-Vector support includes indexing, storing, and querying of vector embeddings from a search index.
-
-The following diagram shows the indexing and query workflows for vector search.
+Azure AI Search supports indexing, storing, and querying vector embeddings from a search index. The following diagram shows the indexing and query workflows for vector search:
 
 :::image type="content" source="media/vector-search-overview/vector-search-architecture-diagram-3.svg" alt-text="Architecture of vector search workflow." border="false" lightbox="media/vector-search-overview/vector-search-architecture-diagram-3-high-res.png":::
 
-On the indexing side, Azure AI Search takes vector embeddings and uses a [nearest neighbors algorithm](vector-search-ranking.md) to place similar vectors close together in an index. Internally, it creates vector indexes for each vector field.
+On the indexing side, Azure AI Search uses a [nearest neighbors algorithm](vector-search-ranking.md) to place similar vectors close together in an index. Internally, it creates [vector indexes](vector-store.md) for each vector field.
 
 How you get embeddings from your source content into Azure AI Search depends on whether you want to perform the work within an Azure AI Search indexing pipeline, or externally.  Azure AI Search offers [integrated data chunking and vectorization](vector-search-integrated-vectorization.md) in an indexer pipeline. You still provide the resources (endpoints and connection information to Azure OpenAI), but Azure AI Search makes all of the calls and handles the transitions. This approach requires an indexer, a supported data source, and a skillset that drives chunking and embedding. If you don't want to use indexers, you can handle all vectorization externally, and then push prevectorized content into [vector fields](vector-search-how-to-create-index.md) in the search index.
 
@@ -91,63 +150,6 @@ Azure AI Search is deeply integrated across the Azure AI platform. The following
 | Azure data platforms: Azure Blob Storage, Azure Cosmos DB, Azure SQL, OneLake | You can use [indexers](search-indexer-overview.md) to automate data ingestion, and then use [integrated vectorization](vector-search-integrated-vectorization.md) to generate embeddings. Azure AI Search can automatically index vector data from [Azure blob indexers](search-howto-indexing-azure-blob-storage.md), [Azure Cosmos DB for NoSQL indexers](search-howto-index-cosmosdb.md), [Azure Data Lake Storage Gen2](search-howto-index-azure-data-lake-storage.md), [Azure Table Storage](search-howto-indexing-azure-tables.md), [Fabric OneLake](search-how-to-index-onelake-files.md). For more information, see [Add vector fields to a search index.](vector-search-how-to-create-index.md). |
 
 It's also commonly used in open-source frameworks like [LangChain](https://js.langchain.com/docs/integrations/vectorstores/azure_aisearch).
-
-## Vector search concepts
-
-If you're new to vectors, this section explains some core concepts.
-
-### About vector search
-
-Vector search is a method of information retrieval where documents and queries are represented as vectors instead of plain text. In vector search, machine learning models generate the vector representations of source inputs, which can be text, images, or other content. Having a mathematic representation of content provides a common language for comparing disparate content. If everything is a vector, a query can find a match in vector space, even if the associated original content is in different media or language than the query.
-
-### Why use vector search
-
-When searchable content is represented as vectors, a query can find close matches in similar content. The embedding model used for vector generation knows which words and concepts are similar, and it places the resulting vectors close together in the embedding space. For example, vectorized source documents about "clouds" and "fog" are more likely to show up in a query about "mist" because they're semantically similar, even if they aren't a lexical match.
-
-### Embeddings and vectorization
-
-*Embeddings* are a specific type of vector representation of content or a query, created by machine learning models that capture the semantic meaning of text or representations of other content such as images. Natural language machine learning models are trained on large amounts of data to identify patterns and relationships between words. During training, they learn to represent any input as a vector of real numbers in an intermediary step called the *encoder*. After training is complete, these language models can be modified so the intermediary vector representation becomes the model's output. The resulting embeddings are high-dimensional vectors, where words with similar meanings are closer together in the vector space, as explained in [Understand embeddings (Azure OpenAI)](/azure/ai-services/openai/concepts/understand-embeddings). 
-
-The effectiveness of vector search in retrieving relevant information depends on the effectiveness of the embedding model in distilling the meaning of documents and queries into the resulting vector. The best models are well-trained on the types of data they're representing. You can evaluate existing models such as Azure OpenAI text-embedding-ada-002, bring your own model that's trained directly on the problem space, or fine-tune a general-purpose model. Azure AI Search doesn't impose constraints on which model you choose, so pick the best one for your data. 
-
-In order to create effective embeddings for vector search, it's important to take input size limitations into account. We recommend following the [guidelines for chunking data](vector-search-how-to-chunk-documents.md) before generating embeddings. This best practice ensures that the embeddings accurately capture the relevant information and enable more efficient vector search.
-
-### What is the embedding space?
-
-*Embedding space* is the corpus for vector queries. Within a search index, an embedding space is all of the vector fields populated with embeddings from the same embedding model. Machine learning models create the embedding space by mapping individual words, phrases, or documents (for natural language processing), images, or other forms of data into a representation comprised of a vector of real numbers representing a coordinate in a high-dimensional space. In this embedding space, similar items are located close together, and dissimilar items are located farther apart. 
-
-For example, documents that talk about different species of dogs would be clustered close together in the embedding space. Documents about cats would be close together, but farther from the dogs cluster while still being in the neighborhood for animals. Dissimilar concepts such as cloud computing would be much farther away. In practice, these embedding spaces are abstract and don't have well-defined, human-interpretable meanings, but the core idea stays the same.
-
-<a name="eknn"></a>
-
-### Nearest neighbors search
-
-In vector search, the search engine scans vectors within the embedding space to identify vectors that are closest to the query vector. This technique is called [*nearest neighbor search*](https://en.wikipedia.org/wiki/Nearest_neighbor_search). Nearest neighbors help quantify the similarity between items. A high degree of vector similarity indicates that the original data was similar too. To facilitate fast nearest neighbor search, the search engine performs optimizations, or employs data structures and data partitioning, to reduce the search space. Each vector search algorithm solves the nearest neighbor problems in different ways as they optimize for minimum latency, maximum throughput, recall, and memory. To compute similarity, similarity metrics provide the mechanism for computing distance.
-
-Azure AI Search currently supports the following algorithms:
-
-+ Hierarchical Navigable Small World (HNSW): HNSW is a leading ANN algorithm optimized for high-recall, low-latency applications where data distribution is unknown or can change frequently. It organizes high-dimensional data points into a hierarchical graph structure that enables fast and scalable similarity search while allowing a tunable a trade-off between search accuracy and computational cost. Because the algorithm requires all data points to reside in memory for fast random access, this algorithm consumes [vector index size](vector-search-index-size.md) quota.
-
-+ Exhaustive K-nearest neighbors (KNN): Calculates the distances between the query vector and all data points. It's computationally intensive, so it works best for smaller datasets. Because the algorithm doesn't require fast random access of data points, this algorithm doesn't consume vector index size quota. However, this algorithm provides the global set of nearest neighbors.
-
-To use these algorithms, see [Create a vector field](vector-search-how-to-create-index.md) for instructions on specifying the algorithm, vector profiles, and profile assignment.
-
-Algorithm parameters that are used to initialize the index during index creation are immutable and can't be changed after the index is built. However, parameters that affect the query-time characteristics (`efSearch`) can be modified. 
-
-In addition, fields that specify HNSW algorithm also support exhaustive KNN search using the [query request](vector-search-how-to-query.md) parameter `"exhaustive": true`. The opposite isn't true however. If a field is indexed for `exhaustiveKnn`, you can't use HNSW in the query because the extra data structures that enable efficient search don’t exist.
-
-### Approximate Nearest Neighbors
-
-Approximate Nearest Neighbor (ANN) search is a class of algorithms for finding matches in vector space. This class of algorithms employs different data structures or data partitioning methods to significantly reduce the search space to accelerate query processing. 
-
-ANN algorithms sacrifice some accuracy, but offer scalable and faster retrieval of approximate nearest neighbors, which makes them ideal for balancing accuracy against efficiency in modern information retrieval applications. You can adjust the parameters of your algorithm to fine-tune the recall, latency, memory, and disk footprint requirements of your search application.
-
-Azure AI Search uses HNSW for its ANN algorithm. 
-
-<!-- > [!NOTE]
-> Finding the true set of [nearest neighbors](https://en.wikipedia.org/wiki/Nearest_neighbor_search) requires comparing the input vector exhaustively against all vectors in the dataset. While each vector similarity calculation is relatively fast, performing these exhaustive comparisons across large datasets is computationally expensive and slow due to the sheer number of comparisons. For example, if a dataset contains 10 million 1,000-dimensional vectors, computing the distance between the query vector and all vectors in the dataset would require scanning 37 GB of data (assuming single-precision floating point vectors) and a high number of similarity calculations.
-> 
-> To address this challenge, approximate nearest neighbor (ANN) search methods are used to trade off recall for speed. These methods can efficiently find a small set of candidate vectors that are similar to the query vector and have high likelihood to be in the globally most similar neighbors. Each algorithm has a different approach to reducing the total number of vectors comparisons, but they all share the ability to balance accuracy and efficiency by tweaking the algorithm configuration parameters. -->
 
 ## Next steps
 
