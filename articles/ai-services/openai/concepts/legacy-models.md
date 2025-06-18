@@ -20,8 +20,6 @@ Azure OpenAI offers a variety of models for different use cases. The following m
 
  These models are no longer available for new deployments.
 
-If you're an existing customer looking for information about these models, see [Legacy models](../../concepts/legacy-models.md).
-
 | Model | Deprecation date | Retirement date | Suggested replacement |
 | --------- | --------------------- | ------------------- | -------------------- |
 | `gpt-4o-realtime-preview` - 2024-10-01 | February 25, 2025 | March 26, 2025 | `gpt-4o-realtime-preview` (version 2024-12-17) or `gpt-4o-mini-realtime-preview` (version 2024-12-17) |
