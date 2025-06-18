@@ -87,8 +87,6 @@ Now that you know when to use fine-tuning for your use case, you can go to Azure
 
 Fine-tuning is available in specific Azure regions for some models that are deployed via standard deployments. To fine-tune such models, a user must have a hub/project in the region where the model is available for fine-tuning. See [Region availability for models in standard deployment](../how-to/deploy-models-serverless-availability.md) for detailed information.
 
-For more information on fine-tuning using a managed compute (preview), see [Fine-tune models using managed compute (preview)](../how-to/fine-tune-managed-compute.md).
-
 For details about Azure OpenAI in Azure AI Foundry Models that are available for fine-tuning, see the [Azure OpenAI in Foundry Models documentation.](../../ai-services/openai/concepts/models.md#fine-tuning-models)
 
 ## Related content
