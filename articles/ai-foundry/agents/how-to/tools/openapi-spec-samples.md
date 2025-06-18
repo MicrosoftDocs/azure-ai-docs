@@ -5,7 +5,7 @@ description: Find code samples to use OpenAPI tools with agents.
 author: aahill
 ms.author: aahi
 manager: nitinme
-ms.date: 04/09/2025
+ms.date: 06/18/2025
 ms.service: azure-ai-agent-service
 ms.topic: how-to
 ms.custom:
@@ -33,8 +33,8 @@ Use this article to find step-by-step instructions and code samples for using Op
 
    :::image type="content" source="../../media\tools\open-api-details.png" alt-text="A screenshot showing the openAPI tool details in the Azure AI Foundry portal." lightbox="../../media\tools\open-api-details.png":::
 
-1. Select **Next** and select your authentication method. Choose `connection` for `API key`.
-   1. If you choose `connection`, you need to select the custom keys connection you have created before.
+1. Select **Next** and select your authentication method.
+   1. If you choose `connection`, you need to select the custom connection you have created before.
    1. If you choose `managed identity`, you need to input the audience to get your token. An example of an audience would be `https://cognitiveservices.azure.com/` to connect to Azure AI Services. Make sure you have already set up authentication and role assignment (as described in the [section](./openapi-spec.md#authenticating-with-managed-identity-microsoft-entra-id) above).
       
 1. Copy and paste your OpenAPI specification in the text box.
@@ -70,17 +70,13 @@ with AIProjectClient(
 ) as project_client:
 ```
 
-## Countries Tool Setup
-Similarly, the OpenAPI specification for the countries service is loaded from `countries.json`. An anonymous authentication object (`OpenApiAnonymousAuthDetails`) is created, as this specific API doesn't require authentication in this example.
+## Tool setup
+Similarly, the OpenAPI specification is loaded from `weather.json`. An anonymous authentication object (`OpenApiAnonymousAuthDetails`) is created, as this specific API doesn't require authentication in this example. You can find an example OpenAPI spec on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/python/getting-started-agents/openapi/weather_openapi.json).
 
 ```python
-    # Load the OpenAPI specification for the countries service from a local JSON file
+    # Load the OpenAPI specification for the weather service from a local JSON file
     with open(os.path.join(os.path.dirname(__file__), "weather.json"), "r") as f:
          openapi_weather = jsonref.loads(f.read())
-
-    # Load the OpenAPI specification for the countries service from a local JSON file
-    with open(os.path.join(os.path.dirname(__file__), "countries.json"), "r") as f:
-         openapi_countries = jsonref.loads(f.read())
 
     # Create Auth object for the OpenApiTool (note: using anonymous auth here; connection or managed identity requires additional setup)
     auth = OpenApiAnonymousAuthDetails()
@@ -92,10 +88,6 @@ Similarly, the OpenAPI specification for the countries service is loaded from `c
     # Initialize the main OpenAPI tool definition for weather
     openapi_tool = OpenApiTool(
         name="get_weather", spec=openapi_weather, description="Retrieve weather information for a location", auth=auth
-    )
-    # Add the countries API definition to the same tool object
-    openapi_tool.add_definition(
-        name="get_countries", spec=openapi_countries, description="Retrieve a list of countries", auth=auth
     )
 ```
 
@@ -125,7 +117,7 @@ Create the thread and add the initial user message.
     message = project_client.agents.messages.create(
         thread_id=thread.id,
         role="user",
-        content="What's the weather in Seattle and What is the name and population of the country that uses currency with abbreviation THB?",
+        content="What's the weather in Seattle?",
     )
     print(f"Created message, ID: {message.id}")
 ```
@@ -200,6 +192,8 @@ const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());
 ```
 
 ## Read in the OpenAPI spec
+
+You can find an example OpenAPI spec on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/python/getting-started-agents/openapi/weather_openapi.json).
 
 ```javascript
 // Read in OpenApi spec
@@ -283,7 +277,7 @@ console.log(`Deleted agent, agent ID: ${agent.id}`);
 :::zone pivot="csharp"
 
 ## Configure client and OpenAPI tool
-First, retrieve configuration details and create a `PersistentAgentsClient`, then define the `OpenApiToolDefinition` using the OpenAPI specification.
+First, retrieve configuration details and create a `PersistentAgentsClient`, then define the `OpenApiToolDefinition` using the OpenAPI specification. You can find an example OpenAPI spec on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/python/getting-started-agents/openapi/weather_openapi.json).
 
 ```csharp
 using Azure;
@@ -392,7 +386,7 @@ Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-in
 
 ## Create the OpenAPI Spec tool definition, agent, and thread
  
-You might want to store the OpenAPI specification in another file and import the content to initialize the tool. This example is using `anonymous` as the authentication type.
+You might want to store the OpenAPI specification in another file and import the content to initialize the tool. This example is using `anonymous` as the authentication type. You can find an example OpenAPI spec on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/python/getting-started-agents/openapi/weather_openapi.json).
 
 ```bash
 curl --request POST \
