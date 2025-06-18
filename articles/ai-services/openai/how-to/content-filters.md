@@ -50,7 +50,7 @@ You can configure the following filter categories in addition to the default har
 
 ## Specify a content filtering configuration at request time (preview)
 
-In addition to the deployment-level content filtering configuration, we also provide a request header that allows you specify your custom configuration at request time for every API call. 
+In addition to the deployment-level content filtering configuration, we also provide a request header that allows you specify your custom configuration at request time for each API call. 
 
 ```bash
 curl --request POST \ 
@@ -72,7 +72,12 @@ curl --request POST \
     }' 
 ```
 
-The request-level content filtering configuration will override the deployment-level configuration, for the specific API call. If a configuration is specified that does not exist, the following error message will be returned. 
+The request-level content filtering configuration will override the deployment-level configuration, for the specific API call. 
+
+> [!IMPORTANT]
+> Content filter specification at request time is not available for image input (chat with images) scenarios. In those cases the default content filter will be used.
+
+If a configuration is specified that does not exist, the following error message will be returned. 
 
 ```json
 { 
