@@ -26,7 +26,7 @@ There are two parts to enable data loss prevention. First, the resource property
 >[!NOTE]
 >
 > * The `allowedFqdnList`  property value supports a maximum of 1000 URLs.
-> * The property supports fully qualified domain names (i.e., `www.microsoft.com`) as values.
+> * The property supports fully qualified domain names (i.e., `www.contoso.com`) as values.
 > * It can take up to 15 minutes for the updated list to take effect. 
 
 # [Azure CLI](#tab/azure-cli)
@@ -52,7 +52,7 @@ There are two parts to enable data loss prevention. First, the resource property
     ```azurecli-interactive
     az rest -m patch \
         -u /subscriptions/{subscription ID}/resourceGroups/{resource group}/providers/Microsoft.CognitiveServices/accounts/{account name}?api-version=2024-10-01 \
-        -b '{"properties": { "restrictOutboundNetworkAccess": true, "allowedFqdnList": [ "microsoft.com" ] }}'
+        -b '{"properties": { "restrictOutboundNetworkAccess": true, "allowedFqdnList": [ "contoso.com" ] }}'
     ```
 
 # [PowerShell](#tab/powershell)
@@ -82,7 +82,7 @@ There are two parts to enable data loss prevention. First, the resource property
         ResourceType = 'accounts'
         Name = 'myaccount'
         ApiVersion = '2024-10-01'
-        Payload = '{"properties": { "restrictOutboundNetworkAccess": true, "allowedFqdnList": [ "microsoft.com" ] }}'
+        Payload = '{"properties": { "restrictOutboundNetworkAccess": true, "allowedFqdnList": [ "contoso.com" ] }}'
         Method = 'PATCH'
     }
     Invoke-AzRestMethod @patchParams
