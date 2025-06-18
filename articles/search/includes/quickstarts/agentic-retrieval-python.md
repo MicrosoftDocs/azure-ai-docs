@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 6/15/2025
+ms.date: 6/17/2025
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -250,9 +250,9 @@ messages.append({
     """
 })
 
-retrieval_result = agent_client.knowledge_retrieval.retrieve(
+retrieval_result = agent_client.retrieve(
     retrieval_request=KnowledgeAgentRetrievalRequest(
-        messages=[KnowledgeAgentMessage(role=msg["role"], content=[KnowledgeAgentMessageTextContent(text=msg["content"])]) for msg in messages],
+        messages=[KnowledgeAgentMessage(role=msg["role"], content=[KnowledgeAgentMessageTextContent(text=msg["content"])]) for msg in messages if msg["role"] != "system"],
         target_index_params=[KnowledgeAgentIndexParams(index_name=index_name, reranker_threshold=2.5)]
     )
 )
@@ -414,9 +414,9 @@ messages.append({
     "content": "How do I find lava at night?"
 })
 
-retrieval_result = agent_client.knowledge_retrieval.retrieve(
+retrieval_result = agent_client.retrieve(
     retrieval_request=KnowledgeAgentRetrievalRequest(
-        messages=[KnowledgeAgentMessage(role=msg["role"], content=[KnowledgeAgentMessageTextContent(text=msg["content"])]) for msg in messages],
+        messages=[KnowledgeAgentMessage(role=msg["role"], content=[KnowledgeAgentMessageTextContent(text=msg["content"])]) for msg in messages if msg["role"] != "system"],
         target_index_params=[KnowledgeAgentIndexParams(index_name=index_name, reranker_threshold=2.5)]
     )
 )
