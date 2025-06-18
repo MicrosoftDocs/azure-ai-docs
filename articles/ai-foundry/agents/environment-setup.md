@@ -8,7 +8,7 @@ ms.author: aahi
 ms.reviewer: fosteramanda 
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 05/09/2025
+ms.date: 06/18/2025
 ms.custom: azure-ai-agents
 ---
 
@@ -25,19 +25,22 @@ Use this article to learn more about setting up your agent environment.
 | Action                                                                 | Required Role                   |
 |------------------------------------------------------------------------|----------------------------------|
 | Create an account and project                                          | Azure AI Account Owner           |
-| **Standard Setup Only:** Assign RBAC for required resources (Cosmos DB, Search, Storage, etc.) | Role Based Access Control Administrator  |
+| [standard setup](#choose-your-setup) Only: Assign RBAC for required resources (Cosmos DB, Search, Storage, etc.) | Role Based Access Control Administrator  |
 | Create and edit agents                                                 | Azure AI User                    |
 
 ## Set up your agent environment
-To get started, you need an account and a project.  
-Agents are scoped at the project level, which ensures data isolation—agents within the same project share access to the same resources. 
+To get started, you need an Azure AI Foundry resource and a Foundry project.  
+Agents are created within a specific project, and each project acts as an isolated workspace. This means:
+* All agents in the same project share access to the same file storage, thread storage (conversation history), and search indexs.
+* Data is isolated between projects. Agents in one project cannot access resources from another.
+Projects are currently the unit of sharing and isolation in Foundry. See the [what is AI foundry](../../ai-foundry/what-is-azure-ai-foundry.md) article for more information on Foundry projects.
 
 ### Prerequisites 
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
 * Ensure that the individual creating the account and project has the **Azure AI Account Owner** role at the subscription scope
-* If configuring **Standard Setup**, the same individual must also have permissions to assign roles to required resources (Cosmos DB, Search, Storage).
-    * The built-in role needed is **Role Based Access Control Administrator**.
+* If configuring a [standard setup](#choose-your-setup), the same individual must also have permissions to assign roles to required resources (Cosmos DB, Azure AI Search, Azure Blob Storage). For more information on RBAC roles, specific to Azure AI Foundry Agent Service, see [Azure AI Foundry Agent Service RBAC roles](../../../ai-foundry/concepts/rbac-azure-ai-foundry.md).
+    * The built-in role needed is **Role Based Access Administrator**.
     * Alternatively, having the **Owner** role at the subscription level also satisfies this requirement.
     * The key permission needed is: `Microsoft.Authorization/roleAssignments/write`
 
@@ -76,6 +79,12 @@ If you want support for Private Network Isolation see [network-secured setup](ho
 | Deploy a standard agent setup that uses **Managed Identity** for authentication. <br>An account and project are created. <br> A GPT-4o model is deployed. <br> Azure resources for storing customer data - **Azure Storage**, **Azure Cosmos DB**, and **Azure AI Search** - are automatically created if existing resources are't  provided. <br> These resources are connected to your project to store files, threads, and vector data. <br> A Microsoft-managed Key Vault is used by default.</li></ul> <br> [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure-ai-foundry%2Ffoundry-samples%2Frefs%2Fheads%2Fmain%2Fsamples%2Fmicrosoft%2Finfrastructure-setup%2F41-standard-agent-setup%2Fazuredeploy.json) | :::image type="content" source="./media\quickstart\standard-agent-setup.png" alt-text="An architecture diagram for standard agent setup." lightbox="./media\quickstart\standard-agent-setup.png"::: |
 
 ### [Optional] Model selection in autodeploy template
+
+> [!IMPORTANT]
+> **Don't change the modelFormat parameter.** 
+>
+> The templates only support deployment of Azure OpenAI models. See which Azure OpenAI models are supported in the [model support](./concepts/model-region-support.md) article.
+
 You can customize the model used by your agent by editing the model parameters in the autodeploy template. To deploy a different model, you need to update at least the `modelName` and `modelVersion` parameters. 
 
 By default, the deployment template is configured with the following values:
@@ -87,12 +96,6 @@ By default, the deployment template is configured with the following values:
 | modelVersion     | 2024-11-20     |
 | modelSkuName     | GlobalStandard |
 | modelLocation    | eastus         |
-
-> [!IMPORTANT]
-> **Don't change the modelFormat parameter.** 
->
-> The templates only support deployment of Azure OpenAI models. See which Azure OpenAI models are supported in the [Azure AI Foundry Agent Service model support](concepts\model-region-support.md) documentation.
-
 
 ### What's next?
 * [Create your first agent](quickstart.md)
