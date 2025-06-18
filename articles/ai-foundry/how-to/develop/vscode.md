@@ -1,5 +1,5 @@
 ---
-title: Work with Azure AI Foundry projects in VS Code containers
+title: Use VS Code containers in hub based projects (Preview)
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to get started with Azure AI Foundry projects in VS Code containers.
 manager: scottpolly
@@ -9,18 +9,18 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 02/14/2025
+ms.date: 06/18/2025
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
 # customer intent: As a Developer, I want to use Azure AI Foundry projects in VS Code containers.
 ---
 
-# Get started with Azure AI Foundry projects in VS Code containers (Preview)
+# Use VS Code containers in [!INCLUDE [hub-project-name](../../includes/hub-project-name.md)]s (Preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-[Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) supports developing in VS Code - Desktop and Web. In each scenario, your VS Code instance is remotely connected to a prebuilt custom container running on a virtual machine, also known as a compute instance.
+[Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) supports developing in VS Code - Desktop and Web for [!INCLUDE [hub-project-name](../../includes/hub-project-name.md)]s. In each scenario, your VS Code instance is remotely connected to a prebuilt custom container running on a virtual machine, also known as a compute instance.
 
 ## Prerequisites
 
@@ -35,15 +35,16 @@ author: sdgilley
 1. On the left menu, select **Templates**.
 1. Select **VS Code container**.
 1. For **Compute**, select an existing compute instance or create a new one.
-    * Select a compute instance to use. If it's stopped, select **Start compute** and wait for it to switch to **Running**. You'll see a **Ready** status when the compute is ready for use.
-    * If you don't have a compute instance, select **Create compute**.  Then enter a name, compute details, and select **Create compute**. Wait until the compute instance is ready.
+    * Select a compute instance to use. If it's stopped, select **Start compute** and wait for it to switch to **Running**. You see a **Ready** status when the compute is ready for use.
+    * If you don't have a compute instance, select **Create compute**. Then enter a name, compute details, and select **Create compute**. Wait until the compute instance is ready.
 1. If prompted, select **Authenticate** to authenticate your compute instance.
-1. For **VS Code container**, select **Set up container** once the button enables. This configures the container on the compute for you. The container setup might take a few minutes to complete. Once you set up the container for the first time, you can directly launch subsequent times. When setup is complete, you'll see **Ready**.
+1. For **VS Code container**, select **Set up container** once the button enables. This setting configures the container on the compute for you. The container setup might take a few minutes to complete. Once you set up the container for the first time, you can directly launch subsequent times. When setup is complete, you see **Ready**.
 
     > [!WARNING]
-     > Even if you [enable idle shutdown on your compute instance](../create-manage-compute.md#configure-idle-shutdown), idle shutdown will not occur for any compute that is set up with this custom VS Code container. This is to ensure the compute doesn't shut down unexpectedly while you're working within a container.
+     > Even if you [enable idle shutdown on your compute instance](../create-manage-compute.md#configure-idle-shutdown), idle shutdown won't occur for any compute that is set up with this custom VS Code container. This is to ensure the compute doesn't shut down unexpectedly while you're working within a container.
 
 1. Once your container is ready, launch VS Code:
+
     * If you want to work in your local VS Code instance, choose **Launch in VS Code (Desktop)**. A new local instance of VS Code opens on your local machine.
     * If you want to work in the browser instead, select the dropdown arrow and choose **Launch in VS Code (Web)**. A new browser tab connected to *vscode.dev* opens.
 
@@ -108,4 +109,3 @@ For app templates and SDK samples in your preferred programming language, see [D
 ## Related content
 
 - [Get started building a chat app using the prompt flow SDK](../../quickstarts/get-started-code.md)
-- [Get started with Azure AI Foundry SDKs](sdk-overview.md)
