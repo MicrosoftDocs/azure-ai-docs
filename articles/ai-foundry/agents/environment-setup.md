@@ -39,7 +39,7 @@ Projects are currently the unit of sharing and isolation in Foundry. See the [wh
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
 * Ensure that the individual creating the account and project has the **Azure AI Account Owner** role at the subscription scope
-* If configuring a [standard setup](#choose-your-setup), the same individual must also have permissions to assign roles to required resources (Cosmos DB, Azure AI Search, Azure Blob Storage). For more information on RBAC roles, specific to Azure AI Foundry Agent Service, see [Azure AI Foundry Agent Service RBAC roles](../../../ai-foundry/concepts/rbac-azure-ai-foundry.md).
+* If configuring a [standard setup](#choose-your-setup), the same individual must also have permissions to assign roles to required resources (Cosmos DB, Azure AI Search, Azure Blob Storage). For more information on RBAC roles, specific to Azure AI Foundry Agent Service, see [Azure AI Foundry Agent Service RBAC roles](../concepts/rbac-azure-ai-foundry.md).
     * The built-in role needed is **Role Based Access Administrator**.
     * Alternatively, having the **Owner** role at the subscription level also satisfies this requirement.
     * The key permission needed is: `Microsoft.Authorization/roleAssignments/write`
