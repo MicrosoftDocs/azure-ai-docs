@@ -31,7 +31,7 @@ Use this article to learn more about setting up your agent environment.
 ## Set up your agent environment
 To get started, you need an Azure AI Foundry resource and a Foundry project.  
 Agents are created within a specific project, and each project acts as an isolated workspace. This means:
-* All agents in the same project share access to the same file storage, thread storage (conversation history), and search indexs.
+* All agents in the same project share access to the same file storage, thread storage (conversation history), and search indexes.
 * Data is isolated between projects. Agents in one project cannot access resources from another.
 Projects are currently the unit of sharing and isolation in Foundry. See the [what is AI foundry](../../ai-foundry/what-is-azure-ai-foundry.md) article for more information on Foundry projects.
 
