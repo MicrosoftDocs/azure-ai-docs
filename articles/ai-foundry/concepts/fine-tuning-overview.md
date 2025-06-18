@@ -79,7 +79,7 @@ Follow this link to view and download [example datasets](https://github.com/Azur
 3. **Choose your technique:** Begin with Supervised Fine Tuning (SFT) unless you have specific requirements for reasoning models / RFT.
 4. **Iterate and evaluate:** Fine-tuning is an iterative process—start with a baseline, measure performance, and refine your approach based on results.
 
-For additional guidance on data preparation, evaluation strategies, and advanced techniques, see the main documentation page.
+To find steps to fine-tuning a model in AI Foundry, see [Fine-tune Models in AI Foundry](../how-to/fine-tune-serverless.md) or [Fine-tune models using managed compute](how-to/fine-tune-managed-compute.md).
 
 ## Supported models for fine-tuning
 
