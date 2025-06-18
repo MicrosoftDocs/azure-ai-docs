@@ -40,7 +40,7 @@ Azure AI assesses the quality of LLMs and SLMs using accuracy scores from standa
 
 Quality index is provided on a scale of zero to one. Higher values of quality index are better. The datasets included in quality index are: 
 
-| Dataset Name       | Leaderboard Category |
+| Dataset Name       | Leaderboard Scenario |
 |--------------------|----------------------|
 | arena_hard        | QA                   |
 | bigbench_hard     | Reasoning            |
@@ -61,6 +61,40 @@ See more details in accuracy scores:
 
 Accuracy scores are provided on a scale of zero to one. Higher values are better.
 
+
+## Safety benchmarks of language models
+
+To guide the selection of safety benchmarks for evaluation, we apply a structured filtering and validation process designed to ensure both relevance and rigor. A benchmark qualifies for onboarding if it addresses high-priority risks. For safety leaderboards, we look at different benchmarks that can be considered reliable enough to provide some signals on certain topics of interest as they relate to safety. We select [HarmBench](https://github.com/centerforaisafety/HarmBench) to proxy model safety, and organize scenario leaderboards as follows: 
+
+| Dataset Name       | Leaderboard Scenario |
+|--------------------|----------------------|
+| HarmBench (standard)        | Standard harmful behaviors                   |
+| HarmBench (contextual)    | Contextually harmful behaviors            |
+| HarmBench (copyright violations)             | Copyright violations                   |
+| WMDP     | Knowledge in sensitive domains               |
+| Toxigen            | Ability to detect toxic content            |
+
+### Model harmful behaviors 
+The [HarmBench](https://github.com/centerforaisafety/HarmBench) benchmark measures model harmful behaviors and includes prompts to illicit harmful behaviour from model. As it relates to safety, the benchmark covers 7 semantic categories of behaviour: 
+- Cybercrime & Unauthorized Intrusion
+- Chemical & Biological Weapons/Drugs
+- Copyright Violations
+- Misinformation & Disinformation
+- Harassment & Bullying
+- Illegal Activities
+- General Harm
+  
+These 7 categories can be summarized into 3 functional categories capturing standard harmful behaviors, contextually harmful behaviors, and copyright violations, which we surface in 3 separate scenario leaderboards. We use direct prompts from HarmBench (no attacks) and HarmBench evaluators to calculate Attack Success Rate (ASR). Lower ASR values means safer models. We do not explore any attack strategy for evaluation, and model benchmarking is performed with Azure AI Content Safety Filter turned off.
+
+
+### Model ability to detect toxic content
+[Toxigen](https://github.com/microsoft/TOXIGEN) is a large-scale machine-generated dataset for adversarial and implicit hate speech detection. It contains implicitly toxic and benign sentences mentioning 13 minority groups. We use the annotated samples from Toxigen for evaluation and calculate accuracy scores to measure performance. Higher accuracy is better, because scoring high on this dataset model is better ability to detect toxic content. Model benchmarking is performed with Azure AI Content Safety Filter turned off.
+
+### Model knowledge in sensitive domains
+The [Weapons of Mass Destruction Proxy](https://github.com/centerforaisafety/wmdp) (WMDP) benchmark measures model knowledge of in sensitive domains including biosecurity, cybersecurity, and chemical security. The leaderboard uses average accuracy across cybersecurity, biosecurity, and chemical security. A higher WMDP accuracy score denotes more knowledge of dangerous capabilities (i.e., worse behaviour from a safety standpoint). Model benchmarking is performed with the default Azure AI Content Safety filters on. These safety filters detect and block content harm in violence, self-harm, sexual, hate and unfaireness, but do not target categories in cybersecurity, biosecurity, chemical security.
+
+### Limitations of safety benchmarks
+We understand and acknowledge that safety is a complex topic and has several dimensions. No single current open-source benchmarks can test or represent the full safety of a system in different scenarios. Additionally, most of these benchmarks suffer from saturation, or misalignment between benchmark design and the risk definition, can lack clear documentation on how the target risks are conceptualized and operationalized, making it difficult to assess whether the benchmark accurately captures the nuances of the risks. This limitation can lead to either overestimating or underestimating model performance in real-world safety scenarios. 
 
 ## Performance benchmarks of language models
 
