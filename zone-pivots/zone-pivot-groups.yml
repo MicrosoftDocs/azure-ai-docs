@@ -1057,6 +1057,15 @@ groups:
   - id: rest-api
     title: REST API
 # owner: aahi
+- id: selection-logic-apps
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: portal
+    title: Azure AI Foundry portal
+  - id: python
+    title: Python
+# owner: aahi
 - id: selection-code-interpreter
   title: Selections
   prompt: What would you like to see?
