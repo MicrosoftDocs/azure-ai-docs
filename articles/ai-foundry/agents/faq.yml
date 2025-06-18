@@ -25,7 +25,8 @@ sections:
       - question: |
           Where is this data stored?
         answer: |
-          Data is stored in a secure, Microsoft-managed storage account that is logically separated.  
+          Basic Setup: Data is stored in a secure, Microsoft-managed storage account that is logically separated.  
+          Standard Setup: Data is stored in your own Azure resources, giving you full ownership and control.
       - question: |
           How long is this data stored?
         answer: |
