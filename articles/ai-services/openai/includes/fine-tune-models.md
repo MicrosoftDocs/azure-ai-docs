@@ -33,7 +33,8 @@ ms.custom:
 > **Global** training (in Public Preview) provides [more affordable](https://aka.ms/aoai-pricing) training per-token, but does not offer [data residency](https://aka.ms/data-residency). It is currently available to Azure OpenAI resources in the following regions, with more regions coming soon:
 >- Australia East
 >- Brazil South
->- EastUS2
+>- East US
+>- East US2
 >- France Central
 >- Germany West Central
 >- Italy North
@@ -47,3 +48,7 @@ ms.custom:
 >- Spain Central
 >- Sweden Central
 >- Switzerland West
+>- Switzerland North
+>- UK South
+>- West US
+>- West US3
