@@ -7,7 +7,7 @@ manager: nitinme
 
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 04/14/2025
+ms.date: 06/19/2025
 ms.author: lajanuar
 ---
 
@@ -31,9 +31,9 @@ If the language of the content in the source document is known, we recommend tha
 
 * Various factors influence the preservation and retention of font style. For instance, some fonts aren't available in both the source and target languages. Typically, the same font style, or an optimally suited alternative, is applied to the target language to maintain formatting that most closely resembles the original source text.
 
-#### Will the text in an image within a document gets translated?
+#### Can the text in an image within a document be translated?
 
-No. The text in an image within a document isn't translated.
+Yes. Document translation feature supports [translating text embedded in images within documents](how-to-guides/use-rest-api-programmatically.md#translate-text-embedded-within-images-in-documents-) as an optional capability.
 
 #### Can Azure AI Translator Document translation translate content from scanned documents?
 
