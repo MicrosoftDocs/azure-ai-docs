@@ -39,7 +39,7 @@ You can also use [Search Explorer](search-explorer.md) in the Azure portal.
 
 ## Convert a query string input into a vector
 
-To query a vector field, the query itself must be a vector. 
+To query a vector field, the query itself must be a vector.
 
 One approach for converting a user's text query string into its vector representation is to call an embedding library or API in your application code. As a best practice, *always use the same embedding models used to generate embeddings in the source documents*. You can find code samples showing [how to generate embeddings](vector-search-how-to-generate-embeddings.md) in the [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples) repo.
 

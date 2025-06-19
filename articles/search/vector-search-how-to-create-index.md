@@ -97,14 +97,14 @@ A vector configuration includes:
 
 ### [**2024-07-01**](#tab/config-2024-07-01)
 
-[**2024-07-01**](/rest/api/searchservice/search-service-api-versions#2024-07-01) is generally available. It supports a vector configuration having:
+[**2024-07-01**](/rest/api/searchservice/search-service-api-versions#2024-07-01) is generally available. It supports a vector configuration that has:
 
-+ Hierarchical navigable small world (HNSW) algorithm
-+ Exhaustive k-nearest neighbor (KNN) algorithm
-+ Scalar compression
-+ Binary compression (available in 2024-07-01 only and in newer Azure SDK packages)
-+ Oversampling
-+ Reranking with original vectors
++ The hierarchical navigable small world (HNSW) algorithm.
++ The exhaustive k-nearest neighbor (KNN) algorithm.
++ Scalar compression.
++ Binary compression, which is available in 2024-07-01 only and in newer Azure SDK packages.
++ Oversampling.
++ Reranking with original vectors.
 
 If you choose HNSW on a field, you can opt for exhaustive KNN at query time. However, the opposite doesn’t work. If you choose exhaustive for indexing, you can’t later request HNSW search because the extra data structures that enable approximate search don’t exist.
 
