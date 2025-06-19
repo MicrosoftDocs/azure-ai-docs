@@ -5,7 +5,7 @@ description: Learn about Azure AI Content Understanding solutions, processes, wo
 author: laujan
 ms.author: lajanuar
 manager: nitinme
-ms.date: 03/06/2025
+ms.date: 06/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:

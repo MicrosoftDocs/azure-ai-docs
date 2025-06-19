@@ -340,7 +340,7 @@ See the [Nixtla model collection in Azure AI Foundry portal](https://ai.azure.co
 
 | Model  | Type | Capabilities |
 | ------ | ---- | ------------ |
-| [tsuzumi-7b](https://ai.azure.com/explore/models/Tsuzumi-7b/version/1/registry/azureml-nttdata) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (8,192 tokens) <br /> - **Output:** text (8,192 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
+| [tsuzumi-7b](https://ai.azure.com/explore/models/Tsuzumi-7b/version/2/registry/azureml-nttdata) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (8,192 tokens) <br /> - **Output:** text (8,192 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
 
 ## Stability AI
 
