@@ -5,7 +5,7 @@ description: Learn how to use global batch with Azure OpenAI
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 05/28/2025
+ms.date: 06/19/2025
 ms.service: azure-ai-openai
 ms.topic: how-to
 ms.custom:
@@ -232,6 +232,8 @@ When a job failure occurs, you'll find details about the failure in the `errors`
 |`empty_batch` | Please check your input file to ensure that the custom ID parameter is unique for each request in the batch.|
 |`model_mismatch`| The Azure OpenAI model deployment name that was specified in the `model` property of this request in the input file doesn't match the rest of the file.<br><br>Please ensure that all requests in the batch point to the same Azure OpenAI in Azure AI Foundry Models model deployment in the `model` property of the request.|
 |`invalid_request`| The schema of the input line is invalid or the deployment SKU is invalid. <br><br>Please ensure the properties of the request in your input file match the expected input properties, and that the Azure OpenAI deployment SKU is `globalbatch` for batch API requests.|
+| `input_modified` |Blob input has been modified after the batch job has been submitted. |
+| `input_no_permissions` | It's not possible to access the input blob. Please check [permissions](./role-based-access-control.md) and network access between the Azure OpenAI account and Azure Storage account.  |
 
 ### Known issues
 
