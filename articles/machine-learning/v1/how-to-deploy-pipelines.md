@@ -242,7 +242,7 @@ class AuthenticationBody {
 
 ### Change datasets and datapaths without retraining
 
-You might want to train and inference on different datasets and datapaths. For example, you might want to train on a smaller dataset but inference on the complete dataset. You switch can datasets by using the `DataSetDefinitionValueAssignments` key in the request's `json` argument. You can switch datapaths by using `DataPathAssignments`. The technique is similar for both:
+You might want to train and inference on different datasets and datapaths. For example, you might want to train on a smaller dataset but inference on the complete dataset. You can switch datasets by using the `DataSetDefinitionValueAssignments` key in the request's `json` argument. You can switch datapaths by using `DataPathAssignments`. The technique is similar for both:
 
 1. In your pipeline definition script, create a `PipelineParameter` for the dataset. Create a `DatasetConsumptionConfig` or `DataPath` from the `PipelineParameter`:
 
