@@ -19,6 +19,16 @@ In this quickstart, you'll use a Python notebook which contains the configuratio
    ```bash
    git clone https://github.com/Azure-Samples/azure-search-python-samples
    ```
+  
+  This repo has Python code examples for several articles each in a separate subfolder.
+
+1. In Visual Studio Code, open the subfolder `Quickstart-Vector-Search`.
+
+  There are three files in this folder:
+
+  - `vector-search-quickstart.ipynb`
+  - `requirements.txt`
+  - `sample.env`
 
 1. Rename the `sample.env` file to `.env` and modify the values in the `.env` file. Use the Search service Url as the `AZURE_SEARCH_ENDPOINT` and choose a new `AZURE_SEARCH_INDEX_NAME` name, or use the one provided in the file.
 
@@ -37,7 +47,7 @@ In this quickstart, you'll use a Python notebook which contains the configuratio
 
    If prompted, allow Visual Studio Code to use the new environment.
 
-   The `where python` command will validate that you are working from the virtual environment by listing python.exe from your folder structure, as well as other places from your machine's directory.
+   The `where python` command will validate that you are working from the virtual environment by listing `python.exe` in the `Quickstart-Vector-Search\.venv\` folder, as well as other locations from your machine's directory.
 
 1. Install the required libraries by running the following command.
 
@@ -75,7 +85,7 @@ In this quickstart, you'll use a Python notebook which contains the configuratio
    There are many more packages which you can view in a scrollable element (see the message below the cell results).
 
 
-## Create a vector index
+## Create the vector index
 
 The code in the `vector-search-quickstart.ipynb` uses several methods from the `azure.search.documents` library to create the vector index and searchable fields.
 
@@ -181,7 +191,7 @@ The code in the `vector-search-quickstart.ipynb` uses several methods from the `
    print(f' {result.name} created')
    ```
 
-   If the index is created successfully, you see the following result  below the cell:
+   If the index is created successfully, you see the following result below the cell:
 
    ```output
    vector-search-quickstart created
@@ -189,9 +199,17 @@ The code in the `vector-search-quickstart.ipynb` uses several methods from the `
 
    Key takeaways when creating vector index with the `azure.search.documents`:
 
-   - Take away 1
+  - You define an index by creating a list of fields, each one created with a helper method defining the field type, along with various settings for each field.
 
-   - Take away 2
+   - This particular index supports multiple search capabilities, such as:
+      - Full-text keyword search (`SearchableField(name="HotelName", ...)`, `SearchableField(name="Description", ...)`)
+      - Vector search (hybrid search) Fields like `HotelNameVector`, `DescriptionVector`, and `vector_search=VectorSearch(...)`
+      - Semantic search (`semantic_search=SemanticSearch(configurations=[semantic_config])`)
+      - Faceted search (`facetable=True`)
+      - Semantic search (`semantic_search=SemanticSearch(configurations=[semantic_config])`)
+      - Geo-spatial search (`Location` field is `GeographyPoint`)
+      - Filtering, sorting (Many fields marked filterable and sortable)
+
 
 ## Upload documents
 
@@ -199,19 +217,73 @@ Creating and loading the index are separate steps. You created the index schema 
  
 In Azure AI Search, the index contains all searchable data and queries run on the search service.
 
-1. In Visual Studio Code, run the cell in the section below "Create documents payload". This cell contains the following code (abbreviated):
+1. In Visual Studio Code, run the cell in the section below "Create documents payload". This cell contains the following code (truncated for brevity):
 
 ```python
+   # Create a documents payload
+   documents = [
+       {
+           "@search.action": "mergeOrUpload",
+           "HotelId": "1",
+           "HotelName": "Stay-Kay City Hotel",
+           "Description": "This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
+           "DescriptionVector": [-0.048865054,-0.020307425,
+           # <truncated>
+           -0.018120624,-0.012772904],
+           "Category": "Boutique",
+           "Tags": [
+               "view",
+               "air conditioning",
+               "concierge"
+           ],
+           "ParkingIncluded": "false",
+           "LastRenovationDate": "2022-01-18T00:00:00Z",
+           "Rating": 3.60,
+           "Address": {
+               "StreetAddress": "677 5th Ave",
+               "City": "New York",
+               "StateProvince": "NY",
+               "PostalCode": "10022",
+               "Country": "USA"
+           },
+           "Location": {
+               "type": "Point",
+               "coordinates": [
+                   -73.975403,
+                   40.760586
+               ]
+           }
+       },
+       # <truncated>
+   ]
+   ```
 
-```
+   This cell loads a variable named `documents` with a JSON object describing each document, along with the vectorized version of the article's description. This vector is what powers the search.
 
-This cell loads a variable named `documents` with a JSON object describing each document, along with the vectorized version of the article's description. This vector is what powers the search.
+   > [!IMPORTANT]
+   > The code in this example isn't runnable. Several characters or lines are truncated / removed for brevity. Use the code in your `vector-search-quickstart.ipynb` file to run the request.
 
+1. Run the cell in the section below "Upload the documents". This cell contains the following code (truncated for brevity):
 
+   ```python
+   # Upload documents to the index
+   search_client = SearchClient(endpoint=search_endpoint,
+                         index_name=index_name,
+                         credential=credential)
+   try:
+       result = search_client.upload_documents(documents=documents)
+       for r in result:
+           print(f"Key: {r.key}, Succeeded: {r.succeeded}, ErrorMessage: {r.error_message}")
+   except Exception as ex:
+       print("Failed to upload documents:", ex)
 
-1. Run the cell in the section below "Upload the documents". This creates an instance of the search client by calling the `SearchClient()` constructor, then calls the `upload_documents()` method on the object. 
+   # Create the index client which will be used later in the query examples
+   index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
+   ```
 
-The status of each document is printed below the cell:
+   This creates an instance of the search client by calling the `SearchClient()` constructor, then calls the `upload_documents()` method on the object. 
+
+   When run, the status of each document is printed below the cell:
 
    ```output
    Key: 1, Succeeded: True, ErrorMessage: None
@@ -223,11 +295,15 @@ The status of each document is printed below the cell:
    Key: 13, Succeeded: True, ErrorMessage: None
    ```
 
-Key takeaways about the `upload_documents()` method:
+   Key takeaways about the `upload_documents()` method and this example:
 
-- Takeaway 1
+   - The `SearchClient` is the main object provided by the Azure SDK for Python (azure-search-documents package) that allows your code to interact with a specific search index hosted in your Azure AI Search service. It is an abstraction over the REST API. It provides access to index operations such as:
 
-- Vector fields contain floating point values. The dimensions attribute has a minimum of 2 and a maximum of 3,072 floating point values each. This quickstart sets the dimensions attribute to 1,536 because that's the size of embeddings generated by the Azure OpenAI **text-embedding-ada-002** model.
+      - **Data ingestion** - `upload_documents()`, `merge_documents()`, `delete_documents()`, etc.
+      - **Search operations** - `search()`, `autocomplete()`, `suggest()`
+      - **Index management operations** 
+
+   - Vector fields contain floating point values. The dimensions attribute has a minimum of 2 and a maximum of 3,072 floating point values each. This quickstart sets the dimensions attribute to 1,536 because that's the size of embeddings generated by the Azure OpenAI **text-embedding-ada-002** model.
 
 ## Run queries
 
@@ -255,10 +331,7 @@ The vector query string is semantically similar to the search string, but it inc
 
 The first example demonstrates a basic scenario where you want to find document descriptions that closely match the search string.
 
-1. Run the cell below the section called "Single vector search".
-
-1. Find the `### Run a single vector query` code block in the file. This block contains the request to query the search index.
-
+1. Run the cell below the section called "Single vector search". This block contains the request to query the search index.
 
     ```python
    # IMPORTANT: Before you run this code, make sure the documents were successfully
@@ -294,16 +367,15 @@ The first example demonstrates a basic scenario where you want to find document 
 
     ```
 
-    This vector query is shortened for brevity. The `vectorQueries.vector` contains the vectorized text of the query input, `fields` determines which vector fields are searched, and `k` specifies the number of nearest neighbors to return.
+   This vector query is shortened for brevity. The `vectorQueries.vector` contains the vectorized text of the query input, `fields` determines which vector fields are searched, and `k` specifies the number of nearest neighbors to return.
 
-    The vector query string is `classic lodging near running trails, eateries, retail`, which is vectorized into 1,536 embeddings for this query.
+   The vector query string is `classic lodging near running trails, eateries, retail`, which is vectorized into 1,536 embeddings for this query.
 
-    > [!IMPORTANT]
-    > The code in this example isn't runnable. Several characters or lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
+   The response for the vector equivalent of `classic lodging near running trails, eateries, retail` includes seven results but the code specifies `top=5` so only the first five results will be returned. Furthermore, only the fields specific by the `select` are returned. 
 
-1. Select **Send request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
+   `search_client.search()` returns a dict-like object. Each result provides a search score which can be accessed using `score = result.get("@search.score", "N/A")`. While not displayed in this example, in a similarity search, the response always includes `k` results ordered by the value similarity score.
 
-The response for the vector equivalent of `classic lodging near running trails, eateries, retail` includes seven results. Each result provides a search score and the fields listed in `select`. In a similarity search, the response always includes `k` results ordered by the value similarity score.
+   When run, each result will be displayed:
 
    ```output
    Total results: 5
@@ -318,10 +390,7 @@ The response for the vector equivalent of `classic lodging near running trails, 
 
 You can add filters, but the filters are applied to the nonvector content in your index. In this example, the filter applies to the `Tags` field to filter out any hotels that don't provide free Wi-Fi.
 
-1. In Visual Studio Code, open the `az-search-vector-quickstart.rest` file you [created earlier](#create-or-download-the-code-file).
-
 1. Find the `### Run a vector query with a filter` code block in the file. This block contains the request to query the search index.
-
 
     ```python
    if vector:
@@ -352,18 +421,17 @@ You can add filters, but the filters are applied to the nonvector content in you
        print("No vector loaded, skipping search.")
     ``` 
 
+   When run, each result will be displayed:
+
    ```output
    Total filtered results: 2
    - HotelId: 48, HotelName: Nordick's Valley Motel, Tags: ['continental breakfast', 'air conditioning', 'free wifi']
    - HotelId: 2, HotelName: Old Century Hotel, Tags: ['pool', 'free wifi', 'air conditioning', 'concierge']
    ```
 
-    > [!IMPORTANT]
-    > The code in this example isn't runnable. Several characters or lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
+   The query was the same as the previous [single vector search example](#single-vector-search), but it includes a post-processing exclusion filter and returns only the three hotels that have free Wi-Fi.
 
-1. Select **Send request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
-
-The query was the same as the previous [single vector search example](#single-vector-search), but it includes a post-processing exclusion filter and returns only the three hotels that have free Wi-Fi.
+1. The next filter example uses a **geo filter**. Run the cell in the section titled "Vector query with a geo filter". This block contains the request to query the search index.
 
    ```python
    if vector:
@@ -404,6 +472,8 @@ The query was the same as the previous [single vector search example](#single-ve
       print("No vector loaded, skipping search.")
    ```
 
+  The query was the same as the previous [single vector search example](#single-vector-search), but it includes a post-processing exclusion filter and returns only the two hotels hotels within 300 KM.
+
    ```output
    Total semantic hybrid results: 2
    - HotelId: 48
@@ -426,10 +496,7 @@ Hybrid search consists of keyword queries and vector queries in a single search 
 - **Search string**: `historic hotel walk to restaurants and shopping`
 - **Vector query string** (vectorized into a mathematical representation): `classic lodging near running trails, eateries, retail`
 
-1. In Visual Studio Code, open the `az-search-vector-quickstart.rest` file you [created earlier](#create-or-download-the-code-file).
-
-1. Find the `### Run a hybrid query` code block in the file. This block contains the request to query the search index.
-
+1. Run the cell in the section titled  "Hybrid Search". This block contains the request to query the search index.
 
    ```python
    if vector:
@@ -467,130 +534,122 @@ Hybrid search consists of keyword queries and vector queries in a single search 
       print("No vector loaded, skipping search.")    
    ```
 
-    > [!IMPORTANT]
-    > The code in this example isn't runnable. Several characters or lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
+   Review the response:
 
+   ```output
+   Total hybrid results: 7
+   - Score: 0.03279569745063782
+     HotelId: 4
+     HotelName: Sublime Palace Hotel
+     Description: Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.
+     Category: Boutique
+     Tags: ['concierge', 'view', 'air conditioning']
+   
+   - Score: 0.032522473484277725
+     HotelId: 13
+     HotelName: Luxury Lion Resort
+     Description: Unmatched Luxury. Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium and transportation hubs, we feature the best in convenience and comfort.
+     Category: Luxury
+     Tags: ['bar', 'concierge', 'restaurant']
+   
+   - Score: 0.03205128386616707
+     HotelId: 48
+     HotelName: Nordick's Valley Motel
+     Description: Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer. Hiking? Wine Tasting? Exploring the caverns? It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley.
+     Category: Boutique
+     Tags: ['continental breakfast', 'air conditioning', 'free wifi']
+   
+   - Score: 0.0317460335791111
+     HotelId: 49
+     HotelName: Swirling Currents Hotel
+     Description: Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center. Each room comes equipped with a microwave, a coffee maker and a minifridge. In-room entertainment includes complimentary W-Fi and flat-screen TVs.
+     Category: Suite
+     Tags: ['air conditioning', 'laundry service', '24-hour front desk service']
+   
+   - Score: 0.03125
+     HotelId: 2
+     HotelName: Old Century Hotel
+     Description: The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.
+     Category: Boutique
+     Tags: ['pool', 'free wifi', 'air conditioning', 'concierge']
+   ```
 
+   Because RRF merges results, it helps to review the inputs. The following results are from only the full-text query. The top two results are Sublime Palace Hotel and History Lion Resort. The Sublime Palace Hotel has a stronger BM25 relevance score.
 
-Review the response:
-
-```output
-Total hybrid results: 7
-- Score: 0.03279569745063782
-  HotelId: 4
-  HotelName: Sublime Palace Hotel
-  Description: Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.
-  Category: Boutique
-  Tags: ['concierge', 'view', 'air conditioning']
-
-- Score: 0.032522473484277725
-  HotelId: 13
-  HotelName: Luxury Lion Resort
-  Description: Unmatched Luxury. Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium and transportation hubs, we feature the best in convenience and comfort.
-  Category: Luxury
-  Tags: ['bar', 'concierge', 'restaurant']
-
-- Score: 0.03205128386616707
-  HotelId: 48
-  HotelName: Nordick's Valley Motel
-  Description: Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer. Hiking? Wine Tasting? Exploring the caverns? It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley.
-  Category: Boutique
-  Tags: ['continental breakfast', 'air conditioning', 'free wifi']
-
-- Score: 0.0317460335791111
-  HotelId: 49
-  HotelName: Swirling Currents Hotel
-  Description: Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center. Each room comes equipped with a microwave, a coffee maker and a minifridge. In-room entertainment includes complimentary W-Fi and flat-screen TVs.
-  Category: Suite
-  Tags: ['air conditioning', 'laundry service', '24-hour front desk service']
-
-- Score: 0.03125
-  HotelId: 2
-  HotelName: Old Century Hotel
-  Description: The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.
-  Category: Boutique
-  Tags: ['pool', 'free wifi', 'air conditioning', 'concierge']
-
+   ```json
+   {
+       "@search.score": 2.2626662,
+       "HotelName": "Sublime Palace Hotel",
+       "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace."
+   },
+   {
+       "@search.score": 0.86421645,
+       "HotelName": "Luxury Lion Resort",
+       "Description": "Unmatched Luxury.  Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium, we feature the best in comfort"
+   },
 ```
 
-Because RRF merges results, it helps to review the inputs. The following results are from only the full-text query. The top two results are Sublime Palace Hotel and History Lion Resort. The Sublime Palace Hotel has a stronger BM25 relevance score.
+   In the vector-only query, which uses HNSW for finding matches, the Sublime Palace Hotel drops to fourth position. Historic Lion, which was second in the full-text search and third in the vector search, doesn't experience the same range of fluctuation, so it appears as a top match in a homogenized result set.
 
-```json
-{
-    "@search.score": 2.2626662,
-    "HotelName": "Sublime Palace Hotel",
-    "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace."
-},
-{
-    "@search.score": 0.86421645,
-    "HotelName": "Luxury Lion Resort",
-    "Description": "Unmatched Luxury.  Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium, we feature the best in comfort"
-},
-```
-
-In the vector-only query, which uses HNSW for finding matches, the Sublime Palace Hotel drops to fourth position. Historic Lion, which was second in the full-text search and third in the vector search, doesn't experience the same range of fluctuation, so it appears as a top match in a homogenized result set.
-
-```json
-"value": [
-    {
-        "@search.score": 0.857736,
-        "HotelId": "48",
-        "HotelName": "Nordick's Valley Motel",
-        "Description": "Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer.  Hiking? Wine Tasting? Exploring the caverns?  It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley.",
-        "Category": "Boutique"
-    },
-    {
-        "@search.score": 0.8399129,
-        "HotelId": "49",
-        "HotelName": "Swirling Currents Hotel",
-        "Description": "Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center.",
-        "Category": "Luxury"
-    },
-    {
-        "@search.score": 0.8383954,
-        "HotelId": "13",
-        "HotelName": "Luxury Lion Resort",
-        "Description": "Unmatched Luxury.  Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium, we feature the best in comfort",
-        "Category": "Resort and Spa"
-    },
-    {
-        "@search.score": 0.8254346,
-        "HotelId": "4",
-        "HotelName": "Sublime Palace Hotel",
-        "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace.",
-        "Category": "Boutique"
-    },
-    {
-        "@search.score": 0.82380056,
-        "HotelId": "1",
-        "HotelName": "Stay-Kay City Hotel",
-        "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York.",
-        "Category": "Boutique"
-    },
-    {
-        "@search.score": 0.81514084,
-        "HotelId": "2",
-        "HotelName": "Old Century Hotel",
-        "Description": "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts.",
-        "Category": "Boutique"
-    },
-    {
-        "@search.score": 0.8133763,
-        "HotelId": "3",
-        "HotelName": "Gastronomic Landscape Hotel",
-        "Description": "The Hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
-        "Category": "Resort and Spa"
-    }
-]
-```
+   ```json
+   "value": [
+       {
+           "@search.score": 0.857736,
+           "HotelId": "48",
+           "HotelName": "Nordick's Valley Motel",
+           "Description": "Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer.  Hiking? Wine Tasting? Exploring the caverns?  It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley.",
+           "Category": "Boutique"
+       },
+       {
+           "@search.score": 0.8399129,
+           "HotelId": "49",
+           "HotelName": "Swirling Currents Hotel",
+           "Description": "Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center.",
+           "Category": "Luxury"
+       },
+       {
+           "@search.score": 0.8383954,
+           "HotelId": "13",
+           "HotelName": "Luxury Lion Resort",
+           "Description": "Unmatched Luxury.  Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium, we feature the best in comfort",
+           "Category": "Resort and Spa"
+       },
+       {
+           "@search.score": 0.8254346,
+           "HotelId": "4",
+           "HotelName": "Sublime Palace Hotel",
+           "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace.",
+           "Category": "Boutique"
+       },
+       {
+           "@search.score": 0.82380056,
+           "HotelId": "1",
+           "HotelName": "Stay-Kay City Hotel",
+           "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York.",
+           "Category": "Boutique"
+       },
+       {
+           "@search.score": 0.81514084,
+           "HotelId": "2",
+           "HotelName": "Old Century Hotel",
+           "Description": "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts.",
+           "Category": "Boutique"
+       },
+       {
+           "@search.score": 0.8133763,
+           "HotelId": "3",
+           "HotelName": "Gastronomic Landscape Hotel",
+           "Description": "The Hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
+           "Category": "Resort and Spa"
+       }
+   ]
+   ```
 
 ### Semantic hybrid search with a filter
 
 Here's the last query in the collection. This hybrid query with semantic ranking is filtered to show only the hotels within a 500-kilometer radius of Washington D.C. You can set `vectorFilterMode` to null, which is equivalent to the default (`preFilter` for newer indexes and `postFilter` for older ones).
 
-1. In Visual Studio Code, open the `az-search-vector-quickstart.rest` file you [created earlier](#create-or-download-the-code-file).
-
-1. Find the `### Run a hybrid query with semantic reranking` code block in the file. This block contains the request to query the search index.
+1. Run the cell below the section titled `Semantic hybrid search`. This code block contains the request to query the search index.
 
    ```python
    if semantic_hybrid_query_vector:
@@ -633,68 +692,63 @@ Here's the last query in the collection. This hybrid query with semantic ranking
       print("No vector loaded, skipping search.")
    ```
 
-    > [!IMPORTANT]
-    > The code in this example isn't runnable. Several characters or lines are removed for brevity. Use the code in your `az-search-vector-quickstart.rest` file to run the request.
+   Review the output below the cell. The response is three hotels, which are filtered by location and faceted by `StateProvince` and semantically reranked to promote results that are closest to the search string query (`historic hotel walk to restaurants and shopping`).
 
-1. Select **Send request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
+   The Swirling Currents Hotel now moves into the top spot. Without semantic ranking, Nordick's Valley Motel is number one. With semantic ranking, the machine comprehension models recognize that `historic` applies to "hotel, within walking distance to dining (restaurants) and shopping."
 
-Review the response. The response is three hotels, which are filtered by location and faceted by `StateProvince` and semantically reranked to promote results that are closest to the search string query (`historic hotel walk to restaurants and shopping`).
+   ```output
+   Total semantic hybrid results: 7
+   - Score: 0.03125
+     Re-ranker Score: 2.2252650260925293
+     HotelId: 2
+     HotelName: Old Century Hotel
+     Description: The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.
+     Category: Boutique
+   - Score: 0.0317460335791111
+     Re-ranker Score: 2.073197841644287
+     HotelId: 49
+     HotelName: Swirling Currents Hotel
+     Description: Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center. Each room comes equipped with a microwave, a coffee maker and a minifridge. In-room entertainment includes complimentary W-Fi and flat-screen TVs.
+     Category: Suite
+   - Score: 0.03279569745063782
+     Re-ranker Score: 1.982808232307434
+     HotelId: 4
+     HotelName: Sublime Palace Hotel
+     Description: Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.
+     Category: Boutique
+   - Score: 0.016393441706895828
+     Re-ranker Score: 1.9773139953613281
+     HotelId: 1
+     HotelName: Stay-Kay City Hotel
+     Description: This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.
+     Category: Boutique
+   - Score: 0.01515151560306549
+     Re-ranker Score: 1.7511626482009888
+     HotelId: 3
+     HotelName: Gastronomic Landscape Hotel
+     Description: The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.
+     Category: Suite
+   - Score: 0.03205128386616707
+     Re-ranker Score: 1.6370235681533813
+     HotelId: 48
+     HotelName: Nordick's Valley Motel
+     Description: Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer. Hiking? Wine Tasting? Exploring the caverns? It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley.
+     Category: Boutique
+   - Score: 0.032522473484277725
+     Re-ranker Score: 1.3456499576568604
+     HotelId: 13
+     HotelName: Luxury Lion Resort
+     Description: Unmatched Luxury. Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium and transportation hubs, we feature the best in convenience and comfort.
+     Category: Luxury
+   ```
 
-The Swirling Currents Hotel now moves into the top spot. Without semantic ranking, Nordick's Valley Motel is number one. With semantic ranking, the machine comprehension models recognize that `historic` applies to "hotel, within walking distance to dining (restaurants) and shopping."
+   Key takeaways:
 
-```output
-Total semantic hybrid results: 7
-- Score: 0.03125
-  Re-ranker Score: 2.2252650260925293
-  HotelId: 2
-  HotelName: Old Century Hotel
-  Description: The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.
-  Category: Boutique
-- Score: 0.0317460335791111
-  Re-ranker Score: 2.073197841644287
-  HotelId: 49
-  HotelName: Swirling Currents Hotel
-  Description: Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center. Each room comes equipped with a microwave, a coffee maker and a minifridge. In-room entertainment includes complimentary W-Fi and flat-screen TVs.
-  Category: Suite
-- Score: 0.03279569745063782
-  Re-ranker Score: 1.982808232307434
-  HotelId: 4
-  HotelName: Sublime Palace Hotel
-  Description: Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.
-  Category: Boutique
-- Score: 0.016393441706895828
-  Re-ranker Score: 1.9773139953613281
-  HotelId: 1
-  HotelName: Stay-Kay City Hotel
-  Description: This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.
-  Category: Boutique
-- Score: 0.01515151560306549
-  Re-ranker Score: 1.7511626482009888
-  HotelId: 3
-  HotelName: Gastronomic Landscape Hotel
-  Description: The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.
-  Category: Suite
-- Score: 0.03205128386616707
-  Re-ranker Score: 1.6370235681533813
-  HotelId: 48
-  HotelName: Nordick's Valley Motel
-  Description: Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer. Hiking? Wine Tasting? Exploring the caverns? It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley.
-  Category: Boutique
-- Score: 0.032522473484277725
-  Re-ranker Score: 1.3456499576568604
-  HotelId: 13
-  HotelName: Luxury Lion Resort
-  Description: Unmatched Luxury. Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium and transportation hubs, we feature the best in convenience and comfort.
-  Category: Luxury
-```
+   - Vector search is specified through the `vectors.value` property. Keyword search is specified through the `search` property.
 
-Key takeaways about [Documents - Search Post](/rest/api/searchservice/documents/search-post) REST API:
+   - In a hybrid search, you can integrate vector search with full-text search over keywords. Filters, spell check, and semantic ranking apply to textual content only, and not vectors. In this final query, there's no semantic `answer` because the system didn't produce one that was sufficiently strong.
 
-- Vector search is specified through the `vectors.value` property. Keyword search is specified through the `search` property.
-
-- In a hybrid search, you can integrate vector search with full-text search over keywords. Filters, spell check, and semantic ranking apply to textual content only, and not vectors. In this final query, there's no semantic `answer` because the system didn't produce one that was sufficiently strong.
-
-- Actual results include more detail, including semantic captions and highlights. Results were modified for readability. To get the full structure of the response, run the request in the REST client.
+   - Actual results include more detail, including semantic captions and highlights. Results were modified for readability. To get the full structure of the response, run the request in the REST client.
 
 ## Clean up
 
@@ -702,7 +756,7 @@ When you're working in your own subscription, it's a good idea at the end of a p
 
 You can find and manage resources in the Azure portal by using the **All resources** or **Resource groups** link in the leftmost pane.
 
-If you want to keep the search service, but delete the index and documents, you can use the `DELETE` command in the REST client. This command (at the end of your `az-search-vector-quickstart.rest` file) deletes the `hotels-vector-quickstart` index:
+If you want to keep the search service, but delete the index and documents, you can use the `SearchIndexClient` object's `delete_index()` method. The cell in the section "Clean up" at the bottom of the notebook deletes the `hotels-vector-quickstart` index:
 
 ```python
 index_client.delete_index(index_name)
