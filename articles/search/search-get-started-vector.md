@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2023
 ms.topic: quickstart
 ms.date: 06/19/2025
-zone_pivot_groups: search-get-started-vector
+zone_pivot_groups: search-get-started-vector-search
 ---
 
 # Quickstart: Vector search using REST
@@ -68,34 +68,6 @@ Select the tab that corresponds to your preferred authentication method. Use the
 
 ---
 
-## Create or download the code file
-
-You use one `.rest` or `.http` file to run all the requests in this quickstart. You can download the REST file that contains the code for this quickstart, or you can create a new file in Visual Studio Code and copy the code into it.
-
-1. In Visual Studio Code, create a new file with a `.rest` or `.http` file extension. For example, `az-search-vector-quickstart.rest`. Copy and paste the raw contents of the [Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-vectors/az-search-vector-quickstart.rest](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-vectors) file into this new file. 
-
-1. At the top of the file, replace the placeholder value for `@baseUrl` with your search service URL. See the [Retrieve resource information](#retrieve-resource-information) section for instructions on how to find your search service URL.
-
-
-   ```http
-   @baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
-   ```
-
-1. At the top of the file, replace the placeholder value for authentication. See the [Retrieve resource information](#retrieve-resource-information) section for instructions on how to get your Microsoft Entra token or API key.
-
-    For the **recommended** keyless authentication via Microsoft Entra ID, you need to replace `@apiKey` with the `@token` variable.
-
-   ```http
-   @token = PUT-YOUR-MICROSOFT-ENTRA-TOKEN-HERE
-   ```
-
-    If you prefer to use an API key, replace `@apiKey` with the key you copied from the Azure portal.
-
-    ```http
-    @apiKey = PUT-YOUR-ADMIN-KEY-HERE
-    ```
-
-1. For the **recommended** keyless authentication via Microsoft Entra ID, you need to replace `api-key: {{apiKey}}` with `Authorization: Bearer {{token}}` in the request headers. Replace all instances of `api-key: {{apiKey}}` that you find in the file.
 
 ::: zone pivot="python"
 
