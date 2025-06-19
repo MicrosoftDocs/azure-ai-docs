@@ -20,8 +20,8 @@ author: lgayhardt
 
 In this article, you learn to streamline your model selection process in the Azure AI Foundry [model catalog](../how-to/model-catalog-overview.md) by comparing models in the model leaderboards (preview) available in Azure AI Foundry portal. This comparison can help you make informed decisions about which models meet the requirements for your particular use case or application. You can compare models by viewing the following leaderboards:
 
-- [Quality, cost, and performance leaderboards](#access-model-leaderboards) to quickly identify the model leaders along a single metric (quality, cost, or throughput);
-- [Trade-off charts](#compare-models-in-the-trade-off-charts) to see how models perform on one metric versus another, such as quality versus cost;
+- [Quality, safety, cost, and performance leaderboards](#access-model-leaderboards) to quickly identify the model leaders along a single criterion (quality, cost, or throughput);
+- [Trade-off charts](#compare-models-in-the-trade-off-charts) to see how models perform on one metric versus another, such as quality versus cost, among different selection criteria;
 - [Leaderboards by scenario](#view-leaderboards-by-scenario) to find the best leaderboards that suite your scenario.
 
 ## Prerequisites
@@ -42,7 +42,7 @@ In this article, you learn to streamline your model selection process in the Azu
 
     :::image type="content" source="../media/how-to/model-benchmarks/leaderboard-entry.png" alt-text="Screenshot showing the entry point from model catalog into model leaderboards." lightbox="../media/how-to/model-benchmarks/leaderboard-entry.png"::: 
 
-    The homepage displays leaderboard highlights for model selection criteria. Quality is the most common criterion for model selection, followed by cost and performance.
+    The homepage displays leaderboard highlights for model selection criteria. Quality is the most common criterion for model selection, followed by safety, cost, and performance.
 
     :::image type="content" source="../media/how-to/model-benchmarks/leaderboard-highlights.png" alt-text="Screenshot showing the highlighted leaderboards in quality, cost, and performance." lightbox="../media/how-to/model-benchmarks/leaderboard-highlights.png":::
 
@@ -52,7 +52,7 @@ In this article, you learn to streamline your model selection process in the Azu
 Trade-off charts allow you to compare models based on the criteria that you care more about. Suppose you care more about cost than quality and you discover that the highest quality model isn't the cheapest model, you might need to make trade-offs among quality, cost, and performance criteria. In the trade-off charts, you can compare how models perform along two metrics at a glance. 
 
 1. Select the **Models selected** dropdown menu to add or remove models from the trade-off chart.
-1. Select the **Quality vs. Throughput** tab and the **Throughput vs Cost** tab to view those charts for your selected models.
+1. Select the **Quality vs. Cost** tab and the **Quality vs Throughput** tab to view those charts for your selected models.
 1. Select **Compare between metrics** to access more detailed results for each model.
 
 :::image type="content" source="../media/how-to/model-benchmarks/leaderboard-trade-off.png" alt-text="Screenshot showing the trade-off charts in quality, cost, and performance." lightbox="../media/how-to/model-benchmarks/leaderboard-trade-off.png":::
