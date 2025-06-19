@@ -46,14 +46,14 @@ Azure OpenAI `o-series` models are designed to tackle reasoning and problem-solv
 | **[Structured Outputs](./structured-outputs.md)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | - |
 | **[Context Window](../concepts/models.md#o-series-models)** |  Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 128,000  <br> Output: 32,768 | Input: 128,000  <br> Output: 65,536 |
 | **[Reasoning effort](#reasoning-effort)** | ✅| ✅| ✅| ✅ |✅ | ✅ | - | - |
-| **[Vision Support](./gpt-with-vision.md)** | ✅ | ✅ | ✅ | ✅ | - | ✅ | - | - |
+| **[Image input](./gpt-with-vision.md)** | ✅ | ✅ | ✅ | ✅ | - | ✅ | - | - |
 | Chat Completions API | - | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Responses API | ✅  | ✅  | ✅ | ✅  | - | - | - | - |
 | Functions/Tools | ✅ | ✅ |✅ | ✅ | ✅  | ✅  |  - | - |
 | Parallel Tool Calls | - | - | - | - | -  | -  |  - | - |
 | `max_completion_tokens` <sup>1</sup> |  ✅ | ✅ | ✅ | ✅ |✅ |✅ |✅ | ✅ |
-| System Messages <sup>2</sup>  ✅ | ✅| ✅ | ✅ | ✅ | ✅ | - | - |
-| [Reasoning summary](#reasoning-summary) <sup>3</sup> |  ✅ | ✅ | ✅ | ✅ | -  | -  |  - | - |
+| System Messages <sup>2</sup> | ✅ | ✅| ✅ | ✅ | ✅ | ✅ | - | - |
+| [Reasoning summary](#reasoning-summary) <sup>3</sup> |  ✅ | - | ✅ | ✅ | -  | -  |  - | - |
 | Streaming <sup>4</sup>  | ✅ | - | ✅ | ✅| ✅ | - | - | - |
 
 <sup>1</sup> Reasoning models will only work with the `max_completion_tokens` parameter. <br><br>
@@ -62,7 +62,8 @@ Azure OpenAI `o-series` models are designed to tackle reasoning and problem-solv
 <sup>4</sup> Streaming for `o3` is limited access only.
 
 > [!NOTE]
-> To avoid timeouts [background mode](./responses.md#background-tasks) is recommended for `o3-pro`.
+> - To avoid timeouts [background mode](./responses.md#background-tasks) is recommended for `o3-pro`.
+> - `o3-pro` does not currently support image generation.
 
 ### Not Supported
 
