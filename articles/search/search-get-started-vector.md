@@ -31,40 +31,6 @@ In Azure AI Search, a [vector store](vector-store.md) has an index schema that d
 
 - [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
-## Retrieve resource information
-
-Requests to the search endpoint must be authenticated and authorized. You can use API keys or roles for this task. We recommend [using a keyless connection via Microsoft Entra ID](search-get-started-rbac.md).
-
-Select the tab that corresponds to your preferred authentication method. Use the same method for all requests in this quickstart.
-
-#### [Microsoft Entra ID](#tab/keyless)
-
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/CognitiveSearch).
-
-1. On the **Overview** home page, find the URL. An example endpoint might look like `https://mydemo.search.windows.net`. 
-
-   :::image type="content" source="media/search-get-started-rest/get-endpoint.png" lightbox="media/search-get-started-rest/get-endpoint.png" alt-text="Screenshot of the URL property on the overview page.":::
-
-1. Follow the steps in the [keyless quickstart](./search-get-started-rbac.md) to get your Microsoft Entra token. 
-
-    You get the token when you run the `az account get-access-token` command in step 3 of the previous quickstart.
-    
-    ```bash
-    az account get-access-token --scope https://search.azure.com/.default --query accessToken --output tsv
-    ```
-
-#### [API key](#tab/api-key)
-
-
-1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/CognitiveSearch).
-
-1. On the **Overview** home page, find the URL. An example endpoint might look like `https://mydemo.search.windows.net`. 
-
-   :::image type="content" source="media/search-get-started-rest/get-endpoint.png" lightbox="media/search-get-started-rest/get-endpoint.png" alt-text="Screenshot of the URL property on the overview page.":::
-
-1. Select **Settings** > **Keys**. Either **API keys** or **Both** must be enabled. [Admin API keys](search-security-api-keys.md) are used to add, modify, and delete objects. There are two interchangeable admin keys. Copy either one.
-
-   :::image type="content" source="media/search-get-started-rest/get-api-key.png" lightbox="media/search-get-started-rest/get-api-key.png" alt-text="Screenshot that shows the API keys in the Azure portal.":::
 
 ---
 

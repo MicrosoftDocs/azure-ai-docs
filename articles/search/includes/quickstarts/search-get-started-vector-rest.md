@@ -7,42 +7,42 @@ ms.topic: include
 ms.date: 06/19/2025
 ---
 
-## Create or download the code file
 
-The [Azure AI Search REST APIs](/rest/api/searchservice) allow you to create, load, and query vectors.
+## Retrieve resource information
 
-You use one `.rest` or `.http` file to run all the requests in this quickstart. You can download the REST file that contains the code for this quickstart, or you can create a new file in Visual Studio Code and copy the code into it.
+Requests to the search endpoint must be authenticated and authorized. You can use API keys or roles for this task. We recommend [using a keyless connection via Microsoft Entra ID](search-get-started-rbac.md).
 
-1. In Visual Studio Code, create a new file with a `.rest` or `.http` file extension. For example, `az-search-vector-quickstart.rest`. Copy and paste the raw contents of the [Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-vectors/az-search-vector-quickstart.rest](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-vectors) file into this new file. 
+Select the tab that corresponds to your preferred authentication method. Use the same method for all requests in this quickstart.
 
-1. At the top of the file, replace the placeholder value for `@baseUrl` with your search service URL. See the [Retrieve resource information](#retrieve-resource-information) section for instructions on how to find your search service URL.
+#### [Microsoft Entra ID](#tab/keyless)
 
+1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/CognitiveSearch).
 
-   ```http
-   @baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
-   ```
+1. On the **Overview** home page, find the URL. An example endpoint might look like `https://mydemo.search.windows.net`. 
 
-1. At the top of the file, replace the placeholder value for authentication. See the [Retrieve resource information](#retrieve-resource-information) section for instructions on how to get your Microsoft Entra token or API key.
+   :::image type="content" source="media/search-get-started-rest/get-endpoint.png" lightbox="media/search-get-started-rest/get-endpoint.png" alt-text="Screenshot of the URL property on the overview page.":::
 
-    For the **recommended** keyless authentication via Microsoft Entra ID, you need to replace `@apiKey` with the `@token` variable.
+1. Follow the steps in the [keyless quickstart](./search-get-started-rbac.md) to get your Microsoft Entra token. 
 
-   ```http
-   @token = PUT-YOUR-MICROSOFT-ENTRA-TOKEN-HERE
-   ```
-
-    If you prefer to use an API key, replace `@apiKey` with the key you copied from the Azure portal.
-
-    ```http
-    @apiKey = PUT-YOUR-ADMIN-KEY-HERE
+    You get the token when you run the `az account get-access-token` command in step 3 of the previous quickstart.
+    
+    ```bash
+    az account get-access-token --scope https://search.azure.com/.default --query accessToken --output tsv
     ```
 
-1. For the **recommended** keyless authentication via Microsoft Entra ID, you need to replace `api-key: {{apiKey}}` with `Authorization: Bearer {{token}}` in the request headers. Replace all instances of `api-key: {{apiKey}}` that you find in the file.
+#### [API key](#tab/api-key)
 
-## Create a vector index
 
-1. In Visual Studio Code, create a new file with a `.rest` or `.http` file extension. For example, `az-search-vector-quickstart.rest`. Copy and paste the raw contents of the [Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-vectors/az-search-vector-quickstart.rest](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-vectors) file into this new file. 
+1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/CognitiveSearch).
 
-1. At the top of the file, replace the placeholder value for authentication. See the [Retrieve resource information](#retrieve-resource-information) section for instructions on how to get your Microsoft Entra token or API key.
+1. On the **Overview** home page, find the URL. An example endpoint might look like `https://mydemo.search.windows.net`. 
+
+   :::image type="content" source="media/search-get-started-rest/get-endpoint.png" lightbox="media/search-get-started-rest/get-endpoint.png" alt-text="Screenshot of the URL property on the overview page.":::
+
+1. Select **Settings** > **Keys**. Either **API keys** or **Both** must be enabled. [Admin API keys](search-security-api-keys.md) are used to add, modify, and delete objects. There are two interchangeable admin keys. Copy either one.
+
+   :::image type="content" source="media/search-get-started-rest/get-api-key.png" lightbox="media/search-get-started-rest/get-api-key.png" alt-text="Screenshot that shows the API keys in the Azure portal.":::
+
 
     For the **recommended** keyless authentication via Microsoft Entra ID, you need to replace `@apiKey` with the `@token` variable.
 
@@ -609,7 +609,7 @@ Key takeaways about the [Documents - Index REST API](/rest/api/searchservice/doc
 
 - Documents in the payload consist of fields defined in the index schema.
 
-- Vector fields contain floating point values. The dimensions attribute has a minimum of 2 and a maximum of 3,072 floating point values each. This quickstart sets the dimensions attribute to 1,536 because that's the size of embeddings generated by the Azure OpenAI **text-embedding-3-small** model.
+- Vector fields contain floating point values. The dimensions attribute has a minimum of 2 and a maximum of `4096` floating point values each. This quickstart sets the dimensions attribute to 1,536 because that's the size of embeddings generated by the Azure OpenAI **text-embedding-3-small** model.
 
 ## Run queries
 
