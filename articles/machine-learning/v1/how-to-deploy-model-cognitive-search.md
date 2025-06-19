@@ -27,7 +27,7 @@ monikerRange: 'azureml-api-1'
 
 This article teaches you how to use Azure Machine Learning to deploy a model for use with [Azure AI Search](/azure/search/search-what-is-azure-search).
 
-Azure AI Search performs content processing over heterogenous content, to make it queryable by humans or applications. This process can be enhanced by using a model deployed from Azure Machine Learning.
+Azure AI Search performs content processing over heterogeneous content, to make it queryable by humans or applications. This process can be enhanced by using a model deployed from Azure Machine Learning.
 
 Azure Machine Learning can deploy a trained model as a web service. The web service is then embedded in an Azure AI Search _skill_, which becomes part of the processing pipeline.
 
