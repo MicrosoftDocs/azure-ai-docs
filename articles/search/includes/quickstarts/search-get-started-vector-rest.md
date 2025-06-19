@@ -42,7 +42,7 @@ Select the tab that corresponds to your preferred authentication method. Use the
 
 1. On the **Overview** home page, find the URL. An example endpoint might look like `https://mydemo.search.windows.net`. 
 
-   :::image type="content" source="../../media/search-get-started-rest/get-endpoint.png" lightbox="media/search-get-started-rest/get-endpoint.png" alt-text="Screenshot of the URL property on the overview page.":::
+   :::image type="content" source="../../media/search-get-started-rest/get-endpoint.png" lightbox="../../media/search-get-started-rest/get-endpoint.png" alt-text="Screenshot of the URL property on the overview page.":::
 
 1. Follow the steps in the [keyless quickstart](../../search-get-started-rbac.md) to get your Microsoft Entra token. 
 
@@ -59,12 +59,28 @@ Select the tab that corresponds to your preferred authentication method. Use the
 
 1. On the **Overview** home page, find the URL. An example endpoint might look like `https://mydemo.search.windows.net`. 
 
-   :::image type="content" source="../../media/search-get-started-rest/get-endpoint.png" lightbox="media/search-get-started-rest/get-endpoint.png" alt-text="Screenshot of the URL property on the overview page.":::
+   :::image type="content" source="../../media/search-get-started-rest/get-endpoint.png" lightbox="../../media/search-get-started-rest/get-endpoint.png" alt-text="Screenshot of the URL property on the overview page.":::
 
 1. Select **Settings** > **Keys**. Either **API keys** or **Both** must be enabled. [Admin API keys](../../search-security-api-keys.md) are used to add, modify, and delete objects. There are two interchangeable admin keys. Copy either one.
 
-   :::image type="content" source="../../media/search-get-started-rest/get-api-key.png" lightbox="media/search-get-started-rest/get-api-key.png" alt-text="Screenshot that shows the API keys in the Azure portal.":::
+   :::image type="content" source="../../media/search-get-started-rest/get-api-key.png" lightbox="../../media/search-get-started-rest/get-api-key.png" alt-text="Screenshot that shows the API keys in the Azure portal.":::
 
+---
+
+## Create or download the code file
+
+You use one `.rest` or `.http` file to run all the requests in this quickstart. You can download the REST file that contains the code for this quickstart, or you can create a new file in Visual Studio Code and copy the code into it.
+
+1. In Visual Studio Code, create a new file with a `.rest` or `.http` file extension. For example, `az-search-vector-quickstart.rest`. Copy and paste the raw contents of the [Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-vectors/az-search-vector-quickstart.rest](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-vectors) file into this new file. 
+
+1. At the top of the file, replace the placeholder value for `@baseUrl` with your search service URL. See the [Retrieve resource information](#retrieve-resource-information) section for instructions on how to find your search service URL.
+
+
+   ```http
+   @baseUrl = PUT-YOUR-SEARCH-SERVICE-URL-HERE
+   ```
+
+1. At the top of the file, replace the placeholder value for authentication. See the [Retrieve resource information](#retrieve-resource-information) section for instructions on how to get your Microsoft Entra token or API key.
 
     For the **recommended** keyless authentication via Microsoft Entra ID, you need to replace `@apiKey` with the `@token` variable.
 
@@ -79,6 +95,8 @@ Select the tab that corresponds to your preferred authentication method. Use the
     ```
 
 1. For the **recommended** keyless authentication via Microsoft Entra ID, you need to replace `api-key: {{apiKey}}` with `Authorization: Bearer {{token}}` in the request headers. Replace all instances of `api-key: {{apiKey}}` that you find in the file.
+
+
 
 ## Create a vector index
 
