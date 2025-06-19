@@ -1,7 +1,7 @@
 ---
-title: 'Quickstart: Vector Search Using REST APIs'
+title: 'Quickstart: Vector Search'
 titleSuffix: Azure AI Search
-description: Learn how to call the Search REST APIs for vector workloads in Azure AI Search.
+description: Learn how to call the Search REST and Azure SDK APIs for vector workloads in Azure AI Search.
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
@@ -12,7 +12,7 @@ ms.date: 06/19/2025
 zone_pivot_groups: search-get-started-vector-search
 ---
 
-# Quickstart: Vector search using REST
+# Quickstart: Vector search
 
 In this quickstart, you use the [Azure AI Search REST APIs](/rest/api/searchservice) to create, load, and query vectors.
 

@@ -9,15 +9,37 @@ ms.date: 06/19/2025
 
 ## Clone the notebook and setup environment
 
-Instructions on how to clone the notebook.
+The [Azure AI Search client library](/python/api/overview/azure/search-documents-readme) allows you to create, load, and query vectors.
 
-1. Clone ...
+In this quickstart, you'll use a Python notebook which contains the configuration, data and code required to perform these operations.
 
-1. Rename the `sample.env` file to `.env`
 
-1. In Visual Studio Code, work in an environment by opening the Command Palette ...
+1. Clone the repo containing the code for this quickstart. 
+
+   ```bash
+   git clone https://github.com/Azure-Samples/azure-search-python-samples
+   ```
+
+1. Rename the `sample.env` file to `.env` and modify the values in the `.env` file. Use the Search service Url as the `AZURE_SEARCH_ENDPOINT` and choose a new `AZURE_SEARCH_INDEX_NAME` name, or use the one provided in the file.
+
+1. In Visual Studio Code, work in an environment. Use the View > Terminal... `Ctrl`+```.
 
 1. Open the Terminal and run the command:
+
+   ```bash
+   python -m venv .venv
+   source .venv/scripts/activate
+   where python
+   ```
+   
+   > [!Note] 
+   > This assumes you're using Git Bash in your Terminal, and you're running on Windows. If you're using a different shell and/or a different operating system, you'll need to adjust these instructions for your specific environment.
+
+   If prompted, allow Visual Studio Code to use the new environment.
+
+   The `where python` command will validate that you are working from the virtual environment by listing python.exe from your folder structure, as well as other places from your machine's directory.
+
+1. Install the required libraries by running the following command.
 
    ```bash
    pip install requirements.txt
@@ -31,34 +53,165 @@ Instructions on how to clone the notebook.
 1. Run the first cell, you should get output below it ...
 
    ```output
-   Stuff goes here
+   Using Azure Search endpoint: https://<>.search.windows.net
+   Using Azure Search index: <>
+   Package                 Version
+   ----------------------- -----------
+   aiohappyeyeballs        2.6.1
+   aiohttp                 3.12.13
+   aiosignal               1.3.2
+   asttokens               3.0.0
+   attrs                   25.3.0
+   azure-ai-agents         1.0.0
+   azure-ai-projects       1.0.0b11
+   azure-common            1.1.28
+   azure-core              1.34.0
+   azure-identity          1.23.0
+   azure-search-documents  11.6.0b12
+   azure-storage-blob      12.25.1
+   ...
    ```
+  
+   There are many more packages which you can view in a scrollable element (see the message below the cell results).
+
 
 ## Create a vector index
 
 The code in the `vector-search-quickstart.ipynb` uses several methods from the `azure.search.documents` library to create the vector index and searchable fields.
 
-1. Run the cell in the section below the title "Create an index". If the index is created successfully, you see the following result  below the cell:
+1. Run the cell in the section below the title "Create an index". This invokes the following code:
+
+   ```python
+   from azure.search.documents.indexes import SearchIndexClient
+   from azure.search.documents import SearchClient
+   from azure.search.documents.models import VectorizedQuery
+   from azure.search.documents.indexes.models import (
+       SimpleField,
+       ComplexField,
+       SearchField,
+       SearchFieldDataType,    
+       SearchableField,
+       SearchIndex,
+       SemanticConfiguration,
+       SemanticField,
+       SemanticPrioritizedFields,
+       SemanticSearch,
+       VectorSearch, 
+       VectorSearchProfile,
+       HnswAlgorithmConfiguration,
+       ExhaustiveKnnAlgorithmConfiguration    
+   )
+   
+   # Create a search schema
+   index_client = SearchIndexClient(
+       endpoint=search_endpoint, credential=credential)
+   fields = [
+       SimpleField(name="HotelId", type=SearchFieldDataType.String, key=True, filterable=True),
+       SearchableField(name="HotelName", type=SearchFieldDataType.String, sortable=True),
+       SearchField(
+           name="HotelNameVector",
+           type=SearchFieldDataType.Collection(SearchFieldDataType.Single),
+           searchable=True,
+           vector_search_dimensions=1536,
+           vector_search_profile_name="my-vector-profile"
+       ),
+       SearchableField(name="Description", type=SearchFieldDataType.String),
+       SearchField(
+           name="DescriptionVector",
+           type=SearchFieldDataType.Collection(SearchFieldDataType.Single),
+           searchable=True,
+           vector_search_dimensions=1536,
+           vector_search_profile_name="my-vector-profile"
+       ),
+       SearchableField(
+           name="Description_fr",
+           type=SearchFieldDataType.String,
+           analyzer_name="en.microsoft"
+       ),
+       SearchField(
+           name="Description_frvector",
+           type=SearchFieldDataType.Collection(SearchFieldDataType.Single),
+           searchable=True,
+           vector_search_dimensions=1536,
+           vector_search_profile_name="my-vector-profile"
+       ),
+       SearchableField(name="Category", type=SearchFieldDataType.String, sortable=True, filterable=True, facetable=True),
+       SearchField(name="Tags", type=SearchFieldDataType.Collection(SearchFieldDataType.String), searchable=True, filterable=True, facetable=True),
+       SimpleField(name="ParkingIncluded", type=SearchFieldDataType.Boolean, filterable=True, sortable=True, facetable=True),
+       SimpleField(name="LastRenovationDate", type=SearchFieldDataType.DateTimeOffset, filterable=True, sortable=True, facetable=True),
+       SimpleField(name="Rating", type=SearchFieldDataType.Double, filterable=True, sortable=True, facetable=True),
+       ComplexField(name="Address", fields=[
+           SearchableField(name="StreetAddress", type=SearchFieldDataType.String),
+           SearchableField(name="City", type=SearchFieldDataType.String, filterable=True, sortable=True, facetable=True),
+           SearchableField(name="StateProvince", type=SearchFieldDataType.String, filterable=True, sortable=True, facetable=True),
+           SearchableField(name="PostalCode", type=SearchFieldDataType.String, filterable=True, sortable=True, facetable=True),
+           SearchableField(name="Country", type=SearchFieldDataType.String, filterable=True, sortable=True, facetable=True),
+       ]),
+       SimpleField(name="Location", type=SearchFieldDataType.GeographyPoint, filterable=True, sortable=True),
+   ]
+   
+   vector_search = VectorSearch(
+           algorithms=[
+               HnswAlgorithmConfiguration(name="my-hnsw-vector-config-1", kind="hnsw"),
+               HnswAlgorithmConfiguration(name="my-hnsw-vector-config-2", kind="hnsw"),
+               ExhaustiveKnnAlgorithmConfiguration(name="my-eknn-vector-config", kind="exhaustiveKnn")
+           ],
+           profiles=[
+               VectorSearchProfile(name="my-vector-profile", algorithm_configuration_name="my-hnsw-vector-config-1")
+           ]
+       )
+
+   semantic_config = SemanticConfiguration(
+           name="my-semantic-config",
+           prioritized_fields=SemanticPrioritizedFields(
+           title_field=SemanticField(field_name="HotelName")
+           )
+       )
+   
+   # Create the semantic settings with the configuration
+   semantic_search = SemanticSearch(configurations=[semantic_config])
+   
+   semantic_settings = SemanticSearch(configurations=[semantic_config])
+   scoring_profiles = []
+   suggester = [{'name': 'sg', 'source_fields': ['Tags', 'Address/City', 'Address/Country']}]
+   
+   # Create the search index with the semantic settings
+   index = SearchIndex(name=index_name, fields=fields, vector_search=vector_search, semantic_search=semantic_search)
+   result = index_client.create_or_update_index(index)
+   print(f' {result.name} created')
+   ```
+
+   If the index is created successfully, you see the following result  below the cell:
 
    ```output
    vector-search-quickstart created
    ```
 
-Key takeaways when creating vector index with the `azure.search.documents`:
+   Key takeaways when creating vector index with the `azure.search.documents`:
 
-- Take away 1
+   - Take away 1
 
-- Take away 2
+   - Take away 2
 
 ## Upload documents
 
 Creating and loading the index are separate steps. You created the index schema [in the previous step](#create-a-vector-index). Now you need to load documents into the index.
  
-In Azure AI Search, the index contains all searchable data and queries run on the search service. .
+In Azure AI Search, the index contains all searchable data and queries run on the search service.
 
-1. In Visual Studio Code, run the cell in the section below "Create documents payload". This cell loads a variable named `documents` with a JSON object describing each document, along with the vectorized version of the article's description. This vector is what powers the search.
+1. In Visual Studio Code, run the cell in the section below "Create documents payload". This cell contains the following code (abbreviated):
 
-1. Run the cell in the section below "Upload the documents". This creates an instance of the search client by calling the `SearchClient()` constructor, then calls the `upload_documents()` method on the object. The status of each document is printed below the cell:
+```python
+
+```
+
+This cell loads a variable named `documents` with a JSON object describing each document, along with the vectorized version of the article's description. This vector is what powers the search.
+
+
+
+1. Run the cell in the section below "Upload the documents". This creates an instance of the search client by calling the `SearchClient()` constructor, then calls the `upload_documents()` method on the object. 
+
+The status of each document is printed below the cell:
 
    ```output
    Key: 1, Succeeded: True, ErrorMessage: None

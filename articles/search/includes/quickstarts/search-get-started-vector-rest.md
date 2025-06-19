@@ -9,6 +9,8 @@ ms.date: 06/19/2025
 
 ## Create or download the code file
 
+The [Azure AI Search REST APIs](/rest/api/searchservice) allow you to create, load, and query vectors.
+
 You use one `.rest` or `.http` file to run all the requests in this quickstart. You can download the REST file that contains the code for this quickstart, or you can create a new file in Visual Studio Code and copy the code into it.
 
 1. In Visual Studio Code, create a new file with a `.rest` or `.http` file extension. For example, `az-search-vector-quickstart.rest`. Copy and paste the raw contents of the [Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-vectors/az-search-vector-quickstart.rest](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-vectors) file into this new file. 
