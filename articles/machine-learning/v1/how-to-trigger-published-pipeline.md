@@ -8,7 +8,7 @@ ms.subservice: mlops
 ms.author: lagayhar
 author: lgayhardt
 ms.reviewer: keli19
-ms.date: 08/12/2022
+ms.date: 06/24/2025
 ms.topic: how-to
 ms.custom: UpdateFrequency5, devx-track-python, sdkv1
 #Customer intent: As a Python coding data scientist, I want to improve my operational efficiency by scheduling my training pipeline of my model using the latest data.
