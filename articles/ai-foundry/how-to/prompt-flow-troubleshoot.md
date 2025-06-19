@@ -73,10 +73,6 @@ You might encounter a 429 error from Azure OpenAI. This error means that you rea
 
         If retrying doesn't work, check whether you're using a long context model, such as `gpt-4-32k`, and set a large value for `max_tokens`. If so, the behavior is expected because your prompt might generate a long response that takes longer than the interactive mode's upper threshold. In this situation, we recommend that you try `Bulk test` because this mode doesn't have a time-out setting.
 
-1. If you can't find anything in logs to indicate that it's a specific node issue:
-
-    - Contact the prompt flow team ([promptflow-eng](mailto:aml-pt-eng@microsoft.com)) with the logs. We try to identify the root cause.
-
 ## Compute session failures that use a custom base image: Flow deployment-related issues
 
 ### How do I resolve an upstream request time-out issue?
