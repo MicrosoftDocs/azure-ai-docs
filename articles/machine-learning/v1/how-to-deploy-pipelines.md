@@ -68,7 +68,7 @@ After you have a running pipeline, you can publish it so that it runs with diffe
         version="1.0")
    ```
 
-1. After you publish your pipeline, you can check it in the UI. Pipeline ID is the unique identifier of the published pipeline.
+1. After you publish your pipeline, you can check it in the UI. **Pipeline ID** is the unique identifier of the published pipeline.
 
     :::image type="content" source="./media/how-to-deploy-pipelines/published-pipeline-detail.png" alt-text="Screenshot showing details of the published pipeline." lightbox= "./media/how-to-deploy-pipelines/published-pipeline-detail.png":::
 
