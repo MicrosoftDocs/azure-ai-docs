@@ -12,6 +12,8 @@ ms.date: 06/19/2025
 zone_pivot_groups: search-get-started-vector-search
 ---
 
+# Quickstart: Vector search
+
 ::: zone pivot="python"
 
 [!INCLUDE [Python quickstart](includes/quickstarts/search-get-started-vector-python.md)]
