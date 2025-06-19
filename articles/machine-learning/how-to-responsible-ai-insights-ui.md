@@ -111,7 +111,7 @@ Component parameters for real-life interventions use causal analysis. Do the fol
 1. **Target feature (required)**: Choose the outcome you want the causal effects to be calculated for.
 1. **Treatment features (required)**: Choose one or more features that you're interested in changing ("treating") to optimize the target outcome.
 1. **Categorical features**: Indicate which features are categorical to properly render them as categorical values in the dashboard UI. This field is pre-loaded for you based on your dataset metadata.
-1. **Advanced settings**: Specify additional parameters for your causal analysis, such as heterogenous features (that is, additional features to understand causal segmentation in your analysis, in addition to your treatment features) and which causal model you want to be used.
+1. **Advanced settings**: Specify additional parameters for your causal analysis, such as heterogeneous features (that is, additional features to understand causal segmentation in your analysis, in addition to your treatment features) and which causal model you want to be used.
 
 ## Configure your experiment
 

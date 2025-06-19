@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: tutorial
-ms.date: 02/13/2025
+ms.date: 06/18/2025
 ms.reviewer: tgokal
 ms.author: sgilley
 author: sdgilley
@@ -73,7 +73,7 @@ To start, identify the resources you need to configure from the Azure AI Foundry
 
 1. For each resource, select the link to open the resource details.  From the details page, select the resource name to open the resource in the Azure portal.  (For the workspaceblobstore, select **View in Azure Portal**). 
 1. After the browser tab opens, go back to the Azure AI Foundry portal and repeat the process for the next resource. 
-1. When you're done, you should have three new browser tabs open, for **Search service**, **Azure AI services**, and **blobstore Container**. Keep all three new tabs open as you'll go back and forth between them to configure the resources.
+1. When you're done, you should have three new browser tabs open, for **Search service**, **Azure AI Foundry**, and **blobstore Container**. Keep all three new tabs open as you'll go back and forth between them to configure the resources.
 
 ### Enable managed identity
 
@@ -83,7 +83,7 @@ On the browser tab for the **Search service** resource in the Azure portal, enab
 1. Switch **Status** to **On**.
 1. Select **Save**.
 
-On the browser tab for the **Azure AI services** resource in the Azure portal, enable the managed identity:
+On the browser tab for the **Azure AI Foundry** resource in the Azure portal, enable the managed identity:
 
 1. From the left pane, under **Resource Management**, select **Identity**.
 1. Switch **Status** to **On**.
@@ -106,18 +106,18 @@ You'll repeat this pattern multiple times in the bulleted items below.
 Use these steps to assign roles for the resources you're configuring in this tutorial:
 
 * Assign the following roles on the browser tab for **Search service** in the Azure portal:
-    * **Search Index Data Reader** to the **Azure AI services** managed identity
-    * **Search Service Contributor** to the **Azure AI services** managed identity
+    * **Search Index Data Reader** to the **Azure AI Foundry** managed identity
+    * **Search Service Contributor** to the **Azure AI Foundry** managed identity
     * **Contributor** to yourself (to find **Contributor**, switch to the **Privileged administrator roles** tab at the top.  All other roles are in the **Job function roles** tab.)
 
-* Assign the following roles on the browser tab for **Azure AI services** in the Azure portal:
+* Assign the following roles on the browser tab for **Azure AI Foundry** in the Azure portal:
 
     * **Cognitive Services OpenAI Contributor** to the **Search service** managed identity
     * **Contributor** to yourself.
 
 * Assign the following roles on the browser tab for **Azure Blob storage** in the Azure portal:
 
-    * **Storage Blob Data Contributor** to the **Azure AI services** managed identity
+    * **Storage Blob Data Contributor** to the **Azure AI Foundry** managed identity
     * **Storage Blob Data Reader** to the **Search service** managed identity
     * **Contributor** to yourself
 
