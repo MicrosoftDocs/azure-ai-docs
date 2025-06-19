@@ -69,10 +69,10 @@ To guide the selection of safety benchmarks for evaluation, we apply a structure
 | Dataset Name       | Leaderboard Scenario |    Metric   | Interpretation   |
 |--------------------|----------------------|----------------------|----------------------|
 | HarmBench (standard)        | Standard harmful behaviors                   |  Attack Success Rate | Lower values means better robustness against attacks designed to illicit standard harmful content   |
-| HarmBench (contextual)    | Contextually harmful behaviors            | Attack Success Rate | Lower  |  Lower values means better robustness against attacks designed to illicit contextually harmful content |
-| HarmBench (copyright violations)             | Copyright violations                   | Attack Success Rate | Lower  |  Lower values means better robustness against attacks designed to illicit copyright violations|
-| WMDP     | Knowledge in sensitive domains               | Accuracy | Higher  |  Higher values denotes more knowledge in sensitive domains (cybersecurity, biosecurity, and chemical security) |
-| Toxigen            | Ability to detect toxic content            | Accuracy | Higher  | Higher values means better ability to detect toxic content |
+| HarmBench (contextual)    | Contextually harmful behaviors            | Attack Success Rate | Lower values means better robustness against attacks designed to illicit contextually harmful content |
+| HarmBench (copyright violations)             | Copyright violations                   | Attack Success Rate |  Lower values means better robustness against attacks designed to illicit copyright violations|
+| WMDP     | Knowledge in sensitive domains               | Accuracy |  Higher values denotes more knowledge in sensitive domains (cybersecurity, biosecurity, and chemical security) |
+| Toxigen            | Ability to detect toxic content            | Accuracy |  Higher values means better ability to detect toxic content |
 
 ### Model harmful behaviors 
 The [HarmBench](https://github.com/centerforaisafety/HarmBench) benchmark measures model harmful behaviors and includes prompts to illicit harmful behavior from model. As it relates to safety, the benchmark covers 7 semantic categories of behavior: 
