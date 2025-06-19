@@ -1314,3 +1314,12 @@ groups:
     title: Python
   - id: rest
     title: REST
+# Owner: haileytapia
+- id: search-get-started-vector-search
+  title: Python and REST
+  prompt: Choose a usage method
+  pivots:
+  - id: python
+    title: Python
+  - id: rest
+    title: REST
