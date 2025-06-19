@@ -9,13 +9,19 @@ ms.custom: references_regions
 
 ### June 2025 release
 
+#### Improved pronunciation assessment model
+
+We've rolled out significant upgrades to the pronunciation assessment models for `ta-IN` and `ms-MY`. You'll see a noticeable jump in Pearson Correlation Coefficients (PCC), which means more precise and dependable evaluations.
+
+These updated models are ready to use through the API and the Azure AI Foundry playground, just like before.
+
 #### Improved speech to text models
 Accuracy of speech to text models in [fast transcription](../../fast-transcription-create.md) for `de-DE`, `en-US`, `en-GB`, `es-ES`, `es-MX`,  `fr-FR`, `it-IT`, `ja-JP`, `ko-KR`, `pt-BR`, and `zh-CN` locales are improved by 10%-25% percent respectively, particularly with improved readaibility and recognition on entities.
 
 ### May 2025 release
 
 #### Improved speech to text models
-Accuracy of speech to text models for `ta-IN`, `te-IN`, `en-IN`, and `hu-HU` locales are improved by 5-10 percent respectively. We also approximate a 20x reduction in ghost words for the `ta-IN` and `te-IN` models. 
+Accuracy of speech to text models for `ta-IN`, `te-IN`, `en-IN`, and `hu-HU` locales are improved by 5-10 percent respectively. We also approximate a 20x reduction in ghost words for the `ta-IN` and `te-IN` models.
 
 #### Fast transcription API - Multi-lingual speech transcription
 
@@ -30,7 +36,7 @@ Fast transcription now supports additional locales including fi-FI, he-IL, id-ID
 
 We are excited to announce substantial improvements to our pronunciation assessment models for these locales: `de-DE`, `es-MX`, `it-IT`, `ja-JP`, `ko-KR`, and `pt-BR`. These enhancements bring significant advancements in Pearson Correlation Coefficients (PCC), ensuring more accurate and reliable assessments.
 
-As before, the models are available through the API and Azure AI Foundry playground. 
+As before, the models are available through the API and Azure AI Foundry playground.
 
 ### March 2025 release
 
