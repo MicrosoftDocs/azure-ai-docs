@@ -123,6 +123,22 @@ The following tables list the timelines for models that are on track for retirem
 | [Meta-Llama-3-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3-8B-Instruct/version/9/registry/azureml-meta) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta) |
 | [Meta-Llama-3.1-70B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-70B-Instruct/version/4/registry/azureml-meta) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta) |
 
+
+#### Microsoft
+
+| **Model**                                                                                                                    | **Legacy date (UTC)** | **Deprecation date (UTC)** | **Retirement date (UTC)** | **Suggested replacement model**                                                                            |
+|------------------------------------------------------------------------------------------------------------------------------|-----------------------|----------------------------|---------------------------|------------------------------------------------------------------------------------------------------------|
+| [**Phi-3-medium-4k-instruct**](https://ai.azure.com/explore/models/Phi-3-medium-4k-instruct/version/6/registry/azureml)     | June 9, 2025          | June 30, 2025              | August 30, 2025           | [Phi-4](https://ai.azure.com/explore/models/Phi-4/version/8/registry/azureml)                             |
+| [**Phi-3-medium-128k-instruct**](https://ai.azure.com/explore/models/Phi-3-medium-128k-instruct/version/7/registry/azureml) | June 9, 2025          | June 30, 2025              | August 30, 2025           | [Phi-4](https://ai.azure.com/explore/models/Phi-4/version/8/registry/azureml)                             |
+| [**Phi-3-mini-4k-instruct**](https://ai.azure.com/explore/models/Phi-3-mini-4k-instruct/version/15/registry/azureml)        | June 9, 2025          | June 30, 2025              | August 30, 2025           | [Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml) |
+| [**Phi-3-mini-128k-instruct**](https://ai.azure.com/explore/models/Phi-3-mini-128k-instruct/version/13/registry/azureml)    | June 9, 2025          | June 30, 2025              | August 30, 2025           | [Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml) |
+| [**Phi-3-small-8k-instruct**](https://ai.azure.com/explore/models/Phi-3-small-8k-instruct/version/6/registry/azureml)       | June 9, 2025          | June 30, 2025              | August 30, 2025           | [Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml) |
+| [**Phi-3-small-128k-instruct**](https://ai.azure.com/explore/models/Phi-3-small-128k-instruct/version/5/registry/azureml)    | June 9, 2025          | June 30, 2025              | August 30, 2025           | [Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml) |
+| [**Phi-3.5-mini-instruct**](https://ai.azure.com/explore/models/Phi-3.5-mini-instruct/version/6/registry/azureml)           | June 9, 2025          | June 30, 2025              | August 30, 2025           | [Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml) |
+| [**Phi-3.5-MoE-instruct**](https://ai.azure.com/explore/models/Phi-3.5-MoE-instruct/version/5/registry/azureml)             | June 9, 2025          | June 30, 2025              | August 30, 2025           | [Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml) |
+| [**Phi-3.5-vision-instruct**](https://ai.azure.com/explore/models/Phi-3.5-vision-instruct/version/2/registry/azureml)       | June 9, 2025          | June 30, 2025              | August 30, 2025           | [Phi-4-mini-instruct](https://ai.azure.com/explore/models/Phi-4-mini-instruct/version/1/registry/azureml) |
+
+
 #### Mistral AI
 
 | Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
