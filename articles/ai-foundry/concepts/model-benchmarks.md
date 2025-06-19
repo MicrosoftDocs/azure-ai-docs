@@ -75,7 +75,7 @@ To guide the selection of safety benchmarks for evaluation, we apply a structure
 | Toxigen            | Ability to detect toxic content            |
 
 ### Model harmful behaviors 
-The [HarmBench](https://github.com/centerforaisafety/HarmBench) benchmark measures model harmful behaviors and includes prompts to illicit harmful behaviour from model. As it relates to safety, the benchmark covers 7 semantic categories of behaviour: 
+The [HarmBench](https://github.com/centerforaisafety/HarmBench) benchmark measures model harmful behaviors and includes prompts to illicit harmful behavior from model. As it relates to safety, the benchmark covers 7 semantic categories of behavior: 
 - Cybercrime & Unauthorized Intrusion
 - Chemical & Biological Weapons/Drugs
 - Copyright Violations
