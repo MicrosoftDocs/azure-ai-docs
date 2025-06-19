@@ -21,8 +21,6 @@ Fine-tuning customizes a pretrained AI model with additional training on a speci
 
 If you're just getting started with fine-tuning, we recommend **GPT-4.1** for complex skills like language translation, domain adaptation, or advanced code generation. For more focused tasks (such as classification, sentiment analysis, or content moderation) or when distilling knowledge from a more sophisticated model, start with **GPT-4.1-mini** for faster iteration and lower costs.
 
-:::image type="content" source="../media/concepts/model-catalog-fine-tuning.png" alt-text="Screenshot of Azure AI Foundry model catalog and filtering by Fine-tuning tasks." lightbox="../media/concepts/model-catalog-fine-tuning.png":::
-
 ## Top use cases for fine-tuning
 Fine tuning excels at customizing language models for specific applications and domains. Some key use cases include:
 - **Domain Specialization:** Adapt a language model for a specialized field like medicine, finance, or law – where domain specific knowledge and terminology is important. Teach the model to understand technical jargon and provide more accurate responses.
@@ -41,7 +39,7 @@ Before picking a model, it's important to select the fine tuning product that ma
 
 For most customers, serverless provides the best balance of ease-of-use, cost efficiency, and access to premium models. This document focuses on serverless options.
 
-To find steps to fine-tuning a model in AI Foundry, see [Fine-tune Models in AI Foundry](../how-to/fine-tune-serverless.md) or [Fine-tune models using managed compute](how-to/fine-tune-managed-compute.md). For detailed guidance on OpenAI fine tuning see [Fine-tune Azure OpenAI Models](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/fine-tuning?context=%2Fazure%2Fai-foundry%2Fcontext%2Fcontext&tabs=azure-openai&pivots=programming-language-studio).
+To find steps to fine-tuning a model in AI Foundry, see [Fine-tune Models in AI Foundry](../how-to/fine-tune-serverless.md) or [Fine-tune models using managed compute](../how-to/fine-tune-managed-compute.md). For detailed guidance on OpenAI fine tuning see [Fine-tune Azure OpenAI Models](../../ai-services/openai/how-to/fine-tuning.md).
 
 ## Training Techniques
 
@@ -92,17 +90,17 @@ This table provides an overview of the models available
 3. **Choose your technique:** Begin with Supervised Fine Tuning (SFT) unless you have specific requirements for reasoning models / RFT.
 4. **Iterate and evaluate:** Fine-tuning is an iterative process—start with a baseline, measure performance, and refine your approach based on results.
 
-To find steps to fine-tuning a model in AI Foundry, see [Fine-tune Models in AI Foundry](../how-to/fine-tune-serverless.md), [Fine-tune Azure OpenAI Models](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/fine-tuning?context=%2Fazure%2Fai-foundry%2Fcontext%2Fcontext&tabs=azure-openai&pivots=programming-language-studio), or [Fine-tune models using managed compute](how-to/fine-tune-managed-compute.md).
+To find steps to fine-tuning a model in AI Foundry, see [Fine-tune Models in AI Foundry](../how-to/fine-tune-serverless.md), [Fine-tune Azure OpenAI Models](../../ai-services/openai/how-to/fine-tuning.md), or [Fine-tune models using managed compute](how-to/fine-tune-managed-compute.md).
 
 ## Fine Tuning Availability
 
 Now that you know when to use fine-tuning for your use case, you can go to Azure AI Foundry to find models available to fine-tune.
 
-**If you are fine tuning an OpenAI model** you can use an Azure OpenAI Resource, a Foundry resource or default project, or a hub/project. GPT 4.1, 4.1-mini and 4.1-nano are available in all regions with Global Training. For regional availability, see [Regional Availability and Limits for Azure OpenAI Fine Tuning](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#fine-tuning-models)
+**To fine-tune an AI Foundry model using Serverless** you must have a hub/project in the region where the model is available for fine tuning. See [Region availability for models in standard deployment](../how-to/deploy-models-serverless-availability.md) for detailed information.
 
-**If you are fine tuning a non-OpenAI model using Serverless** you must have a hub/project in the region where the model is available for fine tuning. See [Region availability for models in standard deployment](../how-to/deploy-models-serverless-availability.md) for detailed information.
+**To fine-tune an OpenAI model** you can use an Azure OpenAI Resource, a Foundry resource or default project, or a hub/project. GPT 4.1, 4.1-mini and 4.1-nano are available in all regions with Global Training. For regional availability, see [Regional Availability and Limits for Azure OpenAI Fine Tuning](../../ai-services/openai/concepts/models.md)
 
-**If you are fine tunign a model using Managed Compute** you must have a hub/project and available VM quota for training and inferencing. See [Fine-tune models using managed compute (preview)](../how-to/fine-tune-managed-compute.md) for more details.
+**To fine-tune a model using Managed Compute** you must have a hub/project and available VM quota for training and inferencing. See [Fine-tune models using managed compute (preview)](../how-to/fine-tune-managed-compute.md) for more details.
 
 
 ## Related content
