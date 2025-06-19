@@ -51,22 +51,9 @@ Your first project (default project) plays a special role and has access to more
     
     # [Python SDK](#tab/python)
     
-    ```python
-    new_project_name = 'your-new-project-name'
-    
-    project = client.projects.begin_create(
-      resource_group_name=resource_group_name,
-      account_name=foundry_resource_name,
-      project_name=new_project_name,
-      project={
-          "location": location,
-          "identity": {
-              "type": "SystemAssigned"
-          },
-          "properties": {}
-      }
-    )
-    ```
+    Add this code to your script to create a new project on your existing resource:
+
+    :::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/create_project.py" id="create_additional":::
     
     
     # [Azure CLI](#tab/azurecli)

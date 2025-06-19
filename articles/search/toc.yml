@@ -204,11 +204,6 @@ items:
       href: search-security-overview.md
     - name: Secure access to external data
       href: search-indexer-securing-resources.md
-    - name: Security controls by Azure Policy
-      displayName: regulatory, compliance, standards, domains
-      href: ./security-controls-policy.md
-    - name: Security baseline
-      href: /security/benchmark/azure/baselines/cognitive-search-security-baseline?toc=/azure/search/TOC.json
 - name: How-to guides
   items:
   - name: Service management
@@ -231,8 +226,6 @@ items:
       href: search-sku-manage-costs.md
     - name: Reliability and recovery
       href: search-reliability.md
-    - name: Availability zone migration guidance
-      href: /azure/reliability/migrate-search-service
     - name: Multi-tenancy
       href: search-modeling-multitenant-saas-applications.md
     - name: Manage
@@ -707,6 +700,13 @@ items:
       href: ./policy-reference.md
     - name: Monitoring data reference
       href: monitor-azure-cognitive-search-data-reference.md
+  - name: Security reference
+    items:
+    - name: Security controls by Azure Policy
+      displayName: regulatory, compliance, standards, domains
+      href: ./security-controls-policy.md
+    - name: Security baseline
+      href: /security/benchmark/azure/baselines/cognitive-search-security-baseline?toc=/azure/search/TOC.json
   - name: Skills reference
     items:
     - name: Overview

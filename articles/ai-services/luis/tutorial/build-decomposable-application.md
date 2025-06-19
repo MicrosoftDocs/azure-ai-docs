@@ -2,12 +2,12 @@
 title: Build a decomposable LUIS application
 description: Use this tutorial to learn how to build a decomposable application.
 ms.service: azure-ai-language
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 ms.manager: nitinme
 ms.subservice: azure-ai-luis
 ms.topic: tutorial
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 
 # Build a decomposable LUIS application

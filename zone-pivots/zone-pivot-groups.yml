@@ -275,6 +275,16 @@ groups:
     title: REST
   - id: programming-language-typescript
     title: TypeScript
+- id: programming-languages-ai-search-rag-qs
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: javascript
+    title: JavaScript
+  - id: python
+    title: Python
+  - id: typescript
+    title: TypeScript
 # Owner: diberry
 - id: programming-languages-rest-ps-py-js
   title: Programming languages
@@ -1046,6 +1056,15 @@ groups:
     title: TypeScript
   - id: rest-api
     title: REST API
+# owner: aahi
+- id: selection-logic-apps
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: portal
+    title: Azure AI Foundry portal
+  - id: python
+    title: Python
 # owner: aahi
 - id: selection-code-interpreter
   title: Selections

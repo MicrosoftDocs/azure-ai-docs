@@ -5,7 +5,7 @@ author: mrbullwinkle
 ms.author: mbullwin
 ms.service: azure-ai-metrics-advisor
 ms.topic: tutorial 
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 
 # Tutorial: Enable anomaly notification in Metrics Advisor 

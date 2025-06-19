@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: quickstart
-ms.date: 03/04/2025
+ms.date:  06/19/2025
 zone_pivot_groups: search-get-started-vector
 ---
 
@@ -19,7 +19,7 @@ In this quickstart, you use the [Azure AI Search REST APIs](/rest/api/searchserv
 In Azure AI Search, a [vector store](vector-store.md) has an index schema that defines vector and nonvector fields, a vector search configuration for algorithms that create the embedding space, and settings on vector field definitions that are evaluated at query time. The [Create Index](/rest/api/searchservice/indexes/create-or-update) REST API creates the vector store.
 
 > [!NOTE]
-> This quickstart omits the vectorization step and provides embeddings in sample documents. If you want to add [built-in data chunking and vectorization](vector-search-integrated-vectorization.md) over your own content, try the [**Import and vectorize data wizard**](search-get-started-portal-import-vectors.md) for an end-to-end walkthrough.
+> This quickstart omits the vectorization step and provides inline embeddings. If you want to add [built-in data chunking and vectorization](vector-search-integrated-vectorization.md) over your own content, try the [**Import and vectorize data wizard**](search-get-started-portal-import-vectors.md) for an end-to-end walkthrough.
 
 ## Prerequisites
 
@@ -73,6 +73,7 @@ Select the tab that corresponds to your preferred authentication method. Use the
 [!INCLUDE [Python quickstart](includes/quickstarts/search-get-started-vector-python.md)]
 
 ::: zone-end
+
 
 ::: zone pivot="rest"
 

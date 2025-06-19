@@ -2,13 +2,13 @@
 title: Docker container settings - LUIS
 titleSuffix: Azure AI services
 description: The LUIS container runtime environment is configured using the `docker run` command arguments. LUIS has several required settings, along with a few optional settings.
-author: aahill
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
 ms.topic: how-to
-ms.date: 01/19/2024
-ms.author: aahi
+ms.date: 06/12/2025
+ms.author: lajanuar
 ---
 
 # Configure Language Understanding Docker containers 

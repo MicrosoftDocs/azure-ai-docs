@@ -2,13 +2,13 @@
 title: Patterns and features
 titleSuffix: Azure AI services
 description: Use this article to learn about patterns and features in LUIS
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
 ms.topic: conceptual
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 
 ---
 

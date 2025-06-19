@@ -183,6 +183,12 @@
       "branch_mapping": {}
     },
     {
+      "path_to_root": "azure-search-javascript-samples",
+      "url": "https://github.com/Azure-Samples/azure-search-javascript-samples",
+      "branch": "main",
+      "branch_mapping": {}
+    },
+    {
       "path_to_root": "azureai-model-inference-bicep",
       "url": "https://github.com/Azure-Samples/azureai-model-inference-bicep",
       "branch": "main",

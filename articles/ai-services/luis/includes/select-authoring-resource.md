@@ -1,7 +1,7 @@
 ---
 title: Select authoring resource
 ms.topic: include
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 
 ## Select subscription and authoring resource

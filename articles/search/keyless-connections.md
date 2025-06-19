@@ -2,7 +2,8 @@
 title: Use keyless connections in search apps
 description: Use keyless connections with an Azure Identity library for Microsoft Entra ID authentication and authorization with Azure AI Search.
 ms.topic: how-to
-ms.date: 10/30/2024
+ms.date: 06/17/2025
+ms.service: azure-ai-search
 author: HeidiSteen
 ms.author: heidist
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-track-python, Keyless-dotnet, Keyless-java, Keyless-js, Keyless-python, build-2024-intelligent-apps
@@ -15,7 +16,7 @@ In your application code, you can set up a keyless connection to Azure AI Search
 
 Keyless connections are enabled with the following steps: 
 
-* Configure your authentication.
+* Enable role-based access on your search service
 * Set environment variables, as needed. 
 * Use an Azure Identity library credential type to create an Azure AI Search client object.
 
@@ -23,19 +24,15 @@ Keyless connections are enabled with the following steps:
 
 The following steps need to be completed for both local development and production workloads:
 
-* [Create an AI Search resource](#create-an-ai-search-resource)
+* [Create an AI Search resource](search-create-service-portal.md)
 * [Enable role-based access on your search service](search-security-enable-roles.md)
 * [Install Azure Identity client library](#install-azure-identity-client-library)
 
-### Create an AI Search resource
-
-Before continuing with this article, you need an Azure AI Search resource to work with. If you don't have a resource, [create your resource](search-create-service-portal.md) now. [Enable role-based access control (RBAC)](search-security-enable-roles.md) for the resource.
-
-### Install Azure Identity client library
+## Install Azure Identity client library
 
 To use a keyless approach, update your AI Search enabled code with the Azure Identity client library.
 
-#### [.NET](#tab/csharp)
+### [.NET](#tab/csharp)
 
 Install the [Azure Identity client library for .NET](https://www.nuget.org/packages/Azure.Identity):
 
@@ -43,7 +40,7 @@ Install the [Azure Identity client library for .NET](https://www.nuget.org/packa
 dotnet add package Azure.Identity
 ```
 
-#### [Java](#tab/java)
+### [Java](#tab/java)
 
 Install the [Azure Identity client library for Java](https://mvnrepository.com/artifact/com.azure/azure-identity) with the following POM file:
 
@@ -59,7 +56,7 @@ Install the [Azure Identity client library for Java](https://mvnrepository.com/a
 </dependencyManagement>
 ```
 
-#### [JavaScript](#tab/javascript)
+### [JavaScript](#tab/javascript)
 
 Install the [Azure Identity client library for JavaScript](https://www.npmjs.com/package/@azure/identity):
 
@@ -67,7 +64,7 @@ Install the [Azure Identity client library for JavaScript](https://www.npmjs.com
 npm install --save @azure/identity
 ```
 
-#### [Python](#tab/python)
+### [Python](#tab/python)
 
 Install the [Azure Identity client library for Python](https://pypi.org/project/azure-identity/):
 
@@ -81,7 +78,7 @@ pip install azure-identity
 
 The Azure Identity library's `DefaultAzureCredential` allows you to run the same code in the local development environment and in the Azure cloud. Create a single credential and reuse the credential instance as needed to take advantage of token caching.
 
-#### [.NET](#tab/csharp)
+### [.NET](#tab/csharp)
 
 For more information on `DefaultAzureCredential` for .NET, see [Azure Identity client library for .NET](/dotnet/api/overview/azure/identity-readme#defaultazurecredential). 
 
@@ -103,7 +100,7 @@ SearchClient searchClient = new(new Uri(endpoint), indexName, credential);
 SearchIndexClient searchIndexClient = new(endpoint, credential);
 ```
 
-#### [Java](#tab/java)
+### [Java](#tab/java)
 
 For more information on `DefaultAzureCredential` for Java, see [Azure Identity client library for Java](/java/api/overview/azure/identity-readme#defaultazurecredential).
 
@@ -147,7 +144,7 @@ SearchIndexAsyncClient searchIndexAsyncClient = new SearchIndexClientBuilder()
     .buildAsyncClient();
 ```
 
-#### [JavaScript](#tab/javascript)
+### [JavaScript](#tab/javascript)
 
 For more information on `DefaultAzureCredential` for JavaScript, see [Azure Identity client library for JavaScript](/javascript/api/overview/azure/identity-readme#defaultazurecredential).
 
@@ -177,7 +174,7 @@ const indexClient = new SearchIndexClient(
 );
 ```
 
-#### [Python](#tab/python)
+### [Python](#tab/python)
 
 For more information on `DefaultAzureCredential` for Python, see [Azure Identity client library for Python](/python/api/overview/azure/identity-readme#defaultazurecredential).
 

@@ -5,7 +5,7 @@ description: Learn how to start using the Metrics Advisor web portal.
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ms.topic: quickstart
 ms.service: azure-ai-metrics-advisor
 ms.custom: mode-ui

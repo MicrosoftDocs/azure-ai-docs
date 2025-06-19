@@ -6,7 +6,7 @@ manager: chrhoder
 ms.service: azure-ai-language
 ms.subservice: azure-ai-qna-maker
 ms.topic: include
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ms.author: v-jawe
 ---
 
