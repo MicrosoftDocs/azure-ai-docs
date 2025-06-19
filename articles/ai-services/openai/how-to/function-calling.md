@@ -48,7 +48,7 @@ Support for parallel function was first added in API version [`2023-12-01-previe
 ### Basic function calling with tools
 
 * All the models that support parallel function calling
-* `codex-mini-latest` (`2025-05-16`)
+* `codex-mini` (`2025-05-16`)
 * `o3-pro` (`2025-06-10`)
 * `o4-mini` (`2025-04-16`)
 * `o3` (`2025-04-16`)
