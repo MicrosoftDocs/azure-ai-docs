@@ -9,6 +9,7 @@ ms.custom:
   - ignite-2023
 ms.topic: quickstart
 ms.date: 06/19/2025
+zone_pivot_groups: search-get-started-vector
 ---
 
 # Quickstart: Vector search using REST
