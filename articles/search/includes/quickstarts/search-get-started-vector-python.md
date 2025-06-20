@@ -167,28 +167,9 @@ The code in the `vector-search-quickstart.ipynb` uses several methods from the `
    fields = [
        SimpleField(name="HotelId", type=SearchFieldDataType.String, key=True, filterable=True),
        SearchableField(name="HotelName", type=SearchFieldDataType.String, sortable=True),
-       SearchField(
-           name="HotelNameVector",
-           type=SearchFieldDataType.Collection(SearchFieldDataType.Single),
-           searchable=True,
-           vector_search_dimensions=1536,
-           vector_search_profile_name="my-vector-profile"
-       ),
        SearchableField(name="Description", type=SearchFieldDataType.String),
        SearchField(
            name="DescriptionVector",
-           type=SearchFieldDataType.Collection(SearchFieldDataType.Single),
-           searchable=True,
-           vector_search_dimensions=1536,
-           vector_search_profile_name="my-vector-profile"
-       ),
-       SearchableField(
-           name="Description_fr",
-           type=SearchFieldDataType.String,
-           analyzer_name="en.microsoft"
-       ),
-       SearchField(
-           name="Description_frvector",
            type=SearchFieldDataType.Collection(SearchFieldDataType.Single),
            searchable=True,
            vector_search_dimensions=1536,
@@ -212,7 +193,6 @@ The code in the `vector-search-quickstart.ipynb` uses several methods from the `
    vector_search = VectorSearch(
            algorithms=[
                HnswAlgorithmConfiguration(name="my-hnsw-vector-config-1", kind="hnsw"),
-               HnswAlgorithmConfiguration(name="my-hnsw-vector-config-2", kind="hnsw"),
                ExhaustiveKnnAlgorithmConfiguration(name="my-eknn-vector-config", kind="exhaustiveKnn")
            ],
            profiles=[
