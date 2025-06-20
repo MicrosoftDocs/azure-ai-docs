@@ -1,15 +1,13 @@
-3037---
 title: Agent Evaluation with the Azure AI Evaluation SDK
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to evaluate an AI agent with the Azure AI Evaluation SDK.
 Manager: scottpolly
 ms.service: azure-ai-foundry
-ms.custom:
-- build-2025
-- references_regions
+ms.custom: build-2025, references_regions
 ms.topic: how-to
 ms.date: 04/04/2025
 ms.reviewer: changliu2
+author:
 ms.author: lagayhar
 author: lgayhardt
 
