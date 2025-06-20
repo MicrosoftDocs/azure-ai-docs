@@ -2,11 +2,11 @@
 title: Choose an Azure resource type for AI foundry
 titleSuffix: Azure AI Foundry
 description: Learn about the supported Azure resource types in Azure AI Foundry portal.
-author: deeikele
-ms.author: deeikele
+reviewer: deeikele
+ms.reviewer: deeikele
 manager: scottpolly
-reviewer: larryfr
-ms.reviewer: larryfr
+author: sgilley
+ms.author: sgilley
 ms.date: 05/18/2025
 ms.service: azure-ai-foundry
 ms.topic: concept-article

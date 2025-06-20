@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI's new stateful Responses API.
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 05/25/2025
+ms.date: 06/20/2025
 ms.service: azure-ai-openai
 ms.topic: include
 ms.custom:
@@ -33,8 +33,10 @@ The responses API is currently available in the following regions:
 - francecentral
 - japaneast
 - norwayeast
+- polandcentral
 - southindia
 - swedencentral
+- switzerlandnorth
 - uaenorth
 - uksouth
 - westus
@@ -58,9 +60,12 @@ Not every model is available in the regions supported by the responses API. Chec
 > Not currently supported:
 > - The web search tool
 > - Fine-tuned models
-> - Image generation via streaming. Coming soon.
+> - Image generation using multi-turn editing and streaming - coming soon
 > - Images can't be uploaded as a file and then referenced as input. Coming soon.
-> - There's a known issue with performance when background mode is used with streaming. The issue is expected to be resolved soon. 
+>
+> There's a known issue with the following:
+> - PDF as an input file is not yet supported.
+> - Performance when background mode is used with streaming. The issue is expected to be resolved soon.
 
 ### Reference documentation
 
@@ -1071,7 +1076,6 @@ The Responses API enables image generation as part of conversations and multi-st
 
 Compared to the standalone Image API, the Responses API offers several advantages:
 
-* **Multi-turn editing**: Iteratively refine and edit images using natural language prompts.
 * **Streaming**: Display partial image outputs during generation to improve perceived latency.
 * **Flexible inputs**: Accept image File IDs as inputs, in addition to raw image bytes.
 
@@ -1081,7 +1085,6 @@ Compared to the standalone Image API, the Responses API offers several advantage
 Use the Responses API if you want to:
 
 * Build conversational image experiences with GPT Image.
-* Enable iterative image editing through multi-turn prompts.
 * Stream partial image results during generation for a smoother user experience.
 
 Generate an image
@@ -1118,57 +1121,6 @@ image_data = [
 if image_data:
     image_base64 = image_data[0]
     with open("otter.png", "wb") as f:
-        f.write(base64.b64decode(image_base64))
-```
-
-You can perform multi-turn image generation by using the output of image generation in subsequent calls or just using the `1previous_response_id`.
-
-```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview",
-  default_headers={"x-ms-oai-image-generation-deployment":"YOUR-GPT-IMAGE1-DEPLOYMENT-NAME"}
-)
-
-image_data = [
-    output.result
-    for output in response.output
-    if output.type == "image_generation_call"
-]
-
-if image_data:
-    image_base64 = image_data[0]
-
-    with open("cat_and_otter.png", "wb") as f:
-        f.write(base64.b64decode(image_base64))
-
-
-# Follow up
-
-response_followup = client.responses.create(
-    model="gpt-4.1-mini",
-    previous_response_id=response.id,
-    input="Now make it look realistic",
-    tools=[{"type": "image_generation"}],
-)
-
-image_data_followup = [
-    output.result
-    for output in response_followup.output
-    if output.type == "image_generation_call"
-]
-
-if image_data_followup:
-    image_base64 = image_data_followup[0]
-    with open("cat_and_otter_realistic.png", "wb") as f:
         f.write(base64.b64decode(image_base64))
 ```
 
