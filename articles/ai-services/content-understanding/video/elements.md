@@ -44,7 +44,7 @@ The Content Understanding API returns analysis results in a structured JSON form
     "analyzerId": "my-analyzer",
     "contents": [
       {
-        "markdown": "# Video: 00:00.000 => 23:16.997\nWidth: 854\nHeight: 480\n..." // or "# Audio: 00:00.000 => 04:23.773\n..." for audio
+        "markdown": "# Video: 00:00.000 => 23:16.997\nWidth: 854\nHeight: 480\n..." 
         "fields": {
           "Summary": {
             "type": "string",
@@ -54,12 +54,12 @@ The Content Understanding API returns analysis results in a structured JSON form
         "kind": "audioVisual",
         "startTimeMs": 0,
         "endTimeMs": 1000000,
-        "transcriptPhrases": [...], // both audio and video
-        "width": 854, // video only
-        "height": 480, // video only
-        "keyFrameTimesMs": [...], // video only
-        "cameraShotTimesMs": [...], // video only
-        "segments": [...] // video only (when segmentation enabled)
+        "transcriptPhrases": [/* ... */], 
+        "width": 854, 
+        "height": 480, 
+        "keyFrameTimesMs": [/* ... */], 
+        "cameraShotTimesMs": [/* ... */], 
+        "segments": [/* ... */] 
       }
     ]
   }
