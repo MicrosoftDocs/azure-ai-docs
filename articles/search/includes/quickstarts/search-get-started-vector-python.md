@@ -59,7 +59,7 @@ This quickstart uses `DefaultAzureCredential`, which simplifies authentication i
    
    Finally, choose a new `AZURE_SEARCH_INDEX_NAME` name, or use the one provided in the file.
 
-1. In Visual Studio Code, work in an environment. On the **View** menu, select **Terminal...**, or select Ctrl+`.
+1. In Visual Studio Code, work in an environment. On the **View** menu, select **Terminal...**, or select <kbd>Ctrl</kbd>+<kbd>`</kbd>.
 
 1. Run the following commands in the terminal:
 
@@ -88,7 +88,7 @@ This quickstart uses `DefaultAzureCredential`, which simplifies authentication i
    > If this is the first time you have used a Jupyter Notebook (.ipynb) in Visual Studio Code, you will be prompted to install the Jupyter Notebook kernel and possibly other tools. Choose to install the suggested tools to continue with this quickstart.
 
 
-1. Find the cell below section titled "Install packages and set variables" and select the **Execute Cell (Ctrl+Alt+Enter)** button (which looks like a typical run button) to the left of the cell. Executing the cell loads the environment variables, creates the DefaultAzureCredential, and prints values to the output to confirm that the notebook's dependencies and `.env` are set up correctly.
+1. Find the cell below section titled "Install packages and set variables" and select the **Execute Cell (Ctrl + Alt + Enter)** button (which looks like a typical run button) to the left of the cell. Executing the cell loads the environment variables, creates the DefaultAzureCredential, and prints values to the output to confirm that the notebook's dependencies and `.env` are set up correctly.
 
    ```python
    # Load environment variables from .env file
