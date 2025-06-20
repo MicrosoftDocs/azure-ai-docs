@@ -1,0 +1,2107 @@
+{
+	"id": "e3e6e9ee-4ef2-4310-a65f-2431f4bd8f30",
+	"status": "Succeeded",
+	"result": {
+		"analyzerId": "auto-labeling-model-1750292632586-625",
+		"apiVersion": "2025-05-01-preview",
+		"createdAt": "2025-06-19T00:28:41Z",
+		"warnings": [],
+		"contents": [
+			{
+				"markdown": "# Example Document\n\n\n## 1. Selection Marks (Checkboxes)\n\nEmployee Preferences Form\n☐\nRemote\n☒\nHybrid\n☐\nOn-site\n\n\n## 2. Barcodes\n\nGo check out Azure AI Content Understanding at the below link\n\nHELLOWORLD\n\n\n## 3. Formulas\n\nBayesian Inference (Posterior Probability):\n\n$$P \\left( \\theta \\mid D \\right) = \\frac { P \\left( D \\mid \\theta \\right) \\cdot P \\left( \\theta \\right) } { P \\left( D \\right) }$$\n\nWhere:\n\n$P \\left( \\theta \\mid D \\right)$ is the posterior\n$P \\left( D \\mid \\theta \\right)$ is the likelihood\n$P \\left( \\theta \\right)$ is the prior\n$P \\left( D \\right)$ is the evidence\n\n<!-- PageBreak -->\n\n\n## 4. Images\n\nSample Product Image\n\n\n<figure>\n\nContent\nUnderstanding\n\n</figure>\n\n\nImage Description: \"A ceramic coffee mug with company logo.\"\n\n\n## 5. Tables\n\n\n<table>\n<tr>\n<th>Category</th>\n<th>Amount ($)</th>\n</tr>\n<tr>\n<td>Rent</td>\n<td>1,200</td>\n</tr>\n<tr>\n<td>Utilities</td>\n<td>150</td>\n</tr>\n<tr>\n<td>Groceries</td>\n<td>300</td>\n</tr>\n<tr>\n<td>Transportation</td>\n<td>100</td>\n</tr>\n<tr>\n<td>Total</td>\n<td>1,750</td>\n</tr>\n</table>\n\n\n## 6. Paragraphs\n\nOur company is committed to fostering a productive and inclusive work environment. All\nemployees are expected to comply with the outlined policies and demonstrate mutual\nrespect in day-to-day operations. Regular reviews will ensure that these policies remain\nrelevant and effective.\n",
+				"fields": {
+					"EmployeePreferences": {
+						"type": "string",
+						"valueString": "Hybrid",
+						"spans": [
+							{
+								"offset": 94,
+								"length": 6
+							}
+						],
+						"confidence": 0.987,
+						"source": "D(1,1.4104,2.7843,1.8760,2.7825,1.8760,2.9373,1.4111,2.9396)"
+					},
+					"ImageDescription": {
+						"type": "string",
+						"valueString": "\"A ceramic coffee mug with company logo.\"",
+						"spans": [
+							{
+								"offset": 706,
+								"length": 41
+							}
+						],
+						"confidence": 0.958,
+						"source": "D(2,2.5222,4.2511,5.3236,4.2497,5.3237,4.4422,2.5223,4.4436)"
+					}
+				},
+				"kind": "document",
+				"startPageNumber": 1,
+				"endPageNumber": 2,
+				"unit": "inch",
+				"pages": [
+					{
+						"pageNumber": 1,
+						"angle": 0.1026073,
+						"width": 8.5,
+						"height": 11,
+						"spans": [
+							{
+								"offset": 0,
+								"length": 604
+							}
+						],
+						"words": [
+							{
+								"content": "Example",
+								"span": {
+									"offset": 2,
+									"length": 7
+								},
+								"confidence": 0.995,
+								"source": "D(1,1.2646,1.0815,2.4965,1.0804,2.4958,1.4172,1.2642,1.4172)"
+							},
+							{
+								"content": "Document",
+								"span": {
+									"offset": 10,
+									"length": 8
+								},
+								"confidence": 0.993,
+								"source": "D(1,2.6256,1.0827,4.1615,1.0875,4.1615,1.4013,2.6245,1.4161)"
+							},
+							{
+								"content": "1.",
+								"span": {
+									"offset": 24,
+									"length": 2
+								},
+								"confidence": 0.991,
+								"source": "D(1,1.2456,1.8719,1.3897,1.8733,1.3899,2.0618,1.2456,2.0621)"
+							},
+							{
+								"content": "Selection",
+								"span": {
+									"offset": 27,
+									"length": 9
+								},
+								"confidence": 0.994,
+								"source": "D(1,1.443,1.8737,2.1764,1.8733,2.1762,2.0649,1.4431,2.0617)"
+							},
+							{
+								"content": "Marks",
+								"span": {
+									"offset": 37,
+									"length": 5
+								},
+								"confidence": 0.997,
+								"source": "D(1,2.2391,1.8735,2.7312,1.8741,2.7309,2.0649,2.2389,2.0649)"
+							},
+							{
+								"content": "(Checkboxes)",
+								"span": {
+									"offset": 43,
+									"length": 12
+								},
+								"confidence": 0.989,
+								"source": "D(1,2.7876,1.8738,3.8571,1.8735,3.8571,2.0649,2.7873,2.0649)"
+							},
+							{
+								"content": "Employee",
+								"span": {
+									"offset": 57,
+									"length": 8
+								},
+								"confidence": 0.995,
+								"source": "D(1,1.246,2.1006,1.8788,2.1001,1.8793,2.2753,1.2457,2.2739)"
+							},
+							{
+								"content": "Preferences",
+								"span": {
+									"offset": 66,
+									"length": 11
+								},
+								"confidence": 0.994,
+								"source": "D(1,1.9127,2.1002,2.7036,2.1008,2.7033,2.2716,1.9132,2.2753)"
+							},
+							{
+								"content": "Form",
+								"span": {
+									"offset": 78,
+									"length": 4
+								},
+								"confidence": 0.986,
+								"source": "D(1,2.7488,2.101,3.1045,2.1012,3.1045,2.2696,2.7485,2.2715)"
+							},
+							{
+								"content": "☐",
+								"span": {
+									"offset": 83,
+									"length": 1
+								},
+								"confidence": 0.986,
+								"source": "D(1,1.2597,2.4534,1.371,2.4534,1.3715,2.5655,1.2601,2.566)"
+							},
+							{
+								"content": "Remote",
+								"span": {
+									"offset": 85,
+									"length": 6
+								},
+								"confidence": 0.998,
+								"source": "D(1,1.4096,2.4458,1.9258,2.4481,1.9258,2.5853,1.4098,2.5853)"
+							},
+							{
+								"content": "☒",
+								"span": {
+									"offset": 92,
+									"length": 1
+								},
+								"confidence": 0.989,
+								"source": "D(1,1.2591,2.795,1.3705,2.7945,1.3711,2.9103,1.2581,2.9102)"
+							},
+							{
+								"content": "Hybrid",
+								"span": {
+									"offset": 94,
+									"length": 6
+								},
+								"confidence": 0.995,
+								"source": "D(1,1.4104,2.7843,1.876,2.7825,1.876,2.9373,1.4111,2.9396)"
+							},
+							{
+								"content": "☐",
+								"span": {
+									"offset": 101,
+									"length": 1
+								},
+								"confidence": 0.983,
+								"source": "D(1,1.2588,3.1382,1.3717,3.1386,1.3722,3.2527,1.2584,3.2526)"
+							},
+							{
+								"content": "On-site",
+								"span": {
+									"offset": 103,
+									"length": 7
+								},
+								"confidence": 0.995,
+								"source": "D(1,1.41,3.1307,1.8915,3.1313,1.8913,3.2718,1.4103,3.2718)"
+							},
+							{
+								"content": "2.",
+								"span": {
+									"offset": 116,
+									"length": 2
+								},
+								"confidence": 0.994,
+								"source": "D(1,1.2394,3.6589,1.3874,3.6603,1.388,3.827,1.2404,3.8274)"
+							},
+							{
+								"content": "Barcodes",
+								"span": {
+									"offset": 119,
+									"length": 8
+								},
+								"confidence": 0.996,
+								"source": "D(1,1.4532,3.6597,2.1914,3.6614,2.1914,3.8288,1.4534,3.8272)"
+							},
+							{
+								"content": "Go",
+								"span": {
+									"offset": 129,
+									"length": 2
+								},
+								"confidence": 0.998,
+								"source": "D(1,1.2444,3.9078,1.417,3.9082,1.4178,4.0763,1.2458,4.077)"
+							},
+							{
+								"content": "check",
+								"span": {
+									"offset": 132,
+									"length": 5
+								},
+								"confidence": 0.995,
+								"source": "D(1,1.4587,3.9083,1.8346,3.9096,1.8349,4.0774,1.4595,4.0761)"
+							},
+							{
+								"content": "out",
+								"span": {
+									"offset": 138,
+									"length": 3
+								},
+								"confidence": 0.998,
+								"source": "D(1,1.868,3.9098,2.0796,3.9106,2.0797,4.0777,1.8683,4.0774)"
+							},
+							{
+								"content": "Azure",
+								"span": {
+									"offset": 142,
+									"length": 5
+								},
+								"confidence": 0.997,
+								"source": "D(1,2.113,3.9107,2.5,3.9102,2.5,4.0788,2.1131,4.0778)"
+							},
+							{
+								"content": "AI",
+								"span": {
+									"offset": 148,
+									"length": 2
+								},
+								"confidence": 0.992,
+								"source": "D(1,2.5361,3.9104,2.6726,3.911,2.6726,4.0792,2.5362,4.0789)"
+							},
+							{
+								"content": "Content",
+								"span": {
+									"offset": 151,
+									"length": 7
+								},
+								"confidence": 0.998,
+								"source": "D(1,2.7199,3.9112,3.2322,3.9097,3.2323,4.0799,2.7199,4.0794)"
+							},
+							{
+								"content": "Understanding",
+								"span": {
+									"offset": 159,
+									"length": 13
+								},
+								"confidence": 0.993,
+								"source": "D(1,3.2683,3.9098,4.2344,3.9104,4.2343,4.0817,3.2684,4.0801)"
+							},
+							{
+								"content": "at",
+								"span": {
+									"offset": 173,
+									"length": 2
+								},
+								"confidence": 0.999,
+								"source": "D(1,4.2706,3.9103,4.3847,3.91,4.3848,4.0827,4.2706,4.082)"
+							},
+							{
+								"content": "the",
+								"span": {
+									"offset": 176,
+									"length": 3
+								},
+								"confidence": 0.999,
+								"source": "D(1,4.4181,3.9099,4.6325,3.9104,4.6325,4.083,4.4182,4.0829)"
+							},
+							{
+								"content": "below",
+								"span": {
+									"offset": 180,
+									"length": 5
+								},
+								"confidence": 0.998,
+								"source": "D(1,4.6743,3.9105,5.0278,3.9084,5.0278,4.0816,4.6743,4.0829)"
+							},
+							{
+								"content": "link",
+								"span": {
+									"offset": 186,
+									"length": 4
+								},
+								"confidence": 0.992,
+								"source": "D(1,5.0863,3.9079,5.3678,3.9072,5.3678,4.0788,5.0862,4.0812)"
+							},
+							{
+								"content": "HELLOWORLD",
+								"span": {
+									"offset": 192,
+									"length": 10
+								},
+								"confidence": 0.993,
+								"source": "D(1,2.5739,4.8186,3.8626,4.8157,3.8626,4.9916,2.5743,4.9903)"
+							},
+							{
+								"content": "3.",
+								"span": {
+									"offset": 208,
+									"length": 2
+								},
+								"confidence": 0.995,
+								"source": "D(1,1.2394,5.3882,1.3887,5.39,1.389,5.5613,1.2399,5.5612)"
+							},
+							{
+								"content": "Formulas",
+								"span": {
+									"offset": 211,
+									"length": 8
+								},
+								"confidence": 0.995,
+								"source": "D(1,1.4506,5.3897,2.1969,5.3922,2.1969,5.5637,1.4508,5.562)"
+							},
+							{
+								"content": "Bayesian",
+								"span": {
+									"offset": 221,
+									"length": 8
+								},
+								"confidence": 0.996,
+								"source": "D(1,1.2418,5.6342,1.8105,5.6366,1.8104,5.8169,1.2416,5.8151)"
+							},
+							{
+								"content": "Inference",
+								"span": {
+									"offset": 230,
+									"length": 9
+								},
+								"confidence": 0.994,
+								"source": "D(1,1.846,5.6365,2.4887,5.6369,2.4882,5.8173,1.8459,5.817)"
+							},
+							{
+								"content": "(Posterior",
+								"span": {
+									"offset": 240,
+									"length": 10
+								},
+								"confidence": 0.993,
+								"source": "D(1,2.5361,5.6367,3.1936,5.6358,3.1927,5.8158,2.5356,5.8171)"
+							},
+							{
+								"content": "Probability):",
+								"span": {
+									"offset": 251,
+									"length": 13
+								},
+								"confidence": 0.992,
+								"source": "D(1,3.235,5.6357,4.0563,5.6353,4.0563,5.8183,3.2341,5.8158)"
+							},
+							{
+								"content": "Where:",
+								"span": {
+									"offset": 398,
+									"length": 6
+								},
+								"confidence": 0.996,
+								"source": "D(1,1.2404,6.5325,1.7321,6.5372,1.7321,6.6866,1.2402,6.6808)"
+							},
+							{
+								"content": "is",
+								"span": {
+									"offset": 439,
+									"length": 2
+								},
+								"confidence": 0.994,
+								"source": "D(1,4.0475,6.878,4.1796,6.8789,4.1784,7.0533,4.0464,7.0535)"
+							},
+							{
+								"content": "the",
+								"span": {
+									"offset": 442,
+									"length": 3
+								},
+								"confidence": 0.999,
+								"source": "D(1,4.217,6.8793,4.4037,6.8797,4.4026,7.0535,4.2156,7.0536)"
+							},
+							{
+								"content": "posterior",
+								"span": {
+									"offset": 446,
+									"length": 9
+								},
+								"confidence": 0.994,
+								"source": "D(1,4.4382,6.88,5.0745,6.8809,5.0745,7.0565,4.4373,7.0537)"
+							},
+							{
+								"content": "is",
+								"span": {
+									"offset": 489,
+									"length": 2
+								},
+								"confidence": 0.995,
+								"source": "D(1,4.0532,7.2164,4.1536,7.2173,4.1534,7.3905,4.053,7.3916)"
+							},
+							{
+								"content": "the",
+								"span": {
+									"offset": 492,
+									"length": 3
+								},
+								"confidence": 0.998,
+								"source": "D(1,4.1938,7.2171,4.4002,7.2173,4.4001,7.3899,4.1936,7.3906)"
+							},
+							{
+								"content": "likelihood",
+								"span": {
+									"offset": 496,
+									"length": 10
+								},
+								"confidence": 0.992,
+								"source": "D(1,4.4404,7.2171,5.1022,7.2143,5.1022,7.3886,4.4403,7.3899)"
+							},
+							{
+								"content": "is",
+								"span": {
+									"offset": 533,
+									"length": 2
+								},
+								"confidence": 0.995,
+								"source": "D(1,4.0408,7.565,4.1692,7.5655,4.1684,7.7391,4.0403,7.7383)"
+							},
+							{
+								"content": "the",
+								"span": {
+									"offset": 536,
+									"length": 3
+								},
+								"confidence": 0.999,
+								"source": "D(1,4.2091,7.5655,4.4115,7.5667,4.4109,7.7392,4.2082,7.7387)"
+							},
+							{
+								"content": "prior",
+								"span": {
+									"offset": 540,
+									"length": 5
+								},
+								"confidence": 0.998,
+								"source": "D(1,4.4514,7.5667,4.7923,7.5644,4.7923,7.7393,4.4509,7.7392)"
+							},
+							{
+								"content": "is",
+								"span": {
+									"offset": 567,
+									"length": 2
+								},
+								"confidence": 0.996,
+								"source": "D(1,3.9271,7.9055,4.0404,7.9071,4.0403,8.077,3.9269,8.077)"
+							},
+							{
+								"content": "the",
+								"span": {
+									"offset": 570,
+									"length": 3
+								},
+								"confidence": 0.995,
+								"source": "D(1,4.0743,7.9073,4.3009,7.9065,4.3008,8.077,4.0743,8.077)"
+							},
+							{
+								"content": "evidence",
+								"span": {
+									"offset": 574,
+									"length": 8
+								},
+								"confidence": 0.996,
+								"source": "D(1,4.3406,7.9069,4.9251,7.9038,4.9251,8.077,4.3404,8.077)"
+							}
+						],
+						"lines": [
+							{
+								"content": "Example Document",
+								"source": "D(1,1.2639,1.0815,4.1585,1.0795,4.1589,1.4106,1.2643,1.4135)",
+								"span": {
+									"offset": 2,
+									"length": 16
+								}
+							},
+							{
+								"content": "1. Selection Marks (Checkboxes)",
+								"source": "D(1,1.2456,1.8719,3.8533,1.8735,3.8532,2.0647,1.2455,2.0631)",
+								"span": {
+									"offset": 24,
+									"length": 31
+								}
+							},
+							{
+								"content": "Employee Preferences Form",
+								"source": "D(1,1.2458,2.0993,3.1022,2.1005,3.1021,2.274,1.2457,2.2729)",
+								"span": {
+									"offset": 57,
+									"length": 25
+								}
+							},
+							{
+								"content": "☐",
+								"source": "D(1,1.2597,2.4534,1.371,2.4534,1.3715,2.5655,1.2601,2.566)",
+								"span": {
+									"offset": 83,
+									"length": 1
+								}
+							},
+							{
+								"content": "Remote",
+								"source": "D(1,1.4096,2.4458,1.9237,2.4473,1.9233,2.5846,1.4092,2.5831)",
+								"span": {
+									"offset": 85,
+									"length": 6
+								}
+							},
+							{
+								"content": "☒",
+								"source": "D(1,1.2591,2.795,1.3705,2.7945,1.3711,2.9103,1.2581,2.9102)",
+								"span": {
+									"offset": 92,
+									"length": 1
+								}
+							},
+							{
+								"content": "Hybrid",
+								"source": "D(1,1.4104,2.7843,1.8736,2.7822,1.8743,2.9355,1.4111,2.9375)",
+								"span": {
+									"offset": 94,
+									"length": 6
+								}
+							},
+							{
+								"content": "☐",
+								"source": "D(1,1.2588,3.1382,1.3717,3.1386,1.3722,3.2527,1.2584,3.2526)",
+								"span": {
+									"offset": 101,
+									"length": 1
+								}
+							},
+							{
+								"content": "On-site",
+								"source": "D(1,1.41,3.1299,1.8876,3.1308,1.8873,3.2718,1.4097,3.2709)",
+								"span": {
+									"offset": 103,
+									"length": 7
+								}
+							},
+							{
+								"content": "2. Barcodes",
+								"source": "D(1,1.2394,3.6588,2.1889,3.661,2.1885,3.8268,1.239,3.8246)",
+								"span": {
+									"offset": 116,
+									"length": 11
+								}
+							},
+							{
+								"content": "Go check out Azure AI Content Understanding at the below link",
+								"source": "D(1,1.2444,3.9078,5.3673,3.9073,5.3673,4.0803,1.2444,4.0808)",
+								"span": {
+									"offset": 129,
+									"length": 61
+								}
+							},
+							{
+								"content": "HELLOWORLD",
+								"source": "D(1,2.5738,4.8186,3.8617,4.8153,3.8621,4.9894,2.5743,4.9928)",
+								"span": {
+									"offset": 192,
+									"length": 10
+								}
+							},
+							{
+								"content": "3. Formulas",
+								"source": "D(1,1.2394,5.3882,2.1969,5.3919,2.1966,5.5621,1.2387,5.5583)",
+								"span": {
+									"offset": 208,
+									"length": 11
+								}
+							},
+							{
+								"content": "Bayesian Inference (Posterior Probability):",
+								"source": "D(1,1.2418,5.6324,4.0515,5.6353,4.0513,5.8163,1.2416,5.8134)",
+								"span": {
+									"offset": 221,
+									"length": 43
+								}
+							},
+							{
+								"content": "Where:",
+								"source": "D(1,1.2404,6.5325,1.7307,6.5364,1.7294,6.6849,1.2396,6.6807)",
+								"span": {
+									"offset": 398,
+									"length": 6
+								}
+							},
+							{
+								"content": ":formula: is the posterior",
+								"source": "D(1,3.4267,6.8733,5.0745,6.88,5.0739,7.0556,3.426,7.0489)",
+								"span": {
+									"offset": 406,
+									"length": 49
+								}
+							},
+							{
+								"content": ":formula: is the likelihood",
+								"source": "D(1,3.4017,7.2156,5.0989,7.2136,5.0991,7.3893,3.4019,7.3912)",
+								"span": {
+									"offset": 456,
+									"length": 50
+								}
+							},
+							{
+								"content": ":formula: is the prior",
+								"source": "D(1,3.71,7.5617,4.7913,7.5642,4.7909,7.7392,3.7096,7.7367)",
+								"span": {
+									"offset": 507,
+									"length": 38
+								}
+							},
+							{
+								"content": ":formula: is the evidence",
+								"source": "D(1,3.5757,7.9028,4.924,7.9039,4.9239,8.077,3.5756,8.0762)",
+								"span": {
+									"offset": 546,
+									"length": 36
+								}
+							}
+						],
+						"formulas": [
+							{
+								"kind": "display",
+								"value": "P \\left( \\theta \\mid D \\right) = \\frac { P \\left( D \\mid \\theta \\right) \\cdot P \\left( \\theta \\right) } { P \\left( D \\right) }",
+								"source": "D(1,3.2926,5.9401,5.1852,5.9623,5.1686,6.3553,3.276,6.3332)",
+								"span": {
+									"offset": 266,
+									"length": 130
+								},
+								"confidence": 0.551
+							},
+							{
+								"kind": "inline",
+								"value": "P \\left( \\theta \\mid D \\right)",
+								"source": "D(1,3.4255,6.8757,4.0342,6.8757,4.0342,7.0307,3.4255,7.0307)",
+								"span": {
+									"offset": 406,
+									"length": 32
+								},
+								"confidence": 0.708
+							},
+							{
+								"kind": "inline",
+								"value": "P \\left( D \\mid \\theta \\right)",
+								"source": "D(1,3.3923,7.2189,4.012,7.2189,4.012,7.385,3.3923,7.385)",
+								"span": {
+									"offset": 456,
+									"length": 32
+								},
+								"confidence": 0.583
+							},
+							{
+								"kind": "inline",
+								"value": "P \\left( \\theta \\right)",
+								"source": "D(1,3.7021,7.5566,4.0231,7.5566,4.0231,7.7282,3.7021,7.7282)",
+								"span": {
+									"offset": 507,
+									"length": 25
+								},
+								"confidence": 0.87
+							},
+							{
+								"kind": "inline",
+								"value": "P \\left( D \\right)",
+								"source": "D(1,3.5693,7.8998,3.9014,7.8998,3.9014,8.0604,3.5693,8.0604)",
+								"span": {
+									"offset": 546,
+									"length": 20
+								},
+								"confidence": 0.87
+							}
+						]
+					},
+					{
+						"pageNumber": 2,
+						"angle": 0.1008425,
+						"width": 8.5,
+						"height": 11,
+						"spans": [
+							{
+								"offset": 604,
+								"length": 745
+							}
+						],
+						"words": [
+							{
+								"content": "4.",
+								"span": {
+									"offset": 608,
+									"length": 2
+								},
+								"confidence": 0.992,
+								"source": "D(2,1.24,1.0418,1.389,1.0422,1.388,1.2238,1.239,1.223)"
+							},
+							{
+								"content": "Images",
+								"span": {
+									"offset": 611,
+									"length": 6
+								},
+								"confidence": 0.961,
+								"source": "D(2,1.4516,1.0434,2.0254,1.0463,2.0254,1.229,1.4506,1.224)"
+							},
+							{
+								"content": "Sample",
+								"span": {
+									"offset": 619,
+									"length": 6
+								},
+								"confidence": 0.998,
+								"source": "D(2,1.2389,1.2897,1.7085,1.2911,1.7084,1.4696,1.2389,1.4683)"
+							},
+							{
+								"content": "Product",
+								"span": {
+									"offset": 626,
+									"length": 7
+								},
+								"confidence": 0.996,
+								"source": "D(2,1.7437,1.291,2.2603,1.2933,2.2596,1.4724,1.7436,1.4698)"
+							},
+							{
+								"content": "Image",
+								"span": {
+									"offset": 634,
+									"length": 5
+								},
+								"confidence": 0.994,
+								"source": "D(2,2.2955,1.2934,2.7227,1.292,2.7227,1.4726,2.2949,1.4723)"
+							},
+							{
+								"content": "Content",
+								"span": {
+									"offset": 652,
+									"length": 7
+								},
+								"confidence": 0.996,
+								"source": "D(2,2.3871,3.0448,3.1266,3.0536,3.1266,3.2329,2.3846,3.2256)"
+							},
+							{
+								"content": "Understanding",
+								"span": {
+									"offset": 660,
+									"length": 13
+								},
+								"confidence": 0.993,
+								"source": "D(2,2.1073,3.1903,3.3757,3.219,3.3757,3.4268,2.1004,3.3939)"
+							},
+							{
+								"content": "Image",
+								"span": {
+									"offset": 687,
+									"length": 5
+								},
+								"confidence": 0.992,
+								"source": "D(2,1.2365,4.2502,1.6478,4.2529,1.6472,4.443,1.2357,4.4411)"
+							},
+							{
+								"content": "Description:",
+								"span": {
+									"offset": 693,
+									"length": 12
+								},
+								"confidence": 0.993,
+								"source": "D(2,1.6911,4.2532,2.4767,4.2537,2.476,4.4412,1.6905,4.4428)"
+							},
+							{
+								"content": "\"A",
+								"span": {
+									"offset": 706,
+									"length": 2
+								},
+								"confidence": 0.973,
+								"source": "D(2,2.523,4.2539,2.6591,4.2543,2.6584,4.4392,2.5223,4.4407)"
+							},
+							{
+								"content": "ceramic",
+								"span": {
+									"offset": 709,
+									"length": 7
+								},
+								"confidence": 0.995,
+								"source": "D(2,2.6962,4.2544,3.222,4.2543,3.2211,4.4397,2.6955,4.4388)"
+							},
+							{
+								"content": "coffee",
+								"span": {
+									"offset": 717,
+									"length": 6
+								},
+								"confidence": 0.995,
+								"source": "D(2,3.2591,4.2541,3.6395,4.2528,3.6386,4.4395,3.2582,4.4396)"
+							},
+							{
+								"content": "mug",
+								"span": {
+									"offset": 724,
+									"length": 3
+								},
+								"confidence": 0.997,
+								"source": "D(2,3.6797,4.2528,3.9457,4.2521,3.9448,4.44,3.6788,4.4396)"
+							},
+							{
+								"content": "with",
+								"span": {
+									"offset": 728,
+									"length": 4
+								},
+								"confidence": 0.992,
+								"source": "D(2,3.9828,4.2518,4.2921,4.2505,4.2911,4.4411,3.9819,4.4401)"
+							},
+							{
+								"content": "company",
+								"span": {
+									"offset": 733,
+									"length": 7
+								},
+								"confidence": 0.996,
+								"source": "D(2,4.3323,4.2505,4.8983,4.2499,4.8974,4.4419,4.3314,4.4413)"
+							},
+							{
+								"content": "logo.\"",
+								"span": {
+									"offset": 741,
+									"length": 6
+								},
+								"confidence": 0.965,
+								"source": "D(2,4.9354,4.2499,5.3236,4.25,5.3236,4.4422,4.9345,4.442)"
+							},
+							{
+								"content": "5.",
+								"span": {
+									"offset": 753,
+									"length": 2
+								},
+								"confidence": 0.995,
+								"source": "D(2,1.2412,4.8173,1.3904,4.8185,1.3904,4.99,1.2413,4.9888)"
+							},
+							{
+								"content": "Tables",
+								"span": {
+									"offset": 756,
+									"length": 6
+								},
+								"confidence": 0.998,
+								"source": "D(2,1.4383,4.8184,1.9701,4.8195,1.9701,4.9935,1.438,4.9899)"
+							},
+							{
+								"content": "Category",
+								"span": {
+									"offset": 782,
+									"length": 8
+								},
+								"confidence": 0.995,
+								"source": "D(2,1.2437,5.0852,1.876,5.0929,1.876,5.2481,1.2418,5.2409)"
+							},
+							{
+								"content": "Amount",
+								"span": {
+									"offset": 800,
+									"length": 6
+								},
+								"confidence": 0.997,
+								"source": "D(2,4.2423,5.0818,4.8137,5.0811,4.8131,5.2461,4.2418,5.2418)"
+							},
+							{
+								"content": "($)",
+								"span": {
+									"offset": 807,
+									"length": 3
+								},
+								"confidence": 0.975,
+								"source": "D(2,4.8563,5.0819,5.0469,5.0811,5.0469,5.2459,4.8556,5.2454)"
+							},
+							{
+								"content": "Rent",
+								"span": {
+									"offset": 831,
+									"length": 4
+								},
+								"confidence": 0.992,
+								"source": "D(2,1.2378,5.2706,1.5938,5.2733,1.5938,5.4138,1.2375,5.4117)"
+							},
+							{
+								"content": "1,200",
+								"span": {
+									"offset": 845,
+									"length": 5
+								},
+								"confidence": 0.998,
+								"source": "D(2,4.2496,5.2677,4.6208,5.2676,4.6208,5.4158,4.2498,5.4159)"
+							},
+							{
+								"content": "Utilities",
+								"span": {
+									"offset": 871,
+									"length": 9
+								},
+								"confidence": 0.994,
+								"source": "D(2,1.2384,5.4532,1.8151,5.4544,1.8151,5.6024,1.2383,5.6004)"
+							},
+							{
+								"content": "150",
+								"span": {
+									"offset": 890,
+									"length": 3
+								},
+								"confidence": 0.999,
+								"source": "D(2,4.2508,5.4556,4.5046,5.4581,4.5046,5.5969,4.2505,5.5969)"
+							},
+							{
+								"content": "Groceries",
+								"span": {
+									"offset": 914,
+									"length": 9
+								},
+								"confidence": 0.993,
+								"source": "D(2,1.2431,5.643,1.9368,5.6428,1.9368,5.7944,1.2429,5.794)"
+							},
+							{
+								"content": "300",
+								"span": {
+									"offset": 933,
+									"length": 3
+								},
+								"confidence": 0.999,
+								"source": "D(2,4.2449,5.6432,4.5046,5.6467,4.5046,5.7877,4.2444,5.7858)"
+							},
+							{
+								"content": "Transportation",
+								"span": {
+									"offset": 957,
+									"length": 14
+								},
+								"confidence": 0.992,
+								"source": "D(2,1.2404,5.8242,2.3353,5.8271,2.3353,5.9868,1.2401,5.9868)"
+							},
+							{
+								"content": "100",
+								"span": {
+									"offset": 981,
+									"length": 3
+								},
+								"confidence": 0.995,
+								"source": "D(2,4.2512,5.8252,4.5043,5.8274,4.5042,5.9678,4.2512,5.9678)"
+							},
+							{
+								"content": "Total",
+								"span": {
+									"offset": 1005,
+									"length": 5
+								},
+								"confidence": 0.997,
+								"source": "D(2,1.2394,6.0133,1.627,6.0146,1.627,6.1616,1.2396,6.1616)"
+							},
+							{
+								"content": "1,750",
+								"span": {
+									"offset": 1020,
+									"length": 5
+								},
+								"confidence": 0.995,
+								"source": "D(2,4.2493,6.0147,4.6208,6.0139,4.6208,6.1638,4.2496,6.1635)"
+							},
+							{
+								"content": "6.",
+								"span": {
+									"offset": 1051,
+									"length": 2
+								},
+								"confidence": 0.993,
+								"source": "D(2,1.2411,6.5475,1.3886,6.5482,1.3886,6.7433,1.2409,6.7428)"
+							},
+							{
+								"content": "Paragraphs",
+								"span": {
+									"offset": 1054,
+									"length": 10
+								},
+								"confidence": 0.994,
+								"source": "D(2,1.4528,6.5482,2.3574,6.5505,2.3574,6.7478,1.4524,6.7433)"
+							},
+							{
+								"content": "Our",
+								"span": {
+									"offset": 1066,
+									"length": 3
+								},
+								"confidence": 0.995,
+								"source": "D(2,1.2432,6.8015,1.4956,6.8025,1.4955,6.9769,1.2429,6.9759)"
+							},
+							{
+								"content": "company",
+								"span": {
+									"offset": 1070,
+									"length": 7
+								},
+								"confidence": 0.998,
+								"source": "D(2,1.5363,6.8026,2.1021,6.8015,2.1022,6.9793,1.5362,6.9771)"
+							},
+							{
+								"content": "is",
+								"span": {
+									"offset": 1078,
+									"length": 2
+								},
+								"confidence": 0.998,
+								"source": "D(2,2.137,6.8015,2.2646,6.8014,2.2646,6.9789,2.137,6.9792)"
+							},
+							{
+								"content": "committed",
+								"span": {
+									"offset": 1081,
+									"length": 9
+								},
+								"confidence": 0.996,
+								"source": "D(2,2.3053,6.8014,3.0075,6.8017,3.0076,6.9794,2.3052,6.9788)"
+							},
+							{
+								"content": "to",
+								"span": {
+									"offset": 1091,
+									"length": 2
+								},
+								"confidence": 0.998,
+								"source": "D(2,3.0453,6.8017,3.17,6.8015,3.1702,6.9798,3.0454,6.9795)"
+							},
+							{
+								"content": "fostering",
+								"span": {
+									"offset": 1094,
+									"length": 9
+								},
+								"confidence": 0.997,
+								"source": "D(2,3.2136,6.8015,3.7969,6.7999,3.7971,6.9797,3.2138,6.9799)"
+							},
+							{
+								"content": "a",
+								"span": {
+									"offset": 1104,
+									"length": 1
+								},
+								"confidence": 0.995,
+								"source": "D(2,3.8317,6.7997,3.9013,6.7993,3.9016,6.9793,3.8319,6.9796)"
+							},
+							{
+								"content": "productive",
+								"span": {
+									"offset": 1106,
+									"length": 10
+								},
+								"confidence": 0.996,
+								"source": "D(2,3.939,6.7991,4.6442,6.7983,4.6445,6.9775,3.9393,6.9792)"
+							},
+							{
+								"content": "and",
+								"span": {
+									"offset": 1117,
+									"length": 3
+								},
+								"confidence": 0.995,
+								"source": "D(2,4.6848,6.7982,4.9257,6.7976,4.9257,6.9777,4.6851,6.9775)"
+							},
+							{
+								"content": "inclusive",
+								"span": {
+									"offset": 1121,
+									"length": 9
+								},
+								"confidence": 0.994,
+								"source": "D(2,4.9663,6.7974,5.538,6.7979,5.538,6.9741,4.9663,6.9778)"
+							},
+							{
+								"content": "work",
+								"span": {
+									"offset": 1131,
+									"length": 4
+								},
+								"confidence": 0.992,
+								"source": "D(2,5.5757,6.798,5.9211,6.7971,5.9212,6.9728,5.5757,6.9739)"
+							},
+							{
+								"content": "environment.",
+								"span": {
+									"offset": 1136,
+									"length": 12
+								},
+								"confidence": 0.993,
+								"source": "D(2,5.9559,6.7968,6.8264,6.7951,6.8274,6.9692,5.9561,6.9727)"
+							},
+							{
+								"content": "All",
+								"span": {
+									"offset": 1149,
+									"length": 3
+								},
+								"confidence": 0.988,
+								"source": "D(2,6.8613,6.7951,7.0557,6.795,7.0557,6.9687,6.8623,6.9691)"
+							},
+							{
+								"content": "employees",
+								"span": {
+									"offset": 1153,
+									"length": 9
+								},
+								"confidence": 0.994,
+								"source": "D(2,1.2408,7.0072,1.9448,7.0083,1.945,7.1853,1.241,7.1853)"
+							},
+							{
+								"content": "are",
+								"span": {
+									"offset": 1163,
+									"length": 3
+								},
+								"confidence": 0.998,
+								"source": "D(2,1.9855,7.0084,2.1921,7.0085,2.1922,7.1851,1.9858,7.1852)"
+							},
+							{
+								"content": "expected",
+								"span": {
+									"offset": 1167,
+									"length": 8
+								},
+								"confidence": 0.995,
+								"source": "D(2,2.2328,7.0085,2.8117,7.0058,2.8119,7.1857,2.2329,7.1851)"
+							},
+							{
+								"content": "to",
+								"span": {
+									"offset": 1176,
+									"length": 2
+								},
+								"confidence": 0.998,
+								"source": "D(2,2.8495,7.0056,2.9746,7.0055,2.9749,7.1857,2.8498,7.1857)"
+							},
+							{
+								"content": "comply",
+								"span": {
+									"offset": 1179,
+									"length": 6
+								},
+								"confidence": 0.995,
+								"source": "D(2,3.0182,7.0055,3.4749,7.0046,3.4758,7.1845,3.0185,7.1857)"
+							},
+							{
+								"content": "with",
+								"span": {
+									"offset": 1186,
+									"length": 4
+								},
+								"confidence": 0.992,
+								"source": "D(2,3.5098,7.0045,3.8007,7.0036,3.8016,7.1839,3.5107,7.1844)"
+							},
+							{
+								"content": "the",
+								"span": {
+									"offset": 1191,
+									"length": 3
+								},
+								"confidence": 0.993,
+								"source": "D(2,3.8356,7.0035,4.0654,7.0029,4.066,7.1835,3.8365,7.1838)"
+							},
+							{
+								"content": "outlined",
+								"span": {
+									"offset": 1195,
+									"length": 8
+								},
+								"confidence": 0.994,
+								"source": "D(2,4.1091,7.0027,4.6269,7.0018,4.6271,7.1825,4.1096,7.1835)"
+							},
+							{
+								"content": "policies",
+								"span": {
+									"offset": 1204,
+									"length": 8
+								},
+								"confidence": 0.995,
+								"source": "D(2,4.6618,7.0019,5.1767,7.0018,5.177,7.1799,4.662,7.1823)"
+							},
+							{
+								"content": "and",
+								"span": {
+									"offset": 1213,
+									"length": 3
+								},
+								"confidence": 0.996,
+								"source": "D(2,5.2174,7.0018,5.4559,7.0021,5.4562,7.1787,5.2177,7.1798)"
+							},
+							{
+								"content": "demonstrate",
+								"span": {
+									"offset": 1217,
+									"length": 11
+								},
+								"confidence": 0.994,
+								"source": "D(2,5.4996,7.0022,6.3025,7.0024,6.3027,7.1754,5.4998,7.1785)"
+							},
+							{
+								"content": "mutual",
+								"span": {
+									"offset": 1229,
+									"length": 6
+								},
+								"confidence": 0.998,
+								"source": "D(2,6.3374,7.0024,6.8343,7.0028,6.8343,7.1745,6.3376,7.1753)"
+							},
+							{
+								"content": "respect",
+								"span": {
+									"offset": 1236,
+									"length": 7
+								},
+								"confidence": 0.993,
+								"source": "D(2,1.2369,7.2147,1.7002,7.214,1.7005,7.3893,1.237,7.3896)"
+							},
+							{
+								"content": "in",
+								"span": {
+									"offset": 1244,
+									"length": 2
+								},
+								"confidence": 0.996,
+								"source": "D(2,1.735,7.2139,1.8913,7.213,1.8916,7.3902,1.7352,7.3895)"
+							},
+							{
+								"content": "day-to-day",
+								"span": {
+									"offset": 1247,
+									"length": 10
+								},
+								"confidence": 0.993,
+								"source": "D(2,1.929,7.2128,2.6268,7.2116,2.627,7.3898,1.9293,7.3904)"
+							},
+							{
+								"content": "operations.",
+								"span": {
+									"offset": 1258,
+									"length": 11
+								},
+								"confidence": 0.994,
+								"source": "D(2,2.6616,7.2119,3.397,7.2125,3.3976,7.3889,2.6618,7.3897)"
+							},
+							{
+								"content": "Regular",
+								"span": {
+									"offset": 1270,
+									"length": 7
+								},
+								"confidence": 0.996,
+								"source": "D(2,3.4434,7.2125,3.924,7.2115,3.9247,7.3877,3.4439,7.3888)"
+							},
+							{
+								"content": "reviews",
+								"span": {
+									"offset": 1278,
+									"length": 7
+								},
+								"confidence": 0.995,
+								"source": "D(2,3.9588,7.2113,4.4887,7.2088,4.4895,7.3863,3.9595,7.3876)"
+							},
+							{
+								"content": "will",
+								"span": {
+									"offset": 1286,
+									"length": 4
+								},
+								"confidence": 0.992,
+								"source": "D(2,4.5263,7.2086,4.7696,7.209,4.77,7.3855,4.5271,7.3861)"
+							},
+							{
+								"content": "ensure",
+								"span": {
+									"offset": 1291,
+									"length": 6
+								},
+								"confidence": 0.996,
+								"source": "D(2,4.8101,7.2091,5.2502,7.2078,5.2504,7.3858,4.8105,7.3854)"
+							},
+							{
+								"content": "that",
+								"span": {
+									"offset": 1298,
+									"length": 4
+								},
+								"confidence": 0.992,
+								"source": "D(2,5.2879,7.2076,5.5514,7.207,5.5515,7.3852,5.288,7.3858)"
+							},
+							{
+								"content": "these",
+								"span": {
+									"offset": 1303,
+									"length": 5
+								},
+								"confidence": 0.995,
+								"source": "D(2,5.5861,7.2069,5.9278,7.2069,5.9279,7.3847,5.5863,7.3851)"
+							},
+							{
+								"content": "policies",
+								"span": {
+									"offset": 1309,
+									"length": 8
+								},
+								"confidence": 0.995,
+								"source": "D(2,5.9683,7.207,6.4606,7.2078,6.4606,7.3841,5.9685,7.3848)"
+							},
+							{
+								"content": "remain",
+								"span": {
+									"offset": 1318,
+									"length": 6
+								},
+								"confidence": 0.998,
+								"source": "D(2,6.504,7.2078,6.9727,7.2088,6.9727,7.3839,6.504,7.3839)"
+							},
+							{
+								"content": "relevant",
+								"span": {
+									"offset": 1325,
+									"length": 8
+								},
+								"confidence": 0.995,
+								"source": "D(2,1.2342,7.4238,1.7929,7.4251,1.7943,7.5819,1.236,7.5798)"
+							},
+							{
+								"content": "and",
+								"span": {
+									"offset": 1334,
+									"length": 3
+								},
+								"confidence": 0.999,
+								"source": "D(2,1.8263,7.4248,2.0657,7.4238,2.0665,7.5808,1.8277,7.5821)"
+							},
+							{
+								"content": "effective.",
+								"span": {
+									"offset": 1338,
+									"length": 10
+								},
+								"confidence": 0.992,
+								"source": "D(2,2.1069,7.4241,2.695,7.4233,2.695,7.5809,2.1075,7.5809)"
+							}
+						],
+						"lines": [
+							{
+								"content": "4. Images",
+								"source": "D(2,1.24,1.0409,2.0238,1.0463,2.0226,1.2284,1.2387,1.223)",
+								"span": {
+									"offset": 608,
+									"length": 9
+								}
+							},
+							{
+								"content": "Sample Product Image",
+								"source": "D(2,1.2389,1.2894,2.7208,1.292,2.7205,1.4704,1.2386,1.4677)",
+								"span": {
+									"offset": 619,
+									"length": 20
+								}
+							},
+							{
+								"content": "Content",
+								"source": "D(2,2.3868,3.0448,3.1235,3.0538,3.1214,3.233,2.3846,3.2253)",
+								"span": {
+									"offset": 652,
+									"length": 7
+								}
+							},
+							{
+								"content": "Understanding",
+								"source": "D(2,2.105,3.1902,3.3757,3.2191,3.3729,3.4268,2.1002,3.4045)",
+								"span": {
+									"offset": 660,
+									"length": 13
+								}
+							},
+							{
+								"content": "Image Description: \"A ceramic coffee mug with company logo.\"",
+								"source": "D(2,1.2357,4.2502,5.3228,4.2497,5.3228,4.44,1.2357,4.4406)",
+								"span": {
+									"offset": 687,
+									"length": 60
+								}
+							},
+							{
+								"content": "5. Tables",
+								"source": "D(2,1.2412,4.8172,1.9662,4.8195,1.9657,4.9911,1.2406,4.9888)",
+								"span": {
+									"offset": 753,
+									"length": 9
+								}
+							},
+							{
+								"content": "Category",
+								"source": "D(2,1.2437,5.0838,1.876,5.0926,1.875,5.2481,1.2416,5.2395)",
+								"span": {
+									"offset": 782,
+									"length": 8
+								}
+							},
+							{
+								"content": "Amount ($)",
+								"source": "D(2,4.2419,5.0806,5.0453,5.0809,5.0452,5.2434,4.2418,5.2431)",
+								"span": {
+									"offset": 800,
+									"length": 10
+								}
+							},
+							{
+								"content": "Rent",
+								"source": "D(2,1.2378,5.2706,1.5907,5.2732,1.5897,5.4124,1.2368,5.4098)",
+								"span": {
+									"offset": 831,
+									"length": 4
+								}
+							},
+							{
+								"content": "1,200",
+								"source": "D(2,4.2496,5.2676,4.6176,5.2672,4.6178,5.414,4.2498,5.4145)",
+								"span": {
+									"offset": 845,
+									"length": 5
+								}
+							},
+							{
+								"content": "Utilities",
+								"source": "D(2,1.2384,5.4532,1.812,5.4545,1.8116,5.6021,1.238,5.6007)",
+								"span": {
+									"offset": 871,
+									"length": 9
+								}
+							},
+							{
+								"content": "150",
+								"source": "D(2,4.2508,5.4556,4.5014,5.457,4.5006,5.5968,4.25,5.5953)",
+								"span": {
+									"offset": 890,
+									"length": 3
+								}
+							},
+							{
+								"content": "Groceries",
+								"source": "D(2,1.2429,5.643,1.9348,5.6428,1.9348,5.7919,1.2429,5.792)",
+								"span": {
+									"offset": 914,
+									"length": 9
+								}
+							},
+							{
+								"content": "300",
+								"source": "D(2,4.2449,5.6432,4.5021,5.6449,4.5011,5.7859,4.244,5.7842)",
+								"span": {
+									"offset": 933,
+									"length": 3
+								}
+							},
+							{
+								"content": "Transportation",
+								"source": "D(2,1.2404,5.8242,2.3353,5.8257,2.3353,5.9857,1.2401,5.9841)",
+								"span": {
+									"offset": 957,
+									"length": 14
+								}
+							},
+							{
+								"content": "100",
+								"source": "D(2,4.2512,5.8252,4.5016,5.8263,4.501,5.9678,4.2506,5.9668)",
+								"span": {
+									"offset": 981,
+									"length": 3
+								}
+							},
+							{
+								"content": "Total",
+								"source": "D(2,1.2394,6.0133,1.6238,6.0139,1.6236,6.1613,1.2392,6.1607)",
+								"span": {
+									"offset": 1005,
+									"length": 5
+								}
+							},
+							{
+								"content": "1,750",
+								"source": "D(2,4.2491,6.0145,4.6171,6.0135,4.6175,6.1612,4.2496,6.1622)",
+								"span": {
+									"offset": 1020,
+									"length": 5
+								}
+							},
+							{
+								"content": "6. Paragraphs",
+								"source": "D(2,1.2411,6.5475,2.3545,6.55,2.3541,6.745,1.2407,6.7425)",
+								"span": {
+									"offset": 1051,
+									"length": 13
+								}
+							},
+							{
+								"content": "Our company is committed to fostering a productive and inclusive work environment. All",
+								"source": "D(2,1.2426,6.8015,7.0507,6.793,7.051,6.972,1.2429,6.9805)",
+								"span": {
+									"offset": 1066,
+									"length": 86
+								}
+							},
+							{
+								"content": "employees are expected to comply with the outlined policies and demonstrate mutual",
+								"source": "D(2,1.2407,7.0072,6.8332,6.9975,6.8335,7.1767,1.241,7.1857)",
+								"span": {
+									"offset": 1153,
+									"length": 82
+								}
+							},
+							{
+								"content": "respect in day-to-day operations. Regular reviews will ensure that these policies remain",
+								"source": "D(2,1.2367,7.2125,6.9712,7.2038,6.9715,7.381,1.237,7.3896)",
+								"span": {
+									"offset": 1236,
+									"length": 88
+								}
+							},
+							{
+								"content": "relevant and effective.",
+								"source": "D(2,1.2342,7.4238,2.6899,7.423,2.69,7.5793,1.2343,7.5801)",
+								"span": {
+									"offset": 1325,
+									"length": 23
+								}
+							}
+						]
+					}
+				],
+				"paragraphs": [
+					{
+						"role": "title",
+						"content": "Example Document",
+						"source": "D(1,1.2639,1.0815,4.1585,1.0786,4.1589,1.4106,1.2643,1.4135)",
+						"span": {
+							"offset": 0,
+							"length": 18
+						}
+					},
+					{
+						"role": "sectionHeading",
+						"content": "1. Selection Marks (Checkboxes)",
+						"source": "D(1,1.2456,1.8719,3.8533,1.8735,3.8532,2.0647,1.2455,2.0631)",
+						"span": {
+							"offset": 21,
+							"length": 34
+						}
+					},
+					{
+						"content": "Employee Preferences Form ☐ Remote ☒ Hybrid ☐ On-site",
+						"source": "D(1,1.2458,2.0993,3.1022,2.1005,3.1015,3.2725,1.2451,3.2714)",
+						"span": {
+							"offset": 57,
+							"length": 53
+						}
+					},
+					{
+						"role": "sectionHeading",
+						"content": "2. Barcodes",
+						"source": "D(1,1.2394,3.6588,2.1889,3.661,2.1885,3.8268,1.239,3.8246)",
+						"span": {
+							"offset": 113,
+							"length": 14
+						}
+					},
+					{
+						"content": "Go check out Azure AI Content Understanding at the below link",
+						"source": "D(1,1.2444,3.9078,5.3673,3.9073,5.3673,4.0803,1.2444,4.0808)",
+						"span": {
+							"offset": 129,
+							"length": 61
+						}
+					},
+					{
+						"content": "HELLOWORLD",
+						"source": "D(1,2.5738,4.8186,3.8617,4.8153,3.8621,4.9894,2.5743,4.9928)",
+						"span": {
+							"offset": 192,
+							"length": 10
+						}
+					},
+					{
+						"role": "sectionHeading",
+						"content": "3. Formulas",
+						"source": "D(1,1.2394,5.3882,2.1972,5.3919,2.1966,5.5621,1.2387,5.5583)",
+						"span": {
+							"offset": 205,
+							"length": 14
+						}
+					},
+					{
+						"content": "Bayesian Inference (Posterior Probability):",
+						"source": "D(1,1.2418,5.6324,4.0515,5.6353,4.0513,5.8163,1.2416,5.8134)",
+						"span": {
+							"offset": 221,
+							"length": 43
+						}
+					},
+					{
+						"role": "formulaBlock",
+						"content": ":formula:",
+						"source": "D(1,3.2806,5.94,5.1852,5.9623,5.1806,6.3554,3.276,6.3332)",
+						"span": {
+							"offset": 266,
+							"length": 130
+						}
+					},
+					{
+						"content": "Where:",
+						"source": "D(1,1.2404,6.5323,1.7307,6.5364,1.7294,6.6849,1.2391,6.6807)",
+						"span": {
+							"offset": 398,
+							"length": 6
+						}
+					},
+					{
+						"content": ":formula: is the posterior :formula: is the likelihood :formula: is the prior :formula: is the evidence",
+						"source": "D(1,3.4031,6.8732,5.1012,6.8802,5.0963,8.0824,3.3982,8.0754)",
+						"span": {
+							"offset": 406,
+							"length": 176
+						}
+					},
+					{
+						"role": "sectionHeading",
+						"content": "4. Images",
+						"source": "D(2,1.24,1.0409,2.0238,1.0463,2.0226,1.2284,1.2387,1.223)",
+						"span": {
+							"offset": 605,
+							"length": 12
+						}
+					},
+					{
+						"content": "Sample Product Image",
+						"source": "D(2,1.2389,1.2894,2.7208,1.292,2.7205,1.4704,1.2386,1.4677)",
+						"span": {
+							"offset": 619,
+							"length": 20
+						}
+					},
+					{
+						"content": "Content Understanding",
+						"source": "D(2,2.1066,3.036,3.3794,3.0583,3.3729,3.4268,2.1002,3.4045)",
+						"span": {
+							"offset": 652,
+							"length": 21
+						}
+					},
+					{
+						"content": "Image Description: \"A ceramic coffee mug with company logo.\"",
+						"source": "D(2,1.2357,4.2502,5.3228,4.2497,5.3228,4.44,1.2357,4.4406)",
+						"span": {
+							"offset": 687,
+							"length": 60
+						}
+					},
+					{
+						"role": "sectionHeading",
+						"content": "5. Tables",
+						"source": "D(2,1.2412,4.8172,1.9662,4.8195,1.9657,4.9911,1.2406,4.9888)",
+						"span": {
+							"offset": 750,
+							"length": 12
+						}
+					},
+					{
+						"content": "Category",
+						"source": "D(2,1.1674,5.0483,4.1733,5.0546,4.1733,5.2358,1.1674,5.2358)",
+						"span": {
+							"offset": 782,
+							"length": 8
+						}
+					},
+					{
+						"content": "Amount ($)",
+						"source": "D(2,4.1733,5.0546,7.1668,5.0546,7.1668,5.2358,4.1733,5.2358)",
+						"span": {
+							"offset": 800,
+							"length": 10
+						}
+					},
+					{
+						"content": "Rent",
+						"source": "D(2,1.1674,5.2358,4.1733,5.2358,4.1733,5.4296,1.1674,5.4296)",
+						"span": {
+							"offset": 831,
+							"length": 4
+						}
+					},
+					{
+						"content": "1,200",
+						"source": "D(2,4.1733,5.2358,7.1668,5.2358,7.1668,5.4296,4.1733,5.4296)",
+						"span": {
+							"offset": 845,
+							"length": 5
+						}
+					},
+					{
+						"content": "Utilities",
+						"source": "D(2,1.1674,5.4296,4.1733,5.4296,4.1733,5.6047,1.1674,5.6047)",
+						"span": {
+							"offset": 871,
+							"length": 9
+						}
+					},
+					{
+						"content": "150",
+						"source": "D(2,4.1733,5.4296,7.1668,5.4296,7.1668,5.6047,4.1733,5.6047)",
+						"span": {
+							"offset": 890,
+							"length": 3
+						}
+					},
+					{
+						"content": "Groceries",
+						"source": "D(2,1.1674,5.6047,4.1733,5.6047,4.1733,5.8109,1.1674,5.7984)",
+						"span": {
+							"offset": 914,
+							"length": 9
+						}
+					},
+					{
+						"content": "300",
+						"source": "D(2,4.1733,5.6047,7.1668,5.6047,7.173,5.8109,4.1733,5.8109)",
+						"span": {
+							"offset": 933,
+							"length": 3
+						}
+					},
+					{
+						"content": "Transportation",
+						"source": "D(2,1.1674,5.7984,4.1733,5.8109,4.1733,5.986,1.1674,5.986)",
+						"span": {
+							"offset": 957,
+							"length": 14
+						}
+					},
+					{
+						"content": "100",
+						"source": "D(2,4.1733,5.8109,7.173,5.8109,7.173,5.986,4.1733,5.986)",
+						"span": {
+							"offset": 981,
+							"length": 3
+						}
+					},
+					{
+						"content": "Total",
+						"source": "D(2,1.1674,5.986,4.1733,5.986,4.1733,6.1672,1.1674,6.1672)",
+						"span": {
+							"offset": 1005,
+							"length": 5
+						}
+					},
+					{
+						"content": "1,750",
+						"source": "D(2,4.1733,5.986,7.173,5.986,7.173,6.1735,4.1733,6.1672)",
+						"span": {
+							"offset": 1020,
+							"length": 5
+						}
+					},
+					{
+						"role": "sectionHeading",
+						"content": "6. Paragraphs",
+						"source": "D(2,1.2411,6.5475,2.3545,6.55,2.3541,6.745,1.2407,6.7425)",
+						"span": {
+							"offset": 1048,
+							"length": 16
+						}
+					},
+					{
+						"content": "Our company is committed to fostering a productive and inclusive work environment. All employees are expected to comply with the outlined policies and demonstrate mutual respect in day-to-day operations. Regular reviews will ensure that these policies remain relevant and effective.",
+						"source": "D(2,1.2332,6.8015,7.0507,6.793,7.0519,7.5729,1.2343,7.5814)",
+						"span": {
+							"offset": 1066,
+							"length": 282
+						}
+					}
+				],
+				"sections": [
+					{
+						"span": {
+							"offset": 0,
+							"length": 1348
+						},
+						"elements": [
+							"/paragraphs/0",
+							"/sections/1",
+							"/sections/2",
+							"/sections/3",
+							"/sections/4",
+							"/sections/5",
+							"/sections/6"
+						]
+					},
+					{
+						"span": {
+							"offset": 21,
+							"length": 89
+						},
+						"elements": [
+							"/paragraphs/1",
+							"/paragraphs/2"
+						]
+					},
+					{
+						"span": {
+							"offset": 113,
+							"length": 89
+						},
+						"elements": [
+							"/paragraphs/3",
+							"/paragraphs/4",
+							"/paragraphs/5"
+						]
+					},
+					{
+						"span": {
+							"offset": 205,
+							"length": 377
+						},
+						"elements": [
+							"/paragraphs/6",
+							"/paragraphs/7",
+							"/paragraphs/8",
+							"/paragraphs/9",
+							"/paragraphs/10"
+						]
+					},
+					{
+						"span": {
+							"offset": 605,
+							"length": 142
+						},
+						"elements": [
+							"/paragraphs/11",
+							"/paragraphs/12",
+							"/figures/0",
+							"/paragraphs/14"
+						]
+					},
+					{
+						"span": {
+							"offset": 750,
+							"length": 295
+						},
+						"elements": [
+							"/paragraphs/15",
+							"/tables/0"
+						]
+					},
+					{
+						"span": {
+							"offset": 1048,
+							"length": 300
+						},
+						"elements": [
+							"/paragraphs/28",
+							"/paragraphs/29"
+						]
+					}
+				],
+				"tables": [
+					{
+						"rowCount": 6,
+						"columnCount": 2,
+						"cells": [
+							{
+								"kind": "columnHeader",
+								"rowIndex": 0,
+								"columnIndex": 0,
+								"rowSpan": 1,
+								"columnSpan": 1,
+								"content": "Category",
+								"source": "D(2,1.1674,5.0483,4.1733,5.0546,4.1733,5.2358,1.1674,5.2358)",
+								"span": {
+									"offset": 782,
+									"length": 8
+								},
+								"elements": [
+									"/paragraphs/16"
+								]
+							},
+							{
+								"kind": "columnHeader",
+								"rowIndex": 0,
+								"columnIndex": 1,
+								"rowSpan": 1,
+								"columnSpan": 1,
+								"content": "Amount ($)",
+								"source": "D(2,4.1733,5.0546,7.1668,5.0546,7.1668,5.2358,4.1733,5.2358)",
+								"span": {
+									"offset": 800,
+									"length": 10
+								},
+								"elements": [
+									"/paragraphs/17"
+								]
+							},
+							{
+								"kind": "content",
+								"rowIndex": 1,
+								"columnIndex": 0,
+								"rowSpan": 1,
+								"columnSpan": 1,
+								"content": "Rent",
+								"source": "D(2,1.1674,5.2358,4.1733,5.2358,4.1733,5.4296,1.1674,5.4296)",
+								"span": {
+									"offset": 831,
+									"length": 4
+								},
+								"elements": [
+									"/paragraphs/18"
+								]
+							},
+							{
+								"kind": "content",
+								"rowIndex": 1,
+								"columnIndex": 1,
+								"rowSpan": 1,
+								"columnSpan": 1,
+								"content": "1,200",
+								"source": "D(2,4.1733,5.2358,7.1668,5.2358,7.1668,5.4296,4.1733,5.4296)",
+								"span": {
+									"offset": 845,
+									"length": 5
+								},
+								"elements": [
+									"/paragraphs/19"
+								]
+							},
+							{
+								"kind": "content",
+								"rowIndex": 2,
+								"columnIndex": 0,
+								"rowSpan": 1,
+								"columnSpan": 1,
+								"content": "Utilities",
+								"source": "D(2,1.1674,5.4296,4.1733,5.4296,4.1733,5.6047,1.1674,5.6047)",
+								"span": {
+									"offset": 871,
+									"length": 9
+								},
+								"elements": [
+									"/paragraphs/20"
+								]
+							},
+							{
+								"kind": "content",
+								"rowIndex": 2,
+								"columnIndex": 1,
+								"rowSpan": 1,
+								"columnSpan": 1,
+								"content": "150",
+								"source": "D(2,4.1733,5.4296,7.1668,5.4296,7.1668,5.6047,4.1733,5.6047)",
+								"span": {
+									"offset": 890,
+									"length": 3
+								},
+								"elements": [
+									"/paragraphs/21"
+								]
+							},
+							{
+								"kind": "content",
+								"rowIndex": 3,
+								"columnIndex": 0,
+								"rowSpan": 1,
+								"columnSpan": 1,
+								"content": "Groceries",
+								"source": "D(2,1.1674,5.6047,4.1733,5.6047,4.1733,5.8109,1.1674,5.7984)",
+								"span": {
+									"offset": 914,
+									"length": 9
+								},
+								"elements": [
+									"/paragraphs/22"
+								]
+							},
+							{
+								"kind": "content",
+								"rowIndex": 3,
+								"columnIndex": 1,
+								"rowSpan": 1,
+								"columnSpan": 1,
+								"content": "300",
+								"source": "D(2,4.1733,5.6047,7.1668,5.6047,7.173,5.8109,4.1733,5.8109)",
+								"span": {
+									"offset": 933,
+									"length": 3
+								},
+								"elements": [
+									"/paragraphs/23"
+								]
+							},
+							{
+								"kind": "content",
+								"rowIndex": 4,
+								"columnIndex": 0,
+								"rowSpan": 1,
+								"columnSpan": 1,
+								"content": "Transportation",
+								"source": "D(2,1.1674,5.7984,4.1733,5.8109,4.1733,5.986,1.1674,5.986)",
+								"span": {
+									"offset": 957,
+									"length": 14
+								},
+								"elements": [
+									"/paragraphs/24"
+								]
+							},
+							{
+								"kind": "content",
+								"rowIndex": 4,
+								"columnIndex": 1,
+								"rowSpan": 1,
+								"columnSpan": 1,
+								"content": "100",
+								"source": "D(2,4.1733,5.8109,7.173,5.8109,7.173,5.986,4.1733,5.986)",
+								"span": {
+									"offset": 981,
+									"length": 3
+								},
+								"elements": [
+									"/paragraphs/25"
+								]
+							},
+							{
+								"kind": "content",
+								"rowIndex": 5,
+								"columnIndex": 0,
+								"rowSpan": 1,
+								"columnSpan": 1,
+								"content": "Total",
+								"source": "D(2,1.1674,5.986,4.1733,5.986,4.1733,6.1672,1.1674,6.1672)",
+								"span": {
+									"offset": 1005,
+									"length": 5
+								},
+								"elements": [
+									"/paragraphs/26"
+								]
+							},
+							{
+								"kind": "content",
+								"rowIndex": 5,
+								"columnIndex": 1,
+								"rowSpan": 1,
+								"columnSpan": 1,
+								"content": "1,750",
+								"source": "D(2,4.1733,5.986,7.173,5.986,7.173,6.1735,4.1733,6.1672)",
+								"span": {
+									"offset": 1020,
+									"length": 5
+								},
+								"elements": [
+									"/paragraphs/27"
+								]
+							}
+						],
+						"source": "D(2,1.1566,5.0425,7.1855,5.0428,7.1862,6.1853,1.1574,6.1858)",
+						"span": {
+							"offset": 765,
+							"length": 280
+						}
+					}
+				],
+				"figures": [
+					{
+						"source": "D(2,1.3465,1.8481,3.4788,1.8484,3.4779,3.8286,1.3456,3.8282)",
+						"span": {
+							"offset": 642,
+							"length": 42
+						},
+						"elements": [
+							"/paragraphs/13"
+						],
+						"id": "2.1"
+					}
+				]
+			}
+		]
+	}
+}

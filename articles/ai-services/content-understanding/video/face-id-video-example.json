@@ -1,0 +1,376 @@
+{
+    "id": "85594587-048c-4911-9f83-46d3c7e151f4",
+    "status": "Succeeded",
+    "result": {
+        "analyzerId": "video-analyzer-1",
+        "apiVersion": "2025-05-01-preview",
+        "createdAt": "2025-05-21T23:01:39Z",
+        "warnings": [],
+        "contents": [
+            {
+                "markdown": "# Video: 00:00.000 => 00:50.000\nWidth: 720\nHeight: 1280\n\n## Segment 1: 00:00.000 => 00:06.433\nJimmy Kimmel interviews Gal Gadot about her experience as Miss Israel.\n\nTranscript\n```\nWEBVTT\n\n00:00.160 --> 00:02.480\n<Speaker 1 Speaker>You were Miss Israel when you were a teenager, right?\n00:02.640 --> 00:02.960\n<Speaker 2 Speaker>I was.\n00:02.960 --> 00:06.680\n<Speaker 1 Speaker>How did you wind up becoming a beauty pageant?\n```\n\nKey Frames\n- 00:00.825 ![](keyFrame.825.jpg)\n- 00:01.650 ![](keyFrame.1650.jpg)\n- 00:02.706 ![](keyFrame.2706.jpg)\n- 00:03.630 ![](keyFrame.3630.jpg)\n- 00:04.323 ![](keyFrame.4323.jpg)\n- 00:05.016 ![](keyFrame.5016.jpg)\n- 00:05.709 ![](keyFrame.5709.jpg)\n\nFaces\n- F1: 0a9bc856-487a-4ce8-82dd-34db13d5e1a4\n- F2: a7784fd0-a24e-47d7-b125-351fe1d61f21\n\n## Segment 2: 00:06.433 => 00:17.900\nGal Gadot shares her experience of winning Miss Israel and participating in Miss Universe.\n\nTranscript\n```\nWEBVTT\n\n00:02.960 --> 00:06.680\n<Speaker 1 Speaker>How did you wind up becoming a beauty pageant?\n00:06.680 --> 00:08.000\n<Speaker 2 Speaker>Uh, it kind of happened to me.\n00:08.000 --> 00:10.400\n<Speaker 2 Speaker>They offered me to participate in the pageant.\n00:10.400 --> 00:17.920\n<Speaker 2 Speaker>I went for the experience, and then I won, and I was overwhelmed, and then I had to do the Miss Universe pageant.\n```\n\nKey Frames\n- 00:07.392 ![](keyFrame.7392.jpg)\n- 00:08.349 ![](keyFrame.8349.jpg)\n- 00:09.306 ![](keyFrame.9306.jpg)\n- 00:10.263 ![](keyFrame.10263.jpg)\n- 00:11.220 ![](keyFrame.11220.jpg)\n- 00:12.177 ![](keyFrame.12177.jpg)\n- 00:13.134 ![](keyFrame.13134.jpg)\n- 00:14.091 ![](keyFrame.14091.jpg)\n- 00:15.048 ![](keyFrame.15048.jpg)\n- 00:16.005 ![](keyFrame.16005.jpg)\n- 00:16.962 ![](keyFrame.16962.jpg)\n\nFaces\n- F1: Person-1\n\n## Segment 3: 00:17.900 => 00:31.500\nGal Gadot talks about her apprehension towards the Miss Universe pageant.\n\nTranscript\n```\nWEBVTT\n\n00:10.400 --> 00:17.920\n<Speaker 2 Speaker>I went for the experience, and then I won, and I was overwhelmed, and then I had to do the Miss Universe pageant.\n00:17.960 --> 00:22.600\n<Speaker 2 Speaker>And then I was freaking out that I'm gonna win this, that pageant as well, because I wasn't...\n00:22.960 --> 00:23.640\n<Speaker 2 Speaker>thinking about women.\n00:23.640 --> 00:24.600\n<Speaker 1 Speaker>Oh, you didn't want to win?\n00:24.600 --> 00:28.880\n<Speaker 2 Speaker>No, so I set myself a mission not to win the Miss Universe pageant.\n00:28.880 --> 00:29.160\n<Speaker 1 Speaker>Okay.\n00:29.320 --> 00:30.600\n<Speaker 2 Speaker>Which meant, so I just...\n00:30.600 --> 00:32.520\n<Speaker 1 Speaker>You threw the Miss Universe pageant.\n```\n\nKey Frames\n- 00:18.183 ![](keyFrame.18183.jpg)\n- 00:19.404 ![](keyFrame.19404.jpg)\n- 00:20.328 ![](keyFrame.20328.jpg)\n- 00:21.252 ![](keyFrame.21252.jpg)\n- 00:22.176 ![](keyFrame.22176.jpg)\n- 00:23.100 ![](keyFrame.23100.jpg)\n- 00:24.024 ![](keyFrame.24024.jpg)\n- 00:24.948 ![](keyFrame.24948.jpg)\n- 00:25.872 ![](keyFrame.25872.jpg)\n- 00:26.796 ![](keyFrame.26796.jpg)\n- 00:27.720 ![](keyFrame.27720.jpg)\n- 00:28.644 ![](keyFrame.28644.jpg)\n- 00:29.568 ![](keyFrame.29568.jpg)\n- 00:30.492 ![](keyFrame.30492.jpg)\n\n## Segment 4: 00:31.500 => 00:36.367\nJimmy Kimmel and Gal Gadot discuss her strategy to not win Miss Universe.\n\nTranscript\n```\nWEBVTT\n\n00:30.600 --> 00:32.520\n<Speaker 1 Speaker>You threw the Miss Universe pageant.\n00:33.240 --> 00:34.800\n<Speaker 2 Speaker>I'm just not that type of girl.\n00:34.800 --> 00:35.200\n<Speaker 2 Speaker>I never...\n00:35.280 --> 00:37.280\n<Speaker 2 Speaker>I never thought that I'll be Miss Israel.\n```\n\nKey Frames\n- 00:32.043 ![](keyFrame.32043.jpg)\n- 00:32.571 ![](keyFrame.32571.jpg)\n- 00:33.891 ![](keyFrame.33891.jpg)\n- 00:34.716 ![](keyFrame.34716.jpg)\n- 00:35.541 ![](keyFrame.35541.jpg)\n\nFaces\n- F1: Person-4\n\n## Segment 5: 00:36.367 => 00:50.000\nA scene from the Miss Universe pageant is shown, with Jimmy Kimmel commenting on Gal Gadot's lack of enthusiasm.\n\nTranscript\n```\nWEBVTT\n\n00:35.280 --> 00:37.280\n<Speaker 2 Speaker>I never thought that I'll be Miss Israel.\n00:37.280 --> 00:38.800\n<Speaker 1 Speaker>How do you not win the Miss Universe?\n00:39.760 --> 00:40.240\n<Speaker 1 Speaker>Oh, that's me.\n00:44.960 --> 00:45.040\n<Speaker 1 Speaker>Wow.\n00:45.040 --> 00:45.600\n<Speaker 1 Speaker>Yeah, you know what?\n00:45.600 --> 00:46.200\n<Speaker 1 Speaker>It doesn't...\n00:46.200 --> 00:47.760\n<Speaker 1 Speaker>It doesn't look like your heart is in it.\n```\n\nKey Frames\n- 00:37.290 ![](keyFrame.37290.jpg)\n- 00:38.214 ![](keyFrame.38214.jpg)\n- 00:39.138 ![](keyFrame.39138.jpg)\n- 00:40.062 ![](keyFrame.40062.jpg)\n- 00:40.986 ![](keyFrame.40986.jpg)\n- 00:41.910 ![](keyFrame.41910.jpg)\n- 00:42.834 ![](keyFrame.42834.jpg)\n- 00:43.758 ![](keyFrame.43758.jpg)\n- 00:45.606 ![](keyFrame.45606.jpg)\n- 00:46.365 ![](keyFrame.46365.jpg)\n- 00:47.124 ![](keyFrame.47124.jpg)\n- 00:48.642 ![](keyFrame.48642.jpg)\n- 00:49.335 ![](keyFrame.49335.jpg)\n\nFaces\n- F1: Person-3\n- F2: Person-2",
+                "fields": {
+                    "Segments": {
+                        "type": "array",
+                        "valueArray": [
+                            {
+                                "type": "object",
+                                "valueObject": {
+                                    "description": {
+                                        "type": "string",
+                                        "valueString": "The video begins with Jimmy Kimmel, the host, interviewing Gal Gadot, an actress. Jimmy Kimmel is seen asking Gal about her experience as Miss Israel when she was a teenager. Gal Gadot confirms that she was Miss Israel and begins to explain how she ended up in the beauty pageant. The conversation is light-hearted, with Jimmy Kimmel appearing engaged and curious about Gal's past experiences."
+                                    },
+                                    "SegmentId": {
+                                        "type": "string",
+                                        "valueString": "1"
+                                    }
+                                }
+                            },
+                            {
+                                "type": "object",
+                                "valueObject": {
+                                    "description": {
+                                        "type": "string",
+                                        "valueString": "Gal Gadot continues to share her story about participating in the Miss Israel pageant. She explains that she was offered to participate and went for the experience, unexpectedly winning the title. She describes feeling overwhelmed and having to participate in the Miss Universe pageant, which she was apprehensive about winning."
+                                    },
+                                    "SegmentId": {
+                                        "type": "string",
+                                        "valueString": "2"
+                                    }
+                                }
+                            },
+                            {
+                                "type": "object",
+                                "valueObject": {
+                                    "description": {
+                                        "type": "string",
+                                        "valueString": "Gal Gadot elaborates on her feelings about the Miss Universe pageant, expressing her fear of winning it. She humorously mentions that she set a mission not to win the Miss Universe pageant, indicating that she was not interested in pursuing a career in pageantry."
+                                    },
+                                    "SegmentId": {
+                                        "type": "string",
+                                        "valueString": "3"
+                                    }
+                                }
+                            },
+                            {
+                                "type": "object",
+                                "valueObject": {
+                                    "description": {
+                                        "type": "string",
+                                        "valueString": "Jimmy Kimmel humorously questions Gal Gadot about her strategy to not win the Miss Universe pageant. Gal responds by saying she is not the type of girl who would want to win such a pageant, indicating her disinterest in the pageant world. The segment includes a light-hearted exchange between the two."
+                                    },
+                                    "SegmentId": {
+                                        "type": "string",
+                                        "valueString": "4"
+                                    }
+                                }
+                            },
+                            {
+                                "type": "object",
+                                "valueObject": {
+                                    "description": {
+                                        "type": "string",
+                                        "valueString": "The video transitions to a scene showing a group of women in pageant dresses, including Gal Gadot, during the Miss Universe pageant. Jimmy Kimmel comments on the scene, noting that it doesn't look like Gal's heart was in it, suggesting her lack of enthusiasm for the pageant. The segment ends with a close-up of Gal Gadot in the pageant setting."
+                                    },
+                                    "SegmentId": {
+                                        "type": "string",
+                                        "valueString": "5"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                "kind": "audioVisual",
+                "startTimeMs": 0,
+                "endTimeMs": 50000,
+                "width": 720,
+                "height": 1280,
+                "KeyFrameTimesMs": [
+                    825,
+                    1650,
+                    2706,
+                    3630,
+                    4323,
+                    5016,
+                    5709,
+                    7392,
+                    8349,
+                    9306,
+                    10263,
+                    11220,
+                    12177,
+                    13134,
+                    14091,
+                    15048,
+                    16005,
+                    16962,
+                    18183,
+                    19404,
+                    20328,
+                    21252,
+                    22176,
+                    23100,
+                    24024,
+                    24948,
+                    25872,
+                    26796,
+                    27720,
+                    28644,
+                    29568,
+                    30492,
+                    32043,
+                    32571,
+                    33891,
+                    34716,
+                    35541,
+                    37290,
+                    38214,
+                    39138,
+                    40062,
+                    40986,
+                    41910,
+                    42834,
+                    43758,
+                    45606,
+                    46365,
+                    47124,
+                    48642,
+                    49335
+                ],
+                "transcriptPhrases": [
+                    {
+                        "speaker": "Speaker 1",
+                        "startTimeMs": 160,
+                        "endTimeMs": 2480,
+                        "text": "You were Miss Israel when you were a teenager, right?",
+                        "words": []
+                    },
+                    {
+                        "speaker": "Speaker 2",
+                        "startTimeMs": 2640,
+                        "endTimeMs": 2960,
+                        "text": "I was.",
+                        "words": []
+                    },
+                    {
+                        "speaker": "Speaker 1",
+                        "startTimeMs": 2960,
+                        "endTimeMs": 6680,
+                        "text": "How did you wind up becoming a beauty pageant?",
+                        "words": []
+                    },
+                    {
+                        "speaker": "Speaker 2",
+                        "startTimeMs": 6680,
+                        "endTimeMs": 8000,
+                        "text": "Uh, it kind of happened to me.",
+                        "words": []
+                    },
+                    {
+                        "speaker": "Speaker 2",
+                        "startTimeMs": 8000,
+                        "endTimeMs": 10400,
+                        "text": "They offered me to participate in the pageant.",
+                        "words": []
+                    },
+                    {
+                        "speaker": "Speaker 2",
+                        "startTimeMs": 10400,
+                        "endTimeMs": 17920,
+                        "text": "I went for the experience, and then I won, and I was overwhelmed, and then I had to do the Miss Universe pageant.",
+                        "words": []
+                    },
+                    {
+                        "speaker": "Speaker 2",
+                        "startTimeMs": 17960,
+                        "endTimeMs": 22600,
+                        "text": "And then I was freaking out that I'm gonna win this, that pageant as well, because I wasn't...",
+                        "words": []
+                    },
+                    {
+                        "speaker": "Speaker 2",
+                        "startTimeMs": 22960,
+                        "endTimeMs": 23640,
+                        "text": "thinking about women.",
+                        "words": []
+                    },
+                    {
+                        "speaker": "Speaker 1",
+                        "startTimeMs": 23640,
+                        "endTimeMs": 24600,
+                        "text": "Oh, you didn't want to win?",
+                        "words": []
+                    },
+                    {
+                        "speaker": "Speaker 2",
+                        "startTimeMs": 24600,
+                        "endTimeMs": 28880,
+                        "text": "No, so I set myself a mission not to win the Miss Universe pageant.",
+                        "words": []
+                    },
+                    {
+                        "speaker": "Speaker 1",
+                        "startTimeMs": 28880,
+                        "endTimeMs": 29160,
+                        "text": "Okay.",
+                        "words": []
+                    },
+                    {
+                        "speaker": "Speaker 2",
+                        "startTimeMs": 29320,
+                        "endTimeMs": 30600,
+                        "text": "Which meant, so I just...",
+                        "words": []
+                    },
+                    {
+                        "speaker": "Speaker 1",
+                        "startTimeMs": 30600,
+                        "endTimeMs": 32520,
+                        "text": "You threw the Miss Universe pageant.",
+                        "words": []
+                    },
+                    {
+                        "speaker": "Speaker 2",
+                        "startTimeMs": 33240,
+                        "endTimeMs": 34800,
+                        "text": "I'm just not that type of girl.",
+                        "words": []
+                    },
+                    {
+                        "speaker": "Speaker 2",
+                        "startTimeMs": 34800,
+                        "endTimeMs": 35200,
+                        "text": "I never...",
+                        "words": []
+                    },
+                    {
+                        "speaker": "Speaker 2",
+                        "startTimeMs": 35280,
+                        "endTimeMs": 37280,
+                        "text": "I never thought that I'll be Miss Israel.",
+                        "words": []
+                    },
+                    {
+                        "speaker": "Speaker 1",
+                        "startTimeMs": 37280,
+                        "endTimeMs": 38800,
+                        "text": "How do you not win the Miss Universe?",
+                        "words": []
+                    },
+                    {
+                        "speaker": "Speaker 1",
+                        "startTimeMs": 39760,
+                        "endTimeMs": 40240,
+                        "text": "Oh, that's me.",
+                        "words": []
+                    },
+                    {
+                        "speaker": "Speaker 1",
+                        "startTimeMs": 44960,
+                        "endTimeMs": 45040,
+                        "text": "Wow.",
+                        "words": []
+                    },
+                    {
+                        "speaker": "Speaker 1",
+                        "startTimeMs": 45040,
+                        "endTimeMs": 45600,
+                        "text": "Yeah, you know what?",
+                        "words": []
+                    },
+                    {
+                        "speaker": "Speaker 1",
+                        "startTimeMs": 45600,
+                        "endTimeMs": 46200,
+                        "text": "It doesn't...",
+                        "words": []
+                    },
+                    {
+                        "speaker": "Speaker 1",
+                        "startTimeMs": 46200,
+                        "endTimeMs": 47760,
+                        "text": "It doesn't look like your heart is in it.",
+                        "words": []
+                    }
+                ],
+                "cameraShotTimesMs": [
+                    2467,
+                    2933,
+                    6433,
+                    17900,
+                    18467,
+                    31500,
+                    33067,
+                    36367,
+                    44833,
+                    47933
+                ],
+                "segments": [
+                    {
+                        "startTimeMs": 0,
+                        "endTimeMs": 6433,
+                        "description": "Jimmy Kimmel interviews Gal Gadot about her experience as Miss Israel.",
+                        "segmentId": "1"
+                    },
+                    {
+                        "startTimeMs": 6433,
+                        "endTimeMs": 17900,
+                        "description": "Gal Gadot shares her experience of winning Miss Israel and participating in Miss Universe.",
+                        "segmentId": "2"
+                    },
+                    {
+                        "startTimeMs": 17900,
+                        "endTimeMs": 31500,
+                        "description": "Gal Gadot talks about her apprehension towards the Miss Universe pageant.",
+                        "segmentId": "3"
+                    },
+                    {
+                        "startTimeMs": 31500,
+                        "endTimeMs": 36367,
+                        "description": "Jimmy Kimmel and Gal Gadot discuss her strategy to not win Miss Universe.",
+                        "segmentId": "4"
+                    },
+                    {
+                        "startTimeMs": 36367,
+                        "endTimeMs": 50000,
+                        "description": "A scene from the Miss Universe pageant is shown, with Jimmy Kimmel commenting on Gal Gadot's lack of enthusiasm.",
+                        "segmentId": "5"
+                    }
+                ],
+                "persons": [
+                    {
+                        "personId": "0a9bc856-487a-4ce8-82dd-34db13d5e1a4",
+                        "confidence": 1,
+                        "source": "AV(0,176,12,392,589)-AV(2433,192,56,374,561);AV(2933,185,29,380,576)-AV(6400,199,29,384,588);AV(31500,163,28,382,573)-AV(33033,159,60,376,552);AV(35933,573,453,120,175)-AV(39633,553,649,78,124);AV(44833,250,690,198,273)-AV(46633,246,671,230,317)"
+                    },
+                    {
+                        "personId": "a7784fd0-a24e-47d7-b125-351fe1d61f21",
+                        "confidence": 1,
+                        "source": "AV(2467,201,143,348,562)-AV(2900,192,125,369,594);AV(6433,40,0,630,858)-AV(31467,426,152,294,531);AV(33067,197,122,394,609)-AV(34033,238,148,338,529);AV(35933,341,365,246,477)-AV(36867,438,539,196,385);AV(36867,59,301,84,128)-AV(37333,101,356,84,125);AV(37333,271,666,90,140)-AV(37367,272,667,90,140);AV(37367,103,357,84,125)-AV(37400,274,669,88,137);AV(37400,105,360,84,125)-AV(37433,276,672,86,134);AV(37433,107,362,84,125)-AV(37467,276,672,86,134);AV(37467,109,365,84,125)-AV(37500,278,673,86,133);AV(37500,112,366,84,125)-AV(37533,279,673,86,133);AV(37533,114,369,84,125)-AV(37567,280,673,86,133);AV(37567,117,371,84,125)-AV(37600,280,673,86,133);AV(37600,119,374,84,125)-AV(37633,280,673,86,131);AV(37633,121,375,84,125)-AV(37667,280,673,86,131);AV(37667,123,378,84,125)-AV(37700,280,673,86,133);AV(37700,125,380,84,125)-AV(37733,276,671,90,140);AV(37733,127,383,84,125)-AV(37767,275,668,92,143);AV(37767,130,384,84,125)-AV(37800,128,388,81,110);AV(37800,274,668,94,146)-AV(37833,274,667,94,148);AV(37833,130,389,81,110)-AV(37867,274,668,94,151);AV(37867,130,389,81,110)-AV(37900,274,668,94,151);AV(37900,130,389,81,110)-AV(37933,276,669,94,151);AV(37933,130,389,81,110)-AV(37967,278,671,94,151);AV(37967,130,389,81,110)-AV(38000,280,672,94,151);AV(38000,130,389,81,110)-AV(38033,282,673,94,151);AV(38033,130,389,81,110)-AV(38067,284,675,94,151);AV(38067,130,389,81,110)-AV(38100,287,676,94,151);AV(38100,130,389,81,110)-AV(38133,289,677,94,151);AV(38133,130,389,81,110)-AV(38167,290,677,94,151);AV(38167,130,389,81,110)-AV(38200,292,678,94,151);AV(38200,130,389,81,110)-AV(38233,292,680,94,151);AV(38233,130,389,81,110)-AV(38267,297,686,106,146);AV(38267,136,394,76,110)-AV(38300,300,689,104,143);AV(38300,136,394,76,110)-AV(38333,300,690,104,142);AV(38333,136,394,76,110)-AV(38367,302,691,104,140);AV(38367,136,394,76,110)-AV(38400,302,692,104,140);AV(38400,136,394,76,110)-AV(38433,304,694,104,140);AV(38433,136,394,76,110)-AV(38467,305,695,104,140);AV(38467,136,394,76,110)-AV(38500,306,696,104,140);AV(38500,136,394,76,110)-AV(38533,306,698,104,140);AV(38533,136,394,76,110)-AV(38567,306,699,104,137);AV(38567,136,394,76,110)-AV(38600,306,700,104,134);AV(38600,136,394,76,110)-AV(38633,306,703,104,133);AV(38633,136,394,76,110)-AV(38667,306,704,104,131);AV(38667,136,394,76,110)-AV(38700,306,705,104,131);AV(38700,136,394,76,110)-AV(38733,138,397,76,108);AV(38733,292,708,128,137)-AV(38767,292,708,128,137);AV(38767,138,397,76,108)-AV(38800,292,708,128,137);AV(38800,138,397,76,108)-AV(38833,292,708,128,137);AV(38833,138,397,76,108)-AV(38867,292,708,128,137);AV(38867,138,397,76,108)-AV(38900,294,710,126,134);AV(38900,138,397,76,108)-AV(38933,297,713,126,134);AV(38933,138,397,76,108)-AV(38967,300,716,124,133);AV(38967,138,397,76,108)-AV(39000,302,719,122,131);AV(39000,138,397,76,108)-AV(39033,305,722,120,128);AV(39033,138,397,76,108)-AV(39067,308,724,117,125);AV(39067,138,397,76,108)-AV(39100,310,727,117,124);AV(39100,138,397,76,108)-AV(39133,312,728,117,124);AV(39133,138,397,76,108)-AV(39167,312,730,117,124);AV(39167,138,397,76,108)-AV(39200,139,397,74,110);AV(39200,314,731,117,124)-AV(39233,315,732,114,122);AV(39233,139,397,74,110)-AV(39267,315,732,114,122);AV(39267,139,397,74,110)-AV(39300,315,732,114,122);AV(39300,139,397,74,110)-AV(39333,315,732,114,122);AV(39333,139,397,74,110)-AV(39367,315,732,114,122);AV(39367,139,397,74,110)-AV(39400,313,732,114,122);AV(39400,139,397,74,110)-AV(39433,312,732,114,122);AV(39433,139,397,74,110)-AV(39467,311,731,114,122);AV(39467,139,397,74,110)-AV(39500,310,731,114,122);AV(39500,139,397,74,110)-AV(39533,309,731,114,122);AV(39533,139,397,74,110)-AV(39567,307,731,114,122);AV(39567,139,397,74,110)-AV(39600,307,731,114,122);AV(39600,139,397,74,110)-AV(39633,305,731,114,122);AV(39633,139,397,74,110)-AV(39667,139,398,74,110);AV(39667,305,731,114,122)-AV(44800,153,406,78,115);AV(47933,131,142,128,228)-AV(49967,117,125,138,225)"
+                    },
+                    {
+                        "personId": "Person-1",
+                        "confidence": 1,
+                        "source": "AV(10267,32,840,99,128)-AV(11667,100,836,140,187);AV(17267,289,948,84,101)-AV(17867,295,956,84,99);AV(24267,0,991,36,69)-AV(25033,0,1048,-18,-31);AV(26133,598,782,58,72)-AV(26600,567,777,56,69);AV(28900,0,1157,30,82)-AV(28933,0,1157,30,82);AV(34067,250,120,320,605)-AV(35400,347,202,312,653);AV(39667,564,648,50,124)-AV(41067,582,652,56,124);AV(42467,379,736,78,175)-AV(43867,387,723,78,189);AV(46667,247,678,200,274)-AV(47600,247,678,200,274)"
+                    },
+                    {
+                        "personId": "Person-4",
+                        "confidence": 1,
+                        "source": "AV(35233,626,539,94,193)-AV(35267,550,431,170,353);AV(35433,395,289,214,448)-AV(35900,307,305,286,594)"
+                    },
+                    {
+                        "personId": "Person-3",
+                        "confidence": 1,
+                        "source": "AV(36400,249,288,78,110)-AV(42000,325,415,63,92);AV(47933,485,147,156,216)-AV(49967,482,134,148,216)"
+                    },
+                    {
+                        "personId": "Person-2",
+                        "confidence": 1,
+                        "source": "AV(36400,457,278,74,106)-AV(47900,24,184,126,180)"
+                    }
+                ]
+            }
+        ]
+    }
+}
