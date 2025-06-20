@@ -1,7 +1,7 @@
 ---
-title: Local Evaluation with Azure AI Evaluation SDK
+title: Local Evaluation with the Azure AI Evaluation SDK
 titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to evaluate a Generative AI application with the Azure AI Evaluation SDK.
+description: This article provides instructions on how to evaluate a generative AI application with the Azure AI Evaluation SDK.
 author: lgayhardt
 ms.author: lagayhar
 manager: scottpolly
@@ -16,24 +16,24 @@ ms.custom:
   - build-aifnd
   - build-2025
 ---
-# Evaluate your Generative AI application locally with the Azure AI Evaluation SDK
+# Evaluate your generative AI application locally with the Azure AI Evaluation SDK
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-To thoroughly assess the performance of your generative AI application when applied to a substantial dataset, you can evaluate a Generative AI application in your development environment with the Azure AI evaluation SDK. Given either a test dataset or a target, your generative AI application generations are quantitatively measured with both mathematical based metrics and AI-assisted quality and safety evaluators. Built-in or custom evaluators can provide you with comprehensive insights into the application's capabilities and limitations.
+If you want to thoroughly assess the performance of your generative AI application when you apply it to a substantial dataset, you can evaluate it in your development environment with the Azure AI evaluation SDK. When you provide either a test dataset or a target, your generative AI application generations are quantitatively measured with both mathematical-based metrics and AI-assisted quality and safety evaluators. Built-in or custom evaluators can provide you with comprehensive insights into the application's capabilities and limitations.
 
-In this article, you learn how to run evaluators on a single row of data, a larger test dataset on an application target with built-in evaluators using the Azure AI evaluation SDK locally, then track the results and evaluation logs in Azure AI project.
+In this article, you learn how to run evaluators on a single row of data and a larger test dataset on an application target. You use built-in evaluators that use the Azure AI evaluation SDK locally. Then, you learn to track the results and evaluation logs in an Azure AI project.
 
 ## Getting started
 
-First install the evaluators package from Azure AI evaluation SDK:
+First install the evaluators package from the Azure AI evaluation SDK:
 
 ```python
 pip install azure-ai-evaluation
 ```
 
 > [!NOTE]
-> For more detailed information, see the [API Reference Documentation for Azure AI Evaluation SDK](https://aka.ms/azureaieval-python-ref).
+> For more detailed information, see the [API reference documentation for the Azure AI Evaluation SDK](https://aka.ms/azureaieval-python-ref).
 
 ## Built-in evaluators
 
@@ -41,7 +41,7 @@ pip install azure-ai-evaluation
 |--------------------------|-----------------------------|
 | [General purpose](../../concepts/evaluation-evaluators/general-purpose-evaluators.md) | `CoherenceEvaluator`, `FluencyEvaluator`, `QAEvaluator` |
 | [Textual similarity](../../concepts/evaluation-evaluators/textual-similarity-evaluators.md) | `SimilarityEvaluator`, `F1ScoreEvaluator`, `BleuScoreEvaluator`, `GleuScoreEvaluator`, `RougeScoreEvaluator`, `MeteorScoreEvaluator` |
-| [Retrieval-Augmented Generation (RAG)](../../concepts/evaluation-evaluators/rag-evaluators.md) | `RetrievalEvaluator`, `DocumentRetrievalEvaluator`, `GroundednessEvaluator`, `GroundednessProEvaluator`, `RelevanceEvaluator`, `ResponseCompletenessEvaluator` |
+| [Retrieval-augmented generation (RAG)](../../concepts/evaluation-evaluators/rag-evaluators.md) | `RetrievalEvaluator`, `DocumentRetrievalEvaluator`, `GroundednessEvaluator`, `GroundednessProEvaluator`, `RelevanceEvaluator`, `ResponseCompletenessEvaluator` |
 | [Risk and safety](../../concepts/evaluation-evaluators/risk-safety-evaluators.md) | `ViolenceEvaluator`, `SexualEvaluator`, `SelfHarmEvaluator`, `HateUnfairnessEvaluator`, `IndirectAttackEvaluator`, `ProtectedMaterialEvaluator`, `UngroundedAttributesEvaluator`, `CodeVulnerabilityEvaluator`, `ContentSafetyEvaluator` |
 | [Agentic](../../concepts/evaluation-evaluators/agent-evaluators.md) | `IntentResolutionEvaluator`, `ToolCallAccuracyEvaluator`, `TaskAdherenceEvaluator` |
 | [Azure OpenAI](../../concepts/evaluation-evaluators/azure-openai-graders.md) | `AzureOpenAILabelGrader`, `AzureOpenAIStringCheckGrader`, `AzureOpenAITextSimilarityGrader`, `AzureOpenAIGrader` |
@@ -50,23 +50,22 @@ Built-in quality and safety metrics take in query and response pairs, along with
 
 ### Data requirements for built-in evaluators
 
-Built-in evaluators can accept *either* query and response pairs or a list of conversations in `jsonl` format or both.
+Built-in evaluators can accept *either* query and response pairs or a list of conversations in JSON Lines (JSONL) format or both.
 
 | Conversation *and* single-turn support for text | Conversation *and* single-turn support for text and image | Single-turn support for text only |
 |--------------------|------------------------------|---------------|
 | `GroundednessEvaluator`, `GroundednessProEvaluator`, `RetrievalEvaluator`, `DocumentRetrievalEvaluator`,`RelevanceEvaluator`, `CoherenceEvaluator`, `FluencyEvaluator`, `ResponseCompletenessEvaluator`, `IndirectAttackEvaluator`, `AzureOpenAILabelGrader`, `AzureOpenAIStringCheckGrader`, `AzureOpenAITextSimilarityGrader`, `AzureOpenAIGrader` | `ViolenceEvaluator`, `SexualEvaluator`, `SelfHarmEvaluator`, `HateUnfairnessEvaluator`, `ProtectedMaterialEvaluator`, `ContentSafetyEvaluator` | `UngroundedAttributesEvaluator`, `CodeVulnerabilityEvaluator`, `ResponseCompletenessEvaluator`, `SimilarityEvaluator`, `F1ScoreEvaluator`, `RougeScoreEvaluator`, `GleuScoreEvaluator`, `BleuScoreEvaluator`, `MeteorScoreEvaluator`, `QAEvaluator` |
 
 > [!NOTE]
-> AI-assisted quality evaluators except for `SimilarityEvaluator` come with a reason field. They employ techniques including chain-of-thought reasoning to generate an explanation for the score. Therefore they consume more token usage in generation as a result of improved evaluation quality. Specifically, `max_token` for evaluator generation has been set to 800 for all AI-assisted evaluators (and 1600 for `RetrievalEvaluator` to accommodate for longer inputs.)
+> AI-assisted quality evaluators come with a reason field (except for `SimilarityEvaluator`). They employ techniques that include chain-of-thought reasoning to generate an explanation for the score. Therefore, they consume more token usage in generation due to improved evaluation quality. Specifically, `max_token` for evaluator generation is set to 800 for all AI-assisted evaluators (and 1,600 for `RetrievalEvaluator` to accommodate for longer inputs.)
+>
+> Azure OpenAI graders require a template that describes how their input columns are turned into the *real* input that the grader uses. Example: If you have two inputs called *query* and *response*, and a template that was formatted like so: `{{item.query}}`, then only the query would be used. Similarly you could have something like `{{item.conversation}}` to accept a conversation input, but the ability of the system to handle that depends on how you configure the rest of the grader to expect that input.
 
-> [!NOTE]
-> Azure OpenAI graders require a template that describes how their input columns are turned into the 'real' input that the grader uses. Example: If you have two inputs called "query" and "response", and a template that was formatted like so: `{{item.query}}`, then only the query would be used. Similarly you could have something like `{{item.conversation}}` to accept a conversation input, but the ability of the system to handle that will depend on how you configure the rest of the grader to expect that input.
-
-For more information on data requirements for agentic evaluators, go to [Run agent evaluations locally with Azure AI Evaluation SDK](agent-evaluate-sdk.md).
+For more information on data requirements for agentic evaluators, go to [Run agent evaluations locally with the Azure AI Evaluation SDK](agent-evaluate-sdk.md).
 
 #### Single-turn support for text
 
-All built-in evaluators take single-turn inputs as in query-and-response pairs in strings, for example:
+All built-in evaluators take single-turn inputs as query-and-response pairs in strings, for example:
 
 ```python
 from azure.ai.evaluation import RelevanceEvaluator
@@ -79,7 +78,7 @@ relevance_eval = RelevanceEvaluator(model_config)
 relevance_eval(query=query, response=response)
 ```
 
-To run batch evaluations using [local evaluation](#local-evaluation-on-test-datasets-using-evaluate) or [upload your dataset to run cloud evaluation](./cloud-evaluation.md#uploading-evaluation-data), you need to represent the dataset in `.jsonl` format. The previous single-turn data (a query-and-response pair) is equivalent to a line of dataset as following (we show three lines as an example):
+To run batch evaluations using [local evaluation](#local-evaluation-on-test-datasets-using-evaluate) or [upload your dataset to run cloud evaluation](./cloud-evaluation.md#uploading-evaluation-data), you need to represent the dataset in JSONL format. The previous single-turn data (a query-and-response pair) is equivalent to a line of dataset like the following (we show three lines as an example):
 
 ```json
 {"query":"What is the capital of France?","response":"Paris."}
@@ -89,18 +88,18 @@ To run batch evaluations using [local evaluation](#local-evaluation-on-test-data
 
 The evaluation test dataset can contain the following, depending on the requirements of each built-in evaluator:
 
-- Query: the query sent in to the generative AI application
-- Response: the response to the query generated by the generative AI application
-- Context: the source on which generated response is based (that is, the grounding documents)
-- Ground truth: the response generated by user/human as the true answer
+- **Query**: The query sent in to the generative AI application.
+- **Response**: The response to the query generated by the generative AI application.
+- **Context**: The source the generated response is based on (that is, the grounding documents).
+- **Ground truth**: The response generated by a user or human as the true answer.
 
-To see what each evaluator requires, you can learn more in the Built-in evaluators documents.
+To see what each evaluator requires, you can learn more in the built-in evaluators documents.
 
 #### Conversation support for text
 
-For evaluators that support conversations for text, you can provide `conversation` as input, a Python dictionary with a list of `messages` (which include `content`, `role`, and optionally `context`).
+For evaluators that support conversations for text, you can provide `conversation` as input, which includes a Python dictionary with a list of `messages` (which include `content`, `role`, and optionally `context`).
 
-Example of a two-turn conversation in python:
+See the following two-turn conversation in Python:
 
 ```python
 conversation = {
@@ -127,7 +126,7 @@ conversation = {
 }
 ```
 
-To run batch evaluations using [local evaluation](#local-evaluation-on-test-datasets-using-evaluate) or [upload your dataset to run cloud evaluation](./cloud-evaluation.md#uploading-evaluation-data), you need to represent the dataset in `.jsonl` format. The previous conversation is equivalent to a line of dataset as following in a `.jsonl` file:
+To run batch evaluations by using [local evaluation](#local-evaluation-on-test-datasets-using-evaluate) or [upload your dataset to run cloud evaluation](./cloud-evaluation.md#uploading-evaluation-data), you need to represent the dataset in JSONL format. The previous conversation is equivalent to a line of dataset in a JSONL file like the following example:
 
 ```json
 {"conversation":
@@ -188,7 +187,7 @@ conversation = {
     ]
 }
 
-# alternatively, you can load the same content from a .jsonl file
+# Alternatively, you can load the same content from a JSONL file
 groundedness_conv_score = groundedness_eval(conversation=conversation)
 print(json.dumps(groundedness_conv_score, indent=4))
 ```
@@ -226,24 +225,24 @@ For conversation outputs, per-turn results are stored in a list and the overall 
 ```
 
 > [!NOTE]
-> We strongly recommend users to migrate their code to use the key without prefixes (for example, `groundedness.groundedness`) to allow your code to support more evaluator models.
+> We recommend that users migrate their code to use the key without prefixes (for example, `groundedness.groundedness`) to allow your code to support more evaluator models.
 
 #### Conversation support for images and multi-modal text and image
 
-For evaluators that support conversations for image and multi-modal image and text, you can pass in image URLs or base64 encoded images in `conversation`.
+For evaluators that support conversations for image and multi-modal image and text, you can pass in image URLs or Base64-encoded images in `conversation`.
 
-Following are the examples of supported scenarios:
+Supported scenarios include:
 
-- Multiple images with text input to image or text generation
-- Text only input to image generations
-- Image only inputs to text generation
+- Multiple images with text input to image or text generation.
+- Text-only input to image generations.
+- Image-only input to text generation.
 
 ```python
 from pathlib import Path
 from azure.ai.evaluation import ContentSafetyEvaluator
 import base64
 
-# instantiate an evaluator with image and multi-modal support
+# create an instance of an evaluator with image and multi-modal support
 safety_evaluator = ContentSafetyEvaluator(credential=azure_cred, azure_ai_project=project_scope)
 
 # example of a conversation with an image URL
@@ -301,31 +300,31 @@ safety_score = safety_evaluator(conversation=conversation_image_url)
 
 Currently the image and multi-modal evaluators support:
 
-- Single turn only (a conversation can have only one user message and one assistant message)
-- Conversation can have only one system message
-- Conversation payload should be less than 10-MB size (including images)
-- Absolute URLs and Base64 encoded images
-- Multiple images in a single turn
-- JPG/JPEG, PNG, GIF file formats
+- Single turn only (a conversation can have only one user message and one assistant message).
+- Conversations that have only one system message.
+- Conversation payloads that are smaller than 10 MB (including images).
+- Absolute URLs and Base64-encoded images.
+- Multiple images in a single turn.
+- JPG/JPEG, PNG, and GIF file formats.
 
 #### Set up
 
-For AI-assisted quality evaluators except for `GroundednessProEvaluator` (preview), you must specify a GPT model (`gpt-35-turbo`, `gpt-4`, `gpt-4-turbo`, `gpt-4o`, or `gpt-4o-mini`) in your `model_config` to act as a judge to score the evaluation data. We support both Azure OpenAI or OpenAI model configuration schema. We recommend using GPT models that aren't in preview for the best performance and parseable responses with our evaluators.
+For AI-assisted quality evaluators (except for `GroundednessProEvaluator` preview), you must specify a GPT model (`gpt-35-turbo`, `gpt-4`, `gpt-4-turbo`, `gpt-4o`, or `gpt-4o-mini`) in your `model_config`. The GPT model acts as a judge to score the evaluation data. We support both Azure OpenAI or OpenAI model configuration schemas. For the best performance and parseable responses with our evaluators, we recommend using GPT models that aren't in preview.
 
 > [!NOTE]
-> It's strongly recommended that `gpt-3.5-turbo` should be replaced by `gpt-4o-mini` for your evaluator model, as the latter is cheaper, more capable, and just as fast according to [OpenAI](https://platform.openai.com/docs/models/gpt-4#gpt-3-5-turbo).
+> We strongly recommend that you replace `gpt-3.5-turbo` with `gpt-4o-mini` for your evaluator model, because the latter is cheaper, more capable, and just as fast according to [OpenAI](https://platform.openai.com/docs/models/gpt-4#gpt-3-5-turbo).
 >
-> Make sure that you have at least `Cognitive Services OpenAI User` role for the Azure OpenAI resource to make inference calls with API key. To learn more about permissions, see [permissions for Azure OpenAI resource](../../../ai-services/openai/how-to/role-based-access-control.md#summary).  
+> Make sure that you have at least the `Cognitive Services OpenAI User` role for the Azure OpenAI resource to make inference calls with the API key. To learn more about permissions, see [Permissions for Azure OpenAI resource](../../../ai-services/openai/how-to/role-based-access-control.md#summary).  
 
-For all Risk and Safety Evaluators and `GroundednessProEvaluator` (preview), instead of a GPT deployment in `model_config`, you must provide your `azure_ai_project` information. This accesses the backend evaluation service via your Azure AI project.
+For all risk and safety evaluators and `GroundednessProEvaluator` (preview), instead of a GPT deployment in `model_config`, you must provide your `azure_ai_project` information. This accesses the back end evaluation service via your Azure AI project.
 
 #### Prompts for AI-assisted built-in evaluators
 
-We open-source the prompts of our quality evaluators in our Evaluator Library and Azure AI Evaluation Python SDK repository for transparency, except for the Safety Evaluators and `GroundednessProEvaluator` (powered by Azure AI Content Safety). These prompts serve as instructions for a language model to perform their evaluation task, which requires a human-friendly definition of the metric and its associated scoring rubrics. We highly recommend that users customize the definitions and grading rubrics to their scenario specifics. See details in [Custom Evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md).
+We open source the prompts of our quality evaluators in our Evaluator Library and the Azure AI Evaluation Python SDK repository for transparency, except for the Safety Evaluators and `GroundednessProEvaluator` (powered by Azure AI Content Safety). These prompts serve as instructions for a language model to perform their evaluation task, which requires a human-friendly definition of the metric and its associated scoring rubrics. We highly recommend that users customize the definitions and grading rubrics to their scenario specifics. See details in [Custom Evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md).
 
 ### Composite evaluators
 
-Composite evaluators are built in evaluators that combine the individual quality or safety metrics to easily provide a wide range of metrics right out of the box for both query response pairs or chat messages.
+Composite evaluators are built-in evaluators that combine individual quality or safety metrics. They easily provide a wide range of metrics right out of the box for both query response pairs or chat messages.
 
 | Composite evaluator | Contains | Description |
 |--|--|--|
@@ -342,11 +341,11 @@ If this is your first time running evaluations and logging it to your Azure AI F
 
 1. [Create and connect your storage account](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/01-connections/connection-storage-account.bicep) to your Azure AI Foundry project at the resource level. This bicep template provisions and connects a storage account to your Foundry project with key authentication.
 2. Make sure the connected storage account has access to all projects.
-3. If you connected your storage account with Microsoft Entra ID, make sure to give MSI (Microsoft Identity) permissions for Storage Blob Data Owner to both your account and Foundry project resource in Azure portal.
+3. If you connected your storage account with Microsoft Entra ID, make sure to give MSI (Microsoft Identity) permissions for **Storage Blob Data Owner** to both your account and Foundry project resource in Azure portal.
 
 ### Evaluate on a dataset and log results to Azure AI Foundry
 
-In order to ensure the `evaluate()` can correctly parse the data, you must specify column mapping to map the column from the dataset to key words that are accepted by the evaluators. In this case, we specify the data mapping for `query`, `response`, and `context`.
+In order to ensure the `evaluate()` can correctly parse the data, you must specify column mapping to map the column from the dataset to key words that the evaluators accept. In this case, we specify the data mapping for `query`, `response`, and `context`.
 
 ```python
 from azure.ai.evaluation import evaluate
@@ -377,7 +376,7 @@ result = evaluate(
 > [!TIP]
 > Get the contents of the `result.studio_url` property for a link to view your logged evaluation results in your Azure AI project.
 
-The evaluator outputs results in a dictionary which contains aggregate `metrics` and row-level data and metrics. An example of an output:
+The evaluator outputs results in a dictionary, which contains aggregate `metrics` and row-level data and metrics. See the following example of an output:
 
 ```python
 {'metrics': {'answer_length.value': 49.333333333333336,
@@ -422,7 +421,7 @@ The `evaluate()` API has a few requirements for the data format that it accepts 
 
 #### Data format
 
-The `evaluate()` API only accepts data in the JSONLines format. For all built-in evaluators, `evaluate()` requires data in the following format with required input fields. See the [previous section on required data input for built-in evaluators](#data-requirements-for-built-in-evaluators). Sample of one line can look like:
+The `evaluate()` API accepts only data in JSONL format. For all built-in evaluators, `evaluate()` requires data in the following format with the required input fields. See the [previous section on required data input for built-in evaluators](#data-requirements-for-built-in-evaluators). The following code snippet is a sample of what one line can look like:
 
 ```json
 {
@@ -462,7 +461,7 @@ When passing in your built-in evaluators, it's important to specify the right ke
 | `QAEvaluator`             | "qa"              |
 | `ContentSafetyEvaluator`  | "content_safety"  |
 
-Here's an example of setting the `evaluators` parameters:
+Here's an example of how to set the `evaluators` parameters:
 
 ```python
 result = evaluate(
@@ -478,9 +477,9 @@ result = evaluate(
 
 ## Local evaluation on a target
 
-If you have a list of queries that you'd like to run then evaluate, the `evaluate()` also supports a `target` parameter, which can send queries to an application to collect answers then run your evaluators on the resulting query and response.
+If you have a list of queries that you'd like to run and then evaluate, the `evaluate()` also supports a `target` parameter, which can send queries to an application to collect answers, then run your evaluators on the resulting query and response.
 
-A target can be any callable class in your directory. In this case, we have a Python script `askwiki.py` with a callable class `askwiki()` that we can set as our target. Given a dataset of queries we can send into our simple `askwiki` app, we can evaluate the groundedness of the outputs. Ensure you specify the proper column mapping for your data in `"column_mapping"`. You can use `"default"` to specify column mapping for all evaluators.
+A target can be any callable class in your directory. In this case, we have a Python script `askwiki.py` with a callable class `askwiki()` that we can set as our target. Given a dataset of queries we can send into our simple `askwiki` app, we can evaluate the groundedness of the outputs. Make sure that you specify the proper column mapping for your data in `"column_mapping"`. You can use `"default"` to specify column mapping for all evaluators.
 
 Here's the content in "data.jsonl":
 
@@ -515,10 +514,10 @@ result = evaluate(
 ## Related content
 
 - [Azure AI Evaluation Python SDK client reference documentation](https://aka.ms/azureaieval-python-ref)
-- [Azure AI Evaluation SDK client Troubleshooting guide](https://aka.ms/azureaieval-tsg)
+- [Azure AI Evaluation SDK client troubleshooting guide](https://aka.ms/azureaieval-tsg)
 - [Learn more about the evaluation metrics](../../concepts/evaluation-metrics-built-in.md)
-- [Evaluate your Generative AI applications remotely on the cloud](./cloud-evaluation.md)
+- [Evaluate your generative AI applications remotely on the cloud](./cloud-evaluation.md)
 - [Learn more about simulating test datasets for evaluation](./simulator-interaction-data.md)
 - [View your evaluation results in Azure AI project](../../how-to/evaluate-results.md)
-- [Get started building a chat app using the Azure AI Foundry SDK](../../quickstarts/get-started-code.md)
+- [Get started building a chat app by using the Azure AI Foundry SDK](../../quickstarts/get-started-code.md)
 - [Get started with evaluation samples](https://aka.ms/aistudio/eval-samples)
