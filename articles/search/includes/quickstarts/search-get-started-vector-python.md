@@ -9,7 +9,7 @@ ms.date: 06/19/2025
 
 The [Azure AI Search client library](/python/api/overview/azure/search-documents-readme) allows you to create, load, and query vectors. It provides an abstraction over the REST API for access to index operations such as data ingestion, search operations and index management operations.
 
-In this quickstart, you'll use a Python notebook which contains the configuration, data, and code required to perform these operations.
+In this quickstart, you'll use a Jupyter notebook which contains the configuration, data, and code required to perform these operations.
 
 In Azure AI Search, a [vector store](../../vector-store.md) has an index schema that defines vector and nonvector fields, a vector search configuration for algorithms that create the embedding space, and settings on vector field definitions that are evaluated at query time. The [Create Index](/rest/api/searchservice/indexes/create-or-update) REST API creates the vector store.
 
@@ -24,9 +24,9 @@ In Azure AI Search, a [vector store](../../vector-store.md) has an index schema 
     - You can use a free search service for most of this quickstart, but we recommend the Basic tier or higher for larger data files.
     - To run the query example that invokes [semantic reranking](../../semantic-search-overview.md), your search service must be at the Basic tier or higher with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
 
-- [Visual Studio Code](https://code.visualstudio.com/download)
+- [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and [Jupyter package](https://pypi.org/project/jupyter/).
 
-- [Git](https://git-scm.com/downloads) to clone the repo containing the Python notebook and other related files.
+- [Git](https://git-scm.com/downloads) to clone the repo containing the Jupyter notebook and other related files.
 
 ---
 
@@ -37,8 +37,7 @@ Requests to the search endpoint must be authenticated and authorized. While it i
 This quickstart uses `DefaultAzureCredential` which simplifies authentication in both development and production scenarios. However, for production scenarios, you may have more advanced requirements that require a different approach. See [Authenticate Python apps to Azure services by using the Azure SDK for Python](/azure/developer/python/sdk/authentication/overview) to understand all of your options.
 
 
-## Clone the notebook and setup environment
-
+## Clone the code and setup environment
 
 1. Clone the repo containing the code for this quickstart. 
 
@@ -88,7 +87,7 @@ This quickstart uses `DefaultAzureCredential` which simplifies authentication in
 1. In Visual Studio Code, open the `vector-search-quickstart.ipynb`.
 
    > [!Note]
-   > If this is the first time you have used a notebook in Visual Studio Code, you will be prompted to install the Jupyter Notebook kernal and other tool. Choose to install the suggested tools to continue with this tutorial.
+   > If this is the first time you have used a Jupyter Notebook (.ipynb) in Visual Studio Code, you will be prompted to install the Jupyter Notebook kernal and possibly other tools. Choose to install the suggested tools to continue with this quickstart.
 
 
 1. Run the cell in the section below the title "Install packages and set variables". This invokes the following code:
@@ -253,7 +252,7 @@ The code in the `vector-search-quickstart.ipynb` uses several methods from the `
 
    - This particular index supports multiple search capabilities, such as:
       - Full-text keyword search (`SearchableField(name="HotelName", ...)`, `SearchableField(name="Description", ...)`)
-      - Vector search (hybrid search) Fields like `HotelNameVector`, `DescriptionVector`, and `vector_search=VectorSearch(...)`
+      - Vector search (hybrid search) Fields (`DescriptionVector`)
       - Semantic search (`semantic_search=SemanticSearch(configurations=[semantic_config])`)
       - Faceted search (`facetable=True`)
       - Semantic search (`semantic_search=SemanticSearch(configurations=[semantic_config])`)
@@ -371,9 +370,9 @@ In the next sections, we run queries against the `hotels-vector-quickstart` inde
 The example vector queries are based on two strings:
 
 - **Search string**: `historic hotel walk to restaurants and shopping`
-- **Vector query string** (vectorized into a mathematical representation): `classic lodging near running trails, eateries, retail`
+- **Vector query string** (vectorized into a mathematical representation): `quintessential lodging near running trails, eateries, retail`
 
-The vector query string is semantically similar to the search string, but it includes terms that don't exist in the search index. If you do a keyword search for `classic lodging near running trails, eateries, retail`, results are zero. We use this example to show how you can get relevant results even if there are no matching terms.
+The vector query string is semantically similar to the search string, but it includes terms that don't exist in the search index. If you do a keyword search for `quintessential lodging near running trails, eateries, retail`, results are zero. We use this example to show how you can get relevant results even if there are no matching terms.
 
 1. Run the cell in the section below "Create the vector query string". this loads the `vector` variable with the vectorized query data required to run all of the searches in the next sections.
 
@@ -419,9 +418,9 @@ The first example demonstrates a basic scenario where you want to find document 
 
    This vector query is shortened for brevity. The `vectorQueries.vector` contains the vectorized text of the query input, `fields` determines which vector fields are searched, and `k` specifies the number of nearest neighbors to return.
 
-   The vector query string is `classic lodging near running trails, eateries, retail`, which is vectorized into 1,536 embeddings for this query.
+   The vector query string is `quintessential lodging near running trails, eateries, retail`, which is vectorized into 1,536 embeddings for this query.
 
-   The response for the vector equivalent of `classic lodging near running trails, eateries, retail` includes seven results but the code specifies `top=5` so only the first five results will be returned. Furthermore, only the fields specific by the `select` are returned. 
+   The response for the vector equivalent of `quintessential lodging near running trails, eateries, retail` includes seven results but the code specifies `top=5` so only the first five results will be returned. Furthermore, only the fields specific by the `select` are returned. 
 
    `search_client.search()` returns a dict-like object. Each result provides a search score which can be accessed using `score = result.get("@search.score", "N/A")`. While not displayed in this example, in a similarity search, the response always includes `k` results ordered by the value similarity score.
 
@@ -544,7 +543,7 @@ You can add filters, but the filters are applied to the nonvector content in you
 Hybrid search consists of keyword queries and vector queries in a single search request. This example runs the vector query and full text search concurrently:
 
 - **Search string**: `historic hotel walk to restaurants and shopping`
-- **Vector query string** (vectorized into a mathematical representation): `classic lodging near running trails, eateries, retail`
+- **Vector query string** (vectorized into a mathematical representation): `quintessential lodging near running trails, eateries, retail`
 
 1. Run the cell in the section titled  "Hybrid Search". This block contains the request to query the search index.
 
