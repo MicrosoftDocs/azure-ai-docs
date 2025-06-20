@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 06/19/2025
+ms.date: 06/20/2025
 ---
 
 # Create a vector index
@@ -99,8 +99,8 @@ A vector configuration includes:
 
 [**2024-07-01**](/rest/api/searchservice/search-service-api-versions#2024-07-01) is generally available. It supports a vector configuration that has:
 
-+ The hierarchical navigable small world (HNSW) algorithm.
-+ The exhaustive k-nearest neighbor (KNN) algorithm.
++ Hierarchical navigable small world (HNSW) algorithm.
++ Exhaustive k-nearest neighbor (KNN) algorithm.
 + Scalar compression.
 + Binary compression, which is available in 2024-07-01 only and in newer Azure SDK packages.
 + Oversampling.

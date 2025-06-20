@@ -9,12 +9,12 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 06/18/2025
+ms.date: 06/20/2025
 ---
 
 # Vector indexes in Azure AI Search
 
-Vectors are high-dimensional embeddings that capture the underlying meaning of content, such as text or images. Azure AI Search stores vectors at the field level, allowing vector and nonvector content to coexist within the same [search index](search-what-is-an-index.md).
+Vectors are high-dimensional embeddings that represent text, images, and other content mathematically. Azure AI Search stores vectors at the field level, allowing vector and nonvector content to coexist within the same [search index](search-what-is-an-index.md).
 
 A search index becomes a *vector index* when you define vector fields and a vector configuration. To populate vector fields, you can push [precomputed embeddings](vector-search-how-to-generate-embeddings.md) into them or use [integrated vectorization](vector-search-integrated-vectorization.md), a built-in Azure AI Search capability that generates embeddings during indexing.
 
@@ -175,7 +175,7 @@ In our example, the search score is 1.00 because the search is unqualified. Seve
 
 ## Physical structure and size
 
-In Azure AI Search, the physical structure of an index is largely an internal implementation. You can access its schema, load and query its content, monitor its size, and manage its capacity. However, Microsoft manages the clusters themselves (inverted indexes, vector indexes, [shards](index-similarity-and-scoring.md#sharding-effects-on-query-results)) and other files and folders.
+In Azure AI Search, the physical structure of an index is largely an internal implementation. You can access its schema, load and query its content, monitor its size, and manage its capacity. However, Microsoft manages the infrastructure and physical data structures stored with your search service.
 
 The size and substance of an index are determined by the:
 
@@ -202,7 +202,7 @@ Vector index limits and estimations are covered in [another article](vector-sear
 This section introduces vector runtime operations, including connecting to and securing a single index.
 
 > [!NOTE]
-> There's no portal or API support for moving or copying an index. Typically, customers either point their application deployment to a different search service (using the same index name) or revise the name to create a copy on their current search service and then build it.
+> There's no portal or API support for moving or copying an index. Typically, you either point your application deployment to a different search service (using the same index name) or revise the name to create a copy on your current search service and then build it.
 
 ### Index isolation
   

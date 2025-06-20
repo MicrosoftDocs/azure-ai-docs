@@ -11,7 +11,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 06/18/2025
+ms.date: 06/20/2025
 ---
 
 # Search indexes in Azure AI Search
@@ -112,7 +112,7 @@ Although you can add new fields at any time, existing field definitions are lock
 
 ## Physical structure and size
 
-In Azure AI Search, the physical structure of an index is largely an internal implementation. You can access its schema, load and query its content, monitor its size, and manage its capacity. However, Microsoft manages the clusters themselves (inverted indexes, vector indexes, [shards](index-similarity-and-scoring.md#sharding-effects-on-query-results)) and other files and folders.
+In Azure AI Search, the physical structure of an index is largely an internal implementation. You can access its schema, load and query its content, monitor its size, and manage its capacity. However, Microsoft manages the infrastructure and physical data structures stored with your search service.
 
 You can monitor index size on the **Search management > Indexes** page in the Azure portal. Alternatively, you can issue a [GET INDEX request](/rest/api/searchservice/indexes/get) against your search service or a [Service Statistics request](/rest/api/searchservice/get-service-statistics/get-service-statistics) to check the value of storage size.
 
@@ -147,7 +147,7 @@ Also not reflected in the previous table is the effect of [analyzers](search-ana
 Now that you have a better idea of what an index is, this section introduces index runtime operations, including connecting to and securing a single index.
 
 > [!NOTE]
-> There's no portal or API support for moving or copying an index. Typically, customers either point their application deployment to a different search service (using the same index name) or revise the name to create a copy on their current search service and then build it.
+> There's no portal or API support for moving or copying an index. Typically, you either point your application deployment to a different search service (using the same index name) or revise the name to create a copy on your current search service and then build it.
 
 ### Index isolation
   
