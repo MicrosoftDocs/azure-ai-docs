@@ -117,7 +117,7 @@ train_step = PythonScriptStep(
 
 ### Access datasets within your script
 
-Named inputs to your pipeline step script are available as a dictionary within the `Run` object. Retrieve the active `Run` object by using `Run.get_context()`, and then retrieve the dictionary of named inputs by using `input_datasets`. If you passed the `DatasetConsumptionConfig` object by using the `arguments` argument rather than the `inputs` argument, access the data by using `ArgParser` code. Both techniques are demonstrated in the following snippets:
+Named inputs to your pipeline step script are available as a dictionary within the `Run` object. Retrieve the active `Run` object by using `Run.get_context()`, and then retrieve the dictionary of named inputs by using `input_datasets`. If you passed the `DatasetConsumptionConfig` object by using the `arguments` argument rather than the `inputs` argument, access the data by using `ArgumentParser` code. Both techniques are demonstrated in the following snippets:
 
 __The pipeline definition script__
 
@@ -162,9 +162,9 @@ ds = Dataset.get_by_name(workspace=ws, name='mnist_opendataset')
 
 ## Use `OutputFileDatasetConfig` for intermediate data
 
-Although `Dataset` objects represent only persistent data, [`OutputFileDatasetConfig`](/python/api/azureml-core/azureml.data.outputfiledatasetconfig) objects can be used for temporary data output from pipeline steps and for persistent output data. `OutputFileDatasetConfig` supports writing data to blob storage, fileshare, Azure Data Lake Storage Gen1, or Azure Data Lake Storage Gen2. It supports both mount mode and upload mode. In mount mode, files written to the mounted directory are permanently stored when the file is closed. In upload mode, files  written to the output directory are uploaded at the end of the job. If the job fails or is canceled, the output directory won't be uploaded.
+Although `Dataset` objects represent only persistent data, [`OutputFileDatasetConfig`](/python/api/azureml-core/azureml.data.outputfiledatasetconfig) objects can be used for temporary data output from pipeline steps and for persistent output data. `OutputFileDatasetConfig` supports writing data to blob storage, fileshare, Azure Data Lake Storage Gen1, or Data Lake Storage Gen2. It supports both mount mode and upload mode. In mount mode, files written to the mounted directory are permanently stored when the file is closed. In upload mode, files written to the output directory are uploaded at the end of the job. If the job fails or is canceled, the output directory isn't uploaded.
 
- `OutputFileDatasetConfig` object's default behavior is to write to the default datastore of the workspace. Pass your `OutputFileDatasetConfig` objects to your `PythonScriptStep` with the `arguments` parameter.
+ The `OutputFileDatasetConfig` object's default behavior is to write to the default datastore of the workspace. Pass your `OutputFileDatasetConfig` objects to your `PythonScriptStep` by using the `arguments` parameter.
 
 ```python
 from azureml.data import OutputFileDatasetConfig
@@ -180,11 +180,11 @@ dataprep_step = PythonScriptStep(
 ```
 
 > [!NOTE]
-> Concurrent writes to a `OutputFileDatasetConfig` will fail. Do not attempt to use a single `OutputFileDatasetConfig` concurrently. Do not share a single `OutputFileDatasetConfig` in a multiprocessing situation, such as when using [distributed training](../how-to-train-distributed-gpu.md). 
+> Concurrent writes to a `OutputFileDatasetConfig` will fail. Don't try to use a single `OutputFileDatasetConfig` concurrently. Don't share a single `OutputFileDatasetConfig` in a multiprocessing situation, like when you use [distributed training](../how-to-train-distributed-gpu.md). 
 
 ### Use `OutputFileDatasetConfig` as outputs of a training step
 
-Within your pipeline's `PythonScriptStep`, you can retrieve the available output paths using the program's arguments. If this step is the first and will initialize the output data, you must create the directory at the specified path. You can then write whatever files you wish to be contained in the `OutputFileDatasetConfig`.
+In your pipeline's `PythonScriptStep`, you can retrieve the available output paths by using the program's arguments. If this step is the first and will initialize the output data, you need to create the directory at the specified path. You can then write whatever files you want to be contained in the `OutputFileDatasetConfig`.
 
 ```python
 parser = argparse.ArgumentParser()
@@ -203,12 +203,12 @@ After the initial pipeline step writes some data to the `OutputFileDatasetConfig
 
 In the following code: 
 
-* `step1_output_data` indicates that the output of the PythonScriptStep, `step1` is written to the ADLS Gen 2 datastore, `my_adlsgen2` in upload access mode. Learn more about how to [set up role permissions](how-to-access-data.md) in order to write data back to ADLS Gen 2 datastores. 
+* `step1_output_data` indicates that the output of the `PythonScriptStep` `step1` is written to the Data Lake Storage Gen2 datastore, `my_adlsgen2` in upload access mode. Learn more about how to [set up role permissions](how-to-access-data.md) in order to write data back to Data Lake Storage Gen2 datastores. 
 
-* After `step1` completes and the output is written to the destination indicated by `step1_output_data`, then step2 is ready to use `step1_output_data` as an input. 
+* After `step1` completes and the output is written to the destination that's indicated by `step1_output_data`, `step2` is ready to use `step1_output_data` as an input. 
 
 ```python
-# get adls gen 2 datastore already registered with the workspace
+# Get Data Lake Storage Gen2 datastore that's already registered with the workspace
 datastore = workspace.datastores['my_adlsgen2']
 step1_output_data = OutputFileDatasetConfig(name="processed_data", destination=(datastore, "mypath/{run-id}/{output-name}")).as_upload()
 
@@ -232,11 +232,11 @@ pipeline = Pipeline(workspace=ws, steps=[step1, step2])
 ```
 
 > [!TIP]
-> Reading the data in the python script `step2.py` is the same as documented earlier in [Access datasets within your script](#access-datasets-within-your-script); use `ArgumentParser` to add an argument of `--pd` in your script to access the data.
+> Reading the data in the Python script `step2.py` is the same as the process described earlier in [Access datasets within your script](#access-datasets-within-your-script). Use `ArgumentParser` to add an argument of `--pd` in your script to access the data.
 
 ## Register `OutputFileDatasetConfig` objects for reuse
 
-If you'd like to make your `OutputFileDatasetConfig` available for longer than the duration of your experiment, register it to your workspace to share and reuse across experiments.
+If you want to make `OutputFileDatasetConfig` object available for longer than the duration of your experiment, register it to your workspace to share and reuse across experiments.
 
 ```python
 step1_output_ds = step1_output_data.register_on_complete(
@@ -245,21 +245,23 @@ step1_output_ds = step1_output_data.register_on_complete(
 )
 ```
 
-## Delete `OutputFileDatasetConfig` contents when no longer needed
+## Delete `OutputFileDatasetConfig` content when it's no longer needed
 
-Azure doesn't automatically delete intermediate data written with `OutputFileDatasetConfig`. To avoid storage charges for large amounts of unneeded data, you should either:
-
-> [!CAUTION]
-> Only delete intermediate data after 30 days from the last change date of the data. Deleting the data earlier could cause the pipeline run to fail because the pipeline will assume the intermediate data exists within 30 day period for reuse.
+Azure doesn't automatically delete intermediate data that's written with `OutputFileDatasetConfig`. To avoid storage charges for large amounts of unneeded data, you should take one of the following actions:
 
 * Programmatically delete intermediate data at the end of a pipeline job, when it's no longer needed. 
-* Use blob storage with a short-term storage policy for intermediate data (see [Optimize costs by automating Azure Blob Storage access tiers](/azure/storage/blobs/lifecycle-management-overview)). This policy can only be set to a workspace's non-default datastore. Use `OutputFileDatasetConfig` to export intermediate data to another datastore that isn't the default.
+* Use blob storage with a short-term storage policy for intermediate data. (See [Optimize costs by automating Azure Blob Storage access tiers](/azure/storage/blobs/lifecycle-management-overview).) This policy can be set only on a workspace's non-default datastore. Use `OutputFileDatasetConfig` to export intermediate data to another datastore that isn't the default.
+
   ```Python
-  # Get adls gen 2 datastore already registered with the workspace
+  # Get Data Lake Storage Gen2 datastore that's already registered with the workspace
   datastore = workspace.datastores['my_adlsgen2']
   step1_output_data = OutputFileDatasetConfig(name="processed_data", destination=(datastore, "mypath/{run-id}/{output-name}")).as_upload()
   ```
-* Regularly review and delete no-longer-needed data.
+
+* Regularly review data and delete data that you don't need.
+
+> [!CAUTION]
+> Only delete intermediate data after 30 days from the last change date of the data. Deleting intermediate data earlier could cause the pipeline run to fail because the pipeline assumes the data exists for a 30 day period for reuse.
 
 For more information, see [Plan and manage costs for Azure Machine Learning](../concept-plan-manage-cost.md).
 
