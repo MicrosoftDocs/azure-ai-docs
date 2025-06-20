@@ -1,5 +1,5 @@
 ---
-title: 'Moving data in ML pipelines'
+title: Moving data in ML pipelines
 titleSuffix: Azure Machine Learning
 description: Learn how Azure Machine Learning pipelines ingest data, and how to manage and move data between pipeline steps.
 services: machine-learning
@@ -8,7 +8,7 @@ ms.subservice: mldata
 ms.author: lagayhar
 author: lgayhardt
 ms.reviewer: keli19
-ms.date: 08/18/2022
+ms.date: 06/24/2025
 ms.topic: how-to
 ms.custom: UpdateFrequency5, devx-track-python, data4ml, sdkv1
 #Customer intent: As a data scientist using Python, I want to get data into my pipeline and flowing between steps.
