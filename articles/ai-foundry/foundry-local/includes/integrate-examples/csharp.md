@@ -20,7 +20,7 @@ cd hello-foundry-local
 Install the following NuGet packages into your project folder:
 
 ```bash
-dotnet add package Microsoft.AI.Foundry.Local --pre-release
+dotnet add package Microsoft.AI.Foundry.Local --version 0.1.0
 dotnet add package OpenAI --version 2.2.0-beta.4
 ```
 
@@ -39,7 +39,7 @@ using System.Diagnostics.Metrics;
 
 var alias = "phi-3.5-mini";
 
-var manager = await FoundryManager.StartModelAsync(aliasOrModelId: alias);
+var manager = await FoundryLocalManager.StartModelAsync(aliasOrModelId: alias);
 
 var model = await manager.GetModelInfoAsync(aliasOrModelId: alias);
 ApiKeyCredential key = new ApiKeyCredential(manager.ApiKey);
