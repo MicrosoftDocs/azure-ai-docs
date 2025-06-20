@@ -43,15 +43,15 @@ This quickstart uses `DefaultAzureCredential`, which simplifies authentication i
    git clone https://github.com/Azure-Samples/azure-search-python-samples
    ```
   
-  This repo has Python code examples for several articles each in a separate subfolder.
+   This repo has Python code examples for several articles each in a separate subfolder.
 
 1. In Visual Studio Code, open the subfolder `Quickstart-Vector-Search`.
 
-  There are three files in this folder:
+   There are three files in this folder:
 
-  - `vector-search-quickstart.ipynb`
-  - `requirements.txt`
-  - `sample.env`
+   - `vector-search-quickstart.ipynb`
+   - `requirements.txt`
+   - `sample.env`
 
 1. Rename the `sample.env` file to `.env` and modify the values in the `.env` file. 
 
@@ -59,7 +59,7 @@ This quickstart uses `DefaultAzureCredential`, which simplifies authentication i
    
    Finally, choose a new `AZURE_SEARCH_INDEX_NAME` name, or use the one provided in the file.
 
-1. In Visual Studio Code, work in an environment. On the **View** menu, select **Terminal...**, or select <kbd>Ctrl</kbd>+<kbd>`</kbd>.
+1. In Visual Studio Code, work in an environment. On the **View** menu, select **Terminal...**, or select Ctrl+`.
 
 1. Run the following commands in the terminal:
 
@@ -88,7 +88,7 @@ This quickstart uses `DefaultAzureCredential`, which simplifies authentication i
    > If this is the first time you have used a Jupyter Notebook (.ipynb) in Visual Studio Code, you will be prompted to install the Jupyter Notebook kernel and possibly other tools. Choose to install the suggested tools to continue with this quickstart.
 
 
-1. Find the cell below section titled "Install packages and set variables" and select the **Execute Cell (`Ctrl` + `Alt` + `Enter`)** button (which looks like a typical run button) to the left of the cell. Executing the cell loads the environment variables, creates the DefaultAzureCredential, and prints values to the output to confirm that the notebook's dependencies and `.env` are set up correctly.
+1. Find the cell below section titled "Install packages and set variables" and select the **Execute Cell (Ctrl+Alt+Enter)** button (which looks like a typical run button) to the left of the cell. Executing the cell loads the environment variables, creates the DefaultAzureCredential, and prints values to the output to confirm that the notebook's dependencies and `.env` are set up correctly.
 
    ```python
    # Load environment variables from .env file
@@ -226,7 +226,7 @@ The code in the `vector-search-quickstart.ipynb` uses several methods from the `
 
    Key takeaways when creating vector index with the `azure.search.documents`:
 
-  - You define an index by creating a list of fields. Each field is created using a helper method that defines the field type and its settings.
+   - You define an index by creating a list of fields. Each field is created using a helper method that defines the field type and its settings.
 
    - This particular index supports multiple search capabilities, such as:
       - Full-text keyword search (`SearchableField(name="HotelName", ...)`, `SearchableField(name="Description", ...)`)
@@ -246,50 +246,50 @@ In Azure AI Search, the index stores all searchable content, while the search en
 
 1. Find the cell below section titled "Create documents payload" and execute the cell. This cell contains the following code (truncated for brevity):
 
-```python
-   # Create a documents payload
-   documents = [
-       {
-           "@search.action": "mergeOrUpload",
-           "HotelId": "1",
-           "HotelName": "Stay-Kay City Hotel",
-           "Description": "This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
-           "DescriptionVector": [-0.048865054,-0.020307425,
-           # <truncated>
-           -0.018120624,-0.012772904],
-           "Category": "Boutique",
-           "Tags": [
-               "view",
-               "air conditioning",
-               "concierge"
-           ],
-           "ParkingIncluded": "false",
-           "LastRenovationDate": "2022-01-18T00:00:00Z",
-           "Rating": 3.60,
-           "Address": {
-               "StreetAddress": "677 5th Ave",
-               "City": "New York",
-               "StateProvince": "NY",
-               "PostalCode": "10022",
-               "Country": "USA"
-           },
-           "Location": {
-               "type": "Point",
-               "coordinates": [
-                   -73.975403,
-                   40.760586
-               ]
-           }
-       },
-       # <truncated>
-   ]
+   ```python
+      # Create a documents payload
+      documents = [
+          {
+              "@search.action": "mergeOrUpload",
+              "HotelId": "1",
+              "HotelName": "Stay-Kay City Hotel",
+              "Description": "This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
+              "DescriptionVector": [-0.048865054,-0.020307425,
+              # <truncated>
+              -0.018120624,-0.012772904],
+              "Category": "Boutique",
+              "Tags": [
+                  "view",
+                  "air conditioning",
+                  "concierge"
+              ],
+              "ParkingIncluded": "false",
+              "LastRenovationDate": "2022-01-18T00:00:00Z",
+              "Rating": 3.60,
+              "Address": {
+                  "StreetAddress": "677 5th Ave",
+                  "City": "New York",
+                  "StateProvince": "NY",
+                  "PostalCode": "10022",
+                  "Country": "USA"
+              },
+              "Location": {
+                  "type": "Point",
+                  "coordinates": [
+                      -73.975403,
+                      40.760586
+                  ]
+              }
+          },
+          # <truncated>
+      ]
    ```
-
+   
    This cell loads a variable named `documents` with a JSON object describing each document, along with the vectorized version of the article's description. This vector enables similarity search, where matching is based on meaning rather than exact keywords.
-
+   
    > [!IMPORTANT]
    > The code in this example isn't runnable. Several characters or lines are removed for brevity. Instead, run the code in the Jupyter notebook.
-
+   
 1. Find the cell below section titled "Upload the documents" and execute the cell. This cell contains the following code (truncated for brevity):
 
    ```python
@@ -360,7 +360,7 @@ The first example demonstrates a basic scenario where you want to find document 
 
 1. Find the cell below section titled "Single vector search" and execute the cell. This block contains the request to query the search index.
 
-    ```python
+   ```python
    # IMPORTANT: Before you run this code, make sure the documents were successfully
    # created in the previous step. Sometimes it may take a few seconds for the index to be ready.
    # Check the "Document count" for the index in the Azure portal.
@@ -390,9 +390,8 @@ The first example demonstrates a basic scenario where you want to find document 
        except Exception as ex:
            print("Vector search failed:", ex)
    else:
-       print("No vector loaded, skipping search.")
-
-    ```
+      print("No vector loaded, skipping search.")
+   ```
 
    This vector query is shortened for brevity. The `vectorQueries.vector` contains the vectorized text of the query input, `fields` determines which vector fields are searched, and `k` specifies the number of nearest neighbors to return.
 
@@ -498,9 +497,9 @@ You can add filters, but the filters are applied to the nonvector content in you
    else:
       print("No vector loaded, skipping search.")
    ```
-
-  The query was the same as the previous [single vector search example](#single-vector-search), but it includes a post-processing exclusion filter and returns only the two hotels within 300 kilometers.
-
+   
+   The query was the same as the previous [single vector search example](#single-vector-search), but it includes a post-processing exclusion filter and returns only the two hotels within 300 kilometers.
+   
    ```output
    Total semantic hybrid results: 2
    - HotelId: 48
@@ -614,10 +613,10 @@ Hybrid search consists of keyword queries and vector queries in a single search 
        "HotelName": "Luxury Lion Resort",
        "Description": "Unmatched Luxury.  Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium, we feature the best in comfort"
    },
-```
+   ```
 
    In the vector-only query, which uses HNSW for finding matches, the Sublime Palace Hotel drops to fourth position. Historic Lion, which was second in the full-text search and third in the vector search, doesn't experience the same range of fluctuation, so it appears as a top match in a homogenized result set.
-
+   
    ```json
    "value": [
        {
