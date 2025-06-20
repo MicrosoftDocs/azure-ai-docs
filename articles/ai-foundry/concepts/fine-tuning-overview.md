@@ -100,7 +100,7 @@ Now that you know when to use fine-tuning for your use case, you can go to Azure
 
 **To fine-tune an OpenAI model** you can use an Azure OpenAI Resource, a Foundry resource or default project, or a hub/project. GPT 4.1, 4.1-mini and 4.1-nano are available in all regions with Global Training. For regional availability, see [Regional Availability and Limits for Azure OpenAI Fine Tuning](../../ai-services/openai/concepts/models.md). See [Create a project for Azure AI Foundry](../how-to/create-projects.md) for instructions on creating a new project.
 
-**To fine-tune a model using Managed Compute** you must have a hub/project and available VM quota for training and inferencing. See [Fine-tune models using managed compute (preview)](../how-to/fine-tune-managed-compute.md) for more details on how to use managed compute fine tuning, and [How to Create a Hub based project](../how-to/create-projects) to create your project.
+**To fine-tune a model using Managed Compute** you must have a hub/project and available VM quota for training and inferencing. See [Fine-tune models using managed compute (preview)](../how-to/fine-tune-managed-compute.md) for more details on how to use managed compute fine tuning, and [How to Create a Hub based project](../how-to/create-projects.md) to create your project.
 
 
 ## Related content
