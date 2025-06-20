@@ -17,7 +17,7 @@ author: msakande
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-Azure AI Foundry Models include a comprehensive catalog of models organized into two categories—Models sold directly by Azure, and Models from partners and community. These models from partners and community, which are available for deployment on a managed compute, are either open or protected models. The deployment of protected models on managed compute (preview) involves pay-as-you-go billing for the customer in two dimensions: per-hour Azure Machine Learning compute billing for the virtual machines employed in the deployment, and surcharge billing for the model as set by the model publisher on the Azure Marketplace offer. This pay-as-you-go billing of Azure compute and model surcharge is pro-rated per minute based on the uptime of these managed online deployments.
+Azure AI Foundry Models include a comprehensive catalog of models organized into two categories—Models sold directly by Azure, and [Models from partners and community](../concepts/foundry-models-overview.md#models-from-partners-and-community). These models from partners and community, which are available for deployment on a managed compute, are either open or protected models. The deployment of protected models on managed compute (preview) involves pay-as-you-go billing for the customer in two dimensions: per-hour Azure Machine Learning compute billing for the virtual machines employed in the deployment, and surcharge billing for the model as set by the model publisher on the Azure Marketplace offer. This pay-as-you-go billing of Azure compute and model surcharge is pro-rated per minute based on the uptime of these managed online deployments.
 
 In this article, you learn how to use protected models from partners and community, offered via Azure Marketplace for deployment on managed compute. Azure AI Foundry enables a seamless subscription and transaction experience for these protected models as you create and consume your dedicated model deployments at scale.
 
@@ -64,13 +64,13 @@ In this article, you learn how to use protected models from partners and communi
 
 1. Select **Customize** to specify your deployment configuration for parameters such as the instance count. You can also select an existing endpoint for the deployment or create a new one. For this example, we specify an instance count of **1** and create a new endpoint for the deployment.
 
-  :::image type="content" source="media/deploy-models-managed-pay-go/deployment-configuration.png" alt-text="Screenshot of the deployment configuration screen for a protected model in Azure AI Foundry." lightbox="media/deploy-models-managed-pay-go/deployment-configuration.png":::
+    :::image type="content" source="../media/deploy-models-managed-pay-go/deployment-configuration.png" alt-text="Screenshot of the deployment configuration screen for a protected model in Azure AI Foundry." lightbox="../media/deploy-models-managed-pay-go/deployment-configuration.png":::
 
 1. Select **Next** to proceed to the *pricing breakdown* page.
 
 1. Review the pricing breakdown for the deployment, terms of use, and license agreement associated with the model's offer on Azure Marketplace. The pricing breakdown tells you what the aggregated pricing for the deployed model would be, where the surcharge for the model is a function of the number of GPUs in the VM instance that is selected in the previous steps. In addition to the applicable surcharge for the model, Azure compute charges also apply, based on your deployment configuration. If you have existing reservations or Azure savings plan, the invoice for the compute charges honors and reflects the discounted VM pricing.
 
-  :::image type="content" source="media/deploy-models-managed-pay-go/pricing-breakdown.png" alt-text="Screenshot of the pricing breakdown page for a protected model deployment in Azure AI Foundry." lightbox="media/deploy-models-managed-pay-go/pricing-breakdown.png":::
+    :::image type="content" source="../media/deploy-models-managed-pay-go/pricing-breakdown.png" alt-text="Screenshot of the pricing breakdown page for a protected model deployment in Azure AI Foundry." lightbox="../media/deploy-models-managed-pay-go/pricing-breakdown.png":::
 
 1. Select the checkbox to acknowledge that you understand and agree to the terms of use. Then, select **Deploy**. It takes about 15-20 minutes for the deployment to complete.
 
@@ -86,3 +86,5 @@ An Azure AI Foundry project with ingress Public Network Access disabled can only
 ## Related content
 
 * [How to deploy and inference a managed compute deployment](deploy-models-managed.md)
+* [Explore Azure AI Foundry Models](../concepts/foundry-models-overview.md)
+
