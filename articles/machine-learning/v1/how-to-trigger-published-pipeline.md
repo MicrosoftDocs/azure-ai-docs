@@ -161,33 +161,41 @@ Now create a [logic app](/azure/logic-apps/logic-apps-overview) instance. After 
 
 1. [Create a system-assigned managed identity](/azure/logic-apps/create-managed-service-identity) to give the app access to your Azure Machine Learning workspace.
 
-1. Go to the Logic App Designer view and select the **Blank Logic App** template:
+1. In the left pane, select **Logic app templates** in the **Development Tools** section. 
+
+1. Select the **Blank workflow** template:
     > [!div class="mx-imgBorder"]
     > :::image type="content" source="media/how-to-trigger-published-pipeline/blank-template.png" alt-text="Screenshot that shows the button for the Blank Logic App template.":::
 
-1. In the designer, search for **blob**. Select the **When a blob is added or modified (properties only)** trigger and add this trigger to your logic app.
-    > [!div class="mx-imgBorder"]
-    > :::image type="content" source="media/how-to-trigger-published-pipeline/add-trigger.png" alt-text="Screenshot that shows how to add a trigger to a logic app." lightbox="media/how-to-trigger-published-pipeline/add-trigger.png":::
+1. In the designer, select **Add a trigger**. 
 
-1. Fill in the connection information for the Blob Storage account that you want to monitor for blob additions or modifications. Select the container to monitor. 
+1. In the **Add a trigger** pane, search for **blob**. Select the **When a blob is added or modified (properties only)** trigger.
+    
+    :::image type="content" source="media/how-to-trigger-published-pipeline/add-trigger.png" alt-text="Screenshot that shows how to add a trigger to a logic app." lightbox="media/how-to-trigger-published-pipeline/add-trigger.png":::
+
+1. In the **Create connection** pane, supply the connection information for the Blob Storage account that you want to monitor for blob additions or modifications and then select **Create new**. Select the container to monitor. 
  
     Select **Interval** and **Frequency** values that work for you.  
 
     > [!NOTE]
     > This trigger will monitor the selected container but won't monitor subfolders.
 
-1. Add an HTTP action that will run when a blob is changed or a new blob is detected. Select **+ New Step**, and then search for and select the HTTP action.
+1. Add an HTTP action that will run when a blob is changed or a new blob is detected. Select the plus sign (+) under the trigger and then select **Add an action**. 
+
+1. In the **Add an action** pane, select the **HTTP** action. You can search for it if you don't see it.
 
    > [!div class="mx-imgBorder"]
    > :::image type="content" source="media/how-to-trigger-published-pipeline/search-http.png" alt-text="Screenshot that shows how to add an HTTP action.":::
+
+1. In the resulting pane, select **HTTP**.
 
    Use the following settings to configure your action:
 
    | Setting | Value | 
    |---|---|
-   | HTTP action | **POST** |
-   | URI |The endpoint of the published pipeline. See [Prerequisites](#prerequisites). |
-   | Authentication mode | **Managed Identity** |
+   | **URI** |The endpoint of the published pipeline. See [Prerequisites](#prerequisites). |
+   | **Method** | **POST** |
+   | Authentication type (under **Advanced settings**) | **Managed Identity** |
 
 1. Configure your schedule to set the values of any [DataPath PipelineParameters](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/machine-learning-pipelines/intro-to-pipelines/aml-pipelines-showcasing-datapath-and-pipelineparameter.ipynb) that you have:
 
