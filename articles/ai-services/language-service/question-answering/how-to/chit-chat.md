@@ -8,7 +8,7 @@ author: laujan
 ms.author: lajanuar
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/21/2024
+ms.date: 06/21/2025
 ms.custom: language-service-question-answering
 ---
 

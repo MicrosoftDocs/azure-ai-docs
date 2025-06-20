@@ -6,7 +6,7 @@ ms.service: azure-ai-language
 author: laujan
 ms.author: lajanuar
 ms.topic: how-to
-ms.date: 11/21/2024
+ms.date: 06/21/2025
 ---
 
 # Prebuilt API
