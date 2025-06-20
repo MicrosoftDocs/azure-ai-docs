@@ -154,7 +154,7 @@ items:
     items:
     - name: Search index
       href: search-what-is-an-index.md
-    - name: Vector store
+    - name: Vector index
       href: vector-store.md
     - name: Knowledge store
       href: knowledge-store-concept-intro.md
