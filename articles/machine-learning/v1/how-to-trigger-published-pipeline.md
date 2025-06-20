@@ -169,27 +169,27 @@ Now create a [logic app](/azure/logic-apps/logic-apps-overview) instance. After 
     > [!div class="mx-imgBorder"]
     > :::image type="content" source="media/how-to-trigger-published-pipeline/add-trigger.png" alt-text="Screenshot that shows how to add a trigger to a logic app." lightbox="media/how-to-trigger-published-pipeline/add-trigger.png":::
 
-1. Fill in the connection info for the Blob Storage account that you wish to monitor for blob additions or modifications. Select the Container to monitor. 
+1. Fill in the connection information for the Blob Storage account that you want to monitor for blob additions or modifications. Select the container to monitor. 
  
-    Choose the **Interval** and **Frequency** to poll for updates that work for you.  
+    Select **Interval** and **Frequency** values that work for you.  
 
     > [!NOTE]
-    > This trigger will monitor the selected Container but won't monitor subfolders.
+    > This trigger will monitor the selected container but won't monitor subfolders.
 
-1. Add an HTTP action that will run when a new or modified blob is detected. Select **+ New Step**, then search for and select the HTTP action.
+1. Add an HTTP action that will run when a blob is changed or a new blob is detected. Select **+ New Step**, and then search for and select the HTTP action.
 
-  > [!div class="mx-imgBorder"]
-  > :::image type="content" source="media/how-to-trigger-published-pipeline/search-http.png" alt-text="Search for HTTP action":::
+   > [!div class="mx-imgBorder"]
+   > :::image type="content" source="media/how-to-trigger-published-pipeline/search-http.png" alt-text="Screenshot that shows how to add an HTTP action.":::
 
-  Use the following settings to configure your action:
+   Use the following settings to configure your action:
 
-  | Setting | Value | 
-  |---|---|
-  | HTTP action | POST |
-  | URI |the endpoint to the published pipeline that you found as a [Prerequisite](#prerequisites) |
-  | Authentication mode | Managed Identity |
+   | Setting | Value | 
+   |---|---|
+   | HTTP action | **POST** |
+   | URI |The endpoint of the published pipeline. See [Prerequisites](#prerequisites). |
+   | Authentication mode | **Managed Identity** |
 
-1. Set up your schedule to set the value of any [DataPath PipelineParameters](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/machine-learning-pipelines/intro-to-pipelines/aml-pipelines-showcasing-datapath-and-pipelineparameter.ipynb) you might have:
+1. Configure your schedule to set the values of any [DataPath PipelineParameters](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/machine-learning-pipelines/intro-to-pipelines/aml-pipelines-showcasing-datapath-and-pipelineparameter.ipynb) that you have:
 
     ```json
     {
@@ -207,30 +207,28 @@ Now create a [logic app](/azure/logic-apps/logic-apps-overview) instance. After 
     }
     ```
 
-    Use the `DataStoreName` you added to your workspace as a [Prerequisite](#prerequisites).
+    Use the `DataStoreName` that you added to your workspace as a [prerequisite](#prerequisites).
      
     > [!div class="mx-imgBorder"]
-    > :::image type="content" source="media/how-to-trigger-published-pipeline/http-settings.png" alt-text="HTTP settings":::
+    > :::image type="content" source="media/how-to-trigger-published-pipeline/http-settings.png" alt-text="Screenshot that shows the HTTP settings.":::
 
-1. Select **Save** and your schedule is now ready.
+1. Select **Save**.
 
 > [!IMPORTANT]
-> If you are using Azure role-based access control (Azure RBAC) to manage access to your pipeline, [set the permissions for your pipeline scenario (training or scoring)](../how-to-assign-roles.md#common-scenarios).
+> If you use Azure role-based access control (Azure RBAC) to manage access to your pipeline, [set the permissions for your pipeline scenario (training or scoring)](../how-to-assign-roles.md#common-scenarios).
 
 ## Call machine learning pipelines from Azure Data Factory pipelines
 
-In an Azure Data Factory pipeline, the *Machine Learning Execute Pipeline* activity runs an Azure Machine Learning pipeline. You can find this activity in the Data Factory's authoring page under the *Machine Learning* category:
+In an Azure Data Factory pipeline, the *Machine Learning Execute Pipeline* activity runs an Azure Machine Learning pipeline. You can find this activity on the Azure Data Factory authoring page under **Machine Learning** in the menu:
 
-:::image type="content" source="./media/how-to-trigger-published-pipeline/azure-data-factory-pipeline-activity.png" alt-text="Screenshot showing the ML pipeline activity in the Azure Data Factory authoring environment":::
+:::image type="content" source="./media/how-to-trigger-published-pipeline/azure-data-factory-pipeline-activity.png" alt-text="Screenshot showing the machine learning pipeline activity in the Azure Data Factory authoring environment." lightbox="./media/how-to-trigger-published-pipeline/azure-data-factory-pipeline-activity.png":::
 
 ## Next steps
 
-In this article, you used the Azure Machine Learning SDK for Python to schedule a pipeline in two different ways. One schedule recurs based on elapsed clock time. The other schedule jobs if a file is modified on a specified `Datastore` or within a directory on that store. You saw how to use the portal to examine the pipeline and individual jobs. You learned how to disable a schedule so that the pipeline stops running. Finally, you created an Azure Logic App to trigger a pipeline. 
+In this article, you used the Azure Machine Learning SDK for Python to schedule a pipeline in two different ways. One schedule is triggered based on elapsed clock time. The other schedule is triggered if a file is modified on a specified `Datastore` or within a directory on that store. You saw how to use the portal to examine the pipeline and individual jobs. You learned how to disable a schedule so that the pipeline stops running. Finally, you created an Azure logic app to trigger a pipeline. 
 
-For more information, see:
+These articles provide more information:
 
-> [!div class="nextstepaction"]
-> [Use Azure Machine Learning Pipelines for batch scoring](../tutorial-pipeline-batch-scoring-classification.md)
-
+* [Use Azure Machine Learning Pipelines for batch scoring](../tutorial-pipeline-batch-scoring-classification.md)
 * Learn more about [pipelines](../concept-ml-pipelines.md)
 * Learn more about [exploring Azure Machine Learning with Jupyter](../samples-notebooks.md)
