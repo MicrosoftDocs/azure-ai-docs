@@ -106,7 +106,7 @@ In addition to the arguments discussed previously, you can set the `status` argu
 
 ## View your scheduled pipelines
 
-In a browser, go to Azure Machine Learning studio. In the left pane, select the Endpoints icon. In the **Endpoints** pane, select **Pipeline endpoints**. This takes you to a list of the pipelines that are published in the workspace.
+In a browser, go to Azure Machine Learning studio. In the left pane, select the Endpoints icon. In the **Endpoints** pane, select **Run-time endpoints**. This takes you to a list of the pipelines that are published in the workspace.
 
 :::image type="content" source="./media/how-to-trigger-published-pipeline/scheduled-pipelines.png" alt-text="Screenshot that shows the Endpoints pane." lightbox="./media/how-to-trigger-published-pipeline/scheduled-pipelines.png":::
 
