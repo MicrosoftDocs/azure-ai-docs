@@ -5,7 +5,7 @@ description: Evaluate your generative AI models and applications by using Azure 
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: ignite-2023, references_regions, build-2024, ignite-2024
-ms.topic: how-toi-
+ms.topic: how-to
 ms.date: 05/19/2025
 ms.reviewer: mithigpe
 ms.author: lagayhar

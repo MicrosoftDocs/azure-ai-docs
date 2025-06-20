@@ -1,16 +1,18 @@
+---
 title: Agent Evaluation with the Azure AI Evaluation SDK
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to evaluate an AI agent with the Azure AI Evaluation SDK.
 Manager: scottpolly
 ms.service: azure-ai-foundry
-ms.custom: build-2025, references_regions
+ms.custom: 
+- build-2025
+- references_regions
 ms.topic: how-to
 ms.date: 04/04/2025
 ms.reviewer: changliu2
 author:
 ms.author: lagayhar
 author: lgayhardt
-
 ---
 
 # Evaluate your AI agents locally with the Azure AI Evaluation SDK (preview)
@@ -308,7 +310,7 @@ After the URI, you'll be redirected to Foundry to view your evaluation results i
 
 With the Azure AI Evaluation SDK client library, you can seamlessly evaluate your Azure AI agents via our converter support, which enables observability and transparency into agentic workflows.
 
-## Evaluate other agents
+## <a name = "evaluating-other-agents"></a> Evaluate other agents
 
 If you're using agents outside of Azure AI Foundry Agent Service, you can still evaluate them by preparing the right data for the evaluators of your choice.
 

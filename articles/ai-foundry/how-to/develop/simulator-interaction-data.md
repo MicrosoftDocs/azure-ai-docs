@@ -403,6 +403,8 @@ The `AdversarialSimulator` supports a range of scenarios, hosted in the service,
 
 ### Simulate jailbreak attacks
 
+## <a name = "simulating-jailbreak-attacks"></a> Simulate Jailbreak Attacks
+
 Evaluating vulnerability towards the following types of jailbreak attacks is supported:
 
 - **Direct attack jailbreak**: This type of attack, also known as a user prompt injected attack (UPIA), injects prompts in the user role turn of conversations or queries to generative AI applications.
