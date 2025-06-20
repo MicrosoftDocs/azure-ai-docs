@@ -22,7 +22,7 @@ This article provides a summary of the latest releases and major documentation u
 
 ### codex-mini & o3-pro models released
 
-- `codex-mini and `o3-pro` are now available. To learn more, see the [getting started with reasoning models page](./how-to/reasoning.md)
+- `codex-mini` and `o3-pro` are now available. To learn more, see the [getting started with reasoning models page](./how-to/reasoning.md)
 
 ## May 2025
 
