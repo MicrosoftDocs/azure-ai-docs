@@ -10,7 +10,6 @@ ms.custom:
 ms.topic: how-to
 ms.date: 04/04/2025
 ms.reviewer: changliu2
-author:
 ms.author: lagayhar
 author: lgayhardt
 ---
@@ -31,7 +30,7 @@ An event, like a user querying "weather tomorrow" triggers an agentic workflow. 
 - [Tool call accuracy](https://aka.ms/toolcallaccuracy-sample): Measures whether the agent made the correct function tool calls to a user's request.
 - [Task adherence](https://aka.ms/taskadherence-sample): Measures whether the agent's final response adheres to its assigned tasks, according to its system message and prior steps.
 
-You can also assess other quality and safety aspects of your agentic workflows, by using our comprehensive suite of built-in evaluators. In general, agents emit agent messages. Transforming agent messages into the right evaluation data so that you can use our evaluators can be a nontrivial task. If you use [Azure AI Foundry Agent Service](../../../ai-services/agents/overview.md) to build your agent, you can [seamlessly evaluate it via our converter support](#evaluate-azure-ai-agents). If you build your agent outside of Azure AI Foundry Agent Service, you can still use our evaluators as appropriate to your agentic workflow, by parsing your agent messages into the [required data formats](./evaluate-sdk.md#data-requirements-for-built-in-evaluators). See examples in [Evaluate other agents](#evaluate-other-agents).
+You can also assess other quality and safety aspects of your agentic workflows, by using our comprehensive suite of built-in evaluators. In general, agents emit agent messages. Transforming agent messages into the right evaluation data so that you can use our evaluators can be a nontrivial task. If you use [Azure AI Foundry Agent Service](../../../ai-services/agents/overview.md) to build your agent, you can [seamlessly evaluate it via our converter support](#evaluate-azure-ai-agents). If you build your agent outside of Azure AI Foundry Agent Service, you can still use our evaluators as appropriate to your agentic workflow, by parsing your agent messages into the [required data formats](./evaluate-sdk.md#data-requirements-for-built-in-evaluators). See examples in [Evaluate other agents](#evaluating-other-agents).
 
 ## Getting started
 
