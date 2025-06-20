@@ -129,14 +129,14 @@ The following sections provide you with a quick guide to the default quotas and 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|
 | `codex-mini`| Enterprise agreement | 10 K | 10 M |
-| `o3-pro` | Enterprise agreement | 160 | 1.6 M |
+| `o3-pro` | Enterprise agreement | 16 M | 1.6 K |
 | `o4-mini` | Enterprise agreement | 10 M | 10 K |
 | `o3` | Enterprise agreement | 10 M | 10 K |
 | `o3-mini` | Enterprise agreement | 50 M | 5 K |
 | `o1` & `o1-preview` | Enterprise agreement | 30 M | 5 K |
 | `o1-mini`| Enterprise agreement | 50 M | 5 K |
 | `codex-mini`| Default | 1 K | 1 M |
-| `o3-pro` | Default | 1.6 K | 16 M |
+| `o3-pro` | Default | 160 | 1.6 M |
 | `o4-mini` | Default | 1 M | 1 K  |
 | `o3` | Default | 1 M | 1 K |
 | `o3-mini` | Default | 5 M | 500 |
