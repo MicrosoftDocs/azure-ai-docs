@@ -370,4 +370,4 @@ You can enable it again by using `p.enable()`. For more information, see the [Pu
 
 - Use [these Jupyter notebooks on GitHub](https://aka.ms/aml-pipeline-readme) to further explore machine learning pipelines.
 - See the SDK reference for the [azureml-pipelines-core](/python/api/azureml-pipeline-core/azureml.pipeline.core) package and the [azureml-pipelines-steps](/python/api/azureml-pipeline-steps/azureml.pipeline.steps) package.
-- See the [how to](how-to-debug-pipelines.md) for tips on debugging and troubleshooting pipelines.
+- For tips on debugging and troubleshooting pipelines, see [How to debug pipelines](how-to-debug-pipelines.md) .
