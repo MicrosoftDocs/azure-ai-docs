@@ -11,9 +11,9 @@ ms.custom:
   - ignite-2024
 ms.topic: how-to
 ms.date: 05/08/2025
-ms.reviewer: larryfr
-ms.author: larryfr
-author: Blackmist
+ms.reviewer: sgilley
+ms.author: sgilley
+author: sdgilley
 zone_pivot_groups: project-type
 # Customer Intent: As an admin or developer, I want to understand how to add new connections in Azure AI Foundry portal.
 

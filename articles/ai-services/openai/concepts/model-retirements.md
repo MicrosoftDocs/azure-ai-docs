@@ -41,6 +41,16 @@ Azure OpenAI notifies customers via two methods:
 - **Azure Resource Health** - Anyone with reader permissions or above can see Azure health alerts, as well as configure personalized alerts via email, SMS, etc. See [Create Service Health Alerts](/azure/service-health/alerts-activity-log-service-notifications-portal)
 - **Email** - email notifications are automatically sent to subscription owners. Any individual with reader permissions may however configure their own alerts by following the guidance above.
 
+**Azure Service Health filter configuration**:
+
+**Services** = `azure OpenAI service` (Casing reflects current UX experience).
+
+**Event types**
+    - `Health advisories = Upgrade, Deprecation, & Retirement Notifications`
+    - `Service issue = Outages` (Recommended only if you wish to be notified of outages)
+
+If you wish to receive SMS text-based alerts rather than just e-mails, you will need to select **Create action group** and under **Notification type**, select **Email/SMS message/Push/Voice** and then configure your phone number.
+
 ## Model availability
 
 1. At least one year of model availability for GA models after the release date of a model in at least one region worldwide
