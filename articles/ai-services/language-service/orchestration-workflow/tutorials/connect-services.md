@@ -8,7 +8,7 @@ manager: nitinme
 ms.reviewer: cahann, hazemelh
 ms.service: azure-ai-language
 ms.topic: tutorial
-ms.date: 11/21/2024
+ms.date: 06/21/2025
 ---
 
 # Connect different services with Orchestration workflow
