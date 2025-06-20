@@ -167,7 +167,7 @@ Virtual networks enable you to specify which endpoints can make API calls to you
 
 ### Network rules
 
-All accounts and their corresponding projects are protected by default with **deny-by-default network rules**, requiring explicit configuration to allow access through private endpoints.
+All accounts and their corresponding projects are protected by default with **Public network access Disabled flag**, requiring explicit configuration to allow access through private endpoints.
 
 These rules apply to **all protocols**, including REST and WebSocket. Even internal testing tools like Azure portal's test consoles require explicit permission to access your account and its child resources—ensuring complete security across all agent projects.
 
