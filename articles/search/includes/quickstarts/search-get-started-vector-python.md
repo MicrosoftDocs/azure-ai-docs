@@ -55,13 +55,13 @@ This quickstart uses `DefaultAzureCredential`, which simplifies authentication i
 
 1. Rename the `sample.env` file to `.env` and modify the values in the `.env` file. 
 
-   Use the Search service Url as the `AZURE_SEARCH_ENDPOINT`. You can find the url in the Azure portal. Go to your Azure AI Search service resource, on the Overview page, look for the Url field. An example endpoint might look like `https://mydemo.search.windows.net`. 
+   Use the search service URL as the `AZURE_SEARCH_ENDPOINT`. You can find the url in the [Azure portal](https://portal.azure.com). Go to your Azure AI Search service, on the **Overview** page, look for the URL field. An example endpoint might look like `https://mydemo.search.windows.net`. 
    
    Finally, choose a new `AZURE_SEARCH_INDEX_NAME` name, or use the one provided in the file.
 
-1. In Visual Studio Code, work in an environment. Use the View > Terminal... `Ctrl`+```.
+1. In Visual Studio Code, work in an environment. On the **View** menu, select **Terminal...**, or select <kbd>Ctrl</kbd>+<kbd>`</kbd>.
 
-1. Open the Terminal and run the command:
+1. Run the following commands in the terminal:
 
    ```bash
    python -m venv .venv
@@ -76,7 +76,7 @@ This quickstart uses `DefaultAzureCredential`, which simplifies authentication i
 
    The `where python` command validates that you're working from the virtual environment by listing `python.exe` in the `Quickstart-Vector-Search\.venv\` folder, and other locations from your machine's directory.
 
-1. Install the required libraries by running the following command.
+1. Install the required libraries by running the following command:
 
    ```bash
    pip install requirements.txt
@@ -85,7 +85,7 @@ This quickstart uses `DefaultAzureCredential`, which simplifies authentication i
 1. In Visual Studio Code, open the `vector-search-quickstart.ipynb`.
 
    > [!Note]
-   > If this is the first time you have used a Jupyter Notebook (.ipynb) in Visual Studio Code, you will be prompted to install the Jupyter Notebook kernal and possibly other tools. Choose to install the suggested tools to continue with this quickstart.
+   > If this is the first time you have used a Jupyter Notebook (.ipynb) in Visual Studio Code, you will be prompted to install the Jupyter Notebook kernel and possibly other tools. Choose to install the suggested tools to continue with this quickstart.
 
 
 1. Find the cell below section titled "Install packages and set variables" and select the **Execute Cell (`Ctrl` + `Alt` + `Enter`)** button (which looks like a typical run button) to the left of the cell. Executing the cell loads the environment variables, creates the DefaultAzureCredential, and prints values to the output to confirm that the notebook's dependencies and `.env` are set up correctly.
@@ -230,7 +230,7 @@ The code in the `vector-search-quickstart.ipynb` uses several methods from the `
 
    - This particular index supports multiple search capabilities, such as:
       - Full-text keyword search (`SearchableField(name="HotelName", ...)`, `SearchableField(name="Description", ...)`)
-      - Vector search (hybrid search) Fields (`DescriptionVector`)
+      - Vector search (enables hybrid search by collocating vector and nonvector fields) fields (`DescriptionVector`)
       - Semantic search (`semantic_search=SemanticSearch(configurations=[semantic_config])`)
       - Faceted search (`facetable=True`)
       - Semantic search (`semantic_search=SemanticSearch(configurations=[semantic_config])`)
@@ -242,7 +242,7 @@ The code in the `vector-search-quickstart.ipynb` uses several methods from the `
 
 Creating and loading the index are separate steps. You created the index schema [in the previous step](#create-a-vector-index). Now you need to load documents into the index.
  
-In Azure AI Search, the index contains all searchable data and queries run on the search service.
+In Azure AI Search, the index stores all searchable content, while the search engine executes queries against that index.
 
 1. Find the cell below section titled "Create documents payload" and execute the cell. This cell contains the following code (truncated for brevity):
 
@@ -285,7 +285,7 @@ In Azure AI Search, the index contains all searchable data and queries run on th
    ]
    ```
 
-   This cell loads a variable named `documents` with a JSON object describing each document, along with the vectorized version of the article's description. This vector is what powers the search.
+   This cell loads a variable named `documents` with a JSON object describing each document, along with the vectorized version of the article's description. This vector enables similarity search, where matching is based on meaning rather than exact keywords.
 
    > [!IMPORTANT]
    > The code in this example isn't runnable. Several characters or lines are removed for brevity. Instead, run the code in the Jupyter notebook.
@@ -310,7 +310,7 @@ In Azure AI Search, the index contains all searchable data and queries run on th
 
    This creates an instance of the search client by calling the `SearchClient()` constructor, then calls the `upload_documents()` method on the object. 
 
-   When run, the status of each document is printed below the cell:
+   After you run the cell, the status of each document is printed below it:
 
    ```output
    Key: 1, Succeeded: True, ErrorMessage: None
@@ -330,7 +330,7 @@ In Azure AI Search, the index contains all searchable data and queries run on th
       - **Search operations** - `search()`, `autocomplete()`, `suggest()`
       - **Index management operations** 
 
-   - Vector fields contain floating point values. The dimensions attribute has a minimum of 2 and a maximum of 3,072 floating point values each. This quickstart sets the dimensions attribute to 1,536 because that's the size of embeddings generated by the Azure OpenAI **text-embedding-ada-002** model.
+   - Vector fields contain floating point values. The dimensions attribute has a minimum of 2 and a maximum of 4096 floating point values each. This quickstart sets the dimensions attribute to 1,536 because that's the size of embeddings generated by the Azure OpenAI **text-embedding-ada-002** model.
 
 ## Run queries
 
@@ -398,11 +398,11 @@ The first example demonstrates a basic scenario where you want to find document 
 
    The vector query string is `quintessential lodging near running trails, eateries, retail`, which is vectorized into 1,536 embeddings for this query.
 
-   The response for the vector equivalent of `quintessential lodging near running trails, eateries, retail` includes seven results but the code specifies `top=5` so only the first five results are returned. Furthermore, only the fields specific by the `select` are returned. 
+   The response for the vector equivalent of `quintessential lodging near running trails, eateries, retail` includes seven results but the code specifies `top=5` so only the first five results are returned. Furthermore, only the fields specified by the `select` are returned. 
 
    `search_client.search()` returns a dict-like object. Each result provides a search score, which can be accessed using `score = result.get("@search.score", "N/A")`. While not displayed in this example, in a similarity search, the response always includes `k` results ordered by the value similarity score.
 
-   When run, each result is displayed:
+   After you run the cell, the status of each document is printed below it:
 
    ```output
    Total results: 5
@@ -417,7 +417,7 @@ The first example demonstrates a basic scenario where you want to find document 
 
 You can add filters, but the filters are applied to the nonvector content in your index. In this example, the filter applies to the `Tags` field to filter out any hotels that don't provide free Wi-Fi.
 
-1. Find the cell below section titled "Run a vector query with a filter" and execute the cell. This cell contains the request to query the search index.
+1. Find the cell below section titled "Single vector search with filter" and execute the cell. This cell contains the request to query the search index.
 
     ```python
    if vector:
@@ -448,7 +448,7 @@ You can add filters, but the filters are applied to the nonvector content in you
        print("No vector loaded, skipping search.")
     ``` 
 
-   When run, each result is displayed:
+   After you run the cell, the status of each document is printed below it:
 
    ```output
    Total filtered results: 2
@@ -518,12 +518,12 @@ You can add filters, but the filters are applied to the nonvector content in you
 
 ### Hybrid search
 
-Hybrid search consists of keyword queries and vector queries in a single search request. This example runs the vector query and full text search concurrently:
+Hybrid search consists of keyword queries and vector queries in a single search request. This example runs the vector query and full-text search concurrently:
 
 - **Search string**: `historic hotel walk to restaurants and shopping`
 - **Vector query string** (vectorized into a mathematical representation): `quintessential lodging near running trails, eateries, retail`
 
-1. Find the cell below section titled "Hybrid Search" and execute the cell. This block contains the request to query the search index.
+1. Find the cell below section titled "Hybrid search" and execute the cell. This block contains the request to query the search index.
 
    ```python
    if vector:
