@@ -20,7 +20,7 @@ ms.custom: UpdateFrequency5, devx-track-python, data4ml, sdkv1
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
-This article provides code for importing data, transforming data, and moving data between steps in an Azure Machine Learning pipeline. For an overview of how data works in Azure Machine Learning, see [Access data in Azure storage services](how-to-access-data.md). For information about the benefits and structure of Azure Machine Learning pipelines, see [What are Azure Machine Learning pipelines?](../concept-ml-pipelines.md)
+This article provides code for importing data, transforming data, and moving data between steps in an Azure Machine Learning pipeline. For an overview of how data works in Azure Machine Learning, see [Access data in Azure storage services](how-to-access-data.md). For information about the benefits and structure of Azure Machine Learning pipelines, see [What are Azure Machine Learning pipelines?](../concept-ml-pipelines.md).
 
 This article shows how to:
 
@@ -39,7 +39,7 @@ This article shows how to:
 
 - An Azure Machine Learning workspace.
   
-  Either [create an Azure Machine Learning workspace](../quickstart-create-resources.md) or use an existing one via the Python SDK. Import the `Workspace` and `Datastore` class, and load your subscription information from the file `config.json` by using the function `from_config()`. This function looks for the JSON file in the current directory by default, but you can also specify a path parameter to point to the file by using `from_config(path="your/file/path")`.
+  Either [create an Azure Machine Learning workspace](../quickstart-create-resources.md) or use an existing one via the Python SDK. Import the `Workspace` and `Datastore` classes, and load your subscription information from the `config.json` file by using the function `from_config()`. This function looks for the JSON file in the current directory by default, but you can also specify a path parameter to point to the file by using `from_config(path="your/file/path")`.
 
    ```python
    import azureml.core
@@ -76,7 +76,7 @@ For more information about creating datasets with different options and from dif
 
 To pass the dataset's path to your script, use the `Dataset` object's `as_named_input()` method. You can either pass the resulting `DatasetConsumptionConfig` object to your script as an argument or, by using the `inputs` argument to your pipeline script, you can retrieve the dataset by using `Run.get_context().input_datasets[]`.
 
-After you create a named input, you can choose its access mode(for `FileDataset` only): `as_mount()` or `as_download()`. If your script processes all the files in your dataset and the disk on your compute resource is large enough for the dataset, the download access mode is a better choice. The download access mode avoids the overhead of streaming the data at runtime. If your script accesses a subset of the dataset or is too large for your compute, use the mount access mode. For more information, see [Mount vs. download](how-to-train-with-datasets.md#mount-vs-download).
+After you create a named input, you can choose its access mode (for `FileDataset` only): `as_mount()` or `as_download()`. If your script processes all the files in your dataset and the disk on your compute resource is large enough for the dataset, the download access mode is a better choice. The download access mode avoids the overhead of streaming the data at runtime. If your script accesses a subset of the dataset or is too large for your compute, use the mount access mode. For more information, see [Mount vs. download](how-to-train-with-datasets.md#mount-vs-download).
 
 To pass a dataset to your pipeline step:
 
