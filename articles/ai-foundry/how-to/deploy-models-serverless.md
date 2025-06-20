@@ -83,7 +83,7 @@ Furthermore, models offered through Azure Marketplace are available for deployme
 
 1. Alternatively, if you see the note *You already have an Azure Marketplace subscription for this project*, you don't need to create the subscription since you already have one. Select **Continue to deploy** to open the deployment wizard. 
     
-    :::image type="content" source="../media/deploy-models-serverless/model-subscribed-to-marketplace.png" alt-text="Deployment page for a model that is already subscribed to Azure Marketplace." lightbox="../media/deploy-models-serverless/model-subscribed-to-marketplace.png":::    
+    :::image type="content" source="../media/deploy-models-serverless/model-subscribed-to-marketplace.png" alt-text="Screenshot of the deployment page for a model that is already subscribed to Azure Marketplace." lightbox="../media/deploy-models-serverless/model-subscribed-to-marketplace.png":::    
 
 1. (Optional) At any point, you can see the model offers to which your project is currently subscribed:
     
