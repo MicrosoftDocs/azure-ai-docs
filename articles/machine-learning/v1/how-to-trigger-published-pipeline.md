@@ -20,7 +20,9 @@ ms.custom: UpdateFrequency5, devx-track-python, sdkv1
 
 [!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
-In this article, you'll learn how to programmatically schedule a pipeline to run on Azure. You can create a schedule based on elapsed time or on file-system changes. You can use time-based schedules to accomplish routine tasks, such as monitoring for data drift. You can use change-based schedules to react to irregular or unpredictable changes, such as new data being uploaded or old data being edited. After you learn how to create schedules, you'll learn how to retrieve and deactivate them. Finally, you'll learn how to use other Azure services, Azure Logic Apps and Azure Data Factory, to run pipelines. A logic app enables more complex triggering logic or behavior. Azure Data Factory pipelines allow you to call a machine learning pipeline as part of a larger data orchestration pipeline.
+In this article, you'll learn how to programmatically schedule a pipeline to run on Azure. You can create a schedule based on elapsed time or on file-system changes. You can use time-based schedules to accomplish routine tasks, such as monitoring for data drift. You can use change-based schedules to react to irregular or unpredictable changes, such as new data being uploaded or old data being edited. 
+
+After you learn how to create schedules, you'll learn how to retrieve and deactivate them. Finally, you'll learn how to use other Azure services, Azure Logic Apps and Azure Data Factory, to run pipelines. A logic app enables more complex triggering logic or behavior. Azure Data Factory pipelines allow you to call a machine learning pipeline as part of a larger data orchestration pipeline.
 
 ## Prerequisites
 
@@ -56,7 +58,7 @@ pipeline_id = "aaaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
 
 ## Create a schedule
 
-To run a pipeline on a recurring basis, you create a schedule. A `Schedule` associates a pipeline, an experiment, and a trigger. The trigger can either be a`ScheduleRecurrence` that defines the wait time between jobs or a datastore path that specifies a directory to watch for changes. In either case, you need the pipeline identifier and the name of the experiment in which to create the schedule.
+To run a pipeline on a recurring basis, you create a schedule. A `Schedule` associates a pipeline, an experiment, and a trigger. The trigger can either be a `ScheduleRecurrence` that defines the wait time between jobs or a datastore path that specifies a directory to watch for changes. In either case, you need the pipeline identifier and the name of the experiment in which to create the schedule.
 
 At the top of your Python file, import the `Schedule` and `ScheduleRecurrence` classes:
 
@@ -67,7 +69,7 @@ from azureml.pipeline.core.schedule import ScheduleRecurrence, Schedule
 
 ### Create a time-based schedule
 
-The `ScheduleRecurrence` constructor has a required `frequency` argument that must be set to one of the following strings: `"Minute"`, `"Hour"`, `"Day"`, `"Week"`, or `"Month"`. It also requires an integer `interval` argument that specifies how many `frequency` units should elapse between start times. Optional arguments allow you to be more specific about starting times, as described in the [ScheduleRecurrence SDK documentation](/python/api/azureml-pipeline-core/azureml.pipeline.core.schedule.schedulerecurrence).
+The `ScheduleRecurrence` constructor has a required `frequency` argument that must be set to one of the following strings: `"Minute"`, `"Hour"`, `"Day"`, `"Week"`, or `"Month"`. It also requires an integer `interval` argument that specifies how many `frequency` units should elapse between start times. Optional arguments allow you to be more specific about starting times, as described in the [ScheduleRecurrence documentation](/python/api/azureml-pipeline-core/azureml.pipeline.core.schedule.schedulerecurrence).
 
 Create a `Schedule` that begins a job every 15 minutes:
 
@@ -106,7 +108,7 @@ In addition to the arguments discussed previously, you can set the `status` argu
 
 ## View your scheduled pipelines
 
-In a browser, go to Azure Machine Learning studio. In the left pane, select the Endpoints icon. In the **Endpoints** pane, select **Run-time endpoints**. This takes you to a list of the pipelines that are published in the workspace.
+In a browser, go to Azure Machine Learning studio. In the left pane, select the Endpoints icon. In the **Endpoints** pane, select **Real-time endpoints**. This takes you to a list of the pipelines that are published in the workspace.
 
 :::image type="content" source="./media/how-to-trigger-published-pipeline/scheduled-pipelines.png" alt-text="Screenshot that shows the Endpoints pane." lightbox="./media/how-to-trigger-published-pipeline/scheduled-pipelines.png":::
 
@@ -114,7 +116,7 @@ On this page, you can see summary information about all the pipelines in the wor
 
 ## Deactivate the pipeline
 
-If you have a `Pipeline` that's published but not scheduled, you can disable it with this code:
+If you have a `Pipeline` that's published but not scheduled, you can disable it by using this code:
 
 ```python
 pipeline = PublishedPipeline.get(ws, id=pipeline_id)
@@ -157,7 +159,7 @@ published_pipeline.endpoint
 
 ## Create a logic app in Azure
 
-Now create a [logic app](/azure/logic-apps/logic-apps-overview) instance. After your logic app is provisioned, use these steps to configure a trigger for your pipeline:
+Now create a [logic app](/azure/logic-apps/logic-apps-overview). After your logic app is provisioned, use these steps to configure a trigger for your pipeline:
 
 1. [Create a system-assigned managed identity](/azure/logic-apps/create-managed-service-identity) to give the app access to your Azure Machine Learning workspace.
 
@@ -195,7 +197,7 @@ Now create a [logic app](/azure/logic-apps/logic-apps-overview) instance. After 
    |---|---|
    | **URI** |The endpoint of the published pipeline. See [Prerequisites](#prerequisites). |
    | **Method** | **POST** |
-   | Authentication type (under **Advanced settings**) | **Managed Identity** |
+   | **Authentication type** (under **Advanced settings**) | **Managed Identity** |
 
 1. Configure your schedule to set the values of any [DataPath PipelineParameters](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/machine-learning-pipelines/intro-to-pipelines/aml-pipelines-showcasing-datapath-and-pipelineparameter.ipynb) that you have:
 
@@ -227,7 +229,7 @@ Now create a [logic app](/azure/logic-apps/logic-apps-overview) instance. After 
 
 ## Call machine learning pipelines from Azure Data Factory pipelines
 
-In an Azure Data Factory pipeline, the *Machine Learning Execute Pipeline* activity runs an Azure Machine Learning pipeline. You can find this activity on the Azure Data Factory authoring page under **Machine Learning** in the menu:
+In an Azure Data Factory pipeline, the **Machine Learning Execute Pipeline** activity runs an Azure Machine Learning pipeline. You can find this activity on the Azure Data Factory authoring page under **Machine Learning** in the menu:
 
 :::image type="content" source="./media/how-to-trigger-published-pipeline/azure-data-factory-pipeline-activity.png" alt-text="Screenshot showing the machine learning pipeline activity in the Azure Data Factory authoring environment." lightbox="./media/how-to-trigger-published-pipeline/azure-data-factory-pipeline-activity.png":::
 
