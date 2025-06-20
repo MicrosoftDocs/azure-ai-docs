@@ -43,7 +43,8 @@ Azure OpenAI notifies customers via two methods:
 
 **Azure Service Health filter configuration**:
 
-**Services** = `azure OpenAI service` (Casing reflects current UX experience)
+**Services** = `azure OpenAI service` (Casing reflects current UX experience).
+
 **Event types**
     - `Health advisories = Upgrade, Deprecation, & Retirement Notifications`
     - `Service issue = Outages` (Recommended only if you wish to be notified of outages)
