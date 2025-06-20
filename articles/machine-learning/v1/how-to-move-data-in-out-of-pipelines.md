@@ -184,7 +184,7 @@ dataprep_step = PythonScriptStep(
 
 ### Use `OutputFileDatasetConfig` as outputs of a training step
 
-In your pipeline's `PythonScriptStep`, you can retrieve the available output paths by using the program's arguments. If this step is the first and will initialize the output data, you need to create the directory at the specified path. You can then write whatever files you want to be contained in the `OutputFileDatasetConfig`.
+In your pipeline's `PythonScriptStep`, you can retrieve the available output paths by using the program's arguments. If this step is the first one and will initialize the output data, you need to create the directory at the specified path. You can then write whatever files you want to be contained in the `OutputFileDatasetConfig`.
 
 ```python
 parser = argparse.ArgumentParser()
