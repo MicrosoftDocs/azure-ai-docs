@@ -6,7 +6,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: reliability-article
-ms.date: 06/19/2025
+ms.date: 06/20/2025
 ms.custom:
   - subject-reliability
   - references_regions
@@ -77,6 +77,89 @@ Each search service starts with one replica. Zone redundancy requires two or mor
 
 If your search service meets the [requirements for zone redundancy](#requirements), no extra configuration is necessary. Azure AI Search automatically places replicas in different availability zones when they're added to your service.
 
+### Zone-down experience
+
+When an availability zone experiences an outage, your search service continues to operate using replicas in the surviving zones. The following points summarize the expected behavior:
+
++ **Detection and response**: Azure AI Search is responsible for detecting a failure in an availability zone. You don't need to do anything to initiate a zone failover.
+
++ **Notification**: Azure AI Search doesn't notify you when a zone is down.
+
++ **Active requests**: Any active requests are dropped and should be retried by the client.
+
++ **Expected data loss**: A zone failure isn't expected to cause data loss.
+
++ **Expected downtime**: A zone failure isn't expected to cause downtime to the overall search service. However, replicas in the failed zone might be unavailable for a period of time.
+
++ **Traffic rerouting**: When a zone fails, Azure AI Search detects the failure and routes requests to active replicas in the surviving zones.
+
+### Failback
+
+When the availability zone recovers, Azure AI Search automatically restores normal operations and begins routing traffic to available replicas across all zones, including the recovered zone.
+
+### Testing for zone failures
+
+Azure AI Search manages traffic routing, failover, and failback for zone-redundant services. You don't need to initiate anything or validate zone failure processes.
+
+## Multi-region support
+
+Azure AI Search is a single-region service. If the region is unavailable, your search service is also unavailable. However, you can follow the guidance in this section to implement a multi-region architecture that provides redundancy and failover capabilities.
+
+### Why use multiple regions?
+
+If you need two or more search services, creating them in different regions can meet the following operational requirements:
+
++ [Business continuity and disaster recovery (BCDR)](/azure/reliability/disaster-recovery-overview). Azure AI Search doesn't provide instant failover if there's an outage.
+
++ Fast performance for a globally distributed application. If query and indexing requests come from all over the world, users who are closest to the host data center experience faster performance. Creating more services in regions with close proximity to these users can equalize performance for everyone.
+
+### Multi-region architecture
+
+In a multi-region setup, two or more search services are located in different regions and have synchronized indexes. Users are automatically routed to the service with the lowest latency.
+
+Azure AI Search doesn't provide automated index replication across regions, but you can [synchronize data](#synchronize-data) using indexers or REST APIs. You can also add Azure Traffic Manager for intelligent request routing.
+
+The following diagram illustrates the multi-region architecture with three search services, each in a different region:
+
+![Diagram showing cross-tab view of services by region.][1]
+
+> [!TIP]
+> For a complete implementation, see the [multi-region Bicep sample](https://github.com/Azure-Samples/azure-search-multiple-regions) on GitHub. The sample deploys a fully configured, multi-regional search solution and provides two options for index synchronization and request redirection using Azure Traffic Manager.
+
+### Synchronize data
+
+To keep two or more distinct search services in sync, you can either:
+
++ Pull content updates into an index using an indexer.
++ Push content into an index using the [Documents - Index REST API](/rest/api/searchservice/documents/) or an equivalent API in the Azure SDKs.
+
+#### Option 1: Use indexers
+
+<!-- TO DO -->
+
+#### Option 2: Use REST APIs
+
+<!-- TO DO -->
+
+### Load balancing and failover
+
+<!-- TO DO -->
+
+### Data residency in a multi-region deployment
+
+When you deploy multiple search services in various geographic regions, your content is stored in the region you chose for each search service.
+
+Azure AI Search doesn't store data outside of your specified region without your authorization. Authorization is implicit when you use features that write to an Azure Storage resource:
+
++ [Enrichment cache](cognitive-search-incremental-indexing-conceptual.md)
++ [Debug sessions](cognitive-search-debug-session.md)
++ [Knowledge store](knowledge-store-concept-intro.md)
+
+For these features, you provide the storage account in your preferred region.
+
+> [!NOTE]
+> When both the search service and storage account are in the same region, network traffic uses private IP addresses over the Microsoft backbone. IP firewalls and private endpoints aren't supported in this configuration. Use the [trusted service exception](search-indexer-howto-access-trusted-service-exception.md) instead.
+
 <!-- Across Azure, [reliability](/azure/reliability/overview) means resiliency and availability if there's a service outage or degradation. In Azure AI Search, reliability can be achieved within a single service or through multiple search services in separate regions.
 
 + Deploy a single search service and scale up for high availability. You can add multiple replicas to handle higher indexing and query workloads. If your search service [supports availability zones](#availability-zone-support), replicas are automatically provisioned in different physical data centers for extra resiliency.
@@ -100,63 +183,6 @@ For each individual search service, Microsoft guarantees at least 99.9% availabi
 The system has internal mechanisms for monitoring replica health and partition integrity. If you provision a specific combination of replicas and partitions, the system ensures that level of capacity for your service.
 
 No Service Level Agreement (SLA) is provided for the *Free* tier. For more information, see the [SLA for Azure AI Search](https://azure.microsoft.com/support/legal/sla/search/v1_0/).
-
-<a name="availability-zones"></a>
-
-## Availability zone support
-
-[Availability zones](/azure/reliability/availability-zones-overview) are an Azure platform capability that divides a region's data centers into distinct physical location groups to provide high availability, within the same region. In Azure AI Search, individual replicas are the units for zone assignment. A search service runs within one region; its replicas run in different physical data centers (or zones) within that region.
-
-Availability zones are used when you add two or more replicas to your search service. Each replica is placed in a different availability zone within the region. If you have more replicas than available zones in the search service region, the replicas are distributed across zones as evenly as possible. There's no specific action on your part, except to [create a search service](search-create-service-portal.md) in a region that provides availability zones, and then to configure the service to [use multiple replicas](search-capacity-planning.md#add-or-remove-partitions-and-replicas).
-
-### Prerequisites
-
-+ Service tier must be *Standard* or higher
-+ Service region must be in a region that has available zones (listed in the following section)
-+ Configuration must include multiple replicas: two for read-only query workloads, three for read-write workloads that include indexing
-
-### Supported regions
-
-Support for availability zones depends on infrastructure and storage. Currently, the following zone has insufficient storage and doesn't provide an availability zone for Azure AI Search:
-
-+ Japan West
-
-Otherwise, availability zones for Azure AI Search are supported in the following regions:
-
-| Region | Roll out date |
-|--------|-----------|
-| Australia East | January 30, 2021 or later |
-| Brazil South |  May 2, 2021 or later |
-| Canada Central | January 30, 2021 or later |
-| Central India | January 20, 2022 or later |
-| Central US | December 4, 2020 or later |
-| China North 3 | September 7, 2022 or later |
-| East Asia | January 13, 2022 or later |
-| East US | January 27, 2021 or later |
-| East US 2 | January 30, 2021 or later |
-| France Central| October 23, 2020 or later |
-| Germany West Central |  May 3, 2021, or later |
-| Israel Central | April 1, 2024, or later |
-| Italy North | April 1, 2024, or later |
-| Japan East | January 30, 2021 or later |
-| Korea Central | January 20, 2022 or later |
-| North Europe | January 28, 2021 or later |
-| Norway East | January 20, 2022 or later |
-| Qatar Central | August 25, 2022 or later |
-| South Africa North | September 7, 2022 or later |
-| South Central US | April 30, 2021 or later |
-| South East Asia | January 31, 2021 or later |
-| Sweden Central | January 21, 2022 or later |
-| Switzerland North | September 7, 2022 or later |
-| UAE North | September 9, 2022 or later |
-| UK South | January 30, 2021 or later |
-| US Gov Virginia | April 30, 2021 or later |
-| West Europe | January 29, 2021 or later |
-| West US 2 | January 30, 2021 or later |
-| West US 3 | June 02, 2021 or later |
-
-> [!NOTE]
-> Availability zones don't change the terms of the [SLA](https://azure.microsoft.com/support/legal/sla/search/v1_0/). You still need three or more replicas for query high availability.
 
 ## Multiple services in separate geographic regions
 

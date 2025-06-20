@@ -8,7 +8,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 06/12/2025
+ms.date: 06/20/2025
 
 ---
 
@@ -71,7 +71,7 @@ Most features are available on all tiers, including the Free tier. In a few case
 | [Customer-managed encryption keys](search-security-manage-encryption-keys.md) | Not available on the Free tier. |
 | [IP firewall access](service-configure-firewall.md) | Not available on the Free tier. |
 | [Private endpoint (integration with Azure Private Link)](service-create-private-endpoint.md) | For inbound connections to a search service, not available on the Free tier. <br>For outbound connections by indexers to other Azure resources, not available on Free or S3 HD. <br>For indexers that use skillsets, not available on Free, Basic, S1, or S3 HD.|
-| [Availability Zones](search-reliability.md) | Not available on the Free or Basic tier. |
+| [Availability zones](search-reliability.md#availability-zone-support) | Not available on the Free tier. |
 | [Semantic ranker](semantic-search-overview.md) | Not available on the Free tier. |
 
 Resource-intensive features might not work well unless you give it sufficient capacity. For example, [AI enrichment](cognitive-search-concept-intro.md) has long-running skills that time out on a Free service unless the dataset is small.
