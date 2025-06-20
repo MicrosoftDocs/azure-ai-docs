@@ -96,11 +96,11 @@ To find steps to fine-tuning a model in AI Foundry, see [Fine-tune Models in AI 
 
 Now that you know when to use fine-tuning for your use case, you can go to Azure AI Foundry to find models available to fine-tune.
 
-**To fine-tune an AI Foundry model using Serverless** you must have a hub/project in the region where the model is available for fine tuning. See [Region availability for models in standard deployment](../how-to/deploy-models-serverless-availability.md) for detailed information.
+**To fine-tune an AI Foundry model using Serverless** you must have a hub/project in the region where the model is available for fine tuning. See [Region availability for models in standard deployment](../how-to/deploy-models-serverless-availability.md) for detailed information on model and region availability, and [How to Create a Hub based project](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/create-projects?tabs=ai-foundry&pivots=hub-project) to create your project.
 
-**To fine-tune an OpenAI model** you can use an Azure OpenAI Resource, a Foundry resource or default project, or a hub/project. GPT 4.1, 4.1-mini and 4.1-nano are available in all regions with Global Training. For regional availability, see [Regional Availability and Limits for Azure OpenAI Fine Tuning](../../ai-services/openai/concepts/models.md)
+**To fine-tune an OpenAI model** you can use an Azure OpenAI Resource, a Foundry resource or default project, or a hub/project. GPT 4.1, 4.1-mini and 4.1-nano are available in all regions with Global Training. For regional availability, see [Regional Availability and Limits for Azure OpenAI Fine Tuning](../../ai-services/openai/concepts/models.md). See [Create a project for Azure AI Foundry](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/create-projects?tabs=ai-foundry&pivots=fdp-project) for instructions on creating a new project.
 
-**To fine-tune a model using Managed Compute** you must have a hub/project and available VM quota for training and inferencing. See [Fine-tune models using managed compute (preview)](../how-to/fine-tune-managed-compute.md) for more details.
+**To fine-tune a model using Managed Compute** you must have a hub/project and available VM quota for training and inferencing. See [Fine-tune models using managed compute (preview)](../how-to/fine-tune-managed-compute.md) for more details on how to use managed compute fine tuning, and and [How to Create a Hub based project](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/create-projects?tabs=ai-foundry&pivots=hub-project) to create your project.
 
 
 ## Related content
