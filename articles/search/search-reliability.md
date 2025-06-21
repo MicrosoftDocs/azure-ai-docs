@@ -17,25 +17,22 @@ ms.custom:
 
 This article describes reliability support in Azure AI Search, covering intra-regional resiliency via [availability zones](#availability-zone-support) and [multi-region deployments](#multi-region-support).
 
-Resiliency is a shared responsibility between you and Microsoft, so this article also covers ways for you to create a resilient solution that meets your needs.
+Reliability is a shared responsibility between you and Microsoft, so this article also covers ways for you to create a resilient solution that meets your needs.
 
-<!-- Across Azure, [reliability](/azure/reliability/overview) means resiliency and availability if there's a service outage or degradation. In Azure AI Search, reliability can be achieved within a single service or through multiple search services in separate regions.
+In Azure AI Search, you can achieve reliability by:
 
-+ Deploy a single search service and scale up for high availability. You can add multiple replicas to handle higher indexing and query workloads. If your search service [supports availability zones](#availability-zone-support), replicas are automatically provisioned in different physical data centers for extra resiliency.
++ **Scaling a single search service**. Add multiple replicas to increase availability and handle higher indexing and query workloads. If your region supports availability zones, replicas are automatically provisioned in different physical data centers for extra resiliency.
 
-+ Deploy multiple search services across different geographic regions. All search workloads are fully contained within a single service that runs in a single geographic region, but in a multi-service scenario, you have options for synchronizing content so that it's the same across all services. You can also set up a load balancing solution to redistribute requests or fail over if there's a service outage.
++ **Deploying multiple search services across different regions**. Each service operates independently within its region. However, in a multi-service scenario, you have options for synchronizing content across all services. You can also use load balancing to redistribute requests or fail over in the event of a service outage.
 
-For business continuity and recovery from disasters at a regional level, plan on a cross-regional topology, consisting of multiple search services having identical configuration and content. Your custom script or code provides the *failover* mechanism to an alternate search service if one suddenly becomes unavailable. -->
+> [!NOTE]
+> To ensure business continuity and disaster recovery, use a cross-regional topology consisting of multiple search services with identical configurations and content. Your custom script or code provides a failover mechanism to an alternate search service in case one becomes unavailable.
 
 ## Production deployment recommendations
 
-To ensure reliability and high availability for production workloads, your search service should be on a paid [pricing tier](search-sku-tier.md):
+For production workloads, we recommend using a billable [pricing tier](search-sku-tier.md) with at least two [replicas](search-capacity-planning.md#concepts-search-units-replicas-partitions). This configuration makes your search service more resilient to transient faults and maintenance operations. It also meets the [service-level agreement](#service-level-agreement) for Azure AI Search, which requires two replicas for read-only workloads and three or more replicas for read-write workloads.
 
-+ Basic
-+ Standard
-+ Storage Optimized
-
-Azure AI Search doesn't provide a service-level agreement for the Free tier, which is strongly discouraged for production use. For more information, see [Service-level agreement](#service-level-agreement).
+Azure AI Search doesn't provide a service-level agreement for the Free tier, which is strongly discouraged for production use.
 
 ## Transient faults
 
@@ -49,7 +46,7 @@ Search services with one replica might experience transient faults due to regula
 
 Availability zones are physically separate groups of datacenters within each Azure region. When one zone fails, services can fail over to one of the remaining zones. For more information, see [What are availability zones?](/azure/reliability/availability-zones-overview)
 
-Azure AI Search is a zone-redundant service that spreads your replicas across availability zones. A search service runs in one region, while its replicas run in zones within that region.
+Azure AI Search is a zone-redundant service that spreads your [replicas](search-capacity-planning.md#concepts-search-units-replicas-partitions) across availability zones. A search service runs in one region, while its replicas run in zones within that region.
 
 When you add two or more replicas to your service, Azure AI Search automatically places each replica in a different availability zone. If your service has more than three replicas, they're distributed across zones as evenly as possible.
 
@@ -119,7 +116,7 @@ If you need two or more search services, creating them in different regions can 
 
 In a multi-region setup, two or more search services are located in different regions and have synchronized indexes. Users are automatically routed to the service with the lowest latency.
 
-Azure AI Search doesn't provide an automated method of index replication across regions. However, you can [synchronize data](#data-synchronization-in-a-multi-region-deployment) using indexers or REST APIs, both of which are described in the following section. You can also add Azure Traffic Manager for [request redirection](#request-failover-and-redirection).
+Azure AI Search doesn't provide an automated method of index replication across regions. However, you can [synchronize data](#data-synchronization) using indexers or REST APIs, both of which are described in the following section. You can also add Azure Traffic Manager for [request redirection](#request-failover-and-redirection).
 
 The following diagram illustrates a geo-distributed set of search services:
 
@@ -128,14 +125,14 @@ The following diagram illustrates a geo-distributed set of search services:
 > [!TIP]
 > For a complete implementation, see the [Bicep sample](https://github.com/Azure-Samples/azure-search-multiple-regions) on GitHub. The sample deploys a fully configured, multi-region search solution that can be modified to your regions and indexing strategies.
 
-### Data synchronization in a multi-region deployment
+### Data synchronization
 
 To synchronize two or more distinct search services, you can either:
 
 + Pull content into an index using an [indexer](search-indexer-overview.md).
 + Push content into an index using the [Documents - Index REST API](/rest/api/searchservice/documents/) or an equivalent API in the Azure SDKs.
 
-#### [Indexers](#tab/indexers)
+#### Option 1: Indexers
 
 If you have an [indexer](search-indexer-overview.md) on one search service, you can create a second indexer on a second service to reference the same data source. Each service in each region has its own indexer and target index. Although the indexes are independent and store their own copies of the data, they remain synchronized because the indexers pull from the same source.
 
@@ -143,13 +140,11 @@ The following diagram illustrates this architecture:
 
 :::image type="content" source="media/search-reliability/scale-indexers.png" alt-text="Diagram of a single data source with distributed indexer and service combinations." border="true" lightbox="media/search-reliability/scale-indexers.png":::
 
-#### [REST APIs](#tab/rest-apis)
+#### Option 2: REST APIs
 
 If you use the REST APIs to [push content to your search index](search-what-is-data-import.md#pushing-data-to-an-index), you can synchronize multiple search services by sending updates to each service whenever changes occur. Ensure that your code handles cases in which an update fails for one service but succeeds for other services.
 
----
-
-### Data residency in a multi-region deployment
+### Data residency
 
 When you create multiple search services in different regions, your content is stored in the region you chose for each service.
 
@@ -192,7 +187,7 @@ The following diagram illustrates search apps connecting through Traffic Manager
 :::image type="content" source="media/search-reliability/azure-function-search-traffic-mgr.png" alt-text="Diagram of search apps connecting through Azure Traffic Manager." border="true" lightbox="media/search-reliability/azure-function-search-traffic-mgr.png":::
 
 > [!TIP]
-> Azure AI Search provides a [multi-region deployment sample](https://github.com/Azure-Samples/azure-search-multiple-regions) that uses Traffic Manager for request redirection when the primary endpoint fails. This solution is useful for routing to a search-enabled client that only calls a search service in the same region.
+> Azure AI Search provides a [multi-region Bicep sample](https://github.com/Azure-Samples/azure-search-multiple-regions) that uses Traffic Manager for request redirection when the primary endpoint fails. This solution is useful for routing to a search-enabled client that only calls a search service in the same region.
 
 ---
 
@@ -200,7 +195,7 @@ As you evaluate these load-balancing options, consider the following points:
 
 + Azure AI Search is a backend service that accepts indexing and query requests from a client.
 
-+ By default, service endpoints are accessed through a public internet connection. We recommend [Application Gateway](#azure-application-gateway) for private endpoints that originate from within a virtual network.
++ By default, service endpoints are accessed through a public internet connection. We recommend [Azure Application Gateway](/azure/traffic-manager/traffic-manager-overview) for private endpoints that originate from within a virtual network.
 
 + Azure AI Search accepts requests addressed to the `<your-search-service-name>.search.windows.net` endpoint. If you reach the same endpoint using a different DNS name in the host header, such as a CNAME, the request is rejected.
 
@@ -220,9 +215,9 @@ Otherwise, if you accidentally delete an index, the application code used to cre
 
 The service-level agreement (SLA) for Azure AI Search describes the expected availability of the service and the conditions that must be met to achieve that availability expectation. For more information, see the [SLA for Azure AI Search](https://azure.microsoft.com/support/legal/sla/search/v1_0/).
 
-The number of [replicas](search-capacity-planning.md#concepts-search-units-replicas-partitions) deployed to your search service determines your SLA coverage. In Azure AI Search, a replica is a copy of your search index. Each service can have between 1 and 12 replicas. Having more replicas enables Azure AI Search to perform maintenance and handle failures without interrupting queries.
+SLA coverage applies to search services on billable [pricing tiers](search-sku-tier.md) with at least two [replicas](search-capacity-planning.md#concepts-search-units-replicas-partitions). In Azure AI Search, a replica is a copy of your search index. Each service can have between 1 and 12 replicas. Having more replicas enables Azure AI Search to perform maintenance and handle failures without interrupting queries.
 
-Single-replica services don't receive SLA protection. However, Microsoft guarantees at least 99.9% availability of:
+Microsoft guarantees at least 99.9% availability of:
 
 + Read-only workloads (queries) for search services with two replicas.
 + Read-write workloads (queries and indexing) for search services with three or more replicas.
