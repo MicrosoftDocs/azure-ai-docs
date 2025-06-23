@@ -141,7 +141,7 @@ __The `train.py` script referenced from the PythonScriptStep__
 ```python
 # In pipeline script
 parser = argparse.ArgumentParser()
-# Retreive the dataset passed as an argument
+# Retrieve the dataset passed as an argument
 parser.add_argument('--training-folder', type=str, dest='train_folder', help='training data folder mounting point')
 args = parser.parse_args()
 training_data_folder = args.train_folder
