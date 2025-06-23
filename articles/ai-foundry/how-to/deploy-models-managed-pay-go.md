@@ -1,5 +1,5 @@
 ---
-title: Deploy Azure AI Foundry Models with pay-as-you-go billing to managed compute
+title: Deploy Azure AI Foundry Models to managed compute with pay-as-you-go billing 
 titleSuffix: Azure AI Foundry
 description: Learn how to deploy protected models from partners and community on Azure AI Foundry managed compute and understand how pay-as-you-go surcharge billing works.
 manager: scottpolly
@@ -15,7 +15,7 @@ author: msakande
 
 # Deploy Azure AI Foundry Models with pay-as-you-go billing to managed compute
 
-Azure AI Foundry Models include a comprehensive catalog of models organized into two categories—Models sold directly by Azure, and [Models from partners and community](../concepts/foundry-models-overview.md#models-from-partners-and-community). These models from partners and community, which are available for deployment on a managed compute, are either open or protected models. In this article, you learn how to use protected models from partners and community, offered via Azure Marketplace for deployment on managed compute. 
+Azure AI Foundry Models include a comprehensive catalog of models organized into two categories—Models sold directly by Azure, and [Models from partners and community](../concepts/foundry-models-overview.md#models-from-partners-and-community). These models from partners and community, which are available for deployment on a managed compute, are either open or protected models. In this article, you learn how to use protected models from partners and community, offered via Azure Marketplace for deployment on managed compute with pay-as-you-go billing. 
 
 
 ## Prerequisites
@@ -76,7 +76,7 @@ The consumption-based surcharge is accrued to the associated SaaS subscription a
 1. If you're not already in your project, select it. 
 1. Select **Model catalog** from the left pane.
 1. Select the **Deployment options** filter in the model catalog and choose **Managed compute**.
-1. Filter the list further by selecting the **Collection** and model of your choice. In this article, we use **Cohere Command A** from the [list of supported models](#supported-models-for-pay-as-you-go-billing-to-managed-compute) for illustration.
+1. Filter the list further by selecting the **Collection** and model of your choice. In this article, we use **Cohere Command A** from the [list of supported models](#supported-models-for-managed-compute-deployment-with-pay-as-you-go-billing) for illustration.
 1. From the model's page, select **Use this model** to open the deployment wizard.
 1. Choose from one of the supported VM SKUs for the model. You need to have Azure Machine Learning Compute quota for that SKU in your Azure subscription.
 1. Select **Customize** to specify your deployment configuration for parameters such as the instance count. You can also select an existing endpoint for the deployment or create a new one. For this example, we specify an instance count of **1** and create a new endpoint for the deployment.
@@ -90,7 +90,7 @@ The consumption-based surcharge is accrued to the associated SaaS subscription a
 
 1. Select the checkbox to acknowledge that you understand and agree to the terms of use. Then, select **Deploy**. Azure AI Foundry creates the user's subscription to the marketplace offer and then creates the deployment of the model on a managed compute. It takes about 15-20 minutes for the deployment to complete.
 
-## Network Isolation of deployments
+## Network isolation of deployments
 
 Collections in the model catalog can be deployed within your isolated networks using workspace managed virtual network. For more information on how to configure your workspace managed networks, see [Configure a managed virtual network to allow internet outbound](../../machine-learning/how-to-managed-network.md#configure-a-managed-virtual-network-to-allow-internet-outbound).
 
@@ -98,7 +98,7 @@ Collections in the model catalog can be deployed within your isolated networks u
 
 An Azure AI Foundry project with ingress Public Network Access disabled can only support a single active deployment of one of the protected models from the catalog. Attempts to create more active deployments result in deployment creation failures.
 
-## Supported models for pay-as-you-go billing to managed compute
+## Supported models for managed compute deployment with pay-as-you-go billing
 
 | Collection | Model | Task |
 |--|--|--|
