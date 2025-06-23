@@ -203,7 +203,7 @@ After the initial pipeline step writes some data to the `OutputFileDatasetConfig
 
 In the following code: 
 
-* `step1_output_data` indicates that the output of the `PythonScriptStep` `step1` is written to the Data Lake Storage Gen2 datastore, `my_adlsgen2` in upload access mode. Learn more about how to [set up role permissions](how-to-access-data.md) in order to write data back to Data Lake Storage Gen2 datastores. 
+* `step1_output_data` indicates that the output of the `PythonScriptStep` `step1` is written to the Data Lake Storage Gen2 datastore `my_adlsgen2` in upload access mode. For information about setting up role permissions in order to write data back to Data Lake Storage Gen2 datastores, see [Connect to storage services on Azure with datastores](how-to-access-data.md). 
 
 * After `step1` completes and the output is written to the destination that's indicated by `step1_output_data`, `step2` is ready to use `step1_output_data` as an input. 
 
@@ -232,11 +232,11 @@ pipeline = Pipeline(workspace=ws, steps=[step1, step2])
 ```
 
 > [!TIP]
-> Reading the data in the Python script `step2.py` is the same as the process described earlier in [Access datasets within your script](#access-datasets-within-your-script). Use `ArgumentParser` to add an argument of `--pd` in your script to access the data.
+> The process for reading the data in the Python script `step2.py` is the same as the process described earlier in [Access datasets within your script](#access-datasets-within-your-script). Use `ArgumentParser` to add an argument of `--pd` in your script to access the data.
 
 ## Register `OutputFileDatasetConfig` objects for reuse
 
-If you want to make `OutputFileDatasetConfig` object available for longer than the duration of your experiment, register it to your workspace to share and reuse across experiments.
+If you want to make an `OutputFileDatasetConfig` object available for longer than the duration of your experiment, register it to your workspace to share and reuse across experiments:
 
 ```python
 step1_output_ds = step1_output_data.register_on_complete(
