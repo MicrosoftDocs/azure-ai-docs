@@ -226,6 +226,8 @@ items:
       href: search-sku-manage-costs.md
     - name: Reliability and recovery
       href: search-reliability.md
+    - name: Multi-region deployment
+      href: search-multi-region.md
     - name: Multi-tenancy
       href: search-modeling-multitenant-saas-applications.md
     - name: Manage
