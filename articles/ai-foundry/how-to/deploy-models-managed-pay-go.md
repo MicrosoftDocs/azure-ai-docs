@@ -54,9 +54,9 @@ Azure AI Foundry enables a seamless subscription and transaction experience for 
 - Per-hour Azure Machine Learning compute billing for the virtual machines employed in the deployment.
 - Surcharge billing for the model as set by the model publisher on the Azure Marketplace offer. 
 
-Pay-as-you-go billing of Azure compute and model surcharge are pro-rated per minute based on the uptime of the managed online deployments. The surcharge for a model is a per GPU-hour price, set by the partner (or model's publisher) on Azure marketplace, for all the supported GPUs that can be used to deploy the model on Azure AI Foundry managed compute.  
+Pay-as-you-go billing of Azure compute and model surcharge are pro-rated per minute based on the uptime of the managed online deployments. The surcharge for a model is a per GPU-hour price, set by the partner (or model's publisher) on Azure Marketplace, for all the supported GPUs that can be used to deploy the model on Azure AI Foundry managed compute.  
 
-A user's subscription to Azure marketplace offers are scoped to the project resource within Azure AI Foundry. If a subscription to the Azure marketplace offer for a particular model already exists within the project, the user is informed in the deployment wizard that the subscription already exists for the project. 
+A user's subscription to Azure Marketplace offers are scoped to the project resource within Azure AI Foundry. If a subscription to the Azure Marketplace offer for a particular model already exists within the project, the user is informed in the deployment wizard that the subscription already exists for the project. 
 
 To find all the SaaS subscriptions that exist in an Azure subscription:
 
@@ -68,7 +68,7 @@ To find all the SaaS subscriptions that exist in an Azure subscription:
 
 1. Use the **Type** filter to select the SaaS resource type.
  
-The consumption-based surcharge is accrued to the associated SaaS subscription and billed to a user via Azure marketplace. You can view the invoice in the **Overview** tab of the respective SaaS subscription.
+The consumption-based surcharge is accrued to the associated SaaS subscription and billed to a user via Azure Marketplace. You can view the invoice in the **Overview** tab of the respective SaaS subscription.
 
 ## Subscribe and deploy on managed compute
 
