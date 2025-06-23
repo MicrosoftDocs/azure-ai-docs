@@ -72,9 +72,11 @@ The consumption-based surcharge is accrued to the associated SaaS subscription a
 
 ## Subscribe and deploy on managed compute
 
-[!INCLUDE [open-catalog](../includes/open-catalog.md)]
+1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+1. If you're not already in your project, select it. 
+1. Select **Model catalog** from the left pane.
 1. Select the **Deployment options** filter in the model catalog and choose **Managed compute**.
-1. Filter the list further by selecting the **Collection** and model of your choice. In this article, we use **Cohere Command A** for illustration.
+1. Filter the list further by selecting the **Collection** and model of your choice. In this article, we use **Cohere Command A** from the [list of supported models](#supported-models-for-pay-as-you-go-billing-to-managed-compute) for illustration.
 1. From the model's page, select **Use this model** to open the deployment wizard.
 1. Choose from one of the supported VM SKUs for the model. You need to have Azure Machine Learning Compute quota for that SKU in your Azure subscription.
 1. Select **Customize** to specify your deployment configuration for parameters such as the instance count. You can also select an existing endpoint for the deployment or create a new one. For this example, we specify an instance count of **1** and create a new endpoint for the deployment.
