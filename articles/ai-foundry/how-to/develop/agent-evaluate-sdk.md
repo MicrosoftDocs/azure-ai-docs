@@ -24,7 +24,7 @@ To build production-ready agentic applications and enable observability and tran
 
 :::image type="content" source="../../media/evaluations/agent-workflow-evaluation.gif" alt-text="Animation of the agent's workflow that shows a user query, intent resolution, tool calls, and the final response." lightbox="../../media/evaluations/agent-workflow-evaluation.gif":::
 
-An event, like a user querying "weather tomorrow" triggers an agentic workflow. To produce a final response, the agentic workflow runs multiple steps that include reasoning through user intents, tool calling, and utilizing retrieval-augmented generation. In this process, it's crucial to evaluate each step of the workflow, as well as the quality and safety of the final output. We formulate these evaluation aspects into the following evaluators for agents:
+An event, like a user querying "weather tomorrow" triggers an agentic workflow. To produce a final response, the agentic workflow runs multiple steps that include reasoning through user intents, tool calling, and utilizing retrieval-augmented generation. In this process, it's crucial to evaluate each step of the workflow, and the quality and safety of the final output. We formulate these evaluation aspects into the following evaluators for agents:
 
 - [Intent resolution](https://aka.ms/intentresolution-sample): Measures whether the agent correctly identifies the user's intent.
 - [Tool call accuracy](https://aka.ms/toolcallaccuracy-sample): Measures whether the agent made the correct function tool calls to a user's request.
