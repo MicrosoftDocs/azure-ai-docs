@@ -55,6 +55,8 @@ The following diagram illustrates this architecture:
 
 If you use the REST APIs to [push content to your index](search-what-is-data-import.md#pushing-data-to-an-index), you can synchronize multiple search services by sending updates to each service whenever changes occur. Ensure that your code handles cases in which an update fails for one service but succeeds for other services.
 
+---
+
 ## Data residency
 
 When you create multiple search services in different regions, your content is stored in the region you chose for each service.
