@@ -255,7 +255,7 @@ In Azure AI Search, the index stores all searchable content, while the search en
               "@search.action": "mergeOrUpload",
               "HotelId": "1",
               "HotelName": "Stay-Kay City Hotel",
-              "Description": "This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
+              "Description": "This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic center of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
               "DescriptionVector": [-0.048865054,-0.020307425,
               # <truncated>
               -0.018120624,-0.012772904],
@@ -354,13 +354,13 @@ The example vector queries are based on two strings:
 
 The vector query string is semantically similar to the search string, but it includes terms that don't exist in the search index. If you do a keyword search for `quintessential lodging near running trails, eateries, retail`, results are zero. We use this example to show how you can get relevant results even if there are no matching terms.
 
-1. Find the cell below section titled "Create the vector query string" and execute the cell. This loads the `vector` variable with the vectorized query data required to run all of the searches in the next sections.
+- Find the cell below section titled "Create the vector query string" and execute the cell. This loads the `vector` variable with the vectorized query data required to run all of the searches in the next sections.
 
 ### Single vector search
 
 The first example demonstrates a basic scenario where you want to find document descriptions that closely match the search string.
 
-1. Find the cell below section titled "Single vector search" and execute the cell. This block contains the request to query the search index.
+- Find the cell below section titled "Single vector search" and execute the cell. This block contains the request to query the search index.
 
    ```python
    # IMPORTANT: Before you run this code, make sure the documents were successfully
@@ -514,7 +514,7 @@ You can add filters, but the filters are applied to the nonvector content in you
      HotelName: Swirling Currents Hotel
      Score: 0.602634072303772
      City/State: Arlington, VA
-     Description: Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center. Each room comes equipped with a microwave, a coffee maker and a minifridge. In-room entertainment includes complimentary W-Fi and flat-screen TVs.
+     Description: Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center. Each room comes equipped with a microwave, a coffee maker and a minifridge. In-room entertainment includes complimentary Wi-Fi and flat-screen TVs.
    ```
 
 ### Hybrid search
@@ -524,7 +524,7 @@ Hybrid search consists of keyword queries and vector queries in a single search 
 - **Search string**: `historic hotel walk to restaurants and shopping`
 - **Vector query string** (vectorized into a mathematical representation): `quintessential lodging near running trails, eateries, retail`
 
-1. Find the cell below section titled "Hybrid search" and execute the cell. This block contains the request to query the search index.
+- Find the cell below section titled "Hybrid search" and execute the cell. This block contains the request to query the search index.
 
    ```python
    if vector:
@@ -590,7 +590,7 @@ Hybrid search consists of keyword queries and vector queries in a single search 
    - Score: 0.0317460335791111
      HotelId: 49
      HotelName: Swirling Currents Hotel
-     Description: Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center. Each room comes equipped with a microwave, a coffee maker and a minifridge. In-room entertainment includes complimentary W-Fi and flat-screen TVs.
+     Description: Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center. Each room comes equipped with a microwave, a coffee maker and a minifridge. In-room entertainment includes complimentary Wi-Fi and flat-screen TVs.
      Category: Suite
      Tags: ['air conditioning', 'laundry service', '24-hour front desk service']
    
@@ -677,7 +677,7 @@ Hybrid search consists of keyword queries and vector queries in a single search 
 
 Here's the last query in the collection. This hybrid query with semantic ranking is filtered to show only the hotels within a 500-kilometer radius of Washington D.C. You can set `vectorFilterMode` to null, which is equivalent to the default (`preFilter` for newer indexes and `postFilter` for older ones).
 
-1. Find the cell below section titled "Semantic hybrid search" and execute the cell. This code block contains the request to query the search index.
+- Find the cell below section titled "Semantic hybrid search" and execute the cell. This code block contains the request to query the search index.
 
    ```python
    if semantic_hybrid_query_vector:
@@ -730,7 +730,7 @@ Here's the last query in the collection. This hybrid query with semantic ranking
      Re-ranker Score: 2.6550590991973877
      HotelId: 49
      HotelName: Swirling Currents Hotel
-     Description: Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center. Each room comes equipped with a microwave, a coffee maker and a minifridge. In-room entertainment includes complimentary W-Fi and flat-screen TVs.
+     Description: Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center. Each room comes equipped with a microwave, a coffee maker and a minifridge. In-room entertainment includes complimentary Wi-Fi and flat-screen TVs.
      Category: Suite
    - Score: 0.03279569745063782
      Re-ranker Score: 2.599761724472046
@@ -748,7 +748,7 @@ Here's the last query in the collection. This hybrid query with semantic ranking
      Re-ranker Score: 2.2718777656555176
      HotelId: 1
      HotelName: Stay-Kay City Hotel
-     Description: This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.
+     Description: This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic center of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.
      Category: Boutique
    - Score: 0.01515151560306549
      Re-ranker Score: 2.0582215785980225
