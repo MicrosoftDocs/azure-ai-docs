@@ -24,7 +24,7 @@ This article provides code for importing data, transforming data, and moving dat
 
 This article shows how to:
 
-- Use `Dataset` objects for pre-existing data
+- Use `Dataset` objects for preexisting data
 - Access data within your steps
 - Split `Dataset` data into subsets, such as training and validation subsets
 - Create `OutputFileDatasetConfig` objects to transfer data to the next pipeline step
@@ -48,11 +48,11 @@ This article shows how to:
    ws = Workspace.from_config()
    ```
 
-- Some pre-existing data. This article briefly shows the use of an [Azure blob container](/azure/storage/blobs/storage-blobs-overview).
+- Some preexisting data. This article briefly shows the use of an [Azure blob container](/azure/storage/blobs/storage-blobs-overview).
 
 - Optional: An existing machine learning pipeline, such as the one described in [Create and run machine learning pipelines with Azure Machine Learning SDK](./how-to-create-machine-learning-pipelines.md).
 
-## Use `Dataset` objects for pre-existing data 
+## Use `Dataset` objects for preexisting data 
 
 The preferred way to ingest data into a pipeline is to use a [Dataset](/python/api/azureml-core/azureml.core.dataset%28class%29) object. `Dataset` objects represent persistent data that's available throughout a workspace.
 
@@ -250,7 +250,7 @@ step1_output_ds = step1_output_data.register_on_complete(
 Azure doesn't automatically delete intermediate data that's written with `OutputFileDatasetConfig`. To avoid storage charges for large amounts of unneeded data, you should take one of the following actions:
 
 * Programmatically delete intermediate data at the end of a pipeline job, when it's no longer needed. 
-* Use blob storage with a short-term storage policy for intermediate data. (See [Optimize costs by automating Azure Blob Storage access tiers](/azure/storage/blobs/lifecycle-management-overview).) This policy can be set only on a workspace's non-default datastore. Use `OutputFileDatasetConfig` to export intermediate data to another datastore that isn't the default.
+* Use blob storage with a short-term storage policy for intermediate data. (See [Optimize costs by automating Azure Blob Storage access tiers](/azure/storage/blobs/lifecycle-management-overview).) This policy can be set only on a workspace's nondefault datastore. Use `OutputFileDatasetConfig` to export intermediate data to another datastore that isn't the default.
 
   ```Python
   # Get Data Lake Storage Gen2 datastore that's already registered with the workspace
@@ -263,7 +263,7 @@ Azure doesn't automatically delete intermediate data that's written with `Output
 > [!CAUTION]
 > Only delete intermediate data after 30 days from the last change date of the data. Deleting intermediate data earlier could cause the pipeline run to fail because the pipeline assumes the data exists for a 30 day period for reuse.
 
-For more information, see [Plan and manage costs for Azure Machine Learning](../concept-plan-manage-cost.md).
+For more information, see [Plan to manage costs for Azure Machine Learning](../concept-plan-manage-cost.md).
 
 ## Next steps
 
