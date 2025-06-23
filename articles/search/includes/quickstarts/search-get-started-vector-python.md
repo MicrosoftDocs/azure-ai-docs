@@ -778,3 +778,8 @@ If you want to keep the search service, but delete the index and documents, you 
 index_client.delete_index(index_name)
 print(f"Index '{index_name}' deleted successfully.")
 ```
+
+## Next steps
+
+- Review the repository of code samples for vector search capabilities in Azure AI Search for [Python](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python)
+- Review the other Python and Azure AI Search code samples in the [azure-search-python-samples repo](https://github.com/Azure-Samples/azure-search-python-samples)
