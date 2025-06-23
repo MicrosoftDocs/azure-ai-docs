@@ -197,11 +197,13 @@ The code in the `vector-search-quickstart.ipynb` uses several methods from the `
                VectorSearchProfile(name="my-vector-profile", algorithm_configuration_name="my-hnsw-vector-config-1")
            ]
        )
-
+   
    semantic_config = SemanticConfiguration(
            name="my-semantic-config",
            prioritized_fields=SemanticPrioritizedFields(
-           title_field=SemanticField(field_name="HotelName")
+              title_field=SemanticField(field_name="HotelName"), 
+              content_fields=[SemanticField(field_name="Description")], 
+              keywords_fields=[SemanticField(field_name="Category")]
            )
        )
    
@@ -724,48 +726,36 @@ Here's the last query in the collection. This hybrid query with semantic ranking
 
    ```output
    Total semantic hybrid results: 7
-   - Score: 0.03125
-     Re-ranker Score: 2.2252650260925293
-     HotelId: 2
-     HotelName: Old Century Hotel
-     Description: The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.
-     Category: Boutique
    - Score: 0.0317460335791111
-     Re-ranker Score: 2.073197841644287
+     Re-ranker Score: 2.6550590991973877
      HotelId: 49
      HotelName: Swirling Currents Hotel
      Description: Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center. Each room comes equipped with a microwave, a coffee maker and a minifridge. In-room entertainment includes complimentary W-Fi and flat-screen TVs.
      Category: Suite
    - Score: 0.03279569745063782
-     Re-ranker Score: 1.982808232307434
+     Re-ranker Score: 2.599761724472046
      HotelId: 4
      HotelName: Sublime Palace Hotel
      Description: Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.
      Category: Boutique
+   - Score: 0.03125
+     Re-ranker Score: 2.3480887413024902
+     HotelId: 2
+     HotelName: Old Century Hotel
+     Description: The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.
+     Category: Boutique
    - Score: 0.016393441706895828
-     Re-ranker Score: 1.9773139953613281
+     Re-ranker Score: 2.2718777656555176
      HotelId: 1
      HotelName: Stay-Kay City Hotel
      Description: This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.
      Category: Boutique
    - Score: 0.01515151560306549
-     Re-ranker Score: 1.7511626482009888
+     Re-ranker Score: 2.0582215785980225
      HotelId: 3
      HotelName: Gastronomic Landscape Hotel
      Description: The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.
      Category: Suite
-   - Score: 0.03205128386616707
-     Re-ranker Score: 1.6370235681533813
-     HotelId: 48
-     HotelName: Nordick's Valley Motel
-     Description: Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer. Hiking? Wine Tasting? Exploring the caverns? It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley.
-     Category: Boutique
-   - Score: 0.032522473484277725
-     Re-ranker Score: 1.3456499576568604
-     HotelId: 13
-     HotelName: Luxury Lion Resort
-     Description: Unmatched Luxury. Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium and transportation hubs, we feature the best in convenience and comfort.
-     Category: Luxury
    ```
 
    Key takeaways:
@@ -788,4 +778,3 @@ If you want to keep the search service, but delete the index and documents, you 
 index_client.delete_index(index_name)
 print(f"Index '{index_name}' deleted successfully.")
 ```
-
