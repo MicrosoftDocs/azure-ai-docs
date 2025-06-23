@@ -60,7 +60,7 @@ Once you identify a use case, you need to select the appropriate training techni
   - *When to use:* RFT is ideal for objective domains like mathematics, chemistry, and physics where there are clear right and wrong answers and the model already shows some competency. It works best when lucky guessing is difficult and expert evaluators would consistently agree on an unambiguous, correct answer. Requires more ML expertise to implement effectively.
   - *Supported Models:* o4-mini
 
-> Most customers should start with SFT, as it addresses the broadest number of fine-tuning use cases.
+Most customers should start with SFT, as it addresses the broadest number of fine-tuning use cases.
 
 Follow this link to view and download [example datasets](https://github.com/Azure-Samples/AIFoundry-Customization-Datasets) to try out fine-tuning.
 
