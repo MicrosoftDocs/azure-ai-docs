@@ -19,9 +19,11 @@ ms.date: 06/13/2025
 
 ## Microsoft Entra ID prerequisites
 
-For the recommended keyless authentication with Microsoft Entra ID, you need to:
-- Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
-- Assign both of the `Search Service Contributor` and `Search Index Data Contributor` roles to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**. For more information, see [Connect to Azure AI Search using roles](../../search-security-rbac.md).
+For the recommended keyless authentication with Microsoft Entra ID, you must:
+
+- Install the [Azure CLI](/cli/azure/install-azure-cli).
+
+- Assign the `Search Service Contributor` and `Search Index Data Contributor` roles to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**. For more information, see [Connect to Azure AI Search using roles](../../search-security-rbac.md).
 
 ## Retrieve resource information
 

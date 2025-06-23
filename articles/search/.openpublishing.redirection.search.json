@@ -415,6 +415,16 @@
             "source_path_from_root": "/articles/search/tutorial-multimodal-index-image-verbalization-skill.md",
             "redirect_url": "/azure/search/tutorial-document-layout-image-verbalization",
             "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-get-started-rest.md",
+            "redirect_url": "/azure/search/search-get-started-text",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-get-started-powershell.md",
+            "redirect_url": "/azure/search/search-get-started-text",
+            "redirect_document_id": true
         }
     ]
   }

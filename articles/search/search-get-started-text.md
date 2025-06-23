@@ -1,7 +1,7 @@
 ---
-title: 'Quickstart: Full Text Search Using the Azure SDKs'
+title: 'Quickstart: Full-Text Search'
 titleSuffix: Azure AI Search
-description: "Learn how to create, load, and query a search index using the Azure SDKs for .NET, Python, Java, and JavaScript."
+description: "Learn how to create, load, and query a search index programmatically."
 manager: nitinme
 author: haileytap
 ms.author: haileytapia
@@ -15,46 +15,58 @@ ms.custom:
   - ignite-2023
 ms.topic: quickstart
 zone_pivot_groups: search-quickstart-full-text
-ms.date: 03/04/2025
+ms.date: 06/23/2025
 ---
 
-# Quickstart: Full text search using the Azure SDKs
+# Quickstart: Full-text search
 
-::: zone pivot="programming-language-csharp"
+::: zone pivot="csharp"
 
 [!INCLUDE [C# quickstart](includes/quickstarts/full-text-csharp.md)]
 
 ::: zone-end
 
-::: zone pivot="programming-language-java"
+::: zone pivot="java"
 
 [!INCLUDE [Java quickstart](includes/quickstarts/full-text-java.md)]
 
 ::: zone-end
 
-::: zone pivot="programming-language-javascript"
+::: zone pivot="javascript"
 
 [!INCLUDE [JavaScript quickstart](includes/quickstarts/full-text-javascript.md)]
 
 ::: zone-end
 
-::: zone pivot="programming-language-python"
+::: zone pivot="powershell"
+
+[!INCLUDE [PowerShell quickstart](includes/quickstarts/full-text-powershell.md)]
+
+::: zone-end
+
+::: zone pivot="python"
 
 [!INCLUDE [Python SDK quickstart](includes/quickstarts/full-text-python.md)]
 
 ::: zone-end
 
-::: zone pivot="programming-language-typescript"
+::: zone pivot="rest"
+
+[!INCLUDE [REST quickstart](includes/quickstarts/full-text-rest.md)]
+
+::: zone-end
+
+::: zone pivot="typescript"
 
 [!INCLUDE [TypeScript quickstart](includes/quickstarts/full-text-typescript.md)]
 
 ::: zone-end
 
-## Clean-up resources
+## Clean up resources
 
-When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
+When working in your own subscription, it's a good idea to finish a project by determining whether you still need the resources you created. Resources that are left running can cost you money. You can delete resources individually, or you can delete the resource group to delete the entire set of resources.
 
-You can find and manage resources in the Azure portal, using the **All resources** or **Resource groups** link in the left-navigation pane.
+In the Azure portal, you can find and manage resources by selecting **All resources** or **Resource groups** from the left pane.
 
 If you're using a free service, remember that you're limited to three indexes, indexers, and data sources. You can delete individual items in the Azure portal to stay under the limit.
 
