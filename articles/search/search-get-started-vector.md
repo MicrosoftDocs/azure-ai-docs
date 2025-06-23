@@ -25,10 +25,3 @@ zone_pivot_groups: search-get-started-vector-search
 [!INCLUDE [REST quickstart](includes/quickstarts/search-get-started-vector-rest.md)]
 
 ::: zone-end
-
-
-## Next steps
-
-As a next step, we recommend learning how to invoke REST API calls [without API keys](search-get-started-rbac.md).
-
-You might also want to review the demo code for [Python](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python), [C#](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-dotnet), or [JavaScript](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-javascript).
