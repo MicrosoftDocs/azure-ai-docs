@@ -107,6 +107,19 @@ An Azure AI Foundry project with ingress Public Network Access disabled can only
 | Cohere | [Command A](https://ai.azure.com/explore/models/cohere-command-a/version/3/registry/azureml-cohere) | Chat completion |
 | Cohere | [Embed v4](https://ai.azure.com/explore/models/embed-v-4-0/version/4/registry/azureml-cohere) | Embeddings |
 | Cohere | [Rerank v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/2/registry/azureml-cohere) | Text classification |
+| NVIDIA | [Llama-3.3-Nemotron-Super-49B-v1-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.3-Nemotron-Super-49B-v1-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
+| NVIDIA | [Llama-3.1-Nemotron-Nano-8B-v1-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.1-Nemotron-Nano-8B-v1-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
+| NVIDIA | [Deepseek-R1-Distill-Llama-8B-NIM-microservice](https://ai.azure.com/explore/models/Deepseek-R1-Distill-Llama-8B-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
+| NVIDIA | [Llama-3.3-70B-Instruct-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
+| NVIDIA | [Llama-3.1-8B-Instruct-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.1-8B-Instruct-NIM-microservice/version/3/registry/azureml-nvidia) | Chat completion |
+| NVIDIA | [Mistral-7B-Instruct-v0.3-NIM-microservice](https://ai.azure.com/explore/models/Mistral-7B-Instruct-v0.3-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
+| NVIDIA | [Mixtral-8x7B-Instruct-v0.1-NIM-microservice](https://ai.azure.com/explore/models/Mixtral-8x7B-Instruct-v0.1-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
+| NVIDIA | [Llama-3.2-NV-embedqa-1b-v2-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.2-NV-embedqa-1b-v2-NIM-microservice/version/2/registry/azureml-nvidia) | Embeddings |
+| NVIDIA | [Llama-3.2-NV-rerankqa-1b-v2-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.2-NV-rerankqa-1b-v2-NIM-microservice/version/2/registry/azureml-nvidia) | Text classification |
+| NVIDIA | [Openfold2-NIM-microservice](https://ai.azure.com/explore/models/Openfold2-NIM-microservice/version/3/registry/azureml-nvidia) | Protein Binder |
+| NVIDIA | [ProteinMPNN-NIM-microservice](https://ai.azure.com/explore/models/ProteinMPNN-NIM-microservice/version/2/registry/azureml-nvidia) | Protein Binder |
+| NVIDIA | [MSA-search-NIM-microservice](https://ai.azure.com/explore/models/MSA-search-NIM-microservice/version/3/registry/azureml-nvidia) | Protein Binder |
+| NVIDIA | [Rfdiffusion-NIM-microservice](https://ai.azure.com/explore/models/Rfdiffusion-NIM-microservice/version/1/registry/azureml-nvidia) | Protein Binder |
 
 
 
