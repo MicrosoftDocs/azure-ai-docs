@@ -73,21 +73,15 @@ The consumption-based surcharge is accrued to the associated SaaS subscription a
 ## Subscribe and deploy on managed compute
 
 [!INCLUDE [open-catalog](../includes/open-catalog.md)]
-
 1. Select the **Deployment options** filter in the model catalog and choose **Managed compute**.
-
 1. Filter the list further by selecting the **Collection** and model of your choice. In this article, we use **Cohere Command A** for illustration.
-
 1. From the model's page, select **Use this model** to open the deployment wizard.
-
 1. Choose from one of the supported VM SKUs for the model. You need to have Azure Machine Learning Compute quota for that SKU in your Azure subscription.
-
 1. Select **Customize** to specify your deployment configuration for parameters such as the instance count. You can also select an existing endpoint for the deployment or create a new one. For this example, we specify an instance count of **1** and create a new endpoint for the deployment.
 
     :::image type="content" source="../media/deploy-models-managed-pay-go/deployment-configuration.png" alt-text="Screenshot of the deployment configuration screen for a protected model in Azure AI Foundry." lightbox="../media/deploy-models-managed-pay-go/deployment-configuration.png":::
 
 1. Select **Next** to proceed to the *pricing breakdown* page.
-
 1. Review the pricing breakdown for the deployment, terms of use, and license agreement associated with the model's offer on Azure Marketplace. The pricing breakdown tells you what the aggregated pricing for the deployed model would be, where the surcharge for the model is a function of the number of GPUs in the VM instance that is selected in the previous steps. In addition to the applicable surcharge for the model, Azure compute charges also apply, based on your deployment configuration. If you have existing reservations or Azure savings plan, the invoice for the compute charges honors and reflects the discounted VM pricing.
 
     :::image type="content" source="../media/deploy-models-managed-pay-go/pricing-breakdown.png" alt-text="Screenshot of the pricing breakdown page for a protected model deployment in Azure AI Foundry." lightbox="../media/deploy-models-managed-pay-go/pricing-breakdown.png":::
