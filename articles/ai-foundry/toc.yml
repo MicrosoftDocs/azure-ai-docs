@@ -167,6 +167,8 @@ items:
       items:
       - name: Deploy models via managed compute
         href: how-to/deploy-models-managed.md
+      - name: Deploy models to managed compute pay-as-you-go
+        href: how-to/deploy-models-managed-pay-go.md
       - name: Healthcare AI models
         items:
         - name: Foundational AI models for healthcare
