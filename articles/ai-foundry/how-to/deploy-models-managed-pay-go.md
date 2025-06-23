@@ -32,7 +32,7 @@ In this article, you learn how to use protected models from partners and communi
 - Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned a *custom role* with the following permissions. User accounts assigned the *Owner* or *Contributor* role for the Azure subscription can also create deployments. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
 
 
-- On the Azure subscription—**to subscribe the workspace/project to the Azure Marketplace offering**:
+- On the Azure subscription— **to subscribe the workspace/project to the Azure Marketplace offering**:
 
   - Microsoft.MarketplaceOrdering/agreements/offers/plans/read
   - Microsoft.MarketplaceOrdering/agreements/offers/plans/sign/action
@@ -40,15 +40,25 @@ In this article, you learn how to use protected models from partners and communi
   - Microsoft.Marketplace/offerTypes/publishers/offers/plans/agreements/read
   - Microsoft.SaaS/register/action
 
-- On the resource group—**to create and use the SaaS resource**:
+- On the resource group— **to create and use the SaaS resource**:
 
   - Microsoft.SaaS/resources/read
   - Microsoft.SaaS/resources/write
 
-- On the workspace—**to deploy endpoints**:
+- On the workspace— **to deploy endpoints**:
 
   - Microsoft.MachineLearningServices/workspaces/marketplaceModelSubscriptions/*
   - Microsoft.MachineLearningServices/workspaces/onlineEndpoints/*
+
+## Marketplace offer unit of measure and subscription scope
+
+The surcharge for the models is a per GPU hour price set by the partner / publisher on Azure marketplace, for all the supported GPUs for the model to be deployed on Foundry managed compute.  
+
+User's subscriptions to the azure marketplace offers are scoped to a project resource within Azure AI Foundry. If a subscription to the marketplace offer already exists within a project, users will be notified of the same in the Deploy Wizard (reference snapshot below). 
+
+<insert image from doc>
+
+All SaaS subscriptions created in an Azure subscription are listed under 'Resources' of the Settings blade of the Azure subscription and can be filtered using Resource Type equals SaaS. The consumption-based surcharge is accrued to the associated SaaS subscription and billed to the user via Azure Marketplace. The user can view his invoice by clicking on 'View Billing' in the Overview tab of the respective SaaS subscription.
 
 ## Subscribe and deploy on managed compute
 
@@ -56,23 +66,23 @@ In this article, you learn how to use protected models from partners and communi
 
 1. Select the **Deployment options** filter in the model catalog and choose **Managed compute**.
 
-1. Filter the list further by selecting the **Collection** and model of your choice. In this article, we use **Cohere Command A** for illustration.
+2. Filter the list further by selecting the **Collection** and model of your choice. In this article, we use **Cohere Command A** for illustration.
 
-1. From the model's page, select **Use this model** to open the deployment wizard.
+3. From the model's page, select **Use this model** to open the deployment wizard.
 
-1. Choose from one of the supported VM SKUs for the model. You need to have Azure Machine Learning Compute quota for that SKU in your Azure subscription.
+4. Choose from one of the supported VM SKUs for the model. You need to have Azure Machine Learning Compute quota for that SKU in your Azure subscription.
 
-1. Select **Customize** to specify your deployment configuration for parameters such as the instance count. You can also select an existing endpoint for the deployment or create a new one. For this example, we specify an instance count of **1** and create a new endpoint for the deployment.
+5. Select **Customize** to specify your deployment configuration for parameters such as the instance count. You can also select an existing endpoint for the deployment or create a new one. For this example, we specify an instance count of **1** and create a new endpoint for the deployment.
 
     :::image type="content" source="../media/deploy-models-managed-pay-go/deployment-configuration.png" alt-text="Screenshot of the deployment configuration screen for a protected model in Azure AI Foundry." lightbox="../media/deploy-models-managed-pay-go/deployment-configuration.png":::
 
-1. Select **Next** to proceed to the *pricing breakdown* page.
+6. Select **Next** to proceed to the *pricing breakdown* page.
 
-1. Review the pricing breakdown for the deployment, terms of use, and license agreement associated with the model's offer on Azure Marketplace. The pricing breakdown tells you what the aggregated pricing for the deployed model would be, where the surcharge for the model is a function of the number of GPUs in the VM instance that is selected in the previous steps. In addition to the applicable surcharge for the model, Azure compute charges also apply, based on your deployment configuration. If you have existing reservations or Azure savings plan, the invoice for the compute charges honors and reflects the discounted VM pricing.
+7. Review the pricing breakdown for the deployment, terms of use, and license agreement associated with the model's offer on Azure Marketplace. The pricing breakdown tells you what the aggregated pricing for the deployed model would be, where the surcharge for the model is a function of the number of GPUs in the VM instance that is selected in the previous steps. In addition to the applicable surcharge for the model, Azure compute charges also apply, based on your deployment configuration. If you have existing reservations or Azure savings plan, the invoice for the compute charges honors and reflects the discounted VM pricing.
 
     :::image type="content" source="../media/deploy-models-managed-pay-go/pricing-breakdown.png" alt-text="Screenshot of the pricing breakdown page for a protected model deployment in Azure AI Foundry." lightbox="../media/deploy-models-managed-pay-go/pricing-breakdown.png":::
 
-1. Select the checkbox to acknowledge that you understand and agree to the terms of use. Then, select **Deploy**. It takes about 15-20 minutes for the deployment to complete.
+8. Select the checkbox to acknowledge that you understand and agree to the terms of use. Then, select **Deploy**. Foundry creates the user's subscription to the marketplace offer and further on, the deployment of the model on managed compute. It takes about 15-20 minutes for the deployment to complete.
 
 ## Network Isolation of deployments
 
@@ -81,7 +91,6 @@ Collections in the model catalog can be deployed within your isolated networks u
 #### Limitation
 
 An Azure AI Foundry project with ingress Public Network Access disabled can only support a single active deployment of one of the protected models from the catalog. Attempts to create more active deployments result in deployment creation failures.
-
 
 ## Related content
 
