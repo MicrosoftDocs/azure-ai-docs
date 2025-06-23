@@ -31,7 +31,20 @@ Azure OpenAI's quota feature enables assignment of rate limits to your deploymen
 
 When a deployment is created, the assigned TPM will directly map to the tokens-per-minute rate limit enforced on its inferencing requests. A **Requests-Per-Minute (RPM)** rate limit will also be enforced whose value is set proportionally to the TPM assignment using the following ratio:
 
-6 RPM per 1000 TPM. (This ratio can vary by model for more information, see [quota, and limits](../quotas-limits.md#o-series-rate-limits).)
+> [!IMPORTANT]
+> The ratio of Requests Per Minute (RPM) to Tokens Per Minute (TPM) for quota can vary by model. When you deploy a model programmatically or [request a quota increase](https://aka.ms/oai/stuquotarequest) you don't have granular control over TPM and RPM as independent values. Quota is allocated in terms of units of capacity which have corresponding amounts of RPM & TPM:
+>
+> | Model                  | Capacity   | Requests Per Minute (RPM)  | Tokens Per Minute (TPM) |
+> |------------------------|:----------:|:--------------------------:|:-----------------------:|
+> | **Older chat models:** | 1 Unit     | 6 RPM                      | 1,000 TPM               |
+> | **o1 & o1-preview:**   | 1 Unit     | 1 RPM                      | 6,000 TPM               |
+> | **o3**                 | 1 Unit     | 1 RPM                      | 1,000 TPM               |
+> | **o4-mini**            | 1 Unit     | 1 RPM                      | 1,000 TPM               |
+> | **o3-mini:**           | 1 Unit     | 1 RPM                      | 10,000 TPM              |
+> | **o1-mini:**           | 1 Unit     | 1 RPM                      | 10,000 TPM              |
+> | **o3-pro:**            | 1 Unit     | 1 RPM                      | 10,000 TPM              |
+>
+> This is particularly important for programmatic model deployment as changes in RPM/TPM ratio can result in accidental  misallocation of quota. For more information, see [quota, and limits](../quotas-limits.md#o-series-rate-limits).
 
 The flexibility to distribute TPM globally within a subscription and region has allowed Azure OpenAI to loosen other restrictions:
 

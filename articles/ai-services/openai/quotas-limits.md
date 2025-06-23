@@ -99,7 +99,6 @@ The following sections provide you with a quick guide to the default quotas and 
 | `model-router` (2025-05-19) | Enterprise Tier | 10 M | 10 K |
 | `model-router` (2025-05-19) | Default         | 1 M | 1 K |
 
-
 ## computer-use-preview global standard rate limits
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
@@ -107,22 +106,22 @@ The following sections provide you with a quick guide to the default quotas and 
 | `computer-use-preview`| Enterprise Tier | 30 M | 300 K |
 | `computer-use-preview`| Default         | 450 K | 4.5 K |
 
-
 ## o-series rate limits
 
 > [!IMPORTANT]
-> The ratio of RPM/TPM for quota with o1-series models works differently than older chat completions models:
+> The ratio of Requests Per Minute (RPM) to Tokens Per Minute (TPM) for quota can vary by model. When you deploy a model programmatically or [request a quota increase](https://aka.ms/oai/stuquotarequest) you don't have granular control over TPM and RPM as independent values. Quota is allocated in terms of units of capacity which have corresponding amounts of RPM & TPM:
 >
-> - **Older chat models:** 1 unit of capacity = 6 RPM and 1,000 TPM.
-> - **o1 & o1-preview:** 1 unit of capacity = 1 RPM and 6,000 TPM.
-> - **o3** 1 unit of capacity = 1 RPM per 1,000 TPM
-> - **o4-mini** 1 unit of capacity = 1 RPM per 1,000 TPM
-> - **o3-mini:** 1 unit of capacity = 1 RPM per 10,000 TPM.
-> - **o1-mini:** 1 unit of capacity = 1 RPM per 10,000 TPM.
+> | Model                  | Capacity   | Requests Per Minute (RPM)  | Tokens Per Minute (TPM) |
+> |------------------------|:----------:|:--------------------------:|:-----------------------:|
+> | **Older chat models:** | 1 Unit     | 6 RPM                      | 1,000 TPM               |
+> | **o1 & o1-preview:**   | 1 Unit     | 1 RPM                      | 6,000 TPM               |
+> | **o3**                 | 1 Unit     | 1 RPM                      | 1,000 TPM               |
+> | **o4-mini**            | 1 Unit     | 1 RPM                      | 1,000 TPM               |
+> | **o3-mini:**           | 1 Unit     | 1 RPM                      | 10,000 TPM              |
+> | **o1-mini:**           | 1 Unit     | 1 RPM                      | 10,000 TPM              |
+> | **o3-pro:**            | 1 Unit     | 1 RPM                      | 10,000 TPM              |
 >
-> This is particularly important for programmatic model deployment as this change in RPM/TPM ratio can result in accidental under allocation of quota if one is still assuming the 1:1000 ratio followed by older chat completion models.
->
-> There's a known issue with the [quota/usages API](/rest/api/aiservices/accountmanagement/usages/list?view=rest-aiservices-accountmanagement-2024-06-01-preview&tabs=HTTP&preserve-view=true) where it assumes the old ratio applies to the new o1-series models. The API returns the correct base capacity number, but doesn't apply the correct ratio for the accurate calculation of TPM.
+> This is particularly important for programmatic model deployment as changes in RPM/TPM ratio can result in accidental  misallocation of quota.
 
 ### o-series global standard
 
