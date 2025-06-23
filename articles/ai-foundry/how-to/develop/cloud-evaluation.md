@@ -18,9 +18,9 @@ author: lgayhardt
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-The Azure AI Evaluation SDK supports running evaluations locally on your own machine and also in the cloud. For example, after you ran local evaluations on small test data to help assess your generative AI application prototypes, you can move into pre-deployment testing and run evaluations on a large dataset. Evaluating your applications in the cloud frees you from managing your local compute infrastructure, and enables you to integrate evaluations as tests into your continuous integration and continuous delivery (CI/CD) pipelines. After deployment, you can choose to [continuously evaluate](../online-evaluation.md) your applications for post-deployment monitoring.
+The Azure AI Evaluation SDK supports running evaluations locally on your own machine and also in the cloud. For example, after you run local evaluations on small test data to help assess your generative AI application prototypes, you can move into pre-deployment testing and run evaluations on a large dataset. Evaluating your applications in the cloud frees you from managing your local compute infrastructure, and enables you to integrate evaluations as tests into your continuous integration and continuous delivery (CI/CD) pipelines. After deployment, you can choose to [continuously evaluate](../online-evaluation.md) your applications for post-deployment monitoring.
 
-In this article, you learn how to run evaluations in the cloud (preview) in pre-deployment testing on a test dataset. When you use the Azure AI Projects SDK, evaluation results are automatically logged into your Azure AI project for better observability. This feature supports all Microsoft curated [built-in evaluators](../../concepts/observability.md#what-are-evaluators) and your own [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md). Your evaluators can be located in the [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) and have the same project-scope role-based access control (RBAC).
+In this article, you learn how to run evaluations in the cloud (preview) in pre-deployment testing on a test dataset. When you use the Azure AI Projects SDK, evaluation results are automatically logged into your Azure AI project for better observability. This feature supports all Microsoft-curated [built-in evaluators](../../concepts/observability.md#what-are-evaluators) and your own [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md). Your evaluators can be located in the [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) and have the same project-scope role-based access control (RBAC).
 
 ## Prerequisites
 
@@ -38,41 +38,41 @@ If this is your first time running evaluations and logging it to your Azure AI F
 
 1. Install the Azure AI Foundry SDK project client that runs the evaluations in the cloud.
 
-```python
-uv install azure-ai-projects azure-identity
-```
+   ```python
+   uv install azure-ai-projects azure-identity
+   ```
 
-> [!NOTE]
-> For more detailed information, see [REST API Reference Documentation](/rest/api/aifoundry/aiprojects/evaluations).
+   > [!NOTE]
+   > For more detailed information, see [REST API Reference Documentation](/rest/api/aifoundry/aiprojects/evaluations).
 
-1. Set your environment variables for your Azure AI Foundry resources
+2. Set your environment variables for your Azure AI Foundry resources.
 
-```python
-import os
+   ```python
+   import os
 
-# Required environment variables
-endpoint = os.environ["PROJECT_ENDPOINT"] # https://<account>.services.ai.azure.com/api/projects/<project>
-model_endpoint = os.environ["MODEL_ENDPOINT"] # https://<account>.services.ai.azure.com
-model_api_key = os.environ["MODEL_API_KEY"] 
+   # Required environment variables
+   endpoint = os.environ["PROJECT_ENDPOINT"] # https://<account>.services.ai.azure.com/api/projects/<project>
+   model_endpoint = os.environ["MODEL_ENDPOINT"] # https://<account>.services.ai.azure.com
+   model_api_key = os.environ["MODEL_API_KEY"] 
 
-# Optional – reuse an existing dataset
-dataset_name    = os.environ.get("DATASET_NAME",    "dataset-test")
-dataset_version = os.environ.get("DATASET_VERSION", "1.0")
-```
+   # Optional – reuse an existing dataset
+   dataset_name    = os.environ.get("DATASET_NAME",    "dataset-test")
+   dataset_version = os.environ.get("DATASET_VERSION", "1.0")
+   ```
 
-Now, you can define a client that runs your evaluations in the cloud:
+3. Now, you can define a client that runs your evaluations in the cloud:
 
-```python
-import os
-from azure.identity import DefaultAzureCredential
-from azure.ai.projects import AIProjectClient
+   ```python
+   import os
+   from azure.identity import DefaultAzureCredential
+   from azure.ai.projects import AIProjectClient
 
-# Create the project client (Foundry project and credentials)
-project_client = AIProjectClient(
-    endpoint=endpoint,
-    credential=DefaultAzureCredential(),
-)
-```
+   # Create the project client (Foundry project and credentials)
+   project_client = AIProjectClient(
+       endpoint=endpoint,
+       credential=DefaultAzureCredential(),
+   )
+   ```
 
 ## <a name = "uploading-evaluation-data"></a> Upload evaluation data
 
