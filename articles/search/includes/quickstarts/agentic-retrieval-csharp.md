@@ -28,7 +28,7 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 
 [!INCLUDE [Setup](./agentic-retrieval-setup.md)]
 
-## Set up
+## Setup
 
 1. Create a new folder `quickstart-agentic-retrieval` to contain the application and open Visual Studio Code in that folder with the following command:
 
