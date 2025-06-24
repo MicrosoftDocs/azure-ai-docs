@@ -1234,19 +1234,23 @@ groups:
   - id: programming-language-rest
     title: REST
 - id: search-quickstart-full-text
-# Owner: eur
-  title: Programming languages
-  prompt: Choose a programming language
+# Owner: haileytapia
+  title: Usage methods
+  prompt: Choose a usage method
   pivots:
-  - id: programming-language-csharp
+  - id: csharp
     title: C#
-  - id: programming-language-java
+  - id: java
     title: Java
-  - id: programming-language-javascript
+  - id: javascript
     title: JavaScript
-  - id: programming-language-python
+  - id: powershell
+    title: PowerShell
+  - id: python
     title: Python
-  - id: programming-language-typescript
+  - id: rest
+    title: REST
+  - id: typescript
     title: TypeScript
 - id: azure-portal-and-cli
 # Owner: Larryfr
