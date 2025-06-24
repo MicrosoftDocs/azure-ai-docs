@@ -27,7 +27,7 @@ items:
 - name: Tutorials
   items:
     - name: Get started with DeepSeek-R1 reasoning model
-      href: ./tutorials/get-started-deepseek-r1.md
+      href: ai-foundry/foundry-models/tutorials/get-started-deepseek-r1.md
 - name: Concepts
   items:
     - name: Available models

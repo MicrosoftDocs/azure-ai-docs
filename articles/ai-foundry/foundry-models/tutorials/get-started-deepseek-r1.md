@@ -26,10 +26,10 @@ In this tutorial, you learn:
 To complete this article, you need:
 
 
-* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Azure AI Foundry Models](../how-to/quickstart-github-models.md) if that's your case.
+* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Azure AI Foundry Models](../../model-inference/how-to/quickstart-github-models.md) if that's your case.
 
 
-[!INCLUDE [about-reasoning](../includes/use-chat-reasoning/about-reasoning.md)]
+[!INCLUDE [about-reasoning](../../model-inference/includes/use-chat-reasoning/about-reasoning.md)]
 
 ## Create the resources
 
@@ -69,7 +69,7 @@ To create an Azure AI project that supports deployment for DeepSeek-R1, follow t
     | Resource group | The main container for all the resources in Azure. This helps get resources that work together organized. It also helps to have a scope for the costs associated with the entire project. |
     | Location       | The region of the resources that you're creating. |
     | Hub            | The main container for AI projects in Azure AI Foundry. Hubs promote collaboration and allow you to store information for your projects. |
-    | AI Foundry    | The resource enabling access to the flagship models in Azure AI model catalog. In this tutorial, a new account is created, but Azure AI Foundry resources (formerly known Azure AI Services) can be shared across multiple hubs and projects. Hubs use a connection to the resource to have access to the model deployments available there. To learn how you can create connections to Azure AI Foundry resources to consume models you can read [Connect your AI project](../how-to/configure-project-connection.md). |
+    | AI Foundry    | The resource enabling access to the flagship models in Azure AI model catalog. In this tutorial, a new account is created, but Azure AI Foundry resources (formerly known Azure AI Services) can be shared across multiple hubs and projects. Hubs use a connection to the resource to have access to the model deployments available there. To learn how you can create connections to Azure AI Foundry resources to consume models you can read [Connect your AI project](../../model-inference/how-to/configure-project-connection.md). |
 
 
 8. Select **Create**. The resources creation process starts. 
@@ -130,7 +130,7 @@ You can get started by using the model in the playground to have an idea of the 
 
 5. Additionally, you can use **View code** so see details about how to access the model deployment programmatically.
 
-[!INCLUDE [best-practices](../includes/use-chat-reasoning/best-practices.md)]
+[!INCLUDE [best-practices](../../model-inference/includes/use-chat-reasoning/best-practices.md)]
 
 ## Use the model in code
 
@@ -140,11 +140,11 @@ Use the Foundry Models endpoint and credentials to connect to the model:
 
 You can use the Azure AI Inference package to consume the model in code:
 
-[!INCLUDE [code-create-chat-client](../includes/code-create-chat-client.md)]
+[!INCLUDE [code-create-chat-client](../../model-inference/includes/code-create-chat-client.md)]
 
-[!INCLUDE [code-chat-reasoning](../includes/code-create-chat-reasoning.md)]
+[!INCLUDE [code-chat-reasoning](../../model-inference/includes/code-create-chat-reasoning.md)]
 
-Reasoning may generate longer responses and consume a larger number of tokens. You can see the [rate limits](../quotas-limits.md) that apply to DeepSeek-R1 models. Consider having a retry strategy to handle rate limits being applied. You can also [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
+Reasoning may generate longer responses and consume a larger number of tokens. You can see the [rate limits](../../model-inference/quotas-limits.md) that apply to DeepSeek-R1 models. Consider having a retry strategy to handle rate limits being applied. You can also [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
 
 ### Reasoning content
 
@@ -191,6 +191,6 @@ In general, reasoning models don't support the following parameters you can find
 
 ## Related content
 
-* [Use chat reasoning models](../how-to/use-chat-reasoning.md)
-* [Use image embedding models](../how-to/use-image-embeddings.md)
-* [Model Inference API](.././reference/reference-model-inference-api.md)
+* [Use chat reasoning models](../../model-inference/how-to/use-chat-reasoning.md)
+* [Use image embedding models](../../model-inference/how-to/use-image-embeddings.md)
+* [Model Inference API](../../model-inference/reference/reference-model-inference-api.md)
