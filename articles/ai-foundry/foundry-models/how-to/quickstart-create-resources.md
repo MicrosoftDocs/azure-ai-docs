@@ -18,13 +18,13 @@ reviewer: santiagxf
 # Create and configure all the resources for Azure AI Foundry Models
 
 ::: zone pivot="ai-foundry-portal"
-[!INCLUDE [portal](../includes/create-resources/portal.md)]
+[!INCLUDE [portal](../../model-inference/includes/create-resources/portal.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-cli"
-[!INCLUDE [cli](../includes/create-model-deployments/cli.md)]
+[!INCLUDE [cli](../../model-inference/includes/create-model-deployments/cli.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-bicep"
-[!INCLUDE [bicep](../includes/create-resources/bicep.md)]
+[!INCLUDE [bicep](../../model-inference/includes/create-resources/bicep.md)]
 ::: zone-end

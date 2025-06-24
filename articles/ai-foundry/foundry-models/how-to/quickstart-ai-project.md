@@ -24,9 +24,9 @@ Additionally, deploying models to Azure AI Foundry Models brings the extra benef
 
 > [!div class="checklist"]
 > * [Routing capability](inference.md#routing).
-> * [Custom content filters](../concepts/content-filter.md).
+> * [Custom content filters](../../model-inference/concepts/content-filter.md).
 > * Global capacity deployment type.
-> * [Key-less authentication](configure-entra-id.md) with role-based access control.
+> * [Key-less authentication](../../model-inference/how-to/configure-entra-id.md) with role-based access control.
 
 In this article, you learn how to configure your project to use Foundry Models deployments.
 
@@ -34,7 +34,7 @@ In this article, you learn how to configure your project to use Foundry Models d
 
 To complete this tutorial, you need:
 
-* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Foundry Models](quickstart-github-models.md) if it's your case.
+* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Foundry Models](../../model-inference/how-to/quickstart-github-models.md) if it's your case.
 
 * An Azure AI services resource. For more information, see [Create an Azure AI Services resource](../../../ai-services/multi-service-resource.md??context=/azure/ai-services/model-inference/context/context).
 
@@ -130,13 +130,13 @@ You can use any of the supported SDKs to get predictions out from the endpoint. 
 * Azure AI Inference package
 * Azure AI Projects package
 
-See the [supported languages and SDKs](../supported-languages.md) section for more details and examples. The following example shows how to use the Azure AI Inference package with the newly deployed model:
+See the [supported languages and SDKs](../../model-inference/supported-languages.md) section for more details and examples. The following example shows how to use the Azure AI Inference package with the newly deployed model:
 
-[!INCLUDE [code-create-chat-client](../includes/code-create-chat-client.md)]
+[!INCLUDE [code-create-chat-client](../../model-inference/includes/code-create-chat-client.md)]
 
 Generate your first chat completion:
 
-[!INCLUDE [code-create-chat-completion](../includes/code-create-chat-completion.md)]
+[!INCLUDE [code-create-chat-completion](../../model-inference/includes/code-create-chat-completion.md)]
 
 Use the parameter `model="<deployment-name>` to route your request to this deployment. *Deployments work as an alias of a given model under certain configurations*. See [Routing](inference.md#routing) page to learn how Azure AI Foundry Models routes deployments.
 
@@ -195,4 +195,4 @@ Consider the following limitations when configuring your project to use Foundry 
 
 ## Next steps
 
-* [Add more models](create-model-deployments.md) to your endpoint.
+* [Add more models](../../model-inference/how-to/create-model-deployments.md) to your endpoint.

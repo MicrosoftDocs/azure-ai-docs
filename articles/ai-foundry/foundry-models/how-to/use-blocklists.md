@@ -19,13 +19,13 @@ The configurable content filters are sufficient for most content moderation need
 
 ## Prerequisites
 
-* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Foundry Models](quickstart-github-models.md) if it's your case.
+* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Foundry Models](../../model-inference/how-to/quickstart-github-models.md) if it's your case.
 
 * An Azure AI Foundry services resource. For more information, see [Create an Azure AI Foundry Services resource](../../../ai-services/multi-service-resource.md?context=/azure/ai-services/model-inference/context/context).
 
-* An Azure AI Foundry project [connected to your Azure AI Foundry services resource](configure-project-connection.md).
+* An Azure AI Foundry project [connected to your Azure AI Foundry services resource](../../model-inference/how-to/configure-project-connection.md).
 
-* A model deployment. See [Add and configure models to Azure AI Foundry services](create-model-deployments.md) for adding models to your resource.
+* A model deployment. See [Add and configure models to Azure AI Foundry services](../../model-inference/how-to/create-model-deployments.md) for adding models to your resource.
 
     > [!NOTE]
     > Blocklist (preview) is only supported for Azure OpenAI models.
@@ -34,4 +34,4 @@ The configurable content filters are sufficient for most content moderation need
 
 ## Next steps
 
-* [Configure content filtering](configure-content-filters.md)
+* [Configure content filtering](../../model-inference/how-to/configure-content-filters.md)

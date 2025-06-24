@@ -14,11 +14,11 @@ ms.reviewer: fasantia
 
 # Use Foundry Models
 
-Once you have [deployed a model in Azure AI Foundry](create-model-deployments.md), you can consume its capabilities via Azure AI Foundry APIs. There are two different endpoints and APIs to use models in Azure AI Foundry Models.
+Once you have [deployed a model in Azure AI Foundry](../../model-inference/how-to/create-model-deployments.md), you can consume its capabilities via Azure AI Foundry APIs. There are two different endpoints and APIs to use models in Azure AI Foundry Models.
 
 ## Models inference endpoint
 
-The models inference endpoint (usually with the form `https://<resource-name>.services.ai.azure.com/models`) allows customers to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. This endpoint follows the [Azure AI Model Inference API](.././reference/reference-model-inference-api.md) which all the models in Foundry Models support. It supports the following modalities:
+The models inference endpoint (usually with the form `https://<resource-name>.services.ai.azure.com/models`) allows customers to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. This endpoint follows the [Azure AI Model Inference API](../../model-inference/reference/reference-model-inference-api.md) which all the models in Foundry Models support. It supports the following modalities:
 
 * Text embeddings
 * Image embeddings
@@ -32,9 +32,9 @@ The inference endpoint routes requests to a given deployment by matching the par
 
 For example, if you create a deployment named `Mistral-large`, then such deployment can be invoked as:
 
-[!INCLUDE [code-create-chat-client](../includes/code-create-chat-client.md)]
+[!INCLUDE [code-create-chat-client](../../model-inference/includes/code-create-chat-client.md)]
 
-[!INCLUDE [code-create-chat-completion](../includes/code-create-chat-completion.md)]
+[!INCLUDE [code-create-chat-completion](../../model-inference/includes/code-create-chat-completion.md)]
 
 > [!TIP]
 > Deployment routing isn't case sensitive.
@@ -50,12 +50,12 @@ Azure OpenAI endpoints (usually with the form `https://<resource-name>.openai.az
 
 Each deployment has a URL that is the concatenations of the **Azure OpenAI** base URL and the route `/deployments/<model-deployment-name>`.
 
-[!INCLUDE [code-create-openai-client](../includes/code-create-openai-client.md)]
+[!INCLUDE [code-create-openai-client](../../model-inference/includes/code-create-openai-client.md)]
 
-[!INCLUDE [code-create-openai-chat-completion](../includes/code-create-openai-chat-completion.md)]
+[!INCLUDE [code-create-openai-chat-completion](../../model-inference/includes/code-create-openai-chat-completion.md)]
 
 
 ## Next steps
 
-* [Use embedding models](use-embeddings.md)
-* [Use chat completion models](use-chat-completions.md)
+* [Use embedding models](../../model-inference/how-to/use-embeddings.md)
+* [Use chat completion models](../../model-inference/how-to/use-chat-completions.md)

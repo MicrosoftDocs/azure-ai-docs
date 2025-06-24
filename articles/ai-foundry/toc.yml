@@ -652,7 +652,7 @@ items:
     - name: Built-in policy to allow specific models
       href: how-to/built-in-policy-model-deployment.md
     - name: Custom policy to allow specific models
-      href: model-inference/how-to/configure-deployment-policies.md
+      href: ai-foundry/foundry-models/how-to/configure-deployment-policies.md
   - name: Vulnerability management
     href: concepts/vulnerability-management.md
   - name: Disaster recovery

@@ -18,17 +18,17 @@ reviewer: santiagxf
 # Configure key-less authentication with Microsoft Entra ID
 
 ::: zone pivot="ai-foundry-portal"
-[!INCLUDE [portal](../includes/configure-entra-id/portal.md)]
+[!INCLUDE [portal](../../model-inference/includes/configure-entra-id/portal.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-cli"
-[!INCLUDE [cli](../includes/configure-entra-id/cli.md)]
+[!INCLUDE [cli](../../model-inference/includes/configure-entra-id/cli.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-bicep"
-[!INCLUDE [bicep](../includes/configure-entra-id/bicep.md)]
+[!INCLUDE [bicep](../../model-inference/includes/configure-entra-id/bicep.md)]
 ::: zone-end
 
 ## Next steps
 
-* [Develop applications using Azure AI Foundry Models](../supported-languages.md)
+* [Develop applications using Azure AI Foundry Models](../../model-inference/supported-languages.md)

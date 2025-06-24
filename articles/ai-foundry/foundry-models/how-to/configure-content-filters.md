@@ -18,18 +18,18 @@ reviewer: santiagxf
 # How to configure content filters for models in Azure AI Foundry
 
 ::: zone pivot="ai-foundry-portal"
-[!INCLUDE [portal](../includes/configure-content-filters/portal.md)]
+[!INCLUDE [portal](../../model-inference/includes/configure-content-filters/portal.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-cli"
-[!INCLUDE [cli](../includes/configure-content-filters/cli.md)]
+[!INCLUDE [cli](../../model-inference/includes/configure-content-filters/cli.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-bicep"
-[!INCLUDE [bicep](../includes/configure-content-filters/bicep.md)]
+[!INCLUDE [bicep](../../model-inference/includes/configure-content-filters/bicep.md)]
 ::: zone-end
 
 ## Next steps
 
-- Read more about [content filtering categories and severity levels](../concepts/content-filter.md) with Azure OpenAI in Azure AI Foundry Models.
+- Read more about [content filtering categories and severity levels](../../model-inference/concepts/content-filter.md) with Azure OpenAI in Azure AI Foundry Models.
 - Learn more about red teaming from our: [Introduction to red teaming large language models (LLMs) article](../../../ai-services/openai/concepts/red-teaming.md).

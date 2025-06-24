@@ -19,36 +19,36 @@ zone_pivot_groups: azure-ai-inference-samples
 
 ::: zone pivot="programming-language-python"
 
-[!INCLUDE [python](../includes/use-structured-outputs/python.md)]
+[!INCLUDE [python](../../model-inference/includes/use-structured-outputs/python.md)]
 ::: zone-end
 
 
 ::: zone pivot="programming-language-javascript"
 
-[!INCLUDE [javascript](../includes/use-structured-outputs/javascript.md)]
+[!INCLUDE [javascript](../../model-inference/includes/use-structured-outputs/javascript.md)]
 ::: zone-end
 
 
 ::: zone pivot="programming-language-java"
 
-[!INCLUDE [java](../includes/use-structured-outputs/java.md)]
+[!INCLUDE [java](../../model-inference/includes/use-structured-outputs/java.md)]
 ::: zone-end
 
 
 ::: zone pivot="programming-language-csharp"
 
-[!INCLUDE [csharp](../includes/use-structured-outputs/csharp.md)]
+[!INCLUDE [csharp](../../model-inference/includes/use-structured-outputs/csharp.md)]
 ::: zone-end
 
 
 ::: zone pivot="programming-language-rest"
 
-[!INCLUDE [rest](../includes/use-structured-outputs/rest.md)]
+[!INCLUDE [rest](../../model-inference/includes/use-structured-outputs/rest.md)]
 ::: zone-end
 
 ## Related content
 
-* [Use embeddings models](use-embeddings.md)
-* [Use image embeddings models](use-image-embeddings.md)
-* [Use reasoning models](use-chat-reasoning.md)
-* [Azure AI Model Inference API](.././reference/reference-model-inference-api.md)
+* [Use embeddings models](../../model-inference/how-to/use-embeddings.md)
+* [Use image embeddings models](../../model-inference/how-to/use-image-embeddings.md)
+* [Use reasoning models](../../model-inference/how-to/use-chat-reasoning.md)
+* [Azure AI Model Inference API](../../model-inference/reference/reference-model-inference-api.md)
