@@ -21,8 +21,8 @@ zone_pivot_groups: azure-ai-model-catalog-samples-chat
 In this article, you learn about Mistral-7B and Mixtral chat models and how to use them.
 Mistral AI offers two categories of models, namely:
 
-- _Premium models_: These include [Mistral Large, Mistral Small, Mistral-OCR-2503, Mistral Medium 3 (25.05), and Ministral 3B models](deploy-models-mistral.md) models, and are available as standard deployments with Standard billing.  
-- _Open models_: These include [Codestral](deploy-models-mistral-codestral.md) and [Mistral Nemo](deploy-models-mistral-nemo.md) (that are available as standard deployments), and Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01 (that are available to download and run on self-hosted managed endpoints).
+- _Premium models_: These include [Mistral Large, Mistral Small, Mistral-OCR-2503, Mistral Medium 3 (25.05), and Ministral 3B models](deploy-models-mistral.md) models, and are available as serverless API with pay-as-you-go billing.  
+- _Open models_: These include [Codestral](deploy-models-mistral-codestral.md) and [Mistral Nemo](deploy-models-mistral-nemo.md) (that are available as serverless API deployments), and Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01 (that are available to download and run on self-hosted managed endpoints).
 
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
@@ -1308,7 +1308,7 @@ It's a good practice to start with a low number of instances and scale up as nee
 ## Related content
 
 * [Model Inference API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md)
-* [Deploy models as standard deploymentss](deploy-models-serverless.md)
+* [Deploy models as serverless APIs](deploy-models-serverless.md)
 * [Consume serverless API endpoints from a different Azure AI Foundry project or hub](deploy-models-serverless-connect.md)
-* [Region availability for models in standard deployments](deploy-models-serverless-availability.md)
+* [Region availability for models in serverless API](deploy-models-serverless-availability.md)
 * [Plan and manage costs (marketplace)](costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace)
