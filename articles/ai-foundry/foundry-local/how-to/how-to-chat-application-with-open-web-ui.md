@@ -8,7 +8,6 @@ ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.topic: how-to
 ms.date: 05/20/2025
-ms.reviewer: samkemp
 ms.author: jburchel
 ms.reviewer: samkemp
 author: jonburchel

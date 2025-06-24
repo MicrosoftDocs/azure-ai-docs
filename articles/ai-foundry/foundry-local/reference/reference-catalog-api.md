@@ -9,8 +9,9 @@ ms.custom: build-2025
 ms.topic: reference
 ms.date: 05/02/2025
 ms.author: jburchel
-reviewer: maanavd
-ms.author: jburchel
+reviewer: maanavdalal
+author: jonburchel
+ms.reviewer: maanavd
 ---
 
 # Catalog API Reference
