@@ -1,11 +1,11 @@
 ---
 title: 'How to use the GPT-4o Realtime API via WebSockets (Preview)'
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn how to use the GPT-4o Realtime API for speech and audio via WebSockets.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 4/28/2025
+ms.date: 6/7/2025
 author: eric-urban
 ms.author: eur
 ms.custom: references_regions
@@ -18,9 +18,9 @@ recommendations: false
 
 Azure OpenAI GPT-4o Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
 
-You can use the Realtime API via WebRTC or WebSocket to send audio input to the model and receive audio responses in real time. Follow the instructions in this article to get started with the Realtime API via WebSockets.
+You can use the Realtime API via WebRTC or WebSocket to send audio input to the model and receive audio responses in real time. 
 
-Use the Realtime API via WebSockets in server-to-server scenarios where low latency isn't a requirement.
+Follow the instructions in this article to get started with the Realtime API via WebSockets. Use the Realtime API via WebSockets in server-to-server scenarios where low latency isn't a requirement.
 
 > [!TIP] 
 > In most cases, we recommend using the [Realtime API via WebRTC](./realtime-audio-webrtc.md) for real-time audio streaming in client-side applications such as a web application or mobile app. WebRTC is designed for low-latency, real-time audio streaming and is the best choice for most use cases.
@@ -60,7 +60,7 @@ You can construct a full request URI by concatenating:
 The following example is a well-constructed `/realtime` request URI:
 
 ```http
-wss://my-eastus2-openai-resource.openai.azure.com/openai/realtime?api-version=2024-12-17&deployment=gpt-4o-mini-realtime-preview-deployment-name
+wss://my-eastus2-openai-resource.openai.azure.com/openai/realtime?api-version=2025-04-01-preview&deployment=gpt-4o-mini-realtime-preview-deployment-name
 ```
 
 To authenticate:

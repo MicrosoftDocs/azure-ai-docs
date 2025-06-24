@@ -41,7 +41,7 @@ This project is released under the MIT License. Review the [License file](https:
 ## Additional information
 View the official [TartanAir website](https://theairlab.org/tartanair-dataset/) or view the original [research paper](https://arxiv.org/abs/2003.14338).
 
-Email tartanair@hotmail.com if you have any questions about the data source. You can also reach out to contributers on the associated [GitHub](https://github.com/microsoft/AirSim).
+Email tartanair@hotmail.com if you have any questions about the data source. You can also reach out to contributors on the associated [GitHub](https://github.com/microsoft/AirSim).
 
 
 Citation

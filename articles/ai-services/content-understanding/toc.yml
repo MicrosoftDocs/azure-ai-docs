@@ -1,87 +1,109 @@
 items:
-- name: Azure AI Content Understanding Documentation
-  href: index.yml
-- name: Overview
-  expanded: true
-  items:
-  - name: What is Azure AI Content Understanding?
-    displayName: document, text, images, video, audio, multimodal, visual, structured, content, field, extraction, content filtering, filter
-    href: overview.md
-  - name: Create an Azure AI Services resource
-    displayName: extract, text, images, OCR, optical character recognition
-    href: how-to/create-multi-service-resource.md
-  - name: What's new
-    displayName: changelog, release, updates, previews
-    href: whats-new.md
-  - name: Service quotas and limits
-    displayName: quota, tiers, throttle, max, adjustments, requests, support, ocr
-    href: service-limits.md
-  - name: Language and region support
-    href: language-region-support.md
-  - name: Pricing
-    href: https://azure.microsoft.com/pricing/details/content-understanding/
-  - name: FAQ
-    displayName: FAQ, definition, updates, previews
-    href: faq.yml
-  - name: Glossary
-    displayName: glossary, definition, updates, previews
-    href: glossary.md
-- name: Quickstarts
-  items:
-  - name: Content Understanding REST API
-    displayName: quickstart, extract, text, images, OCR, optical character recognition, content filtering, filter
-    href: quickstart/use-rest-api.md
-  - name: Content Understanding Azure AI Foundry portal
-    displayName: quickstart, extract, text, images, OCR, optical character recognition
-    href: quickstart/use-ai-foundry.md
-- name: Capabilities
-  items:
+  - name: Azure AI Content Understanding documentation
+    href: index.yml
   - name: Overview
-    displayName: content understanding capabilities, document, text, images, video, audio, visual, structured, content, field, extraction
-    href: concepts/capabilities.md
-  - name: Analyzer templates
-    displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
-    href: concepts/analyzer-templates.md
-  - name: Document
-    displayName: document, text, images, video, audio, visual, structured, content, field, extraction
-    href: document/overview.md
-  - name: Image
-    displayName: image, OCR, optical character recognition, text, extraction, analysis, detection, recognition, model
-    href: image/overview.md
-  - name: Audio
-    displayName: speech, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
-    href: audio/overview.md
-  - name: Video
-    href: video/overview.md
-    displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
-  - name: Best practices
-    displayName: best practices, analyzers, optimization, fields
-    href: concepts/best-practices.md   
-- name: Concepts
-  items:
-    - name: Best practices
-      displayName: best practices, analyzers, optimization, fields
-      href: concepts/best-practices.md
-    - name: Accuracy and confidence
-      displayName: accuracy, confidence, analyzers, optimization, fields, scores
-      href: concepts/accuracy-confidence.md
-    - name: Retrieval-augmented generation (RAG)
-      displayName: RAG, retrieval, augmented, generation, knowledge, base, search, index, vector
-      href: concepts/retrieval-augmented-generation.md
-- name: Tutorials
-  items:
-    - name: Build a retrieval-augmented solution
-      displayName: RAG, retrieval, augmented, generation, knowledge, base, search, index, vector
-      href: tutorial/build-rag-solution.md
-- name: Responsible AI
-  items:
-    - name: Transparency note
-      href: /legal/cognitive-services/content-understanding/transparency-note?toc=/azure/ai-services/content-understanding/toc.json&bc=/azure/ai-services/content-understanding/breadcrumb/toc.json
-    - name: Data, privacy, and security
-      href: /legal/cognitive-services/content-understanding/data-privacy?toc=/azure/ai-services/content-understanding/toc.json&bc=/azure/ai-services/content-understanding/breadcrumb/toc.json
-- name: Reference
-  items:
-  - name: REST API
-    displayName: quota, tiers, throttle, max, adjustments, requests, support, ocr
-    href: /rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2024-12-01-preview&preserve-view=true
-
+    expanded: true
+    items:
+      - name: What is Azure AI Content Understanding?
+        displayName: document, text, images, video, audio, multimodal, visual, structured, content, field, extraction, content filtering, filter
+        href: overview.md
+      - name: What's new
+        displayName: changelog, release, updates, previews
+        href: whats-new.md
+      - name: Create an Azure AI Foundry resource
+        displayName: extract, text, images, OCR, optical character recognition
+        href: how-to/create-multi-service-resource.md
+      - name: Service quotas and limits
+        displayName: quota, tiers, throttle, max, adjustments, requests, support, ocr
+        href: service-limits.md
+      - name: Language and region support
+        href: language-region-support.md
+      - name: Pricing
+        href: https://azure.microsoft.com/pricing/details/content-understanding/
+      - name: FAQ
+        displayName: FAQ, definition, updates, previews
+        href: faq.yml
+      - name: Glossary
+        displayName: glossary, definition, updates, previews
+        href: glossary.md
+  - name: Quickstarts
+    items:
+    - name: Try Azure AI Foundry portal
+      items:
+        - name: Use Content Understanding with a single file
+          displayName: quickstart, extract, text, images, OCR, optical character recognition, foundry, standard, mode
+          href: quickstart/use-ai-foundry.md
+        - name: Use Content Understanding with multiple files
+          displayName: quickstart, extract, text, images, OCR, optical character recognition, foundry, pro, mode
+          href: quickstart/use-ai-foundry-pro-mode.md
+    - name: Try Content Understanding REST API
+      displayName: quickstart, extract, text, images, OCR, optical character recognition, rest, standard, mode
+      href: quickstart/use-rest-api.md
+  - name: Modalities
+    items:
+      - name: Document
+        items:
+          - name: Overview
+            displayName: document, text, images, video, audio, visual, structured, content, field, extraction
+            href: document/overview.md
+          - name: Elements 🆕
+            displayName: document, text, images, video, audio, visual, structured, content, field, extraction
+            href: document/elements.md
+          - name: Markdown 🆕
+            displayName: document, text, images, video, audio, visual, structured, content, field, extraction
+            href: document/markdown.md
+      - name: Image
+        displayName: image, OCR, optical character recognition, text, extraction, analysis, detection, recognition, model
+        href: image/overview.md
+      - name: Audio
+        displayName: speech, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
+        href: audio/overview.md
+      - name: Video
+        href: video/overview.md
+        displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
+  - name: Concepts
+    items:
+      - name: Analyzer templates in Azure AI Foundry
+        displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
+        href: concepts/analyzer-templates.md
+      - name: Prebuilt analyzers 🆕
+        displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
+        href: concepts/prebuilt-analyzers.md
+      - name: "Modes: standard and pro 🆕"
+        displayName: standard, pro, modes, analyzers, optimization, fields
+        href: concepts/standard-pro-modes.md
+      - name: Best practices
+        displayName: best practices, analyzers, optimization, fields
+        href: concepts/best-practices.md
+  - name: Tutorials
+    items:
+      - name: Create a custom analyzer 🆕
+        displayName: custom, analyzer, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
+        href: tutorial/create-custom-analyzer.md
+      - name: Build a retrieval-augmented solution
+        displayName: RAG, retrieval, augmented, generation, knowledge, base, search, index, vector
+        href: tutorial/build-rag-solution.md
+  - name: Classifiers 🆕
+    items:
+      - name: Overview
+        displayName: classifier, text, images, video, audio, multimodal, visual, structured, content, field, extraction
+        href: concepts/classifier.md
+  - name: Face 🆕
+    items:
+      - name: Overview
+        displayName: face, recognition, detection, analysis, identification, verification
+        href: face/overview.md
+      - name: "Tutorial: Build a person directory"
+        displayName: person, directory, search, index, vector
+        href: tutorial/build-person-directory.md
+  - name: Responsible AI
+    items:
+      - name: Transparency note
+        href: ../../ai-foundry/responsible-ai/content-understanding/transparency-note.md
+      - name: Data, privacy, and security
+        href: ../../ai-foundry/responsible-ai/content-understanding/data-privacy.md
+  - name: Reference
+    items:
+      - name: REST API
+        displayName: quota, tiers, throttle, max, adjustments, requests, support, ocr
+        href: /rest/api/contentunderstanding/operation-groups

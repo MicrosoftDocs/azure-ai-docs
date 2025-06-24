@@ -5,7 +5,7 @@ description: Learn how network traffic flows between components when your Azure 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
-ms.topic: conceptual
+ms.topic: concept-article
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: meerakurup

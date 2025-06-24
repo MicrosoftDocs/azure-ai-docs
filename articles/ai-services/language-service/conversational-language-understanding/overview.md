@@ -2,20 +2,20 @@
 title: Conversational Language Understanding - Azure AI services
 titleSuffix: Azure AI services
 description: Customize an AI model to predict the intentions of utterances, and extract important information from them.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 03/24/2025
-ms.author: jboback
+ms.date: 05/01/2025
+ms.author: lajanuar
 ms.custom: language-service-clu
 ---
 
 # What is conversational language understanding?
 
-Conversational language understanding is one of the custom features offered by [Azure AI Language](../overview.md). It is a cloud-based API service that applies machine-learning intelligence to enable you to build natural language understanding component to be used in an end-to-end conversational application. 
+Conversational language understanding is one of the custom features offered by [Azure AI Language](../overview.md). It's a cloud-based API service that applies machine-learning intelligence to enable you to build natural language understanding component to be used in an end-to-end conversational application. 
 
-Conversational language understanding (CLU) enables users to build custom natural language understanding models to predict the overall intention of an incoming utterance and extract important information from it. CLU only provides the intelligence to understand the input text for the client application and doesn't perform any actions. By creating a CLU project, developers can iteratively label utterances, train and evaluate model performance before making it available for consumption. The quality of the labeled data greatly impacts model performance. To simplify building and customizing your model, the service offers a custom web portal that can be accessed through the [Language studio](https://aka.ms/languageStudio). You can easily get started with the service by following the steps in this [quickstart](quickstart.md). 
+Conversational language understanding (CLU) enables users to build custom natural language understanding models to predict the overall intention of an incoming utterance and extract important information from it. CLU only provides the intelligence to understand the input text for the client application and doesn't perform any actions. By creating a CLU project, developers can iteratively label utterances, train and evaluate model performance before making it available for consumption. The quality of the labeled data greatly impacts model performance. To simplify building and customizing your model, the service offers a custom web portal that can be accessed through the [Azure AI Foundry](https://language.cognitive.azure.com/). You can easily get started with the service by following the steps in this [quickstart](quickstart.md). 
 
 This documentation contains the following article types:
 
@@ -26,7 +26,7 @@ This documentation contains the following article types:
 
 ## Example usage scenarios
 
-CLU can be used in multiple scenarios across a variety of industries. Some examples are:
+CLU can be used in multiple scenarios across various industries. Some examples are:
 
 ### End-to-end conversational bot
 
@@ -42,18 +42,36 @@ When you integrate a client application with a speech to text component, users c
 
 ### Enterprise chat bot
 
-In a large corporation, an enterprise chat bot may handle a variety of employee affairs. It might handle frequently asked questions served by a custom question answering knowledge base, a calendar specific skill served by conversational language understanding, and an interview feedback skill served by LUIS. Use Orchestration workflow to connect all these skills together and appropriately route the incoming requests to the correct service.
+In a large corporation, an enterprise chat bot may handle various employee affairs. It might handle frequently asked questions served by a custom question answering knowledge base, a calendar specific skill served by conversational language understanding, and an interview feedback skill served by LUIS. Use Orchestration workflow to connect all these skills together and appropriately route the incoming requests to the correct service.
 
+### Agents
+
+CLU is utilized by the [intent routing](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/agent-catalog/msft-agent-samples/foundry-agent-service-sdk/intent-routing-agent) agent template, which detects user intent and provides exact answering. Perfect for deterministically intent routing and exact question answering with human control.
 
 ## Project development lifecycle
 
-Creating a CLU project typically involves several different steps. 
+Creating a CLU project typically involves several different steps.
 
-:::image type="content" source="media/development-lifecycle.png" alt-text="The development lifecycle" lightbox="media/development-lifecycle.png":::
+:::image type="content" source="media/llm-quick-deploy.png" alt-text="Chart of the LLM-powered quick deploy path." lightbox="media/llm-quick-deploy.png":::
 
-Follow these steps to get the most out of your model:
+> [!NOTE]
+> In the Azure AI Foundry, you’ll create a fine-tuning task as your workspace for customizing your CLU model. Formerly, a CLU fine-tuning task was called a CLU project. You may see these terms used interchangeably in legacy CLU documentation.
 
-1. **Define your schema**: Know your data and define the actions and relevant information that needs to be recognized from user's input utterances. In this step you create the [intents](glossary.md#intent) that you want to assign to user's utterances, and the relevant [entities](glossary.md#entity) you want extracted.
+CLU offers two paths for you to get the most out of your implementation.
+
+Option 1 (LLM-powered quick deploy):
+
+1. **Define your schema**: Know your data and define the actions and relevant information that needs to be recognized from user's input utterances. In this step, you create the intents and provide a detailed description on the meaning of your intents that you want to assign to user's utterances.
+
+2. **Deploy the model**: Deploying a model with the LLM-based training config makes it available for use via the Runtime API.
+
+3. **Predict intents and entities**: Use your custom model deployment to predict custom intents and prebuilt entities from user’s utterances. 
+
+Option 2 (Custom machine learned model)
+
+Follow these steps to get the most out of your trained model:
+
+1. **Define your schema**: Know your data and define the actions and relevant information that needs to be recognized from user's input utterances. In this step, you create the [intents](glossary.md#intent) that you want to assign to user's utterances, and the relevant [entities](glossary.md#entity) you want extracted.
 
 2. **Label your data**: The quality of data labeling is a key factor in determining model performance. 
 
@@ -80,7 +98,7 @@ As you use CLU, see the following reference documentation and samples for Azure 
 
 ## Responsible AI 
 
-An AI system includes not only the technology, but also the people who will use it, the people who will be affected by it, and the environment in which it's deployed. Read the transparency note for CLU to learn about responsible AI use and deployment in your systems. You can also see the following articles for more information:
+An AI system includes not only the technology, but also the people who use it, the people who are affected by it, and the environment in which it's deployed. Read the transparency note for CLU to learn about responsible AI use and deployment in your systems. You can also see the following articles for more information:
 
 [!INCLUDE [Responsible AI links](../includes/overview-responsible-ai-links.md)]
 

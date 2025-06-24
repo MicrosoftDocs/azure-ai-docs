@@ -380,6 +380,41 @@
             "source_path_from_root": "/articles/search/security-baseline.md",
             "redirect_url": "/security/benchmark/azure/baselines/cognitive-search-security-baseline",
             "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/resource-demo-sites.md",
+            "redirect_url": "/azure/search/whats-new",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/resource-partners-knowledge-mining.md",
+            "redirect_url": "https://partner.microsoft.com/partnership/find-a-partner",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/search-data-sources-terms-of-use.md",
+            "redirect_url": "https://partner.microsoft.com/partnership/find-a-partner",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/tutorial-multimodal-indexing-with-embedding-and-doc-extraction.md",
+            "redirect_url": "/azure/search/tutorial-document-extraction-multimodal-embeddings",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/tutorial-multimodal-indexing-with-image-verbalization-and-doc-extraction.md",
+            "redirect_url": "/azure/search/tutorial-document-extraction-image-verbalization",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/tutorial-multimodal-index-embeddings-skill.md",
+            "redirect_url": "/azure/search/tutorial-document-layout-multimodal-embeddings",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/tutorial-multimodal-index-image-verbalization-skill.md",
+            "redirect_url": "/azure/search/tutorial-document-layout-image-verbalization",
+            "redirect_document_id": true
         }
     ]
   }

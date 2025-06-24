@@ -7,7 +7,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 03/04/2025
+ms.date: 05/08/2025
 ---
 
 # Configure your Azure AI Search service in the Azure portal
@@ -59,7 +59,7 @@ For integrated vectorization, your search service identity needs the following r
 
 Role assignments can take several minutes to take effect.
 
-Before you move on to network security, consider testing all points of connection to validate role assignments. Run either the [**Import data** wizard](search-get-started-portal.md) or the [**Import and vectorize data** wizard](search-get-started-portal-image-search.md) to test permissions.
+Before you move on to network security, consider testing all points of connection to validate role assignments. Run either the [**Import data** wizard](search-get-started-portal.md) or the [**Import and vectorize data wizard**](search-get-started-portal-image-search.md) to test permissions.
 
 ## Configure network security
 
@@ -76,7 +76,7 @@ By default, a search service is created with one replica and one partition. You 
 
 Semantic ranker increases the cost of running your service. If you don't want to use this feature, you can [disable semantic ranker](semantic-how-to-enable-disable.md) at the service level.
 
-To learn about other features that affect billing, see [How you're charged for Azure AI Search](search-sku-manage-costs.md#how-youre-charged-for-azure-ai-search).
+To learn about other features that affect billing, see [How you're charged for Azure AI Search](search-sku-manage-costs.md#how-youre-charged-for-the-base-service).
 
 ## Enable diagnostic logging
 
@@ -99,7 +99,7 @@ To connect to Azure AI Search, developers need:
 + An endpoint or URL from the **Overview** page.
 + An API key from the **Keys** page or a role assignment. We recommend Search Service Contributor, Search Index Data Contributor, and Search Index Data Reader.
 
-We recommend portal access for the [**Import data** wizard](search-get-started-portal.md), the [**Import and vectorize data** wizard](search-get-started-portal-import-vectors.md), and [Search explorer](search-explorer.md). You must be a contributor or higher to run the wizards.
+We recommend portal access for the [**Import data** wizard](search-get-started-portal.md), the [**Import and vectorize data wizard**](search-get-started-portal-import-vectors.md), and [Search explorer](search-explorer.md). You must be a contributor or higher to run the wizards.
 
 ## Related content
 

@@ -2,18 +2,18 @@
 title: How to perform sentiment analysis and opinion mining
 titleSuffix: Azure AI services
 description: This article will show you how to detect sentiment, and mine for opinions in text.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 04/29/2025
-ms.author: jboback
+ms.date: 05/23/2025
+ms.author: lajanuar
 ms.custom: language-service-sentiment-opinion-mining
 ---
 
 # How to: Use Sentiment analysis and Opinion Mining 
 
-Sentiment analysis and opinion mining are two ways of detecting positive and negative sentiment. Using sentiment analysis, you can get sentiment labels (such as "negative", "neutral" and "positive") and confidence scores at the sentence and document-level. Opinion Mining provides granular information about the opinions related to words (such as the attributes of products or services) in the text.
+Sentiment analysis and opinion mining are two ways of detecting positive and negative sentiment. Using sentiment analysis, you can get sentiment labels (such as "negative" "neutral" and "positive") and confidence scores at the sentence and document-level. Opinion Mining provides granular information about the opinions related to words (such as the attributes of products or services) in the text.
 
 ## Sentiment Analysis
 
@@ -28,7 +28,7 @@ The labels are *positive*, *negative*, and *neutral*. At the document level, the
 | At least one `negative` sentence and at least one `positive` sentence are in the document.    | `mixed`                 |
 | All sentences in the document are `neutral`.                                                  | `neutral`               |
 
-Confidence scores range from 1 to 0. Scores closer to 1 indicate a higher confidence in the label's classification, while lower scores indicate lower confidence. For each document or each sentence, the predicted scores associated with the labels (positive, negative, and neutral) add up to 1. For more information, see the [Responsible AI transparency note](/legal/cognitive-services/text-analytics/transparency-note?context=/azure/ai-services/text-analytics/context/context). 
+Confidence scores range from 1 to 0. Scores closer to 1 indicate a higher confidence in the label's classification, while lower scores indicate lower confidence. For each document or each sentence, the predicted scores associated with the labels (positive, negative, and neutral) add up to 1. For more information, see the [Responsible AI transparency note](/azure/ai-foundry/responsible-ai/text-analytics/transparency-note). 
 
 ## Opinion Mining
 

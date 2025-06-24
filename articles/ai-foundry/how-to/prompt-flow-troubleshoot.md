@@ -6,7 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
-ms.topic: conceptual
+ms.topic: concept-article
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: none
@@ -67,15 +67,11 @@ You might encounter a 429 error from Azure OpenAI. This error means that you rea
 
         If you see the message `request canceled` in the logs, it might be because the OpenAI API call is taking too long and exceeding the time-out limit.
 
-        A network issue or a complex request that requires more processing time might cause the OpenAI time out. For more information, see [OpenAI API time out](https://help.openai.com/en/articles/6897186-timeout).
-
+        A network issue or a complex request that requires more processing time might cause the OpenAI time out.
+     
         Wait a few seconds and retry your request. This action usually resolves any network issues.
 
         If retrying doesn't work, check whether you're using a long context model, such as `gpt-4-32k`, and set a large value for `max_tokens`. If so, the behavior is expected because your prompt might generate a long response that takes longer than the interactive mode's upper threshold. In this situation, we recommend that you try `Bulk test` because this mode doesn't have a time-out setting.
-
-1. If you can't find anything in logs to indicate that it's a specific node issue:
-
-    - Contact the prompt flow team ([promptflow-eng](mailto:aml-pt-eng@microsoft.com)) with the logs. We try to identify the root cause.
 
 ## Compute session failures that use a custom base image: Flow deployment-related issues
 

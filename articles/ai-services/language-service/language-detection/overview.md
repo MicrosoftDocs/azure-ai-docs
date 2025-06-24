@@ -2,12 +2,12 @@
 title: What is language detection in Azure AI Language?
 titleSuffix: Azure AI services
 description: An overview of language detection in Azure AI services, which helps you detect the language that text is written in by returning language codes.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
 ms.date: 02/17/2025
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-language-detection
 ---
 
@@ -37,7 +37,7 @@ This documentation contains the following types of articles:
 
 ## Responsible AI 
 
-An AI system includes not only the technology, but also the people who will use it, the people who will be affected by it, and the environment in which it's deployed. Read the [transparency note for language detection](/legal/cognitive-services/language-service/transparency-note-language-detection?context=/azure/ai-services/language-service/context/context) to learn about responsible AI use and deployment in your systems. You can also see the following articles for more information:
+An AI system includes not only the technology, but also the people who will use it, the people who will be affected by it, and the environment in which it's deployed. Read the [transparency note for language detection](/azure/ai-foundry/responsible-ai/language-service/transparency-note-language-detection) to learn about responsible AI use and deployment in your systems. You can also see the following articles for more information:
 
 [!INCLUDE [Responsible AI links](../includes/overview-responsible-ai-links.md)]
 

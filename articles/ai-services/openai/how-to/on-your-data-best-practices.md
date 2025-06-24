@@ -1,6 +1,6 @@
 ---
 title: Best practices for using Azure OpenAI On Your Data
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn about the best practices for using Azure OpenAI On Your Data, along with how to fix common problems.
 ms.service: azure-ai-openai
 ms.topic: conceptual
@@ -14,7 +14,7 @@ recommendations: false
 
 # Troubleshooting and best practices for Azure OpenAI On Your Data
 
-This article can help guide you through common problems in developing a solution by using Azure OpenAI Service On Your Data, a feature that allows you to use the power of OpenAI models with your own data. By following the best practices and tips in this article, you can optimize your output with Azure OpenAI On Your Data and achieve the best AI quality possible.
+This article can help guide you through common problems in developing a solution by using Azure OpenAI in Azure AI Foundry Models On Your Data, a feature that allows you to use the power of OpenAI models with your own data. By following the best practices and tips in this article, you can optimize your output with Azure OpenAI On Your Data and achieve the best AI quality possible.
 
 ## Azure OpenAI On Your Data: Workflow
 
@@ -80,7 +80,7 @@ If the correct document chunks don't appear in the retrieved documents, you need
 
 ## Common problems
 
-The following sections list possible solutions to problems that you might encounter when you're developing a solution by using Azure OpenAI Service On Your Data.
+The following sections list possible solutions to problems that you might encounter when you're developing a solution by using Azure OpenAI On Your Data.
 
 ### The information is correct, but the model responds with "The requested information isn't present in the retrieved documents. Please try a different query or topic."
 
@@ -92,7 +92,7 @@ See the preceding debugging process, starting at [step 1](#step-1-check-for-retr
 
 ### The model isn't following the role information or system message
 
-* Make sure that instructions in the role information are consistent with the [Responsible AI guidelines](/legal/cognitive-services/openai/overview?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext). The model likely won't follow role information if it contradicts those guidelines.
+* Make sure that instructions in the role information are consistent with the [Responsible AI guidelines](/azure/ai-foundry/responsible-ai/openai/overview). The model likely won't follow role information if it contradicts those guidelines.
 
 * Ensure that your role information follows the [established limits](../concepts/use-your-data.md#token-usage-estimation-for-azure-openai-on-your-data) for it. Each model has an implicit token limit for the role information. Beyond that limit, the information is truncated.
 

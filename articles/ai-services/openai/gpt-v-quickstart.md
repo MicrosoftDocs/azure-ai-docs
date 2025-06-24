@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Use vision-enabled chats with the Azure OpenAI Service'
+title: 'Quickstart: Use vision-enabled chats with the Azure OpenAI in Azure AI Foundry Models'
 titleSuffix: Azure OpenAI
 description: Use this article to get started using Azure OpenAI to deploy and use the GPT-4 Turbo with Vision model or other vision-enabled models. 
 services: cognitive-services
@@ -9,18 +9,14 @@ ms.custom: devx-track-python, devx-track-js, devx-track-ts
 ms.topic: quickstart
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 02/20/2025
+ms.date: 05/31/2025
 zone_pivot_groups: openai-quickstart-gpt-v
 ---
 
 # Quickstart: Use images in your AI chats
 
-Get started using GPT-4 Turbo with images with the Azure OpenAI Service.
+Get started using images in your chats with Azure OpenAI in Azure AI Foundry Models.
 
-> [!NOTE]
-> **Model choice**
->
-> The latest vision-capable models are `gpt-4o` and `gpt-4o mini`. These models are in public preview. The latest available GA model is `gpt-4` version `turbo-2024-04-09`.
 
 > [!IMPORTANT]
 > Extra usage fees might apply when using chat completion models with vision functionality.
@@ -62,7 +58,7 @@ Get started using GPT-4 Turbo with images with the Azure OpenAI Service.
 
 ::: zone-end
 
-## Next steps
+## Related content
 
 * [Get started with multimodal vision chat apps using Azure OpenAI AI App template](/azure/developer/ai/get-started-app-chat-vision?tabs=github-codespaces)
 * Learn more about these APIs in the [Vision-enabled models how-to guide](./gpt-v-quickstart.md)

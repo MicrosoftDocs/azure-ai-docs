@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 03/31/2025
+ms.date: 06/10/2025
 ---
 
 # Semantic ranking in Azure AI Search
@@ -114,7 +114,7 @@ Captions and answers are always verbatim text from your index. There's no genera
 
 ## Semantic capabilities and limitations
 
-Semantic ranker is a newer technology so it's important to set expectations about what it can and can't do. What it *can* do:
+What semantic ranker *can* do:
 
 * Promote matches that are semantically closer to the intent of original query.
 
@@ -129,6 +129,12 @@ The underlying technology is from Bing and Microsoft Research, and integrated in
 The following video provides an overview of the capabilities.
 
 > [!VIDEO https://www.youtube.com/embed/yOf0WfVd_V0]
+
+
+## How semantic ranker uses synonym maps
+
+If you have already enabled support for [synonym maps associated to a field](search-synonyms.md#assign-synonyms-to-fields) in your search index, and that field is included in the [semantic ranker configuration](semantic-how-to-configure.md), the semantic ranker will automatically apply the configured synonyms during the reranking process.
+
 
 ## Availability and pricing
 

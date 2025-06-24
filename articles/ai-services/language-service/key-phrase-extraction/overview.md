@@ -2,12 +2,12 @@
 title: What is key phrase extraction in Azure AI Language?
 titleSuffix: Azure AI services
 description: An overview of key phrase extraction in Azure AI services, which helps you identify main concepts in unstructured text
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
 ms.date: 02/17/2025
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-key-phrase
 ---
 
@@ -31,7 +31,7 @@ This documentation contains the following types of articles:
 
 ## Responsible AI 
 
-An AI system includes not only the technology, but also the people who use it, the people who are affected by it, and the environment in which it's deployed. Read the [transparency note for key phrase extraction](/legal/cognitive-services/language-service/transparency-note-key-phrase-extraction?context=/azure/ai-services/language-service/context/context) to learn about responsible AI use and deployment in your systems. For more information, see the following articles:
+An AI system includes not only the technology, but also the people who use it, the people who are affected by it, and the environment in which it's deployed. Read the [transparency note for key phrase extraction](/azure/ai-foundry/responsible-ai/language-service/transparency-note-key-phrase-extraction) to learn about responsible AI use and deployment in your systems. For more information, see the following articles:
 
 [!INCLUDE [Responsible AI links](../includes/overview-responsible-ai-links.md)]
 

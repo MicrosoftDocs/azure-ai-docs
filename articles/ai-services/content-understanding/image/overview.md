@@ -5,13 +5,14 @@ description: Learn how to use Azure AI Content Understanding image solutions
 author: laujan
 ms.author: lajanuar
 manager: nitinme
+ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: how-to
-ms.date: 04/14/2025
-ms.custom: ignite-2024-understanding-release
+ms.custom:
+  - build-2025
 ---
 
-# Content Understanding image solutions (preview)
+# Azure AI Content Understanding image solutions (preview)
 
 > [!IMPORTANT]
 >
@@ -29,7 +30,7 @@ Azure AI Content Understanding standardizes the extraction of data from images, 
 
 * **Shelf analysis and inventory management:** Detect, count, and extract specific details about retail products, optimizing operations, and improving customer satisfaction by ensuring products are well-stocked and properly organized.
 
-## Key Benefits
+## Key benefits
 
 Content Understanding offers several key benefits for extracting information from images, including,
 
@@ -39,31 +40,22 @@ Content Understanding offers several key benefits for extracting information fro
 
 * **Faster and more cost-effective automation:**  The extracting of only the necessary fields enables Content Understanding to streamlines automation. Thus allowing organizations to scale their data processing workflows efficiently and reduce the storage and processing of irrelevant data.
 
+:::image type="content" source="../media/image/image-flow-diagram.jpg" alt-text="Screenshot of a data flow diagram for image processing in content understanding.":::
 
-## Input requirements
-For detailed information on supported input file formats, refer to our [Service quotas and limits](../service-limits.md) page.
+## Get started
+
+Get started with processing images with Content Understanding by following our [REST API quickstart](../quickstart/use-rest-api.md?tabs=image) or visiting [Azure AI Foundry](https://aka.ms/cu-landing) for a no code experience. 
 
 > [!NOTE]
-> For best results, image schema should only be used to process non-document-based images.
-> Text heavy images of documents should be processed using a document schema.
-> Use cases that require extraction of text from document images or scanned documents should be processed using a document field extraction schema.
+> Image analyzers are currently not optimized for scenarios where analysis is based primarily on extracted text. If your main goal is to extract and analyze text from images, consider using a document field extraction schema instead.
 
-## Supported languages and regions
-For a detailed list of supported languages and regions, visit our [Language and region support](../language-region-support.md) page.
-
-## Supported field types
-For detailed information on supported field types, refer to our [Service quotas and limits](../service-limits.md#field-type-limits) page.
-
-## Data privacy and security
-
-As with all the Azure AI services, developers using the Content Understanding service should be aware of Microsoft's policies on customer data. See our [**Data, protection and privacy**](https://www.microsoft.com/trust-center/privacy) page to learn more.
 
 > [!IMPORTANT]
-> If you're using Microsoft products or services to process Biometric Data, you're responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate, and required under applicable Data Protection Requirements. "Biometric Data" has the meaning articulated in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and Privacy for Face](/legal/cognitive-services/face/data-privacy-security).
+> If you're using Microsoft products or services to process Biometric Data, you're responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate, and required under applicable Data Protection Requirements. "Biometric Data" has the meaning articulated in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and Privacy for Face](/azure/ai-foundry/responsible-ai/face/data-privacy-security).
 
 ## Next steps
 
-* Try processing your video content using Content Understanding in [Azure AI Foundry portal](https://aka.ms/cu-landing).
-* Learn to analyze video content [**analyzer templates**](../quickstart/use-ai-foundry.md).
-* Review code samples: [**image, text, and table, content extraction**](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples).
-* Review code sample: [**analyzer templates**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
+* For guidance on optimizing your Content Understanding implementations, including schema design tips, see our detailed [Best practices guide](../concepts/best-practices.md).
+* For detailed information on supported input image formats, *see* [Service quotas and limits](../service-limits.md).
+* To review code samples, *see* [**analyzer templates**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
+* For more information on trust and security, *see* [Data, protection, and privacy policy](https://www.microsoft.com/trust-center/privacy).

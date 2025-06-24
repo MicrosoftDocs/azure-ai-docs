@@ -2,17 +2,19 @@
 title: Use Azure Policies with hubs and projects
 titleSuffix: Azure AI Foundry
 description: Learn how to use Azure Policy with Azure AI Foundry to make sure your hubs and projects are compliant with your requirements.
-author: Blackmist
-ms.author: larryfr
-ms.date: 01/24/2025
+ms.author: jburchel 
+author: jonburchel 
+ms.date: 05/01/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
-# Customer Intent: As an admin, I want to understand how I can use Azure Policy to audit and govern Azure AI Foundry resources so that I can ensure compliance with my organization's requirements.
+# Customer Intent: As an admin, I want to understand how I can use Azure Policy to audit and govern Azure AI Foundry Services so that I can ensure compliance with my organization's requirements.
 ---
 
 # Audit and manage Azure AI Foundry hubs and projects
 
-As a platform administrator, you can use policies to lay out guardrails for teams to manage their own resources. [Azure Policy](/azure/governance/policy/) helps audit and govern resource state. This article explains how you can use audit controls and governance practices for [Azure AI Foundry](https://ai.azure.com).
+[!INCLUDE [hub-only-alt](../includes/uses-hub-only-alt.md)]
+
+As a platform administrator, you can use policies to lay out guardrails for teams to manage their own resources. [Azure Policy](/azure/governance/policy/) helps audit and govern resource state. This article explains how you can use audit controls and governance practices for [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
 ## Policies for Azure AI Foundry hubs and projects
 
@@ -58,7 +60,13 @@ You can also assign policies by using [Azure PowerShell](/azure/governance/polic
 
 ## Conditional access policies
 
-To control who can access your Azure AI Foundry hubs and projects, use [Microsoft Entra Conditional Access](/azure/active-directory/conditional-access/overview). To use Conditional Access for hubs, [assign the Conditional Access policy](/azure/active-directory/conditional-access/concept-conditional-access-cloud-apps) to the app named __Azure Machine Learning__. The app ID is __0736f41a-0425-bdb5-1563eff02385__. 
+To control who can access your Azure AI Foundry hubs and projects, use [Microsoft Entra Conditional Access](/azure/active-directory/conditional-access/overview). To use Conditional Access for hubs, [assign the Conditional Access policy](/azure/active-directory/conditional-access/concept-conditional-access-cloud-apps) to the following apps:
+
+| App name | App ID | Description |
+|---|---|---|
+| Azure AI Foundry App | cb2ff863-7f30-4ced-ab89-a00194bcf6d9 | Use to control access to the Azure AI Foundry portal. |
+| Azure Machine Learning Web App | d7304df8-741f-47d3-9bc2-df0e24e2071f | Use to control access to Azure Machine Learning studio. |
+| Azure Machine Learning | 0736f41a-0425-bdb5-1563eff02385 | Use to control direct access to the Azure Machine Learning API. For example, when using the SDK or REST API. Azure AI Foundry hub based projects rely on the Azure Machine Learning API. |
 
 ## Configure built-in policies
 

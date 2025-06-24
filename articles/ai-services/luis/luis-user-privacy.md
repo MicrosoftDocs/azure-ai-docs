@@ -2,14 +2,14 @@
 title: Export & delete data - LUIS
 titleSuffix: Azure AI services
 description: You have full control over viewing, exporting, and deleting their data. Delete customer data to ensure privacy and compliance.
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 manager: nitinme
 ms.custom: references_regions
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
 ms.topic: reference
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 
 # Export and delete your customer data in Language Understanding (LUIS) in Azure AI services

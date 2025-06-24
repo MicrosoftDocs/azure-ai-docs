@@ -5,7 +5,7 @@ description:  Learn how to build a RAG-based chat app using the Azure AI Foundry
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: tutorial
-ms.date: 02/12/2025
+ms.date: 04/07/2025
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
@@ -15,7 +15,7 @@ ms.custom: copilot-learning-hub, ignite-2024
 
 # Tutorial:  Part 2 - Build a custom knowledge retrieval (RAG) app with the Azure AI Foundry SDK
 
-In this tutorial, you use the [Azure AI Foundry](https://ai.azure.com) SDK (and other libraries) to build, configure, and evaluate a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
+In this tutorial, you use the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) SDK (and other libraries) to build, configure, and evaluate a chat app for your retail company called Contoso Trek. Your retail company specializes in outdoor camping gear and clothing. The chat app should answer questions about your products and services. For example, the chat app can answer questions such as "which tent is the most waterproof?" or "what is the best sleeping bag for cold weather?".
 
 This part two shows you how to enhance a basic chat application by adding [retrieval augmented generation (RAG)](../concepts/retrieval-augmented-generation.md) to ground the responses in your custom data. Retrieval Augmented Generation (RAG) is a pattern that uses your data with a large language model (LLM) to generate answers specific to your data. In this part two, you learn how to:
 
@@ -28,11 +28,16 @@ This tutorial is part two of a three-part tutorial.
 
 ## Prerequisites
 
+[!INCLUDE [hub-only-tutorial](../includes/hub-only-tutorial.md)]
+
 * Complete [Tutorial:  Part 1 - Create resources for building a custom chat application with the Azure AI SDK](copilot-sdk-create-resources.md) to:
 
     * Create a project with a connected Azure AI Search index
     * Install the Azure CLI, Python, and required packages
     * Configure your environment variables
+
+* Use the same **[!INCLUDE [hub](../includes/hub-project-name.md)]** you created in part 1. 
+
 
 ## Create example data for your chat app
 
@@ -155,9 +160,9 @@ python chat_with_products.py --query "I need a new tent for 4 people, what would
 
 To enable logging of telemetry to your project:
 
-1. Add an Application Insights resource to your project.  Navigate to the **Tracing** tab in the [Azure AI Foundry portal](https://ai.azure.com/), and create a new resource if you don't already have one.
+1. Add an Application Insights resource to your project.  Navigate to the **Tracing** tab in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), and create a new resource if you don't already have one.
 
-    :::image type="content" source="../../ai-services/agents/media/ai-foundry-tracing.png" alt-text="A screenshot of the tracing screen in the Azure AI Foundry portal." lightbox="../../ai-services/agents/media/ai-foundry-tracing.png":::
+    :::image type="content" source="../agents/media/ai-foundry-tracing.png" alt-text="A screenshot of the tracing screen in the Azure AI Foundry portal." lightbox="../agents/media/ai-foundry-tracing.png":::
 
 1. Install `azure-monitor-opentelemetry`:
 

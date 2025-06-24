@@ -301,6 +301,8 @@ items:
     - name: Connect to data (UI)
       displayName: blob, get, fileshare, access, mount, download, data lake, datastore, dataset, data set
       href: ./v1/how-to-connect-data-ui.md
+    - name: Enable log metrics in designer
+      href: ./v1/how-to-track-designer-experiments.md
     - name: Manage & consume data
       items:
         - name: Train with datasets
@@ -512,6 +514,9 @@ items:
   - name: Configure & submit training run
     displayName: run config, script run config, scriptrunconfig, compute target, dsvm, Data Science Virtual Machine, local, cluster, ACI, container instance, Databricks, data lake, lake, HDI, HDInsight
     href: ./v1/how-to-set-up-training-targets.md
+  - name: Log metrics, parameters, and files
+    displayName: troubleshoot, log, files, tracing, metrics
+    href: ./v1/how-to-log-view-metrics.md
   # end v1
   - name: Training with CLI and SDK
     href: how-to-train-model.md
@@ -579,8 +584,8 @@ items:
     href: how-to-schedule-pipeline-job.md
 - name: Explore AI model capabilities
   items:
-    - name: Model catalog overview
-      href: concept-model-catalog.md
+    - name: Explore Azure AI Foundry Models
+      href: foundry-models-overview.md
     - name: Data, privacy, and security for Model Catalog
       href: concept-data-privacy.md
     - name: Model lifecycle and retirement
@@ -689,8 +694,6 @@ items:
               href: ./prompt-flow/how-to-integrate-with-llm-app-devops.md
             - name: Deploy a flow to online endpoint for real-time inference with CLI 
               href: ./prompt-flow/how-to-deploy-to-code.md
-            - name: Trace your application with prompt flow
-              href: ./prompt-flow/how-to-trace-local-sdk.md
             - name: Enable trace and collect feedback for a flow deployment 
               href: ./prompt-flow/how-to-enable-trace-feedback-for-deployment.md
             - name: How to use streaming endpoints deployed from prompt flow

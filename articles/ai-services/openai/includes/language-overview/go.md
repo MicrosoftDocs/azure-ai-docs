@@ -1,6 +1,6 @@
 ---
 title: Azure OpenAI Go support
-titleSuffix: Azure OpenAI Service
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Azure OpenAI Go support
 manager: nitinme
 ms.service: azure-ai-openai
@@ -17,7 +17,7 @@ Unlike the Azure OpenAI client libraries for Python and JavaScript, the Azure Op
 
 Current Azure OpenAI API version target: `2025-01-01-preview`
 
-This is defined in the [**custom_client.go**](https://github.com/Azure/azure-sdk-for-go/blob/main/sdk/ai/azopenai/custom_client.go) file.
+This is defined in the [**custom_client.go**](https://github.com/Azure/azure-sdk-for-go/blob/main/sdk/ai/azopenai) file.
 
 ## Installation
 

@@ -1,8 +1,7 @@
 ### YamlMime:FAQ
 metadata:
-  title: Azure OpenAI Service frequently asked questions
-  titleSuffix: Azure AI services
-  description: Get answers to the most popular questions about Azure OpenAI Service
+  title: Azure OpenAI frequently asked questions
+  description: Get answers to the most popular questions about Azure OpenAI
   #services: cognitive-services
   manager: nitinme
   ms.service: azure-ai-openai
@@ -10,16 +9,15 @@ metadata:
   ms.date: 03/27/2025
   ms.author: mbullwin
   author: mrbullwinkle
-title: Azure OpenAI Service frequently asked questions
+title: Azure OpenAI frequently asked questions
 summary: |
-  If you can't find answers to your questions in this document, and still need help check the [Azure AI services support options guide](../cognitive-services-support-options.md?context=/azure/ai-services/openai/context/context). Azure OpenAI is part of Azure AI services.
 sections:
   - name: Data and Privacy
     questions:
       - question: |
           Do you use my company data to train any of the models? 
         answer: |
-          Azure OpenAI doesn't use customer data to retrain models. For more information, see the [Azure OpenAI data, privacy, and security guide](/legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context).    
+          Azure OpenAI doesn't use customer data to retrain models. For more information, see the [Azure OpenAI data, privacy, and security guide](/azure/ai-foundry/responsible-ai/openai/data-privacy).    
   - name: General
     questions:
       - question: |
@@ -41,13 +39,13 @@ sections:
       - question: |
           How do the capabilities of Azure OpenAI compare to OpenAI?
         answer: | 
-          Azure OpenAI Service gives customers advanced language AI with the latest OpenAI models with the security and enterprise promise of Azure. Azure OpenAI codevelops the APIs with OpenAI, ensuring compatibility and a smooth transition from one to the other.
+          Azure OpenAI gives customers advanced language AI with the latest OpenAI models with the security and enterprise promise of Azure. Azure OpenAI codevelops the APIs with OpenAI, ensuring compatibility and a smooth transition from one to the other.
           
           With Azure OpenAI, customers get the security capabilities of Microsoft Azure while running the same models as OpenAI. 
       - question: |
           Does Azure OpenAI support VNETs and Private Endpoints?
         answer: | 
-          Yes, as part of Azure AI services, Azure OpenAI supports VNETs and Private Endpoints. To learn more, consult the [Azure AI services virtual networking guidance](../cognitive-services-virtual-networks.md?context=/azure/ai-services/openai/context/context). 
+          Yes, Azure OpenAI supports VNETs and Private Endpoints. To learn more, consult the [virtual networking guidance](../cognitive-services-virtual-networks.md?context=/azure/ai-services/openai/context/context). 
       - question: |
           Do the GPT-4 models currently support image input?
         answer: | 
@@ -55,7 +53,7 @@ sections:
       - question: |
           How do I apply for new use cases?
         answer: |
-          Previously, the process for adding new use cases required customers to reapply to the service. Now, we're releasing a new process that allows you to quickly add new use cases to your use of the service. This process follows the established Limited Access process within Azure AI services. [Existing customers can attest to any and all new use cases here](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUM003VEJPRjRSOTZBRVZBV1E5N1lWMk1XUyQlQCN0PWcu). Note that this is required anytime you would like to use the service for a new use case you didn't originally apply for.
+          Previously, the process for adding new use cases required customers to reapply to the service. Now, we're releasing a new process that allows you to quickly add new use cases to your use of the service. This process follows the established Limited Access process within Azure OpenAI. [Existing customers can attest to any and all new use cases here](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUM003VEJPRjRSOTZBRVZBV1E5N1lWMk1XUyQlQCN0PWcu). Note that this is required anytime you would like to use the service for a new use case you didn't originally apply for.
       - question: |
           I'm trying to use embeddings and received the error "InvalidRequestError: Too many inputs. The max number of inputs is 16." How do I fix this?
         answer: | 
@@ -112,8 +110,15 @@ sections:
         answer:
           You can minimize the occurrence of these errors by reducing the temperature of your prompts to less than 1 and ensuring you're using a client with retry logic. Reattempting the request often results in a successful response.
       - question: |
+          How do I fix Server error (500): Unexpected special token
+        answer: |
+          This is a a known issue. You can minimize the occurrence of these errors by reducing the temperature of your prompts to less than 1 and ensuring you're using a client with retry logic. Reattempting the request often results in a successful response. 
+          
+          If reducing temperature to less than 1 does not reduce the frequency of this error an alternative workaround is set presence/frequency penalties and logit biases to their default values. In some cases, it may help to set `top_p` to a non-default, lower value to encourage the model to avoid sampling tokens with lower probability tokens.  
+          
+      - question: |
           We noticed charges associated with API calls that failed to complete with status code 400. Why are failed API calls generating a charge? 
-        answer:
+        answer: 
           If the service performs processing, you will be charged even if the status code is not successful (not 200).
           Common examples of this are, a 400 error due to a content filter or input limit, or a 408 error due to a time-out. Charges will also occur when a `status 200` is received with a `finish_reason` of `content_filter`.
           In this case the prompt did not have any issues, but the completion generated by the model was detected to violate the content filtering rules, which result in the completion being filtered. 
@@ -125,21 +130,21 @@ sections:
       - question: |
           How do I get access to Azure OpenAI? 
         answer: |
-          A Limited Access registration form is not required to access most Azure OpenAI models. Learn more on the [Azure OpenAI Limited Access page](/legal/cognitive-services/openai/limited-access?context=/azure/ai-services/openai/context/context).
+          A Limited Access registration form is not required to access most Azure OpenAI models. Learn more on the [Azure OpenAI Limited Access page](/azure/ai-foundry/responsible-ai/openai/limited-access).
       - question: |
-          My guest account has been given access to an Azure OpenAI resource, but I'm unable to access that resource in the [Azure AI Foundry portal](https://ai.azure.com/). How do I enable access?
+          My guest account has been given access to an Azure OpenAI resource, but I'm unable to access that resource in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). How do I enable access?
         answer: | 
-          This is expected behavior when using the default sign-in experience for the [Azure AI Foundry](https://ai.azure.com).
+          This is expected behavior when using the default sign-in experience for the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
           
           To access Azure AI Foundry from a guest account that has been granted access to an Azure OpenAI resource:
           
-          1. Open a private browser session and then navigate to [https://ai.azure.com](https://ai.azure.com).
+          1. Open a private browser session and then navigate to [https://ai.azure.com](https://ai.azure.com/?cid=learnDocs).
           2. Rather than immediately entering your guest account credentials instead select `Sign-in options` 
           3. Now select **Sign in to an organization** 
           4. Enter the domain name of the organization that granted your guest account access to the Azure OpenAI resource. 
           5. Now sign-in with your guest account credentials. 
           
-          You should now be able to access the resource via the [Azure AI Foundry portal](https://ai.azure.com/).
+          You should now be able to access the resource via the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
           
           Alternatively if you're signed into the [Azure portal](https://portal.azure.com) from the Azure OpenAI resource's Overview pane you can select **Go to Azure AI Foundry** to automatically sign in with the appropriate organizational context.   
   
@@ -161,7 +166,7 @@ sections:
       - question: |
           Where do I go for Azure OpenAI customer support?
         answer: |  
-          Azure OpenAI is part of Azure AI services. You can learn about all the support options for Azure AI services in the [support and help options guide](../cognitive-services-support-options.md?context=%2fazure%2fcognitive-services%2fopenai%2fcontext%2fcontext).
+          You can learn about all the support options for Azure OpenAI in the [support and help options guide](../cognitive-services-support-options.md?context=%2fazure%2fcognitive-services%2fopenai%2fcontext%2fcontext).
   - name: Models and fine-tuning
     questions:
       - question: |
@@ -177,7 +182,7 @@ sections:
         answer:
           We do offer an Availability SLA for all resources and a Latency SLA for Provisioned-Managed Deployments. For more information about the SLA for Azure OpenAI Service, see the [Service Level Agreements (SLA) for Online Services page](https://azure.microsoft.com/support/legal/sla/cognitive-services/v1_1/). 
       - question: |
-          How do I enable fine-tuning? Create a custom model is greyed out in [Azure AI Foundry portal](https://ai.azure.com/).  
+          How do I enable fine-tuning? Create a custom model is greyed out in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).  
         answer: |
           In order to successfully access fine-tuning, you need Cognitive Services OpenAI Contributor assigned. Even someone with high-level Service Administrator permissions would still need this account explicitly set in order to access fine-tuning. For more information, please review the [role-based access control guidance](/azure/ai-services/openai/how-to/role-based-access-control#cognitive-services-openai-contributor).
       - question: |
@@ -270,7 +275,7 @@ sections:
       - question: |
           Is my data used by Microsoft for training models? 
         answer: |
-          No. Data is not used for Microsoft not used for training models. See the [Responsible AI documentation](/legal/cognitive-services/openai/data-privacy?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext) for more information. 
+          No. Data is not used for Microsoft not used for training models. See the [Responsible AI documentation](/azure/ai-foundry/responsible-ai/openai/data-privacy) for more information. 
       - question: |
           Where is data stored geographically?
         answer: |
@@ -306,19 +311,19 @@ sections:
         answer:
           You can customize your published web app in the Azure portal. The source code for the published web app is [available on GitHub](https://go.microsoft.com/fwlink/?linkid=2244395), where you can find information on changing the app frontend, as well as instructions for building and deploying the app.
       - question: |
-          Will my web app be overwritten when I deploy the app again from the [Azure AI Foundry portal](https://ai.azure.com/)?
+          Will my web app be overwritten when I deploy the app again from the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs)?
         answer:
-          Your app code won't be overwritten when you update your app. The app will be updated to use the Azure OpenAI resource, Azure AI Search index (if you're using Azure OpenAI on your data), and model settings selected in the [Azure AI Foundry portal](https://ai.azure.com/) without any change to the appearance or functionality. 
+          Your app code won't be overwritten when you update your app. The app will be updated to use the Azure OpenAI resource, Azure AI Search index (if you're using Azure OpenAI on your data), and model settings selected in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) without any change to the appearance or functionality. 
   - name: Using your data
     questions:
       - question: |
           What is Azure OpenAI on your data?  
         answer:
-          Azure OpenAI on your data is a feature of the Azure OpenAI Services that helps organizations to generate customized insights, content, and searches using their designated data sources. It works with the capabilities of the OpenAI models in Azure OpenAI to provide more accurate and relevant responses to user queries in natural language. Azure OpenAI on your data can be integrated with customer's existing applications and workflows, offers insights into key performance indicators, and can interact with users seamlessly.  
+          Azure OpenAI on your data is a feature of the Azure OpenAI that helps organizations to generate customized insights, content, and searches using their designated data sources. It works with the capabilities of the OpenAI models in Azure OpenAI to provide more accurate and relevant responses to user queries in natural language. Azure OpenAI on your data can be integrated with customer's existing applications and workflows, offers insights into key performance indicators, and can interact with users seamlessly.  
       - question: |
           How can I access Azure OpenAI on your data?  
         answer:
-          All Azure OpenAI customers can use Azure OpenAI on your data via the [Azure AI Foundry portal](https://ai.azure.com/) and Rest API.
+          All Azure OpenAI customers can use Azure OpenAI on your data via the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and Rest API.
       - question: |
           What data sources does Azure OpenAI on your data support?
         answer:
@@ -326,7 +331,7 @@ sections:
       - question: |
           How much does it cost to use Azure OpenAI on your data?
         answer:
-          When using Azure OpenAI on your data, you incur costs when you use Azure AI Search, Azure Blob Storage, Azure Web App Service, semantic search and OpenAI models. There's no additional cost for using the "your data" feature in the [Azure AI Foundry portal](https://ai.azure.com/).
+          When using Azure OpenAI on your data, you incur costs when you use Azure AI Search, Azure Blob Storage, Azure Web App Service, semantic search and OpenAI models. There's no additional cost for using the "your data" feature in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
       - question: |
           How can I customize or automate the index creation process?
         answer:
@@ -342,7 +347,7 @@ sections:
       - question: |
           Is responsible AI supported by Azure OpenAI on your data?
         answer:
-          Yes, [Azure OpenAI on your data](./concepts/use-your-data.md) is part of the Azure OpenAI Service and works with the [models](./concepts/models.md) available in Azure OpenAI. The [content filtering](./concepts/content-filter.md) and abuse monitoring features of Azure OpenAI still apply. For more information, see the [overview of Responsible AI practices for Azure OpenAI models](/legal/cognitive-services/openai/overview?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext) and the [Transparency Note for Azure OpenAI](/legal/cognitive-services/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=text) for extra guidance on using Azure OpenAI on your data responsibly. 
+          Yes, [Azure OpenAI on your data](./concepts/use-your-data.md) is part of Azure OpenAI and works with the [models](./concepts/models.md) available in Azure OpenAI. The [content filtering](./concepts/content-filter.md) and abuse monitoring features of Azure OpenAI still apply. For more information, see the [overview of Responsible AI practices for Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/overview) for extra guidance on using Azure OpenAI on your data responsibly. 
       - question: |
           Is there a token limit on the system message? 
         answer: 
@@ -356,7 +361,7 @@ sections:
         answer:
           You must send queries in the same language of your data. Your data can be in any of the languages supported by [Azure AI Search](/azure/search/search-language-support).
       - question: |
-          If Semantic Search is enabled for my Azure AI Search resource, will it be automatically applied to Azure OpenAI on your data in the [Azure AI Foundry portal](https://ai.azure.com/)?
+          If Semantic Search is enabled for my Azure AI Search resource, will it be automatically applied to Azure OpenAI on your data in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs)?
         answer:
           When you select "Azure AI Search" as the data source, you can choose to apply semantic search. 
           If you select "Azure Blob Container" or "Upload files" as the data source, you can create the index as usual. Afterwards you would reingest the data using the "Azure AI Search" option to select the same index and apply Semantic Search. You will then be ready to chat on your data with semantic search applied.
@@ -373,7 +378,7 @@ sections:
       - question: |
           How do I obtain coverage under the Customer Copyright Commitment? 
         answer:
-          The Customer Copyright Commitment is a provision to be included in the December 1, 2023, Microsoft Product Terms that describes Microsoft’s obligation to defend customers against certain third-party intellectual property claims relating to Output Content. If the subject of the claim is Output Content generated from the Azure OpenAI Service (or any other Covered Product that allows customers to configure the safety systems), then to receive coverage, customer must have implemented all mitigations required by the Azure OpenAI Service documentation in the offering that delivered the Output Content. The required mitigations are documented [here](/legal/cognitive-services/openai/customer-copyright-commitment?context=/azure/ai-services/openai/context/context) and updated on an ongoing basis. For new services, features, models, or use cases, new CCC requirements will be posted and take effect at or following the launch of such service, feature, model, or use case. Otherwise, customers will have six months from the time of publication to implement new mitigations to maintain coverage under the CCC. If a customer tenders a claim, the customer will be required to demonstrate compliance with the relevant requirements. These mitigations are required for Covered Products that allow customers to configure the safety systems, including Azure OpenAI Service; they do not impact coverage for customers using other Covered Products.
+          The Customer Copyright Commitment is a provision to be included in the December 1, 2023, Microsoft Product Terms that describes Microsoft’s obligation to defend customers against certain third-party intellectual property claims relating to Output Content. If the subject of the claim is Output Content generated from the Azure OpenAI (or any other Covered Product that allows customers to configure the safety systems), then to receive coverage, customer must have implemented all mitigations required by the Azure OpenAI documentation in the offering that delivered the Output Content. The required mitigations are documented [here](/azure/ai-foundry/responsible-ai/openai/customer-copyright-commitment) and updated on an ongoing basis. For new services, features, models, or use cases, new CCC requirements will be posted and take effect at or following the launch of such service, feature, model, or use case. Otherwise, customers will have six months from the time of publication to implement new mitigations to maintain coverage under the CCC. If a customer tenders a claim, the customer will be required to demonstrate compliance with the relevant requirements. These mitigations are required for Covered Products that allow customers to configure the safety systems, including Azure OpenAI Service; they do not impact coverage for customers using other Covered Products.
 additionalContent: |
 
   ## Next steps

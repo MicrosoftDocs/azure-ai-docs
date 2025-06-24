@@ -29,7 +29,7 @@ With custom speech, you can upload your own data, test and train a custom model,
 
 Here's more information about the sequence of steps shown in the previous diagram:
 
-1. [Create a project](how-to-custom-speech-create-project.md) and choose a model. Use a <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices" title="Create an AI Services resource for Speech" target="_blank">Speech resource</a> that you create in the Azure portal. If you train a custom model with audio data, select a service resource in a region with dedicated hardware for training audio data. For more information, see footnotes in the [regions](regions.md#regions) table.
+1. [Create a project](how-to-custom-speech-create-project.md) and choose a model. Use a <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry" title="Create an AI Foundry resource for Speech" target="_blank">Speech resource</a> that you create in the Azure portal. If you train a custom model with audio data, select a service resource in a region with dedicated hardware for training audio data. For more information, see footnotes in the [regions](regions.md#regions) table.
 
 1. [Upload test data](./how-to-custom-speech-upload-data.md). Upload test data to evaluate the speech to text offering for your applications, tools, and products.
 
@@ -68,10 +68,10 @@ Whether you train your own model or use a snapshot of a base model, you can use 
 
 An AI system includes not only the technology, but also the people who use it, the people who are affected by it, and the environment in which it's deployed. Read the transparency notes to learn about responsible AI use and deployment in your systems. 
 
-* [Transparency note and use cases](/legal/cognitive-services/speech-service/speech-to-text/transparency-note?context=/azure/ai-services/speech-service/context/context)
-* [Characteristics and limitations](/legal/cognitive-services/speech-service/speech-to-text/characteristics-and-limitations?context=/azure/ai-services/speech-service/context/context)
-* [Integration and responsible use](/legal/cognitive-services/speech-service/speech-to-text/guidance-integration-responsible-use?context=/azure/ai-services/speech-service/context/context)
-* [Data, privacy, and security](/legal/cognitive-services/speech-service/speech-to-text/data-privacy-security?context=/azure/ai-services/speech-service/context/context)
+* [Transparency note and use cases](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note)
+* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/characteristics-and-limitations)
+* [Integration and responsible use](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/guidance-integration-responsible-use)
+* [Data, privacy, and security](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/data-privacy-security)
 
 ## Next steps
 

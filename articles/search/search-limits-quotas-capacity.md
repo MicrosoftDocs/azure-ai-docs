@@ -4,8 +4,8 @@ titleSuffix: Azure AI Search
 description: Service limits used for capacity planning and maximum limits on requests and responses for Azure AI Search.
 
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 04/30/2025
@@ -41,7 +41,7 @@ Maximum limits on storage, workloads, and quantities of indexes and other object
 |----------|------|--------|----|----|----|------------|----|----|
 | Maximum indexes |3 |5 or 15 |50 |200 |200 |1000 per partition or 3000 per service |10 |10 |
 | Maximum simple fields per index&nbsp;<sup>2</sup> |1000 |100 |1000 |1000 |1000 |1000 |1000 |1000 |
-| Maximum dimensions per vector field | 4098|4098|4098|4098|4098|4098|4098|4098|
+| Maximum dimensions per vector field | 4096|4096|4096|4096|4096|4096|4096|4096|
 | Maximum complex collections per index |40 |40 |40 |40 |40 |40 |40 |40 |
 | Maximum elements across all complex collections per document&nbsp;<sup>3</sup> |3000 |3000 |3000 |3000 |3000 |3000 |3000 |3000 |
 | Maximum depth of complex fields |10 |10 |10 |10 |10 |10 |10 |10 |

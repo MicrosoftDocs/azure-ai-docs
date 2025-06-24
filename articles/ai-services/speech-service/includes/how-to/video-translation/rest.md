@@ -5,7 +5,7 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 3/8/2025
+ms.date: 6/13/2025
 ms.custom: references_regions
 ---
 
@@ -14,7 +14,7 @@ The video translation REST API facilitates seamless video translation integratio
 ## Pre-requisites
 
 - An Azure subscription. If you don't have an Azure subscription, create a free account before you begin.
-- An Azure AI Services resource for Speech [in a supported region](../../../video-translation-overview.md#supported-regions-and-languages). If you don't have a Speech resource, create one in the [Azure portal](https://portal.azure.com/).
+- an AI Foundry resource for Speech [in a supported region](../../../video-translation-overview.md#supported-regions-and-languages). If you don't have a Speech resource, create one in the [Azure portal](https://portal.azure.com/).
 - An [Azure Blob Storage](/azure/storage/blobs/storage-blobs-overview) account. 
 - You need a video file in .mp4 format, less than 5 GB, and shorter than 4 hours. For testing purposes, you can use the sample video file provided by Microsoft at [https://speechstudioprodpublicsa.blob.core.windows.net/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4](https://speechstudioprodpublicsa.blob.core.windows.net/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4).
 - Make sure video translation supports your [source and target language](../../../language-support.md?tabs=speech-translation#video-translation).
@@ -41,7 +41,7 @@ To create a video translation, you need to construct an HTTP PUT request path an
 - Specify `description`: A brief description of the translation. This is optional but can be helpful for documentation purposes.
 - Specify the `sourceLocale`: The language of the original video. This is the language spoken in the video file.
 - Specify the `targetLocale`: The language you want to translate the video into. This is the target language for the translation.
-- Specify `voiceKind`: The type of voice you want to use for the translation. You can choose between `PlatformVoice` and `PersonalVoice`. For `PlatformVoice`, the system automatically selects the most suitable prebuilt voice by matching the speaker's voice in the video with prebuilt voices. For `PersonalVoice`, the system offers a model that generates high-quality voice replication in a few seconds.
+- Specify `voiceKind`: The type of voice you want to use for the translation. You can choose between `PlatformVoice` and `PersonalVoice`. For `PlatformVoice`, the system automatically selects the most suitable standard voice by matching the speaker's voice in the video with standard voices. For `PersonalVoice`, the system offers a model that generates high-quality voice replication in a few seconds.
 
    > [!NOTE]
    > To use personal voice, you need to apply for [access](https://aka.ms/customneural).
@@ -67,9 +67,10 @@ curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" -H "Operati
     "speakerCount": 1,
     "subtitleMaxCharCountPerSegment": 50,
     "exportSubtitleInVideo": false,
+    "enableLipSync": false,
     "videoFileUrl": "https://speechstudioprodpublicsa.blob.core.windows.net/ttsvoice/VideoTranslation/PublicDoc/SampleData/es-ES-TryOutOriginal.mp4"
   }
-}' "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id?api-version=2024-05-20-preview"
+}' "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id?api-version=2024-05-20"
 ```
 
 > [!IMPORTANT]
@@ -85,7 +86,8 @@ You should receive a response body in the following format:
     "voiceKind": "PlatformVoice",
     "speakerCount": 1,
     "subtitleMaxCharCountPerSegment": 50,
-    "exportSubtitleInVideo": false
+    "exportSubtitleInVideo": false,
+    "enableLipSync": false
   },
   "status": "NotStarted",
   "lastActionDateTime": "2025-03-06T19:13:35.669Z",
@@ -120,7 +122,7 @@ curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" \
     "subtitleMaxCharCountPerSegment": 30,
     "exportSubtitleInVideo": true
   }
-}' "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id/iterations/Your-Iteration-Id-1?api-version=2024-05-20-preview"
+}' "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id/iterations/Your-Iteration-Id-1?api-version=2024-05-20"
 ```
 
 You should receive a response body in the following format:
@@ -147,7 +149,7 @@ You can download the translated video and subtitles once the iteration status is
 To retrieve details of a specific iteration by its ID, use the HTTP GET request. Replace `YourSpeechResourceKey` with your Speech resource key,  `YourSpeechResourceRegion` with your Speech resource region, `Your-Translation-Id` with the translation ID you want to check,  and `Your-Iteration-Id` with the iteration ID you want to check.
 
 ```azurecli-interactive
-curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id/iterations/Your-Iteration-Id?api-version=2024-05-20-preview"  
+curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id/iterations/Your-Iteration-Id?api-version=2024-05-20"  
 ```
 
 You should receive a response body in the following format:
@@ -551,7 +553,7 @@ curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" \
       "url": "https://YourBlobStorageUrl/YourWebVTTFile.vtt"
     }
   }
-}' "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id/iterations/Your-Iteration-Id-2?api-version=2024-05-20-preview"
+}' "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id/iterations/Your-Iteration-Id-2?api-version=2024-05-20"
 ```
 
 You should receive a response body in the following format:
@@ -580,7 +582,7 @@ Check the status of an operation using its operation ID. The operation ID is uni
 - Replace `YourSpeechResourceKey` with your Speech resource key and replace `YourSpeechResourceRegion` with your Speech resource region.
 
 ```azurecli-interactive
-curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/operations/Your-Operation-Id-1?api-version=2024-05-20-preview" 
+curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/operations/Your-Operation-Id-1?api-version=2024-05-20" 
 ```
 
 You should receive a response body in the following format:
@@ -599,7 +601,7 @@ Remove a specific translation identified by `translationId`. This operation also
 Replace `YourSpeechResourceKey` with your Speech resource key,  `YourSpeechResourceRegion` with your Speech resource region, and `Your-Translation-Id` with the translation ID you want to delete. If not deleted manually, the service retains the translation history for up to 31 days.
 
 ```azurecli-interactive
-curl -v -X DELETE -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id?api-version=2024-05-20-preview" 
+curl -v -X DELETE -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id?api-version=2024-05-20" 
 ```
 
 The response headers include `HTTP/1.1 204 No Content` if the delete request was successful.
@@ -628,7 +630,7 @@ This section provides examples for other video translation API calls that aren't
 To list all video translations that are uploaded and processed in your resource account, make an HTTP GET request as shown in the following example. Replace `YourSpeechResourceKey` with your Speech resource key and replace `YourSpeechResourceRegion` with your Speech resource region.   
 
 ```azurecli-interactive
-curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations?api-version=2024-05-20-preview"
+curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations?api-version=2024-05-20"
 ```
 
 ### Get a translation by translation ID
@@ -636,7 +638,7 @@ curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://Yo
 This operation retrieves detailed information about a specific translation, identified by its unique `translationId`. Replace `YourSpeechResourceKey` with your Speech resource key,  `YourSpeechResourceRegion` with your Speech resource region, and `Your-Translation-Id` with the translation ID you want to check.
 
 ```azurecli-interactive
-curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id?api-version=2024-05-20-preview" 
+curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id?api-version=2024-05-20" 
 ```
 
 ### List iterations
@@ -644,7 +646,7 @@ curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://Yo
 List all iterations for a specific translation. This request lists all iterations without detailed information. Replace `YourSpeechResourceKey` with your Speech resource key,  `YourSpeechResourceRegion` with your Speech resource region, and `Your-Translation-Id` with the translation ID you want to check.
 
 ```azurecli-interactive
-curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id/iterations?api-version=2024-05-20-preview"  
+curl -v -X GET -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey" "https://YourSpeechResourceRegion.api.cognitive.microsoft.com/videotranslation/translations/Your-Translation-Id/iterations?api-version=2024-05-20"  
 ```
 
 ## HTTP status codes

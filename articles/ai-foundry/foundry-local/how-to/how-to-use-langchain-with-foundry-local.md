@@ -7,13 +7,13 @@ keywords: Azure AI services, cognitive, AI models, local inference
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.topic: how-to
-ms.date: 02/20/2025
+ms.date: 05/20/2025
 ms.reviewer: eneros
 ms.author: jburchel
 author: jonburchel
 reviewer: eneros
 ms.custom: build-2025
-zone_pivot_groups: foundry-local-sdk
+zone_pivot_groups: foundry-local-langchain
 #customer intent: As a developer, I want to get started with Foundry Local so that I can run AI models locally.
 ---
 

@@ -1,34 +1,56 @@
 ---
-title: Create an Azure AI Foundry project in Azure AI Foundry portal
+title: Create a project
 titleSuffix: Azure AI Foundry
 description: This article describes how to create an Azure AI Foundry project so you can work with generative AI in the cloud.
+author: sdgilley
+ms.author: sgilley
 manager: scottpolly
+ms.reviewer: deeikele
+ms.date: 05/20/2025
 ms.service: azure-ai-foundry
+ms.topic: how-to
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
-ms.topic: how-to
-ms.date: 01/03/2025
-ms.reviewer: deeikele
-ms.author: sgilley
-author: sdgilley
+  - build-aifnd
+  - build-2025
+zone_pivot_groups: project-type
 # customer intent: As a developer, I want to create an Azure AI Foundry project so I can work with generative AI.
 ---
 
-# Create a project in Azure AI Foundry portal
+# Create a project for Azure AI Foundry
 
-This article describes how to create an [Azure AI Foundry](https://ai.azure.com) project. A project is used to organize your work and save state while building customized AI apps. 
+This article describes how to create a project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). Projects let you organize your work for exploring new ideas and as you prototype on a particular use case.
 
-Projects are hosted by an Azure AI Foundry hub. If your company has an administrative team that has created a hub for you, you can create a project from that hub. If you are working on your own, you can create a project and a default hub will automatically be created for you.
+Azure AI Foundry supports two types of projects: a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** and a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. For more information about the differences between these two project types, see [Types of projects](../what-is-azure-ai-foundry.md#project-types).
 
-For more information about the projects and hubs model, see [Azure AI Foundry hubs](../concepts/ai-resources.md).
+::: zone pivot="hub-project"
+
+> [!TIP]
+> The rest of this article shows how to create a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. Select **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** at the top of this article if you want to create a [!INCLUDE [fdp](../includes/fdp-project-name.md)] instead.
+
+
+* [!INCLUDE [hub-description](../includes/hub-description.md)]
+
+* Use this project type for:
+
+    * Prompt flow
+    * Managed compute
+    * [Azure Machine Learning](../../machine-learning/index.yml) compatibility
+
+* This project can also be used for:
+
+    * Agents (preview)
+    * Project-level isolation of files and outputs
+    * Evaluations
+    * Playgrounds
 
 ## Prerequisites
 
-Use the following tabs to select the method you plan to use to create a project:
+Use the following tabs to select the method you plan to use to create a [!INCLUDE [hub](../includes/hub-project-name.md)]:
 
-# [Azure AI Foundry portal](#tab/ai-studio)
+# [Azure AI Foundry portal](#tab/ai-foundry)
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
 
@@ -37,30 +59,31 @@ Use the following tabs to select the method you plan to use to create a project:
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
 - [Azure Machine Learning SDK v2](https://aka.ms/sdk-v2-install).
 - An Azure AI Foundry hub. If you don't have a hub, see [Create a hub using the Azure Machine Learning SDK and CLI](develop/create-hub-project-sdk.md).
+- [Azure CLI](/cli/azure/install-azure-cli) 
+- Authenticate with `az login` or `az login --use-device-code` in your environment before running code.
 
 
 # [Azure CLI](#tab/azurecli)
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
-- [Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli).
+- [Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli). If you don't have the Azure CLI and machine learning extension installed, follow the steps in the [Install and set up the machine learning extension](/azure/machine-learning/how-to-configure-cli) article.
 - An Azure AI Foundry hub. If you don't have a hub, see [Create a hub using the Azure Machine Learning SDK and CLI](develop/create-hub-project-sdk.md).
 
 ---
 
-## Create a project
+## Create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]
 
+# [Azure AI Foundry portal](#tab/ai-foundry)
 
-# [Azure AI Foundry portal](#tab/ai-studio)
-
-[!INCLUDE [Create Azure AI Foundry project](../includes/create-projects.md)]
+[!INCLUDE [Create Azure AI Foundry project](../includes/create-hub-project.md)]
 
 # [Python SDK](#tab/python)
 
-The code in this section assumes you have an existing hub.  If you don't have a hub, see [How to create and manage an Azure AI Foundry hub](create-azure-ai-resource.md) to create one.
+The code in this section assumes you have an existing hub. If you don't have a hub, see [How to create and manage an Azure AI Foundry hub](create-azure-ai-resource.md) to create one.
 
 [!INCLUDE [SDK setup](../includes/development-environment-config.md)]
 
-8. Use the following code to create a project from a hub you or your administrator created previously. Replace example string values with your own values:
+6. Use the following code to create a project from a hub you or your administrator created previously. Replace example string values with your own values:
 
     ```Python
     from azure.ai.ml.entities import Project
@@ -79,9 +102,7 @@ The code in this section assumes you have an existing hub.  If you don't have a 
 
 # [Azure CLI](#tab/azurecli)
 
-The code in this section assumes you have an existing hub.  If you don't have a hub, see [How to create and manage an Azure AI Foundry hub](create-azure-ai-resource.md) to create one.
-
-1. If you don't have the Azure CLI and machine learning extension installed, follow the steps in the [Install and set up the machine learning extension](/azure/machine-learning/how-to-configure-cli) article.
+The code in this section assumes you have an existing hub. If you don't have a hub, see [How to create and manage an Azure AI Foundry hub](create-azure-ai-resource.md) to create one.
 
 1. To authenticate to your Azure subscription from the Azure CLI, use the following command:
 
@@ -103,13 +124,13 @@ The code in this section assumes you have an existing hub.  If you don't have a 
 
 ## View project settings
 
-# [Azure AI Foundry portal](#tab/ai-studio)
+# [Azure AI Foundry portal](#tab/ai-foundry)
 
-On the project **Overview** page you can find information about the project.
+On the project **Overview** page, you can find information about the project.
 
 :::image type="content" source="../media/how-to/projects/project-settings.png" alt-text="Screenshot of an Azure AI Foundry project settings page." lightbox = "../media/how-to/projects/project-settings.png":::
 
-- Name: The name of the project appears in the top left corner. You can rename the project using the edit tool.
+- Name: The name of the project appears in the top left corner.
 - Subscription: The subscription that hosts the hub that hosts the project.
 - Resource group: The resource group that hosts the hub that hosts the project.
 
@@ -134,11 +155,12 @@ az ml workspace show --name {my_project_name} --resource-group {my_resource_grou
 
 ---
 
+
 ## Access project resources
 
 Common configurations on the hub are shared with your project, including connections, compute instances, and network access, so you can start developing right away.
 
-In addition, a number of resources are only accessible by users in your project workspace:
+In addition, many resources are only accessible by users in your project workspace:
 
 - Components including datasets, flows, indexes, deployed model API endpoints (open and serverless).
 - Connections created by you under 'project settings.'
@@ -151,10 +173,18 @@ In addition, a number of resources are only accessible by users in your project 
    | workspacefilestore | {project-GUID}-code | Hosts files created on your compute and using prompt flow |
 
 > [!NOTE]
-> Storage connections are not created directly with the project when your storage account has public network access set to disabled. These are created instead when a first user accesses Azure AI Foundry over a private network connection. [Troubleshoot storage connections](troubleshoot-secure-connection-project.md#troubleshoot-configurations-on-connecting-to-storage)
+> Storage connections aren't created directly with the project when your storage account has public network access set to disabled. These are created instead when a first user accesses Azure AI Foundry over a private network connection. [Troubleshoot storage connections](troubleshoot-secure-connection-project.md#troubleshoot-configurations-on-connecting-to-storage)
 
 ## Related content
 
-- [Deploy an enterprise chat web app](../tutorials/deploy-chat-web-app.md)
-- [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
+- [Quickstart: Use the chat playground in Azure AI Foundry portal](../quickstarts/get-started-playground.md)
+
 - [Learn more about hubs](../concepts/ai-resources.md)
+
+::: zone-end
+
+::: zone pivot="fdp-project"
+
+[!INCLUDE [create-project-fdp](../includes/create-project-fdp.md)]
+
+::: zone-end

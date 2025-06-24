@@ -77,9 +77,9 @@
 - name: Responsible use of AI
   items:
   - name: Transparency note
-    href: /legal/cognitive-services/anomaly-detector/ad-transparency-note?context=/azure/ai-services/anomaly-detector/context/context 
+    href: ../../ai-foundry/responsible-ai/anomaly-detector/ad-transparency-note.md
   - name: Data, privacy and security
-    href: /legal/cognitive-services/anomaly-detector/data-privacy-security?context=/azure/ai-services/anomaly-detector/context/context
+    href: ../../ai-foundry/responsible-ai/anomaly-detector/data-privacy-security.md
 - name: Reference
   items:
     - name: REST API (v1.1) 

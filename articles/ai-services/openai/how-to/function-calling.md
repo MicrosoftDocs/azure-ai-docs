@@ -1,17 +1,17 @@
 ---
-title: How to use function calling with Azure OpenAI Service
-titleSuffix: Azure OpenAI Service
+title: How to use function calling with Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure OpenAI
 description: Learn how to use function calling with the GPT-35-Turbo and GPT-4 models 
 author: mrbullwinkle #dereklegenzoff
 ms.author: mbullwin #delegenz
 ms.service: azure-ai-openai
 ms.custom: devx-track-python
 ms.topic: how-to
-ms.date: 04/16/2025
+ms.date: 06/17/2025
 manager: nitinme
 ---
 
-# How to use function calling with Azure OpenAI Service
+# How to use function calling with Azure OpenAI in Azure AI Foundry Models
 
 The latest versions of gpt-35-turbo and gpt-4 are fine-tuned to work with functions and are able to both determine when and how a function should be called. If one or more functions are included in your request, the model determines if any of the functions should be called based on the context of the prompt. When the model determines that a function should be called, it responds with a JSON object including the arguments for the function. 
 
@@ -48,6 +48,8 @@ Support for parallel function was first added in API version [`2023-12-01-previe
 ### Basic function calling with tools
 
 * All the models that support parallel function calling
+* `codex-mini` (`2025-05-16`)
+* `o3-pro` (`2025-06-10`)
 * `o4-mini` (`2025-04-16`)
 * `o3` (`2025-04-16`)
 * `gpt-4.1-nano` (`2025-04-14`)
@@ -510,7 +512,7 @@ Here are a few tips to help you use functions safely and securely:
 *	**Consider Real-World Impact**: Be aware of the real-world impact of function calls that you plan to execute, especially those that trigger actions such as executing code, updating databases, or sending notifications.
 *	**Implement User Confirmation Steps**: Particularly for functions that take actions, we recommend including a step where the user confirms the action before it's executed.
 
-To learn more about our recommendations on how to use Azure OpenAI models responsibly, see the [Overview of Responsible AI practices for Azure OpenAI models](/legal/cognitive-services/openai/overview?context=/azure/ai-services/openai/context/context).
+To learn more about our recommendations on how to use Azure OpenAI models responsibly, see the [Overview of Responsible AI practices for Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/overview).
 
 ## Next steps
 

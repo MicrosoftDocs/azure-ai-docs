@@ -5,7 +5,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 04/14/2025
+ms.date: 06/10/2025
 ms.author: lajanuar
 recommendations: false
 ms.devlang: csharp
@@ -21,7 +21,7 @@ ms.custom: mode-other, devx-track-extended-java, devx-track-python, ignite-2024
 
 > [!NOTE]
 >
-> Document translation is supported in the S1 Standard Service Plan (Pay-as-you-go) and C2, C3, C4, and D3 Volume Discount Plans. _See_ [Azure AI services pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
+> Document translation is supported in the S1 Standard Service Plan and C2, C3, C4, and D3 Volume Discount Plans. _See_ [Azure AI services pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
 >
 
 To get started, you need:
@@ -117,7 +117,7 @@ The following headers are included with each Document translation API request:
 
 |HTTP header|Description|
 |---|--|
-|Ocp-Apim-Subscription-Key|**Required**: The value is the Azure key for your Translator or Azure AI services resource.|
+|Ocp-Apim-Subscription-Key|**Required**: The value is the Azure key for your Translator or Azure AI Foundry resource.|
 |Content-Type|**Required**: Specifies the content type of the payload. Accepted values are application/json or charset=UTF-8.|
 
 ### POST request body properties
@@ -183,6 +183,76 @@ The following headers are included with each Document translation API request:
 }
 ```
 
+### Translate text embedded within images in documents 🆕
+
+> [!Note]
+>
+> * This feature is optional and must be enabled for each translation request.
+> * Enabling this feature will incur additional costs based on usage. For more information, *see* [Azure AI Vision pricing](https://azure.microsoft.com/pricing/details/cognitive-services/computer-vision/)
+> * This feature is currently available only with the Batch Document translation API.
+> * The Supported file format is `.docx` only.
+> * An Azure AI Foundry resource (not the standalone Translator resource) is required to use this feature.
+
+### Request configuration
+
+* Use the optional `translateTextWithinImage` parameter in the `options` field
+
+   * Data type: Boolean (`true` or `false`) 
+   * Default Boolean setting is `false`. Set the option to `true` to enable image text translation.
+
+* Here's a sample JSON request:
+
+  ```json
+  {
+    "inputs": [
+      {
+        "source": {
+          "sourceUrl": "<SAS-URL>",
+          "language": "en"
+        },
+        "targets": [
+          {
+            "targetUrl": "<SAS-URL>",
+            "language": "ta"
+          }
+        ]
+      }
+    ],
+    "options": {
+      "experimental": false,
+      "translateTextWithinImage": true
+    }
+  }
+  ```
+
+* **Response Details**. When the feature is enabled, added image processing information is included with the response: 
+
+   * **`totalImageScansSucceeded`**. The number of successfully translated image scans.
+
+   * **`totalImageScansFailed`**. The number of image scans that failed processing.
+
+* Here's a sample JSON response:
+
+  ```json
+    {
+        "id": "1a2b0c23-45d6-789-a123-a456fdaf7890",
+        "createdDateTimeUtc": "2024-11-13T22:06:58.2789197Z",
+        "lastActionDateTimeUtc": "2024-11-13T22:07:14.1608283Z",
+        "status": "Running",
+        "summary": {
+            "total": 1,
+            "failed": 0,
+            "success": 0,
+            "inProgress": 1,
+            "notYetStarted": 0,
+            "cancelled": 0,
+            "totalCharacterCharged": 0,
+            "totalImageScansSucceeded": 2,
+            "totalImageScansFailed": 0
+        }
+    }
+  ```
+
 ### Translate documents using a custom glossary
 
 ```json
@@ -208,29 +278,6 @@ The following headers are included with each Document translation API request:
     ]
 }
 ```
-
-### 🆕 Translate text embedded in images within documents
-
-> [!Note]
->
-> * This feature is optional and must be enabled for each translation request.
-> * Enabling this feature will incur additional costs based on usage. For more information, *see* [Azure AI Vision pricing](https://azure.microsoft.com/pricing/details/cognitive-services/computer-vision/)
-> * This feature is currently available only with the Batch Document translation API.
-> * The Supported file format is `.docx` only.
-> * An Azure AI Services resource (not the standalone Translator resource) is required to use this feature.
-
-### Request configuration
-
-* Use the optional `translateTextWithinImage` parameter in the `options` field
-
-   * Data type: Boolean (`true` or `false`) 
-   * Default Boolean setting is `false`. Set the option to `true` to enable image text translation.
-
-* **Response Details**. When the feature is enabled, added image processing information is included with the response: 
-
-   * **`totalImageScansSucceeded`**. The number of successfully translated image scans.
-
-   * **`totalImageScansFailed`**. The number of image scans that failed processing.
 
 ## Use code to submit Document translation requests
 

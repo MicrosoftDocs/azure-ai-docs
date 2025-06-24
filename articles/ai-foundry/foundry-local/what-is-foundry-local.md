@@ -7,7 +7,7 @@ keywords: Azure AI services, cognitive
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.topic: overview
-ms.date: 02/20/2025
+ms.date: 05/20/2025
 ms.reviewer: samkemp
 ms.author: jburchel
 author: jburchel
@@ -20,7 +20,7 @@ ms.custom: build-2025
 
 [!INCLUDE [foundry-local-preview](./includes/foundry-local-preview.md)]
 
-Foundry Local is an on-device AI inference solution offering performance, privacy, customization, and cost advantages. It integrates seamlessly into your existing workflows and applications through an intuitive CLI and REST API.
+Foundry Local is an on-device AI inference solution offering performance, privacy, customization, and cost advantages. It integrates seamlessly into your existing workflows and applications through an intuitive CLI, SDK, and REST API.
 
 ## Key features
 
@@ -30,7 +30,7 @@ Foundry Local is an on-device AI inference solution offering performance, privac
 
 - **Cost Efficiency**: Eliminate recurring cloud service costs by using your existing hardware, making AI more accessible.
 
-- **Seamless Integration**: Connect with your applications through API endpoints or the CLI, with easy scaling to Azure AI Foundry as your needs grow.
+- **Seamless Integration**: Connect with your applications through an SDK, API endpoints, or the CLI, with easy scaling to Azure AI Foundry as your needs grow.
 
 ## Use cases
 
@@ -54,4 +54,3 @@ Install and run your first model by following the [Get started with Foundry Loca
 
 - [Get started with Foundry Local](get-started.md)
 - [How to compile Hugging Face models to run on Foundry Local](how-to/how-to-compile-hugging-face-models.md)
-

@@ -8,19 +8,19 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: tutorial
 ms.custom: references_regions
-ms.date: 12/03/2024
+ms.date: 06/11/2025
 
 ---
 
 # Tutorial: Choose embedding and chat models for RAG in Azure AI Search
 
-A RAG solution built on Azure AI Search takes a dependency on embedding models for vectorization, and on chat models for conversational search over your data.
+A RAG solution built on Azure AI Search takes a dependency on embedding models for vectorization, and on chat completion models for conversational search over your data.
 
 In this tutorial, you:
 
 > [!div class="checklist"]
-> - Learn which models in the Azure cloud work with built-in integration
-> - Learn about the Azure models used for chat
+> - Learn about the Azure models supported for built-in vectorization
+> - Learn about the Azure models supported for chat completion
 > - Deploy models and collect model information for your code
 > - Configure search engine access to Azure models
 > - Learn about custom skills and vectorizers for attaching non-Azure models
@@ -33,24 +33,11 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 - An **Owner** or **User Access Administrator** role on your Azure subscription, necessary for creating role assignments. You use at least three Azure resources in this tutorial. The connections are authenticated using Microsoft Entra ID, which requires the ability to create roles. Role assignments for connecting to models are documented in this article. If you can't create roles, you can use [API keys](search-security-api-keys.md) instead.
 
-- A model provider, such as [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource), Azure AI Vision via an [Azure AI services multi-service resource](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills), or [Azure AI Foundry](https://ai.azure.com/).
+- A model provider, such as [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource), Azure AI Vision via an [Azure AI services multi-service resource](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills), or [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). For Azure AI Vision, ensure that your multi-service resource is in the same region as [Azure AI Search](search-region-support.md) and the [Azure AI Vision multimodal APIs](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0#region-availability).
 
   We use Azure OpenAI in this tutorial. Other providers are listed so that you know your options for integrated vectorization.
 
-- Azure AI Search, Basic tier or higher provides a [managed identity](search-howto-managed-identities-data-sources.md) used in role assignments. 
-
-- A shared region. To complete all of the tutorials in this series, the region must support both Azure AI Search and the model provider. See supported regions for:
-
-  - [Azure OpenAI regions](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)
-
-  - [Azure AI Vision regions](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0#region-availability)
-
-  - [Azure AI Foundry](/azure/ai-foundry/reference/region-support) regions. 
-
-  Azure AI Search is currently facing limited availability in some regions. To confirm region status, check the [Azure AI Search region list](search-region-support.md).
-
-> [!TIP]
-> Check [this article](search-create-service-portal.md#regions-with-the-most-overlap) for a list of overlapping regions.
+- Azure AI Search, Basic tier or higher provides a [managed identity](search-howto-managed-identities-data-sources.md) used in role assignments.
 
 ## Review models supporting built-in vectorization
 
@@ -102,15 +89,13 @@ This tutorial series uses the following models and model providers:
 
 You must have [**Cognitive Services OpenAI Contributor**]( /azure/ai-services/openai/how-to/role-based-access-control#cognitive-services-openai-contributor) or higher to deploy models in Azure OpenAI.
 
-1. Go to [Azure AI Foundry](https://ai.azure.com/).
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
-1. Select **Deployments** on the left menu.
+1. From the left pane, select **Model catalog**.
 
-1. Select **Deploy model** > **Deploy base model**.
+1. Select **text-embedding-3-large**, and then select **Use this model**.
 
-1. Select **text-embedding-3-large** from the dropdown list and confirm the selection.
-
-1. Specify a deployment name. We recommend "text-embedding-3-large".
+1. Specify a deployment name. We recommend **text-embedding-3-large**.
 
 1. Accept the defaults.
 

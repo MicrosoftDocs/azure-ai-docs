@@ -5,7 +5,7 @@ description: Learn how to use Mistral-7B and Mixtral chat models with Azure AI F
 ms.service: azure-ai-foundry
 manager: scottpolly
 ms.topic: how-to
-ms.date: 01/31/2025
+ms.date: 05/19/2025
 ms.reviewer: kritifaujdar
 reviewer: fkriti
 ms.author: mopeakande
@@ -21,8 +21,8 @@ zone_pivot_groups: azure-ai-model-catalog-samples-chat
 In this article, you learn about Mistral-7B and Mixtral chat models and how to use them.
 Mistral AI offers two categories of models, namely:
 
-- _Premium models_: These include [Mistral Large, Mistral Small, and Ministral 3B](deploy-models-mistral.md) models, and are available as serverless APIs with pay-as-you-go token-based billing.  
-- _Open models_: These include [Codestral](deploy-models-mistral-codestral.md) and [Mistral Nemo](deploy-models-mistral-nemo.md) (that are available as serverless APIs with pay-as-you-go token-based billing), and Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01 (that are available to download and run on self-hosted managed endpoints).
+- _Premium models_: These include [Mistral Large, Mistral Small, Mistral-OCR-2503, Mistral Medium 3 (25.05), and Ministral 3B models](deploy-models-mistral.md) models, and are available as standard deployments with Standard billing.  
+- _Open models_: These include [Codestral](deploy-models-mistral-codestral.md) and [Mistral Nemo](deploy-models-mistral-nemo.md) (that are available as standard deployments), and Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01 (that are available to download and run on self-hosted managed endpoints).
 
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
@@ -115,10 +115,10 @@ Read more about the [Azure AI inference package and reference](https://aka.ms/az
 
 ## Work with chat completions
 
-In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
+In this section, you use the [Azure AI Model Inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Mistral-7B and Mixtral chat models.
+> The [Model Inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Mistral-7B and Mixtral chat models.
 
 ### Create a client to consume the model
 
@@ -190,7 +190,7 @@ response = client.complete(
 ```
 
 > [!NOTE]
-> mistralai-Mistral-7B-Instruct-v01, mistralai-Mistral-7B-Instruct-v02, and mistralai-Mixtral-8x22B-Instruct-v0-1 don't support system messages (`role="system"`). When you use the Azure AI model inference API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
+> mistralai-Mistral-7B-Instruct-v01, mistralai-Mistral-7B-Instruct-v02, and mistralai-Mixtral-8x22B-Instruct-v0-1 don't support system messages (`role="system"`). When you use the Model Inference API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
 
 The response is as follows, where you can see the model's usage statistics:
 
@@ -259,7 +259,7 @@ print_stream(result)
 
 #### Explore more parameters supported by the inference client
 
-Explore other parameters that you can specify in the inference client. For a full list of all the supported parameters and their corresponding documentation, see [Azure AI Model Inference API reference](https://aka.ms/azureai/modelinference).
+Explore other parameters that you can specify in the inference client. For a full list of all the supported parameters and their corresponding documentation, see [Model Inference API reference](https://aka.ms/azureai/modelinference).
 
 ```python
 from azure.ai.inference.models import ChatCompletionsResponseFormatText
@@ -286,9 +286,9 @@ If you want to pass a parameter that isn't in the list of supported parameters, 
 
 ### Pass extra parameters to the model
 
-The Azure AI Model Inference API allows you to pass extra parameters to the model. The following code example shows how to pass the extra parameter `logprobs` to the model. 
+The Model Inference API allows you to pass extra parameters to the model. The following code example shows how to pass the extra parameter `logprobs` to the model. 
 
-Before you pass extra parameters to the Azure AI model inference API, make sure your model supports those extra parameters. When the request is made to the underlying model, the header `extra-parameters` is passed to the model with the value `pass-through`. This value tells the endpoint to pass the extra parameters to the model. Use of extra parameters with the model doesn't guarantee that the model can actually handle them. Read the model's documentation to understand which extra parameters are supported.
+Before you pass extra parameters to the Model Inference API, make sure your model supports those extra parameters. When the request is made to the underlying model, the header `extra-parameters` is passed to the model with the value `pass-through`. This value tells the endpoint to pass the extra parameters to the model. Use of extra parameters with the model doesn't guarantee that the model can actually handle them. Read the model's documentation to understand which extra parameters are supported.
 
 
 ```python
@@ -402,10 +402,10 @@ npm install @azure-rest/ai-inference
 
 ## Work with chat completions
 
-In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
+In this section, you use the [Azure AI Model Inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Mistral-7B and Mixtral chat models.
+> The [Model Inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Mistral-7B and Mixtral chat models.
 
 ### Create a client to consume the model
 
@@ -479,7 +479,7 @@ var response = await client.path("/chat/completions").post({
 ```
 
 > [!NOTE]
-> mistralai-Mistral-7B-Instruct-v01, mistralai-Mistral-7B-Instruct-v02, and mistralai-Mixtral-8x22B-Instruct-v0-1 don't support system messages (`role="system"`). When you use the Azure AI model inference API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
+> mistralai-Mistral-7B-Instruct-v01, mistralai-Mistral-7B-Instruct-v02, and mistralai-Mixtral-8x22B-Instruct-v0-1 don't support system messages (`role="system"`). When you use the Model Inference API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
 
 The response is as follows, where you can see the model's usage statistics:
 
@@ -558,7 +558,7 @@ for await (const event of sses) {
 
 #### Explore more parameters supported by the inference client
 
-Explore other parameters that you can specify in the inference client. For a full list of all the supported parameters and their corresponding documentation, see [Azure AI Model Inference API reference](https://aka.ms/azureai/modelinference).
+Explore other parameters that you can specify in the inference client. For a full list of all the supported parameters and their corresponding documentation, see [Model Inference API reference](https://aka.ms/azureai/modelinference).
 
 ```javascript
 var messages = [
@@ -587,9 +587,9 @@ If you want to pass a parameter that isn't in the list of supported parameters, 
 
 ### Pass extra parameters to the model
 
-The Azure AI Model Inference API allows you to pass extra parameters to the model. The following code example shows how to pass the extra parameter `logprobs` to the model. 
+The Model Inference API allows you to pass extra parameters to the model. The following code example shows how to pass the extra parameter `logprobs` to the model. 
 
-Before you pass extra parameters to the Azure AI model inference API, make sure your model supports those extra parameters. When the request is made to the underlying model, the header `extra-parameters` is passed to the model with the value `pass-through`. This value tells the endpoint to pass the extra parameters to the model. Use of extra parameters with the model doesn't guarantee that the model can actually handle them. Read the model's documentation to understand which extra parameters are supported.
+Before you pass extra parameters to the Model Inference API, make sure your model supports those extra parameters. When the request is made to the underlying model, the header `extra-parameters` is passed to the model with the value `pass-through`. This value tells the endpoint to pass the extra parameters to the model. Use of extra parameters with the model doesn't guarantee that the model can actually handle them. Read the model's documentation to understand which extra parameters are supported.
 
 
 ```javascript
@@ -731,10 +731,10 @@ using System.Reflection;
 
 ## Work with chat completions
 
-In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
+In this section, you use the [Azure AI Model Inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Mistral-7B and Mixtral chat models.
+> The [Model Inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Mistral-7B and Mixtral chat models.
 
 ### Create a client to consume the model
 
@@ -799,7 +799,7 @@ Response<ChatCompletions> response = client.Complete(requestOptions);
 ```
 
 > [!NOTE]
-> mistralai-Mistral-7B-Instruct-v01, mistralai-Mistral-7B-Instruct-v02, and mistralai-Mixtral-8x22B-Instruct-v0-1 don't support system messages (`role="system"`). When you use the Azure AI model inference API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
+> mistralai-Mistral-7B-Instruct-v01, mistralai-Mistral-7B-Instruct-v02, and mistralai-Mixtral-8x22B-Instruct-v0-1 don't support system messages (`role="system"`). When you use the Model Inference API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
 
 The response is as follows, where you can see the model's usage statistics:
 
@@ -879,7 +879,7 @@ StreamMessageAsync(client).GetAwaiter().GetResult();
 
 #### Explore more parameters supported by the inference client
 
-Explore other parameters that you can specify in the inference client. For a full list of all the supported parameters and their corresponding documentation, see [Azure AI Model Inference API reference](https://aka.ms/azureai/modelinference).
+Explore other parameters that you can specify in the inference client. For a full list of all the supported parameters and their corresponding documentation, see [Model Inference API reference](https://aka.ms/azureai/modelinference).
 
 ```csharp
 requestOptions = new ChatCompletionsOptions()
@@ -908,9 +908,9 @@ If you want to pass a parameter that isn't in the list of supported parameters, 
 
 ### Pass extra parameters to the model
 
-The Azure AI Model Inference API allows you to pass extra parameters to the model. The following code example shows how to pass the extra parameter `logprobs` to the model. 
+The Model Inference API allows you to pass extra parameters to the model. The following code example shows how to pass the extra parameter `logprobs` to the model. 
 
-Before you pass extra parameters to the Azure AI model inference API, make sure your model supports those extra parameters. When the request is made to the underlying model, the header `extra-parameters` is passed to the model with the value `pass-through`. This value tells the endpoint to pass the extra parameters to the model. Use of extra parameters with the model doesn't guarantee that the model can actually handle them. Read the model's documentation to understand which extra parameters are supported.
+Before you pass extra parameters to the Model Inference API, make sure your model supports those extra parameters. When the request is made to the underlying model, the header `extra-parameters` is passed to the model with the value `pass-through`. This value tells the endpoint to pass the extra parameters to the model. Use of extra parameters with the model doesn't guarantee that the model can actually handle them. Read the model's documentation to understand which extra parameters are supported.
 
 
 ```csharp
@@ -1012,17 +1012,17 @@ For deployment to a self-hosted managed compute, you must have enough quota in y
 
 ### A REST client
 
-Models deployed with the [Azure AI model inference API](https://aka.ms/azureai/modelinference) can be consumed using any REST client. To use the REST client, you need the following prerequisites:
+Models deployed with the [Model Inference API](https://aka.ms/azureai/modelinference) can be consumed using any REST client. To use the REST client, you need the following prerequisites:
 
 * To construct the requests, you need to pass in the endpoint URL. The endpoint URL has the form `https://your-host-name.your-azure-region.inference.ai.azure.com`, where `your-host-name`` is your unique model deployment host name and `your-azure-region`` is the Azure region where the model is deployed (for example, eastus2).
 * Depending on your model deployment and authentication preference, you need either a key to authenticate against the service, or Microsoft Entra ID credentials. The key is a 32-character string.
 
 ## Work with chat completions
 
-In this section, you use the [Azure AI model inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
+In this section, you use the [Azure AI Model Inference API](https://aka.ms/azureai/modelinference) with a chat completions model for chat.
 
 > [!TIP]
-> The [Azure AI model inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Mistral-7B and Mixtral chat models.
+> The [Model Inference API](https://aka.ms/azureai/modelinference) allows you to talk with most models deployed in Azure AI Foundry portal with the same code and structure, including Mistral-7B and Mixtral chat models.
 
 ### Create a client to consume the model
 
@@ -1072,7 +1072,7 @@ The following example shows how you can create a basic chat completions request 
 ```
 
 > [!NOTE]
-> mistralai-Mistral-7B-Instruct-v01, mistralai-Mistral-7B-Instruct-v02, and mistralai-Mixtral-8x22B-Instruct-v0-1 don't support system messages (`role="system"`). When you use the Azure AI model inference API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
+> mistralai-Mistral-7B-Instruct-v01, mistralai-Mistral-7B-Instruct-v02, and mistralai-Mixtral-8x22B-Instruct-v0-1 don't support system messages (`role="system"`). When you use the Model Inference API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
 
 The response is as follows, where you can see the model's usage statistics:
 
@@ -1183,7 +1183,7 @@ The last message in the stream has `finish_reason` set, indicating the reason fo
 
 #### Explore more parameters supported by the inference client
 
-Explore other parameters that you can specify in the inference client. For a full list of all the supported parameters and their corresponding documentation, see [Azure AI Model Inference API reference](https://aka.ms/azureai/modelinference).
+Explore other parameters that you can specify in the inference client. For a full list of all the supported parameters and their corresponding documentation, see [Model Inference API reference](https://aka.ms/azureai/modelinference).
 
 ```json
 {
@@ -1241,9 +1241,9 @@ If you want to pass a parameter that isn't in the list of supported parameters, 
 
 ### Pass extra parameters to the model
 
-The Azure AI Model Inference API allows you to pass extra parameters to the model. The following code example shows how to pass the extra parameter `logprobs` to the model. 
+The Model Inference API allows you to pass extra parameters to the model. The following code example shows how to pass the extra parameter `logprobs` to the model. 
 
-Before you pass extra parameters to the Azure AI model inference API, make sure your model supports those extra parameters. When the request is made to the underlying model, the header `extra-parameters` is passed to the model with the value `pass-through`. This value tells the endpoint to pass the extra parameters to the model. Use of extra parameters with the model doesn't guarantee that the model can actually handle them. Read the model's documentation to understand which extra parameters are supported.
+Before you pass extra parameters to the Model Inference API, make sure your model supports those extra parameters. When the request is made to the underlying model, the header `extra-parameters` is passed to the model with the value `pass-through`. This value tells the endpoint to pass the extra parameters to the model. Use of extra parameters with the model doesn't guarantee that the model can actually handle them. Read the model's documentation to understand which extra parameters are supported.
 
 ```http
 POST /chat/completions HTTP/1.1
@@ -1307,9 +1307,8 @@ It's a good practice to start with a low number of instances and scale up as nee
 
 ## Related content
 
-
-* [Azure AI Model Inference API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md)
-* [Deploy models as serverless APIs](deploy-models-serverless.md)
+* [Model Inference API](../../ai-foundry/model-inference/reference/reference-model-inference-api.md)
+* [Deploy models as standard deploymentss](deploy-models-serverless.md)
 * [Consume serverless API endpoints from a different Azure AI Foundry project or hub](deploy-models-serverless-connect.md)
-* [Region availability for models in serverless API endpoints](deploy-models-serverless-availability.md)
+* [Region availability for models in standard deployments](deploy-models-serverless-availability.md)
 * [Plan and manage costs (marketplace)](costs-plan-manage.md#monitor-costs-for-models-offered-through-the-azure-marketplace)

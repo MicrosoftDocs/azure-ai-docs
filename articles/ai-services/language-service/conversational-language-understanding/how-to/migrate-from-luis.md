@@ -2,12 +2,12 @@
 title: Conversational Language Understanding backwards compatibility
 titleSuffix: Azure AI services
 description: Learn about backwards compatibility between LUIS and Conversational Language Understanding
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 04/29/2025
-ms.author: jboback
+ms.date: 05/23/2025
+ms.author: lajanuar
 ms.custom: language-service-clu
 ---
 
@@ -22,7 +22,7 @@ CLU offers the following advantages over LUIS:
 - Ease of integration with different CLU and [custom question answering](../../question-answering/overview.md) projects using [orchestration workflow](../../orchestration-workflow/overview.md). 
 - The ability to add testing data within the experience using Language Studio and APIs for model performance evaluation prior to deployment. 
 
-To get started, you can [create a new project](../quickstart.md?pivots=language-studio#create-a-conversational-language-understanding-project) or [migrate your LUIS application](#migrate-your-luis-applications). 
+To get started, you can [use CLU directly](../quickstart.md) or [migrate your LUIS application](#migrate-your-luis-applications). 
 
 ## Comparison between LUIS and CLU
 
@@ -33,7 +33,7 @@ The following table presents a side-by-side comparison between the features of L
 |Machine-learned and Structured ML entities| Learned [entity components](#how-are-entities-different-in-clu) |Machine-learned entities without subentities are transferred as CLU entities. Structured ML entities only transfer leaf nodes (lowest level subentities that don't have their own subentities) as entities in CLU. The name of the entity in CLU is the name of the subentity concatenated with the parent. For example, _Order.Size_|
 |List, regex, and prebuilt entities| List, regex, and prebuilt [entity components](#how-are-entities-different-in-clu) | List, regex, and prebuilt entities are transferred as entities in CLU with a populated entity component based on the entity type.|
 |`Pattern.Any` entities| Not currently available | `Pattern.Any` entities are removed.|
-|Single culture for each application|[Multilingual models](#how-is-conversational-language-understanding-multilingual) enable multiple languages for each project. |The primary language of your project are set as your LUIS application culture. Your project can be trained to extend to different languages.|
+|Single culture for each application|[Multilingual models](#how-is-conversational-language-understanding-multilingual) enable multiple languages for each project. |The primary language of your project is set as your LUIS application culture. Your project can be trained to extend to different languages.|
 |Entity roles  |[Roles](#how-are-entity-roles-transferred-to-clu) are no longer needed. | Entity roles are transferred as entities.|
 |Settings for: normalize punctuation, normalize diacritics, normalize word form, use all training data  |[Settings](#how-is-the-accuracy-of-clu-better-than-luis) are no longer needed. |Settings aren't transferred.  |
 |Patterns and phrase list features|[Patterns and Phrase list features](#how-is-the-accuracy-of-clu-better-than-luis) are no longer needed. |Patterns and phrase list features aren't transferred.  |
@@ -41,7 +41,7 @@ The following table presents a side-by-side comparison between the features of L
 |Intents and utterances| Intents and utterances |All intents and utterances are transferred. Utterances are labeled with their transferred entities. |
 |Application GUIDs |Project names| A project is created for each migrating application with the application name. Any special characters in the application names are removed in CLU.|
 |Versioning| Every time you train, a model is created and acts as a version of your [project](#how-do-i-manage-versions-in-clu). | A project is created for the selected application version. |
-|Evaluation using batch testing |Evaluation using testing sets | [Adding your testing dataset](../how-to/tag-utterances.md#how-to-label-your-utterances) is required.|  
+|Evaluation using batch testing |Evaluation using testing sets | [Adding your testing dataset](../how-to/tag-utterances.md#label-your-utterances) is required.|  
 |Role-Based Access Control (RBAC) for LUIS resources |Role-Based Access Control (RBAC) available for Language resources |Language resource RBAC must be [manually added after migration](../../concepts/role-based-access-control.md). |
 |Single training mode| Standard and advanced [training modes](#how-are-the-training-times-different-in-clu-how-is-standard-training-different-from-advanced-training) | Training is required after application migration. |
 |Two publishing slots and version publishing |Ten deployment slots with custom naming | Deployment is required after the application’s migration and training. |

@@ -1,5 +1,5 @@
 ---
-title: Fine-tuning in Azure AI Foundry portal
+title: Fine-tune models with Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: This article explains what fine-tuning is and under what circumstances you should consider doing it.
 manager: scottpolly
@@ -8,7 +8,7 @@ ms.custom:
   - build-2024
   - code01
 ms.topic: concept-article
-ms.date: 02/21/2025
+ms.date: 05/14/2025
 ms.reviewer: keli19
 ms.author: sgilley
 author: sdgilley
@@ -17,90 +17,94 @@ author: sdgilley
 
 # Fine-tune models with Azure AI Foundry
 
-Fine-tuning customizes a pretrained AI model with additional training on a specific task or dataset to improve performance, add new skills, or enhance accuracy. The result is a new, optimized GenAI model based on the provided examples.
+Fine-tuning customizes a pretrained AI model with additional training on a specific task or dataset to improve performance, add new skills, or enhance accuracy. The result is a new, optimized GenAI model based on the provided examples. This article walks you through key concepts and decisions to make before you fine-tune, including the type of fine-tuning that's right for your use case, and model selection criteria based on training techniques use-cases for fine-tuning and how it helps you in your GenAI journey.
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+If you're just getting started with fine-tuning, we recommend **GPT-4.1** for complex skills like language translation, domain adaptation, or advanced code generation. For more focused tasks (such as classification, sentiment analysis, or content moderation) or when distilling knowledge from a more sophisticated model, start with **GPT-4.1-mini** for faster iteration and lower costs.
 
-Consider fine-tuning GenAI models to:
-- Scale and adapt to specific enterprise needs
-- Reduce false positives as tailored models are less likely to produce inaccurate or irrelevant responses
-- Enhance the model's accuracy for domain-specific tasks
-- Save time and resources with faster and more precise results
-- Get more relevant and context-aware outcomes as models are fine-tuned for specific use cases
+## Top use cases for fine-tuning
+Fine-tuning excels at customizing language models for specific applications and domains. Some key use cases include:
+- **Domain Specialization:** Adapt a language model for a specialized field like medicine, finance, or law – where domain specific knowledge and terminology is important. Teach the model to understand technical jargon and provide more accurate responses.
+- **Task Performance:** Optimize a model for a specific task like sentiment analysis, code generation, translation, or summarization. You can significantly improve the performance of a smaller model on a specific application, compared to a general purpose model.
+- **Style and Tone:** Teach the model to match your preferred communication style – for example, adapt the model for formal business writing, brand-specific voice, or technical writing.
+- **Instruction Following:** Improve the model’s ability to follow specific formatting requirements, multi-step instructions, or structured outputs. In multi-agent frameworks, teach the model to call the right agent for the right task.
+- **Compliance and Safety:** Train a fine-tuned model to adhere to organizational policies, regulatory requirements, or other guidelines unique to your application.
+- **Language or Cultural Adaptation:** Tailor a language model for a specific language, dialect, or cultural context that may not be well represented in the training data.
+Fine-tuning is especially valuable when a general-purpose model doesn’t meet your specific requirements – but you want to avoid the cost and complexity of training a model from scratch.
 
-[Azure AI Foundry](https://ai.azure.com) offers several models across model providers enabling you to get access to the latest and greatest in the market. You can discover supported models for fine-tuning through our model catalog by using the **Fine-tuning tasks** filter and selecting the model card to learn detailed information about each model. Specific models might be subjected to regional constraints. [View this list for more details](#supported-models-for-fine-tuning). 
+## Serverless or Managed Compute?
+Before picking a model, it's important to select the fine-tuning product that matches your needs. Azure's AI Foundry offers two primary modalities for fine tuning: serverless and managed compute.
 
-:::image type="content" source="../media/concepts/model-catalog-fine-tuning.png" alt-text="Screenshot of Azure AI Foundry model catalog and filtering by Fine-tuning tasks." lightbox="../media/concepts/model-catalog-fine-tuning.png":::
+- **Serverless** lets you customize models using our capacity with consumption-based pricing starting at $1.70 per million input tokens. We optimize training for speed and scalability while handling all infrastructure management. This approach requires no GPU quotas and provides exclusive access to OpenAI models, though with fewer hyperparameter options than managed compute.
+- **Managed compute** offers a wider range of models and advanced customization through AzureML, but requires you to provide your own VMs for training and hosting. While this gives full control over resources, it demands high quotas that many customers lack, doesn't include OpenAI models, and can't use our multi-tenancy optimizations.
 
-This article walks you through use-cases for fine-tuning and how it helps you in your GenAI journey.
+For most customers, serverless provides the best balance of ease-of-use, cost efficiency, and access to premium models. This document focuses on serverless options.
 
-## Getting started with fine-tuning
+To find steps to fine-tuning a model in AI Foundry, see [Fine-tune Models in AI Foundry](../how-to/fine-tune-serverless.md) or [Fine-tune models using managed compute](../how-to/fine-tune-managed-compute.md). For detailed guidance on OpenAI fine-tuning see [Fine-tune Azure OpenAI Models](../../ai-services/openai/how-to/fine-tuning.md).
 
-When starting out on your generative AI journey, we recommend you begin with prompt engineering and RAG to familiarize yourself with base models and its capabilities. 
-- [Prompt engineering](../../ai-services/openai/concepts/prompt-engineering.md) is a technique that involves designing prompts using tone and style details, example responses, and intent mapping for natural language processing models. This process improves accuracy and relevancy in responses, to optimize the performance of the model.
-- [Retrieval-augmented generation (RAG)](../concepts/retrieval-augmented-generation.md) improves LLM performance by retrieving data from external sources and incorporating it into a prompt. RAG can help businesses achieve customized solutions while maintaining data relevance and optimizing costs.
+## Training Techniques
 
-As you get comfortable and begin building your solution, it's important to understand where prompt engineering falls short and when you should try fine-tuning.
+Once you identify a use case, you need to select the appropriate training technique - which guides the model you select for training. We offer three training techniques to optimize your models:
 
-- Is the base model failing on edge cases or exceptions? 
-- Is the base model not consistently providing output in the right format?
-- Is it difficult to fit enough examples in the context window to steer the model?
-- Is there high latency?
+- **Supervised Fine-Tuning (SFT):** Foundational technique that trains your model on input-output pairs, teaching it to produce desired responses for specific inputs.
+  - *Best for:* Most use cases including domain specialization, task performance, style and tone, following instructions, and language adaptation.
+  - *When to use:* Start here for most projects. SFT addresses the broadest number of fine-tuning scenarios and provides reliable results with clear input-output training data.
+  - *Supported Models:* GPT 4o, 4o-mini, 4.1, 4.1-mini, 4.1-nano; Llama 2 and Llama 3.1; Phi 4, Phi-4-mini-instruct; Mistral Nemo, Ministral-3B, Mistral Large (2411); NTT Tsuzumi-7b
 
-Examples of failure with the base model and prompt engineering can help you identify the data to collect for fine-tuning and establish a performance baseline that you can evaluate and compare your fine-tuned model against. Having a baseline for performance without fine-tuning is essential for knowing whether or not fine-tuning improves model performance.
+- **Direct Preference Optimization (DPO):** Trains models to prefer certain types of responses over others by learning from comparative feedback, without requiring a separate reward model.
+  - *Best for:* Improving response quality, safety, and alignment with human preferences.
+  - *When to use:* When you have examples of preferred vs. non-preferred outputs, or when you need to optimize for subjective qualities like helpfulness, harmlessness, or style. Use cases include adapting models to a specific style and tone, or adapting a model to cultural preferences.
+  - *Supported Models:* GPT 4o, 4.1, 4.1-mini, 4.1-nano
 
-Here's an example: 
+- **Reinforcement Fine-Tuning (RFT):** Uses reinforcement learning to optimize models based on reward signals, allowing for more complex optimization objectives.
+  - *Best for:* Complex optimization scenarios where simple input-output pairs aren't sufficient.
+  - *When to use:* RFT is ideal for objective domains like mathematics, chemistry, and physics where there are clear right and wrong answers and the model already shows some competency. It works best when lucky guessing is difficult and expert evaluators would consistently agree on an unambiguous, correct answer. Requires more ML expertise to implement effectively.
+  - *Supported Models:* o4-mini
 
-_A customer wants to use GPT-3.5 Turbo to turn natural language questions into queries in a specific, nonstandard query language. The customer provides guidance in the prompt ("Always return GQL") and uses RAG to retrieve the database schema. However, the syntax isn't always correct and often fails for edge cases. The customer collects thousands of examples of natural language questions and the equivalent queries for the database, including cases where the model failed before. The customer then uses that data to fine-tune the model. Combining the newly fine-tuned model with the engineered prompt and retrieval brings the accuracy of the model outputs up to acceptable standards for use._
+Most customers should start with SFT, as it addresses the broadest number of fine-tuning use cases.
 
-### Use cases
+Follow this link to view and download [example datasets](https://github.com/Azure-Samples/AIFoundry-Customization-Datasets) to try out fine-tuning.
 
-Base models are already pretrained on vast amounts of data. Most times you add instructions and examples to the prompt to get the quality responses that you're looking for - this process is called "few-shot learning." Fine-tuning allows you to train a model with many more examples that you can tailor to meet your specific use-case, thus improving on few-shot learning. Fine-tuning can reduce the number of tokens in the prompt leading to potential cost savings and requests with lower latency. 
+## Training Modalities
 
-Turning natural language into a query language is just one use case where you can  "_show not tell_" the model how to behave. Here are some other use cases:
+- **Text-to-Text (All Models):** All our models support standard text-to-text fine-tuning for language-based tasks.
+- **Vision + Text (GPT 4o, 4.1):** Some models support vision fine-tuning, accepting both image and text inputs while producing text outputs. Use cases for vision fine-tuning include interpreting charts, graphs, and visual data; content moderation; visual quality assessment; document processing with mixed text and image; and product cataloging from photographs.
 
-- Improve the model's handling of retrieved data
-- Steer model to output content in a specific style, tone, or format
-- Improve the accuracy when you look up information
-- Reduce the length of your prompt
-- Teach new skills (that is, natural language to code)
+## Model Comparison Table
+This table provides an overview of the models available 
 
-If you identify cost as your primary motivator, proceed with caution. Fine-tuning might reduce costs for certain use cases by shortening prompts or allowing you to use a smaller model. But there might be a higher upfront cost to training, and you have to pay for hosting your own custom model. 
+| Model                | Modalities     | Techniques   | Strengths                        | 
+|----------------------|---------------|--------------|--------------------------------------|
+| GPT 4.1              | Text, Vision  | SFT, DPO     | Superior performance on sophisticated tasks, nuanced understanding |
+| GPT 4.1-mini         | Text          | SFT, DPO     | Fast iteration, cost-effective, good for simple tasks  |
+| GPT 4.1-nano         | Text          | SFT, DPO     | Fast, cost-effective, and minimal resource usage        |
+| o4-mini              | Text          | RFT          | Reasoning model suited for complex logical tasks        |
+| Phi 4                | Text          | SFT          | Cost effective option for simpler tasks                |
+| Ministral 3B         | Text          | SFT          | Low-cost option for faster iteration                   |
+| Mistral Nemo         | Text          | SFT          | Balance between size and capability                    |
+| Mistral Large (2411) | Text          | SFT          | Most capable Mistral model, better for complex tasks   |
 
-### Steps to fine-tune a model
+## Get Started with Fine Tuning
 
-Here are the general steps to fine-tune a model:
+1. **Define your use case:** Identify whether you need a highly capable general-purpose model (e.g. GPT 4.1), a smaller cost-effective model for a specific task (GPT 4.1-mini or nano), or a complex reasoning model (o4-mini).
+2. **Prepare your data:** Start with 50-100 high-quality examples for initial testing, scaling to 500+ examples for production models.
+3. **Choose your technique:** Begin with Supervised Fine-Tuning (SFT) unless you have specific requirements for reasoning models / RFT.
+4. **Iterate and evaluate:** Fine-tuning is an iterative process—start with a baseline, measure performance, and refine your approach based on results.
 
-1. Choose a model that supports your task.
-1. Prepare and upload training data.
-1. (Optional) Prepare and upload validation data.
-1. (Optional) Configure task parameters.
-1. Train your model. 
-1. Once completed, review metrics and evaluate model. If the results don't meet your benchmark, then go back to step 2.
-1. Use your fine-tuned model.
+To find steps to fine-tuning a model in AI Foundry, see [Fine-tune Models in AI Foundry](../how-to/fine-tune-serverless.md), [Fine-tune Azure OpenAI Models](../../ai-services/openai/how-to/fine-tuning.md), or [Fine-tune models using managed compute](../how-to/fine-tune-managed-compute.md).
 
-It's important to call out that fine-tuning is heavily dependent on the quality of data that you can provide. It's best practice to provide hundreds, if not thousands, of training examples to be successful and get your desired results.
-
-## Supported models for fine-tuning
+## Fine-Tuning Availability
 
 Now that you know when to use fine-tuning for your use case, you can go to Azure AI Foundry to find models available to fine-tune.
-For some models in the model catalog, fine-tuning is available by using a serverless API, or a managed compute (preview), or both.
 
-Fine-tuning is available in specific Azure regions for some models that are deployed via serverless APIs. To fine-tune such models, a user must have a hub/project in the region where the model is available for fine-tuning. See [Region availability for models in serverless API endpoints](../how-to/deploy-models-serverless-availability.md) for detailed information.
+**To fine-tune an AI Foundry model using Serverless** you must have a hub/project in the region where the model is available for fine tuning. See [Region availability for models in standard deployment](../how-to/deploy-models-serverless-availability.md) for detailed information on model and region availability, and [How to Create a Hub based project](../how-to/create-projects.md) to create your project.
 
-For more information on fine-tuning using a managed compute (preview), see [Fine-tune models using managed compute (preview)](../how-to/fine-tune-managed-compute.md).
+**To fine-tune an OpenAI model** you can use an Azure OpenAI Resource, a Foundry resource or default project, or a hub/project. GPT 4.1, 4.1-mini and 4.1-nano are available in all regions with Global Training. For regional availability, see [Regional Availability and Limits for Azure OpenAI Fine Tuning](../../ai-services/openai/concepts/models.md). See [Create a project for Azure AI Foundry](../how-to/create-projects.md) for instructions on creating a new project.
 
-For details about Azure OpenAI models that are available for fine-tuning, see the [Azure OpenAI Service models documentation](../../ai-services/openai/concepts/models.md#fine-tuning-models) or the [Azure OpenAI models table](#fine-tuning-azure-openai-models) later in this guide.
+**To fine-tune a model using Managed Compute** you must have a hub/project and available VM quota for training and inferencing. See [Fine-tune models using managed compute (preview)](../how-to/fine-tune-managed-compute.md) for more details on how to use managed compute fine tuning, and [How to Create a Hub based project](../how-to/create-projects.md) to create your project.
 
-For the Azure OpenAI  Service models that you can fine tune, supported regions for fine-tuning include North Central US, Sweden Central, and more.
-
-### Fine-tuning Azure OpenAI models
-
-[!INCLUDE [Fine-tune models](../../ai-services/openai/includes/fine-tune-models.md)]
 
 ## Related content
 
 - [Fine-tune models using managed compute (preview)](../how-to/fine-tune-managed-compute.md)
 - [Fine-tune an Azure OpenAI model in Azure AI Foundry portal](../../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context)
-- [Fine-tune models using serverless API](../how-to/fine-tune-serverless.md)
-
+- [Fine-tune models using standard deployment](../how-to/fine-tune-serverless.md)

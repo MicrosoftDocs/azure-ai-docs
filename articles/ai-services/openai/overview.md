@@ -1,6 +1,5 @@
 ---
-title: What is Azure OpenAI Service?
-titleSuffix: Azure AI services
+title: What is Azure OpenAI in Azure AI Foundry Models?
 description: Apply advanced language models to variety of use cases with Azure OpenAI
 manager: nitinme
 author: mrbullwinkle
@@ -12,9 +11,9 @@ ms.custom: build-2023, build-2023-dataai
 recommendations: false
 ---
 
-# What is Azure OpenAI Service?
+# What is Azure OpenAI in Azure AI Foundry Models?
 
-Azure OpenAI Service provides REST API access to OpenAI's powerful language models including o4-mini, o3, gpt-4.1, o3-mini, o1, o1-mini, GPT-4o, GPT-4o mini, GPT-4 Turbo with Vision, GPT-4, GPT-3.5-Turbo, and Embeddings model series. These models can be easily adapted to your specific task including but not limited to content generation, summarization, image understanding, semantic search, and natural language to code translation. Users can access the service through REST APIs, [Python/C#/JS/Java/Go SDKs](/azure/ai-services/openai/supported-languages).
+Azure OpenAI provides REST API access to OpenAI's powerful language models including o4-mini, o3, gpt-4.1, o3-mini, o1, o1-mini, GPT-4o, GPT-4o mini, GPT-4 Turbo with Vision, GPT-4, GPT-3.5-Turbo, and Embeddings model series. These models can be easily adapted to your specific task including but not limited to content generation, summarization, image understanding, semantic search, and natural language to code translation. Users can access the service through REST APIs, [Python/C#/JS/Java/Go SDKs](/azure/ai-services/openai/supported-languages).
 
 ### Features overview
 
@@ -25,34 +24,34 @@ Azure OpenAI Service provides REST API access to OpenAI's powerful language mode
 | Price | [Available here](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) <br> For details on vision-enabled chat models, see the [special pricing information](../openai/concepts/gpt-with-vision.md#special-pricing-information).|
 | Virtual network support & private link support | Yes.  |
 | Managed Identity| Yes, via Microsoft Entra ID | 
-| UI experience | [Azure portal](https://portal.azure.com) for account & resource management, <br> [Azure AI Foundry](https://ai.azure.com) for model exploration and fine-tuning |
+| UI experience | [Azure portal](https://portal.azure.com) for account & resource management, <br> [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) for model exploration and fine-tuning |
 | Model regional availability | [Model availability](./concepts/models.md) |
 | Content filtering | Prompts and completions are evaluated against our content policy with automated systems. High severity content is filtered. |
 
 ## Responsible AI
 
-At Microsoft, we're committed to the advancement of AI driven by principles that put people first. Generative models such as the ones available in Azure OpenAI have significant potential benefits, but without careful design and thoughtful mitigations, such models have the potential to generate incorrect or even harmful content. Microsoft has made significant investments to help guard against abuse and unintended harm, which includes incorporating Microsoft’s <a href="https://www.microsoft.com/ai/responsible-ai?activetab=pivot1:primaryr6" target="_blank">principles for responsible AI use</a>, adopting a [Code of Conduct](/legal/ai-code-of-conduct?context=/azure/ai-services/openai/context/context) for use of the service, building [content filters](/azure/ai-services/content-safety/overview) to support customers, and providing responsible AI [information and guidance](/legal/cognitive-services/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=image) that customers should consider when using Azure OpenAI.
+At Microsoft, we're committed to the advancement of AI driven by principles that put people first. Generative models such as the ones available in Azure OpenAI have significant potential benefits, but without careful design and thoughtful mitigations, such models have the potential to generate incorrect or even harmful content. Microsoft has made significant investments to help guard against abuse and unintended harm, which includes incorporating Microsoft’s <a href="https://www.microsoft.com/ai/responsible-ai?activetab=pivot1:primaryr6" target="_blank">principles for responsible AI use</a>, adopting a [Code of Conduct](/legal/ai-code-of-conduct) that customers should consider when using Azure OpenAI.
 
-## Get started with Azure OpenAI Service
+## Get started with Azure OpenAI
 
-To get started with Azure OpenAI Service, you need to create an Azure OpenAI Service resource in your Azure subscription. 
+To get started with Azure OpenAI, you need to create an Azure OpenAI resource in your Azure subscription. 
 
-Start with the [Create and deploy an Azure OpenAI Service resource](./how-to/create-resource.md) guide.
+Start with the [Create and deploy an Azure OpenAI resource](./how-to/create-resource.md) guide.
 1. You can create a resource via Azure portal, Azure CLI, or Azure PowerShell. 
-1. When you have an Azure OpenAI Service resource, you can deploy a model such as GPT-4o.
+1. When you have an Azure OpenAI resource, you can deploy a model such as GPT-4o.
 1. When you have a deployed model, you can:
 
-    - Try out the [Azure AI Foundry portal](https://ai.azure.com/) playgrounds to explore the capabilities of the models. 
+    - Try out the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) playgrounds to explore the capabilities of the models. 
     - You can also just start making API calls to the service using the REST API or SDKs.
     
     For example, you can try [real-time audio](./realtime-audio-quickstart.md) and [assistants](./assistants-quickstart.md) in the playgrounds or via code.
 
 > [!NOTE]
-> A Limited Access registration form is required to access some Azure OpenAI Service models or features. Learn more on the [Azure OpenAI Limited Access page](/legal/cognitive-services/openai/limited-access?context=/azure/ai-services/openai/context/context).
+> A Limited Access registration form is required to access some Azure OpenAI models or features. Learn more on the [Azure OpenAI Limited Access page](/azure/ai-foundry/responsible-ai/openai/limited-access).
 
 ## Comparing Azure OpenAI and OpenAI
 
-Azure OpenAI Service gives customers advanced language AI with OpenAI GPT-4, GPT-3, Codex, GPT-image-1 (preview), DALL-E, speech to text, and text to speech models with the security and enterprise promise of Azure. Azure OpenAI co-develops the APIs with OpenAI, ensuring compatibility and a smooth transition from one to the other.
+Azure OpenAI gives customers advanced language AI with OpenAI GPT-4, GPT-3, Codex, GPT-image-1 (preview), DALL-E, speech to text, and text to speech models with the security and enterprise promise of Azure. Azure OpenAI co-develops the APIs with OpenAI, ensuring compatibility and a smooth transition from one to the other.
 
 With Azure OpenAI, customers get the security capabilities of Microsoft Azure while running the same models as OpenAI. Azure OpenAI offers private networking, regional availability, and responsible AI content filtering.  
 
@@ -85,9 +84,9 @@ Azure OpenAI processes text by breaking it down into tokens. Tokens can be words
 
 The total number of tokens processed in a given request depends on the length of your input, output, and request parameters. The quantity of tokens being processed will also affect your response latency and throughput for the models.
  
-#### Image tokens
+#### Image input tokens
 
-Azure OpenAI's image processing capabilities with GPT-4o, GPT-4o mini, and GPT-4 Turbo with Vision models uses image tokenization to determine the total number of tokens consumed by image inputs. The number of tokens consumed is calculated based on two main factors: the level of image detail (low or high) and the image’s dimensions. Here's how token costs are calculated:
+Azure OpenAI's image processing capabilities with GPT-4o, GPT-4o-mini, and GPT-4 Turbo with Vision models uses image tokenization to determine the total number of tokens consumed by image inputs. The number of tokens consumed is calculated based on two main factors: the level of image detail (low or high) and the image’s dimensions. Here's how token costs are calculated:
 
 - **Low resolution mode**
   - Low detail allows the API to return faster responses for scenarios that don't require high image resolution analysis. The tokens consumed for low detail images are:
@@ -108,6 +107,18 @@ Azure OpenAI's image processing capabilities with GPT-4o, GPT-4o mini, and GPT-4
     4. **Final calculation**: 
         - For GPT-4o and GPT-4 Turbo with Vision, the total token cost is 6 tiles x 170 tokens per tile + 85 base tokens = 1105 tokens.
         - For GPT-4o mini, the total token cost is 6 tiles x 5667 tokens per tile + 2833 base tokens = 36835 tokens.
+
+#### Image generation tokens 
+
+GPT-image-1 generates images by first producing specialized image tokens. Both latency and eventual cost are proportional to the number of tokens required to render an image. The number of tokens generated depends on image dimensions and quality:
+
+| Quality | Square (1024×1024) | Portrait (1024×1536) | landscape (1536×1024) |
+| ----------- | ---------------------- | ------------------------ | ------------------------- |
+| Low         | 272 tokens             | 408 tokens               | 400 tokens                |
+| Medium      | 1056 tokens            | 1584 tokens              | 1568 tokens               |
+| High        | 4160 tokens            | 6240 tokens              | 6208 tokens               |
+
+
 
 ### Resources
 

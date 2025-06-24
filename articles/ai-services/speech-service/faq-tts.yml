@@ -28,7 +28,7 @@ sections:
       - question: |
           How would we disclose to the end user that the voice is a synthetic voice?
         answer: |
-          We recommend that every user should follow our [code of conduct](/legal/cognitive-services/speech-service/tts-code-of-conduct?context=/azure/ai-services/speech-service/context/context) when using the text to speech capability. There are several ways to disclose the synthetic nature of the voice including implicit and explicit byline. Refer to [Disclosure design guidelines](/legal/cognitive-services/speech-service/custom-neural-voice/concepts-disclosure-guidelines?context=/azure/ai-services/speech-service/context/context).
+          We recommend that every user should follow our [code of conduct](/azure/ai-foundry/responsible-ai/speech-service/tts-code-of-conduct) when using the text to speech capability. There are several ways to disclose the synthetic nature of the voice including implicit and explicit byline. Refer to [Disclosure design guidelines](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-guidelines).
       - question: |
           How can I reduce the latency for my voice app?
         answer: |
@@ -36,7 +36,7 @@ sections:
       - question: |
           What output audio formats does text to speech support?
         answer: |
-          Azure AI text to speech supports various streaming and non-streaming audio formats, with the commonly used sampling rates. All TTS prebuilt neural voices are created to support high-fidelity audio outputs with 48 kHz and 24 kHz. The audio can be resampled to support other rates as needed. See [Audio outputs](rest-text-to-speech.md#audio-outputs).
+          Azure AI text to speech supports various streaming and non-streaming audio formats, with the commonly used sampling rates. All TTS standard voices are created to support high-fidelity audio outputs with 48 kHz and 24 kHz. The audio can be resampled to support other rates as needed. See [Audio outputs](rest-text-to-speech.md#audio-outputs).
       - question: |
           Can the voice be customized to stress specific words?
         answer: |
@@ -57,12 +57,12 @@ sections:
           answer: |
             First, you can open the lexicon file on the Audio Content Creation and obtain the lexicon file ID, which is located before "?fileKind=CustomLexiconFile" in the file path. For example, if the file path is `https://speech.microsoft.com/portal/d391a094f76846acbcd11dc2ba835f4f/audiocontentcreation/file/6cbc2527-8d57-4c1b-b9d9-3ea6d13ca95c?fileKind=CustomLexiconFile`, the lexicon file ID is `6cbc2527-8d57-4c1b-b9d9-3ea6d13ca95c`. Then, switch a file referencing this lexicon to SSML format on the Audio Content Creation. In the SSML file, locate the `<!--ID=FCB` xml node, where you can find the URI of the lexicon file based on the mentioned file ID. Finally, reference the lexicon file URI link using the SSML lexicon element in your code. For instance, if you locate the XML node `<!--ID=FCB5B6FB566-33CA-4B68-BEAF-B013C53B3368;Version=1|{"Files":{"6cbc2527-8d57-4c1b-b9d9-3ea6d13ca95c":{"FileKind":"CustomLexiconFile","FileSubKind":"CustomLexiconFile","Uri":"https://cvoiceprodwus2.blob.core.windows.net/acc-public-files/d391a094f76846acbcd11dc2ba835f4f/e9a6a5a2-9cef-47f4-b961-d175be75d92f.xml"}}}`, you can obtain the lexicon file URI `https://cvoiceprodwus2.blob.core.windows.net/acc-public-files/d391a094f76846acbcd11dc2ba835f4f/e9a6a5a2-9cef-47f4-b961-d175be75d92f.xml`.
         
-  - name: Custom neural voice
+  - name: Professional voice fine-tuning
     questions:
       - question: |
-          How much data is required to create a custom neural voice?
+          How much data is required for professional voice fine-tuning?
         answer: |
-          Custom neural voice (CNV) supports two project types: CNV Pro and CNV Lite. With CNV Pro, at least 300 lines of recordings (or approximately 30 minutes of speech) are required as training data for custom neural voice. We recommend 2,000 lines of recordings (or approximately 2-3 hours of speech) to create a voice for production use. With CNV Lite, you can create a voice with just 20 recorded samples. CNV Lite is best for quick trials, or when you don't have access to professional voice actors. For the script selection criteria, see [Record custom voice samples](record-custom-voice-samples.md).
+          You need training data of at least 300 lines of recordings (or approximately 30 minutes of speech) for professional voice fine-tuning. We recommend 2,000 lines of recordings (or approximately 2-3 hours of speech) to create a voice for production use. For the script selection criteria, see [Record custom voice samples](record-custom-voice-samples.md).
       - question: |
           Can we include duplicate text sentences in the same set of training data?
         answer: |
@@ -70,19 +70,19 @@ sections:
       - question: |
           Can we include multiple styles in the same set of training data?
         answer: |
-          We recommend that you keep the style consistent in one set of training data. If the styles are different, put them into different training sets. In this case, consider using the multi-style voice training feature of custom neural voice. For the script selection criteria, see [Record custom voice samples](record-custom-voice-samples.md).
+          We recommend that you keep the style consistent in one set of training data. If the styles are different, put them into different training sets. In this case, consider using the multi-style training method of professional voice fine-tuning. For the script selection criteria, see [Record custom voice samples](record-custom-voice-samples.md).
       - question: |
-          Does switching styles via SSML work for custom neural voices?
+          Does switching styles via SSML work for custom voices?
         answer: |
-          Switching styles via SSML works for both prebuilt multi-style voices and CNV multi-style voices. With multi-style training, you can create a voice that speaks in different styles, and you can also adjust these styles via SSML.
+          Switching styles via SSML works for both multi-style standard voices and multi-style custom voices. With multi-style training, you can create a voice that speaks in different styles, and you can also adjust these styles via SSML.
       - question: |
           How does cross-lingual voice work with languages that have different pronunciation structure and assembly?  
         answer: |
-          Sentence structure and pronunciation naturally vary across languages such as English and Japanese. Each neural voice is trained with audio data recorded by native speaking voice talent. For [cross lingual](professional-voice-train-voice.md?tabs=crosslingual#train-your-custom-neural-voice-model) voice, we transfer the major features like timbre to sound like the original speaker and preserve the right pronunciation. For example, a cross-lingual voice uses the native way to speak Japanese and still sounds similar (but not exactly) like the original English speaker. 
+          Sentence structure and pronunciation naturally vary across languages such as English and Japanese. Each neural voice is trained with audio data recorded by native speaking voice talent. For [cross lingual](professional-voice-train-voice.md?tabs=crosslingual#train-your-custom-voice-model) voice, we transfer the major features like timbre to sound like the original speaker and preserve the right pronunciation. For example, a cross-lingual voice uses the native way to speak Japanese and still sounds similar (but not exactly) like the original English speaker. 
       - question: |
-          Can I use custom neural voice to customize pronunciation for my domain?
+          Can I use professional voice fine-tuning to customize pronunciation for my domain?
         answer: |
-          Custom neural voice enables you to create a brand voice for your business. You can optimize it for your domain as well. We recommend you include domain-specific samples in your training data for higher naturalness. However, the pronunciation is defined by the Speech service by default, and we don't support pronunciation customization during the CNV training. If you want to customize pronunciation for your voice, use SSML. See [Pronunciation with Speech Synthesis Markup Language (SSML)](speech-synthesis-markup-pronunciation.md).
+          Professional voice fine-tuning enables you to create a brand voice for your business. You can optimize it for your domain as well. We recommend you include domain-specific samples in your training data for higher naturalness. However, the pronunciation is defined by the Speech service by default. We don't support pronunciation customization with professional voice fine-tuning. If you want to customize pronunciation for your voice, use SSML. See [Pronunciation with Speech Synthesis Markup Language (SSML)](speech-synthesis-markup-pronunciation.md).
       - question: |
           After one training can I train my voice again? 
         answer: |
@@ -98,15 +98,15 @@ sections:
       - question: |
           Can Microsoft add a mechanism to prevent unauthorized use or misuse of our voice when it's created?
         answer: |
-          The voice model can only be used by yourselves using your own token. Microsoft also doesn't use your data. See [Data, privacy, and security](/legal/cognitive-services/speech-service/custom-neural-voice/data-privacy-security-custom-neural-voice?context=/azure/ai-services/speech-service/context/context). You can also request to add watermarks to your voice to protect your model. See [Microsoft Azure Neural TTS introduces the watermark algorithm for synthetic voice identification](https://techcommunity.microsoft.com/t5/ai-cognitive-services-blog/introducing-the-watermark-algorithm-for-synthetic-voice/ba-p/3298548).
+          The voice model can only be used by yourselves using your own token. Microsoft also doesn't use your data. See [Data, privacy, and security](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security-custom-neural-voice). You can also request to add watermarks to your voice to protect your model. See [Microsoft Azure Neural TTS introduces the watermark algorithm for synthetic voice identification](https://techcommunity.microsoft.com/t5/ai-cognitive-services-blog/introducing-the-watermark-algorithm-for-synthetic-voice/ba-p/3298548).
       - question: |
           Do you have any tips about contracts or negotiation with voice actors?
         answer: |
-          We have no recommendations on contracts and it's up to the customer and the voice talent to negotiate the terms. However, you should make sure the voice talent understands the capabilities of text to speech, including its potential risks, and provide explicit consent to create a synthetic version of their voice in both the contract and a verbal statement. See [Disclosure for voice talent](/legal/cognitive-services/speech-service/disclosure-voice-talent?context=/azure/ai-services/speech-service/context/context). 
+          We have no recommendations on contracts and it's up to the customer and the voice talent to negotiate the terms. However, you should make sure the voice talent understands the capabilities of text to speech, including its potential risks, and provide explicit consent to create a synthetic version of their voice in both the contract and a verbal statement. See [Disclosure for voice talent](/azure/ai-foundry/responsible-ai/speech-service/disclosure-voice-talent). 
       - question: |
           Do we need to return the written permission from the voice talent back to Microsoft?
         answer: |
-          Microsoft doesn't need the written permission, but you must obtain consent from your voice talent. The voice talent will also be required to record the consent statement and it must be uploaded into Speech Studio before training can begin. See [Set up voice talent for custom neural voice](professional-voice-create-consent.md).
+          Microsoft doesn't need the written permission, but you must obtain consent from your voice talent. The voice talent will also be required to record the consent statement and it must be uploaded into Speech Studio before training can begin. See [Set up voice talent for professional voice fine-tuning](professional-voice-create-consent.md).
 
 
 

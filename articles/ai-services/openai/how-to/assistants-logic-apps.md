@@ -6,13 +6,15 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 04/29/2025
+ms.date: 05/20/2025
 author: aahill
 ms.author: aahi
 recommendations: false
 ---
 
 # Call Azure Logic apps as functions using Azure OpenAI Assistants 
+
+[!INCLUDE [agent-service](../includes/agent-service.md)]
 
 [Azure Logic Apps](https://azure.microsoft.com/products/logic-apps) is an integration platform in Azure that allows you to build applications and automation workflows with low code tools enabling developer productivity and faster time to market. By using the visual designer and selecting from hundreds of prebuilt connectors, you can quickly build a workflow that integrates and manages your apps, data, services, and systems.
 

@@ -3,11 +3,11 @@ title: How to set up a Private Endpoint - QnA Maker
 description: Understand Private Endpoint creation available in QnA Maker managed.
 ms.service: azure-ai-language
 manager: nitinme
-ms.author: jboback
-author: jboback
+ms.author: lajanuar
+author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: reference
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 
 # Private Endpoints
@@ -22,12 +22,12 @@ Private endpoints are provided by [Azure Private Link](/azure/private-link/priva
 > * A [Text Analytics resource](https://portal.azure.com/?quickstart=true#create/Microsoft.CognitiveServicesTextAnalytics) (with Custom question answering feature) created in the Azure portal. Remember your Microsoft Entra ID, Subscription, Text Analytics resource name you selected when you created the resource.
 
 ## Steps to enable private endpoint
-1. Assign *Contributer* role to Text Analytics service in the Azure Search Service instance. This operation requires *Owner* access to the subscription. Go to Identity tab in the service resource to get the identity.
+1. Assign *Contributor* role to Text Analytics service in the Azure Search Service instance. This operation requires *Owner* access to the subscription. Go to Identity tab in the service resource to get the identity.
 
 > [!div class="mx-imgBorder"]
 > ![Text Analytics Identity](../qnamaker/media/qnamaker-reference-private-endpoints/private-endpoints-identity.png)
 
-1. Add the above identity as *Contributer* by going to Azure Search Service IAM tab.
+1. Add the above identity as *Contributor* by going to Azure Search Service IAM tab.
 
 ![Managed service IAM](../qnamaker/media/qnamaker-reference-private-endpoints/private-endpoint-access-control.png)
 

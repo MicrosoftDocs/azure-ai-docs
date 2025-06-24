@@ -6,13 +6,15 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 03/31/2025
+ms.date: 05/20/2025
 author: aahill
 ms.author: aahi
 recommendations: false
 ---
 
 # Azure OpenAI Assistants file search tool (Preview)
+
+[!INCLUDE [agent-service](../includes/agent-service.md)]
 
 File Search augments the Assistant with knowledge from outside its model, such as proprietary product information or documents provided by your users. OpenAI automatically parses and chunks your documents, creates and stores the embeddings, and use both vector and keyword search to retrieve relevant content to answer user queries.
 

@@ -1,10 +1,10 @@
 ---
-title: Azure OpenAI Service deprecated models
+title: Azure OpenAI in Azure AI Foundry Models retired models
 titleSuffix: Azure OpenAI
 description: Learn about the deprecated models in Azure OpenAI.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 04/30/2025
+ms.date: 06/18/2025
 ms.custom: references_regions, build-2023, build-2023-dataai
 manager: nitinme
 author: mrbullwinkle 
@@ -12,122 +12,49 @@ ms.author: mbullwin
 recommendations: false
 ---
 
-# Azure OpenAI Service deprecated models
+# Azure OpenAI in Azure AI Foundry Models retired models
 
-Azure OpenAI Service offers a variety of models for different use cases. The following models were deprecated on July 6, 2023 and will be retired on June 14, 2024.  These models are no longer available for new deployments. Deployments created prior to July 6, 2023 remain available to customers until June 14, 2024. We recommend customers migrate their applications to deployments of replacement models prior to the June 14, 2024 retirement.
+Azure OpenAI offers a variety of models for different use cases. The following models are no longer available for deployment.
 
-At the time of retirement, deployments of these models will stop returning valid API responses.
+## Retired models
 
-## GPT-3.5
+ These models are no longer available for new deployments.
 
-The impacted GPT-3.5 models are the following. The replacement for the GPT-3.5 models is GPT-3.5 Turbo Instruct when that model becomes available.
-
-- `text-davinci-002`
-- `text-davinci-003`
-- `code-davinci-002`
-
-## GPT-3 
-
-The impacted GPT-3 models are the following. The replacement for the GPT-3 models is GPT-3.5 Turbo Instruct when that model becomes available.
-
-- `text-ada-001`
-- `text-babbage-001`
-- `text-curie-001`
-- `text-davinci-001`
-- `code-cushman-001`
-
-## Embedding models
-
-The embedding models below will be retired effective June 14, 2024. Customers should migrate to `text-embedding-ada-002` (version 2).
-
-- [Similarity](#similarity-embedding)
-- [Text search](#text-search-embedding)
-- [Code search](#code-search-embedding)
-
-Each family includes models across a range of capability. The following list indicates the length of the numerical vector returned by the service, based on model capability:
-
-|  Base Model  |  Model(s)  |  Dimensions  |
-|---|---|---|
-| Ada | | 1,024 |
-| Babbage |  | 2,048 |
-| Curie |  | 4,096 |
-| Davinci |  | 12,288 |
-
-
-### Similarity embedding
-
-These models are good at capturing semantic similarity between two or more pieces of text.
-
-| Use cases | Models |
-|---|---|
-| Clustering, regression, anomaly detection, visualization | `text-similarity-ada-001` <br> `text-similarity-babbage-001` <br> `text-similarity-curie-001` <br> `text-similarity-davinci-001` <br>|
-
-### Text search embedding
-
-These models help measure whether long documents are relevant to a short search query. There are two input types supported by this family: `doc`, for embedding the documents to be retrieved, and `query`, for embedding the search query.
-
-| Use cases | Models |
-|---|---|
-| Search, context relevance, information retrieval | `text-search-ada-doc-001` <br> `text-search-ada-query-001` <br> `text-search-babbage-doc-001` <br> `text-search-babbage-query-001` <br> `text-search-curie-doc-001` <br> `text-search-curie-query-001` <br> `text-search-davinci-doc-001` <br> `text-search-davinci-query-001` <br> |
-
-### Code search embedding
-
-Similar to text search embedding models, there are two input types supported by this family: `code`, for embedding code snippets to be retrieved, and `text`, for embedding natural language search queries.
-
-| Use cases | Models |
-|---|---|
-| Code search and relevance | `code-search-ada-code-001` <br> `code-search-ada-text-001` <br> `code-search-babbage-code-001` <br> `code-search-babbage-text-001` |
-
-## Model summary table and region availability
-
-Region availability is for customers with deployments of the models prior to July 6, 2023.
-
-### GPT-3.5 models
-
-|  Model ID  |   Base model Regions   | Fine-Tuning Regions | Max Request (tokens) | Training Data (up to)  |
-|  --------- |  --------------------- | ------------------- | -------------------- | ---------------------- |
-| text-davinci-002 | East US, South Central US, West Europe | N/A | 4,097 | Jun 2021 |
-| text-davinci-003 | East US, West Europe | N/A | 4,097 | Jun 2021 |
-| code-davinci-002 | East US,  West Europe |  N/A | 8,001 | Jun 2021 |
-
-### GPT-3 models
-
-
-|  Model ID  |   Base model Regions   | Fine-Tuning Regions | Max Request (tokens) | Training Data (up to)  |
-|  --------- |  --------------------- | ------------------- | -------------------- | ---------------------- |
-| ada        |	N/A	                  | N/A | 2,049 | Oct 2019|
-| text-ada-001 | East US, South Central US, West Europe | N/A | 2,049 | Oct 2019|
-| babbage | N/A | N/A | 2,049 | Oct 2019 |
-| text-babbage-001 | East US, South Central US, West Europe | N/A | 2,049 | Oct 2019 |
-| curie | N/A | N/A | 2,049 | Oct 2019 |
-| text-curie-001  | East US, South Central US, West Europe | N/A | 2,049 | Oct 2019 |
-| davinci | N/A | N/A | 2,049 | Oct 2019|
-| text-davinci-001 | South Central US, West Europe | N/A |  |  |
-
-
-### Codex models
-
-|  Model ID  | Base model Regions   | Fine-Tuning Regions | Max Request (tokens) | Training Data (up to)  |
-|  --- |  --- | --- | --- | --- |
-| code-cushman-001 | South Central US, West Europe | N/A | 2,048 | |
-
-### Embedding models
-
-|  Model ID  |  Base model Regions   | Fine-Tuning Regions | Max Request (tokens) | Training Data (up to)  |
-|  --- | --- | --- | --- | --- |
-| text-similarity-ada-001| East US, South Central US, West Europe | N/A | 2,046 | Aug 2020 |
-| text-similarity-babbage-001  | South Central US, West Europe | N/A | 2,046 | Aug 2020 |
-| text-similarity-curie-001 | East US, South Central US, West Europe | N/A |  2,046 | Aug 2020 |
-| text-similarity-davinci-001  | South Central US, West Europe | N/A | 2,046 | Aug 2020 |
-| text-search-ada-doc-001 | South Central US, West Europe | N/A | 2,046 | Aug 2020 |
-| text-search-ada-query-001 | South Central US, West Europe | N/A | 2,046 | Aug 2020 |
-| text-search-babbage-doc-001  | South Central US, West Europe | N/A | 2,046 | Aug 2020 |
-| text-search-babbage-query-001  | South Central US, West Europe | N/A | 2,046 | Aug 2020 |
-| text-search-curie-doc-001  | South Central US, West Europe | N/A | 2,046 | Aug 2020 |
-| text-search-curie-query-001 | South Central US, West Europe | N/A | 2,046 | Aug 2020 |
-| text-search-davinci-doc-001 | South Central US, West Europe | N/A | 2,046 | Aug 2020 |
-| text-search-davinci-query-001  | South Central US, West Europe | N/A | 2,046 | Aug 2020 |
-| code-search-ada-code-001  | South Central US, West Europe | N/A | 2,046 | Aug 2020 |
-| code-search-ada-text-001  | South Central US, West Europe | N/A | 2,046 | Aug 2020 |
-| code-search-babbage-code-001 | South Central US, West Europe | N/A | 2,046 | Aug 2020 |
-| code-search-babbage-text-001 | South Central US, West Europe | N/A | 2,046 | Aug 2020 |
+| Model | Deprecation date | Retirement date | Suggested replacement |
+| --------- | --------------------- | ------------------- | -------------------- |
+| `gpt-4o-realtime-preview` - 2024-10-01 | February 25, 2025 | March 26, 2025 | `gpt-4o-realtime-preview` (version 2024-12-17) or `gpt-4o-mini-realtime-preview` (version 2024-12-17) |
+| `gpt-35-turbo` - 0301 | | February 13, 2025   | `gpt-35-turbo` (0125) <br><br> `gpt-4o-mini`  |
+| `gpt-35-turbo` - 0613 | | February 13, 2025 | `gpt-35-turbo` (0125) <br><br> `gpt-4o-mini`  |
+| `gpt-4`<br>`gpt-4-32k` - 0314 |         | June 6, 2025                       | `gpt-4o` version: `2024-11-20`       |
+| `gpt-4`<br>`gpt-4-32k` - 0613 |         | June 6, 2025                       | `gpt-4o` version: `2024-11-20`       |
+| `gpt-35-turbo-16k`     - 0613 |         | April  30, 2025                    | `gpt-4.1-mini` version: `2025-04-14` |
+| `babbage-002` | | January 27, 2025 |  |
+| `davinci-002` | | January 27, 2025 | |
+| `dall-e-2`|  | January 27, 2025 | dalle-3 |
+| `ada` | July 6, 2023 | June 14, 2024 |  |
+| `babbage` | July 6, 2023 | June 14, 2024 |  |
+| `curie` | July 6, 2023 | June 14, 2024 | |
+| `davinci` | July 6, 2023 | June 14, 2024 |  |
+| `text-ada-001` | July 6, 2023 | June 14, 2024 | gpt-35-turbo-instruct |
+| `text-babbage-001` | July 6, 2023 | June 14, 2024 | gpt-35-turbo-instruct |
+| `text-curie-001` | July 6, 2023 | June 14, 2024 | gpt-35-turbo-instruct |
+| `text-davinci-002` | July 6, 2023 | June 14, 2024 | gpt-35-turbo-instruct |
+| `text-davinci-003` | July 6, 2023 | June 14, 2024 | gpt-35-turbo-instruct |
+| `code-cushman-001` | July 6, 2023 | June 14, 2024 | gpt-35-turbo-instruct |
+| `code-davinci-002` | July 6, 2023 | June 14, 2024 | gpt-35-turbo-instruct |
+| `text-similarity-ada-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `text-similarity-babbage-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `text-similarity-curie-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `text-similarity-davinci-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `text-search-ada-doc-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `text-search-ada-query-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `text-search-babbage-doc-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `text-search-babbage-query-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `text-search-curie-doc-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `text-search-curie-query-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `text-search-davinci-doc-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `text-search-davinci-query-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `code-search-ada-code-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `code-search-ada-text-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `code-search-babbage-code-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |
+| `code-search-babbage-text-001` | July 6, 2023 | June 14, 2024 | text-embedding-3-small |

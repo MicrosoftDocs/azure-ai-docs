@@ -9,16 +9,18 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 02/12/2025
+ms.date: 05/08/2025
 ms.reviewer: deeikele
-ms.author: larryfr
-author: Blackmist
+ms.author: sgilley
+author: sdgilley
 # Customer Intent: As an admin, I need to create and manage an Azure AI Foundry hub so that my team can use it to create projects for collaboration.
 ---
 
 # How to create and manage an Azure AI Foundry hub
 
-In [Azure AI Foundry portal](https://ai.azure.com), hubs provide the environment for a team to collaborate and organize work, and help you as a team lead or IT admin centrally set up security settings and govern usage and spend. You can create and manage a hub from the Azure portal or from the Azure AI Foundry portal, and then your developers can create projects from the hub.
+[!INCLUDE [hub-only-alt](../includes/uses-hub-only-alt.md)]
+
+In [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), hubs provide the environment for a team to collaborate and organize work, and help you as a team lead or IT admin centrally set up security settings and govern usage and spend. You can create and manage a hub from the Azure portal, and then your developers can create projects from the hub.
 
 In this article, you learn how to create and manage a hub in Azure AI Foundry portal with the default settings so you can get started quickly. Do you need to customize security or the dependent resources of your hub? Then use [Azure portal](create-secure-ai-hub.md) or [template options](create-azure-ai-hub-template.md). 
 
@@ -27,29 +29,24 @@ In this article, you learn how to create and manage a hub in Azure AI Foundry po
 > 
 > If you're an admin or dev lead and would like to create your Azure AI Foundry hub using a template, see the articles on using [Bicep](create-azure-ai-hub-template.md) or [Terraform](create-hub-terraform.md).
 
-## Create a hub in Azure AI Foundry portal
-
-To create a new hub, you need either the Owner or Contributor role on the resource group or on an existing hub. If you're unable to create a hub due to permissions, reach out to your administrator. If your organization is using [Azure Policy](/azure/governance/policy/overview), don't create the resource in Azure AI Foundry portal. Create the hub [in the Azure portal](#create-a-secure-hub-in-the-azure-portal) instead.
-
-[!INCLUDE [Create Azure AI Foundry hub](../includes/create-hub.md)] 
-
 ## Create a secure hub in the Azure portal
 
 If your organization is using [Azure Policy](/azure/governance/policy/overview), set up a hub that meets your organization's requirements instead of using Azure AI Foundry for resource creation. 
 
-1. From the Azure portal, search for `Azure AI Foundry` and create a new hub by selecting **+ New Azure AI hub**
-1. Enter your hub name, subscription, resource group, and location details.
-1. For **Azure AI services base models**, select an existing AI services resource or create a new one. Azure AI services include multiple API endpoints for Speech, Content Safety, and Azure OpenAI. 
+1. From the Azure portal, search for `Azure AI Foundry`. From the left menu, select **AI Hubs**, and then select **+ Create** and **Hub**.
+
+    :::image type="content" source="../media/how-to/hubs/create-hub.png" alt-text="Screenshot of the Azure AI Foundry portal." lightbox="../media/how-to/hubs/create-hub.png":::
+
+1. Enter your hub name, subscription, resource group, and location details. For **Azure AI services base models**, select an existing AI services resource or create a new one. Azure AI services include multiple API endpoints for Speech, Content Safety, and Azure OpenAI. 
     
-    :::image type="content" source="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-basics.png" alt-text="Screenshot of the option to set hub basic information." lightbox="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-basics.png":::
+    :::image type="content" source="../media/how-to/hubs/resource-create-basics.png" alt-text="Screenshot of the option to set hub basic information." lightbox="../media/how-to/hubs/resource-create-basics.png":::
 
 1. Select the **Storage** tab to specify storage account settings. For storing credentials, either provide your Azure Key Vault or use the [Microsoft-managed credential store (preview)](#choose-how-credentials-are-stored).
 
     :::image type="content" source="../media/how-to/hubs/resource-create-resources.png" alt-text="Screenshot of the Create a hub with the option to set storage resource information." lightbox="../media/how-to/hubs/resource-create-resources.png"::: 
 
-1. Select the **Networking** tab to set up Network isolation. Read more on [network isolation](configure-managed-network.md). For a walkthrough of creating a secure hub, see [Create a secure hub](create-secure-ai-hub.md).
+1. Select the **Inbound Access** and **Outbound Access** tab to set up network isolation. For more information, see the [network isolation](configure-managed-network.md) article.
 
-    :::image type="content" source="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-networking.png" alt-text="Screenshot of the Create a hub with the option to set network isolation information." lightbox="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-networking.png":::  
 
 1. Select the **Encryption** tab to set up data encryption. By default, **Microsoft-managed keys** are used to encrypt data. You can select to **Encrypt data using a customer-managed key**. 
 
@@ -61,10 +58,6 @@ If your organization is using [Azure Policy](/azure/governance/policy/overview),
 
     > [!NOTE]
     > If you select **User assigned identity**, your identity needs to have the `Cognitive Services Contributor` role in order to successfully create a new hub.
-    
-1. Select the **Tags** tab to add tags.
-
-    :::image type="content" source="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-tags.png" alt-text="Screenshot of the Create a hub with the option to add tags." lightbox="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-create-tags.png":::
 
 1. Select **Review + create** > **Create**. 
 
@@ -76,20 +69,9 @@ You can add and remove users from the Azure AI Foundry portal management center.
 
 :::image type="content" source="../media/how-to/hubs/studio-user-management.png" alt-text="Screenshot of the users area of the management center for a hub." lightbox="../media/how-to/hubs/studio-user-management.png":::
 
-For custom role assignments, use **Access control (IAM)** within the Azure portal. Learn more about hub [role-based access control](../concepts/rbac-azure-ai-foundry.md).
+For custom role assignments, use **Access control (IAM)** within the Azure portal.
 
-To add grant users permissions from the Azure portal: 
-1. Select **+ Add** to add users to your hub.
-
-1. Select the **Role** you want to assign.
-
-    :::image type="content" source="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-rbac-role.png" alt-text="Screenshot of the page to add a role within the Azure portal hub view." lightbox="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-rbac-role.png":::
-
-1. Select the **Members** you want to give the role to.  
-
-    :::image type="content" source="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-rbac-members.png" alt-text="Screenshot of the add members page within the Azure portal hub view." lightbox="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-rbac-members.png":::
-
-1. **Review + assign**. It can take up to an hour for permissions to be applied to users.
+To add grant users permissions from the Azure portal, see the [Azure role assignments](/azure/role-based-access-control/role-assignments-portal) article.
 
 ### Networking
 
@@ -105,6 +87,7 @@ To connect to Azure AI services (Azure OpenAI, Azure AI Search, and Azure AI Con
 Projects that use the same hub, share their encryption configuration. Encryption mode can be set only at the time of hub creation between Microsoft-managed keys and Customer-managed keys (CMK). 
 
 From the Azure portal view, navigate to the encryption tab, to find the encryption settings for your hub. 
+
 For hubs that use CMK encryption mode, you can update the encryption key to a new key version. This update operation is constrained to keys and key versions within the same Key Vault instance as the original key.
 
 :::image type="content" source="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-manage-encryption.png" alt-text="Screenshot of the Encryption page of the hub in the Azure portal." lightbox="~/reusable-content/ce-skilling/azure/media/ai-studio/resource-manage-encryption.png":::
@@ -175,6 +158,6 @@ Deleting a hub deletes all associated projects. When a project is deleted, all n
 
 ## Related content
 
-- [Create a project](create-projects.md)
+- [Create a project](create-projects.md?pivots=hub-project)
 - [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
 - [Learn more about hubs](../concepts/ai-resources.md)

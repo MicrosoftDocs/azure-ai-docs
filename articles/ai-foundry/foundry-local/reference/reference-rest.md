@@ -6,12 +6,12 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025
-ms.topic: conceptual
-ms.date: 02/12/2025
 ms.author: jburchel
 ms.reviewer: samkemp
 author: jburchel
 reviewer: samuel100
+ms.topic: concept-article
+ms.date: 05/20/2025
 ---
 
 # Foundry Local REST API Reference
@@ -81,9 +81,6 @@ _---Standard OpenAI Properties---_
       The arguments to pass to the function.
 - `metadata` (object, optional)  
   A dictionary of metadata key-value pairs.
-
-_---Additional Foundry Local Properties---_
-
 - `top_k` (number, optional)  
   The number of highest probability vocabulary tokens to keep for top-k-filtering.
 - `random_seed` (integer, optional)  
@@ -131,7 +128,7 @@ _---Additional Foundry Local Properties---_
 - Request body
   ```json
   {
-    "model": "gpt-3.5-turbo",
+    "model": "Phi-4-mini-instruct-generic-cpu",
     "messages": [
       {
         "role": "user",
@@ -159,7 +156,7 @@ _---Additional Foundry Local Properties---_
     "id": "chatcmpl-1234567890",
     "object": "chat.completion",
     "created": 1677851234,
-    "model": "gpt-3.5-turbo",
+    "model": "Phi-4-mini-instruct-generic-cpu",
     "choices": [
       {
         "index": 0,
@@ -258,16 +255,16 @@ Retrieves a list of all available Foundry Local models in the catalog.
   - `version`: The version number of the model.
   - `modelType`: The format or type of the model (e.g., ONNX).
   - `promptTemplate`:
-      - `assistant`: The template for the assistant's response.
-      - `prompt`: The template for the user-assistant interaction.
+    - `assistant`: The template for the assistant's response.
+    - `prompt`: The template for the user-assistant interaction.
   - `publisher`: The entity or organization that published the model.
   - `task`: The primary task the model is designed to perform (e.g., chat-completion).
   - `runtime`:
-      - `deviceType`: The type of hardware the model is designed to run on (e.g., CPU).
-      - `executionProvider`: The execution provider used for running the model.
+    - `deviceType`: The type of hardware the model is designed to run on (e.g., CPU).
+    - `executionProvider`: The execution provider used for running the model.
   - `fileSizeMb`: The size of the model file in megabytes.
   - `modelSettings`:
-      - `parameters`: A list of configurable parameters for the model.
+    - `parameters`: A list of configurable parameters for the model.
   - `alias`: An alternative name or shorthand for the model
   - `supportsToolCalling`: Indicates whether the model supports tool-calling functionality.
   - `license`: The license type under which the model is distributed.
@@ -316,7 +313,7 @@ Retrieves all available models, including both local models and registered exter
 
 - Response body
   ```json
-  ["gpt-3.5-turbo", "gpt-4"]
+  ["Phi-4-mini-instruct-generic-cpu", "phi-3.5-mini-instruct-generic-cpu"]
   ```
 
 ### GET /openai/load/{name}
@@ -347,7 +344,7 @@ Loads a model into memory for faster inference.
 
 - Request URI
   ```
-  GET /openai/load/gpt-3.5-turbo?ttl=3600&ep=dml
+  GET /openai/load/Phi-4-mini-instruct-generic-cpu?ttl=3600&ep=dml
   ```
 
 ### GET /openai/unload/{name}
@@ -373,7 +370,7 @@ Unloads a model from memory.
 
 - Request URI
   ```
-  GET /openai/unload/gpt-3.5-turbo?force=true
+  GET /openai/unload/Phi-4-mini-instruct-generic-cpu?force=true
   ```
 
 ### GET /openai/unloadall
@@ -398,7 +395,7 @@ Retrieves a list of currently loaded models.
 
 - Response body
   ```json
-  ["gpt-3.5-turbo", "gpt-4"]
+  ["Phi-4-mini-instruct-generic-cpu", "phi-3.5-mini-instruct-generic-cpu"]
   ```
 
 ### GET /openai/getgpudevice
@@ -435,10 +432,32 @@ Sets the active GPU device.
 
 Downloads a model to local storage.
 
+> [!NOTE]
+> Model downloads can take significant time, especially for large models. We recommend setting a high timeout for this request to avoid premature termination.
+
 **Request Body:**
 
-- `model` (string)  
-  The model name to download.
+- `model` (`WorkspaceInferenceModel` object)  
+  - `Uri` (string)  
+    The model URI to download.
+  - `Name` (string)
+    The model name.
+  - `ProviderType` (string, optional)  
+    The provider type (e.g., `"AzureFoundryLocal"`,`"HuggingFace"`).
+  - `Path` (string, optional)  
+    The remote path where the model is located stored. For example, in a Hugging Face repository, this would be the path to the model files.
+  - `PromptTemplate` (`Dictionary<string, string>`, optional)  
+    Contains:
+    - `system` (string, optional)  
+      The template for the system message.
+    - `user` (string, optional)
+      The template for the user's message.
+    - `assistant` (string, optional)  
+      The template for the assistant's response.
+    - `prompt` (string, optional)  
+      The template for the user-assistant interaction.
+  - `Publisher` (string, optional)  
+      The publisher of the model.
 - `token` (string, optional)  
   Authentication token for protected models (GitHub or Hugging Face).
 - `progressToken` (object, optional)  
@@ -470,12 +489,22 @@ During download, the server streams progress updates in the format:
 
 - Request body
 
-  ```json
-  {
-    "model": "gpt-3.5-turbo",
-    "ignorePipeReport": true
+```json
+{
+  "model":{
+    "Uri": "azureml://registries/azureml/models/Phi-4-mini-instruct-generic-cpu/versions/4",
+    "ProviderType": "AzureFoundryLocal",
+    "Name": "Phi-4-mini-instruct-generic-cpu",
+    "Publisher": "",
+    "promptTemplate" : {
+      "system": "<|system|>{Content}<|end|>",
+      "user": "<|user|>{Content}<|end|>", 
+      "assistant": "<|assistant|>{Content}<|end|>", 
+      "prompt": "<|user|>{Content}<|end|><|assistant|>"
+    }
   }
-  ```
+}
+```
 
 - Response stream
 
@@ -555,7 +584,7 @@ Counts tokens for a given chat completion request without performing inference.
         "content": "Hello, what is Microsoft?"
       }
     ],
-    "model": "cpu-int4-rtn-block-32-acc-level-4"
+    "model": "Phi-4-mini-instruct-cuda-gpu"
   }
   ```
 - Response body

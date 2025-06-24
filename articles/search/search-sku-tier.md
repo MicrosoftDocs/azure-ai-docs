@@ -4,11 +4,11 @@ titleSuffix: Azure AI Search
 description: 'Learn about the service tiers (or SKUs) for Azure AI Search. A search service can be provisioned at these tiers: Free, Basic, Standard, and Storage Optimized. Standard is available in various resource configurations and capacity levels.'
 
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 03/21/2025
+ms.date: 06/12/2025
 
 ---
 
@@ -54,13 +54,9 @@ You can find out more about the various tiers on the [pricing page](https://azur
 
 ## Region availability by tier
 
-The supported [regions list](search-region-support.md) provides the locations where Azure AI Search is offered.
+The [regions list](search-region-support.md) provides the locations where Azure AI Search is offered. Some regions might have capacity constraints for certain tiers, which prevents the creation of new search services on those tiers. The list uses footnotes to indicate constrained regions and tiers.
 
-Currently, several regions are capacity-constrained for specific tiers and can't be used for new search services. If you use the Azure portal to create a search service, the Azure portal excludes any region-tier combinations that aren't available.
-
-| Region | Disabled tier (SKU) due to over-capacity | Suggested alternative |
-|--------|------------------------------------------|-----------------------|
-| North Europe | S2, S3, L1, L2 | Sweden Central, West Europe|
+When you create a search service in the Azure portal, unavailable region–tier combinations are automatically excluded.
 
 ## Feature availability by tier
 

@@ -1,7 +1,7 @@
 ---
-title: Azure OpenAI Service | Prompt engineering techniques
+title: Azure OpenAI in Azure AI Foundry Models | Prompt engineering techniques
 titleSuffix: Azure OpenAI
-description: Learn how to use prompt engineering to optimize your work with Azure OpenAI Service.
+description: Learn how to use prompt engineering to optimize your work with Azure OpenAI.
 ms.service: azure-ai-openai
 ms.topic: conceptual
 ms.date: 03/26/2025
@@ -113,7 +113,7 @@ Each API requires input data to be formatted differently, which in turn impacts 
 
 The **Completion API** supports the older GPT-3 models and has much more flexible input requirements in that it takes a string of text with no specific format rules.
 
-The techniques in this section will teach you strategies for increasing the accuracy and grounding of responses you generate with a Large Language Model (LLM). It is, however, important to remember that even when using prompt engineering effectively you still need to validate the responses the models generate. Just because a carefully crafted prompt worked well for a particular scenario doesn't necessarily mean it will generalize more broadly to certain use cases. Understanding the [limitations of LLMs](/legal/cognitive-services/openai/transparency-note?context=/azure/ai-services/openai/context/context#limitations), is just as important as understanding how to leverage their strengths.
+The techniques in this section will teach you strategies for increasing the accuracy and grounding of responses you generate with a Large Language Model (LLM). It is, however, important to remember that even when using prompt engineering effectively you still need to validate the responses the models generate. Just because a carefully crafted prompt worked well for a particular scenario doesn't necessarily mean it will generalize more broadly to certain use cases. Understanding the [limitations of LLMs](/azure/ai-foundry/responsible-ai/openai/transparency-note#limitations), is just as important as understanding how to leverage their strengths.
 
 #### [Chat completion APIs](#tab/chat)
 

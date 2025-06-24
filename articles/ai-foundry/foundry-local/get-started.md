@@ -2,8 +2,11 @@
 title: Get started with Foundry Local
 titleSuffix: Foundry Local
 description: Learn how to install, configure, and run your first AI model with Foundry Local
+author: samuel100
+ms.author: samkemp
 manager: scottpolly
-keywords: Azure AI services, cognitive, AI models, local inference
+ms.reviewer: samkemp
+ms.date: 05/23/2025
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.topic: quickstart
@@ -13,8 +16,15 @@ ms.author: jburchel
 ms.reviewer: samkemp
 author: jburchel
 reviewer: samuel100
-ms.custom: build-2025
-#customer intent: As a developer, I want to get started with Foundry Local so that I can run AI models locally.
+ms.custom:
+  - build-2025
+  - build-aifnd
+keywords:
+  - Azure AI services
+  - cognitive
+  - AI models
+  - local inference
+# customer intent: As a developer, I want to get started with Foundry Local so that I can run AI models locally.
 ---
 
 # Get started with Foundry Local
@@ -27,7 +37,7 @@ This guide walks you through setting up Foundry Local to run AI models on your d
 
 Your system must meet the following requirements to run Foundry Local:
 
-- **Operating System**: Windows 10 (x64), Windows 11 (x64/ARM), macOS.
+- **Operating System**: Windows 10 (x64), Windows 11 (x64/ARM), Windows Server 2025, macOS.
 - **Hardware**: Minimum 8GB RAM, 3GB free disk space. Recommended 16GB RAM, 15GB free disk space.
 - **Network**: Internet connection for initial model download (optional for offline use)
 - **Acceleration (optional)**: NVIDIA GPU (2,000 series or newer), AMD GPU (6,000 series or newer), Qualcomm Snapdragon X Elite (8GB or more of memory), or Apple silicon.
@@ -38,17 +48,22 @@ Also, ensure you have administrative privileges to install software on your devi
 
 Get started with Foundry Local quickly:
 
-1. [**Download Foundry Local Installer**](https://aka.ms/foundry-local-installer) and **install** by following the on-screen prompts. 
-    > [!TIP]
-    > If you're installing on Windows, you can also use `winget` to install Foundry Local. Open a terminal window and run the following command:
-    >
-    > ```powershell
-    > winget install Microsoft.FoundryLocal
-    > ```
+1. **Install Foundry Local** 
+    - **Windows**: Open a terminal and run the following command:
+        ```bash
+        winget install Microsoft.FoundryLocal
+        ```
+    - **macOS**: Open a terminal and run the following command:
+        ```bash
+        brew tap microsoft/foundrylocal
+        brew install foundrylocal
+        ```
+    Alternatively, you can download the installer from the [Foundry Local GitHub repository](https://aka.ms/foundry-local-installer).
+
 1. **Run your first model** Open a terminal window and run the following command to run a model: 
 
     ```bash
-    foundry model run deepseek-r1-1.5b 
+    foundry model run phi-3.5-mini 
     ```
     
     The model downloads - which can take a few minutes, depending on your internet speed - and the model runs. Once the model is running, you can interact with it using the command line interface (CLI). For example, you can ask:
@@ -62,7 +77,7 @@ Get started with Foundry Local quickly:
 
 
 > [!TIP]
-> You can replace `deepseek-r1-1.5b` with any model name from the catalog (see `foundry model list` for available models). Foundry Local downloads the model variant that best matches your system's hardware and software configuration. For example, if you have an NVIDIA GPU, it downloads the CUDA version of the model. If you have a Qualcomm NPU, it downloads the NPU variant. If you have no GPU or NPU, it downloads the CPU version.
+> You can replace `phi-3.5-mini` with any model name from the catalog (see `foundry model list` for available models). Foundry Local downloads the model variant that best matches your system's hardware and software configuration. For example, if you have an NVIDIA GPU, it downloads the CUDA version of the model. If you have a Qualcomm NPU, it downloads the NPU variant. If you have no GPU or NPU, it downloads the CPU version.
 
 ## Explore commands
 
@@ -98,6 +113,33 @@ foundry cache --help
 > [!TIP]
 > For a complete guide to all CLI commands and their usage, see the [Foundry Local CLI Reference](reference/reference-cli.md).
 
+## Upgrading Foundry Local
+
+To upgrade Foundry Local to the latest version, use the following commands based on your operating system:
+
+- **Windows**: Open a terminal and run:
+    ```bash
+    winget upgrade --id Microsoft.FoundryLocal
+    ```
+- **macOS**: Open a terminal and run:
+    ```bash
+    brew upgrade foundrylocal
+    ```
+
+## Uninstalling Foundry Local
+
+If you wish to uninstall Foundry Local, use the following commands based on your operating system:
+
+- **Windows**: Open a terminal and run:
+    ```bash
+    winget uninstall Microsoft.FoundryLocal
+    ```
+- **macOS**: Open a terminal and run:
+    ```bash
+    brew rm foundrylocal
+    brew untap microsoft/foundrylocal
+    brew cleanup --scrub
+    ```
 
 ## Next steps
 

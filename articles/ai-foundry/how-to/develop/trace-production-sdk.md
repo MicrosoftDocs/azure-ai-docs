@@ -7,10 +7,12 @@ ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 02/14/2025
+ms.date: 06/19/2025
 ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
+ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
+ms.update-cycle: 180-days
 ---
 
 # Enable tracing and collect feedback for a flow deployment
@@ -25,6 +27,8 @@ In this article, you learn to enable tracing, collect aggregated metrics, and co
 > For an improved way to perform continuous monitoring of deployed applications (other than prompt flow), consider using [Azure AI online evaluation](../online-evaluation.md).
 
 ## Prerequisites
+
+[!INCLUDE [hub-only-prereq](../../includes/hub-only-prereq.md)]
 
 - The Azure CLI and the Azure Machine Learning extension to the Azure CLI.
 - An Azure AI Foundry project. If you don't already have a project, you can [create one](../../how-to/create-projects.md).

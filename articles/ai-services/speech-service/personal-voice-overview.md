@@ -20,18 +20,18 @@ With personal voice, you can enable your users to get AI generated replication o
 > Personal voice is available in these regions: West Europe, East US, West US 2, South East Asia and East Asia. 
 > For supported locales, see [personal voice language support](./language-support.md?tabs=tts#personal-voice).
 
-The following table summarizes the difference between personal voice and professional custom neural voice.  
+The following table summarizes the difference between personal voice and professional voice.  
  
 | Comparison | Personal voice | Professional voice |
 |-------|-------------------------|-----|
 | Target scenarios | Business customers to build an app to allow their users to create and use their own personal voice in the app. | Professional scenarios like brand and character voices for chat bots, or audio content reading. |
-| Use cases | Restricted to limited use cases. See the [transparency note](/legal/cognitive-services/speech-service/custom-neural-voice/transparency-note?context=/azure/ai-services/speech-service/context/context&tabs=prebuilt-voice#intended-uses-for-personal-voice-preview). Approved customers should have a plan to support more than 1,000 personal voices.  | Restricted to limited use cases. See the [transparency note](/legal/cognitive-services/speech-service/custom-neural-voice/transparency-note?context=/azure/ai-services/speech-service/context/context&tabs=prebuilt-voice#intended-uses-for-custom-neural-voice-pro-and-custom-neural-voice-lite). |
+| Use cases | Restricted to limited use cases. See the [transparency note](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note). |
 | Training data | Make sure you follow the code of conduct. | Bring your own data. Recording in a professional studio is recommended. |
 | Required data size | One minute of human speech. | 300-2000 utterances (about 30 minutes to 3 hours of human speech). |
 | Training time | Less than 5 seconds | Approximately 20-40 compute hours. |
 | Voice quality | Natural | Highly natural |
 | Multilingual support | Yes. The voice is able to speak about 100 languages, with automatic language detection enabled. | Yes. You need to select the "Neural – cross lingual" feature to train a model that speaks a different language from the training data. |
-| Availability | The demo on [Speech Studio](https://aka.ms/speechstudio/) is available upon registration. Access to the API is restricted to eligible customers and approved use cases. Request access through the intake form. | You can only train and deploy a CNV Pro model after access is approved. CNV Pro access is limited based on eligibility and usage criteria. Request access through the intake form. |
+| Availability | The demo on [Speech Studio](https://aka.ms/speechstudio/) is available upon registration. Access to the API is restricted to eligible customers and approved use cases. Request access through the intake form. | You can only use professional voice fine-tuning after access is approved. Professional voice fine-tuning access is limited based on eligibility and usage criteria. Request access through the intake form. |
 | Pricing | Check the pricing details [here](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/)<sup>1</sup>. | Check the pricing details [here](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). |
 | Responsible AI requirements | Speaker's verbal statement required. No unapproved use case allowed. | Speaker's verbal statement required. No unapproved use case allowed. |
 
@@ -69,11 +69,11 @@ Once you have a personal voice, you can [use it](./personal-voice-how-to-use.md)
 
 ## Responsible AI 
 
-We care about the people who use AI and the people who will be affected by it as much as we care about technology. For more information, see the Responsible AI [transparency notes](/legal/cognitive-services/speech-service/text-to-speech/transparency-note?context=/azure/ai-services/speech-service/context/context).
+We care about the people who use AI and the people who will be affected by it as much as we care about technology. For more information, see the Responsible AI [transparency notes](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note).
 
 
 ## Next steps
 
 - [Create a project](./personal-voice-create-project.md). 
-- Learn more about custom neural voice in the [overview](custom-neural-voice.md).
+- Learn more about custom voice in the [overview](custom-neural-voice.md).
 - Learn more about Speech Studio in the [overview](speech-studio-overview.md).

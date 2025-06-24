@@ -3,12 +3,12 @@ title: Custom text classification - Azure AI services
 titleSuffix: Azure AI services
 description: Customize an AI model to classify documents and other content using Azure AI services.
 #services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
 ms.date: 03/24/2025
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
 
@@ -76,7 +76,7 @@ As you use custom text classification, see the following reference documentation
 
 ## Responsible AI 
 
-An AI system includes not only the technology, but also the people who will use it, the people who will be affected by it, and the environment in which it is deployed. Read the [transparency note for custom text classification](/legal/cognitive-services/language-service/ctc-transparency-note?context=/azure/ai-services/language-service/context/context) to learn about responsible AI use and deployment in your systems. You can also see the following articles for more information:
+An AI system includes not only the technology, but also the people who will use it, the people who will be affected by it, and the environment in which it is deployed. Read the [transparency note for custom text classification](/azure/ai-foundry/responsible-ai/language-service/custom-text-classification-transparency-note) to learn about responsible AI use and deployment in your systems. You can also see the following articles for more information:
 
 [!INCLUDE [Responsible AI links](../includes/overview-responsible-ai-links.md)]
 

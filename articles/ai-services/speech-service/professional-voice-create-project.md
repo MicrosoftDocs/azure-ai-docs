@@ -6,13 +6,17 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
+ms.date: 5/19/2025
 ms.author: eur
-zone_pivot_groups: speech-studio-rest
+zone_pivot_groups: foundry-speech-studio-rest
 #Customer intent: As a developer, I want to learn how to create a project for professional voice.
 ---
 
 # Create a project for professional voice
+
+::: zone pivot="ai-foundry-portal"
+[!INCLUDE [Foundry portal include](./includes/how-to/professional-voice/create-project/ai-foundry.md)]
+::: zone-end
 
 ::: zone pivot="speech-studio"
 [!INCLUDE [Speech Studio include](./includes/how-to/professional-voice/create-project/speech-studio.md)]

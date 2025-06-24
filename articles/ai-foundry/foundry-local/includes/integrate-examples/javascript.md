@@ -35,7 +35,7 @@ import { FoundryLocalManager } from "foundry-local-sdk";
 // to your end-user's device.
 // TIP: You can find a list of available models by running the 
 // following command in your terminal: `foundry model list`.
-const modelAlias = "deepseek-r1-1.5b";
+const alias = "phi-3.5-mini";
 
 // Create a FoundryLocalManager instance. This will start the Foundry 
 // Local service if it is not already running.
@@ -43,7 +43,7 @@ const foundryLocalManager = new FoundryLocalManager()
 
 // Initialize the manager with a model. This will download the model 
 // if it is not already present on the user's device.
-const modelInfo = await foundryLocalManager.init(modelAlias)
+const modelInfo = await foundryLocalManager.init(alias)
 console.log("Model Info:", modelInfo)
 
 const openai = new OpenAI({
@@ -86,7 +86,7 @@ import { FoundryLocalManager } from "foundry-local-sdk";
 // to your end-user's device.
 // TIP: You can find a list of available models by running the 
 // following command in your terminal: `foundry model list`.
-const modelAlias = "deepseek-r1-1.5b";
+const alias = "phi-3.5-mini";
 
 // Create a FoundryLocalManager instance. This will start the Foundry 
 // Local service if it is not already running.
@@ -94,7 +94,7 @@ const foundryLocalManager = new FoundryLocalManager()
 
 // Initialize the manager with a model. This will download the model 
 // if it is not already present on the user's device.
-const modelInfo = await foundryLocalManager.init(modelAlias)
+const modelInfo = await foundryLocalManager.init(alias)
 console.log("Model Info:", modelInfo)
 
 const openai = new OpenAI({
@@ -136,7 +136,7 @@ import { FoundryLocalManager } from "foundry-local-sdk";
 // to your end-user's device.
 // TIP: You can find a list of available models by running the 
 // following command in your terminal: `foundry model list`.
-const modelAlias = "deepseek-r1-1.5b";
+const alias = "phi-3.5-mini";
 
 // Create a FoundryLocalManager instance. This will start the Foundry 
 // Local service if it is not already running.
@@ -144,7 +144,7 @@ const foundryLocalManager = new FoundryLocalManager()
 
 // Initialize the manager with a model. This will download the model 
 // if it is not already present on the user's device.
-const modelInfo = await foundryLocalManager.init(modelAlias)
+const modelInfo = await foundryLocalManager.init(alias)
 console.log("Model Info:", modelInfo)
 
 async function queryModel() {
@@ -179,7 +179,7 @@ import { FoundryLocalManager } from "foundry-local-sdk";
 // to your end-user's device.
 // TIP: You can find a list of available models by running the 
 // following command in your terminal: `foundry model list`.
-const modelAlias = "deepseek-r1-1.5b";
+const alias = "phi-3.5-mini";
 
 // Create a FoundryLocalManager instance. This will start the Foundry 
 // Local service if it is not already running.
@@ -187,7 +187,7 @@ const foundryLocalManager = new FoundryLocalManager()
 
 // Initialize the manager with a model. This will download the model 
 // if it is not already present on the user's device.
-const modelInfo = await foundryLocalManager.init(modelAlias)
+const modelInfo = await foundryLocalManager.init(alias)
 console.log("Model Info:", modelInfo)
 
 async function streamWithFetch() {

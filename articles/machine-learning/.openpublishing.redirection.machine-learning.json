@@ -161,6 +161,11 @@
         "redirect_document_id": true
     },
     {
+        "source_path_from_root": "/articles/machine-learning/concept-model-catalog.md",
+        "redirect_url": "/azure/machine-learning/foundry-models-overview",
+        "redirect_document_id": false
+    },
+    {
         "source_path_from_root": "/articles/machine-learning/v-fake/how-to-log-view-metrics.md",
         "redirect_url": "/azure/machine-learning/how-to-log-view-metrics",
         "redirect_document_id": false
@@ -4453,6 +4458,11 @@
     {
         "source_path_from_root": "/articles/machine-learning/v1/how-to-machine-learning-interpretability-automl.md",
         "redirect_url": "/azure/machine-learning/how-to-machine-learning-interpretability",
+        "redirect_document_id": false
+    },
+        {
+        "source_path_from_root": "/articles/machine-learning/prompt-flow/how-to-trace-local-sdk.md",
+        "redirect_url": "/azure/ai-foundry/how-to/develop/trace-application",
         "redirect_document_id": false
     }
 ]

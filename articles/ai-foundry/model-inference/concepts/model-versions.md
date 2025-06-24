@@ -1,20 +1,22 @@
 ---
-title: Model versions in Azure AI model inference
+title: Model versions in Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
-description: Learn about model versions in Azure AI model inference. 
+description: Learn about model versions in Foundry Models.
 ms.service: azure-ai-model-inference
-ms.topic: conceptual
-ms.custom: ignite-2024, github-universe-2024 
-ms.date: 1/21/2025
-manager: nitinme
-author: santiagxf
-ms.author: fasantia
+ms.topic: concept-article
+ms.custom: ignite-2024, github-universe-2024
+ms.date: 05/19/2025
+manager: scottpolly
+author: msakande
+ms.author: mopeakande
 recommendations: false
+ms.reviewer: fasantia
+reviewer: santiagxf
 ---
 
-# Model versions in Azure AI model inference
+# Model versions in Azure AI Foundry Models
 
-Azure AI services are committed to providing the best generative AI models for customers. As part of this commitment, Azure AI services regularly releases new model versions to incorporate the latest features and improvements from key model providers in the industry.
+Azure AI Foundry Models are committed to providing the best generative AI models for customers. As part of this commitment, Azure AI Foundry Models regularly releases new model versions to incorporate the latest features and improvements from key model providers in the industry.
 
 ## How model versions work
 
@@ -51,7 +53,7 @@ As a customer of Azure OpenAI models, you might notice some changes in the model
 * Test your applications and workflows with the new model version after release.
 * Update your code and configuration to use the new features and capabilities of the new model version.
 
-## Non-Microsoft model updates
+## Partners model updates
 
 Azure works closely with model providers to release new model versions. When a new version of a model is released, you can immediately test it in new deployments. Azure also maintains the previous major version of the model until its retirement date, so you can switch back to it if desired.
 

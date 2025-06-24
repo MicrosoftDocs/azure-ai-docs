@@ -96,11 +96,11 @@ To add a model, you first need to identify the model that you want to deploy. Yo
 
 8. The model is ready to be consumed.
 
-You can deploy the same model multiple times if needed as long as it's under a different deployment name. This capability might be useful in case you want to test different configurations for a given model, including content safety.
+You can deploy the same model multiple times if needed as long as it's under a different deployment name. This capability might be useful in case you want to test different configurations for a given model, including content filters.
 
 ## Use the model
 
-Deployed models in Azure AI model inference can be consumed using the [Azure AI model's inference endpoint](../../concepts/endpoints.md) for the resource. When constructing your request, indicate the parameter `model` and insert the model deployment name you have created. You can programmatically get the URI for the inference endpoint using the following code:
+Deployed models in can be consumed using the [Azure AI model's inference endpoint](../../concepts/endpoints.md) for the resource. When constructing your request, indicate the parameter `model` and insert the model deployment name you have created. You can programmatically get the URI for the inference endpoint using the following code:
 
 __Inference endpoint__
 
@@ -108,7 +108,7 @@ __Inference endpoint__
 az cognitiveservices account show  -n $accountName -g $resourceGroupName | jq '.properties.endpoints["Azure AI Model Inference API"]'
 ```
 
-To make requests to the Azure AI model inference endpoint, append the route `models`, for example `https://<resource>.services.ai.azure.com/models`. You can see the API reference for the endpoint at [Azure AI model inference API reference page](https://aka.ms/azureai/modelinference).
+To make requests to the Azure AI Foundry Models endpoint, append the route `models`, for example `https://<resource>.services.ai.azure.com/models`. You can see the API reference for the endpoint at [Azure AI Model Inference API reference page](https://aka.ms/azureai/modelinference).
 
 __Inference keys__
 

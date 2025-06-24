@@ -7,9 +7,9 @@ ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025
 ms.topic: how-to
-ms.date: 02/12/2025
 ms.author: jburchel
 ms.reviewer: samkemp
+ms.date: 05/20/2025
 zone_pivot_groups: foundry-local-sdk
 author: jonburchel
 reviewer: samuel100
@@ -30,6 +30,12 @@ Foundry Local integrates with various inferencing SDKs - such as OpenAI, Azure O
 ::: zone-end
 ::: zone pivot="programming-language-javascript"
 [!INCLUDE [JavaScript](../includes/integrate-examples/javascript.md)]
+::: zone-end
+::: zone pivot="programming-language-csharp"
+[!INCLUDE [JavaScript](../includes/integrate-examples/csharp.md)]
+::: zone-end
+::: zone pivot="programming-language-rust"
+[!INCLUDE [JavaScript](../includes/integrate-examples/rust.md)]
 ::: zone-end
 
 ## Next steps
