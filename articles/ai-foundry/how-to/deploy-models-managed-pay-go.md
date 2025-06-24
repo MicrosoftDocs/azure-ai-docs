@@ -59,7 +59,7 @@ Pay-as-you-go billing of Azure compute and model surcharge is pro-rated per minu
 A user's subscription to Azure Marketplace offers are scoped to the project resource within Azure AI Foundry. If a subscription to the Azure Marketplace offer for a particular model already exists within the project, the user is informed in the deployment wizard that the subscription already exists for the project. 
 
 > [!NOTE]
-> For [NVIDIA inference microservices (NIM)](#nvidia), multiple models are associated with a single marketplace offer, so you have to subscribe to the NIM offer only once within a project to be able to deploy all NIMs offered by NVIDIA in the AI Foundry model catalog. If you want to deploy NIMs in a different project with no existing SaaS subscription, you need to resubscribe to the offer.  
+> For [NVIDIA inference microservices (NIM)](#nvidia), multiple models are associated with a single marketplace offer, so you only have to subscribe to the NIM offer once within a project to be able to deploy all NIMs offered by NVIDIA in the AI Foundry model catalog. If you want to deploy NIMs in a different project with no existing SaaS subscription, you need to resubscribe to the offer.  
 
 To find all the SaaS subscriptions that exist in an Azure subscription:
 
@@ -158,7 +158,7 @@ Some special things to note about NIMs are:
 | [MSA-search-NIM-microservice](https://ai.azure.com/explore/models/MSA-search-NIM-microservice/version/3/registry/azureml-nvidia) | Protein Binder |
 | [Rfdiffusion-NIM-microservice](https://ai.azure.com/explore/models/Rfdiffusion-NIM-microservice/version/1/registry/azureml-nvidia) | Protein Binder |
 
-### Consume NVIDIA NIM deployments
+#### Consume NVIDIA NIM deployments
 
 After your deployment is successfully created, you can follow the steps in [Consume deployments](#consume-deployments) to consume it.
 
@@ -169,7 +169,7 @@ You can also consume NIM deployments using the [Azure AI Foundry Models SDK](/py
 - No support for [creating and authenticating clients using `load_client`](/python/api/overview/azure/ai-inference-readme#create-and-authenticate-clients-using-load_client).
 - You should call client method `get_model_info` to [retrieve model information](/python/api/overview/azure/ai-inference-readme#get-ai-model-information).
 
-### Develop and run agents with NIM endpoints
+##### Develop and run agents with NIM endpoints
 
 The following NVIDIA NIMs of **chat completions** task type in the model catalog can be used to [create and run agents using Agent Service](/python/api/overview/azure/ai-projects-readme#agents-preview) using various supported tools, with the following two extra requirements: 
 
@@ -184,7 +184,7 @@ The following NVIDIA NIMs of **chat completions** task type in the model catalog
 | Mistral-7B-Instruct-v0.3-NIM-microservice          | mistralai/mistral-7b-instruct-v0.3 |
 
 
-### Security scanning
+#### Security scanning
 
 NVIDIA ensures the security and reliability of NVIDIA NIM container images through best-in-class vulnerability scanning, rigorous patch management, and transparent processes. To learn more about security scanning, see the [security page](https://docs.nvidia.com/ai-enterprise/planning-resource/security-for-azure-ai-foundry/latest/introduction.html). Microsoft works with NVIDIA to get the latest patches of the NIMs to deliver secure, stable, and reliable production-grade software within Azure AI Foundry.
 
