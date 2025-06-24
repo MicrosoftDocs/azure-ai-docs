@@ -95,7 +95,7 @@ Azure AI Foundry Models supports additional features not available in GitHub Mod
 
 ## Got troubles?
 
-See the [FAQ section](../../model-inference/faq.yml) to explore more help.
+See the [FAQ section](../../foundry-models/faq.yml) to explore more help.
 
 ## Next steps
 

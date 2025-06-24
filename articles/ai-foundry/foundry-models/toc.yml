@@ -11,7 +11,7 @@ items:
     - name: Use Foundry Models
       href: ./how-to/inference.md
     - name: Quotas and limits
-      href: ai-foundry/foundry-models/quotas-limits.md
+      href: quotas-limits.md
     - name: Model lifecycle and retirement
       href: ../concepts/model-lifecycle-retirement.md?context=/azure/ai-foundry/model-inference/context/context
     - name: FAQ
@@ -19,15 +19,15 @@ items:
 - name: Quickstarts
   items:
     - name: Create resources and configure
-      href: ai-foundry/foundry-models/how-to/quickstart-create-resources.md
+      href: how-to/quickstart-create-resources.md
     - name: Upgrade from GitHub Models to Azure AI Foundry Models
-      href: ai-foundry/foundry-models/how-to/quickstart-github-models.md 
+      href: how-to/quickstart-github-models.md 
     - name: Configure AI projects to work with Azure AI Foundry Models
-      href: ai-foundry/foundry-models/how-to/quickstart-ai-project.md
+      href: how-to/quickstart-ai-project.md
 - name: Tutorials
   items:
     - name: Get started with DeepSeek-R1 reasoning model
-      href: ai-foundry/foundry-models/tutorials/get-started-deepseek-r1.md
+      href: tutorials/get-started-deepseek-r1.md
 - name: Concepts
   items:
     - name: Available models
@@ -35,47 +35,47 @@ items:
     - name: Model inference endpoint
       href: ./concepts/endpoints.md
     - name: Deployment types
-      href: ai-foundry/foundry-models/concepts/deployment-types.md
+      href: concepts/deployment-types.md
     - name: Model versions
-      href: ai-foundry/foundry-models/concepts/model-versions.md
+      href: concepts/model-versions.md
     - name: Model lifecycle and retirement
       href: ../concepts/model-lifecycle-retirement.md?context=/azure/ai-foundry/model-inference/context/context
     - name: Responsible AI
       items:
       - name: Content filtering
-        href: ai-foundry/foundry-models/concepts/content-filter.md
+        href: concepts/content-filter.md
       - name: Default safety policies
-        href: ai-foundry/foundry-models/concepts/default-safety-policies.md
+        href: concepts/default-safety-policies.md
 - name: Configure and manage
   items:
   - name: Create resources
-    href: ai-foundry/foundry-models/how-to/quickstart-create-resources.md
+    href: how-to/quickstart-create-resources.md
   - name: Add and configure models
-    href: ai-foundry/foundry-models/how-to/github/create-model-deployments.md
+    href: how-to/github/create-model-deployments.md
   - name: Configure Models from Partners and Community
-    href: ai-foundry/foundry-models/how-to/configure-marketplace.md
+    href: how-to/configure-marketplace.md
   - name: Connect your AI project
-    href: ai-foundry/foundry-models/how-to/configure-project-connection.md
+    href: how-to/configure-project-connection.md
   - name: Responsible AI
     items:
       - name: Configure content filtering
-        href: ai-foundry/foundry-models/how-to/configure-content-filters.md
+        href: how-to/configure-content-filters.md
       - name: Use blocklists
-        href: ai-foundry/foundry-models/how-to/use-blocklists.md
+        href: how-to/use-blocklists.md
   - name: Security & Governance
     items:
       - name: Configure key-less authentication
-        href: ai-foundry/foundry-models/how-to/configure-entra-id.md
+        href: how-to/configure-entra-id.md
       - name: Control model deployment with custom policies
-        href: ai-foundry/foundry-models/how-to/configure-deployment-policies.md
+        href: how-to/configure-deployment-policies.md
       - name: Use virtual networks
         href: ../../ai-services/cognitive-services-virtual-networks.md?context=/azure/ai-foundry/model-inference/context/context
   - name: Monitor model deployments
-    href: ai-foundry/foundry-models/how-to/monitor-models.md
+    href: how-to/monitor-models.md
   - name: Manage cost
-    href: ai-foundry/foundry-models/how-to/manage-costs.md
+    href: how-to/manage-costs.md
   - name: Quotas and limits
-    href: ai-foundry/foundry-models/quotas-limits.md
+    href: quotas-limits.md
 - name: Develop
   items:
     - name: Use Foundry Models
@@ -83,25 +83,25 @@ items:
     - name: Programming languages and SDKs
       items:
         - name: Azure OpenAI SDK
-          href: ai-foundry/foundry-models/supported-languages-openai.md
+          href: supported-languages-openai.md
         - name: Azure AI Inference SDK
-          href: ai-foundry/foundry-models/supported-languages.md
+          href: supported-languages.md
     - name: Work with embedding models
       items:
         - name: Work with text embeddings
-          href: ai-foundry/foundry-models/how-to/use-embeddings.md
+          href: how-to/use-embeddings.md
         - name: Work with image embeddings
-          href: ai-foundry/foundry-models/how-to/use-image-embeddings.md
+          href: how-to/use-image-embeddings.md
     - name: Work with chat models
       items:
         - name: Work with chat completion models
-          href: ai-foundry/foundry-models/how-to/use-chat-completions.md
+          href: how-to/use-chat-completions.md
         - name: Work with reasoning models
-          href: ai-foundry/foundry-models/how-to/use-chat-reasoning.md
+          href: how-to/use-chat-reasoning.md
         - name: Work with multimodal models
-          href: ai-foundry/foundry-models/how-to/use-chat-multi-modal.md
+          href: how-to/use-chat-multi-modal.md
         - name: Use structured outputs
-          href: ai-foundry/foundry-models/how-to/use-structured-outputs.md
+          href: how-to/use-structured-outputs.md
     - name: Develop with LangChain and LangGraph
       href: ../how-to/develop/langchain.md?context=/azure/ai-foundry/model-inference/context/context
     - name: Develop with Llama-Index
