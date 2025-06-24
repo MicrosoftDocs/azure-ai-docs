@@ -18,7 +18,7 @@ author: lgayhardt
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-As you learn prompt engineering, you should test different prompts (*inputs*) one at a time to evaluate their effectiveness. This process can be very time intensive for several reasons. You need to check whether the content filters work appropriately, whether the response is accurate, and more.
+As you learn prompt engineering, you should test different prompts (*inputs*) one at a time to evaluate their effectiveness. This process can be very time intensive for several reasons. You need to check to make sure the content filters work appropriately, the response is accurate, and more.
 
 To simplify this process, you can utilize manual evaluation in Azure AI Foundry portal. This evaluation tool enables you to use a single interface to continuously iterate and evaluate your prompt against your test data. You can also manually rate the model's responses (*outputs*) to help you gain confidence in your prompt.  
 
@@ -44,7 +44,7 @@ In this article, you learn to:
 
 From the **Playground**, select the **Manual evaluation** option to begin the process of manually reviewing the model responses based on your test data and prompt. Your prompt is automatically transitioned to your **Manual evaluation** file. You need to add test data to evaluate the prompt against. You can do this step manually by using the text boxes in the **Input** column.
 
-You can also use the **Import Data** feature to select one of the existing datasets in your project, or upload a dataset in CSV or JSONL format. After loading your data, you'll be prompted to map the columns appropriately. After you finish and select **Import**, the data is populated appropriately in the following columns.  
+You can also use the **Import Data** feature to select one of the existing datasets in your project, or upload a dataset in CSV or JSONL format. After loading your data, you'll be prompted to map the columns appropriately. After you finish and select **Import**, the data is populated in the appropriate columns.  
 
 :::image type="content" source="../media/evaluations/prompts/generate-manual-evaluation-results.png" alt-text="Screenshot that shows how to generate manual evaluation results." lightbox= "../media/evaluations/prompts/generate-manual-evaluation-results.png":::
 
