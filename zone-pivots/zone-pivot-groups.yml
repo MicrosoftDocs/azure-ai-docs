@@ -1345,9 +1345,11 @@ groups:
   title: Python and REST
   prompt: Choose a usage method
   pivots:
-  - id: python
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-python
     title: Python
-  - id: rest
+  - id: programming-language-rest
     title: REST
 # Owner: haileytapia
 - id: search-get-started-vector-search
