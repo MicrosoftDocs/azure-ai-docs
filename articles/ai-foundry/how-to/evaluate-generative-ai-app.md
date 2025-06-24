@@ -23,7 +23,7 @@ In this article, you learn to create an evaluation run against a model or a test
 ## Prerequisites
 
 - A test dataset in one of these formats: CSV or JSON Lines (JSONL).
-- An Azure OpenAI connection. A deployment of one of these models: a GPT 3.5 model, a GPT 4 model, or a Davinci model. This is required only when you run AI-assisted quality evaluation.
+- An Azure OpenAI connection. A deployment of one of these models: a GPT 3.5 model, a GPT 4 model, or a Davinci model. Required only when you run AI-assisted quality evaluations.
 
 ## Create an evaluation with built-in evaluation metrics
 
@@ -67,7 +67,7 @@ When you enter the evaluation creation wizard, you can select from preexisting d
 
 #### Configure testing criteria
 
-We support three types of metrics that are curated by Microsoft to facilitate a comprehensive evaluation of your application:  
+We support three types of metrics curated by Microsoft to facilitate a comprehensive evaluation of your application:  
 
 - **AI quality (AI assisted)**: These metrics evaluate the overall quality and coherence of the generated content. You need a model deployment as judge to run these metrics.
 - **AI quality (NLP)**: These natural language processing (NLP) metrics are mathematical-based, and they also evaluate the overall quality of the generated content. They often require ground truth data, but they don't require a model deployment as judge.
@@ -75,7 +75,7 @@ We support three types of metrics that are curated by Microsoft to facilitate a 
 
 :::image type="content" source="../media/evaluations/evaluate/testing-criteria.png" alt-text="Screenshot that shows how to add testing criteria." lightbox="../media/evaluations/evaluate/testing-criteria.png":::
 
-As you add your testing criteria, different metrics are going to be used as part of the evaluation. You can refer to the table for the complete list of metrics we offer support for in each scenario. For more in-depth information on each metric definition and how it's calculated, see [What are evaluators?](../concepts/observability.md#what-are-evaluators).
+As you add your testing criteria, different metrics are going to be used as part of the evaluation. You can refer to the table for the complete list of metrics we offer support for in each scenario. For more in-depth information on metric definitions and how they're calculated, see [What are evaluators?](../concepts/observability.md#what-are-evaluators).
 
 | AI quality (AI assisted) | AI quality (NLP) | Risk and safety metrics |
 |--|--|--|
