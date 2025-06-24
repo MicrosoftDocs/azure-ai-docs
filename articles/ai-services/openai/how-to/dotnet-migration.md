@@ -19,7 +19,7 @@ manager: nitinme
 
 ## Setup
 
-Stable releases of `Azure.AI.OpenAI` are associated with a corresponding stable Azure OpenAI in Azure AI Model Inference API version label, for example, `2024-10-21`.
+Stable releases of `Azure.AI.OpenAI` are associated with a corresponding stable Azure OpenAI in Azure AI Foundry Models API version label, for example, `2024-10-21`.
 
 ```dotnetcli
 dotnet add package Azure.AI.OpenAI
