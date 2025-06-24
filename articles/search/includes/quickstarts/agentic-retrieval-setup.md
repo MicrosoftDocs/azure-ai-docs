@@ -80,3 +80,11 @@ To obtain your service endpoints:
     1. From the left pane, select **Resource Management** > **Keys and Endpoint**.
 
     1. Select the **OpenAI** tab and copy the URL that looks similar to `https://my-resource.openai.azure.com`.
+
+> [!IMPORTANT]
+> Agentic retrieval has two token-based billing models:
+>
+> + Billing from Azure OpenAI for query planning.
+> + Billing from Azure AI Search for query execution (semantic ranking).
+>
+> Semantic ranking is free in the initial public preview. After the preview, standard token billing applies. For more information, see [Availability and pricing of agentic retrieval](../../search-agentic-retrieval-concept.md#availability-and-pricing).

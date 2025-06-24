@@ -150,7 +150,7 @@ items:
     items:
     - name: Search index
       href: search-what-is-an-index.md
-    - name: Vector store
+    - name: Vector index
       href: vector-store.md
     - name: Knowledge store
       href: knowledge-store-concept-intro.md
@@ -236,8 +236,6 @@ items:
         href: search-howto-move-across-regions.md
   - name: Indexing
     items:
-    - name: Index via portal wizards
-      href: search-import-data-portal.md
     - name: Create an index
       href: search-how-to-create-search-index.md
     - name: Load an index
@@ -248,6 +246,26 @@ items:
       href: search-how-to-alias.md
     - name: Import large data sets
       href: search-how-to-large-index.md
+    - name: Text indexing
+      items:
+      - name: Add synonyms
+        href: search-synonyms.md
+      - name: Add a suggester for typeahead
+        href: index-add-suggesters.md
+      - name: Design a multilingual index
+        href: search-language-support.md
+      - name: Model complex data types
+        href: search-howto-complex-data-types.md
+      - name: Model relational data
+        href: index-sql-relational-data.md
+      - name: Analyzers
+        items:
+        - name: Analyzers overview
+          href: search-analyzers.md
+        - name: Add a language analyzer
+          href: index-add-language-analyzers.md
+        - name: Add a custom analyzer
+          href: index-add-custom-analyzers.md
     - name: Vector indexing
       items:
       - name: Create a vector index
@@ -278,134 +296,116 @@ items:
           href: vector-search-how-to-storage-options.md
         - name: Truncate dimensions
           href: vector-search-how-to-truncate-dimensions.md
-    - name: Text indexing
+  - name: Indexer and enrichment pipelines
+    items:
+    - name: Index via portal wizards
+      href: search-import-data-portal.md
+    - name: Logic Apps workflows
       items:
-      - name: Add synonyms
-        href: search-synonyms.md
-      - name: Add a suggester for typeahead
-        href: index-add-suggesters.md
-      - name: Design a multilingual index
-        href: search-language-support.md
-      - name: Model complex data types
-        href: search-howto-complex-data-types.md
-      - name: Model relational data
-        href: index-sql-relational-data.md
-      - name: Analyzers
-        items:
-        - name: Analyzers overview
-          href: search-analyzers.md
-        - name: Add a language analyzer
-          href: index-add-language-analyzers.md
-        - name: Add a custom analyzer
-          href: index-add-custom-analyzers.md
-    - name: Indexing and enrichment pipelines
+      - name: Create a workflow
+        href: search-how-to-index-logic-apps-indexers.md
+    - name: Indexers
       items:
-      - name: Logic Apps workflows
+      - name: Create an indexer
+        href: search-howto-create-indexers.md
+      - name: Run or reset indexers
+        href: search-howto-run-reset-indexers.md
+      - name: Schedule an indexer
+        href: search-howto-schedule-indexers.md
+      - name: Define field mappings
+        href: search-indexer-field-mappings.md
+      - name: Indexing whole files
         items:
-        - name: Create a workflow
-          href: search-how-to-index-logic-apps-indexers.md
-      - name: Indexers
+        - name: Content metadata properties
+          href: search-blob-metadata-properties.md
+        - name: Index one-to-many
+          href: search-howto-index-one-to-many-blobs.md
+        - name: Index plain text
+          href: search-howto-index-plaintext-blobs.md
+        - name: Index CSV
+          href: search-how-to-index-csv-blobs.md
+        - name: Index JSON
+          href: search-howto-index-json-blobs.md
+        - name: Index Markdown
+          href: search-how-to-index-markdown-blobs.md
+      - name: Troubleshooting guidance
+        href: search-indexer-troubleshooting.md
+      - name: Troubleshoot indexer errors and warnings
+        href: cognitive-search-common-errors-warnings.md
+    - name: Data sources (indexers)
+      items:
+      - name: Data sources gallery
+        href: search-data-sources-gallery.md
+      - name: Azure Storage
         items:
-        - name: Create an indexer
-          href: search-howto-create-indexers.md
-        - name: Run or reset indexers
-          href: search-howto-run-reset-indexers.md
-        - name: Schedule an indexer
-          href: search-howto-schedule-indexers.md
-        - name: Define field mappings
-          href: search-indexer-field-mappings.md
-        - name: Indexing whole files
-          items:
-          - name: Content metadata properties
-            href: search-blob-metadata-properties.md
-          - name: Index one-to-many
-            href: search-howto-index-one-to-many-blobs.md
-          - name: Index plain text
-            href: search-howto-index-plaintext-blobs.md
-          - name: Index CSV
-            href: search-how-to-index-csv-blobs.md
-          - name: Index JSON
-            href: search-howto-index-json-blobs.md
-          - name: Index Markdown
-            href: search-how-to-index-markdown-blobs.md
-        - name: Troubleshooting guidance
-          href: search-indexer-troubleshooting.md
-        - name: Troubleshoot indexer errors and warnings
-          href: cognitive-search-common-errors-warnings.md
-      - name: Data sources (indexers)
+        - name: Search over blobs
+          href: search-blob-storage-integration.md
+        - name: ADLS Gen2
+          href: search-howto-index-azure-data-lake-storage.md
+        - name: Blobs
+          href: search-howto-indexing-azure-blob-storage.md
+        - name: Files
+          href: search-file-storage-integration.md
+        - name: Tables
+          href: search-howto-indexing-azure-tables.md
+        - name: Index changed and deleted content
+          href: search-howto-index-changed-deleted-blobs.md
+      - name: Azure Cosmos DB
         items:
-        - name: Data sources gallery
-          href: search-data-sources-gallery.md
-        - name: Azure Storage
-          items:
-          - name: Search over blobs
-            href: search-blob-storage-integration.md
-          - name: ADLS Gen2
-            href: search-howto-index-azure-data-lake-storage.md
-          - name: Blobs
-            href: search-howto-indexing-azure-blob-storage.md
-          - name: Files
-            href: search-file-storage-integration.md
-          - name: Tables
-            href: search-howto-indexing-azure-tables.md
-          - name: Index changed and deleted content
-            href: search-howto-index-changed-deleted-blobs.md
-        - name: Azure Cosmos DB
-          items:
-          - name: Azure Cosmos DB for NoSQL
-            href: search-howto-index-cosmosdb.md
-          - name: Azure Cosmos DB for MongoDB
-            href: search-howto-index-cosmosdb-mongodb.md
-          - name: Azure Cosmos DB for Apache Gremlin
-            href: search-howto-index-cosmosdb-gremlin.md
-        - name: Azure DB for MySQL
-          href: search-howto-index-mysql.md
-        - name: Azure SQL
-          items:
-          - name: Azure SQL Databases
-            href: search-how-to-index-sql-database.md
-          - name: Azure SQL Managed Instances
-            href: search-how-to-index-sql-managed-instance.md
-          - name: Azure SQL Server VMs
-            href: search-how-to-index-sql-server.md
-        - name: OneLake files
-          href: search-how-to-index-onelake-files.md
-        - name: SharePoint Online
-          href: search-howto-index-sharepoint-online.md
-      - name: Skillsets (indexers)
+        - name: Azure Cosmos DB for NoSQL
+          href: search-howto-index-cosmosdb.md
+        - name: Azure Cosmos DB for MongoDB
+          href: search-howto-index-cosmosdb-mongodb.md
+        - name: Azure Cosmos DB for Apache Gremlin
+          href: search-howto-index-cosmosdb-gremlin.md
+      - name: Azure DB for MySQL
+        href: search-howto-index-mysql.md
+      - name: Azure SQL
         items:
-        - name: Create a skillset
-          href: cognitive-search-defining-skillset.md
-        - name: Attach an Azure AI resource
-          href: cognitive-search-attach-cognitive-services.md
-        - name: Define an index projection
-          href: search-how-to-define-index-projections.md
-        - name: Debug sessions overview
-          href: cognitive-search-debug-session.md
-        - name: Debug a skillset
-          href: cognitive-search-how-to-debug-skillset.md
-        - name: Reference a skill output
-          href: cognitive-search-concept-annotations-syntax.md
-        - name: Map to index fields
-          href: cognitive-search-output-field-mapping.md
-        - name: Process image files
-          href: cognitive-search-concept-image-scenarios.md
-        - name: Cache (incremental) enrichment
-          href: search-howto-incremental-index.md
-        - name: Design tips
-          href: cognitive-search-concept-troubleshooting.md
-        - name: Best practices - GenAI Prompt skill
-          href: responsible-ai-best-practices-genai-prompt-skill.md
-        - name: GenAI Prompt Skill - Example Usage Guide
-          href: chat-completion-skill-example-usage.md
-        - name: Custom skills
-          items:
-          - name: Integrate custom skills
-            href: cognitive-search-custom-skill-interface.md
-          - name: Scale out custom skills
-            href: cognitive-search-custom-skill-scale.md
-          - name: Example - Bing Entity Search
-            href: cognitive-search-create-custom-skill-example.md
+        - name: Azure SQL Databases
+          href: search-how-to-index-sql-database.md
+        - name: Azure SQL Managed Instances
+          href: search-how-to-index-sql-managed-instance.md
+        - name: Azure SQL Server VMs
+          href: search-how-to-index-sql-server.md
+      - name: OneLake files
+        href: search-how-to-index-onelake-files.md
+      - name: SharePoint Online
+        href: search-howto-index-sharepoint-online.md
+    - name: Skillsets (indexers)
+      items:
+      - name: Create a skillset
+        href: cognitive-search-defining-skillset.md
+      - name: Attach an Azure AI resource
+        href: cognitive-search-attach-cognitive-services.md
+      - name: Define an index projection
+        href: search-how-to-define-index-projections.md
+      - name: Debug sessions overview
+        href: cognitive-search-debug-session.md
+      - name: Debug a skillset
+        href: cognitive-search-how-to-debug-skillset.md
+      - name: Reference a skill output
+        href: cognitive-search-concept-annotations-syntax.md
+      - name: Map to index fields
+        href: cognitive-search-output-field-mapping.md
+      - name: Process image files
+        href: cognitive-search-concept-image-scenarios.md
+      - name: Cache (incremental) enrichment
+        href: search-howto-incremental-index.md
+      - name: Design tips
+        href: cognitive-search-concept-troubleshooting.md
+      - name: Best practices - GenAI Prompt skill
+        href: responsible-ai-best-practices-genai-prompt-skill.md
+      - name: GenAI Prompt Skill - Example Usage Guide
+        href: chat-completion-skill-example-usage.md
+      - name: Custom skills
+        items:
+        - name: Integrate custom skills
+          href: cognitive-search-custom-skill-interface.md
+        - name: Scale out custom skills
+          href: cognitive-search-custom-skill-scale.md
+        - name: Example - Bing Entity Search
+          href: cognitive-search-create-custom-skill-example.md
   - name: Retrieval
     items:
     - name: Agentic retrieval
@@ -606,7 +606,7 @@ items:
 - name: Responsible AI
   items:
   - name: Transparency note
-    href: /legal/search/transparency-note?context=/azure/search/context/context
+    href: /azure/ai-foundry/responsible-ai/search/transparency-note
 - name: Reference
   items:
   - name: REST API reference

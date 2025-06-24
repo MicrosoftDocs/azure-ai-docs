@@ -22,7 +22,7 @@ The Azure AI model catalog offers a large selection of Azure AI Foundry Models f
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
 
-To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others support inferencing using the [Foundry Models API](../model-inference/overview.md). You can find more details about individual models by reviewing their model cards in the [model catalog for Azure AI Foundry portal](https://ai.azure.com/explore/models).
+To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others support inferencing using the [Model Inference API](../model-inference/overview.md). You can find more details about individual models by reviewing their model cards in the [model catalog for Azure AI Foundry portal](https://ai.azure.com/explore/models).
 
 :::image type="content" source="../media/models-featured/models-catalog.gif" alt-text="An animation showing Azure AI Foundry model catalog section and the models available." lightbox="../media/models-featured/models-catalog.gif":::
 
@@ -67,7 +67,7 @@ The Cohere family of models includes various models optimized for different use 
 
 ### Cohere command and embed
 
-The following table lists the Cohere models that you can inference via the Foundry Models API.
+The following table lists the Cohere models that you can inference via the Model Inference API.
 
 | Model  | Type | Capabilities | 
 | ------ | ---- | --- | 
@@ -76,7 +76,7 @@ The following table lists the Cohere models that you can inference via the Found
 | [Cohere-command-r-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-08-2024/version/1/registry/azureml-cohere) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 | [Cohere-command-r-plus](https://ai.azure.com/explore/models/Cohere-command-r-plus/version/1/registry/azureml-cohere) <br> (deprecated) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 | [Cohere-command-r](https://ai.azure.com/explore/models/Cohere-command-r/version/1/registry/azureml-cohere) <br> (deprecated)| [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
-| [Cohere-embed-4](https://aka.ms/aistudio/landing/cohere-embed-4) | [embeddings](../model-inference/how-to/use-embeddings.md?context=/azure/ai-foundry/context/context) <br /> [image-embeddings](../model-inference/how-to/use-image-embeddings.md?context=/azure/ai-foundry/context/context) | - **Input:** image, text <br /> - **Output:** image, text (128,000 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** image, text  |
+| [Cohere-embed-v-4](https://aka.ms/aistudio/landing/cohere-embed-4) | [embeddings](../model-inference/how-to/use-embeddings.md?context=/azure/ai-foundry/context/context) <br /> [image-embeddings](../model-inference/how-to/use-image-embeddings.md?context=/azure/ai-foundry/context/context) | - **Input:** image, text <br /> - **Output:** image, text (128,000 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** image, text  |
 | [Cohere-embed-v3-english](https://ai.azure.com/explore/models/Cohere-embed-v3-english/version/1/registry/azureml-cohere) | [embeddings](../model-inference/how-to/use-embeddings.md?context=/azure/ai-foundry/context/context) <br /> [image-embeddings](../model-inference/how-to/use-image-embeddings.md?context=/azure/ai-foundry/context/context) | - **Input:** text (512 tokens) <br /> - **Output:** Vector (1,024 dim.) |
 | [Cohere-embed-v3-multilingual](https://ai.azure.com/explore/models/Cohere-embed-v3-multilingual/version/1/registry/azureml-cohere) | [embeddings](../model-inference/how-to/use-embeddings.md?context=/azure/ai-foundry/context/context) <br /> [image-embeddings](../model-inference/how-to/use-image-embeddings.md?context=/azure/ai-foundry/context/context) | - **Input:** text (512 tokens) <br /> - **Output:** Vector (1,024 dim.) |
 
@@ -363,7 +363,7 @@ xAI's Grok 3 and Grok 3 Mini models are designed to excel in various enterprise 
 
 #### Inference examples: Stability AI
 
-Stability AI models deployed via standard deployment implement the Foundry Models API on the route `/image/generations`.
+Stability AI models deployed via standard deployment implement the Model Inference API on the route `/image/generations`.
 For examples of how to use Stability AI models, see the following examples:
 
 - [Use OpenAI SDK with Stability AI models for text to image requests](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/stabilityai/Text_to_Image_openai_library.ipynb)

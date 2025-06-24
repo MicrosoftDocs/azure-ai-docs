@@ -7,8 +7,8 @@ ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 04/29/2025
 ms.reviewer: meerakurup 
-ms.author: larryfr
-author: Blackmist
+ms.author: jburchel 
+author: jonburchel 
 zone_pivot_groups: azure-ai-studio-sdk-cli
 # Customer intent: As an administrator, I want to make sure that my data is handled securely when used in the playground chat.
 ---

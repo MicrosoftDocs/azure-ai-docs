@@ -61,7 +61,7 @@ sections:
       - question: |
           Do you use my company data to train any of the models? 
         answer: |
-          Azure OpenAI doesn't use customer data to retrain models. For more information, see the [Azure OpenAI data, privacy, and security guide](/legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context).    
+          Azure OpenAI doesn't use customer data to retrain models. For more information, see the [Azure OpenAI data, privacy, and security guide](/azure/ai-foundry/responsible-ai/openai/data-privacy).    
   - name: Learning more and where to ask questions
     questions:
       - question: |
