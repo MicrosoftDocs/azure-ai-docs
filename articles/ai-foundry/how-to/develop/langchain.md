@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 03/11/2025
+ms.date: 06/24/2025
 ms.reviewer: fasantia
 ms.author: sgilley
 author: sdgilley
@@ -30,12 +30,12 @@ In this tutorial, you learn how to use the packages `langchain-azure-ai` to buil
 To run this tutorial, you need:
 
 * An [Azure subscription](https://azure.microsoft.com).
-* A model deployment supporting the [Foundry Models API](https://aka.ms/azureai/modelinference) deployed. In this example, we use a `Mistral-Large-2407` deployment in the [Foundry Models](../../../ai-foundry/model-inference/overview.md).
+* A model deployment supporting the [Foundry Models API](https://aka.ms/azureai/modelinference) deployed. In this example, we use a `mistral-medium-2505` deployment in the [Foundry Models](../../../ai-foundry/model-inference/overview.md).
 * Python 3.9 or later installed, including pip.
 * LangChain installed. You can do it with:
 
     ```bash
-    pip install langchain-core
+    pip install langchain
     ```
 
 * In this example, we're working with the Foundry Models API, hence we install the following packages:
@@ -63,7 +63,10 @@ To use LLMs deployed in Azure AI Foundry portal, you need the endpoint and crede
     > [!TIP]
     > If your model was deployed with Microsoft Entra ID support, you don't need a key.
 
-In this scenario, we placed both the endpoint URL and key in the following environment variables:
+In this scenario, we placed both the endpoint URL and key in the following environment variables.  
+
+> [!TIP]
+> The endpoint you copied might have extra text after /models.  Delete that and stop ad /models as shown here.
 
 ```bash
 export AZURE_INFERENCE_ENDPOINT="https://<resource>.services.ai.azure.com/models"
@@ -75,7 +78,7 @@ Once configured, create a client to connect with the chat model by using the `in
 ```python
 from langchain.chat_models import init_chat_model
 
-llm = init_chat_model(model="mistral-large-2407", model_provider="azure_ai")
+llm = init_chat_model(model="mistral-medium-2505", model_provider="azure_ai")
 ```
 
 You can also use the class `AzureAIChatCompletionsModel` directly.
@@ -87,7 +90,7 @@ from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 model = AzureAIChatCompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
-    model="mistral-large-2407",
+    model="mistral-medium-2505",
 )
 ```
 
@@ -104,7 +107,7 @@ from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 model = AzureAIChatCompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=DefaultAzureCredential(),
-    model="mistral-large-2407",
+    model="mistral-medium-2505",
 )
 ```
 
@@ -122,7 +125,7 @@ from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 model = AzureAIChatCompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=DefaultAzureCredentialAsync(),
-    model="mistral-large-2407",
+    model="mistral-medium-2505",
 )
 ```
 
@@ -157,6 +160,7 @@ You can also compose operations as needed in **chains**. Let's now use a prompt 
 
 ```python
 from langchain_core.output_parsers import StrOutputParser
+from langchain_core.prompts import ChatPromptTemplate
 
 system_template = "Translate the following into {language}:"
 prompt_template = ChatPromptTemplate.from_messages(
@@ -199,7 +203,7 @@ from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 producer = AzureAIChatCompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
-    model="mistral-large-2407",
+    model="mistral-medium-2505",
 )
 
 verifier = AzureAIChatCompletionsModel(
@@ -365,7 +369,7 @@ from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 model = AzureAIChatCompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
-    model="mistral-large-2407",
+    model="mistral-medium-2505",
     client_kwargs={"logging_enable": True},
 )
 ```
