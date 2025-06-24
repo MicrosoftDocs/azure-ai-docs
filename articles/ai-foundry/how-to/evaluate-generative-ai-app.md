@@ -1,5 +1,5 @@
 ---
-title: Evaluate Generative AI Models and Applications with Azure AI Foundry
+title: Evaluate Generative AI Models and Apps with Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: Evaluate your generative AI models and applications by using Azure AI Foundry.
 manager: scottpolly
@@ -31,7 +31,7 @@ An evaluation run allows you to generate metric outputs for each data row in you
 
 ### From the evaluate page
 
-From the collapsible left menu, select **Evaluation** > **+ Create a new evaluation**.
+From the collapsible left menu, select **Evaluation** > **fCreate a new evaluation**.
 
 :::image type="content" source="../media/evaluations/evaluate/create-new-evaluation.png" alt-text="Screenshot of the button to create a new evaluation." lightbox="../media/evaluations/evaluate/create-new-evaluation.png":::
 
@@ -42,7 +42,7 @@ From the collapsible left menu, select **Evaluation** > **+ Create a new evaluat
 1. Select the **Benchmark** tab.
 1. Select **Try with your own data**. This selection opens the model evaluation panel, where you can create an evaluation run against your selected model.  
 
-:::image type="content" source="../media/evaluations/evaluate/try-with-your-own-data.png" alt-text="Screenshot of the Try with your own data button from the model catalog page. " lightbox="../media/evaluations/evaluate/try-with-your-own-data.png":::
+   :::image type="content" source="../media/evaluations/evaluate/try-with-your-own-data.png" alt-text="Screenshot of the Try with your own data button from the model catalog page." lightbox="../media/evaluations/evaluate/try-with-your-own-data.png":::
 
 #### Evaluation target
 
@@ -67,11 +67,11 @@ When you enter the evaluation creation wizard, you can select from preexisting d
 
 #### Configure testing criteria
 
-We support three types of metrics curated by Microsoft to facilitate a comprehensive evaluation of your application:  
+We support three types of metrics that are curated by Microsoft to facilitate a comprehensive evaluation of your application:  
 
-- AI quality (AI assisted): These metrics evaluate the overall quality and coherence of the generated content. You need a model deployment as judge to run these metrics.
-- AI quality (NLP): These natural language processing (NLP) metrics are mathematical-based, and they also evaluate the overall quality of the generated content. They often require ground truth data, but they don't require a model deployment as judge.
-- Risk and safety metrics: These metrics focus on identifying potential content risks and ensuring the safety of the generated content.
+- **AI quality (AI assisted)**: These metrics evaluate the overall quality and coherence of the generated content. You need a model deployment as judge to run these metrics.
+- **AI quality (NLP)**: These natural language processing (NLP) metrics are mathematical-based, and they also evaluate the overall quality of the generated content. They often require ground truth data, but they don't require a model deployment as judge.
+- **Risk and safety metrics**: These metrics focus on identifying potential content risks and ensuring the safety of the generated content.
 
 :::image type="content" source="../media/evaluations/evaluate/testing-criteria.png" alt-text="Screenshot that shows how to add testing criteria." lightbox="../media/evaluations/evaluate/testing-criteria.png":::
 
@@ -83,57 +83,57 @@ As you add your testing criteria, different metrics are going to be used as part
 
 When running AI-assisted quality evaluation, you must specify a GPT model for the calculation/grading process.
 
-:::image type="content" source="../media/evaluations/evaluate/select-metrics-ai-quality-ai-assisted.png" alt-text="Screenshot of the Likert-scale evaluator with the AI quality (AI assisted) metrics listed in presents." lightbox="../media/evaluations/evaluate/select-metrics-ai-quality-ai-assisted.png":::
+:::image type="content" source="../media/evaluations/evaluate/select-metrics-ai-quality-ai-assisted.png" alt-text="Screenshot that shows the Likert-scale evaluator with the AI quality (AI assisted) metrics listed in presets." lightbox="../media/evaluations/evaluate/select-metrics-ai-quality-ai-assisted.png":::
 
 AI Quality (NLP) metrics are mathematically based measurements that assess your application's performance. They often require ground truth data for calculation. ROUGE is a family of metrics. You can select the ROUGE type to calculate the scores. Various types of ROUGE metrics offer ways to evaluate the quality of text generation. ROUGE-N measures the overlap of n-grams between the candidate and reference texts.  
 
-:::image type="content" source="../media/evaluations/evaluate/select-metrics-ai-quality-nlp.png" alt-text="Screenshot of text similarity with the AI quality (NLP) metrics listed in presents." lightbox="../media/evaluations/evaluate/select-metrics-ai-quality-nlp.png":::
+:::image type="content" source="../media/evaluations/evaluate/select-metrics-ai-quality-nlp.png" alt-text="Screenshot that shows text similarity with the AI quality (NLP) metrics listed in presets." lightbox="../media/evaluations/evaluate/select-metrics-ai-quality-nlp.png":::
 
 For risk and safety metrics, you don't need to provide a deployment. The Azure AI Foundry portal provisions a GPT-4 model that can generate content risk severity scores and reasoning to enable you to evaluate your application for content harms.
 
-:::image type="content" source="../media/evaluations/evaluate/safety-metrics.png" alt-text="Screenshot of violent content, which is one of the risk and safety metrics." lightbox="../media/evaluations/evaluate/safety-metrics.png":::
-
 > [!NOTE]
 > AI-assisted risk and safety metrics are hosted by Azure AI Foundry safety evaluations and are only available in the following regions: East US 2, France Central, UK South, Sweden Central.
+
+:::image type="content" source="../media/evaluations/evaluate/safety-metrics.png" alt-text="Screenshot that shows the metric Violent content, which is one of the risk and safety metrics." lightbox="../media/evaluations/evaluate/safety-metrics.png":::
 
 [!INCLUDE [FDP-backward-compatibility-azure-openai](../includes/fdp-backward-compatibility-azure-openai.md)]
 
 #### Data mapping
 
-**Data mapping for evaluation**: For each metric added, you must specify which data columns in your dataset correspond with the inputs that are needed in the evaluation. Different evaluation metrics demand distinct types of data inputs for accurate calculations.
+Data mapping for evaluation: For each metric added, you must specify which data columns in your dataset correspond with the inputs that are needed in the evaluation. Different evaluation metrics demand distinct types of data inputs for accurate calculations.
 
 During evaluation, the model’s response is assessed against key inputs such as:
 
-- Query: Required for all metrics
-- Context: Optional
-- Ground truth: Optional, required for AI quality (NLP) metrics
+- **Query**: Required for all metrics.
+- **Context**: Optional.
+- **Ground truth**: Optional, required for AI quality (NLP) metrics.
 
 These mappings ensure accurate alignment between your data and the evaluation criteria.
 
 :::image type="content" source="../media/evaluations/evaluate/test-criteria-data-mapping.png" alt-text="Screenshot of the query, context, and ground truth mapping to your evaluation input." lightbox="../media/evaluations/evaluate/test-criteria-data-mapping.png":::
 
-For guidance on the specific data mapping requirements for each metric, refer to the information provided in the table:
-
 ##### Query and response metric requirements
+
+For guidance on the specific data mapping requirements for each metric, refer to the information provided in the table:
 
 | Metric                     | Query         | Response      | Context       | Ground truth  |
 |----------------------------|---------------|---------------|---------------|---------------|
-| Groundedness               | Required: Str | Required: Str | Required: Str | N/A           |
-| Coherence                  | Required: Str | Required: Str | N/A           | N/A           |
-| Fluency                    | Required: Str | Required: Str | N/A           | N/A           |
-| Relevance                  | Required: Str | Required: Str | Required: Str | N/A           |
-| GPT-similarity             | Required: Str | Required: Str | N/A           | Required: Str |
-| F1 score                   | N/A           | Required: Str | N/A           | Required: Str |
-| BLEU score                 | N/A           | Required: Str | N/A           | Required: Str |
-| GLEU score                 | N/A           | Required: Str | N/A           | Required: Str |
-| METEOR score               | N/A           | Required: Str | N/A           | Required: Str |
-| ROUGE score                | N/A           | Required: Str | N/A           | Required: Str |
-| Self-harm-related content  | Required: Str | Required: Str | N/A           | N/A           |
-| Hateful and unfair content | Required: Str | Required: Str | N/A           | N/A           |
-| Violent content            | Required: Str | Required: Str | N/A           | N/A           |
-| Sexual content             | Required: Str | Required: Str | N/A           | N/A           |
-| Protected material         | Required: Str | Required: Str | N/A           | N/A           |
-| Indirect attack            | Required: Str | Required: Str | N/A           | N/A           |
+| Groundedness               | Required: Str | Required: Str | Required: Str | Doesn't apply           |
+| Coherence                  | Required: Str | Required: Str | Doesn't apply          | Doesn't apply           |
+| Fluency                    | Required: Str | Required: Str | Doesn't apply           | Doesn't apply           |
+| Relevance                  | Required: Str | Required: Str | Required: Str | Doesn't apply           |
+| GPT-similarity             | Required: Str | Required: Str | Doesn't apply           | Required: Str |
+| F1 score                   | Doesn't apply           | Required: Str | Doesn't apply           | Required: Str |
+| BLEU score                 | Doesn't apply           | Required: Str | Doesn't apply           | Required: Str |
+| GLEU score                 | Doesn't apply           | Required: Str | Doesn't apply           | Required: Str |
+| METEOR score               | Doesn't apply           | Required: Str | Doesn't apply           | Required: Str |
+| ROUGE score                | Doesn't apply           | Required: Str | Doesn't apply           | Required: Str |
+| Self-harm-related content  | Required: Str | Required: Str | Doesn't apply           | Doesn't apply           |
+| Hateful and unfair content | Required: Str | Required: Str | Doesn't apply           | Doesn't apply           |
+| Violent content            | Required: Str | Required: Str | Doesn't apply           | Doesn't apply           |
+| Sexual content             | Required: Str | Required: Str | Doesn't apply           | Doesn't apply           |
+| Protected material         | Required: Str | Required: Str | Doesn't apply           | Doesn't apply           |
+| Indirect attack            | Required: Str | Required: Str | Doesn't apply           | Doesn't apply           |
 
 - **Query**: A query seeking specific information.  
 - **Response**: The response to a query generated by the model.
@@ -144,38 +144,42 @@ For guidance on the specific data mapping requirements for each metric, refer to
 
 After completing all the necessary configurations, you can provide an optional name for your evaluation. Then you can review and select **Submit** to submit the evaluation run.
 
-:::image type="content" source="../media/evaluations/evaluate/review-and-finish.png" alt-text="Screenshot of the review page to create a new evaluation." lightbox="../media/evaluations/evaluate/review-and-finish.png":::
+:::image type="content" source="../media/evaluations/evaluate/review-and-finish.png" alt-text="Screenshot that shows the review page to create a new evaluation." lightbox="../media/evaluations/evaluate/review-and-finish.png":::
 
 ### Fine-tuned model evaluation
 
 To create a new evaluation for your selected model deployment, you can use a GPT model to generate sample questions, or you can select from your established dataset collection.
 
-:::image type="content" source="../media/evaluations/evaluate/select-data-source.png" alt-text="Screenshot of how to select a data source in Create a new evaluation." lightbox="../media/evaluations/evaluate/select-data-source.png":::
+:::image type="content" source="../media/evaluations/evaluate/select-data-source.png" alt-text="Screenshot that shows how to select a data source in Create a new evaluation." lightbox="../media/evaluations/evaluate/select-data-source.png":::
 
 #### Configure test data for a fine-tuned model
 
-Set up the test dataset that is used for evaluation. This dataset is sent to the model to generate responses for assessment. You have two options for configuring your test data:
+Set up the test dataset that's used for evaluation. This dataset is sent to the model to generate responses for assessment. You have two options for configuring your test data:
 
 - Generate sample questions
 - Use an existing dataset (or upload a new dataset)
 
 ##### Generate sample questions
 
-If you don't have a dataset readily available and want to run an evaluation with a small sample, select the model deployment that you want to evaluate based on a chosen topic. Azure OpenAI models and other open models that are compatible with standard deployment, like Meta Llama and Phi-3 family models, are supported. The topic helps tailor the generated content to your area of interest. The queries and responses are generated in real time, and you can regenerate them as needed.
+If you don't have a dataset readily available and want to run an evaluation with a small sample, select the model deployment that you want to evaluate based on a chosen topic. Azure OpenAI models and other open models that are compatible with standard deployment, like Meta Llama and Phi-3 family models, are supported. 
 
-:::image type="content" source="../media/evaluations/evaluate/create-test-data-model.png" alt-text="Screenshot of Create test data that highlights Generate with." lightbox="../media/evaluations/evaluate/create-test-data-model.png":::
+The topic helps tailor the generated content to your area of interest. The queries and responses are generated in real time, and you can regenerate them as needed.
+
+:::image type="content" source="../media/evaluations/evaluate/create-test-data-model.png" alt-text="Screenshot that shows Create test data that highlights Generate with." lightbox="../media/evaluations/evaluate/create-test-data-model.png":::
 
 ##### Use your dataset
 
 You can also select from your established dataset collection or upload a new dataset.
 
-:::image type="content" source="../media/evaluations/evaluate/create-evaluation-model-dataset.png" alt-text="Screenshot of Select data source that highlights using an existing dataset." lightbox="../media/evaluations/evaluate/create-evaluation-model-dataset.png":::
+:::image type="content" source="../media/evaluations/evaluate/create-evaluation-model-dataset.png" alt-text="Screenshot that shows Select data source and highlights using an existing dataset." lightbox="../media/evaluations/evaluate/create-evaluation-model-dataset.png":::
 
 #### Select evaluation metrics
 
-To configure your test criteria, select **Next**. As you select your criteria, metrics are added, and you need to map your dataset’s columns to the required fields for evaluation. These mappings ensure accurate alignment between your data and the evaluation criteria. After you select the test criteria you want, you can review the evaluation, optionally change the name of the evaluation, and then select **Submit**. Go to the evaluation page to see the results.
+To configure your test criteria, select **Next**. As you select your criteria, metrics are added, and you need to map your dataset’s columns to the required fields for evaluation. These mappings ensure accurate alignment between your data and the evaluation criteria. 
 
-:::image type="content" source="../media/evaluations/evaluate/review-model-evaluation.png" alt-text="Screenshot of Review evaluation." lightbox="../media/evaluations/evaluate/review-model-evaluation.png":::
+After you select the test criteria you want, you can review the evaluation, optionally change the name of the evaluation, and then select **Submit**. Go to the evaluation page to see the results.
+
+:::image type="content" source="../media/evaluations/evaluate/review-model-evaluation.png" alt-text="Screenshot that shows the Review evaluation option." lightbox="../media/evaluations/evaluate/review-model-evaluation.png":::
 
 > [!NOTE]
 > The generated dataset is saved to the project’s blob storage after the evaluation run is created.
@@ -188,9 +192,9 @@ The evaluator library also enables version management. You can compare different
 
 To use the evaluator library in Azure AI Foundry portal, go to your project's **Evaluation** page and select the **Evaluator library** tab.
 
-:::image type="content" source="../media/evaluations/evaluate/evaluator-library-list.png" alt-text="Screenshot of the page where you select evaluators from the evaluator library." lightbox="../media/evaluations/evaluate/evaluator-library-list.png":::
+:::image type="content" source="../media/evaluations/evaluate/evaluator-library-list.png" alt-text="Screenshot that shows the page where you select evaluators from the evaluator library." lightbox="../media/evaluations/evaluate/evaluator-library-list.png":::
 
-You can select the evaluator name to see more details. You can see the name, description, and parameters, and check any files associated with the evaluator. Here are some examples of Microsoft curated evaluators:
+You can select the evaluator name to see more details. You can see the name, description, and parameters, and check any files associated with the evaluator. Here are some examples of Microsoft-curated evaluators:
 
 - For performance and quality evaluators curated by Microsoft, you can view the annotation prompt on the details page. You can adapt these prompts to your own use case. Change the parameters or criteria according to your data and objectives in the Azure AI Evaluation SDK. For example, you can select *Groundedness-Evaluator* and check the Prompty file that shows how we calculate the metric.
 - For risk and safety evaluators curated by Microsoft, you can see the definition of the metrics. For example, you can select the *Self-Harm-Related-Content-Evaluator* to learn what it means and understand how Microsoft determines severity levels.
@@ -202,4 +206,4 @@ Learn more about how to evaluate your generative AI applications:
 - [Evaluate your generative AI apps via the playground](./evaluate-prompts-playground.md)
 - [View the evaluation results](./evaluate-results.md)
 - [Create evaluations specifically with OpenAI evaluation graders in Azure OpenAI Hub](../../ai-services/openai/how-to/evaluations.md)
-- [Transparency Note for Azure AI Foundry safety evaluations](../concepts/safety-evaluations-transparency-note.md).
+- [Transparency note for Azure AI Foundry safety evaluations](../concepts/safety-evaluations-transparency-note.md).
