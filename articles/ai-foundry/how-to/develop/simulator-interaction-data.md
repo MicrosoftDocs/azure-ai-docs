@@ -401,7 +401,7 @@ The `AdversarialSimulator` supports a range of scenarios, hosted in the service,
 - For testing groundedness scenarios (single or multi-turn), see the section on how to [simulate and evaluate for groundedness](#simulate-and-evaluate-for-groundedness).
 - For simulating direct attack (UPIA) and indirect attack (XPIA) scenarios, see the section on how to [simulate jailbreak attacks](#simulate-jailbreak-attacks).
 
-### <a name = "simulating-jailbreak-attacks"></a> Simulate Jailbreak Attacks
+### <a name = "simulating-jailbreak-attacks"></a> Simulate jailbreak attacks
 
 Evaluating vulnerability towards the following types of jailbreak attacks is supported:
 
