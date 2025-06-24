@@ -15,7 +15,7 @@ items:
   - name: Explore Azure AI Foundry Models
     href: concepts/foundry-models-overview.md
   - name: Configure Models from Partners and Community
-    href: model-inference/how-to/configure-marketplace.md?context=/azure/ai-foundry/context/context
+    href: how-to/configure-marketplace.md?context=/azure/ai-foundry/context/context
   - name: Data, privacy, and security for Model Catalog
     href: how-to/concept-data-privacy.md
   - name: Model lifecycle and retirement
@@ -33,17 +33,17 @@ items:
   - name: Supported programming languages and SDKs
     href: ../ai-services/openai/supported-languages.md?context=/azure/ai-foundry/context/context
   - name: Foundry Models quotas and limits
-    href: ../ai-foundry/model-inference/quotas-limits.md?context=/azure/ai-foundry/context/context
+    href: ../ai-foundry/foundry-models/quotas-limits.md?context=/azure/ai-foundry/context/context
   - name: Deploy Foundry Models
     items:
     - name: Deployment types
-      href: ../ai-foundry/model-inference/concepts/deployment-types.md?context=/azure/ai-foundry/context/context
+      href: ../ai-foundry/foundry-models/concepts/deployment-types.md?context=/azure/ai-foundry/context/context
     - name: Supported Foundry Models
-      href: ../ai-foundry/model-inference/concepts/models.md?context=/azure/ai-foundry/context/context
+      href: ../ai-foundry/foundry-models/concepts/models.md?context=/azure/ai-foundry/context/context
     - name: Deploy Foundry Models
-      href: ../ai-foundry/model-inference/how-to/create-model-deployments.md?context=/azure/ai-foundry/context/context
+      href: ../ai-foundry/foundry-models/how-to/create-model-deployments.md?context=/azure/ai-foundry/context/context
     - name: Use the Foundry Models endpoint
-      href: ../ai-foundry/model-inference/how-to/inference.md?context=/azure/ai-foundry/context/context
+      href: ../ai-foundry/foundry-models/how-to/inference.md?context=/azure/ai-foundry/context/context
     - name: Develop
       items:
         - name: Work with image models
@@ -51,19 +51,19 @@ items:
         - name: Work with chat models
           items:
           - name: Work with chat completion models
-            href: ../ai-foundry/model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context
+            href: ../ai-foundry/foundry-models/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context
           - name: Work with reasoning models
-            href: ../ai-foundry/model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context
+            href: ../ai-foundry/foundry-models/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context
           - name: Work with multimodal models
-            href: ../ai-foundry/model-inference/how-to/use-chat-multi-modal.md?context=/azure/ai-foundry/context/context
+            href: ../ai-foundry/foundry-models/how-to/use-chat-multi-modal.md?context=/azure/ai-foundry/context/context
           - name: Use structured outputs
-            href: ../ai-foundry/model-inference/how-to/use-structured-outputs.md?context=/azure/ai-foundry/context/context
+            href: ../ai-foundry/foundry-models/how-to/use-structured-outputs.md?context=/azure/ai-foundry/context/context
         - name: Work with embedding models
           items:
           - name: Work with text embeddings
-            href: ../ai-foundry/model-inference/how-to/use-embeddings.md?context=/azure/ai-foundry/context/context
+            href: ../ai-foundry/foundry-models/how-to/use-embeddings.md?context=/azure/ai-foundry/context/context
           - name: Work with image embeddings
-            href: ../ai-foundry/model-inference/how-to/use-image-embeddings.md?context=/azure/ai-foundry/context/context
+            href: ../ai-foundry/foundry-models/how-to/use-image-embeddings.md?context=/azure/ai-foundry/context/context
         - name: Develop with LangChain and LangGraph
           href: how-to/develop/langchain.md
         - name: Develop with Llama-Index
@@ -366,7 +366,7 @@ items:
             href: tutorials/copilot-sdk-evaluate.md
             displayName: code,sdk
       - name: Get started with DeepSeek-R1 reasoning model
-        href: model-inference/tutorials/get-started-deepseek-r1.md?context=/azure/ai-foundry/context/context
+        href: foundry-models/tutorials/get-started-deepseek-r1.md?context=/azure/ai-foundry/context/context
       - name: Deploy an enterprise chat web app
         href: tutorials/deploy-chat-web-app.md
       - name: Build a RAG solution using Azure AI Search
@@ -604,7 +604,7 @@ items:
   - name: Cost management for Foundry Models
     items:
     - name: Manage quotas and limits for Foundry Models
-      href: ../ai-foundry/model-inference/quotas-limits.md?context=/azure/ai-foundry/context/context
+      href: ../ai-foundry/foundry-models/quotas-limits.md?context=/azure/ai-foundry/context/context
     - name: What is the Provisioned Throughput offering (PTU)?
       href: ../ai-services/openai/concepts/provisioned-throughput.md?context=/azure/ai-foundry/context/context
       displayName: PTU, provisioned, provisioned throughput units
@@ -700,13 +700,13 @@ items:
     - name: Reference
       items:
       - name: Get Model Info
-        href: /rest/api/aifoundry/model-inference/get-model-info/get-model-info
+        href: /rest/api/aifoundry/get-model-info/get-model-info
       - name: Get Chat Completions
-        href: /rest/api/aifoundry/model-inference/get-chat-completions/get-chat-completions
+        href: /rest/api/aifoundry/get-chat-completions/get-chat-completions
       - name: Get Embeddings
-        href: /rest/api/aifoundry/model-inference/get-embeddings/get-embeddings
+        href: /rest/api/aifoundry/get-embeddings/get-embeddings
       - name: Get Image Embeddings
-        href: /rest/api/aifoundry/model-inference/get-image-embeddings/get-image-embeddings
+        href: /rest/api/aifoundry/get-image-embeddings/get-image-embeddings
   - name: Azure OpenAI API
     href: /azure/ai-services/openai/reference
   
