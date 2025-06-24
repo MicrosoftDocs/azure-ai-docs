@@ -2,8 +2,8 @@
 title: Management center overview
 titleSuffix: Azure AI Foundry
 description: "The management center in Azure AI Foundry portal provides a centralized hub for governance and management activities."
-author: sdgilley
 ms.author: sgilley
+author: sdgilley
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024

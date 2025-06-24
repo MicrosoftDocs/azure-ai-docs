@@ -351,6 +351,11 @@
             "redirect_document_id": true
           },
           {
+            "source_path_from_root": "/articles/ai-foundry/how-to/deploy-nvidia-inference-microservice.md",
+            "redirect_url": "/azure/ai-foundry/how-to/deploy-models-managed-pay-go#nvidia",
+            "redirect_document_id": true
+          },
+          {
             "source_path_from_root": "/articles/ai-studio/how-to/fine-tune-managed-compute.md",
             "redirect_url": "/azure/ai-foundry/how-to/fine-tune-managed-compute",
             "redirect_document_id": true

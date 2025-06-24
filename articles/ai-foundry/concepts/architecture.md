@@ -10,8 +10,8 @@ ms.custom:
 ms.topic: concept-article
 ms.date: 04/28/2025
 ms.reviewer: deeikele
-ms.author: larryfr
-author: Blackmist
+ms.author: sgilley
+author: sdgilley
 ---
 
 # Azure AI Foundry architecture 
