@@ -24,7 +24,7 @@ author: lgayhardt
 
 Large language models (LLMs) are known for their few-shot and zero-shot learning abilities, allowing them to function with minimal data. However, this limited data availability impedes thorough evaluation and optimization when you might not have test datasets to evaluate the quality and effectiveness of your generative AI application.
 
-In this article, you learn how to holistically generate high-quality datasets for evaluating the quality and safety of your application by using LLMs and the Azure AI safety evaluation service.
+In this article, you learn how to holistically generate high-quality datasets. You can use these datasets to evaluate the quality and safety of your application by using LLMs and the Azure AI safety evaluation service.
 
 ## Get started
 
@@ -180,7 +180,7 @@ The `Simulator` class offers extensive customization options. With these options
 
 #### Query and response generation Prompty customization
 
-The `query_response_generating_prompty_override` allows you to customize how query-response pairs are generated from input text. This is useful when you want to control the format or content of the generated responses as input to your simulator.
+The `query_response_generating_prompty_override` allows you to customize how query-response pairs are generated from input text. This capability is useful when you want to control the format or content of the generated responses as input to your simulator.
 
 ```python
 current_dir = os.path.dirname(__file__)
@@ -228,7 +228,7 @@ outputs = await simulator(
 
 #### Simulation with fixed conversation starters
 
-When you incorporate conversation starters, the simulator can handle prespecified repeatable contextually relevant interactions. This is useful for simulating the same user turns in a conversation or interaction and evaluating the differences.
+When you incorporate conversation starters, the simulator can handle prespecified repeatable contextually relevant interactions. This capability is useful for simulating the same user turns in a conversation or interaction and evaluating the differences.
 
 ```python
 conversation_turns = [ # Defines predefined conversation sequences, each starting with a conversation starter.
@@ -424,7 +424,12 @@ Evaluating vulnerability towards the following types of jailbreak attacks is sup
     )
     ```
 
-The outputs consist of two lists including the baseline adversarial simulation and the same simulation but with a jailbreak attack injected in the user role's first turn. Run two evaluation runs with `ContentSafetyEvaluator` and measure the differences between the two datasets' defect rates.
+The outputs consist of two lists:
+
+- The baseline adversarial simulation
+- The same simulation, but with a jailbreak attack injected in the user role's first turn
+
+Run two evaluation runs with `ContentSafetyEvaluator` and measure the differences between the two datasets' defect rates.
 
 *Evaluating indirect attack* is an AI-assisted metric and doesn't require comparative measurement like evaluating direct attacks. You can generate an indirect attack jailbreak-injected dataset with the following, and then evaluate with the `IndirectAttackEvaluator`.
 
