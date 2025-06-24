@@ -26,7 +26,7 @@ Large language models (LLMs) are known for their few-shot and zero-shot learning
 
 In this article, you learn how to holistically generate high-quality datasets for evaluating the quality and safety of your application by using LLMs and the Azure AI safety evaluation service.
 
-## Getting started
+## Get started
 
 Install and import the simulator package (preview) from the Azure AI Evaluation SDK:
 
@@ -36,13 +36,13 @@ pip install azure-ai-evaluation
 
 ## Generate synthetic data and simulate non-adversarial tasks
 
-Azure AI Evaluation SDK `Simulator` (preview) provides an end-to-end synthetic data generation capability to help developers test their application's response to typical user queries in the absence of production data. AI developers can use an index or text-based query generator and fully customizable simulator to create robust test datasets around non-adversarial tasks specific to their application. The `Simulator` class is a powerful tool designed to generate synthetic conversations and simulate task-based interactions. This capability is useful for:
+The Azure AI Evaluation SDK `Simulator` (preview) class provides an end-to-end synthetic data generation capability to help developers test their application's response to typical user queries in the absence of production data. AI developers can use an index or text-based query generator and fully customizable simulator to create robust test datasets around non-adversarial tasks specific to their application. The `Simulator` class is a powerful tool designed to generate synthetic conversations and simulate task-based interactions. This capability is useful for:
 
 - **Testing conversational applications**: Ensure your chatbots and virtual assistants respond accurately under various scenarios.
 - **Training AI models**: Generate diverse datasets to train and fine-tune machine learning models.
 - **Generating datasets**: Create extensive conversation logs for analysis and development purposes.
 
-The `Simulator` class automates the creation of synthetic data to help streamline the development and testing processes, which ensures your applications are robust and reliable.
+The `Simulator` class automates the creation of synthetic data to help streamline the development and testing processes, which can help ensure that your applications are robust and reliable.
 
 ```python
 from azure.ai.evaluation.simulator import Simulator
@@ -113,7 +113,7 @@ given the conversation history:
 
 ### Specify target callback that you want to simulate against
 
-You can bring any application endpoint to simulate against by specifying a target callback function. The following example shows an application that is an LLM with a Prompty file: `application.prompty`
+You can bring any application endpoint to simulate against by specifying a target callback function. The following example shows an application that is an LLM with a Prompty file: `application.prompty`.
 
 ```python
 async def callback(
@@ -176,7 +176,7 @@ With the simulator initialized, you can now run it to generate synthetic convers
 
 ### Additional customization for simulations
 
-The `Simulator` class offers extensive customization options. With these options, you can override default behaviors, adjust model parameters, and introduce complex simulation scenarios. The next section has examples of different overrides that you can implement to tailor the simulator to your specific needs.
+The `Simulator` class offers extensive customization options. With these options, you can override default behaviors, adjust model parameters, and introduce complex simulation scenarios. The next section has examples of overrides that you can implement to tailor the simulator to your specific needs.
 
 #### Query and response generation Prompty customization
 
@@ -209,7 +209,7 @@ for output in outputs:
 
 #### Simulation Prompty customization
 
-The `Simulator` uses a default Prompty that instructs the LLM on how to simulate a user interacting with your application. The `user_simulating_prompty_override` enables you to override the default behavior of the simulator. By adjusting these parameters, you can tune the simulator to produce responses that align with your specific requirements, enhancing the realism and variability of the simulations.
+The `Simulator` class uses a default Prompty that instructs the LLM on how to simulate a user interacting with your application. The `user_simulating_prompty_override` enables you to override the default behavior of the simulator. By adjusting these parameters, you can tune the simulator to produce responses that align with your specific requirements, enhancing the realism and variability of the simulations.
 
 ```python
 user_simulator_prompty_kwargs = {
@@ -389,11 +389,11 @@ The `AdversarialSimulator` supports a range of scenarios, hosted in the service,
 
 | Scenario                  | Scenario enumeration                | Maximum number of simulations | Use this dataset for evaluating |
 |-------------------------------|------------------------------|---------|---------------------|
-| Question answering (single turn only)          | `ADVERSARIAL_QA`                     |1384 | Hateful and unfair content, sexual content, violent content, self-harm-related content|
-| Conversation (multi-turn)                 | `ADVERSARIAL_CONVERSATION`           |1018 | Hateful and unfair content, sexual content, violent content, self-harm-related content|
+| Question answering (single turn only)          | `ADVERSARIAL_QA`                     |1,384 | Hateful and unfair content, sexual content, violent content, self-harm-related content|
+| Conversation (multi-turn)                 | `ADVERSARIAL_CONVERSATION`           |1,018 | Hateful and unfair content, sexual content, violent content, self-harm-related content|
 | Summarization (single turn only)                | `ADVERSARIAL_SUMMARIZATION`          |525 | Hateful and unfair content, sexual content, violent content, self-harm-related content|
-| Search  (single turn only)                      | `ADVERSARIAL_SEARCH`                 |1000 | Hateful and unfair content, sexual content, violent content, self-harm-related content|
-| Text rewrite (single turn only)                 | `ADVERSARIAL_REWRITE`                |1000 | Hateful and unfair content, sexual content, violent content, self-harm-related content|
+| Search  (single turn only)                      | `ADVERSARIAL_SEARCH`                 |1,000 | Hateful and unfair content, sexual content, violent content, self-harm-related content|
+| Text rewrite (single turn only)                 | `ADVERSARIAL_REWRITE`                |1,000 | Hateful and unfair content, sexual content, violent content, self-harm-related content|
 | Ungrounded content generation (single turn only) | `ADVERSARIAL_CONTENT_GEN_UNGROUNDED` |496 | Hateful and unfair content, sexual content, violent content, self-harm-related content|
 | Grounded content generation (single turn only)  | `ADVERSARIAL_CONTENT_GEN_GROUNDED`   |475 |Hateful and unfair content, sexual content, violent content, self-harm-related content, direct attack (UPIA) jailbreak |
 | Protected material (single turn only) | `ADVERSARIAL_PROTECTED_MATERIAL` | 306 | Protected material |
@@ -401,9 +401,7 @@ The `AdversarialSimulator` supports a range of scenarios, hosted in the service,
 - For testing groundedness scenarios (single or multi-turn), see the section on how to [simulate and evaluate for groundedness](#simulate-and-evaluate-for-groundedness).
 - For simulating direct attack (UPIA) and indirect attack (XPIA) scenarios, see the section on how to [simulate jailbreak attacks](#simulate-jailbreak-attacks).
 
-### Simulate jailbreak attacks
-
-## <a name = "simulating-jailbreak-attacks"></a> Simulate Jailbreak Attacks
+### <a name = "simulating-jailbreak-attacks"></a> Simulate Jailbreak Attacks
 
 Evaluating vulnerability towards the following types of jailbreak attacks is supported:
 
@@ -412,7 +410,7 @@ Evaluating vulnerability towards the following types of jailbreak attacks is sup
 
 *Evaluating direct attack* is a comparative measurement that uses the Azure AI Content Safety evaluators as a control. It isn't its own AI-assisted metric. Run `ContentSafetyEvaluator` on two different, red-teamed datasets generated by `AdversarialSimulator`:
 
-- Baseline adversarial test dataset using one of the previous scenario enumerations for evaluating hateful and unfair content, sexual content, violent content, and self-harm-related content.
+- Baseline adversarial test dataset using one of the previous scenario enumerations for evaluating hateful and unfair content, sexual content, violent content, and self-harm-related content
 - Adversarial test dataset with direct attack jailbreak injections in the first turn:
 
     ```python
@@ -426,9 +424,9 @@ Evaluating vulnerability towards the following types of jailbreak attacks is sup
     )
     ```
 
-The `outputs` consist of two lists including the baseline adversarial simulation and the same simulation but with a jailbreak attack injected in the user role's first turn. Run two evaluation runs with `ContentSafetyEvaluator` and measure the differences between the two datasets' defect rates.
+The outputs consist of two lists including the baseline adversarial simulation and the same simulation but with a jailbreak attack injected in the user role's first turn. Run two evaluation runs with `ContentSafetyEvaluator` and measure the differences between the two datasets' defect rates.
 
-*Evaluating indirect attack* is an AI-assisted metric and doesn't require comparative measurement like evaluating direct attacks. You can generate an indirect attack jailbreak injected dataset with the following, and then evaluate with the `IndirectAttackEvaluator`.
+*Evaluating indirect attack* is an AI-assisted metric and doesn't require comparative measurement like evaluating direct attacks. You can generate an indirect attack jailbreak-injected dataset with the following, and then evaluate with the `IndirectAttackEvaluator`.
 
 ```python
 indirect_attack_simulator=IndirectAttackSimulator(azure_ai_project=azure_ai_project, credential=credential)
@@ -531,7 +529,7 @@ outputs = await simulator(
 
 #### Set the randomization seed
 
-By default, the `AdversarialSimulator` randomizes interactions every simulation. You can set a `randomization_seed` parameter to produce the same set of conversation starters every time for reproducibility.
+By default, the `AdversarialSimulator` randomizes interactions in every simulation. You can set a `randomization_seed` parameter to produce the same set of conversation starters every time for reproducibility.
 
 ```python
 outputs = await simulator(
