@@ -17,7 +17,7 @@ Fine-tuning is also possible with images in your JSONL files. Just as you can 
 
 ## Model support
 
-Vision fine-tuning is supported for `gpt-4o` version `2024-08-06` models only.
+Vision fine-tuning is supported for `gpt-4o` version `2024-08-06` and `gpt-4.1` version `2025-04-14` models only.
 
 ## Image dataset requirements
 
