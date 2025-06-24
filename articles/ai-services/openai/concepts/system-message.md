@@ -37,7 +37,7 @@ A system message can also be *many* lines long, containing detailed rules, detai
 
 ## Safety system message examples
 
-Safety system messages are a type of system message that provides explicit instructions to mitigate against potential RAI harms and guide systems to interact safely with users. Safety system messages complement your safety stack and can be added alongside foundation model training, data grounding, Azure AI Content Safety classifiers, and UX/UI interventions. Learn more about [Responsible AI practices for Azure OpenAI models](/legal/cognitive-services/openai/overview?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext). 
+Safety system messages are a type of system message that provides explicit instructions to mitigate against potential RAI harms and guide systems to interact safely with users. Safety system messages complement your safety stack and can be added alongside foundation model training, data grounding, Azure AI Content Safety classifiers, and UX/UI interventions. Learn more about [Responsible AI practices for Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/overview). 
 
 While this technique is effective, it is still fallible, and most safety system messages need to be used in combination with other safety mitigations.  
 
@@ -107,7 +107,7 @@ For safety system message components, the primary criterion is the improvement i
 
 ### 7/ Iterate on system messages and safety system components and above steps 
 
-Based on your evaluations, revisit your top components to improve any issues to reach an acceptable level. Continue to monitor and evaluate your system regularly as changes are introduced, including new use cases, updated models, etc. Remember that even when using this guidance, you still need to validate your model responses per scenario. A well-crafted system message for one scenario may not work more broadly across other scenarios. Understanding the [limitations of LLMs](/legal/cognitive-services/openai/transparency-note?context=/azure/ai-services/openai/context/context#limitations) and the [mechanisms for evaluating and mitigating those limitations](/legal/cognitive-services/openai/overview?context=/azure/ai-services/openai/context/context) is as important as understanding how to leverage their strengths. 
+Based on your evaluations, revisit your top components to improve any issues to reach an acceptable level. Continue to monitor and evaluate your system regularly as changes are introduced, including new use cases, updated models, etc. Remember that even when using this guidance, you still need to validate your model responses per scenario. A well-crafted system message for one scenario may not work more broadly across other scenarios. Understanding the [limitations of LLMs](/azure/ai-foundry/responsible-ai/openai/transparency-note#limitations) and the [mechanisms for evaluating and mitigating those limitations](/azure/ai-foundry/responsible-ai/openai/overview) is as important as understanding how to leverage their strengths. 
 
 
 ## Summary of best practices  
