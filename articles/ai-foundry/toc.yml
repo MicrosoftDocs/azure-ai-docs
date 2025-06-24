@@ -179,8 +179,6 @@ items:
           href: how-to/healthcare-ai/deploy-cxrreportgen.md
         - name: MedImageParse models for prompted segmentation
           href: how-to/healthcare-ai/deploy-medimageparse.md
-      - name: Nvidia Inference Microservices (NIM)
-        href: how-to/deploy-nvidia-inference-microservice.md
     - name: Use standard deployment 
       items:
       - name: Deploy models via standard deployment
