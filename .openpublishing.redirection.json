@@ -454,6 +454,26 @@
       "source_path": "articles/ai-foundry/model-inference/tutorials/get-started-deepseek-r1.md",
       "redirect_url": "../../foundry-models/tutorials/get-started-deepseek-r1",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/overview.md",
+      "redirect_url": "../foundry-models/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/quotas-limits.md",
+      "redirect_url": "../foundry-models/quotas-limits",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/supported-languages.md",
+      "redirect_url": "../foundry-models/supported-languages",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/supported-languages-openai.md",
+      "redirect_url": "../foundry-models/supported-languages-openai",
+      "redirect_document_id": false
     }
   ]
 }

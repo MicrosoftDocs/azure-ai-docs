@@ -18,34 +18,34 @@ reviewer: santiagxf
 
 ::: zone pivot="programming-language-dotnet"
 
-[!INCLUDE [C#](./../../ai-services/openai/includes/language-overview/dotnet.md)]
+[!INCLUDE [C#](../../ai-services/openai/includes/language-overview/dotnet.md)]
 
 ::: zone-end
 
 ::: zone pivot="programming-language-go"
 
-[!INCLUDE [Go](./../../ai-services/openai/includes/language-overview/go.md)]
+[!INCLUDE [Go](../../ai-services/openai/includes/language-overview/go.md)]
 
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 
-[!INCLUDE [Java](./../../ai-services/openai/includes/language-overview/java.md)]
+[!INCLUDE [Java](../../ai-services/openai/includes/language-overview/java.md)]
 
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
 
-[!INCLUDE [JavaScript](./../../ai-services/openai/includes/language-overview/javascript.md)]
+[!INCLUDE [JavaScript](../../ai-services/openai/includes/language-overview/javascript.md)]
 
 ::: zone-end
 
 ::: zone pivot="programming-language-python"
 
-[!INCLUDE [Python](./../../ai-services/openai/includes/language-overview/python.md)]
+[!INCLUDE [Python](../../ai-services/openai/includes/language-overview/python.md)]
 
 ::: zone-end
 
 ## Next steps
 
-- To see what models are currently supported, check out the [Models](./concepts/models.md) section
+- To see what models are currently supported, check out the [Models](../model-inference/concepts/models.md) section

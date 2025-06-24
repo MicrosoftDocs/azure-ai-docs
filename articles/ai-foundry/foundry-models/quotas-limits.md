@@ -90,4 +90,4 @@ To minimize issues related to rate limits, it's a good idea to use the following
 
 ## Next steps
 
-* Learn more about the [models available in Azure AI Foundry Models](./concepts/models.md)
+* Learn more about the [models available in Azure AI Foundry Models](../model-inference/concepts/models.md)

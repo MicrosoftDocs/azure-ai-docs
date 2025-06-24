@@ -11,7 +11,7 @@ items:
     - name: Use Foundry Models
       href: ./how-to/inference.md
     - name: Quotas and limits
-      href: ./quotas-limits.md
+      href: ai-foundry/foundry-models/quotas-limits.md
     - name: Model lifecycle and retirement
       href: ../concepts/model-lifecycle-retirement.md?context=/azure/ai-foundry/model-inference/context/context
     - name: FAQ
@@ -75,7 +75,7 @@ items:
   - name: Manage cost
     href: ai-foundry/foundry-models/how-to/manage-costs.md
   - name: Quotas and limits
-    href: ./quotas-limits.md
+    href: ai-foundry/foundry-models/quotas-limits.md
 - name: Develop
   items:
     - name: Use Foundry Models
@@ -83,9 +83,9 @@ items:
     - name: Programming languages and SDKs
       items:
         - name: Azure OpenAI SDK
-          href: ./supported-languages-openai.md
+          href: ai-foundry/foundry-models/supported-languages-openai.md
         - name: Azure AI Inference SDK
-          href: ./supported-languages.md
+          href: ai-foundry/foundry-models/supported-languages.md
     - name: Work with embedding models
       items:
         - name: Work with text embeddings

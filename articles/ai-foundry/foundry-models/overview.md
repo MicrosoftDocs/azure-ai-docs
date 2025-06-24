@@ -20,7 +20,7 @@ Azure AI Foundry Models (formerly known Azure AI model inference) provide access
 
 AI Foundry Models provides a way to **consume models as APIs without hosting them on your infrastructure**. Models are hosted in a Microsoft-managed infrastructure, which enables API-based access to the model provider's model. API-based access can dramatically reduce the cost of accessing a model and simplify the provisioning experience.
 
-AI Foundry Models is part of Azure AI Foundry, and users can access the service through [REST APIs](./reference/reference-model-inference-api.md), [SDKs in several languages](supported-languages.md) such as Python, C#, JavaScript, and Java. You can also use the AI Foundry Models from [Azure AI Foundry by configuring a connection](how-to/configure-project-connection.md).
+AI Foundry Models is part of Azure AI Foundry, and users can access the service through [REST APIs](../model-inference/reference/reference-model-inference-api.md), [SDKs in several languages](../model-inference/supported-languages.md) such as Python, C#, JavaScript, and Java. You can also use the AI Foundry Models from [Azure AI Foundry by configuring a connection](../model-inference/how-to/configure-project-connection.md).
 
 ## Models
 
@@ -37,7 +37,7 @@ You can get access to the key model providers in the industry. Explore the follo
 - [NTT Data](concepts/models.md#ntt-data)
 - [xAI](concepts/models.md#xai)
 
-To see details for each model including language, types, and capabilities, see [Models](concepts/models.md) article.
+To see details for each model including language, types, and capabilities, see [Models](../model-inference/concepts/models.md) article.
 
 ## Pricing
 
@@ -46,7 +46,7 @@ For models from non-Microsoft providers (for example, Meta AI and Mistral models
 For Microsoft models (for example, Phi-3 models and Azure OpenAI models) billing is via Azure meters as First Party Consumption Services. As described in the [Product Terms](https://www.microsoft.com/licensing/terms/welcome/welcomepage), you purchase First Party Consumption Services by using Azure meters, but they aren't subject to Azure service terms.
 
 > [!TIP]
-> Learn how to [monitor and manage cost](how-to/manage-costs.md) in AI Foundry Models.
+> Learn how to [monitor and manage cost](../model-inference/how-to/manage-costs.md) in AI Foundry Models.
 
 ## Responsible AI
 
@@ -61,10 +61,10 @@ Microsoft helps guard against abuse and unintended harm by taking the following 
 
 ## Getting started
 
-You can get started with it the same way as any other Azure product where you [create and configure your resource for Azure AI Foundry (formerly known Azure AI Services)](how-to/quickstart-create-resources.md), or instance of the service, in your Azure Subscription. You can create as many resources as needed and configure them independently in case you have multiple teams with different requirements.
+You can get started with it the same way as any other Azure product where you [create and configure your resource for Azure AI Foundry (formerly known Azure AI Services)](../model-inference/how-to/quickstart-create-resources.md), or instance of the service, in your Azure Subscription. You can create as many resources as needed and configure them independently in case you have multiple teams with different requirements.
 
-Once you create an Azure AI Foundry resource (formerly known Azure AI Services resource), you must deploy a model before you can start making API calls. By default, no models are available on it, so you can control which ones to start from. See the tutorial [Create your first AI Foundry Models deployment](how-to/create-model-deployments.md).
+Once you create an Azure AI Foundry resource (formerly known Azure AI Services resource), you must deploy a model before you can start making API calls. By default, no models are available on it, so you can control which ones to start from. See the tutorial [Create your first AI Foundry Models deployment](../model-inference/how-to/create-model-deployments.md).
 
 ## Next steps
 
-- [Create your first AI Foundry Models deployment](how-to/create-model-deployments.md)
+- [Create your first AI Foundry Models deployment](../model-inference/how-to/create-model-deployments.md)

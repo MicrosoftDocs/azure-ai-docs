@@ -48,4 +48,4 @@ The Azure AI Inference package allows you to consume all models deployed to the 
 
 ## Next steps
 
-- To see what models are currently supported, check out the [Models](./concepts/models.md) section
+- To see what models are currently supported, check out the [Models](../model-inference/concepts/models.md) section
