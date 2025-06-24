@@ -123,7 +123,7 @@ Explore our [samples](https://aka.ms/azsdk/azure-ai-inference/csharp/samples) an
 
 # [REST](#tab/rest)
 
-Use the reference section to explore the API design and which parameters are available. For example, the reference section for [Embeddings](.././reference/reference-model-inference-embeddings.md) details how to use the route `/embeddings` to generate predictions based on chat-formatted instructions. Notice that the path `/models` is included to the root of the URL:
+Use the reference section to explore the API design and which parameters are available. For example, the reference section for [Embeddings](../../model-inference/reference/reference-model-inference-embeddings.md) details how to use the route `/embeddings` to generate predictions based on chat-formatted instructions. Notice that the path `/models` is included to the root of the URL:
 
 __Request__
 
