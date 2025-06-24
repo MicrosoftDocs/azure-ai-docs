@@ -51,7 +51,7 @@ items:
   - name: Create resources
     href: ai-foundry/foundry-models/how-to/quickstart-create-resources.md
   - name: Add and configure models
-    href: ai-foundry/foundry-models/how-to/create-model-deployments.md
+    href: ai-foundry/foundry-models/how-to/github/create-model-deployments.md
   - name: Configure Models from Partners and Community
     href: ai-foundry/foundry-models/how-to/configure-marketplace.md
   - name: Connect your AI project

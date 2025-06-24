@@ -25,17 +25,17 @@ In this article, you learn how to add a new model from Azure AI Foundry Models.
 
 To complete this article, you need:
 
-* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Azure AI Foundry Models](../quickstart-github-models.md) if it's your case.
-* An Azure AI services resource. For more information, see [Create an Azure AI Foundry resource](../quickstart-create-resources.md).
+* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Azure AI Foundry Models](../../../model-inference/how-to/quickstart-github-models.md) if it's your case.
+* An Azure AI services resource. For more information, see [Create an Azure AI Foundry resource](../../../model-inference/how-to/quickstart-create-resources.md).
 
 
 ## Add a model
 
-[!INCLUDE [add-model-deployments](../../includes/github/add-model-deployments.md)]
+[!INCLUDE [add-model-deployments](../../../model-inference/includes/github/add-model-deployments.md)]
 
 ## Use the model
 
-Deployed models in Azure AI Foundry Models can be consumed using the [Azure AI model's inference endpoint](../../concepts/endpoints.md) for the resource.
+Deployed models in Azure AI Foundry Models can be consumed using the [Azure AI model's inference endpoint](../../../model-inference/concepts/endpoints.md) for the resource.
 
 To use it:
 
@@ -43,7 +43,7 @@ To use it:
 
 2. When constructing your request, indicate the parameter `model` and insert the model deployment name you created.
 
-    [!INCLUDE [code-create-chat-completion](../../includes/code-create-chat-completion.md)]
+    [!INCLUDE [code-create-chat-completion](../../../model-inference/includes/code-create-chat-completion.md)]
 
 3. When using the endpoint, you can change the `model` parameter to any available model deployment in your resource.
 
@@ -58,5 +58,5 @@ When creating model deployments, you can configure additional settings including
 
 ## Related content
 
-* [Develop applications using Azure AI Foundry Models](../../supported-languages.md)
+* [Develop applications using Azure AI Foundry Models](../../../model-inference/supported-languages.md)
 

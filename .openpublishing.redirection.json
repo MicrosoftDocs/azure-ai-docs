@@ -444,6 +444,11 @@
       "source_path": "articles/ai-foundry/model-inference/how-to/use-structured-outputs.md",
       "redirect_url": "../../foundry-models/how-to/use-structured-outputs",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/how-to/github/create-model-deployments.md",
+      "redirect_url": "../../../foundry-models/how-to/github/create-model-deployments",
+      "redirect_document_id": false
     }
   ]
 }
