@@ -69,7 +69,7 @@ The following example shows how you can create a basic chat completions request 
 ```
 
 > [!NOTE]
-> Some models don't support system messages (`role="system"`). When you use the Azure AI Foundry Models API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
+> Some models don't support system messages (`role="system"`). When you use the Azure AI Model Inference API, system messages are translated to user messages, which is the closest capability available. This translation is offered for convenience, but it's important for you to verify that the model is following the instructions in the system message with the right level of confidence.
 
 The response is as follows, where you can see the model's usage statistics:
 
@@ -181,7 +181,7 @@ The last message in the stream has `finish_reason` set, indicating the reason fo
 
 #### Explore more parameters supported by the inference client
 
-Explore other parameters that you can specify in the inference client. For a full list of all the supported parameters and their corresponding documentation, see [Foundry Models API reference](https://aka.ms/azureai/modelinference).
+Explore other parameters that you can specify in the inference client. For a full list of all the supported parameters and their corresponding documentation, see [Model Inference API reference](https://aka.ms/azureai/modelinference).
 
 ```json
 {
