@@ -11,8 +11,8 @@ ms.custom:
 ms.topic: how-to
 ms.date: 05/08/2025
 ms.reviewer: deeikele
-ms.author: larryfr
-author: Blackmist
+ms.author: sgilley
+author: sdgilley
 # Customer Intent: As an admin, I need to create and manage an Azure AI Foundry hub so that my team can use it to create projects for collaboration.
 ---
 
