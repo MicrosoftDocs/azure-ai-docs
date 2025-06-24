@@ -75,6 +75,8 @@ The consumption-based surcharge is accrued to the associated SaaS subscription a
 
 ## Subscribe and deploy on managed compute
 
+[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
+
 1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 1. If you're not already in your project, select it. 
 1. Select **Model catalog** from the left pane.
@@ -172,7 +174,7 @@ You can also consume NIM deployments using the [Azure AI Foundry Models SDK](/py
 The following NVIDIA NIMs of **chat completions** task type in the model catalog can be used to [create and run agents using Agent Service](/python/api/overview/azure/ai-projects-readme#agents-preview) using various supported tools, with the following two extra requirements: 
 
 1. Create a _Serverless Connection_ to the project using the NIM endpoint and Key. The target URL for the NIM endpoint in the connection should be `https://<endpoint-name>.region.inference.ml.azure.com/v1/`. 
-2. Set the _model parameter_ in the request body to be of the form, `https://<endpoint>.region.inference.ml.azure.com/v1/@<parameter value per table below>` while creating and running agents.
+1. Set the _model parameter_ in the request body to be of the form, `https://<endpoint>.region.inference.ml.azure.com/v1/@<parameter value per table below>` while creating and running agents.
 
 
 | NVIDIA NIM                                         | `model` parameter value           |
