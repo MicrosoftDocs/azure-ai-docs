@@ -60,11 +60,11 @@ The inference endpoint routes requests to a given deployment by matching the par
 
 For example, if you create a deployment named `Mistral-large`, then such deployment can be invoked as:
 
-[!INCLUDE [code-create-chat-client](../../model-inference/includes/code-create-chat-client.md)]
+[!INCLUDE [code-create-chat-client](../../foundry-models/includes/code-create-chat-client.md)]
 
 For a chat model, you can create a request as follows:
 
-[!INCLUDE [code-create-chat-completion](../../model-inference/includes/code-create-chat-completion.md)]
+[!INCLUDE [code-create-chat-completion](../../foundry-models/includes/code-create-chat-completion.md)]
 
 If you specify a model name that doesn't match any given model deployment, you get an error that the model doesn't exist. You can control which models are available for users by creating model deployments as explained at [add and configure model deployments](../../model-inference/how-to/create-model-deployments.md).
 
@@ -74,7 +74,7 @@ Models deployed to Azure AI Foundry Models in Azure AI Services support key-less
 
 To use key-less authentication, [configure your resource and grant access to users](../../model-inference/how-to/configure-entra-id.md) to perform inference. Once configured, then you can authenticate as follows:
 
-[!INCLUDE [code-create-chat-client-entra](../../model-inference/includes/code-create-chat-client-entra.md)]
+[!INCLUDE [code-create-chat-client-entra](../../foundry-models/includes/code-create-chat-client-entra.md)]
 
 ## Limitations
 

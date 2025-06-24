@@ -20,7 +20,7 @@ Certain models in Azure AI Foundry Models are offered directly by the model prov
 
 :::image type="content" source="../media/configure-marketplace/azure-marketplace-3p.png" alt-text="A diagram with the overall architecture of Azure Marketplace integration with AI Foundry Models." lightbox="../media/configure-marketplace/azure-marketplace-3p.png":::
 
-[!INCLUDE [marketplace-rbac](../../model-inference/includes/configure-marketplace/rbac.md)]
+[!INCLUDE [marketplace-rbac](../../foundry-models/includes/configure-marketplace/rbac.md)]
 
 ## Country availability
 

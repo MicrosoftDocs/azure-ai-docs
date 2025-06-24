@@ -32,9 +32,9 @@ The inference endpoint routes requests to a given deployment by matching the par
 
 For example, if you create a deployment named `Mistral-large`, then such deployment can be invoked as:
 
-[!INCLUDE [code-create-chat-client](../../model-inference/includes/code-create-chat-client.md)]
+[!INCLUDE [code-create-chat-client](../../foundry-models/includes/code-create-chat-client.md)]
 
-[!INCLUDE [code-create-chat-completion](../../model-inference/includes/code-create-chat-completion.md)]
+[!INCLUDE [code-create-chat-completion](../../foundry-models/includes/code-create-chat-completion.md)]
 
 > [!TIP]
 > Deployment routing isn't case sensitive.
@@ -50,9 +50,9 @@ Azure OpenAI endpoints (usually with the form `https://<resource-name>.openai.az
 
 Each deployment has a URL that is the concatenations of the **Azure OpenAI** base URL and the route `/deployments/<model-deployment-name>`.
 
-[!INCLUDE [code-create-openai-client](../../model-inference/includes/code-create-openai-client.md)]
+[!INCLUDE [code-create-openai-client](../../foundry-models/includes/code-create-openai-client.md)]
 
-[!INCLUDE [code-create-openai-chat-completion](../../model-inference/includes/code-create-openai-chat-completion.md)]
+[!INCLUDE [code-create-openai-chat-completion](../../foundry-models/includes/code-create-openai-chat-completion.md)]
 
 
 ## Next steps

@@ -132,11 +132,11 @@ You can use any of the supported SDKs to get predictions out from the endpoint. 
 
 See the [supported languages and SDKs](../../model-inference/supported-languages.md) section for more details and examples. The following example shows how to use the Azure AI Inference package with the newly deployed model:
 
-[!INCLUDE [code-create-chat-client](../../model-inference/includes/code-create-chat-client.md)]
+[!INCLUDE [code-create-chat-client](../../foundry-models/includes/code-create-chat-client.md)]
 
 Generate your first chat completion:
 
-[!INCLUDE [code-create-chat-completion](../../model-inference/includes/code-create-chat-completion.md)]
+[!INCLUDE [code-create-chat-completion](../../foundry-models/includes/code-create-chat-completion.md)]
 
 Use the parameter `model="<deployment-name>` to route your request to this deployment. *Deployments work as an alias of a given model under certain configurations*. See [Routing](inference.md#routing) page to learn how Azure AI Foundry Models routes deployments.
 

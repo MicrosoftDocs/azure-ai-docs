@@ -19,35 +19,35 @@ zone_pivot_groups: azure-ai-inference-samples
 
 ::: zone pivot="programming-language-python"
 
-[!INCLUDE [python](../../model-inference/includes/use-chat-completions/python.md)]
+[!INCLUDE [python](../../foundry-models/includes/use-chat-completions/python.md)]
 
 ::: zone-end
 
 
 ::: zone pivot="programming-language-javascript"
 
-[!INCLUDE [javascript](../../model-inference/includes/use-chat-completions/javascript.md)]
+[!INCLUDE [javascript](../../foundry-models/includes/use-chat-completions/javascript.md)]
 
 ::: zone-end
 
 
 ::: zone pivot="programming-language-java"
 
-[!INCLUDE [java](../../model-inference/includes/use-chat-completions/java.md)]
+[!INCLUDE [java](../../foundry-models/includes/use-chat-completions/java.md)]
 
 ::: zone-end
 
 
 ::: zone pivot="programming-language-csharp"
 
-[!INCLUDE [csharp](../../model-inference/includes/use-chat-completions/csharp.md)]
+[!INCLUDE [csharp](../../foundry-models/includes/use-chat-completions/csharp.md)]
 
 ::: zone-end
 
 
 ::: zone pivot="programming-language-rest"
 
-[!INCLUDE [rest](../../model-inference/includes/use-chat-completions/rest.md)]
+[!INCLUDE [rest](../../foundry-models/includes/use-chat-completions/rest.md)]
 
 ::: zone-end
 

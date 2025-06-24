@@ -29,7 +29,7 @@ To complete this article, you need:
 * An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Azure AI Foundry Models](../../model-inference/how-to/quickstart-github-models.md) if that's your case.
 
 
-[!INCLUDE [about-reasoning](../../model-inference/includes/use-chat-reasoning/about-reasoning.md)]
+[!INCLUDE [about-reasoning](../../foundry-models/includes/use-chat-reasoning/about-reasoning.md)]
 
 ## Create the resources
 
@@ -130,7 +130,7 @@ You can get started by using the model in the playground to have an idea of the 
 
 5. Additionally, you can use **View code** so see details about how to access the model deployment programmatically.
 
-[!INCLUDE [best-practices](../../model-inference/includes/use-chat-reasoning/best-practices.md)]
+[!INCLUDE [best-practices](../../foundry-models/includes/use-chat-reasoning/best-practices.md)]
 
 ## Use the model in code
 
@@ -140,9 +140,9 @@ Use the Foundry Models endpoint and credentials to connect to the model:
 
 You can use the Azure AI Inference package to consume the model in code:
 
-[!INCLUDE [code-create-chat-client](../../model-inference/includes/code-create-chat-client.md)]
+[!INCLUDE [code-create-chat-client](../../foundry-models/includes/code-create-chat-client.md)]
 
-[!INCLUDE [code-chat-reasoning](../../model-inference/includes/code-create-chat-reasoning.md)]
+[!INCLUDE [code-chat-reasoning](../../foundry-models/includes/code-create-chat-reasoning.md)]
 
 Reasoning may generate longer responses and consume a larger number of tokens. You can see the [rate limits](../../model-inference/quotas-limits.md) that apply to DeepSeek-R1 models. Consider having a retry strategy to handle rate limits being applied. You can also [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
 

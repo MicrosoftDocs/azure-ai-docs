@@ -18,15 +18,15 @@ reviewer: santiagxf
 # How to configure content filters for models in Azure AI Foundry
 
 ::: zone pivot="ai-foundry-portal"
-[!INCLUDE [portal](../../model-inference/includes/configure-content-filters/portal.md)]
+[!INCLUDE [portal](../../foundry-models/includes/configure-content-filters/portal.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-cli"
-[!INCLUDE [cli](../../model-inference/includes/configure-content-filters/cli.md)]
+[!INCLUDE [cli](../../foundry-models/includes/configure-content-filters/cli.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-bicep"
-[!INCLUDE [bicep](../../model-inference/includes/configure-content-filters/bicep.md)]
+[!INCLUDE [bicep](../../foundry-models/includes/configure-content-filters/bicep.md)]
 ::: zone-end
 
 ## Next steps

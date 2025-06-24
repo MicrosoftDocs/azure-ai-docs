@@ -18,15 +18,15 @@ reviewer: santiagxf
 # Configure a connection to use Azure AI Foundry Models in your AI project
 
 ::: zone pivot="ai-foundry-portal"
-[!INCLUDE [portal](../../model-inference/includes/configure-project-connection/portal.md)]
+[!INCLUDE [portal](../../foundry-models/includes/configure-project-connection/portal.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-cli"
-[!INCLUDE [cli](../../model-inference/includes/configure-project-connection/cli.md)]
+[!INCLUDE [cli](../../foundry-models/includes/configure-project-connection/cli.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-bicep"
-[!INCLUDE [bicep](../../model-inference/includes/configure-project-connection/bicep.md)]
+[!INCLUDE [bicep](../../foundry-models/includes/configure-project-connection/bicep.md)]
 ::: zone-end
 
 ## Next steps

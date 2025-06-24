@@ -31,7 +31,7 @@ To complete this article, you need:
 
 ## Add a model
 
-[!INCLUDE [add-model-deployments](../../../model-inference/includes/github/add-model-deployments.md)]
+[!INCLUDE [add-model-deployments](../../../foundry-models/includes/github/add-model-deployments.md)]
 
 ## Use the model
 
@@ -43,7 +43,7 @@ To use it:
 
 2. When constructing your request, indicate the parameter `model` and insert the model deployment name you created.
 
-    [!INCLUDE [code-create-chat-completion](../../../model-inference/includes/code-create-chat-completion.md)]
+    [!INCLUDE [code-create-chat-completion](../../../foundry-models/includes/code-create-chat-completion.md)]
 
 3. When using the endpoint, you can change the `model` parameter to any available model deployment in your resource.
 

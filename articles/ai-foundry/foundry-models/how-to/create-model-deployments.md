@@ -18,15 +18,15 @@ reviewer: santiagxf
 # Add and configure models to Azure AI Foundry Models
 
 ::: zone pivot="ai-foundry-portal"
-[!INCLUDE [portal](../../model-inference/includes/create-model-deployments/portal.md)]
+[!INCLUDE [portal](../../foundry-models/includes/create-model-deployments/portal.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-cli"
-[!INCLUDE [cli](../../model-inference/includes/create-model-deployments/cli.md)]
+[!INCLUDE [cli](../../foundry-models/includes/create-model-deployments/cli.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-bicep"
-[!INCLUDE [bicep](../../model-inference/includes/create-model-deployments/bicep.md)]
+[!INCLUDE [bicep](../../foundry-models/includes/create-model-deployments/bicep.md)]
 ::: zone-end
 
 ## Next steps

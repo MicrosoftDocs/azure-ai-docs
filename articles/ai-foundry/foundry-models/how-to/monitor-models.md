@@ -13,7 +13,7 @@ reviewer: santiagxf
 
 # Monitor model deployments in Azure AI Foundry Models
 
-[!INCLUDE [Feature preview](../../model-inference/includes/feature-preview.md)]
+[!INCLUDE [Feature preview](../../foundry-models/includes/feature-preview.md)]
 
 When you have critical applications and business processes that rely on Azure resources, you need to monitor and get alerts for your system. The Azure Monitor service collects and aggregates metrics and logs from every component of your system, including Foundry Models deployments. You can use this information to view availability, performance, and resilience, and get notifications of issues.
 

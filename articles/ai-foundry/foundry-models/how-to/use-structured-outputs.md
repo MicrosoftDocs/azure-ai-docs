@@ -19,31 +19,31 @@ zone_pivot_groups: azure-ai-inference-samples
 
 ::: zone pivot="programming-language-python"
 
-[!INCLUDE [python](../../model-inference/includes/use-structured-outputs/python.md)]
+[!INCLUDE [python](../../foundry-models/includes/use-structured-outputs/python.md)]
 ::: zone-end
 
 
 ::: zone pivot="programming-language-javascript"
 
-[!INCLUDE [javascript](../../model-inference/includes/use-structured-outputs/javascript.md)]
+[!INCLUDE [javascript](../../foundry-models/includes/use-structured-outputs/javascript.md)]
 ::: zone-end
 
 
 ::: zone pivot="programming-language-java"
 
-[!INCLUDE [java](../../model-inference/includes/use-structured-outputs/java.md)]
+[!INCLUDE [java](../../foundry-models/includes/use-structured-outputs/java.md)]
 ::: zone-end
 
 
 ::: zone pivot="programming-language-csharp"
 
-[!INCLUDE [csharp](../../model-inference/includes/use-structured-outputs/csharp.md)]
+[!INCLUDE [csharp](../../foundry-models/includes/use-structured-outputs/csharp.md)]
 ::: zone-end
 
 
 ::: zone pivot="programming-language-rest"
 
-[!INCLUDE [rest](../../model-inference/includes/use-structured-outputs/rest.md)]
+[!INCLUDE [rest](../../foundry-models/includes/use-structured-outputs/rest.md)]
 ::: zone-end
 
 ## Related content
