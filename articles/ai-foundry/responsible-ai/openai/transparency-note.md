@@ -38,10 +38,12 @@ Azure OpenAI provides customers with a fully managed AI service that lets develo
 | GPT-4.1</br>GPT-4.1-mini</br>GPT-4.1-nano | ✅ | ✅ |  |
 | GPT-4.5 | ✅ | ✅ |  |
 | o1 series | ✅ | ✅ |  |
-| o3 | ✅ | ✅| | 
+| o3/o3-pro | ✅ | ✅| | 
 | o3-mini |✅  |  |  |
-| o4-mini | ✅| ✅| |
+| o4-mini/codex-mini<sup>1</sup> | ✅| ✅| |
 | computer-use-preview |✅  | ✅ |  |
+
+<sup>1</sup>`codex-mini` is a fine-tuned version of `o4-mini` specifically for use in Codex CLI. For more information, please see [OpenAI's documentation](https://platform.openai.com/docs/models/codex-mini-latest). 
 
 Select the tabs to see content for the relevant model type.
 
@@ -181,7 +183,7 @@ A:
 
 **Chain-of-thought** : Azure OpenAI's o-series reasoning models have new advanced reasoning capabilities using chain-of-thought (CoT) techniques. CoT techniques generate intermediate reasoning steps before providing a response, enabling them to address more complex challenges through step-by-step problem solving. o1 demonstrates improvements in benchmarks for reasoning-heavy domains such as research, strategy, science, coding and math, among others. These models have safety improvements from advanced reasoning capabilities, with the ability to reason through and apply safety rules more effectively. This results in better performance alongside safety benchmarks such as generating illicit advice, choosing stereotyped responses, and succumbing to known jailbreaks. 
 
-For greater detail on this family of models’ capabilities, see the [OpenAI o1 System Card](https://cdn.openai.com/o1-system-card-20241205.pdf) and [o3-mini System Card](https://openai.com/index/o3-mini-system-card/).
+For greater detail on this family of models’ capabilities, see the [OpenAI o1 System Card](https://cdn.openai.com/o1-system-card-20241205.pdf), [o3-mini System Card](https://openai.com/index/o3-mini-system-card/), and [o3/o4-mini System Card](https://openai.com/index/o3-o4-mini-system-card/).
 
 **Azure OpenAI Evaluation** 
 
@@ -337,7 +339,7 @@ The advanced reasoning capabilities of the o-series reasoning models may be best
 - **Complex document comparison**: Analyzing contracts, case files, or legal documents to discern subtle differences in document contents.  
 - **Instruction following and workflow management**: Handling workflows that require shorter context. 
 
-For greater detail on intended uses, visit the [OpenAI o1 System Card](https://cdn.openai.com/o1-system-card-20241205.pdf) and [o3-mini System Card](https://openai.com/index/o3-mini-system-card/). 
+For greater detail on intended uses, visit the [OpenAI o1 System Card](https://cdn.openai.com/o1-system-card-20241205.pdf), [o3-mini System Card](https://openai.com/index/o3-mini-system-card/), and [o3/o4-mini System Card](https://openai.com/index/o3-o4-mini-system-card/).
 
 #### Azure OpenAI evaluation use cases
 
@@ -549,7 +551,7 @@ To help mitigate the risks associated with advanced fine-tuned models, we have i
 - The new reasoning capabilities may increase certain types of risks, requiring refined methods and approaches towards risk management protocols and evaluating and monitoring system behavior. For example, o1's CoT reasoning capabilities have demonstrated improvements in persuasiveness, and simple in-context scheming.  
 - Users may experience that the reasoning family of models takes more time to reason through responses and should account for the additional time and latency in developing applications. 
 
-For greater detail on these limitations, see the [OpenAI o1 System Card](https://cdn.openai.com/o1-system-card-20241205.pdf) and [o3-mini System Card](https://openai.com/index/o3-mini-system-card/).
+For greater detail on these limitations, see the [OpenAI o1 System Card](https://cdn.openai.com/o1-system-card-20241205.pdf), [o3-mini System Card](https://openai.com/index/o3-mini-system-card/), and [o3/o4-mini System Card](https://openai.com/index/o3-o4-mini-system-card/). 
 
 ### 4o limitations
 
@@ -604,7 +606,7 @@ Azure OpenAI service can support a wide range of applications like search, class
 - **Limit the length, structure, and rate of inputs and outputs.**  Restricting the length or structure of inputs and outputs can increase the likelihood that the application will stay on task and mitigate, at least in part, any potentially unfair, unreliable, or offensive behaviour. Other options to reduce the risk of misuse include (i) restricting the source of inputs (for example, limiting inputs to a particular domain or to authenticated users rather than being open to anyone on the internet) and (ii) implementing usage rate limits. 
 - **Encourage human review of outputs prior to publication or dissemination.** With generative AI, there is potential for generating content that might be offensive or not related to the task at hand, even with mitigations in place. To ensure that the generated output meets the task of the user, consider building ways to remind users to review their outputs for quality prior to sharing widely. This practice can reduce many different harms, including offensive material, disinformation, and more. 
 - **Implement additional scenario-specific mitigations.**  Refer to the mitigations outlined in [Evaluating and integrating Azure OpenAI for your use](#evaluating-and-integrating-azure-openai-natural-language-and-vision-models-for-your-use) including content moderation strategies. These recommendations do not represent every mitigation required for your application. Newer models such as GPT-4o and o-series reasoning models may provide responses in sensitive scenarios and are more likely to attempt to reduce potentially harmful outputs in their responses rather than refuse to respond altogether. It is important to understand this behavior when evaluating and integrating content moderation for your use case; adjustments to filtering severity may be needed depending on your use case.
-- o-series reasoning models have safeguards to prevent output of raw CoT. Attempting to extract the raw CoT, for example, by circumventing these safeguards, violates the Acceptable Use Policy for Online Services and may result in access to the service being limited. For greater detail on best practices, visit the [OpenAI o1 System Card](https://cdn.openai.com/o1-system-card-20241205.pdf) and [o3-mini System Card](https://openai.com/index/o3-mini-system-card/).
+- o-series reasoning models have safeguards to prevent output of raw CoT. Attempting to extract the raw CoT, for example, by circumventing these safeguards, violates the Acceptable Use Policy for Online Services and may result in access to the service being limited. For greater detail on best practices, visit the [OpenAI o1 System Card](https://cdn.openai.com/o1-system-card-20241205.pdf), [o3-mini System Card](https://openai.com/index/o3-mini-system-card/), and [o3/o4-mini System Card](https://openai.com/index/o3-o4-mini-system-card/).
 
 #### Best practices and recommendations for fine tuning
 
