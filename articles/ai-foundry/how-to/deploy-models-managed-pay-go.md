@@ -58,6 +58,9 @@ Pay-as-you-go billing of Azure compute and model surcharge are pro-rated per min
 
 A user's subscription to Azure Marketplace offers are scoped to the project resource within Azure AI Foundry. If a subscription to the Azure Marketplace offer for a particular model already exists within the project, the user is informed in the deployment wizard that the subscription already exists for the project. 
 
+> [!NOTE]
+> For [NVIDIA inference microservices (NIM)](#nvidia), multiple models are associated with a single marketplace offer, so you have to subscribe to the NIM offer only once within a project to be able to deploy all NIMs offered by NVIDIA in the AI Foundry model catalog. If you want to deploy NIMs in a different project with no existing SaaS subscription, you need to resubscribe to the offer.  
+
 To find all the SaaS subscriptions that exist in an Azure subscription:
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and go to your Azure subscription.
@@ -76,7 +79,7 @@ The consumption-based surcharge is accrued to the associated SaaS subscription a
 1. If you're not already in your project, select it. 
 1. Select **Model catalog** from the left pane.
 1. Select the **Deployment options** filter in the model catalog and choose **Managed compute**.
-1. Filter the list further by selecting the **Collection** and model of your choice. In this article, we use **Cohere Command A** from the [list of supported models](#supported-models-for-managed-compute-deployment-with-pay-as-you-go-billing) for illustration.
+1. Filter the list further by selecting the **Collection** and model of your choice. In this article, we use **Cohere Command A** from the [list of supported models](#supported-models) for illustration.
 1. From the model's page, select **Use this model** to open the deployment wizard.
 1. Choose from one of the supported VM SKUs for the model. You need to have Azure Machine Learning Compute quota for that SKU in your Azure subscription.
 1. Select **Customize** to specify your deployment configuration for parameters such as the instance count. You can also select an existing endpoint for the deployment or create a new one. For this example, we specify an instance count of **1** and create a new endpoint for the deployment.
@@ -98,28 +101,49 @@ Collections in the model catalog can be deployed within your isolated networks u
 
 An Azure AI Foundry project with ingress Public Network Access disabled can only support a single active deployment of one of the protected models from the catalog. Attempts to create more active deployments result in deployment creation failures.
 
-## Supported models for managed compute deployment with pay-as-you-go billing
+## Supported models 
 
-| Collection | Model | Task |
-|--|--|--|
-| Paige AI | [Virchow2G](https://ai.azure.com/explore/models/Virchow2G/version/1/registry/azureml-paige) | Image Feature Extraction |
-| Paige AI | [Virchow2G-Mini](https://ai.azure.com/explore/models/Virchow2G-Mini/version/1/registry/azureml-paige) | Image Feature Extraction |
-| Cohere | [Command A](https://ai.azure.com/explore/models/cohere-command-a/version/3/registry/azureml-cohere) | Chat completion |
-| Cohere | [Embed v4](https://ai.azure.com/explore/models/embed-v-4-0/version/4/registry/azureml-cohere) | Embeddings |
-| Cohere | [Rerank v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/2/registry/azureml-cohere) | Text classification |
-| NVIDIA | [Llama-3.3-Nemotron-Super-49B-v1-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.3-Nemotron-Super-49B-v1-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
-| NVIDIA | [Llama-3.1-Nemotron-Nano-8B-v1-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.1-Nemotron-Nano-8B-v1-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
-| NVIDIA | [Deepseek-R1-Distill-Llama-8B-NIM-microservice](https://ai.azure.com/explore/models/Deepseek-R1-Distill-Llama-8B-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
-| NVIDIA | [Llama-3.3-70B-Instruct-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
-| NVIDIA | [Llama-3.1-8B-Instruct-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.1-8B-Instruct-NIM-microservice/version/3/registry/azureml-nvidia) | Chat completion |
-| NVIDIA | [Mistral-7B-Instruct-v0.3-NIM-microservice](https://ai.azure.com/explore/models/Mistral-7B-Instruct-v0.3-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
-| NVIDIA | [Mixtral-8x7B-Instruct-v0.1-NIM-microservice](https://ai.azure.com/explore/models/Mixtral-8x7B-Instruct-v0.1-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
-| NVIDIA | [Llama-3.2-NV-embedqa-1b-v2-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.2-NV-embedqa-1b-v2-NIM-microservice/version/2/registry/azureml-nvidia) | Embeddings |
-| NVIDIA | [Llama-3.2-NV-rerankqa-1b-v2-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.2-NV-rerankqa-1b-v2-NIM-microservice/version/2/registry/azureml-nvidia) | Text classification |
-| NVIDIA | [Openfold2-NIM-microservice](https://ai.azure.com/explore/models/Openfold2-NIM-microservice/version/3/registry/azureml-nvidia) | Protein Binder |
-| NVIDIA | [ProteinMPNN-NIM-microservice](https://ai.azure.com/explore/models/ProteinMPNN-NIM-microservice/version/2/registry/azureml-nvidia) | Protein Binder |
-| NVIDIA | [MSA-search-NIM-microservice](https://ai.azure.com/explore/models/MSA-search-NIM-microservice/version/3/registry/azureml-nvidia) | Protein Binder |
-| NVIDIA | [Rfdiffusion-NIM-microservice](https://ai.azure.com/explore/models/Rfdiffusion-NIM-microservice/version/1/registry/azureml-nvidia) | Protein Binder |
+The following sections list the supported models for managed compute deployment with pay-as-you-go billing, grouped by collection.
+
+#### Paige AI
+
+| Model | Task |
+|--|--|
+| [Virchow2G](https://ai.azure.com/explore/models/Virchow2G/version/1/registry/azureml-paige) | Image Feature Extraction |
+| [Virchow2G-Mini](https://ai.azure.com/explore/models/Virchow2G-Mini/version/1/registry/azureml-paige) | Image Feature Extraction |
+
+#### Cohere
+
+| Model | Task |
+|--|--|
+| [Command A](https://ai.azure.com/explore/models/cohere-command-a/version/3/registry/azureml-cohere) | Chat completion |
+| [Embed v4](https://ai.azure.com/explore/models/embed-v-4-0/version/4/registry/azureml-cohere) | Embeddings |
+| [Rerank v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/2/registry/azureml-cohere) | Text classification |
+
+#### NVIDIA
+
+NVIDIA inference microservices (NIM) are containers built by NVIDIA for optimized pretrained and customized AI models serving on NVIDIA GPUs. NVIDIA NIMs available on Azure AI Foundry model catalog can be deployed with a Standard subscription to the [NVIDIA NIM SaaS offer](https://aka.ms/nvidia-nims-plan) on Azure Marketplace. Some special things to note about NIMs are:
+
+- **NIMs include a 90-day trial**. The trial applies to all NIMs associated with a particular SaaS subscription, and starts from the time the SaaS subscription is created.
+
+- **SaaS subscriptions scope to an Azure AI Foundry project**. Because multiple models are associated with a single Azure Marketplace offer, you only need to subscribe once to the NIM offer within a project, then you're able to deploy all the NIMs offered by NVIDIA in the AI Foundry model catalog. If you want to deploy NIMs in a different project with no existing SaaS subscription, you need to resubscribe to the offer.  
+
+
+| Model | Task |
+|--|--|
+| [Llama-3.3-Nemotron-Super-49B-v1-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.3-Nemotron-Super-49B-v1-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
+| [Llama-3.1-Nemotron-Nano-8B-v1-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.1-Nemotron-Nano-8B-v1-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
+| [Deepseek-R1-Distill-Llama-8B-NIM-microservice](https://ai.azure.com/explore/models/Deepseek-R1-Distill-Llama-8B-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
+| [Llama-3.3-70B-Instruct-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
+| [Llama-3.1-8B-Instruct-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.1-8B-Instruct-NIM-microservice/version/3/registry/azureml-nvidia) | Chat completion |
+| [Mistral-7B-Instruct-v0.3-NIM-microservice](https://ai.azure.com/explore/models/Mistral-7B-Instruct-v0.3-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
+| [Mixtral-8x7B-Instruct-v0.1-NIM-microservice](https://ai.azure.com/explore/models/Mixtral-8x7B-Instruct-v0.1-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
+| [Llama-3.2-NV-embedqa-1b-v2-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.2-NV-embedqa-1b-v2-NIM-microservice/version/2/registry/azureml-nvidia) | Embeddings |
+| [Llama-3.2-NV-rerankqa-1b-v2-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.2-NV-rerankqa-1b-v2-NIM-microservice/version/2/registry/azureml-nvidia) | Text classification |
+| [Openfold2-NIM-microservice](https://ai.azure.com/explore/models/Openfold2-NIM-microservice/version/3/registry/azureml-nvidia) | Protein Binder |
+| [ProteinMPNN-NIM-microservice](https://ai.azure.com/explore/models/ProteinMPNN-NIM-microservice/version/2/registry/azureml-nvidia) | Protein Binder |
+| [MSA-search-NIM-microservice](https://ai.azure.com/explore/models/MSA-search-NIM-microservice/version/3/registry/azureml-nvidia) | Protein Binder |
+| [Rfdiffusion-NIM-microservice](https://ai.azure.com/explore/models/Rfdiffusion-NIM-microservice/version/1/registry/azureml-nvidia) | Protein Binder |
 
 
 
