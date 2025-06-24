@@ -1348,7 +1348,7 @@ Edits an image from a text caption on a given gpt-image-1 model deployment
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| image | string or array | The image(s) to edit. Must be a supported image file or an array of images. Each image should be a png, or jpg file less than 25MB. | Yes |  |
+| image | string or array | The image(s) to edit. Must be a supported image file or an array of images. Each image should be a png, or jpg file less than 20MB. | Yes |  |
 | mask | string | An additional image whose fully transparent areas (e.g., where alpha is zero) indicate where the image should be edited. If there are multiple images provided, the mask will be applied to the first image. Must be a valid PNG file, less than 4MB, and have the same dimensions as the image. | No |  |
 | n | integer | The number of images to generate. | No | 1 |
 | prompt | string | A text description of the desired image(s). The maximum length is 32000 characters. | Yes |  |
@@ -6246,7 +6246,7 @@ Allows to set transparency for the background of the generated image(s). This pa
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| image | string or array | The image(s) to edit. Must be a supported image file or an array of images. Each image should be a png, or jpg file less than 25MB. | Yes |  |
+| image | string or array | The image(s) to edit. Must be a supported image file or an array of images. Each image should be a png, or jpg file less than 20MB. | Yes |  |
 | mask | string | An additional image whose fully transparent areas (e.g., where alpha is zero) indicate where the image should be edited. If there are multiple images provided, the mask will be applied to the first image. Must be a valid PNG file, less than 4MB, and have the same dimensions as the image. | No |  |
 | n | integer | The number of images to generate. | No | 1 |
 | prompt | string | A text description of the desired image(s). The maximum length is 32000 characters. | Yes |  |
