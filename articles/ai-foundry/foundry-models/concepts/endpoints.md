@@ -36,7 +36,7 @@ Deployments capture:
 
 An Azure AI Foundry resource can have as many model deployments as needed and they don't incur in cost unless inference is performed for those models. Deployments are Azure resources and hence they're subject to Azure policies.
 
-To learn more about how to create deployments see [Add and configure model deployments](../how-to/create-model-deployments.md).
+To learn more about how to create deployments see [Add and configure model deployments](../../model-inference/how-to/create-model-deployments.md).
 
 ## Endpoints
 
@@ -46,7 +46,7 @@ Azure AI Foundry Services (formerly known Azure AI Services) expose multiple end
 > * Azure AI inference endpoint (usually with the form `https://<resource-name>.services.ai.azure.com/models`)
 > * Azure OpenAI endpoint (usually with the form `https://<resource-name>.openai.azure.com`)
 
-The **Azure AI inference endpoint** allows customers to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. All the models support this capability. This endpoint follows the [Azure AI Model Inference API](.././reference/reference-model-inference-api.md). 
+The **Azure AI inference endpoint** allows customers to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. All the models support this capability. This endpoint follows the [Azure AI Model Inference API](../../model-inference/reference/reference-model-inference-api.md). 
 
 The **Azure OpenAI API** exposes the full capabilities of OpenAI models and supports more features like assistants, threads, files, and batch inference. Non-OpenAI models may also be exposed in this route.
 
@@ -60,21 +60,21 @@ The inference endpoint routes requests to a given deployment by matching the par
 
 For example, if you create a deployment named `Mistral-large`, then such deployment can be invoked as:
 
-[!INCLUDE [code-create-chat-client](../includes/code-create-chat-client.md)]
+[!INCLUDE [code-create-chat-client](../../model-inference/includes/code-create-chat-client.md)]
 
 For a chat model, you can create a request as follows:
 
-[!INCLUDE [code-create-chat-completion](../includes/code-create-chat-completion.md)]
+[!INCLUDE [code-create-chat-completion](../../model-inference/includes/code-create-chat-completion.md)]
 
-If you specify a model name that doesn't match any given model deployment, you get an error that the model doesn't exist. You can control which models are available for users by creating model deployments as explained at [add and configure model deployments](../how-to/create-model-deployments.md).
+If you specify a model name that doesn't match any given model deployment, you get an error that the model doesn't exist. You can control which models are available for users by creating model deployments as explained at [add and configure model deployments](../../model-inference/how-to/create-model-deployments.md).
 
 ## Key-less authentication
 
 Models deployed to Azure AI Foundry Models in Azure AI Services support key-less authorization using Microsoft Entra ID. Key-less authorization enhances security, simplifies the user experience, reduces operational complexity, and provides robust compliance support for modern development. It makes it a strong choice for organizations adopting secure and scalable identity management solutions.
 
-To use key-less authentication, [configure your resource and grant access to users](../how-to/configure-entra-id.md) to perform inference. Once configured, then you can authenticate as follows:
+To use key-less authentication, [configure your resource and grant access to users](../../model-inference/how-to/configure-entra-id.md) to perform inference. Once configured, then you can authenticate as follows:
 
-[!INCLUDE [code-create-chat-client-entra](../includes/code-create-chat-client-entra.md)]
+[!INCLUDE [code-create-chat-client-entra](../../model-inference/includes/code-create-chat-client-entra.md)]
 
 ## Limitations
 
@@ -83,5 +83,5 @@ To use key-less authentication, [configure your resource and grant access to use
 
 ## Next steps
 
-- [Models](models.md)
-- [Deployment types](deployment-types.md)
+- [Models](../../model-inference/concepts/models.md)
+- [Deployment types](../../model-inference/concepts/deployment-types.md)

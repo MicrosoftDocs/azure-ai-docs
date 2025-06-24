@@ -80,7 +80,7 @@ Detecting indirect attacks requires using document delimiters when constructing 
 
 ## Configurability
 
-[!INCLUDE [content-filter-configurability](../includes/content-filter-configurability.md)]
+[!INCLUDE [content-filter-configurability](../../model-inference/includes/content-filter-configurability.md)]
 
 ## Scenario details
 

@@ -35,17 +35,17 @@ items:
     - name: Model inference endpoint
       href: ./concepts/endpoints.md
     - name: Deployment types
-      href: ./concepts/deployment-types.md
+      href: ai-foundry/foundry-models/concepts/deployment-types.md
     - name: Model versions
-      href: ./concepts/model-versions.md
+      href: ai-foundry/foundry-models/concepts/model-versions.md
     - name: Model lifecycle and retirement
       href: ../concepts/model-lifecycle-retirement.md?context=/azure/ai-foundry/model-inference/context/context
     - name: Responsible AI
       items:
       - name: Content filtering
-        href: ./concepts/content-filter.md
+        href: ai-foundry/foundry-models/concepts/content-filter.md
       - name: Default safety policies
-        href: ./concepts/default-safety-policies.md
+        href: ai-foundry/foundry-models/concepts/default-safety-policies.md
 - name: Configure and manage
   items:
   - name: Create resources

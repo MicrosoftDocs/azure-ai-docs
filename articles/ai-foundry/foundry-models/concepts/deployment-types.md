@@ -33,7 +33,7 @@ Azure AI Foundry Models provides customers with choices on the hosting structure
 
 Global deployments are available in the same Azure AI Foundry Services as non-global deployment types but allow you to leverage Azure's global infrastructure to dynamically route traffic to the data center with best availability for each request.  Global standard provides the highest default quota and eliminates the need to load balance across multiple resources.  
 
-Customers with high consistent volume may experience greater latency variability. The threshold is set per model. See the [quotas page to learn more](../quotas-limits.md).  For applications that require the lower latency variance at large workload usage, we recommend purchasing provisioned throughput.
+Customers with high consistent volume may experience greater latency variability. The threshold is set per model. See the [quotas page to learn more](../../model-inference/quotas-limits.md).  For applications that require the lower latency variance at large workload usage, we recommend purchasing provisioned throughput.
 
 ## Global provisioned
 
@@ -119,5 +119,5 @@ Administrators can control which model deployment types are available to their u
 
 ## Related content
 
-- [Quotas & limits](../quotas-limits.md)
+- [Quotas & limits](../../model-inference/quotas-limits.md)
 - [Data privacy, and security for Azure AI Foundry Models](../../how-to/concept-data-privacy.md)

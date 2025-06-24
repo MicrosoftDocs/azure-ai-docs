@@ -16,12 +16,12 @@ reviewer: santiagxf
 
 Azure AI Foundry Models includes default safety applied to all models, excluding Azure OpenAI Whisper. These configurations provide you with a responsible experience by default.
 
-Default safety aims to mitigate risks such as hate and fairness, sexual, violence, self-harm, protected material content, and user prompt injection attacks. To learn more about content filtering, read [our documentation describing categories and severity levels](content-filter.md).
+Default safety aims to mitigate risks such as hate and fairness, sexual, violence, self-harm, protected material content, and user prompt injection attacks. To learn more about content filtering, read [our documentation describing categories and severity levels](../../model-inference/concepts/content-filter.md).
 
 This document describes the default configuration.
 
 > [!TIP]
-> By default, all model deployments use the default configuration. However, you can configure content filtering per model deployment as explained at [Configuring content filtering](../how-to/configure-content-filters.md).
+> By default, all model deployments use the default configuration. However, you can configure content filtering per model deployment as explained at [Configuring content filtering](../../model-inference/how-to/configure-content-filters.md).
 
 ## Text models
 
@@ -80,4 +80,4 @@ Content filters apply only to text prompts and completions. Images aren't subjec
 
 ## Next steps
 
-* [Configure content filters in Azure AI Foundry Models](../how-to/configure-content-filters.md)
+* [Configure content filters in Azure AI Foundry Models](../../model-inference/how-to/configure-content-filters.md)

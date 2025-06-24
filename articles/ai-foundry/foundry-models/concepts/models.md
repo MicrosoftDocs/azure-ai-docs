@@ -61,10 +61,10 @@ DeepSeek family of models includes DeepSeek-R1, which excels at reasoning tasks 
 | ------ | ---- | ---- | ------------ |
 | [DeepSeek-R1-0528]() <br /> | chat-completion | Global standard | - **Input:** text (163,840 tokens) <br /> - **Output:** text (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No  <br /> - **Response formats:** Text  |
 | [DeepSeek-V3-0324](https://ai.azure.com/explore/models/deepseek-v3-0324/version/1/registry/azureml-deepseek) | chat-completion | Global standard | - **Input:** text (131,072 tokens) <br /> - **Output:**  (131,072 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
-| [DeepSeek-R1](https://ai.azure.com/explore/models/deepseek-r1/version/1/registry/azureml-deepseek) | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | Global standard | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |
+| [DeepSeek-R1](https://ai.azure.com/explore/models/deepseek-r1/version/1/registry/azureml-deepseek) | chat-completion <br /> [(with reasoning content)](../../model-inference/how-to/use-chat-reasoning.md) | Global standard | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |
 | [DeepSeek-V3](https://ai.azure.com/explore/models/deepseek-v3/version/1/registry/azureml-deepseek) <br />(Legacy) | chat-completion | Global standard | - **Input:** text (131,072 tokens) <br /> - **Output:**  (131,072 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
 
-For a tutorial on DeepSeek-R1, see [Tutorial: Get started with DeepSeek-R1 reasoning model in Azure AI Foundry Models](../tutorials/get-started-deepseek-r1.md).
+For a tutorial on DeepSeek-R1, see [Tutorial: Get started with DeepSeek-R1 reasoning model in Azure AI Foundry Models](../../model-inference/tutorials/get-started-deepseek-r1.md).
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=deepseek).
 
@@ -75,7 +75,7 @@ Microsoft models include various model groups such as MAI models, Phi models, he
 
 | Model  | Type | Tier | Capabilities |
 | ------ | ---- | --- | ------------ |
-| [MAI-DS-R1](https://ai.azure.com/explore/models/MAI-DS-R1/version/1/registry/azureml) |  chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | Global standard | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |
+| [MAI-DS-R1](https://ai.azure.com/explore/models/MAI-DS-R1/version/1/registry/azureml) |  chat-completion <br /> [(with reasoning content)](../../model-inference/how-to/use-chat-reasoning.md) | Global standard | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |
 
 ### Mistral AI
 
@@ -112,7 +112,7 @@ xAI's Grok 3 and Grok 3 Mini models are designed to excel in various enterprise 
 
 Models from Partners and Community available for deployment with pay-as-you-go billing (for example, Cohere models) are offered by the model provider but hosted in Microsoft-managed Azure infrastructure and accessed via API in the Azure AI Foundry. Model providers define the license terms and set the price for use of their models, while Azure AI Foundry manages the hosting infrastructure.
 
-Models from Partners and Community are offered through Azure Marketplace and [requires additional configuration for enabling](../how-to/configure-marketplace.md). 
+Models from Partners and Community are offered through Azure Marketplace and [requires additional configuration for enabling](../../model-inference/how-to/configure-marketplace.md). 
 
 ### AI21 Labs
 
@@ -229,4 +229,4 @@ Those models can be of open access or IP protected. In both cases, you have to d
 
 ## Next steps
 
-- Get started today and [deploy your fist model in Azure AI Foundry Models](../how-to/create-model-deployments.md)
+- Get started today and [deploy your fist model in Azure AI Foundry Models](../../model-inference/how-to/create-model-deployments.md)

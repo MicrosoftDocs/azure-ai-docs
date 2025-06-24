@@ -1,4 +1,4 @@
-{ 
+{
   "redirections": [
     {
       "source_path": "articles/ai-foundry/concepts/connections.md",
@@ -318,6 +318,36 @@
     {
       "source_path_from_root": "/articles/ai-services/language-service/tutorials/prompt-flow.md",
       "redirect_url": "/azure/ai-services/language-service/tutorials/power-automate",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/concepts/content-filter.md",
+      "redirect_url": "../../foundry-models/concepts/content-filter",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/concepts/default-safety-policies.md",
+      "redirect_url": "../../foundry-models/concepts/default-safety-policies",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/concepts/deployment-types.md",
+      "redirect_url": "../../foundry-models/concepts/deployment-types",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/concepts/endpoints.md",
+      "redirect_url": "../../foundry-models/concepts/endpoints",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/concepts/models.md",
+      "redirect_url": "../../foundry-models/concepts/models",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/concepts/model-versions.md",
+      "redirect_url": "../../foundry-models/concepts/model-versions",
       "redirect_document_id": false
     }
   ]
