@@ -9,8 +9,8 @@ ms.custom:
 ms.topic: how-to
 ms.date: 05/09/2025
 ms.reviewer: meerakurup 
-ms.author: larryfr
-author: Blackmist
+ms.author: sgilley
+author: sdgilley
 # Customer intent: As an administrator, I want to create a secure hub and project with a managed virtual network so that I can secure access to the Azure AI Foundry hub and project resources.
 
 ---
