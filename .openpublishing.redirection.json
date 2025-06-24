@@ -474,6 +474,21 @@
       "source_path": "articles/ai-foundry/model-inference/supported-languages-openai.md",
       "redirect_url": "../foundry-models/supported-languages-openai",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/faq.yml",
+      "redirect_url": "../foundry-models/faq",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/index.yml",
+      "redirect_url": "../foundry-models/index",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/toc.yml",
+      "redirect_url": "../foundry-models/toc",
+      "redirect_document_id": false
     }
   ]
 }
