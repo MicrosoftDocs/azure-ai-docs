@@ -695,9 +695,9 @@ items:
   - name: Azure AI services REST APIs
     displayName: swagger http
     href: ../ai-services/reference/rest-api-resources.md?context=/azure/ai-foundry/context/context
-  - name: Azure AI Foundry Models API
+  - name: Azure AI Model Inference API
     items:
-    - name: What's the Foundry Models API?
+    - name: What's the Model Inference API?
       href: /rest/api/aifoundry/modelinference
     - name: Reference
       items:
