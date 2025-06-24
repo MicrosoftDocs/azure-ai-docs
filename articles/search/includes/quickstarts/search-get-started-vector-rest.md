@@ -669,7 +669,7 @@ The vector query string is semantically similar to the search string, but it inc
 
 ### Single vector search
 
-1. Formulate the request. The query is a 1536 float representation of *quintessential lodging near running trails, eateries, retail*. The query is searching `DescriptionVector` and returning k-5 results.
+1. Formulate the request. The query is a 1536 float representation of *quintessential lodging near running trails, eateries, retail*. The query is searching `DescriptionVector` and returning k-5 results. It's using the "exhaustive" override parameter to perform a full scan of the index instead of approximate nearest neighbor. An exhaustive search is useful for small indexes.
 
     ```http
     ### Run a single vector query
@@ -700,7 +700,7 @@ The vector query string is semantically similar to the search string, but it inc
 
     + `kind` set to `vector` means that the query string is a vector. If `kind` was set to `text`, you would need extra capability (a [vectorizer]()) to encode a human readable text string into a vector at query time. Vectorizers are omitted from this quickstart to keep the exercise simple.
 
-    + `k` specifies the number of nearest neighbors to return in the response. A `count` parameter specifies the number of matches found in the index. Including count is a best practice for queries, but it's less useful for similarity search where the algorithm can find some degree of similarity in almost any document. 
+    + `k` specifies the number of matches to return in the response. A `count` parameter specifies the number of matches found in the index. Including count is a best practice for queries, but it's less useful for similarity search where the algorithm can find some degree of similarity in almost any document. 
 
 1. Select **Send request**. You should have an `HTTP/1.1 200 OK` response. The response body should include the JSON representation of the search results.
 

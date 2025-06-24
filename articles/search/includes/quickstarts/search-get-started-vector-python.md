@@ -399,7 +399,8 @@ The first example demonstrates a basic scenario where you want to find document 
 
    The vector query string is `quintessential lodging near running trails, eateries, retail`, which is vectorized into 1,536 embeddings for this query.
 
-   The response for the vector equivalent of `quintessential lodging near running trails, eateries, retail` includes seven results but the code specifies `top=5` so only the first five results are returned. Furthermore, only the fields specified by the `select` are returned. 
+<!-- retain numeric references to 5 and 7. Too hard to spot these values if they are written out. -->
+   The response for the vector equivalent of `quintessential lodging near running trails, eateries, retail` consists of 7 results but the code specifies `top=5` so only the first 5 results are returned. Furthermore, only the fields specified by the `select` are returned. 
 
    `search_client.search()` returns a dict-like object. Each result provides a search score, which can be accessed using `score = result.get("@search.score", "N/A")`. While not displayed in this example, in a similarity search, the response always includes `k` results ordered by the value similarity score.
 
