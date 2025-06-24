@@ -21,7 +21,7 @@ Generates text-to-speech audio from the input text.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Model Inference API version to use for this request.<br>`latest` if not otherwise specified. |
+| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 
 ### Request Header
 
@@ -102,7 +102,7 @@ Transcribes audio into the input language.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Model Inference API version to use for this request.<br>`latest` if not otherwise specified. |
+| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 
 ### Request Header
 
@@ -218,7 +218,7 @@ Creates a chat completion.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Model Inference API version to use for this request.<br>`latest` if not otherwise specified. |
+| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 
 ### Request Header
 
@@ -355,7 +355,7 @@ Creates a completion.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Model Inference API version to use for this request.<br>`latest` if not otherwise specified. |
+| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 
 ### Request Header
 
@@ -468,7 +468,7 @@ Creates an embedding vector representing the input text.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Model Inference API version to use for this request.<br>`latest` if not otherwise specified. |
+| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 
 ### Request Header
 
@@ -706,7 +706,7 @@ POST {endpoint}/openai/v1/images/generations?api-version=preview
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Model Inference API version to use for this request.<br>`latest` if not otherwise specified. |
+| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 
 ### Request Header
 
@@ -846,7 +846,7 @@ Creates a model response.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Model Inference API version to use for this request.<br>`latest` if not otherwise specified. |
+| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 
 ### Request Header
 
@@ -930,7 +930,7 @@ Retrieves a model response with the given ID.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Model Inference API version to use for this request.<br>`latest` if not otherwise specified. |
+| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 | response_id | path | Yes | string |  |
 | include[] | query | No | array |  |
 
@@ -974,7 +974,7 @@ Deletes a response by ID.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Model Inference API version to use for this request.<br>`latest` if not otherwise specified. |
+| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 | response_id | path | Yes | string |  |
 
 ### Request Header
@@ -1017,7 +1017,7 @@ Returns a list of input items for a given response.
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Model Inference API version to use for this request.<br>`latest` if not otherwise specified. |
+| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 | response_id | path | Yes | string |  |
 | limit | query | No | integer | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the<br>default is 20. |
 | order | query | No | string<br>Possible values: `asc`, `desc` | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and`desc`<br>for descending order. |
@@ -1062,7 +1062,7 @@ POST {endpoint}/openai/v1/video/generations/jobs?api-version=preview
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Model Inference API version to use for this request.<br>`latest` if not otherwise specified. |
+| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 
 ### Request Header
 
@@ -1149,7 +1149,7 @@ GET {endpoint}/openai/v1/video/generations/jobs?api-version=preview
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Model Inference API version to use for this request.<br>`latest` if not otherwise specified. |
+| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 | before | query | No | string |  |
 | after | query | No | string |  |
 | limit | query | Yes | integer |  |
@@ -1195,7 +1195,7 @@ GET {endpoint}/openai/v1/video/generations/jobs/{job-id}?api-version=preview
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Model Inference API version to use for this request.<br>`latest` if not otherwise specified. |
+| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 | job-id | path | Yes | string | The ID of the video generation job to use for the Azure OpenAI request. |
 
 ### Request Header
@@ -1236,7 +1236,7 @@ DELETE {endpoint}/openai/v1/video/generations/jobs/{job-id}?api-version=preview
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Model Inference API version to use for this request.<br>`latest` if not otherwise specified. |
+| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 | job-id | path | Yes | string | The ID of the video generation job to use for the Azure OpenAI request. |
 
 ### Request Header
@@ -1275,7 +1275,7 @@ GET {endpoint}/openai/v1/video/generations/{generation-id}?api-version=preview
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Model Inference API version to use for this request.<br>`latest` if not otherwise specified. |
+| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 | generation-id | path | Yes | string | The ID of the video generation to use for the Azure OpenAI request. |
 
 ### Request Header
@@ -1318,7 +1318,7 @@ GET {endpoint}/openai/v1/video/generations/{generation-id}/content/thumbnail?api
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Model Inference API version to use for this request.<br>`latest` if not otherwise specified. |
+| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 | generation-id | path | Yes | string | The ID of the video generation to use for the Azure OpenAI request. |
 | If-Modified-Since | header | No | string | Timestamp formatted as GMT time |
 
@@ -1360,7 +1360,7 @@ GET {endpoint}/openai/v1/video/generations/{generation-id}/content/video?api-ver
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
 | endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
-| api-version | query | No |  | The explicit Azure AI Model Inference API version to use for this request.<br>`latest` if not otherwise specified. |
+| api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 | generation-id | path | Yes | string | The ID of the video generation to use for the Azure OpenAI request. |
 | If-Modified-Since | header | No | string |  |
 | quality | query | No |  |  |
@@ -1974,7 +1974,7 @@ This model adds Responsible AI content filter annotations for prompt input.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| best_of | integer | Generates `best_of` completions server-side and returns the "best" (the one with the highest log probability per token). Results cannot be streamed.<br><br>When used with `n`, `best_of` controls the number of candidate completions and `n` specifies how many to return â&euro;" `best_of` must be greater than `n`.<br><br>**Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`. | No | 1 |
+| best_of | integer | Generates `best_of` completions server-side and returns the "best" (the one with the highest log probability per token). Results cannot be streamed.<br><br>When used with `n`, `best_of` controls the number of candidate completions and `n` specifies how many to return â€“ `best_of` must be greater than `n`.<br><br>**Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`. | No | 1 |
 | echo | boolean | Echo back the prompt in addition to the completion | No | False |
 | frequency_penalty | number | Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. | No | 0 |
 | logit_bias | object | Modify the likelihood of specified tokens appearing in the completion.<br><br>Accepts a JSON object that maps tokens (specified by their token ID in the GPT tokenizer) to an associated bias value from -100 to 100.  Mathematically, the bias is added to the logits generated by the model prior to sampling. The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token.<br><br>As an example, you can pass `{"50256": -100}` to prevent the <&#124;endoftext&#124;> token from being generated. | No | None |
