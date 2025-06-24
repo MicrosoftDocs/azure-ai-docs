@@ -5,11 +5,13 @@ description: Foundry Local is a trusted platform that empowers developers to dri
 manager: scottpolly
 keywords: Azure AI services, cognitive
 ms.service: azure-ai-foundry
+ms.subservice: foundry-local
 ms.topic: overview
 ms.date: 02/20/2025
 ms.reviewer: samkemp
-ms.author: samkemp
-author: samuel100
+ms.author: jburchel
+author: jburchel
+reviewer: samuel100
 ms.custom: build-2025
 #customer intent: As a developer, I want to understand what Azure AI Foundry Local is so that I can use it to build AI applications.
 ---

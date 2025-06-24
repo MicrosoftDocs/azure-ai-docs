@@ -5,11 +5,14 @@ description: Learn how to create a chat application using Foundry Local and Open
 manager: scottpolly
 keywords: Azure AI services, cognitive, AI models, local inference
 ms.service: azure-ai-foundry
+ms.subservice: foundry-local
 ms.topic: how-to
 ms.date: 02/20/2025
 ms.reviewer: samkemp
-ms.author: samkemp
-author: samuel100
+ms.author: jburchel
+ms.reviewer: samkemp
+author: jonburchel
+reviewer: samuel100
 ms.custom: build-2025
 #customer intent: As a developer, I want to get started with Foundry Local so that I can run AI models locally.
 ---

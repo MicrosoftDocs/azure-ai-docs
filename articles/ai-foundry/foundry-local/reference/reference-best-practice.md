@@ -4,11 +4,13 @@ titleSuffix: Foundry Local
 description: Guidance on best practices and troubleshooting for Foundry Local.
 manager: scottpolly
 ms.service: azure-ai-foundry
+ms.subservice: foundry-local
 ms.custom: build-2025
 ms.topic: reference
 ms.date: 05/02/2025
-ms.author: maanavdalal
-author: maanavd
+ms.author: jburchel
+reviewer: maanavd
+ms.author: jburchel
 ---
 
 # Best practices and troubleshooting guide for Foundry Local

@@ -4,12 +4,14 @@ titleSuffix: Foundry Local
 description: Reference guide for the Foundry Local SDK.
 manager: scottpolly
 ms.service: azure-ai-foundry
+ms.subservice: foundry-local
 ms.custom: build-2025
 ms.topic: conceptual
 ms.date: 05/06/2025
-ms.author: maanavdalal
+ms.author: jburchel
 zone_pivot_groups: foundry-local-sdk
-author: maanavd
+reviewer: maanavd
+ms.author: jburchel
 ---
 
 # Foundry Local SDK Reference

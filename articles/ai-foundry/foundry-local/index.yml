@@ -6,13 +6,16 @@ metadata:
   title: Foundry Local documentation
   description: Foundry Local helps developers and organizations rapidly create intelligent, cutting-edge, market-ready, and responsible applications with out-of-the-box and prebuilt and customizable APIs and models. Example applications include generative AI, natural language processing for conversations, search, monitoring, translation, speech, vision, and decision-making.
   ms.service: azure-ai-foundry
+ms.subservice: foundry-local
   ms.custom:
     - build-2025
   ms.topic: landing-page
   manager: scottpolly
-  ms.reviewer: sgilley
-  ms.author: samkemp
-  author: samuel100
+  ms.reviewer: samkemp
+  ms.author: jburchel
+  reviewer: samuel100
+  author: jonburchel
+  reviewer: samuel100
   ms.date: 03/04/2025
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 
