@@ -65,10 +65,10 @@ Within the data section, you can conduct a comprehensive examination of each ind
 
 Some potential action items based on the evaluation metrics could include:
 
-- Pattern recognition: By filtering for numerical values and metrics, you can drill down to samples with lower scores. Investigate these samples to identify recurring patterns or issues in your model's responses. For one example, you might notice that low scores often occur when the model generates content on a certain topic.
-- Model refinement: Use the insights from lower-scoring samples to improve the system prompt instruction or fine-tune your model. If you observe consistent issues with, for example, coherence or relevance, you can also adjust the model's training data or parameters accordingly.
-- Column customization: You can use the column editor to create a customized view of the table, focusing on the metrics and data that are most relevant to your evaluation goals. The column editor can streamline your analysis and help you spot trends more effectively.
-- Keyword search: You can use the search box to look for specific words or phrases in the generated output, and to pinpoint issues or patterns related to particular topics or keywords. Then, you can address them specifically.
+- **Pattern recognition**: By filtering for numerical values and metrics, you can drill down to samples with lower scores. Investigate these samples to identify recurring patterns or issues in your model's responses. For one example, you might notice that low scores often occur when the model generates content on a certain topic.
+- **Model refinement**: Use the insights from lower-scoring samples to improve the system prompt instruction or fine-tune your model. If you observe consistent issues with, for example, coherence or relevance, you can also adjust the model's training data or parameters accordingly.
+- **Column customization**: You can use the column editor to create a customized view of the table, focusing on the metrics and data that are most relevant to your evaluation goals. The column editor can streamline your analysis and help you spot trends more effectively.
+- **Keyword search**: You can use the search box to look for specific words or phrases in the generated output, and to pinpoint issues or patterns related to particular topics or keywords. Then, you can address them specifically.
 
 The metrics detail table offers a wealth of data that can guide your model improvement efforts. You can recognize patterns, customize your view for efficient analysis, and refine your model based on identified issues.
 
@@ -137,9 +137,9 @@ Within the comparison **Table**, you can establish a baseline for your compariso
 
 By using these comparison features, you can make an informed decision to select the best version:
 
-- Baseline comparison: By setting a baseline run, you can identify a reference point against which to compare the other runs. You can see how each run deviates from your chosen standard.
-- Numerical value assessment: Enabling the **Show delta** option helps you understand the extent of the differences between the baseline and other runs. This can help you evaluate how various runs perform in terms of specific evaluation metrics.
-- Difference isolation: The **Show only difference** feature streamlines your analysis by highlighting only the areas where there are discrepancies between runs. This can be instrumental in pinpointing where improvements or adjustments are needed.
+- **Baseline comparison**: By setting a baseline run, you can identify a reference point against which to compare the other runs. You can see how each run deviates from your chosen standard.
+- **Numerical value assessment**: Enabling the **Show delta** option helps you understand the extent of the differences between the baseline and other runs. This can help you evaluate how various runs perform in terms of specific evaluation metrics.
+- **Difference isolation**: The **Show only difference** feature streamlines your analysis by highlighting only the areas where there are discrepancies between runs. This can be instrumental in pinpointing where improvements or adjustments are needed.
 
 By using these comparison tools effectively, you can identify which version of your model or system performs the best in relation to your defined criteria and metrics, ultimately assisting you in selecting the most optimal option for your application.
 
@@ -171,6 +171,6 @@ Learn more about how to evaluate your generative AI applications:
 
 - [Evaluate your generative AI apps via the playground](../how-to/evaluate-prompts-playground.md)
 - [Evaluate your generative AI apps with the Azure AI Foundry portal or SDK](../how-to/evaluate-generative-ai-app.md)
-- [Creating evaluations specifically with OpenAI evaluation graders in Azure OpenAI Hub](../../ai-services/openai/how-to/evaluations.md)
+- [Create evaluations specifically with OpenAI evaluation graders in Azure OpenAI Hub](../../ai-services/openai/how-to/evaluations.md)
 
 Learn more about [harm mitigation techniques](../concepts/evaluation-approach-gen-ai.md).
