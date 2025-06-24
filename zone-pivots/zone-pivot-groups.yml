@@ -680,6 +680,20 @@ groups:
       title: Azure CLI
     - id: programming-language-bicep
       title: Bicep
+
+- id: azure-ai-serverless-deployment
+# Owner: mopeakande
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+    - id: ai-foundry-portal
+      title: Azure AI Foundry portal
+    - id: programming-language-cli
+      title: Azure CLI
+    - id: python-sdk
+      title: Python SDK
+    - id: programming-language-bicep
+      title: Bicep
 - id: azure-ai-model-catalog-sub-group-samples
 # Owner: mopeakande
   title: Programming languages
@@ -1314,7 +1328,11 @@ groups:
     title: JavaScript
   - id: programming-language-python
     title: Python
-- id: foundry-local-sdk-with-csharp
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-rust
+    title: Rust
+- id: foundry-local-langchain
   title: Programming languages
   prompt: Choose a programming language
   pivots:
@@ -1322,10 +1340,19 @@ groups:
     title: JavaScript
   - id: programming-language-python
     title: Python
-  - id: programming-language-csharp
-    title: C#
 # Owner: haileytapia
 - id: search-get-started-agentic-retrieval
+  title: Python and REST
+  prompt: Choose a usage method
+  pivots:
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-rest
+    title: REST
+# Owner: haileytapia
+- id: search-get-started-vector-search
   title: Python and REST
   prompt: Choose a usage method
   pivots:

@@ -51,7 +51,7 @@ Training datasets must be in `jsonl` format:
 
 ## Direct preference optimization model support
 
-- `gpt-4o-2024-08-06` supports direct preference optimization in its respective fine-tuning regions. Latest region availability is updated in the [models page](../concepts/models.md#fine-tuning-models)
+- `gpt-4o-2024-08-06`,`gpt-4.1-2025-04-14`,`gpt-4.1-mini-2025-04-14`  supports direct preference optimization in its respective fine-tuning regions. Latest region availability is updated in the [models page](../concepts/models.md#fine-tuning-models)
 
 Users can use preference fine tuning with base models as well as models that have already been fine-tuned using supervised fine-tuning as long as they are of a supported model/version.
 
