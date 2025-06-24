@@ -15,7 +15,7 @@ items:
   - name: Explore Azure AI Foundry Models
     href: concepts/foundry-models-overview.md
   - name: Configure Models from Partners and Community
-    href: how-to/configure-marketplace.md?context=/azure/ai-foundry/context/context
+    href: foundry-models/how-to/configure-marketplace.md?context=/azure/ai-foundry/context/context
   - name: Data, privacy, and security for Model Catalog
     href: how-to/concept-data-privacy.md
   - name: Model lifecycle and retirement
