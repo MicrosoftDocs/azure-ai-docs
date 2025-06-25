@@ -480,7 +480,7 @@ The response for this query should look similar to the following example:
 
 Try specifying queries in code. The following link covers how to set up search queries using the Azure SDKs.
 
-+ [Quickstart: Full text search using the Azure SDKs](search-get-started-text.md)
++ [Quickstart: Full-text search](search-get-started-text.md)
 
 More syntax reference, query architecture, and examples can be found in the following articles:
 

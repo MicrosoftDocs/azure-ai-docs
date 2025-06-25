@@ -15,7 +15,7 @@ ms.custom:
   - ignite-2023
 ms.topic: quickstart
 zone_pivot_groups: search-quickstart-full-text
-ms.date: 06/23/2025
+ms.date: 06/25/2025
 ---
 
 # Quickstart: Full-text search
@@ -66,15 +66,12 @@ ms.date: 06/23/2025
 
 When working in your own subscription, it's a good idea to finish a project by determining whether you still need the resources you created. Resources that are left running can cost you money. You can delete resources individually, or you can delete the resource group to delete the entire set of resources.
 
-In the Azure portal, you can find and manage resources by selecting **All resources** or **Resource groups** from the left pane.
+In the [Azure portal](https://portal.azure.com/), you can find and manage resources by selecting **All resources** or **Resource groups** from the left pane.
 
 If you're using a free service, remember that you're limited to three indexes, indexers, and data sources. You can delete individual items in the Azure portal to stay under the limit.
 
-## Next step
+## Related content
 
-In this quickstart, you worked through a set of tasks to create an index, load it with documents, and run queries. At different stages, we took shortcuts to simplify the code for readability and comprehension.
-
-Now that you're familiar with the basic concepts, try a tutorial that calls the Azure AI Search APIs in a web app:
-
-> [!div class="nextstepaction"]
-> [Tutorial: Add search to web apps](tutorial-csharp-overview.md)
++ [Full-text search in Azure AI Search](search-lucene-query-architecture.md)
++ [Examples of simple search queries](search-query-simple-examples.md)
++ [Examples of full Lucene search syntax](search-query-lucene-examples.md)

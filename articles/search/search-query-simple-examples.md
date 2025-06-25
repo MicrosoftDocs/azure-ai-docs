@@ -546,7 +546,7 @@ The response for the second batch skips the first five matches, returning the ne
 
 Now that you have some practice with the basic query syntax, try specifying queries in code. The following link covers how to set up search queries using the Azure SDKs.
 
-+ [Quickstart: Full text search using the Azure SDKs](search-get-started-text.md)
++ [Quickstart: Full-text search](search-get-started-text.md)
 
 More syntax reference, query architecture, and examples can be found in the following links:
 

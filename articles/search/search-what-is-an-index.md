@@ -178,7 +178,7 @@ All indexing and query requests target an index. Endpoints are usually one of th
 1. Try other clients for programmatic access. We recommend the quickstarts for first steps:
 
    + [Quickstart: REST](search-get-started-rest.md)
-   + [Quickstart: Azure SDKs](search-get-started-text.md)
+   + [Quickstart: Full-text search](search-get-started-text.md)
    + [Quickstart: RAG (using Visual Studio Code and a Jupyter notebook)](search-get-started-rag.md)
 
 ## Next steps

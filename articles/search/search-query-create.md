@@ -172,4 +172,4 @@ The key point is that what you think your index contains, and what's actually in
 Now that you have a better understanding of how query requests work, try the following quickstarts for hands-on experience.
 
 + [Search explorer](search-explorer.md)
-+ [Quickstart: Full text search using the Azure SDKs](search-get-started-text.md)
++ [Quickstart: Full-text search](search-get-started-text.md)

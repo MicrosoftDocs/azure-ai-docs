@@ -81,7 +81,7 @@ This tutorial uses key-based authentication. Copy an admin API key to paste into
 
 After you update *appsettings.json*, the sample program in *OptimizeDataIndexing.sln* should be ready to build and run.
 
-This code is derived from the C# section of [Quickstart: Full text search using the Azure SDKs](search-get-started-text.md), which provides detailed information about the basics of working with the .NET SDK.
+This code is derived from the C# section of [Quickstart: Full-text search](search-get-started-text.md), which provides detailed information about the basics of working with the .NET SDK.
 
 This simple C#/.NET console app performs the following tasks:
 

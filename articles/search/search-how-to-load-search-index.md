@@ -144,7 +144,7 @@ The Azure SDK for JavaScript/TypeScript provides the following APIs for simple a
 
 Code samples include:
 
-+ See this quickstart for basic steps: [Quickstart: Full text search using the Azure SDKs](search-get-started-text.md?tabs=javascript)
++ See this quickstart for basic steps: [Quickstart: Full-text search](search-get-started-text.md?tabs=javascript)
 
 + Be sure to check the [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples) repo for code examples showing how to index vector fields.
 

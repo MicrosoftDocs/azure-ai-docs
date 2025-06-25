@@ -4,12 +4,12 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 06/24/2025
+ms.date: 06/25/2025
 ---
 
-In this quickstart, you use the [Search REST APIs](/rest/api/searchservice) to create, load, and query a search index with sample data for [full-text search](../../search-lucene-query-architecture.md). Full-text search uses Apache Lucene for indexing and queries and the BM25 ranking algorithm for scoring results.
+In this quickstart, you use the [Azure AI Search REST APIs](/rest/api/searchservice) to create, load, and query a search index for [full-text search](../../search-lucene-query-architecture.md). Full-text search uses Apache Lucene for indexing and queries and the BM25 ranking algorithm for scoring results.
 
-This quickstart creates and queries a small `hotels-quickstart` index containing data about four hotels.
+This quickstart creates and queries a small index containing data about four fictional hotels.
 
 > [!TIP]
 > You can download the [source code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart) to start with a finished project or follow these steps to create your own.
@@ -24,17 +24,19 @@ This quickstart creates and queries a small `hotels-quickstart` index containing
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
-## Configure role-based access
+## Configure access
 
 You can connect to your Azure AI Search service using API keys or Microsoft Entra ID with role assignments. Keys are easier to start with, but roles are more secure.
 
 To configure the recommended role-based access:
 
-1. Sign in to the [Azure portal](https://portal.azure.com/).
+1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
 
 1. From the left pane, select **Settings** > **Keys**.
 
-1. Under **API Access control**, select **Both** until you assign roles, after which you can select **Role-based access control**.
+1. Under **API Access control**, select **Both**.
+
+   This option enables both key-based and keyless authentication. After you assign roles, you can return to this step and select **Role-based access control**.
 
 1. From the left pane, select **Access control (IAM)**.
 
@@ -44,17 +46,17 @@ To configure the recommended role-based access:
 
 For more information, see [Connect to Azure AI Search using roles](../../search-security-rbac.md).
 
-## Retrieve service information
+## Get resource information
 
-In your code, you specify the following endpoint and token to establish a connection to your Azure AI Search service. These steps assume that you [configured role-based access](#configure-role-based-access).
+In your code, you specify the following endpoint and token to establish a connection to your Azure AI Search service. These steps assume that you [configured role-based access](#configure-access).
 
-To retrieve your service information:
+To get your resource information:
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
 
 1. From the left pane, select **Overview**.
 
-1. Copy the URL, which should be similar to `https://my-service.search.windows.net`.
+1. Take note of the URL, which should be similar to `https://my-service.search.windows.net`.
 
 1. On your local system, open a terminal.
 
@@ -72,6 +74,10 @@ To retrieve your service information:
 
 ## Set up your file
 
+Before you can make REST API calls to your Azure AI Search service, you must create a request file that contains your endpoint and authentication token. The REST client extension in Visual Studio Code supports this task.
+
+To set up your file:
+
 1. In Visual Studio Code, create a `.rest` or `.http` file.
 
 1. Paste the following placeholders and request into the file.
@@ -85,7 +91,7 @@ To retrieve your service information:
         Authorization: Bearer {{token}}
     ```
 
-1. Replace the `@baseUrl` and `@token` placeholders with the values you obtained in [Retrieve service information](#retrieve-service-information). Don't include quotation marks.
+1. Replace the `@baseUrl` and `@token` placeholders with the values you obtained in [Get resource information](#get-resource-information). Don't include quotation marks.
 
 1. Under `### List existing indexes by name`, select **Send Request**.
 
@@ -95,17 +101,17 @@ To retrieve your service information:
 
 ## Create, load, and query a search index
 
-In this section, you make REST API calls to create a search index, upload documents to the index, and query the indexed documents. Visual Studio Code displays the response to each REST API call in an adjacent pane. For a detailed explanation of each step, see [Explaining the code](#explaining-the-code).
+In this section, you make REST API calls to create a search index, upload documents to the index, and query the indexed documents. Visual Studio Code displays the response to each request in an adjacent pane. For more information about each step, see [Explaining the code](#explaining-the-code).
 
-To create, load, and query a search index:
+To create, load, and query an index:
 
 1. Paste the following requests into your file.
 
     ```http
     ### Create a new index
     POST {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
-      Content-Type: application/json
-      Authorization: Bearer {{token}}
+        Content-Type: application/json
+        Authorization: Bearer {{token}}
     
         {
             "name": "hotels-quickstart",  
@@ -132,8 +138,8 @@ To create, load, and query a search index:
  
     ### Upload documents
     POST {{baseUrl}}/indexes/hotels-quickstart/docs/index?api-version=2024-07-01  HTTP/1.1
-      Content-Type: application/json
-      Authorization: Bearer {{token}}
+        Content-Type: application/json
+        Authorization: Bearer {{token}}
     
         {
             "value": [
@@ -228,7 +234,7 @@ To create, load, and query a search index:
       }
     ```
 
-1. Under each section that starts with `###`, select **Send Request** to make the corresponding REST API call.
+1. Under each `###` delimiter, select **Send Request** to make the corresponding REST API call.
 
     + For `### Create a new index`, you should receive an `HTTP/1.1 200 OK` response whose body contains the JSON representation of the index schema.
 
@@ -241,19 +247,19 @@ To create, load, and query a search index:
 This section explains the REST API calls that you made to:
 
 + [Create an index](#create-an-index)
-+ [Load documents](#load-documents)
++ [Load documents into the index](#load-documents-into-the-index)
 + [Query the index](#query-the-index)
 
 ### Create an index
 
 Before you add content to Azure AI Search, you must create an index to define how the content is stored and structured. An index is conceptually similar to a table in a relational database, but it's specifically designed for search operations, such as full-text search.
 
-This quickstart uses [Indexes - Create (REST API)](/rest/api/searchservice/indexes/create) to build a search index named `hotels-quickstart` and its physical data structures on your search service.
+This quickstart calls [Indexes - Create (REST API)](/rest/api/searchservice/indexes/create) to build a search index named `hotels-quickstart` and its physical data structures on your search service.
 
 ```http
 POST {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
-  Content-Type: application/json
-  Authorization: Bearer {{token}}
+    Content-Type: application/json
+    Authorization: Bearer {{token}}
 
     {
         "name": "hotels-quickstart",  
@@ -289,18 +295,18 @@ Key points about the index schema:
 
 + Field attributes determine allowed actions. The REST APIs allow [many actions by default](/rest/api/searchservice/indexes/create#request-body). For example, all strings are searchable and retrievable. With the REST APIs, you might only use attributes if you need to disable a behavior.
 
-### Load documents
+### Load documents into the index
 
 Newly created indexes are empty. To populate an index and make it searchable, you must upload JSON documents that conform to the index schema.
 
-In Azure AI Search, documents serve as both inputs for indexing and outputs for queries. For simplicity, this quickstart provides sample hotel documents as inline JSON. In real-world scenarios, however, documents are typically imported from connected data sources using indexers or APIs.
+In Azure AI Search, documents serve as both inputs for indexing and outputs for queries. For simplicity, this quickstart provides sample hotel documents as inline JSON. In production scenarios, however, content is typically pulled from connected data sources and transformed into JSON using [indexers](../../search-indexer-overview.md).
 
-This quickstart uses [Documents - Index (REST API)](/rest/api/searchservice/documents/) to add four sample documents to your `hotels-quickstart` index.
+This quickstart calls [Documents - Index (REST API)](/rest/api/searchservice/documents/) to add four sample hotel documents to your index. Compared to the previous request, the URI is extended to include the `docs` collections and `index` operation.
 
 ```http
 POST {{baseUrl}}/indexes/hotels-quickstart/docs/index?api-version=2024-07-01  HTTP/1.1
-  Content-Type: application/json
-  Authorization: Bearer {{token}}
+    Content-Type: application/json
+    Authorization: Bearer {{token}}
 
     {
         "value": [
@@ -327,57 +333,19 @@ POST {{baseUrl}}/indexes/hotels-quickstart/docs/index?api-version=2024-07-01  HT
         "@search.action": "upload",
         "HotelId": "2",
         "HotelName": "Old Century Hotel",
-        "Description": "The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.",
-         "Category": "Boutique",
-        "Tags": [ "pool", "free wifi", "concierge" ],
-        "ParkingIncluded": false,
-        "LastRenovationDate": "2019-02-18T00:00:00Z",
-        "Rating": 3.60,
-        "Address": 
-            {
-            "StreetAddress": "140 University Town Center Dr",
-            "City": "Sarasota",
-            "StateProvince": "FL",
-            "PostalCode": "34243",
-            "Country": "USA"
-            } 
+        // REDACTED FOR BREVITY
         },
         {
         "@search.action": "upload",
         "HotelId": "3",
         "HotelName": "Gastronomic Landscape Hotel",
-        "Description": "The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
-        "Category": "Suite",
-        "Tags": [ "restaurant", "bar", "continental breakfast" ],
-        "ParkingIncluded": true,
-        "LastRenovationDate": "2015-09-20T00:00:00Z",
-        "Rating": 4.80,
-        "Address": 
-            {
-            "StreetAddress": "3393 Peachtree Rd",
-            "City": "Atlanta",
-            "StateProvince": "GA",
-            "PostalCode": "30326",
-            "Country": "USA"
-            } 
+        // REDACTED FOR BREVITY
         },
         {
         "@search.action": "upload",
         "HotelId": "4",
         "HotelName": "Sublime Palace Hotel",
-        "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.",
-        "Tags": [ "concierge", "view", "air conditioning" ],
-        "ParkingIncluded": true,
-        "LastRenovationDate": "2020-02-06T00:00:00Z",
-        "Rating": 4.60,
-        "Address": 
-            {
-            "StreetAddress": "7400 San Pedro Ave",
-            "City": "San Antonio",
-            "StateProvince": "TX",
-            "PostalCode": "78216",
-            "Country": "USA"
-            }
+        // REDACTED FOR BREVITY
         }
       ]
     }
@@ -387,7 +355,9 @@ Each document in the `value` array represents a hotel and contains fields that m
 
 ### Query the index
 
-This quickstart uses [Documents - Search Post (REST API)](/rest/api/searchservice/indexes/docs/search) to find documents in your `hotels-quickstart` index that match the search criteria in the request.
+Now that documents are loaded into the index, you can issue full-text queries against them. 
+
+This quickstart calls [Documents - Search Post (REST API)](/rest/api/searchservice/documents/search-post) to find hotel documents in your index based on the search criteria. The URI now includes the `/docs/search` operator, which specifies a query expression.
 
 ```http
 POST {{baseUrl}}/indexes/hotels-quickstart/docs/search?api-version=2024-07-01  HTTP/1.1
@@ -402,9 +372,16 @@ POST {{baseUrl}}/indexes/hotels-quickstart/docs/search?api-version=2024-07-01  H
   }
 ```
 
-The response contains the matching document, which includes only the fields specified in the `select` clause, and the `@search.score` field, which indicates the relevance of the document to the query.
+Full-text search requests always include a `search` parameter that contains the query text. The query text can include one or more terms, phrases, or operators. You can also specify parameters to refine the search behavior and results.
+
+Our query searches for the terms "attached restaurant" in the `Description` and `Tags` fields of each document. The `select` clause limits the fields returned in the response to `HotelId`, `HotelName`, `Tags`, and `Description`. The `count` parameter requests the total number of documents that match the search criteria.
+
+The response should be similar to the following example, which shows one matching hotel document, its relevance score, and its selected fields.
 
 ```json
+{
+  "@odata.context": "https://my-demo.search.windows.net/indexes('hotels-quickstart')/$metadata#docs(*)",
+  "@odata.count": 1,
   "value": [
     {
       "@search.score": 0.5575875,
@@ -418,4 +395,5 @@ The response contains the matching document, which includes only the fields spec
       ]
     }
   ]
+}
 ```
