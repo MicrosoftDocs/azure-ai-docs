@@ -754,7 +754,7 @@ The training data used is the same as demonstrated in the SDK notebook. The CLI 
 
 ## Content filtering
 
-serverless API deployment models are protected by Azure AI Content Safety. When deployed to real-time endpoints, you can opt out of this capability. With Azure AI Content Safety enabled, both the prompt and completion pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Learn more about [Azure AI Content Safety](../concepts/content-filtering.md).
+Serverless API deployment models are protected by Azure AI Content Safety. When deployed to real-time endpoints, you can opt out of this capability. With Azure AI Content Safety enabled, both the prompt and completion pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Learn more about [Azure AI Content Safety](../concepts/content-filtering.md).
 
 
 ## Next steps
