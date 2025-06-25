@@ -2,8 +2,8 @@
 title: "Quickstart: Create a project using Bicep"
 titleSuffix: Azure AI Foundry
 description: Learn how to use a Bicep file (template) to create an Azure AI Foundry project in your Azure subscription.
-author: Blackmist
-ms.author: larryfr
+ms.author: sgilley
+author: sdgilley
 manager: scottpolly
 reviewer: andyaviles
 ms.service: azure-ai-foundry

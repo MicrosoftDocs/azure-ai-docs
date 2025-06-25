@@ -193,4 +193,4 @@ In general, reasoning models don't support the following parameters you can find
 
 * [Use chat reasoning models](../how-to/use-chat-reasoning.md)
 * [Use image embedding models](../how-to/use-image-embeddings.md)
-* [Foundry Models API](.././reference/reference-model-inference-api.md)
+* [Model Inference API](.././reference/reference-model-inference-api.md)
