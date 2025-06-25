@@ -48,7 +48,7 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
     dotnet add package Azure.Search.Documents --version 11.7.0-beta.4
     ```
 
-1. Install the Azure OpenAI client library ([Azure.AI.OpenAI](/dotnet/api/overview/azure.ai.openai-readme)) for .NET with:
+1. Install the Azure OpenAI client library ([Azure.AI.OpenAI](/dotnet/api/azure.ai.openai)) for .NET with:
 
     ```console
     dotnet add package Azure.AI.OpenAI --version 2.1.0
@@ -103,10 +103,11 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
     using OpenAI.Chat;
     
     namespace AzureSearch.Quickstart
-    {    class Program
+    {
+        class Program
         {
             static async Task Main(string[] args)
-            {            
+            {
                 // Load environment variables from .env file
                 // Ensure you have a .env file in the same directory with the required variables.
                 DotEnv.Load();
@@ -114,7 +115,9 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
                 string endpoint = Environment.GetEnvironmentVariable("AZURE_SEARCH_ENDPOINT") 
                     ?? throw new InvalidOperationException("AZURE_SEARCH_ENDPOINT is not set.");
                 string azureOpenAIEndpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT") 
-                    ?? throw new InvalidOperationException("AZURE_OPENAI_ENDPOINT is not set.");            string azureOpenAIGptDeployment = "gpt-4.1-mini";
+                    ?? throw new InvalidOperationException("AZURE_OPENAI_ENDPOINT is not set.");
+                
+                string azureOpenAIGptDeployment = "gpt-4.1-mini";
                 string azureOpenAIGptModel = "gpt-4.1-mini";
                 string azureOpenAIEmbeddingDeployment = "text-embedding-3-large";
                 string azureOpenAIEmbeddingModel = "text-embedding-3-large";
@@ -123,15 +126,35 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
                 string agentName = "earth-search-agent";
     
                 var credential = new DefaultAzureCredential();            
+                
                 // Define the fields for the index
                 var fields = new List<SearchField>
                 {
-                    new SimpleField("id", SearchFieldDataType.String) { IsKey = true, IsFilterable = true, IsSortable = true, IsFacetable = true },
-                    new SearchField("page_chunk", SearchFieldDataType.String) { IsFilterable = false, IsSortable = false, IsFacetable = false },
-                    new SearchField("page_embedding_text_3_large", SearchFieldDataType.Collection(SearchFieldDataType.Single)) { VectorSearchDimensions = 3072, VectorSearchProfileName = "hnsw_text_3_large" },
-                    new SimpleField("page_number", SearchFieldDataType.Int32) { IsFilterable = true, IsSortable = true, IsFacetable = true }
-                };            
-                // Define the vectorizer
+                    new SimpleField("id", SearchFieldDataType.String) 
+                    { 
+                        IsKey = true, 
+                        IsFilterable = true, 
+                        IsSortable = true, 
+                        IsFacetable = true 
+                    },
+                    new SearchField("page_chunk", SearchFieldDataType.String) 
+                    { 
+                        IsFilterable = false, 
+                        IsSortable = false, 
+                        IsFacetable = false 
+                    },
+                    new SearchField("page_embedding_text_3_large", SearchFieldDataType.Collection(SearchFieldDataType.Single)) 
+                    { 
+                        VectorSearchDimensions = 3072, 
+                        VectorSearchProfileName = "hnsw_text_3_large" 
+                    },
+                    new SimpleField("page_number", SearchFieldDataType.Int32) 
+                    { 
+                        IsFilterable = true, 
+                        IsSortable = true, 
+                        IsFacetable = true 
+                    }
+                };// Define the vectorizer
                 var vectorizer = new AzureOpenAIVectorizer(vectorizerName: "azure_openai_text_3_large")
                 {
                     Parameters = new AzureOpenAIVectorizerParameters
@@ -191,7 +214,7 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
                     SemanticSearch = semanticSearch
                 };
     
-                // Create the index client and delete the index if it exists, then create it
+                // Create the index client. Delete the index if it exists and then recreate it.
                 var indexClient = new SearchIndexClient(new Uri(endpoint), credential);
                 try
                 {
@@ -201,9 +224,8 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
                 catch (Exception ex)
                 {
                     Console.WriteLine($"Index '{indexName}' could not be deleted or did not exist: {ex.Message}");
-                }
+                }            
                 await indexClient.CreateOrUpdateIndexAsync(index);
-    
                 Console.WriteLine($"Index '{indexName}' created or updated successfully");
     
                 // Download the documents from the GitHub URL
@@ -221,13 +243,11 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
                     {
                         KeyFieldAccessor = doc => doc["id"].ToString(),
                     }
-                );
-    
+                );            
                 await searchIndexingBufferedSender.UploadDocumentsAsync(documents);
                 await searchIndexingBufferedSender.FlushAsync();
+                Console.WriteLine($"Documents uploaded to index '{indexName}'");
     
-                Console.WriteLine($"Documents uploaded to index '{indexName}'");            
-
                 var openAiParameters = new AzureOpenAIVectorizerParameters
                 {
                     ResourceUri = new Uri(azureOpenAIEndpoint),
@@ -240,8 +260,7 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
                 var targetIndex = new KnowledgeAgentTargetIndex(indexName)
                 {
                     DefaultRerankerThreshold = 2.5f
-                };
-    
+                };            
                 // Create the knowledge agent
                 var agent = new KnowledgeAgent(
                     name: agentName,
@@ -249,7 +268,6 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
                     targetIndexes: new[] { targetIndex });
                 await indexClient.CreateOrUpdateKnowledgeAgentAsync(agent);
                 Console.WriteLine($"Search agent '{agentName}' created or updated successfully");
-    
     
                 string instructions = @"
                 A Q&A agent that can answer questions about the Earth at night.
@@ -264,46 +282,42 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
                         { "role", "system" },
                         { "content", instructions }
                     }
-                };
-    
+                };            
                 var agentClient = new KnowledgeAgentRetrievalClient(
                     endpoint: new Uri(endpoint),
                     agentName: agentName,
                     tokenCredential: new DefaultAzureCredential()
-                );            
-
+                );
+    
                 messages.Add(new Dictionary<string, object>
                 {
                     { "role", "user" },
                     { "content", @"
-                Why do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown?
-                Why is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?
-                " }
-                });
-    
+                    Why do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown?
+                    Why is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?
+                    " }
+                });            
                 var retrievalResult = await agentClient.RetrieveAsync(
                     retrievalRequest: new KnowledgeAgentRetrievalRequest(
-                            messages: messages
-                                .Where(message => message["role"].ToString() != "system")
-                                .Select(
-                                message => new KnowledgeAgentMessage(
-                                    role: message["role"].ToString(),
-                                    content: new[] { new KnowledgeAgentMessageTextContent(message["content"].ToString()) }))
-                                .ToList()
-                            )
-                        {
-                            TargetIndexParams = { new KnowledgeAgentIndexParams { IndexName = indexName, RerankerThreshold = 2.5f } }
-                        }
-                    );
-    
+                        messages: messages
+                            .Where(message => message["role"].ToString() != "system")
+                            .Select(message => new KnowledgeAgentMessage(
+                                role: message["role"].ToString(),
+                                content: new[] { new KnowledgeAgentMessageTextContent(message["content"].ToString()) }))
+                            .ToList()
+                    )
+                    {
+                        TargetIndexParams = { new KnowledgeAgentIndexParams { IndexName = indexName, RerankerThreshold = 2.5f } }
+                    }
+                );            
                 messages.Add(new Dictionary<string, object>
                 {
                     { "role", "assistant" },
                     { "content", (retrievalResult.Value.Response[0].Content[0] as KnowledgeAgentMessageTextContent).Text }
                 });
     
-                // Print 
-                Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeAgentMessageTextContent).Text);            
+                Console.WriteLine((retrievalResult.Value.Response[0].Content[0] as KnowledgeAgentMessageTextContent).Text);
+    
                 Console.WriteLine("Activities:");
                 foreach (var activity in retrievalResult.Value.Activity)
                 {
@@ -325,14 +339,13 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
                         reference.GetType(),
                         new JsonSerializerOptions { WriteIndented = true }
                     );
-                    Console.WriteLine(referenceJson);
-                }
-    
+                    Console.WriteLine(referenceJson);            }
     
                 AzureOpenAIClient azureClient = new(
                     new Uri(azureOpenAIEndpoint),
                     new DefaultAzureCredential());
-                ChatClient chatClient = azureClient.GetChatClient(azureOpenAIGptDeployment);            
+                ChatClient chatClient = azureClient.GetChatClient(azureOpenAIGptDeployment);
+    
                 List<ChatMessage> chatMessages = messages
                     .Select<Dictionary<string, object>, ChatMessage>(m => m["role"].ToString() switch
                     {
@@ -340,35 +353,32 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
                         "assistant" => new AssistantChatMessage(m["content"].ToString()),
                         "system" => new SystemChatMessage(m["content"].ToString()),
                         _ => null
-                    })
+                    })                
                     .Where(m => m != null)
                     .ToList();
     
-    
                 var result = await chatClient.CompleteChatAsync(chatMessages);
-    
                 Console.WriteLine($"[ASSISTANT]: {result.Value.Content[0].Text.Replace(".", "\n")}");
     
                 messages.Add(new Dictionary<string, object>
                 {
                     { "role", "user" },
-                    { "content", "How do I find lava at night?" }
+                    { "content", "How do I find lava at night?" }            
                 });
     
                 var retrievalResult2 = await agentClient.RetrieveAsync(
                     retrievalRequest: new KnowledgeAgentRetrievalRequest(
-                            messages: messages
-                                .Where(message => message["role"].ToString() != "system")
-                                .Select(
-                                message => new KnowledgeAgentMessage(
-                                    role: message["role"].ToString(),
-                                    content: new[] { new KnowledgeAgentMessageTextContent(message["content"].ToString()) }))
-                                .ToList()
-                            )
-                        {
-                            TargetIndexParams = { new KnowledgeAgentIndexParams { IndexName = indexName, RerankerThreshold = 2.5f } }
-                        }
-                    );
+                        messages: messages
+                            .Where(message => message["role"].ToString() != "system")
+                            .Select(message => new KnowledgeAgentMessage(
+                                role: message["role"].ToString(),
+                                content: new[] { new KnowledgeAgentMessageTextContent(message["content"].ToString()) }))
+                            .ToList()
+                    )
+                    {
+                        TargetIndexParams = { new KnowledgeAgentIndexParams { IndexName = indexName, RerankerThreshold = 2.5f } }
+                    }
+                );
     
                 messages.Add(new Dictionary<string, object>
                 {
@@ -400,29 +410,27 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
                         new JsonSerializerOptions { WriteIndented = true }
                     );
                     Console.WriteLine(referenceJson2);
-                }            List<ChatMessage> chatMessages2 = messages
+                }
+    
+                List<ChatMessage> chatMessages2 = messages
                     .Select<Dictionary<string, object>, ChatMessage>(m => m["role"].ToString() switch
                     {
                         "user" => new UserChatMessage(m["content"].ToString()),
                         "assistant" => new AssistantChatMessage(m["content"].ToString()),
                         "system" => new SystemChatMessage(m["content"].ToString()),
                         _ => null
-                    })
+                    })                
                     .Where(m => m != null)
                     .ToList();
     
-    
                 var result2 = await chatClient.CompleteChatAsync(chatMessages2);
-    
                 Console.WriteLine($"[ASSISTANT]: {result2.Value.Content[0].Text.Replace(".", "\n")}");
     
                 await indexClient.DeleteKnowledgeAgentAsync(agentName);
                 System.Console.WriteLine($"Search agent '{agentName}' deleted successfully");
     
-                await indexClient.DeleteIndexAsync(indexName);
+                await indexClient.DeleteIndexAsync(indexName);            
                 System.Console.WriteLine($"Index '{indexName}' deleted successfully");
-    
-    
             }
         }
     }

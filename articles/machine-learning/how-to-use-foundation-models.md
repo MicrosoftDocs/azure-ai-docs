@@ -15,13 +15,13 @@ ms.collection: ce-skilling-ai-copilot
 
 # How to use Open Source foundation models curated by Azure Machine Learning 
 
-In this article, you learn how to fine tune, evaluate and deploy foundation models in the Model Catalog. 
+In this article, you learn how to fine tune, evaluate, and deploy foundation models in the Model Catalog. 
 
-You can quickly test out any pre-trained model using the Sample Inference form on the model card, providing your own sample input to test the result. Additionally, the model card for each model includes a brief description of the model and links to samples for code based inferencing, fine-tuning and evaluation of the model.
+You can quickly test out any pre-trained model using the Sample Inference form on the model card, providing your own sample input to test the result. Additionally, the model card for each model includes a brief description of the model and links to samples for code based inferencing, fine-tuning, and evaluation of the model.
 
 ## How to evaluate foundation models using your own test data
 
-You can evaluate a Foundation Model against your test dataset, using either the Evaluate UI form or by using the code based samples, linked from the model card.
+You can evaluate a foundation model against your test dataset, using either the Evaluate UI form or by using the code based samples, linked from the model card.
 
 ### Evaluating using the studio
 
@@ -29,7 +29,7 @@ You can invoke the Evaluate model form by selecting the **Evaluate** button on t
 
 :::image type="content" source="./media/how-to-use-foundation-models/evaluate-quick-wizard.png" alt-text="Screenshot showing the evaluation settings form after the user selects the evaluate button on a model card for a foundation model.":::
 
-Each model can be evaluated for the specific inference task that the model will be used for.
+You can evaluate each model for the specific inference task that you use the model for.
 
 **Test Data:**
 
@@ -46,7 +46,7 @@ Each model can be evaluated for the specific inference task that the model will 
 
 ### Evaluating using code based samples
 
-To enable users to get started with model evaluation, we have published samples (both Python notebooks and CLI examples) in the [Evaluation samples in azureml-examples git repo](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/system/evaluation). Each model card also links to evaluation samples for corresponding tasks
+To enable you to get started with model evaluation, we provide samples (both Python notebooks and CLI examples) in the [Evaluation samples in azureml-examples git repo](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/system/evaluation). Each model card also links to evaluation samples for corresponding tasks
 
 ## How to fine-tune foundation models using your own training data
 
@@ -69,7 +69,7 @@ You can invoke the fine-tune settings form by selecting on the **Fine-tune** but
     
 1. Pass in the training data you would like to use to fine-tune your model. You can choose to either upload a local file (in JSONL, CSV or TSV format) or select an existing registered dataset from your workspace. 
 
-1. Once you've selected the dataset, you need to map the columns from your input data, based on the schema needed for the task. For example: map the column names that correspond to the 'sentence' and 'label' keys for Text Classification
+1. Once you select the dataset, you need to map the columns from your input data, based on the schema needed for the task. For example: map the column names that correspond to the 'sentence' and 'label' keys for Text Classification
 
 :::image type="content" source="./media/how-to-use-foundation-models/finetune-map-data-columns.png" lightbox="./media/how-to-use-foundation-models/finetune-map-data-columns.png" alt-text="Screenshot showing the fine-tune map in the foundation models evaluate wizard.":::
 
@@ -90,7 +90,7 @@ Currently, Azure Machine Learning supports fine-tuning models for the following 
 * Summarization
 * Translation
 
-To enable users to quickly get started with fine-tuning, we have published samples (both Python notebooks and CLI examples) for each task in the [azureml-examples git repo Finetune samples](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/system/finetune). Each model card also links to fine-tuning samples for supported fine-tuning tasks.
+To enable users to quickly get started with fine-tuning, we have published samples (both Python notebooks and CLI examples) for each task in the [azureml-examples git repo fine-tune samples](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/system/finetune). Each model card also links to fine-tuning samples for supported fine-tuning tasks.
 
 ## Deploying foundation models to endpoints for inferencing
 
@@ -117,11 +117,13 @@ If you're deploying a Llama-2, Phi, Nemotron, Mistral, Dolly or Deci-DeciLM mode
 
 ### Deploying using code based samples
 
-To enable users to quickly get started with deployment and inferencing, we have published samples in the [Inference samples in the azureml-examples git repo](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/system/inference). The published samples include Python notebooks and CLI examples. Each model card also links to Inference samples for Real time and Batch inferencing.
+To enable you to quickly get started with deployment and inferencing, we provide samples in the [Inference samples in the azureml-examples git repo](https://github.com/Azure/azureml-examples/tree/main/sdk/python/foundation-models/system/inference). The published samples include Python notebooks and CLI examples. Each model card also links to Inference samples for Real time and Batch inferencing.
 
 ## Import foundation models
 
-If you're looking to use an open source model that isn't included in the model catalog, you can import the model from Hugging Face into your Azure Machine Learning workspace. Hugging Face is an open-source library for natural language processing (NLP) that provides pre-trained models for popular NLP tasks. Currently, model import supports importing models for the following tasks, as long as the model meets the requirements listed in the Model Import Notebook:
+If you search the model catalog and don't find the open source model you need, you can import it from Hugging Face into your Azure Machine Learning workspace. The **Import** button appears in the model catalog only when your search returns no results.
+
+Hugging Face is an open-source library for natural language processing (NLP) that provides pre-trained models for popular NLP tasks. Currently, model import supports importing models for the following tasks, as long as the model meets the requirements listed in the Model Import Notebook:
 
 * fill-mask
 * token-classification
@@ -136,15 +138,15 @@ If you're looking to use an open source model that isn't included in the model c
 > [!NOTE] 
 > Models from Hugging Face are subject to third-party license terms available on the Hugging Face model details page. It is your responsibility to comply with the model's license terms.
 
-You can select the **Import** button on the top-right of the model catalog to use the Model Import Notebook.
+When your search returns no results, select  **Import model notebook**  to use the Model Import Notebook.
 
-:::image type="content" source="./media/how-to-use-foundation-models/model-import.png" alt-text="Screenshot showing the model import button as it's displayed in the top right corner on the foundation model catalog.":::
+:::image type="content" source="./media/how-to-use-foundation-models/model-import.png" alt-text="Screenshot showing the model import button as it is displayed when search returns no results in the foundation model catalog.":::
 
 The model import notebook is also included in the azureml-examples git repo [here](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/system/import/import_model_into_registry.ipynb).
 
 In order to import the model, you need to pass in the `MODEL_ID` of the model you wish to import from Hugging Face. Browse models on Hugging Face hub and identify the model to import. Make sure the task type of the model is among the supported task types. Copy the model ID, which is available in the URI of the page or can be copied using the copy icon next to the model name. Assign it to the variable 'MODEL_ID' in the Model import notebook. For example:
 
-:::image type="content" source="./media/how-to-use-foundation-models/hugging-face-model-id.png" alt-text="Screenshot showing an example of a hugging face model ID ('bert-base-uncased') as it's displayed in the hugging face model documentation page.":::
+:::image type="content" source="./media/how-to-use-foundation-models/hugging-face-model-id.png" alt-text="Screenshot showing an example of a hugging face model ID ('bert-base-uncased') as it is displayed in the hugging face model documentation page.":::
 
 You need to provide compute for the Model import to run. Running the Model Import results in the specified model being imported from Hugging Face and registered to your Azure Machine Learning workspace. You can then fine-tune this model or deploy it to an endpoint for inferencing.
 
