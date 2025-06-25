@@ -113,7 +113,7 @@
     {
       "path_to_root": "azureai-samples-main",
       "url": "https://github.com/Azure-Samples/azureai-samples",
-      "branch": "sgilley-doc-updates",
+      "branch": "main",
       "branch_mapping": {}
     },
     {
