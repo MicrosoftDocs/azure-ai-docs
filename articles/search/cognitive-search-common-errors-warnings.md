@@ -417,6 +417,8 @@ Indexers have [document size limits](search-limits-quotas-capacity.md#indexer-li
 
 ## `Error: Failed to compare value 'X' of type M to value 'Y' of type N.`
 
-This error can possibly occur mostly in azuresql indexer, where the actual data type of the column configured from data source [`dataChangeDetectionPolicy`](search-how-to-index-sql-database#high-water-mark-change-detection-policy) does not match what is expected such as when indexer configuration [`convertHighWaterMarkToRowVersion`](search-how-to-index-sql-database#converthighwatermarktorowversion) is used.
+This error usually happens in Azure SQL indexers when the source column type used for [`dataChangeDetectionPolicy`](search-how-to-index-sql-database.md#high-water-mark-change-detection-policy) doesn’t match what the indexer expects, especially if [`convertHighWaterMarkToRowVersion`](search-how-to-index-sql-database.md#converthighwatermarktorowversion) is turned on.
 
-Double check what data type the High Water Mark column is desired and correct both data source and indexer configurations. After verifications and updates, reset the indexer and rerun indexer to consume the desired column values.
+For example, if the column used for change detection is of type datetime, but the indexer expects a rowversion type because convertHighWaterMarkToRowVersion is enabled, the mismatch will cause an error.
+
+Check the data type for the 'High Water Mark' column in the source and update the indexer configuration accordingly. Once verified and updated, reset and rerun the indexer to process the column values.
