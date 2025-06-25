@@ -9,7 +9,7 @@ ms.topic: sample
 ms.reviewer: lgayhardt
 author: likebupt
 ms.author: keli19
-ms.date: 06/05/2025
+ms.date: 06/25/2025
 ms.custom: UpdateFrequency5, designer
 ---
 
@@ -39,7 +39,7 @@ Here's how to use a designer sample:
 
 1. Select **Create a new pipeline using classic prebuilt components** to create a new pipeline.
 
-1. To the left of the pipeline canvas, select the **Component** tab for a complete list of sample pipelines in various categories.
+1. Select **Show more samples** for a complete list of samples.
 
 1. To run a pipeline, you first need to set a default compute target to run the pipeline on.
 
@@ -49,7 +49,7 @@ Here's how to use a designer sample:
 
    1. Select **Configure & Submit** at the top of the canvas to submit a pipeline job.
 
-   Depending on the sample pipeline and compute settings, jobs might take some time to complete. The default compute settings have a minimum node size of 0, which means that the designer must allocate resources after being idle. Repeated pipeline jobs take less time since the compute resources are already allocated. Additionally, the designer uses cached results for each component to further improve efficiency.
+   Depending on the sample pipeline and compute settings, jobs might take a while to complete. The default compute settings have a minimum node size of 0, which means that the designer must allocate resources after being idle. Repeated pipeline jobs take less time since the compute resources are already allocated. Additionally, the designer uses cached results for each component to further improve efficiency.
 
 1. After the pipeline finishes running, you can review the pipeline and view the output for each component to learn more. Use the following steps to view component outputs:
 
@@ -140,4 +140,3 @@ To the left of the pipeline canvas, in the **Component** tab, expand the **Sampl
 ## Related content
 
 Learn the fundamentals of predictive analytics and machine learning with [Tutorial: Designer - train a no-code regression model](tutorial-designer-automobile-price-train-score.md)
-
