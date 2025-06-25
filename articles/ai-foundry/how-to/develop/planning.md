@@ -45,7 +45,7 @@ AI Foundry is built on the Azure platform, allowing you to customize security co
 
 - **Customer-Managed Keys (CMK)**: Azure supports CMK for encrypting data at rest. AI Foundry supports CMK optionally for customers with strict compliance needs. [Learn more about CMK.](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline).
 
-- **Authentication & Authorization**: AI Foundry supports both **API key-based access** for simple integration and **Azure RBAC** for fine-grained control. Azure enforces a clear separation between the **control plane** (resource management) and the **data plane** (model and data access). Start with built-in roles, and define custom roles as needed. [Learn more about authentication.](https://learn.microsoft.com/en-us/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline).
+- **Authentication & Authorization**: AI Foundry supports both **API key-based access** for simple integration and **Azure RBAC** for fine-grained control. Azure enforces a clear separation between the **control plane** (resource management) and the **data plane** (model and data access). Start with built-in roles, and define custom roles as needed. [Learn more about authentication.](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline).
 
 - **Templates**: Use ARM templates or Bicep to automate secure deployments. Explore the [sample templates](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline).
 
@@ -86,7 +86,7 @@ Effective access management is foundational to a secure and scalable AI Foundry 
 
 Azure AI Foundry supports **connections**, which are reusable configurations that enable access to application components on Azure and non-Azure services. These connections also act as **identity brokers**, allowing Foundry to authenticate to external systems using managed identities or service principals on behalf of project users.
 
-Connections can be created at the **AI Foundry resource level**—ideal for shared services like Azure Storage or Key Vault—or scoped to a **specific project**, which is recommended for sensitive or project-specific integrations. This flexibility allows teams to balance reuse and isolation based on their needs. [Learn more about connections in AI Foundry](https://learn.microsoft.com/en-us/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline).
+Connections can be created at the **AI Foundry resource level**—ideal for shared services like Azure Storage or Key Vault—or scoped to a **specific project**, which is recommended for sensitive or project-specific integrations. This flexibility allows teams to balance reuse and isolation based on their needs. [Learn more about connections in AI Foundry](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline).
 
 Connection authentication can be configured to use either shared access tokens—such as Microsoft Entra ID managed identities or API keys—for simplified management and onboarding, or user tokens via Entra ID passthrough, which offer greater control when accessing sensitive data sources.
 
@@ -114,17 +114,17 @@ Effective governance in Azure AI Foundry ensures secure, compliant, and cost-eff
 
 ## Configure and optimize model deployments
 
-When deploying models in AI Foundry, teams can choose between standard and provisioned [deployment types](.././ai-services/openai/how-to/deployment-types.md). Standard deployments are ideal for development and experimentation, offering flexibility and ease of setup. Provisioned deployments are recommended for production scenarios where predictable performance, cost control, and model version pinning are required.
+When deploying models in AI Foundry, teams can choose between standard and provisioned [deployment types](.././../ai-services/openai/how-to/deployment-types.md). Standard deployments are ideal for development and experimentation, offering flexibility and ease of setup. Provisioned deployments are recommended for production scenarios where predictable performance, cost control, and model version pinning are required.
 
-To support cross-region scenarios and let you access existing model deployments, AI Foundry allows [connections](connections-add.md?pivots=fdp-project) to model deployments hosted in other Foundry or Azure OpenAI instances. This enables teams to centralize deployments for experimentation while still enabling access from distributed projects. For production workloads, consider for use cases to manage its own deployments to ensure tighter control over model lifecycle, versioning, and rollback strategies.
+To support cross-region scenarios and let you access existing model deployments, AI Foundry allows [connections](../connections-add.md?pivots=fdp-project) to model deployments hosted in other Foundry or Azure OpenAI instances. This enables teams to centralize deployments for experimentation while still enabling access from distributed projects. For production workloads, consider for use cases to manage its own deployments to ensure tighter control over model lifecycle, versioning, and rollback strategies.
 
-To prevent overuse and ensure fair resource allocation, you can apply [Tokens Per Minute (TPM) limits at the deployment level](.././ai-services/openai/concepts/provisioned-throughput.md?tabs=global-ptum). TPM limits help control consumption, protect against accidental spikes, and align usage with project budgets or quotas. Consider setting conservative limits for shared deployments and higher thresholds for critical production services.
+To prevent overuse and ensure fair resource allocation, you can apply [Tokens Per Minute (TPM) limits at the deployment level](../../../ai-services/openai/concepts/provisioned-throughput.md?tabs=global-ptum). TPM limits help control consumption, protect against accidental spikes, and align usage with project budgets or quotas. Consider setting conservative limits for shared deployments and higher thresholds for critical production services.
 
 ## Access extended functionality with Azure AI Hub
 
 While an Azure AI Foundry resource alone gives you access to most AI Foundry functionality, select capabilities are currently only available in combination with an Azure AI hub resource powered by Azure Machine Learning. These are capabilities lower in the AI development stack, focused on model customization.
 
-Hub resources require their own project types that can also be accessed using the Azure Machine Learning Studio/SDK/CLI. To help plan your deployment, see [this table](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need) and [choose a resource type](../concepts/resource-types.md), for an overview of supported capabilities.
+Hub resources require their own project types that can also be accessed using the Azure Machine Learning Studio/SDK/CLI. To help plan your deployment, see [this table](../../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need) and [choose a resource type](../../concepts/resource-types.md), for an overview of supported capabilities.
 
 A hub resource is deployed side-by-side with your AI Foundry resource and takes a dependency on your AI Foundry resource to provide access to select tools and models.
 
@@ -132,27 +132,27 @@ A hub resource is deployed side-by-side with your AI Foundry resource and takes 
 
 ### Secure the AI Foundry Environment
 
-- Identity & Managed Identity: [Configure managed identity in Azure AI Foundry](.././ai-services/openai/how-to/managed-identity.md)
-- Networking: [Use a virtual network with Azure AI Foundry](../agents/how-to/virtual-networks.md)
-- Customer-Managed Keys (CMK): [Customer-managed keys in Azure AI Foundry](../concepts/encryption-keys-portal.md)
-- Authentication & RBAC: [Role-based access control in Azure AI Foundry](../concepts/rbac-azure-ai-foundry.md)
-- Sample Templates: [Create an AI Foundry hub using a Bicep template](create-azure-ai-hub-template.md)
+- Identity & Managed Identity: [Configure managed identity in Azure AI Foundry](../../../ai-services/openai/how-to/managed-identity.md)
+- Networking: [Use a virtual network with Azure AI Foundry](../../agents/how-to/virtual-networks.md)
+- Customer-Managed Keys (CMK): [Customer-managed keys in Azure AI Foundry](../../concepts/encryption-keys-portal.md)
+- Authentication & RBAC: [Role-based access control in Azure AI Foundry](../../concepts/rbac-azure-ai-foundry.md)
+- Sample Templates: [Create an AI Foundry hub using a Bicep template](../create-azure-ai-hub-template.md)
 
 ### Establish Connectivity with Other Azure Services
 
 - Overview of Connections: [Add a new connection in Azure AI Foundry](connections-add.md)
-- Project vs. Resource-Level Connections: [Configure a connection to use Azure AI Foundry Models](../model-inference/how-to/configure-project-connection.md)
+- Project vs. Resource-Level Connections: [Configure a connection to use Azure AI Foundry Models](../../model-inference/how-to/configure-project-connection.md)
 
 ### Governance
 
 - Model Access Control with Azure Policy: [Control model deployment with built-in policies](built-in-policy-model-deployment.md)
 - Cost Management: [Plan and manage costs for Azure AI Foundry](costs-plan-manage.md)
 - Azure Monitor for Usage Tracking: [Monitor your Generative AI applications](monitor-applications.md)
-- Azure Log Analytics for Logging: [Enable diagnostic logging for Azure AI services](../../ai-services/diagnostic-logging.md)
+- Azure Log Analytics for Logging: [Enable diagnostic logging for Azure AI services](../../../ai-services/diagnostic-logging.md)
 
 ### Share Reserved Capacity Across Business Groups
 
-- Cross-Resource Model Access: [Use Azure AI services in Azure AI Foundry](../../ai-services/connect-services-ai-foundry-portal.md)
+- Cross-Resource Model Access: [Use Azure AI services in Azure AI Foundry](../../../ai-services/connect-services-ai-foundry-portal.md)
 - Shared PTU Deployments: [Provisioned Throughput Reservations in Azure AI Foundry](/azure/cost-management-billing/reservations/azure-ai-foundry)
 
 ### Azure Landing zones
