@@ -15,11 +15,7 @@ ms.topic: how-to
 The [Deep Research](https://openai.com/index/introducing-deep-research/) model in the Azure AI Foundry Agent Service enables you to use OpenAI's advanced agentic research capability, and integrate it with your data and systems.
 
 > [!IMPORTANT]
-> * Deep Research uses [Grounding with Bing Search](./tools/bing-grounding.md).
->     * Your usage of Grounding with Bing Search can incur costs. See the [pricing page](https://www.microsoft.com/bing/apis/grounding-pricing) for details.
->     * By creating and using a Grounding with Bing Search resource through code-first experience, such as Azure CLI, or deploying through deployment template, you agree to be bound by and comply with the terms available at https://www.microsoft.com/bing/apis/grounding-legal, which may be updated from time to time.
->     * When you use Grounding with Bing Search, your customer data is transferred outside of the Azure compliance boundary to the Grounding with Bing Search service. Grounding with Bing Search is not subject to the same data processing terms (including location of processing) and does not have     the same compliance standards and certifications as the Azure AI Foundry Agent Service, as described in the [Grounding with Bing Search Terms of Use](https://www.microsoft.com/bing/apis/grounding-legal). It is your responsibility to assess whether use of Grounding with Bing Search in your agent meets your needs and requirements.
->    * Your applications must follow the Grounding with Bing Search [use and display requirements](./tools/bing-grounding.md#how-to-display-grounding-with-bing-search-results)
+> * Deep Research uses **Grounding with Bing Search**. Be sure to read and understand all stipulations of its use, including potential [coasts](https://www.microsoft.com/bing/apis/grounding-pricing) that can be incurred, the [terms of use](https://www.microsoft.com/bing/apis/grounding-legal), and [use and display requirements](./tools/bing-grounding.md#how-to-display-grounding-with-bing-search-results). See the [Grounding with Bing Search](./tools/bing-grounding.md) documentation for more information.
 
 ## Usage support
 
