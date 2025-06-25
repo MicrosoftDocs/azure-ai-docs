@@ -138,7 +138,7 @@ Hugging Face is an open-source library for natural language processing (NLP) tha
 > [!NOTE] 
 > Models from Hugging Face are subject to third-party license terms available on the Hugging Face model details page. It is your responsibility to comply with the model's license terms.
 
-When your search returns no results, select the **Import** button to use the Model Import Notebook.
+When your search returns no results, select  **Import model notebook**  to use the Model Import Notebook.
 
 :::image type="content" source="./media/how-to-use-foundation-models/model-import.png" alt-text="Screenshot showing the model import button as it is displayed when search returns no results in the foundation model catalog.":::
 
