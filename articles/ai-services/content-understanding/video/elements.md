@@ -26,15 +26,15 @@ Azure AI Content Understanding's multimodal analysis capabilities help you trans
 
 The `contents` object with `kind: "audioVisual"` supports both audio-only and video inputs, with different capabilities available depending on the input type.
 
-This document provides examples for:
-- **Audio file types** including `.mp3`, `.wav`, `.m4a`, `.aac`, `.ogg`, `.flac`, and other common audio formats
-- **Video file types** including `.mp4`, `.avi`, `.mov`, `.wmv`, `.mkv`, `.webm`, `.m4v`, `.3gp`, `.flv`, and other common video formats
+**Supported content types** include:
+- **Audio files**: Common audio formats
+- **Video files**: Common video formats
 
 For complete details about supported file types, file size limits, and other constraints, see [service quotas and limits](../service-limits.md#analyzers).
 
 ## JSON response structure
 
-The Content Understanding API returns analysis results in a structured JSON format. Here's the overall container structure for audiovisual content:
+The Content Understanding API returns analysis results in a structured JSON format. This document focused on the element in the contents array with kind set to audioVisual. Here's the overall container structure of the response:
 
 ```json
 {
@@ -68,18 +68,22 @@ The Content Understanding API returns analysis results in a structured JSON form
 
 ## AudioVisual elements
 
-The following audiovisual elements can be extracted. Availability depends on whether the input is audio-only or video:
+The following audiovisual elements can be extracted:
 
-* [**Markdown content**](#markdown-content-elements) *(both audio and video)*
-* [**Content extraction elements**](#Content-extraction-elements)
-  * [**Transcript phrases**](#transcript-phrases) *(both audio and video)*
-  * [**Timing information**](#timing-information) *(both audio and video)*
-  * [**Key frames**](#key-frames) *(video only)*
-  * [**Camera shots**](#camera-shots) *(video only)*
-  * [**Faces and persons**](#faces-and-persons) *(video only)*  
-* Custom elements
-  * [**Field extraction**](#field-extraction) *(both audio and video)*
-  * [**Segments**](#segments) *(video only)*
+| Element | Audio Support | Video Support | Requires returnDetails |
+|---------|---------------|---------------|------------------------|
+| [**Markdown content**](#markdown-content-elements) | ✓ | ✓ | No |
+| **Content extraction elements** | | | |
+| [**Transcript phrases**](#transcript-phrases) | ✓ | ✓ | Yes |
+| [**Timing information**](#timing-information) | ✓ | ✓ | No |
+| [**Key frames**](#key-frames) | ✗ | ✓ | No |
+| [**Camera shots**](#camera-shots) | ✗ | ✓ | Yes |
+| [**Faces and persons**](#faces-and-persons) | ✗ | ✓ | Yes* |
+| **Custom elements** | | | |
+| [**Field extraction**](#field-extraction) | ✓ | ✓ | No |
+| [**Segments**](#segments) | ✗ | ✓ | Yes |
+
+Face also requires `enableFace: true` in analyzer configuration and limited access registration.
 
 ### Markdown content elements
 For details on the markdown format for audiovisual content see [AudioVisual Markdown](markdown.md).
@@ -88,7 +92,7 @@ For details on the markdown format for audiovisual content see [AudioVisual Mark
 
 #### Transcript phrases
 
-A `transcriptPhrases` element contains the complete audio transcription, broken down into individual phrases with speaker identification and precise timing information. This element is available for both audio and video inputs. Content Understanding supports multilingual transcription and speaker diarization. This output is included when the user sets  `"returnDetails": true` in the analyzer definition. Details of language support can be found here, *see* [Audio Language Handling](../audio/overview.md#language-handling).
+A `transcriptPhrases` element contains the complete audio transcription, broken down into individual phrases with speaker identification, and precise timing information. This element is available for both audio and video inputs. Content Understanding supports multilingual transcription and speaker diarization. This output is included when the user sets  `"returnDetails": true` in the analyzer definition. Details of language support can be found here [Audio Language Handling](../audio/overview.md#language-handling).
 
 **JSON example:**
 ```json
@@ -117,8 +121,8 @@ Timing information provides the overall temporal bounds of the audiovisual conte
 
 - `startTimeMs`: The start time of the content in milliseconds (typically 0)
 - `endTimeMs`: The end time of the content in milliseconds
-- `width`: The video width in pixels *(video only)*
-- `height`: The video height in pixels *(video only)*
+- `width`: The video width in pixels (video only)
+- `height`: The video height in pixels (video only)
 
 **JSON example:**
 ```json
@@ -133,10 +137,7 @@ Timing information provides the overall temporal bounds of the audiovisual conte
 
 #### Key frames
 
-> [!NOTE]
-> This element is only available for video inputs.
-
-A `keyFrameTimesMs` element represents the timestamps for the visual frames extracted from the video at key moments. Timestamps are represented in milliseconds from the beginning of the video. These frames are intelligently selected based on signals like shot detection. These frames are used as input to generate custom fields. 
+A `keyFrameTimesMs` element represents the timestamps for the visual frames extracted from the video at key moments. Timestamps are represented in milliseconds from the beginning of the video. These frames are intelligently selected based on signals like shot detection. These frames are used as input to generate custom fields.
 
 **JSON example:**
 ```json
@@ -157,9 +158,6 @@ A `keyFrameTimesMs` element represents the timestamps for the visual frames extr
 ```
 
 #### Camera shots
-
-> [!NOTE]
-> This element is only available for video inputs.
 
 A `cameraShotTimesMs` element identifies points in the video where camera shots change, indicating cuts, transitions, or significant changes in camera angle or perspective. This helps in understanding the video's editing structure. The values are timestamps in milliseconds from the beginning of the video. This output is included when the user sets  `"returnDetails": true` in the analyzer definition.
 
@@ -183,10 +181,7 @@ A `cameraShotTimesMs` element identifies points in the video where camera shots 
 
 #### Faces and persons
 
-> [!NOTE]
-> This element is only available for video inputs when face detection is enabled through analyzer configuration. This feature is limited access and involves face identification and grouping; customers need to register for access at [Face Recognition](https://aka.ms/facerecognition). Face features incur added costs.
-
-When face detection is enabled through analyzer configuration, Content Understanding can identify and track faces throughout the video and optionally identify specific individuals when a person directory is provided.
+When face detection is enabled through analyzer configuration, Content Understanding can identify and track faces throughout the video. It also can optionally identify specific individuals when a person directory is provided. The face add-on is limited access and involves face identification and grouping; customers need to register for access at [Face Recognition](https://aka.ms/facerecognition). Face features incur added costs.
 
 ##### Configuration
 
@@ -219,12 +214,12 @@ For face identification, you must first create a person directory and reference 
 
 The `persons` array contains identified individuals detected throughout the video:
 
-- **`personId`**: A unique identifier for the person. This can be:
-  - A default identifier like "Person-1", "Person-2", etc. when no person directory is used
+- **`personId`**: A unique identifier for the person. The identifier can be:
+  - A default identifier like "Person-1," "Person-2," etc. when no person directory is used
   - A GUID that corresponds to a person ID in the person directory when identification is enabled
 - **`confidence`**: A decimal value between 0 and 1 indicating the confidence level of person identification
 - **`source`**: A string containing temporal and spatial information about where the person appears in the video. The output is formatted as `AV(startTimeMs,x,y,width,height)-AV(endTimeMs,x,y,width,height)` where:
-  - `startTimeMs`, `endTimeMs`: Timestamp in milliseconds for the start and end of the persons appearance respectively 
+  - `startTimeMs`, `endTimeMs`: Timestamp in milliseconds for the start and end of the appearance of the person 
   - `x,y`: Top-left corner coordinates of the bounding box
   - `width,height`: Dimensions of the bounding box
 - **Multiple appearances**: Separated by semicolons (`;`) for different time periods
@@ -271,12 +266,13 @@ The `persons` array contains identified individuals detected throughout the vide
 
 #### Field extraction
 
-Custom field extraction allows you to define and extract specific information from audiovisual content based on your business requirements. Fields are defined in the analyzer configuration and can be populated for the entire content by default or for each segment, for video when segmentation is enabled.
+Custom field extraction allows you to define and extract specific information from audiovisual content based on your business requirements. Fields are defined in the analyzer configuration. Fields can be populated for the entire content by default or for each segment, for video when segmentation is enabled.
 
 **Field extraction JSON example:**
 ```json
 {
-  "fields": {    "Summary": {
+  "fields": {
+    "Summary": {
       "type": "string",
       "valueString": "The conversation revolves around an introduction to Azure AI Foundry's latest features."
     },
@@ -289,9 +285,6 @@ Custom field extraction allows you to define and extract specific information fr
 ```
 
 #### Segments
-
-> [!NOTE]
-> This element is only available for video inputs when segmentation is enabled.
 
 A `segments` collection is a grouping of video content that represents a logical temporal unit within the video. Segments can be created automatically based on scene detection or defined using custom segmentation definition provided by the user. Each segment contains timing information, descriptions, and optionally custom field extractions.
 
@@ -420,7 +413,7 @@ When segmentation is enabled, custom field extraction returns results in a struc
 
 ## Complete JSON example
 
-The following example shows the complete JSON response structure from analyzing an Xbox instructional video. This represents the full output from Content Understanding when processing a video with multiple element types:
+The following example shows the complete JSON response structure from analyzing an Xbox instructional video. The JSON included here represents the full output from Content Understanding when processing a video with multiple element types:
 
 ```json
 {
@@ -562,7 +555,7 @@ The following example shows the complete JSON response structure from analyzing 
 }
 ```
 
-This complete example demonstrates how Content Understanding extracts and structures all the different element types from a video, providing both the raw content and the detailed temporal and structural information that enables advanced video processing workflows.
+This complete example demonstrates how Content Understanding extracts and structures all the different element types from an audio or video, providing both the raw content and the detailed temporal and structural information that enables advanced video processing workflows.
 
 ## Next steps
 

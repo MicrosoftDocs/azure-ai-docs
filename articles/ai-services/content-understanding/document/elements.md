@@ -22,11 +22,18 @@ ms.custom:
 
 ## Overview
 
-Azure AI Content Understanding's document analysis capabilities help you transform unstructured document data into structured, machine-readable information. By precisely identifying and extracting document elements while preserving their structural relationships, you can build powerful document processing workflows for a wide range of applications.
+Azure AI Content Understanding's analysis capabilities help you transform unstructured data into structured, machine-readable information. By precisely identifying and extracting elements while preserving their structural relationships, you can build powerful processing workflows for a wide range of applications.
 
-This article explains the document analysis features that enable you to extract meaningful content from your documents, preserve document structures, and unlock the full potential of your document data.
+The `contents` object with kind "document" supports output for a range of different input files including document, image, text, and structured file. These outputs enable you to extract meaningful content from your files, preserve document structures, and unlock the full potential of your data.
 
-This document provides examples for **document file types** including `.pdf`, `.tiff`, `.jpg`, `.png`, `.bmp`, `.heif`, `.docx`, `.xlsx`, `.pptx`, `.txt`, `.html`, `.md`, `.rtf`, `.eml`, `.msg`, and `.xml` files. For complete details about supported file types, file size limits, and other constraints, see [service quotas and limits](../service-limits.md#analyzers).
+**Document content kind** includes output for input files like:
+- **Documents**: PDFs, Word documents, PowerPoint presentations, Excel spreadsheets
+- **Figures**: Photos, scanned documents, charts, diagrams
+- **Text files**: Plain text, HTML, Markdown, RTF
+- **Structured content**: XML, JSON, CSV, TSV files
+- **Email**: EML and MSG message formats
+
+For complete details about supported file types, file size limits, and other constraints, see [service quotas and limits](../service-limits.md#analyzers).
 
 ## JSON response structure
 
@@ -92,12 +99,16 @@ A `word` is a content element composed of a sequence of characters. Content Unde
 **JSON example:**
 ```json
 {
-  "content": "Example",
-  "span": {
-    "length": 7
-  },
-  "confidence": 0.992,
-  "source": "D(1,1.265,1.0836,2.4972,1.0816,2.4964,1.4117,1.2645,1.4117)"
+  "words": [
+    {
+      "content": "Example",
+      "span": {
+        "length": 7
+      },
+      "confidence": 0.992,
+      "source": "D(1,1.265,1.0836,2.4972,1.0816,2.4964,1.4117,1.2645,1.4117)"
+    }
+  ]
 }
 ```
 
@@ -112,12 +123,16 @@ Content Understanding detects check marks inside table cell as selection marks i
 **JSON example:**
 ```json
 {
-  "content": "☒",
-  "span": {
-    "length": 1
-  },
-  "confidence": 0.983,
-  "source": "D(1,1.258,2.7952,1.3705,2.7949,1.371,2.9098,1.2575,2.9089)"
+  "words": [
+    {
+      "content": "☒",
+      "span": {
+        "length": 1
+      },
+      "confidence": 0.983,
+      "source": "D(1,1.258,2.7952,1.3705,2.7949,1.371,2.9098,1.2575,2.9089)"
+    }
+  ]
 }
 ```
 
@@ -125,30 +140,40 @@ Content Understanding detects check marks inside table cell as selection marks i
 
 #### Barcodes
 
-A `barcode` is a content element that describes both linear (ex. UPC, EAN) and 2D (ex. QR, MaxiCode) barcodes. Content Understanding represents barcodes using its detected type and extracted value. The following barcode formats are currently accepted:
+A `barcode` is a content element that describes both linear (ex. UPC, EAN) and 2D (ex. QR, MaxiCode) barcodes. Content Understanding represents barcodes using its detected type and extracted value. The following barcode formats are currently supported:
 
-* `QR Code`
-* `Code 39`
-* `Code 93`
-* `Code 128`
-* `UPC (UPC-A & UPC-E)`
-* `PDF417`
-* `EAN-8`
-* `EAN-13`
-* `Codabar`
-* `Databar`
-* `Databar (expanded)`
-* `ITF`
-* `Data Matrix`
+| Barcode Type | Description |
+|--------------|-------------|
+| `QRCode` | QR code, as defined in ISO/IEC 18004:2015 |
+| `PDF417` | PDF417, as defined in ISO 15438 |
+| `UPCA` | GS1 12-digit Universal Product Code |
+| `UPCE` | GS1 6-digit Universal Product Code |
+| `Code39` | Code 39 barcode, as defined in ISO/IEC 16388:2007 |
+| `Code128` | Code 128 barcode, as defined in ISO/IEC 15417:2007 |
+| `EAN8` | GS1 8-digit International Article Number (European Article Number) |
+| `EAN13` | GS1 13-digit International Article Number (European Article Number) |
+| `DataBar` | GS1 DataBar barcode |
+| `Code93` | Code 93 barcode, as defined in ANSI/AIM BC5-1995 |
+| `Codabar` | Codabar barcode, as defined in ANSI/AIM BC3-1995 |
+| `DataBarExpanded` | GS1 DataBar Expanded barcode |
+| `ITF` | "Interleaved 2 of 5 barcode (ITF)" as defined in ANSI/AIM BC2-1995 |
+| `MicroQRCode` | Micro QR code, as defined in ISO/IEC 23941:2022 |
+| `Aztec` | Aztec code, as defined in ISO/IEC 24778:2008 |
+| `DataMatrix` | Data matrix code, as defined in ISO/IEC 16022:2006 |
+| `MaxiCode` | MaxiCode, as defined in ISO/IEC 16023:2000 |
 
 **JSON example:**
 ```json
 {
-  "kind": "code39",
-  "value": "Hello World",
-  "source": "D(1,2.5738,4.8186,3.8617,4.8153,3.8621,4.9894,2.5743,4.9928)",
-  "span": {"offset": 192, "length": 10 }
-  "confidence": 0.977
+  "barcodes": [
+    {
+      "kind": "Code39",
+      "value": "Hello World",
+      "source": "D(1,2.5738,4.8186,3.8617,4.8153,3.8621,4.9894,2.5743,4.9928)",
+      "span": {"offset": 192, "length": 10 },
+      "confidence": 0.977
+    }
+  ]
 }
 ```
 
@@ -159,31 +184,39 @@ A `formula` is a content element representing mathematical expressions in the do
 **JSON example:**
 ```json
 {
-  "confidence": 0.708,
-  "source": "D(1,3.4282,7.0195,4.0452,7.0307,4.0425,7.1803,3.4255,7.1691)",
-  "span": {
-    "offset": 394,
-    "length": 51
-  }
+  "formulas": [
+    {
+      "confidence": 0.708,
+      "source": "D(1,3.4282,7.0195,4.0452,7.0307,4.0425,7.1803,3.4255,7.1691)",
+      "span": {
+        "offset": 394,
+        "length": 51
+      }
+    }
+  ]
 }
 ```
 
-#### Images
+#### Figures
 
-An `image` is a content element that represents an embedded image, figure, or chart in the document. Content Understanding extracts any embedded text from the images, and any associated captions and footnotes.
+An `figure` is a content element that represents an embedded image, figure, or chart in the document. Content Understanding extracts any embedded text from the images, and any associated captions and footnotes.
 
 **JSON example:**
 ```json
 {
-  "source": "D(2,1.3465,1.8481,3.4788,1.8484,3.4779,3.8286,1.3456,3.8282)",
-  "span": {
-    "offset": 658,
-    "length": 42
-  },
-  "elements": [
-    "/paragraphs/14"
-  ],
-  "id": "2.1"
+  "figures": [
+    {
+      "source": "D(2,1.3465,1.8481,3.4788,1.8484,3.4779,3.8286,1.3456,3.8282)",
+      "span": {
+        "offset": 658,
+        "length": 42
+      },
+      "elements": [
+        "/paragraphs/14"
+      ],
+      "id": "2.1"
+    }
+  ]
 }
 ```
 
@@ -201,30 +234,24 @@ A `page` is a grouping of content that typically corresponds to one side of a sh
 **JSON example:**
 ```json
 {
-  "pageNumber": 1,
-  "angle": 0.0739153,
-  "width": 8.5,
-  "height": 11,
-  "spans": [
+  "pages": [
     {
-      "offset": 0,
-      "length": 620
-    }  ],
-  "words": [ /* array of word objects */ ],
-  "barcodes": [
-    {
-      "kind": "qrCode",
-      "value": "Hello World",
-      "source": "D(1,2.5738,4.8186,3.8617,4.8153,3.8621,4.9894,2.5743,4.9928)",
-      "span": {
-        "offset": 192,
-        "length": 10
-      },
-      "confidence": 0.977
+      "pageNumber": 1,
+      "angle": 0.0739153,
+      "width": 8.5,
+      "height": 11,
+      "spans": [
+        {
+          "offset": 0,
+          "length": 620
+        }
+      ],
+      "words": [ /* array of word objects */ ],
+      "barcodes": [ /* details of barcodes */ ],
+      "lines": [ /* array of line objects */ ],
+      "formulas": [ /* array of formula objects */ ]
     }
-  ],
-  "lines": [ /* array of line objects */ ],
-  "formulas": [ /* array of formula objects */ ]
+  ]
 }
 ```
 
@@ -235,13 +262,17 @@ A `paragraph` is an ordered sequence of lines that form a logical unit. Typicall
 **JSON example:**
 ```json
 {
-  "role": "title",
-  "content": "Example Document",
-  "source": "D(1,1.264,1.0836,4.1584,1.0795,4.1589,1.4083,1.2644,1.4124)",
-  "span": {
-    "offset": 0,
-    "length": 18
-  }
+  "paragraphs": [
+    {
+      "role": "title",
+      "content": "Example Document",
+      "source": "D(1,1.264,1.0836,4.1584,1.0795,4.1589,1.4083,1.2644,1.4124)",
+      "span": {
+        "offset": 0,
+        "length": 18
+      }
+    }
+  ]
 }
 ```
 
@@ -252,12 +283,16 @@ A `line` is an ordered sequence of consecutive content elements, often separated
 **JSON example:**
 ```json
 {
-  "content": "Example Document",
-  "source": "D(1,1.264,1.0836,4.1583,1.0795,4.1589,1.4083,1.2645,1.4117)",
-  "span": {
-    "offset": 0,
-    "length": 16
-  }
+  "lines": [
+    {
+      "content": "Example Document",
+      "source": "D(1,1.264,1.0836,4.1583,1.0795,4.1589,1.4083,1.2645,1.4117)",
+      "span": {
+        "offset": 0,
+        "length": 16
+      }
+    }
+  ]
 }
 ```
 
@@ -287,28 +322,32 @@ A table might span across consecutive pages of a document. In this situation, ta
 **JSON example:**
 ```json
 {
-  "rowCount": 6,
-  "columnCount": 2,
-  "cells": [
+  "tables": [
     {
-      "kind": "columnHeader",
-      "rowIndex": 0,
-      "columnIndex": 0,
-      "rowSpan": 1,
-      "columnSpan": 1,
-      "content": "Category",
-      "source": "D(2,1.1674,5.0483,4.1733,5.0546,4.1733,5.2358,1.1674,5.2358)",
+      "rowCount": 6,
+      "columnCount": 2,
+      "cells": [
+        {
+          "kind": "columnHeader",
+          "rowIndex": 0,
+          "columnIndex": 0,
+          "rowSpan": 1,
+          "columnSpan": 1,
+          "content": "Category",
+          "source": "D(2,1.1674,5.0483,4.1733,5.0546,4.1733,5.2358,1.1674,5.2358)",
+          "span": {
+            "offset": 798,
+            "length": 8
+          }
+        }
+      ],
+      "source": "D(2,1.1566,5.0425,7.1855,5.0428,7.1862,6.1853,1.1574,6.1858)",
       "span": {
-        "offset": 798,
-        "length": 8
+        "offset": 781,
+        "length": 280
       }
     }
-  ],
-  "source": "D(2,1.1566,5.0425,7.1855,5.0428,7.1862,6.1853,1.1574,6.1858)",
-  "span": {
-    "offset": 781,
-    "length": 280
-  }
+  ]
 }
 ```
 
@@ -321,13 +360,17 @@ A `section` is a logical grouping of related content elements that form a hierar
 **JSON example:**
 ```json
 {
-  "span": {
-    "offset": 113,
-    "length": 77
-  },
-  "elements": [
-    "/paragraphs/3",
-    "/paragraphs/4"
+  "sections": [
+    {
+      "span": {
+        "offset": 113,
+        "length": 77
+      },
+      "elements": [
+        "/paragraphs/3",
+        "/paragraphs/4"
+      ]
+    }
   ]
 }
 ```
@@ -346,23 +389,23 @@ The `source` property describes the visual position of the element in the file u
 * Bounding polygon: `D({pageNumber},{x1},{y1},{x2},{y2},{x3},{y3},{x4},{y4})`
 * Axis-aligned bounding box: `D({pageNumber},{left},{top},{width},{height})`
 
-Page numbers are 1-indexed. The bounding polygon describes a sequence of points, clockwise from the left relative to the natural orientation of the element. For quadrilaterals, the points represent the top-left, top-right, bottom-right, and bottom-left corners. Each point represents the **x**, **y** coordinate in the length unit specified by the `unit` property. In general, the unit of measure for images is pixels while PDFs use inches.
+Page numbers are one indexed. The bounding polygon describes a sequence of points, clockwise from the left relative to the natural orientation of the element. For quadrilaterals, the points represent the top-left, top-right, bottom-right, and bottom-left corners. Each point represents the **x**, **y** coordinate in the length unit specified by the `unit` property. In general, the unit of measure for images is pixels while PDFs use inches.
 
 :::image type="content" source="../media/document/bounding-regions.png" alt-text="Screenshot of detected bounding regions.":::
 
 > [!NOTE]
-> Currently, Content Understanding only returns 4-point quadrilaterals as bounding polygons. Future versions might return different number of points to describe more complex shapes, such as curved lines or nonrectangular images. Currently, source is only returned for elements from rendered files (pdf/image).
+> Currently, Content Understanding only returns a four-point quadrilateral as bounding polygons. Future versions might return different number of points to describe more complex shapes, such as curved lines or nonrectangular images. Currently, source is only returned for elements from rendered files (pdf/image).
 
 ## Next steps
 
 * Try processing your document content using Content Understanding in [Azure AI Foundry](https://aka.ms/cu-landing).
-* Learn to analyze document content [**analyzer templates**](../quickstart/use-ai-foundry.md).
+* Learn to analyze document content with [**analyzer templates**](../quickstart/use-ai-foundry.md).
 * Review code samples: [**visual document search**](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python/blob/main/notebooks/search_with_visual_document.ipynb).
 * Review code sample: [**analyzer templates**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
 
 ## Complete JSON example
 
-The following example shows the complete JSON response structure from analyzing a document. This represents the full output from Content Understanding when processing a PDF document with multiple element types:
+The following example shows the complete JSON response structure from analyzing a document. This JSON represents the full output from Content Understanding when processing a PDF document with multiple element types:
 
 :::image type="content" source="../media/document/demo-pdf-screenshot.png" alt-text="Screenshot of the demo PDF document showing example content including checkboxes, barcodes, formulas, images, and tables.":::
 
