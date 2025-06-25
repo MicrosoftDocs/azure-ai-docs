@@ -415,6 +415,7 @@ This warning is passed from the Language service of Azure AI services. In some c
 
 Indexers have [document size limits](search-limits-quotas-capacity.md#indexer-limits). Make sure that the documents in your data source are smaller than the supported size limit, as documented for your service tier. 
 
+<a name="error-failed-to-compare-type-value"></a>
 ## `Error: Failed to compare value 'X' of type M to value 'Y' of type N.`
 
 This error usually happens in Azure SQL indexers when the source column type used for [`dataChangeDetectionPolicy`](search-how-to-index-sql-database.md#high-water-mark-change-detection-policy) doesn’t match what the indexer expects, especially if [`convertHighWaterMarkToRowVersion`](search-how-to-index-sql-database.md#converthighwatermarktorowversion) is turned on.
