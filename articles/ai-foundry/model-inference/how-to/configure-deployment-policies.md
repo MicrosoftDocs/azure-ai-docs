@@ -6,8 +6,8 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to #Don't change
 ms.date: 05/05/2025
-author: Blackmist
-ms.author: larryfr
+ms.author: jburchel 
+author: jonburchel 
 reviewer: santiagxf
 ms.reviewer: fasantia
 

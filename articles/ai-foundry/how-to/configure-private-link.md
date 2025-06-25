@@ -9,8 +9,8 @@ ms.custom: ignite-2023, devx-track-azurecli, build-2024, ignite-2024
 ms.topic: how-to
 ms.date: 05/06/2025
 ms.reviewer: meerakurup
-ms.author: larryfr
-author: Blackmist
+ms.author: jburchel 
+author: jonburchel 
 zone_pivot_groups: project-type
 # Customer intent: As an admin, I want to configure a private link for hub so that I can secure my hubs.
 

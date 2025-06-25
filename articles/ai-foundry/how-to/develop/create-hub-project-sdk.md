@@ -6,7 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: build-2024, devx-track-azurecli
 ms.topic: how-to
-ms.date: 02/13/2025
+ms.date: 06/24/2025
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
@@ -79,9 +79,9 @@ az ml workspace create --kind hub --resource-group {my_resource_group} --name {m
 
 ---
 
-## Create an AI Services connection
+## Create an AI Foundry connection
 
-After creating your own AI Services, you can connect it to your hub.
+After creating your own [AI Foundry resource](../../../ai-services/multi-service-resource.md?context=%2Fazure%2Fai-foundry%2Fcontext%2Fcontext) or [Azure OpenAI resource](../../../ai-services/openai/how-to/create-resource.md) in the same resource group, you can connect it to your hub. You can also connect [Azure AI Search](../../../search/search-create-service-portal.md) from any resource group in your same subscription.
 
 # [Python SDK](#tab/python)
 
@@ -95,15 +95,15 @@ After creating your own AI Services, you can connect it to your hub.
 
         [!notebook-python[](~/azureml-examples-main/sdk/python/resources/connections/connections.ipynb?name=ml_client)]
 
-2. Use `ml_client` to create the connection to your AI Services:
+2. Use `ml_client` to create the connection to your AI Services.  You can find endpoints in [Azure portal](https://portal.azure.com) under **Resource management > Keys and endpoints**. For an AI Foundry resource, use the **AI Services** endpoint. For Azure AI Search, use the Url for the endpoint.
 
     ```python
     from azure.ai.ml.entities import AzureAIServicesConnection
 
     # construct an AI Services connection
     my_connection_name = "myaiservivce" # any name you want
-    aiservices_resource_name = <resource_name> # copy from Azure AI Foundry portal
-    my_endpoint = "<endpoint>" # copy from Azure AI Foundry portal
+    aiservices_resource_name = <resource_name> # copy from Azure portal
+    my_endpoint = "<endpoint>" # copy from Azure portal
     my_api_keys = None # leave blank for Authentication type = AAD
     my_ai_services_resource_id = f"/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.CognitiveServices/accounts/{aiservices_resource_name}"
 

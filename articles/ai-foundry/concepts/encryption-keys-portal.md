@@ -2,8 +2,8 @@
 title: Customer-Managed Keys for Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: Learn about using customer-managed keys for encryption to improve data security with Azure AI Foundry.
-author: Blackmist
-ms.author: larryfr
+ms.author: jburchel 
+author: jonburchel 
 ms.reviewer: deeikele
 ms.date: 05/01/2025
 ms.service: azure-ai-services

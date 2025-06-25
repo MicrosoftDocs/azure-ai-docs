@@ -25,7 +25,7 @@ The following table summarizes the difference between personal voice and profess
 | Comparison | Personal voice | Professional voice |
 |-------|-------------------------|-----|
 | Target scenarios | Business customers to build an app to allow their users to create and use their own personal voice in the app. | Professional scenarios like brand and character voices for chat bots, or audio content reading. |
-| Use cases | Restricted to limited use cases. See the [transparency note](/legal/cognitive-services/speech-service/custom-neural-voice/transparency-note?context=/azure/ai-services/speech-service/context/context&tabs=standard-voice#intended-uses-for-personal-voice-preview). Approved customers should have a plan to support more than 1,000 personal voices.  | Restricted to limited use cases. See the [transparency note](/legal/cognitive-services/speech-service/custom-neural-voice/transparency-note?context=/azure/ai-services/speech-service/context/context&tabs=standard-voice#intended-uses-for-custom-neural-voice-pro-and-custom-neural-voice-lite). |
+| Use cases | Restricted to limited use cases. See the [transparency note](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note). |
 | Training data | Make sure you follow the code of conduct. | Bring your own data. Recording in a professional studio is recommended. |
 | Required data size | One minute of human speech. | 300-2000 utterances (about 30 minutes to 3 hours of human speech). |
 | Training time | Less than 5 seconds | Approximately 20-40 compute hours. |
@@ -69,7 +69,7 @@ Once you have a personal voice, you can [use it](./personal-voice-how-to-use.md)
 
 ## Responsible AI 
 
-We care about the people who use AI and the people who will be affected by it as much as we care about technology. For more information, see the Responsible AI [transparency notes](/legal/cognitive-services/speech-service/text-to-speech/transparency-note?context=/azure/ai-services/speech-service/context/context).
+We care about the people who use AI and the people who will be affected by it as much as we care about technology. For more information, see the Responsible AI [transparency notes](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note).
 
 
 ## Next steps

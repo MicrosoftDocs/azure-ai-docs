@@ -22,7 +22,7 @@ The Azure AI model catalog offers a large selection of Azure AI Foundry Models f
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
 
-To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others support inferencing using the [Foundry Models API](../model-inference/overview.md). You can find more details about individual models by reviewing their model cards in the [model catalog for Azure AI Foundry portal](https://ai.azure.com/explore/models).
+To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others support inferencing using the [Model Inference API](../model-inference/overview.md). You can find more details about individual models by reviewing their model cards in the [model catalog for Azure AI Foundry portal](https://ai.azure.com/explore/models).
 
 :::image type="content" source="../media/models-featured/models-catalog.gif" alt-text="An animation showing Azure AI Foundry model catalog section and the models available." lightbox="../media/models-featured/models-catalog.gif":::
 
@@ -67,7 +67,7 @@ The Cohere family of models includes various models optimized for different use 
 
 ### Cohere command and embed
 
-The following table lists the Cohere models that you can inference via the Foundry Models API.
+The following table lists the Cohere models that you can inference via the Model Inference API.
 
 | Model  | Type | Capabilities | 
 | ------ | ---- | --- | 
@@ -363,7 +363,7 @@ xAI's Grok 3 and Grok 3 Mini models are designed to excel in various enterprise 
 
 #### Inference examples: Stability AI
 
-Stability AI models deployed via standard deployment implement the Foundry Models API on the route `/image/generations`.
+Stability AI models deployed via standard deployment implement the Model Inference API on the route `/image/generations`.
 For examples of how to use Stability AI models, see the following examples:
 
 - [Use OpenAI SDK with Stability AI models for text to image requests](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/stabilityai/Text_to_Image_openai_library.ipynb)
