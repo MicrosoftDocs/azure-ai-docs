@@ -89,7 +89,7 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 ### Meta
 
-Meta Llama models and tools are a collection of pretrained and fine-tuned generative AI text and image reasoning models. Meta Llama 4 is part of Models Sold Directly by Azure, while the rest of the Llama family is offered as [Models from Partners and Community](#models-from-partners-and-community).
+Meta Llama models and tools are a collection of pretrained and fine-tuned generative AI text and image reasoning models. Meta Llama 4 Maverick and Llama 3.3 70B Instruct are part of Models Sold Directly by Azure, while the rest of the Llama family is offered as [Models from Partners and Community](#models-from-partners-and-community).
 
 | Model  | Type | Tier | Capabilities |
 | ------ | ---- | --- | ------------ |
@@ -172,7 +172,7 @@ Meta Llama models and tools are a collection of pretrained and fine-tuned genera
 | [Meta-Llama-3-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3-8B-Instruct/version/9/registry/azureml-meta) <br> (deprecated) | chat-completion | Global standard | - **Input:** text (8,192 tokens) <br /> - **Output:**  (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** No* <br /> - **Response formats:** Text |
 
 
-See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=meta).
+See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=meta). There are also several Meta models available as [Models Sold Directly by Azure](#models-sold-directly-by-azure). 
 
 ### Microsoft
 
