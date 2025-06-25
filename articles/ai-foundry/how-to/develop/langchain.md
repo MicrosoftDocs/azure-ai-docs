@@ -212,8 +212,7 @@ export AZURE_INFERENCE_CREDENTIAL="<your-key-goes-here>"
 
 Then create the client:
 
-[!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-embeddings.ipynb?name=
-create_embed_model_client)]
+[!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-embeddings.ipynb?name=create_embed_model_client)]
 
 
 ```python
