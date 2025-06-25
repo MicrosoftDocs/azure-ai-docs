@@ -122,6 +122,8 @@ items:
       href: how-to/triggers.md
     - name: Use the Visual Studio Code extension
       href: ../../ai-foundry/how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context
+    - name: Use Deep Research
+      href: ./how-to/deep-research.md
 - name: Observability
   items:
     - name: Service monitoring
