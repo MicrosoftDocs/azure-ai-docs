@@ -49,7 +49,7 @@ To use semantic ranker, add a *semantic configuration* to a search index, and ad
 
 ::: zone-end
 
-::: zone pivot="REST"
+::: zone pivot="rest"
 
 [!INCLUDE [REST quickstart](includes/quickstarts/semantic-ranker-rest.md)]
 
