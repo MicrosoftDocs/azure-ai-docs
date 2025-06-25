@@ -7,6 +7,9 @@ ms.topic: include
 ms.date: 06/25/2025
 ---
 
+[!INCLUDE [Semantic ranker introduction](semantic-ranker-intro.md)]
+
+### REST INCLUDE STARTS HERE
 
 In this quickstart, you use the [Azure AI Search REST APIs](/rest/api/searchservice) to configure and use a semantic ranker.
 

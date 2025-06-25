@@ -8,6 +8,10 @@ ms.topic: include
 ms.date: 06/13/2025
 ---
 
+[!INCLUDE [Semantic ranker introduction](semantic-ranker-intro.md)]
+
+### PYTHON INCLUDE STARTS HERE
+
 Use a Jupyter notebook and the [**azure-search-documents**](/python/api/overview/azure/search-documents-readme) library in the Azure SDK for Python to learn about semantic ranking.
 
 Alternatively, you can [download and run a finished notebook](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Semantic-Search).

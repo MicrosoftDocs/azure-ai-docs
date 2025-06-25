@@ -8,6 +8,10 @@ ms.topic: include
 ms.date: 06/13/2025
 ---
 
+[!INCLUDE [Semantic ranker introduction](semantic-ranker-intro.md)]
+
+### CSHARP INCLUDE STARTS HERE
+
 Build a console application by using the [**Azure.Search.Documents**](/dotnet/api/overview/azure/search.documents-readme) client library to add semantic ranking to an existing search index.
 
 Alternatively, you can [download the source code](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-semantic-search/SemanticSearchQuickstart) to start with a finished project.
