@@ -39,13 +39,13 @@ To use semantic ranker, add a *semantic configuration* to a search index, and ad
 
 ::: zone pivot="programming-language-csharp"
 
-[!INCLUDE [C# quickstart](includes/quickstarts/semantic-ranker-csharp.md)]
+[!INCLUDE [C# quickstart](includes/quickstarts/dotnet-semantic.md)]
 
 ::: zone-end
 
 ::: zone pivot="programming-language-python"
 
-[!INCLUDE [Python quickstart](includes/quickstarts/semantic-ranker-python.md)]
+[!INCLUDE [Python quickstart](includes/quickstarts/python-semantic.md)]
 
 ::: zone-end
 
