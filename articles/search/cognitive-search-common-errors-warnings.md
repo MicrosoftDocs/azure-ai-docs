@@ -414,3 +414,9 @@ This warning is passed from the Language service of Azure AI services. In some c
 ## `Error: Cannot write more bytes to the buffer than the configured maximum buffer size`
 
 Indexers have [document size limits](search-limits-quotas-capacity.md#indexer-limits). Make sure that the documents in your data source are smaller than the supported size limit, as documented for your service tier. 
+
+## `Error: Failed to compare value 'X' of type M to value 'Y' of type N.`
+
+This error can possibly occur mostly in azuresql indexer, where the actual data type of the column configured from data source [`dataChangeDetectionPolicy`](search-how-to-index-sql-database#high-water-mark-change-detection-policy) does not match what is expected such as when indexer configuration [`convertHighWaterMarkToRowVersion`](search-how-to-index-sql-database#converthighwatermarktorowversion) is used.
+
+Double check what data type the High Water Mark column is desired and correct both data source and indexer configurations. After verifications and updates, reset the indexer and rerun indexer to consume the desired column values.
