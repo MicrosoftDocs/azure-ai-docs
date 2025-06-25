@@ -4,12 +4,15 @@ titleSuffix: Foundry Local
 description: This article provides instructions on how to integrate Foundry Local with common Inferencing SDKs.
 manager: scottpolly
 ms.service: azure-ai-foundry
+ms.subservice: foundry-local
 ms.custom: build-2025
 ms.topic: how-to
+ms.author: jburchel
+ms.reviewer: samkemp
 ms.date: 05/20/2025
-ms.author: samkemp
 zone_pivot_groups: foundry-local-sdk
-author: samuel100
+author: jonburchel
+reviewer: samuel100
 ---
 
 # Integrate inferencing SDKs with Foundry Local
@@ -27,6 +30,12 @@ Foundry Local integrates with various inferencing SDKs - such as OpenAI, Azure O
 ::: zone-end
 ::: zone pivot="programming-language-javascript"
 [!INCLUDE [JavaScript](../includes/integrate-examples/javascript.md)]
+::: zone-end
+::: zone pivot="programming-language-csharp"
+[!INCLUDE [JavaScript](../includes/integrate-examples/csharp.md)]
+::: zone-end
+::: zone pivot="programming-language-rust"
+[!INCLUDE [JavaScript](../includes/integrate-examples/rust.md)]
 ::: zone-end
 
 ## Next steps

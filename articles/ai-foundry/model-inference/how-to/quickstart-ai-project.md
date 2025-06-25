@@ -18,7 +18,7 @@ reviewer: santiagxf
 
 If you already have an AI project in Azure AI Foundry, the model catalog deploys models from third-party model providers as stand-alone endpoints in your project by default. Each model deployment has its own set of URI and credentials to access it. On the other hand, Azure OpenAI models are deployed to Azure AI Services resource or to the Azure OpenAI in Azure AI Foundry Models resource.
 
-You can change this behavior and deploy both types of models to Azure AI Foundry Services (formerly known Azure AI Services). Once configured, **deployments of models as a standard deployments happen to the connected Azure AI Services resource** instead to the project itself, giving you a single set of endpoint and credential to access all the models deployed in Azure AI Foundry. You can manage Azure OpenAI and third-party model providers models in the same way.
+You can change this behavior and deploy both types of models to Azure AI Foundry Services (formerly known Azure AI Services). Once configured, **deployments of models as a serverless API deployments happen to the connected Azure AI Services resource** instead to the project itself, giving you a single set of endpoint and credential to access all the models deployed in Azure AI Foundry. You can manage Azure OpenAI and third-party model providers models in the same way.
 
 Additionally, deploying models to Azure AI Foundry Models brings the extra benefits of:
 
@@ -106,7 +106,7 @@ For each model you want to deploy under Foundry Models, follow these steps:
 
 6. You can configure the deployment settings at this time. By default, the deployment receives the name of the model you're deploying. The deployment name is used in the `model` parameter for request to route to this particular model deployment. It allows you to configure specific names for your models when you attach specific configurations. For instance, `o1-preview-safe` for a model with a strict content filter.
 
-7. We automatically select an Azure AI Services connection depending on your project because you turned on the feature **Deploy models to Azure AI model inference service**. Use the **Customize** option to change the connection based on your needs. If you're deploying under the **Standard** deployment type, the models need to be available in the region of the Azure AI Services resource.
+7. We automatically select an Azure AI Services connection depending on your project because you turned on the feature **Deploy models to Azure AI model inference service**. Use the **Customize** option to change the connection based on your needs. If you're deploying under the **serverless API** deployment type, the models need to be available in the region of the Azure AI Services resource.
 
     :::image type="content" source="../media/add-model-deployments/models-deploy-customize.png" alt-text="Screenshot showing how to customize the deployment if needed." lightbox="../media/add-model-deployments/models-deploy-customize.png":::
 
@@ -141,41 +141,41 @@ Generate your first chat completion:
 Use the parameter `model="<deployment-name>` to route your request to this deployment. *Deployments work as an alias of a given model under certain configurations*. See [Routing](inference.md#routing) page to learn how Azure AI Foundry Models routes deployments.
 
 
-## Move from standard deployments to Foundry Models
+## Move from serverless API deployments to Foundry Models
 
-Although you configured the project to use Foundry Models, existing model deployments continue to exist within the project as standard deployments. Those deployments aren't moved for you. Hence, you can progressively upgrade any existing code that reference previous model deployments. To start moving the model deployments, we recommend the following workflow:
+Although you configured the project to use Foundry Models, existing model deployments continue to exist within the project as serverless API deployments. Those deployments aren't moved for you. Hence, you can progressively upgrade any existing code that reference previous model deployments. To start moving the model deployments, we recommend the following workflow:
 
 1. Recreate the model deployment in Foundry Models. This model deployment is accessible under the **Foundry Models endpoint**.
 
 2. Upgrade your code to use the new endpoint.
 
-3. Clean up the project by removing the standard deployment.
+3. Clean up the project by removing the serverless API deployment.
 
 
 ### Upgrade your code with the new endpoint
 
-Once the models are deployed under Azure AI Foundry Services, you can upgrade your code to use the Foundry Models endpoint. The main difference between how standard deployments and Foundry Models works reside in the endpoint URL and model parameter. While standard deployments have a set of URI and key per each model deployment, Foundry Models has only one for all of them.
+Once the models are deployed under Azure AI Foundry Services, you can upgrade your code to use the Foundry Models endpoint. The main difference between how serverless API deployments and Foundry Models works reside in the endpoint URL and model parameter. While serverless API deployments have a set of URI and key per each model deployment, Foundry Models has only one for all of them.
 
 The following table summarizes the changes you have to introduce:
 
-| Property | Standard deployments | Foundry Models |
+| Property | serverless API deployments | Foundry Models |
 | -------- | ------------------------ | ------------------------ |
 | Endpoint      | `https://<endpoint-name>.<region>.inference.ai.azure.com` | `https://<ai-resource>.services.ai.azure.com/models` |
 | Credentials | One per model/endpoint. | One per Azure AI Services resource. You can use Microsoft Entra ID too. |
 | Model parameter | None. | Required. Use the name of the model deployment. |
 
 
-### Clean-up existing standard deployments from your project
+### Clean-up existing serverless API deployments from your project
 
-After you refactored your code, you might want to delete the existing standard deployments inside of the project (if any).
+After you refactored your code, you might want to delete the existing serverless API deployments inside of the project (if any).
 
-For each model deployed as standard deployments, follow these steps:
+For each model deployed as serverless API deployments, follow these steps:
 
 1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 2. Select **Models + endpoints**.
 
-3. Identify the endpoints of type **standard deployment** and select the one you want to delete.
+3. Identify the endpoints of type **serverless API deployment** and select the one you want to delete.
 
 4. Select the option **Delete**.
 
@@ -184,14 +184,14 @@ For each model deployed as standard deployments, follow these steps:
 
 5. Confirm the operation by selecting **Delete**.
 
-6. If you created a **standard deployment connection** to this endpoint from other projects, such connections aren't removed and continue to point to the inexistent endpoint. Delete any of those connections for avoiding errors.
+6. If you created a **serverless API deployment connection** to this endpoint from other projects, such connections aren't removed and continue to point to the inexistent endpoint. Delete any of those connections for avoiding errors.
 
 ## Limitations
 
 Consider the following limitations when configuring your project to use Foundry Models:
 
-* Only models supporting standard deployments are available for deployment to Foundry Models. Models requiring compute quota from your subscription (Managed Compute), including custom models, can only be deployed within a given project as Managed Online Endpoints and continue to be accessible using their own set of endpoint URI and credentials.
-* Models available as both standard deployments and managed compute offerings are, by default, deployed to Foundry Models in Azure AI Foundry Services resources. Azure AI Foundry portal doesn't offer a way to deploy them to Managed Online Endpoints. You have to turn off the feature mentioned at [Configure the project to use Foundry Models](#configure-the-project-to-use-foundry-models) or use the Azure CLI/Azure ML SDK/ARM templates to perform the deployment.
+* Only models supporting serverless API deployments are available for deployment to Foundry Models. Models requiring compute quota from your subscription (Managed Compute), including custom models, can only be deployed within a given project as Managed Online Endpoints and continue to be accessible using their own set of endpoint URI and credentials.
+* Models available as both serverless API deployments and managed compute offerings are, by default, deployed to Foundry Models in Azure AI Foundry Services resources. Azure AI Foundry portal doesn't offer a way to deploy them to Managed Online Endpoints. You have to turn off the feature mentioned at [Configure the project to use Foundry Models](#configure-the-project-to-use-foundry-models) or use the Azure CLI/Azure ML SDK/ARM templates to perform the deployment.
 
 ## Next steps
 

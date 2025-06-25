@@ -28,13 +28,13 @@ items:
   - name: Transparency notes
     items:
     - name: Use cases for QnA Maker
-      href: /legal/cognitive-services/qnamaker/transparency-note-qnamaker?context=/azure/ai-services/qnamaker/context/context
+      href: ../../ai-foundry/responsible-ai/qnamaker/transparency-note-qnamaker.md
     - name: Characteristics and limitations
-      href: /legal/cognitive-services/qnamaker/characteristics-and-limitations-qnamaker?context=/azure/ai-services/qnamaker/context/context
+      href: ../../ai-foundry/responsible-ai/qnamaker/characteristics-and-limitations-qnamaker.md
   - name: Integration and responsible use
-    href: /legal/cognitive-services/qnamaker/guidance-integration-responsible-use-qnamaker?context=/azure/ai-services/qnamaker/context/context
+    href: ../../ai-foundry/responsible-ai/qnamaker/guidance-integration-responsible-use-qnamaker.md
   - name: Data, privacy and security
-    href: /legal/cognitive-services/qnamaker/data-privacy-security-qnamaker?context=/azure/ai-services/qnamaker/context/context
+    href: ../../ai-foundry/responsible-ai/qnamaker/data-privacy-security-qnamaker.md
 - name: How-to guides
   items:
   - name: Manage QnA Maker resources

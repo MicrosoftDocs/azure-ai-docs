@@ -7,8 +7,8 @@ titleSuffix: Azure AI Foundry
 ms.service: azure-ai-foundry
 manager: scottpolly 
 ms.reviewer: andyaviles 
-ms.author: larryfr 
-author: Blackmist 
+ms.author: sgilley
+author: sdgilley
 ms.custom: devx-track-terraform
 content_well_notification: 
   - AI-contribution

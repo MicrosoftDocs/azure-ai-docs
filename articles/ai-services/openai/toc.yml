@@ -325,7 +325,7 @@ items:
 - name: Security & Governance
   items:
     - name: Data, privacy, and security
-      href: /legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context
+      href: ../../ai-foundry/responsible-ai/openai/data-privacy.md
     - name: Use virtual networks
       href: ../cognitive-services-virtual-networks.md?context=/azure/ai-services/openai/context/context
     - name: Encryption of data at rest
@@ -343,17 +343,17 @@ items:
 - name: Responsible AI
   items:
     - name: Overview
-      href: /legal/cognitive-services/openai/overview?context=/azure/ai-services/openai/context/context
+      href: ../../ai-foundry/responsible-ai/openai/overview.md
     - name : Transparency note
-      href: /legal/cognitive-services/openai/transparency-note?context=/azure/ai-services/openai/context/context
+      href: ../../ai-foundry/responsible-ai/openai/transparency-note.md
     - name: Limited access
-      href: /legal/cognitive-services/openai/limited-access?context=/azure/ai-services/openai/context/context
+      href: ../../ai-foundry/responsible-ai/openai/limited-access.md
     - name: Code of conduct
-      href: /legal/ai-code-of-conduct?context=/azure/ai-services/openai/context/context
+      href: /legal/ai-code-of-conduct
     - name: Data, privacy, and security
-      href: /legal/cognitive-services/openai/data-privacy?context=/azure/ai-services/openai/context/context
+      href: ../../ai-foundry/responsible-ai/openai/data-privacy.md
     - name: Customer Copyright Commitment
-      href: /legal/cognitive-services/openai/customer-copyright-commitment?context=/azure/ai-services/openai/context/context
+      href: ../../ai-foundry/responsible-ai/openai/customer-copyright-commitment.md
 - name: Reference
   items:
     - name: Latest Inference Preview API

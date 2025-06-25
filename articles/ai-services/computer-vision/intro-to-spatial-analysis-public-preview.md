@@ -38,7 +38,7 @@ Spatial Analysis works on videos that meet the following requirements:
 <!--
 ## Responsible use of Spatial Analysis technology
 
-To learn how to use Spatial Analysis technology responsibly, see the [Transparency note](/legal/cognitive-services/computer-vision/transparency-note-spatial-analysis?context=%2fazure%2fcognitive-services%2fComputer-vision%2fcontext%2fcontext). Microsoft's transparency notes help you understand how our AI technology works and the choices system owners can make that influence system performance and behavior. They focus on the importance of thinking about the whole system including the technology, people, and environment.
+To learn how to use Spatial Analysis technology responsibly, see the [Transparency note](/azure/ai-foundry/responsible-ai/computer-vision/transparency-note-spatial-analysis). Microsoft's transparency notes help you understand how our AI technology works and the choices system owners can make that influence system performance and behavior. They focus on the importance of thinking about the whole system including the technology, people, and environment.
 -->
 
 <!--

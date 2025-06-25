@@ -27,20 +27,20 @@ sections:
         answer: |
           Azure AI services are a suite of AI services that provide prebuilt APIs for common AI scenarios. Azure AI Services is part of the Azure AI Foundry platform. Azure AI services can be used in Azure AI Foundry portal to enhance your models with prebuilt AI capabilities.
       - question: |
-          What's the difference between standard deployments and Foundry Models?
+          What's the difference between serverless API deployments and Foundry Models?
         answer: |
           Both features allow you to deploy Models-as-a-Service models in Azure AI Foundry. However, there are some differences between them:
-          - *Resource involved*: standard deployments are deployed within an AI project resource, while Foundry Models is part of the Azure AI Foundry resource.
-          - *Deployment options*: standard deployments allow regional deployments, while Foundry Models allows deployments under a global capacity.
+          - *Resource involved*: serverless API deployments are deployed within an AI project resource, while Foundry Models is part of the Azure AI Foundry resource.
+          - *Deployment options*: serverless API deployments allow regional deployments, while Foundry Models allows deployments under a global capacity.
           - *Models*: Foundry Models also supports deploying Azure OpenAI models.
-          - *Endpoint*: standard deployments create one endpoint and credential per deployment, while Foundry Models creates one endpoint and credential per resource.
+          - *Endpoint*: serverless API deployments create one endpoint and credential per deployment, while Foundry Models creates one endpoint and credential per resource.
           - *Model router*: Foundry Models allows you to switch between models without changing your code using a model router.
   - name: Models
     questions:
       - question: |
           Why aren't all the models in the Azure AI model catalog supported in Azure AI Foundry services?
         answer: |
-          Foundry Models support all the models in the Azure AI catalog having Standard billing. For more information, see [the Models article](concepts/models.md).
+          Foundry Models support all the models in the Azure AI catalog having pay-as-you-go billing. For more information, see [the Models article](concepts/models.md).
 
           The Azure AI model catalog contains a wider list of models, however, those models require compute quota from your subscription. They also need to have a project or AI hub where to host the deployment. For more information, see [deployment options in Azure AI Foundry](../../ai-studio/concepts/deployments-overview.md).
       - question: |
@@ -100,7 +100,7 @@ sections:
       - question: |
           How are Models from Partners and Community available? 
         answer: |
-          Models from Partners and Community available for deployment in Azure AI Services with Standard billing (for example, Meta AI models or Mistral models) are offered by the model provider but hosted in Microsoft-managed Azure infrastructure and accessed via API in the Foundry Models endpoint. Model providers define the license terms and set the price for use of their models, while Azure AI Services service manages the hosting infrastructure, makes the inference APIs available, and acts as the data processor for prompts submitted and content output by models deployed. Read about [Data privacy, and security for third-party models](../../ai-studio/how-to/concept-data-privacy.md).
+          Models from Partners and Community available for deployment in Azure AI Services with pay-as-you-go billing (for example, Meta AI models or Mistral models) are offered by the model provider but hosted in Microsoft-managed Azure infrastructure and accessed via API in the Foundry Models endpoint. Model providers define the license terms and set the price for use of their models, while Azure AI Services service manages the hosting infrastructure, makes the inference APIs available, and acts as the data processor for prompts submitted and content output by models deployed. Read about [Data privacy, and security for third-party models](../../ai-studio/how-to/concept-data-privacy.md).
       - question: |
           How is data processed by the Global-Standard deployment type?
         answer: |
@@ -119,5 +119,5 @@ sections:
       - question: |
           How do I obtain coverage under the Customer Copyright Commitment? 
         answer:
-          The Customer Copyright Commitment is a provision to be included in the December 1, 2023, Microsoft Product Terms that describes Microsoft’s obligation to defend customers against certain non-Microsoft intellectual property claims relating to Output Content. If the subject of the claim is Output Content generated from Azure OpenAI (or any other Covered Product that allows customers to configure the safety systems), then to receive coverage, customers must have implemented all mitigations required by the Azure OpenAI documentation in the offering that delivered the Output Content. The required mitigations are documented [here](/legal/cognitive-services/openai/customer-copyright-commitment?context=/azure/ai-services/openai/context/context) and updated on an ongoing basis. For new services, features, models, or use cases, new CCC requirements will be posted and take effect at or following the launch of such service, feature, model, or use case. Otherwise, customers will have six months from the time of publication to implement new mitigations to maintain coverage under the CCC. If a customer tenders a claim, the customer will be required to demonstrate compliance with the relevant requirements. These mitigations are required for Covered Products that allow customers to configure the safety systems, including Azure OpenAI; they don't impact coverage for customers using other Covered Products.
+          The Customer Copyright Commitment is a provision to be included in the December 1, 2023, Microsoft Product Terms that describes Microsoft’s obligation to defend customers against certain non-Microsoft intellectual property claims relating to Output Content. If the subject of the claim is Output Content generated from Azure OpenAI (or any other Covered Product that allows customers to configure the safety systems), then to receive coverage, customers must have implemented all mitigations required by the Azure OpenAI documentation in the offering that delivered the Output Content. The required mitigations are documented [here](/azure/ai-foundry/responsible-ai/openai/customer-copyright-commitment) and updated on an ongoing basis. For new services, features, models, or use cases, new CCC requirements will be posted and take effect at or following the launch of such service, feature, model, or use case. Otherwise, customers will have six months from the time of publication to implement new mitigations to maintain coverage under the CCC. If a customer tenders a claim, the customer will be required to demonstrate compliance with the relevant requirements. These mitigations are required for Covered Products that allow customers to configure the safety systems, including Azure OpenAI; they don't impact coverage for customers using other Covered Products.
 additionalContent: |
