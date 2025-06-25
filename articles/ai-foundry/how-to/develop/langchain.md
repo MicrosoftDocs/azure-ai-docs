@@ -64,10 +64,7 @@ To use LLMs deployed in Azure AI Foundry portal, you need the endpoint and crede
     > [!TIP]
     > If your model was deployed with Microsoft Entra ID support, you don't need a key.
 
-In this scenario, we placed both the endpoint URL and key in the following environment variables.  
-
-> [!TIP]
-> The endpoint you copied might have extra text after /models.  Delete that and stop at /models as shown here.
+In this scenario, set the endpoint URL and key as environment variables. (If the endpoint you copied includes additional text after `/models`, remove it so the URL ends at `/models` as shown below.)
 
 ```bash
 export AZURE_INFERENCE_ENDPOINT="https://<resource>.services.ai.azure.com/models"
@@ -218,6 +215,7 @@ Then create the client:
 [!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-embeddings.ipynb?name=
 create_embed_model_client)]
 
+
 ```python
 from langchain_azure_ai.embeddings import AzureAIEmbeddingsModel
 
@@ -232,11 +230,6 @@ The following example shows a simple example using a vector store in memory:
 
 [!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-embeddings.ipynb?name=create_vector_store)]
 
-```python
-from langchain_core.vectorstores import InMemoryVectorStore
-
-vector_store = InMemoryVectorStore(embed_model)
-```
 
 Let's add some documents:
 
