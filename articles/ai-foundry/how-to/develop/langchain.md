@@ -31,7 +31,7 @@ To run this tutorial, you need:
 
 * An [Azure subscription](https://azure.microsoft.com).
 
-* A model deployment supporting the [Model Inference API](https://aka.ms/azureai/modelinference) deployed. In this example, we use a `Mistral-Large-2407` deployment in the [Foundry Models](../../../ai-foundry/model-inference/overview.md).
+* A model deployment supporting the [Model Inference API](https://aka.ms/azureai/modelinference) deployed. In this example, we use a `Mistral-medium-2505` deployment in the [Foundry Models](../../../ai-foundry/model-inference/overview.md).
 * Python 3.9 or later installed, including pip.
 * LangChain installed. You can do it with:
 
