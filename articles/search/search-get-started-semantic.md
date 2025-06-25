@@ -12,16 +12,14 @@ ms.custom:
   - ignite-2023
 ms.topic: quickstart
 ms.date: 06/13/2025
+zone_pivot_groups: search-get-started-semantic
 ---
 
 # Quickstart: Semantic ranking using .NET or Python
 
 In this quickstart, you learn about the index and query modifications that invoke semantic ranker.
 
-In Azure AI Search, [semantic ranking](semantic-search-overview.md) is query-side functionality that uses machine reading comprehension from Microsoft to rescore search results, promoting the most semantically relevant matches to the top of the list. Depending on the content and the query, semantic ranking can [significantly improve search relevance](https://techcommunity.microsoft.com/t5/azure-ai-services-blog/azure-cognitive-search-outperforming-vector-search-with-hybrid/ba-p/3929167) with minimal developer effort.
-
-> [!NOTE]
-> For an example of an Azure AI Search solution with ChatGPT interaction, see [this demo](https://github.com/Azure-Samples/azure-search-openai-demo/blob/main/README.md) or [this accelerator](https://github.com/Azure-Samples/chat-with-your-data-solution-accelerator).
+In Azure AI Search, [semantic ranking](semantic-search-overview.md) is query-side functionality that uses machine reading comprehension from Microsoft to rescore search results, promoting the most semantically relevant matches to the top of the list. Depending on the content and the query, semantic ranking can [significantly improve search relevance](https://techcommunity.microsoft.com/t5/azure-ai-services-blog/azure-cognitive-search-outperforming-vector-search-with-hybrid/ba-p/3929167) with minimal developer effort. Semantic ranking is also required for [agentic retrieval (preview)](search-agentic-retrieval-concept.md).
 
 ## Prerequisites
 
@@ -29,17 +27,9 @@ In Azure AI Search, [semantic ranking](semantic-search-overview.md) is query-sid
 
 + An [Azure AI Search service](search-create-service-portal.md), at Basic tier or higher, with [semantic ranker enabled](semantic-how-to-enable-disable.md).
 
-+ An API key and a search service endpoint. To obtain them:
++ A new or existing index with descriptive or verbose text fields, attributed as retrievable in your index. You can add a semantic configuration to an existing index with no rebuild requirement. Semantic ranking is effective on content that's informational or descriptive.
 
-  1. Sign in to the [Azure portal](https://portal.azure.com) and find your search service.
-
-  1. On **Overview**, copy the URL and save it for a later step. An example endpoint might look like `https://mydemo.search.windows.net`.
-
-  1. On **Keys**, copy and save an admin key for full rights to create and delete objects. There are two interchangeable primary and secondary keys. Choose either one.
-
-     :::image type="content" source="media/search-get-started-rest/get-url-key.png" alt-text="Screenshot showing where to find your search service's HTTP endpoint and access key.":::
-
-## Add semantic ranking
+## How to add a semantic ranker
 
 To use semantic ranker, add a *semantic configuration* to a search index, and add parameters to a query. If you have an existing index, you can make these changes without having to reindex your content because there's no impact on the structure of your searchable content.
 
@@ -47,15 +37,17 @@ To use semantic ranker, add a *semantic configuration* to a search index, and ad
 
 + Queries that invoke semantic ranker include parameters for query type and whether captions and answers are returned. You can add these parameters to your existing query logic. There's no conflict with other parameters.
 
-### [**.NET**](#tab/dotnet)
+::: zone pivot="programming-language-csharp"
 
-[!INCLUDE [dotnet-sdk-semantic-quickstart](includes/quickstarts/dotnet-semantic.md)]
+[!INCLUDE [C# quickstart](includes/quickstarts/semantic-ranker-csharp.md)]
 
-### [**Python**](#tab/python)
+::: zone-end
 
-[!INCLUDE [python-sdk-semantic-quickstart](includes/quickstarts/python-semantic.md)]
+::: zone pivot="programming-language-python"
 
----
+[!INCLUDE [Python quickstart](includes/quickstarts/semantic-ranker-python.md)]
+
+::: zone-end
 
 ## Clean up resources
 
