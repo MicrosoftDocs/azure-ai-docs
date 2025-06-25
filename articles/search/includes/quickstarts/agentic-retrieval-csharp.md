@@ -48,7 +48,7 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
     dotnet add package Azure.Search.Documents --version 11.7.0-beta.4
     ```
 
-1. Install the Azure OpenAI client library ([Azure.AI.OpenAI](/dotnet/api/overview/azure.ai.openai)) for .NET with:
+1. Install the Azure OpenAI client library ([Azure.AI.OpenAI](/dotnet/api/azure.ai.openai)) for .NET with:
 
     ```console
     dotnet add package Azure.AI.OpenAI --version 2.1.0
