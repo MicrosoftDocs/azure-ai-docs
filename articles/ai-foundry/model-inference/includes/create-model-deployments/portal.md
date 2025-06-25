@@ -37,7 +37,7 @@ You can add models to the Foundry Models endpoint using the following steps:
    > [!TIP]
    > Each model can support different deployments types, providing different data residency or throughput guarantees. See [deployment types](../../concepts/deployment-types.md) for more details.
 
-5. We automatically select an Azure AI Foundry connection depending on your project. Use the **Customize** option to change the connection based on your needs. If you're deploying under the **Standard** deployment type, the models need to be available in the region of the Azure AI Foundry resource.
+5. We automatically select an Azure AI Foundry connection depending on your project. Use the **Customize** option to change the connection based on your needs. If you're deploying under the **Serverless API** deployment type, the models need to be available in the region of the Azure AI Foundry resource.
    
    :::image type="content" source="../../media/add-model-deployments/models-deploy-customize.png" alt-text="Screenshot showing how to customize the deployment if needed." lightbox="../../media/add-model-deployments/models-deploy-customize.png":::
 

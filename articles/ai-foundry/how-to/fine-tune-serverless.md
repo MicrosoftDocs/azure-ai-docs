@@ -1,7 +1,7 @@
 ---
-title: Fine-tune models using standard deployments in Azure AI Foundry portal
+title: Fine-tune models using serverless API deployments in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
-description: Learn how to fine-tune models deployed via standard deployments in Azure AI Foundry.
+description: Learn how to fine-tune models deployed via serverless API deployments in Azure AI Foundry.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
@@ -14,19 +14,19 @@ ms.custom: references_regions
 zone_pivot_groups: azure-ai-model-fine-tune
 ---
 
-# Fine-tune models using standard deployments in Azure AI Foundry
+# Fine-tune models using serverless API deployments in Azure AI Foundry
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
 Azure AI Foundry enables you to customize large language models to your specific datasets through a process called fine-tuning. This process offers significant benefits by allowing for customization and optimization tailored to specific tasks and applications. The advantages include improved performance, cost efficiency, reduced latency, and tailored outputs.
 
-**Cost Efficiency**: Azure AI Foundry's fine-tuning can be more cost-effective, especially for large-scale deployments, thanks to Standard pricing.
+**Cost Efficiency**: Azure AI Foundry's fine-tuning can be more cost-effective, especially for large-scale deployments, thanks to pay-as-you-go pricing.
 
-**Model Variety**: Azure AI Foundry's standard deployment fine-tuning  offers support for both proprietary and open-source models, providing users with the flexibility to select the models that best suit their needs without being restricted to a single type.
+**Model Variety**: Azure AI Foundry's serverless API deployment fine-tuning  offers support for both proprietary and open-source models, providing users with the flexibility to select the models that best suit their needs without being restricted to a single type.
 
 **Customization and Control**: Azure AI Foundry provides greater customization and control over the fine-tuning process, enabling users to tailor models more precisely to their specific requirements.
 
-In this article, you will discover how to fine-tune models that are deployed using standard deployments in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+In this article, you will discover how to fine-tune models that are deployed using serverless API deployments in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
 
 ## Prerequisites
@@ -51,7 +51,7 @@ Verify the subscription is registered to the Microsoft.Network resource provider
 
 ## Find models with fine-tuning support
 
-The AI Foundry model catalog offers fine-tuning support for multiple types of models, including chat completions and text generation. For a list of models that support fine-tuning and the Azure regions of support for fine-tuning, see [region availability for models as standard deployment.](deploy-models-serverless-availability.md) Fine-tuning tasks are available only to users whose Azure subscription belongs to a billing account in a country/region where the model provider has made the offer available. If the offer is available in the relevant region, the user then must have a project resource in the Azure region where the model is available for deployment or fine-tuning, as applicable.
+The AI Foundry model catalog offers fine-tuning support for multiple types of models, including chat completions and text generation. For a list of models that support fine-tuning and the Azure regions of support for fine-tuning, see [region availability for models as serverless API deployment.](deploy-models-serverless-availability.md) Fine-tuning tasks are available only to users whose Azure subscription belongs to a billing account in a country/region where the model provider has made the offer available. If the offer is available in the relevant region, the user then must have a project resource in the Azure region where the model is available for deployment or fine-tuning, as applicable.
 
 
 You can also go to the Azure AI Foundry portal to view all models that contain fine-tuning support:
@@ -121,8 +121,8 @@ Azure AI Foundry portal provides the Create custom model wizard, so you can inte
 ### Select the base model
 
 1. Choose the model you want to fine-tune from the Azure AI Foundry [model catalog](https://ai.azure.com/explore/models).
-2. On the model's **Details page**, select **fine-tune**. Some foundation models support both **standard deployment** and **Managed compute**, while others support one or the other.
-3. If you're presented the options for **standard deployment** and [**Managed compute**](./fine-tune-managed-compute.md), select **standard deployment** for fine-tuning. This action opens up a wizard that shows information about **Standard** fine-tuning for your model.
+2. On the model's **Details page**, select **fine-tune**. Some foundation models support both **serverless API deployment** and **Managed compute**, while others support one or the other.
+3. If you're presented the options for **serverless API deployment** and [**Managed compute**](./fine-tune-managed-compute.md), select **serverless API deployment** for fine-tuning. This action opens up a wizard that shows information about **Serverless API** fine-tuning for your model.
 
 ### Choose your training data
 The next step is to either choose existing prepared training data or upload new prepared training data to use when customizing your model. The **Training data** pane displays any existing, previously uploaded datasets and also provides options to upload new training data.
@@ -210,7 +210,7 @@ Here are some of the tasks you can do on the **Models** tab:
 
 ### Supported enterprise scenarios for fine-tuning
 
-Several enterprise scenarios are supported for standard deployment fine-tuning. The table below outlines the supported configurations for user storage networking and authentication to ensure smooth operation within enterprise scenarios:
+Several enterprise scenarios are supported for serverless API deployment fine-tuning. The table below outlines the supported configurations for user storage networking and authentication to ensure smooth operation within enterprise scenarios:
 
 >[!Note]  
 >- Data connections auth can be changed via AI Foundry by clicking on the datastore connection which your dataset is stored in, and navigating to the **Access details** > **Authentication Method** setting.  
@@ -230,7 +230,7 @@ Several enterprise scenarios are supported for standard deployment fine-tuning. 
 
 The scenarios above should work in a Managed Vnet workspace as well. See setup of Managed Vnet AI Foundry hub here: [How to configure a managed network for Azure AI Foundry hubs](./configure-managed-network.md)
 
-Customer-Managed Keys (CMKs) is **not** a supported enterprise scenario with standard deployment fine-tuning.
+Customer-Managed Keys (CMKs) is **not** a supported enterprise scenario with serverless API deployment fine-tuning.
 
 Issues fine-tuning with unique network setups on the workspace and storage usually points to a networking setup issue.
 
@@ -331,7 +331,7 @@ workspace.id
 
 ### Find models with fine-tuning support
 
-The AI Foundry model catalog offers fine-tuning support for multiple types of models, including chat completions and text generation. For a list of models that support fine-tuning and the Azure regions of support for fine-tuning, see [region availability for models in a standard deployment.](deploy-models-serverless-availability.md) Fine-tuning tasks are available only to users whose Azure subscription belongs to a billing account in a country/region where the model provider has made the offer available. If the offer is available in the relevant region, the user then must have a project resource in the Azure region where the model is available for deployment or fine-tuning, as applicable.
+The AI Foundry model catalog offers fine-tuning support for multiple types of models, including chat completions and text generation. For a list of models that support fine-tuning and the Azure regions of support for fine-tuning, see [region availability for models in a serverless API deployment.](deploy-models-serverless-availability.md) Fine-tuning tasks are available only to users whose Azure subscription belongs to a billing account in a country/region where the model provider has made the offer available. If the offer is available in the relevant region, the user then must have a project resource in the Azure region where the model is available for deployment or fine-tuning, as applicable.
 
 For this example, we use a Phi-4-mini-instruct model. In this code snippet, the model ID property of the model will be passed as input to the fine tuning job. This is also available as the Asset ID field in model details page in Azure AI Foundry Model Catalog.
 
@@ -577,7 +577,7 @@ model_id = f"azureml://locations/{workspace.location}/workspaces/{workspace._wor
 
 ### Supported enterprise scenarios for fine-tuning
 
-Several enterprise scenarios are supported for standard deployment fine-tuning. The table below outlines the supported configurations for user storage networking and authentication to ensure smooth operation within enterprise scenarios:
+Several enterprise scenarios are supported for serverless API deployment fine-tuning. The table below outlines the supported configurations for user storage networking and authentication to ensure smooth operation within enterprise scenarios:
 
 >[!Note]  
 >- Data connections auth can be changed via AI Foundry by clicking on the datastore connection which your dataset is stored in, and navigating to the **Access details** > **Authentication Method** setting.  
@@ -597,7 +597,7 @@ Several enterprise scenarios are supported for standard deployment fine-tuning. 
 
 The scenarios above should work in a Managed Vnet workspace as well. See setup of Managed Vnet AI Foundry hub here: [How to configure a managed network for Azure AI Foundry hubs](./configure-managed-network.md)
 
-Customer-Managed Keys (CMKs) is **not** a supported enterprise scenario with standard deployment fine-tuning.
+Customer-Managed Keys (CMKs) is **not** a supported enterprise scenario with serverless API deployment fine-tuning.
 
 Issues fine-tuning with unique network setups on the workspace and storage usually points to a networking setup issue.
 
@@ -695,17 +695,17 @@ workspace_ml_client.serverless_endpoints.begin_delete(endpoint_name).result()
 
 ::: zone-end
 
-## Cost and quota considerations for models deployed as a standard deployment
+## Cost and quota considerations for models deployed as a serverless API deployment
 
 Quota is managed per deployment. Each deployment has a rate limit of 200,000 tokens per minute and 1,000 API requests per minute. However, we currently limit one deployment per model per project. Contact Microsoft Azure Support if the current rate limits aren't sufficient for your scenarios.
 
 #### Cost for Microsoft models
 
-You can find the pricing information on the __Pricing and terms__ tab of the deployment wizard when deploying Microsoft models (such as Phi-3 models) as a standard deployment.
+You can find the pricing information on the __Pricing and terms__ tab of the deployment wizard when deploying Microsoft models (such as Phi-3 models) as a serverless API deployment.
 
 #### Cost for non-Microsoft models
 
-Non-Microsoft models deployed as a standard deployment are offered through Azure Marketplace and integrated with Azure AI Foundry for use. You can find Azure Marketplace pricing when deploying or fine-tuning these models.
+Non-Microsoft models deployed as a serverless API deployment are offered through Azure Marketplace and integrated with Azure AI Foundry for use. You can find Azure Marketplace pricing when deploying or fine-tuning these models.
 
 Each time a project subscribes to a given offer from Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference and fine-tuning; however, multiple meters are available to track each scenario independently.
 
@@ -754,7 +754,7 @@ The training data used is the same as demonstrated in the SDK notebook. The CLI 
 
 ## Content filtering
 
-Standard deployment models are protected by Azure AI Content Safety. When deployed to real-time endpoints, you can opt out of this capability. With Azure AI Content Safety enabled, both the prompt and completion pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Learn more about [Azure AI Content Safety](../concepts/content-filtering.md).
+Serverless API deployment models are protected by Azure AI Content Safety. When deployed to real-time endpoints, you can opt out of this capability. With Azure AI Content Safety enabled, both the prompt and completion pass through an ensemble of classification models aimed at detecting and preventing the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Learn more about [Azure AI Content Safety](../concepts/content-filtering.md).
 
 
 ## Next steps

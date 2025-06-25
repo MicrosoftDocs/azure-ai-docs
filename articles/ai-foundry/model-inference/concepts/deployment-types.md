@@ -98,13 +98,13 @@ Data zone provisioned deployments are available in the same Azure AI Foundry res
 
 Data zone batch deployments provide all the same functionality as global batch deployments while allowing you to leverage Azure global infrastructure to dynamically route traffic to only data centers within the Microsoft defined data zone with the best availability for each request. 
 
-## Standard
+## Serverless API
 
-**SKU name in code:** `Standard`
+**SKU name in code:** `Serverless API`
 
-Standard deployments provide a pay-per-call billing model on the chosen model. Provides the fastest way to get started as you only pay for what you consume. Models available in each region as well as throughput may be limited.  
+Serverless API deployments provide a pay-per-call billing model on the chosen model. Provides the fastest way to get started as you only pay for what you consume. Models available in each region as well as throughput may be limited.  
 
-Standard deployments are optimized for low to medium volume workloads with high burstiness. Customers with high consistent volume may experience greater latency variability.
+Serverless API deployments are optimized for low to medium volume workloads with high burstiness. Customers with high consistent volume may experience greater latency variability.
 
 ## Provisioned
 

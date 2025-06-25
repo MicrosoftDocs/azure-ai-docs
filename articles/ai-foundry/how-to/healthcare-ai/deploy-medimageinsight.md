@@ -49,7 +49,7 @@ To __deploy the model through the UI__:
 1. Go to the model catalog.
 1. Search for the _MedImageInsight_ model and select its model card.
 1. On the model's overview page, select __Deploy__. 
-1. If given the option to choose between standard deployment and deployment using a managed compute, select **Managed Compute**.
+1. If given the option to choose between serverless API deployment and deployment using a managed compute, select **Managed Compute**.
 1. Fill out the details in the deployment window.
 
     > [!NOTE]
