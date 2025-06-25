@@ -293,7 +293,7 @@ export AZURE_INFERENCE_CREDENTIAL="<your-key-goes-here>"
 
 Then create the client:
 
-[!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-embeddings.ipynb.ipynb?name=
+[!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-embeddings.ipynb?name=
 create_embed_model_client)]
 
 ```python
@@ -308,7 +308,7 @@ embed_model = AzureAIEmbeddingsModel(
 
 The following example shows a simple example using a vector store in memory:
 
-[!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-embeddings.ipynb.ipynb?name=create_vector_store)]
+[!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-embeddings.ipynb?name=create_vector_store)]
 
 ```python
 from langchain_core.vectorstores import InMemoryVectorStore
@@ -318,7 +318,7 @@ vector_store = InMemoryVectorStore(embed_model)
 
 Let's add some documents:
 
-[!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-embeddings.ipynb.ipynb?name="add_documents)]
+[!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-embeddings.ipynb?name="add_documents)]
 
 ```python
 from langchain_core.documents import Document
@@ -332,7 +332,7 @@ vector_store.add_documents(documents=documents)
 
 Let's search by similarity:
 
-[!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-embeddings.ipynb.ipynb?name=search_similarity)]
+[!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-embeddings.ipynb?name=search_similarity)]
 
 ```python
 results = vector_store.similarity_search(query="thud",k=1)
