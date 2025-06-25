@@ -63,7 +63,7 @@ To deploy the Azure OpenAI models:
 
 ## Get endpoints
 
-In your code, you specify the following endpoints to establish connections with your Azure AI Search service and Azure AI Foundry resource. These steps assume that you [configured role-based access as described previously](#configure-role-based-access). 
+In your code, you specify the following endpoints to establish connections with your Azure AI Search service and Azure AI Foundry resource. These steps assume that you [configured role-based access as described previously](#configure-role-based-access).
 
 To obtain your service endpoints:
 
