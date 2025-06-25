@@ -249,12 +249,6 @@ Let's search by similarity:
 
 [!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-embeddings.ipynb?name=search_similarity)]
 
-```python
-results = vector_store.similarity_search(query="thud",k=1)
-for doc in results:
-    print(f"* {doc.page_content} [{doc.metadata}]")
-```
-
 ## Using Azure OpenAI models
 
 If you're using Azure OpenAI models with `langchain-azure-ai` package, use the following URL:
@@ -277,43 +271,11 @@ First, configure logging to the level you are interested in:
 
 [!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-chat-models.ipynb?name=configure_logging)]
 
-```python
-import sys
-import logging
-
-# Acquire the logger for this client library. Use 'azure' to affect both
-# 'azure.core` and `azure.ai.inference' libraries.
-logger = logging.getLogger("azure")
-
-# Set the desired logging level. logging.INFO or logging.DEBUG are good options.
-logger.setLevel(logging.DEBUG)
-
-# Direct logging output to stdout:
-handler = logging.StreamHandler(stream=sys.stdout)
-# Or direct logging output to a file:
-# handler = logging.FileHandler(filename="sample.log")
-logger.addHandler(handler)
-
-# Optional: change the default logging format. Here we add a timestamp.
-formatter = logging.Formatter("%(asctime)s:%(levelname)s:%(name)s:%(message)s")
-handler.setFormatter(formatter)
-```
 
 To see the payloads of the requests, when instantiating the client, pass the argument `logging_enable`=`True` to the `client_kwargs`:
 
 [!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-chat-models.ipynb?name=create_client_with_logging)]
 
-```python
-import os
-from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
-
-model = AzureAIChatCompletionsModel(
-    endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
-    credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
-    model="mistral-medium-2505",
-    client_kwargs={"logging_enable": True},
-)
-```
 
 Use the client as usual in your code.
 
