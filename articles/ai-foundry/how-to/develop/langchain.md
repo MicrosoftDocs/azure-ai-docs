@@ -214,17 +214,6 @@ Then create the client:
 
 [!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-embeddings.ipynb?name=create_embed_model_client)]
 
-
-```python
-from langchain_azure_ai.embeddings import AzureAIEmbeddingsModel
-
-embed_model = AzureAIEmbeddingsModel(
-    endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
-    credential=os.environ['AZURE_INFERENCE_CREDENTIAL'],
-    model="text-embedding-3-large",
-)
-```
-
 The following example shows a simple example using a vector store in memory:
 
 [!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-embeddings.ipynb?name=create_vector_store)]
@@ -234,15 +223,6 @@ Let's add some documents:
 
 [!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-embeddings.ipynb?name=add_documents)]
 
-```python
-from langchain_core.documents import Document
-
-document_1 = Document(id="1", page_content="foo", metadata={"baz": "bar"})
-document_2 = Document(id="2", page_content="thud", metadata={"bar": "baz"})
-
-documents = [document_1, document_2]
-vector_store.add_documents(documents=documents)
-```
 
 Let's search by similarity:
 
@@ -302,7 +282,7 @@ You can configure your application to send telemetry to Azure Application Insigh
         application_insights_connection_string = "instrumentation...."
         ```
 
-2. Using the Azure AI Foundry SDK and the project connection string ([!INCLUDE [hub-project-name](../../includes/hub-project-name.md)]s only).
+2. Using the Azure AI Foundry SDK and the project connection string (**[!INCLUDE [hub-project-name](../../includes/hub-project-name.md)]s only**).
 
     1. Ensure you have the package `azure-ai-projects` installed in your environment.
 
