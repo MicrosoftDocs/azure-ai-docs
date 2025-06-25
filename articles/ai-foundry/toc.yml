@@ -179,17 +179,17 @@ items:
           href: how-to/healthcare-ai/deploy-cxrreportgen.md
         - name: MedImageParse models for prompted segmentation
           href: how-to/healthcare-ai/deploy-medimageparse.md
-    - name: Use standard deployment 
+    - name: Use serverless API deployment 
       items:
-      - name: Deploy models via standard deployment
+      - name: Deploy models via serverless API 
         href: how-to/deploy-models-serverless.md
       - name: Consume models from a different project or hub
         href: how-to/deploy-models-serverless-connect.md
-      - name: Model region availability for standard deployment
+      - name: Model region availability for serverless API 
         href: how-to/deploy-models-serverless-availability.md
-      - name: Guardrails & controls for standard deployment
+      - name: Guardrails & controls for serverless API 
         href: concepts/model-catalog-content-safety.md
-      - name: Models available for standard deployment
+      - name: Models available for serverless API
         href: concepts/models-featured.md
     - name: Gretel Navigator model
       href: how-to/deploy-models-gretel-navigator.md
@@ -455,7 +455,7 @@ items:
       href: concepts/fine-tuning-overview.md
     - name: Fine-tune Azure AI Foundry models
       items: 
-      - name: Fine-tune models deployed via standard deployment
+      - name: Fine-tune models deployed via serverless API
         href: how-to/fine-tune-serverless.md
       - name: Fine-tune models deployed via managed compute
         href: how-to/fine-tune-managed-compute.md
