@@ -23,7 +23,7 @@ The tutorial helps you create:
 
 > [!div class="checklist"]
 > * An Azure AI Foundry resource.
-> * A model deployment for each of the models supported with standard deployments.
+> * A model deployment for each of the models supported with serverless API deployments.
 > * (Optionally) An Azure AI project and hub.
 > * (Optionally) A connection between the hub and the models in Azure AI Foundry.
 
