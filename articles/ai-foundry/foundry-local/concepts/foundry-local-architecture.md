@@ -4,11 +4,14 @@ titleSuffix: Foundry Local
 description: Learn about the architecture and components of Foundry Local
 manager: scottpolly
 ms.service: azure-ai-foundry
+ms.subservice: foundry-local
 ms.custom: build-2025
 ms.topic: concept-article
+ms.author: jburchel
+ms.reviewer: samkemp
+author: jonburchel
+reviewer: samuel100
 ms.date: 05/20/2025
-ms.author: samkemp
-author: samuel100
 ---
 
 # Foundry Local architecture
