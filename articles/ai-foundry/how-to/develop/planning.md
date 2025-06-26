@@ -19,7 +19,7 @@ This guide outlines key decisions for rolling out Azure AI Foundry, including en
 
 Contoso is a global enterprise exploring GenAI adoption across five business groups, each with distinct needs and technical maturity.
 
-To accelerate adoption while maintaining oversight, Contoso Enterprise IT aims to enable a model with common shared resources incl. networking and centralized data management, while enabling self-serve access to AI Foundry for each team within a governed, secure environment to manage their use cases.
+To accelerate adoption while maintaining oversight, Contoso Enterprise IT aims to enable a model with common shared resources including networking and centralized data management, while enabling self-serve access to AI Foundry for each team within a governed, secure environment to manage their use cases.
 
 ## Rollout considerations
 
@@ -116,7 +116,7 @@ Effective governance in Azure AI Foundry ensures secure, compliant, and cost-eff
 
 When deploying models in AI Foundry, teams can choose between standard and provisioned [deployment types](../../../ai-services/openai/how-to/deployment-types.md). Standard deployments are ideal for development and experimentation, offering flexibility and ease of setup. Provisioned deployments are recommended for production scenarios where predictable performance, cost control, and model version pinning are required.
 
-To support cross-region scenarios and let you access existing model deployments, AI Foundry allows [connections](../connections-add.md?pivots=fdp-project) to model deployments hosted in other Foundry or Azure OpenAI instances. This enables teams to centralize deployments for experimentation while still enabling access from distributed projects. For production workloads, consider for use cases to manage its own deployments to ensure tighter control over model lifecycle, versioning, and rollback strategies.
+To support cross-region scenarios and let you access existing model deployments, AI Foundry allows [connections](../connections-add.md?pivots=fdp-project) to model deployments hosted in other Foundry or Azure OpenAI instances. Connections enable teams to centralize deployments for experimentation while still enabling access from distributed projects. For production workloads, consider for use cases to manage its own deployments to ensure tighter control over model lifecycle, versioning, and rollback strategies.
 
 To prevent overuse and ensure fair resource allocation, you can apply [Tokens Per Minute (TPM) limits at the deployment level](../../../ai-services/openai/concepts/provisioned-throughput.md?tabs=global-ptum). TPM limits help control consumption, protect against accidental spikes, and align usage with project budgets or quotas. Consider setting conservative limits for shared deployments and higher thresholds for critical production services.
 
