@@ -49,7 +49,7 @@ Every stage of the process is safeguarded by input/output classifiers and chain-
 - The following [deployed models](../../../model-inference/how-to/create-model-deployments.md)
     - **GPT-4o**
     - **o3-deep-research** 
-- A [deployed agent](../quickstart.md)
+- A [deployed agent](../../quickstart.md)
 
 ## Setup 
 
