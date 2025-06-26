@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 06/24/2025
+ms.date: 06/26/2025
 ms.reviewer: fasantia
 ms.author: sgilley
 author: sdgilley
