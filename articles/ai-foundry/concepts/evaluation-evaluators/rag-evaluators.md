@@ -50,7 +50,7 @@ model_config = AzureOpenAIModelConfiguration(
 ```
 
 ### Evaluator model support
-We support AzureOpenAI or OpenAI [reasoning models](https://learn.microsoft.com/azure/ai-services/openai/how-to/reasoning) and non-reasoning models for the LLM-judge depending on the evaluators:
+We support AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the LLM-judge depending on the evaluators:
 
 | Evaluators | Reasoning Models as Judge (ex: o-series models from Azure OpenAI / OpenAI) | Non-reasoning models as Judge (ex: gpt-4.1, gpt-4o, etc.) | To enable |
 |------------|-----------------------------------------------------------------------------|-------------------------------------------------------------|-------|
