@@ -86,6 +86,14 @@ items:
               href: how-to/tools/openapi-spec-samples.md
             - name: Invoke an OpenAPI App Service web app
               href: /azure/app-service/invoke-openapi-web-app-from-azure-ai-agent-service?context=/azure/ai-services/agents/context/context
+        - name: Model Context Protocol(MCP)
+          items:
+            - name: Overview
+              href: how-to/tools/mcp.md
+              displayName: model context protocol, mcp
+            - name: How to use Model Context Protocol
+              displayName: model context protocol, mcp samples
+              href: how-to/tools/mcp-samples.md
         - name: Azure Functions
           items:
             - name: Overview
