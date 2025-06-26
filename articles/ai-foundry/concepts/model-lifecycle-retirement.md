@@ -60,7 +60,7 @@ Customers that have Foundry Model deployments receive notifications for upcoming
 
 - Models are labeled _Deprecated_ and remain in the deprecated state for at least 90 days before being moved to the retired state. During this notification period, you can migrate any existing deployments to newer or replacement models.
 
-For each subscription that has a model deployed as a standard deployment or deployed to an Azure AI Foundry resource, members of the _owner_, _contributor_, _reader_, _monitoring contributor_, and _monitoring reader_ roles receive a notification when a model deprecation is announced. The notification contains the dates when the model enters legacy, deprecated, and retired states. The notification might provide information about possible replacement model options, if applicable.
+For each subscription that has a model deployed as a serverless API deployment or deployed to an Azure AI Foundry resource, members of the _owner_, _contributor_, _reader_, _monitoring contributor_, and _monitoring reader_ roles receive a notification when a model deprecation is announced. The notification contains the dates when the model enters legacy, deprecated, and retired states. The notification might provide information about possible replacement model options, if applicable.
 
 ## Notifications for Azure OpenAI in Foundry Models
 

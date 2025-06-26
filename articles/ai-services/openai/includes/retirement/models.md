@@ -3,7 +3,7 @@ title: Model retirement table
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Model retirement table for  Azure OpenAI in Azure AI Foundry Models
 manager: nitinme
-ms.date: 06/18/2025
+ms.date: 06/25/2025
 ms.service: azure-ai-openai
 ms.topic: include
 ms.custom: references_regions, build-2025
@@ -41,18 +41,18 @@ ms.custom: references_regions, build-2025
 
 ### Audio
 
-| Model                          | Version         | Retirement date                    | Replacement model                    |
-| -------------------------------|-----------------|------------------------------------|--------------------------------------|
-| `gpt-4o-mini-realtime-preview` | 2024-12-17      | No earlier than July 2, 2025       |                                      |
-| `gpt-4o-realtime-preview`      | 2024-12-17      | No earlier than July 2, 2025       |                                      |
-| `gpt-4o-audio-preview`         | 2024-12-17      | No earlier than July 2, 2025       |                                      |
-| `gpt-4o-audio-preview`         | 2024-12-17      | No earlier than July 2, 2025       |                                      |
-| `gpt-4o-transcribe`            | 2025-03-20      | No earlier than August 11, 2025    |                                      |
-| `gpt-4o-mini-tts`              | 2025-03-20      | No earlier than August 11, 2025    |                                      |
-| `gpt-4o-mini-transcribe`       | 2025-03-20      | No earlier than August 11, 2025    |                                      |
-| `tts`                          | 001             | No earlier than February 1, 2026   |                                      |
-| `tts-hd`                       | 001             | No earlier than February 1, 2026   |                                      |
-| `whisper`                      | 001             | No earlier than February 1, 2026   |                                      |
+| Model                          | Version         | Retirement date                          | Replacement model                    |
+| -------------------------------|-----------------|------------------------------------------|--------------------------------------|
+| `gpt-4o-mini-realtime-preview` | 2024-12-17      | No earlier than September 17, 2025       |                                      |
+| `gpt-4o-realtime-preview`      | 2024-12-17      | No earlier than September 17, 2025       |                                      |
+| `gpt-4o-audio-preview`         | 2024-12-17      | No earlier than September 17, 2025       |                                      |
+| `gpt-4o-audio-preview`         | 2024-12-17      | No earlier than September 17, 2025       |                                      |
+| `gpt-4o-transcribe`            | 2025-03-20      | No earlier than September 17, 2025       |                                      |
+| `gpt-4o-mini-tts`              | 2025-03-20      | No earlier than September 17, 2025       |                                      |
+| `gpt-4o-mini-transcribe`       | 2025-03-20      | No earlier than September 17, 2025       |                                      |
+| `tts`                          | 001             | No earlier than February 1, 2026         |                                      |
+| `tts-hd`                       | 001             | No earlier than February 1, 2026         |                                      |
+| `whisper`                      | 001             | No earlier than February 1, 2026         |                                      |
 
 # [Image & Video](#tab/image)
 
