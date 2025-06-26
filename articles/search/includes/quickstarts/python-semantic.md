@@ -10,13 +10,12 @@ ms.date: 06/13/2025
 
 [!INCLUDE [Semantic ranker introduction](semantic-ranker-intro.md)]
 
-### PYTHON INCLUDE STARTS HERE
+> [!TIP] 
+> You can [download and run a finished notebook](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Semantic-Search) to start with a finished project or follow these steps to create your own. 
 
-Use a Jupyter notebook and the [**azure-search-documents**](/python/api/overview/azure/search-documents-readme) library in the Azure SDK for Python to learn about semantic ranking.
+## Set up the client
 
-Alternatively, you can [download and run a finished notebook](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Semantic-Search).
-
-#### Set up your environment
+In this quickstart, use a Jupyter notebook and the [**azure-search-documents**](/python/api/overview/azure/search-documents-readme) library in the Azure SDK for Python to learn about semantic ranking.
 
 Use [Visual Studio Code with the Python extension](https://code.visualstudio.com/docs/languages/python), or equivalent IDE, with Python 3.10 or later.
 
@@ -36,7 +35,7 @@ We recommend a virtual environment for this quickstart:
 
 It can take a minute to set up. If you run into problems, see [Python environments in VS Code](https://code.visualstudio.com/docs/python/environments).
 
-#### Install packages and set variables
+### Install packages and set variables
 
 1. Install packages, including [azure-search-documents](/python/api/azure-search-documents). 
 
@@ -54,7 +53,7 @@ It can take a minute to set up. If you run into problems, see [Python environmen
     index_name: str = "hotels-quickstart"
     ```
 
-#### Create an index
+### Create or update an index
 
 Create or update an index schema to include a `SemanticConfiguration`. If you're updating an existing index, this modification doesn't require a reindexing because the structure of your documents is unchanged.
 
@@ -118,7 +117,7 @@ result = index_client.create_or_update_index(index)
 print(f' {result.name} created')
 ```
 
-#### Create a documents payload
+### Create a documents payload
 
 You can push JSON documents to a search index. Documents must match the index schema.
 
@@ -199,7 +198,7 @@ documents = [
 ]
 ```
 
-#### Upload documents to the index
+### Upload documents to the index
 
 ```python
 search_client = SearchClient(endpoint=search_endpoint,
@@ -234,7 +233,7 @@ for result in results:
     print(f"Description: {result['Description']}")
 ```
 
-#### Run a text query
+### Run a text query
 
 For comparison purposes, run a text query with BM25 relevance scoring. Full text search is invoked when you provide a query string. The response consists of ranked results, where higher scores are awarded to documents having more instances of matching terms, or more important terms.
 
@@ -253,7 +252,7 @@ for result in results:
     print(f"Description: {result['Description']}")
 ```
 
-#### Run a semantic query
+### Run a semantic query
 
 Now add semantic ranking. New parameters include `query_type` and `semantic_configuration_name`.
 
@@ -279,7 +278,7 @@ for result in results:
             print(f"Caption: {caption.text}\n")
 ```
 
-#### Return semantic answers
+### Return semantic answers
 
 In this final query, return semantic answers.
 

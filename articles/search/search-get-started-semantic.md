@@ -11,11 +11,11 @@ ms.custom:
   - devx-track-python
   - ignite-2023
 ms.topic: quickstart
-ms.date: 06/13/2025
+ms.date: 06/25/2025
 zone_pivot_groups: search-get-started-semantic
 ---
 
-# Quickstart: Semantic ranking using .NET or Python
+# Quickstart: Semantic ranking
 
 ::: zone pivot="csharp"
 

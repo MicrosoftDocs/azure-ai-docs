@@ -10,13 +10,18 @@ ms.date: 06/13/2025
 
 [!INCLUDE [Semantic ranker introduction](semantic-ranker-intro.md)]
 
-### CSHARP INCLUDE STARTS HERE
+In this quickstart, build a console application by using the [**Azure.Search.Documents**](/dotnet/api/overview/azure/search.documents-readme) client library to add semantic ranking to an existing search index.
 
-Build a console application by using the [**Azure.Search.Documents**](/dotnet/api/overview/azure/search.documents-readme) client library to add semantic ranking to an existing search index.
+> [!TIP] 
+> You can [download the source code](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-semantic-search/SemanticSearchQuickstart) to start with a finished project or follow these steps to create your own. 
 
-Alternatively, you can [download the source code](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-semantic-search/SemanticSearchQuickstart) to start with a finished project.
+## Set up the client
 
-#### Set up your environment
+In this quickstart, you use an IDE and the [Azure.Search.Documents](TBD) library to configure and use a semantic ranker.
+
+We recommend [Visual Studio](TBD) for this quickstart.
+
+### Install libraries
 
 1. Start Visual Studio and create a new project for a console app.
 
@@ -28,7 +33,7 @@ Alternatively, you can [download the source code](https://github.com/Azure-Sampl
 
 1. Select **Install** to add the assembly to your project and solution.
 
-#### Create a search client
+### Create a search client
 
 1. In *Program.cs*, add the following `using` directives.
 
@@ -40,7 +45,7 @@ Alternatively, you can [download the source code](https://github.com/Azure-Sampl
    using Azure.Search.Documents.Models;
    ```
 
-1. Create two clients: [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient) creates the index, and [SearchClient](/dotnet/api/azure.search.documents.searchclient) loads and queries an existing index.
+1. Create two clients: [SearchIndexClient](/dotnet/api/azure.search.documents.indexes.searchindexclient) to update the index, and [SearchClient](/dotnet/api/azure.search.documents.searchclient) to query an index.
 
     Both clients need the service endpoint and an admin API key for authentication with create/delete rights. However, the code builds out the URI for you, so specify only the search service name for the `serviceName` property. Don't include `https://` or `.search.windows.net`.
 
@@ -63,60 +68,13 @@ Alternatively, you can [download the source code](https://github.com/Azure-Sampl
     }
     ```
 
-#### Create an index
+## Add semantic configuration to an index
 
-Create or update an index schema to include a `SemanticConfiguration`. If you're updating an existing index, this modification doesn't require a reindexing because the structure of your documents is unchanged.
+TBD
 
-```csharp
-// Create hotels-quickstart index
-private static void CreateIndex(string indexName, SearchIndexClient adminClient)
-{
+## Search with semantic reranking
 
-    FieldBuilder fieldBuilder = new FieldBuilder();
-    var searchFields = fieldBuilder.Build(typeof(Hotel));
-
-    var definition = new SearchIndex(indexName, searchFields);
-    var suggester = new SearchSuggester("sg", new[] { "HotelName", "Category", "Address/City", "Address/StateProvince" });
-    definition.Suggesters.Add(suggester);
-    definition.SemanticSearch = new SemanticSearch
-    {
-        Configurations =
-        {
-            new SemanticConfiguration("semantic-config", new()
-            {
-                TitleField = new SemanticField("HotelName"),
-                ContentFields =
-                {
-                    new SemanticField("Description"),
-                },
-                KeywordsFields =
-                {
-                    new SemanticField("Tags"),
-                    new SemanticField("Category")
-                }
-            })
-        }
-    };
-
-    adminClient.CreateOrUpdateIndex(definition);
-}
-```
-
-The following code creates the index on your search service:
-
-```csharp
-// Create index
-Console.WriteLine("{0}", "Creating index...\n");
-CreateIndex(indexName, adminClient);
-
-SearchClient ingesterClient = adminClient.GetSearchClient(indexName);
-```
-
-#### Load documents
-
-Azure AI Search searches over content stored in the service. The code for uploading documents is identical to the [C# quickstart for full text search](/azure/search/search-get-started-text) so we don't need to duplicate it here. You should have four hotels with names, addresses, and descriptions. Your solution should have types for Hotels and Addresses.
-
-#### Search an index
+TBD
 
 Here's a query that invokes semantic ranker, with search options for specifying parameters:
 
@@ -149,7 +107,7 @@ In contrast, when semantic ranking is applied to the same query ("restaurant on 
 
 :::image type="content" source="../../media/quickstart-semantic/semantic-ranking.png" alt-text="Screenshot showing matches ranked based on semantic ranking.":::
 
-#### Run the program
+### Run the program
 
 Press F5 to rebuild the app and run the program in its entirety.
 
