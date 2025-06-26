@@ -93,6 +93,13 @@ items:
               displayName: azure functions, functions
             - name: How to use Azure Functions
               href: how-to/tools/azure-functions-samples.md
+        - name: Deep Research
+          items:
+            - name: Overview
+              href: how-to/deep-research.md
+              displayName: deep research
+            - name: How to use Deep Research
+              href: how-to/deep-research-samples.md
         - name: SharePoint
           items:
             - name: Overview
@@ -122,8 +129,6 @@ items:
       href: how-to/triggers.md
     - name: Use the Visual Studio Code extension
       href: ../../ai-foundry/how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context
-    - name: Use Deep Research
-      href: ./how-to/deep-research.md
 - name: Observability
   items:
     - name: Service monitoring
