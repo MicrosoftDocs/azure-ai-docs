@@ -19,7 +19,7 @@ zone_pivot_groups: search-get-started-semantic
 
 ::: zone pivot="csharp"
 
-[!INCLUDE [C# quickstart](includes/quickstarts/semantic-ranker-dotnet.md)]
+[!INCLUDE [C# quickstart](includes/quickstarts/semantic-ranker-csharp.md)]
 
 ::: zone-end
 
