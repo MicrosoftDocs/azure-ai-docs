@@ -7,7 +7,7 @@ ms.author: mopeakande
 manager: scottpolly
 reviewer: santiagxf
 ms.reviewer: fasantia
-ms.date: 05/19/2025
+ms.date: 06/26/2025
 ms.service: azure-ai-model-inference
 ms.topic: how-to
 ms.custom:
