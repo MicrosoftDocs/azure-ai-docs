@@ -45,10 +45,12 @@ ms.custom:
 >- Poland Central
 >- Southeast Asia
 >- South Africa North
+>- South Central US
 >- Spain Central
 >- Sweden Central
 >- Switzerland West
 >- Switzerland North
 >- UK South
+>- West Europe
 >- West US
 >- West US3
