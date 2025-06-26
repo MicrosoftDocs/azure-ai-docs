@@ -9,7 +9,7 @@ ms.date: 06/26/2025
 
 In this quickstart, you use the [Azure AI Search REST APIs](/rest/api/searchservice) to create, load, and query a search index for [full-text search](../../search-lucene-query-architecture.md). Full-text search uses Apache Lucene for indexing and queries and the BM25 ranking algorithm for scoring results.
 
-This quickstart creates and queries a small index containing data about four fictional hotels.
+This quickstart uses fictional hotel data from the [azure-search-sample-data](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/hotels/hotel-json-documents) repo to populate the index.
 
 > [!TIP]
 > You can download the [source code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart) to start with a finished project or follow these steps to create your own.
@@ -48,7 +48,7 @@ For more information, see [Connect to Azure AI Search using roles](../../search-
 
 ## Get resource information
 
-In your code, you specify the following endpoint and token to establish a connection to your Azure AI Search service. These steps assume that you [configured role-based access](#configure-access).
+In the next section, you specify the following endpoint and token to establish a connection to your Azure AI Search service. These steps assume that you [configured role-based access](#configure-access).
 
 To get your resource information:
 
@@ -56,17 +56,17 @@ To get your resource information:
 
 1. From the left pane, select **Overview**.
 
-1. Take note of the URL, which should be similar to `https://my-service.search.windows.net`.
+1. Make a note of the URL, which should be similar to `https://my-service.search.windows.net`.
 
 1. On your local system, open a terminal.
 
-1. Run the following command to sign in to Azure. If you have multiple subscriptions, select the one that contains your search service.
+1. Sign in to your Azure subscription. If you have multiple subscriptions, select the one that contains your search service.
 
     ```azurecli
     az login
     ```
 
-1. Run the following command to obtain your Microsoft Entra token. You specify this value in the next section.
+1. Make a note of your Microsoft Entra token.
 
     ```azurecli
     az account get-access-token --scope https://search.azure.com/.default
@@ -74,11 +74,13 @@ To get your resource information:
 
 ## Set up your file
 
-Before you can make REST API calls to your Azure AI Search service, you must create a request file that contains your endpoint and authentication token. The REST Client extension in Visual Studio Code supports this task.
+Before you can make REST API calls to your Azure AI Search service, you must create a file to store your service endpoint, authentication token, and eventual requests. The REST Client extension in Visual Studio Code supports this task.
 
-To set up your file:
+To set up your request file:
 
-1. In Visual Studio Code, create a `.rest` or `.http` file.
+1. On your local system, open Visual Studio Code.
+
+1. Create a `.rest` or `.http` file.
 
 1. Paste the following placeholders and request into the file.
 
@@ -236,11 +238,11 @@ To create, load, and query an index:
 
 1. Under each `###` delimiter, select **Send Request** to make the corresponding REST API call.
 
-    + For `### Create a new index`, you should receive an `HTTP/1.1 200 OK` response whose body contains the JSON representation of the index schema.
+    + For `### Create a new index`, you should receive an `HTTP/1.1 201 Created` response whose body contains the JSON representation of the index schema.
 
     + For `### Upload documents`, you should receive an `HTTP/1.1 200 OK` response whose body contains the key and status of each uploaded document.
 
-    + For `### Run a query`, you should receive an `HTTP/1.1 200 OK` response whose body contains the document that matched your query, its relevance score, and its fields.
+    + For `### Run a query`, you should receive an `HTTP/1.1 200 OK` response whose body contains the document that matched your query, its relevance score, and its selected fields.
 
 ## Explaining the code
 
@@ -299,9 +301,9 @@ Key points about the index schema:
 
 Newly created indexes are empty. To populate an index and make it searchable, you must upload JSON documents that conform to the index schema.
 
-In Azure AI Search, documents serve as both inputs for indexing and outputs for queries. For simplicity, this quickstart provides sample hotel documents as inline JSON. In production scenarios, however, content is typically pulled from connected data sources and transformed into JSON using [indexers](../../search-indexer-overview.md).
+In Azure AI Search, documents serve as both inputs for indexing and outputs for queries. For simplicity, this quickstart provides sample hotel documents as inline JSON. In production scenarios, however, content is often pulled from connected data sources and transformed into JSON using [indexers](../../search-indexer-overview.md).
 
-This quickstart calls [Documents - Index (REST API)](/rest/api/searchservice/documents/) to add four sample hotel documents to your index. Compared to the previous request, the URI is extended to include the `docs` collections and `index` operation.
+This quickstart calls [Documents - Index (REST API)](/rest/api/searchservice/documents/) to add four sample hotel documents to your index. Compared to the previous request, the URI is extended to include the `docs` collection and `index` operation.
 
 ```http
 POST {{baseUrl}}/indexes/hotels-quickstart/docs/index?api-version=2024-07-01  HTTP/1.1
@@ -338,13 +340,13 @@ Each document in the `value` array represents a hotel and contains fields that m
 
 ### Query the index
 
-Now that documents are loaded into the index, you can issue full-text queries against them.
+Now that documents are loaded into your index, you can issue full-text queries against them.
 
-This quickstart calls [Documents - Search Post (REST API)](/rest/api/searchservice/documents/search-post) to find hotel documents in your index based on the search criteria. The URI now includes the `/docs/search` operator, which specifies a query expression.
+This quickstart calls [Documents - Search Post (REST API)](/rest/api/searchservice/documents/search-post) to find hotel documents that match your search criteria. The URI now targets the `/docs/search` operation.
 
 ```http
-POST {{baseUrl}}/indexes/hotels-quickstart/docs/search?api-version=2024-07-01HTTP/1.1
-Content-Type: application/json
+POST {{baseUrl}}/indexes/hotels-quickstart/docs/search?api-version=2024-07-01  HTTP/1.1
+  Content-Type: application/json
   Authorization: Bearer {{token}}
   
   {
@@ -355,15 +357,15 @@ Content-Type: application/json
   }
 ```
 
-Full-text search requests always include a `search` parameter that contains the query text. The query text can include one or more terms, phrases, or operators. You can also specify parameters to refine the search behavior and results.
+Full-text search requests always include a `search` parameter that contains the query text. The query text can include one or more terms, phrases, or operators. In addition to `search`, you can specify other parameters to refine the search behavior and results.
 
-Our query searches for the terms "attached restaurant" in the `Description` and `Tags` fields of each document. The `select` clause limits the fields returned in the response to `HotelId`, `HotelName`, `Tags`, and `Description`. The `count` parameter requests the total number of documents that match the search criteria.
+Our query searches for the terms "attached restaurant" in the `Description` and `Tags` fields of each hotel document. The `select` parameter limits the fields returned in the response to `HotelId`, `HotelName`, `Tags`, and `Description`. The `count` parameter requests the total number of matching documents.
 
 The response should be similar to the following example, which shows one matching hotel document, its relevance score, and its selected fields.
 
 ```json
 {
-  "@odata.context": "https://my-demo.search.windows.net/indexes('hotels-quickstart')/$metadata#docs(*)",
+  "@odata.context": "https://my-service.search.windows.net/indexes('hotels-quickstart')/$metadata#docs(*)",
   "@odata.count": 1,
   "value": [
     {
