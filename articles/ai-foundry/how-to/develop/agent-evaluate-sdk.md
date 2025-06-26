@@ -8,7 +8,7 @@ ms.custom:
   - build-2025
   - references_regions
 ms.topic: how-to
-ms.date: 04/04/2025
+ms.date: 06/26/2025
 ms.reviewer: changliu2
 ms.author: lagayhar
 author: lgayhardt
@@ -25,7 +25,7 @@ To build production-ready agentic applications and enable observability and tran
 
 An event like a user query "weather tomorrow" triggers an agentic workflow. It starts to execute multiple steps, such as reasoning through user intents, tool calling, and utilizing retrieval-augmented generation to produce a final response. In this process, evaluating each step of the workflow—along with the quality and safety of the final output—is crucial. Specifically, we formulate these evaluation aspects into the following evaluators for agents:
 
--   [Intent resolution](https://aka.ms/intentresolution-sample): Measures whether the agent correctly identifies the user's intent.
+- [Intent resolution](https://aka.ms/intentresolution-sample): Measures whether the agent correctly identifies the user's intent.
 -	[Tool call accuracy](https://aka.ms/toolcallaccuracy-sample): Measures whether the agent made the correct function tool calls to a user's request.
 -	[Task adherence](https://aka.ms/taskadherence-sample): Measures whether the agent's final response adheres to its assigned tasks, according to its system message and prior steps.
 
