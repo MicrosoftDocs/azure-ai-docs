@@ -7,13 +7,19 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: overview
-ms.date: 04/23/2025
+ms.date: 06/26/2025
 ms.custom: azure-ai-agents
 ---
 
 # What's new in Azure AI Foundry Agent Service
 
 This article provides a summary of the latest releases and major documentation updates for Azure AI Foundry Agent Service.
+
+## June 2025
+
+### Model Context Protocol (MCP) tool
+
+You can new extend the capabilities of your agents by connecting them to tools hosted on remote [Model Context Protocol](https://modelcontextprotocol.io/introduction) (MCP) servers by using the [MCP tool](./how-to/tools/mcp.md). 
 
 ## May 2025
 
