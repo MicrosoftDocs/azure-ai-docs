@@ -11,7 +11,7 @@ author: aahill
 ms.author: aahi
 ---
 
-# how to use Deep Research
+# How to use Deep Research
 Use this article to find step-by-step instructions and code samples for Grounding with Bing search.
 
 ## Prerequisites

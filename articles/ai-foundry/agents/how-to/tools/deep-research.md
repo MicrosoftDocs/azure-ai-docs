@@ -10,7 +10,7 @@ ms.service: azure-ai-agent-service
 ms.topic: how-to
 ---
 
-# Deep Research
+# Deep Research tool
 
 The [Deep Research](https://openai.com/index/introducing-deep-research/) model in the Azure AI Foundry Agent Service enables you to use OpenAI's advanced agentic research capability, and integrate it with your data and systems.
 
@@ -25,7 +25,7 @@ The [Deep Research](https://openai.com/index/introducing-deep-research/) model i
 
 ## How Deep Research works
 
-At its core, the Deep Research model orchestrates a multi-step research pipeline that’s tightly integrated with Grounding with Bing Search and OpenAI models
+At its core, the Deep Research tool orchestrates a multi-step research pipeline that’s tightly integrated with Grounding with Bing Search and Azure OpenAI models
 
 ### Clarifying intent and scoping the task
 
@@ -58,7 +58,7 @@ To use the Deep Research model, you need to add your Grounding with Bing Search 
 1. In Azure AI Foundry, navigate to the project you created in the agent setup. Click on **Open in management center**.
     :::image type="content" source="../media\tools\ai-search\project-studio.png" alt-text="A screenshot of a project in Azure AI Foundry." lightbox="../media\tools\ai-search\project-studio.png":::
 
-1. Select **Create conneciton**.
+1. Select **Create connection**.
 
     :::image type="content" source="../media/create-connection.png" alt-text="A screenshot showing the connection creation screen in the Azure AI Foundry portal" lightbox="../media/create-connection.png":::
 
