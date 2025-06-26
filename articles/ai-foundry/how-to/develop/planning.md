@@ -65,18 +65,18 @@ For most use cases, Contoso does **not use CMK**, relying on Microsoft-managed 
 
 Effective access management is foundational to a secure and scalable AI Foundry setup.
 
-- Define required access roles and responsibilities:
+- **Define required access roles and responsibilities**
   - Identify which user groups require access to various aspects of the AI Foundry environment.
   - Assign built-in or custom Azure RBAC roles based on responsibilities such as:
     - Account owner: Manage top-level configurations such as security and shared resource connections.
     - Project Managers: Create and manage AI Foundry projects and their contributors.
     - Project Users: contribute to existing projects.
-- Determine Access Scope
+- **Determine access scope**
   - Choose the appropriate scope for access assignments:
     - Subscription level: broadest access, typically suitable for central IT or platform teams or smaller organizations.
     - Resource group level: Useful for grouping related resources with shared access policies. For example, an Azure Function that follows the same application lifecycle as your AI Foundry environment.
     - Resource or project level: Ideal for fine-grained control, especially when dealing with sensitive data or enabling self-service.
-- Align Identity Strategy
+- **Align identity strategy**
   - For data sources and tools integrated with AI Foundry, determine whether users should authenticate using:
     - Using managed identities or API key: suitable for automated services and shared access across users.
     - User identities: Preferred when user-level accountability or auditability is required.
@@ -137,6 +137,7 @@ A hub resource is deployed side-by-side with your AI Foundry resource and takes 
 - Customer-Managed Keys (CMK): [Customer-managed keys in Azure AI Foundry](../../concepts/encryption-keys-portal.md)
 - Authentication & RBAC: [Role-based access control in Azure AI Foundry](../../concepts/rbac-azure-ai-foundry.md)
 - Sample Templates: [Create an AI Foundry hub using a Bicep template](../create-azure-ai-hub-template.md)
+- [Recover or purge deleted Azure AI Foundry resources](../../../ai-services/recover-purge-resources.md)
 
 ### Establish Connectivity with Other Azure Services
 
