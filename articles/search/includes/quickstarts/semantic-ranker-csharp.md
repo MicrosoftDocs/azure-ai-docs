@@ -66,13 +66,30 @@ We recommend [Visual Studio](https://visualstudio.microsoft.com/vs/community/) f
     }
     ```
 
-## Add semantic configuration to an index
+## Update and query the index
+
+In this section, you update a search index and send a query that invokes semantic ranking. Visual Studio Code displays the response after you run each cell. For more information about each step, see [Explaining the code](#explaining-the-code).
+
+
+
+### Run the program
+
+Press F5 to rebuild the app and run the program in its entirety.
+
+Output includes messages from [Console.WriteLine](/dotnet/api/system.console.writeline), with the addition of query information and results.
+
+## Explaining the code
+
+Add `SemanticConfiguration` to a search index definition. If you're updating an existing index, this modification doesn't require a reindexing because the structure of your documents is unchanged.
+
++ [Update an index with a semantic configuration](#add-a-semantic-configuration-to-the-index)
++ [Query the index using semantic parameters](#add-semantic-ranking-to-queries)
+
+### Add a semantic configuration to the index
 
 TBD
 
-## Search with semantic reranking
-
-TBD
+### Add semantic ranking to queries
 
 Here's a query that invokes semantic ranker, with search options for specifying parameters:
 
@@ -105,8 +122,4 @@ In contrast, when semantic ranking is applied to the same query ("restaurant on 
 
 :::image type="content" source="../../media/quickstart-semantic/semantic-ranking.png" alt-text="Screenshot showing matches ranked based on semantic ranking.":::
 
-### Run the program
 
-Press F5 to rebuild the app and run the program in its entirety.
-
-Output includes messages from [Console.WriteLine](/dotnet/api/system.console.writeline), with the addition of query information and results.

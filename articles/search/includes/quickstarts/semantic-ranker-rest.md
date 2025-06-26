@@ -20,16 +20,38 @@ We recommend [Visual Studio Code](https://code.visualstudio.com/download) with a
 
 1. Start Visual Studio Code and create a new .http or .rest file.
 
-1. At the top, specify environment variables.
+1. At the top, specify environment variables for your search service, authorization, and index name.
+
+   + For @baseURL, sign in to the Azure portal and copy the URL from the search service **Overview** page.
+
+   + For @token, follow the instruction in [Connect without keys](../../search-get-started-rbac.md) to get your personal identity token.
+
+   + For @index-name, provide a unique name or use the default, *hotel-semantic-quickstart*.
 
 1. Paste in your first request and then select **Send**. This request returns a list of existing indexes. You should get an HTTP 200 Success status code and a list of indexes, including hotels-sample-index. This step confirms access to the search service.
 
-## Add semantic configuration to an index
+   ```http
+   ### List existing indexes by name (verify the connection)
+   GET  {{baseUrl}}/indexes?api-version=2024-07-01&$select=name  HTTP/1.1
+   Content-Type: application/json
+   Authorization: Bearer {{token}}
+   ```
+
+## Update and query the index
+
+In this section, you make REST API calls to update a search index and send a query that invokes semantic ranking. Visual Studio Code displays the response to each request in an adjacent pane. For more information about each step, see [Explaining the code](#explaining-the-code).
+
+## Explaining the code
+
+This section explains the REST API calls that you made to:
+
++ [Update an index with a semantic configuration](#add-a-semantic-configuration-to-the-index)
++ [Query the index using semantic parameters](#add-semantic-ranking-to-queries)
+
+### Add a semantic configuration to the index
 
 TBD
 
-## Search with semantic reranking
+### Add semantic ranking to queries
 
 TBD
-
-

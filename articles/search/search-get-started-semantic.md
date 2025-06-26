@@ -11,7 +11,7 @@ ms.custom:
   - devx-track-python
   - ignite-2023
 ms.topic: quickstart
-ms.date: 06/25/2025
+ms.date: 06/27/2025
 zone_pivot_groups: search-get-started-semantic
 ---
 
@@ -19,13 +19,13 @@ zone_pivot_groups: search-get-started-semantic
 
 ::: zone pivot="csharp"
 
-[!INCLUDE [C# quickstart](includes/quickstarts/dotnet-semantic.md)]
+[!INCLUDE [C# quickstart](includes/quickstarts/semantic-ranker-dotnet.md)]
 
 ::: zone-end
 
 ::: zone pivot="python"
 
-[!INCLUDE [Python quickstart](includes/quickstarts/python-semantic.md)]
+[!INCLUDE [Python quickstart](includes/quickstarts/semantic-ranker-python.md)]
 
 ::: zone-end
 
@@ -41,9 +41,11 @@ When you're working in your own subscription, it's a good idea at the end of a p
 
 You can find and manage resources in the Azure portal, using the **All resources** or **Resource groups** link in the left-navigation pane.
 
-## Next step
+## Related content
 
-In this quickstart, you learned how to invoke semantic ranking on an existing index. We recommend trying semantic ranking on your own indexes as a next step. However, if you want to continue with demos, try the following tutorial:
+In this quickstart, you learned how to invoke semantic ranking on an existing index. We recommend trying semantic ranking on your own indexes as a next step. The following articles can help you get started.
 
-> [!div class="nextstepaction"]
-> [Tutorial: Add search to web apps](tutorial-csharp-overview.md)
++ [Semantic ranking overview](semantic-search-overview.md)
++ [Configure semantic ranker ](semantic-how-to-configure.md)
++ [Add query rewrite to semantic ranking](semantic-how-to-query-rewrite.md)
++ [Use scoring profiles and semantic ranking together](semantic-how-to-enable-scoring-profiles.md)

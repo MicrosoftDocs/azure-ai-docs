@@ -53,9 +53,17 @@ It can take a minute to set up. If you run into problems, see [Python environmen
     index_name: str = "hotels-quickstart"
     ```
 
-### Create or update an index
+## Update and query the index
 
-Create or update an index schema to include a `SemanticConfiguration`. If you're updating an existing index, this modification doesn't require a reindexing because the structure of your documents is unchanged.
+In this section, you update a search index and send a query that invokes semantic ranking. Visual Studio Code displays the response after you run each cell. For more information about each step, see [Explaining the code](#explaining-the-code).
+
+## Explaining the code
+
+Add `SemanticConfiguration` to a search index definition. If you're updating an existing index, this modification doesn't require a reindexing because the structure of your documents is unchanged.
+
+Provide the entire schema plus the new SemanticConfiguration section. We recommend getting the index schema from the search service to ensure you're updating the correct schema.
+
+This example is the Python code for the Hotels sample index schema, plus the semantic configuration.
 
 ```python
 from azure.search.documents.indexes import SearchIndexClient
@@ -72,7 +80,7 @@ from azure.search.documents.indexes.models import (
     SemanticSearch
 )
 
-# Create a search schema
+# Update the search schema, providing the entire schema plus the changes.
 index_client = SearchIndexClient(
     endpoint=search_endpoint, credential=credential)
 fields = [
@@ -115,104 +123,6 @@ suggester = [{'name': 'sg', 'source_fields': ['Tags', 'Address/City', 'Address/C
 index = SearchIndex(name=index_name, fields=fields, suggesters=suggester, scoring_profiles=scoring_profiles, semantic_search=semantic_search)
 result = index_client.create_or_update_index(index)
 print(f' {result.name} created')
-```
-
-### Create a documents payload
-
-You can push JSON documents to a search index. Documents must match the index schema.
-
-```python
-documents = [
-    {
-    "@search.action": "upload",
-    "HotelId": "1",
-    "HotelName": "Stay-Kay City Hotel",
-    "Description": "This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
-    "Category": "Boutique",
-    "Tags": [ "view", "air conditioning", "concierge" ],
-    "ParkingIncluded": "false",
-    "LastRenovationDate": "2022-01-18T00:00:00Z",
-    "Rating": 3.60,
-    "Address": {
-        "StreetAddress": "677 5th Ave",
-        "City": "New York",
-        "StateProvince": "NY",
-        "PostalCode": "10022",
-        "Country": "USA"
-        }
-    },
-    {
-    "@search.action": "upload",
-    "HotelId": "2",
-    "HotelName": "Old Century Hotel",
-    "Description": "The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.",
-    "Category": "Boutique",
-    "Tags": [ "pool", "free wifi", "concierge" ],
-    "ParkingIncluded": "false",
-    "LastRenovationDate": "2019-02-18T00:00:00Z",
-    "Rating": 3.60,
-    "Address": {
-        "StreetAddress": "140 University Town Center Dr",
-        "City": "Sarasota",
-        "StateProvince": "FL",
-        "PostalCode": "34243",
-        "Country": "USA"
-        }
-    },
-    {
-    "@search.action": "upload",
-    "HotelId": "3",
-    "HotelName": "Gastronomic Landscape Hotel",
-    "Description": "The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
-    "Category": "Suite",
-    "Tags": [ "restaurant", "bar", "continental breakfast" ],
-    "ParkingIncluded": "true",
-    "LastRenovationDate": "2015-09-20T00:00:00Z",
-    "Rating": 4.80,
-    "Address": {
-        "StreetAddress": "3393 Peachtree Rd",
-        "City": "Atlanta",
-        "StateProvince": "GA",
-        "PostalCode": "30326",
-        "Country": "USA"
-        }
-    },
-    {
-    "@search.action": "upload",
-    "HotelId": "4",
-    "HotelName": "Sublime Palace Hotel",
-    "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.",
-    "Category": "Boutique",
-    "Tags": [ "concierge", "view", "air conditioning" ],
-    "ParkingIncluded": "true",
-    "LastRenovationDate": "2020-02-06T00:00:00Z",
-    "Rating": 4.60,
-    "Address": {
-        "StreetAddress": "7400 San Pedro Ave",
-        "City": "San Antonio",
-        "StateProvince": "TX",
-        "PostalCode": "78216",
-        "Country": "USA"
-        }
-    }
-]
-```
-
-### Upload documents to the index
-
-```python
-search_client = SearchClient(endpoint=search_endpoint,
-                      index_name=index_name,
-                      credential=credential)
-try:
-    result = search_client.upload_documents(documents=documents)
-    print("Upload of new document succeeded: {}".format(result[0].succeeded))
-except Exception as ex:
-    print (ex.message)
-
-
-    index_client = SearchIndexClient(
-    endpoint=search_endpoint, credential=credential)
 ```
 
 ### Run your first query
