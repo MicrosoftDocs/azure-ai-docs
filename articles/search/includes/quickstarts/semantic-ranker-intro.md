@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 06/25/2025
+ms.date: 06/27/2025
 ---
 
 In this quickstart, you learn about the index and query modifications that invoke semantic ranker.
@@ -16,20 +16,38 @@ You can add a semantic configuration to an existing index with no rebuild requir
 In this quickstart:
 
 > [!div class="checklist"]
-> - Add a *semantic configuration* to a search index
+> - Add a semantic configuration to a search index
 > - Add semantic parameters to a query
 
 ## Prerequisites
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
-+ An [Azure AI Search service](../../search-create-service-portal.md), at Basic tier or higher, with [semantic ranker enabled](semantic-how-to-enable-disable.md).
++ An [Azure AI Search service](../../search-create-service-portal.md), at Basic tier or higher, with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
 
 + A [new or existing index](../../search-how-to-create-search-index.md) with descriptive or verbose text fields, attributed as retrievable in your index. 
 
-## Configure role-based access
+## Configure access
 
-TBD
+You can connect to your Azure AI Search service [using API keys](../../search-security-api-keys.md) or Microsoft Entra ID with role assignments. Keys are easier to start with, but roles are more secure.
+
+To configure the recommended role-based access:
+
+1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
+
+1. From the left pane, select **Settings** > **Keys**.
+
+1. Under **API Access control**, select **Both**.
+
+   This option enables both key-based and keyless authentication. After you assign roles, you can return to this step and select **Role-based access control**.
+
+1. From the left pane, select **Access control (IAM)**.
+
+1. Select **Add** > **Add role assignment**.
+
+1. Assign the **Search Service Contributor** and **Search Index Data Contributor** roles to your user account.
+
+For more information, see [Connect to Azure AI Search using roles](../../search-security-rbac.md).
 
 ## Start with an index
 
@@ -39,7 +57,7 @@ If you don't have access to the Azure portal, you can create a hotels-quickstart
 
 Both indexes have a "Description" field that's suitable for demonstrating the semantic ranker.
 
-1. Sign in to the Azure portal and find your search service.
+1. Sign in to the [Azure portal](https://portal.azure.com/) and find your search service.
 
 1. Under **Search management** > **Indexes**, open the hotels index. Make sure the index doesn't have a semantic configuration.
 
@@ -106,7 +124,6 @@ Both indexes have a "Description" field that's suitable for demonstrating the se
           "Description": "Oceanfront hotel overlooking the beach features rooms with a private balcony and 2 indoor and outdoor pools. Inspired by the natural beauty of the island, each room includes an original painting of local scenes by the owner. Rooms include a mini fridge, Keurig coffee maker, and flatscreen TV. Various shops and art entertainment are on the boardwalk, just steps away."
         }
       ]
-    }
    ```
 
 Later, you can try this query again after semantic ranking is configured to see how the response changes.

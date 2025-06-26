@@ -5,21 +5,19 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: include
-ms.date: 06/13/2025
+ms.date: 06/27/2025
 ---
 
 [!INCLUDE [Semantic ranker introduction](semantic-ranker-intro.md)]
-
-In this quickstart, build a console application by using the [**Azure.Search.Documents**](/dotnet/api/overview/azure/search.documents-readme) client library to add semantic ranking to an existing search index.
 
 > [!TIP] 
 > You can [download the source code](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-semantic-search/SemanticSearchQuickstart) to start with a finished project or follow these steps to create your own. 
 
 ## Set up the client
 
-In this quickstart, you use an IDE and the [Azure.Search.Documents](TBD) library to configure and use a semantic ranker.
+In this quickstart, you use an IDE and the [**Azure.Search.Documents**](/dotnet/api/overview/azure/search.documents-readme) client library to add semantic ranking to an existing search index.
 
-We recommend [Visual Studio](TBD) for this quickstart.
+We recommend [Visual Studio](https://visualstudio.microsoft.com/vs/community/) for this quickstart.
 
 ### Install libraries
 
