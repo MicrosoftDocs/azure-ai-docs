@@ -53,7 +53,7 @@ AI Foundry is built on the Azure platform, allowing you to customize security co
 
 ### Example: Contoso’s security approach
 
-Contoso secures its AI Foundry deployments using **private networking** with **Enterprise IT** managing a central **hub network**, and each business group connecting via a **spoke VNet**. They use **built-in Role Based Access Roles (RBAC)** to separate access:
+Contoso secures its AI Foundry deployments using private networking with Enterprise IT managing a central hub network, and each business group connecting via a spoke VNet. They use built-in Role Based Access Roles (RBAC) to separate access:
 
 * **Admins** manage deployments/connections/shared resources
 * **Project Managers** oversee specific projects
