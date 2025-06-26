@@ -37,8 +37,6 @@ project_client = AIProjectClient(
 To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the connected resources section of your project in the Azure AI Foundry portal. You also will need to specify the name of your Deep Research model.
 
 ```python
-
-# [START create_agent_with_deep_research_tool]
 conn_id = os.environ["AZURE_BING_CONNECTION_ID"]
 
 # Initialize a Deep Research tool with Bing Connection ID and Deep Research model deployment name
@@ -55,8 +53,6 @@ with project_client.agents as agents_client:
             instructions="You are a helpful Agent that assists in researching scientific topics.",
             tools=deep_research_tool.definitions,
         )
-
-        # [END create_agent_with_deep_research_tool]
         print(f"Created agent, ID: {agent.id}")
 ```
 
@@ -87,6 +83,9 @@ print(f"Created message, ID: {message.id}")
 ## Create a run and check the output
 
 Create a run and observe the response to the question.
+
+> [!NOTE]
+> According to Grounding with Bing's [terms of use and use and display requirements](https://www.microsoft.com/bing/apis/grounding-legal#use-and-display-requirements), you need to display both website URLs and Bing search query URLs in your custom interface. See the [Grounding with Bing Search documentation](./bing-grounding.md#how-to-display-grounding-with-bing-search-results) for more informaiton.
 
 ```python
 # Create and process Agent run in thread with tools
