@@ -39,7 +39,7 @@ items:
     - name: Try Content Understanding REST API
       displayName: quickstart, extract, text, images, OCR, optical character recognition, rest, standard, mode
       href: quickstart/use-rest-api.md
-  - name: Working with content modalities
+  - name: Modalities
     items:
       - name: Document
         items:
@@ -77,24 +77,20 @@ items:
         - name: Best practices
           displayName: best practices, analyzers, optimization, fields
           href: concepts/best-practices.md
-    - name: Classifiers 🆕
-      items:
-        - name: Overview
-          displayName: classifier, text, images, video, audio, multimodal, visual, structured, content, field, extraction
-          href: concepts/classifier.md
-    - name: Face 🆕
-      items:
-        - name: Overview
-          displayName: face, recognition, detection, analysis, identification, verification
-          href: face/overview.md
-        - name: "Tutorial: Build a person directory"
-          displayName: person, directory, search, index, vector
-          href: tutorial/build-person-directory.md
+    - name: What are classifiers? 🆕
+      displayName: classifier, text, images, video, audio, multimodal, visual, structured, content, field, extraction
+      href: concepts/classifier.md
+    - name: What is face detection?🆕
+      displayName: recognition, detection, analysis, identification, verification
+      href: face/overview.md
   - name: Tutorials
     items:
       - name: Create a custom analyzer 🆕
         displayName: custom, analyzer, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
         href: tutorial/create-custom-analyzer.md
+      - name: "Face: build a person directory 🆕"
+        displayName: person, directory, search, index, vector
+        href: tutorial/build-person-directory.md
       - name: Build a retrieval-augmented solution
         displayName: RAG, retrieval, augmented, generation, knowledge, base, search, index, vector
         href: tutorial/build-rag-solution.md
