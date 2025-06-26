@@ -288,7 +288,7 @@ Technical limitations to consider are the accuracy of lip sync alignment with th
 - **Availability**: Microsoft will provide customers with 12 months’ notice before removing any prebuilt text to speech avatars from our catalog, unless security, legal, or system performance considerations require an expedited removal. This does not apply to previews. 
 - **Privacy and data protection**: When utilizing text to speech avatars, customers should adhere to all applicable privacy laws and regulations and ensure that sensitive or personal information is handled securely. It is important to be cautious when processing and storing data, and to follow best practices for data protection and consent management. 
 
-Each application is different, and our base model may not match your context or cover all scenarios required for your use case. We encourage developers to thoroughly evaluate the quality of text to speech synthetic voice and video with real-world data that reflects your use case, including testing with users from different demographic groups and with different speech characteristics. Please see the [Quality of the voice model trained](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/characteristics-and-limitations-custom-neural-voice#quality-of-the-voice-model-trained) section for best practices for building high quality voice models. 
+Each application is different, and our base model may not match your context or cover all scenarios required for your use case. We encourage developers to thoroughly evaluate the quality of text to speech synthetic voice and video with real-world data that reflects your use case, including testing with users from different demographic groups and with different speech characteristics. Please see the [Quality of the voice model trained](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note#quality-of-the-voice-model-trained) section for best practices for building high quality voice models. 
 
 
 #### [Custom text to speech avatar](#tab/cust-avatar)
@@ -309,7 +309,7 @@ Technical limitations to consider are the accuracy of lip sync alignment with th
 
 ---
 
-Each application is different, and our base model may not match your context or cover all scenarios required for your use case. We encourage developers to thoroughly evaluate the quality of text to speech synthetic voice and video with real-world data that reflects your use case, including testing with users from different demographic groups and with different speech characteristics. Please see the [Quality of the voice model trained](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/characteristics-and-limitations-custom-neural-voice#quality-of-the-voice-model-trained) section for best practices for building high quality voice models. 
+Each application is different, and our base model may not match your context or cover all scenarios required for your use case. We encourage developers to thoroughly evaluate the quality of text to speech synthetic voice and video with real-world data that reflects your use case, including testing with users from different demographic groups and with different speech characteristics. Please see the [Quality of the voice model trained](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note#quality-of-the-voice-model-trained) section for best practices for building high quality voice models. 
 
 In addition to ensuring performance, it is important to consider how to minimize risks of stereotyping and erasure that may result from synthetic voices and avatar. For example, if you are creating a custom neural voice for a smart voice assistant, carefully consider what voice is appropriate to create, and seek diverse perspectives from individuals from a variety of backgrounds. When building and evaluating your system, always seek diverse input. 
 
@@ -499,6 +499,6 @@ Individuals with speech disorders may wish to update their synthetic voice to re
 
 ## Learn more about Azure Speech
 
-- [Limited access to Azure Speech Service - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access-custom-neural-voice) 
+- [Limited access to Azure Speech Service - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access) 
 - [Code of conduct for Azure Speech Service | Microsoft Learn](/legal/ai-code-of-conduct?context=/azure/ai-services/speech-service/context/context) 
-- [Data, privacy, and security for Azure Speech Service - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security-custom-neural-voice) 
+- [Data, privacy, and security for Azure Speech Service - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security) 

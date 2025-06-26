@@ -45,7 +45,7 @@ Custom text to speech avatar is made available to customers under the terms gove
 - **Implementation requirements**. As outlined in our [Code of conduct](/legal/ai-code-of-conduct?context=/azure/ai-services/speech-service/context/context), in addition to other requirements, customer must not use any  custom avatar model for prohibited uses and must also agree that when deploying each custom avatar model, they will [disclose the synthetic nature](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-guidelines) of the service to users and support a feedback channel that allows users of the service to report issues and share details with Microsoft. 
 - **Microsoft's additional processing and use of avatar talent data**. Before a customer can train a custom avatar model, Microsoft will require the customer to upload a recorded video file with a pre-defined statement from the avatar talent acknowledging that the customer will use the talent’s image and voice to create a text to speech avatar. As a technical safeguard intended to help prevent misuse of this service, Microsoft reserves the right to verify the acknowledgement video statement file against the training audio data to confirm that the videos are from the same person. Microsoft will also continue to retain this acknowledgement statement file and the custom avatar model to protect the security and integrity of our services. **Customer is responsible for ensuring all necessary permissions are obtained from avatar talent for these purposes**. 
 
-Learn more about how we process this data in the [Data, privacy, and security doc](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security-custom-neural-voice). Learn more about the legal terms that apply to this feature [here](https://azure.microsoft.com/support/legal/).
+Learn more about how we process this data in the [Data, privacy, and security doc](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security). Learn more about the legal terms that apply to this feature [here](https://azure.microsoft.com/support/legal/).
 
 ---
 
@@ -57,11 +57,11 @@ If you need help with custom neural voice, find support [here](/azure/ai-service
 
 Report abuse of custom neural voice [here](https://aka.ms/reportabuse).
 
-Learn more about how we process this data in the [Data, privacy, and security doc](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security-custom-neural-voice). Learn more about the legal terms that apply to this feature [here](https://azure.microsoft.com/support/legal/). 
+Learn more about how we process this data in the [Data, privacy, and security doc](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security). Learn more about the legal terms that apply to this feature [here](https://azure.microsoft.com/support/legal/). 
 
 ## Next steps
 
 * [Introduction to custom neural voice](/azure/ai-services/speech-service/custom-neural-voice)
-* [Transparency note and use cases for custom neural voice](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note-custom-neural-voice)
-* [Responsible deployment of synthetic speech](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-guidelines-responsible-deployment-synthetic)
+* [Transparency note and use cases for custom neural voice](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note)
+* [Responsible deployment of synthetic speech](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note)
 * [Disclosure for voice and avatar talent](/azure/ai-foundry/responsible-ai/speech-service/disclosure-voice-talent)
