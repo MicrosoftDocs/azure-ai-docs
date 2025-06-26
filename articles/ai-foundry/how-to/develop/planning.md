@@ -43,7 +43,7 @@ AI Foundry is built on the Azure platform, allowing you to customize security co
 
 - **Networking**: Deploy AI Foundry into a Virtual Network (VNet) to isolate traffic and control access using Network Security Groups (NSGs). [Learn more about networking security.](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline).
 
-- **Customer-Managed Keys (CMK)**: Azure supports CMK for encrypting data at rest. AI Foundry supports CMK optionally for customers with strict compliance needs. [Learn more about CMK.](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline).
+- **Customer-Managed Keys (CMK)**: Azure supports CMK for encrypting data at rest. AI Foundry supports CMK optionally for customers with strict compliance needs. [Learn more about CMK](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline).
 
 - **Authentication & Authorization**: AI Foundry supports both **API key-based access** for simple integration and **Azure RBAC** for fine-grained control. Azure enforces a clear separation between the **control plane** (resource management) and the **data plane** (model and data access). Start with built-in roles, and define custom roles as needed. [Learn more about authentication.](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline).
 
@@ -59,7 +59,7 @@ Contoso secures its AI Foundry deployments using **private networking** with *
 * **Project Managers** oversee specific projects
 * **Users** interact with GenAI tools
 
-For most use cases, Contoso does **not use CMK**, relying on Microsoft-managed encryption by default.
+For most use cases, Contoso does **not use Customer-Managed Keys**, relying on Microsoft-managed encryption by default.
 
 ## Plan user access
 
