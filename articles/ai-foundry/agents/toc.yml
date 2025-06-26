@@ -96,10 +96,10 @@ items:
         - name: Deep Research
           items:
             - name: Overview
-              href: how-to/deep-research.md
+              href: how-to/tools/deep-research.md
               displayName: deep research
             - name: How to use Deep Research
-              href: how-to/deep-research-samples.md
+              href: how-to/tools/deep-research-samples.md
         - name: SharePoint
           items:
             - name: Overview
