@@ -91,7 +91,11 @@ toolset.add(functions)
 AGENT_NAME = "Seattle Tourist Assistant"
 ```
 
-If you are using Azure AI Foundry (non-Hub) project, create an agent with the toolset:
+If you are using Azure AI Foundry (non-Hub) project, create an agent with the toolset as follows:
+
+> [!NOTE]
+> If you are using a Foundry Hub project (which only supports lower versions of `azure-ai-projects<1.0.0b10 azure-ai-agents<1.0.0b10`), we strongly recommend migrating to Foundry project by simply creating a new Foundry project.
+
 ```python
 import os
 from azure.ai.projects import AIProjectClient
@@ -151,8 +155,7 @@ with project_client:
     print("Deleted agent")
 ```
 
-> [!NOTE]
-> If you are using a Foundry Hub project (which only supports lower versions of `azure-ai-projects<1.0.0b10 azure-ai-agents<1.0.0b10`), we strongly recommend migrating to Foundry project by simply creating a new Foundry project.
+
 
 
 ### Evaluate a single agent run
@@ -171,7 +174,7 @@ run_id = run.id
 
 converted_data = converter.convert(thread_id, run_id)
 ```
-And that's it! You don't need to read the input requirements for each evaluator and do any work to parse them. All you need to do is select your evaluator and call the evaluator on this single run. We support AzureOpenAI or OpenAI [reasoning models](https://learn.microsoft.com/azure/ai-services/openai/how-to/reasoning) and non-reasoning models for the judge depending on the evaluators:
+And that's it! You don't need to read the input requirements for each evaluator and do any work to parse them. All you need to do is select your evaluator and call the evaluator on this single run. We support AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the judge depending on the evaluators:
 
 | Evaluators | Reasoning Models as Judge (ex: o-series models from Azure OpenAI / OpenAI) | Non-reasoning models as Judge (ex: gpt-4.1, gpt-4o, etc.) | To enable |
 |------------|-----------------------------------------------------------------------------|-------------------------------------------------------------|-------|
