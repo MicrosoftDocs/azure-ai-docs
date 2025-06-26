@@ -88,7 +88,7 @@ items:
       - name: Create a custom analyzer 🆕
         displayName: custom, analyzer, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
         href: tutorial/create-custom-analyzer.md
-      - name: "Face: build a person directory 🆕"
+      - name: Build a face-data person directory 🆕
         displayName: person, directory, search, index, vector
         href: tutorial/build-person-directory.md
       - name: Build a retrieval-augmented solution
