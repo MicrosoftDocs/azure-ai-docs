@@ -5,7 +5,7 @@ description: Learn about the reasoning capabilities of DeepSeek-R1 in Azure AI F
 manager: scottpolly
 ms.service: azure-ai-model-inference
 ms.topic: tutorial
-ms.date: 05/19/2025
+ms.date: 06/26/2025
 ms.reviewer: fasantia
 ms.author: mopeakande
 author: msakande
@@ -15,18 +15,17 @@ author: msakande
 
 In this tutorial, you learn:
 
-> [!div class="checklist"]
-> * How to create and configure the Azure resources to use DeepSeek-R1 model in Foundry Models.
-> * How to configure the model deployment.
-> * How to use DeepSeek-R1 using the Azure AI Inference SDK or REST APIs.
-> * How to use DeepSeek-R1 using other SDKs.
+* How to create and configure the Azure resources to use DeepSeek-R1 in Azure AI Foundry Models.
+* How to configure the model deployment.
+* How to use DeepSeek-R1 with the Azure AI Inference SDK or REST APIs.
+* How to use DeepSeek-R1 with other SDKs.
 
 ## Prerequisites
 
 To complete this article, you need:
 
 
-* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Azure AI Foundry Models](../../model-inference/how-to/quickstart-github-models.md) if that's your case.
+* An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Azure AI Foundry Models](../../model-inference/how-to/quickstart-github-models.md), if that applies to you.
 
 
 [!INCLUDE [about-reasoning](../../foundry-models/includes/use-chat-reasoning/about-reasoning.md)]
@@ -34,93 +33,68 @@ To complete this article, you need:
 ## Create the resources
 
 
-Foundry Models is a capability in Azure AI Foundry resources in Azure. You can create model deployments under the resource to consume their predictions. You can also connect the resource to Azure AI Hubs and Projects in Azure AI Foundry to create intelligent applications if needed. The following picture shows the high level architecture.
+Foundry Models is a capability in Azure AI Foundry resources in Azure. You can create model deployments under the resource to consume their predictions. You can also connect the resource to Azure AI Hubs and Projects in Azure AI Foundry to create intelligent applications if needed.
 
-:::image type="content" source="../media/quickstart-get-started-deepseek-r1/resources-architecture.png" alt-text="A diagram showing the high level architecture of the resources created in the tutorial." lightbox="../media/quickstart-get-started-deepseek-r1/resources-architecture.png":::
-
-To create an Azure AI project that supports deployment for DeepSeek-R1, follow these steps. You can also create the resources using [Azure CLI](../how-to/quickstart-create-resources.md?pivots=programming-language-cli) or [infrastructure as code with Bicep](../how-to/quickstart-create-resources.md?pivots=programming-language-bicep).
+To create an Azure AI project that supports deployment for DeepSeek-R1, follow these steps. You can also create the resources, using [Azure CLI](../how-to/quickstart-create-resources.md?pivots=programming-language-cli) or [infrastructure as code, with Bicep](../how-to/quickstart-create-resources.md?pivots=programming-language-bicep).
 
 
-1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and log in with your account.
+1. Sign in to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
-2. On the landing page, select **Create project**.
+1. Go to the preview features icon on the header of the landing page and make sure that the **Deploy models to Azure AI Foundry resources** feature is turned on.
+
+    :::image type="content" source="../media/quickstart-get-started-deepseek-r1/enable-foundry-resource-deployment.png" alt-text="A screenshot showing the steps to enable deployment to a Foundry resource." lightbox="../media/quickstart-get-started-deepseek-r1/enable-foundry-resource-deployment.png":::
+
+1. On the landing page, go to the "Explore models and capabilities" section and select **Go to full model catalog** to open the model catalog.
+    :::image type="content" source="../media/quickstart-get-started-deepseek-r1/foundry-homepage-model-catalog-section.png" alt-text="A screenshot of the homepage of the Foundry portal showing the model catalog section." lightbox="../media/quickstart-get-started-deepseek-r1/foundry-homepage-model-catalog-section.png":::
+
+1. Search for the **DeepSeek-R1** model and open its model card.
+    
+1. Select **Use this model**. This opens up a wizard to create an Azure AI Foundry project and resources that you'll work in. You can keep the default name for the project or change it.
 
     > [!TIP]
-    > **Are you using Azure OpenAI in Azure AI Foundry Models?** When you are connected to Azure AI Foundry portal using an Azure OpenAI resource, only Azure OpenAI models show up in the catalog. To view the full list of models, including DeepSeek-R1, use the top **Announcements** section and locate the card with the option **Explore more models**.
+    > **Are you using Azure OpenAI in Azure AI Foundry Models?** When you're connected to Azure AI Foundry portal using an Azure OpenAI resource, only Azure OpenAI models show up in the catalog. To view the full list of models, including DeepSeek-R1, use the top **Announcements** section and locate the card with the option **Explore more models**.
     >
     > :::image type="content" source="../media/quickstart-get-started-deepseek-r1/explore-more-models.png" alt-text="Screenshot showing the card with the option to explore all the models from the catalog." lightbox="../media/quickstart-get-started-deepseek-r1/explore-more-models.png":::
     >
     > A new window shows up with the full list of models. Select **DeepSeek-R1** from the list and select **Deploy**. The wizard asks to create a new project.
 
-3. Give the project a name, for example "my-project".
-
-4. In this tutorial, we create a brand new project under a new AI hub, hence, select **Create new hub**. Hubs are containers for multiple projects and allow you to share resources across all the projects.
-
-5. Give the hub a name, for example "my-hub" and select **Next**.
-
-6. The wizard updates with details about the resources that are going to be created. Select **Azure resources to be created** to see the details.
-
-    :::image type="content" source="../media/create-resources/create-project-with-hub-details.png" alt-text="Screenshot showing the details of the project and hub to be created." lightbox="../media/create-resources/create-project-with-hub-details.png":::    
-
-7. You can see that the following resources are created:
+1. Select the dropdown in the "Advanced options" section of the wizard to see the details of other defaults created alongside the project. These defaults are selected for optimal functionality and include:
 
     | Property       | Description |
     | -------------- | ----------- |
     | Resource group | The main container for all the resources in Azure. This helps get resources that work together organized. It also helps to have a scope for the costs associated with the entire project. |
-    | Location       | The region of the resources that you're creating. |
-    | Hub            | The main container for AI projects in Azure AI Foundry. Hubs promote collaboration and allow you to store information for your projects. |
-    | AI Foundry    | The resource enabling access to the flagship models in Azure AI model catalog. In this tutorial, a new account is created, but Azure AI Foundry resources (formerly known Azure AI Services) can be shared across multiple hubs and projects. Hubs use a connection to the resource to have access to the model deployments available there. To learn how you can create connections to Azure AI Foundry resources to consume models you can read [Connect your AI project](../../model-inference/how-to/configure-project-connection.md). |
+    | Region     | The region of the resources that you're creating. |
+    | AI Foundry resource    | The resource enabling access to the flagship models in Azure AI model catalog. In this tutorial, a new account is created, but Azure AI Foundry resources (formerly known as Azure AI Services) can be shared across multiple hubs and projects. Hubs use a connection to the resource to have access to the model deployments available there. To learn how you can create connections to Azure AI Foundry resources to consume models you can read [Connect your AI project](../../model-inference/how-to/configure-project-connection.md). |
 
+1. Select **Create** to create the Foundry project alongside the other defaults. Wait until the project creation is complete. This process takes a few minutes.
 
-8. Select **Create**. The resources creation process starts. 
+## Deploy the model
 
-9. Once completed, your project is ready to be configured.
-
-10. Foundry Models is a Preview feature that needs to be turned on in Azure AI Foundry. At the top navigation bar, over the right corner, select the **Preview features** icon. A contextual blade shows up at the right of the screen.
-
-11. Turn on the **Deploy models to Azure AI model inference service** feature.
-
-    :::image type="content" source="../media/quickstart-ai-project/ai-project-inference-endpoint.gif" alt-text="An animation showing how to turn on the Azure AI model inference service deploy models feature in Azure AI Foundry portal." lightbox="../media/quickstart-ai-project/ai-project-inference-endpoint.gif":::
-
-12. Close the panel.
-
-
-## Add DeepSeek-R1 model deployment
-
-Let's now create a new model deployment for DeepSeek-R1:
-
-1. Go to **Model catalog** section in [Azure AI Foundry portal](https://ai.azure.com/explore/models) and find the model [DeepSeek-R1](https://ai.azure.com/explore/models/DeepSeek-R1/version/1/registry/azureml-deepseek) model.
-
-3. You can review the details of the model in the model card.
-
-4. Select **Deploy**.
-
-5. The wizard shows the model's terms and conditions for DeepSeek-R1, which is offered as a Microsoft first party consumption service. You can review our privacy and security commitments under [Data, privacy, and Security](../../../ai-studio/how-to/concept-data-privacy.md). 
+1. Once the project and resources are created, a deployment wizard appears. DeepSeek-R1 is offered as a Microsoft first party consumption service. You can review our privacy and security commitments under [Data, privacy, and Security](../../../ai-studio/how-to/concept-data-privacy.md). 
 
     > [!TIP]
-    > Review the pricing details for the model by selecting [Pricing and terms](https://aka.ms/DeepSeekPricing).
+    > Review the pricing details for the model by selecting the [Pricing and terms tab](https://aka.ms/DeepSeekPricing).
 
-6. Accept the terms on those cases by selecting **Subscribe and deploy**.
+1. Select **Agree and Proceed** to continue with the deployment.
 
-   :::image type="content" source="../media/quickstart-get-started-deepseek-r1/models-deploy-agree.png" alt-text="Screenshot showing how to agree the terms and conditions of a DeepSeek-R1 model." lightbox="../media/quickstart-get-started-deepseek-r1/models-deploy-agree.png":::
+1. You can configure the deployment settings at this time. By default, the deployment receives the name of the model you're deploying. The deployment name is used in the `model` parameter for requests to route to this particular model deployment. This allows you to also configure specific names for your models when you attach specific configurations.
 
-7. You can configure the deployment settings at this time. By default, the deployment receives the name of the model you're deploying. The deployment name is used in the `model` parameter for request to route to this particular model deployment. This allows you to also configure specific names for your models when you attach specific configurations.
-
-8. We automatically select an Azure AI Services connection depending on your project. Use the **Customize** option to change the connection based on your needs. DeepSeek-R1 is currently offered under the **Global Standard** deployment type which offers higher throughput and performance.
-
-9. Select **Deploy**.
+1. Azure AI Foundry automatically selects the Foundry resource created earlier with your project. Use the **Customize** option to change the connection based on your needs. DeepSeek-R1 is currently offered under the **Global Standard** deployment type which offers higher throughput and performance.
 
    :::image type="content" source="../media/quickstart-get-started-deepseek-r1/model-deploy.png" alt-text="Screenshot showing how to deploy the model." lightbox="../media/quickstart-get-started-deepseek-r1/model-deploy.png":::
 
-10. Once the deployment completes, the new model is listed in the page and it's ready to be used.
+1. Select **Deploy**.
 
-## Use the model in playground
+1. Once the deployment completes, the deployment **Details** page opens up. Now the new model is ready to be used.
 
-You can get started by using the model in the playground to have an idea of the model capabilities.
 
-1. On the deployment details page, select **Open in playground** option in the top bar.
+## Use the model in the playground
 
-2. In the **Deployment** drop down, the deployment you created has been automatically selected.
+You can get started by using the model in the playground to have an idea of the model's capabilities.
+
+1. On the deployment details page, select **Open in playground** in the top bar.
+
+2. In the **Deployment** drop down, the deployment you created is already automatically selected.
 
 3. Configure the system prompt as needed. In general, reasoning models don't use system messages in the same way that other types of models.
 
@@ -128,7 +102,7 @@ You can get started by using the model in the playground to have an idea of the 
 
 4. Type your prompt and see the outputs.
 
-5. Additionally, you can use **View code** so see details about how to access the model deployment programmatically.
+5. Additionally, you can use **View code** to see details about how to access the model deployment programmatically.
 
 [!INCLUDE [best-practices](../../foundry-models/includes/use-chat-reasoning/best-practices.md)]
 
@@ -136,9 +110,10 @@ You can get started by using the model in the playground to have an idea of the 
 
 Use the Foundry Models endpoint and credentials to connect to the model:
 
-:::image type="content" source="../media/overview/overview-endpoint-and-key.png" alt-text="Screenshot showing how to get the URL and key associated with the resource." lightbox="../media/overview/overview-endpoint-and-key.png":::
+:::image type="content" source="../media/quickstart-get-started-deepseek-r1/endpoint-target-and-key.png" alt-text="Screenshot showing how to get the URL and key associated with the deployment." lightbox="../media/quickstart-get-started-deepseek-r1/endpoint-target-and-key.png":::
 
-You can use the Azure AI Inference package to consume the model in code:
+
+You can use the Azure AI Model Inference package to consume the model in code:
 
 [!INCLUDE [code-create-chat-client](../../foundry-models/includes/code-create-chat-client.md)]
 
