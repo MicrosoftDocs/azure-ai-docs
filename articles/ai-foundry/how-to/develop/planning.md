@@ -55,9 +55,9 @@ AI Foundry is built on the Azure platform, allowing you to customize security co
 
 Contoso secures its AI Foundry deployments using **private networking** with **Enterprise IT** managing a central **hub network**, and each business group connecting via a **spoke VNet**. They use **built-in Role Based Access Roles (RBAC)** to separate access:
 
-* **admins** manage deployments/connections/shared resources
-* **project managers** oversee specific projects
-* **users** interact with GenAI tools
+* **Admins** manage deployments/connections/shared resources
+* **Project Managers** oversee specific projects
+* **Users** interact with GenAI tools
 
 For most use cases, Contoso does **not use CMK**, relying on Microsoft-managed encryption by default.
 
