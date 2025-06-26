@@ -6,7 +6,7 @@ author: lgayhardt
 ms.author: lagayhar
 manager: scottpolly
 ms.reviewer: changliu2
-ms.date: 05/19/2025
+ms.date: 06/26/2025
 ms.service: azure-ai-foundry
 ms.topic: reference
 ms.custom:
@@ -16,7 +16,9 @@ ms.custom:
 
 # General purpose evaluators
 
-AI systems might generate textual responses that are incoherent, or lack the general writing quality you might desire beyond minimum grammatical correctness. To address these issues, use [Coherence](#coherence) and [Fluency](#fluency).
+AI systems might generate textual responses that are incoherent, or lack the general writing quality you might desire beyond minimum grammatical correctness. To address these issues, we current support evaluating:
+- [Coherence](#coherence)
+- [Fluency](#fluency)
 
 If you have a question-answering (QA) scenario with both `context` and `ground truth` data in addition to `query` and `response`, you can also use our [QAEvaluator](#question-answering-composite-evaluator) a composite evaluator that uses relevant evaluators for judgment.
 
@@ -38,8 +40,15 @@ model_config = AzureOpenAIModelConfiguration(
 )
 ```
 
-> [!TIP]
-> We recommend using `o3-mini` for a balance of reasoning capability and cost efficiency.
+### Evaluator model support
+We support AzureOpenAI or OpenAI [reasoning models](https://learn.microsoft.com/azure/ai-services/openai/how-to/reasoning) and non-reasoning models for the LLM-judge depending on the evaluators:
+
+| Evaluators | Reasoning Models as Judge (ex: o-series models from Azure OpenAI / OpenAI) | Non-reasoning models as Judge (ex: gpt-4.1, gpt-4o, etc.) | To enable |
+|------------|-----------------------------------------------------------------------------|-------------------------------------------------------------|-------|
+| `Intent Resolution` / `Task Adherence` / `Tool Call Accuracy` / `Response Completeness`) | Supported | Supported | Set additional parameter `is_reasoning_model=True` in initializing evaluators |
+| Other quality evaluators| Not Supported | Supported | -- |
+
+For complex evaluation that requires refined reasoning, we recommend a strong reasoning model like `o3-mini` and o-series mini models released afterwards with a balance of reasoning performance and cost efficiency.
 
 ## Coherence
 
