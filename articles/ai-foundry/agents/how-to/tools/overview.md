@@ -76,7 +76,7 @@ The Foundry Agent Service provides the following built-in tools. You can use the
 |[Function calling](function-calling.md)     |Describe the structure of functions you create to an agent and have them be called when appropriate during the agent's interactions with users.         |
 |[Grounding with Bing Search](bing-grounding.md)     | Enable your agent to use Grounding with Bing Search to access and return information from the internet.         |
 | [Grounding with Bing Custom Search (preview)](bing-custom-search.md) | Enhance your Agent response with selected web domains |
-| [Model Context Protocol (preview)](model-context-protocol.md) | Give the agent access to tools hosted on an existing MCP endpoint |
+| [Model Context Protocol (preview)](mcp.md) | Give the agent access to tools hosted on an existing MCP endpoint |
 | [Microsoft Fabric (preview)](fabric.md) | Integrate your agent with the [Microsoft Fabric data agent](https://go.microsoft.com/fwlink/?linkid=2312815) to unlock powerful data analysis capabilities. |
 | [OpenAPI 3.0 Specified tool ](openapi-spec.md) | Connect your Azure AI Agent to external APIs using functions with an OpenAPI 3.0 specification. |
 
