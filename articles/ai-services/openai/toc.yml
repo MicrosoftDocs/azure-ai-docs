@@ -441,7 +441,7 @@ items:
               displayName: RAG, rag
     - name: Azure OpenAI monitoring data reference
       href: monitor-openai-reference.md
-    - name: Realtime API (preview) events reference
+    - name: Audio events reference
       href: realtime-audio-reference.md
 - name: Resources
   items: 
