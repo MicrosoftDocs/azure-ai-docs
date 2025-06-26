@@ -1,26 +1,25 @@
 ---
-title: Azure OpenAI in Azure AI Foundry Models Realtime API Reference
+title: Audio events reference
 titleSuffix: Azure OpenAI
-description: Learn how to use the Realtime API to interact with the Azure OpenAI in real-time.
+description: Learn how to use events with the Realtime API and Voice Live API.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 4/28/2025
+ms.date: 6/27/2025
 author: eric-urban
 ms.author: eur
 recommendations: false
 ---
 
-# Realtime events reference
+# Audio events reference
 
-[!INCLUDE [Feature preview](includes/preview-feature.md)]
+Realtime events are used to communicate between the client and server in real-time audio applications. The events are sent as JSON objects over various endpoints, such as WebSockets or WebRTC. The events are used to manage the conversation, audio buffers, and responses in real-time.
 
-The Realtime API is a WebSocket-based API that allows you to interact with the Azure OpenAI in real-time. 
+You can use audio client and server events with these APIs:
+- [Azure OpenAI Realtime API](/azure/ai-services/openai/realtime-audio-quickstart)
+- [Azure AI Voice Live API](/azure/ai-services/speech-service/voice-live)
 
-The Realtime API (via `/realtime`) is built on [the WebSockets API](https://developer.mozilla.org/docs/Web/API/WebSockets_API) to facilitate fully asynchronous streaming communication between the end user and model. Device details like capturing and rendering audio data are outside the scope of the Realtime API. It should be used in the context of a trusted, intermediate service that manages both connections to end users and model endpoint connections. Don't use it directly from untrusted end user devices.
-
-> [!TIP]
-> To get started with the Realtime API, see the [quickstart](realtime-audio-quickstart.md) and [how-to guide](./how-to/realtime-audio.md).
+Unless otherwise specified, the events described in this document are applicable to both APIs.
 
 ## Client events
 
