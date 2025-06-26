@@ -42,8 +42,15 @@ model_config = AzureOpenAIModelConfiguration(
 )
 ```
 
-> [!TIP]
-> We recommend using `o3-mini` for a balance of reasoning capability and cost efficiency.
+### Evaluator model support
+We support AzureOpenAI or OpenAI [reasoning models](https://learn.microsoft.com/azure/ai-services/openai/how-to/reasoning) and non-reasoning models for the LLM-judge depending on the evaluators:
+
+| Evaluators | Reasoning Models as Judge (ex: o-series models from Azure OpenAI / OpenAI) | Non-reasoning models as Judge (ex: gpt-4.1, gpt-4o, etc.) | To enable |
+|------------|-----------------------------------------------------------------------------|-------------------------------------------------------------|-------|
+| `Intent Resolution` / `Task Adherence` / `Tool Call Accuracy` / `Response Completeness`) | Supported | Supported | Set additional parameter `is_reasoning_model=True` in initializing evaluators |
+| Other quality evaluators| Not Supported | Supported | -- |
+
+For complex evaluation that requires refined reasoning, we recommend a strong reasoning model like `o3-mini` and o-series mini models released afterwards with a balance of reasoning performance and cost efficiency.
 
 ## Retrieval
 
