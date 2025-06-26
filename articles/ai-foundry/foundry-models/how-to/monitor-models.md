@@ -58,6 +58,10 @@ You can view metrics within Azure AI Foundry portal. To view them, follow these 
 
     :::image type="content" source="../media/monitor-models/deployment-metrics.png" alt-text="Screenshot showing the metrics displayed for model deployments in Azure AI Foundry portal." lightbox="../media/monitor-models/deployment-metrics.png":::
 
+    > [!IMPORTANT]
+    > The **Azure Cost Management deeplink**  provides a direct link within the Azure Portal, allowing users to access detailed cost metrics for deployed AI models. This deep link integrates with the Azure Cost Analysis service view, offering transparent and actionable insights into model-level costs.
+    > The deep link directs users to the Cost Analysis view in the Azure portal, providing a one-click experience to view deployments per resource, including input/output token cost/consumption. To view cost data, you need at least read access for an Azure account. For information about assigning access to Microsoft Cost Management data, see [Assign access to data](/azure/cost-management-billing/costs/assign-access-acm-data.md). 
+
 1. To slice, filter, or view model details about the metrics you can **Open in Azure Monitor**, where you have more advanced options.
 
     :::image type="content" source="../media/monitor-models/deployment-metrics-azmonitor.png" alt-text="Screenshot showing the option to open model deployment metrics in Azure Monitor." lightbox="../media/monitor-models/deployment-metrics-azmonitor.png":::
