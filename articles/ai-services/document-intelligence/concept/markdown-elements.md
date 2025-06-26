@@ -108,6 +108,9 @@ The Layout API preserves figure elements:
 * Preserves figure captions with the `<figcaption>` tag to provide important context
 * Preserves figure footnotes as separate paragraphs following the figure container
 
+> [!IMPORTANT]
+> In cases where we detect certain document components like section heading as part of the figures, markdown output will not present figures in the output and use the information for document structure analysis. For these cases, enumerate the figures field in JSON to retrieve all the figures.
+
 Here's an example:
 
 ``` md 
