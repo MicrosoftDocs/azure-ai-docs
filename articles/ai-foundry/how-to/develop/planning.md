@@ -114,7 +114,7 @@ Effective governance in Azure AI Foundry ensures secure, compliant, and cost-eff
 
 ## Configure and optimize model deployments
 
-When deploying models in AI Foundry, teams can choose between standard and provisioned [deployment types](.././../ai-services/openai/how-to/deployment-types.md). Standard deployments are ideal for development and experimentation, offering flexibility and ease of setup. Provisioned deployments are recommended for production scenarios where predictable performance, cost control, and model version pinning are required.
+When deploying models in AI Foundry, teams can choose between standard and provisioned [deployment types](../../../ai-services/openai/how-to/deployment-types.md). Standard deployments are ideal for development and experimentation, offering flexibility and ease of setup. Provisioned deployments are recommended for production scenarios where predictable performance, cost control, and model version pinning are required.
 
 To support cross-region scenarios and let you access existing model deployments, AI Foundry allows [connections](../connections-add.md?pivots=fdp-project) to model deployments hosted in other Foundry or Azure OpenAI instances. This enables teams to centralize deployments for experimentation while still enabling access from distributed projects. For production workloads, consider for use cases to manage its own deployments to ensure tighter control over model lifecycle, versioning, and rollback strategies.
 
@@ -140,14 +140,14 @@ A hub resource is deployed side-by-side with your AI Foundry resource and takes 
 
 ### Establish Connectivity with Other Azure Services
 
-- Overview of Connections: [Add a new connection in Azure AI Foundry](connections-add.md)
+- Overview of Connections: [Add a new connection in Azure AI Foundry](../connections-add.md)
 - Project vs. Resource-Level Connections: [Configure a connection to use Azure AI Foundry Models](../../model-inference/how-to/configure-project-connection.md)
 
 ### Governance
 
-- Model Access Control with Azure Policy: [Control model deployment with built-in policies](built-in-policy-model-deployment.md)
-- Cost Management: [Plan and manage costs for Azure AI Foundry](costs-plan-manage.md)
-- Azure Monitor for Usage Tracking: [Monitor your Generative AI applications](monitor-applications.md)
+- Model Access Control with Azure Policy: [Control model deployment with built-in policies](../built-in-policy-model-deployment.md)
+- Cost Management: [Plan and manage costs for Azure AI Foundry](../costs-plan-manage.md)
+- Azure Monitor for Usage Tracking: [Monitor your Generative AI applications](../monitor-applications.md)
 - Azure Log Analytics for Logging: [Enable diagnostic logging for Azure AI services](../../../ai-services/diagnostic-logging.md)
 
 ### Share Reserved Capacity Across Business Groups
