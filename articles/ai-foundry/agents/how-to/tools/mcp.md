@@ -11,7 +11,7 @@ author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
 ---
-# Connect Model Context Protocol Server with Azure AI Foundry Agent Service (Preview)
+# Connect to Model Context Protocol (MCP) Servers (Preview)
 You can extend the capabilities of your Foundry Agent by connecting it to tools hosted on remote Model Context Protocol (MCP) servers (bring your own MCP server endpoint). These servers are maintained by developers and organizations and expose tools that can be accessed by MCP-compatible clients, such as the Foundry Agent service.
 
 [Model Context Protocol](https://modelcontextprotocol.io/introduction) (MCP) is an open standard that defines how applications provide tools and contextual data to large language models (LLMs). It enables consistent, scalable integration of external tools into model workflows.

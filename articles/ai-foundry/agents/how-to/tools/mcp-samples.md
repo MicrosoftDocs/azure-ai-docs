@@ -13,7 +13,7 @@ zone_pivot_groups: selection-mcp-code
 ms.custom: azure-ai-agents-code
 ---
 
-# How to connect Foundry Agent service with Model Context Protocol (MCP)
+# How to use the Model Context Protocol (MCP) tool
 
 Use this article to find step-by-step instructions and code samples for connecting Foundry Agent service with MCP.
 
