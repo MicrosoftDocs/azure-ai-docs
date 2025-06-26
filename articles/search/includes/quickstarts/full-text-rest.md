@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 06/25/2025
+ms.date: 06/26/2025
 ---
 
 In this quickstart, you use the [Azure AI Search REST APIs](/rest/api/searchservice) to create, load, and query a search index for [full-text search](../../search-lucene-query-architecture.md). Full-text search uses Apache Lucene for indexing and queries and the BM25 ranking algorithm for scoring results.
@@ -22,7 +22,7 @@ This quickstart creates and queries a small index containing data about four fic
 
 + The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
-+ [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
++ [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
 ## Configure access
 
@@ -74,7 +74,7 @@ To get your resource information:
 
 ## Set up your file
 
-Before you can make REST API calls to your Azure AI Search service, you must create a request file that contains your endpoint and authentication token. The REST client extension in Visual Studio Code supports this task.
+Before you can make REST API calls to your Azure AI Search service, you must create a request file that contains your endpoint and authentication token. The REST Client extension in Visual Studio Code supports this task.
 
 To set up your file:
 
@@ -329,24 +329,7 @@ POST {{baseUrl}}/indexes/hotels-quickstart/docs/index?api-version=2024-07-01  HT
             "Country": "USA"
             } 
         },
-        {
-        "@search.action": "upload",
-        "HotelId": "2",
-        "HotelName": "Old Century Hotel",
-        // REDACTED FOR BREVITY
-        },
-        {
-        "@search.action": "upload",
-        "HotelId": "3",
-        "HotelName": "Gastronomic Landscape Hotel",
-        // REDACTED FOR BREVITY
-        },
-        {
-        "@search.action": "upload",
-        "HotelId": "4",
-        "HotelName": "Sublime Palace Hotel",
-        // REDACTED FOR BREVITY
-        }
+        // OTHER DOCUMENTS OMITTED FOR BREVITY
       ]
     }
 ```
@@ -355,13 +338,13 @@ Each document in the `value` array represents a hotel and contains fields that m
 
 ### Query the index
 
-Now that documents are loaded into the index, you can issue full-text queries against them. 
+Now that documents are loaded into the index, you can issue full-text queries against them.
 
 This quickstart calls [Documents - Search Post (REST API)](/rest/api/searchservice/documents/search-post) to find hotel documents in your index based on the search criteria. The URI now includes the `/docs/search` operator, which specifies a query expression.
 
 ```http
-POST {{baseUrl}}/indexes/hotels-quickstart/docs/search?api-version=2024-07-01  HTTP/1.1
-  Content-Type: application/json
+POST {{baseUrl}}/indexes/hotels-quickstart/docs/search?api-version=2024-07-01HTTP/1.1
+Content-Type: application/json
   Authorization: Bearer {{token}}
   
   {
