@@ -27,7 +27,7 @@ If you need two or more search services, creating them in different regions can 
 
 In a multi-region setup, two or more search services are located in different regions and have synchronized indexes. Users are automatically routed to the service with the lowest latency.
 
-Azure AI Search doesn't provide an automated method of index replication across regions. However, you can [synchronize data](#data-synchronization) using indexers or REST APIs, both of which are described in the following section. You can also add Azure Traffic Manager for [request redirection](#request-failover-and-redirection).
+Azure AI Search doesn't provide an automated method of index replication across regions. However, you can synchronize data using [push or pull model indexing](search-what-is-data-import.md), both of which are described in the following section. You can also add Azure Traffic Manager for [request redirection](#request-failover-and-redirection).
 
 The following diagram illustrates a geo-distributed set of search services:
 
@@ -40,20 +40,20 @@ The following diagram illustrates a geo-distributed set of search services:
 
 To synchronize two or more distinct search services, you can either:
 
++ Push content into an index using [Documents - Index (REST API)](/rest/api/searchservice/documents/) or an equivalent API in the Azure SDKs.
 + Pull content into an index using an [indexer](search-indexer-overview.md).
-+ Push content into an index using the [Documents - Index REST API](/rest/api/searchservice/documents/) or an equivalent API in the Azure SDKs.
 
-### [Indexers](#tab/indexers)
+### [Push APIs](#tab/push-apis)
+
+If you use the REST APIs to [push content into your index](search-what-is-data-import.md#pushing-data-to-an-index), you can synchronize multiple search services by sending updates to each service whenever changes occur. Ensure that your code handles cases in which an update fails for one service but succeeds for other services.
+
+### [Pull APIs (Indexers)](#tab/pull-apis)
 
 If you have an indexer on one search service, you can create a second indexer on a second service to reference the same data source. Each service in each region has its own indexer and target index. Although the indexes are independent and store their own copies of the data, they remain synchronized because the indexers pull from the same source.
 
 The following diagram illustrates this architecture:
 
 :::image type="content" source="media/search-reliability/scale-indexers.png" alt-text="Diagram of a single data source with distributed indexer and service combinations." border="true" lightbox="media/search-reliability/scale-indexers.png":::
-
-### [REST APIs](#tab/rest-apis)
-
-If you use the REST APIs to [push content to your index](search-what-is-data-import.md#pushing-data-to-an-index), you can synchronize multiple search services by sending updates to each service whenever changes occur. Ensure that your code handles cases in which an update fails for one service but succeeds for other services.
 
 ---
 

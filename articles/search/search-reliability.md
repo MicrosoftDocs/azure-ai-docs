@@ -6,7 +6,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: reliability-article
-ms.date: 06/23/2025
+ms.date: 06/26/2025
 ms.custom:
   - subject-reliability
   - ignite-2023
@@ -106,9 +106,9 @@ When you follow this approach, you must synchronize indexes across regions to re
 
 ## Backups
 
-A business continuity strategy for the data layer usually involves restoring from a backup. Azure AI Search isn't a primary data storage solution, so Microsoft doesn't formally offer self-service backup and restore. However, you can use the `index-backup-restore` sample for [.NET](https://github.com/Azure-Samples/azure-search-dotnet-utilities/tree/main/index-backup-restore) or [Python](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python/code/utilities/index-backup-restore) to back up your index definition and its documents to a series of JSON files, which are then used to restore the index. You can also use the sample to move indexes between pricing tiers.
+A business continuity strategy for the data layer usually involves restoring from a backup. Azure AI Search isn't a primary data storage solution, so Microsoft doesn't formally offer self-service backup and restore. However, you can use the `index-backup-restore` sample for [.NET](https://github.com/Azure-Samples/azure-search-dotnet-utilities/tree/main/index-backup-restore) or [Python](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python/code/utilities/index-backup-restore) to back up your index definition and its documents to a series of JSON files, which are then used to restore the index.
 
-Otherwise, if you accidentally delete an index, the application code used to create and populate the index is the de facto restore option. To rebuild an index, you must:
+Otherwise, if you accidentally delete an index, the application code used to create and populate the index is the de facto restore option. To [rebuild an index](search-howto-reindex.md), you must:
 
 1. Delete the index, assuming it exists.
 1. Recreate the index in your search service.
