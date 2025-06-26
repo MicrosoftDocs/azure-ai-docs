@@ -25,7 +25,7 @@ To accelerate adoption while maintaining oversight, Contoso Enterprise IT aims t
 
 The Azure AI Foundry resource defines the scope for configuring, securing, and monitoring your team’s environment. Projects are like folders to organize your work within this resource context. Projects also grant access to Foundry’s developer APIs and tools.
 
-:::image type="content" source="media/planning/foundry-resource.png" alt-text="Screenshot of a diagram showing Azure AI Foundry resource.":::
+:::image type="content" source="../../media/planning/foundry-resource.png" alt-text="Screenshot of a diagram showing Azure AI Foundry resource.":::
 
 To ensure consistency, scalability, and governance across teams, consider the following environment setup practices when rolling out Azure AI Foundry:
 
@@ -90,7 +90,7 @@ Connections can be created at the **AI Foundry resource level**—ideal for shar
 
 Connection authentication can be configured to use either shared access tokens—such as Microsoft Entra ID managed identities or API keys—for simplified management and onboarding, or user tokens via Entra ID passthrough, which offer greater control when accessing sensitive data sources.
 
-:::image type="content" source="media/planning/connectivity.png" alt-text="Screenshot of a diagram showing Azure AI Foundry project connectivity and integration with other Azure services.":::
+:::image type="content" source="../../media/planning/connectivity.png" alt-text="Screenshot of a diagram showing Azure AI Foundry project connectivity and integration with other Azure services.":::
 
 ### Example: Contoso’s connectivity strategy
 
@@ -155,7 +155,3 @@ A hub resource is deployed side-by-side with your AI Foundry resource and takes 
 
 - Cross-Resource Model Access: [Use Azure AI services in Azure AI Foundry](../../../ai-services/connect-services-ai-foundry-portal.md)
 - Shared PTU Deployments: [Provisioned Throughput Reservations in Azure AI Foundry](/azure/cost-management-billing/reservations/azure-ai-foundry)
-
-### Azure Landing zones
-
-- [AI landing zones](/azure/architecture/ai-ml/architecture/baseline-azure-ai-foundry-landing-zone)
