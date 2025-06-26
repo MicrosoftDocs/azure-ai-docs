@@ -1,4 +1,4 @@
-{ 
+{
   "redirections": [
     {
       "source_path": "articles/ai-foundry/concepts/connections.md",
@@ -318,6 +318,171 @@
     {
       "source_path_from_root": "/articles/ai-services/language-service/tutorials/prompt-flow.md",
       "redirect_url": "/azure/ai-services/language-service/tutorials/power-automate",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/concepts/content-filter.md",
+      "redirect_url": "../../foundry-models/concepts/content-filter",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/concepts/default-safety-policies.md",
+      "redirect_url": "../../foundry-models/concepts/default-safety-policies",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/concepts/deployment-types.md",
+      "redirect_url": "../../foundry-models/concepts/deployment-types",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/concepts/endpoints.md",
+      "redirect_url": "../../foundry-models/concepts/endpoints",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/concepts/models.md",
+      "redirect_url": "../../foundry-models/concepts/models",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/concepts/model-versions.md",
+      "redirect_url": "../../foundry-models/concepts/model-versions",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/how-to/configure-content-filters.md",
+      "redirect_url": "../../foundry-models/how-to/configure-content-filters",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/how-to/configure-deployment-policies.md",
+      "redirect_url": "../../foundry-models/how-to/configure-deployment-policies",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/how-to/configure-entra-id.md",
+      "redirect_url": "../../foundry-models/how-to/configure-entra-id",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/how-to/configure-marketplace.md",
+      "redirect_url": "../../foundry-models/how-to/configure-marketplace",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/how-to/configure-project-connection.md",
+      "redirect_url": "../../foundry-models/how-to/configure-project-connection",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/how-to/create-model-deployments.md",
+      "redirect_url": "../../foundry-models/how-to/create-model-deployments",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/how-to/inference.md",
+      "redirect_url": "../../foundry-models/how-to/inference",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/how-to/manage-costs.md",
+      "redirect_url": "../../foundry-models/how-to/manage-costs",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/how-to/monitor-models.md",
+      "redirect_url": "../../foundry-models/how-to/monitor-models",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/how-to/quickstart-ai-project.md",
+      "redirect_url": "../../foundry-models/how-to/quickstart-ai-project",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/how-to/quickstart-create-resources.md",
+      "redirect_url": "../../foundry-models/how-to/quickstart-create-resources",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/how-to/quickstart-github-models.md",
+      "redirect_url": "../../foundry-models/how-to/quickstart-github-models",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/how-to/use-blocklists.md",
+      "redirect_url": "../../foundry-models/how-to/use-blocklists",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/how-to/use-chat-completions.md",
+      "redirect_url": "../../foundry-models/how-to/use-chat-completions",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/how-to/use-chat-multi-modal.md",
+      "redirect_url": "../../foundry-models/how-to/use-chat-multi-modal",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/how-to/use-chat-reasoning.md",
+      "redirect_url": "../../foundry-models/how-to/use-chat-reasoning",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/how-to/use-embeddings.md",
+      "redirect_url": "../../foundry-models/how-to/use-embeddings",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/how-to/use-image-embeddings.md",
+      "redirect_url": "../../foundry-models/how-to/use-image-embeddings",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/how-to/use-structured-outputs.md",
+      "redirect_url": "../../foundry-models/how-to/use-structured-outputs",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/how-to/github/create-model-deployments.md",
+      "redirect_url": "../../../foundry-models/how-to/github/create-model-deployments",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/tutorials/get-started-deepseek-r1.md",
+      "redirect_url": "../../foundry-models/tutorials/get-started-deepseek-r1",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/overview.md",
+      "redirect_url": "../foundry-models/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/quotas-limits.md",
+      "redirect_url": "../foundry-models/quotas-limits",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/supported-languages.md",
+      "redirect_url": "../foundry-models/supported-languages",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/supported-languages-openai.md",
+      "redirect_url": "../foundry-models/supported-languages-openai",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/faq.yml",
+      "redirect_url": "../foundry-models/faq",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/model-inference/index.yml",
+      "redirect_url": "../foundry-models/index",
       "redirect_document_id": false
     }
   ]
