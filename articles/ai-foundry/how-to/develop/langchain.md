@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 06/24/2025
+ms.date: 06/26/2025
 ms.reviewer: fasantia
 ms.author: sgilley
 author: sdgilley
@@ -31,7 +31,7 @@ To run this tutorial, you need:
 
 * An [Azure subscription](https://azure.microsoft.com).
 
-* A model deployment supporting the [Model Inference API](https://aka.ms/azureai/modelinference) deployed. In this example, we use a `Mistral-medium-2505` deployment in the [Foundry Models](../../../ai-foundry/model-inference/overview.md).
+* A model deployment supporting the [Model Inference API](https://aka.ms/azureai/modelinference) deployed. In this example, we use a `Mistral-Large-2411` deployment in the [Foundry Models](../../../ai-foundry/model-inference/overview.md).
 * Python 3.9 or later installed, including pip.
 * LangChain installed. You can do it with:
 
@@ -76,7 +76,7 @@ Once configured, create a client to connect with the chat model by using the `in
 ```python
 from langchain.chat_models import init_chat_model
 
-llm = init_chat_model(model="mistral-medium-2505", model_provider="azure_ai")
+llm = init_chat_model(model="Mistral-Large-2411", model_provider="azure_ai")
 ```
 
 You can also use the class `AzureAIChatCompletionsModel` directly.
@@ -97,7 +97,7 @@ from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 model = AzureAIChatCompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=DefaultAzureCredential(),
-    model="mistral-medium-2505",
+    model="Mistral-Large-2411",
 )
 ```
 
@@ -115,7 +115,7 @@ from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 model = AzureAIChatCompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=DefaultAzureCredentialAsync(),
-    model="mistral-medium-2505",
+    model="Mistral-Large-2411",
 )
 ```
 
@@ -169,7 +169,7 @@ chain.invoke({"language": "italian", "text": "hi"})
 
 Models deployed to Azure AI Foundry support the Model Inference API, which is standard across all the models. Chain multiple LLM operations based on the capabilities of each model so you can optimize for the right model based on capabilities. 
 
-In the following example, we create two model clients. One is a producer and another one is a verifier. To make the distinction clear, we're using a multi-model endpoint like the [Foundry Models API](../../model-inference/overview.md) and hence we're passing the parameter `model` to use a `Mistral-Medium` and a `Mistral-Small` model, quoting the fact that **producing content is more complex than verifying it**.
+In the following example, we create two model clients. One is a producer and another one is a verifier. To make the distinction clear, we're using a multi-model endpoint like the [Foundry Models API](../../model-inference/overview.md) and hence we're passing the parameter `model` to use a `Mistral-Large` and a `Mistral-Small` model, quoting the fact that **producing content is more complex than verifying it**.
 
 [!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-chat-models.ipynb?name=create_producer_verifier)]
 
