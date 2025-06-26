@@ -108,8 +108,8 @@ items:
       - name: Dictionary Examples
         href: text-translation/reference/v3/dictionary-examples.md
       - name: Migrate to v3 Text translation API
-      displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
-      href: text-translation/how-to/migrate-to-v3.md
+        displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
+        href: text-translation/how-to/migrate-to-v3.md
     - name: Authentication and authorization
       displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
       href: text-translation/reference/authentication.md
