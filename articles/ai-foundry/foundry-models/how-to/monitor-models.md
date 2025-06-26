@@ -5,7 +5,7 @@ author: ssalgadodev
 ms.author: ssalgado
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 4/30/2025
+ms.date: 6/26/2025
 manager: scottpolly
 ms.reviewer: fasantia
 reviewer: santiagxf
@@ -54,7 +54,7 @@ You can view metrics within Azure AI Foundry portal. To view them, follow these 
 
 1. Select the tab **Metrics**.
 
-1. You can see a high level view of the most common metrics you may be interested about.
+1. You can access an overview of common metrics that may be of interest. For cost-related metrics, please use the Azure Cost Management deep link, which provides access to detailed post-consumption cost metrics in the Cost analysis section located in the Azure Portal. 
 
     :::image type="content" source="../media/monitor-models/deployment-metrics.png" alt-text="Screenshot showing the metrics displayed for model deployments in Azure AI Foundry portal." lightbox="../media/monitor-models/deployment-metrics.png":::
 
