@@ -67,7 +67,7 @@ In this section, you create a pipeline parameter in the settings panel.
 
 1. Select **Save**.
 
-After you create a pipeline parameter, you must [attach it to the component parameter](#attach-a-component-input-to-a-pipeline-input) that you want to dynamically set.
+After you create a pipeline parameter, you must [attach it to the component parameter](#attach-a-component-parameter-to-a-pipeline-parameter) that you want to dynamically set.
 
 ### Option 2: Promote a component parameter
 
