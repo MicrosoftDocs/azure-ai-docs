@@ -10,4 +10,4 @@ ms.service: azure-ai-openai
 
 # Groundedness detection filter
 
-[!INCLUDE [groundedness-detection-overview](../../content-safety/includes/groundedness-detection-overview.md)]
+[!INCLUDE [groundedness-detection-overview](../../../ai-services/content-safety/includes/groundedness-detection-overview.md)]
