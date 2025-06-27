@@ -20,6 +20,12 @@ zone_pivot_groups: search-get-started-vector-search
 
 ::: zone-end
 
+::: zone pivot="javascript"
+
+[!INCLUDE [JavaScript quickstart](includes/quickstarts/search-get-started-vector-javascript.md)]
+
+::: zone-end
+
 ::: zone pivot="typescript"
 
 [!INCLUDE [TypeScript quickstart](includes/quickstarts/search-get-started-vector-typescript.md)]

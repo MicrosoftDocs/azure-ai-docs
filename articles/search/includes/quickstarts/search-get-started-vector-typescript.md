@@ -525,11 +525,11 @@ This search uses [SearchClient](/javascript/api/@azure/search-documents/searchcl
 
     Key takeaways: 
 
-       - Vector search is specified through the `vectorSearchOptions` property. Keyword search is specified through the `semanticSearchOptions` property.
-    
-       - In a hybrid search, you can integrate vector search with full-text search over keywords. Filters, spell check, and semantic ranking apply to textual content only, and not vectors. In this final query, there's no semantic `answer` because the system didn't produce one that was sufficiently strong.
-    
-       - Actual results include more detail, including semantic captions and highlights. Results were modified for readability. To get the full structure of the response, run the request in the REST client.
+    - Vector search is specified through the `vectorSearchOptions` property. Keyword search is specified through the `semanticSearchOptions` property.
+
+    - In a hybrid search, you can integrate vector search with full-text search over keywords. Filters, spell check, and semantic ranking apply to textual content only, and not vectors. In this final query, there's no semantic `answer` because the system didn't produce one that was sufficiently strong.
+
+    - Actual results include more detail, including semantic captions and highlights. Results were modified for readability. To get the full structure of the response, run the request in the REST client.
 
 ## Clean up
 
