@@ -1,4 +1,4 @@
----
+﻿---
 title: Include file
 description: Include file
 author: mrbullwinkle
@@ -206,7 +206,7 @@ Once your model is fine-tuned, you can deploy the model and can use it in your o
 
 When you deploy the model, you make the model available for inferencing, and that incurs an hourly hosting charge. Fine-tuned models, however, can be stored in Azure AI Foundry portal at no cost until you're ready to use them.
 
-[!INCLUDE [Fine-tuning deletion](../../../ai-services/openai/includes/fine-tune.md)]
+[!INCLUDE [Fine-tuning deletion](fine-tune.md)]
 
 You can monitor the progress of your deployment on the **Deployments** page in Azure AI Foundry portal.
 
@@ -223,7 +223,7 @@ When you're done with your fine-tuned model, you can delete the deployment and m
 
 ### Delete your fine-tuned model deployment
 
-[!INCLUDE [Fine-tuning deletion](../../../ai-services/openai/includes/fine-tune.md)]
+[!INCLUDE [Fine-tuning deletion](fine-tune.md)]
 
 You can delete the deployment for your fine-tuned model on the **Deployments** page in Azure AI Foundry portal. Select the deployment to delete, and then select **Delete** to delete the deployment.
 

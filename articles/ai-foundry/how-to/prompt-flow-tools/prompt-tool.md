@@ -1,4 +1,4 @@
----
+﻿---
 title: Prompt tool for flows in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: This article introduces you to the Prompt tool for flows in Azure AI Foundry portal.
@@ -42,7 +42,7 @@ Please select an option from the menu below:
 4. Contact customer support
 ```
 
-For more information and best practices, see [Prompt engineering techniques](../../../ai-services/openai/concepts/advanced-prompt-engineering.md).
+For more information and best practices, see [Prompt engineering techniques](../../openai/concepts/advanced-prompt-engineering.md).
 
 ## Build with the Prompt tool
 

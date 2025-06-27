@@ -1,4 +1,4 @@
----
+﻿---
 title: LLM tool for flows in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: This article introduces you to the large language model (LLM) tool for flows in Azure AI Foundry portal.
@@ -27,7 +27,7 @@ To use large language models (LLMs) for natural language processing, you use the
 
 ## Prerequisites
 
-Prepare a prompt as described in the [Prompt tool](prompt-tool.md#prerequisites) documentation. The LLM tool and Prompt tool both support [Jinja](https://jinja.palletsprojects.com/en/stable/) templates. For more information and best practices, see [Prompt engineering techniques](../../../ai-services/openai/concepts/advanced-prompt-engineering.md).
+Prepare a prompt as described in the [Prompt tool](prompt-tool.md#prerequisites) documentation. The LLM tool and Prompt tool both support [Jinja](https://jinja.palletsprojects.com/en/stable/) templates. For more information and best practices, see [Prompt engineering techniques](../../openai/concepts/advanced-prompt-engineering.md).
 
 ## Build with the LLM tool
 

@@ -1,4 +1,4 @@
----
+﻿---
 title: Azure AI Foundry Models quotas and limits
 titleSuffix: Azure AI Foundry
 description: Quick reference, detailed description, and best practices on the quotas and limits for the Azure AI Foundry service.
@@ -15,7 +15,7 @@ reviewer: santiagxf
 
 # Azure AI Foundry Models quotas and limits
 
-This article contains a quick reference and a detailed description of the quotas and limits for Azure AI Foundry Models. For quotas and limits specific to the Azure OpenAI in Foundry Models, see [Quota and limits in Azure OpenAI](../../ai-services/openai/quotas-limits.md).
+This article contains a quick reference and a detailed description of the quotas and limits for Azure AI Foundry Models. For quotas and limits specific to the Azure OpenAI in Foundry Models, see [Quota and limits in Azure OpenAI](../openai/quotas-limits.md).
 
 ## Quotas and limits reference
 
@@ -32,8 +32,8 @@ Azure uses quotas and limits to prevent budget overruns due to fraud, and to hon
 
 | Limit name           | Applies to          | Limit value |
 | -------------------- | ------------------- | ----------- |
-| Tokens per minute    | Azure OpenAI models | Varies per model and SKU. See [limits for Azure OpenAI](../../ai-services/openai/quotas-limits.md). |
-| Requests per minute  | Azure OpenAI models | Varies per model and SKU. See [limits for Azure OpenAI](../../ai-services/openai/quotas-limits.md). |
+| Tokens per minute    | Azure OpenAI models | Varies per model and SKU. See [limits for Azure OpenAI](../openai/quotas-limits.md). |
+| Requests per minute  | Azure OpenAI models | Varies per model and SKU. See [limits for Azure OpenAI](../openai/quotas-limits.md). |
 | Tokens per minute    | DeepSeek-R1<br />DeepSeek-V3-0324         | 5,000,000 |
 | Requests per minute  | DeepSeek-R1<br />DeepSeek-V3-0324         | 5,000     |
 | Concurrent requests  | DeepSeek-R1<br />DeepSeek-V3-0324         | 300       |

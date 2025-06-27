@@ -1,4 +1,4 @@
----
+﻿---
 title: Models available in Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
 description: Explore the models available via the Azure AI Foundry Models and their capabilities.
@@ -33,7 +33,7 @@ Models Sold Directly by Azure  is a selection of flagship models offered directl
 
 ### Azure OpenAI
 
-Azure OpenAI in Azure AI Foundry Models offers a diverse set of models with different capabilities and price points. Learn more details at [Azure OpenAI Model availability](../../../ai-services/openai/concepts/models.md). These models include:
+Azure OpenAI in Azure AI Foundry Models offers a diverse set of models with different capabilities and price points. Learn more details at [Azure OpenAI Model availability](../../openai/concepts/models.md). These models include:
 
 - State-of-the-art models designed to tackle reasoning and problem-solving tasks with increased focus and capability
 - Models that can understand and generate natural language and code

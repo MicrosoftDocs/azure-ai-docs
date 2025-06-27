@@ -1,4 +1,4 @@
----
+﻿---
 title: Deploy models in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: Learn about deploying models in Azure AI Foundry portal.
@@ -27,7 +27,7 @@ Azure AI Foundry offers four different deployment options:
 
 |Name                           | Azure OpenAI | Azure AI Foundry Models | Serverless API deployment | Managed compute |
 |-------------------------------|----------------------|-------------------|----------------|-----------------|
-| Which models can be deployed? | [Azure OpenAI models](../../ai-services/openai/concepts/models.md)        | [Azure OpenAI models and serverless API deployment](../../ai-foundry/model-inference/concepts/models.md) | [serverless API deployment](../how-to/model-catalog-overview.md) | [Open and custom models](../how-to/model-catalog-overview.md#availability-of-models-for-deployment-as-managed-compute) |
+| Which models can be deployed? | [Azure OpenAI models](../openai/concepts/models.md)        | [Azure OpenAI models and serverless API deployment](../../ai-foundry/model-inference/concepts/models.md) | [serverless API deployment](../how-to/model-catalog-overview.md) | [Open and custom models](../how-to/model-catalog-overview.md#availability-of-models-for-deployment-as-managed-compute) |
 | Deployment resource           | Azure OpenAI resource | Azure AI services resource | AI project resource | AI project resource |
 | Requires Hubs/Projects        | No | No | Yes | Yes |
 | Data processing options       | Regional <br /> Data-zone  <br /> Global | Global | Regional | Regional |
@@ -36,7 +36,7 @@ Azure AI Foundry offers four different deployment options:
 | Custom content filtering      | Yes | Yes | No  | No  |
 | Key-less authentication       | Yes | Yes | No  | No  |
 | Best suited when              | You're planning to use only OpenAI models | You're planning to take advantage of the flagship models in Azure AI catalog, including OpenAI. | You're planning to use a single model from a specific provider (excluding OpenAI). | If you plan to use open models and you have enough compute quota available in your subscription. |
-| Billing bases                 | Token usage & [provisioned throughput units](../../ai-services/openai/concepts/provisioned-throughput.md)        | Token usage       | Token usage<sup>1</sup>      | Compute core hours<sup>2</sup> |
+| Billing bases                 | Token usage & [provisioned throughput units](../openai/concepts/provisioned-throughput.md)        | Token usage       | Token usage<sup>1</sup>      | Compute core hours<sup>2</sup> |
 | Deployment instructions       | [Deploy to Azure OpenAI](../how-to/deploy-models-openai.md) | [Deploy to Foundry Models](../model-inference/how-to/create-model-deployments.md) | [Deploy to serverless API deployment](../how-to/deploy-models-serverless.md) | [Deploy to Managed compute](../how-to/deploy-models-managed.md) |
 
 <sup>1</sup> A minimal endpoint infrastructure is billed per minute. You aren't billed for the infrastructure that hosts the model in serverless API deployment. After you delete the endpoint, no further charges accrue.
