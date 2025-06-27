@@ -61,7 +61,7 @@ In this section, you create a pipeline parameter in the settings panel.
 
 1. Enter a name for the parameter and a default value. 
 
-   For example, enter `minimum-missing-value-ratio-2` as parameter name and `0.1` as the default value.
+   For example, enter `minimum-missing-value-ratio-2` as input name and `0.1` as the default value.
 
    :::image type="content" source="media/how-to-use-pipeline-parameter/create-pipeline-parameter.png" alt-text="Screenshot that shows how to create a pipeline parameter." lightbox ="media/how-to-use-pipeline-parameter/create-pipeline-parameter.png":::
 
@@ -79,7 +79,7 @@ The easiest way to create a pipeline parameter for a component value is to promo
 
    :::image type="content" source="media/how-to-use-pipeline-parameter/promote-module-para-to-pipeline-para.png" alt-text="Screenshot that shows how to promote a component parameter to a pipeline parameter." lightbox ="media/how-to-use-pipeline-parameter/promote-module-para-to-pipeline-para.png":::
 
-1. Enter a parameter name and a default value.
+1. Enter an input name and a default value.
 1. Select **Save**.
 
 You can now specify new values for this parameter anytime you submit the pipeline.
@@ -88,7 +88,7 @@ You can now specify new values for this parameter anytime you submit the pipelin
 
 If you want to submit your pipeline with variable datasets, you need to promote your dataset to a pipeline parameter:
 
-1. Select the dataset you want to turn into a pipeline parameter.
+1. Double-click the dataset you want to turn into a pipeline parameter.
 
 1. In the details pane of the dataset, select **Set as pipeline input**.
 
