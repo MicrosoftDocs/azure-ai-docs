@@ -137,7 +137,7 @@ A hub resource is deployed side-by-side with your AI Foundry resource and takes 
   - Identity & Managed Identity: [Configure managed identity in Azure AI Foundry](../../../ai-services/openai/how-to/managed-identity.md)
   - Customer-Managed Keys (CMK): [Customer-managed keys in Azure AI Foundry](../../concepts/encryption-keys-portal.md)
   - Example infrastructure [templates repository with sample infrastructure templates](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup)
-  - [Recover or purge deleted Azure AI Foundry resources](../../../ai-services/recover-purge-resources.md)
+  - [Recover or purge deleted Azure AI Foundry resources](../../../ai-services/recover-purge-resources.md?context=/azure/ai-foundry/context/context)
 
 - Establish Connectivity with Other Azure Services
 

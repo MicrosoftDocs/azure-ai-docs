@@ -548,6 +548,8 @@ items:
           href: how-to/prompt-flow-troubleshoot.md
 - name: Setup and management
   items:
+  - name: Plan rollout 
+    href: concepts/planning.md
   - name: Choose a resource type
     href: concepts/resource-types.md
   - name: Manage AI Foundry resources
@@ -556,6 +558,8 @@ items:
       href: ../ai-services/multi-service-resource.md?context=/azure/ai-foundry/context/context
     - name: Create using Bicep template
       href: how-to/create-resource-template.md
+    - name: Recover or purge deleted resources
+      href: ../ai-services/recover-purge-resources.md?context=/azure/ai-foundry/context/context
   - name: Manage AI Hub resources
     items:
     - name: Hubs overview
