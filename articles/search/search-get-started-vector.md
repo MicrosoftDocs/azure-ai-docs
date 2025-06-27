@@ -20,6 +20,12 @@ zone_pivot_groups: search-get-started-vector-search
 
 ::: zone-end
 
+::: zone pivot="typescript"
+
+[!INCLUDE [TypeScript quickstart](includes/quickstarts/search-get-started-vector-typescript.md)]
+
+::: zone-end
+
 ::: zone pivot="rest"
 
 [!INCLUDE [REST quickstart](includes/quickstarts/search-get-started-vector-rest.md)]
