@@ -17,6 +17,10 @@ This article provides a summary of the latest releases and major documentation u
 
 ## June 2025
 
+### Deep Research tool
+
+Use the [Deep Research tool](./how-to/tools/deep-research.md) to utilize a multi-step research pipeline that’s tightly integrated with Grounding with Bing Search and Azure OpenAI models
+
 ### Model Context Protocol (MCP) tool
 
 You can new extend the capabilities of your agents by connecting them to tools hosted on remote [Model Context Protocol](https://modelcontextprotocol.io/introduction) (MCP) servers by using the [MCP tool](./how-to/tools/model-context-protocol.md). 
