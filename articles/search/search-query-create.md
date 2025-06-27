@@ -100,7 +100,7 @@ In the Azure portal, when you open an index, you can work with Search Explorer a
 
 ### [**REST API**](#tab/rest-text-query)
 
-Use a REST client to set up a request. If you need help with getting started, see [Quickstart: Text search using REST](search-get-started-rest.md).
+Use a REST client to set up a request. If you need help with getting started, see [Quickstart: Full-text search using REST](search-get-started-text.md).
 
 The following example calls the REST API for full text search:
 

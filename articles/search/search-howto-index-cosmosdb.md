@@ -30,7 +30,7 @@ Because terminology can be confusing, it's worth noting that [Azure Cosmos DB in
 
 + Read permissions. A "full access" connection string includes a key that grants access to the content, but if you're using identities (Microsoft Entra ID), make sure the [search service managed identity](search-howto-managed-identities-data-sources.md) is assigned both **Cosmos DB Account Reader Role** and [**Cosmos DB Built-in Data Reader Role**](/azure/cosmos-db/how-to-setup-rbac#built-in-role-definitions).
 
-To work through the examples in this article, you need the Azure portal or a [REST client](search-get-started-rest.md). If you're using Azure portal, make sure that access to all public networks is enabled. Other approaches for creating a Cosmos DB indexer include Azure SDKs.
+To work through the examples in this article, you need the Azure portal or a [REST client](search-get-started-text.md). If you're using Azure portal, make sure that access to all public networks is enabled. Other approaches for creating a Cosmos DB indexer include Azure SDKs.
 
 ## Try with sample data
 

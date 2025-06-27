@@ -44,7 +44,7 @@ This article uses the REST APIs to illustrate each step.
   
 + A Contributor role assignment in the Microsoft Fabric workspace where the lakehouse is located. Steps are outlined in the [Grant permissions](#assign-service-permissions) section of this article.
 
-+ [A REST client](search-get-started-rest.md) to formulate REST calls similar to the ones shown in this article.
++ A [REST client](search-get-started-text.md) to formulate REST calls similar to the ones shown in this article.
 
 ## Supported tasks
 
