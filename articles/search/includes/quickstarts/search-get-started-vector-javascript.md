@@ -479,6 +479,16 @@ This search uses [SearchClient](/javascript/api/@azure/search-documents/searchcl
       Category: Suite
     ```
 
+    You can think of the semantic ranking as a way to improve the relevance of search results by understanding the meaning behind the words in the query and the content of the documents. In this case, the semantic ranking helps to identify hotels that are not only relevant to the keywords but also match the intent of the query:
+    
+        Key takeaways: 
+    
+        - Vector search is specified through the `vectorSearchOptions` property. Keyword search is specified through the `semanticSearchOptions` property.
+    
+        - In a hybrid search, you can integrate vector search with full-text search over keywords. Filters, spell check, and semantic ranking apply to textual content only, and not vectors. In this final query, there's no semantic `answer` because the system didn't produce one that was sufficiently strong.
+    
+        - Actual results include more detail, including semantic captions and highlights. Results were modified for readability. To get the full structure of the response, run the request in the REST client.
+
 ## Clean up
 
 When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
@@ -496,35 +506,6 @@ If you want to keep the search service, but delete the index and documents, you 
     ```console
     node -r dotenv/config dist/deleteIndex.js
     ```
-
-    You can think of the semantic ranking as a way to improve the relevance of search results by understanding the meaning behind the words in the query and the content of the documents. In this case, the semantic ranking helps to identify hotels that are not only relevant to the keywords but also match the intent of the query:
-
-    Key takeaways: 
-
-    - Vector search is specified through the `vectorSearchOptions` property. Keyword search is specified through the `semanticSearchOptions` property.
-
-    - In a hybrid search, you can integrate vector search with full-text search over keywords. Filters, spell check, and semantic ranking apply to textual content only, and not vectors. In this final query, there's no semantic `answer` because the system didn't produce one that was sufficiently strong.
-
-    - Actual results include more detail, including semantic captions and highlights. Results were modified for readability. To get the full structure of the response, run the request in the REST client.
-
-## Clean up
-
-When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
-
-You can find and manage resources in the Azure portal by using the **All resources** or **Resource groups** link in the leftmost pane.
-
-If you want to keep the search service, but delete the index and documents, you can delete the index programmatically.
-
-1. Create a `deleteIndex.ts` file in the `src` directory.
-1. Add the dependencies, environment variables, and code to delete the index.
-
-    :::code language="javascript" source="~/azure-search-javascript-samples/quickstart-vector-js/src/deleteIndex.js" :::
-1. Run the file:
-
-    ```console
-    node -r dotenv/config dist/deleteIndex.js
-    ```
-
 
 ## Next steps
 
