@@ -518,9 +518,9 @@ A refresh of the Assistants API is now publicly available. It contains the follo
 
 * [File search tool and vector storage](https://go.microsoft.com/fwlink/?linkid=2272425)
 * [Max completion and max prompt token support](./concepts/assistants.md) for managing token usage.
-* `tool_choice` [parameter](./assistants-reference-runs.md#run-object) for forcing the Assistant to use a specified tool. 
+* `tool_choice` parameter for forcing the Assistant to use a specified tool. 
 You can now create messages with the [assistant](.//assistants-reference-messages.md#create-message) role to create custom conversation histories in Threads.
-* Support for `temperature`, `top_p`, `response_format` [parameters](./assistants-reference.md#create-an-assistant).
+* Support for `temperature`, `top_p`, `response_format` parameters.
 * Streaming and polling support. You can use the helper functions in our Python SDK to create runs and stream responses. We have also added polling SDK helpers to share object status updates without the need for polling. 
 * Experiment with [Logic Apps and Function Calling using Azure OpenAI Studio](./how-to/assistants-logic-apps.md). Import your REST APIs implemented in Logic Apps as functions and the studio invokes the function (as a Logic Apps workflow) automatically based on the user prompt.
 * AutoGen by Microsoft Research provides a multi-agent conversation framework to enable convenient building of Large Language Model (LLM) workflows across a wide range of applications. Azure OpenAI assistants are now integrated into AutoGen via `GPTAssistantAgent`, a new experimental agent that lets you seamlessly add Assistants into AutoGen-based multi-agent workflows. This enables multiple Azure OpenAI assistants that could be task or domain specialized to collaborate and tackle complex tasks.
@@ -695,21 +695,19 @@ For information on model regional availability and upgrades refer to the [models
 
 Azure OpenAI now supports the API that powers OpenAI's GPTs. Azure OpenAI Assistants (Preview) allows you to create AI assistants tailored to your needs through custom instructions and advanced tools like code interpreter, and custom functions. To learn more, see:
 
-- [Quickstart](./assistants-quickstart.md)
 - [Concepts](./concepts/assistants.md)
 - [In-depth Python how-to](./how-to/assistant.md)
 - [Code Interpreter](./how-to/code-interpreter.md)
 - [Function calling](./how-to/assistant-functions.md)
 - [Assistants model & region availability](./concepts/models.md#assistants-preview)
-- [Assistants Python & REST reference](./assistants-reference.md)
 - [Assistants Samples](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/Assistants)
 
 ### OpenAI text to speech voices public preview
 
-Azure OpenAI now supports text to speech APIs with OpenAI's voices. Get AI-generated speech from the text you provide. To learn more, see the [overview guide](../speech-service/openai-voices.md) and try the [quickstart](./text-to-speech-quickstart.md).
+Azure OpenAI now supports text to speech APIs with OpenAI's voices. Get AI-generated speech from the text you provide. To learn more, see the [overview guide](../../ai-services/speech-service/openai-voices.md) and try the [quickstart](./text-to-speech-quickstart.md).
 
 > [!NOTE]
-> Azure AI Speech also supports OpenAI text to speech voices. To learn more, see [OpenAI text to speech voices via Azure OpenAI or via Azure AI Speech](../speech-service/openai-voices.md#openai-text-to-speech-voices-via-azure-openai-or-via-azure-ai-speech) guide.
+> Azure AI Speech also supports OpenAI text to speech voices. To learn more, see [OpenAI text to speech voices via Azure OpenAI or via Azure AI Speech](../../ai-services/speech-service/openai-voices.md#openai-text-to-speech-voices-via-azure-openai-or-via-azure-ai-speech) guide.
 
 ### New Fine-tuning capabilities and model support
 
@@ -820,7 +818,7 @@ Azure OpenAI now supports the GPT-3.5 Turbo Instruct model. This model has perfo
 Azure OpenAI now supports speech to text APIs powered by OpenAI's Whisper model. Get AI-generated text based on the speech audio you provide. To learn more, check out the [quickstart](./whisper-quickstart.md).
 
 > [!NOTE]
-> Azure AI Speech also supports OpenAI's Whisper model via the batch transcription API. To learn more, check out the [Create a batch transcription](../speech-service/batch-transcription-create.md#use-a-whisper-model) guide. Check out [What is the Whisper model?](../speech-service/whisper-overview.md) to learn more about when to use Azure AI Speech vs. Azure OpenAI.
+> Azure AI Speech also supports OpenAI's Whisper model via the batch transcription API. To learn more, check out the [Create a batch transcription](../../ai-services/speech-service/batch-transcription-create.md#use-a-whisper-model) guide. Check out [What is the Whisper model?](../../ai-services/speech-service/whisper-overview.md) to learn more about when to use Azure AI Speech vs. Azure OpenAI.
 
 ### New Regions
 
@@ -935,7 +933,7 @@ If you're currently using the `2023-03-15-preview` API, we recommend migrating t
 
 New articles on:
 
-- [Monitoring an Azure OpenAI](./how-to/monitoring.md)
+- [Monitoring an Azure OpenAI](./how-to/monitor-openai.md)
 - [Plan and manage costs for Azure OpenAI](./how-to/manage-costs.md)
 
 New training course:

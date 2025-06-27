@@ -21,6 +21,6 @@ Content filtering ensures that AI-generated outputs align with ethical guideline
 > The text content filtering models for the hate, sexual, violence, and self-harm categories have been specifically trained and tested on the following languages: English, German, Japanese, Spanish, French, Italian, Portuguese, and Chinese. However, the service can work in many other languages, but the quality might vary. In all cases, you should do your own testing to ensure that it works for your application.
 
 
-[!INCLUDE [severity-levels text, four-level](.../../../ai-services/content-safety/includes/severity-levels-text-four.md)]
+[!INCLUDE [severity-levels text, four-level](../../../ai-services/content-safety/includes/severity-levels-text-four.md)]
 
-[!INCLUDE [severity-levels image](.../../../ai-services/content-safety/includes/severity-levels-image.md)]
+[!INCLUDE [severity-levels image](../../../ai-services/content-safety/includes/severity-levels-image.md)]

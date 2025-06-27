@@ -106,5 +106,5 @@ Now that you know when to use fine-tuning for your use case, you can go to Azure
 ## Related content
 
 - [Fine-tune models using managed compute (preview)](../how-to/fine-tune-managed-compute.md)
-- [Fine-tune an Azure OpenAI model in Azure AI Foundry portal](../../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context)
+- [Fine-tune an Azure OpenAI model in Azure AI Foundry portal](../openai/how-to/fine-tuning.md?context=/azure/ai-studio/context/context)
 - [Fine-tune models using serverless API deployment](../how-to/fine-tune-serverless.md)
