@@ -1,5 +1,5 @@
 ---
-title: Plan Azure AI Foundry Rollout Across My Organization
+title: Azure AI Foundry Rollout Across My Organization
 titleSuffix: Azure AI Foundry
 description: Learn how to plan the rollout of Azure AI Foundry across your organization, including environment setup, data isolation, and governance.
 manager: scottpolly
@@ -11,7 +11,7 @@ ms.author: sgilley
 ms.reviewer: deeikele
 ---
 
-# Plan Azure AI Foundry rollout across my organization
+# Azure AI Foundry rollout across my organization
 
 This guide outlines key decisions for rolling out Azure AI Foundry, including environment setup, data isolation, integration with other Azure services, capacity management, and monitoring. Every organization is different. Use this guide as a starting point and adapt it to your needs. For implementation details, see the linked articles for further guidance.
 
@@ -130,28 +130,22 @@ A hub resource is deployed side-by-side with your AI Foundry resource and takes 
 
 ## Learn more
 
-### Secure the AI Foundry Environment
+- Secure the AI Foundry Environment
 
-- Identity & Managed Identity: [Configure managed identity in Azure AI Foundry](../../../ai-services/openai/how-to/managed-identity.md)
-- Networking: [Use a virtual network with Azure AI Foundry](../../agents/how-to/virtual-networks.md)
-- Customer-Managed Keys (CMK): [Customer-managed keys in Azure AI Foundry](../../concepts/encryption-keys-portal.md)
-- Authentication & RBAC: [Role-based access control in Azure AI Foundry](../../concepts/rbac-azure-ai-foundry.md)
-- Sample Templates: [Create an AI Foundry hub using a Bicep template](../create-azure-ai-hub-template.md)
-- [Recover or purge deleted Azure AI Foundry resources](../../../ai-services/recover-purge-resources.md)
+  - Authentication & RBAC: [Role-based access control in Azure AI Foundry](../../concepts/rbac-azure-ai-foundry.md)
+  - - Networking: [Use a virtual network with Azure AI Foundry](../configure-private-link.md)
+  - Identity & Managed Identity: [Configure managed identity in Azure AI Foundry](../../../ai-services/openai/how-to/managed-identity.md)
+  - Customer-Managed Keys (CMK): [Customer-managed keys in Azure AI Foundry](../../concepts/encryption-keys-portal.md)
+  - Example infrastructure [templates repository with sample infrastructure templates](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup)
+  - [Recover or purge deleted Azure AI Foundry resources](../../../ai-services/recover-purge-resources.md)
 
-### Establish Connectivity with Other Azure Services
+- Establish Connectivity with Other Azure Services
 
-- Overview of Connections: [Add a new connection in Azure AI Foundry](../connections-add.md)
-- Project vs. Resource-Level Connections: [Configure a connection to use Azure AI Foundry Models](../../model-inference/how-to/configure-project-connection.md)
+  - Overview of Connections: [Add a new connection in Azure AI Foundry](../connections-add.md)
 
-### Governance
+- Governance
 
-- Model Access Control with Azure Policy: [Control model deployment with built-in policies](../built-in-policy-model-deployment.md)
-- Cost Management: [Plan and manage costs for Azure AI Foundry](../costs-plan-manage.md)
-- Azure Monitor for Usage Tracking: [Monitor your Generative AI applications](../monitor-applications.md)
-- Azure Log Analytics for Logging: [Enable diagnostic logging for Azure AI services](../../../ai-services/diagnostic-logging.md)
-
-### Share Reserved Capacity Across Business Groups
-
-- Cross-Resource Model Access: [Use Azure AI services in Azure AI Foundry](../../../ai-services/connect-services-ai-foundry-portal.md)
-- Shared PTU Deployments: [Provisioned Throughput Reservations in Azure AI Foundry](/azure/cost-management-billing/reservations/azure-ai-foundry)
+  - Model Access Control with Azure Policy: [Control model deployment with built-in policies](../built-in-policy-model-deployment.md)
+  - Cost Management: [Plan and manage costs for Azure AI Foundry](../costs-plan-manage.md)
+  - Azure Monitor for Usage Tracking: [Monitor your Generative AI applications](../monitor-applications.md)
+  
