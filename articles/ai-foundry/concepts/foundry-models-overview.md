@@ -26,7 +26,7 @@ With Foundry Models, you can:
 * Choose your path—bring your own model, use a hosted one, or integrate seamlessly with Azure services. 
 * Whether you're a developer, data scientist, or enterprise architect, Foundry Models gives you the flexibility and control to build AI solutions that scale—securely, responsibly, and fast.
 
-Azure AI Foundry offers a comprehensive catalog of AI models. There are over 1900+ models ranging from Foundation Models, Reasoning Models, Small Language Models, Multimodal Models, Domain Specific Models, Industry Models and more.
+Azure AI Foundry offers a comprehensive catalog of AI models. There are over 11000+ models ranging from Foundation Models, Reasoning Models, Small Language Models, Multimodal Models, Domain Specific Models, Industry Models and more.
 
 Our catalog is organized into two main categories: 
 
