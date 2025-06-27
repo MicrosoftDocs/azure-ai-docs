@@ -116,7 +116,7 @@ Effective governance in Azure AI Foundry ensures secure, compliant, and cost-eff
 
 When deploying models in AI Foundry, teams can choose between standard and provisioned [deployment types](../../ai-services/openai/how-to/deployment-types.md). Standard deployments are ideal for development and experimentation, offering flexibility and ease of setup. Provisioned deployments are recommended for production scenarios where predictable performance, cost control, and model version pinning are required.
 
-To support cross-region scenarios and let you access existing model deployments, AI Foundry allows [connections](../connections-add.md?pivots=fdp-project) to model deployments hosted in other Foundry or Azure OpenAI instances. Connections enable teams to centralize deployments for experimentation while still enabling access from distributed projects. For production workloads, consider for use cases to manage its own deployments to ensure tighter control over model lifecycle, versioning, and rollback strategies.
+To support cross-region scenarios and let you access existing model deployments, AI Foundry allows [connections](../how-to/connections-add.md?pivots=fdp-project) to model deployments hosted in other Foundry or Azure OpenAI instances. Connections enable teams to centralize deployments for experimentation while still enabling access from distributed projects. For production workloads, consider for use cases to manage its own deployments to ensure tighter control over model lifecycle, versioning, and rollback strategies.
 
 To prevent overuse and ensure fair resource allocation, you can apply [Tokens Per Minute (TPM) limits at the deployment level](../../ai-services/openai/concepts/provisioned-throughput.md?tabs=global-ptum). TPM limits help control consumption, protect against accidental spikes, and align usage with project budgets or quotas. Consider setting conservative limits for shared deployments and higher thresholds for critical production services.
 
@@ -133,7 +133,7 @@ A hub resource is deployed side-by-side with your AI Foundry resource and takes 
 - Secure the AI Foundry Environment
 
   - Authentication & RBAC: [Role-based access control in Azure AI Foundry](../concepts/rbac-azure-ai-foundry.md)
-  - - Networking: [Use a virtual network with Azure AI Foundry](../configure-private-link.md)
+  - - Networking: [Use a virtual network with Azure AI Foundry](../how-to/configure-private-link.md)
   - Identity & Managed Identity: [Configure managed identity in Azure AI Foundry](../../ai-services/openai/how-to/managed-identity.md)
   - Customer-Managed Keys (CMK): [Customer-managed keys in Azure AI Foundry](../concepts/encryption-keys-portal.md)
   - Example infrastructure [templates repository with sample infrastructure templates](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup)
@@ -141,11 +141,11 @@ A hub resource is deployed side-by-side with your AI Foundry resource and takes 
 
 - Establish Connectivity with Other Azure Services
 
-  - Overview of Connections: [Add a new connection in Azure AI Foundry](../connections-add.md)
+  - Overview of Connections: [Add a new connection in Azure AI Foundry](../how-to/connections-add.md)
 
 - Governance
 
-  - Model Access Control with Azure Policy: [Control model deployment with built-in policies](../built-in-policy-model-deployment.md)
-  - Cost Management: [Plan and manage costs for Azure AI Foundry](../costs-plan-manage.md)
-  - Azure Monitor for Usage Tracking: [Monitor your Generative AI applications](../monitor-applications.md)
+  - Model Access Control with Azure Policy: [Control model deployment with built-in policies](../how-to/built-in-policy-model-deployment.md)
+  - Cost Management: [Plan and manage costs for Azure AI Foundry](../how-to/costs-plan-manage.md)
+  - Azure Monitor for Usage Tracking: [Monitor your Generative AI applications](../how-to/monitor-applications.md)
   
