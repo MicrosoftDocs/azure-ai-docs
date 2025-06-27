@@ -29,7 +29,8 @@ You can bring multiple remote MCP servers to Foundry Agent service by adding the
 > [!Note]
 > * You need to bring a remote MCP server (an existing MCP server endpoint)
 > * With current MCP tool in Foundry Agent, explicit approval is not supported (only `never` is accepted for `require_approval` parameter). Please review carefully what MCP server(s) you added to Foundry Agent service. We recommend reviewing all data being shared with remote MCP servers and optionally logging it for auditing purposes.
-> * Supported regions: `westus`, `westus2` and `uaenorth`
+> * Supported regions: `westus`, `westus2`, `uaenorth`, `southindia` and `switzerlandnorth`
+> * The MCP tool supports custom headers for a specific run, allowing you to pass headers as needed by MCP server, such as authentication schema. Headers you pass in will only be available for the current run and will not be persisted.
 
 ## Usage support
 
