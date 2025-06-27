@@ -57,7 +57,7 @@ In this section, you create a pipeline parameter in the settings panel.
 
 1. In your pipeline draft, select **Pipeline interface**.
 
-1. In the **Pipeline interface** section, select the **+** button and then select an parameter type, for example, `Double`. 
+1. In the **Pipeline interface** section, select the **+** button and then select a parameter type, for example, `Double`. 
 
 1. Enter a name for the parameter and a default value. 
 
@@ -79,7 +79,7 @@ The easiest way to create a pipeline parameter for a component value is to promo
 
    :::image type="content" source="media/how-to-use-pipeline-parameter/promote-module-para-to-pipeline-para.png" alt-text="Screenshot that shows how to promote a component parameter to a pipeline parameter." lightbox ="media/how-to-use-pipeline-parameter/promote-module-para-to-pipeline-para.png":::
 
-1. Enter an parameter name and a default value.
+1. Enter a parameter name and a default value.
 1. Select **Save**.
 
 You can now specify new values for this parameter anytime you submit the pipeline.
