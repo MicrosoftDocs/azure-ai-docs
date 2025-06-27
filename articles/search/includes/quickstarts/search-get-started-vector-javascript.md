@@ -481,13 +481,13 @@ This search uses [SearchClient](/javascript/api/@azure/search-documents/searchcl
 
     You can think of the semantic ranking as a way to improve the relevance of search results by understanding the meaning behind the words in the query and the content of the documents. In this case, the semantic ranking helps to identify hotels that are not only relevant to the keywords but also match the intent of the query:
     
-        Key takeaways: 
-    
-        - Vector search is specified through the `vectorSearchOptions` property. Keyword search is specified through the `semanticSearchOptions` property.
-    
-        - In a hybrid search, you can integrate vector search with full-text search over keywords. Filters, spell check, and semantic ranking apply to textual content only, and not vectors. In this final query, there's no semantic `answer` because the system didn't produce one that was sufficiently strong.
-    
-        - Actual results include more detail, including semantic captions and highlights. Results were modified for readability. To get the full structure of the response, run the request in the REST client.
+    Key takeaways: 
+
+    - Vector search is specified through the `vectorSearchOptions` property. Keyword search is specified through the `semanticSearchOptions` property.
+
+    - In a hybrid search, you can integrate vector search with full-text search over keywords. Filters, spell check, and semantic ranking apply to textual content only, and not vectors. In this final query, there's no semantic `answer` because the system didn't produce one that was sufficiently strong.
+
+    - Actual results include more detail, including semantic captions and highlights. Results were modified for readability. To get the full structure of the response, run the request in the REST client.
 
 ## Clean up
 
@@ -501,6 +501,7 @@ If you want to keep the search service, but delete the index and documents, you 
 1. Add the dependencies, environment variables, and code to delete the index.
 
     :::code language="javascript" source="~/azure-search-javascript-samples/quickstart-vector-js/src/deleteIndex.js" :::
+
 1. Build and run the file:
 
     ```console
