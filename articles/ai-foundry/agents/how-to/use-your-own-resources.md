@@ -6,65 +6,104 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 01/15/2025
-author: fosteramanda
-ms.author: fosteramanda
+ms.date: 06/18/2025
+author: aahill
+ms.author: aahi
+ms.reviewer: fosteramanda
 ms.custom: azure-ai-agents
 ---
 
 # Use your own resources
 
-Use this article if you want to use the Azure Agent Service with resources you already have. 
+Use this article if you want to set up your Foundry project with your own resources.
+
+## Limitations
+
+**Use Azure Cosmos DB for NoSQL to store threads**  
+- Your existing Azure Cosmos DB for NoSQL account used in a [standard setup](#choose-basic-or-standard-agent-setup) must have a total throughput limit of at least 3000 RU/s. Both provisioned throughput and serverless are supported.
+- Three containers will be provisioned in your existing Cosmos DB account, each requiring 1000 RU/s
 
 > [!NOTE]
-> * If you use an existing AI Services / Azure OpenAI in Azure AI Foundry Models resource, no model will be deployed. You can deploy a model to the resource after the agent setup is complete. 
-> * Make sure your Azure OpenAI resource and Azure AI Foundry project are in the same region. 
+> * Make sure your Azure OpenAI resource and Azure AI Foundry account and project are in the same region. 
+
+## Prerequisites
+* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
+* Ensure that the individual creating the account and project has the **Azure AI Account Owner** role at the subscription scope
+* If configuring a [standard setup](#choose-basic-or-standard-agent-setup), the same individual must also have permissions to assign roles to required resources (Cosmos DB, Search, Storage). For more information about RBAC in Azure AI Foundry, see [RBAC in Azure AI Foundry](../../../ai-foundry/concepts/rbac-azure-ai-foundry.md).
+    * The built-in role needed is **Role Based Access Administrator**.
+    * Alternatively, having the **Owner** role at the subscription level also satisfies this requirement.
+    * The key permission needed is: `Microsoft.Authorization/roleAssignments/write`
+
+* Register providers. The following providers must be registered:
+    * `Microsoft.KeyVault`
+    * `Microsoft.CognitiveServices`
+    * `Microsoft.Storage`
+    * `Microsoft.MachineLearningServices`
+    * `Microsoft.Search`
+    * `Microsoft.App`
+    * `Microsoft.ContainerService`
+    * To use the [Grounding with Bing Search tool](./tools/bing-grounding.md): `Microsoft.Bing`
+
+    ```console
+       az provider register --namespace 'Microsoft.KeyVault'
+       az provider register --namespace 'Microsoft.CognitiveServices'
+       az provider register --namespace 'Microsoft.Storage'
+       az provider register --namespace 'Microsoft.MachineLearningServices'
+       az provider register --namespace 'Microsoft.Search'
+       az provider register --namespace 'Microsoft.App'
+       az provider register --namespace 'Microsoft.ContainerService'
+       # only to use Grounding with Bing Search tool
+       az provider register --namespace 'Microsoft.Bing'
+    ```
 
 ## Choose basic or standard agent setup
 
-To use your own resources, you can edit the parameters in the provided deployment templates. To start, determine if you want to edit the [basic agent setup template](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/Agents/setup/basic-agent-identity), or the [standard agent setup template](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/Agents/setup/standard-agent).
+To use your own resources, you can edit the parameters in the provided deployment templates. To start, determine if you want to edit the [basic agent setup template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/42-basic-agent-setup-with-customization), or the [standard agent setup template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/43-standard-agent-setup-with-customization).
    
-**Basic Setup**:  Agents created in a basic project use multitenant search and storage resources fully managed by Microsoft. You don't have visibility or control over these underlying Azure resources. You can only use your own AI services account with this option.
+**Basic Setup**
 
-**Standard Setup**: Agents created in a standard project use customer-owned, single-tenant search and storage resources. With this setup, you have full control and visibility over these resources, but you incur costs based on your usage. You can use your own AI services account, Azure Storage account, Cosmos DB for NoSQL account and/or Azure AI Search resource with this option. 
+This setup is compatible with OpenAI Assistants and manages agent states using the platform's built-in storage. It includes the same tools and capabilities as the Assistants API, with added support for non-OpenAI models and tools such as Azure AI Search, and Bing. 
 
-## Basic agent setup: Use an existing AI Services/Azure OpenAI resource 
+**Standard Setup**
 
-Replace the parameter value for `aiServiceAccountResourceId` with the full arm resource ID of the AI Services or Azure OpenAI resource you want to use.
+Includes everything in the basic setup and fine-grained control over your data by allowing you to use your own Azure resources. All customer data—including files, threads, and vector stores are stored in your own Azure resources, giving you full ownership and control.
 
-1. To get the AI Services account resource ID, sign in to the Azure CLI and select the subscription with your AI Services account:
+## Basic agent setup: Use an existing Azure OpenAI resource 
+
+Replace the parameter value for `existingAoaiResourceId` with the full arm resource ID of the Azure OpenAI resource you want to use.
+
+1. To get the Azure OpenAI account resource ID, sign in to the Azure CLI and select the subscription with your AI Services account:
        
-    ```az login``` 
-2. Replace `<your-resource-group>` with the resource group containing your resource and `your-ai-service-resource-name` with the name of your AI Service resource, and run:
+    ```console
+    az login
+    ``` 
+
+2. Replace `<your-resource-group>` with the resource group containing your resource and `your-azure-openai-resource-name` with the name of your AI Service resource, and run:
     
-    ```az cognitiveservices account show --resource-group <your-resource-group> --name <your-ai-service-resource-name> --query "id" --output tsv```
-
-    The value returned is the `aiServiceAccountResourceId` you need to use in the template.
-
-3. In the basic agent template file, replace the following placeholders:
-    
-    ```
-    aiServiceAccountResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{serviceName}
-
-    [Azure OpenAI Only] aiServiceKind: AzureOpenAI
+    ```console
+    az cognitiveservices account show --resource-group <your-resource-group> --name <your-ai-service-resource-name> --query "id" --output tsv
     ```
 
-    If you want to use an existing Azure OpenAI resource, you will need to update the `aiServiceAccountResourceId` and the `aiServiceKind` parameters in the parameter file. The aiServiceKind parameter should be set to AzureOpenAI.
+    The value returned is the `existingAoaiResourceId` you need to use in the template.
 
+3. In the [basic agent template file](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/42-basic-agent-setup-with-customization/main.bicep), replace the following placeholder:
+    
+    ```console
+    existingAoaiResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{serviceName}
+    ```
 
-## Standard agent setup: Use an existing AI Services/Azure OpenAI, Azure Storage account, Azure Cosmos DB for NoSQL account, and/or Azure AI Search resource 
+## Standard agent setup: Use existing service resources and storage accounts 
 
-Use an existing AI Services / Azure OpenAI, Azure Storage account, Azure Cosmos DB for NoSQL account and/or Azure AI Search resource by providing the full ARM resource ID in the standard agent template file.
+Use an existing Azure OpenAI, Azure Storage account, Azure Cosmos DB for NoSQL account and/or Azure AI Search resource by providing the full ARM resource ID in the [standard agent template file](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/43-standard-agent-setup-with-customization/main.bicep).
 
-### Use an existing AI Services or Azure OpenAI resource
+### Use an existing Azure OpenAI resource
 
 1. Follow the steps in basic agent setup to get the AI Services account resource ID.
 2. In the standard agent template file, replace the following placeholders:
     
-    ```
-    aiServiceAccountResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{serviceName}
-    
-    [Azure OpenAI Only] aiServiceKind: AzureOpenAI
+    ```console
+    existingAoaiResourceId:/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{serviceName}
+
     ```
 
 ### Use an existing Azure Storage account for file storage
@@ -86,7 +125,7 @@ Use an existing AI Services / Azure OpenAI, Azure Storage account, Azure Cosmos 
 
 ### Use an existing Azure Cosmos DB for NoSQL account for thread storage
 **Azure Cosmos DB for NoSQL**
-- Your existing Azure Cosmos DB for NoSQL Account used in standard setup must have at least a total throughput limit of at least 3000 RU/s. Both Provisioned Thoughtput and Serverless are supported.
+- Your existing Azure Cosmos DB for NoSQL Account used in standard setup must have at least a total throughput limit of at least 3000 RU/s. Both Provisioned Throughput and Serverless are supported.
     - 3 containers will be provisioned in your existing Cosmos DB account and each need 1000 RU/s
 
 1. To get your Azure Cosmos DB account resource ID, sign in to the Azure CLI and select the subscription with your account: 

@@ -129,8 +129,32 @@ if run.status == "failed":
 messages = project_client.agents.messages.list(thread_id=thread.id)
 for message in messages:
     print(f"Role: {message.role}, Content: {message.content}")
+```
 
-# Delete the agent when done
+## Optionally output the run steps used by the agent
+```python
+run_steps = project_client.agents.run_steps.list(thread_id=thread.id, run_id=run.id)
+for step in run_steps:
+    print(f"Step {step['id']} status: {step['status']}")
+
+    # Check if there are tool calls in the step details
+    step_details = step.get("step_details", {})
+    tool_calls = step_details.get("tool_calls", [])
+
+    if tool_calls:
+        print("  Tool calls:")
+        for call in tool_calls:
+            print(f"    Tool Call ID: {call.get('id')}")
+            print(f"    Type: {call.get('type')}")
+
+            function_details = call.get("function", {})
+            if function_details:
+                print(f"    Function name: {function_details.get('name')}")
+    print()  # add an extra newline between steps
+```
+
+## Delete the agent when done
+```python
 project_client.agents.delete_agent(agent.id)
 print("Deleted agent")
 ```

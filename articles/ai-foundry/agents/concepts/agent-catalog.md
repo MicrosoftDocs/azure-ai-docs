@@ -15,7 +15,7 @@ ms.custom:
 # Get started with the Agent Catalog
 
 Accelerate your agent development using code samples and best practices for creating agents. Each agent sample below links to a GitHub Repository, where you can browse the agent's configuration files, setup instructions and source code to start integrating them into your own project in code.
-With agents you create using these code samples, be sure to assess safety and legal implications, and to comply with all applicable laws and safety standards. See the [transparency note](/legal/cognitive-services/agents/transparency-note) for more information.
+With agents you create using these code samples, be sure to assess safety and legal implications, and to comply with all applicable laws and safety standards. See the [transparency note](/azure/ai-foundry/responsible-ai/agents/transparency-note) for more information.
 
 ## Prerequisites
 

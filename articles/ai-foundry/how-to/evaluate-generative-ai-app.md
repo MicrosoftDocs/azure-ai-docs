@@ -160,7 +160,7 @@ Set up the test dataset that is used for evaluation. This dataset is sent to the
 
 ##### Generate sample questions
 
-If you don't have a dataset readily available and would like to run an evaluation with a small sample, select the model deployment you want to evaluate based on a chosen topic. We support both Azure OpenAI models and other open models compatible with standard deployment, such as Meta LIama and Phi-3 family models. The topic helps tailor the generated content to your area of interest. The queries and responses are generated in real time, and you have the option to regenerate them as needed.
+If you don't have a dataset readily available and would like to run an evaluation with a small sample, select the model deployment you want to evaluate based on a chosen topic. We support both Azure OpenAI models and other open models compatible with serverless API deployment, such as Meta LIama and Phi-3 family models. The topic helps tailor the generated content to your area of interest. The queries and responses are generated in real time, and you have the option to regenerate them as needed.
 
 :::image type="content" source="../media/evaluations/evaluate/create-test-data-model.png" alt-text="Screenshot of create test data highlighting generate with." lightbox="../media/evaluations/evaluate/create-test-data-model.png":::
 

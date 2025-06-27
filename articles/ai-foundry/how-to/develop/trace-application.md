@@ -84,13 +84,13 @@ When developing with the OpenAI SDK, you can instrument your code so traces are 
     OpenAIInstrumentor().instrument()
     ```
 
-1. Get the connection string to the Azure Application Insights resource associated with your project:
+1. Get the connection string to the Azure Application Insights resource associated with your project. The following line uses the Azure AI Project client, which requires the use of Microsoft Entra ID for authentication:
 
     ```python
     from azure.ai.projects import AIProjectClient
     from azure.identity import DefaultAzureCredential
 
-    project_client = AIProjectClient.from_connection_string(
+    project_client = AIProjectClient(
         credential=DefaultAzureCredential(),
         endpoint="https://<your-resource>.services.ai.azure.com/api/projects/<your-project>",
     )

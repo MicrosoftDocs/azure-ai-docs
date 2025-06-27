@@ -694,8 +694,6 @@ items:
               href: ./prompt-flow/how-to-integrate-with-llm-app-devops.md
             - name: Deploy a flow to online endpoint for real-time inference with CLI 
               href: ./prompt-flow/how-to-deploy-to-code.md
-            - name: Trace your application with prompt flow
-              href: ./prompt-flow/how-to-trace-local-sdk.md
             - name: Enable trace and collect feedback for a flow deployment 
               href: ./prompt-flow/how-to-enable-trace-feedback-for-deployment.md
             - name: How to use streaming endpoints deployed from prompt flow
