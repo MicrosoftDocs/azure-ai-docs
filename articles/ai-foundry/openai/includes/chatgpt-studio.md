@@ -69,8 +69,8 @@ The [Chat completions how-to guide](../how-to/chatgpt.md) provides an in-depth i
 
 Once you're done testing out the Chat playground, if you want to clean up and remove an Azure OpenAI resource, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
 
-- [Azure portal](../../multi-service-resource.md?pivots=azportal#clean-up-resources)
-- [Azure CLI](../../multi-service-resource.md?pivots=azcli#clean-up-resources)
+- [Azure portal](../../../ai-services/multi-service-resource.md?pivots=azportal#clean-up-resources)
+- [Azure CLI](../../../ai-services/multi-service-resource.md?pivots=azcli#clean-up-resources)
 
 ## Next steps
 
