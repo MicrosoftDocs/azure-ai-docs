@@ -54,7 +54,7 @@ You can view metrics within Azure AI Foundry portal. To view them, follow these 
 
 1. Select the tab **Metrics**.
 
-1. You can access an overview of common metrics that may be of interest. For cost-related metrics, please use the Azure Cost Management deep link, which provides access to detailed post-consumption cost metrics in the Cost analysis section located in the Azure Portal. 
+1. You can access an overview of common metrics that may be of interest. For cost-related metrics, please use the Azure Cost Management deep link, which provides access to detailed post-consumption cost metrics in the Cost analysis section located in the Azure Portal. Cost data in Azure Portal displays actual post-consumption charges for model consumption, including other AI resources within Azure AI Foundry. Follow this link for a full list of [AI resources](https://azure.microsoft.com/en-us/products/ai-services#tabs-pill-bar-oc14f0_tab0). There is approximately a 5-hour delay from the billing event to when it can be viewed in Azure Portal cost analysis.
 
     :::image type="content" source="../media/monitor-models/deployment-metrics.png" alt-text="Screenshot showing the metrics displayed for model deployments in Azure AI Foundry portal." lightbox="../media/monitor-models/deployment-metrics.png":::
 
