@@ -4,7 +4,7 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 5/19/2025
+ms.date: 6/27/2025
 ---
 
 ## Prerequisites
@@ -151,6 +151,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
             session_update = {
                 "type": "session.update",
                 "session": {
+                    "instructions": "You are a helpful AI assistant responding in natural, engaging language.",
                     "turn_detection": {
                         "type": "azure_semantic_vad",
                         "threshold": 0.3,
@@ -170,7 +171,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
                         "type": "server_echo_cancellation"
                     },
                     "voice": {
-                        "name": "en-US-Aria:DragonHDLatestNeural",
+                        "name": "en-US-Ava:DragonHDLatestNeural",
                         "type": "azure-standard",
                         "temperature": 0.8,
                     },
@@ -417,7 +418,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 The output of the script is printed to the console. You see messages indicating the status of the connection, audio stream, and playback. The audio is played back through your speakers or headphones.
 
 ```text
-Session created:  {"type": "session.update", "session": {"turn_detection": {"type": "azure_semantic_vad", "threshold": 0.3, "prefix_padding_ms": 200, "silence_duration_ms": 200, "remove_filler_words": false, "end_of_utterance_detection": {"model": "semantic_detection_v1", "threshold": 0.1, "timeout": 4}}, "input_audio_noise_reduction": {"type": "azure_deep_noise_suppression"}, "input_audio_echo_cancellation": {"type": "server_echo_cancellation"}, "voice": {"name": "en-US-Aria:DragonHDLatestNeural", "type": "azure-standard", "temperature": 0.8}}, "event_id": ""}
+Session created:  {"type": "session.update", "session": {"instructions": "You are a helpful AI assistant responding in natural, engaging language.","turn_detection": {"type": "azure_semantic_vad", "threshold": 0.3, "prefix_padding_ms": 200, "silence_duration_ms": 200, "remove_filler_words": false, "end_of_utterance_detection": {"model": "semantic_detection_v1", "threshold": 0.1, "timeout": 4}}, "input_audio_noise_reduction": {"type": "azure_deep_noise_suppression"}, "input_audio_echo_cancellation": {"type": "server_echo_cancellation"}, "voice": {"name": "en-US-Ava:DragonHDLatestNeural", "type": "azure-standard", "temperature": 0.8}}, "event_id": ""}
 Starting the chat ...
 Received event: {'session.created'}
 Press 'q' and Enter to quit the chat.

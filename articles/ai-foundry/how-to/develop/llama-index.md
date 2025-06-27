@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 03/11/2025
+ms.date: 06/26/2025
 ms.reviewer: fasantia
 ms.author: sgilley
 author: sdgilley
@@ -33,7 +33,7 @@ To run this tutorial, you need:
 * An Azure AI project as explained at [Create a project in Azure AI Foundry portal](../create-projects.md).
 * A model supporting the [Model Inference API](https://aka.ms/azureai/modelinference) deployed. In this example, we use a `Mistral-Large` deployment, but use any model of your preference. For using embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`. 
 
-    * You can follow the instructions at [Deploy models as standard deployments](../deploy-models-serverless.md).
+    * You can follow the instructions at [Deploy models as serverless API deployments](../deploy-models-serverless.md).
 
 * Python 3.8 or later installed, including pip.
 * LlamaIndex installed. You can do it with:
@@ -54,26 +54,7 @@ To run this tutorial, you need:
 
 ## Configure the environment
 
-To use LLMs deployed in Azure AI Foundry portal, you need the endpoint and credentials to connect to it. Follow these steps to get the information you need from the model you want to use:
-
-[!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
-
-1. Go to the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
-1. Open the project where the model is deployed, if it isn't already open.
-1. Go to **Models + endpoints** and select the model you deployed as indicated in the prerequisites.
-1. Copy the endpoint URL and the key.
-
-    :::image type="content" source="../../media/how-to/inference/serverless-endpoint-url-keys.png" alt-text="Screenshot of the option to copy endpoint URI and keys from an endpoint." lightbox="../../media/how-to/inference/serverless-endpoint-url-keys.png":::
-    
-    > [!TIP]
-    > If your model was deployed with Microsoft Entra ID support, you don't need a key.
-
-In this scenario, we placed both the endpoint URL and key in the following environment variables:
-
-```bash
-export AZURE_INFERENCE_ENDPOINT="<your-model-endpoint-goes-here>"
-export AZURE_INFERENCE_CREDENTIAL="<your-key-goes-here>"
-```
+[!INCLUDE [set-endpoint](../../includes/set-endpoint.md)]
 
 Once configured, create a client to connect to the endpoint.
 
@@ -100,7 +81,7 @@ from llama_index.llms.azure_inference import AzureAICompletionsModel
 llm = AzureAICompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
-    model_name="mistral-large-2407",
+    model_name="mistral-large-2411",
 )
 ```
 
@@ -146,7 +127,7 @@ from llama_index.llms.azure_inference import AzureAICompletionsModel
 llm = AzureAICompletionsModel(
     endpoint="https://<resource>.services.ai.azure.com/models",
     credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
-    model_name="mistral-large-2407",
+    model_name="mistral-large-2411",
 )
 ```
 

@@ -29,7 +29,7 @@ zone_pivot_groups: project-type
 In this quickstart, we walk you through setting up your local development environment with the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) SDK. We write a prompt, run it as part of your app code, trace the LLM calls being made, and run a basic evaluation on the outputs of the LLM.
 
 > [!TIP]
-> The rest of this article shows how to use a **[!INCLUDE [hub](../includes/hub-project-name.md)]**.  Select **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** at the top of this article if you want to use a [!INCLUDE [fdp](../includes/fdp-project-name.md)] instead.
+> The rest of this article shows how to use a **[!INCLUDE [hub](../includes/hub-project-name.md)]**.  Select **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** at the top of this article if you want to use a [!INCLUDE [fdp](../includes/fdp-project-name.md)] instead.  [Which type of project do I need?](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need)
 
 ## Prerequisites
 

@@ -7,7 +7,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: overview
-ms.date: 05/15/2025
+ms.date: 06/25/2025
 ms.custom: azure-ai-agents
 ---
 
@@ -80,14 +80,14 @@ Next, the agent needs coordination. [Connected agents](how-to\connected-agents.m
 
     :::column-end:::
     :::column span="1":::
-### 5. Trust
-
-It's important to ensure agents are suitable and reliable for the workload they're assigned to. AI Foundry applies enterprise-grade trust features including identity via Microsoft Entra, RBAC, content filters, encryption, and network isolation. You choose how and where your agents run - using platform-managed or bring-your-own infrastructure.
-    :::column-end:::
-    :::column span="1":::
-### 6. Observability
+### 5. Observability
 
 Finally, agents are tested and monitored. AI Foundry can capture logs, traces, and evaluations at every step. With full thread-level visibility and Application Insights integration, teams can inspect every decision and continuously improve agents over time.
+    :::column-end:::
+    :::column span="1":::
+### 6. Trust
+
+It's important to ensure agents are suitable and reliable for the workload they're assigned to. AI Foundry applies enterprise-grade trust features including identity via Microsoft Entra, RBAC, content filters, encryption, and network isolation. You choose how and where your agents run - using platform-managed or bring-your-own infrastructure.
     :::column-end:::
 :::row-end:::
 

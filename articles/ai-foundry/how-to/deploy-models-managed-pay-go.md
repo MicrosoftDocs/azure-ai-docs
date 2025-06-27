@@ -102,7 +102,8 @@ After your deployment is successfully created, you can follow these steps to con
 1. Select **Models + Endpoints** under _My assets_ in your Azure AI Foundry project.
 1. Select your deployment from the **Model deployments** tab.
 1. Navigate to the **Test** tab for sample inference to the endpoint.
-1. Return to the **Details** tab and select **Open in Playground** to go to the chat playground and modify parameters for the inference requests.   
+1. Return to the **Details** tab to copy the deployment's "Target URI", which you can use to run inference with code.
+1. Go to the **Consume** tab of the deployment to find code samples for consumption.
 
 ## Network isolation of deployments
 
