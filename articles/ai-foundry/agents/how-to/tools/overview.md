@@ -71,6 +71,7 @@ The Foundry Agent Service provides the following built-in tools. You can use the
 |[Azure AI Search](azure-ai-search.md)     | Use an existing Azure AI Search index to ground agents with data in the index, and chat with your data.        |
 |[Azure Functions](azure-functions.md)     | Leverage your Azure Functions to create intelligent, event-driven applications.        |
 |[Code Interpreter](code-interpreter.md)     | Enable agents to write and run Python code in a sandboxed execution environment.         |
+|[Deep Research](./deep-research.md) | Use OpenAI's advanced agentic research capability for analysis and reasoning. | 
 |[File Search](file-search.md)     | Augment agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.          |
 |[Function calling](function-calling.md)     |Describe the structure of functions you create to an agent and have them be called when appropriate during the agent's interactions with users.         |
 |[Grounding with Bing Search](bing-grounding.md)     | Enable your agent to use Grounding with Bing Search to access and return information from the internet.         |
