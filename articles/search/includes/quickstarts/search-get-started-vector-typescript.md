@@ -462,7 +462,7 @@ This search uses [SearchClient](/javascript/api/@azure/search-documents/searchcl
 
 ## Create a semantic hybrid search
 
-Here's the last query in the collection. This hybrid query with semantic ranking is filtered to show only the hotels within a 500-kilometer radius of Washington D.C. You can set `vectorFilterMode` to null, which is equivalent to the default (`preFilter` for newer indexes and `postFilter` for older ones).
+Here's the last query in the collection. 
 
 This search uses [SearchClient](/javascript/api/@azure/search-documents/searchclient).[search](/javascript/api/@azure/search-documents/searchclient#@azure-search-documents-searchclient-search) and the [VectorQuery](/javascript/api/@azure/search-documents/vectorquery) and [SearchOptions](/javascript/api/@azure/search-documents/searchoptions). 
 
@@ -521,12 +521,7 @@ This search uses [SearchClient](/javascript/api/@azure/search-documents/searchcl
       Category: Suite
     ```
 
-    The search finds three hotels, which are filtered by location and faceted by StateProvince and semantically reranked to promote results that are closest to the search string query (historic hotel walk to restaurants and shopping)
-
     You can think of the semantic ranking as a way to improve the relevance of search results by understanding the meaning behind the words in the query and the content of the documents. In this case, the semantic ranking helps to identify hotels that are not only relevant to the keywords but also match the intent of the query:
-
-    * **Without semantic ranking**, Nordick's Valley Motel is number one. 
-    * **With semantic ranking**, the machine comprehension models recognize that historic applies to "hotel, within walking distance to dining (restaurants) and shopping."
 
     Key takeaways: 
 
