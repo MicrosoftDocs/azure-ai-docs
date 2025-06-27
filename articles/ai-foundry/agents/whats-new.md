@@ -19,7 +19,7 @@ This article provides a summary of the latest releases and major documentation u
 
 ### Model Context Protocol (MCP) tool
 
-You can new extend the capabilities of your agents by connecting them to tools hosted on remote [Model Context Protocol](https://modelcontextprotocol.io/introduction) (MCP) servers by using the [MCP tool](./how-to/tools/mcp.md). 
+You can new extend the capabilities of your agents by connecting them to tools hosted on remote [Model Context Protocol](https://modelcontextprotocol.io/introduction) (MCP) servers by using the [MCP tool](./how-to/tools/model-context-protocol.md). 
 
 ## May 2025
 

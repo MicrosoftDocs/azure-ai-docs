@@ -10,6 +10,7 @@ ms.date: 06/17/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
+ms.custom: references_regions
 ---
 # Connect to Model Context Protocol (MCP) Servers (Preview)
 You can extend the capabilities of your Foundry Agent by connecting it to tools hosted on remote Model Context Protocol (MCP) servers (bring your own MCP server endpoint). These servers are maintained by developers and organizations and expose tools that can be accessed by MCP-compatible clients, such as the Foundry Agent service.
@@ -27,7 +28,7 @@ You can bring multiple remote MCP servers to Foundry Agent service by adding the
 
 > [!Note]
 > * You need to bring a remote MCP server (an existing MCP server endpoint)
-> * With current MCP tool in Foundry Agent, explicit approval is not supported yet (only `never` is accepted for `require_approval` parameter). Please review carefully what MCP server(s) you added to Foundry Agent service. We recommend reviewing all data being shared with remote MCP servers and optionally logging it for auditing purposes.
+> * With current MCP tool in Foundry Agent, explicit approval is not supported (only `never` is accepted for `require_approval` parameter). Please review carefully what MCP server(s) you added to Foundry Agent service. We recommend reviewing all data being shared with remote MCP servers and optionally logging it for auditing purposes.
 > * Supported regions: `westus`, `westus2` and `uaenorth`
 
 ## Usage support

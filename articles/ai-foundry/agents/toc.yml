@@ -89,11 +89,11 @@ items:
         - name: Model Context Protocol (MCP)
           items:
             - name: Overview
-              href: how-to/tools/mcp.md
+              href: how-to/tools/model-context-protocol.md
               displayName: model context protocol, mcp
             - name: How to use Model Context Protocol
               displayName: model context protocol, mcp samples
-              href: how-to/tools/mcp-samples.md
+              href: how-to/tools/model-context-protocol-samples.md
         - name: Azure Functions
           items:
             - name: Overview
