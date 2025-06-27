@@ -28,7 +28,7 @@ sections:
       - question: |
           How would we disclose to the end user that the voice is a synthetic voice?
         answer: |
-          We recommend that every user should follow our [code of conduct](/azure/ai-foundry/responsible-ai/responsible-use-of-ai-overview) when using the text to speech capability. There are several ways to disclose the synthetic nature of the voice including implicit and explicit byline. Refer to [Disclosure design guidelines](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-guidelines).
+          We recommend that every user should follow our [code of conduct](/azure/ai-foundry/responsible-use-of-ai-overview) when using the text to speech capability. There are several ways to disclose the synthetic nature of the voice including implicit and explicit byline. Refer to [Disclosure design guidelines](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-guidelines).
       - question: |
           How can I reduce the latency for my voice app?
         answer: |

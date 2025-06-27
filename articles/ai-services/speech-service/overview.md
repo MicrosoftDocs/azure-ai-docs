@@ -163,7 +163,7 @@ An AI system includes not only the technology, but also the people who use it, t
 * [Disclosure of voice talent](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/disclosure-voice-talent)
 * [Disclosure of design guidelines](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-guidelines)
 * [Disclosure of design patterns](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-patterns)
-* [Code of conduct](/azure/ai-foundry/responsible-ai/responsible-use-of-ai-overview)
+* [Code of conduct](/azure/ai-foundry/responsible-use-of-ai-overview)
 * [Data, privacy, and security](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security)
 
 ### Speaker Recognition
