@@ -145,8 +145,8 @@ An AI system includes not only the technology, but also the people who use it, t
 ### Speech to text
 
 * [Transparency note and use cases](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note)
-* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/characteristics-and-limitations)
-* [Integration and responsible use](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/guidance-integration-responsible-use)
+* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note)
+* [Integration and responsible use](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note)
 * [Data, privacy, and security](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/data-privacy-security)
 
 ### Pronunciation Assessment
@@ -160,10 +160,10 @@ An AI system includes not only the technology, but also the people who use it, t
 * [Characteristics and limitations](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note)
 * [Limited access](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access)
 * [Responsible deployment of synthetic speech](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note)
-* [Disclosure of voice talent](/azure/ai-foundry/responsible-ai/speech-service/disclosure-voice-talent)
+* [Disclosure of voice talent](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/disclosure-voice-talent)
 * [Disclosure of design guidelines](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-guidelines)
 * [Disclosure of design patterns](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-patterns)
-* [Code of conduct](/azure/ai-foundry/responsible-ai/speech-service/tts-code-of-conduct)
+* [Code of conduct](/azure/ai-foundry/responsible-ai/responsible-use-of-ai-overview)
 * [Data, privacy, and security](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security)
 
 ### Speaker Recognition

@@ -177,6 +177,6 @@ To reduce the risk of harmful use of the Azure text to speech avatar services, t
 
 * [Transparency note and use cases for custom neural voice](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note)
 * [Responsible deployment of synthetic speech](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note)
-* [Disclosure for voice and avatar talent](/azure/ai-foundry/responsible-ai/speech-service/disclosure-voice-talent)
+* [Disclosure for voice and avatar talent](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/disclosure-voice-talent)
 * [Disclosure design guidelines](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-guidelines)
 * [Disclosure design patterns](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-patterns)

@@ -68,10 +68,10 @@ An AI system includes not only the technology, but also the people who use it, t
 * [Characteristics and limitations for using custom voice](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note)   
 * [Limited access to custom voice](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access) 
 * [Guidelines for responsible deployment of synthetic voice technology](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note)   
-* [Disclosure for voice talent](/azure/ai-foundry/responsible-ai/speech-service/disclosure-voice-talent)   
+* [Disclosure for voice talent](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/disclosure-voice-talent)   
 * [Disclosure design guidelines](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-guidelines)   
 * [Disclosure design patterns](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-patterns)   
-* [Code of Conduct for Text to speech integrations](/azure/ai-foundry/responsible-ai/speech-service/tts-code-of-conduct)   
+* [Code of Conduct for Text to speech integrations](/azure/ai-foundry/responsible-ai/responsible-use-of-ai-overview)   
 * [Data, privacy, and security for custom voice](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security)
 
 ## Next steps
