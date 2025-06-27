@@ -9,7 +9,6 @@ ms.topic: how-to
 ms.date: 06/17/2025
 author: aahill
 ms.author: aahi
-ms.custom: azure-ai-agents
 ms.custom: references_regions
 ---
 # Connect to Model Context Protocol (MCP) Servers (Preview)
@@ -52,4 +51,4 @@ You can bring multiple remote MCP servers to Foundry Agent service by adding the
 
 ## Next steps
 
-* [How to use the MCP tool](./mcp-samples.md)
+* [How to use the MCP tool](./model-context-protocol-samples.md)
