@@ -33,8 +33,8 @@ curl --request POST \
   	"tools": [
           {
               "type": "mcp",
-              "server_label": "github",
-              "server_url": "https://gitmcp.io/Azure/azure-rest-api-specs",
+              "server_label": "<unique name for your MCP server>",
+              "server_url": "<your MCP server url>",
               "require_approval": "never",
           }
       ],
@@ -80,7 +80,7 @@ curl --request POST \
     	"tool_resources": {
           "mcp": [
             {
-                "server_label": "github",
+                "server_label": "<the same unique name you provided during agent creation>",
                 "headers": {
                     "Authorization": "Bearer <token>",
                 }
