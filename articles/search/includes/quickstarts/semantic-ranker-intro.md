@@ -7,7 +7,7 @@ ms.topic: include
 ms.date: 06/27/2025
 ---
 
-In this quickstart, you learn about the index and query modifications that invoke semantic ranker.
+In this quickstart, you learn about the index and query modifications that invoke semantic ranking.
 
 In Azure AI Search, [semantic ranking](../../semantic-search-overview.md) is query-side functionality that uses machine reading comprehension from Microsoft to rescore search results, promoting the most semantically relevant matches to the top of the list. Depending on the content and the query, semantic ranking can [significantly improve search relevance](https://techcommunity.microsoft.com/t5/azure-ai-services-blog/azure-cognitive-search-outperforming-vector-search-with-hybrid/ba-p/3929167) with minimal developer effort. Semantic ranking is also required for [agentic retrieval (preview)](../../search-agentic-retrieval-concept.md).
 
@@ -16,8 +16,8 @@ You can add a semantic configuration to an existing index with no rebuild requir
 In this quickstart:
 
 > [!div class="checklist"]
-> - Add a semantic configuration to a search index
-> - Add semantic parameters to a query
+> + Add a semantic configuration to a search index
+> + Add semantic parameters to a query
 
 ## Prerequisites
 
@@ -31,7 +31,7 @@ In this quickstart:
 
 You can connect to your Azure AI Search service [using API keys](../../search-security-api-keys.md) or Microsoft Entra ID with role assignments. Keys are easier to start with, but roles are more secure.
 
-To configure the recommended role-based access:
+To configure role-based access:
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
 
@@ -45,7 +45,11 @@ To configure the recommended role-based access:
 
 1. Select **Add** > **Add role assignment**.
 
-1. Assign the **Search Service Contributor** and **Search Index Data Contributor** roles to your user account.
+1. Assign these roles to your user account:
+
+   + **Search Service Contributor**
+
+   + **Search Index Data Contributor**
 
 For more information, see [Connect to Azure AI Search using roles](../../search-security-rbac.md).
 
@@ -53,17 +57,13 @@ For more information, see [Connect to Azure AI Search using roles](../../search-
 
 This quickstart assumes an existing index, modified to include a semantic configuration. We recommend the [hotels-sample-index](../../search-get-started-portal.md) that you can create in minutes using an Azure portal wizard.
 
-If you don't have access to the Azure portal, you can create a hotels-quickstart-index by following the instructions in [Quickstart: Full text search](../../search-get-started-text.md).
-
-Both indexes have a "Description" field that's suitable for demonstrating the semantic ranker.
-
 1. Sign in to the [Azure portal](https://portal.azure.com/) and find your search service.
 
-1. Under **Search management** > **Indexes**, open the hotels index. Make sure the index doesn't have a semantic configuration.
+1. Under **Search management** > **Indexes**, open the hotels-sample-index. Make sure the index doesn't have a semantic configuration.
 
    :::image type="content" source="../../media/search-get-started-semantic/no-semantic-configuration.png" alt-text="Screenshot of an empty semantic configuration page in the Azure portal.":::
 
-1. In **Search explorer**, enter this search string "good trails for running or biking and outdoor activities" so that you can view the response *before* semantic ranking is applied. Your response should be similar to the following example, as scored by the default L1 ranker for full text search. For readability, the example below selects just the "HotelName" and "Description" fields.
+1. To verify the index is operational, run a query. In **Search explorer**, enter this search string "good trails for running or biking and outdoor activities" so that you can view the response *before* semantic ranking is applied. Your response should be similar to the following example, as scored by the default BM25 L1 ranker for full text search. For readability, the example selects just the "HotelName" and "Description" fields.
 
    ```json
    "@odata.count": 11,

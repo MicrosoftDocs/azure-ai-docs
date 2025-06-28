@@ -70,9 +70,13 @@ We recommend [Visual Studio](https://visualstudio.microsoft.com/vs/community/) f
 
 In this section, you update a search index and send a query that invokes semantic ranking. Visual Studio Code displays the response after you run each cell. For more information about each step, see [Explaining the code](#explaining-the-code).
 
-<!-- ```csharp
+### Add a semantic configuration to the hotels-sample-index
 
-``` -->
+CODE GOES HERE
+
+### Add semantic query parameters to a query
+
+CODE GOES HERE
 
 ### Run the program
 
@@ -84,8 +88,8 @@ Output includes messages from [Console.WriteLine](/dotnet/api/system.console.wri
 
 Add `SemanticConfiguration` to a search index definition. If you're updating an existing index, this modification doesn't require a reindexing because the structure of your documents is unchanged.
 
-+ [Update an index with a semantic configuration](#add-a-semantic-configuration-to-the-index)
-+ [Query the index using semantic parameters](#add-semantic-ranking-to-queries)
++ [Update an index with a semantic configuration](#update-an-index-with-a-semantic-configuration)
++ [Query the index using semantic parameters](#query-the-index-using-semantic-parameters)
 
 ### Update an index with a semantic configuration
 

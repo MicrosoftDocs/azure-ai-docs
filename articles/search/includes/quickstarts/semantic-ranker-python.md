@@ -23,7 +23,7 @@ We recommend a virtual environment for this quickstart:
 
 1. Start Visual Studio Code.
 
-1. Open the **semantic-search-quickstart.ipynb** file.
+1. Open the **semantic-search-quickstart.ipynb** file or create a new notebook.
 
 1. Open the Command Palette by using **Ctrl+Shift+P**.
 
@@ -52,7 +52,7 @@ It can take a minute to set up. If you run into problems, see [Python environmen
 
 ### Sign in to Azure
 
-If you signed in to the [Azure portal](https://portal.azure.com), you're signed into Azure. If you aren't sure, use the Azure CLI or Azure PowerShell to log in: `az login` or `az connect`. If you have multiple tenants and subscriptions, see [Quickstart: Connect without keys](../../search-get-started-rbac/md) for help on how to connect.
+If you signed in to the [Azure portal](https://portal.azure.com), you're signed into Azure. If you aren't sure, use the Azure CLI or Azure PowerShell to log in: `az login` or `az connect`. If you have multiple tenants and subscriptions, see [Quickstart: Connect without keys](../../search-get-started-rbac.md) for help on how to connect.
 
 ## Update and query the index
 
@@ -136,7 +136,7 @@ result = index_client.create_or_update_index(index)
 print(f' {result.name} updated')
 ```
 
-### Add semantic query parameters to a query
+### Add semantic parameters to a query
 
 ```python
 # Set up the search client
@@ -144,7 +144,7 @@ search_client = SearchClient(endpoint=search_endpoint,
                       index_name=index_name,
                       credential=credential)
 
-# Runs a semantic query (runs a BM25-ranked query and promotes the most relevant matches to the top)
+# Runs a semantic query
 results =  search_client.search(query_type='semantic', semantic_configuration_name='semantic-config',
     search_text="walk to restaurants and shopping", 
     select='HotelName,Description,Category', query_caption='extractive')
@@ -165,37 +165,16 @@ for result in results:
 
 ## Explaining the code
 
-Add `SemanticConfiguration` to a search index definition. If you're updating an existing index, this modification doesn't require a reindexing because the structure of your documents is unchanged.
+This quickstart demonstrates how to add `SemanticConfiguration` to a search index definition. If you're updating an existing index, this modification doesn't require a reindexing because the structure of your documents is unchanged.
 
-Provide the entire schema plus the new `SemanticConfiguration` section. We recommend getting the index schema from the search service to ensure you have a valid schema for the current index. If the schema payload differs in field definitions, the update fails.
+### Index updates
 
-This example is the Python code for the Hotels sample index schema, plus the semantic configuration.
+To update the index, provide the entire schema plus the new `SemanticConfiguration` section. We recommend getting the index schema from the search service to ensure you have a valid schema for your update. If the schemas differ in field definitions or are missing other constructs, the update fails.
+
+This example highlights the Python code that adds a semantic configuration to an index.
 
 ```python
-# Update the search schema, providing the entire schema plus the changes.
-index_client = SearchIndexClient(
-    endpoint=search_endpoint, credential=credential)
-fields = [
-        SimpleField(name="HotelId", type=SearchFieldDataType.String, key=True),
-        SearchableField(name="HotelName", type=SearchFieldDataType.String, sortable=True),
-        SearchableField(name="Description", type=SearchFieldDataType.String, analyzer_name="en.lucene"),
-        SearchableField(name="Category", type=SearchFieldDataType.String, facetable=True, filterable=True, sortable=True),
-
-        SearchableField(name="Tags", collection=True, type=SearchFieldDataType.String, facetable=True, filterable=True),
-
-        SimpleField(name="ParkingIncluded", type=SearchFieldDataType.Boolean, facetable=True, filterable=True, sortable=True),
-        SimpleField(name="LastRenovationDate", type=SearchFieldDataType.DateTimeOffset, facetable=True, filterable=True, sortable=True),
-        SimpleField(name="Rating", type=SearchFieldDataType.Double, facetable=True, filterable=True, sortable=True),
-
-        ComplexField(name="Address", fields=[
-            SearchableField(name="StreetAddress", type=SearchFieldDataType.String),
-            SearchableField(name="City", type=SearchFieldDataType.String, facetable=True, filterable=True, sortable=True),
-            SearchableField(name="StateProvince", type=SearchFieldDataType.String, facetable=True, filterable=True, sortable=True),
-            SearchableField(name="PostalCode", type=SearchFieldDataType.String, facetable=True, filterable=True, sortable=True),
-            SearchableField(name="Country", type=SearchFieldDataType.String, facetable=True, filterable=True, sortable=True),
-        ])
-    ]
-
+# New semantic configuration section in the index
 semantic_config = SemanticConfiguration(
     name="semantic-config",
     prioritized_fields=SemanticPrioritizedFields(
@@ -205,81 +184,21 @@ semantic_config = SemanticConfiguration(
     )
 )
 
-# Create the semantic settings with the configuration
+# Create the semantic settings using the configuration
 semantic_search = SemanticSearch(configurations=[semantic_config])
 
-scoring_profiles = []
-suggester = [{'name': 'sg', 'source_fields': ['Tags', 'Address/City', 'Address/Country']}]
-
-# Create the search index with the semantic settings
-index = SearchIndex(name=index_name, fields=fields, suggesters=suggester, scoring_profiles=scoring_profiles, semantic_search=semantic_search)
+# Update the search index on the search service
+index = SearchIndex(name=index_name, fields=fields, semantic_search=semantic_search)
 result = index_client.create_or_update_index(index)
-print(f' {result.name} created')
+print(f' {result.name} updated')
 ```
 
-### Run your first query
+### Query parameters
 
-Start with an empty query as a verification step, proving that the index is operational. You should get an unordered list of hotel names and descriptions, with a count of 50 indicating that there are fifty documents in the index.
+Required semantic parameters include `query_type` and `semantic_configuration_name`. Optionally, you can add captions to extract portions of the text and apply hit highlighting to the important terms and phrases.
 
 ```python
-# Run an empty query (returns selected fields, all documents)
-results =  search_client.search(query_type='simple',
-    search_text="*" ,
-    select='HotelName,Description',
-    include_total_count=True)
-
-print ('Total Documents Matching Query:', results.get_count())
-for result in results:
-    print(result["@search.score"])
-    print(result["HotelName"])
-    print(f"Description: {result['Description']}")
-```
-
-### Run a text query
-
-For comparison purposes, run a text query with BM25 relevance scoring. Full text search is invoked when you provide a query string. The response consists of ranked results, where higher scores are awarded to documents having more instances of matching terms, or more important terms.
-
-In this query for *walk to restaurants and shopping*, Sublime Palace Hotel comes out on top because its description includes *site*. Terms that occur infrequently raise the search score of the document. 
-
-```python
-# Run a text query (returns a BM25-scored result set)
-results =  search_client.search(query_type='simple',
-    search_text="walk to restaurants and shopping" ,
-    select='HotelName,HotelId,Description',
-    include_total_count=True)
-    
-for result in results:
-    print(result["@search.score"])
-    print(result["HotelName"])
-    print(f"Description: {result['Description']}")
-```
-
-Output for the top 5 matches for a keyword search should be similar to the following example. The first result contains all three terms: walk, restaurants, shopping.
-
-```
-7.9934134
-Foot Happy Suites
-Description: Downtown in the heart of the business district. Close to everything. Leave your car behind and walk to the park, shopping, and restaurants. Or grab one of our bikes and take your explorations a little further.
-6.563842
-Winter Panorama Resort
-Description: Plenty of great skiing, outdoor ice skating, sleigh rides, tubing and snow biking. Yoga, group exercise classes and outdoor hockey are available year-round, plus numerous options for shopping as well as great spa services. Newly-renovated with large rooms, free 24-hr airport shuttle & a new restaurant. Rooms/suites offer mini-fridges & 49-inch HDTVs.
-5.8222375
-Uptown Chic Hotel
-Description: Chic hotel near the city. High-rise hotel in downtown, within walking distance to theaters, art galleries, restaurants and shops. Visit Seattle Art Museum by day, and then head over to Benaroya Hall to catch the evening's concert performance.
-4.870869
-Roach Motel
-Description: Perfect Location on Main Street. Earn points while enjoying close proximity to the city's best shopping, restaurants, and attractions.
-4.1960583
-Swirling Currents Hotel
-Description: Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center. Each room comes equipped with a microwave, a coffee maker and a minifridge. In-room entertainment includes complimentary W-Fi and flat-screen TVs. 
-```
-
-### Run a semantic query
-
-Now add semantic ranking. New parameters include `query_type` and `semantic_configuration_name`.
-
-```python
-# Runs a semantic query (runs a BM25-ranked query and promotes the most relevant matches to the top)
+# Runs a semantic query
 results =  search_client.search(query_type='semantic', semantic_configuration_name='semantic-config',
     search_text="walk to restaurants and shopping", 
     select='HotelName,Description,Category', query_caption='extractive')
@@ -298,7 +217,7 @@ for result in results:
             print(f"Caption: {caption.text}\n")
 ```
 
-Output for this query should look similar to the following example. It's the same search string as the previous query, but notice that the semantic ranker elevates the last result in the previous example to first place. Results are ranked by the `rerankerScore` property and results in the 2 category are considered to be of [moderate relevance](../../semantic-search-overview.md#how-ranking-is-scored).
+Output for this query should look similar to the following example. Results are ranked by the `rerankerScore` property and results in the 2 category are considered to be of [moderate relevance](../../semantic-search-overview.md#how-ranking-is-scored).
 
 ```
 2.9116947650909424
@@ -331,7 +250,7 @@ Caption: <em>Sublime Cliff Hotel </em>is located in the heart of the historic ce
 
 In this final query, return semantic answers.
 
-Semantic ranker can produce an answer to a query string that has the characteristics of a question. The generated answer is extracted verbatim from your content so it won't include composed content like what you get from a chat completion model. If the semantic answer isn't useful for your scenario, you can omit `semantic_answers` from your code.
+Semantic ranker can produce an answer to a query string that has the characteristics of a question. The generated answer is extracted verbatim from your content so it won't include composed content like what you might expect from a chat completion model. If the semantic answer isn't useful for your scenario, you can omit `semantic_answers` from your code.
 
 To get a semantic answer, the question and answer must be closely aligned, and the model must find content that clearly answers the question. If potential answers fail to meet a confidence threshold, the model doesn't return an answer. For demonstration purposes, the question in this example is designed to get a response so that you can see the syntax.
 
