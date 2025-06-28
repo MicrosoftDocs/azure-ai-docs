@@ -56,7 +56,10 @@ If you signed in to the [Azure portal](https://portal.azure.com), you're signed 
 
 ## Update and query the index
 
-In this section, you update a search index and send a query that invokes semantic ranking. Visual Studio Code displays the response after you run each cell. For more information about each step, see [Explaining the code](#explaining-the-code).
+This section presents the code for updating a search index and sending a query that invokes semantic ranking. Visual Studio Code displays the response after you run each cell. There are two parts:
+
++ [Add a semantic configuration to an index](#add-a-semantic-configuration-to-the-hotels-sample-index)
++ [Add semantic parameters to a query](#add-semantic-parameters-to-a-query)
 
 ### Add a semantic configuration to the hotels-sample-index
 
@@ -124,9 +127,7 @@ semantic_config = SemanticConfiguration(
 )
 
 # Specify the semantic settings with the configuration
-semantic_search = SemanticSearch(configurations=[semantic_config])
-
-semantic_settings = SemanticSearch(configurations=[semantic_config])
+semantic_search  = SemanticSearch(default_configuration_name="semantic_config", configurations=[semantic_config])
 scoring_profiles = []
 suggester = [{'name': 'sg', 'source_fields': ['Rooms/Tags', 'Rooms/Type', 'Address/City', 'Address/Country']}]
 
@@ -146,7 +147,7 @@ search_client = SearchClient(endpoint=search_endpoint,
 
 # Runs a semantic query
 results =  search_client.search(query_type='semantic', semantic_configuration_name='semantic-config',
-    search_text="walk to restaurants and shopping", 
+    search_text="walking distance to live music", 
     select='HotelName,Description,Category', query_caption='extractive')
 
 for result in results:
@@ -165,11 +166,11 @@ for result in results:
 
 ## Explaining the code
 
-This quickstart demonstrates how to add `SemanticConfiguration` to a search index definition. If you're updating an existing index, this modification doesn't require a reindexing because the structure of your documents is unchanged.
+This section explains the updates to the index and queries. If you're updating an existing index, this modification doesn't require a reindexing because the structure of your documents is unchanged.
 
 ### Index updates
 
-To update the index, provide the entire schema plus the new `SemanticConfiguration` section. We recommend getting the index schema from the search service to ensure you have a valid schema for your update. If the schemas differ in field definitions or are missing other constructs, the update fails.
+To update the index, provide the existing schema in its entirety, plus the new `SemanticConfiguration` section. We recommend retrieving the index schema from the search service to ensure you're working with the current version. If the original and updated schemas differ in field definitions or other constructs, the update fails.
 
 This example highlights the Python code that adds a semantic configuration to an index.
 
@@ -185,7 +186,7 @@ semantic_config = SemanticConfiguration(
 )
 
 # Create the semantic settings using the configuration
-semantic_search = SemanticSearch(configurations=[semantic_config])
+semantic_search  = SemanticSearch(configurations=[semantic_config])
 
 # Update the search index on the search service
 index = SearchIndex(name=index_name, fields=fields, semantic_search=semantic_search)
@@ -195,16 +196,69 @@ print(f' {result.name} updated')
 
 ### Query parameters
 
-Required semantic parameters include `query_type` and `semantic_configuration_name`. Optionally, you can add captions to extract portions of the text and apply hit highlighting to the important terms and phrases.
+Required semantic parameters include `query_type` and `semantic_configuration_name`. Here is an example of a basic semantic query using the minimum parameters.
 
 ```python
 # Runs a semantic query
 results =  search_client.search(query_type='semantic', semantic_configuration_name='semantic-config',
-    search_text="walk to restaurants and shopping", 
-    select='HotelName,Description,Category', query_caption='extractive')
+    search_text="walking distance to live music", 
+    select='HotelName,HotelId,Description', query_caption='extractive')
 
 for result in results:
     print(result["@search.reranker_score"])
+    print(result["HotelId"])
+    print(result["HotelName"])
+    print(f"Description: {result['Description']}")
+```
+
+Output for this query (truncated) should look similar to the following example. Results are ranked by the semantic `rerankerScore` property. Scores ranging from 2.0 to 3.0 are considered to be [moderately relevant](../../semantic-search-overview.md#how-ranking-is-scored).
+
+```
+2.567150592803955
+24
+Uptown Chic Hotel
+Description: Chic hotel near the city. High-rise hotel in downtown, within walking distance to theaters, art galleries, restaurants and shops. Visit Seattle Art Museum by day, and then head over to Benaroya Hall to catch the evening's concert performance.
+2.362976312637329
+2
+Old Century Hotel
+Description: The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.
+2.1515355110168457
+4
+Sublime Palace Hotel
+Description: Sublime Cliff Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.
+2.0363330841064453
+15
+By the Market Hotel
+Description: Book now and Save up to 30%. Central location. Walking distance from the Empire State Building & Times Square, in the Chelsea neighborhood. Brand new rooms. Impeccable service.
+2.029420852661133
+39
+White Mountain Lodge & Suites
+Description: Live amongst the trees in the heart of the forest. Hike along our extensive trail system. Visit the Natural Hot Springs, or enjoy our signature hot stone massage in the Cathedral of Firs. Relax in the meditation gardens, or join new friends around the communal firepit. Weekend evening entertainment on the patio features special guest musicians or poetry readings.
+1.9624263048171997
+49
+Swirling Currents Hotel
+Description: Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center. Each room comes equipped with a microwave, a coffee maker and a minifridge. In-room entertainment includes complimentary W-Fi and flat-screen TVs. 
+1.9409809112548828
+...
+1.396693468093872
+35
+Bellevue Suites
+Description: Comfortable city living in the very center of downtown Bellevue. Newly reimagined, this hotel features apartment-style suites with sleeping, living and work spaces. Located across the street from the Light Rail to downtown. Free shuttle to the airport.
+```
+
+### Return captions
+
+Optionally, you can add captions to extract portions of the text and apply hit highlighting to the important terms and phrases. This query adds captions.
+
+```python
+# Runs a semantic query that returns captions
+results =  search_client.search(query_type='semantic', semantic_configuration_name='semantic-config',
+    search_text="walking distance to live music", 
+    select='HotelName,HotelId,Description', query_caption='extractive')
+
+for result in results:
+    print(result["@search.reranker_score"])
+    print(result["HotelId"])
     print(result["HotelName"])
     print(f"Description: {result['Description']}")
 
@@ -217,33 +271,27 @@ for result in results:
             print(f"Caption: {caption.text}\n")
 ```
 
-Output for this query should look similar to the following example. Results are ranked by the `rerankerScore` property and results in the 2 category are considered to be of [moderate relevance](../../semantic-search-overview.md#how-ranking-is-scored).
+Output (truncated) for this query adds a `caption` after each description. Notice that captions include hit highlighting over relevant terms and phrases.
 
 ```
-2.9116947650909424
-Swirling Currents Hotel
-Description: Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center. Each room comes equipped with a microwave, a coffee maker and a minifridge. In-room entertainment includes complimentary W-Fi and flat-screen TVs. 
-Caption: Spacious rooms, glamorous suites and residences, rooftop pool,<em> walking access to shopping, dining, entertainment and the city center.</em> Each room comes equipped with a microwave, a coffee maker and a minifridge. In-room entertainment includes complimentary W-Fi and flat-screen TVs.
-
-2.8783745765686035
-Foot Happy Suites
-Description: Downtown in the heart of the business district. Close to everything. Leave your car behind and walk to the park, shopping, and restaurants. Or grab one of our bikes and take your explorations a little further.
-Caption: <em>Downtown in the heart of the business district.</em> Close to everything. <em>Leave your car behind and walk to the park, shopping, and restaurants.</em> Or grab one of our bikes and take your explorations a little further.
-
-2.813152313232422
+2.567150592803955
+24
 Uptown Chic Hotel
 Description: Chic hotel near the city. High-rise hotel in downtown, within walking distance to theaters, art galleries, restaurants and shops. Visit Seattle Art Museum by day, and then head over to Benaroya Hall to catch the evening's concert performance.
-Caption: <em>Chic hotel </em>near the city. High-rise<em> hotel </em>in<em> downtown, </em>within walking<em> distance </em>to theaters, art galleries, restaurants and shops. Visit Seattle Art Museum by day, and then head over to Benaroya Hall to catch the evening's concert performance.
+Caption: Chic hotel near the city. High-rise hotel in downtown, within walking distance to<em> theaters, </em>art galleries, restaurants and shops. Visit<em> Seattle Art Museum </em>by day, and then head over to<em> Benaroya Hall </em>to catch the evening's<em> concert </em>performance.
 
-2.5118534564971924
-Roach Motel
-Description: Perfect Location on Main Street. Earn points while enjoying close proximity to the city's best shopping, restaurants, and attractions.
-Caption: <em>Perfect Location on Main Street.</em> Earn points while enjoying<em> close proximity </em>to<em> the city's best shopping, restaurants, and attractions.</em>
+2.362976312637329
+2
+Old Century Hotel
+Description: The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.
+Caption: The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live.
 
-2.392042875289917
+2.1515355110168457
+4
 Sublime Palace Hotel
 Description: Sublime Cliff Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.
-Caption: <em>Sublime Cliff Hotel </em>is located in the heart of the historic center of<em> Sublime </em>in an extremely vibrant and lively area within<em> short walking distance </em>to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort.
+Caption: Sublime Cliff Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within<em> short walking distance </em>to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort,.
+
 ```
 
 ### Return semantic answers
@@ -282,7 +330,9 @@ for result in results:
             print(f"Caption: {caption.text}\n")
 ```
 
-Output for this query should look similar to the following example where the answer is pulled from the second result.
+Output (truncated) for this query should look similar to the following example, where the answer is pulled from the second result.
+
+Recall that answers are verbatim content pulled from your index. To get composed answers as generated by a chat completion model, considering using a [RAG pattern](../../retrieval-augmented-generation-overview.md) or [agentic retrieval](../../search-agentic-retrieval-concept.md).
 
 ```
 Semantic Answer: Nature is Home on the beach. Explore the shore by day, and then come home to our shared living space to relax around a stone fireplace, sip something warm, and explore<em> the library </em>by night. Save up to 30 percent. Valid Now through the end of the year. Restrictions and blackouts may apply.
