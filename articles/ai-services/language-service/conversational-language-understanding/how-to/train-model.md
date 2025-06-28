@@ -19,7 +19,7 @@ To train a model, start a training job. Only successfully completed jobs create 
 
 The training times can be anywhere from a few seconds when dealing with simple projects, up to a couple of hours when you reach the [maximum limit](../service-limits.md) of utterances.
 
-Model evaluation is triggered automatically after training is completed successfully. The evaluation process starts by using the trained model to run predictions on the utterances in the testing set, and compares the predicted results with the provided labels (which establishes a baseline of truth). <!--The results are returned so you can review the [model’s performance](view-model-evaluation.md).-->
+Model evaluation is triggered automatically after training is completed successfully. The evaluation process starts by using the trained model to run predictions on the utterances in the testing set, and compares the predicted results with the provided labels (which establishes a baseline of truth). <!--The results are returned so you can review the [model's performance](view-model-evaluation.md).-->
 
 ## Prerequisites
 
@@ -54,11 +54,11 @@ Conversational language understanding supports two methods for data splitting:
 
 CLU supports two modes for training your models
 
-* **Standard training** uses fast machine learning algorithms to train your models relatively quickly. This is currently only available for **English** and is disabled for any project that doesn't use English (US), or English (UK) as its primary language. This training option is free of charge. Standard training allows you to add utterances and test them quickly at no cost. The evaluation scores shown should guide you on where to make changes in your project and add more utterances. Once you’ve iterated a few times and made incremental improvements, you can consider using advanced training to train another version of your model.
+* **Standard training** uses fast machine learning algorithms to train your models relatively quickly. This is currently only available for **English** and is disabled for any project that doesn't use English (US), or English (UK) as its primary language. This training option is free of charge. Standard training allows you to add utterances and test them quickly at no cost. The evaluation scores shown should guide you on where to make changes in your project and add more utterances. Once you've iterated a few times and made incremental improvements, you can consider using advanced training to train another version of your model.
 
 * **Advanced training** uses the latest in machine learning technology to customize models with your data. This is expected to show better performance scores for your models and will enable you to use the [multilingual capabilities](../language-support.md#multi-lingual-option) of CLU as well. Advanced training is priced differently. See the [pricing information](https://azure.microsoft.com/pricing/details/cognitive-services/language-service) for details.
 
-Use the evaluation scores to guide your decisions. There might be times where a specific example is predicted incorrectly in advanced training as opposed to when you used standard training mode. However, if the overall evaluation results are better using advanced, then it is recommended to use your final model. If that isn’t the case and you are not looking to use any multilingual capabilities, you can continue to use model trained with standard mode.
+Use the evaluation scores to guide your decisions. There might be times where a specific example is predicted incorrectly in advanced training as opposed to when you used standard training mode. However, if the overall evaluation results are better using advanced, then it is recommended to use your final model. If that isn't the case and you are not looking to use any multilingual capabilities, you can continue to use model trained with standard mode.
 
 > [!Note]
 > You should expect to see a difference in behaviors in intent confidence scores between the training modes as each algorithm calibrates their scores differently. 
