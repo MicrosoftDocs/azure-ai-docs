@@ -21,11 +21,8 @@ To train a model, start a training job. Only successfully completed jobs create 
 >
 > When using the **Quick Deploy** option, Conversational Language Understanding (CLU) automatically creates an instant training job to set up your CLU intent router using your selected `LLM` deployment.
 
-<<<<<<< HEAD
-=======
 The training times can be anywhere from a few seconds for simple projects, up to several hours when you reach the [maximum limit](../service-limits.md) of utterances.
 
->>>>>>> 444274-peyton-clu-updates
 Model evaluation is triggered automatically after training is completed successfully. The evaluation process starts by using the trained model to run predictions on the utterances in the testing set, and compares the predicted results with the provided labels (which establishes a baseline of truth). <!--The results are returned so you can review the [model's performance](view-model-evaluation.md).-->
 
 ## Prerequisites
