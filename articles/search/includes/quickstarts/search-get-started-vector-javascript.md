@@ -516,4 +516,3 @@ If you want to keep the search service, but delete the index and documents, you 
 ## Next steps
 
 - Review the repository of code samples for vector search capabilities in Azure AI Search for [JavaScript](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-javascript)
--
