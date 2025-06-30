@@ -73,7 +73,7 @@ items:
   - name: Deploy Azure OpenAI in Foundry Models
     items:
     - name: Use Azure OpenAI in Azure AI Foundry portal
-      href: ai-services/connect-services-ai-foundry-portal.md?context=/azure/ai-foundry/context/context
+      href: ../ai-services/connect-services-ai-foundry-portal.md?context=/azure/ai-foundry/context/context
     - name: Supported Azure OpenAI models
       href: ../ai-services/openai/concepts/models.md?context=/azure/ai-foundry/context/context
     - name: Azure OpenAI deployment types
