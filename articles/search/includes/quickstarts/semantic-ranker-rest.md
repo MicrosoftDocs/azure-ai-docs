@@ -41,21 +41,59 @@ We recommend [Visual Studio Code](https://code.visualstudio.com/download) with a
 
 In this section, you make REST API calls to update a search index to include a semantic configuration, and then send a query that invokes semantic ranking. Visual Studio Code displays the response to each request in an adjacent pane. For more information about each step, see [Explaining the code](#explaining-the-code).
 
-```json
++ [Add a semantic configuration to an index](#add-a-semantic-configuration-to-the-hotels-sample-index)
++ [Add semantic parameters to a query](#add-semantic-parameters-to-a-query)
+
+### Add a semantic configuration to the hotels-sample-index
+
+```https
+TBD
+```
+
+### Add semantic parameters to a query
+
+```https
 TBD
 ```
 
 ## Explaining the code
 
-This section explains the REST API calls that you made to:
+This section explains the updates to the index and queries. If you're updating an existing index, the additional of a semantic configuration doesn't require a reindexing because the structure of your documents is unchanged.
 
-+ [Update an index with a semantic configuration](#add-a-semantic-configuration-to-the-index)
-+ [Query the index using semantic parameters](#add-semantic-ranking-to-queries)
+### Index updates
 
-### Update an index with a semantic configuration
+To update the index, provide the existing schema in its entirety, plus the new `SemanticConfiguration` section. We recommend retrieving the index schema from the search service to ensure you're working with the current version. If the original and updated schemas differ in field definitions or other constructs, the update fails.
 
+This example shows the JSON that adds a semantic configuration to an index.
+
+```json
 TBD
+```
 
-### Query the index using semantic parameters
+### Query parameters
 
+Required semantic parameters include `query_type` and `semantic_configuration_name`. Here is an example of a basic semantic query using the minimum parameters.
+
+```json
 TBD
+```
+
+### Return captions
+
+Optionally, you can add captions to extract portions of the text and apply hit highlighting to the important terms and phrases. This query adds captions.
+
+```json
+TBD
+```
+
+### Return semantic answers
+
+In this final query, return semantic answers.
+
+Semantic ranker can produce an answer to a query string that has the characteristics of a question. The generated answer is extracted verbatim from your content so it won't include composed content like what you might expect from a chat completion model. If the semantic answer isn't useful for your scenario, you can omit `semantic_answers` from your code.
+
+To get a semantic answer, the question and answer must be closely aligned, and the model must find content that clearly answers the question. If potential answers fail to meet a confidence threshold, the model doesn't return an answer. For demonstration purposes, the question in this example is designed to get a response so that you can see the syntax.
+
+```json
+TBD
+```

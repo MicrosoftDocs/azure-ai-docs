@@ -10,7 +10,7 @@ ms.date: 06/27/2025
 
 [!INCLUDE [Semantic ranker introduction](semantic-ranker-intro.md)]
 
-> [!TIP] 
+> [!TIP]
 > You can [download the source code](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-semantic-search/SemanticSearchQuickstart) to start with a finished project or follow these steps to create your own. 
 
 ## Set up the client
@@ -30,6 +30,10 @@ We recommend [Visual Studio](https://visualstudio.microsoft.com/vs/community/) f
 1. Search for the [Azure.Search.Documents package](https://www.nuget.org/packages/Azure.Search.Documents/) and select the latest stable version.
 
 1. Select **Install** to add the assembly to your project and solution.
+
+### Sign in to Azure
+
+If you signed in to the [Azure portal](https://portal.azure.com), you're signed into Azure. If you aren't sure, use the Azure CLI or Azure PowerShell to log in: `az login` or `az connect`. If you have multiple tenants and subscriptions, see [Quickstart: Connect without keys](../../search-get-started-rbac.md) for help on how to connect.
 
 ### Create a search client
 
@@ -68,15 +72,22 @@ We recommend [Visual Studio](https://visualstudio.microsoft.com/vs/community/) f
 
 ## Update and query the index
 
-In this section, you update a search index and send a query that invokes semantic ranking. Visual Studio Code displays the response after you run each cell. For more information about each step, see [Explaining the code](#explaining-the-code).
+In this section, you update a search index and send a query that invokes semantic ranking. The code runs all operations in sequence, from index updates through a series of queries. For more information about each step, see [Explaining the code](#explaining-the-code). The code performs two types of tasks:
+
++ [Add a semantic configuration to an index](#add-a-semantic-configuration-to-the-hotels-sample-index)
++ [Add semantic parameters to a query](#add-semantic-parameters-to-a-query)
 
 ### Add a semantic configuration to the hotels-sample-index
 
+```csharp
 CODE GOES HERE
+```
 
-### Add semantic query parameters to a query
+### Add semantic parameters to a query
 
+```csharp
 CODE GOES HERE
+```
 
 ### Run the program
 
@@ -86,18 +97,45 @@ Output includes messages from [Console.WriteLine](/dotnet/api/system.console.wri
 
 ## Explaining the code
 
-Add `SemanticConfiguration` to a search index definition. If you're updating an existing index, this modification doesn't require a reindexing because the structure of your documents is unchanged.
+This section explains the updates to the index and queries. If you're updating an existing index, the additional of a semantic configuration doesn't require a reindexing because the structure of your documents is unchanged.
 
-+ [Update an index with a semantic configuration](#update-an-index-with-a-semantic-configuration)
-+ [Query the index using semantic parameters](#query-the-index-using-semantic-parameters)
+### Index updates
 
-### Update an index with a semantic configuration
+To update the index, provide the existing schema in its entirety, plus the new `SemanticConfiguration` section. We recommend retrieving the index schema from the search service to ensure you're working with the current version. If the original and updated schemas differ in field definitions or other constructs, the update fails.
 
-TBD
+This example highlights the C# code that adds a semantic configuration to an index.
 
-### Query the index using semantic parameters
+```csharp
+CODE GOES HERE
+```
 
-Here's a query that invokes semantic ranker, with search options for specifying parameters:
+### Query parameters
+
+Required semantic parameters include `query_type` and `semantic_configuration_name`. Here is an example of a basic semantic query using the minimum parameters.
+
+```csharp
+Console.WriteLine("Example of a semantic query.");
+
+options = new SearchOptions()
+{
+    QueryType = Azure.Search.Documents.Models.SearchQueryType.Semantic,
+    SemanticSearch = new()
+    {
+        SemanticConfigurationName = "semantic-config"
+    }
+};
+options.Select.Add("HotelName");
+options.Select.Add("Category");
+options.Select.Add("Description");
+
+// response = srchclient.Search<Hotel>("*", options);
+response = srchclient.Search<Hotel>("walking distance to live music", options);
+WriteDocuments(response);
+```
+
+### Return captions
+
+Optionally, you can add captions to extract portions of the text and apply hit highlighting to the important terms and phrases. This query adds captions.
 
 ```csharp
 Console.WriteLine("Example of a semantic query.");
@@ -116,16 +154,18 @@ options.Select.Add("Category");
 options.Select.Add("Description");
 
 // response = srchclient.Search<Hotel>("*", options);
-response = srchclient.Search<Hotel>("restaurant on site", options);
+response = srchclient.Search<Hotel>("walking distance to live music", options);
 WriteDocuments(response);
 ```
 
-For comparison, here are results from a query that uses the default BM25 ranking, based on term frequency and proximity. Given the query "restaurant on site", the BM25 ranking algorithm returns matches in the order shown in this screenshot, where the match on the "site" is considered more relevant because it's rare across the dataset:
+### Return semantic answers
 
-:::image type="content" source="../../media/quickstart-semantic/bm25-ranking.png" alt-text="Screenshot showing matches ranked by BM25.":::
+In this final query, return semantic answers.
 
-In contrast, when semantic ranking is applied to the same query ("restaurant on site"), the results are reranked based on semantic relevance to the query. This time, the top result is the hotel with the restaurant, which aligns better to user expectations.
+Semantic ranker can produce an answer to a query string that has the characteristics of a question. The generated answer is extracted verbatim from your content so it won't include composed content like what you might expect from a chat completion model. If the semantic answer isn't useful for your scenario, you can omit `semantic_answers` from your code.
 
-:::image type="content" source="../../media/quickstart-semantic/semantic-ranking.png" alt-text="Screenshot showing matches ranked based on semantic ranking.":::
+To get a semantic answer, the question and answer must be closely aligned, and the model must find content that clearly answers the question. If potential answers fail to meet a confidence threshold, the model doesn't return an answer. For demonstration purposes, the question in this example is designed to get a response so that you can see the syntax.
 
-
+```csharp
+CODE GOES HERE
+```

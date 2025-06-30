@@ -10,7 +10,7 @@ ms.date: 06/27/2025
 
 [!INCLUDE [Semantic ranker introduction](semantic-ranker-intro.md)]
 
-> [!TIP] 
+> [!TIP]
 > You can [download a finished notebook](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Semantic-Search) to start with a finished project or follow these steps to create your own. 
 
 ## Set up the client
@@ -166,7 +166,7 @@ for result in results:
 
 ## Explaining the code
 
-This section explains the updates to the index and queries. If you're updating an existing index, this modification doesn't require a reindexing because the structure of your documents is unchanged.
+This section explains the updates to the index and queries. If you're updating an existing index, the additional of a semantic configuration doesn't require a reindexing because the structure of your documents is unchanged.
 
 ### Index updates
 
