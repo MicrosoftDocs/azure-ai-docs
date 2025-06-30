@@ -110,7 +110,7 @@ To connect to your search service:
 
                   ]
     }
-    ```json
+    ```
 
 ## Create a search index
 
