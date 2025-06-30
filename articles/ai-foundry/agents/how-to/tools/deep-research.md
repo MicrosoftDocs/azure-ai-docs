@@ -46,9 +46,10 @@ Every stage of the process is safeguarded by input/output classifiers and chain-
 
 ## Prerequisites
 - A basic or standard agent [environment setup](../../environment-setup.md)
-
-To use Deep Research, you will create the following in this article:
+- Access to the Deep Research model is gated. Fill out the [request form](https://aka.ms/OAI/deepresearchaccess) for access. 
  
+To use Deep Research, you will create the following in this article:
+
 - The [Grounding with Bing Search tool](./bing-grounding.md)
 - A [deployed models](../../../model-inference/how-to/create-model-deployments.md) and the following model
     - `o3-deep-research` version `2025-06-26`. This model is available in `West US` and `Norway East`.
