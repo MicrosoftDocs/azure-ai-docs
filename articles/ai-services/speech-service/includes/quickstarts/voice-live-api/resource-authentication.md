@@ -1,9 +1,9 @@
 ---
 author: eric-urban 
 ms.author: eur 
-ms.service: azure-ai-openai
+ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 5/19/2025
+ms.date: 7/1/2025
 ---
 
 You need to retrieve the following information to authenticate your application with your Azure AI Foundry resource:
