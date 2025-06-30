@@ -98,7 +98,7 @@ Before you set up indexing, review your source data to determine whether any cha
 
 + Include or exclude arbitrary files. If you want to skip a specific file for whatever reason, you can add metadata properties and values to files in your OneLake lakehouse. When an indexer encounters this property, it skips the file or its content in the indexing run.
 
-File inclusion and exclusion is covered in the [indexer configuration](#configure-and-run-the-onelake-files-indexer) step. If you don't set criteria, the indexer reports an ineligible file as an error and moves on. If enough errors occur, processing might stop. You can specify error tolerance in the indexer [configuration settings](#configure-and-run-the-onelake-files-indexer).
+File inclusion and exclusion are covered in the [indexer configuration](#configure-and-run-the-onelake-files-indexer) step. If you don't set criteria, the indexer reports an ineligible file as an error and moves on. If enough errors occur, processing might stop. You can specify error tolerance in the indexer [configuration settings](#configure-and-run-the-onelake-files-indexer).
 
 An indexer typically creates one search document per file, where the text content and metadata are captured as searchable fields in an index. If files are whole files, you can potentially parse them into [multiple search documents](search-howto-index-one-to-many-blobs.md). For example, you can parse rows in a [CSV file](search-howto-index-csv-blobs.md) to create one search document per row. If you need to chunk a single document into smaller passages to vectorize data, consider using [integrated vectorization](vector-search-integrated-vectorization.md).
 
