@@ -46,13 +46,18 @@ Every stage of the process is safeguarded by input/output classifiers and chain-
 
 ## Prerequisites
 - A basic or standard agent [environment setup](../../environment-setup.md)
+
+To use Deep Research, you will create the following in this article:
+ 
 - The [Grounding with Bing Search tool](./bing-grounding.md)
 - A [deployed models](../../../model-inference/how-to/create-model-deployments.md) and the following model
     - `o3-deep-research` version `2025-06-26`. This model is available in `West US` and `Norway East`.
 
 ## Setup 
 
-To use the Deep Research model, create a new project and add your Grounding with Bing Search as a new connection. In the [AI Foundry portal](https://ai.azure.com/?cid=learnDocs):
+To use the Deep Research model, you need to create a new project and add your Grounding with Bing Search resource as a new connection. In the [AI Foundry portal](https://ai.azure.com/?cid=learnDocs):
+
+1. :::image type="content" source="../../media/tools/deep-research/project-creation.png" alt-text="A screenshot of  project creation in Azure AI Foundry." lightbox="../../media/tools/deep-research/project-creation.png":::
 
 1. Navigate to the project you created in the agent setup. Click on **Open in management center**.
     :::image type="content" source="../../media/tools/ai-search/project-studio.png" alt-text="A screenshot of a project in Azure AI Foundry." lightbox="../../media/tools/ai-search/project-studio.png":::
@@ -72,6 +77,9 @@ To use the Deep Research model, create a new project and add your Grounding with
     :::image type="content" source="../../media/deploy-model.png" alt-text="A screenshot of the screen to deploy a model." lightbox="../../media/deploy-model.png":::
 
 1. Search for the `o3-deep-research` model, and confirm the model deployment.
+
+    > [!NOTE]
+    > You also need to deploy a GPT chat model in your project, for example GPT-4o.
 
     :::image type="content" source="../../media/tools/deep-research/deep-research-model.png" alt-text="A screenshot of the model deployment." lightbox="../../media/tools/deep-research/deep-research-model.png":::
 
