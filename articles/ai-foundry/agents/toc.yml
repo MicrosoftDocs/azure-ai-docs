@@ -101,7 +101,7 @@ items:
               displayName: azure functions, functions
             - name: How to use Azure Functions
               href: how-to/tools/azure-functions-samples.md
-        - name: Deep Research
+        - name: Deep Research (preview)
           items:
             - name: Overview
               href: how-to/tools/deep-research.md

@@ -10,9 +10,9 @@ ms.service: azure-ai-agent-service
 ms.topic: how-to
 ---
 
-# Deep Research tool
+# Deep Research tool (preview)
 
-The Deep Research model in the Azure AI Foundry Agent Service enables you to use OpenAI's advanced agentic research capability, and integrate it with your data and systems.
+The Deep Research model in the Azure AI Foundry Agent Service enables you to use an advanced agentic research capability, and integrate it with your data and systems.
 
 > [!IMPORTANT]
 > Deep Research uses **Grounding with Bing Search**. Be sure to read and understand all stipulations of its use, including potential [costs](https://www.microsoft.com/bing/apis/grounding-pricing) that can be incurred, the [terms of use](https://www.microsoft.com/bing/apis/grounding-legal), and [use and display requirements](./bing-grounding.md#how-to-display-grounding-with-bing-search-results). See the [Grounding with Bing Search](./bing-grounding.md) documentation for more information.

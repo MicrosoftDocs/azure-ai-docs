@@ -12,11 +12,14 @@ ms.author: aahi
 ---
 
 # How to use Deep Research
-Use this article to find step-by-step instructions and code samples for Grounding with Bing search.
+Use this article to find step-by-step instructions and code samples for the Deep Research tool.
 
 ## Prerequisites
 
 * The requirements in the [Deep Research overview](./deep-research.md)
+
+> [!NOTE]
+> Limitation: The Deep Research tool is currently recommended only in non-streaming scenarios. Using it with streaming can work, but it may occasionally time-out and is therefore not recommended.
 
 ## Create a project client
 Create a client object, which will contain the endpoint for connecting to your AI project and other resources. 
@@ -34,7 +37,7 @@ project_client = AIProjectClient(
 
 ```
 ## Create an agent with the Grounding with Bing search tool enabled
-To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the connected resources section of your project in the Azure AI Foundry portal. You also will need to specify the name of your Deep Research model.
+To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the connected resources section of your project in the Azure AI Foundry portal. You also need to specify the name of your Deep Research model.
 
 ```python
 conn_id = os.environ["AZURE_BING_CONNECTION_ID"]
@@ -45,15 +48,20 @@ deep_research_tool = DeepResearchTool(
     deep_research_model=os.environ["DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME"],
 )
 
-with project_client.agents as agents_client:
+# Create Agent with the Deep Research tool and process Agent run
+with project_client:
 
+    with project_client.agents as agents_client:
+
+        # Create a new agent that has the Deep Research tool attached.
+        # NOTE: To add Deep Research to an existing agent, fetch it with `get_agent(agent_id)` and then,
+        # update the agent with the Deep Research tool.
         agent = agents_client.create_agent(
             model=os.environ["MODEL_DEPLOYMENT_NAME"],
             name="my-agent",
             instructions="You are a helpful Agent that assists in researching scientific topics.",
             tools=deep_research_tool.definitions,
         )
-        print(f"Created agent, ID: {agent.id}")
 ```
 
 ## Create a thread
@@ -85,7 +93,7 @@ print(f"Created message, ID: {message.id}")
 Create a run and observe the response to the question.
 
 > [!NOTE]
-> According to Grounding with Bing's [terms of use and use and display requirements](https://www.microsoft.com/bing/apis/grounding-legal#use-and-display-requirements), you need to display both website URLs and Bing search query URLs in your custom interface. See the [Grounding with Bing Search documentation](./bing-grounding.md#how-to-display-grounding-with-bing-search-results) for more informaiton.
+> According to Grounding with Bing's [terms of use and use and display requirements](https://www.microsoft.com/bing/apis/grounding-legal#use-and-display-requirements), you need to display both website URLs and Bing search query URLs in your custom interface. See the [Grounding with Bing Search documentation](./bing-grounding.md#how-to-display-grounding-with-bing-search-results) for more information.
 
 ```python
 # Create and process Agent run in thread with tools
