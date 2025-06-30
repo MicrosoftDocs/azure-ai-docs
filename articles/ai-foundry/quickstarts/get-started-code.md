@@ -120,6 +120,9 @@ Run the revised script to see the response from the model with this new input.
 python chat.py
 ```
 
+## Clean up resources
+
+[!INCLUDE [clean-up-resources](../includes/clean-up-resources.md)]
 
 ## Next step
 
