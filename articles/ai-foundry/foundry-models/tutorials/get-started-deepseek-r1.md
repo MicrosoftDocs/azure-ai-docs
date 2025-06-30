@@ -66,7 +66,7 @@ To create an Azure AI project that supports deployment for DeepSeek-R1, follow t
     | -------------- | ----------- |
     | Resource group | The main container for all the resources in Azure. This helps get resources that work together organized. It also helps to have a scope for the costs associated with the entire project. |
     | Region     | The region of the resources that you're creating. |
-    | AI Foundry resource    | The resource enabling access to the flagship models in Azure AI model catalog. In this tutorial, a new account is created, but Azure AI Foundry resources (formerly known as Azure AI Services) can be shared across multiple hubs and projects. Hubs use a connection to the resource to have access to the model deployments available there. To learn how you can create connections to Azure AI Foundry resources to consume models, see [Connect your AI project](../../model-inference/how-to/configure-project-connection.md). |
+    | AI Foundry resource    | The resource enabling access to the flagship models in Azure AI model catalog. In this tutorial, a new account is created, but Azure AI Foundry resources (formerly known as Azure AI Services resource) can be shared across multiple hubs and projects. Hubs use a connection to the resource to have access to the model deployments available there. To learn how you can create connections to Azure AI Foundry resources to consume models, see [Connect your AI project](../../model-inference/how-to/configure-project-connection.md). |
 
 1. Select **Create** to create the Foundry project alongside the other defaults. Wait until the project creation is complete. This process takes a few minutes.
 
