@@ -1237,6 +1237,15 @@ groups:
     title: TypeScript
   - id: rest-api
     title: REST
+- id: voice-live-quickstart
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+  - id: ai-foundry-portal
+    title: Foundry portal
+  - id: programming-language-python
+    title: Python
 - id: structured-outputs
   title: Programming languages
   prompt: Choose a language or API
