@@ -4,7 +4,7 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 6/27/2025
+ms.date: 7/1/2025
 ---
 
 ## Prerequisites
