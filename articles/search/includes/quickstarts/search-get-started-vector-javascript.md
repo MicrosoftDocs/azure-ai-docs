@@ -38,20 +38,6 @@ In the remaining sections, you set up API calls to Azure OpenAI and Azure AI Sea
 
 1. On the **Overview** home page, copy the URL. An example endpoint might look like `https://example.search.windows.net`. 
 
-1. [Find your Azure OpenAI service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.CognitiveServices%2Faccounts).
-
-1. On the **Overview** home page, select the link to view the endpoints. Copy the URL. An example endpoint might look like `https://example.openai.azure.com/`.
-
-## Set up environment variables for local development
-
-1. Create a `.env` file.
-1. Add the following environment variables to the `.env` file, replacing the values with your own service endpoints and keys.
-
-   ```plaintext
-   AZURE_SEARCH_ENDPOINT=<YOUR AZURE AI SEARCH ENDPOINT>
-   AZURE_SEARCH_INDEX_NAME=hotels-sample-index
-   ```
-
 
 ## Set up the Node.JS project
 
@@ -85,6 +71,15 @@ Set up project with Visual Studio Code and JavaScript.
    mkdir src
    ```
 
+## Set up environment variables for local development
+
+1. Create a `.env` file in your `vector-quickstart` project directory.
+1. Add the following environment variables to the `.env` file, replacing the values with your own service endpoints and keys.
+
+   ```plaintext
+   AZURE_SEARCH_ENDPOINT=<YOUR AZURE AI SEARCH ENDPOINT>
+   AZURE_SEARCH_INDEX_NAME=hotels-vector-quickstart
+   ```
 ## Sign in to Azure
 
 You're using Microsoft Entra ID and role assignments for the connection. Make sure you're logged in to the same tenant and subscription as Azure AI Search and Azure OpenAI. You can use the Azure CLI on the command line to show current properties, change properties, and to sign in. For more information, see [Connect without keys](../../search-get-started-rbac.md). 
@@ -108,14 +103,16 @@ In this section, you create a vector index in Azure AI Search with [SearchIndexC
 
 1. Create a `createIndex.js` file in the `src` directory.
 
-1. Add the dependencies, environment variables, and JavaScript type for `HotelDocument` to the top of the file. Add the `createIndex` function to create the index. The function defines the index schema, including the vector field `DescriptionVector`.
+1. Copy the following code into the file. 
 
     :::code language="javascript" source="~/azure-search-javascript-samples/quickstart-vector-js/src/createIndex.js":::
+
+    The code file adds the dependencies, environment variables, and JavaScript type for `HotelDocument` to the top of the file. Add the `createIndex` function to create the index. The function defines the index schema, including the vector field `DescriptionVector`.
 
 1. Run the file:
 
     ```console
-    node -r dotenv/config dist/createIndex.js
+    node -r dotenv/config src/createIndex.js
     ```
 1. The output of this code shows that the index is created successfully:
 
@@ -135,7 +132,6 @@ In this section, you create a vector index in Azure AI Search with [SearchIndexC
       - Vector search (enables hybrid search by collocating vector and nonvector fields) fields (`DescriptionVector` with `vectorSearchProfileName`)
       - Semantic search 
       - Faceted search (`searchSuggester`)
-      - Semantic search 
       - Geo-spatial search (`Location` field with `geo.distance`)
       - Filtering, sorting (Many fields marked filterable and sortable)
 
@@ -147,7 +143,7 @@ Creating and loading the index are separate steps. You created the index schema 
 In Azure AI Search, the index stores all searchable content, while the search engine executes queries against that index.
 
 1. Create a `uploadDocuments.js` file in the `src` directory.
-1. Add the dependencies, environment variables, and functions to upload documents to the index.
+1. Copy the following code into the file.
 
     :::code language="javascript" source="~/azure-search-javascript-samples/quickstart-vector-js/src/uploadDocuments.js" :::
 
@@ -158,7 +154,7 @@ In Azure AI Search, the index stores all searchable content, while the search en
 1. Build and run the file:
 
     ```console
-    node -r dotenv/config dist/uploadDocuments.js
+    node -r dotenv/config src/uploadDocuments.js
     ```
 1. The output of this code shows that the documents are indexed and ready for search:
 
@@ -205,7 +201,7 @@ The first example demonstrates a basic scenario where you want to find document 
 
 1. Create a `searchSingle.js` file in the `src` directory.
 
-1. Add the dependencies, environment variables, and search functionality. 
+1. Copy the following code into the file.
 
     :::code language="javascript" source="~/azure-search-javascript-samples/quickstart-vector-js/src/searchSingle.js" :::
 
@@ -216,7 +212,7 @@ The first example demonstrates a basic scenario where you want to find document 
 1. Build and run the file:
 
     ```console
-    node -r dotenv/config dist/searchSingle.js
+    node -r dotenv/config src/searchSingle.js
     ```
 
 1. The output of this code shows the relevant docs for the query `quintessential lodging near running trails, eateries, retail`. 
@@ -243,13 +239,16 @@ You can add filters, but the filters are applied to the nonvector content in you
 
 1. Create a `searchSingleWithFilter.js` file in the `src` directory.
 
-1. Add the dependencies, environment variables, and the same search functionality as the previous search with a post-processing exclusion filter added for hotels with `free wifi`.
+1. Copy the following code into the file.
 
     :::code language="javascript" source="~/azure-search-javascript-samples/quickstart-vector-js/src/searchSingleWithFilter.js" :::
+
+    Add the dependencies, environment variables, and the same search functionality as the previous search with a post-processing exclusion filter added for hotels with `free wifi`.
+
 1. Build and run the file:
 
     ```console
-    node -r dotenv/config dist/searchSingleWithFilter.js
+    node -r dotenv/config src/searchSingleWithFilter.js
     ```
 1. The output of this code shows the relevant documents for the query with the filter for `free wifi` applied:
 
@@ -269,13 +268,13 @@ You can specify a geospatial filter to limit results to a specific geographic ar
 
 1. Create a `searchSingleWithFilterGeo.js` file in the `src` directory.
 
-1. Add the dependencies, environment variables, and search functionality with a geospatial filter.
+1. Copy the following code into the file.
 
     :::code language="javascript" source="~/azure-search-javascript-samples/quickstart-vector-js/src/searchSingleWithFilterGeo.js" :::
 1. Build and run the file:
 
     ```console
-    node -r dotenv/config dist/searchSingleWithFilterGeo.js
+    node -r dotenv/config src/searchSingleWithFilterGeo.js
     ```
 
 1. The output of this code shows the relevant documents for the query with the geospatial post-processing exclusion filter applied:
@@ -301,13 +300,13 @@ Hybrid search consists of keyword queries and vector queries in a single search 
 This search uses [SearchClient](/javascript/api/@azure/search-documents/searchclient).[search](/javascript/api/@azure/search-documents/searchclient#@azure-search-documents-searchclient-search) and the [VectorQuery](/javascript/api/@azure/search-documents/vectorquery) and [SearchOptions](/javascript/api/@azure/search-documents/searchoptions). 
 
 1. Create a `searchHybrid.js` file in the `src` directory.
-1. Add the dependencies, environment variables, and search functionality for a hybrid search with the additional search text `historic hotel walk to restaurants and shopping`.
+1. Copy the following code into the file.
 
     :::code language="javascript" source="~/azure-search-javascript-samples/quickstart-vector-js/src/searchHybrid.js" :::
 1. Build and run the file:
 
     ```console
-    node -r dotenv/config dist/searchHybrid.js
+    node -r dotenv/config src/searchHybrid.js
     ```
 1. The output of this code shows the relevant documents for the hybrid search:
 
@@ -426,19 +425,19 @@ This search uses [SearchClient](/javascript/api/@azure/search-documents/searchcl
 
 ## Create a semantic hybrid search
 
-Here's the last query in the collection. 
+Here's the last query in the collection to create extend the semantic hybrid search with the additional search text `historic hotel walk to restaurants and shopping`.
 
 This search uses [SearchClient](/javascript/api/@azure/search-documents/searchclient).[search](/javascript/api/@azure/search-documents/searchclient#@azure-search-documents-searchclient-search) and the [VectorQuery](/javascript/api/@azure/search-documents/vectorquery) and [SearchOptions](/javascript/api/@azure/search-documents/searchoptions). 
 
 1. Create a `searchSemanticHybrid.js` file in the `src` directory.
-1. Add the dependencies, environment variables, and search functionality for a semantic hybrid search with the additional search text `historic hotel walk to restaurants and shopping`.
+1. Copy the following code into the file.
 
     :::code language="javascript" source="~/azure-search-javascript-samples/quickstart-vector-js/src/searchSemanticHybrid.js" :::
 
 1. Build and run the file:
 
     ```console
-    node -r dotenv/config dist/searchSemanticHybrid.js
+    node -r dotenv/config src/searchSemanticHybrid.js
     ```
 
 1. The output of this code shows the relevant documents for the semantic hybrid search:
@@ -511,7 +510,7 @@ If you want to keep the search service, but delete the index and documents, you 
 1. Build and run the file:
 
     ```console
-    node -r dotenv/config dist/deleteIndex.js
+    node -r dotenv/config src/deleteIndex.js
     ```
 
 ## Next steps
