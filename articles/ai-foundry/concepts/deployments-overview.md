@@ -5,7 +5,7 @@ description: Learn about deployment options for Azure AI Foundry Models.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 06/26/2025
+ms.date: 06/30/2025
 ms.reviewer: fasantia
 ms.author: mopeakande
 author: msakande
@@ -25,7 +25,7 @@ Azure AI Foundry provides several deployment options depending on the type of mo
 
 ### Standard deployment in Azure AI Foundry resources
 
-Azure AI Foundry resources (formerly referred to as Azure AI model inference, in Azure AI Services), is **the preferred deployment option** in Azure AI Foundry. It offers the widest range of capabilities, including regional, data zone, or global processing, and it offers standard and [provisioned throughput (PTU)](../../ai-services/openai/concepts/provisioned-throughput.md) options. Flagship models in Azure AI Foundry Models support this deployment option.
+Azure AI Foundry resources (formerly referred to as Azure AI Services resources), is **the preferred deployment option** in Azure AI Foundry. It offers the widest range of capabilities, including regional, data zone, or global processing, and it offers standard and [provisioned throughput (PTU)](../../ai-services/openai/concepts/provisioned-throughput.md) options. Flagship models in Azure AI Foundry Models support this deployment option.
 
 This deployment option is available in:
 
@@ -63,17 +63,17 @@ To get started, see [How to deploy and inference a managed compute deployment](.
 
 We recommend using [Standard deployments in Azure AI Foundry resources](#standard-deployment-in-azure-ai-foundry-resources) whenever possible, as it offers the largest set of capabilities among the available deployment options. The following table lists details about specific capabilities available for each deployment option:
 
-| Capability                    | Azure OpenAI | Standard deployment in Azure AI Foundry resources| Serverless API Endpoint | Managed compute |
-|-------------------------------|----------------------|-------------------|----------------|-----------------|
-| Which models can be deployed? | [Azure OpenAI models](../../ai-services/openai/concepts/models.md)        | [Foundry Models](../../ai-foundry/foundry-models/concepts/models.md) | [Foundry Models with pay-as-you-go billing](../how-to/model-catalog-overview.md) | [Open and custom models](../how-to/model-catalog-overview.md#availability-of-models-for-deployment-as-managed-compute) |
-| Deployment resource           | Azure OpenAI resource | Azure AI Foundry resource  | AI project (in AI hub resource) | AI project (in AI hub resource) |
-| Requires AI Hubs              | No | No | Yes | Yes |
-| Data processing options       | Regional <br /> Data-zone  <br /> Global | Regional <br /> Data-zone  <br /> Global | Regional | Regional |
-| Private networking            | Yes | Yes | Yes | Yes |
-| Content filtering             | Yes | Yes | Yes | No  |
-| Custom content filtering      | Yes | Yes | No  | No  |
-| Key-less authentication       | Yes | Yes | No  | No  |
-| Billing bases                 | Token usage & [provisioned throughput units](../../ai-services/openai/concepts/provisioned-throughput.md)        | Token usage & [provisioned throughput units](../../ai-services/openai/concepts/provisioned-throughput.md)       | Token usage<sup>1</sup>      | Compute core hours<sup>2</sup> |
+| Capability                    | Standard deployment in Azure AI Foundry resources | Serverless API Endpoint | Managed compute |
+|-------------------------------|--------------------------------------------------|------------------------|-----------------|
+| Which models can be deployed? | [Foundry Models](../../ai-foundry/foundry-models/concepts/models.md) | [Foundry Models with pay-as-you-go billing](../how-to/model-catalog-overview.md) | [Open and custom models](../how-to/model-catalog-overview.md#availability-of-models-for-deployment-as-managed-compute) |
+| Deployment resource           | Azure AI Foundry resource                         | AI project (in AI hub resource) | AI project (in AI hub resource) |
+| Requires AI Hubs              | No                                               | Yes                   | Yes            |
+| Data processing options       | Regional <br /> Data-zone  <br /> Global         | Regional              | Regional       |
+| Private networking            | Yes                                              | Yes                   | Yes            |
+| Content filtering             | Yes                                              | Yes                   | No             |
+| Custom content filtering      | Yes                                              | No                    | No             |
+| Key-less authentication       | Yes                                              | No                    | No             |
+| Billing bases                 | Token usage & [provisioned throughput units](../../ai-services/openai/concepts/provisioned-throughput.md) | Token usage<sup>1</sup> | Compute core hours<sup>2</sup> |
 
 <sup>1</sup> A minimal endpoint infrastructure is billed per minute. You aren't billed for the infrastructure that hosts the model in standard deployment. After you delete the endpoint, no further charges accrue.
 
