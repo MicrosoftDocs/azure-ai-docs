@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 06/26/2025
+ms.date: 06/30/2025
 author: aahill
 ms.author: aahi
 ---
@@ -19,7 +19,7 @@ Use this article to find step-by-step instructions and code samples for the Deep
 * The requirements in the [Deep Research overview](./deep-research.md)
 
 > [!NOTE]
-> Limitation: The Deep Research tool is currently recommended only in non-streaming scenarios. Using it with streaming can work, but it may occasionally time-out and is therefore not recommended.
+> Limitation: The Deep Research tool is currently recommended only in nonstreaming scenarios. Using it with streaming can work, but it might occasionally time out and is therefore not recommended.
 
 ## Create a function to get and print an agent response
 
@@ -109,7 +109,7 @@ async def main() -> None:
 
 ## Create an agent 
 
-To make the Deep Research tool available to your agent, use the `tools` paramter to initialize it and attach it to the agent. You can find your connection in the connected resources section of your project in the Azure AI Foundry portal. You also need to specify the deployment name of your Deep Research model.
+To make the Deep Research tool available to your agent, use the `tools` parameter to initialize it and attach it to the agent. You can find your connection in the connected resources section of your project in the Azure AI Foundry portal. You also need to specify the deployment name of your Deep Research model.
 
 ```python
 async with project_client:
@@ -196,7 +196,7 @@ if __name__ == "__main__":
 
 ## Delete the agent (optional)
 
-if you decide you don't need your agent, you can delete with:
+If you decide you don't need your agent, you can delete with:
 
 ```python
 agents_client.delete_agent(agent.id)
@@ -206,6 +206,6 @@ print("Deleted agent")
 ## Next steps
 
 * [Reference documentation](https://aka.ms/azsdk/azure-ai-projects/python/reference)
-* [Sample on Github](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_async/sample_agents_deep_research_async.py) 
+* [Sample on GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_async/sample_agents_deep_research_async.py) 
 * [Library source code](https://aka.ms/azsdk/azure-ai-projects/python/code) 
 * [Package (PyPi)](https://aka.ms/azsdk/azure-ai-projects/python/package) |

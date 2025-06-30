@@ -52,7 +52,7 @@ Every stage of the process is safeguarded by input/output classifiers and chain-
 
 ## Setup 
 
-To use the Deep Research model,create a new project and add your Grounding with Bing Search as a new connection. In the [AI Foundry portal](https://ai.azure.com/?cid=learnDocs):
+To use the Deep Research model, create a new project and add your Grounding with Bing Search as a new connection. In the [AI Foundry portal](https://ai.azure.com/?cid=learnDocs):
 
 1. Navigate to the project you created in the agent setup. Click on **Open in management center**.
     :::image type="content" source="../../media/tools/ai-search/project-studio.png" alt-text="A screenshot of a project in Azure AI Foundry." lightbox="../../media/tools/ai-search/project-studio.png":::
@@ -67,7 +67,7 @@ To use the Deep Research model,create a new project and add your Grounding with 
 
     :::image type="content" source="../../media/tools/bing/add-connection.png" alt-text="A screenshot of the screen to add a Grounding with Bing Search connection." lightbox="../../media/tools/bing/add-connection.png":::
 
-1. Deploy the the Deep Research model. Select **Models + Endpoints**.
+1. Deploy the Deep Research model. Select **Models + Endpoints**.
 
     :::image type="content" source="../../media/deploy-model.png" alt-text="A screenshot of the screen to add a Grounding with Bing Search connection." lightbox="../../media/deploy-model.png":::
 
