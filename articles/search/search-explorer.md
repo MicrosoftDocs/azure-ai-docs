@@ -219,4 +219,4 @@ If you're using a free service, remember that you're limited to three indexes, i
 To learn more about query structures and syntax, use a REST client to create query expressions that use more parts of the API. The [Search POST REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-05-01-preview&preserve-view=true) is especially helpful for learning and exploration.
 
 > [!div class="nextstepaction"]
-> [Quickstart: Create a basic query in REST](search-get-started-rest.md)
+> [Quickstart: Full-text search using REST](search-get-started-text.md)
