@@ -78,7 +78,7 @@ Data source-specific indexers for blobs, SQL, and Azure Cosmos DB provide extra 
 "parameters" : { "configuration" : { "indexedFileNameExtensions" : ".pdf,.docx" } }
 ```
 
-If the source is Azure SQL, you can set a query time out parameter.
+If the source is Azure SQL, you can set a query time-out parameter.
 
 [Field mappings](search-indexer-field-mappings.md) are used to explicitly map source-to-destination fields if there are discrepancies by name or type between a field in the data source and a field in the search index.
 
