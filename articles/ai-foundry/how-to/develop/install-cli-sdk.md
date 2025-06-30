@@ -61,7 +61,6 @@ Install [Node.js](https://nodejs.org/)
 
 Keep this terminal window open to run your scripts from here as well, now that you've signed in.
 
-
 ## Next step
 
 * [Get started in Azure AI Foundry](../../quickstarts/get-started-code.md)
