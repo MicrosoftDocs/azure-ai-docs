@@ -5,7 +5,7 @@ author: ssalgadodev
 ms.author: ssalgado
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 6/26/2025
+ms.date: 06/30/2025
 manager: scottpolly
 ms.reviewer: fasantia
 reviewer: santiagxf
@@ -54,13 +54,13 @@ You can view metrics within Azure AI Foundry portal. To view them, follow these 
 
 1. Select the tab **Metrics**.
 
-1. You can access an overview of common metrics that may be of interest. For cost-related metrics, please use the Azure Cost Management deep link, which provides access to detailed post-consumption cost metrics in the Cost analysis section located in the Azure Portal. Cost data in Azure Portal displays actual post-consumption charges for model consumption, including other AI resources within Azure AI Foundry. Follow this link for a full list of [AI resources](https://azure.microsoft.com/en-us/products/ai-services#tabs-pill-bar-oc14f0_tab0). There is approximately a 5-hour delay from the billing event to when it can be viewed in Azure Portal cost analysis.
+1. You can access an overview of common metrics that may be of interest. For cost-related metrics, please use the Azure Cost Management deep link, which provides access to detailed post-consumption cost metrics in the Cost analysis section located in the Azure Portal. Cost data in Azure Portal displays actual post-consumption charges for model consumption, including other AI resources within Azure AI Foundry. Follow this link for a full list of [AI resources](https://azure.microsoft.com/products/ai-services#tabs-pill-bar-oc14f0_tab0). There is approximately a 5-hour delay from the billing event to when it can be viewed in Azure Portal cost analysis.
 
     :::image type="content" source="../media/monitor-models/deployment-metrics.png" alt-text="Screenshot showing the metrics displayed for model deployments in Azure AI Foundry portal." lightbox="../media/monitor-models/deployment-metrics.png":::
 
     > [!IMPORTANT]
     > The **Azure Cost Management deep link**  provides a direct link within the Azure Portal, allowing users to access detailed cost metrics for deployed AI models. This deep link integrates with the Azure Cost Analysis service view, offering transparent and actionable insights into model-level costs.
-    > The deep link directs users to the Cost Analysis view in the Azure portal, providing a one-click experience to view deployments per resource, including input/output token cost/consumption. To view cost data, you need at least read access for an Azure account. For information about assigning access to Microsoft Cost Management data, see [Assign access to data](/azure/cost-management-billing/costs/assign-access-acm-data.md). 
+    > The deep link directs users to the Cost Analysis view in the Azure portal, providing a one-click experience to view deployments per resource, including input/output token cost/consumption. To view cost data, you need at least read access for an Azure account. For information about assigning access to Microsoft Cost Management data, see [Assign access to data](/azure/cost-management-billing/costs/assign-access-acm-data). 
 
 1. You can **view and analyze metrics with Azure Monitor metrics explorer** to further slice and filter your model deployment metrics.
 
