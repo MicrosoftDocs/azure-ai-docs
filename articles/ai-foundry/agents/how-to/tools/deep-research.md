@@ -67,14 +67,14 @@ To use the Deep Research model,create a new project and add your Grounding with 
 
     :::image type="content" source="../../media/tools/bing/add-connection.png" alt-text="A screenshot of the screen to add a Grounding with Bing Search connection." lightbox="../../media/tools/bing/add-connection.png":::
 
-1. Deploy the the Deep Research model. Select **Models + Endpoints**
+1. Deploy the the Deep Research model. Select **Models + Endpoints**.
 
     :::image type="content" source="../../media/deploy-model.png" alt-text="A screenshot of the screen to add a Grounding with Bing Search connection." lightbox="../../media/deploy-model.png":::
 
 1. Search for the `o3-deep-research` model, and confirm the model deployment.
-1. 
+
     :::image type="content" source="../../media/tools/deep-research/deep-research-model.png" alt-text="A screenshot of the model deployment." lightbox="../../media/tools/deep-research/deep-research-model.png":::
 
 ## Next steps
 
-Learn [how to use the Deep Research tool](./deep-research-samples.md) 
+Learn [how to use the Deep Research tool](./deep-research-samples.md). 
