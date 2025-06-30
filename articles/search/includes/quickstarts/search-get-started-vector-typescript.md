@@ -4,7 +4,7 @@ author: diberry
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 06/26/2025
+ms.date: 06/30/2025
 ---
 
 In this quickstart, you use TypeScript to create, load, and query vectors. The code examples perform these operations by using the [Azure AI Search client library](/javascript/api/overview/azure/search-documents-readme). The library provides an abstraction over the REST API for access to index operations such as data ingestion, search operations, and index management operations.
@@ -232,7 +232,7 @@ The vector query string is semantically similar to the search string, but it inc
 
     :::code language="typescript" source="~/azure-search-javascript-samples/quickstart-vector-ts/src/queryVector.ts" :::
 
-1. This code will be used in the following sections to perform vector searches. The query vector is created using an embedding model from Azure OpenAI.
+1. This code is used in the following sections to perform vector searches. The query vector is created using an embedding model from Azure OpenAI.
 
 
 ## Create a single vector search
@@ -402,7 +402,7 @@ This search uses [SearchClient](/javascript/api/@azure/search-documents/searchcl
            "HotelName": "Luxury Lion Resort",
            "Description": "Unmatched Luxury.  Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium, we feature the best in comfort"
        },
-       ```
+    ```
 
     In the vector-only query, which uses HNSW for finding matches, the Sublime Palace Hotel drops to fourth position. Historic Lion, which was second in the full-text search and third in the vector search, doesn't experience the same range of fluctuation, so it appears as a top match in a homogenized result set.
    

@@ -1353,14 +1353,14 @@ groups:
     title: REST
 # Owner: haileytapia
 - id: search-get-started-vector-search
-  title: Python and REST
+  title: Programming languages
   prompt: Choose a usage method
   pivots:
-  - id: python
-    title: Python
-  - id: typescript
-    title: TypeScript
   - id: javascript
     title: JavaScript
+  - id: python
+    title: Python
   - id: rest
     title: REST
+  - id: typescript
+    title: TypeScript

@@ -4,7 +4,7 @@ author: diberry
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 06/26/2025
+ms.date: 06/30/2025
 ---
 
 In this quickstart, you use JavaScript to create, load, and query vectors. The code examples perform these operations by using the [Azure AI Search client library](/javascript/api/overview/azure/search-documents-readme). The library provides an abstraction over the REST API for access to index operations such as data ingestion, search operations, and index management operations.
@@ -79,6 +79,12 @@ Set up project with Visual Studio Code and JavaScript.
    npm install @azure/identity @azure/search-documents dotenv
    ``` 
 
+1. Create a `src` directory in your project directory.
+
+   ```bash
+   mkdir src
+   ```
+
 ## Sign in to Azure
 
 You're using Microsoft Entra ID and role assignments for the connection. Make sure you're logged in to the same tenant and subscription as Azure AI Search and Azure OpenAI. You can use the Azure CLI on the command line to show current properties, change properties, and to sign in. For more information, see [Connect without keys](../../search-get-started-rbac.md). 
@@ -98,7 +104,7 @@ You should now be logged in to Azure from your local device.
 
 ## Create the vector index 
 
-In this section, you create a vector index in Azure AI Search with [SearchIndexClient](/javascript/api/@azure/search-documents/searchindexclient).[createOrUpdateIndex](/javascript/api/@azure/search-documents/searchindexclient#@azure-search-documents-searchindexclient-createorupdateindex). The index schema defines the fields, including the vector field `DescriptionVector`. Once the index is created, you upload documents to the index. The documents contain the vectorized version of the article's description, which enables similarity search based on meaning rather than exact keywords.
+In this section, you create a vector index in Azure AI Search with [SearchIndexClient](/javascript/api/@azure/search-documents/searchindexclient).[createOrUpdateIndex](/javascript/api/@azure/search-documents/searchindexclient#@azure-search-documents-searchindexclient-createorupdateindex). The index schema defines the fields, including the vector field `DescriptionVector`. 
 
 1. Create a `createIndex.js` file in the `src` directory.
 
@@ -136,7 +142,7 @@ In this section, you create a vector index in Azure AI Search with [SearchIndexC
 
 ## Upload documents to the index
 
-Creating and loading the index are separate steps. You created the index schema [in the previous step](#create-the-vector-index). Now you need to load documents into the index with [SearchClient](/javascript/api/@azure/search-documents/searchclient).[uploadDocuments](/javascript/api/%40azure/search-documents/searchclient#@azure-search-documents-searchclient-uploaddocuments).
+Creating and loading the index are separate steps. You created the index schema [in the previous step](#create-the-vector-index). Now you need to load documents into the index with [SearchClient](/javascript/api/@azure/search-documents/searchclient).[uploadDocuments](/javascript/api/%40azure/search-documents/searchclient#@azure-search-documents-searchclient-uploaddocuments). The documents contain the vectorized version of the article's description, which enables similarity search based on meaning rather than exact keywords.
 
 In Azure AI Search, the index stores all searchable content, while the search engine executes queries against that index.
 
@@ -190,7 +196,7 @@ The vector query string is semantically similar to the search string, but it inc
 
     :::code language="javascript" source="~/azure-search-javascript-samples/quickstart-vector-js/src/queryVector.js" :::
 
-1. This code in the following sections to perform vector searches. The query vector is created using an embedding model from Azure OpenAI.
+1. This code is used in the following sections to perform vector searches. The query vector is created using an embedding model from Azure OpenAI.
 
 
 ## Create a single vector search
@@ -360,7 +366,7 @@ This search uses [SearchClient](/javascript/api/@azure/search-documents/searchcl
            "HotelName": "Luxury Lion Resort",
            "Description": "Unmatched Luxury.  Visit our downtown hotel to indulge in luxury accommodations. Moments from the stadium, we feature the best in comfort"
        },
-       ```
+    ```
 
     In the vector-only query, which uses HNSW for finding matches, the Sublime Palace Hotel drops to fourth position. Historic Lion, which was second in the full-text search and third in the vector search, doesn't experience the same range of fluctuation, so it appears as a top match in a homogenized result set.
    
