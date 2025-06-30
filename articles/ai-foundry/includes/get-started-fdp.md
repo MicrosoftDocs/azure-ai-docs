@@ -10,6 +10,7 @@ ms.custom:
   - include file
   - build-aifnd
   - build-2025
+  - update-code
 ---
 
 In this quickstart, you use [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) to:
