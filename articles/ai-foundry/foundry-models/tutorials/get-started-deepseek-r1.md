@@ -33,7 +33,7 @@ To complete this article, you need:
 ## Create the resources
 
 
-Foundry Models is a capability in Azure AI Foundry resources in Azure. You can create model deployments under the resource to consume their predictions. You can also connect the resource to Azure AI Hubs and Projects in Azure AI Foundry to create intelligent applications if needed.
+Foundry Models is a capability in Azure AI Foundry resources in Azure. You can create model deployments under the resource to consume their predictions. You can also connect the resource to Azure AI hubs and projects in Azure AI Foundry to create intelligent applications if needed.
 
 To create an Azure AI project that supports deployment for DeepSeek-R1, follow these steps. You can also create the resources, using [Azure CLI](../how-to/quickstart-create-resources.md?pivots=programming-language-cli) or [infrastructure as code, with Bicep](../how-to/quickstart-create-resources.md?pivots=programming-language-bicep).
 
@@ -93,9 +93,9 @@ To create an Azure AI project that supports deployment for DeepSeek-R1, follow t
 
 You can get started by using the model in the playground to have an idea of the model's capabilities.
 
-1. On the deployment details page, select **Open in playground** in the top bar.
+1. On the deployment details page, select **Open in playground** in the top bar. This action opens the chat playground.
 
-2. In the **Deployment** drop down, the deployment you created is already automatically selected.
+2. In the **Deployment** drop down of the chat playground, the deployment you created is already automatically selected.
 
 3. Configure the system prompt as needed. In general, reasoning models don't use system messages in the same way as other types of models.
 
@@ -124,7 +124,7 @@ Reasoning might generate longer responses and consume a larger number of tokens.
 
 ### Reasoning content
 
-Some reasoning models, like DeepSeek-R1, generate completions and include the reasoning behind it. The reasoning associated with the completion is included in the response's content within the tags `<think>` and `</think>`. The model might select which scenarios for which to generate reasoning content. The following example shows how to generate the reasoning content, using Python:
+Some reasoning models, like DeepSeek-R1, generate completions and include the reasoning behind it. The reasoning associated with the completion is included in the response's content within the tags `<think>` and `</think>`. The model might select the scenarios for which to generate reasoning content. The following example shows how to generate the reasoning content, using Python:
 
 ```python
 import re
@@ -158,7 +158,7 @@ Usage:
 
 ### Parameters
 
-In general, reasoning models don't support the following parameters you can find in chat completion models:
+In general, reasoning models don't support the following parameters that you can find in chat completion models:
 
 * Temperature
 * Presence penalty
