@@ -255,10 +255,9 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
 
 ## Clean up resources
 
-If you no longer need them, delete the resource group associated with your project.
+[!INCLUDE [clean-up-resources](clean-up-resources.md)]
 
-In the Azure AI Foundry portal, select your project name in the top right corner. Then select the link for the resource group to open it in the Azure portal. Select the resource group, and then select **Delete**. Confirm that you want to delete the resource group.
+## Next step
 
-## Related content
-
-[Azure AI Foundry client library overview](../how-to/develop/sdk-overview.md)
+> [!div class="nextstepaction"]
+> [Azure AI Foundry client library overview](../how-to/develop/sdk-overview.md)
