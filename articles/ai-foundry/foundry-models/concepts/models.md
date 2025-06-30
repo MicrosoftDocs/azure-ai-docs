@@ -229,4 +229,4 @@ Those models can be of open access or IP protected. In both cases, you have to d
 
 ## Next steps
 
-- Get started today and [deploy your fist model in Azure AI Foundry Models](../../model-inference/how-to/create-model-deployments.md)
+- Get started today and [deploy your first model in Azure AI Foundry Models](../../model-inference/how-to/create-model-deployments.md)
