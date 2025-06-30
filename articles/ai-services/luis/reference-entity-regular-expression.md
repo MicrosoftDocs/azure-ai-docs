@@ -3,11 +3,11 @@ title: Regular expression entity type - LUIS
 description: A regular expression is best for raw utterance text. It ignores case and ignores cultural variant.  Regular expression matching is applied after spell-check alterations at the character level, not the token level.
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 manager: nitinme
 ms.topic: reference
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 # Regular expression entity
 

@@ -5,7 +5,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: include
-ms.date: 10/22/2024
+ms.date: 06/13/2025
 ---
 
 Build a console application by using the [**Azure.Search.Documents**](/dotnet/api/overview/azure/search.documents-readme) client library to add semantic ranking to an existing search index.
@@ -78,13 +78,12 @@ private static void CreateIndex(string indexName, SearchIndexClient adminClient)
     {
         Configurations =
         {
-            new SemanticConfiguration("my-semantic-config", new()
+            new SemanticConfiguration("semantic-config", new()
             {
                 TitleField = new SemanticField("HotelName"),
                 ContentFields =
                 {
                     new SemanticField("Description"),
-                    new SemanticField("Description_fr")
                 },
                 KeywordsFields =
                 {
@@ -125,7 +124,7 @@ options = new SearchOptions()
     QueryType = Azure.Search.Documents.Models.SearchQueryType.Semantic,
     SemanticSearch = new()
     {
-        SemanticConfigurationName = "my-semantic-config",
+        SemanticConfigurationName = "semantic-config",
         QueryCaption = new(QueryCaptionType.Extractive)
     }
 };
@@ -134,15 +133,15 @@ options.Select.Add("Category");
 options.Select.Add("Description");
 
 // response = srchclient.Search<Hotel>("*", options);
-response = srchclient.Search<Hotel>("what hotel has a good restaurant on site", options);
+response = srchclient.Search<Hotel>("restaurant on site", options);
 WriteDocuments(response);
 ```
 
-For comparison, here are results from a query that uses the default BM25 ranking, based on term frequency and proximity. Given the query "what hotel has a good restaurant on site", the BM25 ranking algorithm returns matches in the order shown in this screenshot:
+For comparison, here are results from a query that uses the default BM25 ranking, based on term frequency and proximity. Given the query "restaurant on site", the BM25 ranking algorithm returns matches in the order shown in this screenshot, where the match on the "site" is considered more relevant because it's rare across the dataset:
 
 :::image type="content" source="../../media/quickstart-semantic/bm25-ranking.png" alt-text="Screenshot showing matches ranked by BM25.":::
 
-In contrast, when semantic ranking is applied to the same query ("what hotel has a good restaurant on site"), the results are reranked based on semantic relevance to the query. This time, the top result is the hotel with the restaurant, which aligns better to user expectations.
+In contrast, when semantic ranking is applied to the same query ("restaurant on site"), the results are reranked based on semantic relevance to the query. This time, the top result is the hotel with the restaurant, which aligns better to user expectations.
 
 :::image type="content" source="../../media/quickstart-semantic/semantic-ranking.png" alt-text="Screenshot showing matches ranked based on semantic ranking.":::
 

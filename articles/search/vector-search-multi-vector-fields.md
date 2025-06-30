@@ -140,6 +140,7 @@ Additionally, a new query time parameter is available: `perDocumentVectorLimit`.
   "select": "title, scenes/timestamp, scenes/framePath"
 }
 ```
+
 ## Ranking across multiple vectors in a single field
 
 When multiple vectors are associated with a single document, Azure AI Search uses the maximum score among them for ranking. The system uses the most relevant vector to score each document, which prevents dilution by less relevant ones.
@@ -223,13 +224,15 @@ POST /indexes/my-index/docs/search?api-version=2025-05-01-preview
 | `searchScore`     | Final score for that field, after any rescoring and boosts.             |
 | `vectorSimilarity`| Raw similarity returned by the distance function.                        |
 
-
 > [!NOTE]
 > `innerHits` currently reports only vector fields.
 
 ### Relationship to debug=vector
-Here are some facts about this property:
-- The existing `debug=vector` switch remains unchanged.
-- When used with multi-vector fields, `@search.document` `DebugInfo.vector.subscore` shows the maximum score used to rank the parent document, but not per-element detail.
-- Use `innerHits` to gain insight into how individual elements contributed to the score.
 
+Here are some facts about this property:
+
+- The existing `debug=vector` switch remains unchanged.
+
+- When used with multi-vector fields, `@search.document` `DebugInfo.vector.subscore` shows the maximum score used to rank the parent document, but not per-element detail.
+
+- Use `innerHits` to gain insight into how individual elements contributed to the score.

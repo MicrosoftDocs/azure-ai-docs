@@ -893,7 +893,7 @@ This table shows the previous and new object names for real-time diarization and
 ### Speech SDK 1.16.0: 2021-March release
 
 > [!NOTE]
-> The Speech SDK on Windows depends on the shared Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019. Download it [here](https://support.microsoft.com/help/2977003/the-latest-supported-visual-c-downloads).
+> The Speech SDK on Windows depends on the shared Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019.
 
 #### New features
 
@@ -938,7 +938,7 @@ This table shows the previous and new object names for real-time diarization and
 ### Speech SDK 1.15.0: 2021-January release
 
 > [!NOTE]
-> The Speech SDK on Windows depends on the shared Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019. Download it [here](https://support.microsoft.com/help/2977003/the-latest-supported-visual-c-downloads).
+> The Speech SDK on Windows depends on the shared Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019.
 
 #### Highlights summary
 - Smaller memory and disk footprint making the SDK more efficient.
@@ -992,7 +992,7 @@ This table shows the previous and new object names for real-time diarization and
 ### Speech SDK 1.14.0: 2020-October release
 
 > [!NOTE]
-> The Speech SDK on Windows depends on the shared Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019. Download it [here](https://support.microsoft.com/help/2977003/the-latest-supported-visual-c-downloads).
+> The Speech SDK on Windows depends on the shared Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019.
 
 #### New features
 - **Linux**: Added support for Debian 10 and Ubuntu 20.04 LTS.
@@ -1040,7 +1040,7 @@ Stay healthy!
 ### Speech SDK 1.13.0: 2020-July release
 
 > [!NOTE]
-> The Speech SDK on Windows depends on the shared Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019. Download and install it from [here](https://support.microsoft.com/help/2977003/the-latest-supported-visual-c-downloads).
+> The Speech SDK on Windows depends on the shared Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019.
 
 #### New features
 - **C#**: Added support for asynchronous conversation transcription. See documentation [here](../../get-started-stt-diarization.md).

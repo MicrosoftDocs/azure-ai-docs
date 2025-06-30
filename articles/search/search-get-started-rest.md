@@ -9,7 +9,7 @@ ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
 ms.devlang: rest-api
-ms.date: 03/04/2025
+ms.date: 06/12/2025
 ms.custom:
   - mode-api
   - ignite-2023
@@ -247,11 +247,11 @@ The URI is extended to include the `docs` collections and `index` operation.
             "@search.action": "upload",
             "HotelId": "1",
             "HotelName": "Stay-Kay City Hotel",
-            "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Time's Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
+            "Description": "This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
             "Category": "Boutique",
-            "Tags": [ "pool", "air conditioning", "concierge" ],
+            "Tags": [ "view", "air conditioning", "concierge" ],
             "ParkingIncluded": false,
-            "LastRenovationDate": "1970-01-18T00:00:00Z",
+            "LastRenovationDate": "2022-01-18T00:00:00Z",
             "Rating": 3.60,
             "Address": 
                 {
@@ -266,11 +266,11 @@ The URI is extended to include the `docs` collections and `index` operation.
             "@search.action": "upload",
             "HotelId": "2",
             "HotelName": "Old Century Hotel",
-            "Description": "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts.",
-            "Category": "Boutique",
+            "Description": "The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.",
+             "Category": "Boutique",
             "Tags": [ "pool", "free wifi", "concierge" ],
             "ParkingIncluded": false,
-            "LastRenovationDate": "1979-02-18T00:00:00Z",
+            "LastRenovationDate": "2019-02-18T00:00:00Z",
             "Rating": 3.60,
             "Address": 
                 {
@@ -285,9 +285,9 @@ The URI is extended to include the `docs` collections and `index` operation.
             "@search.action": "upload",
             "HotelId": "3",
             "HotelName": "Gastronomic Landscape Hotel",
-            "Description": "The Hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
-            "Category": "Resort and Spa",
-            "Tags": [ "air conditioning", "bar", "continental breakfast" ],
+            "Description": "The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
+            "Category": "Suite",
+            "Tags": [ "restaurant", "bar", "continental breakfast" ],
             "ParkingIncluded": true,
             "LastRenovationDate": "2015-09-20T00:00:00Z",
             "Rating": 4.80,
@@ -304,11 +304,10 @@ The URI is extended to include the `docs` collections and `index` operation.
             "@search.action": "upload",
             "HotelId": "4",
             "HotelName": "Sublime Palace Hotel",
-            "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace.",
-            "Category": "Boutique",
-            "Tags": [ "concierge", "view", "24-hour front desk service" ],
+            "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.",
+            "Tags": [ "concierge", "view", "air conditioning" ],
             "ParkingIncluded": true,
-            "LastRenovationDate": "1960-02-06T00:00:00Z",
+            "LastRenovationDate": "2020-02-06T00:00:00Z",
             "Rating": 4.60,
             "Address": 
                 {
@@ -342,7 +341,7 @@ The URI is extended to include a query expression, which is specified by using t
       Authorization: Bearer {{token}}
       
       {
-          "search": "lake view",
+          "search": "attached restaurant",
           "select": "HotelId, HotelName, Tags, Description",
           "searchFields": "Description, Tags",
           "count": true
@@ -357,14 +356,14 @@ The URI is extended to include a query expression, which is specified by using t
       "@odata.count": 1,
       "value": [
         {
-          "@search.score": 0.6189728,
-          "HotelId": "4",
-          "HotelName": "Sublime Palace Hotel",
-          "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace.",
+          "@search.score": 0.5575875,
+          "HotelId": "3",
+          "HotelName": "Gastronomic Landscape Hotel",
+          "Description": "The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel's restaurant services.",
           "Tags": [
-            "concierge",
-            "view",
-            "24-hour front desk service"
+            "restaurant",
+            "bar",
+            "continental breakfast"
           ]
         }
       ]

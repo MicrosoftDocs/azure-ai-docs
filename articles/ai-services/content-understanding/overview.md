@@ -5,7 +5,7 @@ description: Learn about Azure AI Content Understanding solutions, processes, wo
 author: laujan
 ms.author: lajanuar
 manager: nitinme
-ms.date: 03/06/2025
+ms.date: 06/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
@@ -75,7 +75,7 @@ Common applications for Content Understanding include:
 
 ## Responsible AI
 
- Azure AI Content Understanding is designed to guard against processing harmful content, such as graphic violence and gore, hateful speech and bullying, exploitation, abuse, and more. For more information and a full list of prohibited content, *see* our [**Transparency note**](/legal/cognitive-services/content-understanding/transparency-note?toc=/azure/ai-services/content-understanding/toc.json&bc=/azure/ai-services/content-understanding/breadcrumb/toc.json) and our [**Code of Conduct**](https://aka.ms/AI-CoC).
+ Azure AI Content Understanding is designed to guard against processing harmful content, such as graphic violence and gore, hateful speech and bullying, exploitation, abuse, and more. For more information and a full list of prohibited content, *see* our [**Transparency note**](/azure/ai-foundry/responsible-ai/content-understanding/transparency-note) and our [**Code of Conduct**](https://aka.ms/AI-CoC).
 
 ### Modified content filtering
 
@@ -95,7 +95,7 @@ The Face capabilities feature in Content Understanding is a limited Access servi
 Developers using the Content Understanding service should review Microsoft's policies on customer data. For more information, visit our [**Data, protection and privacy**](https://www.microsoft.com/trust-center/privacy) page.
 
 > [!IMPORTANT]
-> If you're using Microsoft products or services to process Biometric Data, you're responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate, and required under applicable Data Protection Requirements. "Biometric Data" has the meaning articulated in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and privacy for Face](/legal/cognitive-services/face/data-privacy-security).
+> If you're using Microsoft products or services to process Biometric Data, you're responsible for: (i) providing notice to data subjects, including with respect to retention periods and destruction; (ii) obtaining consent from data subjects; and (iii) deleting the Biometric Data, all as appropriate, and required under applicable Data Protection Requirements. "Biometric Data" has the meaning articulated in Article 4 of the GDPR and, if applicable, equivalent terms in other data protection requirements. For related information, see [Data and privacy for Face](/azure/ai-foundry/responsible-ai/face/data-privacy-security).
 
 ## Getting started
 

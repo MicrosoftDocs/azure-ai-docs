@@ -10,6 +10,7 @@ ms.custom:
   - include file
   - build-aifnd
   - build-2025
+  - update-code
 ---
 
 In this quickstart, you use [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) to:
@@ -24,7 +25,7 @@ In this quickstart, you use [Azure AI Foundry](https://ai.azure.com/?cid=learnDo
 The Azure AI Foundry SDK is available in multiple languages, including Python, Java, JavaScript, and C#. This quickstart provides instructions for each of these languages.
 
 > [!TIP]
-> The rest of this article shows how to use a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. Select **[!INCLUDE [hub](../includes/hub-project-name.md)]** at the top of this article if you want to use a [!INCLUDE [hub](../includes/hub-project-name.md)] instead.
+> The rest of this article shows how to use a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. Select **[!INCLUDE [hub](../includes/hub-project-name.md)]** at the top of this article if you want to use a [!INCLUDE [hub](../includes/hub-project-name.md)] instead. [Which type of project do I need?](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need)
 
 ## Prerequisites
 
@@ -36,18 +37,14 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 ## Start with a project and model
 
 1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
-1. On the home page, select **Create an agent**. 
+1. On the home page, search and then select the **gpt-4o** model. 
     
     :::image type="content" source="../media/quickstarts/start-building.png" alt-text="Screenshot shows how to start building an Agent in Azure AI Foundry portal.":::
 
+1. On the model details page, select **Use this model**.
 1. Fill in a name to use for your project and select **Create**. 
-1. Once your resources are created, you are in the agent playground. 
-1. If you're asked to select a model, search for and select **gpt-4o**. 
-    1. Select **Confirm**.
-    1. Don't change the default settings. Select **Deploy**.
+1. Once your resources are created, you are in the chat playground. 
     
-You now have both a project and a model available for your agent.
-
 ## Set up your environment  
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
@@ -73,10 +70,6 @@ No installation is necessary to use the Azure AI Foundry portal.
 
 1. [Install Java and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-java).
 1. [!INCLUDE [find-endpoint](find-endpoint.md)]
-1. Set these environment variables to use in your scripts:
-
-    :::code language="plaintext" source="~/foundry-samples-main/samples/microsoft/java/mslearn-resources/quickstart/.env.template":::
-
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
 1. Download [POM.XML](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart/pom.xml) to your Java IDE.
 
@@ -134,6 +127,50 @@ No installation is necessary to use the Azure AI Foundry portal.
 
 ---
 
+## Run a chat completion
+
+Chat completions are the basic building block of AI applications. Using chat completions you can send a list of messages and get a response from the model.
+
+# [Azure AI Foundry portal](#tab/azure-ai-foundry)
+
+1. In the chat playground, fill in the prompt and select the **Send** button.
+1. The model returns a response in the **Response** pane.
+
+# [Python](#tab/python)
+
+Substitute your endpoint for the `endpoint` in this code:
+
+:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="chat_completion":::
+
+
+# [Java (preview)](#tab/java)
+
+Set these environment variables:
+
+- **AZURE_ENDPOINT**: Required. The base endpoint for your Azure AI service.
+- AZURE_AI_API_KEY: Optional. The API key for authentication (falls back to DefaultAzureCredential if not provided).
+- AZURE_MODEL_DEPLOYMENT_NAME: Optional. The model deployment name (defaults to "phi-4").
+- AZURE_MODEL_API_PATH: Optional. The API path segment (defaults to "deployments").
+- CHAT_PROMPT: Optional. The prompt to send to the model (uses a default if not provided).
+
+:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/ChatCompletionSample.java" :::
+
+# [JavaScript (preview)](#tab/javascript)
+
+:::code language="javascript" source="~/foundry-samples-main/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="chat_completion":::
+
+
+# [C#](#tab/csharp)
+
+:::code language="csharp" source="~/foundry-samples-main/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/SimpleInference.cs" id="chat_completion":::
+
+# [REST API](#tab/rest)
+
+Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
+
+:::code language="console" source="~/foundry-samples-main/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="chat_completion":::
+
+---
 
 ## Chat with an agent
 
@@ -141,8 +178,10 @@ Agents have powerful capabilities through the use of tools. Start by chatting wi
  
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
-After the preceding steps, you're now in the agents playground. 
+When you're ready to try an agent, a default agent is created for you. To chat with this agent:
 
+1. On the left pane, select **Playgrounds**.
+1. In the **Agents playground** card, select **Let's go**.
 1. Add instructions, such as, "You are a helpful writing assistant."
 1. Start chatting with your agent, for example, "Write me a poem about flowers."
 
@@ -153,6 +192,14 @@ Substitute your endpoint for the `endpoint` in this code:
 :::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="create_and_run_agent":::
 
 # [Java (preview)](#tab/java)
+
+Set these environment variables:
+
+- AZURE_ENDPOINT: Optional fallback. The base endpoint for your Azure AI service if PROJECT_ENDPOINT is not provided.
+- **PROJECT_ENDPOINT**: Required. The endpoint for your Azure AI Project.
+- MODEL_DEPLOYMENT_NAME: Optional. The model deployment name (defaults to "gpt-4o").
+- AGENT_NAME: Optional. The name to give to the created agent (defaults to "java-quickstart-agent").
+- AGENT_INSTRUCTIONS: Optional. The instructions for the agent (defaults to a helpful assistant).
 
 :::code language="java" source="~/foundry-samples-main/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/AgentSample.java" :::
 
@@ -199,6 +246,14 @@ Substitute your endpoint for the `endpoint` in this code:
 
 # [Java (preview)](#tab/java)
 
+Set these environment variables:
+
+- AZURE_ENDPOINT: Optional fallback. The base endpoint for your Azure AI service if PROJECT_ENDPOINT is not provided.
+- **PROJECT_ENDPOINT**: Required. The endpoint for your Azure AI Project.
+- MODEL_DEPLOYMENT_NAME: Optional. The model deployment name (defaults to "gpt-4o").
+- AGENT_NAME: Optional. The name to give to the created agent (defaults to "java-file-search-agent").
+- AGENT_INSTRUCTIONS: Optional. The instructions for the agent (defaults to document-focused instructions).
+
 :::code language="java" source="~/foundry-samples-main/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/FileSearchAgentSample.java" :::
 
 
@@ -218,51 +273,12 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
 
 ---
 
-## Run a chat completion
-
-Chat completions are the basic building block of AI applications. Using chat completions you can send a list of messages and get a response from the model instead of the agent.
-
-# [Azure AI Foundry portal](#tab/azure-ai-foundry)
-
-1. In the left pane, select **Playgrounds**. 
-1. Select **Try the chat playground**.
-1. Fill in the prompt and select the **Send** button.
-1. The model returns a response in the **Response** pane.
-
-# [Python](#tab/python)
-
-Substitute your endpoint for the `endpoint` in this code:
-
-:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="chat_completion":::
-
-
-# [Java (preview)](#tab/java)
-
-:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/ChatCompletionSample.java" :::
-
-# [JavaScript (preview)](#tab/javascript)
-
-:::code language="javascript" source="~/foundry-samples-main/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="chat_completion":::
-
-
-# [C#](#tab/csharp)
-
-:::code language="csharp" source="~/foundry-samples-main/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/SimpleInference.cs" id="chat_completion":::
-
-# [REST API](#tab/rest)
-
-Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
-
-:::code language="console" source="~/foundry-samples-main/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="chat_completion":::
-
----
 
 ## Clean up resources
 
-If you no longer need them, delete the resource group associated with your project.
+[!INCLUDE [clean-up-resources](clean-up-resources.md)]
 
-In the Azure AI Foundry portal, select your project name in the top right corner. Then select the link for the resource group to open it in the Azure portal. Select the resource group, and then select **Delete**. Confirm that you want to delete the resource group.
+## Next step
 
-## Related content
-
-[Azure AI Foundry client library overview](../how-to/develop/sdk-overview.md)
+> [!div class="nextstepaction"]
+> [Azure AI Foundry client library overview](../how-to/develop/sdk-overview.md)

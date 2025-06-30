@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 03/04/2025
+ms.date: 06/13/2025
 ---
 
 [!INCLUDE [Full text introduction](full-text-intro.md)]
@@ -197,12 +197,11 @@ AzureKeyCredential credential = new AzureKeyCredential("<Your search service adm
             var hotel = new Hotel();
             hotel.hotelId = "1";
             hotel.hotelName = "Stay-Kay City Hotel";
-            hotel.description = "The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Time's Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.";
-            hotel.descriptionFr = "L'hôtel est idéalement situé sur la principale artère commerciale de la ville en plein cœur de New York. A quelques minutes se trouve la place du temps et le centre historique de la ville, ainsi que d'autres lieux d'intérêt qui font de New York l'une des villes les plus attractives et cosmopolites de l'Amérique.";
+            hotel.description = "This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.";
             hotel.category = "Boutique";
-            hotel.tags = new String[] { "pool", "air conditioning", "concierge" };
+            hotel.tags = new String[] { "view", "air conditioning", "concierge" };
             hotel.parkingIncluded = false;
-            hotel.lastRenovationDate = OffsetDateTime.of(LocalDateTime.of(LocalDate.of(1970, 1, 18), LocalTime.of(0, 0)), ZoneOffset.UTC);
+            hotel.lastRenovationDate = OffsetDateTime.of(LocalDateTime.of(LocalDate.of(2022, 1, 18), LocalTime.of(0, 0)), ZoneOffset.UTC);
             hotel.rating = 3.6;
             hotel.address = new Address();
             hotel.address.streetAddress = "677 5th Ave";
@@ -215,12 +214,11 @@ AzureKeyCredential credential = new AzureKeyCredential("<Your search service adm
             hotel = new Hotel();
             hotel.hotelId = "2";
             hotel.hotelName = "Old Century Hotel";
-            hotel.description = "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts.";
-            hotel.descriptionFr = "L'hôtel est situé dans une place du XIXe siècle, qui a été agrandie et rénovée aux plus hautes normes architecturales pour créer un hôtel moderne, fonctionnel et de première classe dans lequel l'art et les éléments historiques uniques coexistent avec le confort le plus moderne.";
+            hotel.description = "The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.",
             hotel.category = "Boutique";
             hotel.tags = new String[] { "pool", "free wifi", "concierge" };
             hotel.parkingIncluded = false;
-            hotel.lastRenovationDate = OffsetDateTime.of(LocalDateTime.of(LocalDate.of(1979, 2, 18), LocalTime.of(0, 0)), ZoneOffset.UTC);
+            hotel.lastRenovationDate = OffsetDateTime.of(LocalDateTime.of(LocalDate.of(2019, 2, 18), LocalTime.of(0, 0)), ZoneOffset.UTC);
             hotel.rating = 3.60;
             hotel.address = new Address();
             hotel.address.streetAddress = "140 University Town Center Dr";
@@ -233,10 +231,9 @@ AzureKeyCredential credential = new AzureKeyCredential("<Your search service adm
             hotel = new Hotel();
             hotel.hotelId = "3";
             hotel.hotelName = "Gastronomic Landscape Hotel";
-            hotel.description = "The Hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.";
-            hotel.descriptionFr = "L'hôtel est situé dans une place du XIXe siècle, qui a été agrandie et rénovée aux plus hautes normes architecturales pour créer un hôtel moderne, fonctionnel et de première classe dans lequel l'art et les éléments historiques uniques coexistent avec le confort le plus moderne.";
-            hotel.category = "Resort and Spa";
-            hotel.tags = new String[] { "air conditioning", "bar", "continental breakfast" };
+            hotel.description = "The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.";
+            hotel.category = "Suite";
+            hotel.tags = new String[] { "restaurant", "bar", "continental breakfast" };
             hotel.parkingIncluded = true;
             hotel.lastRenovationDate = OffsetDateTime.of(LocalDateTime.of(LocalDate.of(2015, 9, 20), LocalTime.of(0, 0)), ZoneOffset.UTC);
             hotel.rating = 4.80;
@@ -251,12 +248,11 @@ AzureKeyCredential credential = new AzureKeyCredential("<Your search service adm
             hotel = new Hotel();
             hotel.hotelId = "4";
             hotel.hotelName = "Sublime Palace Hotel";
-            hotel.description = "Sublime Palace  Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace.";
-            hotel.descriptionFr = "Le Sublime Palace Hotel est situé au coeur du centre historique de sublime dans un quartier extrêmement animé et vivant, à courte distance de marche des sites et monuments de la ville et est entouré par l'extraordinaire beauté des églises, des bâtiments, des commerces et Monuments. Sublime Palace fait partie d'un Palace 1800 restauré avec amour.";
+            hotel.description = "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.";
             hotel.category = "Boutique";
-            hotel.tags = new String[] { "concierge", "view", "24-hour front desk service" };
+            hotel.tags = new String[] { "concierge", "view", "air conditioning" };
             hotel.parkingIncluded = true;
-            hotel.lastRenovationDate = OffsetDateTime.of(LocalDateTime.of(LocalDate.of(1960, 2, 06), LocalTime.of(0, 0)), ZoneOffset.UTC);
+            hotel.lastRenovationDate = OffsetDateTime.of(LocalDateTime.of(LocalDate.of(2020, 2, 06), LocalTime.of(0, 0)), ZoneOffset.UTC);
             hotel.rating = 4.60;
             hotel.address = new Address();
             hotel.address.streetAddress = "7400 San Pedro Ave";
@@ -402,13 +398,6 @@ AzureKeyCredential credential = new AzureKeyCredential("<Your search service adm
         @JsonProperty("Description")
         @SearchableField(analyzerName = "en.microsoft")
         public String description;
-    
-        /**
-         * French description
-         */
-        @JsonProperty("DescriptionFr")
-        @SearchableField(analyzerName = "fr.lucene")
-        public String descriptionFr;
     
         /**
          * Category
@@ -636,12 +625,11 @@ private static void uploadDocuments(SearchClient searchClient)
     var hotel = new Hotel();
     hotel.hotelId = "1";
     hotel.hotelName = "Stay-Kay City Hotel";
-    hotel.description = "The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Time's Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.";
-    hotel.descriptionFr = "L'hôtel est idéalement situé sur la principale artère commerciale de la ville en plein cœur de New York. A quelques minutes se trouve la place du temps et le centre historique de la ville, ainsi que d'autres lieux d'intérêt qui font de New York l'une des villes les plus attractives et cosmopolites de l'Amérique.";
+    hotel.description = "This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
     hotel.category = "Boutique";
-    hotel.tags = new String[] { "pool", "air conditioning", "concierge" };
+    hotel.tags = new String[] { "view", "air conditioning", "concierge" };
     hotel.parkingIncluded = false;
-    hotel.lastRenovationDate = OffsetDateTime.of(LocalDateTime.of(LocalDate.of(1970, 1, 18), LocalTime.of(0, 0)), ZoneOffset.UTC);
+    hotel.lastRenovationDate = OffsetDateTime.of(LocalDateTime.of(LocalDate.of(2022, 1, 18), LocalTime.of(0, 0)), ZoneOffset.UTC);
     hotel.rating = 3.6;
     hotel.address = new Address();
     hotel.address.streetAddress = "677 5th Ave";

@@ -5,7 +5,7 @@ description: Learn how to use Voice Live API for real-time voice agents with Azu
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 5/19/2025
+ms.date: 6/27/2025
 author: eric-urban
 ms.author: eur
 ms.custom: build-2025

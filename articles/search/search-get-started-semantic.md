@@ -11,7 +11,7 @@ ms.custom:
   - devx-track-python
   - ignite-2023
 ms.topic: quickstart
-ms.date: 03/04/2025
+ms.date: 06/13/2025
 ---
 
 # Quickstart: Semantic ranking using .NET or Python

@@ -24,7 +24,7 @@ keywords:
 
 ## Create a new Azure AI Foundry resource
 
-AI Foundry portal provides a way to create a new Azure resource with basic,  defaulted, settings. If your organization requires customized Azure configurations like alternative names, security controls or cost tags, you may have to use Azure portal or [template options](../../../ai-foundry/how-to/create-resource-template.md) to comply with your organization's Azure Policy compliance.
+[Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) provides a way to create a new Azure resource with basic,  defaulted, settings. If your organization requires customized Azure configurations like alternative names, security controls or cost tags, you may need to instead use [Azure portal](https://portal.azure.com) or [template options](../../../ai-foundry/how-to/create-resource-template.md) to comply with your organization's Azure Policy compliance.
 
 The Azure AI Foundry multi-service resource is listed under **AI Foundry** > **AI Foundry** in the portal. The API kind is **AIServices**. Look for the logo as shown here:
 

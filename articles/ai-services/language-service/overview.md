@@ -248,6 +248,6 @@ Use Language service containers to deploy API features on-premises. These Docker
 
 An AI system includes not only the technology, but also the people who use it, the people affected by it, and the deployment environment. Read the following articles to learn about responsible AI use and deployment in your systems:
 
-* [Transparency note for the Language service](/legal/cognitive-services/text-analytics/transparency-note)
-* [Integration and responsible use](/legal/cognitive-services/text-analytics/guidance-integration-responsible-use)
-* [Data, privacy, and security](/legal/cognitive-services/text-analytics/data-privacy)
+* [Transparency note for the Language service](/azure/ai-foundry/responsible-ai/text-analytics/transparency-note)
+* [Integration and responsible use](/azure/ai-foundry/responsible-ai/text-analytics/guidance-integration-responsible-use)
+* [Data, privacy, and security](/azure/ai-foundry/responsible-ai/text-analytics/data-privacy)

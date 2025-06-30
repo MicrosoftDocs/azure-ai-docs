@@ -148,7 +148,7 @@ The following commands demonstrate how to use the CLI to manage resources used b
   + User-assigned managed identity
 
     ```azurecli
-    az ml computetarget create amlcompute --name cpu-cluster --vm-size Standard_NC6 --max-nodes 5 --assign-identity '/subscriptions/<subcription_id>/resourcegroups/<resource_group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<user_assigned_identity>'
+    az ml computetarget create amlcompute --name cpu-cluster --vm-size Standard_NC6 --max-nodes 5 --assign-identity '/subscriptions/<subscription_id>/resourcegroups/<resource_group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<user_assigned_identity>'
     ```
 
   + System-assigned managed identity
@@ -160,7 +160,7 @@ The following commands demonstrate how to use the CLI to manage resources used b
 
     + User-assigned managed identity
         ```azurecli
-        az ml computetarget amlcompute identity assign --name cpu-cluster '/subscriptions/<subcription_id>/resourcegroups/<resource_group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<user_assigned_identity>'
+        az ml computetarget amlcompute identity assign --name cpu-cluster '/subscriptions/<subscription_id>/resourcegroups/<resource_group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<user_assigned_identity>'
         ```
     + System-assigned managed identity
 
