@@ -26,7 +26,7 @@ To use monitoring capabilities for model deployments in Foundry Models, you need
 * An Azure AI services resource. For more information, see [Create an Azure AI Services resource](../../model-inference/how-to/quickstart-create-resources.md).
 
     > [!TIP]
-    > If you are using Serverless API Endpoints and you want to take advantage of monitoring capabilities explained in this document, [migrate your Serverless API Endpoints to Foundry Models](../../model-inference/how-to/quickstart-ai-project.md).
+    > If you're using Serverless API Endpoints and you want to take advantage of monitoring capabilities explained in this document, [migrate your Serverless API Endpoints to Foundry Models](../../model-inference/how-to/quickstart-ai-project.md).
 
 * At least one model deployment.
 
@@ -54,12 +54,12 @@ You can view metrics within Azure AI Foundry portal. To view them, follow these 
 
 1. Select the tab **Metrics**.
 
-1. You can access an overview of common metrics that may be of interest. For cost-related metrics, please use the Azure Cost Management deep link, which provides access to detailed post-consumption cost metrics in the Cost analysis section located in the Azure Portal. Cost data in Azure Portal displays actual post-consumption charges for model consumption, including other AI resources within Azure AI Foundry. Follow this link for a full list of [AI resources](https://azure.microsoft.com/products/ai-services#tabs-pill-bar-oc14f0_tab0). There is approximately a 5-hour delay from the billing event to when it can be viewed in Azure Portal cost analysis.
+1. You can access an overview of common metrics that might be of interest. For cost-related metrics, use the Azure Cost Management deep link, which provides access to detailed post-consumption cost metrics in the Cost analysis section located in the Azure portal. Cost data in Azure portal displays actual post-consumption charges for model consumption, including other AI resources within Azure AI Foundry. Follow this link for a full list of [AI resources](https://azure.microsoft.com/products/ai-services#tabs-pill-bar-oc14f0_tab0). There's approximately a five hour delay from the billing event to when it can be viewed in Azure portal cost analysis.
 
     :::image type="content" source="../media/monitor-models/deployment-metrics.png" alt-text="Screenshot showing the metrics displayed for model deployments in Azure AI Foundry portal." lightbox="../media/monitor-models/deployment-metrics.png":::
 
     > [!IMPORTANT]
-    > The **Azure Cost Management deep link**  provides a direct link within the Azure Portal, allowing users to access detailed cost metrics for deployed AI models. This deep link integrates with the Azure Cost Analysis service view, offering transparent and actionable insights into model-level costs.
+    > The **Azure Cost Management deep link**  provides a direct link within the Azure portal, allowing users to access detailed cost metrics for deployed AI models. This deep link integrates with the Azure Cost Analysis service view, offering transparent and actionable insights into model-level costs.
     > The deep link directs users to the Cost Analysis view in the Azure portal, providing a one-click experience to view deployments per resource, including input/output token cost/consumption. To view cost data, you need at least read access for an Azure account. For information about assigning access to Microsoft Cost Management data, see [Assign access to data](/azure/cost-management-billing/costs/assign-access-acm-data). 
 
 1. You can **view and analyze metrics with Azure Monitor metrics explorer** to further slice and filter your model deployment metrics.
@@ -95,7 +95,7 @@ To use Azure Monitor, follow these steps:
 
     :::image type="content" source="../media/monitor-models/azmon-add-filter.png" alt-text="Screenshot showing how to apply a filter to a metric." lightbox="../media/monitor-models/azmon-add-filter.png":::
 
-1. It is useful to break down specific metrics by some of the dimensions. The following example shows how to break down the number of requests made to the resource by model by using the option **Add splitting**:
+1. It's useful to break down specific metrics by some of the dimensions. The following example shows how to break down the number of requests made to the resource by model by using the option **Add splitting**:
 
     :::image type="content" source="../media/monitor-models/azmon-add-splitting.png" alt-text="Screenshot showing how to split the metric by a given dimension." lightbox="../media/monitor-models/azmon-add-splitting.png":::
 
