@@ -6,7 +6,7 @@ services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 04/11/2025
+ms.date: 06/30/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents

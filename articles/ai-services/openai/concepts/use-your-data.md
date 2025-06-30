@@ -7,7 +7,7 @@ ms.service: azure-ai-openai
 ms.topic: quickstart
 author: aahill
 ms.author: aahi
-ms.date: 02/13/2025
+ms.date: 06/30/2025
 recommendations: false
 ms.custom: references_regions, ignite-2024
 ---
