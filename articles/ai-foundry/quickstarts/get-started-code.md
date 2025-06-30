@@ -46,8 +46,8 @@ In this quickstart, we walk you through setting up your local development enviro
     pip install azure-ai-inference azure-identity azure-ai-projects==1.0.0b10
     ```
 
-> [!TIP]
-> Different project types require different versions of the `azure-ai-projects` package. To avoid conflicts, create separate Python environments: use version `1.0.0b10` for [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s and the latest version for [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s.
+    > [!NOTE]
+    > Different project types require different versions of the `azure-ai-projects` package. To avoid conflicts, create separate Python environments: use version `1.0.0b10` for [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s and the latest version for [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s.
 
 ## Deploy a model
 
