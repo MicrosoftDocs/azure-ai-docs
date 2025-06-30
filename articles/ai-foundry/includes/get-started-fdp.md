@@ -72,7 +72,16 @@ No installation is necessary to use the Azure AI Foundry portal.
 1. [!INCLUDE [find-endpoint](find-endpoint.md)]
 1. Set these environment variables to use in your scripts:
 
-    :::code language="plaintext" source="~/foundry-samples-main/samples/microsoft/java/mslearn-resources/quickstart/.env.template":::
+    <!-- :::code language="plaintext" source="~/foundry-samples-main/samples/microsoft/java/mslearn-resources/quickstart/.env.template"::: -->
+
+```txt
+AZURE_ENDPOINT=your_endpoint_here
+AZURE_DEPLOYMENT=your_deployment_name_here 
+# Project ID (Optional - will be generated if not provided)
+PROJECT_ID=your_project_id_here
+MODEL_DEPLOYMENT_NAME=gpt-4o
+```
+
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
 1. Download [POM.XML](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart/pom.xml) to your Java IDE.
