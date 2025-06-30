@@ -46,8 +46,8 @@ Every stage of the process is safeguarded by input/output classifiers and chain-
 
 ## Prerequisites
 - A basic or standard agent [environment setup](../../environment-setup.md)
-- Access to the Deep Research model is gated. Fill out the [request form](https://aka.ms/OAI/deepresearchaccess) for access. 
- 
+- Access to the Deep Research model is gated. Fill out the [request form](https://aka.ms/OAI/deepresearchaccess) for access. If you have already have access to the o3 model no request is required.
+
 To use Deep Research, you will create the following in this article:
 
 - The [Grounding with Bing Search tool](./bing-grounding.md)
