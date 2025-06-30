@@ -2,8 +2,8 @@
 title: Use Azure Policies with hubs and projects
 titleSuffix: Azure AI Foundry
 description: Learn how to use Azure Policy with Azure AI Foundry to make sure your hubs and projects are compliant with your requirements.
-author: Blackmist
-ms.author: larryfr
+ms.author: jburchel 
+author: jonburchel 
 ms.date: 05/01/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to

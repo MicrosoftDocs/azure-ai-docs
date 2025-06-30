@@ -14,7 +14,7 @@ In this quickstart, you use [agentic retrieval](../../search-agentic-retrieval-c
 Although you can provide your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book. The documents describe general science topics and images of Earth at night as observed from space.
 
 > [!TIP]
-> The REST version of this quickstart introduces agentic retrieval in Azure AI Search, which *extracts* rather than *generates* answers. For an end-to-end workflow, including steps for adding conversational turns and passing your retrieved content to an LLM for answer generation, see the Python version.
+> The REST version of this quickstart introduces agentic retrieval in Azure AI Search, which *extracts* rather than *generates* answers. For an end-to-end workflow, including steps for adding conversational turns and passing your retrieved content to an LLM for answer generation, see the C# or Python version.
 
 ## Prerequisites
 
@@ -168,14 +168,6 @@ PUT {{baseUrl}}/indexes/{{index-name}}?api-version={{api-version}}  HTTP/1.1
 ```
 
 The index schema contains fields for document identification and page content, embeddings, and numbers. It also includes configurations for semantic ranking and vector queries, which use the `text-embedding-3-large` model you previously deployed.
-
-> [!IMPORTANT]
-> Agentic retrieval has two token-based billing models:
->
-> + Billing from Azure OpenAI for query planning.
-> + Billing from Azure AI Search for query execution (semantic ranking).
->
-> Semantic ranking is free in the initial public preview. After the preview, standard token billing applies. For more information, see [Availability and pricing of agentic retrieval](../../search-agentic-retrieval-concept.md#availability-and-pricing).
 
 ## Upload documents to the index
 

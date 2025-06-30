@@ -20,7 +20,7 @@ Generates text-to-speech audio from the input text.
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
 | api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 
 ### Request Header
@@ -101,7 +101,7 @@ Transcribes audio into the input language.
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
 | api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 
 ### Request Header
@@ -125,12 +125,12 @@ Transcribes audio into the input language.
 | └─ type | enum | Must be set to `server_vad` to enable manual chunking using server side VAD.<br>Possible values: `server_vad` | No |  |
 | file | string |  | Yes |  |
 | filename | string | The optional filename or descriptive identifier to associate with with the audio data. | No |  |
-| include[] | array | Additional information to include in the transcription response. <br>`logprobs` will return the log probabilities of the tokens in the <br>response to understand the model's confidence in the transcription. <br>`logprobs` only works with response_format set to `json` and only with <br>the models `gpt-4o-transcribe` and `gpt-4o-mini-transcribe`. | No |  |
+| include[] | array | Additional information to include in the transcription response. <br>`logprobs` will return the log probabilities of the tokens in the response to understand the model's confidence in the transcription. <br>`logprobs` only works with response_format set to `json` and only with the models `gpt-4o-transcribe` and `gpt-4o-mini-transcribe`. | No |  |
 | language | string | The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) (e.g. `en`) format will improve accuracy and latency. | No |  |
 | model | string | The model to use for this transcription request. | No |  |
 | prompt | string | An optional text to guide the model's style or continue a previous audio segment. The prompt should match the audio language. | No |  |
 | response_format | object |  | No |  |
-| stream | boolean | If set to true, the model response data will be streamed to the client<br>as it is generated using [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format). Note: Streaming is not supported for the `whisper-1` model and will be ignored. | No | False |
+| stream | boolean | If set to true, the model response data will be streamed to the client as it is generated using [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format). Note: Streaming is not supported for the `whisper-1` model and will be ignored. | No | False |
 | temperature | number | The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. | No | 0 |
 | timestamp_granularities[] | array | The timestamp granularities to populate for this transcription. `response_format` must be set `verbose_json` to use timestamp granularities. Either or both of these options are supported: `word`, or `segment`. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency. | No | ['segment'] |
 
@@ -217,7 +217,7 @@ Creates a chat completion.
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
 | api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 
 ### Request Header
@@ -234,41 +234,41 @@ Creates a chat completion.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| audio | object | Parameters for audio output. Required when audio output is requested with<br>`modalities: ["audio"]`. | No |  |
-| └─ format | enum | Specifies the output audio format. Must be one of `wav`, `mp3`, `flac`,<br>`opus`, or `pcm16`.<br>Possible values: `wav`, `aac`, `mp3`, `flac`, `opus`, `pcm16` | No |  |
+| audio | object | Parameters for audio output. Required when audio output is requested with `modalities: ["audio"]`. | No |  |
+| └─ format | enum | Specifies the output audio format. Must be one of `wav`, `mp3`, `flac`, `opus`, or `pcm16`.<br>Possible values: `wav`, `aac`, `mp3`, `flac`, `opus`, `pcm16` | No |  |
 | └─ voice | object |  | No |  |
 | data_sources | array | The data sources to use for the On Your Data feature, exclusive to Azure OpenAI. | No |  |
-| frequency_penalty | number | Number between -2.0 and 2.0. Positive values penalize new tokens based on<br>their existing frequency in the text so far, decreasing the model's<br>likelihood to repeat the same line verbatim. | No | 0 |
+| frequency_penalty | number | Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. | No | 0 |
 | function_call | enum | Specifying a particular function via `{"name": "my_function"}` forces the model to call that function.<br>Possible values: `none`, `auto` | No |  |
 | functions | array | Deprecated in favor of `tools`.<br><br>A list of functions the model may generate JSON inputs for. | No |  |
-| logit_bias | object | Modify the likelihood of specified tokens appearing in the completion.<br><br>Accepts a JSON object that maps tokens (specified by their token ID in the<br>tokenizer) to an associated bias value from -100 to 100. Mathematically,<br>the bias is added to the logits generated by the model prior to sampling.<br>The exact effect will vary per model, but values between -1 and 1 should<br>decrease or increase likelihood of selection; values like -100 or 100<br>should result in a ban or exclusive selection of the relevant token. | No | None |
-| logprobs | boolean | Whether to return log probabilities of the output tokens or not. If true,<br>returns the log probabilities of each output token returned in the<br>`content` of `message`. | No | False |
-| max_completion_tokens | integer | An upper bound for the number of tokens that can be generated for a<br>completion, including visible output tokens and reasoning tokens. | No |  |
-| max_tokens | integer | The maximum number of tokens that can be generated in the chat completion.<br>This value can be used to control costs for text generated via API.<br><br>This value is now deprecated in favor of `max_completion_tokens`, and is<br>not compatible with o1 series models. | No |  |
-| messages | array | A list of messages comprising the conversation so far. Depending on the<br>model you use, different message types (modalities) are supported,<br>like text, images, and audio. | Yes |  |
-| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be<br>useful for storing additional information about the object in a structured<br>format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings<br>with a maximum length of 512 characters. | No |  |
-| modalities | object | Output types that you would like the model to generate.<br>Most models are capable of generating text, which is the default:<br><br>`["text"]`<br><br>The `gpt-4o-audio-preview` model can also be used to generate audio. To request that this model generate <br>both text and audio responses, you can use:<br><br>`["text", "audio"]` | No |  |
+| logit_bias | object | Modify the likelihood of specified tokens appearing in the completion.<br><br>Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling.<br>The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. | No | None |
+| logprobs | boolean | Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. | No | False |
+| max_completion_tokens | integer | An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and reasoning tokens. | No |  |
+| max_tokens | integer | The maximum number of tokens that can be generated in the chat completion.<br>This value can be used to control costs for text generated via API.<br><br>This value is now deprecated in favor of `max_completion_tokens`, and is not compatible with o1 series models. | No |  |
+| messages | array | A list of messages comprising the conversation so far. Depending on the model you use, different message types (modalities) are supported, like text, images, and audio. | Yes |  |
+| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
+| modalities | object | Output types that you would like the model to generate.<br>Most models are capable of generating text, which is the default:<br><br>`["text"]`<br><br>The `gpt-4o-audio-preview` model can also be used to generate audio. To request that this model generate both text and audio responses, you can use:<br><br>`["text", "audio"]` | No |  |
 | model | string | The model deployment identifier to use for the chat completion request. | Yes |  |
 | n | integer | How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep `n` as `1` to minimize costs. | No | 1 |
 | parallel_tool_calls | object | Whether to enable parallel function calling during tool use. | No |  |
 | prediction | object | Base representation of predicted output from a model. | No |  |
 | └─ type | [OpenAI.ChatOutputPredictionType](#openaichatoutputpredictiontype) |  | No |  |
-| presence_penalty | number | Number between -2.0 and 2.0. Positive values penalize new tokens based on<br>whether they appear in the text so far, increasing the model's likelihood<br>to talk about new topics. | No | 0 |
-| reasoning_effort | object | **o-series models only** <br><br>Constrains effort on reasoning for reasoning models. Currently supported values are `low`, `medium`, and `high`. Reducing<br>reasoning effort can result in faster responses and fewer tokens used<br>on reasoning in a response. | No |  |
+| presence_penalty | number | Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. | No | 0 |
+| reasoning_effort | object | **o-series models only** <br><br>Constrains effort on reasoning for reasoning models. Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. | No |  |
 | response_format | object |  | No |  |
 | └─ type | enum | <br>Possible values: `text`, `json_object`, `json_schema` | No |  |
 | seed | integer | This feature is in Beta.<br>If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.<br>Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. | No |  |
-| stop | object | Not supported with latest reasoning models `o3` and `o4-mini`.<br><br>Up to 4 sequences where the API will stop generating further tokens. The<br>returned text will not contain the stop sequence. | No |  |
-| store | boolean | Whether or not to store the output of this chat completion request for<br>use in model distillation or evals products. | No | False |
-| stream | boolean | If set to true, the model response data will be streamed to the client<br>as it is generated using server-sent events. | No | False |
+| stop | object | Not supported with latest reasoning models `o3` and `o4-mini`.<br><br>Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence. | No |  |
+| store | boolean | Whether or not to store the output of this chat completion request for use in model distillation or evals products. | No | False |
+| stream | boolean | If set to true, the model response data will be streamed to the client as it is generated using server-sent events. | No | False |
 | stream_options | object | Options for streaming response. Only set this when you set `stream: true`. | No |  |
-| └─ include_usage | boolean | If set, an additional chunk will be streamed before the `data: [DONE]`<br>message. The `usage` field on this chunk shows the token usage statistics<br>for the entire request, and the `choices` field will always be an empty<br>array. <br><br>All other chunks will also include a `usage` field, but with a null<br>value. **NOTE:** If the stream is interrupted, you may not receive the<br>final usage chunk which contains the total token usage for the request. | No |  |
+| └─ include_usage | boolean | If set, an additional chunk will be streamed before the `data: [DONE]` message. The `usage` field on this chunk shows the token usage statistics for the entire request, and the `choices` field will always be an empty array. <br><br>All other chunks will also include a `usage` field, but with a null value. **NOTE:** If the stream is interrupted, you may not receive the final usage chunk which contains the total token usage for the request. | No |  |
 | temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br>We generally recommend altering this or `top_p` but not both. | No | 1 |
 | tool_choice | [OpenAI.ChatCompletionToolChoiceOption](#openaichatcompletiontoolchoiceoption) | Controls which (if any) tool is called by the model.<br>`none` means the model will not call any tool and instead generates a message.<br>`auto` means the model can pick between generating a message or calling one or more tools.<br>`required` means the model must call one or more tools.<br>Specifying a particular tool via `{"type": "function", "function": {"name": "my_function"}}` forces the model to call that tool.<br><br>`none` is the default when no tools are present. `auto` is the default if tools are present. | No |  |
 | tools | array | A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported. | No |  |
-| top_logprobs | integer | An integer between 0 and 20 specifying the number of most likely tokens to<br>return at each token position, each with an associated log probability.<br>`logprobs` must be set to `true` if this parameter is used. | No |  |
-| top_p | number | An alternative to sampling with temperature, called nucleus sampling,<br>where the model considers the results of the tokens with top_p probability<br>mass. So 0.1 means only the tokens comprising the top 10% probability mass<br>are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No | 1 |
-| user | string | A unique identifier representing your end-user, which can help to<br>monitor and detect abuse. | No |  |
+| top_logprobs | integer | An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability.<br>`logprobs` must be set to `true` if this parameter is used. | No |  |
+| top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No | 1 |
+| user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
 | user_security_context | [AzureUserSecurityContext](#azureusersecuritycontext) | User security context contains several parameters that describe the application itself, and the end user that interacts with the application. These fields assist your security operations teams to investigate and mitigate security incidents by providing a comprehensive approach to protecting your AI applications. [Learn more](https://aka.ms/TP4AI/Documentation/EndUserContext) about protecting AI applications using Microsoft Defender for Cloud. | No |  |
 
 ### Responses
@@ -354,7 +354,7 @@ Creates a completion.
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
 | api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 
 ### Request Header
@@ -382,10 +382,10 @@ Creates a completion.
 | presence_penalty | number | Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. | No | 0 |
 | prompt | string or array | The prompt(s) to generate completions for, encoded as a string, array of strings, array of tokens, or array of token arrays.<br>Note that <&#124;endoftext&#124;> is the document separator that the model sees during training, so if a prompt is not specified the model will generate as if from the beginning of a new document. | No |  |
 | seed | integer | If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.<br><br>Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. | No |  |
-| stop | object | Not supported with latest reasoning models `o3` and `o4-mini`.<br><br>Up to 4 sequences where the API will stop generating further tokens. The<br>returned text will not contain the stop sequence. | No |  |
+| stop | object | Not supported with latest reasoning models `o3` and `o4-mini`.<br><br>Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence. | No |  |
 | stream | boolean | Whether to stream back partial progress. If set, tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message.  | No | False |
 | stream_options | object | Options for streaming response. Only set this when you set `stream: true`. | No |  |
-| └─ include_usage | boolean | If set, an additional chunk will be streamed before the `data: [DONE]`<br>message. The `usage` field on this chunk shows the token usage statistics<br>for the entire request, and the `choices` field will always be an empty<br>array. <br><br>All other chunks will also include a `usage` field, but with a null<br>value. **NOTE:** If the stream is interrupted, you may not receive the<br>final usage chunk which contains the total token usage for the request. | No |  |
+| └─ include_usage | boolean | If set, an additional chunk will be streamed before the `data: [DONE]` message. The `usage` field on this chunk shows the token usage statistics for the entire request, and the `choices` field will always be an empty array. <br><br>All other chunks will also include a `usage` field, but with a null value. **NOTE:** If the stream is interrupted, you may not receive the final usage chunk which contains the total token usage for the request. | No |  |
 | suffix | string | The suffix that comes after a completion of inserted text.<br><br>This parameter is only supported for `gpt-3.5-turbo-instruct`. | No | None |
 | temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br><br>We generally recommend altering this or `top_p` but not both. | No | 1 |
 | top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No | 1 |
@@ -467,7 +467,7 @@ Creates an embedding vector representing the input text.
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
 | api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 
 ### Request Header
@@ -646,7 +646,7 @@ Edits an image from a text caption on a given gpt-image-1 model deployment
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
 | deployment-id | path | Yes | string |  |
 | api-version | query | Yes | string |  |
 
@@ -705,7 +705,7 @@ POST {endpoint}/openai/v1/images/generations?api-version=preview
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
 | api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 
 ### Request Header
@@ -722,7 +722,7 @@ POST {endpoint}/openai/v1/images/generations?api-version=preview
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| background | enum | Allows to set transparency for the background of the generated image(s). <br>This parameter is only supported for `gpt-image-1`. Must be one of <br>`transparent`, `opaque` or `auto` (default value). When `auto` is used, the <br>model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it <br>should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
+| background | enum | Allows to set transparency for the background of the generated image(s). <br>This parameter is only supported for `gpt-image-1`. Must be one of `transparent`, `opaque` or `auto` (default value). When `auto` is used, the model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
 | model | string | The model deployment to use for the image generation. | Yes |  |
 | moderation | enum | Control the content-moderation level for images generated by `gpt-image-1`. Must be either `low` for less restrictive filtering or `auto` (default value).<br>Possible values: `low`, `auto` | No |  |
 | n | integer | The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported. | No | 1 |
@@ -845,7 +845,7 @@ Creates a model response.
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
 | api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 
 ### Request Header
@@ -863,28 +863,28 @@ Creates a model response.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | background | boolean | Whether to run the model response in the background. | No | False |
-| include | array | Specify additional output data to include in the model response. Currently<br>supported values are:<br>- `file_search_call.results`: Include the search results of<br>  the file search tool call.<br>- `message.input_image.image_url`: Include image urls from the input message.<br>- `computer_call_output.output.image_url`: Include image urls from the computer call output.<br>- `reasoning.encrypted_content`: Includes an encrypted version of reasoning <br>  tokens in reasoning item outputs. This enables reasoning items to be used in<br>  multi-turn conversations when using the Responses API statelessly (like<br>  when the `store` parameter is set to `false`, or when an organization is<br>  enrolled in the zero data retention program). | No |  |
+| include | array | Specify additional output data to include in the model response. Currently supported values are:<br>- `file_search_call.results`: Include the search results of the file search tool call.<br>- `message.input_image.image_url`: Include image urls from the input message.<br>- `computer_call_output.output.image_url`: Include image urls from the computer call output.<br>- `reasoning.encrypted_content`: Includes an encrypted version of reasoning tokens in reasoning item outputs. This enables reasoning items to be used in multi-turn conversations when using the Responses API statelessly (like when the `store` parameter is set to `false`, or when an organization is enrolled in the zero data retention program). | No |  |
 | input | string or array |  | Yes |  |
-| instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous<br>response will not be carried over to the next response. This makes it simple<br>to swap out system (or developer) messages in new responses. | No |  |
+| instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses. | No |  |
 | max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and . | No |  |
-| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be<br>useful for storing additional information about the object in a structured<br>format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings<br>with a maximum length of 512 characters. | No |  |
+| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
 | model | string | The model deployment to use for the creation of this response. | Yes |  |
 | parallel_tool_calls | boolean | Whether to allow the model to run tool calls in parallel. | No | True |
-| previous_response_id | string | The unique ID of the previous response to the model. Use this to<br>create multi-turn conversations. reasoning models. | No |  |
-| reasoning | object | **o-series models only**<br><br>Configuration options for<br>reasoning models. | No |  |
-| └─ effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | **o-series models only** <br><br>Constrains effort on reasoning for <br>reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing<br>reasoning effort can result in faster responses and fewer tokens used<br>on reasoning in a response. | No |  |
-| └─ generate_summary | enum | **Deprecated:** use `summary` instead.<br><br>A summary of the reasoning performed by the model. This can be<br>useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
-| └─ summary | enum | A summary of the reasoning performed by the model. This can be<br>useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
-| store | boolean | Whether to store the generated model response for later retrieval via<br>API. | No | True |
-| stream | boolean | If set to true, the model response data will be streamed to the client<br>as it is generated using [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format). | No | False |
+| previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. reasoning models. | No |  |
+| reasoning | object | **o-series models only**<br><br>Configuration options for reasoning models. | No |  |
+| └─ effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | **o-series models only** <br><br>Constrains effort on reasoning for reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. | No |  |
+| └─ generate_summary | enum | **Deprecated:** use `summary` instead.<br><br>A summary of the reasoning performed by the model. This can be useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
+| └─ summary | enum | A summary of the reasoning performed by the model. This can be useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
+| store | boolean | Whether to store the generated model response for later retrieval via API. | No | True |
+| stream | boolean | If set to true, the model response data will be streamed to the client as it is generated using [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format). | No | False |
 | temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br>We generally recommend altering this or `top_p` but not both. | No | 1 |
-| text | object | Configuration options for a text response from the model. Can be plain<br>text or structured JSON data.  | No |  |
+| text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data.  | No |  |
 | └─ format | [OpenAI.ResponseTextFormatConfiguration](#openairesponsetextformatconfiguration) |  | No |  |
-| tool_choice | object | Controls which (if any) tool is called by the model.<br><br>`none` means the model will not call any tool and instead generates a message.<br><br>`auto` means the model can pick between generating a message or calling one or<br>more tools.<br><br>`required` means the model must call one or more tools. | No |  |
+| tool_choice | object | Controls which (if any) tool is called by the model.<br><br>`none` means the model will not call any tool and instead generates a message.<br><br>`auto` means the model can pick between generating a message or calling one or more tools.<br><br>`required` means the model must call one or more tools. | No |  |
 | └─ type | [OpenAI.ToolChoiceObjectType](#openaitoolchoiceobjecttype) | Indicates that the model should use a built-in tool to generate a response. | No |  |
-| tools | array | An array of tools the model may call while generating a response. You <br>can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that are provided by OpenAI that extend the<br>  model's capabilities, like file search.<br>- **Function calls (custom tools)**: Functions that are defined by you,<br>  enabling the model to call your own code. | No |  |
-| top_p | number | An alternative to sampling with temperature, called nucleus sampling,<br>where the model considers the results of the tokens with top_p probability<br>mass. So 0.1 means only the tokens comprising the top 10% probability mass<br>are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No | 1 |
-| truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds<br>  the model's context window size, the model will truncate the <br>  response to fit the context window by dropping input items in the<br>  middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window <br>  size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
+| tools | array | An array of tools the model may call while generating a response. You can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that are provided by OpenAI that extend the model's capabilities, like file search.<br>- **Function calls (custom tools)**: Functions that are defined by you, enabling the model to call your own code. | No |  |
+| top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No | 1 |
+| truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
 | user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
 
 ### Responses
@@ -929,7 +929,7 @@ Retrieves a model response with the given ID.
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
 | api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 | response_id | path | Yes | string |  |
 | include[] | query | No | array |  |
@@ -973,7 +973,7 @@ Deletes a response by ID.
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
 | api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 | response_id | path | Yes | string |  |
 
@@ -1016,13 +1016,13 @@ Returns a list of input items for a given response.
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
 | api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 | response_id | path | Yes | string |  |
-| limit | query | No | integer | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the<br>default is 20. |
-| order | query | No | string<br>Possible values: `asc`, `desc` | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and`desc`<br>for descending order. |
-| after | query | No | string | A cursor for use in pagination. `after` is an object ID that defines your place in the list.<br>For instance, if you make a list request and receive 100 objects, ending with obj_foo, your<br>subsequent call can include after=obj_foo in order to fetch the next page of the list. |
-| before | query | No | string | A cursor for use in pagination. `before` is an object ID that defines your place in the list.<br>For instance, if you make a list request and receive 100 objects, ending with obj_foo, your<br>subsequent call can include before=obj_foo in order to fetch the previous page of the list. |
+| limit | query | No | integer | A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. |
+| order | query | No | string<br>Possible values: `asc`, `desc` | Sort order by the `created_at` timestamp of the objects. `asc` for ascending order and`desc` for descending order. |
+| after | query | No | string | A cursor for use in pagination. `after` is an object ID that defines your place in the list.<br>For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. |
+| before | query | No | string | A cursor for use in pagination. `before` is an object ID that defines your place in the list.<br>For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. |
 
 ### Request Header
 
@@ -1061,7 +1061,7 @@ POST {endpoint}/openai/v1/video/generations/jobs?api-version=preview
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
 | api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 
 ### Request Header
@@ -1148,7 +1148,7 @@ GET {endpoint}/openai/v1/video/generations/jobs?api-version=preview
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
 | api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 | before | query | No | string |  |
 | after | query | No | string |  |
@@ -1194,7 +1194,7 @@ GET {endpoint}/openai/v1/video/generations/jobs/{job-id}?api-version=preview
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
 | api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 | job-id | path | Yes | string | The ID of the video generation job to use for the Azure OpenAI request. |
 
@@ -1235,7 +1235,7 @@ DELETE {endpoint}/openai/v1/video/generations/jobs/{job-id}?api-version=preview
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
 | api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 | job-id | path | Yes | string | The ID of the video generation job to use for the Azure OpenAI request. |
 
@@ -1274,7 +1274,7 @@ GET {endpoint}/openai/v1/video/generations/{generation-id}?api-version=preview
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
 | api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 | generation-id | path | Yes | string | The ID of the video generation to use for the Azure OpenAI request. |
 
@@ -1317,7 +1317,7 @@ GET {endpoint}/openai/v1/video/generations/{generation-id}/content/thumbnail?api
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
 | api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 | generation-id | path | Yes | string | The ID of the video generation to use for the Azure OpenAI request. |
 | If-Modified-Since | header | No | string | Timestamp formatted as GMT time |
@@ -1359,7 +1359,7 @@ GET {endpoint}/openai/v1/video/generations/{generation-id}/content/video?api-ver
 
 | Name | In | Required | Type | Description |
 |------|------|----------|------|-----------|
-| endpoint | path | Yes | string<br>url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| endpoint | path | Yes | string url | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
 | api-version | query | No |  | The explicit Azure AI Foundry Models API version to use for this request.<br>`latest` if not otherwise specified. |
 | generation-id | path | Yes | string | The ID of the video generation to use for the Azure OpenAI request. |
 | If-Modified-Since | header | No | string |  |
@@ -1432,14 +1432,14 @@ information related to retrieval-augmented generation performed.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| annotations | array | Annotations for the message, when applicable, as when using the<br>web search tool. | No |  |
-| audio | object | If the audio output modality is requested, this object contains data<br>about the audio response from the model. | No |  |
-| └─ data | string | Base64 encoded audio bytes generated by the model, in the format<br>specified in the request. | No |  |
-| └─ expires_at | integer | The Unix timestamp (in seconds) for when this audio response will<br>no longer be accessible on the server for use in multi-turn<br>conversations. | No |  |
+| annotations | array | Annotations for the message, when applicable, as when using the web search tool. | No |  |
+| audio | object | If the audio output modality is requested, this object contains data about the audio response from the model. | No |  |
+| └─ data | string | Base64 encoded audio bytes generated by the model, in the format specified in the request. | No |  |
+| └─ expires_at | integer | The Unix timestamp (in seconds) for when this audio response will no longer be accessible on the server for use in multi-turn conversations. | No |  |
 | └─ id | string | Unique identifier for this audio response. | No |  |
 | └─ transcript | string | Transcript of the audio generated by the model. | No |  |
 | content | string | The contents of the message. | Yes |  |
-| context | object | An additional property, added to chat completion response messages, produced by the Azure OpenAI service when using<br>extension behavior. This includes intent and citation information from the On Your Data feature. | No |  |
+| context | object | An additional property, added to chat completion response messages, produced by the Azure OpenAI service when using extension behavior. This includes intent and citation information from the On Your Data feature. | No |  |
 | └─ all_retrieved_documents | object | Summary information about documents retrieved by the data retrieval operation. | No |  |
 |   └─ chunk_id | string | The chunk ID for the citation. | No |  |
 |   └─ content | string | The content of the citation. | No |  |
@@ -1475,7 +1475,7 @@ information related to retrieval-augmented generation performed.
 | └─ id | string |  | No |  |
 | └─ transcript | string |  | No |  |
 | content | string | The contents of the chunk message. | No |  |
-| context | object | An additional property, added to chat completion response messages, produced by the Azure OpenAI service when using<br>extension behavior. This includes intent and citation information from the On Your Data feature. | No |  |
+| context | object | An additional property, added to chat completion response messages, produced by the Azure OpenAI service when using extension behavior. This includes intent and citation information from the On Your Data feature. | No |  |
 | └─ all_retrieved_documents | object | Summary information about documents retrieved by the data retrieval operation. | No |  |
 |   └─ chunk_id | string | The chunk ID for the citation. | No |  |
 |   └─ content | string | The content of the citation. | No |  |
@@ -1578,7 +1578,7 @@ must be part of the same Azure OpenAI resource but can be used even in private n
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| deployment_name | string | The embedding model deployment to use for vectorization. This deployment must exist within the same Azure OpenAI<br>resource as the model deployment being used for chat completions. | Yes |  |
+| deployment_name | string | The embedding model deployment to use for vectorization. This deployment must exist within the same Azure OpenAI resource as the model deployment being used for chat completions. | Yes |  |
 | dimensions | integer | The number of dimensions to request on embeddings.<br>Only supported in 'text-embedding-3' and later models. | No |  |
 | type | enum | The type identifier, always 'deployment_name' for this vectorization source type.<br>Possible values: `deployment_name` | Yes |  |
 
@@ -1749,10 +1749,10 @@ A content filter result for an image generation operation's input request conten
 | custom_blocklists | object | A collection of true/false filtering results for configured custom blocklists. | No |  |
 | └─ details | array | The pairs of individual blocklist IDs and whether they resulted in a filtering action. | No |  |
 | └─ filtered | boolean | A value indicating whether any of the detailed blocklists resulted in a filtering action. | No |  |
-| jailbreak | object | A labeled content filter result item that indicates whether the content was detected and whether the content was<br>filtered. | Yes |  |
+| jailbreak | object | A labeled content filter result item that indicates whether the content was detected and whether the content was filtered. | Yes |  |
 | └─ detected | boolean | Whether the labeled content category was detected in the content. | No |  |
 | └─ filtered | boolean | Whether the content detection resulted in a content filtering action. | No |  |
-| profanity | object | A labeled content filter result item that indicates whether the content was detected and whether the content was<br>filtered. | No |  |
+| profanity | object | A labeled content filter result item that indicates whether the content was detected and whether the content was filtered. | No |  |
 | └─ detected | boolean | Whether the labeled content category was detected in the content. | No |  |
 | └─ filtered | boolean | Whether the content detection resulted in a content filtering action. | No |  |
 
@@ -1762,16 +1762,16 @@ A content filter result for an image generation operation's output response cont
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| hate | object | A labeled content filter result item that indicates whether the content was filtered and what the qualitative<br>severity level of the content was, as evaluated against content filter configuration for the category. | No |  |
+| hate | object | A labeled content filter result item that indicates whether the content was filtered and what the qualitative severity level of the content was, as evaluated against content filter configuration for the category. | No |  |
 | └─ filtered | boolean | Whether the content severity resulted in a content filtering action. | No |  |
 | └─ severity | enum | The labeled severity of the content.<br>Possible values: `safe`, `low`, `medium`, `high` | No |  |
-| self_harm | object | A labeled content filter result item that indicates whether the content was filtered and what the qualitative<br>severity level of the content was, as evaluated against content filter configuration for the category. | No |  |
+| self_harm | object | A labeled content filter result item that indicates whether the content was filtered and what the qualitative severity level of the content was, as evaluated against content filter configuration for the category. | No |  |
 | └─ filtered | boolean | Whether the content severity resulted in a content filtering action. | No |  |
 | └─ severity | enum | The labeled severity of the content.<br>Possible values: `safe`, `low`, `medium`, `high` | No |  |
-| sexual | object | A labeled content filter result item that indicates whether the content was filtered and what the qualitative<br>severity level of the content was, as evaluated against content filter configuration for the category. | No |  |
+| sexual | object | A labeled content filter result item that indicates whether the content was filtered and what the qualitative severity level of the content was, as evaluated against content filter configuration for the category. | No |  |
 | └─ filtered | boolean | Whether the content severity resulted in a content filtering action. | No |  |
 | └─ severity | enum | The labeled severity of the content.<br>Possible values: `safe`, `low`, `medium`, `high` | No |  |
-| violence | object | A labeled content filter result item that indicates whether the content was filtered and what the qualitative<br>severity level of the content was, as evaluated against content filter configuration for the category. | No |  |
+| violence | object | A labeled content filter result item that indicates whether the content was filtered and what the qualitative severity level of the content was, as evaluated against content filter configuration for the category. | No |  |
 | └─ filtered | boolean | Whether the content severity resulted in a content filtering action. | No |  |
 | └─ severity | enum | The labeled severity of the content.<br>Possible values: `safe`, `low`, `medium`, `high` | No |  |
 
@@ -1787,10 +1787,10 @@ A content filter result for a single response item produced by a generative AI s
 | error | object | If present, details about an error that prevented content filtering from completing its evaluation. | No |  |
 | └─ code | integer | A distinct, machine-readable code associated with the error. | No |  |
 | └─ message | string | A human-readable message associated with the error. | No |  |
-| hate | object | A labeled content filter result item that indicates whether the content was filtered and what the qualitative<br>severity level of the content was, as evaluated against content filter configuration for the category. | No |  |
+| hate | object | A labeled content filter result item that indicates whether the content was filtered and what the qualitative severity level of the content was, as evaluated against content filter configuration for the category. | No |  |
 | └─ filtered | boolean | Whether the content severity resulted in a content filtering action. | No |  |
 | └─ severity | enum | The labeled severity of the content.<br>Possible values: `safe`, `low`, `medium`, `high` | No |  |
-| profanity | object | A labeled content filter result item that indicates whether the content was detected and whether the content was<br>filtered. | No |  |
+| profanity | object | A labeled content filter result item that indicates whether the content was detected and whether the content was filtered. | No |  |
 | └─ detected | boolean | Whether the labeled content category was detected in the content. | No |  |
 | └─ filtered | boolean | Whether the content detection resulted in a content filtering action. | No |  |
 | protected_material_code | object | A detection result that describes a match against licensed code or other protected source material. | No |  |
@@ -1799,17 +1799,17 @@ A content filter result for a single response item produced by a generative AI s
 |   └─ license | string | The name or identifier of the license associated with the detection. | No |  |
 | └─ detected | boolean | Whether the labeled content category was detected in the content. | No |  |
 | └─ filtered | boolean | Whether the content detection resulted in a content filtering action. | No |  |
-| protected_material_text | object | A labeled content filter result item that indicates whether the content was detected and whether the content was<br>filtered. | No |  |
+| protected_material_text | object | A labeled content filter result item that indicates whether the content was detected and whether the content was filtered. | No |  |
 | └─ detected | boolean | Whether the labeled content category was detected in the content. | No |  |
 | └─ filtered | boolean | Whether the content detection resulted in a content filtering action. | No |  |
-| self_harm | object | A labeled content filter result item that indicates whether the content was filtered and what the qualitative<br>severity level of the content was, as evaluated against content filter configuration for the category. | No |  |
+| self_harm | object | A labeled content filter result item that indicates whether the content was filtered and what the qualitative severity level of the content was, as evaluated against content filter configuration for the category. | No |  |
 | └─ filtered | boolean | Whether the content severity resulted in a content filtering action. | No |  |
 | └─ severity | enum | The labeled severity of the content.<br>Possible values: `safe`, `low`, `medium`, `high` | No |  |
-| sexual | object | A labeled content filter result item that indicates whether the content was filtered and what the qualitative<br>severity level of the content was, as evaluated against content filter configuration for the category. | No |  |
+| sexual | object | A labeled content filter result item that indicates whether the content was filtered and what the qualitative severity level of the content was, as evaluated against content filter configuration for the category. | No |  |
 | └─ filtered | boolean | Whether the content severity resulted in a content filtering action. | No |  |
 | └─ severity | enum | The labeled severity of the content.<br>Possible values: `safe`, `low`, `medium`, `high` | No |  |
 | ungrounded_material | [AzureContentFilterCompletionTextSpanDetectionResult](#azurecontentfiltercompletiontextspandetectionresult) |  | No |  |
-| violence | object | A labeled content filter result item that indicates whether the content was filtered and what the qualitative<br>severity level of the content was, as evaluated against content filter configuration for the category. | No |  |
+| violence | object | A labeled content filter result item that indicates whether the content was filtered and what the qualitative severity level of the content was, as evaluated against content filter configuration for the category. | No |  |
 | └─ filtered | boolean | Whether the content severity resulted in a content filtering action. | No |  |
 | └─ severity | enum | The labeled severity of the content.<br>Possible values: `safe`, `low`, `medium`, `high` | No |  |
 
@@ -1826,25 +1826,25 @@ A content filter result associated with a single input prompt item into a genera
 | └─ error | object | If present, details about an error that prevented content filtering from completing its evaluation. | No |  |
 |   └─ code | integer | A distinct, machine-readable code associated with the error. | No |  |
 |   └─ message | string | A human-readable message associated with the error. | No |  |
-| └─ hate | object | A labeled content filter result item that indicates whether the content was filtered and what the qualitative<br>severity level of the content was, as evaluated against content filter configuration for the category. | No |  |
+| └─ hate | object | A labeled content filter result item that indicates whether the content was filtered and what the qualitative severity level of the content was, as evaluated against content filter configuration for the category. | No |  |
 |   └─ filtered | boolean | Whether the content severity resulted in a content filtering action. | No |  |
 |   └─ severity | enum | The labeled severity of the content.<br>Possible values: `safe`, `low`, `medium`, `high` | No |  |
-| └─ indirect_attack | object | A labeled content filter result item that indicates whether the content was detected and whether the content was<br>filtered. | No |  |
+| └─ indirect_attack | object | A labeled content filter result item that indicates whether the content was detected and whether the content was filtered. | No |  |
 |   └─ detected | boolean | Whether the labeled content category was detected in the content. | No |  |
 |   └─ filtered | boolean | Whether the content detection resulted in a content filtering action. | No |  |
-| └─ jailbreak | object | A labeled content filter result item that indicates whether the content was detected and whether the content was<br>filtered. | No |  |
+| └─ jailbreak | object | A labeled content filter result item that indicates whether the content was detected and whether the content was filtered. | No |  |
 |   └─ detected | boolean | Whether the labeled content category was detected in the content. | No |  |
 |   └─ filtered | boolean | Whether the content detection resulted in a content filtering action. | No |  |
-| └─ profanity | object | A labeled content filter result item that indicates whether the content was detected and whether the content was<br>filtered. | No |  |
+| └─ profanity | object | A labeled content filter result item that indicates whether the content was detected and whether the content was filtered. | No |  |
 |   └─ detected | boolean | Whether the labeled content category was detected in the content. | No |  |
 |   └─ filtered | boolean | Whether the content detection resulted in a content filtering action. | No |  |
-| └─ self_harm | object | A labeled content filter result item that indicates whether the content was filtered and what the qualitative<br>severity level of the content was, as evaluated against content filter configuration for the category. | No |  |
+| └─ self_harm | object | A labeled content filter result item that indicates whether the content was filtered and what the qualitative severity level of the content was, as evaluated against content filter configuration for the category. | No |  |
 |   └─ filtered | boolean | Whether the content severity resulted in a content filtering action. | No |  |
 |   └─ severity | enum | The labeled severity of the content.<br>Possible values: `safe`, `low`, `medium`, `high` | No |  |
-| └─ sexual | object | A labeled content filter result item that indicates whether the content was filtered and what the qualitative<br>severity level of the content was, as evaluated against content filter configuration for the category. | No |  |
+| └─ sexual | object | A labeled content filter result item that indicates whether the content was filtered and what the qualitative severity level of the content was, as evaluated against content filter configuration for the category. | No |  |
 |   └─ filtered | boolean | Whether the content severity resulted in a content filtering action. | No |  |
 |   └─ severity | enum | The labeled severity of the content.<br>Possible values: `safe`, `low`, `medium`, `high` | No |  |
-| └─ violence | object | A labeled content filter result item that indicates whether the content was filtered and what the qualitative<br>severity level of the content was, as evaluated against content filter configuration for the category. | No |  |
+| └─ violence | object | A labeled content filter result item that indicates whether the content was filtered and what the qualitative severity level of the content was, as evaluated against content filter configuration for the category. | No |  |
 |   └─ filtered | boolean | Whether the content severity resulted in a content filtering action. | No |  |
 |   └─ severity | enum | The labeled severity of the content.<br>Possible values: `safe`, `low`, `medium`, `high` | No |  |
 | prompt_index | integer | The index of the input prompt associated with the accompanying content filter result categories. | No |  |
@@ -1866,7 +1866,7 @@ Represents a data source configuration that will use an Azure CosmosDB resource.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | parameters | object | The parameter information to control the use of the Azure CosmosDB data source. | Yes |  |
-| └─ allow_partial_result | boolean | If set to true, the system will allow partial search results to be used and the request will fail if all<br>partial queries fail. If not specified or specified as false, the request will fail if any search query fails. | No | False |
+| └─ allow_partial_result | boolean | If set to true, the system will allow partial search results to be used and the request will fail if all partial queries fail. If not specified or specified as false, the request will fail if any search query fails. | No | False |
 | └─ authentication | [AzureChatDataSourceConnectionStringAuthenticationOptions](#azurechatdatasourceconnectionstringauthenticationoptions) |  | No |  |
 | └─ container_name | string |  | No |  |
 | └─ database_name | string |  | No |  |
@@ -1893,41 +1893,41 @@ This adds the ability to provide data sources for the On Your Data feature.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| audio | object | Parameters for audio output. Required when audio output is requested with<br>`modalities: ["audio"]`. | No |  |
-| └─ format | enum | Specifies the output audio format. Must be one of `wav`, `mp3`, `flac`,<br>`opus`, or `pcm16`.<br>Possible values: `wav`, `aac`, `mp3`, `flac`, `opus`, `pcm16` | No |  |
+| audio | object | Parameters for audio output. Required when audio output is requested with `modalities: ["audio"]`. | No |  |
+| └─ format | enum | Specifies the output audio format. Must be one of `wav`, `mp3`, `flac`, `opus`, or `pcm16`.<br>Possible values: `wav`, `aac`, `mp3`, `flac`, `opus`, `pcm16` | No |  |
 | └─ voice | object |  | No |  |
 | data_sources | array | The data sources to use for the On Your Data feature, exclusive to Azure OpenAI. | No |  |
-| frequency_penalty | number | Number between -2.0 and 2.0. Positive values penalize new tokens based on<br>their existing frequency in the text so far, decreasing the model's<br>likelihood to repeat the same line verbatim. | No | 0 |
+| frequency_penalty | number | Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. | No | 0 |
 | function_call | enum | Specifying a particular function via `{"name": "my_function"}` forces the model to call that function.<br>Possible values: `none`, `auto` | No |  |
 | functions | array | Deprecated in favor of `tools`.<br><br>A list of functions the model may generate JSON inputs for. | No |  |
-| logit_bias | object | Modify the likelihood of specified tokens appearing in the completion.<br><br>Accepts a JSON object that maps tokens (specified by their token ID in the<br>tokenizer) to an associated bias value from -100 to 100. Mathematically,<br>the bias is added to the logits generated by the model prior to sampling.<br>The exact effect will vary per model, but values between -1 and 1 should<br>decrease or increase likelihood of selection; values like -100 or 100<br>should result in a ban or exclusive selection of the relevant token. | No | None |
-| logprobs | boolean | Whether to return log probabilities of the output tokens or not. If true,<br>returns the log probabilities of each output token returned in the<br>`content` of `message`. | No | False |
-| max_completion_tokens | integer | An upper bound for the number of tokens that can be generated for a<br>completion, including visible output tokens and reasoning tokens. | No |  |
-| max_tokens | integer | The maximum number of tokens that can be generated in the chat completion.<br>This value can be used to control costs for text generated via API.<br><br>This value is now deprecated in favor of `max_completion_tokens`, and is<br>not compatible with o1 series models. | No |  |
-| messages | array | A list of messages comprising the conversation so far. Depending on the<br>model you use, different message types (modalities) are supported,<br>like text, images, and audio. | Yes |  |
-| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be<br>useful for storing additional information about the object in a structured<br>format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings<br>with a maximum length of 512 characters. | No |  |
-| modalities | object | Output types that you would like the model to generate.<br>Most models are capable of generating text, which is the default:<br><br>`["text"]`<br><br>The `gpt-4o-audio-preview` model can also be used to <br>generate audio. To request that this model generate <br>both text and audio responses, you can use:<br><br>`["text", "audio"]` | No |  |
+| logit_bias | object | Modify the likelihood of specified tokens appearing in the completion.<br><br>Accepts a JSON object that maps tokens (specified by their token ID in the tokenizer) to an associated bias value from -100 to 100. Mathematically, the bias is added to the logits generated by the model prior to sampling.<br>The exact effect will vary per model, but values between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100 should result in a ban or exclusive selection of the relevant token. | No | None |
+| logprobs | boolean | Whether to return log probabilities of the output tokens or not. If true, returns the log probabilities of each output token returned in the `content` of `message`. | No | False |
+| max_completion_tokens | integer | An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and reasoning tokens. | No |  |
+| max_tokens | integer | The maximum number of tokens that can be generated in the chat completion.<br>This value can be used to control costs for text generated via API.<br><br>This value is now deprecated in favor of `max_completion_tokens`, and is not compatible with o1 series models. | No |  |
+| messages | array | A list of messages comprising the conversation so far. Depending on the model you use, different message types (modalities) are supported, like text, images, and audio. | Yes |  |
+| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
+| modalities | object | Output types that you would like the model to generate.<br>Most models are capable of generating text, which is the default:<br><br>`["text"]`<br><br>The `gpt-4o-audio-preview` model can also be used to generate audio. To request that this model generate both text and audio responses, you can use:<br><br>`["text", "audio"]` | No |  |
 | model | string | The model deployment identifier to use for the chat completion request. | Yes |  |
 | n | integer | How many chat completion choices to generate for each input message. Note that you will be charged based on the number of generated tokens across all of the choices. Keep `n` as `1` to minimize costs. | No | 1 |
 | parallel_tool_calls | object | Whether to enable parallel function calling during tool use. | No |  |
 | prediction | object | Base representation of predicted output from a model. | No |  |
 | └─ type | [OpenAI.ChatOutputPredictionType](#openaichatoutputpredictiontype) |  | No |  |
-| presence_penalty | number | Number between -2.0 and 2.0. Positive values penalize new tokens based on<br>whether they appear in the text so far, increasing the model's likelihood<br>to talk about new topics. | No | 0 |
-| reasoning_effort | object | **o-series models only** <br><br>Constrains effort on reasoning for <br>reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing<br>reasoning effort can result in faster responses and fewer tokens used<br>on reasoning in a response. | No |  |
+| presence_penalty | number | Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. | No | 0 |
+| reasoning_effort | object | **o-series models only** <br><br>Constrains effort on reasoning for reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. | No |  |
 | response_format | object |  | No |  |
 | └─ type | enum | <br>Possible values: `text`, `json_object`, `json_schema` | No |  |
 | seed | integer | This feature is in Beta.<br>If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.<br>Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. | No |  |
-| stop | object | Not supported with latest reasoning models `o3` and `o4-mini`.<br><br>Up to 4 sequences where the API will stop generating further tokens. The<br>returned text will not contain the stop sequence. | No |  |
-| store | boolean | Whether or not to store the output of this chat completion request for<br>use in model distillation or evals products. | No | False |
-| stream | boolean | If set to true, the model response data will be streamed to the client<br>as it is generated using server-sent events. | No | False |
+| stop | object | Not supported with latest reasoning models `o3` and `o4-mini`.<br><br>Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence. | No |  |
+| store | boolean | Whether or not to store the output of this chat completion request for use in model distillation or evals products. | No | False |
+| stream | boolean | If set to true, the model response data will be streamed to the client as it is generated using server-sent events. | No | False |
 | stream_options | object | Options for streaming response. Only set this when you set `stream: true`. | No |  |
-| └─ include_usage | boolean | If set, an additional chunk will be streamed before the `data: [DONE]`<br>message. The `usage` field on this chunk shows the token usage statistics<br>for the entire request, and the `choices` field will always be an empty<br>array. <br><br>All other chunks will also include a `usage` field, but with a null<br>value. **NOTE:** If the stream is interrupted, you may not receive the<br>final usage chunk which contains the total token usage for the request. | No |  |
+| └─ include_usage | boolean | If set, an additional chunk will be streamed before the `data: [DONE]` message. The `usage` field on this chunk shows the token usage statistics for the entire request, and the `choices` field will always be an empty array. <br><br>All other chunks will also include a `usage` field, but with a null value. **NOTE:** If the stream is interrupted, you may not receive the final usage chunk which contains the total token usage for the request. | No |  |
 | temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br>We generally recommend altering this or `top_p` but not both. | No | 1 |
 | tool_choice | [OpenAI.ChatCompletionToolChoiceOption](#openaichatcompletiontoolchoiceoption) | Controls which (if any) tool is called by the model.<br>`none` means the model will not call any tool and instead generates a message.<br>`auto` means the model can pick between generating a message or calling one or more tools.<br>`required` means the model must call one or more tools.<br>Specifying a particular tool via `{"type": "function", "function": {"name": "my_function"}}` forces the model to call that tool.<br><br>`none` is the default when no tools are present. `auto` is the default if tools are present. | No |  |
 | tools | array | A list of tools the model may call. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 128 functions are supported. | No |  |
-| top_logprobs | integer | An integer between 0 and 20 specifying the number of most likely tokens to<br>return at each token position, each with an associated log probability.<br>`logprobs` must be set to `true` if this parameter is used. | No |  |
-| top_p | number | An alternative to sampling with temperature, called nucleus sampling,<br>where the model considers the results of the tokens with top_p probability<br>mass. So 0.1 means only the tokens comprising the top 10% probability mass<br>are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No | 1 |
-| user | string | A unique identifier representing your end-user, which can help to<br>monitor and detect abuse. | No |  |
+| top_logprobs | integer | An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability.<br>`logprobs` must be set to `true` if this parameter is used. | No |  |
+| top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No | 1 |
+| user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
 | user_security_context | [AzureUserSecurityContext](#azureusersecuritycontext) | User security context contains several parameters that describe the application itself, and the end user that interacts with the application. These fields assist your security operations teams to investigate and mitigate security incidents by providing a comprehensive approach to protecting your AI applications. [Learn more](https://aka.ms/TP4AI/Documentation/EndUserContext) about protecting AI applications using Microsoft Defender for Cloud. | No |  |
 
 ### AzureCreateChatCompletionResponse
@@ -1950,9 +1950,9 @@ This model adds Responsible AI content filter annotations for prompt input.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| choices | array | A list of chat completion choices. Can contain more than one elements if `n` is greater than 1. Can also be empty for the<br>last chunk if you set `stream_options: {"include_usage": true}`. | Yes |  |
+| choices | array | A list of chat completion choices. Can contain more than one elements if `n` is greater than 1. Can also be empty for the last chunk if you set `stream_options: {"include_usage": true}`. | Yes |  |
 | created | integer | The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp. | Yes |  |
-| delta | [AzureChatCompletionStreamResponseDelta](#azurechatcompletionstreamresponsedelta) | The extended response model for a streaming chat response message on the Azure OpenAI service.<br>This model adds support for chat message context, used by the On Your Data feature for intent, citations, and other<br>information related to retrieval-augmented generation performed. | No |  |
+| delta | [AzureChatCompletionStreamResponseDelta](#azurechatcompletionstreamresponsedelta) | The extended response model for a streaming chat response message on the Azure OpenAI service.<br>This model adds support for chat message context, used by the On Your Data feature for intent, citations, and other information related to retrieval-augmented generation performed. | No |  |
 | id | string | A unique identifier for the chat completion. Each chunk has the same ID. | Yes |  |
 | model | string | The model to generate the completion. | Yes |  |
 | object | enum | The object type, which is always `chat.completion.chunk`.<br>Possible values: `chat.completion.chunk` | Yes |  |
@@ -1960,10 +1960,10 @@ This model adds Responsible AI content filter annotations for prompt input.
 | usage | object | Usage statistics for the completion request. | No |  |
 | └─ completion_tokens | integer | Number of tokens in the generated completion. | No | 0 |
 | └─ completion_tokens_details | object | Breakdown of tokens used in a completion. | No |  |
-|   └─ accepted_prediction_tokens | integer | When using Predicted Outputs, the number of tokens in the<br>prediction that appeared in the completion. | No | 0 |
+|   └─ accepted_prediction_tokens | integer | When using Predicted Outputs, the number of tokens in the prediction that appeared in the completion. | No | 0 |
 |   └─ audio_tokens | integer | Audio input tokens generated by the model. | No | 0 |
 |   └─ reasoning_tokens | integer | Tokens generated by the model for reasoning. | No | 0 |
-|   └─ rejected_prediction_tokens | integer | When using Predicted Outputs, the number of tokens in the<br>prediction that did not appear in the completion. However, like<br>reasoning tokens, these tokens are still counted in the total<br>completion tokens for purposes of billing, output, and context window<br>limits. | No | 0 |
+|   └─ rejected_prediction_tokens | integer | When using Predicted Outputs, the number of tokens in the prediction that did not appear in the completion. However, like reasoning tokens, these tokens are still counted in the total completion tokens for purposes of billing, output, and context window limits. | No | 0 |
 | └─ prompt_tokens | integer | Number of tokens in the prompt. | No | 0 |
 | └─ prompt_tokens_details | object | Breakdown of tokens used in the prompt. | No |  |
 |   └─ audio_tokens | integer | Audio input tokens present in the prompt. | No | 0 |
@@ -1985,10 +1985,10 @@ This model adds Responsible AI content filter annotations for prompt input.
 | presence_penalty | number | Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. | No | 0 |
 | prompt | string or array | The prompt(s) to generate completions for, encoded as a string, array of strings, array of tokens, or array of token arrays.<br>Note that <&#124;endoftext&#124;> is the document separator that the model sees during training, so if a prompt is not specified the model will generate as if from the beginning of a new document. | No |  |
 | seed | integer | If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result.<br><br>Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend. | No |  |
-| stop | object | Not supported with latest reasoning models `o3` and `o4-mini`.<br><br>Up to 4 sequences where the API will stop generating further tokens. The<br>returned text will not contain the stop sequence. | No |  |
+| stop | object | Not supported with latest reasoning models `o3` and `o4-mini`.<br><br>Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence. | No |  |
 | stream | boolean | Whether to stream back partial progress. If set, tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message.  | No | False |
 | stream_options | object | Options for streaming response. Only set this when you set `stream: true`. | No |  |
-| └─ include_usage | boolean | If set, an additional chunk will be streamed before the `data: [DONE]`<br>message. The `usage` field on this chunk shows the token usage statistics<br>for the entire request, and the `choices` field will always be an empty<br>array. <br><br>All other chunks will also include a `usage` field, but with a null<br>value. **NOTE:** If the stream is interrupted, you may not receive the<br>final usage chunk which contains the total token usage for the request. | No |  |
+| └─ include_usage | boolean | If set, an additional chunk will be streamed before the `data: [DONE]` message. The `usage` field on this chunk shows the token usage statistics for the entire request, and the `choices` field will always be an empty array. <br><br>All other chunks will also include a `usage` field, but with a null value. **NOTE:** If the stream is interrupted, you may not receive the final usage chunk which contains the total token usage for the request. | No |  |
 | suffix | string | The suffix that comes after a completion of inserted text.<br><br>This parameter is only supported for `gpt-3.5-turbo-instruct`. | No | None |
 | temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br><br>We generally recommend altering this or `top_p` but not both. | No | 1 |
 | top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No | 1 |
@@ -2023,7 +2023,7 @@ Represents a completion response from the API. Note: both the streamed and non-s
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| background | enum | Allows to set transparency for the background of the generated image(s). <br>This parameter is only supported for `gpt-image-1`. Must be one of <br>`transparent`, `opaque` or `auto` (default value). When `auto` is used, the <br>model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it <br>should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
+| background | enum | Allows to set transparency for the background of the generated image(s). <br>This parameter is only supported for `gpt-image-1`. Must be one of `transparent`, `opaque` or `auto` (default value). When `auto` is used, the model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
 | image | string or array |  | Yes |  |
 | mask | string |  | No |  |
 | model | string | The model deployment to use for the image edit operation. | Yes |  |
@@ -2038,7 +2038,7 @@ Represents a completion response from the API. Note: both the streamed and non-s
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| background | enum | Allows to set transparency for the background of the generated image(s). <br>This parameter is only supported for `gpt-image-1`. Must be one of <br>`transparent`, `opaque` or `auto` (default value). When `auto` is used, the <br>model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it <br>should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
+| background | enum | Allows to set transparency for the background of the generated image(s). <br>This parameter is only supported for `gpt-image-1`. Must be one of `transparent`, `opaque` or `auto` (default value). When `auto` is used, the model will automatically determine the best background for the image.<br><br>If `transparent`, the output format needs to support transparency, so it should be set to either `png` (default value) or `webp`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
 | model | string | The model deployment to use for the image generation. | Yes |  |
 | moderation | enum | Control the content-moderation level for images generated by `gpt-image-1`. Must be either `low` for less restrictive filtering or `auto` (default value).<br>Possible values: `low`, `auto` | No |  |
 | n | integer | The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported. | No | 1 |
@@ -2056,28 +2056,28 @@ Represents a completion response from the API. Note: both the streamed and non-s
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | background | boolean | Whether to run the model response in the background. | No | False |
-| include | array | Specify additional output data to include in the model response. Currently<br>supported values are:<br>- `file_search_call.results`: Include the search results of<br>  the file search tool call.<br>- `message.input_image.image_url`: Include image urls from the input message.<br>- `computer_call_output.output.image_url`: Include image urls from the computer call output.<br>- `reasoning.encrypted_content`: Includes an encrypted version of reasoning <br>  tokens in reasoning item outputs. This enables reasoning items to be used in<br>  multi-turn conversations when using the Responses API statelessly (like<br>  when the `store` parameter is set to `false`, or when an organization is<br>  enrolled in the zero data retention program). | No |  |
+| include | array | Specify additional output data to include in the model response. Currently supported values are:<br>- `file_search_call.results`: Include the search results of the file search tool call.<br>- `message.input_image.image_url`: Include image urls from the input message.<br>- `computer_call_output.output.image_url`: Include image urls from the computer call output.<br>- `reasoning.encrypted_content`: Includes an encrypted version of reasoning tokens in reasoning item outputs. This enables reasoning items to be used in multi-turn conversations when using the Responses API statelessly (like when the `store` parameter is set to `false`, or when an organization is enrolled in the zero data retention program). | No |  |
 | input | string or array |  | Yes |  |
-| instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous<br>response will not be carried over to the next response. This makes it simple<br>to swap out system (or developer) messages in new responses. | No |  |
+| instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses. | No |  |
 | max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and . | No |  |
-| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be<br>useful for storing additional information about the object in a structured<br>format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings<br>with a maximum length of 512 characters. | No |  |
+| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
 | model | string | The model deployment to use for the creation of this response. | Yes |  |
 | parallel_tool_calls | boolean | Whether to allow the model to run tool calls in parallel. | No | True |
-| previous_response_id | string | The unique ID of the previous response to the model. Use this to<br>create multi-turn conversations. reasoning models. | No |  |
-| reasoning | object | **o-series models only**<br><br>Configuration options for<br>reasoning models. | No |  |
-| └─ effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | **o-series models only** <br><br>Constrains effort on reasoning for <br>reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing<br>reasoning effort can result in faster responses and fewer tokens used<br>on reasoning in a response. | No |  |
-| └─ generate_summary | enum | **Deprecated:** use `summary` instead.<br><br>A summary of the reasoning performed by the model. This can be<br>useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
-| └─ summary | enum | A summary of the reasoning performed by the model. This can be<br>useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
-| store | boolean | Whether to store the generated model response for later retrieval via<br>API. | No | True |
-| stream | boolean | If set to true, the model response data will be streamed to the client<br>as it is generated using [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format). | No | False |
+| previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. reasoning models. | No |  |
+| reasoning | object | **o-series models only**<br><br>Configuration options for reasoning models. | No |  |
+| └─ effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | **o-series models only** <br><br>Constrains effort on reasoning for reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. | No |  |
+| └─ generate_summary | enum | **Deprecated:** use `summary` instead.<br><br>A summary of the reasoning performed by the model. This can be useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
+| └─ summary | enum | A summary of the reasoning performed by the model. This can be useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
+| store | boolean | Whether to store the generated model response for later retrieval via API. | No | True |
+| stream | boolean | If set to true, the model response data will be streamed to the client as it is generated using [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format). | No | False |
 | temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br>We generally recommend altering this or `top_p` but not both. | No | 1 |
-| text | object | Configuration options for a text response from the model. Can be plain<br>text or structured JSON data.  | No |  |
+| text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data.  | No |  |
 | └─ format | [OpenAI.ResponseTextFormatConfiguration](#openairesponsetextformatconfiguration) |  | No |  |
-| tool_choice | object | Controls which (if any) tool is called by the model.<br><br>`none` means the model will not call any tool and instead generates a message.<br><br>`auto` means the model can pick between generating a message or calling one or<br>more tools.<br><br>`required` means the model must call one or more tools. | No |  |
+| tool_choice | object | Controls which (if any) tool is called by the model.<br><br>`none` means the model will not call any tool and instead generates a message.<br><br>`auto` means the model can pick between generating a message or calling one or more tools.<br><br>`required` means the model must call one or more tools. | No |  |
 | └─ type | [OpenAI.ToolChoiceObjectType](#openaitoolchoiceobjecttype) | Indicates that the model should use a built-in tool to generate a response. | No |  |
-| tools | array | An array of tools the model may call while generating a response. You <br>can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that are provided by OpenAI that extend the<br>  model's capabilities, like file search.<br>- **Function calls (custom tools)**: Functions that are defined by you,<br>  enabling the model to call your own code. | No |  |
-| top_p | number | An alternative to sampling with temperature, called nucleus sampling,<br>where the model considers the results of the tokens with top_p probability<br>mass. So 0.1 means only the tokens comprising the top 10% probability mass<br>are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No | 1 |
-| truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds<br>  the model's context window size, the model will truncate the <br>  response to fit the context window by dropping input items in the<br>  middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window <br>  size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
+| tools | array | An array of tools the model may call while generating a response. You can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that are provided by OpenAI that extend the model's capabilities, like file search.<br>- **Function calls (custom tools)**: Functions that are defined by you, enabling the model to call your own code. | No |  |
+| top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No | 1 |
+| truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
 | user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
 
 ### AzureCreateSpeechRequestMultiPart
@@ -2100,18 +2100,18 @@ The configuration information for an audio transcription request.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | chunking_strategy | object |  | No |  |
-| └─ prefix_padding_ms | integer | Amount of audio to include before the VAD detected speech (in<br>milliseconds). | No | 300 |
-| └─ silence_duration_ms | integer | Duration of silence to detect speech stop (in milliseconds).<br>With shorter values the model will respond more quickly,<br>but may jump in on short pauses from the user. | No | 200 |
-| └─ threshold | number | Sensitivity threshold (0.0 to 1.0) for voice activity detection. A<br>higher threshold will require louder audio to activate the model, and<br>thus might perform better in noisy environments. | No | 0.5 |
+| └─ prefix_padding_ms | integer | Amount of audio to include before the VAD detected speech (in milliseconds). | No | 300 |
+| └─ silence_duration_ms | integer | Duration of silence to detect speech stop (in milliseconds).<br>With shorter values the model will respond more quickly, but may jump in on short pauses from the user. | No | 200 |
+| └─ threshold | number | Sensitivity threshold (0.0 to 1.0) for voice activity detection. A higher threshold will require louder audio to activate the model, and thus might perform better in noisy environments. | No | 0.5 |
 | └─ type | enum | Must be set to `server_vad` to enable manual chunking using server side VAD.<br>Possible values: `server_vad` | No |  |
 | file | string |  | Yes |  |
 | filename | string | The optional filename or descriptive identifier to associate with with the audio data. | No |  |
-| include[] | array | Additional information to include in the transcription response. <br>`logprobs` will return the log probabilities of the tokens in the <br>response to understand the model's confidence in the transcription. <br>`logprobs` only works with response_format set to `json` and only with <br>the models `gpt-4o-transcribe` and `gpt-4o-mini-transcribe`. | No |  |
+| include[] | array | Additional information to include in the transcription response. <br>`logprobs` will return the log probabilities of the tokens in the response to understand the model's confidence in the transcription. <br>`logprobs` only works with response_format set to `json` and only with the models `gpt-4o-transcribe` and `gpt-4o-mini-transcribe`. | No |  |
 | language | string | The language of the input audio. Supplying the input language in [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) (e.g. `en`) format will improve accuracy and latency. | No |  |
 | model | string | The model to use for this transcription request. | No |  |
 | prompt | string | An optional text to guide the model's style or continue a previous audio segment. The prompt should match the audio language. | No |  |
 | response_format | object |  | No |  |
-| stream | boolean | If set to true, the model response data will be streamed to the client<br>as it is generated using [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format). <br>Note: Streaming is not supported for the `whisper-1` model and will be ignored. | No | False |
+| stream | boolean | If set to true, the model response data will be streamed to the client as it is generated using [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format). <br>Note: Streaming is not supported for the `whisper-1` model and will be ignored. | No | False |
 | temperature | number | The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit. | No | 0 |
 | timestamp_granularities[] | array | The timestamp granularities to populate for this transcription. `response_format` must be set `verbose_json` to use timestamp granularities. Either or both of these options are supported: `word`, or `segment`. Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency. | No | ['segment'] |
 
@@ -2172,29 +2172,29 @@ The configuration information for an audio transcription request.
 | id | string | Unique identifier for this Response. | Yes |  |
 | incomplete_details | object | Details about why the response is incomplete. | Yes |  |
 | └─ reason | enum | The reason why the response is incomplete.<br>Possible values: `max_output_tokens`, `content_filter` | No |  |
-| instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous<br>response will not be carried over to the next response. This makes it simple<br>to swap out system (or developer) messages in new responses. | No |  |
+| instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses. | No |  |
 | max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and . | No |  |
-| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be<br>useful for storing additional information about the object in a structured<br>format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings<br>with a maximum length of 512 characters. | Yes |  |
+| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | Yes |  |
 | model | string | The model used to generate this response. | Yes |  |
 | object | enum | The object type of this resource - always set to `response`.<br>Possible values: `response` | Yes |  |
-| output | array | An array of content items generated by the model.<br><br>- The length and order of items in the `output` array is dependent<br>  on the model's response.<br>- Rather than accessing the first item in the `output` array and <br>  assuming it's an `assistant` message with the content generated by<br>  the model, you might consider using the `output_text` property where<br>  supported in SDKs. | Yes |  |
-| output_text | string | SDK-only convenience property that contains the aggregated text output <br>from all `output_text` items in the `output` array, if any are present. <br>Supported in the Python and JavaScript SDKs. | No |  |
+| output | array | An array of content items generated by the model.<br><br>- The length and order of items in the `output` array is dependent on the model's response.<br>- Rather than accessing the first item in the `output` array and assuming it's an `assistant` message with the content generated by the model, you might consider using the `output_text` property where supported in SDKs. | Yes |  |
+| output_text | string | SDK-only convenience property that contains the aggregated text output from all `output_text` items in the `output` array, if any are present. <br>Supported in the Python and JavaScript SDKs. | No |  |
 | parallel_tool_calls | boolean | Whether to allow the model to run tool calls in parallel. | Yes | True |
-| previous_response_id | string | The unique ID of the previous response to the model. Use this to<br>create multi-turn conversations. reasoning models. | No |  |
-| reasoning | object | **o-series models only**<br><br>Configuration options for<br>reasoning models. | No |  |
-| └─ effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | **o-series models only** <br><br>Constrains effort on reasoning for <br>reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing<br>reasoning effort can result in faster responses and fewer tokens used<br>on reasoning in a response. | No |  |
-| └─ generate_summary | enum | **Deprecated:** use `summary` instead.<br><br>A summary of the reasoning performed by the model. This can be<br>useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
-| └─ summary | enum | A summary of the reasoning performed by the model. This can be<br>useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
-| status | enum | The status of the response generation. One of `completed`, `failed`, <br>`in_progress`, `cancelled`, `queued`, or `incomplete`.<br>Possible values: `completed`, `failed`, `in_progress`, `cancelled`, `queued`, `incomplete` | No |  |
+| previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. reasoning models. | No |  |
+| reasoning | object | **o-series models only**<br><br>Configuration options for reasoning models. | No |  |
+| └─ effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | **o-series models only** <br><br>Constrains effort on reasoning for reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. | No |  |
+| └─ generate_summary | enum | **Deprecated:** use `summary` instead.<br><br>A summary of the reasoning performed by the model. This can be useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
+| └─ summary | enum | A summary of the reasoning performed by the model. This can be useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
+| status | enum | The status of the response generation. One of `completed`, `failed`, `in_progress`, `cancelled`, `queued`, or `incomplete`.<br>Possible values: `completed`, `failed`, `in_progress`, `cancelled`, `queued`, `incomplete` | No |  |
 | temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br>We generally recommend altering this or `top_p` but not both. | Yes |  |
-| text | object | Configuration options for a text response from the model. Can be plain<br>text or structured JSON data.  | No |  |
+| text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data.  | No |  |
 | └─ format | [OpenAI.ResponseTextFormatConfiguration](#openairesponsetextformatconfiguration) |  | No |  |
-| tool_choice | object | Controls which (if any) tool is called by the model.<br><br>`none` means the model will not call any tool and instead generates a message.<br><br>`auto` means the model can pick between generating a message or calling one or<br>more tools.<br><br>`required` means the model must call one or more tools. | No |  |
+| tool_choice | object | Controls which (if any) tool is called by the model.<br><br>`none` means the model will not call any tool and instead generates a message.<br><br>`auto` means the model can pick between generating a message or calling one or more tools.<br><br>`required` means the model must call one or more tools. | No |  |
 | └─ type | [OpenAI.ToolChoiceObjectType](#openaitoolchoiceobjecttype) | Indicates that the model should use a built-in tool to generate a response. | No |  |
-| tools | array | An array of tools the model may call while generating a response. You <br>can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that are provided by OpenAI that extend the<br>  model's capabilities. **nction calls (custom tools)**: Functions that are defined by you,  enabling the model to call your own code | No |  |
-| top_p | number | An alternative to sampling with temperature, called nucleus sampling,<br>where the model considers the results of the tokens with top_p probability<br>mass. So 0.1 means only the tokens comprising the top 10% probability mass<br>are considered.<br><br>We generally recommend altering this or `temperature` but not both. | Yes |  |
-| truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds<br>  the model's context window size, the model will truncate the <br>  response to fit the context window by dropping input items in the<br>  middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window <br>  size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
-| usage | [OpenAI.ResponseUsage](#openairesponseusage) | Represents token usage details including input tokens, output tokens,<br>a breakdown of output tokens, and the total tokens used. | No |  |
+| tools | array | An array of tools the model may call while generating a response. You can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that are provided by OpenAI that extend the model's capabilities. **nction calls (custom tools)**: Functions that are defined by you, enabling the model to call your own code | No |  |
+| top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both. | Yes |  |
+| truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
+| usage | [OpenAI.ResponseUsage](#openairesponseusage) | Represents token usage details including input tokens, output tokens, a breakdown of output tokens, and the total tokens used. | No |  |
 | user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | Yes |  |
 
 ### AzureSearchChatDataSource
@@ -2204,7 +2204,7 @@ Represents a data source configuration that will use an Azure Search resource.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | parameters | object | The parameter information to control the use of the Azure Search data source. | Yes |  |
-| └─ allow_partial_result | boolean | If set to true, the system will allow partial search results to be used and the request will fail if all<br>partial queries fail. If not specified or specified as false, the request will fail if any search query fails. | No | False |
+| └─ allow_partial_result | boolean | If set to true, the system will allow partial search results to be used and the request will fail if all partial queries fail. If not specified or specified as false, the request will fail if any search query fails. | No | False |
 | └─ authentication | object |  | No |  |
 |   └─ access_token | string |  | No |  |
 |   └─ key | string |  | No |  |
@@ -2212,7 +2212,7 @@ Represents a data source configuration that will use an Azure Search resource.
 |   └─ type | enum | <br>Possible values: `access_token` | No |  |
 | └─ embedding_dependency | object | Represents a vectorization source that makes public service calls against an Azure OpenAI embedding model deployment. | No |  |
 |   └─ authentication | [AzureChatDataSourceApiKeyAuthenticationOptions](#azurechatdatasourceapikeyauthenticationoptions) or [AzureChatDataSourceAccessTokenAuthenticationOptions](#azurechatdatasourceaccesstokenauthenticationoptions) | The authentication mechanism to use with the endpoint-based vectorization source.<br>Endpoint authentication supports API key and access token mechanisms. | No |  |
-|   └─ deployment_name | string | The embedding model deployment to use for vectorization. This deployment must exist within the same Azure OpenAI<br>resource as the model deployment being used for chat completions. | No |  |
+|   └─ deployment_name | string | The embedding model deployment to use for vectorization. This deployment must exist within the same Azure OpenAI resource as the model deployment being used for chat completions. | No |  |
 |   └─ dimensions | integer | The number of dimensions to request on embeddings.<br>Only supported in 'text-embedding-3' and later models. | No |  |
 |   └─ endpoint | string | Specifies the resource endpoint URL from which embeddings should be retrieved.<br>It should be in the format of:<br>https://YOUR_RESOURCE_NAME.openai.azure.com/openai/deployments/YOUR_DEPLOYMENT_NAME/embeddings.<br>The api-version query parameter is not allowed. | No |  |
 |   └─ type | enum | The type identifier, always 'integrated' for this vectorization source type.<br>Possible values: `integrated` | No |  |
@@ -2264,7 +2264,7 @@ The tool calls generated by the model, such as function calls.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | content_filter_results | [AzureContentFilterResultForChoice](#azurecontentfilterresultforchoice) | A content filter result for a single response item produced by a generative AI system. | No |  |
-| finish_reason | enum | The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence,<br>`length` if the maximum number of tokens specified in the request was reached,<br>or `content_filter` if content was omitted due to a flag from our content filters.<br>Possible values: `stop`, `length`, `content_filter` | Yes |  |
+| finish_reason | enum | The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `content_filter` if content was omitted due to a flag from our content filters.<br>Possible values: `stop`, `length`, `content_filter` | Yes |  |
 | index | integer |  | Yes |  |
 | logprobs | object |  | Yes |  |
 | └─ text_offset | array |  | No |  |
@@ -2289,7 +2289,7 @@ The tool calls generated by the model, such as function calls.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | parameters | object | The parameter information to control the use of the Elasticsearch data source. | Yes |  |
-| └─ allow_partial_result | boolean | If set to true, the system will allow partial search results to be used and the request will fail if all<br>partial queries fail. If not specified or specified as false, the request will fail if any search query fails. | No | False |
+| └─ allow_partial_result | boolean | If set to true, the system will allow partial search results to be used and the request will fail if all partial queries fail. If not specified or specified as false, the request will fail if any search query fails. | No | False |
 | └─ authentication | object |  | No |  |
 |   └─ encoded_api_key | string |  | No |  |
 |   └─ key | string |  | No |  |
@@ -2335,7 +2335,7 @@ The tool calls generated by the model, such as function calls.
 | └─ database_name | string | The name of the MongoDB database. | No |  |
 | └─ embedding_dependency | object | Represents a vectorization source that makes public service calls against an Azure OpenAI embedding model deployment. | No |  |
 |   └─ authentication | [AzureChatDataSourceApiKeyAuthenticationOptions](#azurechatdatasourceapikeyauthenticationoptions) or [AzureChatDataSourceAccessTokenAuthenticationOptions](#azurechatdatasourceaccesstokenauthenticationoptions) | The authentication mechanism to use with the endpoint-based vectorization source.<br>Endpoint authentication supports API key and access token mechanisms. | No |  |
-|   └─ deployment_name | string | The embedding model deployment to use for vectorization. This deployment must exist within the same Azure OpenAI<br>resource as the model deployment being used for chat completions. | No |  |
+|   └─ deployment_name | string | The embedding model deployment to use for vectorization. This deployment must exist within the same Azure OpenAI resource as the model deployment being used for chat completions. | No |  |
 |   └─ dimensions | integer | The number of dimensions to request on embeddings.<br>Only supported in 'text-embedding-3' and later models. | No |  |
 |   └─ endpoint | string | Specifies the resource endpoint URL from which embeddings should be retrieved.<br>It should be in the format of:<br>https://YOUR_RESOURCE_NAME.openai.azure.com/openai/deployments/YOUR_DEPLOYMENT_NAME/embeddings.<br>The api-version query parameter is not allowed. | No |  |
 |   └─ type | enum | The type identifier, always 'deployment_name' for this vectorization source type.<br>Possible values: `deployment_name` | No |  |
@@ -2445,7 +2445,7 @@ Specifying a particular function via `{"name": "my_function"}` forces the model 
 |------|------|-------------|----------|---------|
 | description | string | A description of what the function does, used by the model to choose when and how to call the function. | No |  |
 | name | string | The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64. | Yes |  |
-| parameters |  | The parameters the functions accepts, described as a JSON Schema object.<br>See the [JSON Schema reference](https://json-schema.org/understanding-json-schema/)<br>for documentation about the format.<br><br>Omitting `parameters` defines a function with an empty parameter list. | No |  |
+| parameters |  | The parameters the functions accepts, described as a JSON Schema object.<br>See the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format.<br><br>Omitting `parameters` defines a function with an empty parameter list. | No |  |
 
 ### OpenAI.ChatCompletionMessageAudioChunk
 
@@ -2588,9 +2588,9 @@ This component uses the property `type` to discriminate between different types:
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | file | object |  | Yes |  |
-| └─ file_data | string | The base64 encoded file data, used when passing the file to the model<br>as a string. | No |  |
+| └─ file_data | string | The base64 encoded file data, used when passing the file to the model as a string. | No |  |
 | └─ file_id | string | The ID of an uploaded file to use as input. | No |  |
-| └─ filename | string | The name of the file, used when passing the file to the model as a<br>string. | No |  |
+| └─ filename | string | The name of the file, used when passing the file to the model as a string. | No |  |
 | type | enum | The type of the content part. Always `file`.<br>Possible values: `file` | Yes |  |
 
 ### OpenAI.ChatCompletionRequestMessageContentPartImage
@@ -2667,9 +2667,9 @@ information.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | file | object |  | Yes |  |
-| └─ file_data | string | The base64 encoded file data, used when passing the file to the model<br>as a string. | No |  |
+| └─ file_data | string | The base64 encoded file data, used when passing the file to the model as a string. | No |  |
 | └─ file_id | string | The ID of an uploaded file to use as input. | No |  |
-| └─ filename | string | The name of the file, used when passing the file to the model as a<br>string. | No |  |
+| └─ filename | string | The name of the file, used when passing the file to the model as a string. | No |  |
 | image_url | object |  | Yes |  |
 | └─ detail | enum | Specifies the detail level of the image. .<br>Possible values: `auto`, `low`, `high` | No |  |
 | └─ url | string | Either a URL of the image or the base64 encoded image data. | No |  |
@@ -2695,7 +2695,7 @@ Options for streaming response. Only set this when you set `stream: true`.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| include_usage | boolean | If set, an additional chunk will be streamed before the `data: [DONE]`<br>message. The `usage` field on this chunk shows the token usage statistics<br>for the entire request, and the `choices` field will always be an empty<br>array. <br><br>All other chunks will also include a `usage` field, but with a null<br>value. **NOTE:** If the stream is interrupted, you may not receive the<br>final usage chunk which contains the total token usage for the request. | No |  |
+| include_usage | boolean | If set, an additional chunk will be streamed before the `data: [DONE]` message. The `usage` field on this chunk shows the token usage statistics for the entire request, and the `choices` field will always be an empty array. <br><br>All other chunks will also include a `usage` field, but with a null value. **NOTE:** If the stream is interrupted, you may not receive the final usage chunk which contains the total token usage for the request. | No |  |
 
 ### OpenAI.ChatCompletionStreamResponseDelta
 
@@ -2773,7 +2773,7 @@ being regenerated.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | content | string or array |  | Yes |  |
-| type | enum | The type of the predicted content you want to provide. This type is<br>currently always `content`.<br>Possible values: `content` | Yes |  |
+| type | enum | The type of the predicted content you want to provide. This type is currently always `content`.<br>Possible values: `content` | Yes |  |
 
 ### OpenAI.ChatOutputPredictionType
 
@@ -2806,7 +2806,7 @@ A tool that runs Python code to help generate a response to a prompt.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| container | object | Configuration for a code interpreter container. Optionally specify the IDs<br>of the files to run the code on. | Yes |  |
+| container | object | Configuration for a code interpreter container. Optionally specify the IDs of the files to run the code on. | Yes |  |
 | └─ file_ids | array | An optional list of uploaded files to make available to your code. | No |  |
 | └─ type | enum | Always `auto`.<br>Possible values: `auto` | No |  |
 | type | enum | The type of the code interpreter tool. Always `code_interpreter`.<br>Possible values: `code_interpreter` | Yes |  |
@@ -2874,10 +2874,10 @@ Usage statistics for the completion request.
 |------|------|-------------|----------|---------|
 | completion_tokens | integer | Number of tokens in the generated completion. | Yes | 0 |
 | completion_tokens_details | object | Breakdown of tokens used in a completion. | No |  |
-| └─ accepted_prediction_tokens | integer | When using Predicted Outputs, the number of tokens in the<br>prediction that appeared in the completion. | No | 0 |
+| └─ accepted_prediction_tokens | integer | When using Predicted Outputs, the number of tokens in the prediction that appeared in the completion. | No | 0 |
 | └─ audio_tokens | integer | Audio input tokens generated by the model. | No | 0 |
 | └─ reasoning_tokens | integer | Tokens generated by the model for reasoning. | No | 0 |
-| └─ rejected_prediction_tokens | integer | When using Predicted Outputs, the number of tokens in the<br>prediction that did not appear in the completion. However, like<br>reasoning tokens, these tokens are still counted in the total<br>completion tokens for purposes of billing, output, and context window<br>limits. | No | 0 |
+| └─ rejected_prediction_tokens | integer | When using Predicted Outputs, the number of tokens in the prediction that did not appear in the completion. However, like reasoning tokens, these tokens are still counted in the total completion tokens for purposes of billing, output, and context window limits. | No | 0 |
 | prompt_tokens | integer | Number of tokens in the prompt. | Yes | 0 |
 | prompt_tokens_details | object | Breakdown of tokens used in the prompt. | No |  |
 | └─ audio_tokens | integer | Audio input tokens present in the prompt. | No | 0 |
@@ -2923,7 +2923,7 @@ A click action.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | button | enum | Indicates which mouse button was pressed during the click. One of `left`, `right`, `wheel`, `back`, or `forward`.<br>Possible values: `left`, `right`, `wheel`, `back`, `forward` | Yes |  |
-| type | enum | Specifies the event type. For a click action, this property is <br>always set to `click`.<br>Possible values: `click` | Yes |  |
+| type | enum | Specifies the event type. For a click action, this property is always set to `click`.<br>Possible values: `click` | Yes |  |
 | x | integer | The x-coordinate where the click occurred. | Yes |  |
 | y | integer | The y-coordinate where the click occurred. | Yes |  |
 
@@ -2933,7 +2933,7 @@ A double click action.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| type | enum | Specifies the event type. For a double click action, this property is <br>always set to `double_click`.<br>Possible values: `double_click` | Yes |  |
+| type | enum | Specifies the event type. For a double click action, this property is always set to `double_click`.<br>Possible values: `double_click` | Yes |  |
 | x | integer | The x-coordinate where the double click occurred. | Yes |  |
 | y | integer | The y-coordinate where the double click occurred. | Yes |  |
 
@@ -2943,8 +2943,8 @@ A drag action.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| path | array | An array of coordinates representing the path of the drag action. Coordinates will appear as an array<br>of objects, eg<br>```<br>[<br>  { x: 100, y: 200 },<br>  { x: 200, y: 300 }<br>]<br>``` | Yes |  |
-| type | enum | Specifies the event type. For a drag action, this property is <br>always set to `drag`.<br>Possible values: `drag` | Yes |  |
+| path | array | An array of coordinates representing the path of the drag action. Coordinates will appear as an array of objects, eg```[{ x: 100, y: 200 }, { x: 200, y: 300 }]``` | Yes |  |
+| type | enum | Specifies the event type. For a drag action, this property is always set to `drag`.<br>Possible values: `drag` | Yes |  |
 
 ### OpenAI.ComputerActionKeyPress
 
@@ -2952,8 +2952,8 @@ A collection of keypresses the model would like to perform.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| keys | array | The combination of keys the model is requesting to be pressed. This is an<br>array of strings, each representing a key. | Yes |  |
-| type | enum | Specifies the event type. For a keypress action, this property is <br>always set to `keypress`.<br>Possible values: `keypress` | Yes |  |
+| keys | array | The combination of keys the model is requesting to be pressed. This is an array of strings, each representing a key. | Yes |  |
+| type | enum | Specifies the event type. For a keypress action, this property is always set to `keypress`.<br>Possible values: `keypress` | Yes |  |
 
 ### OpenAI.ComputerActionMove
 
@@ -2961,7 +2961,7 @@ A mouse move action.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| type | enum | Specifies the event type. For a move action, this property is <br>always set to `move`.<br>Possible values: `move` | Yes |  |
+| type | enum | Specifies the event type. For a move action, this property is always set to `move`.<br>Possible values: `move` | Yes |  |
 | x | integer | The x-coordinate to move to. | Yes |  |
 | y | integer | The y-coordinate to move to. | Yes |  |
 
@@ -2971,7 +2971,7 @@ A screenshot action.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| type | enum | Specifies the event type. For a screenshot action, this property is <br>always set to `screenshot`.<br>Possible values: `screenshot` | Yes |  |
+| type | enum | Specifies the event type. For a screenshot action, this property is always set to `screenshot`.<br>Possible values: `screenshot` | Yes |  |
 
 ### OpenAI.ComputerActionScroll
 
@@ -2981,7 +2981,7 @@ A scroll action.
 |------|------|-------------|----------|---------|
 | scroll_x | integer | The horizontal scroll distance. | Yes |  |
 | scroll_y | integer | The vertical scroll distance. | Yes |  |
-| type | enum | Specifies the event type. For a scroll action, this property is <br>always set to `scroll`.<br>Possible values: `scroll` | Yes |  |
+| type | enum | Specifies the event type. For a scroll action, this property is always set to `scroll`.<br>Possible values: `scroll` | Yes |  |
 | x | integer | The x-coordinate where the scroll occurred. | Yes |  |
 | y | integer | The y-coordinate where the scroll occurred. | Yes |  |
 
@@ -2999,7 +2999,7 @@ An action to type in text.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | text | string | The text to type. | Yes |  |
-| type | enum | Specifies the event type. For a type action, this property is <br>always set to `type`.<br>Possible values: `type` | Yes |  |
+| type | enum | Specifies the event type. For a type action, this property is always set to `type`.<br>Possible values: `type` | Yes |  |
 
 ### OpenAI.ComputerActionWait
 
@@ -3007,7 +3007,7 @@ A wait action.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| type | enum | Specifies the event type. For a wait action, this property is <br>always set to `wait`.<br>Possible values: `wait` | Yes |  |
+| type | enum | Specifies the event type. For a wait action, this property is always set to `wait`.<br>Possible values: `wait` | Yes |  |
 
 ### OpenAI.ComputerToolCallItemParam
 
@@ -3031,7 +3031,7 @@ A tool call to a computer use tool.
 | action | [OpenAI.ComputerAction](#openaicomputeraction) |  | Yes |  |
 | call_id | string | An identifier used when responding to the tool call with output. | Yes |  |
 | pending_safety_checks | array | The pending safety checks for the computer call. | Yes |  |
-| status | enum | The status of the item. One of `in_progress`, `completed`, or<br>`incomplete`. Populated when items are returned via API.<br>Possible values: `in_progress`, `completed`, `incomplete` | Yes |  |
+| status | enum | The status of the item. One of `in_progress`, `completed`, or `incomplete`. Populated when items are returned via API.<br>Possible values: `in_progress`, `completed`, `incomplete` | Yes |  |
 | type | enum | <br>Possible values: `computer_call` | Yes |  |
 
 ### OpenAI.ComputerToolCallOutputItemOutput
@@ -3074,7 +3074,7 @@ The output of a computer tool call.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| acknowledged_safety_checks | array | The safety checks reported by the API that have been acknowledged by the<br>developer. | No |  |
+| acknowledged_safety_checks | array | The safety checks reported by the API that have been acknowledged by the developer. | No |  |
 | call_id | string | The ID of the computer tool call that produced the output. | Yes |  |
 | output | [OpenAI.ComputerToolCallOutputItemOutput](#openaicomputertoolcalloutputitemoutput) |  | Yes |  |
 | type | enum | <br>Possible values: `computer_call_output` | Yes |  |
@@ -3086,10 +3086,10 @@ The output of a computer tool call.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| acknowledged_safety_checks | array | The safety checks reported by the API that have been acknowledged by the<br>developer. | No |  |
+| acknowledged_safety_checks | array | The safety checks reported by the API that have been acknowledged by the developer. | No |  |
 | call_id | string | The ID of the computer tool call that produced the output. | Yes |  |
 | output | [OpenAI.ComputerToolCallOutputItemOutput](#openaicomputertoolcalloutputitemoutput) |  | Yes |  |
-| status | enum | The status of the item. One of `in_progress`, `completed`, or<br>`incomplete`. Populated when items are returned via API.<br>Possible values: `in_progress`, `completed`, `incomplete` | Yes |  |
+| status | enum | The status of the item. One of `in_progress`, `completed`, or `incomplete`. Populated when items are returned via API.<br>Possible values: `in_progress`, `completed`, `incomplete` | Yes |  |
 | type | enum | <br>Possible values: `computer_call_output` | Yes |  |
 
 ### OpenAI.ComputerToolCallSafetyCheck
@@ -3177,7 +3177,7 @@ The results of a file search tool call.
 |------|------|-------------|----------|---------|
 | queries | array | The queries used to search for files. | Yes |  |
 | results | array | The results of the file search tool call. | No |  |
-| status | enum | The status of the file search tool call. One of `in_progress`, <br>`searching`, `incomplete` or `failed`,<br>Possible values: `in_progress`, `searching`, `completed`, `incomplete`, `failed` | Yes |  |
+| status | enum | The status of the file search tool call. One of `in_progress`, `searching`, `incomplete` or `failed`,<br>Possible values: `in_progress`, `searching`, `completed`, `incomplete`, `failed` | Yes |  |
 | type | enum | <br>Possible values: `file_search_call` | Yes |  |
 
 ### OpenAI.Filters
@@ -3230,7 +3230,7 @@ A tool call to run a function.
 | arguments | string | A JSON string of the arguments to pass to the function. | Yes |  |
 | call_id | string | The unique ID of the function tool call generated by the model. | Yes |  |
 | name | string | The name of the function to run. | Yes |  |
-| status | enum | The status of the item. One of `in_progress`, `completed`, or<br>`incomplete`. Populated when items are returned via API.<br>Possible values: `in_progress`, `completed`, `incomplete` | Yes |  |
+| status | enum | The status of the item. One of `in_progress`, `completed`, or `incomplete`. Populated when items are returned via API.<br>Possible values: `in_progress`, `completed`, `incomplete` | Yes |  |
 | type | enum | <br>Possible values: `function_call` | Yes |  |
 
 ### OpenAI.FunctionToolCallOutputItemParam
@@ -3253,7 +3253,7 @@ The output of a function tool call.
 |------|------|-------------|----------|---------|
 | call_id | string | The unique ID of the function tool call generated by the model. | Yes |  |
 | output | string | A JSON string of the output of the function tool call. | Yes |  |
-| status | enum | The status of the item. One of `in_progress`, `completed`, or<br>`incomplete`. Populated when items are returned via API.<br>Possible values: `in_progress`, `completed`, `incomplete` | Yes |  |
+| status | enum | The status of the item. One of `in_progress`, `completed`, or `incomplete`. Populated when items are returned via API.<br>Possible values: `in_progress`, `completed`, `incomplete` | Yes |  |
 | type | enum | <br>Possible values: `function_call_output` | Yes |  |
 
 ### OpenAI.ImageGenTool
@@ -3262,17 +3262,17 @@ A tool that generates images using a model like `gpt-image-1`.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| background | enum | Background type for the generated image. One of `transparent`, <br>`opaque`, or `auto`. Default: `auto`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
-| input_image_mask | object | Optional mask for inpainting. Contains `image_url` <br>(string, optional) and `file_id` (string, optional). | No |  |
+| background | enum | Background type for the generated image. One of `transparent`, `opaque`, or `auto`. Default: `auto`.<br>Possible values: `transparent`, `opaque`, `auto` | No |  |
+| input_image_mask | object | Optional mask for inpainting. Contains `image_url` (string, optional) and `file_id` (string, optional). | No |  |
 | └─ file_id | string | File ID for the mask image. | No |  |
 | └─ image_url | string | Base64-encoded mask image. | No |  |
 | model | enum | The image generation model to use. Default: `gpt-image-1`.<br>Possible values: `gpt-image-1` | No |  |
 | moderation | enum | Moderation level for the generated image. Default: `auto`.<br>Possible values: `auto`, `low` | No |  |
 | output_compression | integer | Compression level for the output image. Default: 100. | No | 100 |
-| output_format | enum | The output format of the generated image. One of `png`, `webp`, or <br>`jpeg`. Default: `png`.<br>Possible values: `png`, `webp`, `jpeg` | No |  |
+| output_format | enum | The output format of the generated image. One of `png`, `webp`, or `jpeg`. Default: `png`.<br>Possible values: `png`, `webp`, `jpeg` | No |  |
 | partial_images | integer | Number of partial images to generate in streaming mode, from 0 (default value) to 3. | No | 0 |
-| quality | enum | The quality of the generated image. One of `low`, `medium`, `high`, <br>or `auto`. Default: `auto`.<br>Possible values: `low`, `medium`, `high`, `auto` | No |  |
-| size | enum | The size of the generated image. One of `1024x1024`, `1024x1536`, <br>`1536x1024`, or `auto`. Default: `auto`.<br>Possible values: `1024x1024`, `1024x1536`, `1536x1024`, `auto` | No |  |
+| quality | enum | The quality of the generated image. One of `low`, `medium`, `high`, or `auto`. Default: `auto`.<br>Possible values: `low`, `medium`, `high`, `auto` | No |  |
+| size | enum | The size of the generated image. One of `1024x1024`, `1024x1536`, `1536x1024`, or `auto`. Default: `auto`.<br>Possible values: `1024x1024`, `1024x1536`, `1536x1024`, `auto` | No |  |
 | type | enum | The type of the image generation tool. Always `image_generation`.<br>Possible values: `image_generation` | Yes |  |
 
 ### OpenAI.ImageGenToolCallItemParam
@@ -3318,7 +3318,7 @@ supported values are:
 
 | Property | Value |
 |----------|-------|
-| **Description** | Specify additional output data to include in the model response. Currently<br>supported values are:<br>- `file_search_call.results`: Include the search results of<br>  the file search tool call.<br>- `message.input_image.image_url`: Include image urls from the input message.<br>- `computer_call_output.output.image_url`: Include image urls from the computer call output.<br>- `reasoning.encrypted_content`: Includes an encrypted version of reasoning <br>  tokens in reasoning item outputs. This enables reasoning items to be used in<br>  multi-turn conversations when using the Responses API statelessly (like<br>  when the `store` parameter is set to `false`, or when an organization is<br>  enrolled in the zero data retention program). |
+| **Description** | Specify additional output data to include in the model response. Currently supported values are:<br>- `file_search_call.results`: Include the search results of the file search tool call.<br>- `message.input_image.image_url`: Include image urls from the input message.<br>- `computer_call_output.output.image_url`: Include image urls from the computer call output.<br>- `reasoning.encrypted_content`: Includes an encrypted version of reasoning tokens in reasoning item outputs. This enables reasoning items to be used in multi-turn conversations when using the Responses API statelessly (like when the `store` parameter is set to `false`, or when an organization is enrolled in the zero data retention program). |
 | **Type** | string |
 | **Values** | `file_search_call.results`<br>`message.input_image.image_url`<br>`computer_call_output.output.image_url`<br>`reasoning.encrypted_content` |
 
@@ -3350,7 +3350,7 @@ An audio input to the model.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | data | string | Base64-encoded audio data. | Yes |  |
-| format | enum | The format of the audio data. Currently supported formats are `mp3` and<br>`wav`.<br>Possible values: `mp3`, `wav` | Yes |  |
+| format | enum | The format of the audio data. Currently supported formats are `mp3` and `wav`.<br>Possible values: `mp3`, `wav` | Yes |  |
 | type | enum | The type of the input item. Always `input_audio`.<br>Possible values: `input_audio` | Yes |  |
 
 ### OpenAI.ItemContentInputFile
@@ -3643,7 +3643,7 @@ Give the model access to additional tools via remote Model Context Protocol
 |------|------|-------------|----------|---------|
 | allowed_tools | object |  | No |  |
 | └─ tool_names | array | List of allowed tool names. | No |  |
-| headers | object | Optional HTTP headers to send to the MCP server. Use for authentication<br>or other purposes. | No |  |
+| headers | object | Optional HTTP headers to send to the MCP server. Use for authentication or other purposes. | No |  |
 | require_approval | object (see valid models below) | Specify which of the MCP server's tools require approval. | No |  |
 | server_label | string | A label for this MCP server, used to identify it in tool calls. | Yes |  |
 | server_url | string | The URL for the MCP server. | Yes |  |
@@ -3671,9 +3671,9 @@ Configuration options for reasoning models.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| effort | object | **o-series models only** <br><br>Constrains effort on reasoning for <br>reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing<br>reasoning effort can result in faster responses and fewer tokens used<br>on reasoning in a response. | No |  |
-| generate_summary | enum | **Deprecated:** use `summary` instead.<br><br>A summary of the reasoning performed by the model. This can be<br>useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
-| summary | enum | A summary of the reasoning performed by the model. This can be<br>useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
+| effort | object | **o-series models only** <br><br>Constrains effort on reasoning for reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. | No |  |
+| generate_summary | enum | **Deprecated:** use `summary` instead.<br><br>A summary of the reasoning performed by the model. This can be useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
+| summary | enum | A summary of the reasoning performed by the model. This can be useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
 
 ### OpenAI.ReasoningEffort
 
@@ -3686,7 +3686,7 @@ on reasoning in a response.
 
 | Property | Value |
 |----------|-------|
-| **Description** | **o-series models only** <br><br>Constrains effort on reasoning for <br>reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing<br>reasoning effort can result in faster responses and fewer tokens used<br>on reasoning in a response. |
+| **Description** | **o-series models only** <br><br>Constrains effort on reasoning for reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. |
 | **Type** | string |
 | **Values** | `low`<br>`medium`<br>`high` |
 
@@ -3700,7 +3700,7 @@ managing context.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| encrypted_content | string | The encrypted content of the reasoning item - populated when a response is<br>generated with `reasoning.encrypted_content` in the `include` parameter. | No |  |
+| encrypted_content | string | The encrypted content of the reasoning item - populated when a response is generated with `reasoning.encrypted_content` in the `include` parameter. | No |  |
 | summary | array | Reasoning text contents. | Yes |  |
 | type | enum | <br>Possible values: `reasoning` | Yes |  |
 
@@ -3714,7 +3714,7 @@ managing context.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| encrypted_content | string | The encrypted content of the reasoning item - populated when a response is<br>generated with `reasoning.encrypted_content` in the `include` parameter. | No |  |
+| encrypted_content | string | The encrypted content of the reasoning item - populated when a response is generated with `reasoning.encrypted_content` in the `include` parameter. | No |  |
 | summary | array | Reasoning text contents. | Yes |  |
 | type | enum | <br>Possible values: `reasoning` | Yes |  |
 
@@ -3759,28 +3759,28 @@ This component uses the property `type` to discriminate between different types:
 | id | string | Unique identifier for this Response. | Yes |  |
 | incomplete_details | object | Details about why the response is incomplete. | Yes |  |
 | └─ reason | enum | The reason why the response is incomplete.<br>Possible values: `max_output_tokens`, `content_filter` | No |  |
-| instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous<br>response will not be carried over to the next response. This makes it simple<br>to swap out system (or developer) messages in new responses. | No |  |
+| instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses. | No |  |
 | max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and . | No |  |
-| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be<br>useful for storing additional information about the object in a structured<br>format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings<br>with a maximum length of 512 characters. | Yes |  |
+| metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | Yes |  |
 | object | enum | The object type of this resource - always set to `response`.<br>Possible values: `response` | Yes |  |
-| output | array | An array of content items generated by the model.<br><br>- The length and order of items in the `output` array is dependent<br>  on the model's response.<br>- Rather than accessing the first item in the `output` array and <br>  assuming it's an `assistant` message with the content generated by<br>  the model, you might consider using the `output_text` property where<br>  supported in SDKs. | Yes |  |
-| output_text | string | SDK-only convenience property that contains the aggregated text output <br>from all `output_text` items in the `output` array, if any are present. <br>Supported in the Python and JavaScript SDKs. | No |  |
+| output | array | An array of content items generated by the model.<br><br>- The length and order of items in the `output` array is dependent on the model's response.<br>- Rather than accessing the first item in the `output` array and assuming it's an `assistant` message with the content generated by the model, you might consider using the `output_text` property where supported in SDKs. | Yes |  |
+| output_text | string | SDK-only convenience property that contains the aggregated text output from all `output_text` items in the `output` array, if any are present. <br>Supported in the Python and JavaScript SDKs. | No |  |
 | parallel_tool_calls | boolean | Whether to allow the model to run tool calls in parallel. | Yes | True |
-| previous_response_id | string | The unique ID of the previous response to the model. Use this to<br>create multi-turn conversations. reasoning models. | No |  |
-| reasoning | object | **o-series models only**<br><br>Configuration options for<br>reasoning models. | No |  |
-| └─ effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | **o-series models only** <br><br>Constrains effort on reasoning for <br>reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing<br>reasoning effort can result in faster responses and fewer tokens used<br>on reasoning in a response. | No |  |
-| └─ generate_summary | enum | **Deprecated:** use `summary` instead.<br><br>A summary of the reasoning performed by the model. This can be<br>useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
-| └─ summary | enum | A summary of the reasoning performed by the model. This can be<br>useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
-| status | enum | The status of the response generation. One of `completed`, `failed`, <br>`in_progress`, `cancelled`, `queued`, or `incomplete`.<br>Possible values: `completed`, `failed`, `in_progress`, `cancelled`, `queued`, `incomplete` | No |  |
+| previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. reasoning models. | No |  |
+| reasoning | object | **o-series models only**<br><br>Configuration options for reasoning models. | No |  |
+| └─ effort | [OpenAI.ReasoningEffort](#openaireasoningeffort) | **o-series models only** <br><br>Constrains effort on reasoning for reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. | No |  |
+| └─ generate_summary | enum | **Deprecated:** use `summary` instead.<br><br>A summary of the reasoning performed by the model. This can be useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
+| └─ summary | enum | A summary of the reasoning performed by the model. This can be useful for debugging and understanding the model's reasoning process.<br>One of `auto`, `concise`, or `detailed`.<br>Possible values: `auto`, `concise`, `detailed` | No |  |
+| status | enum | The status of the response generation. One of `completed`, `failed`, `in_progress`, `cancelled`, `queued`, or `incomplete`.<br>Possible values: `completed`, `failed`, `in_progress`, `cancelled`, `queued`, `incomplete` | No |  |
 | temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br>We generally recommend altering this or `top_p` but not both. | Yes |  |
-| text | object | Configuration options for a text response from the model. Can be plain<br>text or structured JSON data.  | No |  |
+| text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data.  | No |  |
 | └─ format | [OpenAI.ResponseTextFormatConfiguration](#openairesponsetextformatconfiguration) |  | No |  |
-| tool_choice | object | Controls which (if any) tool is called by the model.<br><br>`none` means the model will not call any tool and instead generates a message.<br><br>`auto` means the model can pick between generating a message or calling one or<br>more tools.<br><br>`required` means the model must call one or more tools. | No |  |
+| tool_choice | object | Controls which (if any) tool is called by the model.<br><br>`none` means the model will not call any tool and instead generates a message.<br><br>`auto` means the model can pick between generating a message or calling one or more tools.<br><br>`required` means the model must call one or more tools. | No |  |
 | └─ type | [OpenAI.ToolChoiceObjectType](#openaitoolchoiceobjecttype) | Indicates that the model should use a built-in tool to generate a response. | No |  |
-| tools | array | An array of tools the model may call while generating a response. You <br>can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that are provided by OpenAI that extend the<br>  model's capabilities **Function calls (custom tools)**: Functions that are defined by you,<br>  enabling the model to call your own code. managing context. | No |  |
-| top_p | number | An alternative to sampling with temperature, called nucleus sampling,<br>where the model considers the results of the tokens with top_p probability<br>mass. So 0.1 means only the tokens comprising the top 10% probability mass<br>are considered.<br><br>We generally recommend altering this or `temperature` but not both. | Yes |  |
-| truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds<br>  the model's context window size, the model will truncate the <br>  response to fit the context window by dropping input items in the<br>  middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window <br>  size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
-| usage | [OpenAI.ResponseUsage](#openairesponseusage) | Represents token usage details including input tokens, output tokens,<br>a breakdown of output tokens, and the total tokens used. | No |  |
+| tools | array | An array of tools the model may call while generating a response. You can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that are provided by OpenAI that extend the model's capabilities **Function calls (custom tools)**: Functions that are defined by you, enabling the model to call your own code. managing context. | No |  |
+| top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both. | Yes |  |
+| truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
+| usage | [OpenAI.ResponseUsage](#openairesponseusage) | Represents token usage details including input tokens, output tokens, a breakdown of output tokens, and the total tokens used. | No |  |
 | user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | Yes |  |
 
 ### OpenAI.ResponseCodeInterpreterCallCodeDeltaEvent
@@ -3809,7 +3809,7 @@ Emitted when the code interpreter call is completed.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| code_interpreter_call | [OpenAI.CodeInterpreterToolCallItemResource](#openaicodeinterpretertoolcallitemresource) | A tool call to run code.<br> | Yes |  |
+| code_interpreter_call | [OpenAI.CodeInterpreterToolCallItemResource](#openaicodeinterpretertoolcallitemresource) | A tool call to run code. | Yes |  |
 | output_index | integer | The index of the output item that the code interpreter call is in progress. | Yes |  |
 | type | enum | The type of the event. Always `response.code_interpreter_call.completed`.<br>Possible values: `response.code_interpreter_call.completed` | Yes |  |
 
@@ -3819,7 +3819,7 @@ Emitted when a code interpreter call is in progress.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| code_interpreter_call | [OpenAI.CodeInterpreterToolCallItemResource](#openaicodeinterpretertoolcallitemresource) | A tool call to run code.<br> | Yes |  |
+| code_interpreter_call | [OpenAI.CodeInterpreterToolCallItemResource](#openaicodeinterpretertoolcallitemresource) | A tool call to run code. | Yes |  |
 | output_index | integer | The index of the output item that the code interpreter call is in progress. | Yes |  |
 | type | enum | The type of the event. Always `response.code_interpreter_call.in_progress`.<br>Possible values: `response.code_interpreter_call.in_progress` | Yes |  |
 
@@ -3829,7 +3829,7 @@ Emitted when the code interpreter is actively interpreting the code snippet.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| code_interpreter_call | [OpenAI.CodeInterpreterToolCallItemResource](#openaicodeinterpretertoolcallitemresource) | A tool call to run code.<br> | Yes |  |
+| code_interpreter_call | [OpenAI.CodeInterpreterToolCallItemResource](#openaicodeinterpretertoolcallitemresource) | A tool call to run code. | Yes |  |
 | output_index | integer | The index of the output item that the code interpreter call is in progress. | Yes |  |
 | type | enum | The type of the event. Always `response.code_interpreter_call.interpreting`.<br>Possible values: `response.code_interpreter_call.interpreting` | Yes |  |
 
@@ -3846,24 +3846,24 @@ Emitted when the model response is complete.
 | └─ id | string | Unique identifier for this Response. | No |  |
 | └─ incomplete_details | object | Details about why the response is incomplete. | No |  |
 |   └─ reason | enum | The reason why the response is incomplete.<br>Possible values: `max_output_tokens`, `content_filter` | No |  |
-| └─ instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous<br>response will not be carried over to the next response. This makes it simple<br>to swap out system (or developer) messages in new responses. | No |  |
+| └─ instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses. | No |  |
 | └─ max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and . | No |  |
-| └─ metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be<br>useful for storing additional information about the object in a structured<br>format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings<br>with a maximum length of 512 characters. | No |  |
+| └─ metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
 | └─ object | enum | The object type of this resource - always set to `response`.<br>Possible values: `response` | No |  |
-| └─ output | array | An array of content items generated by the model.<br><br>- The length and order of items in the `output` array is dependent<br>  on the model's response.<br>- Rather than accessing the first item in the `output` array and <br>  assuming it's an `assistant` message with the content generated by<br>  the model, you might consider using the `output_text` property where<br>  supported in SDKs. | No |  |
-| └─ output_text | string | SDK-only convenience property that contains the aggregated text output <br>from all `output_text` items in the `output` array, if any are present. <br>Supported in the Python and JavaScript SDKs. | No |  |
+| └─ output | array | An array of content items generated by the model.<br><br>- The length and order of items in the `output` array is dependent on the model's response.<br>- Rather than accessing the first item in the `output` array and assuming it's an `assistant` message with the content generated by the model, you might consider using the `output_text` property where supported in SDKs. | No |  |
+| └─ output_text | string | SDK-only convenience property that contains the aggregated text output from all `output_text` items in the `output` array, if any are present. <br>Supported in the Python and JavaScript SDKs. | No |  |
 | └─ parallel_tool_calls | boolean | Whether to allow the model to run tool calls in parallel. | No | True |
-| └─ previous_response_id | string | The unique ID of the previous response to the model. Use this to<br>create multi-turn conversations. reasoning models. | No |  |
-| └─ reasoning | [OpenAI.Reasoning](#openaireasoning) | **o-series models only**<br><br>Configuration options for<br>reasoning models. | No |  |
-| └─ status | enum | The status of the response generation. One of `completed`, `failed`, <br>`in_progress`, `cancelled`, `queued`, or `incomplete`.<br>Possible values: `completed`, `failed`, `in_progress`, `cancelled`, `queued`, `incomplete` | No |  |
+| └─ previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. reasoning models. | No |  |
+| └─ reasoning | [OpenAI.Reasoning](#openaireasoning) | **o-series models only**<br><br>Configuration options for reasoning models. | No |  |
+| └─ status | enum | The status of the response generation. One of `completed`, `failed`, `in_progress`, `cancelled`, `queued`, or `incomplete`.<br>Possible values: `completed`, `failed`, `in_progress`, `cancelled`, `queued`, `incomplete` | No |  |
 | └─ temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br>We generally recommend altering this or `top_p` but not both. | No |  |
-| └─ text | object | Configuration options for a text response from the model. Can be plain<br>text or structured JSON data.  | No |  |
+| └─ text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data.  | No |  |
 |   └─ format | [OpenAI.ResponseTextFormatConfiguration](#openairesponsetextformatconfiguration) |  | No |  |
-| └─ tool_choice | [OpenAI.ToolChoiceOptions](#openaitoolchoiceoptions) or [OpenAI.ToolChoiceObject](#openaitoolchoiceobject) | How the model should select which tool (or tools) to use when generating<br>a response. See the `tools` parameter to see how to specify which tools<br>the model can call. | No |  |
-| └─ tools | array | An array of tools the model may call while generating a response. You <br>can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that extend the model's capabilities. | No |  |
-| └─ top_p | number | An alternative to sampling with temperature, called nucleus sampling,<br>where the model considers the results of the tokens with top_p probability<br>mass. So 0.1 means only the tokens comprising the top 10% probability mass<br>are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No |  |
-| └─ truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds<br>  the model's context window size, the model will truncate the <br>  response to fit the context window by dropping input items in the<br>  middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window <br>  size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
-| └─ usage | [OpenAI.ResponseUsage](#openairesponseusage) | Represents token usage details including input tokens, output tokens,<br>a breakdown of output tokens, and the total tokens used. | No |  |
+| └─ tool_choice | [OpenAI.ToolChoiceOptions](#openaitoolchoiceoptions) or [OpenAI.ToolChoiceObject](#openaitoolchoiceobject) | How the model should select which tool (or tools) to use when generating a response. See the `tools` parameter to see how to specify which tools the model can call. | No |  |
+| └─ tools | array | An array of tools the model may call while generating a response. You can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that extend the model's capabilities. | No |  |
+| └─ top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No |  |
+| └─ truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
+| └─ usage | [OpenAI.ResponseUsage](#openairesponseusage) | Represents token usage details including input tokens, output tokens, a breakdown of output tokens, and the total tokens used. | No |  |
 | └─ user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
 | type | enum | The type of the event. Always `response.completed`.<br>Possible values: `response.completed` | Yes |  |
 
@@ -3906,24 +3906,24 @@ An event that is emitted when a response is created.
 | └─ id | string | Unique identifier for this Response. | No |  |
 | └─ incomplete_details | object | Details about why the response is incomplete. | No |  |
 |   └─ reason | enum | The reason why the response is incomplete.<br>Possible values: `max_output_tokens`, `content_filter` | No |  |
-| └─ instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous<br>response will not be carried over to the next response. This makes it simple<br>to swap out system (or developer) messages in new responses. | No |  |
+| └─ instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses. | No |  |
 | └─ max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and . | No |  |
-| └─ metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be<br>useful for storing additional information about the object in a structured<br>format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings<br>with a maximum length of 512 characters. | No |  |
+| └─ metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
 | └─ object | enum | The object type of this resource - always set to `response`.<br>Possible values: `response` | No |  |
-| └─ output | array | An array of content items generated by the model.<br><br>- The length and order of items in the `output` array is dependent<br>  on the model's response.<br>- Rather than accessing the first item in the `output` array and <br>  assuming it's an `assistant` message with the content generated by<br>  the model, you might consider using the `output_text` property where<br>  supported in SDKs. | No |  |
-| └─ output_text | string | SDK-only convenience property that contains the aggregated text output <br>from all `output_text` items in the `output` array, if any are present. <br>Supported in the Python and JavaScript SDKs. | No |  |
+| └─ output | array | An array of content items generated by the model.<br><br>- The length and order of items in the `output` array is dependent on the model's response.<br>- Rather than accessing the first item in the `output` array and assuming it's an `assistant` message with the content generated by the model, you might consider using the `output_text` property where supported in SDKs. | No |  |
+| └─ output_text | string | SDK-only convenience property that contains the aggregated text output from all `output_text` items in the `output` array, if any are present. <br>Supported in the Python and JavaScript SDKs. | No |  |
 | └─ parallel_tool_calls | boolean | Whether to allow the model to run tool calls in parallel. | No | True |
-| └─ previous_response_id | string | The unique ID of the previous response to the model. Use this to<br>create multi-turn conversations. reasoning models. | No |  |
-| └─ reasoning | [OpenAI.Reasoning](#openaireasoning) | **o-series models only**<br><br>Configuration options for<br>reasoning models. | No |  |
-| └─ status | enum | The status of the response generation. One of `completed`, `failed`, <br>`in_progress`, `cancelled`, `queued`, or `incomplete`.<br>Possible values: `completed`, `failed`, `in_progress`, `cancelled`, `queued`, `incomplete` | No |  |
+| └─ previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. reasoning models. | No |  |
+| └─ reasoning | [OpenAI.Reasoning](#openaireasoning) | **o-series models only**<br><br>Configuration options for reasoning models. | No |  |
+| └─ status | enum | The status of the response generation. One of `completed`, `failed`, `in_progress`, `cancelled`, `queued`, or `incomplete`.<br>Possible values: `completed`, `failed`, `in_progress`, `cancelled`, `queued`, `incomplete` | No |  |
 | └─ temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br>We generally recommend altering this or `top_p` but not both. | No |  |
-| └─ text | object | Configuration options for a text response from the model. Can be plain<br>text or structured JSON data.  | No |  |
+| └─ text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data.  | No |  |
 |   └─ format | [OpenAI.ResponseTextFormatConfiguration](#openairesponsetextformatconfiguration) |  | No |  |
-| └─ tool_choice | [OpenAI.ToolChoiceOptions](#openaitoolchoiceoptions) or [OpenAI.ToolChoiceObject](#openaitoolchoiceobject) | How the model should select which tool (or tools) to use when generating<br>a response. See the `tools` parameter to see how to specify which tools<br>the model can call. | No |  |
-| └─ tools | array | An array of tools the model may call while generating a response. You <br>can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that are provided by OpenAI that extend the<br>  model's capabilities. **Function calls (custom tools)**: Functions that are defined by you,<br>  enabling the model to call your own code. managing context. | No |  |
-| └─ top_p | number | An alternative to sampling with temperature, called nucleus sampling,<br>where the model considers the results of the tokens with top_p probability<br>mass. So 0.1 means only the tokens comprising the top 10% probability mass<br>are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No |  |
-| └─ truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds<br>  the model's context window size, the model will truncate the <br>  response to fit the context window by dropping input items in the<br>  middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window <br>  size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
-| └─ usage | [OpenAI.ResponseUsage](#openairesponseusage) | Represents token usage details including input tokens, output tokens,<br>a breakdown of output tokens, and the total tokens used. | No |  |
+| └─ tool_choice | [OpenAI.ToolChoiceOptions](#openaitoolchoiceoptions) or [OpenAI.ToolChoiceObject](#openaitoolchoiceobject) | How the model should select which tool (or tools) to use when generating a response. See the `tools` parameter to see how to specify which tools the model can call. | No |  |
+| └─ tools | array | An array of tools the model may call while generating a response. You can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that are provided by OpenAI that extend the model's capabilities. **Function calls (custom tools)**: Functions that are defined by you, enabling the model to call your own code. managing context. | No |  |
+| └─ top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No |  |
+| └─ truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
+| └─ usage | [OpenAI.ResponseUsage](#openairesponseusage) | Represents token usage details including input tokens, output tokens, a breakdown of output tokens, and the total tokens used. | No |  |
 | └─ user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
 | type | enum | The type of the event. Always `response.created`.<br>Possible values: `response.created` | Yes |  |
 
@@ -3970,24 +3970,24 @@ An event that is emitted when a response fails.
 | └─ id | string | Unique identifier for this Response. | No |  |
 | └─ incomplete_details | object | Details about why the response is incomplete. | No |  |
 |   └─ reason | enum | The reason why the response is incomplete.<br>Possible values: `max_output_tokens`, `content_filter` | No |  |
-| └─ instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous<br>response will not be carried over to the next response. This makes it simple<br>to swap out system (or developer) messages in new responses. | No |  |
+| └─ instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses. | No |  |
 | └─ max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and . | No |  |
-| └─ metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be<br>useful for storing additional information about the object in a structured<br>format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings<br>with a maximum length of 512 characters. | No |  |
+| └─ metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
 | └─ object | enum | The object type of this resource - always set to `response`.<br>Possible values: `response` | No |  |
-| └─ output | array | An array of content items generated by the model.<br><br>- The length and order of items in the `output` array is dependent<br>  on the model's response.<br>- Rather than accessing the first item in the `output` array and <br>  assuming it's an `assistant` message with the content generated by<br>  the model, you might consider using the `output_text` property where<br>  supported in SDKs. | No |  |
-| └─ output_text | string | SDK-only convenience property that contains the aggregated text output <br>from all `output_text` items in the `output` array, if any are present. <br>Supported in the Python and JavaScript SDKs. | No |  |
+| └─ output | array | An array of content items generated by the model.<br><br>- The length and order of items in the `output` array is dependent on the model's response.<br>- Rather than accessing the first item in the `output` array and assuming it's an `assistant` message with the content generated by the model, you might consider using the `output_text` property where supported in SDKs. | No |  |
+| └─ output_text | string | SDK-only convenience property that contains the aggregated text output from all `output_text` items in the `output` array, if any are present. <br>Supported in the Python and JavaScript SDKs. | No |  |
 | └─ parallel_tool_calls | boolean | Whether to allow the model to run tool calls in parallel. | No | True |
-| └─ previous_response_id | string | The unique ID of the previous response to the model. Use this to<br>create multi-turn conversations. reasoning models. | No |  |
-| └─ reasoning | [OpenAI.Reasoning](#openaireasoning) | **o-series models only**<br><br>Configuration options for<br>reasoning models. | No |  |
-| └─ status | enum | The status of the response generation. One of `completed`, `failed`, <br>`in_progress`, `cancelled`, `queued`, or `incomplete`.<br>Possible values: `completed`, `failed`, `in_progress`, `cancelled`, `queued`, `incomplete` | No |  |
+| └─ previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. reasoning models. | No |  |
+| └─ reasoning | [OpenAI.Reasoning](#openaireasoning) | **o-series models only**<br><br>Configuration options for reasoning models. | No |  |
+| └─ status | enum | The status of the response generation. One of `completed`, `failed`, `in_progress`, `cancelled`, `queued`, or `incomplete`.<br>Possible values: `completed`, `failed`, `in_progress`, `cancelled`, `queued`, `incomplete` | No |  |
 | └─ temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br>We generally recommend altering this or `top_p` but not both. | No |  |
-| └─ text | object | Configuration options for a text response from the model. Can be plain<br>text or structured JSON data.  | No |  |
+| └─ text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data.  | No |  |
 |   └─ format | [OpenAI.ResponseTextFormatConfiguration](#openairesponsetextformatconfiguration) |  | No |  |
-| └─ tool_choice | [OpenAI.ToolChoiceOptions](#openaitoolchoiceoptions) or [OpenAI.ToolChoiceObject](#openaitoolchoiceobject) | How the model should select which tool (or tools) to use when generating<br>a response. See the `tools` parameter to see how to specify which tools<br>the model can call. | No |  |
-| └─ tools | array | An array of tools the model may call while generating a response. You <br>can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that are provided by OpenAI that extend the<br>  model's capabilities. **Function calls (custom tools)**: Functions that are defined by you,<br>  enabling the model to call your own code. managing context. | No |  |
-| └─ top_p | number | An alternative to sampling with temperature, called nucleus sampling,<br>where the model considers the results of the tokens with top_p probability<br>mass. So 0.1 means only the tokens comprising the top 10% probability mass<br>are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No |  |
-| └─ truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds<br>  the model's context window size, the model will truncate the <br>  response to fit the context window by dropping input items in the<br>  middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window <br>  size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
-| └─ usage | [OpenAI.ResponseUsage](#openairesponseusage) | Represents token usage details including input tokens, output tokens,<br>a breakdown of output tokens, and the total tokens used. | No |  |
+| └─ tool_choice | [OpenAI.ToolChoiceOptions](#openaitoolchoiceoptions) or [OpenAI.ToolChoiceObject](#openaitoolchoiceobject) | How the model should select which tool (or tools) to use when generating a response. See the `tools` parameter to see how to specify which tools the model can call. | No |  |
+| └─ tools | array | An array of tools the model may call while generating a response. You can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that are provided by OpenAI that extend the model's capabilities. **Function calls (custom tools)**: Functions that are defined by you, enabling the model to call your own code. managing context. | No |  |
+| └─ top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No |  |
+| └─ truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
+| └─ usage | [OpenAI.ResponseUsage](#openairesponseusage) | Represents token usage details including input tokens, output tokens, a breakdown of output tokens, and the total tokens used. | No |  |
 | └─ user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
 | type | enum | The type of the event. Always `response.failed`.<br>Possible values: `response.failed` | Yes |  |
 
@@ -4057,10 +4057,10 @@ JSON Schema response format. Used to generate structured JSON responses.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | json_schema | object | Structured Outputs configuration options, including a JSON Schema. | Yes |  |
-| └─ description | string | A description of what the response format is for, used by the model to<br>determine how to respond in the format. | No |  |
-| └─ name | string | The name of the response format. Must be a-z, A-Z, 0-9, or contain<br>underscores and dashes, with a maximum length of 64. | No |  |
+| └─ description | string | A description of what the response format is for, used by the model to determine how to respond in the format. | No |  |
+| └─ name | string | The name of the response format. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64. | No |  |
 | └─ schema | [OpenAI.ResponseFormatJsonSchemaSchema](#openairesponseformatjsonschemaschema) | The schema for the response format, described as a JSON Schema object.<br>Learn how to build JSON schemas [here](https://json-schema.org/). | No |  |
-| └─ strict | boolean | Whether to enable strict schema adherence when generating the output.<br>If set to true, the model will always follow the exact schema defined<br>in the `schema` field. Only a subset of JSON Schema is supported when<br>`strict` is `true`. . | No | False |
+| └─ strict | boolean | Whether to enable strict schema adherence when generating the output.<br>If set to true, the model will always follow the exact schema defined in the `schema` field. Only a subset of JSON Schema is supported when `strict` is `true`. . | No | False |
 | type | enum | The type of response format being defined. Always `json_schema`.<br>Possible values: `json_schema` | Yes |  |
 
 ### OpenAI.ResponseFormatJsonSchemaSchema
@@ -4156,24 +4156,24 @@ Emitted when the response is in progress.
 | └─ id | string | Unique identifier for this Response. | No |  |
 | └─ incomplete_details | object | Details about why the response is incomplete. | No |  |
 |   └─ reason | enum | The reason why the response is incomplete.<br>Possible values: `max_output_tokens`, `content_filter` | No |  |
-| └─ instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous<br>response will not be carried over to the next response. This makes it simple<br>to swap out system (or developer) messages in new responses. | No |  |
+| └─ instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses. | No |  |
 | └─ max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and . | No |  |
-| └─ metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be<br>useful for storing additional information about the object in a structured<br>format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings<br>with a maximum length of 512 characters. | No |  |
+| └─ metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
 | └─ object | enum | The object type of this resource - always set to `response`.<br>Possible values: `response` | No |  |
-| └─ output | array | An array of content items generated by the model.<br><br>- The length and order of items in the `output` array is dependent<br>  on the model's response.<br>- Rather than accessing the first item in the `output` array and <br>  assuming it's an `assistant` message with the content generated by<br>  the model, you might consider using the `output_text` property where<br>  supported in SDKs. | No |  |
-| └─ output_text | string | SDK-only convenience property that contains the aggregated text output <br>from all `output_text` items in the `output` array, if any are present. <br>Supported in the Python and JavaScript SDKs. | No |  |
+| └─ output | array | An array of content items generated by the model.<br><br>- The length and order of items in the `output` array is dependent on the model's response.<br>- Rather than accessing the first item in the `output` array and assuming it's an `assistant` message with the content generated by the model, you might consider using the `output_text` property where supported in SDKs. | No |  |
+| └─ output_text | string | SDK-only convenience property that contains the aggregated text output from all `output_text` items in the `output` array, if any are present. <br>Supported in the Python and JavaScript SDKs. | No |  |
 | └─ parallel_tool_calls | boolean | Whether to allow the model to run tool calls in parallel. | No | True |
-| └─ previous_response_id | string | The unique ID of the previous response to the model. Use this to<br>create multi-turn conversations. reasoning models. | No |  |
-| └─ reasoning | [OpenAI.Reasoning](#openaireasoning) | **o-series models only**<br><br>Configuration options for<br>reasoning models. | No |  |
-| └─ status | enum | The status of the response generation. One of `completed`, `failed`, <br>`in_progress`, `cancelled`, `queued`, or `incomplete`.<br>Possible values: `completed`, `failed`, `in_progress`, `cancelled`, `queued`, `incomplete` | No |  |
+| └─ previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. reasoning models. | No |  |
+| └─ reasoning | [OpenAI.Reasoning](#openaireasoning) | **o-series models only**<br><br>Configuration options for reasoning models. | No |  |
+| └─ status | enum | The status of the response generation. One of `completed`, `failed`, `in_progress`, `cancelled`, `queued`, or `incomplete`.<br>Possible values: `completed`, `failed`, `in_progress`, `cancelled`, `queued`, `incomplete` | No |  |
 | └─ temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br>We generally recommend altering this or `top_p` but not both. | No |  |
-| └─ text | object | Configuration options for a text response from the model. Can be plain<br>text or structured JSON data.  | No |  |
+| └─ text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data.  | No |  |
 |   └─ format | [OpenAI.ResponseTextFormatConfiguration](#openairesponsetextformatconfiguration) |  | No |  |
-| └─ tool_choice | [OpenAI.ToolChoiceOptions](#openaitoolchoiceoptions) or [OpenAI.ToolChoiceObject](#openaitoolchoiceobject) | How the model should select which tool (or tools) to use when generating<br>a response. See the `tools` parameter to see how to specify which tools<br>the model can call. | No |  |
-| └─ tools | array | An array of tools the model may call while generating a response. You <br>can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that are provided by OpenAI that extend the model's capabilities. | No |  |
-| └─ top_p | number | An alternative to sampling with temperature, called nucleus sampling,<br>where the model considers the results of the tokens with top_p probability<br>mass. So 0.1 means only the tokens comprising the top 10% probability mass<br>are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No |  |
-| └─ truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds<br>  the model's context window size, the model will truncate the <br>  response to fit the context window by dropping input items in the<br>  middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window <br>  size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
-| └─ usage | [OpenAI.ResponseUsage](#openairesponseusage) | Represents token usage details including input tokens, output tokens,<br>a breakdown of output tokens, and the total tokens used. | No |  |
+| └─ tool_choice | [OpenAI.ToolChoiceOptions](#openaitoolchoiceoptions) or [OpenAI.ToolChoiceObject](#openaitoolchoiceobject) | How the model should select which tool (or tools) to use when generating a response. See the `tools` parameter to see how to specify which tools the model can call. | No |  |
+| └─ tools | array | An array of tools the model may call while generating a response. You can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that are provided by OpenAI that extend the model's capabilities. | No |  |
+| └─ top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No |  |
+| └─ truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
+| └─ usage | [OpenAI.ResponseUsage](#openairesponseusage) | Represents token usage details including input tokens, output tokens, a breakdown of output tokens, and the total tokens used. | No |  |
 | └─ user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
 | type | enum | The type of the event. Always `response.in_progress`.<br>Possible values: `response.in_progress` | Yes |  |
 
@@ -4190,23 +4190,23 @@ An event that is emitted when a response finishes as incomplete.
 | └─ id | string | Unique identifier for this Response. | No |  |
 | └─ incomplete_details | object | Details about why the response is incomplete. | No |  |
 |   └─ reason | enum | The reason why the response is incomplete.<br>Possible values: `max_output_tokens`, `content_filter` | No |  |
-| └─ instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous<br>response will not be carried over to the next response. This makes it simple<br>to swap out system (or developer) messages in new responses. | No |  |
+| └─ instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses. | No |  |
 | └─ max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and . | No |  |
-| └─ metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be<br>useful for storing additional information about the object in a structured<br>format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings<br>with a maximum length of 512 characters. | No |  |
+| └─ metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
 | └─ object | enum | The object type of this resource - always set to `response`.<br>Possible values: `response` | No |  |
-| └─ output | array | An array of content items generated by the model.<br><br>- The length and order of items in the `output` array is dependent<br>  on the model's response.<br>- Rather than accessing the first item in the `output` array and <br>  assuming it's an `assistant` message with the content generated by<br>  the model, you might consider using the `output_text` property where<br>  supported in SDKs. | No |  |
-| └─ output_text | string | SDK-only convenience property that contains the aggregated text output <br>from all `output_text` items in the `output` array, if any are present. <br>Supported in the Python and JavaScript SDKs. | No |  |
+| └─ output | array | An array of content items generated by the model.<br><br>- The length and order of items in the `output` array is dependent on the model's response.<br>- Rather than accessing the first item in the `output` array and assuming it's an `assistant` message with the content generated by the model, you might consider using the `output_text` property where supported in SDKs. | No |  |
+| └─ output_text | string | SDK-only convenience property that contains the aggregated text output from all `output_text` items in the `output` array, if any are present. <br>Supported in the Python and JavaScript SDKs. | No |  |
 | └─ parallel_tool_calls | boolean | Whether to allow the model to run tool calls in parallel. | No | True |
-| └─ previous_response_id | string | The unique ID of the previous response to the model. Use this to<br>create multi-turn conversations. reasoning models. | No |  |
-| └─ reasoning | [OpenAI.Reasoning](#openaireasoning) | **o-series models only**<br><br>Configuration options for<br>reasoning models. | No |  |
-| └─ status | enum | The status of the response generation. One of `completed`, `failed`, <br>`in_progress`, `cancelled`, `queued`, or `incomplete`.<br>Possible values: `completed`, `failed`, `in_progress`, `cancelled`, `queued`, `incomplete` | No |  |
+| └─ previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. reasoning models. | No |  |
+| └─ reasoning | [OpenAI.Reasoning](#openaireasoning) | **o-series models only**<br><br>Configuration options for reasoning models. | No |  |
+| └─ status | enum | The status of the response generation. One of `completed`, `failed`, `in_progress`, `cancelled`, `queued`, or `incomplete`.<br>Possible values: `completed`, `failed`, `in_progress`, `cancelled`, `queued`, `incomplete` | No |  |
 | └─ temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br>We generally recommend altering this or `top_p` but not both. | No |  |
-| └─ text | object | Configuration options for a text response from the model. Can be plain<br>text or structured JSON data.  | No |  |
+| └─ text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data.  | No |  |
 |   └─ format | [OpenAI.ResponseTextFormatConfiguration](#openairesponsetextformatconfiguration) |  | No |  |
-| └─ tool_choice | [OpenAI.ToolChoiceOptions](#openaitoolchoiceoptions) or [OpenAI.ToolChoiceObject](#openaitoolchoiceobject) | How the model should select which tool (or tools) to use when generating<br>a response. See the `tools` parameter to see how to specify which tools<br>the model can call. | No |  |
-| └─ tools | array | An array of tools the model may call while generating a response. You <br>can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that that extend the model's capabilities, **Function calls (custom tools)** | No |  |
-| └─ top_p | number | An alternative to sampling with temperature, called nucleus sampling,<br>where the model considers the results of the tokens with top_p probability<br>mass. So 0.1 means only the tokens comprising the top 10% probability mass<br>are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No |  |
-| └─ truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds<br>  the model's context window size, the model will truncate the <br>  response to fit the context window by dropping input items in the<br>  middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window <br>  size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
+| └─ tool_choice | [OpenAI.ToolChoiceOptions](#openaitoolchoiceoptions) or [OpenAI.ToolChoiceObject](#openaitoolchoiceobject) | How the model should select which tool (or tools) to use when generating a response. See the `tools` parameter to see how to specify which tools the model can call. | No |  |
+| └─ tools | array | An array of tools the model may call while generating a response. You can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>- **Built-in tools**: Tools that that extend the model's capabilities, **Function calls (custom tools)** | No |  |
+| └─ top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No |  |
+| └─ truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
 | └─ usage | [OpenAI.ResponseUsage](#openairesponseusage) | Represents token usage details including input tokens, output tokens,<br>a breakdown of output tokens, and the total tokens used. | No |  |
 | └─ user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
 | type | enum | The type of the event. Always `response.incomplete`.<br>Possible values: `response.incomplete` | Yes |  |
@@ -4332,24 +4332,24 @@ Emitted when a response is queued and waiting to be processed.
 | └─ id | string | Unique identifier for this Response. | No |  |
 | └─ incomplete_details | object | Details about why the response is incomplete. | No |  |
 |   └─ reason | enum | The reason why the response is incomplete.<br>Possible values: `max_output_tokens`, `content_filter` | No |  |
-| └─ instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous<br>response will not be carried over to the next response. This makes it simple<br>to swap out system (or developer) messages in new responses. | No |  |
+| └─ instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous response will not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses. | No |  |
 | └─ max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and . | No |  |
-| └─ metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be<br>useful for storing additional information about the object in a structured<br>format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings<br>with a maximum length of 512 characters. | No |  |
+| └─ metadata | object | Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard.<br><br>Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters. | No |  |
 | └─ object | enum | The object type of this resource - always set to `response`.<br>Possible values: `response` | No |  |
-| └─ output | array | An array of content items generated by the model.<br><br>- The length and order of items in the `output` array is dependent<br>  on the model's response.<br>- Rather than accessing the first item in the `output` array and <br>  assuming it's an `assistant` message with the content generated by<br>  the model, you might consider using the `output_text` property where<br>  supported in SDKs. | No |  |
-| └─ output_text | string | SDK-only convenience property that contains the aggregated text output <br>from all `output_text` items in the `output` array, if any are present. <br>Supported in the Python and JavaScript SDKs. | No |  |
+| └─ output | array | An array of content items generated by the model.<br><br>- The length and order of items in the `output` array is dependent on the model's response.<br>- Rather than accessing the first item in the `output` array and assuming it's an `assistant` message with the content generated by the model, you might consider using the `output_text` property where supported in SDKs. | No |  |
+| └─ output_text | string | SDK-only convenience property that contains the aggregated text output from all `output_text` items in the `output` array, if any are present. <br>Supported in the Python and JavaScript SDKs. | No |  |
 | └─ parallel_tool_calls | boolean | Whether to allow the model to run tool calls in parallel. | No | True |
-| └─ previous_response_id | string | The unique ID of the previous response to the model. Use this to<br>create multi-turn conversations. reasoning models. | No |  |
-| └─ reasoning | [OpenAI.Reasoning](#openaireasoning) | **o-series models only**<br><br>Configuration options for<br>reasoning models. | No |  |
-| └─ status | enum | The status of the response generation. One of `completed`, `failed`, <br>`in_progress`, `cancelled`, `queued`, or `incomplete`.<br>Possible values: `completed`, `failed`, `in_progress`, `cancelled`, `queued`, `incomplete` | No |  |
+| └─ previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. reasoning models. | No |  |
+| └─ reasoning | [OpenAI.Reasoning](#openaireasoning) | **o-series models only**<br><br>Configuration options for reasoning models. | No |  |
+| └─ status | enum | The status of the response generation. One of `completed`, `failed`, `in_progress`, `cancelled`, `queued`, or `incomplete`.<br>Possible values: `completed`, `failed`, `in_progress`, `cancelled`, `queued`, `incomplete` | No |  |
 | └─ temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br>We generally recommend altering this or `top_p` but not both. | No |  |
-| └─ text | object | Configuration options for a text response from the model. Can be plain<br>text or structured JSON data.  | No |  |
+| └─ text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data.  | No |  |
 |   └─ format | [OpenAI.ResponseTextFormatConfiguration](#openairesponsetextformatconfiguration) |  | No |  |
-| └─ tool_choice | [OpenAI.ToolChoiceOptions](#openaitoolchoiceoptions) or [OpenAI.ToolChoiceObject](#openaitoolchoiceobject) | How the model should select which tool (or tools) to use when generating<br>a response. See the `tools` parameter to see how to specify which tools<br>the model can call. | No |  |
-| └─ tools | array | An array of tools the model may call while generating a response. You <br>can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>-**Built-in tools**: Tools that that extend the model's capabilities. **Function calls (custom tools)**: Functions that are defined by you, nabling the model to call your own code.  | No |  |
-| └─ top_p | number | An alternative to sampling with temperature, called nucleus sampling,<br>where the model considers the results of the tokens with top_p probability<br>mass. So 0.1 means only the tokens comprising the top 10% probability mass<br>are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No |  |
-| └─ truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds<br>  the model's context window size, the model will truncate the <br>  response to fit the context window by dropping input items in the<br>  middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window <br>  size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
-| └─ usage | [OpenAI.ResponseUsage](#openairesponseusage) | Represents token usage details including input tokens, output tokens,<br>a breakdown of output tokens, and the total tokens used. | No |  |
+| └─ tool_choice | [OpenAI.ToolChoiceOptions](#openaitoolchoiceoptions) or [OpenAI.ToolChoiceObject](#openaitoolchoiceobject) | How the model should select which tool (or tools) to use when generating a response. See the `tools` parameter to see how to specify which tools the model can call. | No |  |
+| └─ tools | array | An array of tools the model may call while generating a response. You can specify which tool to use by setting the `tool_choice` parameter.<br><br>The two categories of tools you can provide the model are:<br><br>-**Built-in tools**: Tools that that extend the model's capabilities. **Function calls (custom tools)**: Functions that are defined by you, nabling the model to call your own code.  | No |  |
+| └─ top_p | number | An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.<br><br>We generally recommend altering this or `temperature` but not both. | No |  |
+| └─ truncation | enum | The truncation strategy to use for the model response.<br>- `auto`: If the context of this response and previous ones exceeds the model's context window size, the model will truncate the response to fit the context window by dropping input items in the middle of the conversation. <br>- `disabled` (default): If a model response will exceed the context window size for a model, the request will fail with a 400 error.<br>Possible values: `auto`, `disabled` | No |  |
+| └─ usage | [OpenAI.ResponseUsage](#openairesponseusage) | Represents token usage details including input tokens, output tokens, a breakdown of output tokens, and the total tokens used. | No |  |
 | └─ user | string | A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.  | No |  |
 | type | enum | The type of the event. Always 'response.queued'.<br>Possible values: `response.queued` | Yes |  |
 
@@ -4598,13 +4598,13 @@ This component uses the property `type` to discriminate between different types:
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| type | [OpenAI.ResponseTextFormatConfigurationType](#openairesponsetextformatconfigurationtype) | An object specifying the format that the model must output.<br><br>Configuring `{ "type": "json_schema" }` enables Structured Outputs, <br>which ensures the model will match your supplied JSON schema. <br><br>The default format is `{ "type": "text" }` with no additional options.<br><br>**Not recommended for gpt-4o and newer models:**<br><br>Setting to `{ "type": "json_object" }` enables the older JSON mode, which<br>ensures the message the model generates is valid JSON. Using `json_schema`<br>is preferred for models that support it. | Yes |  |
+| type | [OpenAI.ResponseTextFormatConfigurationType](#openairesponsetextformatconfigurationtype) | An object specifying the format that the model must output.<br><br>Configuring `{ "type": "json_schema" }` enables Structured Outputs, which ensures the model will match your supplied JSON schema. <br><br>The default format is `{ "type": "text" }` with no additional options.<br><br>**Not recommended for gpt-4o and newer models:**<br><br>Setting to `{ "type": "json_object" }` enables the older JSON mode, which ensures the message the model generates is valid JSON. Using `json_schema` is preferred for models that support it. | Yes |  |
 
 ### OpenAI.ResponseTextFormatConfigurationJsonObject
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| type | enum | <br>Possible values: `json_object` | Yes |  |
+| type | enum | Possible values: `json_object` | Yes |  |
 
 ### OpenAI.ResponseTextFormatConfigurationJsonSchema
 
@@ -4613,17 +4613,17 @@ JSON Schema response format. Used to generate structured JSON responses.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| description | string | A description of what the response format is for, used by the model to<br>determine how to respond in the format. | No |  |
-| name | string | The name of the response format. Must be a-z, A-Z, 0-9, or contain<br>underscores and dashes, with a maximum length of 64. | Yes |  |
+| description | string | A description of what the response format is for, used by the model to determine how to respond in the format. | No |  |
+| name | string | The name of the response format. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64. | Yes |  |
 | schema | [OpenAI.ResponseFormatJsonSchemaSchema](#openairesponseformatjsonschemaschema) | The schema for the response format, described as a JSON Schema object.<br>Learn how to build JSON schemas [here](https://json-schema.org/). | Yes |  |
-| strict | boolean | Whether to enable strict schema adherence when generating the output.<br>If set to true, the model will always follow the exact schema defined<br>in the `schema` field. Only a subset of JSON Schema is supported when<br>`strict` is `true`.  | No | False |
+| strict | boolean | Whether to enable strict schema adherence when generating the output.<br>If set to true, the model will always follow the exact schema defined in the `schema` field. Only a subset of JSON Schema is supported when `strict` is `true`.  | No | False |
 | type | enum | The type of response format being defined. Always `json_schema`.<br>Possible values: `json_schema` | Yes |  |
 
 ### OpenAI.ResponseTextFormatConfigurationText
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| type | enum | <br>Possible values: `text` | Yes |  |
+| type | enum | Possible values: `text` | Yes |  |
 
 ### OpenAI.ResponseTextFormatConfigurationType
 
@@ -4778,7 +4778,7 @@ This component uses the property `role` to discriminate between different types:
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | role | object | The collection of valid roles for responses message items. | Yes |  |
-| status | enum | The status of the item. One of `in_progress`, `completed`, or<br>`incomplete`. Populated when items are returned via API.<br>Possible values: `in_progress`, `completed`, `incomplete` | Yes |  |
+| status | enum | The status of the item. One of `in_progress`, `completed`, or `incomplete`. Populated when items are returned via API.<br>Possible values: `in_progress`, `completed`, `incomplete` | Yes |  |
 | type | enum | The type of the responses item, which is always 'message'.<br>Possible values: `message` | Yes |  |
 
 ### OpenAI.ResponsesMessageRole
@@ -4885,19 +4885,19 @@ This component uses the property `type` to discriminate between different types:
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| type | enum | <br>Possible values: `code_interpreter` | Yes |  |
+| type | enum | Possible values: `code_interpreter` | Yes |  |
 
 ### OpenAI.ToolChoiceObjectComputer
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| type | enum | <br>Possible values: `computer_use_preview` | Yes |  |
+| type | enum | Possible values: `computer_use_preview` | Yes |  |
 
 ### OpenAI.ToolChoiceObjectFileSearch
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| type | enum | <br>Possible values: `file_search` | Yes |  |
+| type | enum | Possible values: `file_search` | Yes |  |
 
 ### OpenAI.ToolChoiceObjectFunction
 
@@ -4912,13 +4912,13 @@ Use this option to force the model to call a specific function.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| type | enum | <br>Possible values: `image_generation` | Yes |  |
+| type | enum | Possible values: `image_generation` | Yes |  |
 
 ### OpenAI.ToolChoiceObjectMCP
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| type | enum | <br>Possible values: `mcp` | Yes |  |
+| type | enum | Possible values: `mcp` | Yes |  |
 
 ### OpenAI.ToolChoiceObjectType
 
@@ -4936,7 +4936,7 @@ Note: web_search is not yet available via Azure OpenAI.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| type | enum | <br>Possible values: `web_search_preview` | Yes |  |
+| type | enum | Possible values: `web_search_preview` | Yes |  |
 
 ### OpenAI.ToolChoiceOptions
 
@@ -4951,7 +4951,7 @@ more tools.
 
 | Property | Value |
 |----------|-------|
-| **Description** | Controls which (if any) tool is called by the model.<br><br>`none` means the model will not call any tool and instead generates a message.<br><br>`auto` means the model can pick between generating a message or calling one or<br>more tools.<br><br>`required` means the model must call one or more tools. |
+| **Description** | Controls which (if any) tool is called by the model.<br><br>`none` means the model will not call any tool and instead generates a message.<br><br>`auto` means the model can pick between generating a message or calling one or more tools.<br><br>`required` means the model must call one or more tools. |
 | **Type** | string |
 | **Values** | `none`<br>`auto`<br>`required` |
 
@@ -5003,9 +5003,9 @@ References: [OpenAI.AudioResponseFormat](#openaiaudioresponseformat)
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| prefix_padding_ms | integer | Amount of audio to include before the VAD detected speech (in<br>milliseconds). | No | 300 |
-| silence_duration_ms | integer | Duration of silence to detect speech stop (in milliseconds).<br>With shorter values the model will respond more quickly,<br>but may jump in on short pauses from the user. | No | 200 |
-| threshold | number | Sensitivity threshold (0.0 to 1.0) for voice activity detection. A<br>higher threshold will require louder audio to activate the model, and<br>thus might perform better in noisy environments. | No | 0.5 |
+| prefix_padding_ms | integer | Amount of audio to include before the VAD detected speech (in milliseconds). | No | 300 |
+| silence_duration_ms | integer | Duration of silence to detect speech stop (in milliseconds).<br>With shorter values the model will respond more quickly, but may jump in on short pauses from the user. | No | 200 |
+| threshold | number | Sensitivity threshold (0.0 to 1.0) for voice activity detection. A higher threshold will require louder audio to activate the model, and thus might perform better in noisy environments. | No | 0.5 |
 | type | enum | Must be set to `server_vad` to enable manual chunking using server side VAD.<br>Possible values: `server_vad` | Yes |  |
 
 ### OpenAI.VectorStoreFileAttributes
@@ -5044,7 +5044,7 @@ The results of a web search tool call.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| type | enum | <br>Possible values: `web_search_call` | Yes |  |
+| type | enum | Possible values: `web_search_call` | Yes |  |
 
 ### OpenAI.WebSearchToolCallItemResource
 
@@ -5054,17 +5054,17 @@ The results of a web search tool call.
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | status | enum | The status of the web search tool call.<br>Possible values: `in_progress`, `searching`, `completed`, `failed` | Yes |  |
-| type | enum | <br>Possible values: `web_search_call` | Yes |  |
+| type | enum | Possible values: `web_search_call` | Yes |  |
 
 ### PineconeChatDataSource
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | parameters | object | The parameter information to control the use of the Pinecone data source. | Yes |  |
-| └─ allow_partial_result | boolean | If set to true, the system will allow partial search results to be used and the request will fail if all<br>partial queries fail. If not specified or specified as false, the request will fail if any search query fails. | No | False |
+| └─ allow_partial_result | boolean | If set to true, the system will allow partial search results to be used and the request will fail if all partial queries fail. If not specified or specified as false, the request will fail if any search query fails. | No | False |
 | └─ authentication | object |  | No |  |
 |   └─ key | string |  | No |  |
-|   └─ type | enum | <br>Possible values: `api_key` | No |  |
+|   └─ type | enum | Possible values: `api_key` | No |  |
 | └─ embedding_dependency | object | A representation of a data vectorization source usable as an embedding resource with a data source. | No |  |
 |   └─ type | [AzureChatDataSourceVectorizationSourceType](#azurechatdatasourcevectorizationsourcetype) | The differentiating identifier for the concrete vectorization source. | No |  |
 | └─ environment | string | The environment name to use with Pinecone. | No |  |
@@ -5118,7 +5118,7 @@ The supported audio output formats for text-to-speech.
 | id | string | The id of the video generation. | Yes |  |
 | job_id | string | The id of the video generation job for this video. | Yes |  |
 | n_seconds | integer | The duration of the video generation. | Yes |  |
-| object | enum | <br>Possible values: `video.generation` | Yes |  |
+| object | enum | Possible values: `video.generation` | Yes |  |
 | prompt | string | The prompt for this video generation. | Yes |  |
 | width | integer | The width of the video. | Yes |  |
 
@@ -5136,7 +5136,7 @@ The supported audio output formats for text-to-speech.
 | model | string | The name of the deployment to use for this video generation job. | Yes |  |
 | n_seconds | integer | The duration of the video generation job. | Yes |  |
 | n_variants | integer | The number of videos to create as variants for this video generation job. | Yes |  |
-| object | enum | <br>Possible values: `video.generation.job` | Yes |  |
+| object | enum | Possible values: `video.generation.job` | Yes |  |
 | prompt | string | The prompt for this video generation job. | Yes |  |
 | status | object |  | Yes |  |
 | width | integer | The height of the video. | Yes |  |
@@ -5149,5 +5149,5 @@ The supported audio output formats for text-to-speech.
 | first_id | string |  | No |  |
 | has_more | boolean |  | Yes |  |
 | last_id | string |  | No |  |
-| object | enum | <br>Possible values: `list` | Yes |  |
+| object | enum | Possible values: `list` | Yes |  |
 

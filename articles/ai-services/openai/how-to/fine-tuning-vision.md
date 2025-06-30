@@ -17,7 +17,7 @@ Fine-tuning is also possible with images in your JSONL files. Just as you can 
 
 ## Model support
 
-Vision fine-tuning is supported for `gpt-4o` version `2024-08-06` models only.
+Vision fine-tuning is supported for `gpt-4o` version `2024-08-06` and `gpt-4.1` version `2025-04-14` models only.
 
 ## Image dataset requirements
 
@@ -63,7 +63,7 @@ As with all fine-tuning training your example file requires at least 10 examples
 
 ## Content moderation policy
 
-We scan your images before training to ensure that they comply with our usage policy [Transparency Note](/legal/cognitive-services/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=text). This may introduce latency in file validation before fine tuning begins.
+We scan your images before training to ensure that they comply with our usage policy [Transparency Note](/azure/ai-foundry/responsible-ai/openai/transparency-note). This may introduce latency in file validation before fine tuning begins.
 
 Images containing the following will be excluded from your dataset and not used for training:
 
@@ -72,7 +72,7 @@ Images containing the following will be excluded from your dataset and not used 
 - CAPTCHAs
 
 > [!IMPORTANT]
->For vision fine tuning face screening process: We screen for faces/people to skip those images from training the model. The screening capability leverages face detection **WITHOUT** Face identification which means we don't create facial templates or measure specific facial geometry, and the technology used to screen for faces is incapable of uniquely identifying the individuals. To know more about data and Privacy for face refer to - [Data and privacy for Face - Azure AI services | Microsoft Learn](/legal/cognitive-services/computer-vision/imageanalysis-data-privacy-security?context=%2Fazure%2Fai-services%2Fcomputer-vision%2Fcontext%2Fcontext).
+>For vision fine tuning face screening process: We screen for faces/people to skip those images from training the model. The screening capability leverages face detection **WITHOUT** Face identification which means we don't create facial templates or measure specific facial geometry, and the technology used to screen for faces is incapable of uniquely identifying the individuals. To know more about data and Privacy for face refer to - [Data and privacy for Face - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/computer-vision/image-analysis-data-privacy-security).
 
 ## Next steps
 

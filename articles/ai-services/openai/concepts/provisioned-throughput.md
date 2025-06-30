@@ -192,7 +192,7 @@ The following points are some important takeaways from the table:
 |                    | O4 mini          | ✅                 | ✅                     | ✅                   | ✅                 |
 | **Azure DeepSeek** | DeepSeek-R1      | ✅                 |                       |                      |                   |
 |                    | DeepSeek-V3-0324 | ✅                 |                       |                      |                   |
-
+|                    | DeepSeek-R1-0528 | ✅                 |                       |                      |                   |
 
 
 ### Region availability for provisioned throughput capability

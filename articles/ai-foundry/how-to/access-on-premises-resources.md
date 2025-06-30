@@ -7,8 +7,8 @@ ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 05/08/2025
 ms.reviewer: meerakurup 
-ms.author: larryfr
-author: Blackmist
+ms.author: jburchel 
+author: jonburchel 
 # Customer intent: As an admin, I want to allow my developers to securely access on-premises resources from Azure AI Foundry.
 ---
 

@@ -1,10 +1,13 @@
 ---
 ms.service: azure-ai-foundry
+ms.subservice: foundry-local
 ms.custom: build-2025
 ms.topic: include
 ms.date: 05/02/2025
-ms.author: maanavdalal
-author: maanavd
+ms.author: jburchel
+reviewer: maanavdalal
+author: jonburchel
+ms.reviewer: maanavd
 ---
 
 ## Install Node.js packages

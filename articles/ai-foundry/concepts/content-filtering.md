@@ -26,7 +26,7 @@ author: PatrickFarley
 
 The content filtering system is powered by [Azure AI Content Safety](../../ai-services/content-safety/overview.md), and it works by running both the model prompt input and completion output through a set of classification models designed to detect and prevent the output of harmful content. Variations in API configurations and application design might affect completions and thus filtering behavior.
 
-With Azure OpenAI model deployments, you can use the default content filter or create your own content filter (described later). Models available through **standard deployments** have content filtering enabled by default. To learn more about the default content filter enabled for standard deployments, see [Content safety for Models Sold Directly by Azure ](model-catalog-content-safety.md).
+With Azure OpenAI model deployments, you can use the default content filter or create your own content filter (described later). Models available through **serverless API deployments** have content filtering enabled by default. To learn more about the default content filter enabled for serverless API deployments, see [Content safety for Models Sold Directly by Azure ](model-catalog-content-safety.md).
 
 ## Language support
 
@@ -80,5 +80,5 @@ You can also enable the following special output filters:
 
 - Learn more about the [underlying models that power Azure OpenAI](../../ai-services/openai/concepts/models.md).
 - Azure AI Foundry content filtering is powered by [Azure AI Content Safety](../../ai-services/content-safety/overview.md).
-- Learn more about understanding and mitigating risks associated with your application: [Overview of Responsible AI practices for Azure OpenAI models](/legal/cognitive-services/openai/overview?context=/azure/ai-services/context/context).
+- Learn more about understanding and mitigating risks associated with your application: [Overview of Responsible AI practices for Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/overview).
 - Learn more about evaluating your generative AI models and AI systems via [Azure AI Evaluation](https://aka.ms/genaiopsevals). 
