@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 03/12/2025
+ms.date: 06/30/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
@@ -67,7 +67,7 @@ With API key authentication, you can authenticate your OpenAPI spec using variou
 
 1. Create a `custom keys` connection to store your API key.
 
-    1. Go to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select the AI Project. Click **connected resources**.
+    1. Go to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select the AI Project. Select **connected resources**.
     :::image type="content" source="../../media\tools\bing\project-settings-button.png" alt-text="A screenshot of the settings button for an AI project." lightbox="../../media\tools\bing\project-settings-button.png":::
 
     1. Select **+ new connection** in the settings page. 
@@ -124,4 +124,4 @@ To set up authenticating with Managed Identity:
 
     1. Click **Finish**.
 
-1. Once the setup is done, you can continue by using the tool through the Foundry Portal, SDK, or REST API. Use the tabs at the top of this article to see code samples.
+1. Once the setup is done, you can continue by using the tool through the Azure AI Foundry portal, SDK, or REST API. Use the tabs at the top of this article to see code samples.
