@@ -30,7 +30,7 @@ Azure OpenAI provides REST API access to OpenAI's powerful language models inclu
 
 ## Responsible AI
 
-At Microsoft, we're committed to the advancement of AI driven by principles that put people first. Generative models such as the ones available in Azure OpenAI have significant potential benefits, but without careful design and thoughtful mitigations, such models have the potential to generate incorrect or even harmful content. Microsoft has made significant investments to help guard against abuse and unintended harm, which includes incorporating Microsoft’s <a href="https://www.microsoft.com/ai/responsible-ai?activetab=pivot1:primaryr6" target="_blank">principles for responsible AI use</a>, adopting a [Code of Conduct](/legal/ai-code-of-conduct?context=/azure/ai-services/openai/context/context) for use of the service, building [content filters](/azure/ai-services/content-safety/overview) to support customers, and providing responsible AI [information and guidance](/legal/cognitive-services/openai/transparency-note?context=%2Fazure%2Fai-services%2Fopenai%2Fcontext%2Fcontext&tabs=image) that customers should consider when using Azure OpenAI.
+At Microsoft, we're committed to the advancement of AI driven by principles that put people first. Generative models such as the ones available in Azure OpenAI have significant potential benefits, but without careful design and thoughtful mitigations, such models have the potential to generate incorrect or even harmful content. Microsoft has made significant investments to help guard against abuse and unintended harm, which includes incorporating Microsoft’s <a href="https://www.microsoft.com/ai/responsible-ai?activetab=pivot1:primaryr6" target="_blank">principles for responsible AI use</a>, adopting a [Code of Conduct](/legal/ai-code-of-conduct) that customers should consider when using Azure OpenAI.
 
 ## Get started with Azure OpenAI
 
@@ -47,7 +47,7 @@ Start with the [Create and deploy an Azure OpenAI resource](./how-to/create-reso
     For example, you can try [real-time audio](./realtime-audio-quickstart.md) and [assistants](./assistants-quickstart.md) in the playgrounds or via code.
 
 > [!NOTE]
-> A Limited Access registration form is required to access some Azure OpenAI models or features. Learn more on the [Azure OpenAI Limited Access page](/legal/cognitive-services/openai/limited-access?context=/azure/ai-services/openai/context/context).
+> A Limited Access registration form is required to access some Azure OpenAI models or features. Learn more on the [Azure OpenAI Limited Access page](/azure/ai-foundry/responsible-ai/openai/limited-access).
 
 ## Comparing Azure OpenAI and OpenAI
 
@@ -84,7 +84,7 @@ Azure OpenAI processes text by breaking it down into tokens. Tokens can be words
 
 The total number of tokens processed in a given request depends on the length of your input, output, and request parameters. The quantity of tokens being processed will also affect your response latency and throughput for the models.
  
-#### Image tokens
+#### Image input tokens
 
 Azure OpenAI's image processing capabilities with GPT-4o, GPT-4o-mini, and GPT-4 Turbo with Vision models uses image tokenization to determine the total number of tokens consumed by image inputs. The number of tokens consumed is calculated based on two main factors: the level of image detail (low or high) and the image’s dimensions. Here's how token costs are calculated:
 
@@ -107,6 +107,18 @@ Azure OpenAI's image processing capabilities with GPT-4o, GPT-4o-mini, and GPT-4
     4. **Final calculation**: 
         - For GPT-4o and GPT-4 Turbo with Vision, the total token cost is 6 tiles x 170 tokens per tile + 85 base tokens = 1105 tokens.
         - For GPT-4o mini, the total token cost is 6 tiles x 5667 tokens per tile + 2833 base tokens = 36835 tokens.
+
+#### Image generation tokens 
+
+GPT-image-1 generates images by first producing specialized image tokens. Both latency and eventual cost are proportional to the number of tokens required to render an image. The number of tokens generated depends on image dimensions and quality:
+
+| Quality | Square (1024×1024) | Portrait (1024×1536) | landscape (1536×1024) |
+| ----------- | ---------------------- | ------------------------ | ------------------------- |
+| Low         | 272 tokens             | 408 tokens               | 400 tokens                |
+| Medium      | 1056 tokens            | 1584 tokens              | 1568 tokens               |
+| High        | 4160 tokens            | 6240 tokens              | 6208 tokens               |
+
+
 
 ### Resources
 

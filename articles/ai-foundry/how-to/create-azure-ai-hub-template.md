@@ -8,8 +8,8 @@ ms.custom: devx-track-arm-template, devx-track-bicep, build-2024
 ms.topic: how-to
 ms.date: 04/29/2025
 ms.reviewer: deeikele
-ms.author: larryfr
-author: Blackmist
+ms.author: sgilley
+author: sdgilley
 #Customer intent: As a DevOps person, I need to automate or customize the creation of a hub by using templates.
 ---
 

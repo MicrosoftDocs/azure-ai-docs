@@ -86,6 +86,14 @@ items:
               href: how-to/tools/openapi-spec-samples.md
             - name: Invoke an OpenAPI App Service web app
               href: /azure/app-service/invoke-openapi-web-app-from-azure-ai-agent-service?context=/azure/ai-services/agents/context/context
+        - name: Model Context Protocol (MCP)
+          items:
+            - name: Overview
+              href: how-to/tools/model-context-protocol.md
+              displayName: model context protocol, mcp
+            - name: How to use Model Context Protocol
+              displayName: model context protocol, mcp samples
+              href: how-to/tools/model-context-protocol-samples.md
         - name: Azure Functions
           items:
             - name: Overview
@@ -131,9 +139,9 @@ items:
 - name: Responsible AI
   items:
     - name: Transparency note
-      href: /legal/cognitive-services/agents/transparency-note?context=/azure/ai-services/agents/context/context
+      href: ../../ai-foundry/responsible-ai/agents/transparency-note.md
     - name: Data, privacy, and security For Azure AI Foundry Agent Service
-      href: /legal/cognitive-services/agents/data-privacy-security?context=/azure/ai-services/agents/context/context
+      href: ../../ai-foundry/responsible-ai/agents/data-privacy-security.md
 - name: Reference
   items:
     - name: REST API

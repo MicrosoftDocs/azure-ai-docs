@@ -100,6 +100,10 @@ The following is a sample request body. You specify a number of options, defined
 
 ---
 
+> [!TIP]
+> For image generation token costs, see [Image tokens](../overview.md#image-generation-tokens).
+
+
 ### Output
 
 The response from a successful image generation API call looks like the following example. The `url` field contains a URL where you can download the generated image. The URL stays active for 24 hours.
