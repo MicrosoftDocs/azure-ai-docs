@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 06/26/2025
+ms.date: 06/30/2025
 ---
 
 In this quickstart, you use PowerShell and the [Azure AI Search REST APIs](/rest/api/searchservice/) to create, load, and query a search index for [full-text search](../../search-lucene-query-architecture.md). Full-text search uses Apache Lucene for indexing and queries and the BM25 ranking algorithm for scoring results.
@@ -95,7 +95,7 @@ To connect to your search service:
     $url = "<YOUR-SEARCH-SERVICE>/indexes?api-version=2024-07-01&`$select=name"
     ```
 
-1. Run `Invoke-RestMethod` to send a GET request to your search service and verify the connection. Include `ConvertTo-Json` to view responses from the service.
+1. Run `Invoke-RestMethod` to send a GET request to your search service. Include `ConvertTo-Json` to view responses from the service.
 
     ```powershell
     Invoke-RestMethod -Uri $url -Headers $headers | ConvertTo-Json
@@ -103,22 +103,22 @@ To connect to your search service:
 
    If your service is empty and has no indexes, the response is similar to the following example. Otherwise, you see a JSON representation of index definitions.
 
-    ```
+    ```json
     {
         "@odata.context":  "https://my-service.search.windows.net/$metadata#indexes",
         "value":  [
 
                   ]
     }
-    ```
+    ```json
 
-## Create, load, and query a search index
+## Create a search index
 
-In this section, you make REST API calls to create a search index, upload documents to the index, and query the indexed documents. Responses to `Invoke-RestMethod` are displayed in the PowerShell console. For more information about each step, see [Explaining the code](#explaining-the-code).
+Before you add content to Azure AI Search, you must create an index to define how the content is stored and structured. An index is conceptually similar to a table in a relational database, but it's specifically designed for search operations, such as full-text search.
 
-Run the following commands in the same PowerShell session you started in the previous section. For each command that updates the `$url` object, replace `<YOUR-SEARCH-SERVICE>` with the value you obtained in [Get endpoint](#get-endpoint).
+Run the following commands in the same PowerShell session you started in the previous section.
 
-To create, load, and query an index:
+To create an index:
 
 1. Create a `$body` object to define the index schema.
 
@@ -149,19 +149,41 @@ To create, load, and query an index:
     "@
     ```
 
-1. Update the `$url` object to target the new index.
+2. Update the `$url` object to target the new index. Replace `<YOUR-SEARCH-SERVICE>` with the value you obtained in [Get endpoint](#get-endpoint).
 
     ```powershell
     $url = "<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart?api-version=2024-07-01"
     ```
 
-1. Run `Invoke-RestMethod` to create the index on your search service.
+3. Run `Invoke-RestMethod` to create the index on your search service.
 
     ```powershell
     Invoke-RestMethod -Uri $url -Headers $headers -Method Put -Body $body | ConvertTo-Json
     ```
 
     The response should contain the JSON representation of the index schema.
+
+### About the create index request
+
+This quickstart calls [Indexes - Create (REST API)](/rest/api/searchservice/indexes/create) to build a search index named `hotels-quickstart` and its physical data structures on your search service.
+
+Within the index schema, the `fields` collection defines the structure of hotel documents. Each field has a `name`, data `type`, and attributes that determine its behavior during indexing and queries. The `HotelId` field is marked as the key, which Azure AI Search requires to uniquely identify each document in an index.
+
+Key points about the index schema:
+
++ Use string fields (`Edm.String`) to make numeric data full-text searchable. Other [supported data types](/rest/api/searchservice/supported-data-types), such as `Edm.Int32`, are filterable, sortable, facetable, and retrievable but aren't searchable.
+
++ Most of our fields are simple data types, but you can define complex types to represent nested data, such as the `Address` field.
+
++ Field attributes determine allowed actions. The REST APIs allow [many actions by default](/rest/api/searchservice/indexes/create#request-body). For example, all strings are searchable and retrievable. With the REST APIs, you might only use attributes if you need to disable a behavior.
+
+## Load the index
+
+Newly created indexes are empty. To populate an index and make it searchable, you must upload JSON documents that conform to the index schema.
+
+In Azure AI Search, documents serve as both inputs for indexing and outputs for queries. For simplicity, this quickstart provides sample hotel documents as inline JSON. In production scenarios, however, content is often pulled from connected data sources and transformed into JSON using [indexers](../../search-indexer-overview.md).
+
+To upload documents to your index:
 
 1. Create a `$body` object to store the JSON payload of four sample documents.
 
@@ -250,13 +272,13 @@ To create, load, and query an index:
     "@
     ```
 
-1. Update the `$url` object to target the `docs/index` endpoint of your index.
+2. Update the `$url` object to target the indexing endpoint. Replace `<YOUR-SEARCH-SERVICE>` with the value you obtained in [Get endpoint](#get-endpoint).
 
     ```powershell
     $url = "<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs/index?api-version=2024-07-01"
     ```
 
-1. Run `Invoke-RestMethod` to upload the documents to your index.
+3. Run `Invoke-RestMethod` to send the upload request to your search service.
 
     ```powershell
     Invoke-RestMethod -Uri $url -Headers $headers -Method Post -Body $body | ConvertTo-Json
@@ -264,149 +286,59 @@ To create, load, and query an index:
 
     The response should contain the key and status of each uploaded document.
 
-1. Update the `$url` object to target the `docs` endpoint of your index and specify a query.
+### About the upload request
+
+This quickstart calls [Documents - Index (REST API)](/rest/api/searchservice/documents/) to add four sample hotel documents to your index. Compared to the previous request, the URI is extended to include the `docs` collection and `index` operation.
+
+Each document in the `value` array represents a hotel and contains fields that match the index schema. The `@search.action` parameter specifies the operation to perform for each document. Our example uses `upload`, which adds the document if it doesn't exist or updates the document if it does exist.
+
+## Query the index
+
+Now that documents are loaded into your index, you can use full-text search to find specific terms or phrases within their fields.
+
+To run a full-text query against your index:
+
+1. Update the `$url` object to specify search parameters. Replace `<YOUR-SEARCH-SERVICE>` with the value you obtained in [Get endpoint](#get-endpoint).
 
     ```powershell
     $url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=2024-07-01&search=attached restaurant&searchFields=Description,Tags&$select=HotelId,HotelName,Tags,Description&$count=true'
     ```
 
-1. Run `Invoke-RestMethod` to query the documents in your index.
+2. Run `Invoke-RestMethod` to send the query request to your search service.
 
     ```powershell
     Invoke-RestMethod -Uri $url -Headers $headers | ConvertTo-Json
     ```
 
-    The response should contain the document that matched your query, its relevance score, and its selected fields.
+    The response should be similar to the following example, which shows one matching hotel document, its relevance score, and its selected fields.
 
-## Explaining the code
-
-This section explains the REST API calls that you made to:
-
-+ [Create an index](#create-an-index)
-+ [Load documents into the index](#load-documents-into-the-index)
-+ [Query the index](#query-the-index)
-
-### Create an index
-
-Before you add content to Azure AI Search, you must create an index to define how the content is stored and structured. An index is conceptually similar to a table in a relational database, but it's specifically designed for search operations, such as full-text search.
-
-This quickstart calls [Indexes - Create (REST API)](/rest/api/searchservice/indexes/create) to build a search index named `hotels-quickstart` and its physical data structures on your search service.
-
-```powershell
-$body = @"
-{
-    "name": "hotels-quickstart",  
-    "fields": [
-        {"name": "HotelId", "type": "Edm.String", "key": true, "filterable": true},
-        {"name": "HotelName", "type": "Edm.String", "searchable": true, "filterable": false, "sortable": true, "facetable": false},
-        {"name": "Description", "type": "Edm.String", "searchable": true, "filterable": false, "sortable": false, "facetable": false, "analyzer": "en.lucene"},
-        {"name": "Category", "type": "Edm.String", "searchable": true, "filterable": true, "sortable": true, "facetable": true},
-        {"name": "Tags", "type": "Collection(Edm.String)", "searchable": true, "filterable": true, "sortable": false, "facetable": true},
-        {"name": "ParkingIncluded", "type": "Edm.Boolean", "filterable": true, "sortable": true, "facetable": true},
-        {"name": "LastRenovationDate", "type": "Edm.DateTimeOffset", "filterable": true, "sortable": true, "facetable": true},
-        {"name": "Rating", "type": "Edm.Double", "filterable": true, "sortable": true, "facetable": true},
-        {"name": "Address", "type": "Edm.ComplexType", 
-            "fields": [
-            {"name": "StreetAddress", "type": "Edm.String", "filterable": false, "sortable": false, "facetable": false, "searchable": true},
-            {"name": "City", "type": "Edm.String", "searchable": true, "filterable": true, "sortable": true, "facetable": true},
-            {"name": "StateProvince", "type": "Edm.String", "searchable": true, "filterable": true, "sortable": true, "facetable": true},
-            {"name": "PostalCode", "type": "Edm.String", "searchable": true, "filterable": true, "sortable": true, "facetable": true},
-            {"name": "Country", "type": "Edm.String", "searchable": true, "filterable": true, "sortable": true, "facetable": true}
-        ]
-     }
-  ]
-}
-"@
-
-$url = "<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart?api-version=2024-07-01"
-```
-
-Within our index schema, the `fields` collection defines the structure of hotel documents. Each field has a `name`, data `type`, and attributes that determine its behavior during indexing and queries. The `HotelId` field is marked as the key, which Azure AI Search requires to uniquely identify each document in an index.
-
-Key points about the index schema:
-
-+ Use string fields (`Edm.String`) to make numeric data full-text searchable. Other [supported data types](/rest/api/searchservice/supported-data-types), such as `Edm.Int32`, are filterable, sortable, facetable, and retrievable but aren't searchable.
-
-+ Most of our fields are simple data types, but you can define complex types to represent nested data, such as the `Address` field.
-
-+ Field attributes determine allowed actions. The REST APIs allow [many actions by default](/rest/api/searchservice/indexes/create#request-body). For example, all strings are searchable and retrievable. With the REST APIs, you might only use attributes if you need to disable a behavior.
-
-### Load documents into the index
-
-Newly created indexes are empty. To populate an index and make it searchable, you must upload JSON documents that conform to the index schema.
-
-In Azure AI Search, documents serve as both inputs for indexing and outputs for queries. For simplicity, this quickstart provides sample hotel documents as inline JSON. In production scenarios, however, content is often pulled from connected data sources and transformed into JSON using [indexers](../../search-indexer-overview.md).
-
-This quickstart calls [Documents - Index (REST API)](/rest/api/searchservice/documents/) to add four sample hotel documents to your index.
-
-```powershell
-$body = @"
+    ```json
     {
-        "value": [
+      "@odata.context": "https://my-service.search.windows.net/indexes('hotels-quickstart')/$metadata#docs(*)",
+      "@odata.count": 1,
+      "value": [
         {
-        "@search.action": "upload",
-        "HotelId": "1",
-        "HotelName": "Stay-Kay City Hotel",
-        "Description": "This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
-        "Category": "Boutique",
-        "Tags": [ "view", "air conditioning", "concierge" ],
-        "ParkingIncluded": false,
-        "LastRenovationDate": "2022-01-18T00:00:00Z",
-        "Rating": 3.60,
-        "Address": 
-            {
-            "StreetAddress": "677 5th Ave",
-            "City": "New York",
-            "StateProvince": "NY",
-            "PostalCode": "10022",
-            "Country": "USA"
-            } 
-        },
-        // OTHER DOCUMENTS OMITTED FOR BREVITY
+          "@search.score": 0.5575875,
+          "HotelId": "3",
+          "HotelName": "Gastronomic Landscape Hotel",
+          "Description": "The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel's restaurant services.",
+          "Tags": "restaurant bar continental breakfast"
+        }
       ]
     }
-"@
+    ```
 
-$url = "<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs/index?api-version=2024-07-01"
-```
+### About the query request
 
-Each document in the `value` array represents a hotel and contains fields that match the index schema. The `@search.action` parameter specifies the operation to perform for each document. Our example uses `upload`, which adds the document if it doesn't exist or updates the document if it does exist.
-
-### Query the index
-
-Now that documents are loaded into your index, you can issue full-text queries against them.
-
-This quickstart calls [Documents - Search Post (REST API)](/rest/api/searchservice/documents/search-post) to find hotel documents that match your search criteria.
-
-```powershell
-$url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=2024-07-01&search=attached restaurant&searchFields=Description,Tags&$select=HotelId,HotelName,Tags,Description&$count=true'
-```
+This quickstart calls [Documents - Search Post (REST API)](/rest/api/searchservice/documents/search-post) to find hotel documents that match your search criteria. The URI still targets the `docs` collection but no longer includes the `index` operation.
 
 Full-text search requests always include a `search` parameter that contains the query text. The query text can include one or more terms, phrases, or operators. In addition to `search`, you can specify other parameters to refine the search behavior and results.
 
 Our query searches for the terms "attached restaurant" in the `Description` and `Tags` fields of each hotel document. The `$select` parameter limits the fields returned in the response to `HotelId`, `HotelName`, `Tags`, and `Description`. The `$count` parameter requests the total number of matching documents.
 
-The response should be similar to the following example, which shows one matching hotel document, its relevance score, and its selected fields.
-
-```
-{
-  "@odata.context": "https://my-service.search.windows.net/indexes('hotels-quickstart')/$metadata#docs(*)",
-  "@odata.count": 1,
-  "value": [
-    {
-      "@search.score": 0.5575875,
-      "HotelId": "3",
-      "HotelName": "Gastronomic Landscape Hotel",
-      "Description": "The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
-      "Tags": "restaurant bar continental breakfast"
-    }
-  ]
-}
-```
-
 #### Other query examples
 
-Run the following commands to explore the query syntax. You can perform string searches, use `$filter` expressions, limit result sets, select specific fields, and more.
+Run the following commands to explore the query syntax. You can perform string searches, use `$filter` expressions, limit result sets, select specific fields, and more. Remember to replace `<YOUR-SEARCH-SERVICE>` with the value you obtained in [Get endpoint](#get-endpoint).
 
 ```powershell
 # Query example 1

@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 06/26/2025
+ms.date: 06/30/2025
 ---
 
 In this quickstart, you use the [Azure AI Search REST APIs](/rest/api/searchservice) to create, load, and query a search index for [full-text search](../../search-lucene-query-architecture.md). Full-text search uses Apache Lucene for indexing and queries and the BM25 ranking algorithm for scoring results.
@@ -46,11 +46,11 @@ To configure the recommended role-based access:
 
 For more information, see [Connect to Azure AI Search using roles](../../search-security-rbac.md).
 
-## Get resource information
+## Get endpoint and token
 
 In the next section, you specify the following endpoint and token to establish a connection to your Azure AI Search service. These steps assume that you [configured role-based access](#configure-access).
 
-To get your resource information:
+To get your service endpoint and token:
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
 
@@ -93,7 +93,7 @@ To set up your request file:
         Authorization: Bearer {{token}}
     ```
 
-1. Replace the `@baseUrl` and `@token` placeholders with the values you obtained in [Get resource information](#get-resource-information). Don't include quotation marks.
+1. Replace the `@baseUrl` and `@token` placeholders with the values you obtained in [Get endpoint and token](#get-endpoint-and-token). Don't include quotation marks.
 
 1. Under `### List existing indexes by name`, select **Send Request**.
 
@@ -101,13 +101,13 @@ To set up your request file:
 
     :::image type="content" source="../../media/search-get-started-rest/rest-client-request-setup.png" lightbox="../../media/search-get-started-rest/rest-client-request-setup.png" alt-text="Screenshot that shows a REST client configured for a search service request.":::
 
-## Create, load, and query a search index
+## Create a search index
 
-In this section, you make REST API calls to create a search index, upload documents to the index, and query the indexed documents. Visual Studio Code displays the response to each request in an adjacent pane. For more information about each step, see [Explaining the code](#explaining-the-code).
+Before you add content to Azure AI Search, you must create an index to define how the content is stored and structured. An index is conceptually similar to a table in a relational database, but it's specifically designed for search operations, such as full-text search.
 
-To create, load, and query an index:
+To create an index:
 
-1. Paste the following requests into your file.
+1. Paste the following request into your file.
 
     ```http
     ### Create a new index
@@ -137,7 +137,37 @@ To create, load, and query an index:
                 }
             ]
         }
- 
+    ```
+
+2. Under `### Create a new index`, select **Send Request**.
+
+   You should receive an `HTTP/1.1 201 Created` response whose body contains the JSON representation of the index schema.
+
+### About the create index request
+
+This quickstart calls [Indexes - Create (REST API)](/rest/api/searchservice/indexes/create) to build a search index named `hotels-quickstart` and its physical data structures on your search service.
+
+Within the index schema, the `fields` collection defines the structure of hotel documents. Each field has a `name`, data `type`, and attributes that determine its behavior during indexing and queries. The `HotelId` field is marked as the key, which Azure AI Search requires to uniquely identify each document in an index.
+
+Key points about the index schema:
+
++ Use string fields (`Edm.String`) to make numeric data full-text searchable. Other [supported data types](/rest/api/searchservice/supported-data-types), such as `Edm.Int32`, are filterable, sortable, facetable, and retrievable but aren't searchable.
+
++ Most of our fields are simple data types, but you can define complex types to represent nested data, such as the `Address` field.
+
++ Field attributes determine allowed actions. The REST APIs allow [many actions by default](/rest/api/searchservice/indexes/create#request-body). For example, all strings are searchable and retrievable. With the REST APIs, you might only use attributes if you need to disable a behavior.
+
+## Load the index
+
+Newly created indexes are empty. To populate an index and make it searchable, you must upload JSON documents that conform to the index schema.
+
+In Azure AI Search, documents serve as both inputs for indexing and outputs for queries. For simplicity, this quickstart provides sample hotel documents as inline JSON. In production scenarios, however, content is often pulled from connected data sources and transformed into JSON using [indexers](../../search-indexer-overview.md).
+
+To upload documents to your index:
+
+1. Paste the following request into your file.
+
+    ```http
     ### Upload documents
     POST {{baseUrl}}/indexes/hotels-quickstart/docs/index?api-version=2024-07-01  HTTP/1.1
         Content-Type: application/json
@@ -187,7 +217,7 @@ To create, load, and query an index:
             "@search.action": "upload",
             "HotelId": "3",
             "HotelName": "Gastronomic Landscape Hotel",
-            "Description": "The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
+            "Description": "The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel's restaurant services.",
             "Category": "Suite",
             "Tags": [ "restaurant", "bar", "continental breakfast" ],
             "ParkingIncluded": true,
@@ -207,6 +237,7 @@ To create, load, and query an index:
             "HotelId": "4",
             "HotelName": "Sublime Palace Hotel",
             "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.",
+            "Category": "Luxury",
             "Tags": [ "concierge", "view", "air conditioning" ],
             "ParkingIncluded": true,
             "LastRenovationDate": "2020-02-06T00:00:00Z",
@@ -222,12 +253,32 @@ To create, load, and query an index:
             }
           ]
         }
+    ```
 
+2. Under `### Upload documents`, select **Send Request**.
+
+   You should receive an `HTTP/1.1 200 OK` response whose body contains the key and status of each uploaded document.
+
+### About the upload request
+
+This quickstart calls [Documents - Index (REST API)](/rest/api/searchservice/documents/) to add four sample hotel documents to your index. Compared to the previous request, the URI is extended to include the `docs` collection and `index` operation.
+
+Each document in the `value` array represents a hotel and contains fields that match the index schema. The `@search.action` parameter specifies the operation to perform for each document. Our example uses `upload`, which adds the document if it doesn't exist or updates the document if it does exist.
+
+## Query the index
+
+Now that documents are loaded into your index, you can use full-text search to find specific terms or phrases within their fields.
+
+To run a full-text query against your index:
+
+1. Paste the following request into your file.
+
+    ```http
     ### Run a query
     POST {{baseUrl}}/indexes/hotels-quickstart/docs/search?api-version=2024-07-01  HTTP/1.1
       Content-Type: application/json
       Authorization: Bearer {{token}}
-      
+    
       {
           "search": "attached restaurant",
           "select": "HotelId, HotelName, Tags, Description",
@@ -236,149 +287,34 @@ To create, load, and query an index:
       }
     ```
 
-1. Under each `###` delimiter, select **Send Request** to make the corresponding REST API call.
+2. Under `### Run a query`, select **Send Request**.
 
-    + For `### Create a new index`, you should receive an `HTTP/1.1 201 Created` response whose body contains the JSON representation of the index schema.
+   You should receive an `HTTP/1.1 200 OK` response similar to the following example, which shows one matching hotel document, its relevance score, and its selected fields.
 
-    + For `### Upload documents`, you should receive an `HTTP/1.1 200 OK` response whose body contains the key and status of each uploaded document.
-
-    + For `### Run a query`, you should receive an `HTTP/1.1 200 OK` response whose body contains the document that matched your query, its relevance score, and its selected fields.
-
-## Explaining the code
-
-This section explains the REST API calls that you made to:
-
-+ [Create an index](#create-an-index)
-+ [Load documents into the index](#load-documents-into-the-index)
-+ [Query the index](#query-the-index)
-
-### Create an index
-
-Before you add content to Azure AI Search, you must create an index to define how the content is stored and structured. An index is conceptually similar to a table in a relational database, but it's specifically designed for search operations, such as full-text search.
-
-This quickstart calls [Indexes - Create (REST API)](/rest/api/searchservice/indexes/create) to build a search index named `hotels-quickstart` and its physical data structures on your search service.
-
-```http
-POST {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
-    Content-Type: application/json
-    Authorization: Bearer {{token}}
-
+    ```json
     {
-        "name": "hotels-quickstart",  
-        "fields": [
-            {"name": "HotelId", "type": "Edm.String", "key": true, "filterable": true},
-            {"name": "HotelName", "type": "Edm.String", "searchable": true, "filterable": false, "sortable": true, "facetable": false},
-            {"name": "Description", "type": "Edm.String", "searchable": true, "filterable": false, "sortable": false, "facetable": false, "analyzer": "en.lucene"},
-            {"name": "Category", "type": "Edm.String", "searchable": true, "filterable": true, "sortable": true, "facetable": true},
-            {"name": "Tags", "type": "Collection(Edm.String)", "searchable": true, "filterable": true, "sortable": false, "facetable": true},
-            {"name": "ParkingIncluded", "type": "Edm.Boolean", "filterable": true, "sortable": true, "facetable": true},
-            {"name": "LastRenovationDate", "type": "Edm.DateTimeOffset", "filterable": true, "sortable": true, "facetable": true},
-            {"name": "Rating", "type": "Edm.Double", "filterable": true, "sortable": true, "facetable": true},
-            {"name": "Address", "type": "Edm.ComplexType", 
-                "fields": [
-                {"name": "StreetAddress", "type": "Edm.String", "filterable": false, "sortable": false, "facetable": false, "searchable": true},
-                {"name": "City", "type": "Edm.String", "searchable": true, "filterable": true, "sortable": true, "facetable": true},
-                {"name": "StateProvince", "type": "Edm.String", "searchable": true, "filterable": true, "sortable": true, "facetable": true},
-                {"name": "PostalCode", "type": "Edm.String", "searchable": true, "filterable": true, "sortable": true, "facetable": true},
-                {"name": "Country", "type": "Edm.String", "searchable": true, "filterable": true, "sortable": true, "facetable": true}
-                ]
-            }
-        ]
-    }
-```
-
-Within our index schema, the `fields` collection defines the structure of hotel documents. Each field has a `name`, data `type`, and attributes that determine its behavior during indexing and queries. The `HotelId` field is marked as the key, which Azure AI Search requires to uniquely identify each document in an index.
-
-Key points about the index schema:
-
-+ Use string fields (`Edm.String`) to make numeric data full-text searchable. Other [supported data types](/rest/api/searchservice/supported-data-types), such as `Edm.Int32`, are filterable, sortable, facetable, and retrievable but aren't searchable.
-
-+ Most of our fields are simple data types, but you can define complex types to represent nested data, such as the `Address` field.
-
-+ Field attributes determine allowed actions. The REST APIs allow [many actions by default](/rest/api/searchservice/indexes/create#request-body). For example, all strings are searchable and retrievable. With the REST APIs, you might only use attributes if you need to disable a behavior.
-
-### Load documents into the index
-
-Newly created indexes are empty. To populate an index and make it searchable, you must upload JSON documents that conform to the index schema.
-
-In Azure AI Search, documents serve as both inputs for indexing and outputs for queries. For simplicity, this quickstart provides sample hotel documents as inline JSON. In production scenarios, however, content is often pulled from connected data sources and transformed into JSON using [indexers](../../search-indexer-overview.md).
-
-This quickstart calls [Documents - Index (REST API)](/rest/api/searchservice/documents/) to add four sample hotel documents to your index. Compared to the previous request, the URI is extended to include the `docs` collection and `index` operation.
-
-```http
-POST {{baseUrl}}/indexes/hotels-quickstart/docs/index?api-version=2024-07-01  HTTP/1.1
-    Content-Type: application/json
-    Authorization: Bearer {{token}}
-
-    {
-        "value": [
+      "@odata.context": "https://my-service.search.windows.net/indexes('hotels-quickstart')/$metadata#docs(*)",
+      "@odata.count": 1,
+      "value": [
         {
-        "@search.action": "upload",
-        "HotelId": "1",
-        "HotelName": "Stay-Kay City Hotel",
-        "Description": "This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
-        "Category": "Boutique",
-        "Tags": [ "view", "air conditioning", "concierge" ],
-        "ParkingIncluded": false,
-        "LastRenovationDate": "2022-01-18T00:00:00Z",
-        "Rating": 3.60,
-        "Address": 
-            {
-            "StreetAddress": "677 5th Ave",
-            "City": "New York",
-            "StateProvince": "NY",
-            "PostalCode": "10022",
-            "Country": "USA"
-            } 
-        },
-        // OTHER DOCUMENTS OMITTED FOR BREVITY
+          "@search.score": 0.5575875,
+          "HotelId": "3",
+          "HotelName": "Gastronomic Landscape Hotel",
+          "Description": "The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel\u2019s restaurant services.",
+          "Tags": [
+            "restaurant",
+            "bar",
+            "continental breakfast"
+          ]
+        }
       ]
     }
-```
+    ```
 
-Each document in the `value` array represents a hotel and contains fields that match the index schema. The `@search.action` parameter specifies the operation to perform for each document. Our example uses `upload`, which adds the document if it doesn't exist or updates the document if it does exist.
-
-### Query the index
-
-Now that documents are loaded into your index, you can issue full-text queries against them.
+### About the query request
 
 This quickstart calls [Documents - Search Post (REST API)](/rest/api/searchservice/documents/search-post) to find hotel documents that match your search criteria. The URI now targets the `/docs/search` operation.
-
-```http
-POST {{baseUrl}}/indexes/hotels-quickstart/docs/search?api-version=2024-07-01  HTTP/1.1
-  Content-Type: application/json
-  Authorization: Bearer {{token}}
-  
-  {
-      "search": "attached restaurant",
-      "select": "HotelId, HotelName, Tags, Description",
-      "searchFields": "Description, Tags",
-      "count": true
-  }
-```
 
 Full-text search requests always include a `search` parameter that contains the query text. The query text can include one or more terms, phrases, or operators. In addition to `search`, you can specify other parameters to refine the search behavior and results.
 
 Our query searches for the terms "attached restaurant" in the `Description` and `Tags` fields of each hotel document. The `select` parameter limits the fields returned in the response to `HotelId`, `HotelName`, `Tags`, and `Description`. The `count` parameter requests the total number of matching documents.
-
-The response should be similar to the following example, which shows one matching hotel document, its relevance score, and its selected fields.
-
-```json
-{
-  "@odata.context": "https://my-service.search.windows.net/indexes('hotels-quickstart')/$metadata#docs(*)",
-  "@odata.count": 1,
-  "value": [
-    {
-      "@search.score": 0.5575875,
-      "HotelId": "3",
-      "HotelName": "Gastronomic Landscape Hotel",
-      "Description": "The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel\u2019s restaurant services.",
-      "Tags": [
-        "restaurant",
-        "bar",
-        "continental breakfast"
-      ]
-    }
-  ]
-}
-```
