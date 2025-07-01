@@ -82,6 +82,8 @@ items:
       href: how-to/develop/semantic-kernel.md
   - name: Deployment in AI hub
     items:
+    - name: Connect your AI hub to the Azure AI Foundry resource
+      href: foundry-models/how-to/configure-project-connection.md?context=/azure/ai-foundry/context/context
     - name: Managed compute endpoints
       items:
       - name: Deploy models via managed compute
@@ -438,6 +440,8 @@ items:
         href: how-to/monitor-applications.md
       - name: Continuously evaluate your AI agents
         href: how-to/continuous-evaluation-agents.md
+      - name: Monitor model deployments
+        href: foundry-models/how-to/monitor-models.md?context=/azure/ai-foundry/context/context
    - name: Trace your application 
      href: how-to/develop/trace-application.md
    - name: Trace your agent
@@ -614,6 +618,8 @@ items:
       href: how-to/autoscale.md
   - name: Cost management for Foundry Models
     items:
+    - name: Manage costs for Foundry Models
+      href: foundry-models/how-to/manage-costs.md?context=/azure/ai-foundry/context/context
     - name: Manage quotas and limits for Foundry Models
       href: foundry-models/quotas-limits.md?context=/azure/ai-foundry/context/context
     - name: Azure OpenAI quotas and limits
@@ -652,6 +658,8 @@ items:
         href: how-to/troubleshoot-secure-connection-project.md
   - name: Data protection & encryption
     items:
+    - name: Configure key-less authentication
+      href: foundry/how-to/configure-entra-id.md?context=/azure/ai-foundry/context/context
     - name: Configure customer-managed keys
       href: concepts/encryption-keys-portal.md
     - name: Rotate keys
