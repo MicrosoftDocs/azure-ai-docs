@@ -2,8 +2,8 @@
 title: Azure AI Content Understanding classifier overview
 titleSuffix: Azure AI services
 description: Learn about Azure AI Content Understanding classifier solutions.
-author: laujan
-ms.author: lajanuar
+author: PatrickFarley 
+ms.author: pafarley
 manager: nitinme
 ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
