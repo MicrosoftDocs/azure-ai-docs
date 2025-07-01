@@ -32,6 +32,10 @@ zone_pivot_groups: search-get-started-vector-search
 
 ::: zone-end
 
+[!INCLUDE [.NET quickstart](includes/quickstarts/search-get-started-vector-dotnet.md)]
+
+::: zone-end
+
 ::: zone pivot="rest"
 
 [!INCLUDE [REST quickstart](includes/quickstarts/search-get-started-vector-rest.md)]
