@@ -13,13 +13,13 @@ keywords: ChatGPT, GPT-4, meta prompts, chain of thought
 
 # System message design
 
-This guide will walk you through some techniques in system message design. 
+This guide walks you through some techniques in system message design. 
 
 
 
 ## What is a system message?
 
-A system message is a feature-specific set of instructions or contextual frameworks given to a generative AI model (e.g. GPT-4o, GPT-3.5 Turbo, etc.) to direct and improve the quality and safety of a model’s output. This is particularly helpful in situations that need certain degrees of formality, technical language, or industry-specific terms.  
+A system message is a feature-specific set of instructions or contextual frameworks given to a generative AI model (for example GPT-4o, GPT-3.5 Turbo, etc.) to direct and improve the quality and safety of a model’s output. This is particularly helpful in situations that need certain degrees of formality, technical language, or industry-specific terms.  
 
 
 There is no prescribed length. A system message can be one short sentence:  
@@ -34,7 +34,7 @@ A system message can also be *many* lines long, containing detailed rules, detai
 
 The system message is included at the beginning of the prompt and is used to prime the model with context, instructions, or other information relevant to your use case. You can use the system message to describe the assistant’s personality, define what the model should and shouldn’t answer, and define the format of model responses.
 
-The example below, shows a sample system message and the resulting model response:
+The following example shows a sample system message and the resulting model response:
 
 | System message |User     | Assistant  |
 |----------------|---------|------------|
