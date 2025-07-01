@@ -31,7 +31,7 @@ Azure AI Foundry evaluations use the user's blob storage account to store datase
 1. Go to your AI Foundry Project and find your resource group. To find your resource group, select the project name in the top right corner and select your resource group. This takes you to the resource group in Azure portal.
 1. Select **Create** on the Resource Group page.
 1. Search "Storage Account" and select the Storage Account option that is published by Microsoft.
-      :::image type="content" source="/../media/evaluations/storage/storage-account.png" alt-text="A screenshot showing the Microsoft storage account option." lightbox="/../media/evaluations/storage/storage-account.png":::
+      :::image type="content" source="../media/evaluations/storage/storage-account.png" alt-text="A screenshot showing the Microsoft storage account option." lightbox="/../media/evaluations/storage/storage-account.png":::
 1. Create your storage account.
     1. *Storage account name*: Give your storage account a meaningful name.
     1. *Region*: Recommendation: Create the storage account in the same region you created your project. To find this, go back to Azure AI Foundry, select the project name in the top right corner of the screen (which is the same option you selected earlier to find the link to your resource group), and review the Location of the resource group. Note: it will not default to the same region.
@@ -51,7 +51,7 @@ Now that the storage account has been created, it's time to connect the blob sto
 1. Select **Connected Resources** under "Resource (your resource name here)", NOT Project.
 1. Select **New connection**.
 1. Select **Storage account**.
-     :::image type="content" source="../media/evaluations/storage/add-storage-account.png" alt-text="A screenshot showing the adding a storage account as a new connection to your resource." lightbox="/../media/evaluations/storage/add-storage-account.png":::
+     :::image type="content" source="../media/evaluations/storage/add-storage-account.png" alt-text="A screenshot showing the adding a storage account as a new connection to your resource." lightbox="../media/evaluations/storage/add-storage-account.png":::
 1. Search for your storage account name that you created.
 1. Authentication method: Recommended: Microsoft Entra ID.
 1. Select **Add Connection**.
@@ -84,4 +84,4 @@ You have now provided your project with write access to your blob storage accoun
 
 ## Related content
 
-- [Run evaluations in the cloud](/develop/cloud-evaluation.md)
+- [Run evaluations in the cloud](./develop/cloud-evaluation.md)
