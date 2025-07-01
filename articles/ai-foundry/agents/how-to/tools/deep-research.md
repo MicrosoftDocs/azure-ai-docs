@@ -15,8 +15,8 @@ ms.topic: how-to
 The Deep Research model in the Azure AI Foundry Agent Service enables you to use an advanced agentic research capability, and integrate it with your data and systems.
 
 > [!IMPORTANT]
-> * Deep Research uses **Grounding with Bing Search**. Be sure to read and understand all stipulations of its use, including potential [costs](https://www.microsoft.com/bing/apis/grounding-pricing) that can be incurred, the [terms of use](https://www.microsoft.com/bing/apis/grounding-legal), and [use and display requirements](./bing-grounding.md#how-to-display-grounding-with-bing-search-results). See the [Grounding with Bing Search](./bing-grounding.md) documentation for more information.
-> * Deep Research is not available in Azure OpenAI. 
+> * The Deep Research tool uses **Grounding with Bing Search**. Be sure to read and understand all stipulations of its use, including potential [costs](https://www.microsoft.com/bing/apis/grounding-pricing) that can be incurred, the [terms of use](https://www.microsoft.com/bing/apis/grounding-legal), and [use and display requirements](./bing-grounding.md#how-to-display-grounding-with-bing-search-results). See the [Grounding with Bing Search](./bing-grounding.md) documentation for more information.
+> * The Deep Research tool uses the Azure OpenAI `o3-deep-research` model. This model is not available in Azure OpenAi service.
 
 ## Usage support
 
@@ -47,12 +47,6 @@ Every stage of the process is safeguarded by input/output classifiers and chain-
 ## Prerequisites
 - A basic or standard agent [environment setup](../../environment-setup.md)
 - Access to the Deep Research model is gated. Fill out the [request form](https://aka.ms/OAI/deepresearchaccess) for access. If you have already have access to the o3 model no request is required.
-
-To use Deep Research, you will create the following in this article:
-
-- The [Grounding with Bing Search tool](./bing-grounding.md)
-- A [deployed models](../../../model-inference/how-to/create-model-deployments.md) and the following model
-    - `o3-deep-research` version `2025-06-26`. This model is available in `West US` and `Norway East`.
 
 ## Setup 
 
