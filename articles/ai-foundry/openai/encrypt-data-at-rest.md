@@ -55,7 +55,7 @@ Only RSA and RSA-HSM keys of size 2048 are supported with Azure OpenAI encryptio
 1. Select **Create**.
 1. Under **Key permissions**, select **Get**, **Wrap Key**, and **Unwrap Key**. Leave the remaining checkboxes unselected.
 
-   :::image type="content" source="../media/cognitive-services-encryption/key-vault-access-policy.png" alt-text="Screenshot of the Azure portal page for a key vault access policy. The permissions selected are Get Key, Wrap Key, and Unwrap Key.":::
+   :::image type="content" source="../../ai-services/media/cognitive-services-encryption/key-vault-access-policy.png" alt-text="Screenshot of the Azure portal page for a key vault access policy. The permissions selected are Get Key, Wrap Key, and Unwrap Key.":::
 
 1. Select **Next**.
 1. Search for the name of your Azure OpenAI resource and select its managed identity.
@@ -87,13 +87,13 @@ To specify a key as a URI, follow these steps:
 1. Select the desired key, and then select the key to view its versions. Select a key version to view the settings for that version.
 1. Copy the **Key Identifier** value, which provides the URI.
 
-   :::image type="content" source="../media/cognitive-services-encryption/key-uri-portal.png" alt-text="Screenshot of the Azure portal page for a key version. The Key Identifier box contains a placeholder for a key URI.":::
+   :::image type="content" source="../../ai-services/media/cognitive-services-encryption/key-uri-portal.png" alt-text="Screenshot of the Azure portal page for a key version. The Key Identifier box contains a placeholder for a key URI.":::
 
 1. Go back to your Azure OpenAI resource, and then select **Encryption**.
 1. Under **Encryption key**, select **Enter key URI**.
 1. Paste the URI that you copied into the **Key URI** box.
 
-   :::image type="content" source="../media/cognitive-services-encryption/ssecmk2.png" alt-text="Screenshot of the Encryption page for an Azure OpenAI resource. The Enter key URI option is selected, and the Key URI box contains a value.":::
+   :::image type="content" source="../../ai-services/media/cognitive-services-encryption/ssecmk2.png" alt-text="Screenshot of the Encryption page for an Azure OpenAI resource. The Enter key URI option is selected, and the Key URI box contains a value.":::
 
 1. Under **Subscription**, select the subscription that contains the key vault.
 1. Save your changes.

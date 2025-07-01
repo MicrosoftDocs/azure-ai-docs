@@ -116,7 +116,7 @@ If an acceptable region isn't available to support the desired model, version, a
 
 ### How can I monitor capacity?
 
-The [Provisioned-Managed Utilization V2 metric](../how-to/monitor-openai.md#azure-openai-metrics) in Azure Monitor measures a given deployments utilization on 1-minute increments. All provisioned deployment types are optimized to ensure that accepted calls are processed with a consistent model processing time (actual end-to-end latency is dependent on a call's characteristics).  
+The [Provisioned-Managed Utilization V2 metric](../how-to/monitor-openai.md#azure-monitor-platform-metrics) in Azure Monitor measures a given deployments utilization on 1-minute increments. All provisioned deployment types are optimized to ensure that accepted calls are processed with a consistent model processing time (actual end-to-end latency is dependent on a call's characteristics).  
 
 ### How utilization performance works
 

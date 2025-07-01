@@ -3,6 +3,7 @@ title: Azure OpenAI Provisioned Managed Offering in Azure Government
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI Provisioned Managed Deployments in the Azure Government cloud.
 author: challenp
+ms.author: chaparker
 ms.service: azure-ai-openai
 ms.topic: how-to
 ms.custom: references_regions, azuregovernment

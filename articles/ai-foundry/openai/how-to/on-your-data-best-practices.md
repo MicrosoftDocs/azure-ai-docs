@@ -70,7 +70,7 @@ If the correct document chunks don't appear in the retrieved documents, you need
 
 * Do you have semistructured data in your documents, such as numerous tables? There might be an ingestion problem. Your data might need special handling during ingestion.
 
-  * If the file format is PDF, we offer optimized ingestion for tables by using the offline scripts available on [GitHub](https://github.com/microsoft/sample-app-aoai-chatGPT/tree/main/scripts). To use the scripts, you need to have a [Document Intelligence](../../document-intelligence/overview.md) resource and use the [layout model](../../document-intelligence/concept-layout.md).
+  * If the file format is PDF, we offer optimized ingestion for tables by using the offline scripts available on [GitHub](https://github.com/microsoft/sample-app-aoai-chatGPT/tree/main/scripts). To use the scripts, you need to have a [Document Intelligence](../../../ai-services/document-intelligence/overview.md) resource and use the [layout model](../../../ai-services/document-intelligence/concept-layout.md).
   
   * You can adjust your [chunk size](../concepts/use-your-data.md#chunk-size-preview) to make sure your largest table fits within it.
 

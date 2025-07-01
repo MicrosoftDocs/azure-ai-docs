@@ -22,7 +22,7 @@ In the following sections, you'll use the Azure CLI to sign in, and obtain a bea
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>
 
 - [Custom subdomain names are required to enable features like Microsoft Entra ID for authentication.](
-../../cognitive-services-custom-subdomains.md)
+../../../ai-services/cognitive-services-custom-subdomains.md)
 
 - Azure CLI - [Installation Guide](/cli/azure/install-azure-cli)
 - The following Python libraries: os, requests, json, openai, azure-identity

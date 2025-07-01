@@ -519,7 +519,7 @@ A refresh of the Assistants API is now publicly available. It contains the follo
 * [File search tool and vector storage](https://go.microsoft.com/fwlink/?linkid=2272425)
 * [Max completion and max prompt token support](./concepts/assistants.md) for managing token usage.
 * `tool_choice` parameter for forcing the Assistant to use a specified tool. 
-You can now create messages with the [assistant](.//assistants-reference-messages.md#create-message) role to create custom conversation histories in Threads.
+You can now create messages with the assistant role to create custom conversation histories in Threads.
 * Support for `temperature`, `top_p`, `response_format` parameters.
 * Streaming and polling support. You can use the helper functions in our Python SDK to create runs and stream responses. We have also added polling SDK helpers to share object status updates without the need for polling. 
 * Experiment with [Logic Apps and Function Calling using Azure OpenAI Studio](./how-to/assistants-logic-apps.md). Import your REST APIs implemented in Logic Apps as functions and the studio invokes the function (as a Logic Apps workflow) automatically based on the user prompt.

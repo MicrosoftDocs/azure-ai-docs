@@ -269,6 +269,6 @@ curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/files/<YOUR-FILE-ID>/con
 ## See also
 
 * [File Upload API reference](/rest/api/azureopenai/files/upload?view=rest-azureopenai-2024-02-15-preview&tabs=HTTP&preserve-view=true)
-* [Assistants API Reference](../assistants-reference.md)
+* [Assistants API Reference](../reference-preview.md#list---assistants)
 * Learn more about how to use Assistants with our [How-to guide on Assistants](../how-to/assistant.md).
 * [Azure OpenAI Assistants API samples](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/Assistants)

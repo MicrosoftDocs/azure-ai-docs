@@ -85,7 +85,7 @@ We strongly recommend the following data access controls:
 
 ## Parameters
 
-The Assistants API has support for several parameters that let you customize the Assistants' output. The `tool_choice` parameter lets you force the Assistant to use a specified tool. You can also create messages with the `assistant` role to create custom conversation histories in Threads. `temperature`, `top_p`, `response_format` let you further tune responses. For more information, see the [reference](../assistants-reference.md#create-an-assistant) documentation.
+The Assistants API has support for several parameters that let you customize the Assistants' output. The `tool_choice` parameter lets you force the Assistant to use a specified tool. You can also create messages with the `assistant` role to create custom conversation histories in Threads. `temperature`, `top_p`, `response_format` let you further tune responses. For more information, see the [reference](../reference-preview.md#list---assistants) documentation.
 
 ## Context window management
 
