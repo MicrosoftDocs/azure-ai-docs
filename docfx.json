@@ -442,7 +442,7 @@
         "articles/ai-services/metrics-advisor/**/*.md": "365-days",
         "articles/ai-services/metrics-advisor/**/*.yml": "365-days",
         "articles/ai-services/personalizer/**/*.md": "365-days",
-        "articles/ai-services/personalizer/**/*.yml": "365-days",S
+        "articles/ai-services/personalizer/**/*.yml": "365-days",
         "articles/ai-services/luis/**/*.md": "365-days",
         "articles/ai-services/luis/**/*.yml": "365-days",
         "articles/ai-services/qnamaker/**/*.md": "365-days",
