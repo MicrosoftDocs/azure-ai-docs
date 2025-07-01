@@ -7,7 +7,7 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 6/27/2025
+ms.date: 7/1/2025
 ms.custom: references_regions
 # Customer intent: As a developer, I want to learn about the Voice Live API for real-time voice agents.
 ---
@@ -57,7 +57,7 @@ The Voice Live API is fully managed, eliminating the need for customers to handl
 
 ## API design and compatibility
 
-The Azure AI Voice Live API is designed for compatibility with the Azure OpenAI Realtime API. The supported real-time events are mostly in parity with the [Azure OpenAI Realtime API events](/azure/ai-services/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context), with some exceptions. See the [Voice Live API how to guide](./voice-live-how-to.md) for more details.
+The Azure AI Voice Live API is designed for compatibility with the Azure OpenAI Realtime API. The supported real-time events are mostly in parity with the [Azure OpenAI Realtime API events](/azure/ai-services/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context), with some exceptions as described in the [Voice Live API how to guide](./voice-live-how-to.md).
 
 Features that are unique to the Voice Live API are designed to be optional and additive. You can add Azure AI Speech capabilities such as noise suppression, echo cancellation, and advanced end-of-turn detection to your existing applications without needing to change your existing architecture. 
 
@@ -67,24 +67,28 @@ The API is supported through WebSocket events, allowing for an easy server-to-se
 
 To power the intelligence of your voice agent, you have flexibility and choice in the generative AI model between GPT-4o, GPT-4o-mini, and Phi. Different generative AI models provide different types of capabilities, levels of intelligence, speed/latency of inferencing, and cost. Depending on what matters most for your business and use case, you can choose the model that best suits your needs.
 
-All natively supported models – GPT-4o, GPT-4o-mini, and Phi – are fully managed, meaning you don’t have to deploy models, worry about capacity planning, or provisioning throughputs. You can simply use the model you need, and the Voice Live API takes care of the rest.
+All natively supported models – GPT-4o, GPT-4o-mini, and Phi – are fully managed, meaning you don’t have to deploy models, worry about capacity planning, or provisioning throughputs. You can use the model you need, and the Voice Live API takes care of the rest.
 
-The Voice Live API supports the following models and regions:
+The Voice Live API supports the following models. For supported regions, see the [Azure AI Speech service regions](./regions.md?tabs=voice-live#regions).
 
-| Model | Description | Supported regions |
-| ------------------------------ | ----------- | ----------- |
-| `gpt-4o-realtime-preview`      | GPT-4o realtime + option to use Azure text to speech voices including custom voice for audio. | `eastus2`<br/>`swedencentral` |
-| `gpt-4o-mini-realtime-preview` | GPT-4o mini realtime + option to use Azure text to speech voices including custom voice for audio. | `eastus2`<br/>`swedencentral` |
-| `gpt-4o` | GPT-4o + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. | `eastus2`<br/>`swedencentral` |
-| `gpt-4o-mini` | GPT-4o mini + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. | `eastus2`<br/>`swedencentral` |
-| `phi4-mm-realtime` | Phi4-mm + audio output through Azure text to speech voices including custom voice. | `eastus2`<br/>`swedencentral` |
-| `phi4-mini` | Phi4-mm + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. | `eastus2`<br/>`swedencentral` |
+| Model | Description |
+| ------------------------------ | ----------- |
+| `gpt-4o-realtime-preview`      | GPT-4o real-time + option to use Azure text to speech voices including custom voice for audio. |
+| `gpt-4o-mini-realtime-preview` | GPT-4o mini real-time + option to use Azure text to speech voices including custom voice for audio. |
+| `gpt-4o` | GPT-4o + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
+| `gpt-4o-mini` | GPT-4o mini + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
+| `gpt-4.1` | GPT-4.1 + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
+| `gpt-4.1-mini` | GPT-4.1 mini + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
+| `gpt-4.1-nano` | GPT-4.1 nano + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
+| `phi4-mm-realtime` | Phi4-mm + audio output through Azure text to speech voices including custom voice. |
+| `phi4-mini` | Phi4-mm + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
+
 
 ## Comparing Voice Live API with other speech to speech solutions
 
 The Voice Live API is an alternative to orchestrating multiple components such as speech recognition, generative AI, and text to speech. This orchestration can be complex and time-consuming, requiring significant engineering effort to integrate and maintain. The Voice Live API simplifies this process by providing a single interface for all these components, allowing developers to focus on building their applications rather than managing the underlying infrastructure.
 
-To meet your requirements, you can either build your own solution or use the Voice Live API. The table below compares the two approaches:
+To meet your requirements, you can either build your own solution or use the Voice Live API. This table compares the approaches:
 
 | Application requirement | Do it yourself | Voice Live API |
 |-----|-----|-----|
@@ -96,8 +100,90 @@ To meet your requirements, you can either build your own solution or use the Voi
 | Low engineering cost | ❌ | ✅ |
 | Low latency perceived by end user | ❌ | ✅ |
 
+## Pricing
+
+Pricing for the Voice Live API is in effect from July 1, 2025. 
+
+Pricing for the Voice Live API is tiered (**Pro**, **Basic**, and **Lite**) based on the generative AI model used.
+
+You don't select a tier. You choose a generative AI model and the corresponding pricing applies.
+
+| Pricing category | Models |
+| ----- | ------ |
+| Voice Live Pro | `gpt-4o-realtime-preview`, `gpt-4o`, `gpt-4.1` |
+| Voice Live Basic | `gpt-4o-mini-realtime-preview`, `gpt-4o-mini`, `gpt-4.1-mini` |
+| Voice Live Lite | `gpt-4.1-nano`, `phi4-mm-realtime`, `phi4-mini` |
+
+If you choose to use custom voice for your speech output, you are charged separately for custom voice model training and hosting. Refer to the [Text to Speech – Custom Voice – Professional](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services) pricing for details. Custom voice is a limited access feature. [Learn more about how to create custom voices.](https://aka.ms/CNVPro)
+
+Avatars are charged separately with [the interactive avatar pricing published here.](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services)  
+
+For more details regarding how custom voice and avatar training charges, [refer to this pricing note.](/azure/ai-services/speech-service/text-to-speech#model-training-and-hosting-time-for-custom-voice) 
+
+### Example pricing scenarios
+
+Here are some example pricing scenarios to help you understand how the Voice Live API is charged:
+
+#### Scenario 1
+
+A customer service agent built with standard Azure AI Speech input, GPT-4.1, custom Azure AI Speech output, and a custom avatar.  
+
+You're charged at the Voice Live Pro rate for:
+- Text
+- Audio with Azure AI Speech - Standard 
+- Audio with Azure AI Speech - Custom
+
+You're charged separately for the training and model hosting of:
+- Custom voice – professional
+- Custom avatar
+
+#### Scenario 2
+
+A learning agent built with `gpt-4o-realtime-preview` native audio input and standard Azure AI Speech output. 
+
+You're charged at the Voice Live Pro rate for:
+- Text
+- Native audio with `gpt-4o-realtime-preview`
+- Audio with Azure AI Speech - Standard
+
+#### Scenario 3
+
+A talent interview agent built with `gpt-4o-mini-realtime-preview` native audio input, and standard Azure AI Speech output and standard avatar. 
+
+You're charged at the Voice Live Basic rate for:
+- Text
+- Native audio with `gpt-4o-mini-realtime-preview`
+- Audio with Azure AI Speech - Standard
+
+You're charged separately for:
+- Text to speech avatar (standard)
+
+#### Scenario 4
+
+An in-car assistant built with `phi4-mm-realtime` and Azure custom voice.  
+
+You're charged at the Voice Live Lite rate for:
+- Text
+- Native audio with `phi4-mm-realtime`
+
+You're charged at the Voice Live Pro rate for:
+- Audio with Azure AI Speech - Custom
+
+You're charged separately for the training and model hosting of:
+- Custom voice – professional
+
+### Token usage and cost estimation
+
+Tokens are the units that generative AI models use to process input and generate output. 
+
+You can estimate the cost with Voice Live API based on audio length as follows:
+- Each second of input audio is approximately 10 tokens.
+- Each second of output audio is approximately 20 tokens.
+
+You're also charged for cached audio and text inputs, including the prompt and the context of the conversations. 
+
 ## Related content
 
 - Learn more about [How to use the Voice Live API](./voice-live-how-to.md)
 - Try out the [Voice Live API quickstart](./voice-live-quickstart.md)
-- See the [Azure OpenAI Realtime API reference](/azure/ai-services/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context)
+- See the [audio events reference](/azure/ai-services/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context)

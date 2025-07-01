@@ -1364,6 +1364,11 @@
       "source_path_from_root": "/articles/ai-services/agents/whats-new.md",
       "redirect_url": "/azure/ai-foundry/agents/whats-new",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/question-answering/how-to/configure-resources.md",
+      "redirect_url": "/azure/ai-services/language-service/question-answering/how-to/configure-azure-resources",
+      "redirect_document_id": true
     }
   ]
 }

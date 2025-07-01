@@ -73,7 +73,7 @@ items:
   - name: Deploy Azure OpenAI in Foundry Models
     items:
     - name: Use Azure OpenAI in Azure AI Foundry portal
-      href: ai-services/how-to/connect-azure-openai.md?context=/azure/ai-foundry/context/context
+      href: ../ai-services/connect-services-ai-foundry-portal.md?context=/azure/ai-foundry/context/context
     - name: Supported Azure OpenAI models
       href: ../ai-services/openai/concepts/models.md?context=/azure/ai-foundry/context/context
     - name: Azure OpenAI deployment types
@@ -83,9 +83,6 @@ items:
       href: how-to/deploy-models-openai.md
     - name: Troubleshoot deployments and monitoring
       href: how-to/troubleshoot-deploy-and-monitor.md
-    - name: Model region availability for Azure OpenAI in Foundry Models
-      href:  ../ai-services/openai/concepts/models.md?context=/azure/ai-foundry/context/context
-      displayName: OpenAI, gpt-4o, gpt-4o-mini, whisper
     - name: Azure OpenAI quotas and limits
       href: ../ai-services/openai/quotas-limits.md?context=/azure/ai-foundry/context/context
     - name: Use Azure OpenAI models

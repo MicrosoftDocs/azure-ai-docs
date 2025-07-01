@@ -6,7 +6,7 @@ author: sdgilley
 ms.author: sgilley
 manager: scottpolly
 ms.reviewer: dantaylo
-ms.date: 05/12/2025
+ms.date: 06/30/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:
@@ -40,11 +40,14 @@ In this quickstart, we walk you through setting up your local development enviro
 
 1. [Set up your development environment](../how-to/develop/install-cli-sdk.md?pivots=programming-language-python)
 
-1. Make sure you install these packages:
+1. Install these packages.
 
     ```bash
-    pip install azure-ai-projects azure-ai-inference azure-identity 
+    pip install azure-ai-inference azure-identity azure-ai-projects==1.0.0b10
     ```
+
+    > [!NOTE]
+    > Different project types require different versions of the `azure-ai-projects` package. To avoid conflicts, create separate Python environments: use version `1.0.0b10` for [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s and the latest version for [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s.
 
 ## Deploy a model
 
@@ -117,6 +120,9 @@ Run the revised script to see the response from the model with this new input.
 python chat.py
 ```
 
+## Clean up resources
+
+[!INCLUDE [clean-up-resources](../includes/clean-up-resources.md)]
 
 ## Next step
 
