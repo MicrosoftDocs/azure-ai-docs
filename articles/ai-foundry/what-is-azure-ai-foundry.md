@@ -47,10 +47,10 @@ Azure AI Foundry projects provide developers with self-serve capabilities to ind
 
 The [Azure AI Foundry API](how-to/develop/sdk-overview.md) is designed specifically for building agentic applications and provides a consistent contract for working across different model providers. The API is complemented by SDKs to make it easy to integrate AI capabilities into your applications. SDK Client libraries are available for:
 
-* Python
-* C#
-* JavaScript/TypeScript (preview)
-* Java (preview)
+- Python
+- C#
+- JavaScript/TypeScript (preview)
+- Java (preview)
 
 The [Azure AI Foundry for VS Code Extension](how-to/develop/get-started-projects-vs-code.md) helps you explore models and develop agents directly in your development environment.
 
