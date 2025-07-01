@@ -2,7 +2,7 @@
 title: Build a retrieval-augmented generation solution with Azure AI Content Understanding
 titleSuffix: Azure AI services
 description: Learn to build a retrieval-augmented generation solution with Content Understanding
-author: laujan
+author: PatrickFarley 
 ms.author: paulhsu
 manager: nitinme
 ms.date: 05/19/2025

@@ -2,8 +2,8 @@
 title: Create an Azure AI Foundry resource
 titleSuffix: Azure AI services
 description: Create and manage an Azure AI Foundry resource for Content Understanding operations
-author: laujan
-ms.author: lajanuar
+author: PatrickFarley 
+ms.author: pafarley
 manager: nitinme
 ms.date: 5/19/2025
 ms.service: azure-ai-content-understanding

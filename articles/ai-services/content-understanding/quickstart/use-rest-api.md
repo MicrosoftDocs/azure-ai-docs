@@ -2,7 +2,7 @@
 title: "Quickstart: Azure AI Content Understanding REST APIs"
 titleSuffix: Azure AI services
 description: Learn about Content Understanding REST APIs
-author: laujan
+author: PatrickFarley 
 ms.author: paulhsu
 manager: nitinme
 ms.date: 05/19/2025
