@@ -37,7 +37,7 @@ Data zone deployments are available in the same Azure OpenAI resource as all oth
 ### Standard deployment model availability
 |   **Region**   | **o3-mini** | **gpt-4o**, **2024-11-20** | **gpt-4o**, **2024-05-13** | **gpt-4o-mini**, **2024-07-18** | **gpt-35-turbo**, **0125** | **text-embedding-3-large**, **1** | **text-embedding-3-small**, **1** | **text-embedding-ada-002**, **2** |
 |:---------------|:--------------------------:|:--------------------------:|:--------------------------:|:-------------------------------:|:--------------------------:|:---------------------------------:|:---------------------------------:|:---------------------------------:|
-| usgovarizona   | - | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| usgovarizona   | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | usgovvirginia  | - | ✅ | ✅ | -  | ✅ | - | - | ✅ |
 | USGov DataZone |✅| ✅ | - | -  | - | - | - | - |
 
@@ -52,7 +52,7 @@ To request quota increases for these models, submit a request at [https://aka.ms
 ### Provisioned deployment model availability
 |   **Region**  | **gpt-4o**, **2024-11-20** | **gpt-4o**, **2024-05-13** | **gpt-4o-mini**, **2024-07-18** | **gpt-35-turbo**, **0125** |
 |:---------------|:--------------------------:|:--------------------------:|:-------------------------------:|:--------------------------:|
-| usgovarizona   | - | ✅ | - | ✅ |
+| usgovarizona   | ✅ | ✅ | - | ✅ |
 | usgovvirginia  | ✅ | ✅ | - | ✅ |
 | USGov DataZone | ✅| -  | -  | -  |
 

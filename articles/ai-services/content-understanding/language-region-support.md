@@ -2,8 +2,8 @@
 title: Content Understanding region and language support
 titleSuffix: Azure AI services
 description: Azure AI Content Understanding region and language support
-author: laujan
-ms.author: lajanuar
+author: PatrickFarley 
+ms.author: pafarley
 manager: nitinme
 ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding

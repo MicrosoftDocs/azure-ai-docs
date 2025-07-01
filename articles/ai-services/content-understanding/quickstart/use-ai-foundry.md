@@ -2,7 +2,7 @@
 title: "Create an Azure AI Content Understanding single-file task in the Azure AI Foundry portal"
 titleSuffix: Azure AI services
 description: Create an Azure AI Content Understanding single-file task in the Azure AI Foundry portal
-author: laujan
+author: PatrickFarley 
 ms.author: kabrow
 manager: nitinme
 ms.date: 05/19/2025
