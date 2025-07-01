@@ -684,6 +684,8 @@ items:
     href: concepts/content-filtering.md
   - name: Content filtering for Foundry Models
     href: foundry-models/concepts/content-filter.md?context=/azure/ai-foundry/context/context
+  - name: Configure content filtering for Foundry Models
+    href: foundry-models/how-to/configure-content-filters.md?context=/azure/ai-foundry/context/context
   - name: Default safety policies for Foundry Models
     href: foundry-models/concepts/default-safety-policies.md?context=/azure/ai-foundry/context/context
   - name: Use blocklists
