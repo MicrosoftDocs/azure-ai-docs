@@ -22,7 +22,7 @@ items:
     href: search-get-started-vector.md
   - name: Generative search (RAG)
     href: search-get-started-rag.md
-  - name: Full text search
+  - name: Full-text search
     href: search-get-started-text.md
   - name: Semantic ranking
     href: search-get-started-semantic.md
@@ -46,10 +46,6 @@ items:
       href: knowledge-store-create-portal.md
     - name: Query with Search Explorer
       href: search-explorer.md
-  - name: REST
-    href: search-get-started-rest.md
-  - name: PowerShell
-    href: search-get-started-powershell.md
   - name: Deployment
     items:
     - name: ARM template
@@ -436,7 +432,7 @@ items:
         href: vector-search-filters.md
     - name: Keyword search
       items:
-      - name: Full text query
+      - name: Full-text query
         href: search-query-create.md
       - name: Typeahead query
         href: search-add-autocomplete-suggestions.md

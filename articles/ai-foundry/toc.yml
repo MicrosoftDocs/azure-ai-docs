@@ -73,7 +73,7 @@ items:
   - name: Deploy Azure OpenAI in Foundry Models
     items:
     - name: Use Azure OpenAI in Azure AI Foundry portal
-      href: ai-services/how-to/connect-azure-openai.md?context=/azure/ai-foundry/context/context
+      href: ../ai-services/connect-services-ai-foundry-portal.md?context=/azure/ai-foundry/context/context
     - name: Supported Azure OpenAI models
       href: openai/concepts/models.md?context=/azure/ai-foundry/context/context
     - name: Azure OpenAI deployment types
@@ -83,9 +83,6 @@ items:
       href: how-to/deploy-models-openai.md
     - name: Troubleshoot deployments and monitoring
       href: how-to/troubleshoot-deploy-and-monitor.md
-    - name: Model region availability for Azure OpenAI in Foundry Models
-      href:  openai/concepts/models.md?context=/azure/ai-foundry/context/context
-      displayName: OpenAI, gpt-4o, gpt-4o-mini, whisper
     - name: Azure OpenAI quotas and limits
       href: openai/quotas-limits.md?context=/azure/ai-foundry/context/context
     - name: Use Azure OpenAI models
@@ -548,6 +545,8 @@ items:
           href: how-to/prompt-flow-troubleshoot.md
 - name: Setup and management
   items:
+  - name: Plan rollout 
+    href: concepts/planning.md
   - name: Choose a resource type
     href: concepts/resource-types.md
   - name: Manage AI Foundry resources
@@ -556,6 +555,8 @@ items:
       href: ../ai-services/multi-service-resource.md?context=/azure/ai-foundry/context/context
     - name: Create using Bicep template
       href: how-to/create-resource-template.md
+    - name: Recover or purge deleted resources
+      href: ../ai-services/recover-purge-resources.md?context=/azure/ai-foundry/context/context
   - name: Manage AI Hub resources
     items:
     - name: Hubs overview

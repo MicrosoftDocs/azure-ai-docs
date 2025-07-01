@@ -35,7 +35,7 @@ You can also use [Search Explorer](search-explorer.md) in the Azure portal.
 
 + Optionally, [add a vectorizer](vector-search-how-to-configure-vectorizer.md) to your index for built-in text-to-vector or image-to-vector conversion during queries.
 
-+ Visual Studio Code with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) and sample data if you want to run these examples on your own. To get started with the REST client, see [Quickstart: Keyword search using REST](search-get-started-rest.md).
++ Visual Studio Code with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) and sample data if you want to run these examples on your own. To get started with the REST client, see [Quickstart: Full-text search using REST](search-get-started-text.md).
 
 ## Convert a query string input into a vector
 

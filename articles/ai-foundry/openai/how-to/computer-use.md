@@ -1,11 +1,11 @@
 ---
 title: 'Computer Use (preview) in Azure OpenAI'
 titleSuffix: Azure OpenAI
-description: Learn about Computer Use in Azure OpenAI which allows AI to interact with computer applications.
+description: Learn about Computer Use in Azure OpenAI, which allows AI to interact with computer applications.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 03/25/2025
+ms.date: 06/30/2025
 author: aahill
 ms.author: aahi
 ---
