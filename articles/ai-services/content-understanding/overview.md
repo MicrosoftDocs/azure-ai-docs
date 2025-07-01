@@ -2,8 +2,8 @@
 title: What is Azure AI Content Understanding?
 titleSuffix: Azure AI services
 description: Learn about Azure AI Content Understanding solutions, processes, workflows, use-cases, and field extractions.
-author: laujan
-ms.author: lajanuar
+author: PatrickFarley 
+ms.author: pafarley
 manager: nitinme
 ms.date: 06/19/2025
 ms.service: azure-ai-content-understanding

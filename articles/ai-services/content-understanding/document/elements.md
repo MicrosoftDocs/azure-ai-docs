@@ -2,7 +2,7 @@
 title: "Document analysis: extracting structured content with Azure AI Content Understanding"
 titleSuffix: Azure AI services
 description: Learn about Azure AI Content Understanding's document layout analysis and data extraction capabilities
-author: laujan
+author: PatrickFarley 
 ms.author: paulhsu
 manager: nitinme
 ms.date: 05/19/2025
