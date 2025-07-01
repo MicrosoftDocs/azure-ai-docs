@@ -409,6 +409,8 @@ items:
       - name: View evaluation results in the portal
         href: how-to/evaluate-results.md
         displayName: accuracy,metrics
+      - name: Create and configure storage account for evaluation
+        href: how-to/evaluations-storage-account.md
    - name: AI red teaming
      items:
       - name: AI red teaming agent overview
