@@ -19,7 +19,7 @@ This article provides a summary of the latest releases and major documentation u
 
 ### Deep Research tool
 
-Use the [Deep Research tool](./how-to/tools/deep-research.md) to utilize a multi-step research pipeline that’s tightly integrated with Grounding with Bing Search and Azure OpenAI models
+Use the [Deep Research tool](./how-to/tools/deep-research.md) to utilize a multi-step research process built on top of the Azure OpenAI `o3-deep-research` model and uses the Grounding with Bing Search as the knowledge source.
 
 ### Model Context Protocol (MCP) tool
 
