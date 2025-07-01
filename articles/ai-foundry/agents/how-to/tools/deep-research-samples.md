@@ -85,7 +85,6 @@ project_client = AIProjectClient(
     credential=DefaultAzureCredential(),
 )
 
-# [START create_agent_with_deep_research_tool]
 conn_id = os.environ["AZURE_BING_CONNECTION_ID"]
 
 # Initialize a Deep Research tool with Bing Connection ID and Deep Research model deployment name
@@ -164,4 +163,4 @@ with project_client:
 * [Reference documentation](https://aka.ms/azsdk/azure-ai-projects/python/reference)
 * [Asynchronous sample on GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_async/sample_agents_deep_research_async.py) 
 * [Library source code](https://aka.ms/azsdk/azure-ai-projects/python/code) 
-* [Package (PyPi)](https://aka.ms/azsdk/azure-ai-projects/python/package) |
+* [Package (PyPi)](https://aka.ms/azsdk/azure-ai-projects/python/package) 
