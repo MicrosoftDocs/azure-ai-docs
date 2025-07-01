@@ -6,6 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
+  - update-code
 ms.topic: how-to
 ms.date: 06/26/2025
 ms.reviewer: fasantia
