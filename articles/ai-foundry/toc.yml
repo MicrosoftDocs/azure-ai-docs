@@ -16,10 +16,12 @@ items:
     href: foundry-models/overview.md?context=/azure/ai-foundry/context/context
   - name: Models and capabilities 
     href: foundry-models/concepts/models.md?context=/azure/ai-foundry/context/context
-  - name: Data, privacy, and security for Model Catalog
-    href: how-to/concept-data-privacy.md
+  - name: Model versions
+    href: foundry-models/concepts/model-versions.md?context=/azure/ai-foundry/context/context
   - name: Model lifecycle and retirement
     href: concepts/model-lifecycle-retirement.md
+  - name: Data, privacy, and security for Model Catalog
+    href: how-to/concept-data-privacy.md
   - name: Foundry Models quotas and limits
     href: foundry-models/quotas-limits.md?context=/azure/ai-foundry/context/context
   - name: Choose a model for your use case
@@ -40,14 +42,20 @@ items:
       href: foundry-models/how-to/configure-marketplace.md?context=/azure/ai-foundry/context/context
     - name: Deploy Foundry Models
       href: foundry-models/how-to/create-model-deployments.md?context=/azure/ai-foundry/context/context
+    - name: Upgrade from GitHub Models to Azure AI Foundry Models
+      href: foundry-models/how-to/quickstart-github-models.md?context=/azure/ai-foundry/context/context
     - name: Troubleshoot deployments and monitoring
       href: how-to/troubleshoot-deploy-and-monitor.md
   - name: Develop with AI models
     items:
+    - name: Endpoints for Foundry Models
+      href: foundry-models/concepts/endpoints.md?context=/azure/ai-foundry/context/context
     - name: Use Foundry Models in code
       href: foundry-models/how-to/inference.md?context=/azure/ai-foundry/context/context
     - name: Supported programming languages and SDKs
       href: ../ai-services/openai/supported-languages.md?context=/azure/ai-foundry/context/context
+    - name: Azure AI Inference SDK
+      href: foundry-models/supported-languages.md?context=/azure/ai-foundry/context/context
     - name: Work with chat models
       items:
       - name: Work with chat completion models
@@ -94,7 +102,9 @@ items:
           href: how-to/healthcare-ai/deploy-medimageparse.md
     - name: Serverless API endpoints
       items:
-      - name: Deploy models via serverless API 
+      - name: Configure AI projects to work with Azure AI Foundry Models
+        href: foundry-models/how-to/quickstart-ai-project.md?context=/azure/ai-foundry/context/context
+      - name: Deploy models via serverless API
         href: how-to/deploy-models-serverless.md
       - name: Consume models from a different project or hub
         href: how-to/deploy-models-serverless-connect.md
@@ -104,7 +114,6 @@ items:
         href: concepts/model-catalog-content-safety.md
       - name: Models available for serverless API
         href: concepts/models-featured.md
-
   - name: Azure OpenAI in Foundry Models
     items:
     - name: Use Azure OpenAI in Azure AI Foundry portal
@@ -193,7 +202,6 @@ items:
           displayName: finetuning, fine-tuning
   - name: Foundry Models FAQ
     href: faq.yml
-
 - name: Azure AI services
   items:
   - name: Use Azure AI services in Azure AI Foundry portal
@@ -674,8 +682,13 @@ items:
     href: concepts/model-catalog-content-safety.md
   - name: Content filtering
     href: concepts/content-filtering.md
+  - name: Content filtering for Foundry Models
+    href: foundry-models/concepts/content-filter.md?context=/azure/ai-foundry/context/context
+  - name: Default safety policies for Foundry Models
+    href: foundry-models/concepts/default-safety-policies.md?context=/azure/ai-foundry/context/context
   - name: Use blocklists
-    href: how-to/use-blocklists.md
+    href: foundry-models/how-to/use-blocklists.md?context=/azure/ai-foundry/context/context
+
   - name: Transparency notes for Azure AI Services
     href: ../ai-services/responsible-use-of-ai-overview.md?context=/azure/ai-foundry/context/context
   - name: Limited Access features

@@ -1,21 +1,20 @@
 ---
-title: 'How to use blocklists with Azure AI Foundry Models in Azure AI Foundry Service'
+title: Use blocklists in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
-description: Learn how to use blocklists with Foundry Models in Azure AI Foundry Service.
-manager: scottpolly
-ms.service: azure-ai-model-inference
+description: Learn how to create custom blocklists in Azure AI Foundry portal as part of your content filtering configurations.
+manager: nitinme
+ms.service: azure-ai-foundry
+ms.custom:
+  - ignite-2024
 ms.topic: how-to
-ms.date: 05/19/2025
-author: ssalgadodev
-ms.author: ssalgado
-ms.custom: ignite-2024, github-universe-2024
-ms.reviewer: fasantia
-reviewer: santiagxf
+ms.date: 05/31/2025
+ms.author: pafarley
+author: PatrickFarley
 ---
 
 # How to use blocklists with Foundry Models in Azure AI Foundry services
 
-The configurable content filters are sufficient for most content moderation needs. However, you may need to filter terms specific to your use case. 
+The configurable content filters are sufficient for most content moderation needs. However, you might need to create custom blocklists in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) as part of your content filtering configurations in order to filter terms specific to your use case. This article illustrates how to create custom blocklists as part of your content filters in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 ## Prerequisites
 
