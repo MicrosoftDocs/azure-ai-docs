@@ -1,4 +1,4 @@
----
+﻿---
 title: How to evaluate generative AI models and applications with Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: Evaluate your generative AI models and applications with Azure AI Foundry.
@@ -200,5 +200,5 @@ Learn more about how to evaluate your generative AI applications:
 
 - [Evaluate your generative AI apps via the playground](./evaluate-prompts-playground.md)
 - [View the evaluation results](./evaluate-results.md)
-- [Creating evaluations specifically with OpenAI evaluation graders in Azure OpenAI Hub](../../ai-services/openai/how-to/evaluations.md)
+- [Creating evaluations specifically with OpenAI evaluation graders in Azure OpenAI Hub](../openai/how-to/evaluations.md)
 - [Transparency Note for Azure AI Foundry safety evaluations](../concepts/safety-evaluations-transparency-note.md).

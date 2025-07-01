@@ -1,4 +1,4 @@
----
+﻿---
 title: 'How to configure content filters for models in Azure AI Foundry'
 titleSuffix: Azure AI Foundry
 description: Learn to use and configure the content filters that come with Azure AI Foundry, including getting approval for gated modifications.
@@ -32,4 +32,4 @@ reviewer: santiagxf
 ## Next steps
 
 - Read more about [content filtering categories and severity levels](../../model-inference/concepts/content-filter.md) with Azure OpenAI in Azure AI Foundry Models.
-- Learn more about red teaming from our: [Introduction to red teaming large language models (LLMs) article](../../../ai-services/openai/concepts/red-teaming.md).
+- Learn more about red teaming from our: [Introduction to red teaming large language models (LLMs) article](../../openai/concepts/red-teaming.md).
