@@ -35,7 +35,7 @@ You can bring multiple remote MCP servers to Foundry Agent service by adding the
 
 |Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
 |:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|---------:|
-| - | - | - | - | ✔️ | ✔️ | ✔️ |
+| - | ✔️ | - | - | ✔️ | ✔️ | ✔️ |
 
 ## Setup  
 1. Create an Azure AI Foundry Agent by following the steps in the [quickstart](../../quickstart.md).
