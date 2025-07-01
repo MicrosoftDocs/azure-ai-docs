@@ -8,7 +8,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 05/07/2025
+ms.date: 07/01/2025
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
@@ -39,7 +39,6 @@ The Azure AI Foundry SDK is a set of client libraries and services designed to w
     ```bash
     az login
     ```
-
 
 ## Unified Projects client library
 
@@ -88,8 +87,6 @@ The Azure AI Foundry Projects client library is a unified library that enables y
         .endpoint(endpoint)
         .buildClient();
     ```
-
-
 
 ::: zone-end
 
