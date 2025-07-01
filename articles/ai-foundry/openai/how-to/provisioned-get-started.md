@@ -201,7 +201,7 @@ You can find the utilization measure in the Azure-Monitor section for your resou
 
 :::image type="content" source="../media/provisioned/azure-monitor-utilization.jpg" alt-text="Screenshot of the provisioned managed utilization on the resource's metrics blade in the Azure portal." lightbox="../media/provisioned/azure-monitor-utilization.jpg":::
 
-For more information about monitoring your deployments, see the [Monitoring Azure OpenAI](./monitoring.md) page.
+For more information about monitoring your deployments, see the [Monitoring Azure OpenAI](./monitor-openai.md) page.
 
 
 ## Handling high utilization

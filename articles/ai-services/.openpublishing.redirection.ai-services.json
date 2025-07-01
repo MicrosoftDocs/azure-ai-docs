@@ -2686,6 +2686,21 @@
       "redirect_document_id": true
     },
     {
+      "source_path_from_root": "/articles/ai-services/openai/faq.yml",
+      "redirect_url": "/azure/ai-foundry/openai/faq.yml",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/how-to/switching-endpoints.yml",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/switching-endpoints.yml",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/openai/index.yml",
+      "redirect_url": "/azure/ai-foundry/openai/index.yml",
+      "redirect_document_id": true
+    },
+    {
       "source_path_from_root": "/articles/ai-services/openai/whats-new.md",
       "redirect_url": "/azure/ai-foundry/openai/whats-new",
       "redirect_document_id": true

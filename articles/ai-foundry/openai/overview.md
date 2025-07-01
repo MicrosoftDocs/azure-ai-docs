@@ -44,7 +44,7 @@ Start with the [Create and deploy an Azure OpenAI resource](./how-to/create-reso
     - Try out the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) playgrounds to explore the capabilities of the models. 
     - You can also just start making API calls to the service using the REST API or SDKs.
     
-    For example, you can try [real-time audio](./realtime-audio-quickstart.md) and [assistants](./assistants-quickstart.md) in the playgrounds or via code.
+    For example, you can try [real-time audio](./realtime-audio-quickstart.md) in the playgrounds or via code.
 
 > [!NOTE]
 > A Limited Access registration form is required to access some Azure OpenAI models or features. Learn more on the [Azure OpenAI Limited Access page](/azure/ai-foundry/responsible-ai/openai/limited-access).

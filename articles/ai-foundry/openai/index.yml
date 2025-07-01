@@ -50,8 +50,6 @@ landingContent:
              url: whisper-quickstart.md
            - text: Text to speech (preview)
              url: text-to-speech-quickstart.md
-           - text: Assistants
-             url: assistants-quickstart.md 
       - linkListType: tutorial
         links:
          - text: Embeddings

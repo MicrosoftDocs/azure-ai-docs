@@ -70,6 +70,6 @@ dynamic quota is less likely to be engaged for your deployment if it runs in hea
 ## Next steps
 
 * Learn more about how [quota works](./quota.md).
-* Learn more about [monitoring Azure OpenAI](./monitoring.md).
+* Learn more about [monitoring Azure OpenAI](./monitor-openai.md).
 
 

@@ -303,7 +303,7 @@ sections:
       - question: |
           What are some examples or other resources I can use to learn about Assistants?  
         answer: |
-          See the [Conceptual](./concepts/assistants.md), [quickstart](./assistants-quickstart.md), [how-to](./how-to/assistant.md) articles for information on getting started and using Assistants. You can also check out Azure OpenAI Assistants code samples on [GitHub](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/Assistants).
+          See the [Conceptual](./concepts/assistants.md), [how-to](./how-to/assistant.md) articles for information on getting started and using Assistants. You can also check out Azure OpenAI Assistants code samples on [GitHub](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/Assistants).
   - name: Web app
     questions:
       - question: |

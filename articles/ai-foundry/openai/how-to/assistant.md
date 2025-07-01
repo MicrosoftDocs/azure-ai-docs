@@ -67,10 +67,6 @@ An individual assistant can access up to 128 tools including [code interpreter](
 
 Files can be uploaded via Studio, or programmatically. The `file_ids` parameter is required to give tools like `code_interpreter` access to files. When using the File upload endpoint, you must have the `purpose` set to `assistants` to be used with the Assistants API.
 
-## Assistants playground
-
-We provide a walkthrough of the Assistants playground in our [quickstart guide](../assistants-quickstart.md). This provides a no-code environment to test out the capabilities of assistants.
-
 ## Assistants components
 
 | **Component** | **Description** |
