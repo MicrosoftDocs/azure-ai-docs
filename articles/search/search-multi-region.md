@@ -27,7 +27,7 @@ If you need two or more search services, creating them in different regions can 
 
 In a multi-region setup, two or more search services are located in different regions and have synchronized indexes. Users are automatically routed to the service with the lowest latency.
 
-Azure AI Search doesn't provide an automated method of index replication across regions. However, you can synchronize data using [push or pull model indexing](search-what-is-data-import.md), both of which are described in the following section. You can also add Azure Traffic Manager for [request redirection](#request-failover-and-redirection).
+Azure AI Search doesn't provide an automated method of index replication across regions. However, you can synchronize data using [push or pull model indexing](search-what-is-data-import.md), both of which are described in the following section. You can also add Azure Traffic Manager or another load balancer for [request redirection](#request-failover-and-redirection).
 
 The following diagram illustrates a geo-distributed set of search services:
 
