@@ -2,7 +2,7 @@
 author: laujan
 ms.author: lajanuar
 manager: nitinme
-ms.date: 12/19/2023
+ms.date: 06/30/2025
 ms.service: azure-ai-language
 ms.topic: include
 ms.custom:

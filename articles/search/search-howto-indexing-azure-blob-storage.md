@@ -39,7 +39,7 @@ This article uses the REST APIs to illustrate each step.
 
   By default, both search and storage accept requests from public IP addresses. If network security isn't an immediate concern, you can index blob data using just the connection string and read permissions. When you're ready to add network protections, see [Indexer access to content protected by Azure network security features](search-indexer-securing-resources.md) for guidance about data access.
 
-+ Use a [REST client](search-get-started-rest.md) to formulate REST calls similar to the ones shown in this article.
++ Use a [REST client](search-get-started-text.md) to formulate REST calls similar to the ones shown in this article.
 
 ## Supported tasks
 

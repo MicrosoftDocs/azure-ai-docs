@@ -133,7 +133,7 @@ You're charged at the Voice Live Pro rate for:
 - Audio with Azure AI Speech - Standard 
 - Audio with Azure AI Speech - Custom
 
-You're charged separately for:
+You're charged separately for the training and model hosting of:
 - Custom voice – professional
 - Custom avatar
 
@@ -169,7 +169,7 @@ You're charged at the Voice Live Lite rate for:
 You're charged at the Voice Live Pro rate for:
 - Audio with Azure AI Speech - Custom
 
-You're charged separately for:
+You're charged separately for the training and model hosting of:
 - Custom voice – professional
 
 ### Token usage and cost estimation
