@@ -222,6 +222,26 @@ df = pd.concat(dflist)
 df.head()
 ```
 
+#### Use different authentication
+The Filesystem Class accepts a parameter ml_client, which can be used to use the same auth as the one for the ml_client authentication, for example the user managed identity by providing the correct client_id.
+```python
+from azureml.fsspec import AzureMachineLearningFileSystem
+from azure.identity import ManagedIdentityCredential
+from azure.ai.ml import MLClient
+
+credential = ManagedIdentityCredential(client_id='<client_id>')  # Replace with your client ID if needed
+
+ml_client = MLClient.from_config(credential=credential)
+
+# define the URI - update <> placeholders
+uri = 'azureml://subscriptions/<subid>/resourcegroups/<rgname>/workspaces/<workspace_name>/datastores/<datastore_name>'
+
+# auth credential from ml_client will be used by filesystem
+fs = AzureMachineLearningFileSystem(uri, ml_client=ml_client)
+
+fs.ls()
+```
+
 #### Accessing data from your Azure Databricks filesystem (`dbfs`)
 
 Filesystem spec (`fsspec`) has a range of [known implementations](https://filesystem-spec.readthedocs.io/en/stable/_modules/index.html), including the Databricks Filesystem (`dbfs`).
