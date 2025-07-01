@@ -166,7 +166,7 @@ sections:
       - question: |
           Where do I go for Azure OpenAI customer support?
         answer: |  
-          You can learn about all the support options for Azure OpenAI in the [support and help options guide](../cognitive-services-support-options.md?context=%2fazure%2fcognitive-services%2fopenai%2fcontext%2fcontext).
+          You can learn about all the support options for Azure OpenAI in the [support and help options guide](../../ai-services/cognitive-services-support-options.md?context=%2fazure%2fcognitive-services%2fopenai%2fcontext%2fcontext).
   - name: Models and fine-tuning
     questions:
       - question: |

@@ -107,7 +107,7 @@ To select a key from a key vault, first make sure that you have a key vault that
 1. Select the key vault that contains the key that you want to use.
 1. Select the key that you want to use.
 
-   :::image type="content" source="../media/cognitive-services-encryption/ssecmk3.png" alt-text="Screenshot of the Select key from Azure Key Vault page in the Azure portal. The Subscription, Key vault, Key, and Version boxes contain values.":::
+   :::image type="content" source="../../ai-services/media/cognitive-services-encryption/ssecmk3.png" alt-text="Screenshot of the Select key from Azure Key Vault page in the Azure portal. The Subscription, Key vault, Key, and Version boxes contain values.":::
 
 1. Save your changes.
 
