@@ -21,7 +21,7 @@ Use this article to find step-by-step instructions and code samples for the Deep
 > [!NOTE]
 > Limitation: The Deep Research tool is currently recommended only in nonstreaming scenarios. Using it with streaming can work, but it might occasionally time out and is therefore not recommended.
 
-## Create an agent the Deep Research tool
+## Create an agent with the Deep Research tool
 
 ```python
 import os, time
