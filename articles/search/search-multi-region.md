@@ -19,7 +19,7 @@ For more information about the reliability features of Azure AI Search, includin
 
 If you need two or more search services, creating them in different regions can meet the following operational requirements:
 
-+ [Business continuity and disaster recovery (BCDR)](/azure/reliability/disaster-recovery-overview). If there's an outage, Azure AI Search doesn't provide instant failover to another region.
++ Resiliency to region outages. If there's an outage, Azure AI Search doesn't provide instant failover to another region.
 
 + Fast performance for a globally distributed application. If indexing and query requests come from around the world, users who are closest to the host data center experience faster performance. Creating more services in regions with close proximity to these users can equalize performance for everyone.
 
