@@ -31,15 +31,15 @@ Azure AI Foundry evaluations use the user's blob storage account to store datase
 1. Go to your AI Foundry Project and find your resource group. To find your resource group, select the project name in the top right corner and select your resource group. This takes you to the resource group in Azure portal.
 1. Select **Create** on the Resource Group page.
 1. Search "Storage Account" and select the Storage Account option that is published by Microsoft.
-      :::image type="content" source="../media/evaluations/storage/storage-account.png" alt-text="A screenshot showing the Microsoft storage account option." lightbox="/../media/evaluations/storage/storage-account.png":::
+      :::image type="content" source="../media/evaluations/storage/storage-account.png" alt-text="A screenshot showing the Microsoft storage account option." lightbox="../media/evaluations/storage/storage-account.png":::
 1. Create your storage account.
-    1. *Storage account name*: Give your storage account a meaningful name.
-    1. *Region*: Recommendation: Create the storage account in the same region you created your project. To find this, go back to Azure AI Foundry, select the project name in the top right corner of the screen (which is the same option you selected earlier to find the link to your resource group), and review the Location of the resource group. Note: it will not default to the same region.
-    1. *Primary service*: Azure Blob Storage or Azure Data Lake Storage Gen 2.
-    1. *Performance*: Standard.
-    1. *Redundancy*: Geo-redundant storage (GRS).
-    1. Select **Review+Create**.
-    1. Select **Create**.
+    - *Storage account name*: Give your storage account a meaningful name.
+    - *Region*: Recommendation: Create the storage account in the same region you created your project. To find this, go back to Azure AI Foundry, select the project name in the top right corner of the screen (which is the same option you selected earlier to find the link to your resource group), and review the Location of the resource group. Note: it will not default to the same region.
+    - *Primary service*: Azure Blob Storage or Azure Data Lake Storage Gen 2.
+    - *Performance*: Standard.
+    - *Redundancy*: Geo-redundant storage (GRS).
+    - Select **Review+Create**.
+    - Select **Create**.
 1. Your storage account is now created. Allow time for the resource to be fully provisioned, normally 1-2 minutes.
 
 ## Connect your blob storage account in Azure AI Foundry
@@ -74,10 +74,10 @@ The final step to setting up this storage account to store your datasets for eva
 1. In the *Job function roles* table, search for "Storage Blob Data Contributor" and select that option. Then select **Next** at the bottom of the screen.
 1. In the "Assign access to" option, select **Managed identity**.
 1. Select **+ Select members**.
-    1. *Subscription*: Your subscription
-    1. *Managed identity*: All system-assigned managed identities.
-    1. Select: Search for your project name. Select your project, not the resource. It should be formatted [ResourceName]/[ProjectName]. Don't select the resource name, which doesn't have the "/[ProjectName] after it.
-    1. Select **Select** button at the bottom.
+    - *Subscription*: Your subscription
+    - *Managed identity*: All system-assigned managed identities.
+    - Select: Search for your project name. Select your project, not the resource. It should be formatted [ResourceName]/[ProjectName]. Don't select the resource name, which doesn't have the "/[ProjectName] after it.
+    - Select **Select** button at the bottom.
 1. Select **Review + assign** twice.
 
 You have now provided your project with write access to your blob storage account. After a few minutes, you'll be able to add data during an evaluation in AI Foundry.
