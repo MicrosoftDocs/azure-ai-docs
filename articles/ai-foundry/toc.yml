@@ -30,7 +30,7 @@ items:
       href: how-to/benchmark-model-in-catalog.md
     - name: Explore the model playgrounds
       href: concepts/concept-playgrounds.md
-  - name: Foundry Models deployment
+  - name: Deploy Foundry Models
     items:
     - name: Deployment options in Azure AI Foundry portal
       href: concepts/deployments-overview.md
@@ -191,6 +191,8 @@ items:
         - name: Troubleshooting guidance
           href: ../ai-services/openai/how-to/fine-tuning-troubleshoot.md?context=/azure/ai-foundry/context/context
           displayName: finetuning, fine-tuning
+  - name: Foundry Models FAQ
+    href: faq.yml
 
 - name: Azure AI services
   items:
