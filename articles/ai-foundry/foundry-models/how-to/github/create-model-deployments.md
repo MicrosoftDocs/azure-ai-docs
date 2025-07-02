@@ -1,4 +1,4 @@
----
+﻿---
 title: Add and configure models to Azure AI Foundry Models
 titleSuffix: Azure AI Foundry for GitHub
 description: Learn how to add and configure new models to the Foundry Models endpoint in Azure AI Foundry for GitHub.
@@ -47,7 +47,7 @@ To use it:
 
 3. When using the endpoint, you can change the `model` parameter to any available model deployment in your resource.
 
-Additionally, Azure OpenAI models can be consumed using the [Azure OpenAI in Azure AI Foundry Models endpoint](../../../../ai-services/openai/supported-languages.md) in the resource. This endpoint is exclusive for each model deployment and has its own URL.
+Additionally, Azure OpenAI models can be consumed using the [Azure OpenAI in Azure AI Foundry Models endpoint](../../../openai/supported-languages.md) in the resource. This endpoint is exclusive for each model deployment and has its own URL.
 
 ## Model deployment customization
 

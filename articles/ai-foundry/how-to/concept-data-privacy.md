@@ -1,4 +1,4 @@
----
+﻿---
 title: Data, privacy, and security for use of models through the model catalog in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: Get details about how data that customers provide is processed, used, and stored when a user deploys a model from the model catalog.
@@ -61,7 +61,7 @@ Prompts and outputs are processed within the geography specified during deployme
 If a model that's available for serverless API deployments supports fine-tuning, you can upload data to (or designate data already in) a [datastore](../concepts/connections.md#connections-to-datastores) to fine-tune the model. You can then create a serverless API deployment for the fine-tuned model. The fine-tuned model can't be downloaded, but:
 
 * It's available exclusively for your use.
-* You can use double [encryption at rest](../../ai-services/openai/encrypt-data-at-rest.md): the default Microsoft AES-256 encryption and an optional customer-managed key.
+* You can use double [encryption at rest](../openai/encrypt-data-at-rest.md): the default Microsoft AES-256 encryption and an optional customer-managed key.
 * You can delete it at any time.
 
 Training data uploaded for fine-tuning isn't used to train, retrain, or improve any Microsoft or non-Microsoft model, except as you direct those activities within the service.

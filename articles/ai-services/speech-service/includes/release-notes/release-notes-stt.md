@@ -1,4 +1,4 @@
----
+﻿---
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
@@ -300,7 +300,7 @@ We encourage you to explore these improvements and consider potential issues for
 Azure AI Speech now supports OpenAI's Whisper model via the batch transcription API. To learn more, check out the [Create a batch transcription](../../batch-transcription-create.md#use-a-whisper-model) guide.
 
 > [!NOTE]
-> Azure OpenAI also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, check out the [quickstart](../../../openai/whisper-quickstart.md).
+> Azure OpenAI also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, check out the [quickstart](../../../../ai-foundry/openai/whisper-quickstart.md).
 
 Check out [What is the Whisper model?](../../whisper-overview.md) to learn more about when to use Azure AI Speech vs. Azure OpenAI.
 
