@@ -2,8 +2,8 @@
 title: What's new in Content Understanding?
 titleSuffix: Azure AI services
 description: Learn the latest updates to the Content Understanding API.
-author: laujan
-ms.author: lajanuar
+author: PatrickFarley 
+ms.author: pafarley
 manager: nitinme
 ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding

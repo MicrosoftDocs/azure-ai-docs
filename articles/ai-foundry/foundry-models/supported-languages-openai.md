@@ -1,4 +1,4 @@
----
+﻿---
 title: Supported programming languages for Azure OpenAI SDK
 titleSuffix: Azure AI Foundry
 description: Learn about supported programming languages for Azure OpenAI SDK in Azure AI Foundry Models
@@ -18,31 +18,31 @@ reviewer: santiagxf
 
 ::: zone pivot="programming-language-dotnet"
 
-[!INCLUDE [C#](../../ai-services/openai/includes/language-overview/dotnet.md)]
+[!INCLUDE [C#](../openai/includes/language-overview/dotnet.md)]
 
 ::: zone-end
 
 ::: zone pivot="programming-language-go"
 
-[!INCLUDE [Go](../../ai-services/openai/includes/language-overview/go.md)]
+[!INCLUDE [Go](../openai/includes/language-overview/go.md)]
 
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 
-[!INCLUDE [Java](../../ai-services/openai/includes/language-overview/java.md)]
+[!INCLUDE [Java](../openai/includes/language-overview/java.md)]
 
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
 
-[!INCLUDE [JavaScript](../../ai-services/openai/includes/language-overview/javascript.md)]
+[!INCLUDE [JavaScript](../openai/includes/language-overview/javascript.md)]
 
 ::: zone-end
 
 ::: zone pivot="programming-language-python"
 
-[!INCLUDE [Python](../../ai-services/openai/includes/language-overview/python.md)]
+[!INCLUDE [Python](../openai/includes/language-overview/python.md)]
 
 ::: zone-end
 
