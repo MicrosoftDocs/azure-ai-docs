@@ -49,7 +49,7 @@ The Deep Research tool uses the Azure OpenAI `o3-deep-research` model for its re
 **Deployment information**:
 - Deployment type: Global Standard
 - Available regions: West US, Norway East
-- Quotas and limits: Enterprise: `30K RPS / 30M TPM`, Default: `3 KRPS / 3M TPM`
+- Quotas and limits: Enterprise: `30K RPS / 30M TPM`, Default: `3K RPS / 3M TPM`
 
 ### GPT model deployment for clarifying intent
 
