@@ -47,7 +47,7 @@ Code samples from the Azure AI Search team are located in [**Azure-Samples/azure
 
 | Samples | Article | 
 |---------|-------------|
-| [quickstart](https://github.com/Azure-Samples/azure-search-java-samples/tree/main/quickstart) | Source code for the Java portion of [Quickstart: Full text search using the Azure SDKs](search-get-started-text.md). |
+| [quickstart](https://github.com/Azure-Samples/azure-search-java-samples/tree/main/quickstart) | Source code for the Java portion of [Quickstart: Full-text search](search-get-started-text.md). |
 
 > [!TIP]
 > Try the [Samples browser](/samples/browse/?languages=java&products=azure-cognitive-search) to search for Microsoft code samples in GitHub, filtered by product, service, and language.

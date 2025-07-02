@@ -31,7 +31,7 @@ items:
   - name: Deployment options in Azure AI Foundry portal
     href: concepts/deployments-overview.md
   - name: Supported programming languages and SDKs
-    href: ../ai-services/openai/supported-languages.md?context=/azure/ai-foundry/context/context
+    href: openai/supported-languages.md?context=/azure/ai-foundry/context/context
   - name: Foundry Models quotas and limits
     href: ../ai-foundry/foundry-models/quotas-limits.md?context=/azure/ai-foundry/context/context
   - name: Deploy Foundry Models
@@ -73,93 +73,90 @@ items:
   - name: Deploy Azure OpenAI in Foundry Models
     items:
     - name: Use Azure OpenAI in Azure AI Foundry portal
-      href: ai-services/how-to/connect-azure-openai.md?context=/azure/ai-foundry/context/context
+      href: ../ai-services/connect-services-ai-foundry-portal.md?context=/azure/ai-foundry/context/context
     - name: Supported Azure OpenAI models
-      href: ../ai-services/openai/concepts/models.md?context=/azure/ai-foundry/context/context
+      href: openai/concepts/models.md?context=/azure/ai-foundry/context/context
     - name: Azure OpenAI deployment types
-      href: ../ai-services/openai/how-to/deployment-types.md?context=/azure/ai-foundry/context/context
+      href: openai/how-to/deployment-types.md?context=/azure/ai-foundry/context/context
       displayName: provisioned, global standard, datazone, data zone, global data zone, batch, globalbatch
     - name: Deploy Azure OpenAI models
       href: how-to/deploy-models-openai.md
     - name: Troubleshoot deployments and monitoring
       href: how-to/troubleshoot-deploy-and-monitor.md
-    - name: Model region availability for Azure OpenAI in Foundry Models
-      href:  ../ai-services/openai/concepts/models.md?context=/azure/ai-foundry/context/context
-      displayName: OpenAI, gpt-4o, gpt-4o-mini, whisper
     - name: Azure OpenAI quotas and limits
-      href: ../ai-services/openai/quotas-limits.md?context=/azure/ai-foundry/context/context
+      href: openai/quotas-limits.md?context=/azure/ai-foundry/context/context
     - name: Use Azure OpenAI models
       items:
       - name: Generate text
         items:
         - name: Batch
-          href: ../ai-services/openai/how-to/batch.md?context=/azure/ai-foundry/context/context
+          href: openai/how-to/batch.md?context=/azure/ai-foundry/context/context
           displayName: OpenAI, global batch, globalbatch, chat, chat completions 
         - name: Reasoning models
-          href: ../ai-services/openai/how-to/reasoning.md?context=/azure/ai-foundry/context/context
+          href: openai/how-to/reasoning.md?context=/azure/ai-foundry/context/context
           displayName: OpenAI, o1, o1-mini, o3-mini, reasoning effort
         - name: Responses API
-          href: ../ai-services/openai/how-to/responses.md?context=/azure/ai-foundry/context/context
+          href: openai/how-to/responses.md?context=/azure/ai-foundry/context/context
         - name: Computer use 
-          href: ../ai-services/openai/how-to/computer-use.md?context=/azure/ai-foundry/context/context
+          href: openai/how-to/computer-use.md?context=/azure/ai-foundry/context/context
         - name: Function calling
-          href: ../ai-services/openai/how-to/function-calling.md?context=/azure/ai-foundry/context/context
+          href: openai/how-to/function-calling.md?context=/azure/ai-foundry/context/context
           displayName: OpenAI 
         - name: Predicted outputs
-          href: ../ai-services/openai/how-to/predicted-outputs.md?context=/azure/ai-foundry/context/context 
+          href: openai/how-to/predicted-outputs.md?context=/azure/ai-foundry/context/context 
         - name: Prompt caching
-          href: ../ai-services/openai/how-to/prompt-caching.md?context=/azure/ai-foundry/context/context 
+          href: openai/how-to/prompt-caching.md?context=/azure/ai-foundry/context/context 
         - name: Structured outputs
-          href: ../ai-services/openai/how-to/structured-outputs.md?context=/azure/ai-foundry/context/context 
+          href: openai/how-to/structured-outputs.md?context=/azure/ai-foundry/context/context 
         - name: Use vision-enabled chat
-          href:  ../ai-services/openai/gpt-v-quickstart.md?context=/azure/ai-foundry/context/context
+          href:  openai/gpt-v-quickstart.md?context=/azure/ai-foundry/context/context
       - name: Generate images
-        href: ../ai-services/openai/dall-e-quickstart.md?context=/azure/ai-foundry/context/context
+        href: openai/dall-e-quickstart.md?context=/azure/ai-foundry/context/context
         displayName: OpenAI, DALLE, dall-e, DALL-E
       - name: Audio
         items:
           - name: Use GPT-4o in the real-time audio playground
-            href: ../ai-services/openai/realtime-audio-quickstart.md?context=/azure/ai-foundry/context/context
+            href: openai/realtime-audio-quickstart.md?context=/azure/ai-foundry/context/context
             displayName: OpenAI, realtime, real-time
           - name: Audio generation
-            href: ../ai-services/openai/audio-completions-quickstart.md?context=/azure/ai-foundry/context/context 
+            href: openai/audio-completions-quickstart.md?context=/azure/ai-foundry/context/context 
       - name: Distillation (stored completions)
-        href: ../ai-services/openai/how-to/stored-completions.md?context=/azure/ai-foundry/context/context
+        href: openai/how-to/stored-completions.md?context=/azure/ai-foundry/context/context
         displayName: OpenAI, Azure OpenAI, stored completions, model distillation
       - name: Embeddings
-        href: ../ai-services/openai/tutorials/embeddings.md?context=/azure/ai-foundry/context/context
+        href: openai/tutorials/embeddings.md?context=/azure/ai-foundry/context/context
         displayName: text-embedding-ada-002, text-embedding-3-large, text-embedding-3-small
       - name: Evaluation
-        href: ../ai-services/openai/how-to/evaluations.md?context=/azure/ai-foundry/context/context
+        href: openai/how-to/evaluations.md?context=/azure/ai-foundry/context/context
         displayName: OpenAI
       - name: Fine-tuning
         items:
         - name: Fine-tune Azure OpenAI models
-          href: ../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-foundry/context/context
+          href: openai/how-to/fine-tuning.md?context=/azure/ai-foundry/context/context
           displayName: finetuning, fine-tuning 
         - name: When to use Azure OpenAI fine-tuning
-          href: ../ai-services/openai/concepts/fine-tuning-considerations.md?context=/azure/ai-foundry/context/context
+          href: openai/concepts/fine-tuning-considerations.md?context=/azure/ai-foundry/context/context
           displayName: finetuning, fine-tuning 
         - name: Deploy your Azure OpenAI fine-tuned model
-          href: ../ai-services/openai/how-to/fine-tuning-deploy.md?context=/azure/ai-foundry/context/context
+          href: openai/how-to/fine-tuning-deploy.md?context=/azure/ai-foundry/context/context
           displayName: finetuning, fine-tuning         
         - name: Vision fine-tuning
-          href: ../ai-services/openai/how-to/fine-tuning-vision.md?context=/azure/ai-foundry/context/context
+          href: openai/how-to/fine-tuning-vision.md?context=/azure/ai-foundry/context/context
           displayName: finetuning, fine-tuning 
         - name: Preference fine-tuning
-          href: ../ai-services/openai/how-to/fine-tuning-direct-preference-optimization.md?context=/azure/ai-foundry/context/context
+          href: openai/how-to/fine-tuning-direct-preference-optimization.md?context=/azure/ai-foundry/context/context
           displayName: finetuning, fine-tuning 
         - name: Safety evaluation
-          href: ../ai-services/openai/how-to/fine-tuning-safety-evaluation.md?context=/azure/ai-foundry/context/context
+          href: openai/how-to/fine-tuning-safety-evaluation.md?context=/azure/ai-foundry/context/context
           displayName: finetuning, fine-tuning 
         - name: Tool calling
-          href: ../ai-services/openai/how-to/fine-tuning-functions.md?context=/azure/ai-foundry/context/context
+          href: openai/how-to/fine-tuning-functions.md?context=/azure/ai-foundry/context/context
           displayName: finetuning, fine-tuning         
         - name: Weights & Biases integration (preview)
-          href: ../ai-services/openai/how-to/weights-and-biases-integration.md?context=/azure/ai-foundry/context/context
+          href: openai/how-to/weights-and-biases-integration.md?context=/azure/ai-foundry/context/context
           displayName: finetuning, fine-tuning 
         - name: Troubleshooting guidance
-          href: ../ai-services/openai/how-to/fine-tuning-troubleshoot.md?context=/azure/ai-foundry/context/context
+          href: openai/how-to/fine-tuning-troubleshoot.md?context=/azure/ai-foundry/context/context
           displayName: finetuning, fine-tuning
   - name: Deploy models in AI hub
     items:
@@ -409,6 +406,8 @@ items:
       - name: View evaluation results in the portal
         href: how-to/evaluate-results.md
         displayName: accuracy,metrics
+      - name: Create and configure storage account for evaluation
+        href: how-to/evaluations-storage-account.md
    - name: AI red teaming
      items:
       - name: AI red teaming agent overview
@@ -444,9 +443,9 @@ items:
   - name: Prompt engineering
     items:
     - name: Prompt engineering techniques
-      href: ../ai-services/openai/concepts/prompt-engineering.md?context=/azure/ai-foundry/context/context
+      href: openai/concepts/prompt-engineering.md?context=/azure/ai-foundry/context/context
     - name: Image prompt engineering
-      href: ../ai-services/openai/concepts/gpt-4-v-prompt-engineering.md?context=/azure/ai-foundry/context/context
+      href: openai/concepts/gpt-4-v-prompt-engineering.md?context=/azure/ai-foundry/context/context
     - name: Synthetic Data Generation
       href: concepts/concept-synthetic-data.md
   - name: Fine-tuning
@@ -462,33 +461,33 @@ items:
     - name: Fine-tune Azure OpenAI models
       items:
       - name: Fine-tune Azure OpenAI models
-        href: ../ai-services/openai/how-to/fine-tuning.md?context=/azure/ai-foundry/context/context
+        href: openai/how-to/fine-tuning.md?context=/azure/ai-foundry/context/context
         displayName: finetuning, fine-tuning 
       - name: When to use Azure OpenAI fine-tuning
-        href: ../ai-services/openai/concepts/fine-tuning-considerations.md?context=/azure/ai-foundry/context/context
+        href: openai/concepts/fine-tuning-considerations.md?context=/azure/ai-foundry/context/context
         displayName: finetuning, fine-tuning 
       - name: Deploy your Azure OpenAI fine-tuned model
-        href: ../ai-services/openai/how-to/fine-tuning-deploy.md?context=/azure/ai-foundry/context/context
+        href: openai/how-to/fine-tuning-deploy.md?context=/azure/ai-foundry/context/context
         displayName: finetuning, fine-tuning         
       - name: Vision fine-tuning
-        href: ../ai-services/openai/how-to/fine-tuning-vision.md?context=/azure/ai-foundry/context/context
+        href: openai/how-to/fine-tuning-vision.md?context=/azure/ai-foundry/context/context
         displayName: finetuning, fine-tuning 
       - name: Reinforcement fine-tuning
-        href: ../ai-services/openai/how-to/reinforcement-fine-tuning.md?context=/azure/ai-foundry/context/context
+        href: openai/how-to/reinforcement-fine-tuning.md?context=/azure/ai-foundry/context/context
       - name: Preference fine-tuning
-        href: ../ai-services/openai/how-to/fine-tuning-direct-preference-optimization.md?context=/azure/ai-foundry/context/context
+        href: openai/how-to/fine-tuning-direct-preference-optimization.md?context=/azure/ai-foundry/context/context
         displayName: finetuning, fine-tuning 
       - name: Safety evaluation
-        href: ../ai-services/openai/how-to/fine-tuning-safety-evaluation.md?context=/azure/ai-foundry/context/context
+        href: openai/how-to/fine-tuning-safety-evaluation.md?context=/azure/ai-foundry/context/context
         displayName: finetuning, fine-tuning 
       - name: Tool calling
-        href: ../ai-services/openai/how-to/fine-tuning-functions.md?context=/azure/ai-foundry/context/context
+        href: openai/how-to/fine-tuning-functions.md?context=/azure/ai-foundry/context/context
         displayName: finetuning, fine-tuning         
       - name: Weights & Biases integration (preview)
-        href: ../ai-services/openai/how-to/weights-and-biases-integration.md?context=/azure/ai-foundry/context/context
+        href: openai/how-to/weights-and-biases-integration.md?context=/azure/ai-foundry/context/context
         displayName: finetuning, fine-tuning 
       - name: Troubleshooting guidance
-        href: ../ai-services/openai/how-to/fine-tuning-troubleshoot.md?context=/azure/ai-foundry/context/context
+        href: openai/how-to/fine-tuning-troubleshoot.md?context=/azure/ai-foundry/context/context
         displayName: finetuning, fine-tuning 
     - name: Distillation
       href: concepts/concept-model-distillation.md
@@ -610,16 +609,16 @@ items:
     - name: Manage quotas and limits for Foundry Models
       href: ../ai-foundry/foundry-models/quotas-limits.md?context=/azure/ai-foundry/context/context
     - name: What is the Provisioned Throughput offering (PTU)?
-      href: ../ai-services/openai/concepts/provisioned-throughput.md?context=/azure/ai-foundry/context/context
+      href: openai/concepts/provisioned-throughput.md?context=/azure/ai-foundry/context/context
       displayName: PTU, provisioned, provisioned throughput units
     - name: Understanding and calculating PTU costs 
-      href: ../ai-services/openai/how-to/provisioned-throughput-onboarding.md?context=/azure/ai-foundry/context/context
+      href: openai/how-to/provisioned-throughput-onboarding.md?context=/azure/ai-foundry/context/context
       displayName: PTU, provisioned, provisioned throughput units
     - name: Get started with Provisioned Deployments
-      href: ../ai-services/openai/how-to/provisioned-get-started.md?context=/azure/ai-foundry/context/context
+      href: openai/how-to/provisioned-get-started.md?context=/azure/ai-foundry/context/context
       displayName: PTU, provisioned, provisioned throughput units
     - name: Provisioned spillover
-      href: ../ai-services/openai/how-to/spillover-traffic-management.md?context=/azure/ai-foundry/context/context
+      href: openai/how-to/spillover-traffic-management.md?context=/azure/ai-foundry/context/context
 - name: Security & Governance
   items:
   - name: Identity & access management
@@ -680,7 +679,7 @@ items:
   - name: Limited Access features
     href: ../ai-services/cognitive-services-limited-access.md?context=/azure/ai-foundry/context/context
   - name: System message templates
-    href: ../ai-services/openai/concepts/system-message.md?context=/azure/ai-foundry/context/context
+    href: openai/concepts/system-message.md?context=/azure/ai-foundry/context/context
 - name: SDK + API Reference
   items:
   - name: Azure AI Projects SDK

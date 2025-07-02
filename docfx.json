@@ -458,6 +458,8 @@
         "articles/machine-learning/component-reference/*.yml": "365-days",
         "articles/machine-learning/component-reference-v2/*.md": "365-days",
         "articles/machine-learning/component-reference-v2/*.yml": "365-days",
+        "articles/open-datasets/**/*.md": "365-days", 
+        "articles/open-datasets/**/*.yml": "365-days", 
         "articles/machine-learning/v1/*.md": "365-days"
       },
       "ms.custom": {

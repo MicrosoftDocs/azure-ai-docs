@@ -1,4 +1,4 @@
----
+﻿---
 title: How to use the Voice Live API (Preview)
 titleSuffix: Azure AI services
 description: Learn how to use the Voice Live API for real-time voice agents.
@@ -7,7 +7,7 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 6/27/2025
+ms.date: 7/1/2025
 ms.custom: references_regions
 # Customer intent: As a developer, I want to learn how to use the Voice Live API for real-time voice agents.
 ---
@@ -16,7 +16,7 @@ ms.custom: references_regions
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-The Voice Live API provides a capable WebSocket interface compared to the [Azure OpenAI Realtime API](../openai/how-to/realtime-audio.md).
+The Voice Live API provides a capable WebSocket interface compared to the [Azure OpenAI Realtime API](../../ai-foundry/openai/how-to/realtime-audio.md).
 
 Unless otherwise noted, the Voice Live API uses the same events as the [Azure OpenAI Realtime API](/azure/ai-services/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context). This document provides a reference for the event message properties that are specific to the Voice Live API.
 
@@ -170,6 +170,8 @@ Here's an example of end of utterance detection in a session object:
 }
 ```
 
+## Audio input through Azure speech to text
+
 ### Phrase list
 
 Use phrase list for lightweight just-in-time customization on audio input. To configure phrase list, you can set the phrase_list in the `session.update` message. 
@@ -186,6 +188,64 @@ Use phrase list for lightweight just-in-time customization on audio input. To co
 
 > [!NOTE]
 > Phrase list currently doesn't support gpt-4o-realtime-preview, gpt-4o-mini-realtime-preview, and phi4-mm-realtime. To learn more about phrase list, see [phrase list for speech to text](./improve-accuracy-phrase-list.md).  
+
+## Audio output through Azure text to speech
+
+You can use the `voice` parameter to specify a standard or custom voice. The voice is used for audio output.
+
+The `voice` object has the following properties:
+
+| Property | Type | Required or optional | Description |
+|----------|----------|----------|------------|
+| `name` | string   | Required | Specifies the name of the voice. For example, `en-US-AvaNeural`. |
+| `type` | string   | Required | Configuration of the type of Azure voice between `azure-standard` and `azure-custom`. |
+| `temperature` | number   | Optional | Specifies temperature applicable to Azure HD voices. Higher values provide higher levels of variability in intonation, prosody, etc. |
+
+### Azure standard voices
+
+Here's a partial message example for a standard (`azure-standard`) voice:
+
+```json
+{
+  "voice": {
+    "name": "en-US-AvaNeural",
+    "type": "azure-standard"
+  }
+}
+```
+
+For the full list of standard voices, see [Language and voice support for the Speech service](language-support.md?tabs=tts).
+
+### Azure high definition voices
+
+Here's an example `session.update` message for a standard high definition voice:
+
+```json
+{
+  "voice": {
+    "name": "en-US-Ava:DragonHDLatestNeural",
+    "type": "azure-standard",
+    "temperature": 0.8 // optional
+  }
+}
+```
+
+For the full list of standard high definition voices, see [high definition voices documentation](high-definition-voices.md#supported-azure-ai-speech-hd-voices).
+
+### Azure custom voices
+
+You can use a custom voice for audio output. For information about how to create a custom voice, see [What is custom voice](./custom-neural-voice.md).
+
+```json
+{
+  "voice": {
+    "name": "en-US-CustomNeural",
+    "type": "azure-custom",
+    "endpoint_id": "your-endpoint-id", // a guid string
+    "temperature": 0.8 // optional, value range 0.0-1.0, only take effect when using HD voices
+  }
+}
+```
 
 ### Custom lexicon 
 
@@ -218,125 +278,6 @@ The rate value should range from 0.5 to 1.5, with higher values indicating faste
   } 
 } 
 ```
-
-### Audio output through Azure text to speech
-
-You can use the `voice` parameter to specify a standard or custom voice. The voice is used for audio output.
-
-The `voice` object has the following properties:
-
-| Property | Type | Required or optional | Description |
-|----------|----------|----------|------------|
-| `name` | string   | Required | Specifies the name of the voice. For example, `en-US-AvaNeural`. |
-| `type` | string   | Required | Configuration of the type of Azure voice between `azure-standard` and `azure-custom`. |
-| `temperature` | number   | Optional | Specifies temperature applicable to Azure HD voices. Higher values provide higher levels of variability in intonation, prosody, etc. |
-
-#### Azure standard voices
-
-Here's a partial message example for a standard (`azure-standard`) voice:
-
-```json
-{
-  "voice": {
-    "name": "en-US-AvaNeural",
-    "type": "azure-standard"
-  }
-}
-```
-
-For the full list of standard voices, see [Language and voice support for the Speech service](language-support.md?tabs=tts).
-
-#### Azure high definition voices
-
-Here's an example `session.update` message for a standard high definition voice:
-
-```json
-{
-  "voice": {
-    "name": "en-US-Ava:DragonHDLatestNeural",
-    "type": "azure-standard",
-    "temperature": 0.8 // optional
-  }
-}
-```
-
-For the full list of standard high definition voices, see [high definition voices documentation](high-definition-voices.md#supported-azure-ai-speech-hd-voices).
-
-#### Azure custom voices
-
-```json
-{
-  "voice": {
-    "name": "en-US-CustomNeural",
-    "type": "azure-custom",
-    "endpoint_id": "your-endpoint-id", // a guid string
-    "temperature": 0.8 // optional, value range 0.0-1.0, only take effect when using HD voices
-  }
-}
-```
-
-### Azure text to speech avatar
-
-You can use the `avatar` parameter to specify a standard or custom avatar. The avatar is synchronized with the audio output.
-
-An `avatar` parameter can be specified to enable avatar output that is synchronized with the audio output:
-
-```json
-{
-  "session": {
-    "avatar": {
-      "character": "lisa",
-      "style": "casual-sitting",
-      "customized": false,
-      "ice_servers": [
-        {
-          "urls": ["REDACTED"],
-          "username": "",
-          "credential": ""
-        }
-      ],
-      "video": {
-        "bitrate": 2000000,
-        "codec": "h264",
-        "crop": {
-          "top_left": [560, 0],
-          "bottom_right": [1360, 1080],
-        },
-        "resolution": {
-          "width": 1080,
-          "height": 1920,
-        },
-        "background": {
-          "color": "#00FF00FF"
-          // "image_url": "https://example.com/example.jpg"
-        }
-      }
-    }
-  }
-}
-```
-
-The `ice_servers` field is optional. If you don't specify it, the service returns the server-specific ICE servers in `session.updated` response. And you need to use the server-specific ICE servers to generate the local ICE candidates.
-
-Send the client SDP after ICE candidates are gathered.
-
-```json
-{
-    "type": "session.avatar.connect",
-    "client_sdp": "your-client-sdp"
-}
-```
-
-And the service responds with the server SDP.
-
-```json
-{
-    "type": "session.avatar.connecting",
-    "server_sdp": "your-server-sdp"
-}
-```
-
-Then you can connect the avatar with the server SDP.
 
 ### Audio timestamps
 
@@ -435,6 +376,71 @@ And a `response.animation_viseme.done` message is sent when all viseme messages 
     "item_id": "<item_id>",
 }
 ```
+
+## Azure text to speech avatar
+
+[Text to speech avatar](./text-to-speech-avatar/what-is-text-to-speech-avatar.md) converts text into a digital video of a photorealistic human (either a standard avatar or a [custom text to speech avatar](./text-to-speech-avatar/what-is-custom-text-to-speech-avatar.md)) speaking with a natural-sounding voice.
+
+You can use the `avatar` parameter to specify a standard or custom avatar. The avatar is synchronized with the audio output.
+
+An `avatar` parameter can be specified to enable avatar output that is synchronized with the audio output:
+
+```json
+{
+  "session": {
+    "avatar": {
+      "character": "lisa",
+      "style": "casual-sitting",
+      "customized": false,
+      "ice_servers": [
+        {
+          "urls": ["REDACTED"],
+          "username": "",
+          "credential": ""
+        }
+      ],
+      "video": {
+        "bitrate": 2000000,
+        "codec": "h264",
+        "crop": {
+          "top_left": [560, 0],
+          "bottom_right": [1360, 1080],
+        },
+        "resolution": {
+          "width": 1080,
+          "height": 1920,
+        },
+        "background": {
+          "color": "#00FF00FF"
+          // "image_url": "https://example.com/example.jpg"
+        }
+      }
+    }
+  }
+}
+```
+
+The `ice_servers` field is optional. If you don't specify it, the service returns the server-specific ICE servers in `session.updated` response. And you need to use the server-specific ICE servers to generate the local ICE candidates.
+
+Send the client SDP after ICE candidates are gathered.
+
+```json
+{
+    "type": "session.avatar.connect",
+    "client_sdp": "your-client-sdp"
+}
+```
+
+And the service responds with the server SDP.
+
+```json
+{
+    "type": "session.avatar.connecting",
+    "server_sdp": "your-server-sdp"
+}
+```
+
+Then you can connect the avatar with the server SDP.
 
 ## Related content
 

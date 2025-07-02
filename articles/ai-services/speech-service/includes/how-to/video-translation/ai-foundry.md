@@ -68,6 +68,8 @@ To create a video translation project, follow these steps:
 
    :::image type="content" source="../../../media/video-translation/foundry-portal/capabilities-by-scenario.png" alt-text="Screenshot of filtering Speech service capabilities by scenario." lightbox="../../../media/video-translation/foundry-portal/capabilities-by-scenario.png":::
 
+1. Select **Go to Speech playground**.
+
 1. Select **My videos** > **Upload video**.
 
    :::image type="content" source="../../../media/video-translation/foundry-portal/select-upload-video.png" alt-text="Screenshot of selecting the upload video button." lightbox="../../../media/video-translation/foundry-portal/select-upload-video.png":::

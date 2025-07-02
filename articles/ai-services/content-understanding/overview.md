@@ -1,9 +1,9 @@
----
+﻿---
 title: What is Azure AI Content Understanding?
 titleSuffix: Azure AI services
 description: Learn about Azure AI Content Understanding solutions, processes, workflows, use-cases, and field extractions.
-author: laujan
-ms.author: lajanuar
+author: PatrickFarley 
+ms.author: pafarley
 manager: nitinme
 ms.date: 06/19/2025
 ms.service: azure-ai-content-understanding
@@ -84,7 +84,7 @@ Content Understanding now supports modified content filtering for approved custo
 > [!IMPORTANT]
 >
 > * Apply for modified content filters via this form: [Azure OpenAI Limited Access Review: Modified Content Filters](https://ncv.microsoft.com/uEfCgnITdR).
-> * For more information, *see* [**Content filtering**](../openai/concepts/content-filter.md).
+> * For more information, *see* [**Content filtering**](../../ai-foundry/openai/concepts/content-filter.md).
 
 ## Face capabilities
 
