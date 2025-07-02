@@ -85,29 +85,32 @@ To use the Deep Research tool, you need to create the AI Foundry type project, a
 
 :::image type="content" source="../../media/tools/deep-research/setup-deep-research-tool.png" alt-text="Steps to set up the deep research tool." lightbox="../../media/tools/deep-research/setup-deep-research-tool.png":::
 
-1. Start here: [AI Foundry portal](https://ai.azure.com/?cid=learnDocs):
+1. Navigate to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and create a new project.
    
    :::image type="content" source="../../media/tools/deep-research/deep-research-tool-step-1.png" alt-text="Steps to set up the deep research tool." lightbox="../../media/tools/deep-research/deep-research-tool-step-1.png":::
 
-1. Select the Azure AI Foundry project type:
+1. Select the Azure AI Foundry project type.
    
     :::image type="content" source="../../media/tools/deep-research/deep-research-tool-step-2.png" alt-text="Steps to set up the deep research tool." lightbox="../../media/tools/deep-research/deep-research-tool-step-2.PNG":::
 
-1. Update the project name and description:
+1. Update the project name and description
    
     :::image type="content" source="../../media/tools/deep-research/deep-research-tool-step-3.png" alt-text="Steps to set up the deep research tool." lightbox="../../media/tools/deep-research/deep-research-tool-step-3.png":::
 
-1. Connect a Grounding with Bing Search account:
+1. Connect a Grounding with Bing Search account
    
     :::image type="content" source="../../media/tools/deep-research/deep-research-tool-step-4.png" alt-text="Steps to set up the deep research tool." lightbox="../../media/tools/deep-research/deep-research-tool-step-4.png":::
 
-1. Navigate to the Models +  Endpoints tab:
+1. Navigate to the **Models + Endpoints** tab.
    
     :::image type="content" source="../../media/tools/deep-research/deep-research-tool-step-5.png" alt-text="Steps to set up the deep research tool." lightbox="../../media/tools/deep-research/deep-research-tool-step-5.png":::
 
-1. Deploy the deep research model and a GPT model:
+1. Deploy the deep research model.
    
     :::image type="content" source="../../media/tools/deep-research/deep-research-tool-step-6.png" alt-text="Steps to set up the deep research tool." lightbox="../../media/tools/deep-research/deep-research-tool-step-6.png":::
+
+1. Deploy a GPT model. For example gpt-4o
+
     :::image type="content" source="../../media/tools/deep-research/deep-research-tool-step-7.png" alt-text="Steps to set up the deep research tool." lightbox="../../media/tools/deep-research/deep-research-tool-step-7.png":::
 
 ## Next steps
