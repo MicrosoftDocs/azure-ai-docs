@@ -17,15 +17,15 @@ ms.date: 11/06/2019
 
 If you don't plan to use anything that you created, delete the entire resource group so you don't incur any charges.
 
-1. In the Azure portal, select **Resource groups** on the left side of the window.
+1. In the [Azure portal](https://portal.azure.com), select **Resource groups** under **Azure services**.
  
-   ![Delete resource group in the Azure portal](./media/aml-ui-cleanup/delete-resources.png)
-
-1. In the list, select the resource group that you created.
+1. Select the resource group that you created.
 
 1. Select **Delete resource group**.
 
-Deleting the resource group also deletes all resources that you created in the designer. 
+   :::image type="content" source="./media/aml-ui-cleanup/delete-resources.png" alt-text="Screenshot that shows the button to delete resource group in the Azure portal.":::
+
+Deleting the resource group also deletes all resources that you created in the designer.
 
 ### Delete individual assets
 
@@ -33,12 +33,6 @@ In the designer where you created your experiment, delete individual assets by s
 
 The compute target that you created here *automatically autoscales* to zero nodes when it's not being used. This action is taken to minimize charges. If you want to delete the compute target, take these steps:
 
-![Delete assets](./media/aml-ui-cleanup/delete-asset.png)
-
-You can unregister datasets from your workspace by selecting each dataset and selecting **Unregister**.
-
-![Unregister dataset](./media/aml-ui-cleanup/unregister-dataset1225.png)
+:::image type="content" source="./media/aml-ui-cleanup/delete-asset.png" alt-text="Screenshot that shows how to delete assets.":::
 
 To delete a dataset, go to the storage account by using the Azure portal or Azure Storage Explorer and manually delete those assets.
-
-

@@ -4,7 +4,7 @@ description: Learn about the latest news and features updates for Azure OpenAI.
 author: mrbullwinkle
 ms.author: mbullwin #
 manager: nitinme
-ms.date: 5/28/2025
+ms.date: 6/17/2025
 ms.service: azure-ai-openai
 ms.topic: whats-new
 ms.custom:
@@ -17,6 +17,12 @@ ms.custom:
 # What's new in Azure OpenAI in Azure AI Foundry Models
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
+
+## June 2025
+
+### codex-mini & o3-pro models released
+
+- `codex-mini` and `o3-pro` are now available. To learn more, see the [getting started with reasoning models page](./how-to/reasoning.md)
 
 ## May 2025
 

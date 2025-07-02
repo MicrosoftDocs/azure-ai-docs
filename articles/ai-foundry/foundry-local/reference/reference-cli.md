@@ -4,11 +4,14 @@ titleSuffix: Foundry Local
 description: Complete reference guide for the Foundry Local command-line interface.
 manager: scottpolly
 ms.service: azure-ai-foundry
+ms.subservice: foundry-local
 ms.custom: build-2025
+ms.author: jburchel
+ms.reviewer: samkemp
+author: jburchel
+reviewer: samuel100
 ms.topic: concept-article
 ms.date: 05/20/2025
-ms.author: samkemp
-author: samuel100
 ---
 
 # Foundry Local CLI Reference

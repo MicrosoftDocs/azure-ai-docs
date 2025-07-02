@@ -7,8 +7,8 @@ ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.author: larryfr
-author: Blackmist
+ms.author: jburchel 
+author: jonburchel 
 ms.reviewer: andyaviles
 ms.date: 04/14/2025
 ---

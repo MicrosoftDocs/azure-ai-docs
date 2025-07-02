@@ -9,7 +9,7 @@ ms.date: 06/12/2025
 ms.author: mbullwin
 ---
 
-[Reference documentation](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/metricsadvisor/azure-ai-metricsadvisor) | [Library source code](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/metricsadvisor/azure-ai-metricsadvisor/README.md) | [Package (PiPy)](https://pypi.org/project/azure-ai-metricsadvisor/) | [Samples](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/metricsadvisor/azure-ai-metricsadvisor/samples/README.md)
+[Reference documentation](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/metricsadvisor/azure-ai-metricsadvisor) | [Library source code](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/metricsadvisor/azure-ai-metricsadvisor/README.md) | [Package (PiPy)](https://pypi.org/project/azure-ai-metricsadvisor/) | [Samples](https://github.com/Azure/azure-sdk-for-python/blob/azure-ai-metricsadvisor_1.0.1/sdk/metricsadvisor/azure-ai-metricsadvisor/samples/README.md)
 
 > [!IMPORTANT]
 > Microsoft recommends that you use the most secure authentication flow available. Some of the authentication flows described in this article require a very high degree of trust in the application, and carries risks that are not present in other more secure flows. You should only use this flow when other more secure flows, such as managed identities, aren't viable.
@@ -22,7 +22,7 @@ ms.author: mbullwin
 * Your own SQL database with time series data.
   
 > [!TIP]
-> * You can find Python Metrics Advisor samples on [GitHub](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/metricsadvisor/azure-ai-metricsadvisor/samples).
+> * You can find Python Metrics Advisor samples on [GitHub](https://github.com/Azure/azure-sdk-for-python/tree/azure-ai-metricsadvisor_1.0.1/sdk/metricsadvisor/azure-ai-metricsadvisor/samples).
 > * It may take 10 to 30 minutes for your Metrics Advisor resource to deploy a service instance for you to use. Select **Go to resource** once it successfully deploys. After deployment, you can start using your Metrics Advisor instance with both the web portal and REST API.
 > * You can find the URL for the REST API in Azure portal, in the **Overview** section of your resource. It will look like this:
 > * `https://<instance-name>.cognitiveservices.azure.com/`

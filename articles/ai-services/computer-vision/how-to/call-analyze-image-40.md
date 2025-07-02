@@ -9,7 +9,7 @@ ms.update-cycle: 365-days
 ms.author: pafarley
 ms.service: azure-ai-vision
 ms.topic: how-to
-ms.date: 06/01/2024
+ms.date: 06/30/2025
 ms.custom:  devx-track-python, devx-track-extended-java, devx-track-js
 zone_pivot_groups: programming-languages-computer-vision
 ---
@@ -49,7 +49,7 @@ This article demonstrates how to call the Image Analysis 4.0 API to return infor
 
 ::: zone-end
 
-## Next steps
+## Related content
 
 * Explore the [concept articles](../concept-describe-images-40.md) to learn more about each feature.
 * Explore the SDK code samples on GitHub:

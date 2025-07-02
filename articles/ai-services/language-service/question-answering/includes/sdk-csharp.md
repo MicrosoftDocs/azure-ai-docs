@@ -4,7 +4,7 @@ description: This quickstart shows how to get started with the custom question a
 author: laujan
 ms.author: lajanuar
 ms.topic: include
-ms.date: 12/19/2023
+ms.date: 06/30/2025
 ---
 
 Use this quickstart for the custom question answering client library for .NET to:
