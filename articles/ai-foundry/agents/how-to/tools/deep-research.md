@@ -26,7 +26,22 @@ The Deep Research model in the Azure AI Foundry Agent Service enables you to use
 
 ## How Deep Research works
 
-At its core, the Deep Research tool orchestrates a multi-step research pipeline that’s tightly integrated with Grounding with Bing Search and Azure OpenAI models
+At its core, the Deep Research tool orchestrates a multi-step research pipeline that’s tightly integrated with Grounding with Bing Search and the Azure OpenAI deep research model.
+
+### Deep research model deployment
+
+The Deep research tool uses the `o3-deep-research` model for its research tasks. It is a fine-tuned version of the `o3` model designed to perform automated detailed analysis of knowledge sources and create detailed research reports.
+
+Key features:
+- Handles text, images and PDFs as part of its research tasks
+- 200K context length, 100K completion tokens, and May 31, 2024 knowledge cutoff
+- Outputs its thinking as reasoning summary as it analyzes information
+- Delivers a synthesized report at the end of the research task
+
+Deployment information:
+- Deployment type: Global Standard
+- Regions: West US, Norway East
+- Quotas and limits: Enterprise: 30K RPS/ 30M TPM, Default: 3K RPS/ 3M TPM
 
 ### Clarifying intent and scoping the task
 
