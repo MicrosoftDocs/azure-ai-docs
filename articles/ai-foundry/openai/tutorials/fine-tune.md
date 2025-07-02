@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI's latest fine-tuning capabilities wit
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: tutorial
-ms.date: 03/26/2025
+ms.date: 07/02/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false

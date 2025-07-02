@@ -6,7 +6,7 @@ author: mrbullwinkle
 ms.author: mbullwin
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 03/27/2025
+ms.date: 07/02/2025
 ms.custom: template-concept, ignite-2024
 manager: nitinme
 ---
