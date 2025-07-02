@@ -122,7 +122,7 @@ PATCH https://management.azure.com/subscriptions/subid/resourceGroups/rg1/provid
 
 ## See also
 
-+ [Quickstart: REST APIs](search-get-started-rest.md)
++ [Quickstart: Full-text search using REST APIs](search-get-started-text.md)
 + [Search REST API overview](/rest/api/searchservice/)
 + [Search REST API versions](/rest/api/searchservice/search-service-api-versions)
 + [Manage using the REST APIs](search-manage-rest.md)

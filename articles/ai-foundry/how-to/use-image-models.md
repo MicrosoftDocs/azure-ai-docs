@@ -1,4 +1,4 @@
----
+﻿---
 title: How to use image-to-text models in the model catalog
 titleSuffix: Azure AI Foundry
 description: Learn how to use image-to-text models from the AI Foundry model catalog.
@@ -145,5 +145,5 @@ Some image-to-text models only support specific data formats. Mistral OCR 25.03,
 
 ## Related content
 
-- [How to use image generation models on Azure OpenAI](../../ai-services/openai/how-to/dall-e.md)
+- [How to use image generation models on Azure OpenAI](../openai/how-to/dall-e.md)
 

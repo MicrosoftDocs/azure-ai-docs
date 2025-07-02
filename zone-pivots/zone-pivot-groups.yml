@@ -680,6 +680,20 @@ groups:
       title: Azure CLI
     - id: programming-language-bicep
       title: Bicep
+
+- id: azure-ai-serverless-deployment
+# Owner: mopeakande
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+    - id: ai-foundry-portal
+      title: Azure AI Foundry portal
+    - id: programming-language-cli
+      title: Azure CLI
+    - id: python-sdk
+      title: Python SDK
+    - id: programming-language-bicep
+      title: Bicep
 - id: azure-ai-model-catalog-sub-group-samples
 # Owner: mopeakande
   title: Programming languages
@@ -1223,6 +1237,15 @@ groups:
     title: TypeScript
   - id: rest-api
     title: REST
+- id: voice-live-quickstart
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+  - id: ai-foundry-portal
+    title: Foundry portal
+  - id: programming-language-python
+    title: Python
 - id: structured-outputs
   title: Programming languages
   prompt: Choose a language or API
@@ -1234,19 +1257,23 @@ groups:
   - id: programming-language-rest
     title: REST
 - id: search-quickstart-full-text
-# Owner: eur
-  title: Programming languages
-  prompt: Choose a programming language
+# Owner: haileytapia
+  title: Usage methods
+  prompt: Choose a usage method
   pivots:
-  - id: programming-language-csharp
+  - id: csharp
     title: C#
-  - id: programming-language-java
+  - id: java
     title: Java
-  - id: programming-language-javascript
+  - id: javascript
     title: JavaScript
-  - id: programming-language-python
+  - id: powershell
+    title: PowerShell
+  - id: python
     title: Python
-  - id: programming-language-typescript
+  - id: rest
+    title: REST
+  - id: typescript
     title: TypeScript
 - id: azure-portal-and-cli
 # Owner: Larryfr
@@ -1314,7 +1341,11 @@ groups:
     title: JavaScript
   - id: programming-language-python
     title: Python
-- id: foundry-local-sdk-with-csharp
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-rust
+    title: Rust
+- id: foundry-local-langchain
   title: Programming languages
   prompt: Choose a programming language
   pivots:
@@ -1322,14 +1353,27 @@ groups:
     title: JavaScript
   - id: programming-language-python
     title: Python
-  - id: programming-language-csharp
-    title: C#
 # Owner: haileytapia
 - id: search-get-started-agentic-retrieval
   title: Python and REST
   prompt: Choose a usage method
   pivots:
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-rest
+    title: REST
+# Owner: haileytapia
+- id: search-get-started-vector-search
+  title: Programming languages
+  prompt: Choose a usage method
+  pivots:
+  - id: javascript
+    title: JavaScript
   - id: python
     title: Python
   - id: rest
     title: REST
+  - id: typescript
+    title: TypeScript

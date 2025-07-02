@@ -7,14 +7,14 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 05/05/2025
+ms.date: 07/01/2025
 ms.reviewer: varundua
 ms.author: sgilley
 author: sdgilley
 #customer intent: As a developer, I want to jump start my journey with an AI template.
 ---
 
-# Get started with an AI template (Preview)
+# Get started with an AI template
 
 Streamline your code-first development with prebuilt, task-specific Azure AI templates. Benefit from using the latest features and best practices from Microsoft Azure AI, with popular frameworks like LangChain, prompt flow, and Semantic Kernel in multiple languages.
 
@@ -24,12 +24,10 @@ Available templates include:
 * [Get started with AI agents](https://github.com/Azure-Samples/get-started-with-ai-agents)
 * [Unlock insights from conversational data](https://github.com/microsoft/Conversation-Knowledge-Mining-Solution-Accelerator)
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
-
 ## Prerequisites
 
 - [Azure subscription](https://azure.microsoft.com/free)
-- An [Azure AI Foundry project](../create-projects.md).
+- Either a [[!INCLUDE [fdp-project-name](../../includes/fdp-project-name.md)]](../create-projects.md?pivots=fdp-project) or a [[!INCLUDE [hub-project-name](../../includes/hub-project-name.md)]](../create-projects.md?pivots=hub-project).
 
 ## Start with a sample application
 

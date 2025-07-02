@@ -11,8 +11,8 @@ ms.custom:
 ms.topic: concept-article
 ms.date: 06/04/2025
 ms.reviewer: deeikele
-ms.author: larryfr
-author: Blackmist
+ms.author: jburchel 
+author: jonburchel 
 zone_pivot_groups: project-type
 ---
 
@@ -215,7 +215,7 @@ When you create a Foundry resource, the built-in role-based access control permi
 - The resource you're trying to use has permissions set up to allow you to access it.
 - Your Foundry account resource is allowed to access it.
 
-For example, if you're trying to consume a new Blob storage, you need to ensure that the Foundry account resource’s managed identity is added to the Blob Storage Reader role for the Blob. If you're trying to use a new Azure AI Search source, you might need to add the hub to the Azure AI Search's role assignments.
+For example, if you're trying to consume a new Blob storage, you need to ensure that the Foundry account resource's managed identity is added to the Blob Storage Reader role for the Blob. If you're trying to use a new Azure AI Search source, you might need to add the hub to the Azure AI Search's role assignments.
 
 
 ## Manage access with roles

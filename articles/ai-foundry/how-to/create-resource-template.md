@@ -2,8 +2,8 @@
 title: "Quickstart: Create an AI Foundry resource using Bicep"
 titleSuffix: Azure AI Foundry
 description: Learn how to use a Bicep file (template) to create an Azure AI Foundry resource in your Azure subscription.
-author: deeikele
-ms.author: larryfr
+ms.author: sgilley
+author: sdgilley
 manager: scottpolly
 reviewer: deeikele
 ms.date: 05/18/2025

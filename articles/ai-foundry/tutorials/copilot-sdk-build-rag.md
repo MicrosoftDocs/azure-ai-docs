@@ -5,7 +5,7 @@ description:  Learn how to build a RAG-based chat app using the Azure AI Foundry
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: tutorial
-ms.date: 04/07/2025
+ms.date: 06/27/2025
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
@@ -162,7 +162,7 @@ To enable logging of telemetry to your project:
 
 1. Add an Application Insights resource to your project.  Navigate to the **Tracing** tab in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), and create a new resource if you don't already have one.
 
-    :::image type="content" source="../../ai-services/agents/media/ai-foundry-tracing.png" alt-text="A screenshot of the tracing screen in the Azure AI Foundry portal." lightbox="../../ai-services/agents/media/ai-foundry-tracing.png":::
+    :::image type="content" source="../media/tutorials/develop-rag-copilot-sdk/add-app-insights.png" alt-text="A screenshot of the tracing screen in the Azure AI Foundry portal." lightbox="../media/tutorials/develop-rag-copilot-sdk/add-app-insights.png":::
 
 1. Install `azure-monitor-opentelemetry`:
 

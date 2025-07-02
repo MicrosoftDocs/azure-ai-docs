@@ -34,7 +34,7 @@ If you want to learn about the latest updates to Metrics Advisor client SDKs see
 
 * [.NET SDK change log](https://github.com/Azure/azure-sdk-for-net/blob/master/sdk/metricsadvisor/Azure.AI.MetricsAdvisor/CHANGELOG.md)
 * [Java SDK change log](https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/metricsadvisor/azure-ai-metricsadvisor/CHANGELOG.md)
-* [Python SDK change log](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/metricsadvisor/azure-ai-metricsadvisor/CHANGELOG.md)
+* [Python SDK change log](https://github.com/Azure/azure-sdk-for-python/blob/azure-ai-metricsadvisor_1.0.1/sdk/metricsadvisor/azure-ai-metricsadvisor/CHANGELOG.md)
 * [JavaScript SDK change log](https://github.com/Azure/azure-sdk-for-js/blob/master/sdk/metricsadvisor/ai-metrics-advisor/CHANGELOG.md)
 
 ## June 2021
