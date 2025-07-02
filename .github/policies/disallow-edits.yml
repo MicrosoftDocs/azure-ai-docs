@@ -24,10 +24,9 @@ configuration:
           - payloadType: Pull_Request
           - isAction:
               action: Opened
-          - or:
-            - filesMatchPattern:
-                matchAny: true
-                pattern: articles/ai-foundry/responsible-ai/*
+          - filesMatchPattern:
+              matchAny: true
+              pattern: articles/ai-foundry/responsible-ai/*
           - not:
               activitySenderHasAssociation:
                 association: Member
