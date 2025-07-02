@@ -174,20 +174,21 @@ Here's an example of end of utterance detection in a session object:
 
 ### Phrase list
 
-Use phrase list for lightweight just-in-time customization on audio input. To configure phrase list, you can set the phrase_list in the `session.update` message. 
+Use phrase list for lightweight just-in-time customization on audio input. To configure phrase list, you can set the phrase_list in the `session.update` message.
 
 ```json
-{ 
-    "session": { 
-        "input_audio": { 
-            "phrase_list": ["Neo QLED TV", "TUF Gaming", "AutoQuote Explorer"] 
-        } 
-    } 
-} 
+{
+    "session": {
+        "input_audio_transcription": {
+            "model": "azure-fast-transcription",
+            "phrase_list": ["Neo QLED TV", "TUF Gaming", "AutoQuote Explorer"]
+        }
+    }
+}
 ```
 
 > [!NOTE]
-> Phrase list currently doesn't support gpt-4o-realtime-preview, gpt-4o-mini-realtime-preview, and phi4-mm-realtime. To learn more about phrase list, see [phrase list for speech to text](./improve-accuracy-phrase-list.md).  
+> Phrase list currently doesn't support gpt-4o-realtime-preview, gpt-4o-mini-realtime-preview, and phi4-mm-realtime. To learn more about phrase list, see [phrase list for speech to text](./improve-accuracy-phrase-list.md).
 
 ## Audio output through Azure text to speech
 
@@ -247,36 +248,36 @@ You can use a custom voice for audio output. For information about how to create
 }
 ```
 
-### Custom lexicon 
+### Custom lexicon
 
 Use the `custom_lexicon_url` string property to customize pronunciation for both standard Azure text to speech voices and custom voices. To learn more about how to format the custom lexicon (the same as Speech Synthesis Markup Language (SSML)), see [custom lexicon for text to speech](./speech-synthesis-markup-pronunciation.md#custom-lexicon).
 
 ```json
-{ 
-  "voice": { 
-    "name": "en-US-Ava:DragonHDLatestNeural", 
-    "type": "azure-standard", 
-    "temperature": 0.8, // optional 
-    "custom_lexicon_url": "<custom lexicon url>" 
-  } 
-} 
+{
+  "voice": {
+    "name": "en-US-Ava:DragonHDLatestNeural",
+    "type": "azure-standard",
+    "temperature": 0.8, // optional
+    "custom_lexicon_url": "<custom lexicon url>"
+  }
+}
 ```
 
-### Speaking rate 
+### Speaking rate
 
-Use the `rate` string property to adjust the speaking speed for any standard Azure text to speech voices and custom voices.  
+Use the `rate` string property to adjust the speaking speed for any standard Azure text to speech voices and custom voices.
 
-The rate value should range from 0.5 to 1.5, with higher values indicating faster speeds. 
+The rate value should range from 0.5 to 1.5, with higher values indicating faster speeds.
 
 ```json
-{ 
-  "voice": { 
-    "name": "en-US-Ava:DragonHDLatestNeural", 
-    "type": "azure-standard", 
-    "temperature": 0.8, // optional 
-    "rate": "1.2" 
-  } 
-} 
+{
+  "voice": {
+    "name": "en-US-Ava:DragonHDLatestNeural",
+    "type": "azure-standard",
+    "temperature": 0.8, // optional
+    "rate": "1.2"
+  }
+}
 ```
 
 ### Audio timestamps
