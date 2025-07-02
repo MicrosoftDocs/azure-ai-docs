@@ -69,7 +69,7 @@ The output is a structured report that documents not only the answer, but also t
 
 ## Prerequisites
 - Access to the deep research model, `o3-deep-research`. Fill out the [request form](https://aka.ms/OAI/deepresearchaccess) for access. If you have already have access to the o3 model no request is required.
-- An Azure subscription with the ability to create resources [Set up your environment](../../articles/ai-foundry/agents/environment-setup.md
+- An Azure subscription with the ability to create resources [Set up your environment](../../articles/ai-foundry/agents/environment-setup.md)
 - [Grounding with Bing Search tool](./bing-grounding.md) resource for connecting to your AI Foundry project.
 - [Model deployments](../../../model-inference/how-to/create-model-deployments.md) for the following models
     - `o3-deep-research` version `2025-06-26`. This model is available in `West US` and `Norway East`.
