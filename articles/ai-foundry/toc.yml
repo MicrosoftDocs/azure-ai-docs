@@ -133,7 +133,7 @@ items:
         - name: Audio generation
           href: ./openai/audio-completions-quickstart.md
         - name: Chat
-          href: chatgpt-quickstart.md  
+          href: ./openai/chatgpt-quickstart.md  
           displayName: ChatGPT, chatgpt
         - name: Vision-enabled chats
           href: ./openai/gpt-v-quickstart.md
@@ -679,7 +679,7 @@ items:
         href: openai/concepts/fine-tuning-considerations.md?context=/azure/ai-foundry/context/context
         displayName: finetuning, fine-tuning 
       - name: Deploy for testing
-        href: ./how-to/fine-tune-test.md
+        href: ./openai/how-to/fine-tune-test.md
       - name: Deploy your Azure OpenAI fine-tuned model
         href: openai/how-to/fine-tuning-deploy.md?context=/azure/ai-foundry/context/context
         displayName: finetuning, fine-tuning         
