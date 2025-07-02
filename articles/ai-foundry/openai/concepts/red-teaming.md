@@ -5,7 +5,7 @@ description: Learn about how red teaming and adversarial testing are an essentia
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 03/27/2025
+ms.date: 07/02/2025
 ms.service: azure-ai-openai
 ms.topic: conceptual
 ms.custom:
