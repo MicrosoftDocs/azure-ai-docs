@@ -11,12 +11,18 @@ author: aahill
 ms.author: aahi
 ---
 
-# How to use Deep Research
-Use this article to find step-by-step instructions and code samples for the Deep Research tool.
+# How to use the Deep Research tool
+Use this article to find code samples for the Deep Research tool.
 
 ## Prerequisites
 
-* The requirements in the [Deep Research overview](./deep-research.md)
+* The requirements in the [Deep Research overview](./deep-research.md).
+* The Deep Research tool requires the latest prerelease versions of the `azure-ai-projects` library. You can install it with the following command:
+
+    ```console
+    pip install --pre azure-ai-projects
+    ```
+
 
 > [!NOTE]
 > Limitation: The Deep Research tool is currently recommended only in nonstreaming scenarios. Using it with streaming can work, but it might occasionally time out and is therefore not recommended.
