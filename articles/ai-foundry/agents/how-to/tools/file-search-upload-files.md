@@ -78,7 +78,7 @@ file = project_client.agents.files.upload_and_poll(file_path=file_path, purpose=
 print(f"Uploaded file, file ID: {file.id}")
 
 # Create a vector store with the uploaded file
-vector_store = project_client.agents.vector_stores.create_and_poll(file_ids=[file.id], name="my_vectorstore") #<<
+vector_store = project_client.agents.vector_stores.create_and_poll(file_ids=[file.id], name="my_vectorstore")
 print(f"Created vector store, vector store ID: {vector_store.id}")
 ```
 
