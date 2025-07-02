@@ -37,15 +37,21 @@ To use semantic ranker, add a *semantic configuration* to a search index, and ad
 
 + Queries that invoke semantic ranker include parameters for query type and whether captions and answers are returned. You can add these parameters to your existing query logic. There's no conflict with other parameters.
 
-::: zone pivot="programming-language-csharp"
+::: zone pivot="csharp"
 
 [!INCLUDE [C# quickstart](includes/quickstarts/dotnet-semantic.md)]
 
 ::: zone-end
 
-::: zone pivot="programming-language-python"
+::: zone pivot="python"
 
 [!INCLUDE [Python quickstart](includes/quickstarts/python-semantic.md)]
+
+::: zone-end
+
+::: zone pivot="REST"
+
+[!INCLUDE [REST quickstart](includes/quickstarts/semantic-ranker-rest.md)]
 
 ::: zone-end
 
