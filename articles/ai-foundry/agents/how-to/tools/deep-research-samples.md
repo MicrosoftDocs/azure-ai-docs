@@ -147,7 +147,7 @@ with project_client:
             thread_id=thread.id,
             role="user",
             content=(
-                "Research the current state of studies on orca intelligence and orca language, including what is currently known about orcas' cognitive capabilities and communication systems."
+                "Give me the latest research into quantum computing over the last year."
             ),
         )
         print(f"Created message, ID: {message.id}")
