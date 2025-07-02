@@ -22,10 +22,13 @@ The Deep Research model in the Azure AI Foundry Agent Service enables you to use
 > When using Grounding with Bing Search, only the Bing search query, tool parameters, and your resource key are sent to Bing, and no end user-specific information is included. Your resource key is sent to Bing solely for billing and rate limiting purposes. 
 
 ## Usage support
-The deep research tool is a **code-only release** and available for use via the Agents Python SDK once you complete the setup steps listed in the following sections.
+The deep research tool is a **code-only release** and available for use via the Agents Python SDK once you complete the AI Foundry project setup described in the following sections.
 |Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
 |  | ✔️ |  |  |  | ✔️  | ✔️ |
+
+> [!NOTE]
+> Once the agent is running via code, some elements of the agent and thread runs may show up in the Foundry user interface.
 
 ## Knowledge source support
 The deep research tool is tightly integrated with Grounding with Bing Search and only supports web-based research.
