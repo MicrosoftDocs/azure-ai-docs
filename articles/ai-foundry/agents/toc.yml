@@ -35,6 +35,13 @@ items:
         - name: Tool Overview
           href: how-to/tools/overview.md
           displayName: tools
+        - name: Deep Research (preview)
+          items:
+            - name: Overview
+              href: how-to/tools/deep-research.md
+              displayName: deep research
+            - name: How to use Deep Research
+              href: how-to/tools/deep-research-samples.md
         - name: Grounding with Bing Search
           items:
           - name: Overview
@@ -42,8 +49,7 @@ items:
             displayName: bing, grounding with bing  
           - name: How to use Grounding with Bing Search
             href: how-to/tools/bing-code-samples.md
-      
-        - name: Use Grounding with Bing Custom Search
+         - name: Use Grounding with Bing Custom Search
           items:
           - name: Overview
             href: how-to/tools/bing-custom-search.md
@@ -101,13 +107,6 @@ items:
               displayName: azure functions, functions
             - name: How to use Azure Functions
               href: how-to/tools/azure-functions-samples.md
-        - name: Deep Research (preview)
-          items:
-            - name: Overview
-              href: how-to/tools/deep-research.md
-              displayName: deep research
-            - name: How to use Deep Research
-              href: how-to/tools/deep-research-samples.md
         - name: SharePoint
           items:
             - name: Overview

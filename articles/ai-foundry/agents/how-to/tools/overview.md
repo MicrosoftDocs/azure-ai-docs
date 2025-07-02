@@ -30,6 +30,7 @@ To keep your AI agent informed with richer context from various data sources. Th
 
 To streamline workflows with your AI agent with capabilities to take actions. The Foundry Agent Service provides different action tools for you with different level of flexibility, control, and ease of integration:
 
+- **Deep Research tool**: Web-based integrated deep research pipeline with the `o3-deep-research` model and Grounding with Bing Search.
 - **Azure Logic Apps**: Low-code / no-code solution to add a workflow to your AI Agent
 - **OpenAPI Spec tool**: Bring an existing OpenAPI specification of a service API you want to add to your AI agent, with no or minor changes.
 - **MCP tool**: Bring an existing Model Context Protocol (MCP) endpoint that you want to add to your AI agent.
