@@ -67,7 +67,10 @@ The output is a structured report that documents not only the answer, but also t
 
 ## Setup 
 
-To use the Deep Research model, you need to create a new project and add your Grounding with Bing Search resource as a new connection. In the [AI Foundry portal](https://ai.azure.com/?cid=learnDocs):
+To use the Deep Research tool, you need to create the Ai Foundry type project, add your Grounding with Bing Search resource as a new connection, deploy the deep research model, and deploy the GPT model. Start here: [AI Foundry portal](https://ai.azure.com/?cid=learnDocs):
+
+:::image type="content" source="../../media/tools/deep-research/setup-deep-research-tool.png" alt-text="Steps to set up the deep research tool." lightbox="../../media/tools/deep-research/setup-deep-research-tool.png":::
+
 
 1. :::image type="content" source="../../media/tools/deep-research/project-creation.png" alt-text="A screenshot of  project creation in Azure AI Foundry." lightbox="../../media/tools/deep-research/project-creation.png":::
 
