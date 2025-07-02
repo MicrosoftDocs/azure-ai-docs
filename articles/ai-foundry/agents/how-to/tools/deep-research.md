@@ -68,7 +68,7 @@ The Deep Research model then starts the research task execution. This involves t
 The output is a structured report that documents not only the answer, but also the model's reasoning path, source citations, and any clarifications requested during the session. This makes every answer fully auditable.
 
 ## Prerequisites
-- Access to the deep research model, `o3-deep-research`. Fill out the [request form](https://aka.ms/OAI/deepresearchaccess) for access. If you have already have access to the o3 model no request is required.
+- If you already have access to the `o3` model no request is required for the deep research model. Otherwise, fill out the [request form](https://aka.ms/OAI/deepresearchaccess). 
 - An Azure subscription with the ability to create resources [Set up your environment](../../articles/ai-foundry/agents/environment-setup.md)
 - [Grounding with Bing Search tool](./bing-grounding.md) resource for connecting to your AI Foundry project.
 - [Model deployments](../../../model-inference/how-to/create-model-deployments.md) for the following models
