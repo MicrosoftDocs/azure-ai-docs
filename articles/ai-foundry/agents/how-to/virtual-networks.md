@@ -33,7 +33,7 @@ For customers without an existing virtual network, the Standard Setup with Priva
 :::image type="content" source="../media\private-network-isolation.png" alt-text="A diagram showing virtual network architecture.":::
 ### Known limitations
 
-- Subnet IP address limitation: only class B and C are supported
+- Subnet IP address limitation: both subnets must have IP ranges under `172.16.0.0/12` or `192.168.0.0/16`, i.e. class B or C address ranges reserved for private networking.
 - Azure Blob Storage: Using Azure Blob Storage files with the File Search tool isn't supported.
 
 ## Prerequisites
