@@ -1,4 +1,4 @@
----
+﻿---
 title: Include file
 description: Include file
 author: lgayhardt
@@ -23,4 +23,4 @@ ms.custom: include file
 >   - The storage needs to be added to the account (if it’s added to the project, you'll get service errors).
 >   - User needs to add their project to their storage account through access control in the Azure portal.
 >
-> To learn more about creating evaluations specifically with OpenAI evaluation graders in Azure OpenAI Hub, see [How to use Azure OpenAI in Azure AI Foundry Models evaluation](../../ai-services/openai/how-to/evaluations.md)
+> To learn more about creating evaluations specifically with OpenAI evaluation graders in Azure OpenAI Hub, see [How to use Azure OpenAI in Azure AI Foundry Models evaluation](../openai/how-to/evaluations.md)

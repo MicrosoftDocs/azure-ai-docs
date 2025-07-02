@@ -133,7 +133,7 @@ You're charged at the Voice Live Pro rate for:
 - Audio with Azure AI Speech - Standard 
 - Audio with Azure AI Speech - Custom
 
-You're charged separately for:
+You're charged separately for the training and model hosting of:
 - Custom voice – professional
 - Custom avatar
 
@@ -169,16 +169,19 @@ You're charged at the Voice Live Lite rate for:
 You're charged at the Voice Live Pro rate for:
 - Audio with Azure AI Speech - Custom
 
-You're charged separately for:
+You're charged separately for the training and model hosting of:
 - Custom voice – professional
 
 ### Token usage and cost estimation
 
 Tokens are the units that generative AI models use to process input and generate output. 
 
-You can estimate the cost with Voice Live API based on audio length as follows:
-- Each second of input audio is approximately 10 tokens.
-- Each second of output audio is approximately 20 tokens.
+You can estimate token usage for different model families with the Voice Live API based on audio length. The following token calculations apply to each model family:
+
+| Model family | Input audio (tokens per second) | Output audio (tokens per second) |
+| ----- | ----- | ----- |
+| Azure OpenAI models | ~10 tokens | ~20 tokens |
+| Phi models | ~12.5 tokens | ~20 tokens |
 
 You're also charged for cached audio and text inputs, including the prompt and the context of the conversations. 
 

@@ -1,4 +1,4 @@
----
+﻿---
 title: Quotas and limits for Azure AI Foundry Agent Service
 titleSuffix: Azure AI Foundry
 description: Learn about the quotas and limits for when you use Azure AI Foundry Agent Service.
@@ -30,7 +30,7 @@ The 2,000,000 agent limit refers to the maximum number of distinct Agent resourc
 
 ## Quotas and limits for Azure OpenAI models
 
-See the [Azure OpenAI](../../ai-services/openai/quotas-limits.md) for current quotas and limits for the Azure OpenAI models that you can use with Azure AI Foundry Agent Service. 
+See the [Azure OpenAI](../openai/quotas-limits.md) for current quotas and limits for the Azure OpenAI models that you can use with Azure AI Foundry Agent Service. 
 
 ## Next steps
 

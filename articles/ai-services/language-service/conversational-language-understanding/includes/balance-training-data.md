@@ -1,9 +1,9 @@
----
+﻿---
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/21/2024
+ms.date: 06/30/2025
 ms.author: lajanuar
 ---
 
@@ -16,7 +16,7 @@ To address this scenario, you might need to downsample your training set. Or you
 * Get rid of a certain percentage of the training data randomly.
 * Analyze the dataset and remove overrepresented duplicate entries, which is a more systematic manner.
 
-To add to the training set, in Language Studio, on the **Data labeling** tab, select **Suggest utterances**. Conversational Language Understanding sends a call to [Azure OpenAI](../../../openai/overview.md) to generate similar utterances.
+To add to the training set, in Language Studio, on the **Data labeling** tab, select **Suggest utterances**. Conversational Language Understanding sends a call to [Azure OpenAI](../../../../ai-foundry/openai/overview.md) to generate similar utterances.
 
 :::image type="content" source="../media/suggest-utterances.png" alt-text="Screenshot that shows an utterance suggestion in Language Studio." lightbox="../media/suggest-utterances.png":::
 

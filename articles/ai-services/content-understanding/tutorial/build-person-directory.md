@@ -2,7 +2,7 @@
 title: Build a person directory with Azure AI Content Understanding Face APIs
 titleSuffix: Azure AI services
 description: Learn to build a person directory with Content Understanding Face APIs
-author: laujan
+author: PatrickFarley 
 ms.author: quentinm
 manager: nitinme
 ms.date: 05/19/2025

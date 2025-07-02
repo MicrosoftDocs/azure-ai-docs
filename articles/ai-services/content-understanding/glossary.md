@@ -2,8 +2,8 @@
 title: Content Understanding Glossary
 titleSuffix: Azure AI services
 description: Quick reference, detailed description on Content Understanding Terms and Definition
-author: laujan
-ms.author: lajanuar
+author: PatrickFarley 
+ms.author: pafarley
 manager: nitinme
 ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding

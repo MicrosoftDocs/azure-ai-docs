@@ -2,7 +2,7 @@
 title: Create a custom analyzer with Azure AI Content Understanding using REST APIs
 titleSuffix: Azure AI services
 description: Learn to create a custom analyzer with Azure AI Content Understanding
-author: laujan
+author: PatrickFarley 
 ms.author: paulhsu
 manager: nitinme
 ms.date: 05/19/2025
