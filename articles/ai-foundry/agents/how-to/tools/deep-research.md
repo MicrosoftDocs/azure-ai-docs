@@ -109,7 +109,7 @@ To use the Deep Research tool, you need to create the Azure AI Foundry type proj
    
     :::image type="content" source="../../media/tools/deep-research/deep-research-tool-step-6.png" alt-text="A screenshot of a deep research model deployment." lightbox="../../media/tools/deep-research/deep-research-tool-step-6.png":::
 
-1. Deploy a Azure OpenAI GPT model. For example `gpt-4o`.
+1. Deploy an Azure OpenAI GPT model. For example `gpt-4o`.
 
     :::image type="content" source="../../media/tools/deep-research/deep-research-tool-step-7.png" alt-text="A screenshot of an Azure OpenAI GPT 4o model deployment." lightbox="../../media/tools/deep-research/deep-research-tool-step-7.png":::
 
