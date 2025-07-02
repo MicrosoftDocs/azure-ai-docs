@@ -35,6 +35,8 @@ In this quickstart, you send queries to a chat completion model for a conversati
 
 ::: zone-end
 
+::: zone pivot="dotnet"
+
 [!INCLUDE [.NET quickstart](includes/quickstarts/search-get-started-rag-dotnet.md)]
 
 ::: zone-end
