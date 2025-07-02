@@ -41,7 +41,7 @@ At its core, the Deep Research tool orchestrates a multi-step research pipeline 
 The Deep Research tool uses the Azure OpenAI `o3-deep-research` model for its research tasks. The model was fine-tuned on the Azure OpenAI `o3` reasoning model.
 
 **Key features**:
-- Handles text, images, and PDFs as part of its research tasks.
+- Handles data as part of its research tasks.
 - 200-K context length, 100-K completion tokens, and May 31, 2024 knowledge cutoff.
 - Outputs its thinking as reasoning summary as it analyzes information.
 - Delivers a synthesized report at the end of the research task.
