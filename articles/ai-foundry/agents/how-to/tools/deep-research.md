@@ -12,17 +12,23 @@ ms.topic: how-to
 
 # Deep Research tool (preview)
 
-The Deep Research model in the Azure AI Foundry Agent Service enables you to use an advanced agentic research capability, and integrate it with your data and systems.
+The Deep Research model in the Azure AI Foundry Agent Service enables you to use web-based research capability, and integrate it with your systems.
 
 > [!IMPORTANT]
 > * The Deep Research tool uses **Grounding with Bing Search**. Be sure to read and understand all stipulations of its use, including potential [costs](https://www.microsoft.com/bing/apis/grounding-pricing) that can be incurred, the [terms of use](https://www.microsoft.com/bing/apis/grounding-legal), and [use and display requirements](./bing-grounding.md#how-to-display-grounding-with-bing-search-results). See the [Grounding with Bing Search](./bing-grounding.md) documentation for more information.
 > * The Deep Research tool uses the Azure OpenAI `o3-deep-research` model. This model is not available in Azure OpenAi service.
 
 ## Usage support
-
+The deep research tool is a code-only release and supported via the Agents Python SDK. 
 |Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
 |  | ✔️ |  |  |  | ✔️  | ✔️ |
+
+## Knowledge source support
+The deep research tool is tightly integrated with Grounding with Bing Search and only supports web-based research.
+|Grounding with Bing Search|
+|---------|
+| ✔️ | 
 
 ## How Deep Research works
 
@@ -71,32 +77,9 @@ To use the Deep Research tool, you need to create the Ai Foundry type project, a
 
 :::image type="content" source="../../media/tools/deep-research/setup-deep-research-tool.png" alt-text="Steps to set up the deep research tool." lightbox="../../media/tools/deep-research/setup-deep-research-tool.png":::
 
-
-1. :::image type="content" source="../../media/tools/deep-research/project-creation.png" alt-text="A screenshot of  project creation in Azure AI Foundry." lightbox="../../media/tools/deep-research/project-creation.png":::
-
-1. Navigate to the project you created in the agent setup. Click on **Open in management center**.
-    :::image type="content" source="../../media/tools/ai-search/project-studio.png" alt-text="A screenshot of a project in Azure AI Foundry." lightbox="../../media/tools/ai-search/project-studio.png":::
-
-1. Select **Create connection**.
-
-    :::image type="content" source="../../media/create-connection.png" alt-text="A screenshot showing the connection creation screen in the Azure AI Foundry portal" lightbox="../../media/create-connection.png":::
-
-1. In the screen that appears, select **Grounding with Bing Search**. Then enter your connection details.
-
-    :::image type="content" source="../../media/tools/deep-research/bing-connection.png" alt-text="A screenshot of the screen to select Grounding with Bing Search." lightbox="../../media/tools/deep-research/bing-connection.png":::
-
-    :::image type="content" source="../../media/tools/bing/add-connection.png" alt-text="A screenshot of the screen to add a Grounding with Bing Search connection." lightbox="../../media/tools/bing/add-connection.png":::
-
-1. Deploy the Deep Research model. Select **Models + Endpoints**. Then select **Deploy model**. 
-
-    :::image type="content" source="../../media/deploy-model.png" alt-text="A screenshot of the screen to deploy a model." lightbox="../../media/deploy-model.png":::
-
-1. Search for the `o3-deep-research` model, and confirm the model deployment.
-
-    > [!NOTE]
-    > You also need to deploy a GPT chat model in your project, for example GPT-4o.
-
-    :::image type="content" source="../../media/tools/deep-research/deep-research-model.png" alt-text="A screenshot of the model deployment." lightbox="../../media/tools/deep-research/deep-research-model.png":::
+1. Start the new AI Foundry project creation.
+   :::image type="content" source="../../media/tools/deep-research/dr-tool-step0.png" alt-text="Steps to set up the deep research tool." lightbox="../../media/tools/deep-research/dr-tool-step0.png":::
+   
 
 ## Next steps
 
