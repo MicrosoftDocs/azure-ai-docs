@@ -32,20 +32,22 @@ At its core, the Deep Research tool orchestrates a multi-step research pipeline 
 
 The Deep research tool uses the `o3-deep-research` model for its research tasks. It is a fine-tuned version of the `o3` model designed to perform automated detailed analysis of knowledge sources and create detailed research reports.
 
-Key features:
+**Key features**:
 - Handles text, images and PDFs as part of its research tasks
 - 200K context length, 100K completion tokens, and May 31, 2024 knowledge cutoff
 - Outputs its thinking as reasoning summary as it analyzes information
 - Delivers a synthesized report at the end of the research task
 
-Deployment information:
+**Deployment information**:
 - Deployment type: Global Standard
 - Regions: West US, Norway East
-- Quotas and limits: Enterprise: 30K RPS/ 30M TPM, Default: 3K RPS/ 3M TPM
+- Quotas and limits: Enterprise: 30 K RPS/ 30 M TPM, Default: 3 K RPS/ 3 M TPM
 
-### Clarifying intent and scoping the task
+### GPT model deployment for clarifying intent
 
-When a user or downstream app submits a research query, the agent uses GPT-series models including GPT-4o and GPT-4.1 to clarify the question, gather additional context if needed, and precisely scope the research task. This ensures the agent’s output is both relevant and actionable, and that every search is optimized for your business scenario.
+The deep research tool uses a second model deployment to clarify the question, gather additional context if needed, and precisely scope the research task. This ensures the agent’s output is both relevant and actionable, and that every search is optimized for your business scenario.
+
+This second model can be any of the GPT-series models including GPT-4o and GPT-4.1.
 
 ### Grounding with Bing Search
 
