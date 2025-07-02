@@ -12,7 +12,8 @@ ms.author: aahi
 ---
 
 # How to use the Deep Research tool
-Use this article to find code samples for the Deep Research tool.
+
+Use this article to learn how to use the Deep Research tool with the Azure AI Projects SDK, including code examples and setup instructions.
 
 ## Prerequisites
 

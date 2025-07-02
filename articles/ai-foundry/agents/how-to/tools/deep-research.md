@@ -43,15 +43,15 @@ At its core, the Deep Research tool orchestrates a multi-step research pipeline 
 The Deep research tool uses the `o3-deep-research` model for its research tasks. It is a fine-tuned version of the `o3` model designed to perform automated detailed analysis of knowledge sources and create detailed research reports.
 
 **Key features**:
-- Handles text, images, and PDFs as part of its research tasks
-- 200-K context length, 100K completion tokens, and May 31, 2024 knowledge cutoff
-- Outputs its thinking as reasoning summary as it analyzes information
-- Delivers a synthesized report at the end of the research task
+- Handles text, images, and PDFs as part of its research tasks.
+- 200-K context length, 100-K completion tokens, and May 31, 2024 knowledge cutoff.
+- Outputs its thinking as reasoning summary as it analyzes information.
+- Delivers a synthesized report at the end of the research task.
 
 **Deployment information**:
 - Deployment type: Global Standard
 - Available regions: West US, Norway East
-- Quotas and limits: Enterprise: 30 K RPS/ 30 M TPM, Default: 3 K RPS/ 3 M TPM
+- Quotas and limits: Enterprise: `30K RPS / 30M TPM`, Default: `3 KRPS / 3M TPM`
 
 ### GPT model deployment for clarifying intent
 
@@ -83,35 +83,35 @@ The output is a structured report that documents not only the answer, but also t
 
 To use the Deep Research tool, you need to create the AI Foundry type project, add your Grounding with Bing Search resource as a new connection, deploy the deep research model, and deploy the GPT model. 
 
-:::image type="content" source="../../media/tools/deep-research/setup-deep-research-tool.png" alt-text="Steps to set up the deep research tool." lightbox="../../media/tools/deep-research/setup-deep-research-tool.png":::
+:::image type="content" source="../../media/tools/deep-research/setup-deep-research-tool.png" alt-text="A diagram of the steps to set up the deep research tool." lightbox="../../media/tools/deep-research/setup-deep-research-tool.png":::
 
 1. Navigate to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and create a new project.
    
-   :::image type="content" source="../../media/tools/deep-research/deep-research-tool-step-1.png" alt-text="Steps to set up the deep research tool." lightbox="../../media/tools/deep-research/deep-research-tool-step-1.png":::
+   :::image type="content" source="../../media/tools/deep-research/deep-research-tool-step-1.png" alt-text="A screenshot of the project creation button." lightbox="../../media/tools/deep-research/deep-research-tool-step-1.png":::
 
 1. Select the Azure AI Foundry project type.
    
-    :::image type="content" source="../../media/tools/deep-research/deep-research-tool-step-2.png" alt-text="Steps to set up the deep research tool." lightbox="../../media/tools/deep-research/deep-research-tool-step-2.PNG":::
+    :::image type="content" source="../../media/tools/deep-research/deep-research-tool-step-2.png" alt-text="A screenshot of the Azure AI Foundry project type." lightbox="../../media/tools/deep-research/deep-research-tool-step-2.PNG":::
 
-1. Update the project name and description
+1. Update the project name and description.
    
-    :::image type="content" source="../../media/tools/deep-research/deep-research-tool-step-3.png" alt-text="Steps to set up the deep research tool." lightbox="../../media/tools/deep-research/deep-research-tool-step-3.png":::
+    :::image type="content" source="../../media/tools/deep-research/deep-research-tool-step-3.png" alt-text="A screenshot of an example project name." lightbox="../../media/tools/deep-research/deep-research-tool-step-3.png":::
 
-1. Connect a Grounding with Bing Search account
+1. Connect a Grounding with Bing Search account.
    
-    :::image type="content" source="../../media/tools/deep-research/deep-research-tool-step-4.png" alt-text="Steps to set up the deep research tool." lightbox="../../media/tools/deep-research/deep-research-tool-step-4.png":::
+    :::image type="content" source="../../media/tools/deep-research/deep-research-tool-step-4.png" alt-text="A screenshot showing a connection to a Grounding with Bing search account." lightbox="../../media/tools/deep-research/deep-research-tool-step-4.png":::
 
 1. Navigate to the **Models + Endpoints** tab.
    
-    :::image type="content" source="../../media/tools/deep-research/deep-research-tool-step-5.png" alt-text="Steps to set up the deep research tool." lightbox="../../media/tools/deep-research/deep-research-tool-step-5.png":::
+    :::image type="content" source="../../media/tools/deep-research/deep-research-tool-step-5.png" alt-text="A screenshot of the models and endpoints page." lightbox="../../media/tools/deep-research/deep-research-tool-step-5.png":::
 
 1. Deploy the deep research model.
    
-    :::image type="content" source="../../media/tools/deep-research/deep-research-tool-step-6.png" alt-text="Steps to set up the deep research tool." lightbox="../../media/tools/deep-research/deep-research-tool-step-6.png":::
+    :::image type="content" source="../../media/tools/deep-research/deep-research-tool-step-6.png" alt-text="A screenshot of a deep research model deployment." lightbox="../../media/tools/deep-research/deep-research-tool-step-6.png":::
 
-1. Deploy a GPT model. For example gpt-4o
+1. Deploy a GPT model. For example gpt-4o.
 
-    :::image type="content" source="../../media/tools/deep-research/deep-research-tool-step-7.png" alt-text="Steps to set up the deep research tool." lightbox="../../media/tools/deep-research/deep-research-tool-step-7.png":::
+    :::image type="content" source="../../media/tools/deep-research/deep-research-tool-step-7.png" alt-text="A screenshot of a GPT 4o model deployment." lightbox="../../media/tools/deep-research/deep-research-tool-step-7.png":::
 
 ## Next steps
 
