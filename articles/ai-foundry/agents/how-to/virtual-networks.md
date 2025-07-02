@@ -33,15 +33,18 @@ For customers without an existing virtual network, the Standard Setup with Priva
 :::image type="content" source="../media\private-network-isolation.png" alt-text="A diagram showing virtual network architecture.":::
 ### Known limitations
 
-- Subnet IP address limitation: both subnets must have IP ranges under `172.16.0.0/12` or `192.168.0.0/16`, i.e. class B or C address ranges reserved for private networking.
-- Azure Blob Storage: using Azure Blob Storage files with the File Search tool isn't supported.
-- Colocation: all resources that make up the Agent Service must be deployed in the same Azure region. This includes:
+- **Subnet IP address limitation**: both subnets must have IP ranges under `172.16.0.0/12` or `192.168.0.0/16`, i.e. class B or C address ranges reserved for private networking.
+- **Supported regions**: the list of Azure regions that support the Standard Setup with Private Networking is available in the [sample Bicep template](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/15-private-network-standard-agent-setup/main.bicep#L6).
+- **Colocation**: all resources that make up the Agent Service must be deployed in the same Azure region. This includes:
     - AI Foundry account
     - AI Foundry project
     - AI Search
     - Cosmos DB
     - Storage Account
     - Virtual Network
+- **Azure Blob Storage**: using Azure Blob Storage files with the File Search tool isn't supported.
+
+
 
 ## Prerequisites
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
