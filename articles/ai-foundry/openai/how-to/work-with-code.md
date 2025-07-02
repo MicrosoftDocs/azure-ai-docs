@@ -5,7 +5,7 @@ description: Learn how to use the Codex models on Azure OpenAI to handle a varie
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 03/26/2025
+ms.date: 07/02/2025
 author: mrbullwinkle
 ms.author: mbullwin
 ---
