@@ -24,6 +24,25 @@ Use this article to learn how to use the Deep Research tool with the Azure AI Pr
     pip install --pre azure-ai-projects
     ```
 
+* Your Azure AI Foundry Project endpoint.
+
+    You can find your endpoint in the main project **overview** for your project in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), under **Libraries** > **Azure AI Foundry**.
+
+    :::image type="content" source="../../media/quickstart/portal-endpoint-string.png" alt-text="A screenshot showing the endpoint in the Azure AI Foundry portal." lightbox="../../media/quickstart/portal-endpoint-string.png":::
+
+    Save this endpoint to an environment variable named `PROJECT_ENDPOINT`. 
+
+* The name of your Grounding with Bing Search resource name. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Then selecting **Connected resources**.
+    
+    :::image type="content" source="../../media/tools/deep-research/bing-resource-name.png" alt-text="A screenshot showing the Grounding with Bing Search resource name. " lightbox="../../media/tools/deep-research/bing-resource-name.png":::
+
+    Save this endpoint to an environment variable named `BING_RESOURCE_NAME`. 
+
+* The names of your `o3-deep-research-model` deployment name and Azure OpenAI GPT model deployment name. You can find them in **Models + Endpoints** in the left navigation menu. 
+
+    :::image type="content" source="../../media/tools/deep-research/model-deployments.png" alt-text="A screenshot showing the model deployment screen the AI Foundry portal." lightbox="../../media/tools/deep-research/model-deployments.png:::
+    
+    Save the name of your `o3-deep-research-model` deployment name as an environment variable named `DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME` and Azure OpenAI GPT model deployment name as an environment variable named `MODEL_DEPLOYMENT_NAME`. 
 
 > [!NOTE]
 > Limitation: The Deep Research tool is currently recommended only in nonstreaming scenarios. Using it with streaming can work, but it might occasionally time out and is therefore not recommended.
@@ -92,7 +111,8 @@ project_client = AIProjectClient(
     credential=DefaultAzureCredential(),
 )
 
-conn_id = os.environ["AZURE_BING_CONNECTION_ID"]
+conn_id = project_client.connections.get(name=os.environ["BING_RESOURCE_NAME"]).id
+
 
 # Initialize a Deep Research tool with Bing Connection ID and Deep Research model deployment name
 deep_research_tool = DeepResearchTool(
