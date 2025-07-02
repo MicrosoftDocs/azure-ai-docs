@@ -19,7 +19,7 @@ The Deep Research model in the Azure AI Foundry Agent Service enables you to use
 > * The Deep Research tool uses the Azure OpenAI `o3-deep-research` model. This model is not available in Azure OpenAi service.
 
 ## Usage support
-The deep research tool is a code-only release and is used via the Agents Python SDK. 
+The deep research tool is a **code-only release** and available for use via the Agents Python SDK once you complete the setup steps listed in the following sections.
 |Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
 |  | ✔️ |  |  |  | ✔️  | ✔️ |
