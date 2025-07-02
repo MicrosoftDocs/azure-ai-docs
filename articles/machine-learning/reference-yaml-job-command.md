@@ -9,7 +9,7 @@ ms.topic: reference
 ms.custom: cliv2, devx-track-python, update-code2
 author: Blackmist
 ms.author: larryfr
-ms.date: 08/29/2024
+ms.date: 04/14/2025
 ms.reviewer: balapv
 ---
 
@@ -36,7 +36,7 @@ The source JSON schema can be found at https://azuremlschemas.azureedge.net/late
 | `tags` | object | Dictionary of tags for the job. | | |
 | `command` | string | The command to execute. | | |
 | `code` | string | Local path to the source code directory to be uploaded and used for the job. | | |
-| `environment` | string or object | The environment to use for the job. Can be either a reference to an existing versioned environment in the workspace or an inline environment specification. <br><br> To reference an existing environment, use the `azureml:<environment_name>:<environment_version>` syntax or `azureml:<environment_name>@latest` (to reference the latest version of an environment). <br><br> To define an environment inline, follow the [Environment schema](reference-yaml-environment.md#yaml-syntax). Exclude the `name` and `version` properties as they aren't supported for inline environments. | | |
+| `environment` | string or object | The environment to use for the job. Can be either a reference to an existing versioned environment in the workspace or an inline environment specification. <br><br> To reference an existing environment, use the `azureml:<environment_name>:<environment_version>` syntax or `azureml:<environment_name>@latest` (to reference the latest version of an environment). <br><br> To define an environment inline, follow the [Environment schema](reference-yaml-environment.md#yaml-syntax). Exclude the `name` and `version` properties as they aren't supported for inline environments.<br><br> When you work with curated environments in the CLI or SDK, curated environment names begin with `AzureML-`. When you use the Azure Machine Learning studio, the curated environment names don't have this prefix. The reason for this difference is that the studio UI displays curated and custom environments on separate tabs, so the prefix isn't necessary. The CLI and SDK don't have this separation, so the prefix is used to differentiate between curated and custom environments. | | |
 | `environment_variables` | object | Dictionary of environment variable key-value pairs to set on the process where the command is executed. | | |
 | `distribution` | object | The distribution configuration for distributed training scenarios. One of [MpiConfiguration](#mpiconfiguration), [PyTorchConfiguration](#pytorchconfiguration), or [TensorFlowConfiguration](#tensorflowconfiguration). | | |
 | `compute` | string | Name of the compute target to execute the job on. Can be either a reference to an existing compute in the workspace (using the `azureml:<compute_name>` syntax) or `local` to designate local execution. **Note:** jobs in pipeline didn't support `local` as `compute` | | `local` |

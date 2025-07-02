@@ -35,7 +35,7 @@ However, if you work outside Azure Machine Learning, you need to configure MLflo
   ```
 
   > [!TIP]
-  > Instead of `mlflow`, consider using [`mlflow-skinny`](https://github.com/mlflow/mlflow/blob/master/README_SKINNY.md). This package is a lightweight MLflow package without SQL storage, server, UI, or data science dependencies. It's recommended for users who primarily need MLflow tracking and logging capabilities but don't want to import the full suite of features, including deployments.
+  > Instead of `mlflow`, consider using [`mlflow-skinny`](https://github.com/mlflow/mlflow/blob/master/skinny/README_SKINNY.md). This package is a lightweight MLflow package without SQL storage, server, UI, or data science dependencies. It's recommended for users who primarily need MLflow tracking and logging capabilities but don't want to import the full suite of features, including deployments.
 
 - An Azure Machine Learning workspace. To create a workspace, see [Create resources you need to get started](quickstart-create-resources.md).
 

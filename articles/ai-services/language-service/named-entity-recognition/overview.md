@@ -2,13 +2,12 @@
 title: What is the Named Entity Recognition (NER) feature in Azure AI Language?
 titleSuffix: Azure AI services
 description: An overview of the Named Entity Recognition feature in Azure AI services, which helps you extract categories of entities in text.
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
 ms.date: 02/15/2025
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-ner
 ---
 
@@ -33,7 +32,7 @@ Named Entity Recognition (NER) is one of the features offered by [Azure AI Langu
 
 ## Responsible AI 
 
-An AI system includes not only the technology, but also the people who use it, the people who are affected by it, and the environment in which it's deployed. Read the [transparency note for NER](/legal/cognitive-services/language-service/transparency-note-named-entity-recognition?context=/azure/ai-services/language-service/context/context) to learn about responsible AI use and deployment in your systems. You can also see the following articles for more information:
+An AI system includes not only the technology, but also the people who use it, the people who are affected by it, and the environment in which it's deployed. Read the [transparency note for NER](/azure/ai-foundry/responsible-ai/language-service/transparency-note-named-entity-recognition) to learn about responsible AI use and deployment in your systems. You can also see the following articles for more information:
 
 [!INCLUDE [Responsible AI links](../includes/overview-responsible-ai-links.md)]
 
@@ -46,5 +45,5 @@ An AI system includes not only the technology, but also the people who use it, t
 ## Next steps
 
 There are two ways to get started using the Named Entity Recognition (NER) feature:
-* [Azure AI Foundry](../../../ai-foundry/what-is-ai-foundry.md) is a web-based platform that lets you use several Language service features without needing to write code.
+* [Azure AI Foundry](../../../ai-foundry/what-is-azure-ai-foundry.md) is a web-based platform that lets you use several Language service features without needing to write code.
 * The [quickstart article](quickstart.md) for instructions on making requests to the service using the REST API and client library SDK.  

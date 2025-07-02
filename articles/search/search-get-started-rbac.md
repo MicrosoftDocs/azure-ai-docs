@@ -67,7 +67,7 @@ You need this step if you have more than one subscription or tenant.
 
    1. Navigate to your search service.
 
-   1. Select **Access Control (IAM)** in the left navigation pane.
+   1. Select **Access Control (IAM)** in the left pane.
 
    1. Select **+ Add** > **Add role assignment**.
 

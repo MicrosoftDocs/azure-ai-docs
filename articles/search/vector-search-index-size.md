@@ -10,7 +10,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: conceptual
-ms.date: 01/09/2025
+ms.date: 03/20/2025
 ---
 
 # Vector index size and staying under limits
@@ -24,7 +24,7 @@ For each vector field, Azure AI Search constructs an internal vector index using
 > [Vector optimization techniques](vector-search-how-to-configure-compression-storage.md) are now generally available. Use capabilities like narrow data types, scalar and binary quantization, and elimination of redundant storage to reduce your vector quota and storage quota consumption.
 
 > [!NOTE]
-> Not all algorithms consumes vector index size quota. Vector quotas are established based on memory requirements of approximate nearest neighbor search. Vector fields created with the Hierarchical Navigable Small World (HNSW) algorithm need to reside in memory during query execution because of the random-access nature of graph-based traversals. Vector fields using exhaustive KNN algorithm are loaded into memory dynamically in pages during query execution, and as a result do not consume vector quota.
+> Not all algorithms consume vector index size quota. Vector quotas are established based on memory requirements of approximate nearest neighbor search. Vector fields created with the Hierarchical Navigable Small World (HNSW) algorithm need to reside in memory during query execution because of the random-access nature of graph-based traversals. Vector fields using exhaustive KNN algorithm are loaded into memory dynamically in pages during query execution, and as a result do not consume vector quota.
 
 ## Key points about quota and vector index size
 
@@ -38,29 +38,11 @@ For each vector field, Azure AI Search constructs an internal vector index using
 
 If you aren't sure what your search service limits are, here are two ways to get that information:
 
-+ In the Azure portal, in the search service **Overview** page, both the **Properties** tab and **Usage** tab show partition size and storage, and also vector quota and vector index size.
++ In the Azure portal, on the search service **Overview** page, both the **Properties** tab and **Usage** tab show partition size and storage, and also vector quota and vector index size.
 
-+ In the Azure portal, in the **Scale** page, you can review the number and size of partitions.
++ In the Azure portal, on the **Scale** page, you can review the number and size of partitions.
 
-## How to check service creation date
-
-Newer services created after April 3, 2024 offer five to ten times more vector storage as older ones at the same tier billing rate. If your service is older, consider creating a new service and migrating your content.
-
-1. In Azure portal, open the resource group that contains your search service.
-
-1. On the leftmost pane, under **Settings**, select **Deployments**.
-
-1. Locate your search service deployment. If there are many deployments, use the filter to look for "search".
-
-1. Select the deployment. If you have more than one, click through to see if it resolves to your search service.
-
-    :::image type="content" source="media/vector-search-index-size/resource-group-deployments.png" lightbox="media/vector-search-index-size/resource-group-deployments.png" alt-text="Screenshot of a filtered deployments list.":::
-
-1. Expand deployment details. You should see *Created* and the creation date.
-
-   :::image type="content" source="media/vector-search-index-size/deployment-details.png" lightbox="media/vector-search-index-size/deployment-details.png" alt-text="Screenshot of the deployment details showing creation date.":::
-
-1. Now that you know the age of your search service, review the vector quota limits based on service creation: [Vector index size limits](search-limits-quotas-capacity.md#vector-index-size-limits).
+Your vector limit varies depending on your [service creation date](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date).
 
 ## How to get vector index size
 

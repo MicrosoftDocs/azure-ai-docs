@@ -1,6 +1,6 @@
 ---
-title: Create an Azure AI services resource with commitment tier pricing
-description: Learn how to sign up for commitment tier pricing, which is different than pay-as-you-go pricing.
+title: Use Azure AI services with commitment tier pricing
+description: Learn how to sign up for commitment tier pricing, which is different than Standard pricing.
 author: aahill
 ms.author: aahi
 ms.custom:
@@ -9,12 +9,12 @@ ms.custom:
   - ignite-2023
 ms.service: azure-ai-services
 ms.topic: conceptual
-ms.date: 01/31/2025
+ms.date: 5/19/2025
 ---
 
 # Purchase commitment tier pricing
 
-Azure AI offers commitment tier pricing, allowing discounted rates compared to the pay-as-you-go pricing model. With commitment tier pricing, you can commit to using the following Azure AI services features for a fixed fee, enabling you to have a predictable total cost based on the needs of your workload:
+Azure AI offers commitment tier pricing, allowing discounted rates compared to the Standard pricing model. With commitment tier pricing, you can commit to using the following Azure AI services features for a fixed fee, enabling you to have a predictable total cost based on the needs of your workload:
 * Speech to text (Standard)
 * Text to speech (Neural)
 * Text Translation (Standard)
@@ -29,18 +29,21 @@ Azure AI offers commitment tier pricing, allowing discounted rates compared to t
 
 For more information, see [Azure AI services pricing](https://azure.microsoft.com/pricing/details/cognitive-services/).
 
+> [!NOTE]
+> You cannot use commitment tier pricing with an Azure AI Services or an Azure AI Foundry multi-service resource. You must use resources dedicated to single services, such as a Speech or Translator resource.
+
 ## Create a new resource
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and select **Create a new resource** for one of the applicable Azure AI services or Azure AI services listed.
 
-2. Enter the applicable information to create your resource. Be sure to select the standard pricing tier.
+2. Enter the applicable information to create your AI Foundry resource. Be sure to select the standard pricing tier.
 
     > [!NOTE]
     > If you intend to purchase a commitment tier for disconnected container usage, you will need to request separate access and select the **Commitment tier disconnected containers** pricing tier. For more information, see [disconnected containers](./containers/disconnected-containers.md).
 
     :::image type="content" source="media/commitment-tier/create-resource.png" alt-text="A screenshot showing resource creation on the Azure portal." lightbox="media/commitment-tier/create-resource.png":::
 
-3. Once your resource is created, you can change your pricing from pay-as-you-go, to a commitment plan.
+3. Once your resource is created, you can change your pricing from Standard pricing, to a commitment plan.
 
 ## Purchase a commitment plan by updating your Azure resource
 
@@ -72,11 +75,11 @@ If you use the resource above the quota provided, you're charged for the additio
 
 ## Purchase a different commitment plan
 
-The commitment plans have a calendar month commitment period. You can purchase a commitment plan at any time from the default pay-as-you-go pricing model. When you purchase a plan, you're charged a pro-rated price for the remaining month. During the commitment period, you can't change the commitment plan for the current month. However, you can choose a different commitment plan for the next calendar month. The billing for the next month would happen on the first day of the next month.
+The commitment plans have a calendar month commitment period. You can purchase a commitment plan at any time from the default Standard pricing model. When you purchase a plan, you're charged a pro-rated price for the remaining month. During the commitment period, you can't change the commitment plan for the current month. However, you can choose a different commitment plan for the next calendar month. The billing for the next month would happen on the first day of the next month.
 
 ## End a commitment plan
 
-If you decide that you don't want to continue purchasing a commitment plan, you can set your resource's autorenewal to **Do not auto-renew**. Your commitment plan expires on the displayed commitment end date. After this date, you won't be charged for the commitment plan. You're able to continue using the Azure resource to make API calls, charged at pay-as-you-go pricing. You have until midnight (UTC) on the last day of each month to end a commitment plan, and not be charged for the following month.
+If you decide that you don't want to continue purchasing a commitment plan, you can set your resource's autorenewal to **Do not auto-renew**. Your commitment plan expires on the displayed commitment end date. After this date, you won't be charged for the commitment plan. You're able to continue using the Azure resource to make API calls, charged at Standard pricing. You have until midnight (UTC) on the last day of each month to end a commitment plan, and not be charged for the following month.
 
 ## Purchase a commitment tier pricing plan for disconnected containers
 

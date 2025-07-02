@@ -8,6 +8,8 @@ ms.date: 11/09/2023
 
 # ImmuneCODE database
 
+[!INCLUDE [Open Dataset usage notice](./includes/open-datasets-change-notice.md)]
+
 The ImmuneCODE™ database, which includes hundreds of millions of T-cell Receptor (TCR) sequences from over 1,400 subjects exposed to or infected with the SARS-CoV-2 virus, and over 160,000 high-confidence SARS-CoV-2-specific TCRs. 
 The database is accessible at no cost. Its data can be analyzed to aid global initiatives aimed at comprehending the immune response to the SARS-CoV-2 virus and crafting novel interventions. To learn more about the dataset refer the associated [publication.](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7418738/)
 

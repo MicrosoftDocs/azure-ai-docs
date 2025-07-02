@@ -28,7 +28,7 @@ Supported data sources for OCR and image analysis are blobs in Azure Blob Storag
 This skill is implemented using the [AI Image Analysis API](/azure/ai-services/computer-vision/overview-image-analysis) version 3.2. If your solution requires calling a newer version of that service API (such as version 4.0), consider implementing through [Web API custom skill](cognitive-search-custom-skill-web-api.md).
 
 > [!NOTE]
-> This skill is bound to Azure AI services and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI services pay-as-you go price](https://azure.microsoft.com/pricing/details/cognitive-services/).
+> This skill is bound to Azure AI services and requires [a billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI services Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
 >
 > In addition, image extraction is [billable by Azure AI Search](https://azure.microsoft.com/pricing/details/search/).
 >

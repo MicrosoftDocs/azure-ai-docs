@@ -4,10 +4,10 @@ description: Learn about backing up your custom question answering projects and 
 ms.service: azure-ai-language
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
-author: jboback
-ms.author: jboback
+author: laujan
+ms.author: lajanuar
 recommendations: false
-ms.date: 11/21/2024
+ms.date: 06/21/2025
 ---
 # Export-import-refresh in custom question answering
 

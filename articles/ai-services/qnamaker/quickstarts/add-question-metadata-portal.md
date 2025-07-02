@@ -3,11 +3,11 @@ title: "Add questions and answer in QnA Maker portal"
 description: This article shows how to add question and answer pairs with metadata so your users can find the right answer to their question.
 ms.service: azure-ai-language
 manager: nitinme
-ms.author: jboback
-author: jboback
+ms.author: lajanuar
+author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ms.custom: mode-ui
 ---
 

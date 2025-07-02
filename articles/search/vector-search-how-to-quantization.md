@@ -3,18 +3,18 @@ title: Compress vectors using quantization
 titleSuffix: Azure AI Search
 description: Configure built-in scalar or quantization for compressing vectors on disk and in memory.
 
-author: heidisteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 03/31/2025
 ---
 
 # Compress vectors using scalar or binary quantization
 
-Azure AI Search supports scalar and binary quantization for reducing the size of vectors in a search index. Quantization is recommended for reducing vector size because it lowers both memory and disk storage consumption for float16 and float32 embeddings. To offset the effects of lossy compression, you can add oversampling and rescoring over uncompressed vectors.
+Azure AI Search supports scalar and binary quantization for reducing the size of vectors in a search index. Quantization is recommended because it reduces both memory and disk storage for float16 and float32 embeddings. To offset the effects of lossy compression, you can add oversampling and rescoring.
 
 To use built-in quantization, follow these steps:
 
@@ -26,15 +26,18 @@ To use built-in quantization, follow these steps:
 > - Create a new vector profile that uses the named configuration
 > - Create a new vector field having the new vector profile
 > - Load the index with float32 or float16 data that's quantized during indexing with the configuration you defined
-> - Optionally, [query quantized data](#query-a-quantized-vector-field-using-oversampling) using the oversampling parameter if you want to override the default
+> - Optionally, [query quantized data](#query-a-quantized-vector-field-using-oversampling) using the oversampling parameter. If the vector field doesn't specify oversampling in its definition, you can add it at query time.
+
+> [!TIP]
+> [Azure AI Search: Cut Vector Costs Up To 92.5% with New Compression Techniques](https://aka.ms/AISearch-cut-cost) compares compression strategies and explains savings in storage and costs. It also includes metrics for measuring relevance based on Normalized discounted cumulative gain (NDCG), demonstrating that you can compress your data without sacrificing search quality.
 
 ## Prerequisites
 
-- [Vector fields in a search index](vector-search-how-to-create-index.md) with a `vectorSearch` configuration, using the Hierarchical Navigable Small Worlds (HNSW) or exhaustive K-nearest neighbor (eKNN) algorithms and a new vector profile.
+- [Vector fields in a search index](vector-search-how-to-create-index.md), with a `vectorSearch` configuration specifying either the Hierarchical Navigable Small Worlds (HNSW) or exhaustive K-nearest neighbor (eKNN) algorithm, and a new vector profile.
 
 ## Supported quantization techniques
 
-Quantization applies to vector fields receiving float-type vectors. In the examples in this article, the field's data type is `Collection(Edm.Single)` for incoming float32 embeddings, but float16 is also supported. When the vectors are received on a field with compression configured, the engine automatically performs quantization to reduce the footprint of the vector data in memory and on disk.
+Quantization applies to vector fields receiving float-type vectors. In the examples in this article, the field's data type is `Collection(Edm.Single)` for incoming float32 embeddings, but float16 is also supported. When the vectors are received on a field with compression configured, the engine performs quantization to reduce the footprint of the vector data in memory and on disk.
 
 Two types of quantization are supported:
 
@@ -43,15 +46,38 @@ Two types of quantization are supported:
 - Binary quantization converts floats into binary bits, which takes up 1 bit. This results in up to 28 times reduced vector index size.
 
 >[!Note]
-> While free services support quantization, they may not demonstrate the full storage savings due to the limited storage quota.
+> While free services support quantization, they don't demonstrate the full storage savings due to the limited storage quota.
+
+## Recommended rescoring techniques
+
+Rescoring is a technique used to offset information loss due to vector compression. It uses oversampling to pick up extra vectors, and supplemental information to rescore initial results found by the query. Supplemental information is either uncompressed original full-precision vectors - or for binary quantization only - you have the option of rescoring using the binary quantized document candidates against the query vector. Rescoring options are specified in the index, but you can invoke rescoring at query time if the index supports it.
+
+API versions determine which rescoring behavior is operational for your code. The most recent preview API supports a new rescoring approach for binary quantization. Indexes created with `2025-03-01-preview` can use the new rescoring behaviors.
+
+| API version | Quantization type | Rescoring properties |
+|-------------|-------------------|------------------|
+| [2024-07-01](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-07-01&preserve-view=true) | Scalar and binary quantization, on vector indexes built using Hierarchical Navigable Small World (HNSW) graphs for similarity search | `rerankWithOriginalVectors` |
+| [2024-11-01-preview](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-11-01-preview&preserve-view=true) | Scalar and binary quantization on HNSW graphs | `rescoringOptions.enableRescoring` and `rescoreStorageMethod.preserveOriginals` |
+| [2025-03-01-preview](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-03-01-preview&preserve-view=true) | Binary quantization on HNSW graphs | Previous parameter combinations are still supported but binary quantization can now be rescored if original embeddings are deleted: `rescoringOptions.enableRescoring` and `rescoringOptions.rescoreStorageMethod=discardOriginals` |
+
+Only HNSW graphs allow rescoring. Exhaustive K Nearest Neighbors (eKNN) doesn't support rescoring.
+
+<!-- - In version 2024-11-01-preview, set `rescoringOptions.enableRescoring` and `rescoreStorageMethod.preserveOriginals`
+- In version 2025-03-01-preview, set `rescoringOptions.enableRescoring` and `rescoringOptions.rescoreStorageMethod=preserveOriginals` for scalar or binary quantization, or `rescoringOptions.enableRescoring` and `rescoringOptions.rescoreStorageMethod=discardOriginals` for binary quantization only -->
+
+The generalized process for rescoring is:
+
+1. The vector query executes over compressed vector fields.
+1. The vector query returns the top k oversampled candidates.
+1. Oversampled k candidates are rescored using either the uncompressed original vectors, or the dot product of binary quantization. 1. After rescoring, results are adjusted so that more relevant matches appear first.
 
 ## Add "compressions" to a search index
 
-The following example shows a partial index definition with a fields collection that includes a vector field, and a `vectorSearch.compressions` section.
+This section explains how to specify a `vectorsSearch.compressions` section in the index. The following example shows a partial index definition with a fields collection that includes a vector field.
 
-It includes both `scalarQuantization` or `binaryQuantization`. You can specify as many compression configurations as you need, and then assign the ones you want to a vector profile.
+The compression example includes both `scalarQuantization` or `binaryQuantization`. You can specify as many compression configurations as you need, and then assign the ones you want to a vector profile.
 
-Syntax for `vectorSearch.Compressions` varies between stable and preview REST APIs, with the preview adding new options for storage optimization, plus changes to existing syntax. Backwards compatibility is preserved through internal API mappings, but you should adopt the new syntax in code that targets 2024-11-01-preview and future versions.
+Syntax for `vectorSearch.Compressions` varies between stable and preview REST APIs, with the preview adding more options for storage optimization, plus changes to existing syntax. Backwards compatibility is preserved through internal API mappings, but we recommend adopting the newer properties in code that targets 2024-11-01-preview and future versions.
 
 ### [**2024-07-01**](#tab/2024-07-01)
 
@@ -68,26 +94,39 @@ POST https://[servicename].search.windows.net/indexes?api-version=2024-07-01
     { "name": "vectorContent", "type": "Collection(Edm.Single)", "retrievable": false, "searchable": true, "dimensions": 1536,"vectorSearchProfile": "vector-profile-1"},
   ],
   "vectorSearch": {
-        "profiles": [ ],
-        "algorithms": [ ],
-        "compressions": [
-          {
-            "name": "use-scalar",
-            "kind": "scalarQuantization",
-            "scalarQuantizationParameters": {
-              "quantizedDataType": "int8"
-            },
-            "rerankWithOriginalVectors": true,
-            "defaultOversampling": 10
-          },
-          {
-            "name": "use-binary",
-            "kind": "binaryQuantization",
-            "rerankWithOriginalVectors": true,
-            "defaultOversampling": 10
-          }
-        ]
-    }
+    "profiles": [ 
+      {
+          "name": "vector-profile-1",
+          "algorithm": "use-hnsw",
+          "compression": "use-scalar"
+      }
+    ],
+    "algorithms": [ 
+      {
+        "name": "use-hnsw",
+        "kind": "hnsw",
+        "hnswParameters": { },
+        "exhaustiveKnnParameters": null
+      }
+    ],
+    "compressions": [
+      {
+        "name": "use-scalar",
+        "kind": "scalarQuantization",
+        "scalarQuantizationParameters": {
+          "quantizedDataType": "int8"
+        },
+        "rerankWithOriginalVectors": true,
+        "defaultOversampling": 10
+      },
+      {
+        "name": "use-binary",
+        "kind": "binaryQuantization",
+        "rerankWithOriginalVectors": true,
+        "defaultOversampling": 10
+      }
+    ]
+  }
 }
 ```
 
@@ -120,8 +159,21 @@ POST https://[servicename].search.windows.net/indexes?api-version=2024-11-01-pre
     { "name": "vectorContent", "type": "Collection(Edm.Single)", "retrievable": false, "searchable": true, "dimensions": 1536,"vectorSearchProfile": "vector-profile-1"},
   ],
   "vectorSearch": {
-        "profiles": [ ],
-        "algorithms": [ ],
+        "profiles": [ 
+          {
+              "name": "vector-profile-1",
+              "algorithm": "use-hnsw",
+              "compression": "use-scalar"
+          }
+        ],
+        "algorithms": [ 
+          {
+            "name": "use-hnsw",
+            "kind": "hnsw",
+            "hnswParameters": { },
+            "exhaustiveKnnParameters": null
+          }
+        ],
         "compressions": [
           {
             "name": "use-scalar",
@@ -165,11 +217,90 @@ POST https://[servicename].search.windows.net/indexes?api-version=2024-11-01-pre
 
 - `truncationDimension` is a preview feature that taps inherent capabilities of the text-embedding-3 models to "encode information at different granularities and allows a single embedding to adapt to the computational constraints of downstream tasks" (see [Matryoshka Representation Learning](https://arxiv.org/abs/2205.13147)). You can use truncated dimensions with or without rescoring options. For more information about how this feature is implemented in Azure AI Search, see [Truncate dimensions using MRL compression](vector-search-how-to-truncate-dimensions.md).
 
+### [**2025-03-01-preview**](#tab/2025-03-01-preview)
+
+Use the [Create Index (preview)](/rest/api/searchservice/indexes/create?view=rest-searchservice-2025-031-01-preview&preserve-view=true) or [Create or Update Index (preview)](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-03-01-preview&preserve-view=true) REST API to configure compression settings.
+
+Changes in this version include new guidance for *binary quantization*. If you set `enableRescoring` to true, you can set `rescoreStorageMethod` to `discardOriginals` to further reduce storage, without reducing quality. 
+
+Azure AI Search supports a lossy rescoring option on the binary quantized document vectors, which helps close the quality gap between no rescoring and full-precision rescoring when using `binaryQuantization`.
+
+For scalar quantization, there are no rescoring changes in this preview.
+
+```http
+POST https://[servicename].search.windows.net/indexes?api-version=2025-03-01-preview
+
+{
+  "name": "my-index",
+  "fields": [
+    { "name": "Id", "type": "Edm.String", "key": true, "retrievable": true, "searchable": true, "filterable": true },
+    { "name": "content", "type": "Edm.String", "retrievable": true, "searchable": true },
+    { "name": "vectorContent", "type": "Collection(Edm.Single)", "retrievable": false, "searchable": true, "dimensions": 1536,"vectorSearchProfile": "vector-profile-1"},
+  ],
+  "vectorSearch": {
+        "profiles": [ 
+          {
+              "name": "vector-profile-1",
+              "algorithm": "use-hnsw",
+              "compression": "use-binary"
+          }
+        ],
+        "algorithms": [ 
+          {
+            "name": "use-hnsw",
+            "kind": "hnsw",
+            "hnswParameters": { },
+            "exhaustiveKnnParameters": null
+          }
+        ],
+        "compressions": [
+          {
+            "name": "use-scalar",
+            "kind": "scalarQuantization",
+            "rescoringOptions": {
+                "enableRescoring": true,
+                "defaultOversampling": 10,
+                "rescoreStorageMethod": "preserveOriginals"
+            },
+            "scalarQuantizationParameters": {
+              "quantizedDataType": "int8"
+            },
+            "truncationDimension": 1024
+          },
+          {
+            "name": "use-binary",
+            "kind": "binaryQuantization",
+            "rescoringOptions": {
+                "enableRescoring": true,
+                "defaultOversampling": 10,
+                "rescoreStorageMethod": "discardOriginals"
+            },
+            "truncationDimension": 1024
+          }
+        ]
+    }
+}
+```
+
+**Key points**:
+
+- `kind` must be set to `scalarQuantization` or `binaryQuantization`.
+
+- `rescoringOptions` are a collection of properties used to offset lossy compression by rescoring query results using the original full-precision vectors that exist prior to quantization.
+
+- `enableRescoring` rescores the initial results obtained by query execution over compressed data. For scalar quantization, rescoring uses uncompressed vectors to produce more relevant results and takes a dependency on `preserveOriginals`. For binary quantization, rescoring is the same as scalar quantization if you preserve originals, but you can also discard originals and still get rescoring. In this scenario, rescoring is calculated by the dot product of the full precision query and binary quantized data in the index.  
+
+- `"rescoreStorageMethod": "discardOriginals"` removes original vectors. These aren't needed for binary quantization.
+
+- `defaultOversampling` considers a broader set of potential results to offset the reduction in information from quantization. The formula for potential results consists of the `k` in the query, with an oversampling multiplier. For example, if the query specifies a `k` of 5, and oversampling is 20, then the query effectively requests 100 documents for use in reranking, using the original uncompressed vector for that purpose. Only the top `k` reranked results are returned. This property is optional. Default is 4.
+
+- `truncationDimension` is a preview feature that taps inherent capabilities of the text-embedding-3 models to "encode information at different granularities and allows a single embedding to adapt to the computational constraints of downstream tasks" (see [Matryoshka Representation Learning](https://arxiv.org/abs/2205.13147)). You can use truncated dimensions with or without rescoring options. For more information about how this feature is implemented in Azure AI Search, see [Truncate dimensions using MRL compression](vector-search-how-to-truncate-dimensions.md).
+
 ---
 
 ## Add the vector search algorithm
 
-You can use HNSW algorithm or exhaustive KNN in the 2024-11-01-preview REST API. For the stable version, use HNSW only.
+You can use HNSW algorithm or exhaustive KNN in the 2024-11-01-preview REST API or later. For the stable version, use HNSW only. If you want rescoring, you must choose HNSW.
 
    ```json
    "vectorSearch": {
@@ -240,15 +371,15 @@ Scalar quantization reduces the resolution of each number within each vector emb
 
 Each component of the vector is mapped to the closest representative value within this set of quantization levels in a process akin to rounding a real number to the nearest integer. In the quantized 8-bit vector, the identifier number stands in place of the original value. After quantization, each vector is represented by an array of identifiers for the bins to which its components belong. These quantized vectors require much fewer bits to store compared to the original vector, thus reducing storage requirements and memory footprint.
 
-## How  binary quantization works in Azure AI Search
+## How binary quantization works in Azure AI Search
 
 Binary quantization compresses high-dimensional vectors by representing each component as a single bit, either 0 or 1. This method drastically reduces the memory footprint and accelerates vector comparison operations, which are crucial for search and retrieval tasks. Benchmark tests show up to 96% reduction in vector index size.
 
-It's particularly effective for embeddings with dimensions greater than 1024. For smaller dimensions, we recommend testing the quality of binary quantization, or trying scalar instead. Additionally, we’ve found BQ performs very well when embeddings are centered around zero. Most popular embedding models such as OpenAI, Cohere, and Mistral are centered around zero.
+It's particularly effective for embeddings with dimensions greater than 1024. For smaller dimensions, we recommend testing the quality of binary quantization, or trying scalar instead. Additionally, we’ve found binary quantization performs very well when embeddings are centered around zero. Most popular embedding models such as OpenAI, Cohere, and Mistral are centered around zero.
 
 ## Query a quantized vector field using oversampling
 
-Query syntax for a compressed or quantized vector field is the same as for noncompressed vector fields, unless you want to override parameters associated with oversampling or rescoring with original vectors.
+Query syntax for a compressed or quantized vector field is the same as for noncompressed vector fields, unless you want to override parameters associated with oversampling and rescoring. You can add an o`versampling` parameter to invoke oversampling and rescoring at query time.
 
 ### [**2024-07-01**](#tab/query-2024-07-01)
 
@@ -302,22 +433,34 @@ POST https://[service-name].search.windows.net/indexes/demo-index/docs/search?ap
 
 **Key points**:
 
-- Applies to vector fields that undergo vector compression, per the vector profile assignment.
+- Oversampling applies to vector fields that undergo vector compression, per the vector profile assignment.
 
-- Overrides the `defaultOversampling` value or introduces oversampling at query time, even if the index's compression configuration didn't specify oversampling or reranking options.
+- Oversampling in the query overrides the `defaultOversampling` value in the index, or invokes oversampling and rescoring at query time, even if the index's compression configuration didn't specify oversampling or reranking options.
+
+### [**2025-03-01-preview**](#tab/query-2025-03-01-preview)
+
+The latest preview API is identical to the previous preview API in terms of `vectorQueries` specification. As with the previous version, we recommend oversampling as mitigation for lossy compression.
+
+```http
+POST https://[service-name].search.windows.net/indexes/demo-index/docs/search?api-version=2025-03-01-preview
+
+{    
+    "vectorQueries": [
+        {    
+            "kind": "vector",    
+            "vector": [8, 2, 3, 4, 3, 5, 2, 1],    
+            "fields": "myvector",
+            "oversampling": 12.0,
+            "k": 5   
+        }
+  ]    
+}
+```
+
+**Key points**:
+
+- Oversampling applies to vector fields that undergo vector compression, per the vector profile assignment.
+
+- Oversampling in the query overrides the `defaultOversampling` value in the index, or invokes oversampling and rescoring at query time, even if the index's compression configuration didn't specify oversampling or reranking options.
 
 ---
-
-<!-- 
-RESCORE WITH ORIGINAL VECTORS -- NEEDS AN H2 or H3
-It's used to rescore search results obtained used compressed vectors.
-
-Rescore with original vectors
-After the initial query, rescore results using uncompressed vectors
- 
-For "enableRescoring", we provide true or false options. if it's true, the query will first retrieve using compressed vectors, then rescore results using uncompressed vectors.
-
-Step one: Vector query executes using the compressed vectors.
-Step two: Query returns the top oversampling k-matches.
-Step three: Oversampling k-matches are rescored using the uncompressed vectors, adjusting the scores and ranking so that more relevant matches appear first.
- -->

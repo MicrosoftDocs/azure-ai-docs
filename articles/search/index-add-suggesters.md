@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 10/21/2024
+ms.date: 04/14/2025
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet
@@ -23,7 +23,7 @@ Matches on partial terms can be either an autocompleted query or a suggested mat
 
 ## Typeahead experiences in Azure AI Search
 
-Typeahead can use *autocomplete*, which completes a partial input for a whole term query, or *suggestions* that invite click through to a particular match. Autocomplete produces a query. Suggestions produce a matching document.
+Typeahead can be either *autocomplete*, which completes a partial input for a whole term query, or *suggestions* that invite click through to a particular match. Autocomplete produces a query. Suggestions produce a matching document.
 
 The following screenshot illustrates both. Autocomplete anticipates a potential term, finishing *tw* with *in*. Suggestions are mini search results, where a field like `hotel name` represents a matching hotel search document from the index. For suggestions, you can surface any field that provides descriptive information.
 

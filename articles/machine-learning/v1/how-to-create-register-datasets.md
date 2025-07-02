@@ -18,6 +18,8 @@ ms.date: 03/06/2025
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In this article, you learn how to create Azure Machine Learning datasets to access data for your local or remote experiments with the Azure Machine Learning Python SDK. For more information about how datasets fit in Azure Machine Learning's overall data access workflow, visit the [Securely access data](concept-data.md#data-workflow) article.
 
 When you create a dataset, you create a reference to the data source location, along with a copy of its metadata. Because the data remains in its existing location, you incur no extra storage cost, and you don't risk the integrity of your data sources. Additionally, datasets are lazily evaluated, which helps improve workflow performance speeds. You can create datasets from datastores, public URLs, and [Azure Open Datasets](../../open-datasets/how-to-create-azure-machine-learning-dataset-from-open-dataset.md). For information about a low-code experience, visit [Create Azure Machine Learning datasets with the Azure Machine Learning studio](how-to-connect-data-ui.md#create-data-assets).

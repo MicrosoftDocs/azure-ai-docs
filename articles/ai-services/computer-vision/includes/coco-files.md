@@ -1,7 +1,6 @@
 ---
 title: "About COCO files"
 titleSuffix: "Azure AI services"
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 
@@ -9,6 +8,7 @@ ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 02/06/2023
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
+ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 

@@ -8,7 +8,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 10/28/2024
+ms.date: 04/07/2025
 ---
 
 # Training - Azure AI Search
@@ -27,10 +27,9 @@ Learning paths are a collection of training modules that are organized around sp
 
 | Module | Learning path |
 |--------|---------------|
-[Fundamentals of Knowledge Mining and Azure AI Search](/training/modules/intro-to-azure-search/) | [Microsoft Azure AI Fundamentals:](/training/paths/document-intelligence-knowledge-mining/) |
+[Fundamentals of Knowledge Mining and Azure AI Search](/training/modules/intro-to-azure-search/) | [Microsoft Azure AI Fundamentals](/training/paths/document-intelligence-knowledge-mining/) |
 | [Create an Azure AI Search solution](/training/modules/create-azure-cognitive-search-solution/) | [Implement knowledge mining](/training/paths/implement-knowledge-mining-azure-cognitive-search/) |
 | [Create a custom skill for Azure AI Search](/training/modules/create-azure-ai-custom-skill/) | [Implement knowledge mining](/training/paths/implement-knowledge-mining-azure-cognitive-search/) |
-| [Build an Azure Machine Learning custom skill for Azure AI Search](/training/modules/build-azure-machine-learn-custom-skill-for-azure-cognitive-search/) | |
 | [Enrich your data with Azure AI Language](/training/modules/enrich-search-index-using-language-studio/) | |
 | [Create a knowledge store with Azure AI Search](/training/modules/create-knowledge-store-azure-cognitive-search/) | [Implement knowledge mining](/training/paths/implement-knowledge-mining-azure-cognitive-search/) |
 | [Implement advanced search features in Azure AI Search](/training/modules/implement-advanced-search-features-azure-cognitive-search/)| [Implement knowledge mining](/training/paths/implement-knowledge-mining-azure-cognitive-search/) |
@@ -42,7 +41,7 @@ Learning paths are a collection of training modules that are organized around sp
 ## RAG-centric modules
 
 + [Build a RAG-based copilot solution with your own data using Azure AI Foundry](/training/modules/build-copilot-ai-studio/)
-+ [Implement Retrieval Augmented Generation (RAG) with Azure OpenAI Service](/training/modules/use-own-data-azure-openai/)
++ [Implement Retrieval Augmented Generation (RAG) with Azure OpenAI in Azure AI Foundry Models](/training/modules/use-own-data-azure-openai/)
 
 ## Pluralsight training
 

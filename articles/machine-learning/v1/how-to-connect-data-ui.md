@@ -16,6 +16,8 @@ ms.custom: UpdateFrequency5, data4ml
 
 # Connect to data with the Azure Machine Learning studio
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 This article shows how to access your data with the [Azure Machine Learning studio](https://ml.azure.com). Connect to your data in Azure storage services with [Azure Machine Learning datastores](how-to-access-data.md). Then, package that data for ML workflow tasks with [Azure Machine Learning datasets](how-to-create-register-datasets.md).
 
 This table defines and summarizes the benefits of datastores and datasets.

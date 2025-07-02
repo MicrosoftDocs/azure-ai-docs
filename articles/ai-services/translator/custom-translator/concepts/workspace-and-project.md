@@ -2,11 +2,10 @@
 title: "What is a workspace and project? - Azure AI Custom Translator"
 titleSuffix: Azure AI services
 description: In This article, learn the differences between a workspace and a project as well as project categories and labels for the Azure AI Custom Translator service.
-#services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 01/28/2025
+ms.date: 05/19/2025
 ms.author: lajanuar
 ms.topic: conceptual
 ms.custom: cogserv-non-critical-translator
@@ -22,7 +21,7 @@ Workspace is private to you and the people you invite into your workspace. Uninv
 
 A project is a wrapper for a model, documents, and tests. Each project automatically includes all documents that are uploaded into that workspace that
 have the correct language pair. For example, if you have both an English-to-Spanish project and a Spanish-to-English project, the same documents are
-included in both projects. Each project has a CategoryID associated with it that is used when querying the [V3 API](../../text-translation/reference/v3/translate.md?tabs=curl) for translations. CategoryID is parameter used to get translations from a customized system built with Custom Translator.
+included in both projects. Each project has a CategoryID associated with it that is used when querying the [v3 API](../../text-translation/reference/v3/translate.md?tabs=curl) for translations. CategoryID is parameter used to get translations from a customized system built with Custom Translator.
 
 ## Project categories
 

@@ -7,7 +7,7 @@ manager: nitinme
 
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 03/07/2025
+ms.date: 04/14/2025
 ms.author: lajanuar
 ---
 
@@ -19,7 +19,7 @@ ms.author: lajanuar
 
 Send a `POST` request to:
 
-```HTTP
+```bash
 POST http://localhost:{port}/translate?api-version=3.0&&from={from}&to={to}
 ```
 
@@ -65,17 +65,17 @@ Request parameters passed on the query string are:
 
 | Query parameter | Description |
 | --- | --- |
-| textType | _Optional parameter_.  <br>Defines whether the text being translated is plain text or HTML text. Any HTML needs to be a well-formed, complete element. Possible values are: `plain` (default) or `html`. |
-| includeSentenceLength | _Optional parameter_.  <br>Specifies whether to include sentence boundaries for the input text and the translated text. Possible values are: `true` or `false` (default). |
+| textType | _Optional parameter_.  <br>Defines whether the text being translated is plain text or HTML text. Any HTML needs to be a well-formed, complete element. Accepted values are: `plain` (default) or `html`. |
+| includeSentenceLength | _Optional parameter_.  <br>Specifies whether to include sentence boundaries for the input text and the translated text. Accepted values are: `true` or `false` (default). |
 
 ### Request headers
 
 | Headers | Description |Condition|
 | --- | --- |---|
-| Authentication headers |*See* [available options for authentication](../text-translation/reference/v3/reference.md#authentication). |*Required request header*|
+| Authentication headers |*See* [available options for authentication](../text-translation/reference/authentication.md). |*Required request header*|
 | Content-Type |Specifies the content type of the payload.  <br>Accepted value is `application/json; charset=UTF-8`. |*Required request header*|
 | Content-Length |The length of the request body. |*Optional*|
-| X-ClientTraceId | A client-generated GUID to uniquely identify the request. You can omit this header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |*Optional*|
+| X-ClientTraceId | A client-generated GUID to uniquely identify the request. You can omit this optional header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |*Optional*|
 
 ## Request body
 
@@ -121,7 +121,7 @@ A successful response is a JSON array with one result for each string in the inp
 
 ## Response status codes
 
-If an error occurs, the request returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [v3 Translator reference page](../text-translation/reference/v3/reference.md#errors).
+If an error occurs, the request returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [Translator status and error code page](../text-translation/reference/status-response-codes.md).
 
 ## Code samples: translate text
 
@@ -398,10 +398,10 @@ The following table lists the required supporting containers for your text and d
 
 |Operation|Request query|Document type|Supporting containers|
 |-----|-----|-----|-----|
-|&bullet; Text translation<br>&bullet; Document Translation |`from` specified. |Office documents| None|
-|&bullet; Text translation<br>&bullet; Document Translation|`from` not specified. Requires automatic language detection to determine the source language. |Office documents |✔️ [**Text analytics:language**](../../language-service/language-detection/how-to/use-containers.md) container|
-|&bullet; Text translation<br>&bullet; Document Translation |`from` specified. |Scanned PDF documents| ✔️ [**Vision:read**](../../computer-vision/computer-vision-how-to-install-containers.md) container|
-|&bullet; Text translation<br>&bullet; Document Translation|`from` not specified requiring automatic language detection to determine source language.|Scanned PDF documents| ✔️ [**Text analytics:language**](../../language-service/language-detection/how-to/use-containers.md) container<br><br>✔️ [**Vision:read**](../../computer-vision/computer-vision-how-to-install-containers.md) container|
+|&bullet; Text translation<br>&bullet; Document translation |`from` specified. |Office documents| None|
+|&bullet; Text translation<br>&bullet; Document translation|`from` not specified. Requires automatic language detection to determine the source language. |Office documents |✔️ [**Text analytics:language**](../../language-service/language-detection/how-to/use-containers.md) container|
+|&bullet; Text translation<br>&bullet; Document translation |`from` specified. |Scanned PDF documents| ✔️ [**Vision:read**](../../computer-vision/computer-vision-how-to-install-containers.md) container|
+|&bullet; Text translation<br>&bullet; Document translation|`from` not specified requiring automatic language detection to determine source language.|Scanned PDF documents| ✔️ [**Text analytics:language**](../../language-service/language-detection/how-to/use-containers.md) container<br><br>✔️ [**Vision:read**](../../computer-vision/computer-vision-how-to-install-containers.md) container|
 
 ##### Container images and tags
 
@@ -409,7 +409,7 @@ The Azure AI services container images can be found in the [**Microsoft Artifact
 
 |Container|Image location|Notes|
 |--------|-------------|---------------|
-|Translator: Text translation| `mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest`| You can view the full list of [Azure AI services Text Translation](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/tags) version tags on MCR.|
+|Translator: Text translation| `mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest`| You can view the full list of [Azure AI services Text translation](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/tags) version tags on MCR.|
 |Translator: Document translation|**TODO**| **TODO**|
 |Text analytics: language|`mcr.microsoft.com/azure-cognitive-services/textanalytics/language:latest` |You can view the full list of [Azure AI services Text Analytics Language](https://mcr.microsoft.com/product/azure-cognitive-services/textanalytics/language/tags) version tags on MCR.|
 |Vision: read|`mcr.microsoft.com/azure-cognitive-services/vision/read:latest`|You can view the full list of [Azure AI services Computer Vision Read `OCR`](https://mcr.microsoft.com/product/azure-cognitive-services/vision/read/tags) version tags on MCR.|

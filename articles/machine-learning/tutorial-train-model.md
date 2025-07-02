@@ -353,7 +353,7 @@ To view the job in Azure Machine Learning studio, select the link in the output 
 > [!IMPORTANT]
 > Wait until the status of the job is complete before you return to this notebook to continue. The job takes 2 to 3 minutes to run. It could take longer, up to 10 minutes, if the compute cluster has been scaled down to zero nodes and custom environment is still building.
 
-When you run the cell, the notebook output shows a link to the job's details page on Machine Learning studio. Alternatively, you can also select Jobs on the left navigation menu.
+When you run the cell, the notebook output shows a link to the job's details page on Machine Learning studio. Alternatively, you can also select Jobs on the left pane.
 
 A job is a grouping of many runs from a specified script or piece of code. Information for the run is stored under that job. The details page gives an overview of the job, the time it took to run, when it was created, and other information. The page also has tabs to other information about the job such as metrics, Outputs + logs, and code. Here are the tabs available in the job's details page:
 
@@ -372,7 +372,7 @@ If you plan to continue now to other tutorials, skip to [Related content](#relat
 
 If you're not going to use it now, stop the compute instance:
 
-1. In the studio, in the left navigation area, select **Compute**.
+1. In the studio, in the left pane, select **Compute**.
 1. In the top tabs, select **Compute instances**.
 1. Select the compute instance in the list.
 1. On the top toolbar, select **Stop**.

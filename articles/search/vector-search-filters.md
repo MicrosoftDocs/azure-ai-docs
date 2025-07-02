@@ -3,8 +3,8 @@ title: Vector query filters
 titleSuffix: Azure AI Search
 description: Explains prefilters and post-filters in vector queries, and how filters affect query performance.
 
-author: heidisteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

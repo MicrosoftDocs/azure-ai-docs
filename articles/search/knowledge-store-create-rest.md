@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 12/10/2024
+ms.date: 06/17/2025
 ---
 
 # Create a knowledge store using REST
@@ -25,13 +25,13 @@ To make the initial data set available, the hotel reviews are first imported int
 
 ## Prerequisites
 
-+ [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client). If you need help with getting started, see [Quickstart: Text search using REST](search-get-started-rest.md).
++ [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client). If you need help with getting started, see [Quickstart: Full-text search using REST](search-get-started-text.md).
 
 + Azure AI Search. [Create a service](search-create-service-portal.md) or [find an existing one](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices). You can use the free service for this exercise.
 
 + Azure Storage. [Create an account](/azure/storage/common/storage-account-create) or [find an existing one](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Storage%2storageAccounts/). The account type must be **StorageV2 (general purpose V2)**.
 
-The skillset in this examples uses Azure AI Services for enrichments. Because the workload is so small, Azure AI services is tapped behind the scenes to provide free processing for up to 20 transactions daily. A small workload means that you can skip creating or attaching an Azure AI services multi-service resource.
+The skillset in this example uses Azure AI Services for enrichments. Because the workload is so small, Azure AI services is tapped behind the scenes to provide free processing for up to 20 transactions daily. A small workload means that you can skip creating or attaching an Azure AI services multi-service resource.
 
 ## Upload data to Azure Storage and get a connection string
 

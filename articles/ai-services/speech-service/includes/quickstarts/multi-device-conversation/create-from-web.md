@@ -4,7 +4,7 @@ manager: cpoulain
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 01/15/2020
-ms.author: ralphe
+ms.author: eur
 ---
 
 3. You'll need to create a conversation that you can join:

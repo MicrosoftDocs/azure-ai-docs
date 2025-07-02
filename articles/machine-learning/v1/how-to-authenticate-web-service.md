@@ -17,6 +17,8 @@ ms.custom: UpdateFrequency5, sdkv1
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 Azure Machine Learning allows you to deploy your trained machine learning models as web services. In this article, learn how to configure authentication for these deployments.
 
 The model deployments created by Azure Machine Learning can be configured to use one of two authentication methods:

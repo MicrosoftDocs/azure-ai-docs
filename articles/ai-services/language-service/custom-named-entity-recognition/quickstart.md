@@ -2,13 +2,12 @@
 title: Quickstart - Custom named entity recognition (NER)
 titleSuffix: Azure AI services
 description: Quickly start building an AI model to categorize and extract information from unstructured text.
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
 ms.date: 01/31/2025
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-custom-ner, mode-other
 zone_pivot_groups: usage-custom-language-features
 ---

@@ -3,7 +3,7 @@ author: jyotsna-ravi
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 9/9/2024
-ms.author: jyravi
+ms.author: eur
 ---
 
 ## Prerequisites
@@ -28,7 +28,7 @@ import requests
 from scipy.io.wavfile import read
 import json
 
-speech_key, service_region = "your-subscription-key", "your-region"
+speech_key, service_region = "your-speech-resource-key", "your-region"
 endpoint = f"https://signature.{service_region}.cts.speech.microsoft.com/api/v1/Signature/GenerateVoiceSignatureFromByteArray"
 
 #Enrollment audio for each speaker. In this example, two speaker enrollment audio files are added.
@@ -73,7 +73,7 @@ Here's what the sample does:
 * Meeting identifier for creating meeting.
 * Adds participants to the meeting. The strings `voiceSignatureStringUser1` and `voiceSignatureStringUser2` should come as output from the previous steps.
 * Read the whole wave files at once and stream it to SDK and begins transcription.
-* If you want to differentiate speakers without providing voice samples, you enable the `DifferentiateGuestSpeakers` feature as in [Meeting Transcription Overview](../../../meeting-transcription.md). 
+* If you want to differentiate speakers without providing voice samples, you enable the `DifferentiateGuestSpeakers` feature. 
 
 If speaker identification or differentiate is enabled, then even if you received `transcribed` results, the service is still evaluating them by accumulated audio information. If the service finds that any previous result was assigned an incorrect `speakerId`, then a nearly identical `Transcribed` result is sent again, where only the `speakerId` and `UtteranceId` are different. Since the `UtteranceId` format is `{index}_{speakerId}_{Offset}`, when you receive a `transcribed` result, you could use `UtteranceId` to determine if the current `transcribed` result is going to correct a previous one. Your client or UI logic could decide behaviors, like overwriting previous output, or to ignore the latest result.
 
@@ -83,7 +83,7 @@ import time
 import uuid
 from scipy.io import wavfile
 
-speech_key, service_region="your-subscription-key","your-region"
+speech_key, service_region="your-speech-resource-key","your-region"
 meetingfilename= "audio-file-to-transcribe.wav" # 8 channel, 16 bits, 16kHz audio
 
 def meeting_transcription():

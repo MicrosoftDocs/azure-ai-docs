@@ -5,7 +5,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: include
-ms.date: 07/18/2023
+ms.date: 05/19/2025
 ms.author: lajanuar
 recommendations: false
 ---
@@ -33,14 +33,14 @@ For this quickstart, we use the latest version of [Visual Studio](https://visual
 
 1. In the **Additional information** dialog window, select **.NET 6.0 (Long-term support)**, and then select **Create**.
 
-    :::image type="content" source="../../../../media/quickstarts/additional-information.png" alt-text="Screenshot of Visual Studio 2022 additional information set-up window.":::
+    :::image type="content" source="../../../../media/quickstarts/additional-information.png" alt-text="Screenshot of Visual Studio 2022 additional information window.":::
 
 ## Install the client library with NuGet
 
-1. Right-click on your Translator-text-sdk project and select **Manage NuGet Packages...**
+1. Right-click on your Translator-text-sdk project and select **`Manage NuGet Packages...`**
    :::image type="content" source="../../../../media/quickstarts/manage-nuget-package.png" alt-text="Screenshot of select NuGet package window in Visual Studio.":::
 
-1. Select the **Browse** Tab and the **Include prerelease** checkbox and type **Azure.AI.Translation.Text**.
+1. Select the **`Browse`** Tab and the **`Include prerelease`** checkbox and type **Azure.AI.Translation.Text**.
 
    :::image type="content" source="../../../../media/quickstarts/select-azure-package.png" alt-text="Screenshot of select `prerelease` NuGet package in Visual Studio.":::
 
@@ -61,7 +61,7 @@ To interact with the Translator service using the client library, you need to cr
 
 1. Open the **Program.cs** file.
 
-1. Delete the pre-existing code, including the line `Console.WriteLine("Hello World!")`, and enter the following code sample into your application's Program.cs file:
+1. Delete the existing code, including the line `Console.WriteLine("Hello World!")`, and enter the following code sample into your application's Program.cs file:
 
 ## Code sample
 
@@ -71,7 +71,7 @@ To interact with the Translator service using the client library, you need to cr
 **Translate text**
 
   > [!NOTE]
-  > In this example we are using the global endpoint. If you're using a regional endpoint, see [Create a Text Translation client](../../../../create-translator-resource.md#create-a-text-translation-client).
+  > In this example, we're using the global endpoint. If you're using a regional endpoint, see [Create a Text translation client](../../../../create-translator-resource.md#create-a-text-translation-client).
 
 ```csharp
 
@@ -106,7 +106,7 @@ catch (RequestFailedException exception)
 
 ## Run your application
 
-Once you've added the code sample to your application, choose the green **Start** button next to formRecognizer_quickstart to build and run your program, or press **F5**.
+Once you add the code sample to your application, choose the green **Start** button next to formRecognizer_quickstart to build and run your program, or press **F5**.
 
   :::image type="content" source="../../../../media/quickstarts/run-application.png" alt-text="Screenshot: run your Visual Studio program.":::
 

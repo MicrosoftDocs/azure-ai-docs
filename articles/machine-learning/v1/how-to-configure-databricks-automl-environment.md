@@ -16,6 +16,8 @@ monikerRange: 'azureml-api-1'
 
 # Set up a development environment with Azure Databricks and AutoML in Azure Machine Learning 
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 Learn how to configure a development environment in Azure Machine Learning that uses Azure Databricks and automated ML.
 
 Azure Databricks is ideal for running large-scale intensive machine learning workflows on the scalable Apache Spark platform in the Azure cloud. It provides a collaborative Notebook-based environment with a CPU or GPU-based compute resource.

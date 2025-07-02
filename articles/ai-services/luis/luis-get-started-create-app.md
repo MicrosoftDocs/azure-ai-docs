@@ -3,11 +3,11 @@ title: "Quickstart: Build your app in LUIS portal"
 description: This quickstart shows how to create a LUIS app that uses the prebuilt domain `HomeAutomation` for turning lights and appliances on and off. This prebuilt domain provides intents, entities, and example utterances for you. When you're finished, you'll have a LUIS endpoint running in the cloud.
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 ms.manager: nitinme
 ms.topic: quickstart
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ms.custom: mode-ui
 #Customer intent: As a new user, I want to quickly get a LUIS app created so I can understand the model and actions to train, test, publish, and query.
 ---
@@ -59,7 +59,7 @@ LUIS offers a set of prebuilt domains that can help you get started with your ap
 
 ## Check out intents and entities
 
-1. Select **Intents** in the left navigation menu to see the HomeAutomation domain intents. It has example utterances, such as `HomeAutomation.QueryState` and     `HomeAutomation.SetDevice`.
+1. Select **Intents** in the left pane to see the HomeAutomation domain intents. It has example utterances, such as `HomeAutomation.QueryState` and     `HomeAutomation.SetDevice`.
 
     > [!NOTE]
     > **None** is an intent provided by all LUIS apps. You use it to handle utterances that don't correspond to functionality your app provides.
@@ -104,7 +104,7 @@ Besides the prebuilt domains LUIS allows you to create your own custom applicati
 
 To add more intents to your app
 
-1. Select **Intents** in the left navigation menu.
+1. Select **Intents** in the left pane.
 2. Select **Create**
 3. Enter the intent name, `HomeAutomation.AddDeviceAlias`, and then select Done.
 
@@ -112,7 +112,7 @@ To add more intents to your app
 
 To add more entities to your app
 
-1. Select **Entities** in the left navigation menu.
+1. Select **Entities** in the left pane.
 2. Select **Create**
 3. Enter the entity name, `HomeAutomation.DeviceAlias`, select machine learned from **type** and then select **Create**.
 

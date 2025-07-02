@@ -3,7 +3,7 @@ author: eric-urban
 ms.service: azure-ai-speech
 ms.date: 07/06/2023
 ms.topic: include
-ms.author: Zoubaolian
+ms.author: eur
 ---
 
 | Locale (BCP-47) | Language                          |Viseme feature

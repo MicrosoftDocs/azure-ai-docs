@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 12/05/2024
+ms.date: 05/29/2025
 ---
 
 # Add a search service to a network security perimeter
@@ -26,7 +26,7 @@ This article explains how to join an Azure AI Search service to a [network secur
 * Block any data exfiltration from a search service to other services outside the perimeter.
 * Allow access to your search service using inbound and outbound access capabilities of the network security perimeter.
 
-You can add a search service to a network security perimeter in the Azure portal, as described in this article. Alternatively, you can use the [Azure Virtual Network Manager REST API](/rest/api/networkmanager/) to join a search service, and use the [Search Management REST APIs](/rest/api/searchmanagement/network-security-perimeter-configurations?view=rest-searchmanagement-2024-06-01-preview&preserve-view=true) to view and synchronize the configuration settings.
+You can add a search service to a network security perimeter in the Azure portal, as described in this article. Alternatively, you can use the [Azure Virtual Network Manager REST API](/rest/api/networkmanager/) to join a search service, and use the [Search Management REST APIs](/rest/api/searchmanagement/network-security-perimeter-configurations?view=rest-searchmanagement-2025-05-01-preview&preserve-view=true) to view and synchronize the configuration settings.
 
 ## Limitations and considerations
 
@@ -167,7 +167,7 @@ Within the perimeter, all resources have mutual access at the network level. You
 
 For resources outside of the network security perimeter, you must specify inbound and outbound access rules. Inbound rules specify which connections to allow in, and outbound rules specify which requests are allowed out.
 
-A search service accepts inbound requests from apps like [Azure AI Foundry portal](https://ai.azure.com/), Azure Machine Learning prompt flow, and any app that sends indexing or query requests. A search service sends outbound requests during indexer-based indexing and skillset execution. This section explains how to set up inbound and outbound access rules for Azure AI Search scenarios.
+A search service accepts inbound requests from apps like [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), Azure Machine Learning prompt flow, and any app that sends indexing or query requests. A search service sends outbound requests during indexer-based indexing and skillset execution. This section explains how to set up inbound and outbound access rules for Azure AI Search scenarios.
 
    > [!NOTE]
    > Any service associated with a network security perimeter implicitly allows inbound and outbound access to any other service associated with the same network security perimeter when that access is authenticated using [managed identities and role assignments](/entra/identity/managed-identities-azure-resources/overview). Access rules only need to be created when allowing access outside of the network security perimeter, or for access authenticated using API keys.
@@ -270,9 +270,9 @@ In order to test your connection through network security perimeter, you need ac
 
 ## View and manage network security perimeter configuration
 
-You can use the [Network Security Perimeter Configuration REST APIs](/rest/api/searchmanagement/network-security-perimeter-configurations?view=rest-searchmanagement-2024-06-01-preview&preserve-view=true) to review and reconcile perimeter configurations.
+You can use the [Network Security Perimeter Configuration REST APIs](/rest/api/searchmanagement/network-security-perimeter-configurations?view=rest-searchmanagement-2025-05-01preview&preserve-view=true) to review and reconcile perimeter configurations.
 
-Be sure to use preview API version `2024-06-01-preview`. [Learn how to call the Management REST APIs](search-manage-rest.md).
+Be sure to use preview API version `2024-06-01-preview` or a later preview. [Learn how to call the Management REST APIs](search-manage-rest.md).
 
 ## See also
 

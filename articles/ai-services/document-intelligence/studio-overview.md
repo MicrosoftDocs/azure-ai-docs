@@ -76,9 +76,9 @@ Use the help wizard, labeling interface, training step, and interactive visualiz
 
 ### [**Azure AI Foundry portal**](#tab/ai-foundry)
 
-Document Intelligence is part of the Azure AI services offerings in the [Azure AI Foundry portal](https://ai.azure.com/). Each of the Azure AI services helps developers and organizations rapidly create intelligent, cutting-edge, market-ready, and responsible applications with out-of-the-box and prebuilt and customizable APIs and models.
+Document Intelligence is part of the Azure AI services offerings in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). Each of the Azure AI services helps developers and organizations rapidly create intelligent, cutting-edge, market-ready, and responsible applications with out-of-the-box and prebuilt and customizable APIs and models.
 
-Learn how to [connect your AI services hub](../../ai-foundry/ai-services/how-to/connect-ai-services.md) with AI services and get started using Document Intelligence.
+Learn how to [connect your AI services hub](../../ai-services/connect-services-ai-foundry-portal.md) with AI services and get started using Document Intelligence.
 
 ---
 

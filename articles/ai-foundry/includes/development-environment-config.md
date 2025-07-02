@@ -9,9 +9,13 @@ ms.author: sgilley
 ms.custom: include file, build-2024
 ---
 
-1. Install Python as described in the [SDK quickstart](../quickstarts/get-started-code.md#create-a-new-python-environment).
-1. [Install the Azure Machine Learning SDK v2](https://aka.ms/sdk-v2-install).
-1. Install azure-identity: `pip install azure-identity`. If in a notebook cell, use `%pip install azure-identity`.
+1. Install packages.  (If in a notebook cell, use `%pip install` instead.)
+
+    ```bash
+    pip install azure-ai-ml
+    pip install azure-identity
+    ```
+
 1. Provide your subscription details:
 
     [!notebook-python[](~/azureml-examples-main/sdk/python/resources/workspace/workspace.ipynb?name=subscription_id)]

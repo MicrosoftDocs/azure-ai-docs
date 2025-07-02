@@ -19,6 +19,8 @@ ms.custom: UpdateFrequency5, devx-track-python, automl, sdkv1
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In this article, you learn how to train a regression model with the Azure Machine Learning Python SDK by using Azure Machine Learning Automated ML. The regression model predicts passenger fares for taxi cabs operating in New York City (NYC). You write code with the Python SDK to configure a workspace with prepared data, train the model locally with custom parameters, and explore the results.
 
 The process accepts training data and configuration settings. It automatically iterates through combinations of different feature normalization/standardization methods, models, and hyperparameter settings to arrive at the best model. The following diagram illustrates the process flow for the regression model training:

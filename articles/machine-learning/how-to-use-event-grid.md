@@ -62,7 +62,7 @@ Subscriptions for Azure Machine Learning events are protected by Azure role-base
 
 
 1. Go to the Azure portal, select a new subscription or an existing one.
-1. Select the Events entry from the left navigation area, and then select **+ Event subscription**.
+1. Select the Events entry from the left pane, and then select **+ Event subscription**.
 1. Select the filters tab and scroll down to Advanced filters. For the **Key** and **Value**, provide the property types you want to filter by. Here you can see the event triggers when the run type is a pipeline run or pipeline step run.  
 
     :::image type="content" source="media/how-to-use-event-grid/select-event-filters.png" alt-text="filter events":::
@@ -184,6 +184,10 @@ Use [Azure Logic Apps](/azure/logic-apps/) to configure emails for all your even
 
 > [!IMPORTANT]
 > This example relies on a feature (data drift) that is only available when using Azure Machine Learning SDK v1 or Azure CLI extension v1 for Azure Machine Learning. For more information, see [What is Azure Machine Learning CLI & SDK v2](concept-v2.md).
+
+[!INCLUDE [v1 deprecation](includes/sdk-v1-deprecation.md)]
+
+[!INCLUDE [v1 cli deprecation](includes/machine-learning-cli-v1-deprecation.md)]
 
 Models go stale over time, and not remain useful in the context it's running in. One way to tell if it's time to retrain the model is detecting data drift. 
 

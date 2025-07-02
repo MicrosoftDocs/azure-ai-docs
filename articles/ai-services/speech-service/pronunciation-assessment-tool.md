@@ -17,21 +17,22 @@ ms.author: eur
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-Pronunciation assessment uses the speech to text capability to provide subjective and objective feedback for language learners. Practicing pronunciation and getting timely feedback are essential for improving language skills. Assessments driven by experienced teachers can take much time and effort and makes a high-quality assessment expensive for learners. Pronunciation assessment can help make the language assessment more engaging and accessible to learners of all backgrounds. 
+Pronunciation assessment uses the speech to text capability to provide subjective and objective feedback for language learners. Practicing pronunciation and getting timely feedback are essential for improving language skills. Assessments driven by experienced teachers can take much time and effort and makes a high-quality assessment expensive for learners. Pronunciation assessment can help make the language assessment more engaging and accessible to learners of all backgrounds.
 
 > [!NOTE]
 > For information about availability of pronunciation assessment, see [supported languages](language-support.md?tabs=pronunciation-assessment) and [available regions](regions.md#regions).
 
-This article describes how to use the pronunciation assessment tool without writing any code through the [Azure AI Foundry portal](https://ai.azure.com/explore/aiservices/speech/pronunciationassessment). For information about how to integrate pronunciation assessment in your speech applications, see [How to use pronunciation assessment](how-to-pronunciation-assessment.md).
+This article describes how to use the pronunciation assessment tool without writing any code through the [Azure AI Foundry portal](https://ai.azure.com/explore/models/aiservices/Azure-AI-Speech/version/1/registry/azureml-cogsvc/tryout#pronunciationassessment). For information about how to integrate pronunciation assessment in your speech applications, see [How to use pronunciation assessment](how-to-pronunciation-assessment.md).
 
 
-## Reading and speaking scenarios
+## Reading, speaking and gaming scenarios
 
-For pronunciation assessment, there are two scenarios: Reading and Speaking. 
-- Reading: This scenario is designed for [scripted assessment](#conduct-a-scripted-assessment). It requires the learner to read a given text. The reference text is provided in advance.
-- Speaking: This scenario is designed for [unscripted assessment](#conduct-an-unscripted-assessment). It requires the learner to speak on a given topic. The reference text isn't provided in advance.
+For pronunciation assessment, there are three scenarios: Reading, Speaking and Gaming.
+- Reading: This scenario is designed for [scripted assessment](#conduct-a-reading-assessment). It requires the learner to read a given text. The reference text is provided in advance.
+- Speaking: This scenario is designed for [unscripted assessment](#conduct-a-speaking-assessment). It requires the learner to speak on a given topic. The reference text isn't provided in advance.
+- Gaming: This scenario is designed for [scripted assessment](#conduct-a-gaming-assessment). It requires the learners to read a twister to receive scores for pronunciation and for each syllable. The reference text is provided in advance.
 
-### Conduct a scripted assessment
+### Conduct a reading assessment
 
 Follow these steps to assess your pronunciation of the reference text:
 
@@ -45,7 +46,7 @@ Follow these steps to assess your pronunciation of the reference text:
 
 1. You can use provisioned text samples or enter your own script.
 
-   When reading the text, you should be close to microphone to make sure the recorded voice isn't too low. 
+   When reading the text, you should be close to microphone to make sure the recorded voice isn't too low.
 
    :::image type="content" source="media/pronunciation-assessment/scripted-assessment.png" alt-text="Screenshot of where to record audio with a microphone on reading tab.":::
 
@@ -53,35 +54,49 @@ Follow these steps to assess your pronunciation of the reference text:
 
    :::image type="content" source="media/pronunciation-assessment/upload-audio.png" alt-text="Screenshot of uploading recorded audio to be assessed.":::
 
-### Conduct an unscripted assessment
+### Conduct a speaking assessment
 
 If you want to conduct an unscripted assessment, select the Speaking tab. This feature allows you to conduct unscripted assessment without providing reference text in advance. Here's how to proceed:
 
 1. Go to **Pronunciation assessment** in the [Azure AI Foundry portal](https://ai.azure.com/explore/aiservices/speech).
 
 1. On the Speaking tab, choose a supported [language](language-support.md?tabs=pronunciation-assessment) that you want to evaluate the pronunciation.
-   
+
    :::image type="content" source="media/pronunciation-assessment/select-speaking-language.png" alt-text="Screenshot of choosing a supported language on speaking tab that you want to evaluate the pronunciation.":::
-   
+
 1. Next, you can select from sample topics provided or enter your own topic. This choice allows you to assess your ability to speak on a given subject without a predefined script.
 
    :::image type="content" source="media/pronunciation-assessment/input-topic.png" alt-text="Screenshot of inputting a topic on speaking tab to assess your ability to speak on a given subject without a predefined script.":::
 
-   When recording your speech for pronunciation assessment, it's important to ensure that your recording time falls within the recommended range of 15 seconds (equivalent to more than 50 words) to 10 minutes. This time range is optimal for evaluating the content of your speech accurately. To receive a topic score, your spoken audio should contain at least three sentences. 
+   When recording your speech for pronunciation assessment, it's important to ensure that your recording time falls within the recommended range of 15 seconds (equivalent to more than 50 words) to 10 minutes. This time range is optimal for evaluating the content of your speech accurately. To receive a topic score, your spoken audio should contain at least three sentences.
 
    You can also upload recorded audio for pronunciation assessment. Once successfully uploaded, the audio is automatically evaluated by the system.
+
+### Conduct a gaming assessment
+
+If you want to practice language learning through a game, follow these steps:
+
+1. Go to **Pronunciation assessment** in the [Azure AI Foundry portal](https://ai.azure.com/explore/aiservices/speech).
+
+1. On the Gaming tab, choose a supported [language](language-support.md?tabs=pronunciation-assessment) that you want to evaluate the pronunciation and generate new twister you want to practice.
+
+   :::image type="content" source="media/pronunciation-assessment/select-gaming-language-and-generate-new-twister.png" alt-text="Screenshot of choosing a supported language on gaming tab and generate new tongue twister that you want to evaluate the pronunciation.":::
+
+1. Finally, you can start to record and practice the tongue twister to get the scores.
+
+   :::image type="content" source="media/pronunciation-assessment/gaming-score.png" alt-text="Screenshot of showing the gaming result on the display window, which includes pronunciation, word and syllable scores.":::
 
 ## Pronunciation assessment results
 
 Once you recorded your speech or uploaded the recorded audio, the **Assessment result** is output. The result includes your spoken audio and the feedback on your speech assessment. You can listen to your spoken audio and download it if necessary.
 
-You can also check the pronunciation assessment result in JSON. The word-level, syllable-level, and phoneme-level accuracy scores are included in the JSON file. 
+You can also check the pronunciation assessment result in JSON. The word-level, syllable-level, and phoneme-level accuracy scores are included in the JSON file.
 
 ### [Display](#tab/display)
 
 :::image type="content" source="media/pronunciation-assessment/assessment-result.png" alt-text="Screenshot of showing the assessment result on the display window, which includes transcript and feedback on your speech.":::
 
-The word is highlighted according to the error type. The error types in the pronunciation assessment are represented using different colors. This visual distinction makes it easier to identify and analyze specific errors. It provides a clear overview of the error types and frequencies in the spoken audio, helping you focus on areas that need improvement. You can toggle on/off each error type to focus on specific types of errors or exclude certain types from the display. This feature provides flexibility in how you review and analyze the errors in your spoken audio. While hovering over each word, you can see accuracy scores for the whole word or specific phonemes. 
+The word is highlighted according to the error type. The error types in the pronunciation assessment are represented using different colors. This visual distinction makes it easier to identify and analyze specific errors. It provides a clear overview of the error types and frequencies in the spoken audio, helping you focus on areas that need improvement. You can toggle on/off each error type to focus on specific types of errors or exclude certain types from the display. This feature provides flexibility in how you review and analyze the errors in your spoken audio. While hovering over each word, you can see accuracy scores for the whole word or specific phonemes.
 
 At the bottom of the Assessment result, scoring results are displayed. For scripted pronunciation assessment, only the pronunciation score (including accuracy score, fluency score, completeness score, and prosody score) is provided. For unscripted pronunciation assessment, both pronunciation score (including accuracy score, fluency score, and prosody score) and content score (including vocabulary score, grammar score, and topic score) are displayed.
 
@@ -237,13 +252,13 @@ The complete transcription is shown in the `text` attribute. You can see accurac
 
 ## Granularity of pronunciation assessment
 
-Pronunciation assessment provides various assessment results in different granularities, from individual phonemes to the entire text input. 
-- At the full-text level, pronunciation assessment offers additional Fluency, Completeness, and Prosody scores: Fluency indicates how closely the speech matches a native speaker's use of silent breaks between words; Completeness indicates how many words are pronounced in the speech to the reference text input; Prosody indicates how well a speaker conveys elements of naturalness, expressiveness, and overall prosody in their speech. An overall score aggregated from Accuracy, Fluency, Completeness, and Prosody is then given to indicate the overall pronunciation quality of the given speech. Pronunciation assessment also offers content score (Vocabulary, Grammar, and Topic) at the full-text level.
+Pronunciation assessment provides various assessment results in different granularities, from individual phonemes to the entire text input.
+- At the full-text level, pronunciation assessment offers additional Fluency, Completeness, and Prosody scores: Fluency indicates how closely the speech matches a native speaker's use of silent breaks between words; Completeness indicates how many words are correctly pronounced in the speech to the reference text input; Prosody indicates how well a speaker conveys elements of naturalness, expressiveness, and overall prosody in their speech. An overall score aggregated from Accuracy, Fluency, Completeness, and Prosody is then given to indicate the overall pronunciation quality of the given speech. Pronunciation assessment also offers content score (Vocabulary, Grammar, and Topic) at the full-text level.
 - At the word level, pronunciation assessment can automatically detect miscues and provide accuracy score simultaneously, which provides more detailed information on omission, repetition, insertions, and mispronunciation in the given speech.
 - Syllable-level accuracy scores are currently available via the [JSON file](?tabs=json#pronunciation-assessment-results) or [Speech SDK](how-to-pronunciation-assessment.md).
 - At the phoneme level, pronunciation assessment provides accuracy scores of each phoneme, helping learners to better understand the pronunciation details of their speech.
 
-In addition to the baseline scores of accuracy, fluency, and completeness, the pronunciation assessment feature in the Azure AI Foundry includes more comprehensive scores to provide detailed feedback on various aspects of speech performance and understanding. The enhanced scores are as follows: Prosody score, Vocabulary score, Grammar score, and Topic score. These scores offer valuable insights into speech prosody, vocabulary usage, grammar correctness, and topic understanding. 
+In addition to the baseline scores of accuracy, fluency, and completeness, the pronunciation assessment feature in the Azure AI Foundry includes more comprehensive scores to provide detailed feedback on various aspects of speech performance and understanding. The enhanced scores are as follows: Prosody score, Vocabulary score, Grammar score, and Topic score. These scores offer valuable insights into speech prosody, vocabulary usage, grammar correctness, and topic understanding.
 
 :::image type="content" source="media/pronunciation-assessment/speaking-score.png" alt-text="Screenshot of overall pronunciation score and overall content score in Azure AI Foundry.":::
 
@@ -282,7 +297,7 @@ As you start recording, the scores at the bottom begin to alter from 0.
 
 **During recording**
 
-During recording a long paragraph, you can pause recording at any time. You can continue to evaluate your recording as long as you don't press the stop button. 
+During recording a long paragraph, you can pause recording at any time. You can continue to evaluate your recording as long as you don't press the stop button.
 
 :::image type="content" source="media/pronunciation-assessment/pa-recording-display-score.png" alt-text="Screenshot of overall assessment scores when recording." lightbox="media/pronunciation-assessment/pa-recording-display-score.png":::
 
@@ -294,11 +309,11 @@ After you press the stop button, you can see **Pronunciation score**, **Accuracy
 
 ## Pricing
 
-As a baseline, usage of pronunciation assessment costs the same as speech to text for pay-as-you-go or commitment tier [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services). If you [purchase a commitment tier](../commitment-tier.md) for speech to text, the spend for pronunciation assessment goes towards meeting the commitment. 
+As a baseline, usage of pronunciation assessment costs the same as speech to text for Standard or commitment tier [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services). If you [purchase a commitment tier](../commitment-tier.md) for speech to text, the spend for pronunciation assessment goes towards meeting the commitment. 
 
 The pronunciation assessment feature also offers other scores that aren't included in the baseline speech to text price: prosody, grammar, topic, and vocabulary. These scores are available as an add-on charge above the baseline speech to text price. For information about pricing, see [speech to text pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services).
 
-Here's a table of available pronunciation assessment scores, whether it's available in the [scripted](#conduct-a-scripted-assessment) or [unscripted](#conduct-an-unscripted-assessment) assessments, and whether it's included in the baseline speech to text price or the add-on price.
+Here's a table of available pronunciation assessment scores, whether it's available in the [scripted](#conduct-a-reading-assessment) or [unscripted](#conduct-a-speaking-assessment) assessments, and whether it's included in the baseline speech to text price or the add-on price.
 
 | Score | Scripted or unscripted | Included in baseline speech to text price? |
 | --- | --- | --- |
@@ -311,12 +326,12 @@ Here's a table of available pronunciation assessment scores, whether it's availa
 | Topic | Unscripted only | No |
 | Vocabulary | Unscripted only | No |
 
-## Responsible AI 
+## Responsible AI
 
-An AI system includes not only the technology, but also the people who use it, the people who will be affected by it, and the environment in which it's deployed. Read the transparency notes to learn about responsible AI use and deployment in your systems. 
+An AI system includes not only the technology, but also the people who use it, the people who will be affected by it, and the environment in which it's deployed. Read the transparency notes to learn about responsible AI use and deployment in your systems.
 
-* [Transparency note and use cases](/legal/cognitive-services/speech-service/pronunciation-assessment/transparency-note-pronunciation-assessment?context=/azure/ai-services/speech-service/context/context)
-* [Characteristics and limitations](/legal/cognitive-services/speech-service/pronunciation-assessment/characteristics-and-limitations-pronunciation-assessment?context=/azure/ai-services/speech-service/context/context)
+* [Transparency note and use cases](/azure/ai-foundry/responsible-ai/speech-service/pronunciation-assessment/transparency-note-pronunciation-assessment)
+* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/speech-service/pronunciation-assessment/characteristics-and-limitations-pronunciation-assessment)
 
 ## Next steps
 

@@ -2,7 +2,6 @@
 title: What is Azure AI Content Safety? 
 titleSuffix: Azure AI services
 description: Learn how to use Content Safety to track, flag, assess, and filter inappropriate material in user-generated content.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
@@ -162,8 +161,11 @@ To use the Content Safety APIs, you must create your Azure AI Content Safety res
 | East US            | ✅                 |  ✅                 | ✅    |  ✅                        | ✅               | ✅             | ✅                     | ✅                       | ✅    |
 | East US 2           |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
 | France Central        |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                       | ✅    | 
+| Germany West Central |                    |                    |      |                            | ✅               | ✅             | ✅                     |                            | ✅    | 
+| Italy North          |                    |                    |      |                            | ✅               | ✅             | ✅                     |                            | ✅    | 
 | Japan East            |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
-| North Central US      |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    |            
+| Korea Central         |                    |                    | ✅    |                            |            | ✅             |                ✅        |                           |  ✅   |
+| North Central US      |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    |
 | Poland Central        |                    |                    | ✅    |                            |                 | ✅             | ✅                     | ✅                        | ✅    | 
 | South Central US     |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
 | South India           |                    |                    | ✅    |                            | ✅               | ✅              | ✅                     | ✅                        | ✅    | 
@@ -176,8 +178,10 @@ To use the Content Safety APIs, you must create your Azure AI Content Safety res
 | West US              |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
 | West US 2            |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
 | West US 3            |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
-| FairFax - USGovArizona|                   |                   | ✅     |                            |                 | ✅              | ✅                      |                           | ✅    | 
+| FairFax - USGovArizona|                   |                   | ✅     |                            |                 | ✅              | ✅                      |  ✅                      | ✅    |
 | FairFax - USGovVirginia|                   |                  | ✅     |                            |                 | ✅              | ✅                      |                           | ✅    | 
+
+
 
 Feel free to [contact us](mailto:contentsafetysupport@microsoft.com) if your business needs other regions to be available.
 

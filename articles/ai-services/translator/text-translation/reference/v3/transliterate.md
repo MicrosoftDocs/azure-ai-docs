@@ -2,13 +2,12 @@
 title: Translator Transliterate Method
 titleSuffix: Azure AI services
 description: Convert text in one language from one script to another script with the Translator Transliterate method.
-#services: cognitive-services
 author: laujan
 manager: nitinme
 
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 06/06/2024
+ms.date: 05/19/2025
 ms.author: lajanuar
 ---
 

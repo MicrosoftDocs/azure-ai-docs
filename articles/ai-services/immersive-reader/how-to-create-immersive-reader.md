@@ -2,7 +2,6 @@
 title: Create an Immersive Reader resource
 titleSuffix: Azure AI services
 description: Learn how to create a new Immersive Reader resource with a custom subdomain and then configure Microsoft Entra ID in your Azure tenant.
-#services: cognitive-services
 author: rwallerms
 manager: nitinme
 ms.service: azure-ai-immersive-reader
@@ -98,7 +97,7 @@ For more information, see [Microsoft Entra built-in roles](/azure/active-directo
             Write-Host "Immersive Reader resource created successfully"
         }
 
-        # Create an Microsoft Entra app if it doesn't already exist
+        # Create a Microsoft Entra app if it doesn't already exist
         $clientId = az ad app show --id $AADAppIdentifierUri --query "appId" -o tsv
         if (-not $clientId) {
             Write-Host "Creating new Microsoft Entra app"

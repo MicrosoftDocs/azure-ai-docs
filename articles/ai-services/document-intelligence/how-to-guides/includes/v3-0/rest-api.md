@@ -39,11 +39,11 @@ monikerRange: 'doc-intel-3.1.0 || doc-intel-3.0.0'
   - [Windows](https://curl.haxx.se/windows/)
   - [Mac or Linux](https://curl.se/)
 
-- An Azure AI services or Document Intelligence resource. Create a <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer" title="Create a Document Intelligence resource." target="_blank">single-service</a> or <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices" title="Create a multiple Document Intelligence resource." target="_blank">multi-service</a>. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
+- An Azure AI services or Document Intelligence resource. Create a <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer" title="Create a Document Intelligence resource." target="_blank">single-service</a> or <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry" title="Create a multiple Document Intelligence resource." target="_blank">multi-service</a>. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 - The key and endpoint from the resource you create to connect your application to the Azure Document Intelligence service.
 
   1. After your resource deploys, select **Go to resource**.
-  1. In the left navigation menu, select **Keys and Endpoint**.
+  1. In the left pane, select **Keys and Endpoint**.
   1. Copy one of the keys and the **Endpoint** for use later in this article.
 
   :::image type="content" source="../../../media/containers/keys-and-endpoint.png" alt-text="Screenshot of keys and endpoint location in the Azure portal.":::
@@ -98,7 +98,7 @@ The cURL command line tool doesn't format API responses that contain JSON conten
 
 #### [Windows](#tab/windows)
 
-Use the NodeJS *json tool* as a JSON formatter for cURL. If you don't have [Node.js](https://nodejs.org/) installed, download and install the latest version.
+Use the Node.js *json tool* as a JSON formatter for cURL. If you don't have [Node.js](https://nodejs.org/) installed, download and install the latest version.
 
 1. Open a console window and install the json tool by using the following command:
 

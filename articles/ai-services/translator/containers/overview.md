@@ -38,7 +38,7 @@ You're billed for connected containers monthly, based on the usage and consumpti
 
 **Translator disconnected container** is deployed on premises and processes content in your environment. It doesn't require internet connectivity at runtime. Customer must license the container for projected usage over a year and is charged affront.
 
-Disconnected containers are offered through commitment tier pricing offered at a discounted rate compared to pay-as-you-go pricing. With commitment tier pricing, you can commit to using Translator Service features for a fixed fee, at a predictable total cost, based on the needs of your workload. Commitment plans for disconnected containers have a calendar year commitment period.
+Disconnected containers are offered through commitment tier pricing offered at a discounted rate compared to Standard pricing. With commitment tier pricing, you can commit to using Translator Service features for a fixed fee, at a predictable total cost, based on the needs of your workload. Commitment plans for disconnected containers have a calendar year commitment period.
 
 When you purchase a plan, you're charged the full price immediately. During the commitment period, you can't change your commitment plan; however you can purchase more units at a pro-rated price for the remaining days in the year. You have until midnight (UTC) on the last day of your commitment, to end a commitment plan.
 

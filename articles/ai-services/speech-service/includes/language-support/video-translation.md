@@ -6,7 +6,7 @@ ms.topic: include
 ms.author: eur
 ---
 
-| Locale (BCP-47) | Language | Prebuilt voice source | Prebuilt voice target | Personal voice source | Personal voice target | 
+| Locale (BCP-47) | Language | Standard voice source | Standard voice target | Personal voice source | Personal voice target | 
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | `af-ZA` | Afrikaans (South Africa) |  Yes |  Yes |  Yes | No |
 | `am-ET` | Amharic (Ethiopia) |  Yes |  Yes |  Yes |  Yes |

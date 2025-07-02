@@ -30,7 +30,7 @@ If your environment meets the prerequisites and you know how to use ARM template
 
 ## Review the template
 
-You can find the template used in this quickstart at the [Azure Quickstart Templates](https://azure.microsoft.com/resources/templates/vm-ubuntu-DSVM-GPU-or-CPU/) resource.
+You can find the template used in this quickstart at the Azure Quickstart Templates resource.
 
 :::code language="json" source="~/quickstart-templates/application-workloads/datascience/vm-ubuntu-DSVM-GPU-or-CPU/azuredeploy.json":::
 

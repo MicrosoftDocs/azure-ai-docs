@@ -10,12 +10,12 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 01/15/2025
+ms.date: 06/06/2025
 ---
 
 # Security filters for trimming results in Azure AI Search
 
-Azure AI Search doesn't provide native document-level permissions and can't vary search results based on user identity. As a workaround, you can create a filter that trims search results based on a string containing a group or user identity.
+For search solutions that can't use the [built-in access control list (ACL) support](search-document-level-access-overview.md)  for document-level authorization, Azure AI Search supports creating a filter that trims search results based on a string containing a group or user identity.
 
 This article describes a pattern for security filtering having the following steps:
 
@@ -191,4 +191,4 @@ For more examples, demos, and videos:
 
 * [Get started with chat document security in Python](/azure/developer/python/get-started-app-chat-document-security-trim)
 * [Set up optional sign in and document level access control (modifications to the AzureOpenAIDemo app)](https://github.com/Azure-Samples/azure-search-openai-demo/blob/main/docs/login_and_acl.md)
-* [Video: Secure your Intelligent Applications with Microsoft Entra](https://build.microsoft.com/en-US/sessions/b5636ca7-64c2-493c-9b30-4a35852acfbe?source=/speakers/cc9b56a0-4af0-4b60-a2f3-8312c5b35ca2)
+* [Video: Secure your Intelligent Applications with Microsoft Entra](https://www.youtube.com/watch?v=e5aR_52oeBY)

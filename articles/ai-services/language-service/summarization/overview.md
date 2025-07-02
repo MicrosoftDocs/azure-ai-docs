@@ -2,13 +2,12 @@
 title: What is summarization?
 titleSuffix: Azure AI services
 description: Learn about summarizing text.
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
 ms.date: 03/05/2025
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-summarization, build-2024, ignite-2024
 ---
 
@@ -22,7 +21,7 @@ Use this article to learn more about this feature, and how to use it in your app
 Out of the box, the service provides summarization solutions for three types of genre, plain texts, conversations, and native documents. Text summarization only accepts plain text blocks. Conversation summarization accepts conversational input, including various speech audio signals. Native document summarization accepts documents in their native formats, such as Word, PDF, or plain text. For more information, *see* [Supported document formats](../native-document-support/overview.md#supported-document-formats).
 
 > [!TIP]
-> Try out Summarization [in Azure AI Foundry portal](https://ai.azure.com/explore/language). There you can [utilize a currently existing Language Studio resource or create a new Azure AI Foundry resource](../../../ai-foundry/ai-services/how-to/connect-ai-services.md) in order to use this service.
+> Try out Summarization [in Azure AI Foundry portal](https://ai.azure.com/explore/language). There you can [utilize a currently existing Language Studio resource or create a new Azure AI Foundry resource](../../../ai-services/connect-services-ai-foundry-portal.md) in order to use this service.
 
 ## Capabilities
 
@@ -181,9 +180,9 @@ As you use text summarization in your applications, see the following reference 
 
 ## Responsible AI
 
-An AI system includes not only the technology, but also the people who use it, the people affected by it, and the deployment environment. Read the [transparency note for summarization](/legal/cognitive-services/language-service/transparency-note-extractive-summarization?context=/azure/ai-services/language-service/context/context) to learn about responsible AI use and deployment in your systems. For more information, see the following articles:
+An AI system includes not only the technology, but also the people who use it, the people affected by it, and the deployment environment. Read the [transparency note for summarization](/azure/ai-foundry/responsible-ai/language-service/transparency-note-extractive-summarization) to learn about responsible AI use and deployment in your systems. For more information, see the following articles:
 
-* [Transparency note for Azure AI Language](/legal/cognitive-services/language-service/transparency-note?context=/azure/ai-services/language-service/context/context)
-* [Integration and responsible use](/legal/cognitive-services/language-service/guidance-integration-responsible-use-summarization?context=/azure/ai-services/language-service/context/context)
-* [Characteristics and limitations of summarization](/legal/cognitive-services/language-service/characteristics-and-limitations-summarization?context=/azure/ai-services/language-service/context/context)
-* [Data, privacy, and security](/legal/cognitive-services/language-service/data-privacy?context=/azure/ai-services/language-service/context/context)
+* [Transparency note for Azure AI Language](/azure/ai-foundry/responsible-ai/language-service/transparency-note)
+* [Integration and responsible use](/azure/ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use-summarization)
+* [Characteristics and limitations of summarization](/azure/ai-foundry/responsible-ai/language-service/characteristics-and-limitations-summarization)
+* [Data, privacy, and security](/azure/ai-foundry/responsible-ai/language-service/data-privacy)

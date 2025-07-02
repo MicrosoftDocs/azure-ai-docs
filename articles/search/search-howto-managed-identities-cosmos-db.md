@@ -74,14 +74,14 @@ $cosmosdb_acc_name = <cosmos db account name>
 $resource_group = <resource group name>
 $subsciption = <subscription ID>
 $system_assigned_principal = <Object (principal) ID for the search service's system/user assigned identity>
-$readOnlyRoleDefinitionId = "00000000-0000-0000-0000-00000000000"
-$scope=$(az cosmosdb show --name $cosmosdbname --resource-group $resourcegroup --query id --output tsv)
+$readOnlyRoleDefinitionId = "00000000-0000-0000-0000-000000000001"
+$scope=$(az cosmosdb show --name $cosmosdb_acc_name --resource-group $resource_group --query id --output tsv)
 ```
 
 Define a role assignment for the system-assigned identity:
 
 ```azurecli
-az cosmosdb sql role assignment create --account-name $cosmosdbname --resource-group $resourcegroup --role-definition-id $readOnlyRoleDefinitionId --principal-id $sys_principal --scope $scope
+az cosmosdb sql role assignment create --account-name $cosmosdb_acc_name --resource-group $resource_group --role-definition-id $readOnlyRoleDefinitionId --principal-id $system_assigned_principal --scope $scope
 ```
 
 For more information, see [Use data plane role-based access control with Azure Cosmos DB for NoSQL](/azure/cosmos-db/nosql/security/how-to-grant-data-plane-role-based-access)

@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 10/15/2024
+ms.date: 04/14/2025
 ---
 
 # Map enriched output to fields in a search index in Azure AI Search
@@ -182,7 +182,7 @@ The source field path is skill output. In this example, the output is *text_vect
 ```json
 {
   "name": "test-vector-size-ss",  
-  "description": "Generate embeddings using Azure OpenAI Service",
+  "description": "Generate embeddings using Azure OpenAI in Azure AI Foundry Models",
   "skills": [
     {
       "@odata.type": "#Microsoft.Skills.Text.AzureOpenAIEmbeddingSkill",

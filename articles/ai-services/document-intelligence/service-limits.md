@@ -2,12 +2,11 @@
 title: Service quotas and limits - Document Intelligence
 titleSuffix: Azure AI services
 description: Quick reference, detailed description, and best practices for working within Azure AI Document Intelligence service Quotas and Limits
-#services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 01/15/2025
+ms.date: 04/04/2025
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
 ---
@@ -41,7 +40,6 @@ For Document Intelligence v4.0 `2024-11-30` (GA) supports page and line features
 
 * Angle, width/height, and unit aren't supported.
 * For each object detected, bounding polygon or bounding regions aren't supported.
-* Page range (`pages`) isn't supported as a parameter.
 * The `lines` object isn't supported.
 :::moniker-end
 
@@ -146,9 +144,9 @@ Document Intelligence billing is calculated monthly based on the model type and 
 | Adjustable | No | No |
 | **Custom neural model train** | 10 hours per month <sup>5</sup> | no limit (pay by the hour), start with 10 free hours each month |
 | Adjustable | No |Yes <sup>3</sup>|
-| **Max number of pages (Training) * Classifier** | 10,000 | 10,000 (default value) |
+| **Max number of pages (Training) * Classifier** | 25,000 | 25,000 (default value) |
 | Adjustable | No | No |
-| **Max number of document types (classes) * Classifier** | 500 | 500 (default value) |
+| **Max number of document types (classes) * Classifier** | 1000 | 1000 (default value) |
 | Adjustable | No | No |
 | **Training dataset size * Classifier** | 1GB | 2GB (default value) |
 | Adjustable | No | No |

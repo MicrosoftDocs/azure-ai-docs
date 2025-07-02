@@ -16,9 +16,13 @@ ms.custom: UpdateFrequency5, data4ml, sdkv1
 
 # Data drift (preview) will be retired, and replaced by Model Monitor
 
-Data (preview) will be retired at 09/01/2025, and you can start to use [Model Monitor](../how-to-monitor-model-performance.md) for your data drift tasks. Please check the content below to understand the replacement, feature gaps and manual change steps.
-
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
+Data drift(preview) will be retired at 09/01/2025, and you can start to use [Model Monitor](../how-to-monitor-model-performance.md) for your data drift tasks.
+Please check the content below to understand the replacement, feature gaps and manual change steps.
+
 
 Learn how to monitor data drift and set alerts when drift is high.
 
@@ -190,7 +194,7 @@ As described later, a dataset monitor runs at a set frequency (daily, weekly, mo
 The **backfill** function runs a backfill job, for a specified start and end date range. A backfill job fills in expected missing data points in a data set, as a way to ensure data accuracy and completeness.
 
 > [!NOTE]
-> Azure Machine Learning model monitoring doesn't support manual **backfill** function, if you want to redo the model monitor for a specif time range, you can create another model monitor for that specific time range.
+> Azure Machine Learning model monitoring doesn't support manual **backfill** function, if you want to redo the model monitor for a specific time range, you can create another model monitor for that specific time range.
 
 # [Python SDK](#tab/python)
 <a name="sdk-monitor"></a>

@@ -15,6 +15,8 @@ ms.custom: UpdateFrequency5, deploy, docker, prebuilt
 
 # Extend a prebuilt Docker image
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In some cases, the [prebuilt Docker images for model inference](../concept-prebuilt-docker-images-inference.md) and [extensibility](./how-to-prebuilt-docker-images-inference-python-extensibility.md) solutions for Azure Machine Learning might not meet your inference service needs.
 
 In this case, you can use a Dockerfile to create a new image, using one of the prebuilt images as the starting point. By extending from an existing prebuilt Docker image, you can use the Azure Machine Learning network stack and libraries without creating an image from scratch.

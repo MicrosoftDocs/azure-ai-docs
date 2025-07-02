@@ -18,6 +18,8 @@ ms.custom: UpdateFrequency5, devx-track-python, devx-track-azurecli, cliv1
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 [!INCLUDE [cli v1](../includes/machine-learning-cli-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 The [Azure Machine Learning SDK for Python v1](/python/api/overview/azure/ml/intro) and [Machine Learning CLI](reference-azure-machine-learning-cli.md) provide various methods to monitor, organize, and track your runs for training and experimentation. Your ML run history is an important part of an explainable and repeatable ML development process.
 
 > [!TIP]
@@ -430,7 +432,7 @@ root_run(current_child_run).log("MyMetric", f"Data from child run {current_child
 
 ## Monitor the run status by email notification
 
-1. In the [Azure portal](https://portal.azure.com/), in the left navigation bar, select the **Monitor** tab. 
+1. In the [Azure portal](https://portal.azure.com/), in the left pane, select the **Monitor** tab. 
 
 1. Select **Diagnostic settings** and then select **+ Add diagnostic setting**.
 

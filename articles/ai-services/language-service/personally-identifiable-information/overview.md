@@ -2,13 +2,12 @@
 title: What is the Personally Identifying Information (PII) detection feature in Azure AI Language?
 titleSuffix: Azure AI services
 description: An overview of the PII detection feature in Azure AI services, which helps you extract entities and sensitive information (PII) in text.
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 03/05/2025
-ms.author: jboback
+ms.date: 03/24/2025
+ms.author: lajanuar
 ms.custom: language-service-pii
 ---
 
@@ -17,7 +16,7 @@ ms.custom: language-service-pii
 Azure AI Language Personally Identifiable Information (PII) detection is a feature offered by [Azure AI Language](../overview.md). The PII detection service is a cloud-based API that utilizes machine learning and AI algorithms to help you develop intelligent applications with advanced natural language understanding. Azure AI Language PII detection uses Named Entity Recognition (NER) to **identify and redact** sensitive information from input data. The service classifies sensitive personal data into predefined categories. These categories include phone numbers, email addresses, and identification documents. This classification helps to efficiently detect and eliminate such information.
 
 > [!TIP]
-> Try PII detection [in Azure AI Foundry portal](https://ai.azure.com/explore/language). There you can [utilize a currently existing Language Studio resource or create a new Azure AI Foundry resource](../../../ai-foundry/ai-services/how-to/connect-ai-services.md).
+> Try PII detection [in Azure AI Foundry portal](https://ai.azure.com/explore/language). There you can [utilize a currently existing Language Studio resource or create a new Azure AI Foundry resource](../../../ai-services/connect-services-ai-foundry-portal.md).
 
 ## What's new
 
@@ -111,7 +110,7 @@ A native document refers to the file format used to create the original document
 
 ## Responsible AI
 
-An AI system includes not only the technology, but also the people who use it, the people affected by it, and the deployment environment. Read the [transparency note for PII](/legal/cognitive-services/language-service/transparency-note-personally-identifiable-information?context=/azure/ai-services/language-service/context/context) to learn about responsible AI use and deployment in your systems. For more information, see the following articles:
+An AI system includes not only the technology, but also the people who use it, the people affected by it, and the deployment environment. Read the [transparency note for PII](/azure/ai-foundry/responsible-ai/language-service/transparency-note-personally-identifiable-information) to learn about responsible AI use and deployment in your systems. For more information, see the following articles:
 
 [!INCLUDE [Responsible AI links](../includes/overview-responsible-ai-links.md)]
 
@@ -127,5 +126,5 @@ An AI system includes not only the technology, but also the people who use it, t
 ## Next steps
 
 There are two ways to get started using the entity linking feature:
-* [Azure AI Foundry](../../../ai-foundry/what-is-ai-foundry.md) is a web-based platform that lets you use several Language service features without needing to write code.
+* [Azure AI Foundry](../../../ai-foundry/what-is-azure-ai-foundry.md) is a web-based platform that lets you use several Language service features without needing to write code.
 * The [quickstart article](quickstart.md) for instructions on making requests to the service using the REST API and client library SDK.

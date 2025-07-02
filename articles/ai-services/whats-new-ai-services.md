@@ -1,43 +1,30 @@
----
-title: "Azure AI Services docs: What's new for February 2025"
-description: "What's new in the Azure AI Services docs for February 2025."
+﻿---
+title: "Azure AI Services docs: What's new for May 2025"
+description: "What's new in the Azure AI Services docs for May 2025."
 ms.author: smcdowell
 author: skpmcdowell
 ms.topic: whats-new
 ms.subject: ai-services
-ms.custom: February-2025
-ms.date: 03/04/2025
+ms.custom: May-2025
+ms.date: 06/02/2025
 ---
 
-# Azure AI Services docs: What's new for February 2025
+# Azure AI Services docs: What's new for May 2025
 
-Welcome to what's new in the Azure AI Services docs for February 2025. This article lists some of the major changes to docs during this period.
+Welcome to what's new in the Azure AI Services docs for May 2025. This article lists some of the major changes to docs during this period.
 
-## Azure AI Services
+## Updated articles
 
-### New articles
-
-- [Analyzer templates offered with Content Understanding](../ai-services/content-understanding/concepts/analyzer-templates.md)
-- [Azure AI Translator known issues](../ai-services/translator/reference/known-issues.md)
-- [Azure AI Translator release history](../ai-services/translator/reference/release-history.md)
-- [Best practices for Content Understanding](../ai-services/content-understanding/concepts/best-practices.md)
-- [Content Understanding Capabilities (preview)](../ai-services/content-understanding/concepts/capabilities.md)
-- [Create a new network-secured agent with user-managed identity](../ai-services/agents/how-to/virtual-networks.md)
-- [Face liveness detection](../ai-services/computer-vision/concept-face-liveness-detection.md)
-- [QuickStart: Use a text blocklist](../ai-services/content-safety/quickstart-blocklist.md)
-- [Troubleshooting latency issues in Azure AI Document Intelligence](../ai-services/document-intelligence/concept/troubleshoot-latency.md)
-
-### Updated articles
-
-- [Azure AI Agent Service Code Interpreter](../ai-services/agents/how-to/tools/code-interpreter.md)
 - [Azure AI Agents function calling](../ai-services/agents/how-to/tools/function-calling.md)
-- [Azure OpenAI stored completions & distillation (preview)](../ai-services/openai/how-to/stored-completions.md) 
-- [Custom Translator release notes](../ai-services/translator/custom-translator/release-notes.md)
-- [Customize a model with fine-tuning](../ai-services/openai/how-to/fine-tuning.md) 
-- [Document Intelligence batch analysis](../ai-services/document-intelligence/prebuilt/batch-analysis.md) 
-- [Document Intelligence read model](../ai-services/document-intelligence/prebuilt/read.md) 
-- [Fine-tuning and tool calling](../ai-services/openai/how-to/fine-tuning-functions.md) 
-- [Grounding with Bing Search](../ai-services/agents/how-to/tools/bing-grounding.md)
-- [How to use Azure AI Agent Service with OpenAPI Specified Tools](../ai-services/agents/how-to/tools/openapi-spec.md) 
-- [Structured outputs](../ai-services/openai/how-to/structured-outputs.md) 
-- [Use Azure Functions with Azure AI Agent Service](../ai-services/agents/how-to/tools/azure-functions.md) 
+- [Azure AI Content Understanding documentation](../ai-services/content-understanding/index.yml)
+- [Azure AI Content Understanding video solutions (preview)](../ai-services/content-understanding/video/overview.md)
+- [Azure OpenAI Responses API (Preview)](../ai-foundry/openai/how-to/responses.md)
+- [Computer Use (preview) in Azure OpenAI](../ai-foundry/openai/how-to/computer-use.md) 
+- [Content Understanding audio solutions (preview)](../ai-services/content-understanding/audio/overview.md) 
+- [Content Understanding region and language support](../ai-services/content-understanding/language-region-support.md) 
+- [Content Understanding service quotas and limits](../ai-services/content-understanding/service-limits.md)
+- [Quickstart: Azure AI Content Understanding REST APIs](../ai-services/content-understanding/quickstart/use-rest-api.md)
+- [Realtime events reference](../ai-foundry/openai/realtime-audio-reference.md)
+- [Use an existing AI Search index with the Azure AI Search tool](../ai-services/agents/how-to/tools/azure-ai-search.md)
+- [Use the fast transcription API with Azure AI Speech](../ai-services/speech-service/fast-transcription-create.md) 
+- [Use the Microsoft Fabric data agent](../ai-services/agents/how-to/tools/fabric.md)

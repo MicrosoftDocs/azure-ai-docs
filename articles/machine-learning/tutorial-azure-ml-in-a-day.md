@@ -469,7 +469,7 @@ ml_client.online_endpoints.begin_delete(name=online_endpoint_name)
 
 If you're not going to use it now, stop the compute instance:
 
-1. In the studio, in the left navigation area, select **Compute**.
+1. In the studio, in the left pane, select **Compute**.
 1. In the top tabs, select **Compute instances**
 1. Select the compute instance in the list.
 1. On the top toolbar, select **Stop**.

@@ -5,11 +5,12 @@ description: This article introduces you to the Rerank tool for flows in Azure A
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: reference
-ms.date: 01/29/2025
+ms.date: 6/30/2025
 ms.reviewer: jingyizhu
 ms.author: lagayhar
 author: lgayhardt
 ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
+ms.update-cycle: 180-days
 ---
 
 

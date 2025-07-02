@@ -9,9 +9,9 @@
     "navigationOptions": {
         "maximumNumberOfArticles": 5,
         "tocParentNode": "Latest documentation updates",
-        "repoTocFolder": "articles/ai-services",
+        "repoTocFolder": "articles/whats-new",
         "indexParentNode": "Latest documentation updates",
-        "repoIndexFolder": "articles/ai-services"
+        "repoIndexFolder": "articles/whats-new"
     },
     "areas": [
         {
@@ -19,12 +19,12 @@
             "heading": "Azure AI Services"
         },
         {
-            "names": [ "ai-studio" ],
-            "heading": "Azure AI Foundry"
+            "names": [ "ai-foundry" ],
+            "heading": "Azure Foundry"
         },
         {
             "names": [ "machine-learning" ],
-            "heading": "Azure Machine Learning"
+            "heading": "Machine Learning"
         },
         {
             "names": [ "search" ],

@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 2/25/2025
+ms.date: 5/19/2025
 ms.author: eur
 zone_pivot_groups: foundry-speech-studio-cli-rest
 #Customer intent: As a developer, I want to learn how to deploy a custom speech model so that I can use it in my applications.
@@ -28,23 +28,22 @@ You can deploy an endpoint for a base or custom model, and then [update](#change
 
 ::: zone pivot="ai-foundry-portal"
 
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
-1. Select **Fine-tuning** from the left pane.
-1. Select **AI Service fine-tuning**.
-1. Select the custom model that you want to manage from the **Model name** column.
-1. After you're satisfied with the test results, select **Deploy models** from the left menu. Then select **+ Deploy model**.
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
+1. Select the custom speech fine-tuning task (by model name) that you [started as described in the how to start custom speech fine-tuning article](./how-to-custom-speech-create-project.md).
+1. Select **Deploy models** > **+ Deploy models**. 
 
-    :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-deploy-model.png" alt-text="Screenshot of the page with an option to deploy the custom speech model." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-deploy-model.png":::
+    :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-deploy-model.png" alt-text="Screenshot of the page with an option to deploy the custom speech model." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-deploy-model.png":::
 
 1. In the **Deploy a new model** wizard, select the model that you want to deploy. 
 
-    :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-deploy-model-select-and-deploy.png" alt-text="Screenshot of the page with an option to select the model that you want to deploy." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-deploy-model-select-and-deploy.png":::
+    :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-deploy-model-select-and-deploy.png" alt-text="Screenshot of the page with an option to select the model that you want to deploy." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-deploy-model-select-and-deploy.png":::
 
 1. Enter a name and description for the deployment. Select the box to agree to the terms of use. Then select **Deploy**.
 
 1. After the deployment status is **Succeeded**, you can view the deployment details. Select the deployment to view the details like the endpoint ID. 
 
-    :::image type="content" source="./media/ai-foundry/custom-speech/new-fine-tune-deploy-model-status-succeeded.png" alt-text="Screenshot of the page with an option to select the deployment to view the details like the endpoint ID." lightbox="./media/ai-foundry/custom-speech/new-fine-tune-deploy-model-status-succeeded.png":::
+    :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-deploy-model-status-succeeded.png" alt-text="Screenshot of the page with an option to select the deployment to view the details like the endpoint ID." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-deploy-model-status-succeeded.png":::
 
 
 ::: zone-end
@@ -83,10 +82,10 @@ Select the endpoint link to view information specific to it, such as the endpoin
 
 To create an endpoint and deploy a model, use the `spx csr endpoint create` command. Construct the request parameters according to the following instructions:
 
-- Set the `project` property to the ID of an existing project. This property is recommended so that you can also view and manage the endpoint in the [Azure AI Foundry portal](https://ai.azure.com). You can run the `spx csr project list` command to get available projects.
+- Set the `project` property to the ID of an existing project. This property is recommended so that you can also view and manage the endpoint in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). You can run the `spx csr project list` command to get available projects.
 - Set the required `model` property to the ID of the model that you want deployed to the endpoint. 
 - Set the required `language` property. The endpoint locale must match the locale of the model. The locale can't be changed later. The Speech CLI `language` property corresponds to the `locale` property in the JSON request and response.
-- Set the required `name` property. This is the name that is displayed in the [Azure AI Foundry portal](https://ai.azure.com). The Speech CLI `name` property corresponds to the `displayName` property in the JSON request and response.
+- Set the required `name` property. This is the name that is displayed in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). The Speech CLI `name` property corresponds to the `displayName` property in the JSON request and response.
 - Optionally, you can set the `logging` property. Set this to `enabled` to enable audio and diagnostic [logging](#view-logging-data) of the endpoint's traffic. The default is `false`. 
 
 Here's an example Speech CLI command to create an endpoint and deploy a model:
@@ -141,16 +140,16 @@ spx help csr endpoint
 
 To create an endpoint and deploy a model, use the [Endpoints_Create](/rest/api/speechtotext/endpoints/create) operation of the [Speech to text REST API](rest-speech-to-text.md). Construct the request body according to the following instructions:
 
-- Set the `project` property to the URI of an existing project. This property is recommended so that you can also view and manage the endpoint in the [Azure AI Foundry portal](https://ai.azure.com). You can make a [Projects_List](/rest/api/speechtotext/projects/list) request to get available projects.
+- Set the `project` property to the URI of an existing project. This property is recommended so that you can also view and manage the endpoint in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). You can make a [Projects_List](/rest/api/speechtotext/projects/list) request to get available projects.
 - Set the required `model` property to the URI of the model that you want deployed to the endpoint. 
 - Set the required `locale` property. The endpoint locale must match the locale of the model. The locale can't be changed later.
-- Set the required `displayName` property. This is the name that is displayed in the [Azure AI Foundry portal](https://ai.azure.com).
+- Set the required `displayName` property. This is the name that is displayed in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 - Optionally, you can set the `loggingEnabled` property within `properties`. Set this to `true` to enable audio and diagnostic [logging](#view-logging-data) of the endpoint's traffic. The default is `false`. 
 
-Make an HTTP POST request using the URI as shown in the following [Endpoints_Create](/rest/api/speechtotext/endpoints/create) example. Replace `YourSubscriptionKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, and set the request body properties as previously described.
+Make an HTTP POST request using the URI as shown in the following [Endpoints_Create](/rest/api/speechtotext/endpoints/create) example. Replace `YourSpeechResoureKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, and set the request body properties as previously described.
 
 ```azurecli-interactive
-curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey" -H "Content-Type: application/json" -d '{
+curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content-Type: application/json" -d '{
   "project": {
     "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
   },
@@ -283,10 +282,10 @@ To redeploy the custom endpoint with a new model, use the [Endpoints_Update](/re
 
 - Set the `model` property to the URI of the model that you want deployed to the endpoint.
 
-Make an HTTP PATCH request using the URI as shown in the following example. Replace `YourSubscriptionKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, replace `YourEndpointId` with your endpoint ID, and set the request body properties as previously described.
+Make an HTTP PATCH request using the URI as shown in the following example. Replace `YourSpeechResoureKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, replace `YourEndpointId` with your endpoint ID, and set the request body properties as previously described.
 
 ```azurecli-interactive
-curl -v -X PATCH -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey" -H "Content-Type: application/json" -d '{
+curl -v -X PATCH -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content-Type: application/json" -d '{
   "model": {
     "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/9e240dc1-3d2d-4ac9-98ec-1be05ba0e9dd"
   },
@@ -370,10 +369,10 @@ The locations of each log file with more details are returned in the response bo
 
 To get logs for an endpoint, start by using the [Endpoints_Get](/rest/api/speechtotext/endpoints/get) operation of the [Speech to text REST API](rest-speech-to-text.md).
 
-Make an HTTP GET request using the URI as shown in the following example. Replace `YourEndpointId` with your endpoint ID, replace `YourSubscriptionKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource region.
+Make an HTTP GET request using the URI as shown in the following example. Replace `YourEndpointId` with your endpoint ID, replace `YourSpeechResoureKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource region.
 
 ```azurecli-interactive
-curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/YourEndpointId" -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey"
+curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/YourEndpointId" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
 ```
 
 You should receive a response body in the following format:
@@ -408,11 +407,11 @@ You should receive a response body in the following format:
 }
 ```
 
-Make an HTTP GET request using the "logs" URI from the previous response body. Replace `YourEndpointId` with your endpoint ID, replace `YourSubscriptionKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource region.
+Make an HTTP GET request using the "logs" URI from the previous response body. Replace `YourEndpointId` with your endpoint ID, replace `YourSpeechResoureKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource region.
 
 
 ```curl
-curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/YourEndpointId/files/logs" -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey"
+curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/YourEndpointId/files/logs" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
 ```
 
 The locations of each log file with more details are returned in the response body.

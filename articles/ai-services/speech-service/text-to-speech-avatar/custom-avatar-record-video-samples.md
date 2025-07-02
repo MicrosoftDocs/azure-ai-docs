@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 1/13/2025
+ms.date: 4/28/2025
 ms.author: eur
 keywords: how to record video samples for custom text to speech avatar
 ---
@@ -30,7 +30,7 @@ If your avatar only needs to be used in a single scene, you can select a specifi
 Here are best practices to consider when you use a pure-colored background (such as green screen) for recording:
 - A green screen is set behind your back, and if your avatar video shows the full body of the actor, including feet, there should be a green screen under the feet. And the back green screen and floor green screen should be seamlessly connected. 
 - The green screen should be flat, and the color is uniform.
-- The actor should keep 0.5 m – 1 m distance away from the back background.
+- The actor should keep 0.5 m – 1-m distance away from the back background.
 - The green screen can be properly lit to prevent shadows.
 - The full outline of the actor is within the edge of the green screen.
 - The actor shouldn't stand too close to the green screen.
@@ -39,7 +39,7 @@ Here are best practices to consider when you use a pure-colored background (such
 ### Lighting requirement
 
 - Ensure even and bright lighting on the actor's face, avoiding shadows on the face or reflections on actor's glasses and clothes.
-- Try to avoid changes in ambient light on actors. It's recommended to turn off the projector, close the curtains to avoid daylight changes, and use a stable artificial light source, etc.
+- Try to avoid changes in ambient light on actors. For example, you can turn off the projector, close the curtains to avoid daylight changes, and use a stable artificial light source.
 
 ### Devices
 
@@ -67,7 +67,7 @@ The consent video is required for creating a custom avatar.
    - The consent video must represent the same avatar talent speaking, following the requirement of the consent statement. Make sure the statement is correctly recorded, and each word is clearly spoken. You can select any one of the languages supported. To learn about requirements of the consent statement video, see [Get consent file from the avatar talent](./custom-avatar-create.md#step-2-add-avatar-talent-consent).
    - The avatar talent should always face the front of the camera, without large movements. 
    - The video should be taken in a quiet environment, and the voice should be recorded at a reasonable volume. Try to keep the signal-to-noise ratio higher than 20. For voice recording guidance, see the [Recording custom voice samples](../record-custom-voice-samples.md#recording-your-script) guide.
-   - Ensure that the head part will not be occluded in each frame of the video. 
+   - Ensure that the head part won't be occluded in each frame of the video. 
    - Make sure no other objects appear in the camera, including filming equipment, mobile phone, etc. 
 
 **Status 0 speaking (Required for gestures)**

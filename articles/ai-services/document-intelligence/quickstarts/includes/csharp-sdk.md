@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 02/10/2025
+ms.date: 04/11/2025
 ms.author: lajanuar
 monikerRange: ">=doc-intel-3.0.0"
 ---
@@ -42,12 +42,12 @@ In this quickstart, use the following features to analyze and extract data and v
 
 :::moniker range="doc-intel-4.0.0"
 
-* An Azure AI services or Document Intelligence resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [Azure AI multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) resource, in the Azure portal, to get your key and endpoint.
+* An Azure AI services or Document Intelligence resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [Azure AI multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) resource, in the Azure portal, to get your key and endpoint.
 
 * You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
 > [!TIP]
-> Create an Azure AI services resource if you plan to access multiple Azure AI services under a single endpoint/key. For Document Intelligence access only, create a Document Intelligence resource. You need a single-service resource if you intend to use [Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication).
+> Create an Azure AI Foundry resource if you plan to access multiple Azure AI services under a single endpoint/key. For Document Intelligence access only, create a Document Intelligence resource. You need a single-service resource if you intend to use [Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication).
 
 * After your resource deploys, select **Go to resource**. You need the key and endpoint from the resource you create to connect your application to the Document Intelligence API. You paste your key and endpoint into the code later in the quickstart:
 
@@ -57,12 +57,12 @@ In this quickstart, use the following features to analyze and extract data and v
 
 :::moniker range="doc-intel-3.1.0 || doc-intel-3.0.0"
 
-* An Azure AI services or Form Recognizer resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [Azure AI multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) resource, in the Azure portal, to get your key and endpoint.
+* An Azure AI services or Form Recognizer resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [Azure AI multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) resource, in the Azure portal, to get your key and endpoint.
 
 * You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
 > [!TIP]
-> Create an Azure AI services resource if you plan to access multiple Azure AI services under a single endpoint/key. For Form Recognizer access only, create a Form Recognizer resource. You need a single-service resource if you intend to use [Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication).
+> Create an Azure AI Foundry resource if you plan to access multiple Azure AI services under a single endpoint/key. For Form Recognizer access only, create a Form Recognizer resource. You need a single-service resource if you intend to use [Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication).
 
 * After your resource deploys, select **Go to resource**. You need the key and endpoint from the resource you create to connect your application to the Form Recognizer API. You paste your key and endpoint into the code later in the quickstart:
 
@@ -644,15 +644,9 @@ AzureKeyCredential credential = new AzureKeyCredential(key);
 DocumentIntelligenceClient client = new DocumentIntelligenceClient(new Uri(endpoint), credential);
 
 //sample invoice document
+Uri uriSource = new Uri("https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-invoice.pdf");
 
-Uri invoiceUri = new Uri ("https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-invoice.pdf");
-
-AnalyzeDocumentContent content = new AnalyzeDocumentContent()
-{
-    UrlSource = invoiceUri
-};
-
-Operation<AnalyzeResult> operation = await client.AnalyzeDocumentAsync(WaitUntil.Completed, "prebuilt-invoice", content);
+Operation<AnalyzeResult> operation = await client.AnalyzeDocumentAsync(WaitUntil.Completed, "prebuilt-invoice", uriSource);
 
 AnalyzeResult result = operation.Value;
 
@@ -663,39 +657,39 @@ for (int i = 0; i < result.Documents.Count; i++)
     AnalyzedDocument document = result.Documents[i];
 
     if (document.Fields.TryGetValue("VendorName", out DocumentField vendorNameField)
-        && vendorNameField.Type == DocumentFieldType.String)
+        && vendorNameField.FieldType == DocumentFieldType.String)
     {
         string vendorName = vendorNameField.ValueString;
         Console.WriteLine($"Vendor Name: '{vendorName}', with confidence {vendorNameField.Confidence}");
     }
 
     if (document.Fields.TryGetValue("CustomerName", out DocumentField customerNameField)
-        && customerNameField.Type == DocumentFieldType.String)
+        && customerNameField.FieldType == DocumentFieldType.String)
     {
         string customerName = customerNameField.ValueString;
         Console.WriteLine($"Customer Name: '{customerName}', with confidence {customerNameField.Confidence}");
     }
 
     if (document.Fields.TryGetValue("Items", out DocumentField itemsField)
-        && itemsField.Type == DocumentFieldType.List)
+        && itemsField.FieldType == DocumentFieldType.List)
     {
         foreach (DocumentField itemField in itemsField.ValueList)
         {
             Console.WriteLine("Item:");
 
-            if (itemField.Type == DocumentFieldType.Dictionary)
+            if (itemField.FieldType == DocumentFieldType.Dictionary)
             {
                 IReadOnlyDictionary<string, DocumentField> itemFields = itemField.ValueDictionary;
 
                 if (itemFields.TryGetValue("Description", out DocumentField itemDescriptionField)
-                    && itemDescriptionField.Type == DocumentFieldType.String)
+                    && itemDescriptionField.FieldType == DocumentFieldType.String)
                 {
                     string itemDescription = itemDescriptionField.ValueString;
                     Console.WriteLine($"  Description: '{itemDescription}', with confidence {itemDescriptionField.Confidence}");
                 }
 
                 if (itemFields.TryGetValue("Amount", out DocumentField itemAmountField)
-                    && itemAmountField.Type == DocumentFieldType.Currency)
+                    && itemAmountField.FieldType == DocumentFieldType.Currency)
                 {
                     CurrencyValue itemAmount = itemAmountField.ValueCurrency;
                     Console.WriteLine($"  Amount: '{itemAmount.CurrencySymbol}{itemAmount.Amount}', with confidence {itemAmountField.Confidence}");
@@ -705,27 +699,26 @@ for (int i = 0; i < result.Documents.Count; i++)
     }
 
     if (document.Fields.TryGetValue("SubTotal", out DocumentField subTotalField)
-        && subTotalField.Type == DocumentFieldType.Currency)
+        && subTotalField.FieldType == DocumentFieldType.Currency)
     {
         CurrencyValue subTotal = subTotalField.ValueCurrency;
         Console.WriteLine($"Sub Total: '{subTotal.CurrencySymbol}{subTotal.Amount}', with confidence {subTotalField.Confidence}");
     }
 
     if (document.Fields.TryGetValue("TotalTax", out DocumentField totalTaxField)
-        && totalTaxField.Type == DocumentFieldType.Currency)
+        && totalTaxField.FieldType == DocumentFieldType.Currency)
     {
         CurrencyValue totalTax = totalTaxField.ValueCurrency;
         Console.WriteLine($"Total Tax: '{totalTax.CurrencySymbol}{totalTax.Amount}', with confidence {totalTaxField.Confidence}");
     }
 
     if (document.Fields.TryGetValue("InvoiceTotal", out DocumentField invoiceTotalField)
-        && invoiceTotalField.Type == DocumentFieldType.Currency)
+        && invoiceTotalField.FieldType == DocumentFieldType.Currency)
     {
         CurrencyValue invoiceTotal = invoiceTotalField.ValueCurrency;
         Console.WriteLine($"Invoice Total: '{invoiceTotal.CurrencySymbol}{invoiceTotal.Amount}', with confidence {invoiceTotalField.Confidence}");
     }
 }
-
 ```
 
 **Run your application**

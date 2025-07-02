@@ -18,6 +18,8 @@ ms.custom: UpdateFrequency5, sdkv1
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In this article, learn how to run your [TensorFlow](https://www.tensorflow.org/overview) training scripts at scale using Azure Machine Learning.
 
 This example trains and registers a TensorFlow model to classify handwritten digits using a deep neural network (DNN).

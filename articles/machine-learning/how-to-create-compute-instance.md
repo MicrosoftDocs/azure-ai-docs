@@ -198,7 +198,7 @@ You can't change the idle time of an existing compute instance with the CLI.
 
 * For an existing compute instance:
 
-    1. In the left navigation bar, select **Compute**
+    1. In the left pane, select **Compute**
     1. In the list, select the compute instance you wish to change
     1. Select the **Edit** pencil in the **Schedules** section.
 
@@ -438,7 +438,7 @@ Assigned to user does not need compute write (create) permission to enable SSO.
 
 Here are the steps assigned to user needs to take. Please note creator of compute instance is not allowed to enable SSO on that compute instance due to security reasons.
 
-1. Click on compute in left navigation pane in Azure Machine Learning studio.
+1. Click on compute in left pane in Azure Machine Learning studio.
 1. Click on the name of compute instance where you need to enable SSO.
 1. Edit the Single sign-on details section.
 

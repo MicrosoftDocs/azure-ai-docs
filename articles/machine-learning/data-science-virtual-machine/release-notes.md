@@ -506,7 +506,7 @@ Primary changes:
 - Changed Intellijidea to version 2021.2.3
 - Changed NVIDIA Drivers to version 470.103.01
 - Changed NVIDIA SMI to version 470.103.01
-- Changed Nodejs to version v16.13.0
+- Changed Node.js to version v16.13.0
 - Changed Pycharm to version 2021.2.3
 - Changed VS Code to version 1.61.2
 - Conda
@@ -537,7 +537,7 @@ Primary changes:
 - Changed pytorch to version 1.9.1
 - Changed Docker to version 20.10.9
 - Changed Intellijidea to version 2021.2.2
-- Changed Nodejs to version v14.18.0
+- Changed Node.js to version v14.18.0
 - Changed Pycharm to version 2021.2.2
 - Changed VS Code to version 1.60.2
 - Fixed AutoML environment (azureml_py36_automl)
@@ -613,7 +613,7 @@ Selected version updates include:
 - Julia 1.0.5
 - Jupyter Lab 2.2.6
 - Microsoft Edge browser
-- NodeJS 16.2.0
+- Node.js 16.2.0
 - Power BI Desktop 2.93.641.0 64-bit (May 2021)
 - PyCharm Community Edition 2021.1.1
 - Python 3.8

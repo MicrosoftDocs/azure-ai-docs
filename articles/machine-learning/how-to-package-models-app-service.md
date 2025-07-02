@@ -150,9 +150,9 @@ In this section, you package the previously registered MLflow model and deploy i
 
     1. Look for the environment named *heart-classifier-mlflow-package*, which is the name of the package you just created.
 
-    1. Copy the value that's in the **Azure container registry** field.
+    1. Copy the value that's in the **Azure Container Registry** field.
 
-    :::image type="content" source="./media/model-packaging/model-package-container-name.png" alt-text="A screenshot showing the section where the Azure container registry image name is displayed in Azure Machine Learning studio."::: 
+    :::image type="content" source="./media/model-packaging/model-package-container-name.png" alt-text="A screenshot showing the section where the Azure Container Registry image name is displayed in Azure Machine Learning studio."::: 
 
 
 1. Now, deploy this package in an App Service.
@@ -177,7 +177,7 @@ In this section, you package the previously registered MLflow model and deploy i
     
     1. For **Image Source**, select **Azure Container Registry**.
 
-    1. Configure the **Azure container registry options** as follows:
+    1. Configure the **Azure Container Registry options** as follows:
 
         1. For **Registry**, select the Azure Container Registry associated with the Azure Machine Learning workspace.
 

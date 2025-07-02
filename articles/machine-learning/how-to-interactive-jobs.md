@@ -35,7 +35,7 @@ By specifying interactive applications at job creation, you can connect directly
 
 ### Enable during job submission
 # [Azure Machine Learning studio](#tab/ui)
-1. Create a new job from the left navigation pane in the studio portal.
+1. Create a new job from the left pane in the studio portal.
 
 
 2. Choose **Compute cluster** or **Attached compute** (Kubernetes) as the compute type, choose the compute target, and specify how many nodes you need in `Instance count`. 

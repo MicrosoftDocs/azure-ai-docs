@@ -5,7 +5,7 @@ description: Learn how to do distillation in Azure AI Foundry portal.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 03/09/2025
+ms.date: 05/20/2025
 ms.reviewer: vkann
 reviewer: anshirga
 ms.author: ssalgado
@@ -41,6 +41,6 @@ We used an advanced prompt during synthetic data generation. The advanced prompt
 
 ## Related content
 
-- [What is Azure AI Foundry?](../what-is-ai-foundry.md)
+- [What is Azure AI Foundry?](../what-is-azure-ai-foundry.md)
 - [Deploy Meta Llama 3.1 models with Azure AI Foundry](../how-to/deploy-models-llama.md)
 - [Azure AI Foundry FAQ](../faq.yml)

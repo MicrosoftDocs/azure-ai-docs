@@ -56,7 +56,7 @@ Schedules are specified in an indexer definition. To set up a schedule, you can 
 ### [**Azure portal**](#tab/portal)
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and open the search service page.
-1. On the left navigation pane, select **Indexers**.
+1. On the left pane, select **Indexers**.
 1. Open an indexer.
 1. Select **Settings**.
 1. Scroll down to **Schedule**, and then choose Hourly, Daily, or Custom to set a specific date, time, or custom interval.

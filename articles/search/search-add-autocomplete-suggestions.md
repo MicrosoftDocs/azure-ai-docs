@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 10/22/2024
+ms.date: 04/14/2025
 ---
 
 # Add autocomplete and search suggestions in client apps

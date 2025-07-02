@@ -8,8 +8,8 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 10/21/2024
+ms.topic: reference
+ms.date: 04/14/2025
 ---
 
 # Content metadata properties used in Azure AI Search

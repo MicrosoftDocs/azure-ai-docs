@@ -436,7 +436,7 @@ The Storage Blob Data Reader role must be assigned to your user account on the o
 
 ## Enable offline materialization on the `transactions` feature set
 
-   After feature set materialization is enabled, you can perform a backfill. You can also schedule recurrent materialization jobs. For more information, visit the [the third tutorial in the series](./tutorial-enable-recurrent-materialization-run-batch-inference.md) resource.
+   After feature set materialization is enabled, you can perform a backfill. You can also schedule recurrent materialization jobs. For more information, visit the [third tutorial in the series](./tutorial-enable-recurrent-materialization-run-batch-inference.md) resource.
 
 ### [SDK track](#tab/SDK-track)
 

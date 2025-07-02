@@ -25,7 +25,7 @@ For more information, see the [Speech SDK for Objective-C reference](/objectivec
 With [custom speech](../../../custom-speech-overview.md), you can upload your own data, test and train a custom model, compare accuracy between models, and deploy a model to a custom endpoint. The following example shows how to set a custom endpoint:
 
 ```Objective-C
-SPXSpeechConfiguration *speechConfig = [[SPXSpeechConfiguration alloc] initWithSubscription:"YourSubscriptionKey" region:"YourServiceRegion"];
+SPXSpeechConfiguration *speechConfig = [[SPXSpeechConfiguration alloc] initWithSubscription:"YourSpeechResoureKey" region:"YourServiceRegion"];
 speechConfig.endpointId = "YourEndpointId";
 SPXSpeechRecognizer* speechRecognizer = [[SPXSpeechRecognizer alloc] init:speechConfig];
 ```

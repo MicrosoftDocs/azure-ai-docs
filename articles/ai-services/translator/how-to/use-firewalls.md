@@ -2,7 +2,6 @@
 title: Translate behind firewalls - Azure AI Translator
 titleSuffix: Azure AI services
 description: How to enable Azure AI Translator to translate behind firewalls using either domain-name or IP filtering.
-#services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -29,7 +28,7 @@ If you still require IP filtering, you can get the [IP addresses details using s
    > [!NOTE]
    >
    > * Once you enable **Selected Networks and Private Endpoints**, you must use the **Virtual Network** endpoint to call the Translator. You can't use the standard translator endpoint (`api.cognitive.microsofttranslator.com`) and you can't authenticate with an access token.
-   > * For more information, *see* [**Virtual Network Support**](../text-translation/reference/v3/reference.md#virtual-network-support).
+   > * For more information, *see* [**Virtual Network Support**](../text-translation/reference/authentication.md#virtual-network-support).
 
 1. To grant access to an internet IP range, enter the IP address or address range (in [`CIDR` notation](https://tools.ietf.org/html/rfc4632)) under **Firewall** > **Address Range**. Only valid public IP (`non-reserved`) addresses are accepted.
 
@@ -45,6 +44,6 @@ The IP addresses for Translator geographical endpoints as of September 21, 2021 
 
 ## Next steps
 
-[**Azure AI Translator virtual network support**](../text-translation/reference/v3/reference.md#virtual-network-support)
+[**Azure AI Translator virtual network support**](../text-translation/reference/authentication.md#virtual-network-support)
 
 [**Configure virtual networks**](../../cognitive-services-virtual-networks.md#grant-access-from-an-internet-ip-range)

@@ -9,6 +9,7 @@ ms.service: azure-ai-vision
 ms.topic: overview
 ms.date: 11/04/2024
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
+ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 
@@ -53,7 +54,7 @@ Each of these features has one or more try-it-out experiences in Vision Studio t
 
 ## Clean up resources
 
-If you want to remove an Azure AI services resource after using Vision Studio, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it. You can't delete your resource directly from Vision Studio, so use one of the following methods:
+If you want to remove an AI Foundry resource after using Vision Studio, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it. You can't delete your resource directly from Vision Studio, so use one of the following methods:
 * [Use the Azure portal](../multi-service-resource.md?pivots=azportal#clean-up-resources)
 * [Use the Azure CLI](../multi-service-resource.md?pivots=azcli#clean-up-resources)
 

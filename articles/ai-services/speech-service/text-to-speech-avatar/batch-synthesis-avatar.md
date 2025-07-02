@@ -5,7 +5,7 @@ description: Learn how to create text to speech avatar batch synthesis.
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 1/13/2025
+ms.date: 4/28/2025
 ms.reviewer: eur
 ms.author: eur
 author: eric-urban
@@ -39,9 +39,9 @@ Some properties in JSON format are required when you create a new batch synthesi
 To submit a batch synthesis request, construct the HTTP POST request body following these instructions:
 
 - Set the required `inputKind` property.
-- If the `inputKind` property is set to `PlainText`, you must also set the `voice` property in the `synthesisConfig`. In the example below, the `inputKind` is set to `SSML`, so the `speechSynthesis` isn't set.
+- If the `inputKind` property is set to `PlainText`, you must also set the `voice` property in the `synthesisConfig`. In the following example, the `inputKind` is set to `SSML`, so the `speechSynthesis` isn't set.
 - Set the required `SynthesisId` property. Choose a unique `SynthesisId` for the same speech resource. The `SynthesisId` can be a string of 3 to 64 characters, including letters, numbers, '-', or '_', with the condition that it must start and end with a letter or number.
-- Set the required `talkingAvatarCharacter` and `talkingAvatarStyle` properties. You can find supported avatar characters and styles [here](./avatar-gestures-with-ssml.md#supported-prebuilt-avatar-characters-styles-and-gestures).
+- Set the required `talkingAvatarCharacter` and `talkingAvatarStyle` properties. You can find supported avatar characters and styles [here](./avatar-gestures-with-ssml.md#supported-standard-avatar-characters-styles-and-gestures).
 - Optionally, you can set the `videoFormat`, `backgroundColor`, and other properties. For more information, see [batch synthesis properties](batch-synthesis-avatar-properties.md).
 
 > [!NOTE]
@@ -51,7 +51,7 @@ To submit a batch synthesis request, construct the HTTP POST request body follow
 >
 > The maximum length for the output video is currently 20 minutes, with potential increases in the future.
 
-To make an HTTP PUT request, use the URI format shown in the following example. Replace `YourSpeechKey` with your Speech resource key, `YourSpeechRegion` with your Speech resource region, and set the request body properties as described above.
+To make an HTTP PUT request, use the URI format shown in the following example. Replace `YourSpeechKey` with your Speech resource key, `YourSpeechRegion` with your Speech resource region, and set the request body properties as described previously.
 
 ```azurecli-interactive
 curl -v -X PUT -H "Ocp-Apim-Subscription-Key: YourSpeechKey" -H "Content-Type: application/json" -d '{
@@ -276,7 +276,7 @@ The summary file contains the synthesis results for each text input. Here's an e
 
 ## Delete batch synthesis
 
-After you have retrieved the audio output results and no longer need the batch synthesis job history, you can delete it. The Speech service retains each synthesis history for up to 31 days or the duration specified by the request's `timeToLiveInHours` property, whichever comes sooner. The date and time of automatic deletion, for synthesis jobs with a status of "Succeeded" or "Failed" is calculated as the sum of the `lastActionDateTime` and `timeToLive` properties.
+After you retrieve the audio output results and no longer need the batch synthesis job history, you can delete it. The Speech service retains each synthesis history for up to 31 days or the duration specified by the request's `timeToLiveInHours` property, whichever comes sooner. The date and time of automatic deletion, for synthesis jobs with a status of "Succeeded" or "Failed" is calculated as the sum of the `lastActionDateTime` and `timeToLive` properties.
 
 To delete a batch synthesis job, make an HTTP DELETE request using the following URI format. Replace `YourSynthesisId` with your batch synthesis ID, `YourSpeechKey` with your Speech resource key, and `YourSpeechRegion` with your Speech resource region.
 

@@ -8,7 +8,7 @@ ms.subservice: azure-ai-face
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
-ms.date: 09/25/2024
+ms.date: 03/26/2025
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
@@ -25,7 +25,7 @@ This tutorial demonstrates how to operate a frontend application and an app serv
 [!INCLUDE [liveness-sdk-gate](../includes/liveness-sdk-gate.md)]
 
 > [!TIP]
-> After you complete the prerequisites, you can get started faster by building and running a complete frontend sample (either on iOS, Android, or Web) from the [SDK samples folder](https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main/samples).  
+> After you complete the prerequisites, you can try the iOS liveness experience from [TestFlight](https://aka.ms/face/liveness/demo/ios) and the web-liveness experience from [Vision Studio](https://portal.vision.cognitive.azure.com/demo/face-liveness-detection). Moreover, you can also build and run a complete frontend sample (either on iOS, Android, or Web) from the [Samples](https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main?tab=readme-ov-file#samples) section.
 
 ## Prerequisites
 
@@ -34,7 +34,7 @@ This tutorial demonstrates how to operate a frontend application and an app serv
 - Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesFace"  title="Create a Face resource"  target="_blank">create a Face resource</a> in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**. 
     - You need the key and endpoint from the resource you create to connect your application to the Face service.
     - You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
-- Access to the Azure AI Vision Face Client SDK for Mobile (IOS and Android) and Web. To get started, you need to apply for the [Face Recognition Limited Access features](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUQjA5SkYzNDM4TkcwQzNEOE1NVEdKUUlRRCQlQCN0PWcu) to get access to the SDK. For more information, see the [Face Limited Access](/legal/cognitive-services/computer-vision/limited-access-identity?context=%2Fazure%2Fcognitive-services%2Fcomputer-vision%2Fcontext%2Fcontext) page.
+- Access to the Azure AI Vision Face Client SDK for Mobile (IOS and Android) and Web. To get started, you need to apply for the [Face Recognition Limited Access features](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUQjA5SkYzNDM4TkcwQzNEOE1NVEdKUUlRRCQlQCN0PWcu) to get access to the SDK. For more information, see the [Face Limited Access](/azure/ai-foundry/responsible-ai/computer-vision/limited-access-identity) page.
 - Familiarity with the Face liveness detection feature. See the [conceptual guide](../concept-face-liveness-detection.md).
 
 ## Prepare SDKs

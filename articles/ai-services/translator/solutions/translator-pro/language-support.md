@@ -2,7 +2,6 @@
 title: Language support - Microsoft Translator Pro
 titleSuffix: Azure AI services
 description: Language support for Microsoft Translator Pro speech-to-speech application.
-#services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator

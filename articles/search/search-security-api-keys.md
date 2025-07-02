@@ -95,7 +95,7 @@ $headers = @{
 'Accept' = 'application/json' }
 ```
 
-A script example showing API key usage for various operations can be found at [Quickstart: Create an Azure AI Search index in PowerShell using REST APIs](search-get-started-powershell.md).
+A script example showing API key usage for various operations can be found at [Quickstart: Create an Azure AI Search index in PowerShell using REST APIs](search-get-started-text.md).
 
 ### [**Portal**](#tab/portal-use)
 
@@ -238,7 +238,7 @@ It's not possible to use [customer-managed key encryption](search-security-manag
 
 1. Navigate to your search service page in Azure portal.
 
-1. On the left navigation pane, select **Access control (IAM)**, and then select the **Role assignments** tab.
+1. On the left pane, select **Access control (IAM)**, and then select the **Role assignments** tab.
 
 1. In the **Role** filter, select the roles that have permission to view or manage keys (Owner, Contributor, Search Service Contributor). The resulting security principals assigned to those roles have key permissions on your search service.
 

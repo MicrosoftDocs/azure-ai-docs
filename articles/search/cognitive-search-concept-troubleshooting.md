@@ -8,10 +8,10 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 12/10/2024
+ms.date: 05/08/2025
 ---
 
-# Tips for AI enrichment in Azure AI Search 
+# Tips for AI enrichment in Azure AI Search
 
 This article contains tips to help you get started with AI enrichment and skillsets used during indexing.
 

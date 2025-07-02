@@ -1,13 +1,13 @@
 ---
-title: Azure Text Translation SDKs 
+title: Azure Text translation SDKs 
 titleSuffix: Azure AI services
-description: Azure Text Translation software development kits (SDKs) expose Text Translation features and capabilities, using C#, Java, JavaScript, and Python programming language.
+description: Azure Text translation software development kits (SDKs) expose Text translation features and capabilities, using C#, Java, JavaScript, and Python programming language.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.custom: devx-track-python
 ms.topic: conceptual
-ms.date: 09/26/2024
+ms.date: 05/19/2025
 ms.author: lajanuar
 recommendations: false
 ---
@@ -17,13 +17,13 @@ recommendations: false
 <!-- markdownlint-disable MD001 -->
 <!-- markdownlint-disable MD051 -->
 
-# Azure Text Translation SDK
+# Azure Text translation SDK
 
-Azure Text Translation is a cloud-based REST API feature of the Azure AI Translator service. The Text Translation API enables quick and accurate source-to-target text translations in real time. The Text Translation software development kit (SDK) is a set of libraries and tools that enable you to easily integrate Text Translation REST API capabilities into your applications. Text Translation SDK is available across programming platforms in C#/.NET, Java, JavaScript, and Python.
+Azure Text translation is a cloud-based REST API feature of the Azure AI Translator service. The Text translation API enables quick and accurate source-to-target text translations in real time. The Text translation software development kit (SDK) is a set of libraries and tools that enable you to easily integrate Text translation REST API capabilities into your applications. Text translation SDK is available across programming platforms in C#/.NET, Java, JavaScript, and Python.
 
 ## Supported languages
 
-Text Translation SDK supports the programming languages and platforms:
+Text translation SDK supports the programming languages and platforms:
 
 | Language → SDK version | Package|Client library| Supported API version|
 |:----------------------:|:----------|:----------|:-------------|
@@ -32,20 +32,20 @@ Text Translation SDK supports the programming languages and platforms:
 |[JavaScript → 1.0.0](https://github.com/Azure/azure-sdk-for-js/tree/@azure-rest/ai-translation-text_1.0.1/sdk/translation/ai-translation-text-rest/)|[npm](https://www.npmjs.com/package/@azure-rest/ai-translation-text/v/1.0.0)|[Azure SDK for JavaScript](/javascript/api/overview/azure/text-translation?view=azure-node-preview&preserve-view=true) |Translator v3.0 |
 |[Python → 1.0.1](https://github.com/Azure/azure-sdk-for-python/tree/azure-ai-translation-text_1.0.1/sdk/translation/azure-ai-translation-text/)|[PyPi](https://pypi.org/project/azure-ai-translation-text/1.0.1/)|[Azure SDK for Python](/python/api/overview/azure/ai-translation-text-readme?view=azure-python&preserve-view=true) |Translator v3.0|
 
-&#x2731; The Azure Text Translation SDK for Java is tested and supported on Windows, Linux, and macOS platforms. It isn't tested on other platforms and doesn't support Android deployments.
+&#x2731; The Azure Text translation SDK for Java is tested and supported on Windows, Linux, and macOS platforms. It isn't tested on other platforms and doesn't support Android deployments.
 
 ## Changelog and release history
 
-This section provides a version-based description of Text Translation feature and capability releases, changes, updates, and enhancements.
+This section provides a version-based description of Text translation feature and capability releases, changes, updates, and enhancements.
 
-#### Translator Text SDK May 2024 GA release
+#### Translator Text SDK May 2024 (GA) release
 
 This release includes the following updates:
 
 ### [**C#**](#tab/csharp)
 
 * **Version 1.0.0 (2024-05-21)**
-* **Targets Text Translation v3.0**
+* **Targets Text translation v3.0**
 * **GA version release**
 
 [**Package (NuGet)**](https://www.nuget.org/packages/Azure.AI.Translation.Text/1.0.0)
@@ -59,7 +59,7 @@ This release includes the following updates:
 ### [**Java**](#tab/java)
 
 * **Version 1.0.0 (2024-05-21)**
-* **Targets Text Translation v3.0**
+* **Targets Text translation v3.0**
 * **GA version release**
 
 [**Package (MVN)**](https://mvnrepository.com/artifact/com.azure/azure-ai-translation-text/1.0.0)
@@ -73,7 +73,7 @@ This release includes the following updates:
 ### [**JavaScript**](#tab/javascript)
 
 * **Version 1.0.0 (2024-05-21)**
-* **Targets Text Translation v3.0**
+* **Targets Text translation v3.0**
 * **GA version release**
 
 [**Package (npm)**](https://www.npmjs.com/package/@azure-rest/ai-translation-text/v/1.0.0)
@@ -82,12 +82,12 @@ This release includes the following updates:
 
 [**README**](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/translation/ai-translation-text-rest/README.md)
 
-[**Samples**](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/translation/ai-translation-text-rest/samples/v1-beta)
+[**Samples**](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/translation/ai-translation-text-rest/samples/v1)
 
 ### [**Python**](#tab/python)
 
 * **Version 1.0.0 (2024-05-23)**
-* **Targets Text Translation v3.0**
+* **Targets Text translation v3.0**
 * **GA version release**
 
 [**Package (PyPi)**](https://pypi.org/project/azure-ai-translation-text/1.0.1/)
@@ -107,7 +107,7 @@ This release includes the following updates:
 ### [**C#**](#tab/csharp)
 
 * **Version 1.0.0-beta.1 (2023-04-17)**
-* **Targets Text Translation v3.0**
+* **Targets Text translation v3.0**
 * **Initial version release**
 
 [**Package (NuGet)**](https://www.nuget.org/packages/Azure.AI.Translation.Text/1.0.0-beta.1)
@@ -121,7 +121,7 @@ This release includes the following updates:
 ### [**Java**](#tab/java)
 
 * **Version 1.0.0-beta.1 (2023-04-18)**
-* **Targets Text Translation v3.0**
+* **Targets Text translation v3.0**
 * **Initial version release**
 
 [**Package (MVN)**](https://mvnrepository.com/artifact/com.azure/azure-ai-translation-text/1.0.0-beta.1)
@@ -135,7 +135,7 @@ This release includes the following updates:
 ### [**JavaScript**](#tab/javascript)
 
 * **Version 1.0.0-beta.1 (2023-04-18)**
-* **Targets Text Translation v3.0**
+* **Targets Text translation v3.0**
 * **Initial version release**
 
 [**Package (npm)**](https://www.npmjs.com/package/@azure-rest/ai-translation-text/v/1.0.0-beta.1)
@@ -144,12 +144,12 @@ This release includes the following updates:
 
 [**README**](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/translation/ai-translation-text-rest/README.md)
 
-[**Samples**](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/translation/ai-translation-text-rest/samples/v1-beta)
+[**Samples**](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/translation/ai-translation-text-rest/samples/v1)
 
 ### [**Python**](#tab/python)
 
 * **Version 1.0.0b1 (2023-04-19)**
-* **Targets Text Translation v3.0**
+* **Targets Text translation v3.0**
 * **Initial version release**
 
 [**Package (PyPi)**](https://pypi.org/project/azure-ai-translation-text/1.0.0b1/)
@@ -162,9 +162,9 @@ This release includes the following updates:
 
 ---
 
-## Use Text Translation SDK in your applications
+## Use Text translation SDK in your applications
 
-The Text Translation SDK enables the use and management of the Text Translation service in your application. The SDK builds on the underlying Text Translation REST API allowing you to easily use those APIs within your programming language paradigm. Here's how you use the Text Translation SDK for your preferred programming language:
+The Text translation SDK enables the use and management of the Text translation service in your application. The SDK builds on the underlying Text translation REST API allowing you to easily use those APIs within your programming language paradigm. Here's how you use the Text translation SDK for your preferred programming language:
 
 ### 1. Install the SDK client library
 
@@ -245,7 +245,7 @@ from azure.ai.translation.text import TextTranslationClient
 ### 3. Authenticate the client
 
 Interaction with the Translator service using the client library begins with creating an instance of the `TextTranslationClient`class. You need your API key and region to instantiate a client object.
-The Text Translation API key is found in the Azure portal:
+The Text translation API key is found in the Azure portal:
 
 :::image type="content" source="../media/keys-and-endpoint-text-sdk.png" alt-text="Screenshot of the keys and endpoint location in the Azure portal.":::
 
@@ -338,30 +338,30 @@ text_translator = TextTranslationClient(endpoint=endpoint, credential=credential
 
 ### [C#/.NET](#tab/csharp)
 
-Create a client object to interact with the Text Translation SDK, and then call methods on that client object to interact with the service. The SDKs provide both synchronous and asynchronous methods. For more insight, *see* the Text Translation [sample repository](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/translation/Azure.AI.Translation.Text/samples) for .NET/C#.
+Create a client object to interact with the Text translation SDK, and then call methods on that client object to interact with the service. The SDKs provide both synchronous and asynchronous methods. For more insight, *see* the Text translation [sample repository](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/translation/Azure.AI.Translation.Text/samples) for .NET/C#.
 
 ### [Java](#tab/java)
 
-Create a client object to interact with the Text Translation SDK, and then call methods on that client object to interact with the service. The SDKs provide both synchronous and asynchronous methods. For more insight, *see* the Text Translation [sample repository](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/translation/azure-ai-translation-text/src/samples/java/com/azure/ai/translation/text) for Java.
+Create a client object to interact with the Text translation SDK, and then call methods on that client object to interact with the service. The SDKs provide both synchronous and asynchronous methods. For more insight, *see* the Text translation [sample repository](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/translation/azure-ai-translation-text/src/samples/java/com/azure/ai/translation/text) for Java.
 
 ### [JavaScript](#tab/javascript)
 
-Create a client object to interact with the Text Translation SDK, and then call methods on that client object to interact with the service. The SDKs provide both synchronous and asynchronous methods. For more insight, *see* the Text Translation [sample repository](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/translation/ai-translation-text-rest/samples/v1-beta) for JavaScript or TypeScript.
+Create a client object to interact with the Text translation SDK, and then call methods on that client object to interact with the service. The SDKs provide both synchronous and asynchronous methods. For more insight, *see* the Text translation [sample repository](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/translation/ai-translation-text-rest/samples/v1) for JavaScript or TypeScript.
 
 ### [Python](#tab/python)
 
-Create a client object to interact with the Text Translation SDK, and then call methods on that client object to interact with the service. The SDKs provide both synchronous and asynchronous methods. For more insight, *see* the Text Translation [sample repository](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/translation/azure-ai-translation-text/samples) for Python.
+Create a client object to interact with the Text translation SDK, and then call methods on that client object to interact with the service. The SDKs provide both synchronous and asynchronous methods. For more insight, *see* the Text translation [sample repository](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/translation/azure-ai-translation-text/samples) for Python.
 
 ---
 
 ## Help options
 
-The [Microsoft Q & A](/answers/tags/132/azure-translator) and [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-text-translation) forums are available for the developer community to ask and answer questions about Azure Text Translation and other services. Microsoft monitors the forums and replies to questions that the community has yet to answer. To make sure that we see your question, tag it with **`azure-text-translation`**.
+The [Microsoft Q & A](/answers/tags/132/azure-translator) and [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-text-translation) forums are available for the developer community to ask and answer questions about Azure Text translation and other services. Microsoft monitors the forums and replies to questions that the community has yet to answer. To make sure that we see your question, tag it with **`azure-text-translation`**.
 
 ## Next steps
 
 >[!div class="nextstepaction"]
-> [**Text Translation quickstart**](quickstart/client-library-sdk.md)
+> [**Text translation quickstart**](quickstart/client-library-sdk.md)
 
 >[!div class="nextstepaction"]
-> [**Text Translation v3.0 reference guide**](reference/v3/reference.md)
+> [**Text translation v3.0 reference guide**](reference/v3/reference.md)

@@ -6,7 +6,7 @@ ms.author: aahi
 ms.service: azure-ai-services
 ms.custom: devx-track-extended-java, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 02/27/2025
+ms.date: 5/19/2025
 zone_pivot_groups: programming-languages-set-twenty-eight
 ---
 
@@ -23,7 +23,7 @@ Key Vault reduces the risk that secrets may be accidentally leaked, because you 
 * A valid Azure subscription - [Create one for free](https://azure.microsoft.com/free)
 * [Visual Studio IDE](https://visualstudio.microsoft.com/vs/)
 * An [Azure Key Vault](/azure/key-vault/general/quick-create-portal)
-* [An Azure AI services resource](./multi-service-resource.md?pivots=azportal)
+* [An AI Foundry resource](./multi-service-resource.md?pivots=azportal)
 
 ::: zone-end
 
@@ -33,7 +33,7 @@ Key Vault reduces the risk that secrets may be accidentally leaked, because you 
 * [Python 3.7 or later](https://www.python.org/)
 * [Azure CLI](/cli/azure/install-azure-cli) or [Azure PowerShell](/powershell/azure/install-azure-powershell)
 * An [Azure Key Vault](/azure/key-vault/general/quick-create-portal)
-* [An Azure AI services resource](./multi-service-resource.md?pivots=azportal)
+* [An AI Foundry resource](./multi-service-resource.md?pivots=azportal)
 
 ::: zone-end
 
@@ -43,7 +43,7 @@ Key Vault reduces the risk that secrets may be accidentally leaked, because you 
 * [Java Development Kit (JDK) version 8 or above](/azure/developer/java/fundamentals/)
 * [Azure CLI](/cli/azure/install-azure-cli) or [Azure PowerShell](/powershell/azure/install-azure-powershell)
 * An [Azure Key Vault](/azure/key-vault/general/quick-create-portal)
-* [An Azure AI services resource](./multi-service-resource.md?pivots=azportal)
+* [An AI Foundry resource](./multi-service-resource.md?pivots=azportal)
 
 ::: zone-end
 
@@ -53,7 +53,7 @@ Key Vault reduces the risk that secrets may be accidentally leaked, because you 
 * [Current Node.js v14 LTS or later](https://nodejs.org/)
 * [Azure CLI](/cli/azure/install-azure-cli) or [Azure PowerShell](/powershell/azure/install-azure-powershell)
 * An [Azure Key Vault](/azure/key-vault/general/quick-create-portal)
-* [An Azure AI services resource](./multi-service-resource.md?pivots=azportal)
+* [An AI Foundry resource](./multi-service-resource.md?pivots=azportal)
 
 ::: zone-end
 
@@ -62,9 +62,9 @@ Key Vault reduces the risk that secrets may be accidentally leaked, because you 
 > * The credentials and other information you will need to send API calls.
 > * The packages and code you will need to run your application.
 
-## Get your credentials from your Azure AI services resource
+## Get your credentials from your Azure AI Foundry resource
 
-Before you add your credential information to your Azure key vault, you need to retrieve them from your Azure AI services resource. For example, if your service needs a key and endpoint you would find them using the following steps:
+Before you add your credential information to your Azure key vault, you need to retrieve them from your Azure AI Foundry resource. For example, if your service needs a key and endpoint you would find them using the following steps:
 
 1. Navigate to your Azure resource in the [Azure portal](https://portal.azure.com/).
 1. From the collapsible menu on the left, select **Keys and Endpoint**.
@@ -91,7 +91,7 @@ Repeat these steps to generate a secret for each required resource credential. F
     |---------|---------|
     |Upload options     | Generate         |
     |Name     | A secret name for your key or endpoint. For example: "CognitiveServicesKey" or "CognitiveServicesEndpoint"        |
-    |Value     | Your Azure AI services resource key or endpoint.         |
+    |Value     | Your Azure AI Foundry resource key or endpoint.         |
 
     Later your application will use the secret "Name" to securely access the "Value". 
 

@@ -5,7 +5,7 @@ description: An overview of audio concepts in Azure AI Speech.
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 9/11/2024
+ms.date: 4/28/2025
 ms.reviewer: wellsi
 ms.author: eur
 author: eric-urban

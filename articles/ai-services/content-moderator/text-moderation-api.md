@@ -2,12 +2,11 @@
 title: Text Moderation - Content Moderator
 titleSuffix: Azure AI services
 description: Use text moderation to detect potentially unwanted text, personal data, and custom lists of terms.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-moderator
 ms.topic: conceptual
-ms.date: 11/06/2024
+ms.date: 06/12/2025
 ms.author: pafarley
 
 ---

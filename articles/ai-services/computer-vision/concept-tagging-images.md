@@ -2,7 +2,6 @@
 title: Content tags - Azure AI Vision
 titleSuffix: Azure AI services
 description: Learn concepts related to the images tagging feature of the Azure AI Vision API.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 
@@ -10,6 +9,7 @@ ms.service: azure-ai-vision
 ms.topic: conceptual
 ms.date: 02/21/2025
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
+ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 

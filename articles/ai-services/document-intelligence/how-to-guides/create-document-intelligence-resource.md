@@ -59,7 +59,7 @@ Let's get started:
 
 1. Copy the key and endpoint values from your Document Intelligence resource paste them in a convenient location, such as *Microsoft Notepad*. You need the key and endpoint values to connect your application to the Document Intelligence API.
 
-1. If your overview page doesn't have the keys and endpoint visible, you can select the **Keys and Endpoint** button, on the left navigation bar, and retrieve them there.
+1. If your overview page doesn't have the keys and endpoint visible, you can select the **Keys and Endpoint** button, on the left pane, and retrieve them there.
 
     :::image border="true" type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Still photo showing how to access resource key and endpoint URL.":::
 

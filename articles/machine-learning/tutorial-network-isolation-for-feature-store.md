@@ -74,7 +74,7 @@ To prepare the notebook environment for development:
 1. Upload the feature store samples directory to the project workspace
 
    1. In the Azure Machine Learning workspace, open the Azure Machine Learning studio UI
-   1. Select **Notebooks** in left navigation panel
+   1. Select **Notebooks** in left panel
    1. Select your user name in the directory listing
    1. Select ellipses (**...**) and then select **Upload folder**
    1. Select the feature store samples folder from the cloned directory path: `azureml-examples/sdk/python/featurestore-sample`
@@ -285,7 +285,7 @@ For this tutorial, you create three separate storage containers in the same ADLS
 
    [!notebook-python[] (~/azureml-examples-main/sdk/python/featurestore_sample/notebooks/sdk_and_cli/network_isolation/Network-isolation-feature-store.ipynb?name=show-prjws-cli)]
 
-   You can also verify the outbound rules from the Azure portal. Navigate to **Networking** from left navigation panel for the project workspace and then open the **Workspace managed outbound access** tab.
+   You can also verify the outbound rules from the Azure portal. Navigate to **Networking** from left panel for the project workspace and then open the **Workspace managed outbound access** tab.
 
    :::image type="content" source="./media/tutorial-network-isolation-for-feature-store/project-workspace-outbound-rules.png" lightbox="./media/tutorial-network-isolation-for-feature-store/project-workspace-outbound-rules.png" alt-text="This screenshot shows outbound rules for a project workspace in Azure portal.":::
 

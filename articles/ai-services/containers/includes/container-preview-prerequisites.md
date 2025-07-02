@@ -1,6 +1,5 @@
 ---
 title: Container Public Preview Prerequisites
-#services: cognitive-services
 author: aahill
 manager: nitinme
 description: The common prerequisite for public preview containers 

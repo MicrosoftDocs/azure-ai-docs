@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 2/25/2025
+ms.date: 5/19/2025
 ms.author: eur
 #Customer intent: As a developer, I need to understand how to create human-labeled transcriptions for my audio data so that I can improve speech recognition accuracy.
 ---

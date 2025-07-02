@@ -17,20 +17,18 @@ monikerRange: '>=doc-intel-3.0.0'
 
 [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/) is an online tool for visually exploring, understanding, and integrating features from the Document Intelligence service in your applications. You can get started by exploring the pretrained models with sample or your own documents. You can also create projects to build custom template models and reference the models in your applications.
 
-> [!VIDEO https://www.microsoft.com/videoplayer/embed/RE56n49]
-
 ## Prerequisites for new users
 
 To use Document Intelligence Studio, you need to acquire the following assets from the Azure portal:
 
 * Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/).
 
-* An Azure AI services or Document Intelligence resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [Azure AI multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) resource, in the Azure portal, to get your key and endpoint.
+* An Azure AI services or Document Intelligence resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [Azure AI multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) resource, in the Azure portal, to get your key and endpoint.
 
 * You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
 > [!TIP]
-> Create an Azure AI services resource if you plan to access multiple Azure AI services under a single endpoint/key. For Document Intelligence access only, create a Document Intelligence resource. You need a single-service resource if you intend to use [Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication).
+> Create an Azure AI Foundry resource if you plan to access multiple Azure AI services under a single endpoint/key. For Document Intelligence access only, create a Document Intelligence resource. You need a single-service resource if you intend to use [Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication).
 >
 > Document Intelligence now supports Azure Active Directory (Azure AD) token authentication in addition to local (key-based) authentication when accessing the Document Intelligence resources and storage accounts. Be sure to follow below instructions to set up correct access roles, especially if your resources are applied with `DisableLocalAuth` policy.
 
@@ -57,8 +55,8 @@ For more information, *see* the following guidance:
 > [!IMPORTANT]
 >
 > * Make sure you have the **Cognitive Services User role**, and not the Cognitive Services Contributor role when setting up Microsoft Entra ID authentication.
-> * ✔️ **Cognitive Services User**: you need this role to Document Intelligence or Azure AI services resource to enter the analyze page.
-> * ✔️ **Contributor**: you need this role to create resource group, Document Intelligence service, or Azure AI services resource.
+> * ✔️ **Cognitive Services User**: you need this role to Document Intelligence or Azure AI Foundry resource to enter the analyze page.
+> * ✔️ **Contributor**: you need this role to create resource group, Document Intelligence service, or Azure AI Foundry resource.
 > * In Azure context, Contributor role can only perform actions to control and manage the resource itself, including listing the access keys.
 > * User accounts with a Contributor are only able to access the Document Intelligence service by calling with access keys. However, when setting up access with Microsoft Entra ID, key-access is disabled and **Cognitive Services User** role is required for an account to use the resources.
 
@@ -70,14 +68,14 @@ Navigate to the [Document Intelligence Studio](https://formrecognizer.appliedai.
 
   * Choose your existing subscription.
   * Select an existing resource group within your subscription or create a new one.
-  * Select your existing Document Intelligence or Azure AI services resource.
+  * Select your existing Document Intelligence or Azure AI Foundry resource.
 
     :::image type="content" source="../media/studio/configure-service-resource.png" lightbox="../media/studio/configure-service-resource.png" alt-text="Screenshot of configure service resource form from the Document Intelligence Studio.":::
 
 * **Local authentication: access by API endpoint and key**.
 
   * Retrieve your endpoint and key from the Azure portal.
-  * Go to the overview page for your resource and select **Keys and Endpoint** from the left navigation bar.
+  * Go to the overview page for your resource and select **Keys and Endpoint** from the left pane.
   * Enter the values in the appropriate fields.
 
       :::image type="content" source="../media/studio/keys-and-endpoint.png" lightbox="../media/studio/keys-and-endpoint.png" alt-text="Screenshot of the keys and endpoint page in the Azure portal.":::

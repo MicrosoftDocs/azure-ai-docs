@@ -53,7 +53,7 @@ When the index is ready to use, move on to the next step.
 
 The wizard provides a basic layout for rendered search results that includes space for a thumbnail image, a title, and description. Backing each of these elements is a field in your index that provides the data.
 
-1. Skip **Thumbnail** because this index doesn't have images, but if you have an index field that's populated with URLs resolving to publically available images, you should specify that field for the thumbnail area. If your index doesn't have image URLs, leave this field blank.
+1. Skip **Thumbnail** because this index doesn't have images, but if you have an index field that's populated with URLs resolving to publicly available images, you should specify that field for the thumbnail area. If your index doesn't have image URLs, leave this field blank.
 
 1. In Title, choose a field that conveys the uniqueness of each document. In this sample, the Hotel Name is a reasonable selection.
 

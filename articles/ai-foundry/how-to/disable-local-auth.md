@@ -2,20 +2,23 @@
 title: "Disable shared key access to the hub storage account"
 titleSuffix: Azure AI Foundry
 description: "Disable shared key access to the default storage account used by your Azure AI Foundry hub and projects."
-author: Blackmist
-ms.author: larryfr
+ms.author: jburchel 
+author: jonburchel 
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 02/20/2025
-ms.reviewer: ambadal
+ms.date: 05/09/2025
+ms.reviewer: meerakurup
 #customer intent: As an admin, I want to disable shared key access to my resources to improve security.
 ---
 
 # Disable shared key access for your hub's storage account (preview)
 
-An [Azure AI Foundry](https://ai.azure.com) hub defaults to use of a shared key to access its default Azure Storage account. With key-based authorization, anyone who has the key and access to the storage account can access data.
+> [!NOTE]
+> The information provided in this article is specific to a **[!INCLUDE [hub](../includes/hub-project-name.md)]**, and doesn't apply for a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. For more information, see [Types of projects](../what-is-azure-ai-foundry.md#project-types).
+
+An [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) hub defaults to use of a shared key to access its default Azure Storage account. With key-based authorization, anyone who has the key and access to the storage account can access data.
 
 To reduce the risk of unauthorized access, you can disable key-based authorization, and instead use Microsoft Entra ID for authorization. This configuration uses a Microsoft Entra ID value to authorize access to the storage account. The identity used to access storage is either the user's identity or a managed identity. The user's identity is used to view data in the Azure Machine Learning studio, or to run a notebook while authenticated with the user's identity. The Azure Machine Learning service uses a managed identity to access the storage account - for example, when running a training job as the managed identity.
 
@@ -94,14 +97,9 @@ When you create a new hub, the creation process can automatically disable shared
 
 # [Azure portal](#tab/portal)
 
-1. In Azure AI Foundry portal, select __Management center__ from the left menu.
-1. Select __All resources__ from the left menu, the dropdown menu next to __+ New project__, and then select __New hub__.
+1. From the Azure portal, search for `Azure AI Foundry`. From the left menu, select **AI Hubs**, and then select **+ Create** and **Hub**.
 
-    :::image type="content" source="../media/disable-local-auth/create-new-hub.png" alt-text="Screenshot of the new hub dropdown button.":::
-
-1. From the __Create new hub__ form, select the link to __Go to the Azure Portal__. This link opens the Azure portal to the __Create a hub__ form.
-
-    :::image type="content" source="../media/disable-local-auth/create-new-hub-portal.png" alt-text="Screenshot of the link to create a new hub in the Azure portal.":::
+    :::image type="content" source="../media/how-to/hubs/create-hub.png" alt-text="Screenshot of the Azure AI Foundry portal." lightbox="../media/how-to/hubs/create-hub.png":::
 
 1. From the __Basics__ tab, enter the hub details and then select the __Storage__ tab. Select the Azure Storage account that you previously created.
 

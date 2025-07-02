@@ -18,6 +18,8 @@ ms.custom: UpdateFrequency5, data4ml, sdkv1
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In this article, you learn how to version and track Azure Machine Learning datasets for reproducibility. Dataset versioning bookmarks specific states of your data, so that you can apply a specific version of the dataset for future experiments.
 
 You might want to version your Azure Machine Learning resources in these typical scenarios:
