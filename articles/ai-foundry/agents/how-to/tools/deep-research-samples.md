@@ -40,7 +40,7 @@ Use this article to learn how to use the Deep Research tool with the Azure AI Pr
 
 * The names of your `o3-deep-research-model` deployment name and Azure OpenAI GPT model deployment name. You can find them in **Models + Endpoints** in the left navigation menu. 
 
-    :::image type="content" source="../../media/tools/deep-research/model-deployments.png" alt-text="A screenshot showing the model deployment screen the AI Foundry portal." lightbox="../../media/tools/deep-research/model-deployments.png:::
+    :::image type="content" source="../../media/tools/deep-research/model-deployments.png" alt-text="A screenshot showing the model deployment screen the AI Foundry portal." lightbox="../../media/tools/deep-research/model-deployments.png":::
     
     Save the name of your `o3-deep-research-model` deployment name as an environment variable named `DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME` and Azure OpenAI GPT model deployment name as an environment variable named `MODEL_DEPLOYMENT_NAME`. 
 
