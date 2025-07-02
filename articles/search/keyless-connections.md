@@ -184,7 +184,7 @@ from azure.search.documents import SearchClient
 from azure.identity import DefaultAzureCredential, AzureAuthorityHosts
 
 # Azure Public Cloud
-audience = "https://search.windows.net"
+audience = "[https://search.windows.net](https://search.azure.com)"
 authority = AzureAuthorityHosts.AZURE_PUBLIC_CLOUD
 
 service_endpoint = os.environ["AZURE_SEARCH_ENDPOINT"]
