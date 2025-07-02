@@ -78,6 +78,7 @@ To use the Deep Research tool, you need to create the Ai Foundry type project, a
 :::image type="content" source="../../media/tools/deep-research/setup-deep-research-tool.png" alt-text="Steps to set up the deep research tool." lightbox="../../media/tools/deep-research/setup-deep-research-tool.png":::
 
 1. Start here: [AI Foundry portal](https://ai.azure.com/?cid=learnDocs):
+   
    :::image type="content" source="../../media/tools/deep-research/deep-research-tool-step1.png" alt-text="Steps to set up the deep research tool." lightbox="../../media/tools/deep-research/deep-research-tool-step1.png":::
 
 1. Select the Azure AI Foundry project type:
@@ -92,8 +93,9 @@ To use the Deep Research tool, you need to create the Ai Foundry type project, a
 1. Navigate to the Models +  Endpoints tab:
     :::image type="content" source="../../media/tools/deep-research/deep-research-tool-step5.png" alt-text="Steps to set up the deep research tool." lightbox="../../media/tools/deep-research/deep-research-tool-step5.png":::
 
-1. Deploy the deep research and GPT models:
-    :::image type="content" source="../../media/tools/deep-research/deep-research-tool-step5.png" alt-text="Steps to set up the deep research tool." lightbox="../../media/tools/deep-research/deep-research-tool-step5.png":::
+1. Deploy the deep research model and a GPT model:
+    :::image type="content" source="../../media/tools/deep-research/deep-research-tool-step6.PNG" alt-text="Steps to set up the deep research tool." lightbox="../../media/tools/deep-research/deep-research-tool-step6.PNG":::
+    :::image type="content" source="../../media/tools/deep-research/deep-research-tool-step7.PNG" alt-text="Steps to set up the deep research tool." lightbox="../../media/tools/deep-research/deep-research-tool-step7.PNG":::
 
 ## Next steps
 
