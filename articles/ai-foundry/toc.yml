@@ -659,7 +659,7 @@ items:
   - name: Data protection & encryption
     items:
     - name: Configure key-less authentication
-      href: foundry/how-to/configure-entra-id.md?context=/azure/ai-foundry/context/context
+      href: foundry-models/how-to/configure-entra-id.md?context=/azure/ai-foundry/context/context
     - name: Configure customer-managed keys
       href: concepts/encryption-keys-portal.md
     - name: Rotate keys
