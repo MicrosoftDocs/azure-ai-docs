@@ -42,7 +42,7 @@ The Deep Research model then starts the research task execution. This involves t
 
 ### Transparency, safety, and compliance
 
-Every stage of the process is safeguarded by input/output classifiers and chain-of-thought (CoT) summarizers. The final output is a structured report that documents not only the answer, but also the model's reasoning path, source citations, and any clarifications requested during the session. This makes every answer fully auditable.
+The output is a structured report that documents not only the answer, but also the model's reasoning path, source citations, and any clarifications requested during the session. This makes every answer fully auditable.
 
 ## Prerequisites
 - A basic or standard agent [environment setup](../../environment-setup.md)
