@@ -24,7 +24,7 @@ The Deep Research model in the Azure AI Foundry Agent Service enables you to use
 ## Usage support
 The deep research tool is a **code-only release** and available for use using the Agents Python SDK once you complete the AI Foundry project setup described in the following sections.
 
-|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
+|Azure AI foundry portal  | Python SDK |	C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
 |  | ✔️ |  |  |  | ✔️  | ✔️ |
 
