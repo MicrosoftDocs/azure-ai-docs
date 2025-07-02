@@ -783,6 +783,16 @@
           "redirect_document_id": false
         },
         {
+            "source_path_from_root": "/articles/ai-foundry/foundry-models/index.yml",
+            "redirect_url": "/azure/ai-foundry/",
+            "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/foundry-models/context/context.yml",
+          "redirect_url": "/azure/ai-foundry/context/context.json",
+          "redirect_document_id": false
+        },
+        {
             "source_path_from_root": "/articles/ai-studio/responsible-use-of-ai-overview.md",
             "redirect_url": "/azure/ai-foundry/responsible-use-of-ai-overview",
             "redirect_document_id": true
