@@ -6,7 +6,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: reliability-article
-ms.date: 06/26/2025
+ms.date: 07/02/2025
 ms.custom:
   - subject-reliability
   - ignite-2023
@@ -36,7 +36,7 @@ Transient faults are short, intermittent failures in components. They occur freq
 
 All cloud-hosted applications should follow the Azure transient fault handling guidance when communicating with any cloud-hosted APIs, databases, and other components. For more information, see [Recommendations for handing transient faults](/azure/well-architected/design-guides/handle-transient-faults).
 
-Search services with one replica might experience transient faults due to regular maintenance operations. Azure AI Search minimizes these disruptions as much as possible, but they can still affect single-replica services. To ensure resiliency against transient faults, we recommend that you use two or more replicas.
+Search services might experience transient faults during standard, unscheduled maintenance operations. Azure AI Search doesn't provide advance notification or allow you to schedule maintenance at specific times. Although every effort is made to minimize downtime, even for single-replica services, brief interruptions can still occur. To improve resiliency against these transient faults, we recommend that you use two or more replicas.
 
 ## Availability zone support
 
@@ -56,7 +56,7 @@ Zone redundancy is automatically enabled when your search service:
 
 + Is in a [region that has availability zones](search-region-support.md).
 + Is on the [Basic tier or higher](search-sku-tier.md).
-+ Has [multiple replicas](search-capacity-planning.md#add-or-remove-partitions-and-replicas): two for read-only workloads and three or more for read-write workloads.
++ Has [multiple replicas](search-capacity-planning.md#add-or-remove-partitions-and-replicas).
 
 ### Considerations
 
@@ -92,7 +92,7 @@ When the availability zone recovers, Azure AI Search automatically restores norm
 
 ### Testing for zone failures
 
-Azure AI Search manages traffic routing, failover, and failback for zone-redundant services. You don't need to initiate anything or validate zone failure processes.
+Azure AI Search manages traffic routing for zone-redundant services. You don't need to initiate or validate any zone failure processes.
 
 ## Multi-region support
 
