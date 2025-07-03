@@ -1377,3 +1377,14 @@ groups:
     title: REST
   - id: typescript
     title: TypeScript
+# Owner: haileytapia
+- id: search-get-started-semantic
+  title: Programming languages
+  prompt: Choose a usage method
+  pivots:
+  - id: csharp
+    title: C#
+  - id: python
+    title: Python
+  - id: rest
+    title: REST
