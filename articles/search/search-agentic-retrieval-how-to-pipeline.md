@@ -5,7 +5,7 @@ description: Learn how to design and build a custom agentic retrieval solution w
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 05/21/2025
+ms.date: 06/08/2025
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.custom:
@@ -16,7 +16,9 @@ ms.custom:
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-This article describes an approach or pattern for building a solution that uses Azure AI Search for knowledge retrieval, and how to integrate knowledge retrieval into a custom solution that includes Azure AI Agent.
+This article describes an approach or pattern for building a solution that uses Azure AI Search for knowledge retrieval, and how to integrate knowledge retrieval into a custom solution that includes Azure AI Agent. This pattern uses an agent tool to invoke an agentic retrieval pipeline in Azure AI Search.
+
+:::image type="content" source="media/agentic-retrieval/agent-to-agent-pipeline.png" alt-text="Diagram of Azure AI Search integration with Azure AI Agent service." lightbox="media/agentic-retrieval/agent-to-agent-pipeline.png" :::
 
 This article supports the [agentic-retrieval-pipeline-example](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example) Python sample on GitHub.
 
@@ -26,7 +28,7 @@ This exercise differs from the [Agentic Retrieval Quickstart](search-get-started
 
 The following resources are required for this design pattern:
 
-+ Azure AI Search, basic tier or higher, in a [region that provides semantic ranking](search-region-support.md).
++ Azure AI Search, Basic pricing tier or higher, in a [region that provides semantic ranking](search-region-support.md).
 
 + A search index that satisfies the [index criteria for agentic retrieval](search-agentic-retrieval-how-to-index.md).
 

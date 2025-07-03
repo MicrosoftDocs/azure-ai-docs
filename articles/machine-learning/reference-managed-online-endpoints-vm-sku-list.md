@@ -86,10 +86,10 @@ The following table shows the virtual machine (VM) stock keeping units (SKUs) th
 |  standardNCADSA100v4Family  | STANDARD_NC24ADS_A100_V4 | - | NvidiaGpu | 1 | 24 | Yes |
 |  standardNCADSA100v4Family  | STANDARD_NC48ADS_A100_V4 | - | NvidiaGpu | 2 | 48 | Yes |
 |  standardNCADSA100v4Family  | STANDARD_NC96ADS_A100_V4 | - | NvidiaGpu | 4 | 96 | Yes |
-|  Standard NCASv3_T4 Family  | STANDARD_NC4AS_T4_V3 | - | NvidiaGpu | 1 | 4 | - |
-|  Standard NCASv3_T4 Family  | STANDARD_NC8AS_T4_V3 | - | NvidiaGpu | 1 | 8 | - |
-|  Standard NCASv3_T4 Family  | STANDARD_NC16AS_T4_V3 | - | NvidiaGpu | 1 | 16 | - |
-|  Standard NCASv3_T4 Family  | STANDARD_NC64AS_T4_V3 | - | NvidiaGpu | 4 | 64 | - |
+|  standard NCASv3_T4 Family  | STANDARD_NC4AS_T4_V3 | - | NvidiaGpu | 1 | 4 | - |
+|  standard NCASv3_T4 Family  | STANDARD_NC8AS_T4_V3 | - | NvidiaGpu | 1 | 8 | - |
+|  standard NCASv3_T4 Family  | STANDARD_NC16AS_T4_V3 | - | NvidiaGpu | 1 | 16 | - |
+|  standard NCASv3_T4 Family  | STANDARD_NC64AS_T4_V3 | - | NvidiaGpu | 4 | 64 | - |
 |  standardNCSv2Family  | STANDARD_NC6S_V2 | - | NvidiaGpu | 1 | 6 | - |
 |  standardNCSv2Family  | STANDARD_NC12S_V2 | - | NvidiaGpu | 2 | 12 | - |
 |  standardNCSv2Family  | STANDARD_NC24S_V2 | - | NvidiaGpu | 4 | 24 | - |
@@ -99,10 +99,16 @@ The following table shows the virtual machine (VM) stock keeping units (SKUs) th
 |  standardNCADSH100v5Family  | STANDARD_NC40ADS_H100_V5 | - | NvidiaGpu | 1 | 40 | Yes |
 |  standardNCADSH100v5Family  | STANDARD_NC80ADIS_H100_V5 | - | NvidiaGpu | 2 | 80 | Yes |
 |  standard NDAMSv4_A100Family  | STANDARD_ND96AMSR_A100_V4 | Yes | NvidiaGpu | 8 | 96 | Yes |
-|  Standard NDASv4_A100 Family  | STANDARD_ND96ASR_V4 | Yes | NvidiaGpu | 8 | 96 | Yes |
+|  standard NDASv4_A100 Family  | STANDARD_ND96ASR_V4 | Yes | NvidiaGpu | 8 | 96 | Yes |
 |  standardNDSv2Family  | STANDARD_ND40RS_V2 | Yes | NvidiaGpu | 8 | 40 | Yes |
-|  standardNDv5H100Family  | STANDARD_ND96IS_H100_v5 | - | NvidiaGpu | 8 | 96 | Yes |
-|  standardNDv5H100Family  | STANDARD_ND96ISR_H100_v5 | Yes | NvidiaGpu | 8 | 96 | Yes |
+|  standardNDv5H100Family  | STANDARD_ND96IS_H100_V5 | - | NvidiaGpu | 8 | 96 | Yes |
+|  standardNDv5H100Family  | STANDARD_ND96ISR_H100_V5 | Yes | NvidiaGpu | 8 | 96 | Yes |
+|  standardNVADSA10v5Family | STANDARD_NV6ADS_A10_V5	 | - | NvidiaGpu | 1/6 | 6  | - |
+|  standardNVADSA10v5Family | STANDARD_NV12ADS_A10_V5  | - | NvidiaGpu | 1/3 | 12 | - |
+|  standardNVADSA10v5Family | STANDARD_NV18ADS_A10_V5  | - | NvidiaGpu | 1/2 | 18 | - |
+|  standardNVADSA10v5Family | STANDARD_NV36ADS_A10_V5  | - | NvidiaGpu | 1   | 36 | - |
+|  standardNVADSA10v5Family | STANDARD_NV36ADMS_A10_V5 | - | NvidiaGpu | 1   | 36 | - |
+|  standardNVADSA10v5Family | STANDARD_NV72ADS_A10_V5  | - | NvidiaGpu | 2   | 72 | - |
 
 > [!CAUTION]
 > Small VM SKUs such as `Standard_DS1_v2` and `Standard_F2s_v2` may be too small for bigger models and may lead to container termination due to insufficient memory, not enough space on the disk, or probe failure as it takes too long to initiate the container. If you face [OutOfQuota errors](how-to-troubleshoot-online-endpoints.md?tabs=cli#error-outofquota) or [ResourceNotReady errors](how-to-troubleshoot-online-endpoints.md?tabs=cli#error-resourcenotready), try bigger VM SKUs. If you want to reduce the cost of deploying multiple models with managed online endpoint, see [Deployment for several local models](concept-online-deployment-model-specification.md#deployment-for-several-local-models).

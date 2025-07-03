@@ -9,7 +9,7 @@ ms.author: ssalgado
 ms.reviewer: ratanase
 ms.subservice: training
 ms.custom: build-2023
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 12/05/2024
 ---
 

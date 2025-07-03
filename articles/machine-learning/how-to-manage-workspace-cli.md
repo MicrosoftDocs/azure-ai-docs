@@ -8,7 +8,7 @@ ms.subservice: core
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: deeikele
-ms.date: 06/17/2024
+ms.date: 06/13/2025
 ms.topic: how-to
 ms.custom: devx-track-azurecli, cliv2
 ---

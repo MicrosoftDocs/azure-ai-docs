@@ -1,5 +1,5 @@
 ---
-title: Video retrieval deprecation notice
+title: Video Retrieval deprecation notice
 titleSuffix: Azure AI services
 author: PatrickFarley
 manager: nitinme
@@ -11,8 +11,8 @@ ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 
-> [!IMPORTANT]
-> On 30 June 2025, Azure AI Vision Video Retrieval will be retired. The decision to retire this feature is part of our ongoing effort to improve and simplify and improve the features offered for video processing. Migrate to Azure AI Content Understanding and Azure AI Search to benefit from their additional capabilities.
+> [!CAUTION]
+> On 30 June 2025, Azure AI Vision Video Retrieval was retired. The decision to retire this feature was part of our ongoing effort to improve and simplify and improve the features offered for video processing. Migrate to Azure AI Content Understanding and Azure AI Search to benefit from their additional capabilities.
 >
 > **Video processing: Video Retrieval vs Azure AI Content Understanding**
 >
@@ -39,6 +39,3 @@ Video Length Supported|Optimized for short videos, up to ~3 minutes|Supports sho
 |Customization|None|Content Understanding analyzer can be customized to focus using the fields and field descriptions|
 >
 > To start building the search use case with Content Understanding, we recommend starting with this [sample](https://aka.ms/Content-Understanding-Video-Search) which shows how to use Azure AI Search to search videos.
->
-> To avoid service disruptions, migrate by 30 June 2025.
-

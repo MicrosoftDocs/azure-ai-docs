@@ -11,7 +11,7 @@ ms.author: lajanuar
 ms.custom: language-service-clu
 ---
 
-# Language support for conversational language understanding
+# Language support for Conversational Language Understanding (CLU)
 
 Use this article to learn about the languages currently supported by CLU feature.
 

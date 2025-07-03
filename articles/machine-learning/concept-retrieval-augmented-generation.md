@@ -9,7 +9,7 @@ ms.reviewer: balapv
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.date: 06/10/2024
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom:
   - prompt-flow
   - ignite-2023

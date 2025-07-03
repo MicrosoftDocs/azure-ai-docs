@@ -9,7 +9,7 @@ ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.reviewer: deeikele
 ms.topic: how-to
-ms.date: 06/13/2024
+ms.date: 06/12/2025
 ---
 
 # Move Azure Machine Learning workspaces between subscriptions (preview)
@@ -44,7 +44,7 @@ Moving the workspace enables you to migrate the workspace and its contents as a 
 
     - You need permissions to __delete__ resources from the source location.
     - You need permissions to __create__ resources in the destination location.
-    - Thee move mustn't violate Azure Policies in the destination location.
+    - The move mustn't violate Azure Policies in the destination location.
     - Any role assignments to the source workspace scope aren't moved; you must recreate them in the destination.
 
 - The destination subscription must be registered for required resource providers. The following table contains a list of the resource providers required by Azure Machine Learning:
@@ -70,7 +70,7 @@ Moving the workspace enables you to migrate the workspace and its contents as a 
 - The [Azure CLI](/cli/azure/install-azure-cli).
 
     > [!TIP]
-    > The move operation does not use the Azure CLI extension for machine learning.
+    > The move operation doesn't use the Azure CLI extension for machine learning.
 
 ## Supported scenarios
 
@@ -95,7 +95,7 @@ Moving the workspace enables you to migrate the workspace and its contents as a 
 * The workspace mustn't be in use during the move operation. Verify that all experiment jobs, data profiling jobs, and labeling projects have completed. Also verify that inference endpoints aren't being invoked.
 * The workspace becomes unavailable during the move.
 * Before to the move, you must delete or detach computes and inference endpoints from the workspace.
-* Datastores may still show the old subscription information after the move. For steps to manually update the datastores, see [Scenario: Move a workspace with nondefault datastores](#scenario-move-a-workspace-with-nondefault-datastores).
+* Datastores might still show the old subscription information after the move. For steps to manually update the datastores, see [Scenario: Move a workspace with nondefault datastores](#scenario-move-a-workspace-with-nondefault-datastores).
 
 The following scenarios __are not__ supported:
 
@@ -125,7 +125,7 @@ The following scenarios __are not__ supported:
     az group create -g destination-rg -l my-region --subscription destination-sub-id                  
     ```
 
-5. The following command demonstrates how to validate the move operation for workspace. You can include associated resources such as storage account, container registry, key vault, and application insights into the move by adding them to the ```resources``` list. The validation may take several minutes. In this command, `origin-rg` is the origin resource group, while `destination-rg` is the destination. The subscription IDs are `origin-sub-id` and `destination-sub-id`, while the workspace is `origin-workspace-name`:
+5. The following command demonstrates how to validate the move operation for workspace. You can include associated resources such as storage account, container registry, key vault, and application insights into the move by adding them to the ```resources``` list. The validation might take several minutes. In this command, `origin-rg` is the origin resource group, while `destination-rg` is the destination. The subscription IDs are `origin-sub-id` and `destination-sub-id`, while the workspace is `origin-workspace-name`:
 
     ```azurecli-interactive
     az resource invoke-action --action validateMoveResources --ids "/subscriptions/origin-sub-id/resourceGroups/origin-rg" --request-body "{  \"resources\": [\"/subscriptions/origin-sub-id/resourceGroups/origin-rg/providers/Microsoft.MachineLearningServices/workspaces/origin-workspace-name\"],\"targetResourceGroup\":\"/subscriptions/destination-sub-id/resourceGroups/destination-rg\" }"
@@ -133,7 +133,7 @@ The following scenarios __are not__ supported:
 
 ## Move the workspace
 
-Once the validation has succeeded, move the workspace. You may also include any associated resources into move operation by adding them to the ```ids``` parameter. This operation may take several minutes.
+Once the validation has succeeded, move the workspace. You might also include any associated resources into move operation by adding them to the ```ids``` parameter. This operation might take several minutes.
 
 ```azurecli-interactive
 az resource move --destination-group destination-rg --destination-subscription-id destination-sub-id --ids "/subscriptions/origin-sub-id/resourceGroups/origin-rg/providers/Microsoft.MachineLearningServices/workspaces/origin-workspace-name"

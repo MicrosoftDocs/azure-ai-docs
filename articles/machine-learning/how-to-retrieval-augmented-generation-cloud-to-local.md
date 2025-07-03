@@ -5,7 +5,7 @@ description: Learn to work with your Azure Machine Learning (RAG) prompt flows l
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
-ms.topic: conceptual
+ms.topic: concept-article
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: chenlujiao

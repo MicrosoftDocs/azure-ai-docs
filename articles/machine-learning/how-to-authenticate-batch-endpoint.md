@@ -363,8 +363,6 @@ To configure the compute cluster for data access, follow these steps:
 
    1. Save the changes. 
 
-    :::image type="content" source="media/how-to-authenticate-batch-endpoint/guide-manage-identity-cluster.gif" alt-text="Animation showing the steps to assign a managed identity to a cluster.":::
-
 1. Go to the [Azure portal](https://portal.azure.com) and navigate to the associated storage account where the data is located. If your data input is a Data Asset or a Data Store, look for the storage account where those assets are placed.
 
 1. Assign Storage Blob Data Reader access level in the storage account:

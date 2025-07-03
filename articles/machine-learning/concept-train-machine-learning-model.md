@@ -8,7 +8,7 @@ author: ssalgadodev
 ms.author: ssalgado
 ms.reviewer: manashg
 ms.subservice: training
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 04/29/2024
 ms.custom:
   - devx-track-python

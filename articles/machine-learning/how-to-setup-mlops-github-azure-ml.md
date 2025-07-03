@@ -9,7 +9,7 @@ ms.service: azure-machine-learning
 ms.reviewer: kritifaujdar
 ms.subservice: mlops
 ms.date: 02/07/2025
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom: cli-v2, sdk-v2, github-actions-azure, build-2023, build-2023-dataai
 ---
 

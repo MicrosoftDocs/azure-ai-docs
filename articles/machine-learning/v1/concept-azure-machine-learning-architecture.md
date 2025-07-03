@@ -5,7 +5,7 @@ description: This article gives you a high-level understanding of the architectu
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.topic: conceptual
+ms.topic: concept-article
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: balapv

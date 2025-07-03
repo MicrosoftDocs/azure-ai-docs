@@ -470,8 +470,9 @@ Admins can configure the following action rules related to schedules in the Azur
 ## Cost considerations
 
 Schedules are billed based on the number of schedules. Each schedule creates a logic app that Azure Machine Learning hosts on behalf of (HOBO) the user.
+Therefore the logic app cannot be shown as a resource under the user's subscription in Azure portal. 
 
-The logic app charges back to the user's Azure subscription. HOBO resource costs are billed using the same meter emitted by the original resource provider. Charges appear under the host resource, which is the Azure Machine Learning workspace.
+On the other hand, the logic app charges back to the user's Azure subscription. HOBO resource costs are billed using the same meter emitted by the original resource provider. Charges appear under the host resource, which is the Azure Machine Learning workspace.
 
 ## Related content
 

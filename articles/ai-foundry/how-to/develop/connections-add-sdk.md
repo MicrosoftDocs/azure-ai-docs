@@ -10,8 +10,8 @@ ms.custom:
 ms.topic: how-to
 ms.date: 05/12/2025
 ms.reviewer: dantaylo
-ms.author: larryfr
-author: Blackmist
+ms.author: sgilley
+author: sdgilley
 ---
 
 # Add a new connection using the Azure Machine Learning SDK

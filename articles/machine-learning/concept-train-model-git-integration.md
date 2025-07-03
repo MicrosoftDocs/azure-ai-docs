@@ -5,11 +5,11 @@ description: Learn how Azure Machine Learning integrates with a local Git reposi
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.topic: conceptual
+ms.topic: concept-article
 author: Blackmist
 ms.author: larryfr
 ms.reviewer: osiotugo
-ms.date: 06/12/2024
+ms.date: 06/13/2025
 ms.custom: sdkv2, build-2023
 ---
 # Git integration for Azure Machine Learning
@@ -78,7 +78,7 @@ The command displays the contents of your public key file. Copy the output.
 > To copy and paste in the terminal window, use these keyboard shortcuts, depending on your operating system:
 > 
 > - Windows: Ctrl+C or Ctrl+Insert to copy, Ctrl+V or Ctrl+Shift+V to paste.
-> - MacOS: Cmd+C to copy and Cmd+V to paste.
+> - macOS: Cmd+C to copy and Cmd+V to paste.
 > 
 > Some browsers might not support clipboard permissions properly.
 

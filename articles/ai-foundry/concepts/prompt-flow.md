@@ -8,8 +8,8 @@ ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
-ms.topic: conceptual
-ms.date: 03/18/2025
+ms.topic: concept-article
+ms.date: 06/30/2025
 ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt

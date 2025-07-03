@@ -108,13 +108,13 @@ The Azure CLI [extension v1 for machine learning](./v1/reference-azure-machine-l
 > The `v1-legacy-mode` parameter is only available in version 1.41.0 or newer of the Azure CLI extension for machine learning v1 (`azure-cli-ml`). The parameter is __not__ available in the v2 (`ml`) extension. Use the `az version` command to view version information, including the extension and version that is installed.
 
 ```azurecli
-az ml workspace update -g <myresourcegroup> -n <myworkspace> --v1-legacy-mode False
+az ml workspace update -g <myresourcegroup> -w <myworkspace> --v1-legacy-mode False
 ```
 
 The return value of the `az ml workspace update` command may not show the updated value. To view the current state of the parameter, use the following command:
  
 ```azurecli
-az ml workspace show -g <myresourcegroup> -n <myworkspace> --query v1LegacyMode
+az ml workspace show -g <myresourcegroup> -w <myworkspace> --query v1LegacyMode
 ```
 
 ---

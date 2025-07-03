@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 11/21/2024
+ms.date: 06/30/2025
 ms.author: lajanuar
 ---
 
@@ -51,7 +51,7 @@ These custom roles only apply to Language resources.
 
 ### Cognitive Services Language Reader
 
-A user that should only be validating and reviewing the Language apps, typically a tester to ensure the application is performing well before deploying the project. They may want to review the application’s assets to notify the app developers of any changes that need to be made, but do not have direct access to make them. Readers will have access to view the evaluation results.
+A user that should only be validating and reviewing the Language apps, typically a tester to ensure the application is performing well before deploying the project. They might want to review the application’s assets to notify the app developers of any changes that need to be made, but do not have direct access to make them. Readers will have access to view the evaluation results.
 
 
 :::row:::
@@ -85,7 +85,7 @@ A user that should only be validating and reviewing the Language apps, typically
 
 ### Cognitive Services Language Writer
 
-A user that is responsible for building and modifying an application, as a collaborator in a larger team. The collaborator can modify the Language apps in any way, train those changes, and validate/test those changes in the portal. However, this user shouldn’t have access to deploying this application to the runtime, as they may accidentally reflect their changes in production. They also shouldn’t be able to delete the application or alter its prediction resources and endpoint settings (assigning or unassigning prediction resources, making the endpoint public). This restricts this role from altering an application currently being used in production. They may also create new applications under this resource, but with the restrictions mentioned.
+A user that is responsible for building and modifying an application, as a collaborator in a larger team. The collaborator can modify the Language apps in any way, train those changes, and validate/test those changes in the portal. However, this user shouldn’t have access to deploying this application to the runtime, as they might accidentally reflect their changes in production. They also shouldn’t be able to delete the application or alter its prediction resources and endpoint settings (assigning or unassigning prediction resources, making the endpoint public). This restricts this role from altering an application currently being used in production. They might also create new applications under this resource, but with the restrictions mentioned.
 
 :::row:::
     :::column span="":::
@@ -104,7 +104,7 @@ A user that is responsible for building and modifying an application, as a colla
     :::column-end:::
     :::column span="":::
       * All APIs under Language reader
-      * All POST, PUT and PATCH APIs under:
+      * All POST, PUT, and PATCH APIs under:
          * [Language conversational language understanding APIs](/rest/api/language/2023-04-01/conversational-analysis-authoring)
          * [Language text analysis APIs](/rest/api/language/2023-04-01/text-analysis-authoring)
          * [question answering projects](/rest/api/questionanswering/question-answering-projects)

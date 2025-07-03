@@ -7,7 +7,7 @@ manager: nitinme
 zone_pivot_groups: programming-languages-set-conmod
 ms.service: azure-ai-content-moderator
 ms.topic: quickstart
-ms.date: 01/18/2024
+ms.date: 06/12/2025
 ms.author: pafarley
 ms.devlang: csharp
 # ms.devlang: csharp, java, python

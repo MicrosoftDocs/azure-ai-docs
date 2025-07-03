@@ -2,13 +2,13 @@
 title: How to create and manage LUIS resources
 titleSuffix: Azure AI services
 description: Learn how to use and manage Azure resources for LUIS.the app.
-author: aahill
-ms.author: aahi
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
 ms.topic: how-to
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ms.custom: devx-track-azurecli
 ms.devlang: azurecli
 ---

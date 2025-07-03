@@ -11,8 +11,8 @@ ms.custom:
 ms.topic: how-to
 ms.date: 05/06/2025
 ms.reviewer: siarora
-ms.author: larryfr
-author: Blackmist
+ms.author: mopeakande
+author: msakande 
 zone_pivot_groups: project-type
 # Customer intent: As an Azure AI Foundry user, I want to know how to manage and increase quotas for resources with Azure AI Foundry.
 ---
@@ -58,7 +58,7 @@ A quota is a credit limit on Azure resources, not a capacity guarantee. If
 > [!NOTE]
 > Azure AI Foundry compute has a separate quota from the core compute quota. 
 
-Default limits vary by offer category type, such as free trial, standard deployment, and virtual machine (VM) series (such as Dv2, F, and G). 
+Default limits vary by offer category type, such as free trial, serverless API deployment, and virtual machine (VM) series (such as Dv2, F, and G). 
 
 ## Azure AI Foundry quota 
 

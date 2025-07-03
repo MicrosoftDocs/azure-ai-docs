@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 01/16/2025
+ms.date: 06/16/2025
 ---
 
 # Add custom analyzers to string fields in an Azure AI Search index
@@ -20,7 +20,9 @@ In a custom analyzer, character filters prepare the input text before it's proce
 
 ## Why use a custom analyzer?
 
-A custom analyzer gives you control over the process of converting plain text into indexable and searchable tokens by allowing you to choose which types of analysis or filtering to invoke, and the order in which they occur. 
+You should consider a custom analyzer in classic search workflows that don't include large language models and their ability to handle content anomalies.
+
+In class search, a custom analyzer gives you control over the process of converting plain text into indexable and searchable tokens by allowing you to choose which types of analysis or filtering to invoke, and the order in which they occur. 
 
 Create and assign a custom analyzer if none of default (Standard Lucene), built-in, or language analyzers are sufficient for your needs. You might also create a custom analyzer if you want to use a built-in analyzer with custom options. For example, if you wanted to change the `maxTokenLength` on Standard Lucene, you would create a custom analyzer, with a user-defined name, to set that option.
 
