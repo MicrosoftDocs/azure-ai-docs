@@ -31,7 +31,7 @@ An evaluation run allows you to generate metric outputs for each data row in you
 
 ### From the evaluate page
 
-From the collapsible left menu, select **Evaluation** > **fCreate a new evaluation**.
+From the collapsible left menu, select **Evaluation** > **Create a new evaluation**.
 
 :::image type="content" source="../media/evaluations/evaluate/create-new-evaluation.png" alt-text="Screenshot of the button to create a new evaluation." lightbox="../media/evaluations/evaluate/create-new-evaluation.png":::
 
