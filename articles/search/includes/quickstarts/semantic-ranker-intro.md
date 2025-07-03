@@ -13,7 +13,7 @@ In Azure AI Search, [semantic ranking](../../semantic-search-overview.md) is que
 
 You can add a semantic configuration to an existing index with no rebuild requirement. Semantic ranking is most effective on text that's informational or descriptive.
 
-In this quickstart:
+In this quickstart, you learn how to:
 
 > [!div class="checklist"]
 > + Add a semantic configuration to a search index
@@ -25,7 +25,7 @@ In this quickstart:
 
 + An [Azure AI Search service](../../search-create-service-portal.md), at Basic tier or higher, with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
 
-+ A [new or existing index](../../search-how-to-create-search-index.md) with descriptive or verbose text fields, attributed as retrievable in your index. 
++ A [new or existing index](../../search-how-to-create-search-index.md) with descriptive or verbose text fields, attributed as retrievable in your index. This quickstart assumes the [hotels-sample-index](../../search-get-started-portal.md).
 
 ## Configure access
 

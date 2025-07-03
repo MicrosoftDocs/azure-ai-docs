@@ -61,84 +61,89 @@ To update an index using the REST API, you must provide the entire schema, plus 
 }
 ```
 
-The full POST request specifies the index name, operation, and full JSON schema. All required elements of the schema must be present. This request includes the full schema for hotels-sample-index plus the semantic configuration.
-```http
-POST  {{searchUrl}}/indexes?api-version=2025-05-01-preview  HTTP/1.1
-Content-Type: application/json
-Authorization: Bearer {{personalAccessToken}}
+1. Formulate a POST request specifying the index name, operation, and full JSON schema. All required elements of the schema must be present. This request includes the full schema for hotels-sample-index plus the semantic configuration.
 
-{
-   "name": "hotels-sample-index",
-   "fields": [
-       { "name": "HotelId", "type": "Edm.String", "searchable": false, "filterable": true, "retrievable": true, "stored": true, "sortable": false, "facetable": true, "key": true },
-       { "name": "HotelName", "type": "Edm.String", "searchable": true, "filterable": false, "retrievable": true, "stored": true, "sortable": false, "facetable": false, "analyzer": "en.microsoft" },
-       { "name": "Description", "type": "Edm.String", "searchable": true, "filterable": false, "retrievable": true, "stored": true, "sortable": false, "facetable": false, "analyzer": "en.microsoft" },
-       { "name": "Description_fr", "type": "Edm.String", "searchable": true, "filterable": false, "retrievable": true, "stored": true, "sortable": false, "facetable": false, "analyzer": "fr.microsoft" },
-       { "name": "Category", "type": "Edm.String", "searchable": true, "filterable": true, "retrievable": true, "stored": true, "sortable": false, "facetable": true, "analyzer": "en.microsoft" },
-       { "name": "Tags", "type": "Collection(Edm.String)", "searchable": true, "filterable": true, "retrievable": true, "stored": true, "sortable": false, "facetable": true, "analyzer": "en.microsoft" },
-       { "name": "ParkingIncluded", "type": "Edm.Boolean", "searchable": false, "filterable": true, "retrievable": true, "stored": true, "sortable": false, "facetable": true },
-       { "name": "LastRenovationDate", "type": "Edm.DateTimeOffset", "searchable": false, "filterable": false, "retrievable": true, "stored": true, "sortable": true, "facetable": false },
-       { "name": "Rating", "type": "Edm.Double", "searchable": false, "filterable": true, "retrievable": true, "stored": true, "sortable": true, "facetable": true },
-       { "name": "Address", "type": "Edm.ComplexType", "fields": [
-          { "name": "StreetAddress", "type": "Edm.String", "searchable": true, "filterable": false, "retrievable": true, "stored": true, "sortable": false, "facetable": false, "analyzer": "en.microsoft" },
-          { "name": "City", "type": "Edm.String", "searchable": true, "filterable": true, "retrievable": true, "stored": true, "sortable": false, "facetable": true, "analyzer": "en.microsoft" },
-          { "name": "StateProvince", "type": "Edm.String", "searchable": true, "filterable": true, "retrievable": true, "stored": true, "sortable": false, "facetable": true, "analyzer": "en.microsoft" },
-          { "name": "PostalCode", "type": "Edm.String", "searchable": true, "filterable": true, "retrievable": true, "stored": true, "sortable": false, "facetable": true, "analyzer": "en.microsoft" },
-          { "name": "Country", "type": "Edm.String", "searchable": true, "filterable": true, "retrievable": true, "stored": true, "sortable": false, "facetable": true, "analyzer": "en.microsoft" }]},
-       { "name": "Location", "type": "Edm.GeographyPoint", "searchable": false, "filterable": true, "retrievable": true, "stored": true, "sortable": true, "facetable": false },
-       { "name": "Rooms", "type": "Collection(Edm.ComplexType)", "fields": [
-          { "name": "Description", "type": "Edm.String", "searchable": true, "filterable": false, "retrievable": true, "stored": true, "sortable": false, "facetable": false, "analyzer": "en.microsoft" },
-          { "name": "Description_fr", "type": "Edm.String", "searchable": true, "filterable": false, "retrievable": true, "stored": true, "sortable": false, "facetable": false, "analyzer": "fr.microsoft" },
-          { "name": "Type", "type": "Edm.String", "searchable": true, "filterable": true, "retrievable": true, "stored": true, "sortable": false, "facetable": true, "analyzer": "en.microsoft" },
-          { "name": "BaseRate", "type": "Edm.Double", "searchable": false, "filterable": true, "retrievable": true, "stored": true, "sortable": false, "facetable": true },
-          { "name": "BedOptions", "type": "Edm.String", "searchable": true, "filterable": true, "retrievable": true, "stored": true, "sortable": false, "facetable": true, "analyzer": "en.microsoft" },
-          { "name": "SleepsCount", "type": "Edm.Int64", "searchable": false, "filterable": true, "retrievable": true, "stored": true, "sortable": false, "facetable": true },
-          { "name": "SmokingAllowed", "type": "Edm.Boolean", "searchable": false, "filterable": true, "retrievable": true, "stored": true, "sortable": false, "facetable": true },
-          { "name": "Tags", "type": "Collection(Edm.String)", "searchable": true, "filterable": true, "retrievable": true, "stored": true, "sortable": false, "facetable": true, "analyzer": "en.microsoft" }]},
-       { "name": "id", "type": "Edm.String", "searchable": false, "filterable": false, "retrievable": false, "stored": true, "sortable": false, "facetable": false },
-       { "name": "rid", "type": "Edm.String", "searchable": false, "filterable": false, "retrievable": false, "stored": true, "sortable": false, "facetable": false }],
-  "scoringProfiles": [],
-  "suggesters": [
+    ```http
+    POST  {{searchUrl}}/indexes?api-version=2025-05-01-preview  HTTP/1.1
+    Content-Type: application/json
+    Authorization: Bearer {{personalAccessToken}}
+    
     {
-      "name": "sg",
-      "searchMode": "analyzingInfixMatching",
-      "sourceFields": ["Address/City", "Address/Country", "Rooms/Type", "Rooms/Tags"]
-    }
-  ],
-  "analyzers": [],
-  "normalizers": [],
-  "tokenizers": [],
-  "tokenFilters": [],
-  "charFilters": [],
-  "similarity": {
-    "@odata.type": "#Microsoft.Azure.Search.BM25Similarity"
-  },
-  "semantic": {
-    "configurations": [
-      {
-        "name": "semantic-config",
-        "flightingOptIn": false,
-        "rankingOrder": "BoostedRerankerScore",
-        "prioritizedFields": {
-          "titleField": {
-            "fieldName": "HotelName"
-          },
-          "prioritizedContentFields": [
-            {
-              "fieldName": "Description"
-            }
-          ],
-          "prioritizedKeywordsFields": [
-            {
-              "fieldName": "Tags"
-            }
-          ]
+       "name": "hotels-sample-index",
+       "fields": [
+           { "name": "HotelId", "type": "Edm.String", "searchable": false, "filterable": true, "retrievable": true, "stored": true, "sortable": false, "facetable": true, "key": true },
+           { "name": "HotelName", "type": "Edm.String", "searchable": true, "filterable": false, "retrievable": true, "stored": true, "sortable": false, "facetable": false, "analyzer": "en.microsoft" },
+           { "name": "Description", "type": "Edm.String", "searchable": true, "filterable": false, "retrievable": true, "stored": true, "sortable": false, "facetable": false, "analyzer": "en.microsoft" },
+           { "name": "Description_fr", "type": "Edm.String", "searchable": true, "filterable": false, "retrievable": true, "stored": true, "sortable": false, "facetable": false, "analyzer": "fr.microsoft" },
+           { "name": "Category", "type": "Edm.String", "searchable": true, "filterable": true, "retrievable": true, "stored": true, "sortable": false, "facetable": true, "analyzer": "en.microsoft" },
+           { "name": "Tags", "type": "Collection(Edm.String)", "searchable": true, "filterable": true, "retrievable": true, "stored": true, "sortable": false, "facetable": true, "analyzer": "en.microsoft" },
+           { "name": "ParkingIncluded", "type": "Edm.Boolean", "searchable": false, "filterable": true, "retrievable": true, "stored": true, "sortable": false, "facetable": true },
+           { "name": "LastRenovationDate", "type": "Edm.DateTimeOffset", "searchable": false, "filterable": false, "retrievable": true, "stored": true, "sortable": true, "facetable": false },
+           { "name": "Rating", "type": "Edm.Double", "searchable": false, "filterable": true, "retrievable": true, "stored": true, "sortable": true, "facetable": true },
+           { "name": "Address", "type": "Edm.ComplexType", "fields": [
+              { "name": "StreetAddress", "type": "Edm.String", "searchable": true, "filterable": false, "retrievable": true, "stored": true, "sortable": false, "facetable": false, "analyzer": "en.microsoft" },
+              { "name": "City", "type": "Edm.String", "searchable": true, "filterable": true, "retrievable": true, "stored": true, "sortable": false, "facetable": true, "analyzer": "en.microsoft" },
+              { "name": "StateProvince", "type": "Edm.String", "searchable": true, "filterable": true, "retrievable": true, "stored": true, "sortable": false, "facetable": true, "analyzer": "en.microsoft" },
+              { "name": "PostalCode", "type": "Edm.String", "searchable": true, "filterable": true, "retrievable": true, "stored": true, "sortable": false, "facetable": true, "analyzer": "en.microsoft" },
+              { "name": "Country", "type": "Edm.String", "searchable": true, "filterable": true, "retrievable": true, "stored": true, "sortable": false, "facetable": true, "analyzer": "en.microsoft" }]},
+           { "name": "Location", "type": "Edm.GeographyPoint", "searchable": false, "filterable": true, "retrievable": true, "stored": true, "sortable": true, "facetable": false },
+           { "name": "Rooms", "type": "Collection(Edm.ComplexType)", "fields": [
+              { "name": "Description", "type": "Edm.String", "searchable": true, "filterable": false, "retrievable": true, "stored": true, "sortable": false, "facetable": false, "analyzer": "en.microsoft" },
+              { "name": "Description_fr", "type": "Edm.String", "searchable": true, "filterable": false, "retrievable": true, "stored": true, "sortable": false, "facetable": false, "analyzer": "fr.microsoft" },
+              { "name": "Type", "type": "Edm.String", "searchable": true, "filterable": true, "retrievable": true, "stored": true, "sortable": false, "facetable": true, "analyzer": "en.microsoft" },
+              { "name": "BaseRate", "type": "Edm.Double", "searchable": false, "filterable": true, "retrievable": true, "stored": true, "sortable": false, "facetable": true },
+              { "name": "BedOptions", "type": "Edm.String", "searchable": true, "filterable": true, "retrievable": true, "stored": true, "sortable": false, "facetable": true, "analyzer": "en.microsoft" },
+              { "name": "SleepsCount", "type": "Edm.Int64", "searchable": false, "filterable": true, "retrievable": true, "stored": true, "sortable": false, "facetable": true },
+              { "name": "SmokingAllowed", "type": "Edm.Boolean", "searchable": false, "filterable": true, "retrievable": true, "stored": true, "sortable": false, "facetable": true },
+              { "name": "Tags", "type": "Collection(Edm.String)", "searchable": true, "filterable": true, "retrievable": true, "stored": true, "sortable": false, "facetable": true, "analyzer": "en.microsoft" }]},
+           { "name": "id", "type": "Edm.String", "searchable": false, "filterable": false, "retrievable": false, "stored": true, "sortable": false, "facetable": false },
+           { "name": "rid", "type": "Edm.String", "searchable": false, "filterable": false, "retrievable": false, "stored": true, "sortable": false, "facetable": false }],
+      "scoringProfiles": [],
+      "suggesters": [
+        {
+          "name": "sg",
+          "searchMode": "analyzingInfixMatching",
+          "sourceFields": ["Address/City", "Address/Country", "Rooms/Type", "Rooms/Tags"]
         }
+      ],
+      "analyzers": [],
+      "normalizers": [],
+      "tokenizers": [],
+      "tokenFilters": [],
+      "charFilters": [],
+      "similarity": {
+        "@odata.type": "#Microsoft.Azure.Search.BM25Similarity"
+      },
+      "semantic": {
+        "configurations": [
+          {
+            "name": "semantic-config",
+            "flightingOptIn": false,
+            "rankingOrder": "BoostedRerankerScore",
+            "prioritizedFields": {
+              "titleField": {
+                "fieldName": "HotelName"
+              },
+              "prioritizedContentFields": [
+                {
+                  "fieldName": "Description"
+                }
+              ],
+              "prioritizedKeywordsFields": [
+                {
+                  "fieldName": "Tags"
+                }
+              ]
+            }
+          }
+        ]
       }
-    ]
-  }
-}
-```
+    }
+    ```
+
+1. Select **Sent request**.
+
+1. Output for this POST request is an HTTP 200 Success status message.
 
 ## Run semantic queries
 
@@ -146,7 +151,7 @@ Required semantic parameters include `query_type` and `semantic_configuration_na
 
 1. Open the [semantic-search-query.rest](https://github.com/Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-semantic-search/semantic-search-query.rest) file or create a new file.
 
-1. At the top, set environment variables for your search service, authorization, and index name.
+1. At the top of the file, set environment variables for your search service, authorization, and index name.
 
    + For @searchURL, sign in to the Azure portal and copy the URL from the search service **Overview** page.
 
@@ -305,67 +310,67 @@ To get a semantic answer, the question and answer must be closely aligned, and t
 
    In this example, the answer is considered as a strong fit for the question. 
 
-```json
-{
-  "@odata.count": 41,
-  "@search.answers": [
+    ```json
     {
-      "key": "38",
-      "text": "Nature is Home on the beach. Explore the shore by day, and then come home to our shared living space to relax around a stone fireplace, sip something warm, and explore the library by night. Save up to 30 percent. Valid Now through the end of the year. Restrictions and blackouts may apply.",
-      "highlights": "Nature is Home on the beach. Explore the shore by day, and then come home to our shared living space to relax around a stone fireplace, sip something warm, and explore the<em> library </em>by night. Save up to 30 percent. Valid Now through the end of the year. Restrictions and blackouts may apply.",
-      "score": 0.9829999804496765
+      "@odata.count": 41,
+      "@search.answers": [
+        {
+          "key": "38",
+          "text": "Nature is Home on the beach. Explore the shore by day, and then come home to our shared living space to relax around a stone fireplace, sip something warm, and explore the library by night. Save up to 30 percent. Valid Now through the end of the year. Restrictions and blackouts may apply.",
+          "highlights": "Nature is Home on the beach. Explore the shore by day, and then come home to our shared living space to relax around a stone fireplace, sip something warm, and explore the<em> library </em>by night. Save up to 30 percent. Valid Now through the end of the year. Restrictions and blackouts may apply.",
+          "score": 0.9829999804496765
+        }
+      ],
+      "value": [
+        {
+          "@search.score": 2.0361428,
+          "@search.rerankerScore": 2.124817371368408,
+          "HotelId": "1",
+          "HotelName": "Stay-Kay City Hotel",
+          "Description": "This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities."
+        },
+        {
+          "@search.score": 3.759768,
+          "@search.rerankerScore": 2.0705394744873047,
+          "HotelId": "16",
+          "HotelName": "Double Sanctuary Resort",
+          "Description": "5 star Luxury Hotel - Biggest Rooms in the city. #1 Hotel in the area listed by Traveler magazine. Free WiFi, Flexible check in/out, Fitness Center & espresso in room."
+        },
+        {
+          "@search.score": 0.7308748,
+          "@search.rerankerScore": 2.041472911834717,
+          "HotelId": "38",
+          "HotelName": "Lakeside B & B",
+          "Description": "Nature is Home on the beach. Explore the shore by day, and then come home to our shared living space to relax around a stone fireplace, sip something warm, and explore the library by night. Save up to 30 percent. Valid Now through the end of the year. Restrictions and blackouts may apply."
+        },
+        {
+          "@search.score": 3.391012,
+          "@search.rerankerScore": 2.0231292247772217,
+          "HotelId": "2",
+          "HotelName": "Old Century Hotel",
+          "Description": "The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music."
+        },
+        {
+          "@search.score": 1.3198771,
+          "@search.rerankerScore": 2.021622657775879,
+          "HotelId": "15",
+          "HotelName": "By the Market Hotel",
+          "Description": "Book now and Save up to 30%. Central location. Walking distance from the Empire State Building & Times Square, in the Chelsea neighborhood. Brand new rooms. Impeccable service."
+        },
+        {
+          "@search.score": 1.3983066,
+          "@search.rerankerScore": 2.005582809448242,
+          "HotelId": "5",
+          "HotelName": "Red Tide Hotel",
+          "Description": "On entering this charming hotel in Scarlet Harbor, you'll notice an uncommon blend of antiques, original artwork, and contemporary comforts that give this hotel its signature look. Each suite is furnished to accentuate the views and unique characteristics of the building's classic architecture. No two suites are alike. However, all guests are welcome in the mezzanine plaza, the surrounding gardens, and the northside terrace for evening refreshments."
+        },
+        {
+          "@search.score": 1.4815493,
+          "@search.rerankerScore": 1.9739465713500977,
+          "HotelId": "24",
+          "HotelName": "Uptown Chic Hotel",
+          "Description": "Chic hotel near the city. High-rise hotel in downtown, within walking distance to theaters, art galleries, restaurants and shops. Visit Seattle Art Museum by day, and then head over to Benaroya Hall to catch the evening's concert performance."
+        }
+      ]
     }
-  ],
-  "value": [
-    {
-      "@search.score": 2.0361428,
-      "@search.rerankerScore": 2.124817371368408,
-      "HotelId": "1",
-      "HotelName": "Stay-Kay City Hotel",
-      "Description": "This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities."
-    },
-    {
-      "@search.score": 3.759768,
-      "@search.rerankerScore": 2.0705394744873047,
-      "HotelId": "16",
-      "HotelName": "Double Sanctuary Resort",
-      "Description": "5 star Luxury Hotel - Biggest Rooms in the city. #1 Hotel in the area listed by Traveler magazine. Free WiFi, Flexible check in/out, Fitness Center & espresso in room."
-    },
-    {
-      "@search.score": 0.7308748,
-      "@search.rerankerScore": 2.041472911834717,
-      "HotelId": "38",
-      "HotelName": "Lakeside B & B",
-      "Description": "Nature is Home on the beach. Explore the shore by day, and then come home to our shared living space to relax around a stone fireplace, sip something warm, and explore the library by night. Save up to 30 percent. Valid Now through the end of the year. Restrictions and blackouts may apply."
-    },
-    {
-      "@search.score": 3.391012,
-      "@search.rerankerScore": 2.0231292247772217,
-      "HotelId": "2",
-      "HotelName": "Old Century Hotel",
-      "Description": "The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music."
-    },
-    {
-      "@search.score": 1.3198771,
-      "@search.rerankerScore": 2.021622657775879,
-      "HotelId": "15",
-      "HotelName": "By the Market Hotel",
-      "Description": "Book now and Save up to 30%. Central location. Walking distance from the Empire State Building & Times Square, in the Chelsea neighborhood. Brand new rooms. Impeccable service."
-    },
-    {
-      "@search.score": 1.3983066,
-      "@search.rerankerScore": 2.005582809448242,
-      "HotelId": "5",
-      "HotelName": "Red Tide Hotel",
-      "Description": "On entering this charming hotel in Scarlet Harbor, you'll notice an uncommon blend of antiques, original artwork, and contemporary comforts that give this hotel its signature look. Each suite is furnished to accentuate the views and unique characteristics of the building's classic architecture. No two suites are alike. However, all guests are welcome in the mezzanine plaza, the surrounding gardens, and the northside terrace for evening refreshments."
-    },
-    {
-      "@search.score": 1.4815493,
-      "@search.rerankerScore": 1.9739465713500977,
-      "HotelId": "24",
-      "HotelName": "Uptown Chic Hotel",
-      "Description": "Chic hotel near the city. High-rise hotel in downtown, within walking distance to theaters, art galleries, restaurants and shops. Visit Seattle Art Museum by day, and then head over to Benaroya Hall to catch the evening's concert performance."
-    }
-  ]
-}
-```
+    ```
