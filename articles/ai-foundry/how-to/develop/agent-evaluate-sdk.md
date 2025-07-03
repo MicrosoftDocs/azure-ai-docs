@@ -307,7 +307,7 @@ print(response["metrics"])
 print(f'AI Foundary URL: {response.get("studio_url")}')
 ```
 
-After the URI, you'll be redirected to Foundry. You can view your evaluation results in your Azure AI project and debug your application. Using reason fields and pass/fail, you can easily assess the quality and safety performance of your applications. You can run and compare multiple runs to test for regression or improvements.  
+After the URL, you'll be redirected to Foundry. You can view your evaluation results in your Azure AI project and debug your application. Using reason fields and pass/fail, you can easily assess the quality and safety performance of your applications. You can run and compare multiple runs to test for regression or improvements.  
 
 With the Azure AI Evaluation SDK client library, you can seamlessly evaluate your Azure AI agents via our converter support, which enables observability and transparency into agentic workflows.
 
@@ -317,7 +317,7 @@ If you're using agents outside of Azure AI Foundry Agent Service, you can still 
 
 Agents typically emit messages to interact with a user or other agents. Our built-in evaluators can accept simple data types such as strings in `query`, `response`, and `ground_truth` according to the [Single-turn data input requirements](./evaluate-sdk.md#data-requirements-for-built-in-evaluators). However, it can be a challenge to extract these simple data types from agent messages, due to the complex interaction patterns of agents and framework differences. For example, a single user query can trigger a long list of agent messages, typically with multiple tool calls invoked.
 
-As illustrated in the example, we enabled agent message support specifically for the built-in evaluators `IntentResolution`, `ToolCallAccuracy`, and `TaskAdherence` to evaluate these aspects of agentic workflow. These evaluators take `tool_calls` or `tool_definitions` as parameters unique to agents.
+As illustrated in the following example, we enable agent message support specifically for the built-in evaluators `IntentResolution`, `ToolCallAccuracy`, and `TaskAdherence` to evaluate these aspects of agentic workflow. These evaluators take `tool_calls` or `tool_definitions` as parameters unique to agents.
 
 | Evaluator       | `query`      | `response`      | `tool_calls`       | `tool_definitions`  |
 |----------------|---------------|---------------|---------------|---------------|
