@@ -46,7 +46,7 @@ If you don't have a project, you can still explore models listed on the home pag
 
 ### Customize the navigation
 
-Once you select a project, you can access more capabilities such as Model catalog, Playgrounds, and AI Services. Then there are collapsible sections for **Build and customize** (includes Code, Fine-tuning, Prompt-flow), **Assess and improve** (includes Tracing, Evaluation, and Guardrails & controls) and **My assets** (includes Models + endpoints, Data + indexes, and Web apps). 
+Once you select a project, you can access more capabilities such as Model catalog, Playgrounds, and AI Services.
 
 The left pane is customizable for each project or resource. 
 
