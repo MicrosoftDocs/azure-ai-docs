@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 06/05/2025
+ms.date: 07/03/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents-code
@@ -14,6 +14,9 @@ zone_pivot_groups: selection-sharepoint
 ---
 
 # How to use the SharePoint tool
+
+> [!NOTE]
+> This article describes the Microsoft SharePoint tool for Azure AI Foundry Agent Service. For information on using and deploying SharePoint sites, see the [SharePoint documentation](/sharepoint/). 
 
 Use this article to find step-by-step instructions and code samples for using the SharePoint tool in Azure AI Foundry Agent Service.
 
