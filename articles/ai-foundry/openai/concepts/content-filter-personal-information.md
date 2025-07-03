@@ -3,7 +3,7 @@ title: Personally Identifiable Information (PII) Filter
 description: Learn about the Personally Identifiable Information (PII) filter for identifying and flagging known personal information in large language model outputs.
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 06/10/2025
+ms.date: 07/03/2025
 ms.topic: conceptual
 ms.service: azure-ai-openai
 ---
