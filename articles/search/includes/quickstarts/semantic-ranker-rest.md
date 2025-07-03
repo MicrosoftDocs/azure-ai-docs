@@ -9,14 +9,14 @@ ms.date: 07/03/2025
 
 [!INCLUDE [Semantic ranker introduction](semantic-ranker-intro.md)]
 
-> [!TIP]
-> You can [download the source code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-semantic-search) to start with a finished project or follow these steps to create your own. 
-
 ## Set up the client
 
 In this quickstart, you use a REST client and the [Azure AI Search REST APIs](/rest/api/searchservice) to configure and use a semantic ranker.
 
 We recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for this quickstart.
+
+> [!TIP]
+> You can [download the source code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-semantic-search) to start with a finished project or follow these steps to create your own. 
 
 1. Start Visual Studio Code and open the [semantic-search-index-update.rest](https://github.com/Azure-Samples/azure-search-rest-samples/blob/main/Quickstart-semantic-search/semantic-search-index-update.rest) file or create a new file.
 
@@ -26,17 +26,19 @@ We recommend [Visual Studio Code](https://code.visualstudio.com/download) with a
 
    + For @personalAccessToken, follow the instructions in [Connect without keys](../../search-get-started-rbac.md) to get your personal access token.
 
-1. To test the connection, send your first request. 
-
-   :::image type="content" source="../../media/search-get-started-semantic/visual-studio-code-send-request.png" alt-text="Screenshot of the REST client send request link.":::
-
-  This GET request returns a list of existing indexes. You should get an HTTP 200 Success status code and a list of indexes, including hotels-sample-index used in this quickstart.
+1. To test the connection, send your first request.
 
    ```http
    ### List existing indexes by name (verify the connection)
     GET  {{searchUrl}}/indexes?api-version=2025-05-01-preview&$select=name  HTTP/1.1
     Authorization: Bearer {{personalAccessToken}}
    ```
+
+1. Select **Sent request**.
+
+   :::image type="content" source="../../media/search-get-started-semantic/visual-studio-code-send-request.png" alt-text="Screenshot of the REST client send request link.":::
+
+1. Output for this GET request returns a list of existing indexes. You should get an HTTP 200 Success status code and a list of indexes, including hotels-sample-index used in this quickstart.
 
 ## Update the index
 
@@ -59,8 +61,7 @@ To update an index using the REST API, you must provide the entire schema, plus 
 }
 ```
 
-The full POST request specifies the index name, operation, and full JSON schema. All required elements of the schema must be present. For this task, we recommend a GET to return the schema, and then adding your modifications.
-
+The full POST request specifies the index name, operation, and full JSON schema. All required elements of the schema must be present. This request includes the full schema for hotels-sample-index plus the semantic configuration.
 ```http
 POST  {{searchUrl}}/indexes?api-version=2025-05-01-preview  HTTP/1.1
 Content-Type: application/json

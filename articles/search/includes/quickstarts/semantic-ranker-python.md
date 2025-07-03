@@ -10,14 +10,14 @@ ms.date: 07/03/2025
 
 [!INCLUDE [Semantic ranker introduction](semantic-ranker-intro.md)]
 
-> [!TIP]
-> You can [download a finished notebook](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Semantic-Search) to start with a finished project or follow these steps to create your own. 
-
 ## Set up the client
 
 In this quickstart, use a Jupyter notebook and the [**azure-search-documents**](/python/api/overview/azure/search-documents-readme) library in the Azure SDK for Python to learn about semantic ranking.
 
 We recommend [Visual Studio Code](https://code.visualstudio.com/download) with Python 3.10 or later and the [Python extension](https://code.visualstudio.com/docs/languages/python) for this quickstart.
+
+> [!TIP]
+> You can [download a finished notebook](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Semantic-Search) to start with a finished project or follow these steps to create your own. 
 
 We recommend a virtual environment for this quickstart:
 
@@ -122,72 +122,71 @@ In this section, you update a search index to include a semantic configuration. 
 
 1. Add a semantic configuration to an existing hotels-sample-index on your search service. No search documents are deleted by this operation and your index is still operational after the configuration is added.
 
-```python
-# Add semantic configuration to hotels-sample-index and display updated index details
-from azure.search.documents.indexes.models import (
-    SemanticConfiguration,
-    SemanticField,
-    SemanticPrioritizedFields,
-    SemanticSearch
-)
-
-try:
-    # Get the existing index
-    existing_index = index_client.get_index(index_name)
-    
-    # Create a new semantic configuration
-    new_semantic_config = SemanticConfiguration(
-        name="semantic-config",
-        prioritized_fields=SemanticPrioritizedFields(
-            title_field=SemanticField(field_name="HotelName"),
-            keywords_fields=[SemanticField(field_name="Tags")],
-            content_fields=[SemanticField(field_name="Description")]
-        )
+    ```python
+    # Add semantic configuration to hotels-sample-index and display updated index details
+    from azure.search.documents.indexes.models import (
+        SemanticConfiguration,
+        SemanticField,
+        SemanticPrioritizedFields,
+        SemanticSearch
     )
     
-    # Add semantic configuration to the index
-    if existing_index.semantic_search is None:
-        existing_index.semantic_search = SemanticSearch(configurations=[new_semantic_config])
-    else:
-        # Check if configuration already exists
-        config_exists = any(config.name == "semantic-config" 
-                          for config in existing_index.semantic_search.configurations)
-        if not config_exists:
-            existing_index.semantic_search.configurations.append(new_semantic_config)
+    try:
+        # Get the existing index
+        existing_index = index_client.get_index(index_name)
+        
+        # Create a new semantic configuration
+        new_semantic_config = SemanticConfiguration(
+            name="semantic-config",
+            prioritized_fields=SemanticPrioritizedFields(
+                title_field=SemanticField(field_name="HotelName"),
+                keywords_fields=[SemanticField(field_name="Tags")],
+                content_fields=[SemanticField(field_name="Description")]
+            )
+        )
+        
+        # Add semantic configuration to the index
+        if existing_index.semantic_search is None:
+            existing_index.semantic_search = SemanticSearch(configurations=[new_semantic_config])
+        else:
+            # Check if configuration already exists
+            config_exists = any(config.name == "semantic-config" 
+                              for config in existing_index.semantic_search.configurations)
+            if not config_exists:
+                existing_index.semantic_search.configurations.append(new_semantic_config)
+        
+        # Update the index
+        result = index_client.create_or_update_index(existing_index)
+        
+        # Get the updated index and display detailed information
+        updated_index = index_client.get_index(index_name)
+        
+        print("Semantic configurations:")
+        print("-" * 40)
+        if updated_index.semantic_search and updated_index.semantic_search.configurations:
+            for config in updated_index.semantic_search.configurations:
+                print(f"  Configuration: {config.name}")
+                if config.prioritized_fields.title_field:
+                    print(f"    Title field: {config.prioritized_fields.title_field.field_name}")
+                if config.prioritized_fields.keywords_fields:
+                    keywords = [kf.field_name for kf in config.prioritized_fields.keywords_fields]
+                    print(f"    Keywords fields: {', '.join(keywords)}")
+                if config.prioritized_fields.content_fields:
+                    content = [cf.field_name for cf in config.prioritized_fields.content_fields]
+                    print(f"    Content fields: {', '.join(content)}")
+                print()
+        else:
+            print("  No semantic configurations found")
+        
+        print("✅ Semantic configuration successfully added!")
+        
+    except Exception as ex:
+        print(f"❌ Error adding semantic configuration: {ex}")
+    ```
     
-    # Update the index
-    result = index_client.create_or_update_index(existing_index)
-    
-    # Get the updated index and display detailed information
-    updated_index = index_client.get_index(index_name)
-    
-    print("Semantic configurations:")
-    print("-" * 40)
-    if updated_index.semantic_search and updated_index.semantic_search.configurations:
-        for config in updated_index.semantic_search.configurations:
-            print(f"  Configuration: {config.name}")
-            if config.prioritized_fields.title_field:
-                print(f"    Title field: {config.prioritized_fields.title_field.field_name}")
-            if config.prioritized_fields.keywords_fields:
-                keywords = [kf.field_name for kf in config.prioritized_fields.keywords_fields]
-                print(f"    Keywords fields: {', '.join(keywords)}")
-            if config.prioritized_fields.content_fields:
-                content = [cf.field_name for cf in config.prioritized_fields.content_fields]
-                print(f"    Content fields: {', '.join(content)}")
-            print()
-    else:
-        print("  No semantic configurations found")
-    
-    print("✅ Semantic configuration successfully added!")
-    
-except Exception as ex:
-    print(f"❌ Error adding semantic configuration: {ex}")
-```
-
 1. Run the code.
 
 1. Output is the semantic configuration you just added.
-
 
 ## Run semantic queries
 
