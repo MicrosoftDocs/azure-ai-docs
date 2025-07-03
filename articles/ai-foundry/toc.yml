@@ -13,17 +13,17 @@ items:
 - name: Azure AI Foundry Models
   items:
   - name: Explore Foundry Models
-    href: foundry-models/overview.md?context=/azure/ai-foundry/context/context
+    href: concepts/foundry-models-overview.md
   - name: Models and capabilities 
-    href: foundry-models/concepts/models.md?context=/azure/ai-foundry/context/context
+    href: foundry-models/concepts/models.md
   - name: Model versions
-    href: foundry-models/concepts/model-versions.md?context=/azure/ai-foundry/context/context
+    href: foundry-models/concepts/model-versions.md
   - name: Model lifecycle and retirement
     href: concepts/model-lifecycle-retirement.md
   - name: Data, privacy, and security for Model Catalog
     href: how-to/concept-data-privacy.md
   - name: Foundry Models quotas and limits
-    href: foundry-models/quotas-limits.md?context=/azure/ai-foundry/context/context
+    href: foundry-models/quotas-limits.md
   - name: Choose a model for your use case
     items:
     - name: Model leaderboards
@@ -37,41 +37,41 @@ items:
     - name: Deployment options in Azure AI Foundry portal
       href: concepts/deployments-overview.md
     - name: Deployment types
-      href: foundry-models/concepts/deployment-types.md?context=/azure/ai-foundry/context/context    
+      href: foundry-models/concepts/deployment-types.md   
     - name: Configure Models from Partners and Community
-      href: foundry-models/how-to/configure-marketplace.md?context=/azure/ai-foundry/context/context
+      href: foundry-models/how-to/configure-marketplace.md
     - name: Deploy Foundry Models
-      href: foundry-models/how-to/create-model-deployments.md?context=/azure/ai-foundry/context/context
+      href: foundry-models/how-to/create-model-deployments.md
     - name: Upgrade from GitHub Models to Azure AI Foundry Models
-      href: foundry-models/how-to/quickstart-github-models.md?context=/azure/ai-foundry/context/context
+      href: foundry-models/how-to/quickstart-github-models.md
     - name: Troubleshoot deployments and monitoring
       href: how-to/troubleshoot-deploy-and-monitor.md
   - name: Develop with AI models
     items:
     - name: Endpoints for Foundry Models
-      href: foundry-models/concepts/endpoints.md?context=/azure/ai-foundry/context/context
+      href: foundry-models/concepts/endpoints.md
     - name: Use Foundry Models in code
-      href: foundry-models/how-to/inference.md?context=/azure/ai-foundry/context/context
+      href: foundry-models/how-to/inference.md
     - name: Supported programming languages and SDKs
       href: ../ai-services/openai/supported-languages.md?context=/azure/ai-foundry/context/context
     - name: Azure AI Inference SDK
-      href: foundry-models/supported-languages.md?context=/azure/ai-foundry/context/context
+      href: foundry-models/supported-languages.md
     - name: Work with chat models
       items:
       - name: Work with chat completion models
-        href: foundry-models/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context
+        href: foundry-models/how-to/use-chat-completions.md
       - name: Work with reasoning models
-        href: foundry-models/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context
+        href: foundry-models/how-to/use-chat-reasoning.md
       - name: Work with multimodal models
-        href: foundry-models/how-to/use-chat-multi-modal.md?context=/azure/ai-foundry/context/context
+        href: foundry-models/how-to/use-chat-multi-modal.md
       - name: Use structured outputs
-        href: foundry-models/how-to/use-structured-outputs.md?context=/azure/ai-foundry/context/context
+        href: foundry-models/how-to/use-structured-outputs.md
     - name: Work with embedding models
       items:
       - name: Work with text embeddings
-        href: foundry-models/how-to/use-embeddings.md?context=/azure/ai-foundry/context/context
+        href: foundry-models/how-to/use-embeddings.md
       - name: Work with image embeddings
-        href: foundry-models/how-to/use-image-embeddings.md?context=/azure/ai-foundry/context/context
+        href: foundry-models/how-to/use-image-embeddings.md
     - name: Work with image models
       href: how-to/use-image-models.md
     - name: Develop with LangChain and LangGraph
@@ -83,7 +83,7 @@ items:
   - name: Deployment in AI hub
     items:
     - name: Connect your AI hub to the Azure AI Foundry resource
-      href: foundry-models/how-to/configure-project-connection.md?context=/azure/ai-foundry/context/context
+      href: foundry-models/how-to/configure-project-connection.md
     - name: Managed compute endpoints
       items:
       - name: Deploy models via managed compute
@@ -103,7 +103,7 @@ items:
     - name: Serverless API endpoints
       items:
       - name: Configure AI projects to work with Azure AI Foundry Models
-        href: foundry-models/how-to/quickstart-ai-project.md?context=/azure/ai-foundry/context/context
+        href: foundry-models/how-to/quickstart-ai-project.md
       - name: Deploy models via serverless API
         href: how-to/deploy-models-serverless.md
       - name: Consume models from a different project or hub
@@ -591,7 +591,7 @@ items:
             href: tutorials/copilot-sdk-evaluate.md
             displayName: code,sdk
       - name: Get started with DeepSeek-R1 reasoning model
-        href: foundry-models/tutorials/get-started-deepseek-r1.md?context=/azure/ai-foundry/context/context
+        href: foundry-models/tutorials/get-started-deepseek-r1.md
       - name: Deploy an enterprise chat web app
         href: tutorials/deploy-chat-web-app.md
       - name: Build a RAG solution using Azure AI Search
@@ -659,7 +659,7 @@ items:
       - name: Continuously evaluate your AI agents
         href: how-to/continuous-evaluation-agents.md
       - name: Monitor model deployments
-        href: foundry-models/how-to/monitor-models.md?context=/azure/ai-foundry/context/context
+        href: foundry-models/how-to/monitor-models.md
    - name: Trace your application 
      href: how-to/develop/trace-application.md
    - name: Trace your agent
@@ -839,9 +839,9 @@ items:
   - name: Cost management for Foundry Models
     items:
     - name: Manage costs for Foundry Models
-      href: foundry-models/how-to/manage-costs.md?context=/azure/ai-foundry/context/context
+      href: foundry-models/how-to/manage-costs.md
     - name: Manage quotas and limits for Foundry Models
-      href: foundry-models/quotas-limits.md?context=/azure/ai-foundry/context/context
+      href: foundry-models/quotas-limits.md
     - name: Azure OpenAI quotas and limits
       href: ../ai-services/openai/quotas-limits.md?context=/azure/ai-foundry/context/context
     - name: What is the Provisioned Throughput offering (PTU)?
@@ -881,7 +881,7 @@ items:
   - name: Data protection & encryption
     items:
     - name: Configure key-less authentication
-      href: foundry-models/how-to/configure-entra-id.md?context=/azure/ai-foundry/context/context
+      href: foundry-models/how-to/configure-entra-id.md
     - name: Configure customer-managed keys
       href: concepts/encryption-keys-portal.md
     - name: Rotate keys
@@ -895,7 +895,7 @@ items:
     - name: Built-in policy to allow specific models
       href: how-to/built-in-policy-model-deployment.md
     - name: Custom policy to allow specific models
-      href: foundry-models/how-to/configure-deployment-policies.md?context=/azure/ai-foundry/context/context
+      href: foundry-models/how-to/configure-deployment-policies.md
   - name: Vulnerability management
     href: concepts/vulnerability-management.md
   - name: Disaster recovery
@@ -913,13 +913,13 @@ items:
   - name: Content filtering
     href: concepts/content-filtering.md
   - name: Content filtering for Foundry Models
-    href: foundry-models/concepts/content-filter.md?context=/azure/ai-foundry/context/context
+    href: foundry-models/concepts/content-filter.md
   - name: Configure content filtering for Foundry Models
-    href: foundry-models/how-to/configure-content-filters.md?context=/azure/ai-foundry/context/context
+    href: foundry-models/how-to/configure-content-filters.md
   - name: Default safety policies for Foundry Models
-    href: foundry-models/concepts/default-safety-policies.md?context=/azure/ai-foundry/context/context
+    href: foundry-models/concepts/default-safety-policies.md
   - name: Use blocklists
-    href: foundry-models/how-to/use-blocklists.md?context=/azure/ai-foundry/context/context
+    href: foundry-models/how-to/use-blocklists.md
 
   - name: Transparency notes for Azure AI Services
     href: ../ai-services/responsible-use-of-ai-overview.md?context=/azure/ai-foundry/context/context
