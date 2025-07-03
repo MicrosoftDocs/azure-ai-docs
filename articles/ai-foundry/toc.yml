@@ -237,6 +237,8 @@ items:
             href: ./openai/concepts/content-filter-groundedness.md
           - name: Protected material detection
             href: ./openai/concepts/content-filter-protected-material.md
+          - name: Personally identifiable information (PII) detection
+            href: ./concepts/content-filter-personal-information.md
           - name: Content filter configurability
             href: ./openai/concepts/content-filter-configurability.md
           - name: Content filter annotations
