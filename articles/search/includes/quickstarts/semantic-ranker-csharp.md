@@ -315,42 +315,11 @@ In this section, the program runs several semantic queries in sequence.
 
 1. Output is logged to a console window from [Console.WriteLine](/dotnet/api/system.console.writeline). You should see search results for each query.
 
-### Query 1: Simple query using the search string 'walking distance to live music'
+### Output for semantic query (no captions or answers)
 
-This query is for comparison purposes. It's term search with BM25-ranked search results.
+This output is from the semantic query, with no captions or answers. The query string is 'walking distance to live music'.
 
-```bash
-HotelId: 2
-HotelName: Old Century Hotel
-Description: The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.
-@search.score: 5.5153193
-
-HotelId: 24
-HotelName: Uptown Chic Hotel
-Description: Chic hotel near the city. High-rise hotel in downtown, within walking distance to theaters, art galleries, restaurants and shops. Visit Seattle Art Museum by day, and then head over to Benaroya Hall to catch the evening's concert performance.
-@search.score: 5.074317
-----------------------------------------
-HotelId: 4
-HotelName: Sublime Palace Hotel
-Description: Sublime Cliff Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.
-@search.score: 4.8959594
-----------------------------------------
-HotelId: 35
-HotelName: Bellevue Suites
-Description: Comfortable city living in the very center of downtown Bellevue. Newly reimagined, this hotel features apartment-style suites with sleeping, living and work spaces. Located across the street from the Light Rail to downtown. Free shuttle to the airport.
-@search.score: 2.5966604
-----------------------------------------
-HotelId: 47
-HotelName: Country Comfort Inn
-Description: Situated conveniently at the north end of the village, the inn is just a short walk from the lake, offering reasonable rates and all the comforts home inlcuding living room suites and functional kitchens. Pets are welcome.
-@search.score: 2.566386
-----------------------------------------
-Press Enter to continue to the next query...
-```
-
-### Query 2: Semantic query (no captions, no answers) for 'walking distance to live music'
-
-This output is from the semantic query. The initial results from the term query are reranked and rescored using the semantic ranking models. For this particular dataset and query, the first several results are similar. The effects of semantic ranking are more pronounced in the remainder of the results.
+Here, the initial results from the term query are rescored using the semantic ranking models. For this particular dataset and query, the first several results are in similar positions. The effects of semantic ranking are more pronounced in the remainder of the results.
 
 ```bash
 HotelId: 24
@@ -386,7 +355,7 @@ Description: Book now and Save up to 30%. Central location. Walking distance fro
 Press Enter to continue to the next query...
 ```
 
-### Query 3: Semantic query with captions
+### Output for a semantic query with captions
 
 This query adds captions with hit highlighting.
 
@@ -429,9 +398,9 @@ Description: Book now and Save up to 30%. Central location. Walking distance fro
 Press Enter to continue to the next query...
 ```
 
-### Query 4: Semantic query with a verbatim answer from the Description field for 'what's a good hotel for people who like to read'
+### Output for semantic answers
 
-In this final query, return semantic answers. Notice that we changed the query string for this example.
+In this final query, return semantic answers. Notice that we changed the query string for this example: 'what's a good hotel for people who like to read'.
 
 Semantic ranker can produce an answer to a query string that has the characteristics of a question. The generated answer is extracted verbatim from your content so it won't include composed content like what you might expect from a chat completion model. If the semantic answer isn't useful for your scenario, you can omit `semantic_answers` from your code.
 

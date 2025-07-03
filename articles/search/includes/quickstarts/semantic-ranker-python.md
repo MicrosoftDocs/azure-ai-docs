@@ -266,33 +266,33 @@ To get a semantic answer, the question and answer must be closely aligned, and t
 
 1. Add `answers` to the query.
 
-```python
-# Run a semantic query that returns semantic answers  
-results =  search_client.search(query_type='semantic', semantic_configuration_name='semantic-config',
- search_text="what's a good hotel for people who like to read",
- select='HotelName,Description,Category', query_caption='extractive', query_answer="extractive",)
-
-semantic_answers = results.get_answers()
-for answer in semantic_answers:
-    if answer.highlights:
-        print(f"Semantic Answer: {answer.highlights}")
-    else:
-        print(f"Semantic Answer: {answer.text}")
-    print(f"Semantic Answer Score: {answer.score}\n")
-
-for result in results:
-    print(result["@search.reranker_score"])
-    print(result["HotelName"])
-    print(f"Description: {result['Description']}")
-
-    captions = result["@search.captions"]
-    if captions:
-        caption = captions[0]
-        if caption.highlights:
-            print(f"Caption: {caption.highlights}\n")
+    ```python
+    # Run a semantic query that returns semantic answers  
+    results =  search_client.search(query_type='semantic', semantic_configuration_name='semantic-config',
+     search_text="what's a good hotel for people who like to read",
+     select='HotelName,Description,Category', query_caption='extractive', query_answer="extractive",)
+    
+    semantic_answers = results.get_answers()
+    for answer in semantic_answers:
+        if answer.highlights:
+            print(f"Semantic Answer: {answer.highlights}")
         else:
-            print(f"Caption: {caption.text}\n")
-```
+            print(f"Semantic Answer: {answer.text}")
+        print(f"Semantic Answer Score: {answer.score}\n")
+    
+    for result in results:
+        print(result["@search.reranker_score"])
+        print(result["HotelName"])
+        print(f"Description: {result['Description']}")
+    
+        captions = result["@search.captions"]
+        if captions:
+            caption = captions[0]
+            if caption.highlights:
+                print(f"Caption: {caption.highlights}\n")
+            else:
+                print(f"Caption: {caption.text}\n")
+    ```
 
 1. Run the code.
 
