@@ -358,14 +358,7 @@ When you're working in your own subscription, it's a good idea at the end of a p
 
 You can find and manage resources in the Azure portal by using the **All resources** or **Resource groups** link in the leftmost pane.
 
-If you want to keep the search service, but delete the index and documents, you can use the `SearchIndexClient` object's `delete_index()` method. Find the cell below section titled "Clean up" and execute the cell if you want to delete the `hotels-vector-quickstart` index:
-
-```python
-index_client.delete_index(index_name)
-print(f"Index '{index_name}' deleted successfully.")
-```
-
 ## Next steps
 
-- Review the repository of code samples for vector search capabilities in Azure AI Search for [Python](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python)
-- Review the other Python and Azure AI Search code samples in the [azure-search-python-samples repo](https://github.com/Azure-Samples/azure-search-python-samples)
+- Review the repository of code samples for vector search capabilities in Azure AI Search for [.NET](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-dotnet)
+- Review the other .NET and Azure AI Search code samples in the [azure-search-dotnet-samples repo](https://github.com/Azure-Samples/azure-search-dotnet-samples)

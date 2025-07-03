@@ -1373,6 +1373,8 @@ groups:
     title: JavaScript
   - id: python
     title: Python
+  - id: dotnet
+    title: C#
   - id: rest
     title: REST
   - id: typescript
