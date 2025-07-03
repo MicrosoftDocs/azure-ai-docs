@@ -559,7 +559,7 @@ This SSML snippet illustrates how to request blend shapes with your synthesized 
 
 ## Voice conversion element
 
-Voice conversion is the process of transforming the voice characteristics of a given audio to a target voice speaker. After voice conversion, the resulting audio reserves source audio's linguistic content and prosody while the voice timbre sounds like the target speaker.
+Voice conversion is the process of transforming the voice characteristics of a given audio to a target voice speaker. After voice conversion, the resulting audio reserves source audio's linguistic content and prosody while the voice timbre sounds like the target speaker. For more information, see [voice conversion](./voice-conversion.md).
 
 Use the `<mstts:voiceconversion>` tag via Speech Synthesis Markup Language (SSML) to specify the source audio URL and the target voice for the conversion. For a complete list of supported target voices, see [supported voices for voice conversion](./language-support.md#voice-conversion).
 

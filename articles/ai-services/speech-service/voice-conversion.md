@@ -49,7 +49,7 @@ Use the `<mstts:voiceconversion>` tag via Speech Synthesis Markup Language (SSML
 </speak>
 ```
 
-For details about the SSML structure and usage, see the [Speech Synthesis Markup Language (SSML) reference](./speech-synthesis-markup-voice.md) documentation.
+For details about the SSML structure and usage, see the [Speech Synthesis Markup Language (SSML) reference](./speech-synthesis-markup-voice.md#voice-conversion-element) documentation.
 
 ## Related content
 
