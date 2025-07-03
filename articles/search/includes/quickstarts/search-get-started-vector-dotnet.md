@@ -65,12 +65,11 @@ To run search queries against the Azure AI Search service, you first need to cre
 
 The following code executes to create an index:
 
-<!-- Vector Index code -->
-:::code language="csharp" source="~/azure-search-dotnet-samples/quickstart-vector-search/vectorsearchcreateindexuploaddocs/program.cs" id="CreateSearchindex":::
+:::code language="csharp" source="~/azure-search-dotnet-samples/quickstart-vector-search/vectorsearchcreatepopulateindex/program.cs" id="CreateSearchindex":::
 
 The following code uploads the JSON formatted documents in the `hotel-samples.json` file to the Azure AI Search service:
 
-:::code language="csharp" source="~/azure-search-dotnet-samples/quickstart-vector-search/vectorsearchcreateindexuploaddocs/program.cs" id="UploadDocs":::
+:::code language="csharp" source="~/azure-search-dotnet-samples/quickstart-vector-search/vectorsearchcreatepopulateindex/program.cs" id="UploadDocs":::
 
 After you run the projecment is printed below it:
 
