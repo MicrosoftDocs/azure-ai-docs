@@ -4,7 +4,7 @@ author: haileytapia
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 07/01/2025
+ms.date: 07/03/2025
 ---
 
 [!INCLUDE [Semantic ranker introduction](semantic-ranker-intro.md)]
@@ -139,7 +139,7 @@ Authorization: Bearer {{personalAccessToken}}
 }
 ```
 
-## Add semantic parameters to a query
+## Run semantic queries
 
 Required semantic parameters include `query_type` and `semantic_configuration_name`. Here's an example of a basic semantic query using the minimum parameters.
 
