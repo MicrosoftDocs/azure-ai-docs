@@ -7,7 +7,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: conceptual
-ms.date: 05/29/2025
+ms.date: 07/03/2025
 ms.custom: azure-ai-agents
 ---
 
