@@ -16,7 +16,8 @@ ms.date: 06/05/2025
 - An [Azure AI Search resource](../../search-create-service-portal.md).
   - We recommend using the Basic tier or higher.
   - [Enable semantic ranking](../../semantic-how-to-enable-disable.md).
-- [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and the [Jupyter package](https://pypi.org/project/jupyter/). For more information, see [Python in Visual Studio Code](https://code.visualstudio.com/docs/languages/python).
+- [Visual Studio Code](https://code.visualstudio.com/download) or [Visual Studio](https://visualstudio.com).
+- [.NET 9.0](https://dotnet.microsoft.com/download) installed
 
 ## Configure access
 
@@ -240,7 +241,7 @@ Complete the following steps to create a .NET console app to connect to an AI mo
 
 Add the following code to connect to and query the Azure AI Search and Azure OpenAI services.
 
-    :::code language="csharp" source="~/azure-search-dotnet-samples/quickstart-rag/minimal-query/Program.cs" :::
+:::code language="csharp" source="~/azure-search-dotnet-samples/quickstart-rag/minimal-query/Program.cs" :::
 
 The output from Azure OpenAI consists of recommendations for several hotels, such as the following example:
 
@@ -281,7 +282,7 @@ If your index has complex types, your query can provide those fields if you firs
 
 The following example updates the user prompt and adds complex types to the request:
 
-    :::code language="csharp" source="~/azure-search-dotnet-samples/quickstart-rag/complex-query/Program.cs" :::
+:::code language="csharp" source="~/azure-search-dotnet-samples/quickstart-rag/complex-query/Program.cs" :::
 
 The output from Azure OpenAI consists of recommendations for several hotels, such as the following example:
 
