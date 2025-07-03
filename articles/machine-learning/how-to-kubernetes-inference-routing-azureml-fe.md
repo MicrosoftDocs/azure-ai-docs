@@ -77,7 +77,7 @@ utilization_percentage = (The number of replicas that are busy processing a requ
 ```
 If this number exceeds `target_utilization_percentage`, then more replicas are created. If it's lower, then replicas are reduced. By default, the target utilization is 70%.
 
-Decisions to add replicas are eager and fast (around 1 second). Decisions to remove replicas are conservative (around 1 minute).
+Decisions to add replicas are eager and fast. Decisions to remove replicas are conservative (around 20 times of the scale up refresh interval).
 
 For example, if you want to deploy a model service and want to know many instances (pods/replicas) should be configured for target requests per second (RPS) and target response time. You can calculate the required replicas by using the following code:
 

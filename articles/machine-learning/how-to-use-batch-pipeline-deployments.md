@@ -236,7 +236,7 @@ ml_client.compute.begin_delete(name="batch-cluster")
 
 ## Next steps
 
-- [How to deploy a training pipeline with batch endpoints)](how-to-use-batch-training-pipeline.md)
+- [How to deploy a training pipeline with batch endpoints](how-to-use-batch-training-pipeline.md)
 - [How to deploy a pipeline to perform batch scoring with preprocessing](how-to-use-batch-scoring-pipeline.md)
 - [Create batch endpoints from pipeline jobs](how-to-use-batch-pipeline-from-job.md)
 - [Create jobs and input data for batch endpoints](how-to-access-data-batch-endpoints-jobs.md)

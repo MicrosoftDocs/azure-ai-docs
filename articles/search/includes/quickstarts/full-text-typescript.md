@@ -4,13 +4,13 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 03/04/2025
+ms.date: 06/13/2025
 ---
 
 [!INCLUDE [Full text introduction](full-text-intro.md)]
 
 > [!TIP]
-> You can [download the source code](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart) to start with a finished project or follow these steps to create your own.
+> You can download the [source code](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart) to start with a finished project or follow these steps to create your own.
 
 ## Prerequisites
 
@@ -19,9 +19,11 @@ ms.date: 03/04/2025
 
 ## Microsoft Entra ID prerequisites
 
-For the recommended keyless authentication with Microsoft Entra ID, you need to:
-- Install the [Azure CLI](/cli/azure/install-azure-cli) used for keyless authentication with Microsoft Entra ID.
-- Assign both of the `Search Service Contributor` and `Search Index Data Contributor` roles to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**. For more information, see [Connect to Azure AI Search using roles](../../search-security-rbac.md).
+For the recommended keyless authentication with Microsoft Entra ID, you must:
+
+- Install the [Azure CLI](/cli/azure/install-azure-cli).
+
+- Assign the `Search Service Contributor` and `Search Index Data Contributor` roles to your user account. You can assign roles in the Azure portal under **Access control (IAM)** > **Add role assignment**. For more information, see [Connect to Azure AI Search using roles](../../search-security-rbac.md).
 
 ## Retrieve resource information
 
@@ -132,15 +134,6 @@ const credential = new AzureKeyCredential(apiKey);
     			"sortable": false,
     			"facetable": false,
     			"analyzerName": "en.lucene"
-    		},
-    		{
-    			"name": "Description_fr",
-    			"type": "Edm.String" as SearchFieldDataType,
-    			"searchable": true,
-    			"filterable": false,
-    			"sortable": false,
-    			"facetable": false,
-    			"analyzerName": "fr.lucene"
     		},
     		{
     			"name": "Category",
@@ -322,7 +315,7 @@ const credential = new AzureKeyCredential(apiKey);
             searchFields: ["HotelName"]
         };
     
-        searchResults = await searchClient.search("sublime cliff", searchOptions);
+        searchResults = await searchClient.search("sublime palace", searchOptions);
         for await (const result of searchResults.results) {
             console.log(`${JSON.stringify(result.document)}`);
         }
@@ -365,13 +358,12 @@ const credential = new AzureKeyCredential(apiKey);
         "value": [
             {
                 "HotelId": "1",
-                "HotelName": "Secret Point Motel",
-                "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Time's Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
-                "Description_fr": "L'hôtel est idéalement situé sur la principale artère commerciale de la ville en plein cœur de New York. A quelques minutes se trouve la place du temps et le centre historique de la ville, ainsi que d'autres lieux d'intérêt qui font de New York l'une des villes les plus attractives et cosmopolites de l'Amérique.",
+                "HotelName": "Stay-Kay City Hotel",
+                "Description": "This classic hotel is fully-refurbished and ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.",
                 "Category": "Boutique",
-                "Tags": ["pool", "air conditioning", "concierge"],
+                "Tags": ["view", "air conditioning", "concierge"],
                 "ParkingIncluded": false,
-                "LastRenovationDate": "1970-01-18T00:00:00Z",
+                "LastRenovationDate": "2022-01-18T00:00:00Z",
                 "Rating": 3.6,
                 "Address": {
                     "StreetAddress": "677 5th Ave",
@@ -382,13 +374,12 @@ const credential = new AzureKeyCredential(apiKey);
             },
             {
                 "HotelId": "2",
-                "HotelName": "Twin Dome Motel",
-                "Description": "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts.",
-                "Description_fr": "L'hôtel est situé dans une place du XIXe siècle, qui a été agrandie et rénovée aux plus hautes normes architecturales pour créer un hôtel moderne, fonctionnel et de première classe dans lequel l'art et les éléments historiques uniques coexistent avec le confort le plus moderne.",
+                "HotelName": "Old Century Hotel",
+                "Description": "The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts. The hotel also regularly hosts events like wine tastings, beer dinners, and live music.",
                 "Category": "Boutique",
                 "Tags": ["pool", "free wifi", "concierge"],
                 "ParkingIncluded": "false",
-                "LastRenovationDate": "1979-02-18T00:00:00Z",
+                "LastRenovationDate": "2019-02-18T00:00:00Z",
                 "Rating": 3.6,
                 "Address": {
                     "StreetAddress": "140 University Town Center Dr",
@@ -399,11 +390,10 @@ const credential = new AzureKeyCredential(apiKey);
             },
             {
                 "HotelId": "3",
-                "HotelName": "Triple Landscape Hotel",
-                "Description": "The Hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
-                "Description_fr": "L'hôtel est situé dans une place du XIXe siècle, qui a été agrandie et rénovée aux plus hautes normes architecturales pour créer un hôtel moderne, fonctionnel et de première classe dans lequel l'art et les éléments historiques uniques coexistent avec le confort le plus moderne.",
-                "Category": "Resort and Spa",
-                "Tags": ["air conditioning", "bar", "continental breakfast"],
+                "HotelName": "Gastronomic Landscape Hotel",
+                "Description": "The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
+                "Category": "Suite",
+                "Tags": ["restaurant, "bar", "continental breakfast"],
                 "ParkingIncluded": "true",
                 "LastRenovationDate": "2015-09-20T00:00:00Z",
                 "Rating": 4.8,
@@ -416,13 +406,12 @@ const credential = new AzureKeyCredential(apiKey);
             },
             {
                 "HotelId": "4",
-                "HotelName": "Sublime Cliff Hotel",
-                "Description": "Sublime Cliff Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 1800 palace.",
-                "Description_fr": "Le sublime Cliff Hotel est situé au coeur du centre historique de sublime dans un quartier extrêmement animé et vivant, à courte distance de marche des sites et monuments de la ville et est entouré par l'extraordinaire beauté des églises, des bâtiments, des commerces et Monuments. Sublime Cliff fait partie d'un Palace 1800 restauré avec amour.",
+                "HotelName": "Sublime Palace Hotel",
+                "Description": "Sublime Palace Hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Cliff is part of a lovingly restored 19th century resort, updated for every modern convenience.",
                 "Category": "Boutique",
-                "Tags": ["concierge", "view", "24-hour front desk service"],
+                "Tags": ["concierge", "view", "air conditioning"],
                 "ParkingIncluded": true,
-                "LastRenovationDate": "1960-02-06T00:00:00Z",
+                "LastRenovationDate": "2020-02-06T00:00:00Z",
                 "Rating": 4.6,
                 "Address": {
                     "StreetAddress": "7400 San Pedro Ave",
@@ -472,7 +461,7 @@ const credential = new AzureKeyCredential(apiKey);
 
 ### Create index
 
-Create a file *hotels_quickstart_index.json*. This file defines how Azure AI Search works with the documents you load in the next step. Each field is identified by a `name` and have a specified `type`. Each field also has a series of index attributes that specify whether Azure AI Search can search, filter, sort, and facet upon the field. Most of the fields are simple data types, but some, like `AddressType` are complex types that allow you to create rich data structures in your index. You can read more about [supported data types](/rest/api/searchservice/supported-data-types) and index attributes described in [Create Index (REST)](/rest/api/searchservice/indexes/create). 
+Create a file *hotels_quickstart_index.json*. This file defines how Azure AI Search works with the documents you load in the next step. Each field is identified by a `name` and has a specified `type`. Each field also has a series of index attributes that specify whether Azure AI Search can search, filter, sort, and facet upon the field. Most of the fields are simple data types, but some, like `AddressType` are complex types that allow you to create rich data structures in your index. You can read more about [supported data types](/rest/api/searchservice/supported-data-types) and index attributes described in [Create Index (REST)](/rest/api/searchservice/indexes/create). 
 
 We want to import *hotels_quickstart_index.json* so the main function can access the index definition.
 
@@ -543,7 +532,6 @@ interface Hotel {
     HotelId: string;
     HotelName: string;
     Description: string;
-    Description_fr: string;
     Category: string;
     Tags: string[];
     ParkingIncluded: string | boolean;

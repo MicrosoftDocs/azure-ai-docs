@@ -94,7 +94,7 @@ Use the following table to determine supported styles and roles for each voice.
 
 ### Viseme
 
-This table lists all the locales supported for [Viseme](speech-synthesis-markup-structure.md#viseme-element). For more information about Viseme, see [Get facial position with viseme](how-to-speech-synthesis-viseme.md) and [Viseme element](speech-synthesis-markup-structure.md#viseme-element). 
+This table lists all the locales supported for [Viseme](speech-synthesis-markup-voice.md#viseme-element). For more information about Viseme, see [Get facial position with viseme](how-to-speech-synthesis-viseme.md) and [Viseme element](speech-synthesis-markup-voice.md#viseme-element). 
 
 [!INCLUDE [Language support include](includes/language-support/viseme.md)]
 
@@ -123,6 +123,13 @@ With the cross-lingual feature, you can transfer your custom voice model to spea
 [Personal voice](personal-voice-overview.md) is a feature that lets you create a voice that sounds like you or your users. The following table summarizes the locales supported for personal voice. 
 
 [!INCLUDE [Language support include](includes/language-support/personal-voice.md)]
+
+
+### Voice conversion
+
+[Voice conversion](voice-conversion.md) is a feature that lets you transform the voice characteristics of a given audio to a target voice speaker. The following table summarizes the locales supported for voice conversion.
+
+[!INCLUDE [Language support include](includes/language-support/voice-conversion.md)]
 
 
 # [Pronunciation assessment](#tab/pronunciation-assessment)

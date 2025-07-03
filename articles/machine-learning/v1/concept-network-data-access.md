@@ -9,7 +9,7 @@ ms.topic: concept-article
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: meerakurup
-ms.date: 11/16/2022
+ms.date: 06/13/2025
 ---
 
 
@@ -46,7 +46,7 @@ In general, data access from studio involves the following checks:
     - [Reader](/azure/role-based-access-control/built-in-roles#reader) of the storage account reads metadata of the storage.
     - [Storage Blob Data Reader](/azure/role-based-access-control/built-in-roles#storage-blob-data-reader) reads data within a blob container.
     - [Contributor](/azure/role-based-access-control/built-in-roles#contributor) allows write access to a storage account.
-    - More roles may be required depending on the type of storage.
+    - More roles might be required depending on the type of storage.
 3. Where is access from?
     - User: Is the client IP address in the VNet/subnet range?
     - Workspace: Is the workspace public or does it have a private endpoint in a VNet/subnet?
@@ -74,7 +74,7 @@ The following table lists what identities should be used for specific scenarios:
 | Access from Notebook | Yes/No | User's identity |
 
 > [!TIP]
-> If you need to access data from outside Azure Machine Learning, such as using Azure Storage Explorer, _user_ identity is probably what is used. Consult the documentation for the tool or service you are using for specific information. For more information on how Azure Machine Learning works with data, see [Identity-based data access to storage services on Azure](how-to-identity-based-data-access.md).
+> If you need to access data from outside Azure Machine Learning, such as using Azure Storage Explorer, _user_ identity is probably what is used. Consult the documentation for the tool or service you're using for specific information. For more information on how Azure Machine Learning works with data, see [Identity-based data access to storage services on Azure](how-to-identity-based-data-access.md).
 
 ## Azure Storage Account
 
@@ -134,7 +134,7 @@ To secure communication between Azure Machine Learning and Azure SQL Database, t
 * __Allow the IP address range of the Azure Machine Learning service in Firewalls and virtual networks__ for the Azure SQL Database. Allowing the IP addresses through the firewall limits __connections to the Azure Machine Learning service for a region__.
 
     > [!WARNING]
-    > The IP ranges for the Azure Machine Learning service may change over time. There is no built-in way to automatically update the firewall rules when the IPs change.
+    > The IP ranges for the Azure Machine Learning service change over time. There's no built-in way to automatically update the firewall rules when the IPs change.
 
     To get a list of the IP addresses for Azure Machine Learning, download the [Azure IP Ranges and Service Tags](https://www.microsoft.com/download/details.aspx?id=56519) and search the file for `AzureMachineLearning.<region>`, where `<region>` is the Azure region that contains your Azure Machine Learning workspace.
 

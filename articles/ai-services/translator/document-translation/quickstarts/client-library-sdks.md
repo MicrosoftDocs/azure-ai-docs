@@ -70,4 +70,4 @@ To learn more, *see* [**Create SAS tokens**](../how-to-guides/create-sas-tokens.
 ### Next step
 
 > [!div class="nextstepaction"]
-> [**Learn more about Document translation operations**](../reference/rest-api-guide.md)
+> [**Learn more about Document translation operations**](../how-to-guides/use-rest-api-programmatically.md)

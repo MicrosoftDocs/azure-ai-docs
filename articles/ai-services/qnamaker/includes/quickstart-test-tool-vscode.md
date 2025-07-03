@@ -6,7 +6,7 @@ ms.service: azure-ai-language
 ms.subservice: azure-ai-qna-maker
 ms.topic: include
 ms.custom: include file
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 
 This [Visual Studio Code REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)-based quickstart walks you through getting an answer from your knowledge base.

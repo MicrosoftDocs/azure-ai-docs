@@ -36,6 +36,10 @@ The host should allowlist **port 443** and the following domains:
 * `*.cognitive.microsoft.com`
 * `*.cognitiveservices.azure.com`
 
+If you are using the Azure AI Translator on-premise, you need to additionally allow the following URLs to download files
+
+* `translatoronprem.blob.core.windows.net`
+
 #### Disable deep packet inspection
 
 [Deep packet inspection (DPI)](https://en.wikipedia.org/wiki/Deep_packet_inspection) is a type of data processing that inspects in detail the data sent over a computer network, and usually takes action by blocking, rerouting, or logging it accordingly.

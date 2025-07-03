@@ -2,13 +2,13 @@
 title: All Prebuilt entities - LUIS
 titleSuffix: Azure AI services
 description: This article contains lists of the prebuilt entities that are included in Language Understanding (LUIS).
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
 ms.topic: reference
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 
 # Entities per culture in your LUIS model

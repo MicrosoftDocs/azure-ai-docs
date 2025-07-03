@@ -90,7 +90,7 @@ To access components in Azure Machine Learning studio, you need to register the 
 
 You reference pipeline components as child jobs in a pipeline job just like you reference other types of components. You can provide runtime settings like `default_datastore` and `default_compute` at the pipeline job level.
 
-You need to promote any parameters you want to change during runtime as pipeline job inputs. Otherwise, they're hard-coded in the pipeline component. Promoting compute definition to a pipeline level input supports heterogenous pipelines that can use different compute targets in different steps.
+You need to promote any parameters you want to change during runtime as pipeline job inputs. Otherwise, they're hard-coded in the pipeline component. Promoting compute definition to a pipeline level input supports heterogeneous pipelines that can use different compute targets in different steps.
 
 To submit the pipeline job, edit the `cpu-cluster` in the `default_compute` section before you run the `az ml job create -f pipeline.yml` command.
 
