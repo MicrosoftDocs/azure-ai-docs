@@ -343,7 +343,7 @@ In the next sections, we run queries against the `hotels-vector-quickstart` inde
 - [Single vector search](#single-vector-search)
 - [Single vector search with filter](#single-vector-search-with-filter)
 - [Hybrid search](#hybrid-search)
-- [Semantic hybrid search with filter](#semantic-hybrid-search-with-a-filter)
+- [Semantic hybrid search](#semantic-hybrid-search)
 
 ### Create the vector query string
 
@@ -674,9 +674,9 @@ Hybrid search consists of keyword queries and vector queries in a single search 
    ]
    ```
 
-### Semantic hybrid search with a filter
+### Semantic hybrid search
 
-Here's the last query in the collection. This hybrid query with semantic ranking is filtered to show only the hotels within a 500-kilometer radius of Washington D.C. You can set `vectorFilterMode` to null, which is equivalent to the default (`preFilter` for newer indexes and `postFilter` for older ones).
+Here's the last query in the collection. This hybrid query specifies the semantic query type and a semantic configuration, demonstrating that you can build a hybrid query that uses semantic reranking.
 
 - Find the cell below section titled "Semantic hybrid search" and execute the cell. This code block contains the request to query the search index.
 
@@ -721,9 +721,9 @@ Here's the last query in the collection. This hybrid query with semantic ranking
       print("No vector loaded, skipping search.")
    ```
 
-   Review the output below the cell. The response is three hotels, which are filtered by location and faceted by `StateProvince` and semantically reranked to promote results that are closest to the search string query (`historic hotel walk to restaurants and shopping`).
+   Review the output below the cell.
 
-   The Swirling Currents Hotel now moves into the top spot. Without semantic ranking, Nordick's Valley Motel is number one. With semantic ranking, the machine comprehension models recognize that `historic` applies to "hotel, within walking distance to dining (restaurants) and shopping."
+   With semantic ranking, the Swirling Currents Hotel now moves into the top spot. W
 
    ```output
    Total semantic hybrid results: 7
@@ -759,13 +759,15 @@ Here's the last query in the collection. This hybrid query with semantic ranking
      Category: Suite
    ```
 
-   Key takeaways:
+You can think of the semantic ranking as a way to improve the relevance of search results by understanding the meaning behind the words in the query and the content of the documents. In this case, the semantic ranking helps to identify hotels that are not only relevant to the keywords but also match the intent of the query:
 
-   - Vector search is specified through the `vectors.value` property. Keyword search is specified through the `search` property.
+Key takeaways:
 
-   - In a hybrid search, you can integrate vector search with full-text search over keywords. Filters, spell check, and semantic ranking apply to textual content only, and not vectors. In this final query, there's no semantic `answer` because the system didn't produce one that was sufficiently strong.
+- Vector search is specified through the `vectors.value` property. Keyword search is specified through the `search` property.
 
-   - Actual results include more detail, including semantic captions and highlights. Results were modified for readability. To get the full structure of the response, run the request in the REST client.
+- In a hybrid search, you can integrate vector search with full-text search over keywords. Filters, spell check, and semantic ranking apply to textual content only, and not vectors. In this final query, there's no semantic `answer` because the system didn't produce one that was sufficiently strong.
+
+- Actual results include more detail, including semantic captions and highlights. Results were modified for readability. To get the full structure of the response, run the request in the REST client.
 
 ## Clean up
 
