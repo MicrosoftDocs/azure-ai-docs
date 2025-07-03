@@ -1382,8 +1382,8 @@ groups:
   title: Programming languages
   prompt: Choose a usage method
   pivots:
-  - id: C#
-    title: csharp
+  - id: csharp
+    title: C#
   - id: python
     title: Python
   - id: rest
