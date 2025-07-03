@@ -242,6 +242,8 @@ items:
       href: search-how-to-load-search-index.md
     - name: Update or rebuild an index
       href: search-howto-reindex.md
+    - name: Manage an index
+      href: search-how-to-manage-index.md
     - name: Alias an index
       href: search-how-to-alias.md
     - name: Import large data sets
