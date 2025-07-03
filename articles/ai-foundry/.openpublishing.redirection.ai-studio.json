@@ -1187,6 +1187,11 @@
           "source_path_from_root": "/articles/ai-foundry/openai/index.yml",
           "redirect_url": "/azure/ai-foundry/",
           "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/openai/context/context.yml",
+          "redirect_url": "/azure/ai-foundry/context/context.yml",
+          "redirect_document_id": false
         }
     ]
 }
