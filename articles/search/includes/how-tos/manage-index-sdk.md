@@ -7,7 +7,7 @@ ms.topic: include
 ms.date: 07/03/2025
 ---
 
-After you [create an index](../../search-how-to-create-search-index.md), you can use the Azure SDK for .NET, Java, JavaScript, or Python to access its statistics and definition or remove it from your search service.
+After you [create an index](../../search-how-to-create-search-index.md), you can use the Azure SDK for [.NET](/dotnet/api/overview/azure/search), [Java](/java/api/overview/azure/search-documents-readme), [JavaScript](/javascript/api/overview/azure/search-documents-readme), or [Python](/python/api/overview/azure/search-documents-readme) to access its statistics and definition or remove it from your search service.
 
 This article describes how to manage an index without affecting its content. For guidance on modifying an index definition, see [Update or rebuild an index in Azure AI Search](../../search-howto-reindex.md).
 
