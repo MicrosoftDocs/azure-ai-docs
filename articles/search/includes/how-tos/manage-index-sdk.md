@@ -7,7 +7,7 @@ ms.topic: include
 ms.date: 07/03/2025
 ---
 
-After you [create an index](../../search-how-to-create-search-index.md), you can use the Azure SDKs to access its statistics and definition or remove it from your search service.
+After you [create an index](../../search-how-to-create-search-index.md), you can use the Azure SDK for .NET, Java, JavaScript, or Python to access its statistics and definition or remove it from your search service.
 
 This article describes how to manage an index without affecting its content. For guidance on modifying an index definition, see [Update or rebuild an index in Azure AI Search](../../search-howto-reindex.md).
 
@@ -261,10 +261,12 @@ index = client.get_index("[index name]")
 print(json.dumps(index.as_dict(), indent=2, sort_keys=True, ensure_ascii=False))
 ```
 
+---
+
 ## Delete an index
 
 > [!WARNING]
-> You can't undo an index deletion. Before you proceed, make sure that you want to permanently remove the index and its documents from your search service. We recommend that you test this operation in a nonproduction environment.
+> You can't undo an index deletion. Before you proceed, make sure that you want to permanently remove the index and its documents from your search service.
 
 Use your preferred Azure SDK to permanently delete an index.
 

@@ -34,8 +34,6 @@ GET https://[service name].search.windows.net/indexes?api-version=[api version]
 
 ## View an index's statistics
 
-Each index is defined by fields and optional components that enhance search capabilities, such as analyzers, normalizers, tokenizers, and synonym maps. This definition determines the index's structure and behavior during indexing and querying.
-
 Use [Indexes - Get Statistics (REST API)](/rest/api/searchservice/indexes/get-statistics) to retrieve the document count, storage usage, and vector storage usage of an index.
 
 ```http
@@ -46,6 +44,8 @@ GET https://[service name].search.windows.net/indexes/[index name]/stats?api-ver
 ```
 
 ## View an index's definition
+
+Each index is defined by fields and optional components that enhance search capabilities, such as analyzers, normalizers, tokenizers, and synonym maps. This definition determines the index's structure and behavior during indexing and querying.
 
 Use [Indexes - Get (REST API)](/rest/api/searchservice/indexes/get) to retrieve the JSON definition of an index.
 
@@ -59,7 +59,7 @@ GET https://[service name].search.windows.net/indexes/[index name]?api-version=[
 ## Delete an index
 
 > [!WARNING]
-> You can't undo an index deletion. Before you proceed, make sure that you want to permanently remove the index and its documents from your search service. We recommend that you test this operation in a nonproduction environment.
+> You can't undo an index deletion. Before you proceed, make sure that you want to permanently remove the index and its documents from your search service.
 
 Use [Indexes - Delete (REST API)](/rest/api/searchservice/indexes/delete) to permanently delete an index.
 

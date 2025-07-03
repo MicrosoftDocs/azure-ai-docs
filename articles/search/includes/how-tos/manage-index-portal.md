@@ -37,10 +37,10 @@ To view all your indexes:
 
 On the index page, the portal provides the following statistics:
 
-+ The number of documents in the index.
-+ The storage space used by the index.
-+ The vector storage space used by the index.
-+ The maximum storage space for each index on your search service, which [depends on your pricing tier](../../search-limits-quotas-capacity.md). This value doesn't represent the total storage currently available to the index.
++ Number of documents in the index.
++ Storage space used by the index.
++ Vector storage space used by the index.
++ Maximum storage space for each index on your search service, which [depends on your pricing tier](../../search-limits-quotas-capacity.md). This value doesn't represent the total storage currently available to the index.
 
 :::image type="content" source="../../media/search-how-to-manage-index/index-statistics.png" alt-text="Screenshot of the index statistics in the portal." border="true" lightbox="../../media/search-how-to-manage-index/index-statistics.png":::
 
@@ -60,7 +60,7 @@ On the index page, select **Edit JSON** to view its complete definition.
 ## Delete an index
 
 > [!WARNING]
-> You can't undo an index deletion. Before you proceed, make sure that you want to permanently remove the index and its documents from your search service. We recommend that you test this operation in a nonproduction environment.
+> You can't undo an index deletion. Before you proceed, make sure that you want to permanently remove the index and its documents from your search service.
 
 On the index page, select **Delete** to initiate the deletion process.
 
