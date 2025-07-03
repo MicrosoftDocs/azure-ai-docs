@@ -284,14 +284,14 @@ The following is a sample request body. You specify a number of options, defined
 
 ### Output
 
-The response from a successful image editing API call looks like the following example. The `url` field contains a URL where you can download the generated image. The URL stays active for 24 hours.
+The response from a successful image editing API call looks like the following example. The `b64_json` field contains the output image data.
 
 ```json
 { 
     "created": 1698116662, 
     "data": [ 
         { 
-            "url": "<URL_to_generated_image>",
+            "b64_json": "<base64 image data>",
             "revised_prompt": "<prompt_that_was_used>" 
         }
     ]
@@ -304,12 +304,12 @@ The following API body parameters are available for image editing models, in add
 
 ### Image
 
-The *image* value indicates the image file you want to edit. It can be either a URL string to an image file, or base 64-encoded image data.
+The *image* value indicates the image file you want to edit.
 
 
 #### Mask
 
-The *mask* parameter is the same type as the main *image* input parameter. It defines the area of the image that you want the model to edit, using fully transparent pixels (alpha of zero) in those areas. The mask must be a base 64-encoded image. It must be a PNG file and have the same dimensions as the input image.
+The *mask* parameter is the same type as the main *image* input parameter. It defines the area of the image that you want the model to edit, using fully transparent pixels (alpha of zero) in those areas. The mask must be a PNG file and have the same dimensions as the input image.
 
 
 #### [DALL-E 3](#tab/dalle-3)

@@ -856,7 +856,7 @@ For more information, see the [language and voice list](../../language-support.m
 #### Get facial position with viseme
 
 * Added support for blend shapes to drive the facial movements of a 3D character that you designed. Learn more at [how to get facial position with viseme](../../how-to-speech-synthesis-viseme.md).
-* SSML updated to support viseme element. See [speech synthesis markup](../../speech-synthesis-markup-structure.md#viseme-element).
+* SSML updated to support viseme element. See [speech synthesis markup](../../speech-synthesis-markup-voice.md#viseme-element).
 
 ### June 2022 release
 

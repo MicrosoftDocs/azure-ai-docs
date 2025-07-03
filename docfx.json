@@ -483,7 +483,6 @@
         "articles/machine-learning/v1/**/*.md": "azureml-api-1"
       },
       "open_to_public_contributors": {
-        "articles/ai-services/personalizer/**.*": false,
         "articles/ai-foundry/responsible-ai/**.*": false
       },
       "recommendations": {
