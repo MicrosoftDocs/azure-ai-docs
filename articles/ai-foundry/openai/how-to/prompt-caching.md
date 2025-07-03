@@ -20,7 +20,7 @@ Caches are typically cleared within 5-10 minutes of inactivity and are always re
 
 ## Supported models
 
-- Prompt caching is supported with all Azure OpenAI models GPT-4o  or newer.
+- Prompt caching is supported with all Azure OpenAI models GPT-4o or newer.
 - Prompt caching applies to models that have chat-completion, completion, responses, or real-time operations. For models which do not have these operations, this feature is not available.
 
 ## API support
