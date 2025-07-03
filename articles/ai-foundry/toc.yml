@@ -90,8 +90,6 @@ items:
         href: how-to/deploy-models-managed.md
       - name: Deploy models to managed compute pay-as-you-go
         href: how-to/deploy-models-managed-pay-go.md
-      - name: Deploy Huggingface models
-        href: how-to/deploy-huggingface-models.md
       - name: Healthcare AI models
         items:
         - name: Foundational AI models for healthcare
