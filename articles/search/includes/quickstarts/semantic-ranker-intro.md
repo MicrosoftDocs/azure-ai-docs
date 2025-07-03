@@ -69,7 +69,7 @@ This quickstart assumes an existing index, modified to include a semantic config
 
    Your response should be similar to the following example, as scored by the default BM25 L1 ranker for full text search. For readability, the example selects just the "HotelName" "HotelId", and "Description" fields.
 
-   This query is a keyword search. The matches contain verbatim matches on the query terms (walking, distance, live, music) or a linguistic variant of one of the terms (walk, living).
+   This query is a keyword search. The results contain verbatim matches on the query terms (walking, distance, live, music) or on a linguistic variant (walk, living).
 
     ```json
     "@odata.count": 13,
