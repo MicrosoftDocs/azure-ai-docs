@@ -789,7 +789,7 @@
         },
         {
           "source_path_from_root": "/articles/ai-foundry/foundry-models/context/context.yml",
-          "redirect_url": "/azure/ai-foundry/context/context.json",
+          "redirect_url": "/azure/ai-foundry/context/context",
           "redirect_document_id": false
         },
         {
