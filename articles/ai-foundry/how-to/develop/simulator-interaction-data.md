@@ -24,7 +24,7 @@ author: lgayhardt
 
 Large language models (LLMs) are known for their few-shot and zero-shot learning abilities, allowing them to function with minimal data. However, this limited data availability impedes thorough evaluation and optimization when you might not have test datasets to evaluate the quality and effectiveness of your generative AI application.
 
-In this article, you learn how to holistically generate high-quality datasets. You can use these datasets to evaluate the quality and safety of your application by using LLMs and the Azure AI safety evaluation service.
+In this article, you learn how to holistically generate high-quality datasets. You can use these datasets to evaluate the quality and safety of your application by using LLMs and Azure AI safety evaluators.
 
 ## Get started
 
