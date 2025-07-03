@@ -1388,3 +1388,14 @@ groups:
     title: Python
   - id: rest
     title: REST
+# Owner: haileytapia
+- id: search-how-to-manage-index
+  title: Usage methods
+  prompt: Choose a usage method
+  pivots:
+  - id: azure-portal
+    title: Azure portal
+  - id: rest
+    title: REST APIs
+  - id: azure-sdks
+    title: Azure SDKs
