@@ -7,13 +7,13 @@ ms.topic: include
 ms.date: 07/03/2025
 ---
 
-After you [create an index](search-how-to-create-search-index.md), you can use the [Azure AI Search REST APIs](/rest/api/searchservice/) to access its statistics and definition or remove it from your search service.
+After you [create an index](../../search-how-to-create-search-index.md), you can use the [Azure AI Search REST APIs](/rest/api/searchservice/) to access its statistics and definition or remove it from your search service.
 
-This article describes how to manage an index without affecting its content. For guidance on modifying an index definition, see [Update or rebuild an index in Azure AI Search](search-howto-reindex.md).
+This article describes how to manage an index without affecting its content. For guidance on modifying an index definition, see [Update or rebuild an index in Azure AI Search](../../search-howto-reindex.md).
 
 ## Limitations
 
-The pricing tier of your search service determines the maximum number and size of your indexes, fields, and documents. For more information, see [Service limits in Azure AI Search](search-limits-quotas-capacity.md).
+The pricing tier of your search service determines the maximum number and size of your indexes, fields, and documents. For more information, see [Service limits in Azure AI Search](../../search-limits-quotas-capacity.md).
 
 Otherwise, the following limitations apply to index management:
 
@@ -34,6 +34,8 @@ GET https://[service name].search.windows.net/indexes?api-version=[api version]
 
 ## View an index's statistics
 
+Each index is defined by fields and optional components that enhance search capabilities, such as analyzers, normalizers, tokenizers, and synonym maps. This definition determines the index's structure and behavior during indexing and querying.
+
 Use [Indexes - Get Statistics (REST API)](/rest/api/searchservice/indexes/get-statistics) to retrieve the document count, storage usage, and vector storage usage of an index.
 
 ```http
@@ -45,7 +47,7 @@ GET https://[service name].search.windows.net/indexes/[index name]/stats?api-ver
 
 ## View an index's definition
 
-Use [Indexes - Get (REST API)](https://docs.microsoft.com/rest/api/searchservice/get-index) to retrieve the JSON definition of an index.
+Use [Indexes - Get (REST API)](/rest/api/searchservice/indexes/get) to retrieve the JSON definition of an index.
 
 ```http
 ### Get index definition
@@ -59,7 +61,7 @@ GET https://[service name].search.windows.net/indexes/[index name]?api-version=[
 > [!WARNING]
 > You can't undo an index deletion. Before you proceed, make sure that you want to permanently remove the index and its documents from your search service. We recommend that you test this operation in a nonproduction environment.
 
-Use [Indexes - Delete (REST API)](https://docs.microsoft.com/rest/api/searchservice/delete-index) to permanently delete an index.
+Use [Indexes - Delete (REST API)](/rest/api/searchservice/indexes/delete) to permanently delete an index.
 
 ```http
 ### Delete an index

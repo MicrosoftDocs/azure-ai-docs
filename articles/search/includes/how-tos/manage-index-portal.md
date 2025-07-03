@@ -7,13 +7,13 @@ ms.topic: include
 ms.date: 07/03/2025
 ---
 
-After you [create an index](search-how-to-create-search-index.md), you can use the [Azure portal](https://portal.azure.com) to access its statistics and definition or remove it from your search service.
+After you [create an index](../../search-how-to-create-search-index.md), you can use the [Azure portal](https://portal.azure.com) to access its statistics and definition or remove it from your search service.
 
-This article describes how to manage an index without affecting its content. For guidance on modifying an index definition, see [Update or rebuild an index in Azure AI Search](search-howto-reindex.md).
+This article describes how to manage an index without affecting its content. For guidance on modifying an index definition, see [Update or rebuild an index in Azure AI Search](../../search-howto-reindex.md).
 
 ## Limitations
 
-The pricing tier of your search service determines the maximum number and size of your indexes, fields, and documents. For more information, see [Service limits in Azure AI Search](search-limits-quotas-capacity.md).
+The pricing tier of your search service determines the maximum number and size of your indexes, fields, and documents. For more information, see [Service limits in Azure AI Search](../../search-limits-quotas-capacity.md).
 
 Otherwise, the following limitations apply to index management:
 
@@ -37,10 +37,10 @@ To view all your indexes:
 
 On the index page, the portal provides the following statistics:
 
-+ **Documents**: Number of documents in the index.
-+ **Total storage**: Storage space used by the index.
-+ **Vector index quota usage**: Vector storage space used by the index.
-+ **Max storage**: Maximum storage space for each index in your search service, which depends on your pricing tier. This value doesn't represent the total storage currently available to the index.
++ The number of documents in the index.
++ The storage space used by the index.
++ The vector storage space used by the index.
++ The maximum storage space for each index on your search service, which [depends on your pricing tier](../../search-limits-quotas-capacity.md). This value doesn't represent the total storage currently available to the index.
 
 :::image type="content" source="../../media/search-how-to-manage-index/index-statistics.png" alt-text="Screenshot of the index statistics in the portal." border="true" lightbox="../../media/search-how-to-manage-index/index-statistics.png":::
 
@@ -54,7 +54,7 @@ On the index page, select **Edit JSON** to view its complete definition.
 
 <!--
 > [!NOTE]
-> The portal doesn't support synonym map definitions. You can use the portal to view existing synonyms, but you can't create them or assign them to fields. For more information, see [Add synonyms in Azure AI Search](search-synonym.md).
+> The portal doesn't support synonym map definitions. You can use the portal to view existing synonyms, but you can't create them or assign them to fields. For more information, see [Add synonyms in Azure AI Search](../../search-synonym.md).
 -->
 
 ## Delete an index
@@ -68,4 +68,4 @@ On the index page, select **Delete** to initiate the deletion process.
 
 The portal prompts you to confirm the deletion. After you select **Delete**, check your notifications to confirm that the deletion was successful.
 
-:::image type="content" source="../../media/search-how-to-manage-index/delete-confirmation.png" alt-text="Screenshot of the delete confirmation in the portal." border="true" lightbox="../../media/search-how-to-manage-index/delete-confirmation.png":::
+:::image type="content" source="../../media/search-how-to-manage-index/delete-confirmation.png" alt-text="Screenshot of the deletion confirmation in the portal." border="true" lightbox="../../media/search-how-to-manage-index/delete-confirmation.png":::
