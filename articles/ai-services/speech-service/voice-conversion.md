@@ -22,7 +22,7 @@ There are 3 reasons users need voice conversion functionality:
 - Another application is multilingual dubbing. When localized content is read by different voices, voice conversion can transform them into a uniform voice, ensuring a consistent experience across all languages while keeping the most localized voice characters.
 - Voice conversion enhances the control over the expressiveness of a voice. By transforming various speaking styles, such as adopting a unique tone or conveying exaggerated emotions, a voice gains greater versatility in expression and can be more dynamic in different scenarios.
 
-## Key Capabilities
+## Key capabilities
 
 Voice conversion (or voice changer or speech to speech conversion) is built on state-of-the-art generative models and offers high-quality voice conversion. It delivers the following core capabilities:
 
