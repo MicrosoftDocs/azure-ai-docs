@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 03/26/2025
+ms.date: 07/02/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -233,7 +233,7 @@ The point of light began to expand rapidly, creating space and time as it grew.
 By using the same `seed` parameter of 42 for each of our three requests, while keeping all other parameters the same, we're able to produce much more consistent results.
 
 > [!IMPORTANT]  
-> Determinism is not guaranteed with reproducible output. Even in cases where the seed parameter and `system_fingerprint` are the same across API calls it is currently not uncommon to still observe a degree of variability in responses. Identical API calls with larger `max_tokens` values, will generally result in less deterministic responses even when the seed parameter is set.
+> Determinism isn't guaranteed with reproducible output. Even in cases where the seed parameter and `system_fingerprint` are the same across API calls it's currently not uncommon to still observe a degree of variability in responses. Identical API calls with larger `max_tokens` values, will generally result in less deterministic responses even when the seed parameter is set.
 
 ## Parameter details
 

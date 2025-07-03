@@ -8,7 +8,7 @@ ms.custom: build-2023, build-2023-dataai, devx-track-python, devx-track-dotnet, 
 ms.topic: quickstart
 author: mrbullwinkle
 ms.author: mbullwin
-ms.date: 3/21/2025
+ms.date: 07/02/2025
 zone_pivot_groups: openai-quickstart-new
 recommendations: false
 ---

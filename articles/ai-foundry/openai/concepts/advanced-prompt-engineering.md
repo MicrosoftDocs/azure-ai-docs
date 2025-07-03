@@ -6,7 +6,7 @@ author: mrbullwinkle
 ms.author: mbullwin 
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 03/26/2025
+ms.date: 07/02/2025
 manager: nitinme
 keywords: ChatGPT, GPT-4, meta prompts, chain of thought
 ---

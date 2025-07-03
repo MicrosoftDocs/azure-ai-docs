@@ -4,7 +4,7 @@ description: Quick reference, detailed description, and best practices on the qu
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 05/29/2025
+ms.date: 07/02/2025
 ms.service: azure-ai-openai
 ms.topic: conceptual
 ms.custom:
@@ -72,16 +72,27 @@ The following sections provide you with a quick guide to the default quotas and 
 | `gpt-4.5` | Enterprise Tier | 200 K | 200 |
 | `gpt-4.5` | Default | 150 K | 150 |
 
-### GPT-4.1 series
+### GPT-4.1 series global standard
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|
 | `gpt-4.1` (2025-04-14) | Enterprise Tier | 5 M | 5 K |
 | `gpt-4.1` (2025-04-14) | Default | 1 M | 1 K |
-| `gpt-4.1-nano` (2025-04-14) | Enterprise Tier | 5 M | 5 K |
-| `gpt-4.1-nano` (2025-04-14) | Default | 1 M | 1 K |
-| `gpt-4.1-mini` (2025-04-14) | Enterprise Tier | 5 M | 5 K |
-| `gpt-4.1-mini` (2025-04-14) | Default | 1 M | 1 K |
+| `gpt-4.1-nano` (2025-04-14) | Enterprise Tier | 150 M | 150 K |
+| `gpt-4.1-nano` (2025-04-14) | Default | 5 M | 5 K |
+| `gpt-4.1-mini` (2025-04-14) | Enterprise Tier | 150 M | 150 K |
+| `gpt-4.1-mini` (2025-04-14) | Default | 5 M | 5 K |
+
+### GPT-4.1 series data zone standard
+
+| Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
+|---|---|:---:|:---:|
+| `gpt-4.1` (2025-04-14) | Enterprise Tier | 2 M | 2 K |
+| `gpt-4.1` (2025-04-14) | Default | 300 K | 300 |
+| `gpt-4.1-nano` (2025-04-14) | Enterprise Tier | 50 M | 50 K |
+| `gpt-4.1-nano` (2025-04-14) | Default | 2 M | 2 K |
+| `gpt-4.1-mini` (2025-04-14) | Enterprise Tier | 50 M | 50 K |
+| `gpt-4.1-mini` (2025-04-14) | Default | 2 M | 2 K |
 
 ### GPT-4 Turbo
 
@@ -230,19 +241,20 @@ The Usage Limit determines the level of usage above which customers might see la
 > [!NOTE]
 > Usage tiers only apply to standard, data zone standard, and global standard deployment types. Usage tiers don't apply to global batch and provisioned throughput deployments.
 
-### GPT-4o global standard, data zone standard, & standard
+### Global standard, data zone standard, & standard
 
 |Model| Usage Tiers per month |
-|----|----|
-|`gpt-4o` | 12 Billion tokens |
-|`gpt-4o-mini` | 85 Billion tokens |
-
-### GPT-4 standard
-
-|Model| Usage Tiers per month|
-|---|---|
-| `gpt-4` + `gpt-4-32k`  (all versions) | 6 Billion |
-
+|----|:----|
+| `gpt-4` + `gpt-4-32k`  (all versions) | 6 Billion tokens |
+| `gpt-4o` | 12 Billion tokens |
+| `gpt-4o-mini` | 85 Billion tokens |
+| `o3-mini`  | 50 Billion tokens |
+| `o1` | 4 Billon tokens |
+| `o4-mini` | 50 Billion tokens |
+| `o3` | 5 Billion tokens |
+| `gpt-4.1` | 30 Billion tokens |
+| `gpt-4.1-mini` | 150 Billion tokens |
+| `gpt-4.1-nano` | 550 Billion tokens |
 
 ## Other offer types
 

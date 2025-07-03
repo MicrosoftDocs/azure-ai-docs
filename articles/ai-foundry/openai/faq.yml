@@ -6,7 +6,7 @@ metadata:
   manager: nitinme
   ms.service: azure-ai-openai
   ms.topic: faq
-  ms.date: 03/27/2025
+  ms.date: 07/02/2025
   ms.author: mbullwin
   author: mrbullwinkle
 title: Azure OpenAI frequently asked questions
@@ -76,7 +76,7 @@ sections:
 
           If you wanted to help a GPT based model to accurately respond to the question "what model are you running?", you would need to provide that information to the model through techniques like [prompt engineering of the model's system message](/azure/ai-services/openai/concepts/advanced-prompt-engineering?pivots=programming-language-chat-completions), [Retrieval Augmented Generation (RAG)](/azure/machine-learning/concept-retrieval-augmented-generation?view=azureml-api-2) which is the technique used by [Azure OpenAI on your data](/azure/ai-services/openai/concepts/use-your-data) where up-to-date information is injected to the system message at query time, or via [fine-tuning](/azure/ai-services/openai/how-to/fine-tuning?pivots=programming-language-studio) where you could fine-tune specific versions of the model to answer that question in a certain way based on model version. 
 
-          To learn more about how GPT models are trained and work we recommend watching [Andrej Karpathy's talk from Build 2023 on the state of GPT](https://www.youtube.com/watch?v=bZQun8Y4L2A).
+          To learn more about how GPT models are trained and work we recommend watching [Andrej Apathy's talk from Build 2023 on the state of GPT](https://www.youtube.com/watch?v=bZQun8Y4L2A).
       
       - question: |
           How can I get the model to respond in a specific language?
@@ -112,7 +112,7 @@ sections:
       - question: |
           How do I fix Server error (500): Unexpected special token
         answer: |
-          This is a a known issue. You can minimize the occurrence of these errors by reducing the temperature of your prompts to less than 1 and ensuring you're using a client with retry logic. Reattempting the request often results in a successful response. 
+          This is a known issue. You can minimize the occurrence of these errors by reducing the temperature of your prompts to less than 1 and ensuring you're using a client with retry logic. Reattempting the request often results in a successful response. 
           
           If reducing temperature to less than 1 does not reduce the frequency of this error an alternative workaround is set presence/frequency penalties and logit biases to their default values. In some cases, it may help to set `top_p` to a non-default, lower value to encourage the model to avoid sampling tokens with lower probability tokens.  
           
@@ -269,7 +269,7 @@ sections:
         answer: |
           No. Currently Assistants supports only local files uploaded to the Assistants-managed storage. You cannot use your private storage account with Assistants. 
       - question: | 
-          Does Assistants support customer-managed key encryption (CMK)?
+          Does the Assistants feature support customer-managed key encryption (CMK)?
         answer: |
           Today we support CMK for Threads and Files in Assistants. See the [What's new page](./whats-new.md#customer-managed-key-cmk-support-for-assistants) for available regions for this feature.
       - question: |

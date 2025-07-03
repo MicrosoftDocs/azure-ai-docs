@@ -72,7 +72,7 @@ The Azure OpenAI "on your data" feature lets you connect data sources to ground 
 
 Some Azure OpenAI Service features store data in the service. This data is either uploaded by the customer, using the Files API or vector store, or is automatically stored in connection with certain stateful entities such as the Threads feature of the Assistants API and Stored completions. Data stored for Azure OpenAI Service features: 
 - Is stored at rest in the Azure OpenAI resource in the customer's Azure tenant, within the same [geography](https://azure.microsoft.com/explore/global-infrastructure/geographies/) as the Azure OpenAI resource; 
-- Can be double [encrypted at rest](/azure/ai-services/openai/encrypt-data-at-rest), by default with Microsoft's AES-256 encryption and optionally with a customer managed key (except preview features may not support customer managed keys); 
+- Is always encrypted at rest with Microsoft’s AES-256-encryption by default, with the option of using a customer managed key (certain preview features may not support customer managed keys).
 - Can be deleted by the customer at any time. 
 
 > [!NOTE]
