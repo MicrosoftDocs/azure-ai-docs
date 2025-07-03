@@ -20,7 +20,7 @@ ms.custom:
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-If you want to thoroughly assess the performance of your generative AI application when you apply it to a substantial dataset, you can evaluate it in your development environment with the Azure AI Evaluation SDK. When you provide either a test dataset or a target, your generative AI application generations are quantitatively measured with both mathematical-based metrics and AI-assisted quality and safety evaluators. Built-in or custom evaluators can provide you with comprehensive insights into the application's capabilities and limitations.
+If you want to thoroughly assess the performance of your generative AI application when you apply it to a substantial dataset, you can evaluate it in your development environment with the Azure AI Evaluation SDK. When you provide either a test dataset or a target, your generative AI application outputs are quantitatively measured with both mathematical-based metrics and AI-assisted quality and safety evaluators. Built-in or custom evaluators can provide you with comprehensive insights into the application's capabilities and limitations.
 
 In this article, you learn how to run evaluators on a single row of data and a larger test dataset on an application target. You use built-in evaluators that use the Azure AI Evaluation SDK locally. Then, you learn to track the results and evaluation logs in an Azure AI project.
 
