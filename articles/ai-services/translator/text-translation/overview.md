@@ -28,14 +28,14 @@ Text translation documentation contains the following article types:
 
  ```bash
      https://api.cognitive.microsofttranslator.com/languages?api-version=2025-05-01-preview
- 
+
  ```
 
 * [**Translate**](reference/preview/translate-api.md. Renders single source-language text to multiple target-language texts with a single `POST` request:
 
  ```bash
     https://api.cognitive.microsofttranslator.com/translate?api-version=2025-05-01-preview
- 
+
  ```
 
 * [**Transliterate**](reference/preview/transliterate-api.md). Converts characters or letters of a source language to the corresponding characters or letters of a target language with a single `POST` request.
@@ -43,7 +43,7 @@ Text translation documentation contains the following article types:
  ```bash
  https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-05-01-preview
  ```
- 
+
 
 ### [Latest GA version](#tab/windows)
 
@@ -127,7 +127,7 @@ Ready to begin?
 
 * [**Get your access keys and API endpoint**](../how-to/create-translator-resource.md#authentication-keys-and-endpoint-url). An endpoint URL and read-only key are required for authentication.
 
-* Explore our [**Quickstart**](quickstart/rest-api.md) "Learn to use Translator via REST and a preferred programming language.") and view use cases and code samples for the following programming languages: 
+* Explore our [**Quickstart**](quickstart/rest-api.md) "Learn to use Translator via REST and a preferred programming language.") and view use cases and code samples for the following programming languages:
   * [**C#/.NET**](quickstart/rest-api.md?tabs=csharp)
   * [**Go**](quickstart/rest-api.md?tabs=go)
   * [**Java**](quickstart/rest-api.md?tabs=java)
