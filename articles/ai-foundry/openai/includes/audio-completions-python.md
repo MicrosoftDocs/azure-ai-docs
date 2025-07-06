@@ -206,7 +206,7 @@ The script generates an audio file named _dog.wav_ in the same directory as the 
     # Keyless authentication
     client=AzureOpenAI(
         azure_ad_token_provider=token_provider,
-        azure_endpoint=endpoint
+        azure_endpoint=endpoint,
         api_version="2025-01-01-preview"
     )
     
@@ -269,7 +269,7 @@ The script generates an audio file named _dog.wav_ in the same directory as the 
     client = AzureOpenAI(
         api_version="2025-01-01-preview",  
         api_key=api_key, 
-        azure_endpoint=endpoint
+        azure_endpoint=endpoint,
     )
     
     # Read and encode audio file  
