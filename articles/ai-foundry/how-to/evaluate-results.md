@@ -114,7 +114,7 @@ If you're evaluating a prompt flow, you can select the **View in flow** button t
 
 ## Compare the evaluation results
 
-To facilitate a comprehensive comparison between two or more runs, you can select the desired runs and initiate the process. Select either the **Compare** button or (for a general detailed dashboard view) the **Switch to dashboard view** button. You're empowered to analyze and contrast the performance and outcomes of multiple runs, allowing for more informed decision-making and targeted improvements.
+To facilitate a comprehensive comparison between two or more runs, you can select the desired runs and initiate the process. Select either the **Compare** button or, for a general detailed dashboard view, the **Switch to dashboard view** button. You're empowered to analyze and contrast the performance and outcomes of multiple runs, allowing for more informed decision-making and targeted improvements.
 
 :::image type="content" source="../media/evaluations/view-results/evaluation-list-compare.png" alt-text="Screenshot that shows the option to compare evaluations." lightbox="../media/evaluations/view-results/evaluation-list-compare.png":::
 
@@ -145,7 +145,7 @@ By using these comparison tools effectively, you can identify which version of y
 
 ## Measure jailbreak vulnerability
 
-Evaluating jailbreak vulnerability is a comparative measurement, not an AI-assisted metric. Run evaluations on two different, red-teamed datasets: a baseline adversarial test dataset versus the same adversarial test dataset with jailbreak injections in the first turn. You can use the adversarial data simulator to generate the dataset with or without jailbreak injections. Ensure that the **Criteria Name** is the same for each evaluation metric when you configure the runs.
+Evaluating jailbreak vulnerability is a comparative measurement, not an AI-assisted metric. Run evaluations on two different, red-teamed datasets: a baseline adversarial test dataset versus the same adversarial test dataset with jailbreak injections in the first turn. You can use the adversarial data simulator to generate the dataset with or without jailbreak injections. Ensure that the **Criteria Name** value is the same for each evaluation metric when you configure the runs.
 
 To understand if your application is vulnerable to jailbreak, you can specify the baseline and then turn on the **Jailbreak defect rates** toggle in the comparison table. The jailbreak defect rate is the percentage of instances in your test dataset where a jailbreak injection generated a higher severity score for *any* content risk metric with respect to a baseline over the whole dataset size. You can select multiple evaluations in your **Compare** dashboard to view the difference in defect rates.
 
