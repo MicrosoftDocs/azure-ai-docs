@@ -15,7 +15,7 @@ ms.author: vaishalishah
 
 Starting in 2025-05-01-preview, you can now include Rbac scope alongside document ingestion in Azure AI Search and use those permissions to control access to search results.
 
-You can use the push APIs to upload and index content and permission metadata manually, or you can use an indexer to automate data ingestion. This article focuses on the indexer approach.
+You can use the push APIs to upload and index content and permission metadata manually see [Indexing Permissions using the push REST API](search-index-access-control-lists-and-rbac-push-api.md), or you can use an indexer to automate data ingestion. This article focuses on the indexer approach.
 
 The indexer approach is built on this foundation:
 
