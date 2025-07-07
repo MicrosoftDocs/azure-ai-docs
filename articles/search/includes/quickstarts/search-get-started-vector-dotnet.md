@@ -44,7 +44,7 @@ This quickstart uses `DefaultAzureCredential`, which simplifies authentication i
   
    This repo has .NET code examples for several articles each in a separate subfolder.
 
-1. Open the subfolder `quickstart-Vector-Search` in Visual Studio Code, or double click the `.sln` file to opn the solution in Visual Studio.
+1. Open the subfolder `quickstart-Vector-Search` in Visual Studio Code, or double click the `.sln` file to open the solution in Visual Studio.
 
 1. Open the `appsettings.json` files in the `VectorSearchExamples` and `VectorSearchCreatePopulateIndex` folders. Update the following values: 
 
@@ -71,7 +71,7 @@ The following code uploads the JSON formatted documents in the `hotel-samples.js
 
 :::code language="csharp" source="~/azure-search-dotnet-samples/quickstart-vector-search/vectorsearchcreatepopulateindex/program.cs" id="UploadDocs":::
 
-After you run the projecment is printed below it:
+After you run the project, the following output is printed:
 
 ```output
 Key: 1, Succeeded: True
@@ -148,7 +148,7 @@ You can add filters, but the filters are applied to the nonvector content in you
     Score: 0.57902366, HotelId: 2, HotelName: Old Century Hotel, Tags: poolfree wifiair conditioningconcierge
    ```
 
-   The query was the same as the previous [single vector search example](#single-vector-search), but it includes a post-processing exclusion filter and returns only the three hotels that have free Wi-Fi.
+   The query was the same as the previous [single vector search example](#single-vector-search), but it includes a post-processing exclusion filter and returns only the two hotels that have free Wi-Fi.
 
 1. The next filter example uses a **geo filter**. In the `Program.cs` file of the `VectorSearchExamples` folder, uncomment the method call `SearchExamples.SingleSearchWithGeoFilter(searchClient, vectorizedResult);`. This method executes the following search function in the `SearchExamples.cs` class:
 
