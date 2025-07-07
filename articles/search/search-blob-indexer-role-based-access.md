@@ -83,7 +83,7 @@ JSON example with system managed identity:
     },
     "container": {
     "name": "<your container name>",
-    "query": "<optional-virtual-directory-name>"
+    "query": "<optional-query>"
     }
 }
 ```
@@ -100,7 +100,7 @@ JSON schema example with a user-managed identity in the connection string:
     },
     "container": {
     "name": "<your container name>",
-    "query": "<optional-virtual-directory-name>"
+    "query": "<optional-query>"
     },
     "identity": {
     "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
