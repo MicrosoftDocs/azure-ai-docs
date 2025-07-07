@@ -89,7 +89,7 @@ The output is a structured report that documents not only the comprehensive answ
 To use the Deep Research tool, you need to create the Azure AI Foundry type project, add your Grounding with Bing Search resource as a new connection, deploy the `o3-deep-research-model`, and deploy the selected Azure OpenAI GPT model. 
 
 > [!NOTE]
-> * The Azure AI Foundry, the `o3-deep-research` model, and the GPT model for intent clarification should all be in the same region. Supported regions are **West US** and N**orway East**.
+> * The  `o3-deep-research` model and the GPT model deployments should be part of your AI Foundry project resulting in all three resources in the same Azure subscription and same region. Supported regions are **West US** and **Norway East**.
 
 :::image type="content" source="../../media/tools/deep-research/setup-deep-research-tool.png" alt-text="A diagram of the steps to set up the deep research tool." lightbox="../../media/tools/deep-research/setup-deep-research-tool.png":::
 
