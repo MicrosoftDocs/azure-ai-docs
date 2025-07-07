@@ -17,6 +17,9 @@ Use this article to learn how to use the Deep Research tool with the Azure AI Pr
 
 ## Prerequisites
 
+> [!NOTE]
+> * The  `o3-deep-research` model and the GPT model deployments should be part of your AI Foundry project resulting in all three resources in the same Azure subscription and same region. Supported regions are **West US** and **Norway East**.
+
 * The requirements in the [Deep Research overview](./deep-research.md).
 * The Deep Research tool requires the latest prerelease versions of the `azure-ai-projects` library. You can install it with the following command:
 
