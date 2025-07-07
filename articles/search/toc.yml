@@ -187,7 +187,6 @@ items:
     - name: Debug a skillset
       href: cognitive-search-tutorial-debug-sessions.md
 - name: How-to guides
-
   items:
   - name: Service management
     items:
