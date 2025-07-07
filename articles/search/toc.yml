@@ -591,10 +591,6 @@ items:
       href: knowledge-store-projection-example-long.md
     - name: Connect with Power BI
       href: knowledge-store-connect-power-bi.md
-- name: Responsible AI
-  items:
-  - name: Transparency note
-    href: /azure/ai-foundry/responsible-ai/search/transparency-note
 - name: Samples
   items:
   - name: C# samples
@@ -796,3 +792,7 @@ items:
       href: resource-tools.md
     - name: Training
       href: resource-training.md
+- name: Responsible AI
+  items:
+  - name: Transparency note
+    href: /azure/ai-foundry/responsible-ai/search/transparency-note
