@@ -23,7 +23,7 @@ In this article, you learn to create an evaluation run against a model or a test
 ## Prerequisites
 
 - A test dataset in one of these formats: CSV or JSON Lines (JSONL).
-- An Azure OpenAI connection. A deployment of one of these models: a GPT 3.5 model, a GPT 4 model, or a Davinci model. Required only when you run AI-assisted quality evaluations.
+- An Azure OpenAI connection. A deployment of one of these models: a GPT-3.5 model, a GPT-4 model, or a Davinci model. Required only when you run AI-assisted quality evaluations.
 
 ## Create an evaluation with built-in evaluation metrics
 
@@ -39,7 +39,7 @@ From the collapsible left menu, select **Evaluation** > **Create a new evaluatio
 
 1. From the collapsible left menu, select **Model catalog**.
 1. Go to the model.
-1. Select the **Benchmark** tab.
+1. Select the **Benchmarks** tab.
 1. Select **Try with your own data**. This selection opens the model evaluation panel, where you can create an evaluation run against your selected model.  
 
    :::image type="content" source="../media/evaluations/evaluate/try-with-your-own-data.png" alt-text="Screenshot of the Try with your own data button from the model catalog page." lightbox="../media/evaluations/evaluate/try-with-your-own-data.png":::
@@ -81,7 +81,7 @@ As you add your testing criteria, different metrics are going to be used as part
 |--|--|--|
 | Groundedness, Relevance, Coherence, Fluency, GPT similarity | F1 score, ROUGE score, BLEU score, GLEU score, METEOR score| Self-harm-related content, Hateful and unfair content, Violent content, Sexual content, Protected material, Indirect attack  |
 
-When running AI-assisted quality evaluation, you must specify a GPT model for the calculation/grading process.
+When you run AI-assisted quality evaluation, you must specify a GPT model for the calculation/grading process.
 
 :::image type="content" source="../media/evaluations/evaluate/select-metrics-ai-quality-ai-assisted.png" alt-text="Screenshot that shows the Likert-scale evaluator with the AI quality (AI assisted) metrics listed in presets." lightbox="../media/evaluations/evaluate/select-metrics-ai-quality-ai-assisted.png":::
 
@@ -92,7 +92,7 @@ AI Quality (NLP) metrics are mathematically based measurements that assess your 
 For risk and safety metrics, you don't need to provide a deployment. The Azure AI Foundry portal provisions a GPT-4 model that can generate content risk severity scores and reasoning to enable you to evaluate your application for content harms.
 
 > [!NOTE]
-> AI-assisted risk and safety metrics are hosted by Azure AI Foundry safety evaluations and are only available in the following regions: East US 2, France Central, UK South, Sweden Central.
+> AI-assisted risk and safety metrics are hosted by Azure AI Foundry safety evaluations and are available only in the following regions: East US 2, France Central, UK South, Sweden Central.
 
 :::image type="content" source="../media/evaluations/evaluate/safety-metrics.png" alt-text="Screenshot that shows the metric Violent content, which is one of the risk and safety metrics." lightbox="../media/evaluations/evaluate/safety-metrics.png":::
 
@@ -194,8 +194,8 @@ To use the evaluator library in Azure AI Foundry portal, go to your project's **
 
 You can select the evaluator name to see more details. You can see the name, description, and parameters, and check any files associated with the evaluator. Here are some examples of Microsoft-curated evaluators:
 
-- For performance and quality evaluators curated by Microsoft, you can view the annotation prompt on the details page. You can adapt these prompts to your own use case. Change the parameters or criteria according to your data and objectives in the Azure AI Evaluation SDK. For example, you can select *Groundedness-Evaluator* and check the Prompty file that shows how we calculate the metric.
-- For risk and safety evaluators curated by Microsoft, you can see the definition of the metrics. For example, you can select the *Self-Harm-Related-Content-Evaluator* to learn what it means and understand how Microsoft determines severity levels.
+- For performance and quality evaluators curated by Microsoft, you can view the annotation prompt on the details page. You can adapt these prompts to your own use case. Change the parameters or criteria according to your data and objectives in the Azure AI Evaluation SDK. For example, you can select **Groundedness-Evaluator** and check the Prompty file that shows how we calculate the metric.
+- For risk and safety evaluators curated by Microsoft, you can see the definition of the metrics. For example, you can select **Self-Harm-Related-Content-Evaluator** to learn what it means and understand how Microsoft determines severity levels.
 
 ## Related content
 
