@@ -18,7 +18,7 @@ author: lgayhardt
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-The Azure AI Evaluation SDK supports running evaluations locally on your own machine and also in the cloud. For example, after you run local evaluations on small test data to help assess your generative AI application prototypes, you can move into pre-deployment testing and run evaluations on a large dataset. Evaluating your applications in the cloud frees you from managing your local compute infrastructure, and enables you to integrate evaluations as tests into your continuous integration and continuous delivery (CI/CD) pipelines. After deployment, you can choose to [continuously evaluate](../online-evaluation.md) your applications for post-deployment monitoring.
+The Azure AI Evaluation SDK supports running evaluations locally on your own machine and in the cloud. For example, after you run local evaluations on small test data to help assess your generative AI application prototypes, you can move into pre-deployment testing and run evaluations on a large dataset. Evaluating your applications in the cloud frees you from managing your local compute infrastructure. It also enables you to integrate evaluations as tests into your continuous integration and continuous delivery (CI/CD) pipelines. After deployment, you can choose to [continuously evaluate](../online-evaluation.md) your applications for post-deployment monitoring.
 
 In this article, you learn how to run evaluations in the cloud (preview) in pre-deployment testing on a test dataset. When you use the Azure AI Projects SDK, evaluation results are automatically logged into your Azure AI project for better observability. This feature supports all Microsoft-curated [built-in evaluators](../../concepts/observability.md#what-are-evaluators) and your own [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md). Your evaluators can be located in the [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) and have the same project-scope role-based access control (RBAC).
 
@@ -28,7 +28,7 @@ In this article, you learn how to run evaluations in the cloud (preview) in pre-
 - Azure OpenAI Deployment with GPT model supporting `chat completion`. For example, `gpt-4`.
 - Make sure you're first logged into your Azure subscription by running `az login`.
 
-If this is your first time running evaluations and logging it to your Azure AI Foundry project, you might need to do a few additional steps.
+If this is your first time running evaluations and logging it to your Azure AI Foundry project, you might need to do a few additional steps:
 
 1. Create and connect your storage account to your Azure AI Foundry project at the resource level. There are two ways you can do this. You can [use a Bicep template](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/01-connections/connection-storage-account.bicep), which provisions and connects a storage account to your Foundry project with key authentication. You can also [manually create and provision access](../evaluations-storage-account.md) to your storage account in the Azure portal.
 1. Make sure the connected storage account has access to all projects.
@@ -36,7 +36,7 @@ If this is your first time running evaluations and logging it to your Azure AI F
 
 ### Get started
 
-1. Install the Azure AI Foundry SDK project client that runs the evaluations in the cloud.
+1. Install the Azure AI Foundry SDK project client that runs the evaluations in the cloud:
 
    ```python
    uv install azure-ai-projects azure-identity
@@ -45,7 +45,7 @@ If this is your first time running evaluations and logging it to your Azure AI F
    > [!NOTE]
    > For more detailed information, see [REST API Reference Documentation](/rest/api/aifoundry/aiprojects/evaluations).
 
-2. Set your environment variables for your Azure AI Foundry resources.
+2. Set your environment variables for your Azure AI Foundry resources:
 
    ```python
    import os
