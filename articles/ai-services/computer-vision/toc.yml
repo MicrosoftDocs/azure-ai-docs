@@ -305,9 +305,9 @@ items:
     - name: Client-side
       items:
       - name: Kotlin (Android)
-        href: https://aka.ms/azure-ai-vision-face-liveness-client-sdk-android-api-reference
+        href: https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main/docs/face
       - name: Swift (iOS)
-        href: https://aka.ms/azure-ai-vision-face-liveness-client-sdk-ios-api-reference
+        href: https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main/docs/face
       - name: JavaScript (Web)
         href: https://aka.ms/azure-ai-vision-face-liveness-client-sdk-web-api-reference
       - name: Understand the liveness versions
