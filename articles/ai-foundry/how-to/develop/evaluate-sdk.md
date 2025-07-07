@@ -58,7 +58,7 @@ Built-in evaluators can accept query and response pairs, a list of conversations
 
 AI-assisted quality evaluators come with a reason field (except for `SimilarityEvaluator`). They employ techniques that include chain-of-thought reasoning to generate an explanation for the score. Therefore, they consume more token usage in generation due to improved evaluation quality. Specifically, `max_token` for evaluator generation is set to 800 for all AI-assisted evaluators (and 1,600 for `RetrievalEvaluator` to accommodate for longer inputs.)
 
-Azure OpenAI graders require a template that describes how their input columns are turned into the *real* input that the grader uses. Example: If you have two inputs called *query* and *response*, and a template that was formatted like so: `{{item.query}}`, then only the query would be used. Similarly you could have something like `{{item.conversation}}` to accept a conversation input, but the ability of the system to handle that depends on how you configure the rest of the grader to expect that input.
+Azure OpenAI graders require a template that describes how their input columns are turned into the *real* input that the grader uses. Example: If you have two inputs called *query* and *response*, and a template that was formatted as `{{item.query}}`, then only the query would be used. Similarly, you could have something like `{{item.conversation}}` to accept a conversation input, but the ability of the system to handle that depends on how you configure the rest of the grader to expect that input.
 
 For more information on data requirements for agentic evaluators, go to [Run agent evaluations locally with the Azure AI Evaluation SDK](agent-evaluate-sdk.md).
 
@@ -319,7 +319,7 @@ For all risk and safety evaluators and `GroundednessProEvaluator` (preview), ins
 
 #### Prompts for AI-assisted built-in evaluators
 
-We open source the prompts of our quality evaluators in our Evaluator Library and the Azure AI Evaluation Python SDK repository for transparency, except for the Safety Evaluators and `GroundednessProEvaluator` (powered by Azure AI Content Safety). These prompts serve as instructions for a language model to perform their evaluation task, which requires a human-friendly definition of the metric and its associated scoring rubrics. We highly recommend that users customize the definitions and grading rubrics to their scenario specifics. See details in [Custom Evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md).
+We open source the prompts of our quality evaluators in our Evaluator Library and the Azure AI Evaluation Python SDK repository for transparency, except for the Safety Evaluators and `GroundednessProEvaluator` (powered by Azure AI Content Safety). These prompts serve as instructions for a language model to perform their evaluation task, which requires a human-friendly definition of the metric and its associated scoring rubrics. We highly recommend that users customize the definitions and grading rubrics to their scenario specifics. See details in [Custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md).
 
 ### Composite evaluators
 
@@ -336,7 +336,7 @@ After you spot-check your built-in or custom evaluators on a single row of data,
 
 ### Prerequisite set up steps for Azure AI Foundry projects
 
-If this is your first time running evaluations and logging it to your Azure AI Foundry project, you might need to do a few additional setup steps.
+If this is your first time running evaluations and logging it to your Azure AI Foundry project, you might need to do a few additional setup steps:
 
 1. [Create and connect your storage account](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/01-connections/connection-storage-account.bicep) to your Azure AI Foundry project at the resource level. This bicep template provisions and connects a storage account to your Foundry project with key authentication.
 2. Make sure the connected storage account has access to all projects.
@@ -344,7 +344,7 @@ If this is your first time running evaluations and logging it to your Azure AI F
 
 ### Evaluate on a dataset and log results to Azure AI Foundry
 
-In order to ensure the `evaluate()` API can correctly parse the data, you must specify column mapping to map the column from the dataset to key words that the evaluators accept. In this case, we specify the data mapping for `query`, `response`, and `context`.
+To ensure the `evaluate()` API can correctly parse the data, you must specify column mapping to map the column from the dataset to key words that the evaluators accept. In this case, we specify the data mapping for `query`, `response`, and `context`.
 
 ```python
 from azure.ai.evaluation import evaluate
@@ -433,32 +433,32 @@ The `evaluate()` API accepts only data in JSONL format. For all built-in evaluat
 
 #### Evaluator parameter format
 
-When passing in your built-in evaluators, it's important to specify the right keyword mapping in the `evaluators` parameter list. The following table is the keyword mapping required for the results from your built-in evaluators to show up in the UI when logged to your Azure AI project.
+When you pass in your built-in evaluators, it's important to specify the right keyword mapping in the `evaluators` parameter list. The following table is the keyword mapping required for the results from your built-in evaluators to show up in the UI when logged to your Azure AI project.
 
-| Evaluator                 | keyword param     |
+| Evaluator                 | Keyword parameter     |
 |---------------------------|-------------------|
-| `GroundednessEvaluator`   | "groundedness"    |
-| `GroundednessProEvaluator`   | "groundedness_pro"    |
-| `RetrievalEvaluator`      | "retrieval"       |
-| `RelevanceEvaluator`      | "relevance"       |
-| `CoherenceEvaluator`      | "coherence"       |
-| `FluencyEvaluator`        | "fluency"         |
-| `SimilarityEvaluator`     | "similarity"      |
-| `F1ScoreEvaluator`        | "f1_score"        |
-| `RougeScoreEvaluator`     | "rouge"           |
-| `GleuScoreEvaluator`      | "gleu"            |
-| `BleuScoreEvaluator`      | "bleu"            |
-| `MeteorScoreEvaluator`    | "meteor"          |
-| `ViolenceEvaluator`       | "violence"        |
-| `SexualEvaluator`         | "sexual"          |
-| `SelfHarmEvaluator`       | "self_harm"       |
-| `HateUnfairnessEvaluator` | "hate_unfairness" |
-| `IndirectAttackEvaluator` | "indirect_attack" |
-| `ProtectedMaterialEvaluator`| "protected_material" |
-| `CodeVulnerabilityEvaluator`| "code_vulnerability" |
-| `UngroundedAttributesEvaluator`| "ungrounded_attributes" |
-| `QAEvaluator`             | "qa"              |
-| `ContentSafetyEvaluator`  | "content_safety"  |
+| `GroundednessEvaluator`   | `"groundedness"`    |
+| `GroundednessProEvaluator`   | `"groundedness_pro"`    |
+| `RetrievalEvaluator`      | `"retrieval"`       |
+| `RelevanceEvaluator`      | `"relevance"`       |
+| `CoherenceEvaluator`      | `"coherence"`       |
+| `FluencyEvaluator`        | `"fluency"`         |
+| `SimilarityEvaluator`     | `"similarity"`      |
+| `F1ScoreEvaluator`        | `"f1_score"`        |
+| `RougeScoreEvaluator`     | `"rouge"`           |
+| `GleuScoreEvaluator`      | `"gleu"`            |
+| `BleuScoreEvaluator`      | `"bleu"`            |
+| `MeteorScoreEvaluator`    | `"meteor"`          |
+| `ViolenceEvaluator`       | `"violence"`        |
+| `SexualEvaluator`         | `"sexual"`          |
+| `SelfHarmEvaluator`       | `"self_harm"`       |
+| `HateUnfairnessEvaluator` | `"hate_unfairness"` |
+| `IndirectAttackEvaluator` | `"indirect_attack"` |
+| `ProtectedMaterialEvaluator`| `"protected_material"` |
+| `CodeVulnerabilityEvaluator`| `"code_vulnerability"` |
+| `UngroundedAttributesEvaluator`| `"ungrounded_attributes"` |
+| `QAEvaluator`             | `"qa"`              |
+| `ContentSafetyEvaluator`  | `"content_safety"`  |
 
 Here's an example of how to set the `evaluators` parameters:
 
@@ -476,11 +476,11 @@ result = evaluate(
 
 ## Local evaluation on a target
 
-If you have a list of queries that you'd like to run and then evaluate, the `evaluate()` API also supports a `target` parameter, which can send queries to an application to collect answers, then run your evaluators on the resulting query and response.
+If you have a list of queries that you want to run and then evaluate, the `evaluate()` API also supports a `target` parameter, which can send queries to an application to collect answers, then run your evaluators on the resulting query and response.
 
 A target can be any callable class in your directory. In this case, we have a Python script `askwiki.py` with a callable class `askwiki()` that we can set as our target. If we have a dataset of queries we can send into our simple `askwiki` app, we can evaluate the groundedness of the outputs. Make sure that you specify the proper column mapping for your data in `"column_mapping"`. You can use `"default"` to specify column mapping for all evaluators.
 
-Here's the content in "data.jsonl":
+Here's the content in `"data.jsonl"`:
 
 ```json
 {"query":"When was United Stated found ?", "response":"1776"}
