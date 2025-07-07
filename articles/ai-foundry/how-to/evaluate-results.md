@@ -29,7 +29,7 @@ In this article, you learn how to:
 
 ## Find your evaluation results
 
-After you submit your evaluation, you can locate the submitted evaluation run within the run list. Navigate to the **Evaluation** page.
+After you submit your evaluation, you can locate the submitted evaluation run within the run list. Go to the **Evaluation** page.
 
 You can monitor and manage your evaluation runs within the run list. You have the flexibility to modify the columns by using the column editor and implement filters, and you can customize and create your own version of the run list. Additionally, you can swiftly review the aggregated evaluation metrics across the runs and perform quick comparisons.
 
@@ -104,11 +104,9 @@ Evaluation results might have different meanings for different audiences. For ex
 
 :::image type="content" source="../media/evaluations/view-results/risk-safety-metric-human-feedback.png" alt-text="Screenshot that shows risk and safety metrics results with human feedback." lightbox="../media/evaluations/view-results/risk-safety-metric-human-feedback.png":::
 
-To understand each content risk metric, you can view metric definitions by navigating back to the **Report** section, or you can review the test in the **Metric dashboard** section.
+To understand each content risk metric, you can view metric definitions by going back to the **Report** section, or you can review the test in the **Metric dashboard** section.
 
-If there's something wrong with the run, you can also use the logs to debug your evaluation run.
-
-Here are some examples of logs that you can use to debug your evaluation run:
+If there's something wrong with the run, you can also use the logs to debug your evaluation run. Here are some examples of logs that you can use to debug your evaluation run:
 
 :::image type="content" source="../media/evaluations/view-results/evaluation-log.png" alt-text="Screenshot that shows logs that you can use to debug your evaluation run." lightbox="../media/evaluations/view-results/evaluation-log.png":::
 
@@ -116,14 +114,14 @@ If you're evaluating a prompt flow, you can select the **View in flow** button t
 
 ## Compare the evaluation results
 
-To facilitate a comprehensive comparison between two or more runs, you can select the desired runs and initiate the process. Select either the **Compare** button or, for a general detailed dashboard view, the **Switch to dashboard view** button. You're empowered to analyze and contrast the performance and outcomes of multiple runs, allowing for more informed decision making and targeted improvements.
+To facilitate a comprehensive comparison between two or more runs, you can select the desired runs and initiate the process. Select either the **Compare** button or (for a general detailed dashboard view) the **Switch to dashboard view** button. You're empowered to analyze and contrast the performance and outcomes of multiple runs, allowing for more informed decision-making and targeted improvements.
 
 :::image type="content" source="../media/evaluations/view-results/evaluation-list-compare.png" alt-text="Screenshot that shows the option to compare evaluations." lightbox="../media/evaluations/view-results/evaluation-list-compare.png":::
 
 In the dashboard view, you have access to two valuable components: the metric distribution comparison **Chart** and the comparison **Table**. You can use these tools to perform a side-by-side analysis of the selected evaluation runs. You can compare various aspects of each data sample with ease and precision.
 
 > [!NOTE]
-> Older evaluation runs will, by default, have matching rows between columns. However, newly run evaluations have to be intentionally configured to have matching columns during evaluation creation. Ensure the same name is used as the **Criteria Name** across all evaluations you want to compare.
+> By default, older evaluation runs have matching rows between columns. However, newly run evaluations have to be intentionally configured to have matching columns during evaluation creation. Ensure that the same name is used as the **Criteria Name** value across all evaluations that you want to compare.
 
 The following screenshot shows the experience when the fields are the same:  
 
@@ -133,7 +131,7 @@ When a user doesn't use the same **Criteria Name** in creating the evaluation, f
 
 :::image type="content" source="../media/evaluations/view-results/evaluation-criteria-name-mismatch.png" alt-text="Screenshot that shows automated evaluations when the fields aren't the same." lightbox="../media/evaluations/view-results/evaluation-criteria-name-mismatch.png":::
 
-Within the comparison **Table**, you can establish a baseline for your comparison by hovering over the specific run you want to use as the reference point and set as baseline. You can also activate the **Show delta** toggle to readily visualize the differences between the baseline run and the other runs for numerical values. Additionally, you can select the **Show only difference** toggle so that the table displays only the rows that differ among the selected runs, aiding in the identification of distinct variations.
+Within the comparison table, you can establish a baseline for your comparison by hovering over the specific run that you want to use as the reference point and set as baseline. You can also activate the **Show delta** toggle to readily visualize the differences between the baseline run and the other runs for numerical values. Additionally, you can select the **Show only difference** toggle so that the table displays only the rows that differ among the selected runs, aiding in the identification of distinct variations.
 
 By using these comparison features, you can make an informed decision to select the best version:
 
@@ -147,7 +145,7 @@ By using these comparison tools effectively, you can identify which version of y
 
 ## Measure jailbreak vulnerability
 
-Evaluating jailbreak vulnerability is a comparative measurement, not an AI-assisted metric. Run evaluations on two different, red-teamed datasets: a baseline adversarial test dataset versus the same adversarial test dataset with jailbreak injections in the first turn. You can use the adversarial data simulator to generate the dataset with or without jailbreak injections. Ensure the **Criteria Name** is the same for each evaluation metric when you configure the runs.
+Evaluating jailbreak vulnerability is a comparative measurement, not an AI-assisted metric. Run evaluations on two different, red-teamed datasets: a baseline adversarial test dataset versus the same adversarial test dataset with jailbreak injections in the first turn. You can use the adversarial data simulator to generate the dataset with or without jailbreak injections. Ensure that the **Criteria Name** is the same for each evaluation metric when you configure the runs.
 
 To understand if your application is vulnerable to jailbreak, you can specify the baseline and then turn on the **Jailbreak defect rates** toggle in the comparison table. The jailbreak defect rate is the percentage of instances in your test dataset where a jailbreak injection generated a higher severity score for *any* content risk metric with respect to a baseline over the whole dataset size. You can select multiple evaluations in your **Compare** dashboard to view the difference in defect rates.
 
