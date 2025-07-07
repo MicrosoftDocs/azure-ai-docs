@@ -121,16 +121,16 @@ The first example demonstrates a basic scenario where you want to find document 
     dotnet run
     ```
 
-After you run the project, the search results are printed in the output window:
-
-```output
-Single Vector Search Results:
-Score: 0.6605852, HotelId: 48, HotelName: Nordick's Valley Motel
-Score: 0.6333684, HotelId: 13, HotelName: Luxury Lion Resort
-Score: 0.605672, HotelId: 4, HotelName: Sublime Palace Hotel
-Score: 0.6026341, HotelId: 49, HotelName: Swirling Currents Hotel
-Score: 0.57902366, HotelId: 2, HotelName: Old Century Hotel
-```
+    After you run the project, the search results are printed in the output window:
+    
+    ```output
+    Single Vector Search Results:
+    Score: 0.6605852, HotelId: 48, HotelName: Nordick's Valley Motel
+    Score: 0.6333684, HotelId: 13, HotelName: Luxury Lion Resort
+    Score: 0.605672, HotelId: 4, HotelName: Sublime Palace Hotel
+    Score: 0.6026341, HotelId: 49, HotelName: Swirling Currents Hotel
+    Score: 0.57902366, HotelId: 2, HotelName: Old Century Hotel
+    ```
 
 ### Single vector search with filter
 
@@ -158,20 +158,20 @@ You can add filters, but the filters are applied to the nonvector content in you
 
 1.  Run the project again, and the status of each document is printed below it:
    
-   ```output
-   Vector query with a geo filter:
-   -HotelId: 48
+    ```output
+    Vector query with a geo filter:
+    -HotelId: 48
     HotelName: Nordick's Valley Motel
     Score: 0.6605852246284485
     City/State: Washington D.C./null
     Description: Only 90 miles (about 2 hours) from the nation's capital and nearby most everything the historic valley has to offer. Hiking? Wine Tasting? Exploring the caverns? It's all nearby and we have specially priced packages to help make our B&B your home base for fun while visiting the valley.
     
-   -HotelId: 49
+    -HotelId: 49
     HotelName: Swirling Currents Hotel
     Score: 0.602634072303772
     City/State: Arlington/VA
     Description: Spacious rooms, glamorous suites and residences, rooftop pool, walking access to shopping, dining, entertainment and the city center. Each room comes equipped with a microwave, a coffee maker and a minifridge. In-room entertainment includes complimentary W-Fi and flat-screen TVs.
-   ```
+    ```
 
 ### Hybrid search
 
@@ -305,9 +305,7 @@ The hybrid query with semantic ranking is filtered to show only the hotels withi
 
     :::code language="csharp" source="~/azure-search-dotnet-samples/quickstart-vector-search/vectorsearchexamples/SearchExamples.cs" id="SearchHybridVectorAndSemantic":::
 
-1.  Run the project again, and the status of each document is printed below it:
-
-   Review the output below the cell. The response is three hotels, which are filtered by location and faceted by `StateProvince` and semantically reranked to promote results that are closest to the search string query (`historic hotel walk to restaurants and shopping`).
+1.  Run the project again, and review the output below the cell. The response is three hotels, which are filtered by location and faceted by `StateProvince` and semantically reranked to promote results that are closest to the search string query (`historic hotel walk to restaurants and shopping`).
 
    The Swirling Currents Hotel now moves into the top spot. Without semantic ranking, Nordick's Valley Motel is number one. With semantic ranking, the machine comprehension models recognize that `historic` applies to "hotel, within walking distance to dining (restaurants) and shopping."
 
@@ -345,11 +343,11 @@ The hybrid query with semantic ranking is filtered to show only the hotels withi
      Category: Suite
    ```
 
-   Key takeaways:
+Key takeaways:
 
-   - In a hybrid search, you can integrate vector search with full-text search over keywords. Filters, spell check, and semantic ranking apply to textual content only, and not vectors. In this final query, there's no semantic `answer` because the system didn't produce one that was sufficiently strong.
+- In a hybrid search, you can integrate vector search with full-text search over keywords. Filters, spell check, and semantic ranking apply to textual content only, and not vectors. In this final query, there's no semantic `answer` because the system didn't produce one that was sufficiently strong.
 
-   - Actual results include more detail, including semantic captions and highlights. Results were modified for readability. To get the full structure of the response, run the request in the REST client.
+- Actual results include more detail, including semantic captions and highlights. Results were modified for readability. To get the full structure of the response, run the request in the REST client.
 
 ## Clean up
 
