@@ -23,7 +23,7 @@ This article describes how the data that you provide is processed, used, and sto
 
 ## What data is processed for models deployed in Azure AI Foundry portal?
 
-When you deploy models in Azure AI Foundry portal, the following types of data are processed to provide the service:
+When you deploy models in Azure AI Foundry, the following types of data are processed to provide the service:
 
 * **Prompts and generated content**. A user submits a prompt, and the model generates content (output) via the operations that the model supports. Prompts might include content added via retrieval-augmented generation (RAG), metaprompts, or other functionality included in an application.
 
