@@ -21,7 +21,7 @@ Capability hosts are configuration sub-resources that you define at both the Azu
 - **File uploads** 
 - **Vector stores** 
 
-## Why use capability hosts?
+## Why use Capability Hosts?
 
 Capability hosts allow you to **bring your own Azure resources** instead of using the default on Microsoft-managed platform resources. This gives you:
 
@@ -29,18 +29,20 @@ Capability hosts allow you to **bring your own Azure resources** instead of usin
 - **Security control** - Use your own storage accounts, databases, and search services
 - **Compliance** - Meet specific regulatory or organizational requirements
 
-## How capability hosts work
+## How do Capability Hosts work?
 
-### Default behavior (Microsoft-managed resources)
+Creating capability hosts is not required. However if you do want agents to use your own resources, you must create a capability host on both the account and project. 
+
+#### Default behavior (Microsoft-managed resources)
 If you don't create an account-level and project-level capability host, the Agent Service automatically uses Microsoft-managed Azure resources for:
 - Thread storage (conversation history)
 - File storage (uploaded documents) 
 - Vector search (embeddings and retrieval)
 
-### Bring-your-own resources
+#### Bring-your-own resources
 When you create capability hosts at both the Account and Project levels, all agent data is stored and processed using your own Azure resources within your subscription. This configuration is called the **Standard Agent Setup**.
 
-## Configuration hierarchy
+#### Configuration hierarchy
 
 Capability hosts follow a hierarchy where more specific configurations override broader ones:
 
@@ -48,7 +50,10 @@ Capability hosts follow a hierarchy where more specific configurations override 
 2. **Account-level capability host** - Provides shared defaults for all projects under the account
 3. **Project-level capability host** - Overrides account-level and service defaults for that specific project 
 
-## Required properties
+
+## Recommended Setup 
+
+#### Required properties
 
 A capability host must be configured with the following three properties at either the account or project level:
 
@@ -58,13 +63,11 @@ A capability host must be configured with the following three properties at eith
 | `vectorStoreConnections` | Handles vector storage for retrieval and search | Azure AI Search | `"my-ai-search-connection"` |
 | `storageConnections` | Manages file uploads and blob storage | Azure Storage Account | `"my-storage-connection"` |
 
-### Optional property
+#### Optional property
 
 | Property | Purpose | Required Azure Resource | When to use |
 |----------|---------|------------------------|-------------|
-| `aiServicesConnections` | Use your own model deployments | Azure OpenAI | When you want to use models from your existing Azure OpenAI resource instead of shared ones |
-
-## Recommended Setup 
+| `aiServicesConnections` | Use your own model deployments | Azure OpenAI | When you want to use models from your existing Azure OpenAI resource instead of the built-in account level ones |
 
 **Account Capability Host**
 ```http
@@ -116,7 +119,7 @@ Note: all Foundry projects will inherit these setting. Then override specific se
 ## Deleting capability hosts
 
 > [!WARNING]
-> Deleting a capability host will affect all agents that depend on it. Make sure you understand the impact before proceeding. For instance, if you delete a capability host, agents in your project will no longer have access to the files, thread, and vector stores it previously did.
+> Deleting a capability host will affect all agents that depend on it. Make sure you understand the impact before proceeding. For instance, if you delete the project and account capability host, agents in your project will no longer have access to the files, thread, and vector stores it previously did.
 
 ### Delete an account-level capability host
 
