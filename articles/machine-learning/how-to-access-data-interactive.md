@@ -653,7 +653,7 @@ df.head()
 > [!TIP]
 > Pandas is not designed to handle large datasets. Pandas can only process data that can fit into the memory of the compute instance.
 >
-> For large datasets, we recommend use of Azure Machine Learning managed Spark. This provides the [PySpark Pandas API](https://spark.apache.org/docs/latest/api/python/user_guide/pandas_on_spark/index.html).
+> For large datasets, we recommend use of Azure Machine Learning managed Spark. This provides the [PySpark Pandas API](https://spark.apache.org/docs/3.5.3/api/python/user_guide/pandas_on_spark/index.html).
 
 You might want to iterate quickly on a smaller subset of a large dataset before scaling up to a remote asynchronous job. `mltable` provides in-built functionality to get samples of large data using the [take_random_sample](/python/api/mltable/mltable.mltable.mltable#mltable-mltable-mltable-take-random-sample) method:
 
