@@ -207,7 +207,24 @@ az login --tenant <PUT YOUR TENANT ID HERE>
 
 You should now be logged in to Azure from your local device.
 
-## Create the .NET app
+## Set up the .NET app
+
+To follow along with the steps ahead, you can either clone the completed sample app from GitHub, or create the app yourself.
+
+### Clone the sample repo
+
+To access the completed sample app for this article: 
+
+1. Clone the [azure-search-dotnet-samples](https://github.com/Azure-Samples/azure-search-dotnet-samples) repo from GitHub.
+
+    ```bash
+    git clone https://github.com/Azure-Samples/azure-search-dotnet-samples
+    ```
+
+1. Navigate into the `quickstart-rag` folder.
+1. Open the project you want to test in Visual Studio code or Visual Studio.
+
+### Create the sample app
 
 Complete the following steps to create a .NET console app to connect to an AI model.
 
@@ -264,15 +281,15 @@ Sure! Here are a few hotels that offer complimentary breakfast:
    instant oatmeal, bagels, and muffins
 ```
 
-If you get a **Forbidden** error message, check Azure AI Search configuration to make sure role-based access is enabled.
+To experiment further, change the query and rerun the last step to better understand how the model works with the grounding data. You can also modify the prompt to change the tone or structure of the output.
 
-If you get an **Authorization failed** error message, wait a few minutes and try again. It can take several minutes for role assignments to become operational.
+### Troubleshooting
 
-If you get a **Resource not found** error message, check the resource URIs and make sure the API version on the chat model is valid.
+You might receive any of the following errors while testing:
 
-Otherwise, to experiment further, change the query and rerun the last step to better understand how the model works with the grounding data.
-
-You can also modify the prompt to change the tone or structure of the output.
+- **Forbidden**: Check Azure AI Search configuration to make sure role-based access is enabled.
+- **Authorization failed**: Wait a few minutes and try again. It can take several minutes for role assignments to become operational.
+- **Resource not found**: Check the resource URIs and make sure the API version on the chat model is valid.
 
 ## Send a complex RAG query
 
@@ -311,7 +328,7 @@ The output from Azure OpenAI consists of recommendations for several hotels, suc
      - Deluxe Room, 2 Queen Beds (Amenities): $139.99 per night
 ```
 
-## Troubleshooting errors
+## Troubleshooting
 
 If you see output messages while debugging related to `ManagedIdentityCredential` and token acquisition failures, it could be that you have multiple tenants, and your Azure sign-in is using a tenant that doesn't have your search service. To get your tenant ID, search the Azure portal for "tenant properties" or run `az login tenant list`.
 
