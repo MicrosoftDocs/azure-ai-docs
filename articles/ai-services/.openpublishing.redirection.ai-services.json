@@ -1173,7 +1173,7 @@
     {
       "source_path_from_root": "/articles/ai-services/openai/concepts/content-filter-personal-information.md",
       "redirect_url": "/azure/ai-services/openai/concepts/content-filter",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/agents/concepts/agent-catalog.md",
@@ -2709,11 +2709,6 @@
       "source_path_from_root": "/articles/ai-services/openai/whisper-quickstart.md",
       "redirect_url": "/azure/ai-foundry/openai/whisper-quickstart",
       "redirect_document_id": true
-    },
-    {
-      "source_path_from_root": "/articles/ai-services/openai/concepts/content-filter-personal-information.md",
-      "redirect_url": "/azure/ai-foundry/openai/concepts/content-filter",
-      "redirect_document_id": false
     }
   ]
 }
