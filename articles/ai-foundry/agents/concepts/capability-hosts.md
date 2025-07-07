@@ -16,7 +16,7 @@ ms.author: fosteramanda
 > [!NOTE]
 > Updating capability hosts is not supported. To modify a capability host, you must delete the existing one and recreate it with the new configuration.
 
-Capability hosts are configuration sub-resources that you define at both the Azure AI Foundry Account and Project levels. They specify where the Azure AI Foundry Agent Service should store and process your agent data, including:
+Capability hosts are configuration sub-resources that you define at both the Azure AI Foundry Account and Foundry project scopes. They specify where the Azure AI Foundry Agent Service should store and process your agent data, including:
 - **Conversation history (threads)** 
 - **File uploads** 
 - **Vector stores** 
@@ -32,7 +32,7 @@ Capability hosts allow you to **bring your own Azure resources** instead of usin
 ## How capability hosts work
 
 ### Default behavior (Microsoft-managed resources)
-If you don't configure a capability host, the Agent Service automatically uses Microsoft-managed Azure resources for:
+If you don't create an account-level and project-level capability host, the Agent Service automatically uses Microsoft-managed Azure resources for:
 - Thread storage (conversation history)
 - File storage (uploaded documents) 
 - Vector search (embeddings and retrieval)
@@ -44,7 +44,7 @@ When you create capability hosts at both the Account and Project levels, all age
 
 Capability hosts follow a hierarchy where more specific configurations override broader ones:
 
-1. **Service defaults** (Microsoft-managed) - Used when no capability host is configured
+1. **Service defaults** (Microsoft-managed search and storage) - Used when no capability host is configured
 2. **Account-level capability host** - Provides shared defaults for all projects under the account
 3. **Project-level capability host** - Overrides account-level and service defaults for that specific project 
 
@@ -103,6 +103,8 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 {
   "properties": {
     "capabilityHostKind": "Agents",
+
+    // Optional: define shared BYO resources for every project. All foundry projects under this account will uses these Azure resources  
     "threadStorageConnections": ["shared-cosmosdb-connection"],
     "vectorStoreConnections": ["shared-ai-search-connection"],
     "storageConnections": ["shared-storage-connection"]
