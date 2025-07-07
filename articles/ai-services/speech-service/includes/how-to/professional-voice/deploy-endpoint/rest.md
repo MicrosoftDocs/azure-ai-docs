@@ -5,14 +5,14 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 12/1/2023
+ms.date: 5/19/2025
 ms.custom: include
 ---
 
-After you've successfully created and [trained](../../../../professional-voice-train-voice.md) your voice model, you deploy it to a custom neural voice endpoint. 
+After you've successfully created and [trained](../../../../professional-voice-train-voice.md) your voice model, you deploy it to a custom voice endpoint. 
 
 > [!NOTE]
-> You can create up to 50 endpoints with a standard (S0) Speech resource, each with its own custom neural voice.
+> You can create up to 50 endpoints with a standard (S0) Speech resource, each with its own custom voice.
 
 ## Add a deployment endpoint
 
@@ -63,7 +63,7 @@ You use the endpoint `Operation-Location` in subsequent API requests to [suspend
 
 ## Use your custom voice
 
-To use your custom neural voice, you must specify the voice model name, use the custom URI directly in an HTTP request, and use the same Speech resource to pass through the authentication of the text to speech service.
+To use your custom voice, you must specify the voice model name, use the custom URI directly in an HTTP request, and use the same Speech resource to pass through the authentication of the text to speech service.
 
 The custom endpoint is functionally identical to the standard endpoint that's used for text to speech requests. 
 
@@ -165,7 +165,7 @@ Once you've updated your voice model to the latest engine version, or if you wan
 
 ## Next steps
 
-- Learn more about custom neural voice in the [overview](../../../../custom-neural-voice.md).
+- Learn more about custom voice in the [overview](../../../../custom-neural-voice.md).
 - Learn more about Speech Studio in the [overview](../../../../speech-studio-overview.md).
 
 

@@ -7,7 +7,7 @@ ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/20/2024
+ms.date: 3/10/2025
 ms.reviewer: chlandsi
 ms.custom: devx-track-js, devx-track-python, linux-related-content
 #Customer intent: As a developer, I want to learn how to select an audio input device in the Speech SDK so that I can configure the audio input for my speech-enabled application.
@@ -365,7 +365,7 @@ For example, the UID for the built-in microphone is `BuiltInMicrophoneDevice`.
 
 ## Audio device IDs on iOS
 
-Audio device selection with the Speech SDK isn't supported on iOS. Apps that use the SDK can influence audio routing through the [`AVAudioSession`](https://developer.apple.com/documentation/avfoundation/avaudiosession?language=objc) Framework.
+Audio device selection with the Speech SDK isn't supported on iOS. Apps that use the SDK can influence audio routing through the [`AVAudioSession`](https://developer.apple.com/documentation/avfoundation?language=objc) Framework.
 
 For example, the instruction
 

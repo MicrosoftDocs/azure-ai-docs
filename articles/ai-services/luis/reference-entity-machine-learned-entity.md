@@ -2,14 +2,13 @@
 title: Machine-learning entity type - LUIS
 titleSuffix: Azure AI services
 description: The machine-learning entity is the preferred entity for building LUIS applications.
-#services: cognitive-services
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
 ms.topic: reference
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 # Machine-learning entity
 

@@ -2,7 +2,6 @@
 title: What's new in Azure AI Vision?
 titleSuffix: Azure AI services
 description: Stay up to date on recent releases and updates to Azure AI Vision.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
@@ -10,8 +9,9 @@ ms.custom:
   - build-2023
   - ignite-2023
 ms.topic: whats-new
-ms.date: 03/11/2024
+ms.date: 06/30/2025
 ms.collection: ce-skilling-fresh-tier2
+ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 
@@ -19,7 +19,19 @@ ms.author: pafarley
 
 Learn what's new in Azure AI Vision. Check this page to stay up to date with new features, enhancements, fixes, and documentation updates. 
 
+## February 2025
 
+### Face liveness client-side SDK 1.1.0 release
+
+Liveness client-side SDK released [1.1.0](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases/tag/1.1.0)
+
+This update includes a few improvements:
+
+* Increased timeout for the head-turn scenario to provide end-users more time to complete the flow.
+* Fixes to iOS and Android SDKs to resolve compatibility issues with Microsoft Intune Mobile Application Management SDKs.
+* Security related fixes/improvements.
+
+For more information, see the [SDK release notes](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases/tag/1.1.0).
 
 ## January 2025
 
@@ -39,7 +51,7 @@ For more information, see the [SDK release notes](https://github.com/Azure-Sampl
 
 ### Image Analysis 4.0 Preview API deprecation
 
-On March 31, 2025, the Image Analysis 4.0 Preview APIs will be retired. Before that date, you'll need to migrate your Azure Image Analysis workloads to the [Image Analysis 4.0 GA ](/rest/api/computervision/operation-groups?view=rest-computervision-v4.0%20(2024-02-01))API.
+On March 31, 2025, the Image Analysis 4.0 Preview APIs will be retired. Before that date, you need to migrate your Azure Image Analysis workloads to the [Image Analysis 4.0 GA ](/rest/api/computervision/operation-groups?view=rest-computervision-v4.0%20(2024-02-01))API.
 
 We encourage you to make the transition sooner to gain access to improvements such as multimodal embedding, synchronous OCR, people detection, image tagging, smart cropping, caption, dense caption, and image object detection.
 These Image Analysis 4.0 preview APIs will be retired on March 31, 2025:
@@ -201,7 +213,7 @@ Vision Studio provides you with a platform to try several service features, and 
 
 #### Limited Access policy
 
-* As a part of aligning Face to the updated Responsible AI Standard, a new [Limited Access policy](https://aka.ms/AAh91ff) has been implemented for the Face API and Azure AI Vision. Existing customers have one year to apply and receive approval for continued access to the facial recognition services based on their provided use cases. See details on Limited Access for Face [here](/legal/cognitive-services/computer-vision/limited-access-identity?context=/azure/ai-services/computer-vision/context/context) and for Azure AI Vision [here](/legal/cognitive-services/computer-vision/limited-access?context=/azure/ai-services/computer-vision/context/context).
+* As a part of aligning Face to the updated Responsible AI Standard, a new [Limited Access policy](https://aka.ms/AAh91ff) has been implemented for the Face API and Azure AI Vision. Existing customers have one year to apply and receive approval for continued access to the facial recognition services based on their provided use cases. See details on Limited Access for Face [here](/azure/ai-foundry/responsible-ai/computer-vision/limited-access-identity).
 
 ### Azure AI Vision 3.2-preview deprecation
 

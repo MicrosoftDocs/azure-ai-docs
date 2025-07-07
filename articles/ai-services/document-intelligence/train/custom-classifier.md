@@ -6,7 +6,7 @@ author: vkurpad
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 11/19/2024
+ms.date: 02/27/2025
 ms.author: lajanuar
 ms.custom:
   - references_regions
@@ -29,7 +29,7 @@ monikerRange: '>=doc-intel-3.1.0'
 
 > [!IMPORTANT]
 >
-> * The `v4.0 2024-11-30 (GA)` API, custom classification model won't split documents by default during the analyzing process.
+> * The `v4.0 2024-11-30 (GA)` API, custom classification model doesn't split documents by default during the analyzing process.
 > * You need to explicitly set the ``splitMode`` property to auto to preserve the behavior from previous releases. The default for `splitMode` is `none`.
 > * If your input file contains multiple documents, you need to enable splitting by setting the ``splitMode`` to ``auto``.
 
@@ -43,8 +43,8 @@ Custom classification models are deep-learning-model types that combine layout a
 
 > [!NOTE]
 >
-> * Custom classification v4.0 2024-11-30 (GA) models support incremental training. You can add new samples to existing classes or add new classes by referencing an existing classifier.
-> * Custom classification v3.1 2023-07-31 (GA) model does not support model copy. To use the model copy feature, please train the model using the latest v4.0 GA model.
+> * Custom classification v4.0 `2024-11-30` (GA) models support incremental training. You can add new samples to existing classes or add new classes by referencing an existing classifier.
+> * Custom classification v3.1 `2023-07-31` (GA) model doesn't support model copy. To use the model copy feature, train the model using the latest v4.0 (GA) model.
 
 Custom classification models can analyze a single- or multi-file documents to identify if any of the trained document types are contained within an input file. Here are the currently supported scenarios:
 
@@ -65,7 +65,7 @@ With custom models, you need to maintain access to the training dataset to updat
 
 > [!IMPORTANT]
 >
-> Incremental training is only supported with models trained with the same API version. If you are trying to extend a model, use the API version the original model was trained with to extend the model. Incremental training is only supported with API version **v4.0 2024-11-30 (GA)** or later.
+> Incremental training is only supported with models trained with the same API version. If you're trying to extend a model, use the API version the original model was trained with to extend the model. Incremental training is only supported with API version **v4.0 2024-11-30 (GA)** or later.
 
 Incremental training requires that you provide the original model ID as the `baseClassifierId`. See [incremental training](../concept/incremental-classifier.md) to learn more about how to use incremental training.
 
@@ -153,7 +153,7 @@ When using the REST API, if you organize your documents by folders, you can use 
 
 ```json
 
-https://{endpoint}/documentintelligence/documentClassifiers:build?api-version=2024-02-29-preview
+https://{endpoint}/documentintelligence/documentClassifiers:build?api-version=2024-11-30
 
 {
   "classifierId": "demo2.1",
@@ -262,7 +262,7 @@ As an example, the file list `car-maint.jsonl` contains the following files.
 ## Overwriting a model
 
 > [!NOTE]
-> The v4.0 2024-11-30 (GA) custom classification model supports overwriting a model in-place.
+> The v4.0 `2024-11-30` (GA) custom classification model supports overwriting a model in-place.
 
 You can now update the custom classification in-place. Directly overwriting the model would lose you the ability to compare model quality before deciding to replace the existing model. Model overwriting is allowed when the `allowOverwrite` property is explicitly specified in the request body. It's impossible to recover the overwritten, original model once this action is performed.
 
@@ -280,7 +280,7 @@ You can now update the custom classification in-place. Directly overwriting the 
 ## Copy a model
 
 > [!NOTE]
-> The custom classification v4.0 2024-11-30 (GA) model supports copying a model to and from any of the following regions:
+> The custom classification v4.0 `2024-11-30` (GA) model supports copying a model to and from any of the following regions:
 >
 > * **East US**
 > * **West US2**
@@ -350,7 +350,7 @@ Analyze an input file with the document classification model.
 :::moniker range="doc-intel-4.0.0"
 
 ```json
-https://{endpoint}/documentintelligence/documentClassifiers/{classifier}:analyze?api-version=2024-02-29-preview
+https://{endpoint}/documentintelligence/documentClassifiers/{classifier}:analyze?api-version=2024-11-30
 ```
 
 The `v4.0 2024-11-30 (GA)` API enables you to specify pages to analyze from the input document using the `pages` query parameter in the request.

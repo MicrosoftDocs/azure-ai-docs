@@ -9,7 +9,7 @@ ms.reviewer: lebaro
 ms.service: azure-machine-learning
 ms.subservice: compute
 ms.topic: how-to
-ms.date: 1/18/2023
+ms.date: 03/10/2025
 # Customer intent: As a data scientist, I want to manage the notebook and terminal sessions on my compute instance for optimal performance.
 ---
 
@@ -17,7 +17,7 @@ ms.date: 1/18/2023
 
 Notebook and terminal sessions run on the compute and maintain your current working state.
 
-When you reopen a notebook, or reconnect to a terminal session, you can reconnect to the previous session state (including command history, execution history, and defined variables). However, too many active sessions may slow down the performance of your compute. With too many active sessions, you may find your terminal or notebook cell typing lags, or terminal or notebook command execution may feel slower than expected.
+When you reopen a notebook, or reconnect to a terminal session, you can reconnect to the previous session state (including command history, execution history, and defined variables). However, too many active sessions might slow down the performance of your compute. With too many active sessions, you may find your terminal or notebook cell typing lags, or terminal or notebook command execution may feel slower than expected.
 
 Use the session management panel in Azure Machine Learning studio to help you manage your active sessions and optimize the performance of your compute instance. Navigate to this session management panel from the compute toolbar of either a terminal tab or a notebook tab.
 
@@ -30,7 +30,7 @@ Use the session management panel in Azure Machine Learning studio to help you ma
 
 In the session management panel, select a linked notebook name in the notebook sessions section to reopen a notebook with its previous state.
 
-Notebook sessions are kept active when you close a notebook tab in the Azure Machine Learning studio. So, when you reopen a notebook you'll have access to previously defined variables and execution state - in this case, you're benefitting from the active notebook session.
+Notebook sessions are kept active when you close a notebook tab in the Azure Machine Learning studio. So, when you reopen a notebook you have access to previously defined variables and execution state - in this case, you're benefitting from the active notebook session.
 
 However, keeping too many active notebook sessions can slow down the performance of your compute. So, you should use the session management panel to shut down any notebook sessions you no longer need.
 

@@ -2,7 +2,6 @@
 title: Mitigate latency and improve Face service performance
 titleSuffix: Azure AI services
 description: Learn how to mitigate network latency and improve service performance when using the Azure AI Face service to enhance user experience.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
@@ -72,7 +71,6 @@ The quality of the input images affects both the accuracy and the latency of the
 
 To achieve the optimal balance between accuracy and speed, follow these tips to optimize your input data. 
 - For face detection and recognition operations, see [input data for face detection](../concept-face-detection.md#input-requirements) and [input data for face recognition](../concept-face-recognition.md#input-requirements).
-- For liveness detection, see the [tutorial](../Tutorials/liveness.md#select-a-reference-image). 
 
 
 ## Call APIs in parallel when possible

@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: conceptual
-ms.date: 8/20/2024
+ms.date: 02/25/2025
 ms.author: lajanuar
 ---
 
@@ -21,6 +21,7 @@ The following table provides links to language support reference articles by sup
 | Azure AI Language support | Description |
 | --- | --- |
 |![Content Moderator icon](~/reusable-content/ce-skilling/azure/media/ai-services/content-moderator.svg)</br>[Content Moderator](./content-moderator/language-support.md) (retired) | Detect potentially offensive or unwanted content. |
+|![Content Understanding](~/reusable-content/ce-skilling/azure/media/ai-services/content-understanding.svg)</br>[Content Understanding](./content-understanding/language-region-support.md)|Process, analyze, and transform multimodal content including document, image, video, and audio input files.|
 |![Document Intelligence icon](~/reusable-content/ce-skilling/azure/media/ai-services/document-intelligence.svg)</br>[Document Intelligence](./document-intelligence/language-support.md) | Turn documents into intelligent data-driven solutions. |
 |![Immersive Reader icon](~/reusable-content/ce-skilling/azure/media/ai-services/immersive-reader.svg)</br>[Immersive Reader](./immersive-reader/language-support.md) | Help users read and comprehend text. |
 |![Language icon](~/reusable-content/ce-skilling/azure/media/ai-services/language.svg)</br>[Language service](./language-service/concepts/language-support.md) | Build apps with industry-leading natural language understanding capabilities. |
@@ -42,7 +43,9 @@ These Azure AI services are language agnostic and don't have limitations based o
 |![Face icon](~/reusable-content/ce-skilling/azure/media/ai-services/face.svg)</br>[Face](./computer-vision/overview-identity.md) | Detect and identify people and emotions in images. |
 |![Personalizer icon](~/reusable-content/ce-skilling/azure/media/ai-services/personalizer.svg)</br>[Personalizer](./personalizer/index.yml) | Create rich, personalized experiences for users. |
 
-## See also
+## Related content
 
 * [What are Azure AI services?](./what-are-ai-services.md)
-* [How to create an Azure AI services resource](multi-service-resource.md?pivots=azportal)
+
+* [What  is Azure AI Foundry?](../ai-foundry/model-inference/overview.md)
+

@@ -6,7 +6,7 @@ ms.topic: how-to
 manager: nitinme
 ms.author: lajanuar
 author: laujan
-ms.date: 02/10/2025
+ms.date: 04/14/2025
 ---
 
 # Create SAS tokens for your storage containers
@@ -17,7 +17,7 @@ In this article, you learn how to create user delegation, shared access signatur
 
 >[!TIP]
 >
-> [Managed identities](create-use-managed-identities.md) provide an alternate method for you to grant access to your storage data without the need to include SAS tokens with your HTTP requests. *See*, [Managed identities for Document Translation](create-use-managed-identities.md).
+> [Managed identities](create-use-managed-identities.md) provide an alternate method for you to grant access to your storage data without the need to include SAS tokens with your HTTP requests. *See*, [Managed identities for Document translation](create-use-managed-identities.md).
 >
 > * Managed identities can grant access to any resource that supports Microsoft Entra authentication, including your own applications.
 > * Managed identities replace the requirement for you to include shared access signature tokens (SAS) with your source and target URLs.
@@ -102,7 +102,7 @@ Azure Storage Explorer is a free standalone app that enables you to easily manag
 
 * You need the [**Azure Storage Explorer**](/azure/vs-azure-tools-storage-manage-with-storage-explorer) app installed in your Windows, macOS, or Linux development environment.
 
-* After the Azure Storage Explorer app is installed, [connect it to the storage account](/azure/vs-azure-tools-storage-manage-with-storage-explorer?tabs=windows#connect-to-a-storage-account-or-service) you're using for Document Translation. Follow these steps to create tokens for a storage container or specific blob file:
+* After the Azure Storage Explorer app is installed, [connect it to the storage account](/azure/vs-azure-tools-storage-manage-with-storage-explorer?tabs=windows#connect-to-a-storage-account-or-service) you're using for Document translation. Follow these steps to create tokens for a storage container or specific blob file:
 
 ### [SAS tokens for storage containers](#tab/Containers)
 
@@ -184,5 +184,5 @@ That's it! You just learned how to create SAS tokens to authorize how clients ac
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Get Started with Document Translation](../how-to-guides/use-rest-api-programmatically.md)
+> [Get Started with Document translation](../how-to-guides/use-rest-api-programmatically.md)
 >

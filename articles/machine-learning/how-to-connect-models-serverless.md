@@ -1,7 +1,7 @@
 ---
-title: Consume deployed serverless API endpoints from a different workspace
+title: Consume deployed standard deployments from a different workspace
 titleSuffix: Azure Machine Learning
-description: Learn how to consume a serverless API endpoint from a different workspace than the one where it was deployed. 
+description: Learn how to consume a standard deployment from a different workspace than the one where it was deployed. 
 manager: scottpolly
 ms.service: azure-machine-learning
 ms.subservice: inferencing
@@ -16,13 +16,13 @@ ms.custom:
  - serverless
 ---
 
-# Consume serverless API endpoints from a different workspace
+# Consume standard deployments from a different workspace
 
-In this article, you learn how to configure an existing serverless API endpoint in a different workspace than the one where it was deployed.
+In this article, you learn how to configure an existing standard deployment in a different workspace than the one where it was deployed.
 
-Certain models in the model catalog can be deployed as serverless APIs. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription.
+Certain models in the model catalog can be deployed as standard deployments. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription.
 
-The need to consume a serverless API endpoint in a different workspace than the one that was used to create the deployment might arise in situations such as these:
+The need to consume a standard deployment in a different workspace than the one that was used to create the deployment might arise in situations such as these:
 
 - You want to centralize your deployments in a given workspace and consume them from different workspaces in your organization.
 - You need to deploy a model in a workspace in a particular Azure region where serverless deployment for that model is available. However, you need to consume it from another region, where serverless deployment isn't available for the particular models.
@@ -33,7 +33,7 @@ The need to consume a serverless API endpoint in a different workspace than the 
 
 - An [Azure Machine Learning workspace](quickstart-create-resources.md) where you want to consume the existing deployment.
 
-- A model [deployed to a serverless API endpoint](how-to-deploy-models-serverless.md). This article assumes that you previously deployed the **Meta-Llama-3-8B-Instruct** model. To learn how to deploy this model as a serverless API, see [Deploy models as serverless APIs](how-to-deploy-models-serverless.md).
+- A model [deployed to a standard deployment](how-to-deploy-models-serverless.md). This article assumes that you previously deployed the **Meta-Llama-3-8B-Instruct** model. To learn how to deploy this model as a standard deployment, see [Deploy models as standard deployments](how-to-deploy-models-serverless.md).
 
 - You need to install the following software to work with Azure Machine Learning:
 
@@ -78,7 +78,7 @@ The need to consume a serverless API endpoint in a different workspace than the 
     from azure.ai.ml.entities import ServerlessEndpoint, ServerlessConnection
     ```
 
-## Create a serverless API endpoint connection
+## Create a standard deployment connection
 
 Follow these steps to create a connection:
 
@@ -116,7 +116,7 @@ Follow these steps to create a connection:
 
     1. Select **Endpoints** from the left sidebar.
 
-    1. Select the **Serverless endpoints** tab to display the serverless API endpoints.
+    1. Select the **Serverless endpoints** tab to display the standard deployments.
 
     1. Select the endpoint you want to connect to.
 
@@ -145,7 +145,7 @@ Follow these steps to create a connection:
 
     1. Go to the workspace where the connection needs to be created to.
 
-    1. Go to the **Manage** section in the left navigation bar and select **Connections**.
+    1. Go to the **Manage** section in the left pane and select **Connections**.
 
     1. Select **Create**.
 
@@ -190,7 +190,7 @@ Follow these steps to create a connection:
 
 1. To validate that the connection is working:
 
-    1. From the left navigation bar of Azure Machine Learning studio, go to **Authoring** > **Prompt flow**.
+    1. From the left pane of Azure Machine Learning studio, go to **Authoring** > **Prompt flow**.
 
     1. Select **Create** to create a new flow.
 
@@ -209,4 +209,4 @@ Follow these steps to create a connection:
 ## Related content
 
 - [Model Catalog and Collections](concept-model-catalog.md)
-- [Deploy models as serverless API endpoints](how-to-deploy-models-serverless.md)
+- [Deploy models as standard deployments](how-to-deploy-models-serverless.md)

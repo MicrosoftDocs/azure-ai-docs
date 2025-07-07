@@ -2,7 +2,7 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 9/12/2024
+ms.date: 3/10/2025
 ms.author: eur
 ---
 
@@ -43,7 +43,7 @@ Before you can do anything, you need to [install the Speech SDK](~/articles/ai-s
             <dependency>
             <groupId>com.microsoft.cognitiveservices.speech</groupId>
             <artifactId>client-sdk</artifactId>
-            <version>1.42.0</version>
+            <version>1.43.0</version>
             </dependency>
         </dependencies>
     </project>

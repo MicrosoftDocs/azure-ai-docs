@@ -109,8 +109,6 @@ The following table lists common and recommended alert rules for Azure AI Search
 - [Monitor Azure resources with Azure Monitor](/azure/azure-monitor/essentials/monitor-azure-resource)
 - [Monitor queries](search-monitor-queries.md)
 - [Monitor indexer-based indexing](search-howto-monitor-indexers.md)
-- [Monitor client-side interactions](search-traffic-analytics.md)
 - [Visualize resource logs](search-monitor-logs-powerbi.md)
 - [Analyze performance in Azure AI Search](search-performance-analysis.md)
-- [Performance benchmarks](performance-benchmarks.md)
 - [Tips for better performance](search-performance-tips.md)

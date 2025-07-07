@@ -111,7 +111,7 @@ Component parameters for real-life interventions use causal analysis. Do the fol
 1. **Target feature (required)**: Choose the outcome you want the causal effects to be calculated for.
 1. **Treatment features (required)**: Choose one or more features that you're interested in changing ("treating") to optimize the target outcome.
 1. **Categorical features**: Indicate which features are categorical to properly render them as categorical values in the dashboard UI. This field is pre-loaded for you based on your dataset metadata.
-1. **Advanced settings**: Specify additional parameters for your causal analysis, such as heterogenous features (that is, additional features to understand causal segmentation in your analysis, in addition to your treatment features) and which causal model you want to be used.
+1. **Advanced settings**: Specify additional parameters for your causal analysis, such as heterogeneous features (that is, additional features to understand causal segmentation in your analysis, in addition to your treatment features) and which causal model you want to be used.
 
 ## Configure your experiment
 
@@ -137,7 +137,7 @@ To learn how to view and use your Responsible AI dashboard see, [Use the Respons
 
 Once you've created a dashboard, you can use a no-code UI in Azure Machine Learning studio to customize and generate a Responsible AI scorecard. This enables you to share key insights for responsible deployment of your model, such as fairness and feature importance, with non-technical and technical stakeholders. Similar to creating a dashboard, you can use the following steps to access the scorecard generation wizard:
 
-- Navigate to the Models tab from the left navigation bar in Azure Machine Learning studio.
+- Navigate to the Models tab from the left pane in Azure Machine Learning studio.
 - Select the registered model you'd like to create a scorecard for and select the **Responsible AI** tab.
 - From the top panel, select **Create Responsible AI insights (preview)** and then **Generate new PDF scorecard**.
 

@@ -21,7 +21,7 @@ The tool is based on [Speech Synthesis Markup Language (SSML)](speech-synthesis-
 - No-code approach: You can use the Audio Content Creation tool for text to speech synthesis without writing any code. The output audio might be the final deliverable that you want. For example, you can use the output audio for a podcast or a video narration. 
 - Developer-friendly: You can listen to the output audio and adjust the SSML to improve speech synthesis. Then you can use the [Speech SDK](speech-sdk.md) or [Speech CLI](spx-basics.md) to integrate the SSML into your applications. 
 
-You have easy access to a broad portfolio of [languages and voices](language-support.md?tabs=tts). These voices include state-of-the-art prebuilt neural voices and your custom neural voice, if you built one.
+You have easy access to a broad portfolio of [languages and voices](language-support.md?tabs=tts). These voices include state-of-the-art standard voices and your custom voice, if you built one.
 
 ## Get started
 
@@ -37,7 +37,7 @@ To work with Audio Content Creation, you need a [Microsoft account](https://acco
 
 ### Step 2: Create a Speech resource
 
-After you sign up for the Azure account, you need to create a Speech resource in your Azure account to access Speech services. Create a Speech resource on the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesSpeechServices). For more information, see [Create an Azure AI services resource](../multi-service-resource.md?pivots=azportal).
+After you sign up for the Azure account, you need to create a Speech resource in your Azure account to access Speech services. Create a Speech resource on the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesSpeechServices). For more information, see [Create an AI Foundry resource](../multi-service-resource.md?pivots=azportal).
 
 It takes a few moments to deploy your new Speech resource. After the deployment is complete, you can start using the Audio Content Creation tool.
 
@@ -71,10 +71,10 @@ Each step in the preceding diagram is described here:
 1. Choose the Speech resource you want to work with.
 
 1. [Create an audio tuning file](#create-an-audio-tuning-file) by using plain text or SSML scripts. Enter or upload your content into Audio Content Creation.
-1. Choose the voice and the language for your script content. Audio Content Creation includes all of the [prebuilt text to speech voices](language-support.md?tabs=tts). You can use prebuilt neural voices or a custom neural voice.
+1. Choose the voice and the language for your script content. Audio Content Creation includes all of the [standard text to speech voices](language-support.md?tabs=tts). You can use standard voices or a custom voice.
 
    > [!NOTE]
-   > Gated access is available for custom neural voice, which allows you to create high-definition voices that are similar to natural-sounding speech. For more information, see [Gating process](./text-to-speech.md).
+   > Gated access is available for custom voice, which allows you to create high-definition voices that are similar to natural-sounding speech. For more information, see [Gating process](./text-to-speech.md).
 
 1. Select the content you want to preview, and then select **Play** (via the triangle icon) to preview the default synthesis output. 
 
@@ -174,13 +174,13 @@ The users you grant access to need to set up a [Microsoft account](https://accou
 
 To add users to a Speech resource so that they can use Audio Content Creation, do the following:
 
-1. In the [Azure portal](https://portal.azure.com/), select **All services** from the left navigation pane, and then search for **Azure AI services** or **Speech**.
+1. In the [Azure portal](https://portal.azure.com/), select **All services** from the left pane, and then search for **Azure AI services** or **Speech**.
 1. Select your Speech resource.
 
    > [!NOTE]
    > You can also set up Azure RBAC for whole resource groups, subscriptions, or management groups. Do this by selecting the desired scope level and then navigating to the desired item (for example, selecting **Resource groups** and then selecting your resource group).
 
-1. Select **Access control (IAM)** on the left navigation pane.
+1. Select **Access control (IAM)** on the left pane.
 1. Select **Add** > **Add role assignment**.
 1. On the **Role** tab on the next screen, select a role (such as **Owner**) that you want to add.
 1. On the **Members** tab, enter a user's email address and select the user's name in the directory. The email address must be linked to a Microsoft account that's trusted by Microsoft Entra ID. Users can easily sign up for a [Microsoft account](https://account.microsoft.com/account) by using their personal email address. 

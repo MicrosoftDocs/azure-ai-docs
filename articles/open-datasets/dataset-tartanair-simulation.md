@@ -41,7 +41,7 @@ This project is released under the MIT License. Review the [License file](https:
 ## Additional information
 View the official [TartanAir website](https://theairlab.org/tartanair-dataset/) or view the original [research paper](https://arxiv.org/abs/2003.14338).
 
-Email tartanair@hotmail.com if you have any questions about the data source. You can also reach out to contributers on the associated [GitHub](https://github.com/microsoft/AirSim).
+Email tartanair@hotmail.com if you have any questions about the data source. You can also reach out to contributors on the associated [GitHub](https://github.com/microsoft/AirSim).
 
 
 Citation
@@ -290,7 +290,7 @@ def _calculate_angle_distance_from_du_dv(du, dv, flagDegree=False):
 
 def flow2vis(flownp, maxF=500.0, n=8, mask=None, hueMax=179, angShift=0.0): 
     """
-    Show a optical flow field as the KITTI dataset does.
+    Show an optical flow field as the KITTI dataset does.
     Some parts of this function is the transform of the original MATLAB code flow_to_color.m.
     """
 

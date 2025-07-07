@@ -7,7 +7,7 @@ ms.author: sgilley
 ms.reviewer: ratanase
 ms.service: azure-machine-learning
 ms.subservice: training
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 01/29/2024
 ms.custom: sdkv2, update-code1
 ---

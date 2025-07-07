@@ -8,7 +8,7 @@ ms.author: larryfr
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.reviewer: roastala
-ms.date: 09/30/2022
+ms.date: 06/13/2025
 ms.topic: how-to
 ms.custom: UpdateFrequency5, devx-track-python, devx-track-azurecli, sdkv1, build-2023
 ---
@@ -16,6 +16,8 @@ ms.custom: UpdateFrequency5, devx-track-python, devx-track-azurecli, sdkv1, buil
 # Set up a Python development environment for Azure Machine Learning (v1)
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 Learn how to configure a Python development environment for Azure Machine Learning.
 

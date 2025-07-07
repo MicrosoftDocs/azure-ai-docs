@@ -16,6 +16,8 @@ ms.date: 09/09/2024
 
 # Deploy a model to an Azure Kubernetes Service cluster with v1
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 > [!IMPORTANT]
 > This article explains how to use the Azure Machine Learning CLI (v1) and Azure Machine Learning SDK for Python (v1) to deploy a model. For the recommended approach for v2, see [Deploy and score a machine learning model by using an online endpoint](/azure/machine-learning/how-to-deploy-managed-online-endpoints).
 
@@ -354,7 +356,7 @@ To enable token authentication, set the `token_auth_enabled=True` parameter when
 deployment_config = AksWebservice.deploy_configuration(cpu_cores=1, memory_gb=1, token_auth_enabled=True)
 ```
 
-If token authentication is enabled, you can use the `get_token` method to retrieve a JWT token and that token's expiration time:
+If token authentication is enabled, you can use the `get_token` method to retrieve a JWT and that token's expiration time:
 
 ```python
 token, refresh_by = service.get_token()

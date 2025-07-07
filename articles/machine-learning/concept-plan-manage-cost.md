@@ -8,8 +8,9 @@ ms.custom: subject-cost-optimization, build-2023
 ms.reviewer: nigup
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.topic: conceptual
-ms.date: 03/26/2024
+ms.topic: concept-article
+ms.date: 03/21/2025
+# customer intent: Understand the costs associated with Azure Machine Learning and how to manage them.
 ---
 
 # Plan to manage costs for Azure Machine Learning
@@ -24,10 +25,9 @@ For more information on optimizing costs, see [Manage and optimize Azure Machine
 
 ## Prerequisites
 
-Cost analysis in Microsoft Cost Management supports most Azure account types, but not all of them. To view the full list of supported account types, see [Understand Cost Management data](/azure/cost-management-billing/costs/understand-cost-mgt-data?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn). 
+* Cost analysis in Microsoft Cost Management supports most Azure account types, but not all of them. To view the full list of supported account types, see [Understand Cost Management data](/azure/cost-management-billing/costs/understand-cost-mgt-data?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn). 
 
-
-To view cost data, you need at least *read* access for an Azure account. For information about assigning access to Cost Management data, see [Assign access to data](/azure/cost-management-billing/costs/assign-access-acm-data?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
+* To view cost data, you need at least *read* access for an Azure account. For information about assigning access to Cost Management data, see [Assign access to data](/azure/cost-management-billing/costs/assign-access-acm-data?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
 
 ## Estimate costs before using Azure Machine Learning
 
@@ -69,11 +69,11 @@ Before you delete an Azure Machine Learning workspace in the Azure portal or wit
 
 Each VM is billed per hour that it runs. Cost depends on VM specifications. VMs that run but don't actively work on a dataset are still charged via the load balancer. For each compute instance, one load balancer is billed per day. Every 50 nodes of a compute cluster have one standard load balancer billed. Each load balancer is billed around $0.33/day. To avoid load balancer costs on stopped compute instances and compute clusters, delete the compute resource.
 
-Compute instances also incur P10 disk costs even in stopped state because any user content saved there persists across the stopped state similar to Azure VMs. We're working on making the OS disk size/ type configurable to better control costs. For Azure Virtual Networks, one virtual network is billed per subscription and per region. Virtual networks can't span regions or subscriptions. Setting up private endpoints in a virtual network might also incur charges. If your virtual network uses an Azure Firewall, this might also incur charges. Bandwidth charges reflect usage; the more data transferred, the greater the charge. 
+Compute instances also incur P10 disk costs even in stopped state because any user content saved there persists across the stopped state similar to Azure VMs. We're working on making the OS disk size/ type configurable to better control costs. For Azure Virtual Networks, one virtual network is billed per subscription and per region. Virtual networks can't span regions or subscriptions. Setting up private endpoints in a virtual network might also incur charges. If your virtual network uses an Azure Firewall, it might also incur charges. Bandwidth charges reflect usage; the more data transferred, the greater the charge. 
 
 > [!TIP]
 > - Using an Azure Machine Learning managed virtual network is free. However, some features of the managed network rely on Azure Private Link (for private endpoints) and Azure Firewall (for FQDN rules), which incur charges. For more information, see [Managed virtual network isolation](how-to-managed-network.md#pricing).
-> - Managed online endpoint uses VMs for the deployments. If you submitted request to create an online deployment and it failed, it may have passed the stage when compute is created. In that case, the failed deployment would incur charges. If you finished debugging or investigation for the failure, you may delete the failed deployments to save the cost.
+> - Managed online endpoint uses VMs for the deployments. If you submitted request to create an online deployment and it failed, it might have passed the stage when compute is created. In that case, the failed deployment would incur charges. If you finished debugging or investigation for the failure, delete the failed deployments to save the cost.
 
 ### Costs might accrue after resource deletion
 
@@ -96,7 +96,7 @@ If you create Azure Kubernetes Service (AKS) in your workspace, or if you attach
 
 ### Use Azure Prepayment credit with Azure Machine Learning
 
-You can pay for Azure Machine Learning charges by using your Azure Prepayment credit. However, you can't use Azure Prepayment credit to pay for third-party products and services, including those from the Azure Marketplace.
+You can pay for Azure Machine Learning charges by using your Azure Prepayment credit. However, you can't use Azure Prepayment credit to pay for third-party products and services, including ones from Azure Marketplace.
 
 ## Review estimated costs in the Azure portal
 
@@ -143,8 +143,6 @@ Here's an example that shows costs for just Azure Machine Learning.
 
 :::image type="content" source="media/concept-plan-manage-cost/vm-specific-cost.png" alt-text="Screenshot showing accumulated costs for ServiceName." lightbox="media/concept-plan-manage-cost/vm-specific-cost.png" :::
 
-<!-- Note to Azure service writer: The image shows an example for Azure Storage. Replace the example image with one that shows costs for your service. -->
-
 In the preceding example, you see the current cost for the service. Costs by Azure regions (locations) and Azure Machine Learning costs by resource group are also shown. From here, you can explore costs on your own.
 
 ## Create budgets
@@ -177,7 +175,7 @@ Use the following tips to help you manage and optimize your compute resource cos
 
 For more information, see [Manage and optimize Azure Machine Learning costs](how-to-manage-optimize-cost.md).
 
-## Next steps
+## Related content
 
 - [Manage and optimize Azure Machine Learning costs](how-to-manage-optimize-cost.md)
 - [View managed online endpoint costs](how-to-view-online-endpoints-costs.md)

@@ -5,7 +5,7 @@ description: A printable Machine Learning Algorithm Cheat Sheet helps you choose
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: training
-ms.topic: conceptual
+ms.topic: concept-article
 ms.reviewer: None
 author: lgayhardt
 ms.author: lagayhar
@@ -13,6 +13,8 @@ ms.date: 08/29/2024
 adobe-target: true
 ---
 # Machine Learning Algorithm Cheat Sheet for Azure Machine Learning designer
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 The **Azure Machine Learning Algorithm Cheat Sheet** helps you choose the right algorithm from the designer for a predictive analytics model.
 

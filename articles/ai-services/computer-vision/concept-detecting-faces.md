@@ -2,7 +2,6 @@
 title: Face detection - Azure AI Vision
 titleSuffix: Azure AI services
 description: Learn concepts related to the face detection feature of the Azure AI Vision API.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 

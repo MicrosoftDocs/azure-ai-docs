@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 9/24/2024
+ms.date: 3/10/2025
 ms.author: eur
 #Customer intent: As a developer, I want to learn about data encryption at rest for Speech service.
 ---
@@ -26,7 +26,7 @@ When you use custom speech and custom voice, Speech service might store the foll
 * Speech trace data - only if your turn the trace on for your custom endpoint
 * Uploaded training and test data
 
-By default, your data are stored in Microsoft's storage and your subscription uses Microsoft-managed encryption keys. You also have an option to prepare your own storage account. Access to the store is managed by the Managed Identity, and Speech service can't directly access to your own data, such as speech trace data, customization training data and custom models.
+By default, your data are stored in Microsoft's storage and your Speech resource uses Microsoft-managed encryption keys. You also have an option to prepare your own storage account. Access to the store is managed by the Managed Identity, and Speech service can't directly access to your own data, such as speech trace data, customization training data and custom models.
 
 For more information about Managed Identity, see [What are managed identities](/azure/active-directory/managed-identities-azure-resources/overview).
 

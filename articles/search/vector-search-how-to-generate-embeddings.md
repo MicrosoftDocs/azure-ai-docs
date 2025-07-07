@@ -3,20 +3,20 @@ title: Generate embeddings
 titleSuffix: Azure AI Search
 description: Learn how to generate embeddings for downstream indexing into an Azure AI Search index.
 
-author: farzad528
-ms.author: fsunavala
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 09/19/2024
+ms.date: 06/11/2025
 ---
 
 # Generate embeddings for search queries and documents
 
-Azure AI Search doesn't host vectorization models, so one of your challenges is creating embeddings for query inputs and outputs. You can use any supported embedding model, but this article assumes Azure OpenAI embedding models for the steps.
+Azure AI Search doesn't host embedding models, so one of your challenges is creating vectors for query inputs and outputs. You can use any supported embedding model, but this article assumes Azure OpenAI embedding models for illustration.
 
-We recommend [integrated vectorization](vector-search-integrated-vectorization.md), which provides built-in data chunking and vectorization. Integrated vectorization takes a dependency on indexers, skillsets, and built-in or custom skills that point to a model that executes externally from Azure AI Search.
+We recommend [integrated vectorization](vector-search-integrated-vectorization.md), which provides built-in data chunking and vectorization. Integrated vectorization takes a dependency on indexers, skillsets, and built-in or custom skills that point to a model that executes externally from Azure AI Search. Several built-in skills point to embedding models in Azure AI Foundry, which makes integrated vectorization your easiest solution for solving the embedding challenge.
 
 If you want to handle data chunking and vectorization yourself, we provide demos in the [sample repository](https://github.com/Azure/azure-search-vector-samples/tree/main) that show you how to integrate with other community solutions.
 
@@ -30,7 +30,7 @@ If you want to handle data chunking and vectorization yourself, we provide demos
 
 ## Create resources in the same region
 
-Integrated vectorization requires resources to be in the same region:
+Although integrated vectorization with Azure OpenAI embedding models doesn't require resources to be in the same region, using the same region can improve performance and reduce latency.
 
 1. [Check regions for a text embedding model](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability).
 
@@ -53,7 +53,7 @@ openai.api_base = "https://YOUR-OPENAI-RESOURCE.openai.azure.com"
 openai.api_version = "2024-02-01"
 
 response = openai.Embedding.create(
-    input="How do I use Python in VSCode?",
+    input="How do I use Python in VS Code?",
     engine="text-embedding-ada-002"
 )
 embeddings = response['data'][0]['embedding']
@@ -61,6 +61,18 @@ print(embeddings)
 ```
 
 Output is a vector array of 1,536 dimensions.
+
+## Choose an embedding model in Azure AI Foundry
+
+In the Azure AI Foundry portal, you have the option of creating a search index when you add knowledge to your agent workflow. A wizard guides you through the steps. When asked to provide an embedding model that vectorizes your plain text content, you can use one of the following supported models:
+
++ text-embedding-3-large
++ text-embedding-3-small
++ text-embedding-ada-002
++ Cohere-embed-v3-english
++ Cohere-embed-v3-multilingual
+
+Your model must already be deployed and you must have permission to access it. For more information, see [Deploy AI models in Azure AI Foundry portal](/azure/ai-foundry/concepts/deployments-overview).
 
 ## Tips and recommendations for embedding model integration
 
@@ -80,7 +92,7 @@ Output is a vector array of 1,536 dimensions.
 
 ## Next steps
 
-+ [Understanding embeddings in Azure OpenAI Service](/azure/ai-services/openai/concepts/understand-embeddings)
++ [Understanding embeddings in Azure OpenAI in Azure AI Foundry Models](/azure/ai-services/openai/concepts/understand-embeddings)
 + [Learn how to generate embeddings](/azure/ai-services/openai/how-to/embeddings?tabs=console)
-+ [Tutorial: Explore Azure OpenAI Service embeddings and document search](/azure/ai-services/openai/tutorials/embeddings?tabs=command-line)
++ [Tutorial: Explore Azure OpenAI embeddings and document search](/azure/ai-services/openai/tutorials/embeddings?tabs=command-line)
 + [Tutorial: Choose a model (RAG solutions in Azure AI Search)](tutorial-rag-build-solution-models.md)

@@ -32,10 +32,10 @@ Document Intelligence SDK supports the following languages and platforms:
 
 | Language → Document Intelligence SDK version | Package| Supported API version| Platform support |
 |:----------------------:|:----------|:----------| :----------------|
-| [.NET/C# → 3.1.x (GA)](/dotnet/api/azure.ai.formrecognizer?view=azure-dotnet&preserve-view=true)|[NuGet](https://www.nuget.org/packages/Azure.AI.FormRecognizer)|[v2.1](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)|[Windows, macOS, Linux, Docker](https://dotnet.microsoft.com/download)|
-|[Java → 3.1.x (GA)](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-ai-formrecognizer/3.1.1/index.html) |[Maven repository](https://mvnrepository.com/artifact/com.azure/azure-ai-formrecognizer/3.1.1) |[v2.1](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)|[Windows, macOS, Linux](/java/openjdk/install)|
-|[JavaScript → 3.1.0 (GA)](https://azuresdkdocs.blob.core.windows.net/$web/javascript/azure-ai-form-recognizer/3.1.0/index.html)| [npm](https://www.npmjs.com/package/@azure/ai-form-recognizer/v/3.1.0)|[v2.1](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)| [Browser, Windows, macOS, Linux](https://nodejs.org/en/download/) |
-|[Python → 3.1.0 (GA)](https://azuresdkdocs.blob.core.windows.net/$web/python/azure-ai-formrecognizer/3.1.0/index.html) | [PyPI](https://pypi.org/project/azure-ai-formrecognizer/3.1.0/)|[v2.1](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)||
+| `.NET/C# → 3.1.x (GA)`|[NuGet](https://www.nuget.org/packages/Azure.AI.FormRecognizer)|[v2.1](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)|[Windows, macOS, Linux, Docker](https://dotnet.microsoft.com/download)|
+|`Java → 3.1.x (GA)`|[Maven repository](https://mvnrepository.com/artifact/com.azure/azure-ai-formrecognizer/3.1.1) |[v2.1](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)|[Windows, macOS, Linux](/java/openjdk/install)|
+|`JavaScript → 3.1.0 (GA)`| [npm](https://www.npmjs.com/package/@azure/ai-form-recognizer/v/3.1.0)|[v2.1](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)| [Browser, Windows, macOS, Linux](https://nodejs.org/en/download/) |
+|`Python → 3.1.0 (GA)`| [PyPI](https://pypi.org/project/azure-ai-formrecognizer/3.1.0/)|[v2.1](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)||
 |[Windows, macOS, Linux](/azure/developer/python/configure-local-development-environment?tabs=windows%2Capt%2Ccmd#use-the-azure-cli)||||
 
 For more information on other SDK versions, see:

@@ -2,13 +2,12 @@
 title: Add natural language understanding to your bot in Bot Framework SDK using conversational language understanding
 description: Learn how to train a bot to understand natural language.
 keywords: conversational language understanding, bot framework, bot, language understanding, nlu
-author: jboback
-ms.author: jboback
+author: laujan
+ms.author: lajanuar
 manager: nitinme
-ms.reviewer: cahann, hazemelh
 ms.service: azure-ai-language
 ms.topic: tutorial
-ms.date: 11/21/2024
+ms.date: 06/04/2025
 ---
 
 # Integrate conversational language understanding with Bot Framework

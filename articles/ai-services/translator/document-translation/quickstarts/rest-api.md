@@ -1,20 +1,20 @@
 ---
-title: "Quickstart: Document Translation REST API"
+title: "Quickstart: Document translation REST API"
 titleSuffix: Azure AI services
-description: Use the Document Translator REST APIs for batch and single document translations.
+description: Use the Document translation REST APIs for batch and single document translations.
 author: laujan
 ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 01/27/2025
+ms.date: 04/14/2025
 ---
 
-# Get started: Document Translation REST APIs
+# Get started: Document translation REST APIs
 <!-- markdownlint-disable MD024 -->
 <!-- markdownlint-disable MD001 -->
 
-Document Translation is a cloud-based feature of the [Azure AI Translator](../../translator-overview.md) service that asynchronously translates whole documents in [supported languages](../../language-support.md) and various [file formats](../overview.md#batch-supported-document-formats). In this quickstart, learn to use Document Translation with a programming language of your choice to translate a source document into a target language while preserving structure and text formatting.
+Document translation is a cloud-based feature of the [Azure AI Translator](../../translator-overview.md) service that asynchronously translates whole documents in [supported languages](../../language-support.md) and various [file formats](../overview.md#batch-supported-document-formats). In this quickstart, learn to use Document translation with a programming language of your choice to translate a source document into a target language while preserving structure and text formatting.
 
 The Document translation API supports two translation processes:
 
@@ -117,10 +117,10 @@ To call the synchronous translation feature via the [REST API](../reference/sync
 |Query parameter&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|Description| Condition|
 |---------|---------|----|
 |`-X` or `--request` `POST`|The -X flag specifies the request method to access the API.|***Required*** |
-|`{endpoint}`  |The URL for your Document Translation resource endpoint|***Required*** |
+|`{endpoint}`  |The URL for your Document translation resource endpoint|***Required*** |
 |`targetLanguage`|Specifies the language of the output document. The target language must be one of the supported languages included in the translation scope.|***Required*** |
 |`sourceLanguage`|Specifies the language of the input document. If the `sourceLanguage` parameter isn't specified, automatic language detection is applied to determine the source language. |***Optional***|
-|`-H` or `--header` `"Ocp-Apim-Subscription-Key:{KEY}`    | Request header that specifies the Document Translation resource key authorizing access to the API.|***Required***|
+|`-H` or `--header` `"Ocp-Apim-Subscription-Key:{KEY}`    | Request header that specifies the Document translation resource key authorizing access to the API.|***Required***|
 |`-F` or `--form` |The filepath to the document that you want to include with your request. Only one source document is allowed.|***Required***|
 |&bull; `document=`<br> &bull; `type={contentType}/fileExtension` |&bull; Path to the file location for your source document.</br> &bull; Content type and file extension.</br></br> Ex: **"document=@C:\Test\test-file.md;type=text/markdown**|***Required***|
 |`-o` or `--output`|The filepath to the response results.|***Required***|
@@ -164,4 +164,4 @@ That's it, congratulations! You just learned to translate documents using the Az
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Document Translation REST API guide](../reference/rest-api-guide.md)
+> [Document translation REST API guide](../reference/rest-api-guide.md)

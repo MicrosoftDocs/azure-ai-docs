@@ -10,7 +10,7 @@ ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: faq
 ms.custom: automl, sdkv2
-ms.date: 08/01/2023
+ms.date: 03/08/2025
 ---
 
 # Frequently asked questions about forecasting in AutoML

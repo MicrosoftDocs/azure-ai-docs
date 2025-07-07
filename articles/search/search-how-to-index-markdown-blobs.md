@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/20/2024
+ms.date: 05/29/2025
 ---
 
 # Index Markdown blobs and files in Azure AI Search
@@ -38,7 +38,7 @@ In Azure AI Search, indexers for Azure Blob Storage, Azure Files, and OneLake su
 Parsing mode parameters are specified in an indexer definition when you create or update an indexer.
 
 ```http
-POST https://[service name].search.windows.net/indexers?api-version=2024-11-01-preview
+POST https://[service name].search.windows.net/indexers?api-version=2025-05-01-preview
 Content-Type: application/json
 api-key: [admin key]
 
@@ -155,7 +155,7 @@ An example index configuration might look something like this:
 If field names and data types align, the blob indexer can infer the mapping without an explicit field mapping present in the request, so an indexer configuration corresponding to the provided index configuration might look like this:
 
 ```http
-POST https://[service name].search.windows.net/indexers?api-version=2024-11-01-preview
+POST https://[service name].search.windows.net/indexers?api-version=2025-05-01-preview
 Content-Type: application/json
 api-key: [admin key]
 
@@ -337,7 +337,7 @@ If you aren't utilizing field mappings, the shape of the index should reflect th
 ### Indexer definition for one-to-one parsing
 
 ```http
-POST https://[service name].search.windows.net/indexers?api-version=2024-11-01-preview
+POST https://[service name].search.windows.net/indexers?api-version=2025-05-01-preview
 Content-Type: application/json
 api-key: [admin key]
 

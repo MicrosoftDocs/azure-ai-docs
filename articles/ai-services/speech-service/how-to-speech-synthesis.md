@@ -7,7 +7,7 @@ ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/20/2024
+ms.date: 3/10/2025
 ms.custom: devx-track-python, devx-track-js, devx-track-csharp, mode-other, devx-track-extended-java, devx-track-go
 zone_pivot_groups: programming-languages-speech-services
 #Customer intent: As a developer, I want to learn how to synthesize speech from text so that I can convert text into spoken language.
@@ -58,5 +58,5 @@ zone_pivot_groups: programming-languages-speech-services
 ## Next steps
 
 * [Try the text to speech quickstart](get-started-text-to-speech.md)
-* [Get started with custom neural voice](professional-voice-create-project.md)
+* [Get started with custom voice](professional-voice-create-project.md)
 * [Improve synthesis with SSML](speech-synthesis-markup.md)

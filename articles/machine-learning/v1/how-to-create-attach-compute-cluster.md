@@ -17,6 +17,7 @@ ms.date: 05/02/2022
 
 [!INCLUDE [dev v1](../includes/machine-learning-dev-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 Learn how to create and manage a [compute cluster](../concept-compute-target.md#azure-machine-learning-compute-managed) in your Azure Machine Learning workspace.
 
@@ -162,7 +163,7 @@ az ml computetarget create amlcompute --name lowpriocluster --vm-size Standard_N
         compute_config = AmlCompute.provisioning_configuration(vm_size='STANDARD_D2_V2',
                                                                 max_nodes=5,
                                                                 identity_type="UserAssigned",
-                                                                identity_id=['/subscriptions/<subcription_id>/resourcegroups/<resource_group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<user_assigned_identity>'])
+                                                                identity_id=['/subscriptions/<subscription_id>/resourcegroups/<resource_group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<user_assigned_identity>'])
     
         cpu_cluster_name = "cpu-cluster"
         cpu_cluster = ComputeTarget.create(ws, cpu_cluster_name, compute_config)
@@ -182,7 +183,7 @@ az ml computetarget create amlcompute --name lowpriocluster --vm-size Standard_N
         ```python
         # add a user-assigned managed identity
         cpu_cluster.add_identity(identity_type="UserAssigned", 
-                                    identity_id=['/subscriptions/<subcription_id>/resourcegroups/<resource_group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<user_assigned_identity>'])
+                                    identity_id=['/subscriptions/<subscription_id>/resourcegroups/<resource_group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<user_assigned_identity>'])
         ```
 
 # [Azure CLI](#tab/azure-cli)
@@ -195,7 +196,7 @@ az ml computetarget create amlcompute --name lowpriocluster --vm-size Standard_N
   * User-assigned managed identity
 
     ```azurecli
-    az ml computetarget create amlcompute --name cpu-cluster --vm-size Standard_NC6 --max-nodes 5 --assign-identity '/subscriptions/<subcription_id>/resourcegroups/<resource_group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<user_assigned_identity>'
+    az ml computetarget create amlcompute --name cpu-cluster --vm-size Standard_NC6 --max-nodes 5 --assign-identity '/subscriptions/<subscription_id>/resourcegroups/<resource_group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<user_assigned_identity>'
     ```
 
   * System-assigned managed identity
@@ -207,7 +208,7 @@ az ml computetarget create amlcompute --name lowpriocluster --vm-size Standard_N
 
     * User-assigned managed identity
         ```azurecli
-        az ml computetarget amlcompute identity assign --name cpu-cluster '/subscriptions/<subcription_id>/resourcegroups/<resource_group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<user_assigned_identity>'
+        az ml computetarget amlcompute identity assign --name cpu-cluster '/subscriptions/<subscription_id>/resourcegroups/<resource_group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<user_assigned_identity>'
         ```
     * System-assigned managed identity
 

@@ -2,7 +2,6 @@
 title: "Quickstart: Analyze text content"
 titleSuffix: Azure AI services
 description: Get started using Azure AI Content Safety to analyze text content for objectionable material.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
@@ -23,6 +22,12 @@ For more information on text moderation, see the [Harm categories concept page](
 > [!CAUTION]
 > 
 > The sample data and code may contain offensive content. User discretion is advised.
+
+::: zone pivot="programming-language-foundry-portal"
+
+[!INCLUDE [Foundry portal quickstart](./includes/quickstarts/foundry-quickstart-text.md)]
+
+::: zone-end
 
 ::: zone pivot="programming-language-rest"
 

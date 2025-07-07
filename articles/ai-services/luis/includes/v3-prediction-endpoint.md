@@ -1,13 +1,12 @@
 ---
 title: How to get V3 prediction endpoint
 titleSuffix: Azure AI services
-#services: cognitive-services
 
 manager: nitinme
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
 ms.topic: include
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 
 ---
 

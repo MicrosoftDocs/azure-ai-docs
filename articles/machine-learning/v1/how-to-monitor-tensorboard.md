@@ -19,6 +19,8 @@ ms.custom: UpdateFrequency5, sdkv1
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In this article, you learn how to view your experiment jobs and metrics in TensorBoard using [the `tensorboard` package](/python/api/azureml-tensorboard/azureml.tensorboard) in the main Azure Machine Learning SDK. Once you've inspected your experiment jobs, you can better tune and retrain your machine learning models.
 
 [TensorBoard](/python/api/azureml-tensorboard/azureml.tensorboard) is a suite of web applications for inspecting and understanding your experiment structure and performance.
@@ -40,7 +42,7 @@ How you launch TensorBoard with Azure Machine Learning experiments depends on th
         * In the samples folder on the notebook server, find  two completed and expanded notebooks by navigating to these directories:
             * **SDK v1 > how-to-use-azureml > track-and-monitor-experiments > tensorboard > export-run-history-to-tensorboard > export-run-history-to-tensorboard.ipynb**
             * **SDK v1 > how-to-use-azureml > track-and-monitor-experiments > tensorboard > tensorboard > tensorboard.ipynb**
-    * Your own Juptyer notebook server
+    * Your own Jupyter notebook server
        * [Install the Azure Machine Learning SDK](/python/api/overview/azure/ml/install) with the `tensorboard` extra
         * [Create an Azure Machine Learning workspace](../quickstart-create-resources.md).  
         * [Create a workspace configuration file](how-to-configure-environment.md).

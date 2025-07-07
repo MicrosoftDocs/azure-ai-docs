@@ -8,7 +8,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-python, linux-related-content
 ms.topic: how-to
-ms.date: 9/19/2024
+ms.date: 3/10/2025
 ms.reviewer: jhakulin
 zone_pivot_groups: programming-languages-set-three
 #Customer intent: As a developer, I want to learn how to configure OpenSSL for Linux so that I can use the Speech SDK on my Linux system.

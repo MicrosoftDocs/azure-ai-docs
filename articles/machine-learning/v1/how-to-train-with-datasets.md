@@ -8,7 +8,7 @@ ms.subservice: mldata
 ms.author: yogipandey
 author: ynpandey
 ms.reviewer: ssalgado
-ms.date: 10/21/2021
+ms.date: 03/26/2025
 ms.topic: how-to
 ms.custom: UpdateFrequency5, data4ml, sdkv1
 #Customer intent: As an experienced Python developer, I need to make my data available to my local or remote compute target to train my machine learning models.
@@ -17,6 +17,8 @@ ms.custom: UpdateFrequency5, data4ml, sdkv1
 # Train models with Azure Machine Learning datasets
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 In this article, you learn how to work with [Azure Machine Learning datasets](/python/api/azureml-core/azureml.core.dataset%28class%29) to train machine learning models.  You can use datasets in your local or remote compute target without worrying about connection strings or data paths.
 
@@ -235,7 +237,7 @@ When you **mount** a dataset, you attach the files referenced by the dataset to 
 When you **download** a dataset, all the files referenced by the dataset are downloaded to the compute target. Downloading is supported for all compute types. If your script processes all files referenced by the dataset, and your compute disk can fit your full dataset, downloading is recommended to avoid the overhead of streaming data from storage services. For multi-node downloads, see [how to avoid throttling](#troubleshooting).
 
 > [!NOTE]
-> The download path name should not be longer than 255 alpha-numeric characters for Windows OS. For Linux OS, the download path name should not be longer than 4,096 alpha-numeric characters. Also, for Linux OS the file name (which is the last segment of the download path `/path/to/file/{filename}`) should not be longer than 255 alpha-numeric characters.
+> The download path name shouldn't be longer than 255 alpha-numeric characters for Windows OS. For Linux OS, the download path name shouldn't be longer than 4,096 alpha-numeric characters. Also, for Linux OS the file name (which is the last segment of the download path `/path/to/file/{filename}`) shouldn't be longer than 255 alpha-numeric characters.
 
 The following code mounts `dataset` to the temp directory at `mounted_path`
 
@@ -255,7 +257,7 @@ print (mounted_path)
 
 ## Get datasets in machine learning scripts
 
-Registered datasets are accessible both locally and remotely on compute clusters like the Azure Machine Learning compute. To access your registered dataset across experiments, use the following code to access your workspace and get the dataset that was used in your previously submitted run. By default, the [`get_by_name()`](/python/api/azureml-core/azureml.core.dataset.dataset#get-by-name-workspace--name--version--latest--) method on the `Dataset` class returns the latest version of the dataset that's registered with the workspace.
+Registered datasets are accessible both locally and remotely on compute clusters like the Azure Machine Learning compute. To access your registered dataset across experiments, use the following code to access your workspace and get the dataset that was used in your previously submitted run. By default, the [`get_by_name()`](/python/api/azureml-core/azureml.core.dataset.dataset#get-by-name-workspace--name--version--latest--) method on the `Dataset` class returns the latest version of the dataset registered with the workspace.
 
 ```Python
 %%writefile $script_folder/train.py
@@ -276,7 +278,7 @@ df = titanic_ds.to_pandas_dataframe()
 
 ## Access source code during training
 
-Azure Blob storage has higher throughput speeds than an Azure file share, and will scale to large numbers of jobs started in parallel. For this reason, we recommend configuring your runs to use Blob storage for transferring source code files.
+Azure Blob storage has higher throughput speeds than an Azure file share, and scales to large numbers of jobs started in parallel. For this reason, we recommend configuring your runs to use Blob storage for transferring source code files.
 
 The following code example specifies in the run configuration which blob datastore to use for source code transfers.
 
@@ -313,7 +315,7 @@ myenv.environment_variables = {"AZUREML_DOWNLOAD_CONCURRENCY":64}
 
 **Unable to upload project files to working directory in AzureFile because the storage is overloaded**:
 
-* If you use file share for other workloads, such as data transfer, the recommendation is to use blobs so that file share is free to be used for submitting runs.
+* If you use file share for other workloads, such as data transfer, we recommend that you use blobs so that file share is free to be used for submitting runs.
 
 * You can also split the workload between two different workspaces.
 

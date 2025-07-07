@@ -3,12 +3,12 @@ title: How to call Text Analytics for health
 titleSuffix: Azure AI services
 description: Learn how to extract and label medical information from unstructured clinical text with Text Analytics for health.
 #services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/21/2024
-ms.author: jboback
+ms.date: 06/21/2025
+ms.author: lajanuar
 ms.custom: language-service-health
 ---
 
@@ -16,10 +16,10 @@ ms.custom: language-service-health
 
 [!INCLUDE [service notice](../includes/service-notice.md)]
 
-Text Analytics for health can be used to extract and label relevant medical information from unstructured texts such as doctors' notes, discharge summaries, clinical documents, and electronic health records. The service performs [named entity recognition](../concepts/health-entity-categories.md), [relation extraction](../concepts/relation-extraction.md), [entity linking](https://www.nlm.nih.gov/research/umls/sourcereleasedocs/index.html), and [assertion detection](../concepts/assertion-detection.md) to uncover insights from the input text. For information  on the returned confidence scores, see the [transparency note](/legal/cognitive-services/text-analytics/transparency-note#general-guidelines-to-understand-and-improve-performance?context=/azure/ai-services/text-analytics/context/context).
+Text Analytics for health can be used to extract and label relevant medical information from unstructured texts such as doctors' notes, discharge summaries, clinical documents, and electronic health records. The service performs [named entity recognition](../concepts/health-entity-categories.md), [relation extraction](../concepts/relation-extraction.md), [entity linking](https://www.nlm.nih.gov/research/umls/sourcereleasedocs/index.html), and [assertion detection](../concepts/assertion-detection.md) to uncover insights from the input text. For information  on the returned confidence scores, see the [transparency note](/azure/ai-foundry/responsible-ai/text-analytics/transparency-note#general-guidelines-to-understand-and-improve-performance).
 
 > [!TIP]
-> If you want to test out the feature without writing any code, use the [Language Studio](../../language-studio.md).
+> If you want to test out the feature without writing any code, use [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
 There are two ways to call the service: 
 
@@ -36,12 +36,12 @@ The Text Analytics for health supports English in addition to multiple languages
 
 ## Submitting data
 
-To send an API request, you will need your Language resource endpoint and key.
+To send an API request, you need your Language resource endpoint and key.
 
 > [!NOTE]
-> You can find the key and endpoint for your Language resource on the Azure portal. They will be located on the resource's **Key and endpoint** page, under **resource management**. 
+> You can find the key and endpoint for your Language resource on the Azure portal. They are located on the resource's **Key and endpoint** page, under **resource management**. 
 
-Analysis is performed upon receipt of the request. If you send a request using the REST API or client library, the results will be returned asynchronously. If you're using the Docker container, they will be returned synchronously.  
+Analysis is performed upon receipt of the request. If you send a request using the REST API or client library, the results are returned asynchronously. If you're using the Docker container, they are returned synchronously.  
 
 [!INCLUDE [asynchronous-result-availability](../../includes/async-result-availability.md)]
 
@@ -58,7 +58,7 @@ Fast Healthcare Interoperability Resources (FHIR) is the health industry communi
 
 ## Getting results from the feature
 
-Depending on your API request, and the data you submit to the Text Analytics for health, you will get:
+Depending on your API request, and the data you submit to the Text Analytics for health, you get:
 
 [!INCLUDE [Text Analytics for health features](../includes/features.md)]
 

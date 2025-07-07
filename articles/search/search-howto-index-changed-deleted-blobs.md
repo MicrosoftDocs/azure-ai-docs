@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 08/05/2024
+ms.date: 02/24/2025
 ---
 
 # Change and delete detection using indexers for Azure Storage in Azure AI Search
@@ -24,7 +24,7 @@ There are two ways to implement a soft delete strategy:
 + [Native blob soft delete (preview)](#native-blob-soft-delete), applies to Blob Storage only
 + [Soft delete using custom metadata](#soft-delete-using-custom-metadata)
 
-The deletion detection strategy should be applied from the very first indexer run. If you didn't establish the deletion policy prior to the initial run, any documents that were deleted before the policy was implemented will remain in your index, even if you add the policy to the indexer later and reset it. If this has occurred, it is suggested that you create a new index using a new indexer, ensuring the deletion policy is in place from the beginning.
+The deletion detection strategy must be applied from the very first indexer run. If you didn't establish the deletion policy prior to the initial run, any documents that were deleted before the policy was implemented will remain in your index, even if you add the policy to the indexer later and reset it. If this has occurred, it's suggested that you create a new index using a new indexer, ensuring the deletion policy is in place from the beginning.
 
 ## Prerequisites
 
@@ -33,7 +33,7 @@ The deletion detection strategy should be applied from the very first indexer ru
 + Use consistent document keys and file structure. Changing document keys or directory names and paths (applies to ADLS Gen2) breaks the internal tracking information used by indexers to know which content was indexed, and when it was last indexed.
 
 > [!NOTE]
-> ADLS Gen2 allows directories to be renamed. When a directory is renamed, the timestamps for the blobs in that directory do not get updated. As a result, the indexer will not re-index those blobs. If you need the blobs in a directory to be reindexed after a directory rename because they now have new URLs, you will need to update the `LastModified` timestamp for all the blobs in the directory so that the indexer knows to re-index them during a future run. The virtual directories in Azure Blob Storage cannot be changed, so they do not have this issue.
+> ADLS Gen2 allows directories to be renamed. When a directory is renamed, the timestamps for the blobs in that directory don't get updated. As a result, the indexer won't reindex those blobs. If you need the blobs in a directory to be reindexed after a directory rename because they now have new URLs, you need to update the `LastModified` timestamp for all the blobs in the directory so that the indexer knows to reindex them during a future run. The virtual directories in Azure Blob Storage can't be changed, so they don't have this issue.
 
 ## Native blob soft delete
 

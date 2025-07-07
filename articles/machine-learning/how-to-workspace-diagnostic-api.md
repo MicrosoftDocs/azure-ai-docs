@@ -8,7 +8,7 @@ ms.subservice: enterprise-readiness
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: jhirono
-ms.date: 03/27/2024
+ms.date: 03/04/2025
 ms.topic: how-to
 ms.custom: sdkv2, devx-track-python
 monikerRange: 'azureml-api-2 || azureml-api-1'
@@ -21,6 +21,8 @@ monikerRange: 'azureml-api-2 || azureml-api-1'
 :::moniker-end
 :::moniker range="azureml-api-1"
 [!INCLUDE [sdk v1](includes/machine-learning-sdk-v1.md)]
+
+[!INCLUDE [v1 deprecation](includes/sdk-v1-deprecation.md)]
 :::moniker-end
 
 Azure Machine Learning provides a diagnostic API that can be used to identify problems with your workspace. Errors returned in the diagnostics report include information on how to resolve the problem.

@@ -36,7 +36,7 @@ Create a new project in Android Studio and add the Speech SDK for Java as a libr
 1. Enter *samples.speech.cognitiveservices.microsoft.com* in the **Package name** text box.
 1. Select a project directory in the **Save location** selection box.
 1. Select **Java** in the **Language** selection box.
-1. Select **API 23: Android 6.0 (Marshmallow)** in the **Minimum API level** selection box.
+1. Select **API 26: Android 8.0 (Oreo)** in the **Minimum API level** selection box.
 1. Select **Finish**.
 
 Android Studio takes some time to prepare your new project. For your first time using Android Studio, it might take a few minutes to set preferences, accept licenses, and complete the wizard.
@@ -50,6 +50,6 @@ Add the Speech SDK as a dependency in your project.
 
    :::image type="content" source="../../../media/sdk/android-studio/sdk-install-3-zoom.png" alt-text="Screenshot that shows how to add a library dependency in Android Studio." lightbox="../../../media/sdk/android-studio/sdk-install-3.png":::
 
-1. In the **Add Library Dependency** window that appears, enter the name and version of the Speech SDK for Java: *com.microsoft.cognitiveservices.speech:client-sdk:1.42.0*. Then select **Search**.
+1. In the **Add Library Dependency** window that appears, enter the name and version of the Speech SDK for Java: *com.microsoft.cognitiveservices.speech:client-sdk:1.43.0*. Then select **Search**.
 1. Make sure that the selected **Group ID** is **com.microsoft.cognitiveservices.speech**, and then select **OK**.
 1. Select **OK** to close the **Project Structure** window and apply your changes to the project.

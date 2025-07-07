@@ -10,7 +10,7 @@ ms.topic: how-to
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: meerakurup
-ms.date: 02/05/2025
+ms.date: 03/28/2025
 ---
 
 # Network Isolation Change with Our New API Platform on Azure Resource Manager
@@ -20,6 +20,9 @@ In this article, you'll learn about network isolation changes with our new v2 AP
 ## What is the new API platform on Azure Resource Manager (ARM)
 
 There are two types of operations used by the v1 and v2 APIs, __Azure Resource Manager (ARM)__ and __Azure Machine Learning workspace__.
+
+> [!IMPORTANT]
+> The v1 API is deprecated as of March 31, 2025. Support for using the CLI v1 to access this API will end on September 30, 2025. Support for using the SDK v1 to access this API will end on June 30, 2026.
 
 With the v1 API, most operations used the workspace. For v2, we've moved most operations to use public ARM.
 
@@ -105,13 +108,13 @@ The Azure CLI [extension v1 for machine learning](./v1/reference-azure-machine-l
 > The `v1-legacy-mode` parameter is only available in version 1.41.0 or newer of the Azure CLI extension for machine learning v1 (`azure-cli-ml`). The parameter is __not__ available in the v2 (`ml`) extension. Use the `az version` command to view version information, including the extension and version that is installed.
 
 ```azurecli
-az ml workspace update -g <myresourcegroup> -n <myworkspace> --v1-legacy-mode False
+az ml workspace update -g <myresourcegroup> -w <myworkspace> --v1-legacy-mode False
 ```
 
 The return value of the `az ml workspace update` command may not show the updated value. To view the current state of the parameter, use the following command:
  
 ```azurecli
-az ml workspace show -g <myresourcegroup> -n <myworkspace> --query v1LegacyMode
+az ml workspace show -g <myresourcegroup> -w <myworkspace> --query v1LegacyMode
 ```
 
 ---

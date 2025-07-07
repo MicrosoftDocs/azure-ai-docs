@@ -19,6 +19,11 @@ In this article, learn about Azure Machine Learning Python SDK releases. For the
 __RSS feed__: Get notified when this page is updated by copying and pasting the following URL into your feed reader:
 `https://learn.microsoft.com/api/search/rss?search=%22Azure+machine+learning+release+notes%22&locale=en-us`
 
+## 2025-04-15
+### Azure Machine Learning SDK for Python v1.60.0
+Lightgbm, onnxmltools were upgraded to fix security vulnerabilities.
+
+
 ## 2024-11-12
 ### Azure Machine Learning SDK for Python v1.59.0
 Support for ONNX 1.17.0 to address a security vulnerability.
@@ -2307,7 +2312,7 @@ Access the following web-based authoring tools from the studio:
   + **azureml-interpret**
     + updated version of interpret-community to 0.2.0
   + **azureml-pipeline-steps**
-    + Documented supported values for `runconfig_pipeline_params` for Azure machine learning pipeline steps.
+    + Documented supported values for `runconfig_pipeline_params` for Azure Machine Learning pipeline steps.
   + **azureml-pipeline-core**
     + Added CLI option to download output in json format for Pipeline commands.
   + **azureml-train-automl**
@@ -2910,7 +2915,7 @@ At the time, of this release, the following browsers are supported: Chrome, Fire
 ### Azure portal
 + **Preview Feature**
   + Log and output file streaming is now available for run details pages. The files stream updates in real time when the preview toggle is turned on.
-  + Ability to set quota at a workspace level is released in preview. AmlCompute quotas are allocated at the subscription level, but we now allow you to distribute that quota between workspaces and allocate it for fair sharing and governance. Just click on the **Usages+Quotas** blade in the left navigation bar of your workspace and select the **Configure Quotas** tab. You must be a subscription admin to be able to set quotas at the workspace level since this is a cross-workspace operation.
+  + Ability to set quota at a workspace level is released in preview. AmlCompute quotas are allocated at the subscription level, but we now allow you to distribute that quota between workspaces and allocate it for fair sharing and governance. Just click on the **Usages+Quotas** blade in the left pane of your workspace and select the **Configure Quotas** tab. You must be a subscription admin to be able to set quotas at the workspace level since this is a cross-workspace operation.
 
 ## 2019-08-05
 

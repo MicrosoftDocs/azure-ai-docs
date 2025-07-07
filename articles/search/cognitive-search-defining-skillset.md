@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 12/06/2024
+ms.date: 05/08/2025
 ---
 
 # Create a skillset in Azure AI Search
@@ -17,7 +17,7 @@ ms.date: 12/06/2024
 
 A skillset defines operations that generate textual content and structure from documents that contain images or unstructured text. Examples are optical character recognition (OCR) for images, entity recognition for undifferentiated text, and text translation. A skillset executes after text and images are extracted from an external data source, and after [field mappings](search-indexer-field-mappings.md) are processed.
 
-This article explains how to create a skillset using [REST APIs](/rest/api/searchservice/skillsets/create), but the same concepts and steps apply to other programming languages. 
+This article explains how to create a skillset using [REST APIs](/rest/api/searchservice/skillsets/create), but the same concepts and steps apply to other programming languages.
 
 Rules for skillset definition include:
 
@@ -45,7 +45,7 @@ Start with the basic structure. In the [Create Skillset REST API](/rest/api/sear
    "cognitiveServices":{
       "@odata.type":"#Microsoft.Azure.Search.CognitiveServicesByKey",
       "description":"An Azure AI services resource in the same region as Azure AI Search",
-      "key":"<Your-Cognitive-Services-Multiservice-Key>"
+      "key":"<Your-Cognitive-Services-Multi-Service-Key>"
    },
    "knowledgeStore":{
       "storageConnectionString":"<Your-Azure-Storage-Connection-String>",
@@ -65,7 +65,7 @@ After the name and description, a skillset has four main properties:
 
 + `skills` array, an unordered [collection of skills](cognitive-search-predefined-skills.md). Skills can be utilitarian (like splitting text), transformational (based on AI from Azure AI services), or custom skills that you provide. An example of a skills array is provided in the next section.
 
-+ `cognitiveServices` is used for [billable skills](cognitive-search-predefined-skills.md) that call Azure AI services APIs. Remove this section if you aren't using billable skills or Custom Entity Lookup. If you are, attach [an Azure AI multi-service resource](cognitive-search-attach-cognitive-services.md).
++ `cognitiveServices` is used for [billable skills](cognitive-search-predefined-skills.md) that call Azure AI services APIs. Remove this section if you aren't using billable skills or Custom Entity Lookup. If you are, attach [an Azure AI services multi-service resource](cognitive-search-attach-cognitive-services.md).
 
 + `knowledgeStore` (optional) specifies an Azure Storage account and settings for projecting skillset output into tables, blobs, and files in Azure Storage. Remove this section if you don't need it, otherwise [specify a knowledge store](knowledge-store-create-rest.md).
 
@@ -192,7 +192,7 @@ Skills read from and write to an enriched document. Skill inputs specify the ori
   | `source`: `/document/some-named-field` | For text-based skills, such as entity recognition or key phrase extraction, the origin should be a field that contains sufficient text to be analyzed, such as a *description* or *summary*. |
   | `source`: `/document/normalized_images/*` | For image content, the source is image that's been normalized during document cracking. |
 
-If the skill iterates over an array, both context and input source should include `/*` in the correct positions.
+If the skill iterates over an array, both context and input source should include `/*` in the correct positions. For more information about the complete syntax, see [Skill context and input annotation language](cognitive-search-skill-annotation-language.md).
 
 ## Define outputs
 
@@ -263,7 +263,7 @@ Although skill output can be optionally cached for reuse purposes, it's usually 
 
 + To send output to a field in a search index, [create an output field mapping](cognitive-search-output-field-mapping.md) in an indexer.
 
-+ To send output to a knowledge store, [create a projection](knowledge-store-projection-overview.md). 
++ To send output to a knowledge store, [create a projection](knowledge-store-projection-overview.md).
 
 + To send output to a downstream skill, reference the output by its node name, such as `"/document/organization"`, in the downstream skill's input source property. See [Reference an annotation](cognitive-search-concept-annotations-syntax.md) for examples.
 

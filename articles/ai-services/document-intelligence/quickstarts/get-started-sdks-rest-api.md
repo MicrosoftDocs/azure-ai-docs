@@ -11,7 +11,7 @@ ms.custom:
   - devx-track-js
   - devx-track-python
 ms.topic: quickstart
-ms.date: 12/17/2024
+ms.date: 04/11/2025
 ms.author: lajanuar
 zone_pivot_groups: programming-languages-set-formre
 ---
@@ -76,7 +76,7 @@ To learn more about the API features and development options, visit our [Overvie
 ::: zone pivot="programming-language-javascript"
 
 ::: moniker range="doc-intel-4.0.0 || doc-intel-3.1.0 || doc-intel-3.0.0"
-[!INCLUDE [NodeJS SDK](includes/javascript-sdk.md)]
+[!INCLUDE [Node.js SDK](includes/javascript-sdk.md)]
 ::: moniker-end
 
 ::: zone-end
@@ -150,7 +150,7 @@ To learn more about Document Intelligence features and development options, visi
 ::: zone pivot="programming-language-javascript"
 
 ::: moniker range="doc-intel-2.1.0"
-[!INCLUDE [NodeJS SDK](includes/v2-1/javascript.md)]
+[!INCLUDE [Node.js SDK](includes/v2-1/javascript.md)]
 ::: moniker-end
 
 ::: zone-end

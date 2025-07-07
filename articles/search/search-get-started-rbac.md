@@ -1,26 +1,25 @@
 ---
-title: Quickstart keyless connection
+title: 'Quickstart: Keyless Connection'
 titleSuffix: Azure AI Search
-description: In this quickstart, learn how to switch from API keys to Microsoft Entra identities and role-based access control (RBAC).
-author: HeidiSteen
-ms.author: heidist
+description: Learn how to switch from API keys to Microsoft Entra identities and role-based access control (RBAC).
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
-
 ms.topic: quickstart
-ms.date: 12/03/2024
+ms.date: 07/02/2025
 ---
 
 # Quickstart: Connect without keys
 
-Configure Azure AI Search to use Microsoft Entra ID authentication and role-based access control (RBAC) so that you can connect from your local system without API keys, using Jupyter notebooks or a REST client to interact with your search service.
+In this quickstart, you configure Azure AI Search to use Microsoft Entra ID authentication and role-based access control (RBAC) to connect from your local system without API keys. You then use Jupyter notebooks or a REST client to interact with your search service.
 
-If you stepped through other quickstarts that connect using API keys, this quickstart shows you how to switch to identity-based authentication so that you can avoid hard-coded keys in your example code.
+If you completed other quickstarts that connect using API keys, this quickstart shows you how to switch to identity-based authentication so that you can avoid hard-coded keys in your example code.
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
-- [Azure AI Search](search-create-service-portal.md), any region or tier, but you need Basic or higher to configure a managed identity for Azure AI Search.
+- An [Azure AI Search service](search-create-service-portal.md) in any region or tier. However, to configure a managed identity for Azure AI Search, you need the Basic tier or higher.
 
 - A command line tool, such as PowerShell or Bash, and the [Azure CLI](/cli/azure/install-azure-cli).
 
@@ -68,7 +67,7 @@ You need this step if you have more than one subscription or tenant.
 
    1. Navigate to your search service.
 
-   1. Select **Access Control (IAM)** in the left navigation pane.
+   1. Select **Access Control (IAM)** in the left pane.
 
    1. Select **+ Add** > **Add role assignment**.
 
@@ -155,7 +154,7 @@ You should have a `.rest` or `.http` file, similar to the one described in [Quic
 
 - Check the search service **Settings** > **Keys** options in the Azure portal and confirm the service is configured for **Both"** or **Role-based access control**.
 
-- For the REST client only: Check the token and endpoint specified in your file and make sure there's no surrounding quotes or extra spaces.
+- For the REST client only: Check the token and endpoint specified in your file and make sure there's no surrounding quotes or extra spaces. A 401 invalid token message occurs if the token in the request header includes the `@` symbol. For example, if the variable is `@token`, the reference in the request is simply `{{token}}`.
 
 If all else fails, restart your device to remove any cached tokens, and then repeat the steps in this section, starting with `az login`.
 

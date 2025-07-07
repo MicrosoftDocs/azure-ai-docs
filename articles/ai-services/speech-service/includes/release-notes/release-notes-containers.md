@@ -2,10 +2,63 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 10/21/2024
+ms.date: 7/1/2025
 ms.author: eur
 ---
 
+### 2025-June release
+
+#### Neural text to speech 3.11.0
+
+Released [neural text to speech version 3.11.0](../../speech-container-ntts.md).
+
+- Added support for new neural voices: `de-DE-SeraphinaMultilingualNeural`, `es-ES-XimenaMultilingualNeural`, `fi-FI-SelmaNeural`, `nb-NO-FinnNeural`.
+- Added support for multilingual custom lexicons.
+
+### 2025-May release
+
+Add support for the latest model versions:
+- [Neural text to speech 3.10.0](../../speech-container-ntts.md)
+
+For text to speech:
+- Updated the text to speech backend and frontend engine to the latest versions.
+- Added support for multilingual custom lexicons.
+- Improved the health check functionality. The health check endpoint is now `/synthesize/health`. When the service is healthy, this endpoint returns HTTP status 200; if the service is unhealthy, it returns HTTP status 503.
+- Updated the base image to AspNet 8.0.16 to address security vulnerabilities from the March/April 2025 Microsoft ASP.NET Core Security Update.
+
+### 2025-March release
+
+Add support for the latest model versions:
+- Neural text to speech 3.9.0
+- Speech to text 5.0.1 (Preview)
+- Custom speech to text 5.0.1 (Preview)
+
+For speech to text and custom speech to text, the following features are included:
+- Support for new speech to text models
+- Operating system change to Azure Linux 3.0
+- Support for new locales: ar-dz, as-in, es-gq or-in, pa-in and ur-in
+- Decoder update
+- Ability to use newer custom models (2023+) in container
+
+For text to speech, added support for new neural voices: `en-GB-OliviaNeural`, `en-US-ChristopherNeural` and `nl-NL-FennaNeural`.
+
+### 2025-February release
+
+Add support for the latest model versions:
+- Speech language identification 1.18.0
+- Neural text to speech 3.7.0
+- Speech to text 4.12.0
+- Custom speech to text 4.12.0
+
+Here are the highlights of the releases:
+
+| Feature update | Speech to text | Custom speech to text | Neural text to speech | Speech language identification |
+|------|------|------|--------|------|
+| Vulnerability fixes | ✅ | ✅ | ✅ | ✅ |
+| Migrated OS from Ubuntu 20.04 to Ubuntu 22.04 | ✅ | ✅ | ✅ | ✅ |
+| New Locales: ar-ly, fr-be, nl-be and uz-uz | ✅ | ✅ |  |  |
+| Updated nuget packages, Go version | ✅ | ✅ |  |  |
+| Added model download parallelization to decrease model download time | ✅ | ✅ | ✅ |  |
 
 ### 2024-October release
 
@@ -161,7 +214,7 @@ Fix the `tr-TR` capitalization issue
 
 Upgrade the speech to text `en-US` display models
 
-Add support for prebuilt neural Neural text to speech locale voice `ar-AE-HamdanNeural`
+Add support for the `ar-AE-HamdanNeural` standard voice.
 
 ### 2023-February release
 
@@ -272,7 +325,7 @@ Regular monthly updates including security upgrades and vulnerability fixes.
 
 #### Neural text to speech v2.5.0
 
-Add support for these [prebuilt neural voices](../../language-support.md?tabs=tts):
+Add support for these [standard voices](../../language-support.md?tabs=tts):
    * `az-az-babekneural`
    * `az-az-banuneural`
    * `fa-ir-dilaraneural`
@@ -308,7 +361,7 @@ Add support for using containers in [disconnected environments](../../../contain
 Regular monthly updates including security upgrades and vulnerability fixes.
 
 #### Neural-Neural text to speech Container v1.12.0
-Add support for these prebuilt neural voices: `am-et-amehaneural`, `am-et-mekdesneural`, `so-so-muuseneural`, and `so-so-ubaxneural`.
+Add support for these standard voices: `am-et-amehaneural`, `am-et-mekdesneural`, `so-so-muuseneural`, and `so-so-ubaxneural`.
 
 Regular monthly updates including security upgrades and vulnerability fixes.
 

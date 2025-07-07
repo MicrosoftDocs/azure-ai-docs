@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 09/19/2024
+ms.date: 03/11/2025
 ms.custom:
   - devx-track-csharp
   - ignite-2023
@@ -24,7 +24,7 @@ A filter is specified using [OData filter expression syntax](search-query-odata-
 
 ## When to use a filter
 
-Filters are foundational to several search experiences, including "find near me" geospatial search, faceted navigation, and security filters that show only  those documents a user is allowed to see. If you implement any one of these experiences, a filter is required. It's the filter attached to the search query that provides the geolocation coordinates, the facet category selected by the user, or the security ID of the requestor.
+Filters are foundational to several search experiences, including "find near me" geospatial search, faceted navigation, and security filters that show only  those documents a user is allowed to see. If you implement any one of these experiences, a filter is required. It's the filter attached to the search query that provides the geolocation coordinates, the facet category selected by the user, or the security ID of the requester.
 
 Common scenarios include:
 

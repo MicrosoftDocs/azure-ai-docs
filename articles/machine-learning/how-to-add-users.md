@@ -8,7 +8,7 @@ ms.reviewer: vkann
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
-ms.date: 03/12/2024
+ms.date: 03/06/2025
 # customer intent: As a data labeling project manager, I want to add users to my data labeling project so that they can label data, but with restricted permissions.
 ---
 
@@ -31,7 +31,7 @@ You need certain permission levels to follow the steps in this article. If you c
 
 When you add a user to your project, you assign them a role to define their level of access. Before you add users, define the roles you want to use.
 
-There is a built-in role for data labeling, scoped only to labeling data. If you want to use the built-in role for all your labelers, skip this section and proceed to [add guest user](#add-guest-user).  
+There's a built-in role for data labeling, scoped only to labeling data. If you want to use the built-in role for all your labelers, skip this section and proceed to [add guest user](#add-guest-user). 
 
 The following custom roles give other levels of access for a data labeling project. Define all the roles you want to use before moving on to add the users.
 
@@ -47,7 +47,7 @@ The following custom roles give other levels of access for a data labeling proje
     1. For the **Custom role name**, type the name you want to use. For example, **Labeling team lead**.
     1. In the **Description** box, add a description. For example, **Team leader for labeling projects**.
     1. Select **Start from JSON**.
-    1. Ignore the **Select a file** entry, even though it is starred.  You'll create the JSON in a future step.
+    1. Ignore the **Select a file** entry, even though it's starred. You'll create the JSON in a future step.
     1. At the bottom of the page, select **Next**.
 1. Skip tabs.
     1. Don't do anything for the **Permissions** tab. You add permissions in a later step. Select **Next**.
@@ -58,14 +58,17 @@ The following custom roles give other levels of access for a data labeling proje
 
         :::image type="content" source="media/how-to-add-users/replace-lines.png" alt-text="Create custom role: select lines to replace them in the editor.":::
 
-    1. Replace these two lines with the `Actions` and `NotActions` from the appropriate role in the following tabs. Make sure to copy from `Actions` through the closing bracket, `],`.
+    1. Replace these two lines with the `Actions` and `NotActions` from the appropriate role in the following tabs. Make sure to copy from `Actions` through the closing bracket, `],`. 
+    
+    > [!TIP]
+    > Don't copy the entire JSON shown here, just the Actions and NotActions sections. Leave the rest of the JSON as it is in the editor.
 
-        [!INCLUDE [custom-role-data-labeling](includes/custom-role-data-labeling.md)]
+    [!INCLUDE [custom-role-data-labeling](includes/custom-role-data-labeling.md)]
 
     1. Select **Save** at the top of the edit box to save your changes.
 
     > [!IMPORTANT]
-    > Don't select **Next** until you've saved your edits.
+    > Don't select **Next** until you save your edits.
 
 1. After you save your edits, select **Next**.
 1. Select **Create** to create the custom role.
@@ -82,7 +85,7 @@ To add a guest user, your organization's external collaboration settings need th
     :::image type="content" source="media/how-to-add-users/menu-active-directory.png" alt-text="Select Microsoft Entra ID from the menu.":::
 
 1. On the left, select **Users**.
-1. At the top, select **New user**.
+1. At the top, select **Manage > New user**.
 1. Select **Invite external user**.
 1. Fill in the name and email address for the user.
 1. Add a message for the new user.
@@ -90,14 +93,14 @@ To add a guest user, your organization's external collaboration settings need th
 
     :::image type="content" source="media/how-to-add-users/invite-user.png" alt-text="Invite guest user from Microsoft Entra ID.":::
 
-Repeat these steps for each of the guest users. Or use the link at the bottom of the **Invite user** box to invite multiple users in bulk.
+Repeat these steps for each of the guest users. 
 
 > [!TIP]
-> Inform your labelers that they will receive an email. They must accept the invitation in order to gain access to your project.
+> Inform your labelers that they'll receive an email. They must accept the invitation in order to gain access to your project.
 
 ## Add users to your workspace
 
-Once you have the appropriate users in your system and the role(s) defined, add the users to your workspace so that they can access your data labeling project.
+Once you have the appropriate users in your system and the roles defined, add the users to your workspace so that they can access your data labeling project.
 
 To add users to your workspace, you must be an owner of the workspace.
 
@@ -120,7 +123,7 @@ To add users to your workspace, you must be an owner of the workspace.
 
 ## For your labelers
 
-Once labelers have been added as users in the workspace, they can begin labeling in your project. However, they still need information from you to access the project.
+Once labelers are added as users in the workspace, they can begin labeling in your project. However, they still need information from you to access the project.
 
 Be sure to create your labeling project before you contact your labelers.
 

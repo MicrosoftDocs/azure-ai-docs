@@ -12,7 +12,7 @@ ms.custom:
   - devx-track-dotnet
   - ignite-2023
 ms.topic: conceptual
-ms.date: 07/22/2024
+ms.date: 02/24/2025
 ---
 
 # Upgrade versions of the Azure Search .NET Management SDK

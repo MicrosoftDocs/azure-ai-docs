@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 12/10/2024
+ms.date: 05/29/2025
 ---
 
 # Configure IP firewall rules to allow indexer connections from Azure AI Search
@@ -49,7 +49,7 @@ This article explains how to find the IP address of your search service and conf
 
 Client applications that push indexing and query requests to the search service must be represented in an IP range. On Azure, you can generally determine the IP address by pinging the FQDN of a service (for example, `ping <your-search-service-name>.search.windows.net` returns the IP address of a search service).
 
-Add your client IP address to allow access to the service from the Azure portal on your current computer. Navigate to the **Networking** section on the left navigation pane. Change **Public Network Access** to **Selected networks**, and then check **Add your client IP address** under **Firewall**.
+Add your client IP address to allow access to the service from the Azure portal on your current computer. Navigate to the **Networking** section on the left pane. Change **Public Network Access** to **Selected networks**, and then check **Add your client IP address** under **Firewall**.
 
    :::image type="content" source="media\service-configure-firewall\azure-portal-firewall.png" alt-text="Screenshot of adding client ip to search service firewall" border="true":::
 
@@ -122,7 +122,7 @@ You can get this IP address range from the `AzureCognitiveSearch` service tag.
 
 Now that you have the necessary IP addresses, you can set up the inbound rules. The easiest way to add IP address ranges to a storage account's firewall rule is through the Azure portal. 
 
-1. Locate the storage account on the Azure portal and open **Networking** on the left navigation pane.
+1. Locate the storage account on the Azure portal and open **Networking** on the left pane.
 
 1. In the **Firewall and virtual networks** tab, choose **Selected networks**.
 

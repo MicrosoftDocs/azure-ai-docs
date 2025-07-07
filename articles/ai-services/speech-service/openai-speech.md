@@ -1,4 +1,4 @@
----
+﻿---
 title: "Azure OpenAI speech to speech chat - Speech service"
 titleSuffix: Azure AI services
 description: In this how-to guide, use Speech to converse with Azure OpenAI. Speech recognizes audio, sends it to Azure OpenAI, and synthesizes speech responses.
@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: build-2023, build-2023-dataai, devx-track-python
 ms.topic: how-to
-ms.date: 9/20/2024
+ms.date: 3/10/2025
 ms.author: eur
 zone_pivot_groups: programming-languages-csharp-python
 keywords: speech to text, openai
@@ -27,4 +27,4 @@ keywords: speech to text, openai
 ## Related content
 
 - [Learn more about Speech](overview.md)
-- [Learn more about Azure OpenAI](../openai/overview.md)
+- [Learn more about Azure OpenAI](../../ai-foundry/openai/overview.md)

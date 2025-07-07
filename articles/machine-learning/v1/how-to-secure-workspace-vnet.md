@@ -8,7 +8,7 @@ ms.subservice: enterprise-readiness
 ms.reviewer: None
 ms.author: larryfr
 author: Blackmist
-ms.date: 09/29/2023
+ms.date: 06/12/2025
 ms.topic: how-to
 ms.custom: UpdateFrequency5, tracking-python, security, cliv1, sdkv1, build-2023
 ---
@@ -17,6 +17,7 @@ ms.custom: UpdateFrequency5, tracking-python, security, cliv1, sdkv1, build-2023
 
 [!INCLUDE [sdk/cli v1](../includes/machine-learning-dev-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 In this article, you learn how to secure an Azure Machine Learning workspace and its associated resources in an Azure Virtual Network.
 
@@ -120,8 +121,6 @@ Azure Machine Learning supports storage accounts configured to use either a priv
     * **Queue** - Only needed if you plan to use [ParallelRunStep](../tutorial-pipeline-batch-scoring-classification.md) in an Azure Machine Learning pipeline.
     * **Table** - Only needed if you plan to use [ParallelRunStep](../tutorial-pipeline-batch-scoring-classification.md) in an Azure Machine Learning pipeline.
 
-    :::image type="content" source="../media/how-to-enable-studio-virtual-network/configure-storage-private-endpoint.png" alt-text="Screenshot showing private endpoint configuration page with blob and file options":::
-
     > [!TIP]
     > When configuring a storage account that is **not** the default storage, select the **Target subresource** type that corresponds to the storage account you want to add.
 
@@ -130,8 +129,6 @@ Azure Machine Learning supports storage accounts configured to use either a priv
 
     > [!TIP]
     > Alternatively, you can select __Allow Azure services on the trusted services list to access this storage account__ to more broadly allow access from trusted services. For more information, see [Configure Azure Storage firewalls and virtual networks](/azure/storage/common/storage-network-security#trusted-microsoft-services).
-
-    :::image type="content" source="../media/how-to-enable-virtual-network/storage-firewalls-and-virtual-networks-no-vnet.png" alt-text="The networking area on the Azure Storage page in the Azure portal when using private endpoint":::
 
 1. Select __Save__ to save the configuration.
 
@@ -153,8 +150,6 @@ Azure Machine Learning supports storage accounts configured to use either a priv
 
     > [!TIP]
     > Alternatively, you can select __Allow Azure services on the trusted services list to access this storage account__ to more broadly allow access from trusted services. For more information, see [Configure Azure Storage firewalls and virtual networks](/azure/storage/common/storage-network-security#trusted-microsoft-services).
-
-    :::image type="content" source="../media/how-to-enable-virtual-network/storage-firewalls-and-virtual-networks.png" alt-text="The networking area on the Azure Storage page in the Azure portal":::
 
 1. Select __Save__ to save the configuration.
 
@@ -191,8 +186,6 @@ For information on using a private endpoint with Azure Key Vault, see [Integrate
     1. Under __Allow access from__, select __Allow public access from specific virtual networks and IP addresses__.
     1. Under __Virtual networks__, select __Add a virtual network__, __Add existing virtual networks__, and add the virtual network/subnet where your experimentation compute resides.
     1. Verify that __Allow trusted Microsoft services to bypass this firewall__ is checked, and then select __Apply__.
-
-    :::image type="content" source="../media/how-to-enable-virtual-network/key-vault-firewalls-and-virtual-networks-page.png" alt-text="The Firewalls and virtual networks section in the Key Vault pane":::
 
 For more information, see [Configure Azure Key Vault network settings](/azure/key-vault/general/how-to-azure-key-vault-network-security).
 
@@ -293,7 +286,7 @@ The following table lists the services that you need to skip validation for:
 | Azure Data Lake Store Gen1 | No |
 | Azure Data Lake Store Gen2 | No |
 | Azure SQL Database | Yes |
-| PostgreSql | Yes |
+| PostgreSQL | Yes |
 
 > [!NOTE]
 > Azure Data Lake Store Gen1 and Azure Data Lake Store Gen2 skip validation by default, so you don't have to do anything.

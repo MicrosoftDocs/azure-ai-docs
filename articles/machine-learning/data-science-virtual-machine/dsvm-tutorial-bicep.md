@@ -20,11 +20,11 @@ This quickstart shows how to create an Ubuntu Data Science Virtual Machine using
 
 ## Prerequisites
 
-An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/services/machine-learning/) before you begin.
+An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/products/machine-learning/) before you begin.
 
 ## Review the Bicep file
 
-This quickstart uses the Bicep file from the [Azure Quickstart Templates](https://azure.microsoft.com/resources/templates/vm-ubuntu-DSVM-GPU-or-CPU/).
+This quickstart uses the Bicep file from the Azure Quickstart Templates.
 
 :::code language="bicep" source="~/quickstart-templates/application-workloads/datascience/vm-ubuntu-DSVM-GPU-or-CPU/main.bicep":::
 

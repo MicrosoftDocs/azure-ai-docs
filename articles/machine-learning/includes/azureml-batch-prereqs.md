@@ -15,7 +15,7 @@ ms.author: cacrest
 
   # [Azure CLI](#tab/cli)
 
-  Run the following command to install the [Azure CLI](/cli/azure/) and the `ml` [extension for Azure Machine Learning](../how-to-configure-cli.md):
+  Run the following command to install the [Azure CLI](/cli/azure/install-azure-cli) and the `ml` [extension for Azure Machine Learning](../how-to-configure-cli.md):
 
   ```azurecli
   az extension add -n ml

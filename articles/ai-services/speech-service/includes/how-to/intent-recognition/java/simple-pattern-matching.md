@@ -1,11 +1,11 @@
 ---
-author: chschrae
-manager: travisw
+author: eric-urban
+manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: linux-related-content
 ms.date: 01/03/2022
 ms.topic: include
-ms.author: chschrae
+ms.author: eur
 ---
 
 [!INCLUDE [Create project](../../../quickstarts/platform/java.md)]
@@ -30,7 +30,7 @@ public class Program {
     }
 
     public static void IntentPatternMatchingWithMicrophone() throws InterruptedException, ExecutionException {
-        SpeechConfig config = SpeechConfig.fromSubscription("YOUR_SUBSCRIPTION_KEY", "YOUR_SUBSCRIPTION_REGION");
+        SpeechConfig config = SpeechConfig.fromSubscription("YourSpeechResourceKey", "YourSpeechResourceRegion");
     }
 }
 ```
@@ -39,8 +39,8 @@ public class Program {
 
 Before you can initialize an `IntentRecognizer` object, you need to create a configuration that uses the key and location for your Azure AI services prediction resource.
 
-* Replace `"YOUR_SUBSCRIPTION_KEY"` with your Azure AI services prediction key.
-* Replace `"YOUR_SUBSCRIPTION_REGION"` with your Azure AI services resource region.
+* Replace `"YourSpeechResourceKey"` with your Azure AI services prediction key.
+* Replace `"YourSpeechResourceRegion"` with your Azure AI Foundry resource region.
 
 This sample uses the `FromSubscription()` method to build the `SpeechConfig`. For a full list of available methods, see [SpeechConfig Class](/java/api/com.microsoft.cognitiveservices.speech.speechconfig).
 
@@ -115,7 +115,7 @@ else if (result.getReason() == ResultReason.Canceled) {
     {
         System.out.println("CANCELED: ErrorCode=" + cancellation.getErrorCode());
         System.out.println("CANCELED: ErrorDetails=" + cancellation.getErrorDetails());
-        System.out.println("CANCELED: Did you update the subscription info?");
+        System.out.println("CANCELED: Did you update the Speech resource info?");
     }
 }
 ```
@@ -138,7 +138,7 @@ public class Main {
     }
 
     public static void IntentPatternMatchingWithMicrophone() throws InterruptedException, ExecutionException {
-        SpeechConfig config = SpeechConfig.fromSubscription("YOUR_SUBSCRIPTION_KEY", "YOUR_SUBSCRIPTION_REGION");
+        SpeechConfig config = SpeechConfig.fromSubscription("YourSpeechResourceKey", "YourSpeechResourceRegion");
 
         try (IntentRecognizer intentRecognizer = new IntentRecognizer(config)) {
             intentRecognizer.addIntent("Take me to floor {floorName}.", "ChangeFloors");
@@ -175,7 +175,7 @@ public class Main {
                 {
                     System.out.println("CANCELED: ErrorCode=" + cancellation.getErrorCode());
                     System.out.println("CANCELED: ErrorDetails=" + cancellation.getErrorDetails());
-                    System.out.println("CANCELED: Did you update the subscription info?");
+                    System.out.println("CANCELED: Did you update the Speech resource info?");
                 }
             }
         }

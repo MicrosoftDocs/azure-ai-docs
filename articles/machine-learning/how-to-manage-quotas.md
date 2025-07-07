@@ -36,7 +36,7 @@ Along with managing quotas and limits, you can learn how to [plan and manage cos
   > [!NOTE]
   > Azure Machine Learning compute is an exception. It has a separate quota from the core compute quota. 
 
-+ **Default limits vary by offer category type**, such as free trial, pay-as-you-go, and virtual machine (VM) series (such as Dv2, F, and G).
++ **Default limits vary by offer category type**, such as free trial, Standard, and virtual machine (VM) series (such as Dv2, F, and G).
 
 ## Default resource quotas and limits
 

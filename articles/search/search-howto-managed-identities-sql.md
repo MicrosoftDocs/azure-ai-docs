@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2023
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 12/10/2024
+ms.date: 05/29/2025
 ---
 
 # Set up an indexer connection to Azure SQL using a managed identity
@@ -90,7 +90,7 @@ Create the data source and provide either a system-assigned managed identity or 
 
 ### System-assigned managed identity
 
-The [REST API](/rest/api/searchservice/data-sources/create), Azure portal, and the [.NET SDK](/dotnet/api/azure.search.documents.indexes.models.searchindexerdatasourceconnection) support system-assigned managed identity. 
+The [REST API](/rest/api/searchservice/data-sources/create), Azure portal, and the Azure SDKs support system-assigned managed identity. 
 
 When you're connecting with a system-assigned managed identity, the only change to the data source definition is the format of the "credentials" property. You'll provide an Initial Catalog or Database name and a ResourceId that has no account key or password. The ResourceId must include the subscription ID of Azure SQL Database, the resource group of SQL Database, and the name of the SQL database.
 
@@ -115,16 +115,16 @@ api-key: [admin key]
 
 ### User-assigned managed identity (preview)
 
-The 2021-04-30-preview and later preview REST APIs support connections based on a user-assigned managed identity. When you're connecting with a user-assigned managed identity, there are two changes to the data source definition:
+Preview REST APIs support connections based on a user-assigned managed identity. When you're connecting with a user-assigned managed identity, there are two changes to the data source definition:
 
 * First, the format of the "credentials" property is an Initial Catalog or Database name and a ResourceId that has no account key or password. The ResourceId must include the subscription ID of Azure SQL Database, the resource group of SQL Database, and the name of the SQL database. This is the same format as the system-assigned managed identity.
 
 * Second, add an "identity" property that contains the collection of user-assigned managed identities. Only one user-assigned managed identity should be provided when creating the data source. Set it to type "userAssignedIdentities".
 
-Here's an example of how to create an indexer data source object using the most recent preview API version for [Create or Update Data Source](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2024-05-01-preview&preserve-view=true):
+Here's an example of how to create an indexer data source object using the most recent preview API version for [Create or Update Data Source](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true):
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2024-05-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2025-05-01-preview
 Content-Type: application/json
 api-key: [admin key]
 

@@ -43,7 +43,7 @@ Follow these steps to build and run the post-call transcription analysis quickst
     dotnet run --languageKey YourResourceKey --languageEndpoint YourResourceEndpoint --jsonInput "YourTranscriptionFile.json" --stereo  --output summary.json
     ```
     
-    Replace `YourResourceKey` with your Azure AI services resource key, replace `YourResourceRegion` with your Azure AI services resource [region](~/articles/ai-services/speech-service/regions.md) (such as `eastus`), and replace `YourResourceEndpoint` with your Azure AI services endpoint. Make sure that the paths specified by `--input` and `--output` are valid. Otherwise you must change the paths.
+    Replace `YourResourceKey` with your Azure AI Foundry resource key, replace `YourResourceRegion` with your Azure AI Foundry resource [region](~/articles/ai-services/speech-service/regions.md) (such as `eastus`), and replace `YourResourceEndpoint` with your Azure AI services endpoint. Make sure that the paths specified by `--input` and `--output` are valid. Otherwise you must change the paths.
     > [!IMPORTANT]
     > Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). See the Azure AI services [security](../../../../security-features.md) article for more information.
 

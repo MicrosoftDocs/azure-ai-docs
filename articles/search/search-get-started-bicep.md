@@ -1,9 +1,9 @@
 ---
-title: 'Quickstart: Deploy using Bicep'
+title: 'Quickstart: Deploy Using a Bicep File'
 titleSuffix: Azure AI Search
-description: You can quickly deploy an Azure AI Search service instance using Bicep.
-author: HeidiSteen
-ms.author: heidist
+description: Learn how to deploy an Azure AI Search service instance using Bicep.
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
 ms.custom:
@@ -11,12 +11,12 @@ ms.custom:
   - mode-arm
   - devx-track-bicep
   - ignite-2023
-ms.date: 12/10/2024
+ms.date: 03/04/2025
 ---
 
 # Quickstart: Deploy Azure AI Search using Bicep
 
-This article walks you through the process for using a Bicep file to deploy an Azure AI Search resource in the Azure portal.
+In this quickstart, you use a Bicep file to deploy an Azure AI Search service in the Azure portal.
 
 [!INCLUDE [About Bicep](~/reusable-content/ce-skilling/azure/includes/resource-manager-quickstart-bicep-introduction.md)]
 
@@ -101,11 +101,11 @@ Remove-AzResourceGroup -Name exampleRG
 
 ---
 
-## Next steps
+## Related content
 
-In this quickstart, you created an Azure AI Search service using a Bicep file, and then validated the deployment. To learn more about Azure AI Search and Azure Resource Manager, continue on to the articles.
+In this quickstart, you created an Azure AI Search service using a Bicep file and then validated the deployment. To learn more about Azure AI Search and Azure Resource Manager, see the following articles:
 
-- Read an [overview of Azure AI Search](search-what-is-azure-search.md).
-- [Create an index](search-get-started-portal.md) for your search service.
-- [Create a demo app](search-create-app-portal.md) using the Azure portal wizard.
-- [Create a skillset](search-get-started-skillset.md) to extract information from your data.
+- [What is Azure AI Search?](search-what-is-azure-search.md)
+- [Quickstart: Create a search index in the Azure portal](search-get-started-portal.md)
+- [Quickstart: Create a demo search app in the Azure portal](search-create-app-portal.md)
+- [Quickstart: Create a skillset in the Azure portal](search-get-started-skillset.md)

@@ -3,11 +3,13 @@ title: Batch synthesis API for text to speech - Speech service
 titleSuffix: Azure AI services
 description: Learn how to use the batch synthesis API for asynchronous synthesis of long-form text to speech.
 author: eric-urban
+ms.author: eur
 manager: nitinme
+ms.date: 3/10/2025
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/12/2024
-ms.author: eur
+ms.custom:
+  - build-2025
 ---
 
 # Batch synthesis API for text to speech
@@ -42,7 +44,7 @@ For code samples, see [GitHub](https://github.com/Azure-Samples/cognitive-servic
 To submit a batch synthesis request, construct the HTTP PUT request path and body according to the following instructions:
 
 - Set the required `inputKind` property.
-- If the `inputKind` property is set to "PlainText", then you must also set the `voice` property in the `synthesisConfig`. In the example below, the `inputKind` is set to "SSML", so the `synthesisConfig` isn't set.
+- If the `inputKind` property is set to "PlainText", then you must also set the `voice` property in the `synthesisConfig`. In the following example, the `inputKind` is set to "SSML", so the `synthesisConfig` isn't set.
 - Optionally you can set the `description`, `timeToLiveInHours`, and other properties. For more information, see [batch synthesis properties](batch-synthesis-properties.md).
 
 > [!NOTE]
@@ -76,14 +78,13 @@ You should receive a response body in the following format:
 ```json
 {
   "id": "YourSynthesisId",
-  "internalId": "7ab84171-9070-4d3b-88d4-1b8cc1cb928a",
-  "status": "NotStarted",
+  "status": "Running",
   "createdDateTime": "2024-03-12T07:23:18.0097387Z",
   "lastActionDateTime": "2024-03-12T07:23:18.0097388Z",
   "inputKind": "SSML",
   "customVoices": {},
   "properties": {
-    "timeToLiveInHours": 744,
+    "timeToLiveInHours": 168,
     "outputFormat": "riff-24khz-16bit-mono-pcm",
     "concatenateResult": false,
     "decompressOutputFiles": false,
@@ -93,7 +94,7 @@ You should receive a response body in the following format:
 }
 ```
 
-The `status` property should progress from `NotStarted` status, to `Running`, and finally to `Succeeded` or `Failed`. You can call the [GET batch synthesis API](#get-batch-synthesis) periodically until the returned status is `Succeeded` or `Failed`.
+The `status` property should progress from `Running` status to `Succeeded` or `Failed`. You can call the [GET batch synthesis API](#get-batch-synthesis) periodically until the returned status is `Succeeded` or `Failed`.
 
 ## Get batch synthesis
 
@@ -108,14 +109,13 @@ You should receive a response body in the following format:
 ```json
 {
   "id": "YourSynthesisId",
-  "internalId": "7ab84171-9070-4d3b-88d4-1b8cc1cb928a",
   "status": "Succeeded",
   "createdDateTime": "2024-03-12T07:23:18.0097387Z",
   "lastActionDateTime": "2024-03-12T07:23:18.7979669",
   "inputKind": "SSML",
   "customVoices": {},
   "properties": {
-    "timeToLiveInHours": 744,
+    "timeToLiveInHours": 168,
     "outputFormat": "riff-24khz-16bit-mono-pcm",
     "concatenateResult": false,
     "decompressOutputFiles": false,
@@ -152,14 +152,13 @@ You should receive a response body in the following format:
   "value": [
     {
       "id": "my-job-03",
-      "internalId": "5f7e9ab6-2c92-4dcb-b5ee-ec0983ee4db0",
       "status": "Succeeded",
       "createdDateTime": "2024-03-12T07:28:32.5690441Z",
       "lastActionDateTime": "2024-03-12T07:28:33.0042293",
       "inputKind": "SSML",
       "customVoices": {},
       "properties": {
-        "timeToLiveInHours": 744,
+        "timeToLiveInHours": 168,
         "outputFormat": "riff-24khz-16bit-mono-pcm",
         "concatenateResult": false,
         "decompressOutputFiles": false,
@@ -179,14 +178,13 @@ You should receive a response body in the following format:
     },
     {
       "id": "my-job-02",
-      "internalId": "5577585f-4710-4d4f-aab6-162d14bd7ee0",
       "status": "Succeeded",
       "createdDateTime": "2024-03-12T07:28:29.6418211Z",
       "lastActionDateTime": "2024-03-12T07:28:30.0910306",
       "inputKind": "SSML",
       "customVoices": {},
       "properties": {
-        "timeToLiveInHours": 744,
+        "timeToLiveInHours": 168,
         "outputFormat": "riff-24khz-16bit-mono-pcm",
         "concatenateResult": false,
         "decompressOutputFiles": false,
@@ -215,7 +213,7 @@ The `value` property in the json response lists your synthesis requests. The lis
 
 ## Delete batch synthesis
 
-Delete the batch synthesis job history after you retrieved the audio output results. The Speech service keeps batch synthesis history for up to 31 days, or the duration of the request `timeToLiveInHours` property, whichever comes sooner. The date and time of automatic deletion (for synthesis jobs with a status of "Succeeded" or "Failed") is equal to the `lastActionDateTime` + `timeToLiveInHours` properties.
+Delete the batch synthesis job history after you retrieved the audio output results. The Speech service keeps batch synthesis history for 168 hours (7 days) by default. Alternatively, you can specify this retention period using the `timeToLiveInHours` property, up to 744 hours (31 days). The date and time of automatic deletion (for synthesis jobs with a status of "Succeeded" or "Failed") is equal to the `lastActionDateTime` + `timeToLiveInHours` properties.
 
 To delete a batch synthesis job, make an HTTP DELETE request using the URI as shown in the following example. Replace `YourSynthesisId` with your batch synthesis ID, replace `YourSpeechKey` with your Speech resource key, and replace `YourSpeechRegion` with your Speech resource region.
 
@@ -248,9 +246,7 @@ The summary file contains the synthesis results for each text input. Here's an e
   "status": "Succeeded",
   "results": [
     {
-      "contents": [
-        "<speak version=\"1.0\" xml:lang=\"en-US\"><voice name=\"en-US-JennyNeural\">The rainbow has seven colors.</voice></speak>"
-      ],
+      "contents": ["<speak version=\"1.0\" xml:lang=\"en-US\"><voice name=\"en-US-JennyNeural\">The rainbow has seven colors.</voice></speak>"],
       "status": "Succeeded",
       "audioFileName": "0001.wav",
       "properties": {

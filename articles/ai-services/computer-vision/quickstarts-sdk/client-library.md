@@ -2,13 +2,13 @@
 title: "Quickstart: Optical character recognition (OCR)"
 titleSuffix: Azure AI services
 description: Learn how to use Optical character recognition (OCR) in your application through a native client library in the language of your choice.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: quickstart
 ms.date: 10/16/2024
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
+ms.update-cycle: 365-days
 ms.author: pafarley
 ms.devlang: csharp
 # ms.devlang: csharp, golang, java, javascript, python
@@ -37,7 +37,7 @@ Get started with the Azure AI Vision Read REST API or client libraries. The Read
 
 ::: zone pivot="programming-language-javascript"
 
-[!INCLUDE [NodeJS SDK quickstart](../includes/quickstarts-sdk/node-sdk.md)]
+[!INCLUDE [Node.js SDK quickstart](../includes/quickstarts-sdk/node-sdk.md)]
 
 ::: zone-end
 

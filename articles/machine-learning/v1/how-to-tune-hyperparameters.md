@@ -18,6 +18,8 @@ ms.custom: UpdateFrequency5
      
 [!INCLUDE [cli-version-info](../includes/machine-learning-cli-v1-deprecation.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 Automate efficient hyperparameter tuning by using Azure Machine Learning (v1) [HyperDrive package](/python/api/azureml-train-core/azureml.train.hyperdrive). Learn how to complete the steps required to tune hyperparameters with the [Azure Machine Learning SDK](/python/api/overview/azure/ml/):
 
 1. Define the parameter search space

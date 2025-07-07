@@ -1,5 +1,5 @@
 ---
-title: Share data across workspaces with registries (preview)
+title: Share data across workspaces with registries
 titleSuffix: Azure Machine Learning
 description: Learn how practice cross-workspace MLOps and collaborate across teams by sharing data through registries.
 services: machine-learning
@@ -7,21 +7,19 @@ ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.author: larryfr
 author: Blackmist
-ms.reviewer: kritifaujdar
-ms.date: 04/09/2024
+ms.reviewer: soumyapatro
+ms.date: 04/07/2025
 ms.topic: how-to
 ms.custom: devx-track-azurecli, sdkv2, build-2023
 ---
 
-# Share data across workspaces with registries (preview)
+# Share data across workspaces with registries
 
-Azure Machine Learning registry enables you to collaborate across workspaces within your organization. Using registries, you can share models, components, environments and data. Sharing data with registries is currently a preview feature. In this article, you learn how to:
+Azure Machine Learning registry enables you to collaborate across workspaces within your organization. Using registries, you can share models, components, environments, and data. In this article, you learn how to:
 
 * Create a data asset in the registry.
 * Share an existing data asset from workspace to registry
 * Use the data asset from registry as input to a model training job in a workspace.
-
-[!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
 ### Key scenario addressed by data sharing using Azure Machine Learning registry 
 
@@ -58,7 +56,7 @@ You can create three data asset types:
 When you create a data asset, you must specify a **path** parameter that points to the data location. Currently, the only supported paths are to locations on your local computer.
 
 > [!TIP]
-> "Local" means the local storage for the computer you are using. For example, if you're using a laptop, the local drive. If an Azure Machine Learning compute instance, the "local" drive of the compute instance.
+> "Local" means the local storage for the computer you're using. For example, if you're using a laptop, the local drive. If you use an Azure Machine Learning compute instance, then the "local" drive of the compute instance.
 
 
 ## Prerequisites
@@ -83,7 +81,7 @@ Before following the steps in this article, make sure you have the following pre
     To install the Azure CLI and extension, see [Install, set up, and use the CLI (v2)](how-to-configure-cli.md).
 
     > [!IMPORTANT]
-    > * The CLI examples in this article assume that you are using the Bash (or compatible) shell. For example, from a Linux system or [Windows Subsystem for Linux](/windows/wsl/about).
+    > * The CLI examples in this article assume that you're using the Bash (or compatible) shell. For example, from a Linux system or [Windows Subsystem for Linux](/windows/wsl/about).
     > * The examples also assume that you have configured defaults for the Azure CLI so that you don't have to specify the parameters for your subscription, workspace, resource group, or location. To set default settings, use the following commands. Replace the following parameters with the values for your configuration:
     >
     >     * Replace `<subscription>` with your Azure subscription ID.
@@ -203,7 +201,7 @@ az ml data show --name transformed-nyc-taxt-data --version 1 --registry-name <re
 # [Python SDK](#tab/python)
 
 > [!TIP]
-> The same `MLClient.environmentsdata.create_or_update()` can be used to create data in either a workspace or a registry depending on the target it has been initialized with. Since you work wth both workspace and registry in this document, you have initialized `ml_client_workspace` and `ml_client_registry` to work with workspace and registry respectively. 
+> The same `MLClient.environmentsdata.create_or_update()` can be used to create data in either a workspace or a registry depending on the target it has been initialized with. Since you work with both workspace and registry in this document, you have initialized `ml_client_workspace` and `ml_client_registry` to work with workspace and registry respectively. 
 
 
 The source data directory `data_transformed` is available in `cli/jobs/pipelines-with-components/nyc_taxi_data_regression/`. Initialize the data object and create the data.
@@ -219,7 +217,7 @@ ml_client_registry.data.create_or_update(my_data)
 ```
 
 > [!TIP]
-> If you get an error that an data with this name and version already exists in the registry, specify a different version for the `version` parameter.
+> If you get an error that data with this name and version already exists in the registry, specify a different version for the `version` parameter.
 
 Note down the `name` and `version` of the data from the output and pass them to the `ml_client_registry.data.get()` method to fetch the data from registry. 
 
@@ -267,7 +265,7 @@ jobs:
 ```  
 
 > [!WARNING]
-> * Before running the pipeline job, confirm that the workspace in which you will run the job is in an Azure region that is supported by the registry in which you created the data.
+> * Before running the pipeline job, confirm that the workspace in which you run the job is in an Azure region that is supported by the registry in which you created the data.
 > * Confirm that the workspace has a compute cluster with the name `cpu-cluster` or edit the `compute` field under `jobs.train_job.compute` with the name of your compute.
 
 Run the pipeline job with the `az ml job create` command.
@@ -277,7 +275,7 @@ az ml job create --file single-job-pipeline.yml
 ```
 
 > [!TIP]
-> If you have not configured the default workspace and resource group as explained in the prerequisites section, you will need to specify the `--workspace-name` and `--resource-group` parameters for the `az ml job create` to work.
+> If you haven't configured the default workspace and resource group as explained in the prerequisites section, you need to specify the `--workspace-name` and `--resource-group` parameters for the `az ml job create` to work.
 
 For more information on running jobs, see the following articles:
 
@@ -306,7 +304,7 @@ print(pipeline_job)
 ```
 
 > [!WARNING]
-> * Confirm that the workspace in which you will run this job is in an Azure location that is supported by the registry in which you created the component before you run the pipeline job.
+> * Confirm that the workspace in which you run this job is in an Azure location that is supported by the registry in which you created the component before you run the pipeline job.
 > * Confirm that the workspace has a compute cluster with the name `cpu-cluster` or update it `pipeline_job.settings.default_compute=<compute-cluster-name>`.
 
 Run the pipeline job and wait for it to complete. 
@@ -321,7 +319,7 @@ pipeline_job
 ```
 
 > [!TIP]
-> Notice that you are using `ml_client_workspace` to run the pipeline job whereas you had used `ml_client_registry` to use create environment and component.
+> Notice that you're using `ml_client_workspace` to run the pipeline job whereas you had used `ml_client_registry` to use create environment and component.
 
 Since the component used in the training job is shared through a registry, you can submit the job to any workspace that you have access to in your organization, even across different subscriptions. For example, if you have `dev-workspace`, `test-workspace` and `prod-workspace`, you can connect to those workspaces and resubmit the job.
 
@@ -356,7 +354,7 @@ az ml data create -f local-folder.yml
 
 For more information on creating data assets in a workspace, see [How to create data assets](how-to-create-data-assets.md).  
 
-The data asset created in the workspace can be shared to a registry. From the registry, it can be used in multiple workspaces. Note that we are passing `--share_with_name` and `--share_with_version` parameter in share function. These parameters are optional and if you do not pass these data will be shared with same name and version as in workspace.
+The data asset created in the workspace can be shared to a registry. From the registry, it can be used in multiple workspaces. We are passing `--share_with_name` and `--share_with_version` parameter in share function. These parameters are optional and if you don't pass these data will be shared with same name and version as in workspace.
 
 The following example demonstrates using share command to share a data asset. Replace `<registry-name>` with the name of the registry that the data will be shared to.
 
@@ -383,7 +381,7 @@ For more information on creating data assets in a workspace, see [How to create 
 
 The data asset created in workspace can be shared to a registry and it can be used in multiple workspaces from there. You can also change the name and version when sharing the data from workspace to registry.
 
-Note that we are passing `share_with_name` and `share_with_version` parameter in share function. These parameters are optional and if you do not pass these data will be shared with same name and version as in workspace.
+We are passing `share_with_name` and `share_with_version` parameter in share function. These parameters are optional and if you don't pass these data will be shared with same name and version as in workspace.
 
 ```python
 # Sharing data from workspace to registry

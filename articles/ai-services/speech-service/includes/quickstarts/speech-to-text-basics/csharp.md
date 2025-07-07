@@ -12,7 +12,7 @@ ms.author: eur
 
 ## Prerequisites
 
-[!INCLUDE [Prerequisites](../../common/azure-prerequisites.md)]
+[!INCLUDE [Prerequisites](../../common/azure-prerequisites-resourcekey-endpoint.md)]
 
 ## Set up the environment
 
@@ -20,7 +20,7 @@ The Speech SDK is available as a [NuGet package](https://www.nuget.org/packages/
 
 ### Set environment variables
 
-[!INCLUDE [Environment variables](../../common/environment-variables.md)]
+[!INCLUDE [Environment variables](../../common/environment-variables-resourcekey-endpoint.md)]
 
 ## Recognize speech from a microphone
 
@@ -54,9 +54,9 @@ Follow these steps to create a console application and install the Speech SDK.
 
    class Program 
    {
-       // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
+       // This example requires environment variables named "SPEECH_KEY" and "ENDPOINT"
        static string speechKey = Environment.GetEnvironmentVariable("SPEECH_KEY");
-       static string speechRegion = Environment.GetEnvironmentVariable("SPEECH_REGION");
+       static string endpoint = Environment.GetEnvironmentVariable("ENDPOINT");
 
        static void OutputSpeechRecognitionResult(SpeechRecognitionResult speechRecognitionResult)
        {
@@ -76,7 +76,7 @@ Follow these steps to create a console application and install the Speech SDK.
                    {
                        Console.WriteLine($"CANCELED: ErrorCode={cancellation.ErrorCode}");
                        Console.WriteLine($"CANCELED: ErrorDetails={cancellation.ErrorDetails}");
-                       Console.WriteLine($"CANCELED: Did you set the speech resource key and region values?");
+                       Console.WriteLine($"CANCELED: Did you set the speech resource key and endpoint values?");
                    }
                    break;
            }
@@ -84,7 +84,7 @@ Follow these steps to create a console application and install the Speech SDK.
 
        async static Task Main(string[] args)
        {
-           var speechConfig = SpeechConfig.FromSubscription(speechKey, speechRegion);        
+           var speechConfig = SpeechConfig.FromEndpoint(speechKey, endpoint);
            speechConfig.SpeechRecognitionLanguage = "en-US";
 
            using var audioConfig = AudioConfig.FromDefaultMicrophoneInput();
@@ -106,7 +106,7 @@ Follow these steps to create a console application and install the Speech SDK.
    ```
 
    > [!IMPORTANT]
-   > Make sure that you set the `SPEECH_KEY` and `SPEECH_REGION` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
+   > Make sure that you set the `SPEECH_KEY` and `ENDPOINT` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
 
 1. Speak into your microphone when prompted. What you speak should appear as text:
 

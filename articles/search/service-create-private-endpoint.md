@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 10/08/2024
+ms.date: 04/14/2025
 ---
 
 # Create a private endpoint for a secure connection to Azure AI Search
@@ -18,7 +18,7 @@ This article explains how to configure a private connection to Azure AI Search s
 
 + [Create an Azure virtual network](#create-the-virtual-network), or use an existing one
 + [Configure a search service to use a private endpoint](#create-a-search-service-with-a-private-endpoint)
-+ [Create an Azure virtual machine in the same virtual network](#create-a-virtual-machine)
++ [Create an Azure virtual machine (client) in the same virtual network](#create-a-virtual-machine)
 + [Test using a browser session on the virtual machine](#connect-to-the-vm)
 
 Other Azure resources that might privately connect to Azure AI Search include Azure OpenAI for "use your own data" scenarios. Azure AI Foundry doesn't run in a virtual network, but it can be configured on the backend to send requests over the Microsoft backbone network. Configuration for this traffic pattern is enabled by Microsoft when your request is submitted and approved. For this scenario:
@@ -216,7 +216,7 @@ When the search service endpoint is private, some portal features are disabled. 
     Aliases:  [search service name].search.windows.net
     ```
 
-1. From the VM, connect to the search service and create an index. You can follow this [quickstart](search-get-started-rest.md) to create a new search index in your service using the REST API. Setting up requests from a Web API test tool requires the search service endpoint `(https://[search service name].search.windows.net)` and the admin api-key you copied in a previous step.
+1. From the VM, connect to the search service and create an index. You can follow this [quickstart](search-get-started-text.md) to create a new search index in your service using the REST API. Setting up requests from a Web API test tool requires the search service endpoint `(https://[search service name].search.windows.net)` and the admin api-key you copied in a previous step.
 
 1. Completing the quickstart from the VM is your confirmation that the service is fully operational.
 

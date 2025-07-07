@@ -1,20 +1,20 @@
 ---
 title: Control AI model deployment with built-in policies
 titleSuffix: Azure Machine Learning
-description: "Learn how to use built-in Azure policies to control what managed AI Services (MaaS) and Model-as-a-Platform (MaaP) AI models can be deployed."
+description: "Learn how to use built-in Azure policies to control what managed AI Services (standard deployment) and Model-as-a-Platform (MaaP) AI models can be deployed."
 author: Blackmist
 ms.author: larryfr
 ms.service: azure-machine-learning
 ms.topic: how-to #Don't change
 ms.date: 02/19/2025
 
-#customer intent: As an admin, I want control what Managed AI Services (MaaS) and Model-as-a-Platform (MaaP) AI models can be deployed by my developers.
+#customer intent: As an admin, I want control what Managed AI Services (standard deployment) and Model-as-a-Platform (MaaP) AI models can be deployed by my developers.
 
 ---
 
 # Control AI model deployment with built-in policies in Azure Machine Learning
 
-Azure Policy provides built-in policy definitions that help you govern the deployment of AI models in Managed AI Services (MaaS) and Model-as-a-Platform (MaaP). You can use these policies to control what models your developers can deploy.
+Azure Policy provides built-in policy definitions that help you govern the deployment of AI models in Managed AI Services (standard deployment) and Model-as-a-Platform (MaaP). You can use these policies to control what models your developers can deploy.
 
 ## Prerequisites
 
@@ -29,7 +29,7 @@ Azure Policy provides built-in policy definitions that help you govern the deplo
 1. In the **Policy Assignment** form, use the following values:
 
     - **Scope**: Select the scope where you want to assign the policy. The scope can be a management group, subscription, or resource group.
-    - **Policy definition**: Select the ellipse (...) and search for **Allowed models for AI model deployment**. Select the policy definition from the list. For example, **Allowed models for AI model deployment in MaaS and MaaP**.
+    - **Policy definition**: Select the ellipse (...) and search for **Allowed models for AI model deployment**. Select the policy definition from the list. For example, **Allowed models for AI model deployment in standard deployment and MaaP**.
     - **Assignment name**: Enter a unique name for the assignment.
 
     The rest of the fields can be left as their default values or you can customize as needed for your organization.

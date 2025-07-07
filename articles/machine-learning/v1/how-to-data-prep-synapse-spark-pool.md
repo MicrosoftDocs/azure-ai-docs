@@ -9,7 +9,7 @@ ms.topic: how-to
 author: ynpandey
 ms.author: franksolomon
 ms.reviewer: franksolomon
-ms.date: 02/22/2024
+ms.date: 03/06/2025
 ms.custom: UpdateFrequency5, data4ml, synapse-azureml, sdkv1
 #Customer intent: As a data scientist, I want to prepare my data at scale, and to train my machine learning models from a single notebook using Azure Machine Learning.
 ---
@@ -17,6 +17,8 @@ ms.custom: UpdateFrequency5, data4ml, synapse-azureml, sdkv1
 # Data wrangling with Apache Spark pools (deprecated)
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 > [!WARNING]
 > The Azure Synapse Analytics integration with Azure Machine Learning, available in Python SDK v1, is deprecated. Users can still use Synapse workspace, registered with Azure Machine Learning, as a linked service. However, a new Synapse workspace can no longer be registered with Azure Machine Learning as a linked service. We recommend use of serverless Spark compute and attached Synapse Spark pools, available in CLI v2 and Python SDK v2. For more information, visit [https://aka.ms/aml-spark](https://aka.ms/aml-spark).
@@ -71,7 +73,7 @@ After the session starts, you can check the session's metadata:
 You can specify an [Azure Machine Learning environment](../concept-environments.md) to use during your Apache Spark session. Only Conda dependencies specified in the environment will take effect. Docker images aren't supported.
 
 >[!WARNING]
->  Python dependencies specified in environment Conda dependencies are not supported in Apache Spark pools. Currently, only fixed Python versions are supported
+>  Python dependencies specified in environment Conda dependencies aren't supported in Apache Spark pools. Currently, only fixed Python versions are supported
 > Include `sys.version_info` in your script to check your Python version
 
 This code creates the`myenv` environment variable, to install `azureml-core` version 1.20.0 and `numpy` version 1.17.0 before the session starts. You can then include this environment in your Apache Spark session `start` statement.
@@ -214,7 +216,7 @@ After you complete the data preparation, and you save your prepared data to stor
 %synapse stop
 ```
 
-## Create a dataset, to represent prepared data
+## Create a dataset to represent prepared data
 
 When you're ready to consume your prepared data for model training, connect to your storage with an [Azure Machine Learning datastore](how-to-access-data.md), and specify the file or file you want to use with an [Azure Machine Learning dataset](how-to-create-register-datasets.md).
 
@@ -238,7 +240,7 @@ input1 = train_ds.as_mount()
 
 ## Use a `ScriptRunConfig` to submit an experiment run to a Synapse Spark pool
 
-If you're ready to automate and productionize your data wrangling tasks, you can submit an experiment run to [an attached Synapse Spark pool](how-to-link-synapse-ml-workspaces.md#attach-a-pool-with-the-python-sdk) with the [ScriptRunConfig](/python/api/azureml-core/azureml.core.scriptrunconfig) object. In a similar way, if you have an Azure Machine Learning pipeline, you can use the [SynapseSparkStep to specify your Synapse Spark pool as the compute target](how-to-use-synapsesparkstep.md) for the data preparation step in your pipeline. Availability of your data to the Synapse Spark pool depends on your dataset type.
+If you're ready to automate and productionize your data wrangling tasks, you can submit an experiment run to [an attached Synapse Spark pool](how-to-link-synapse-ml-workspaces.md#attach-a-pool-with-the-python-sdk) with the [ScriptRunConfig](/python/api/azureml-core/azureml.core.scriptrunconfig) object. In a similar way, if you have an Azure Machine Learning pipeline, you can use the [SynapseSparkStep to specify your Synapse Spark pool as the compute target](how-to-use-synapsesparkstep.md) for your pipeline data preparation step. Availability of your data to the Synapse Spark pool depends on your dataset type.
 
 * For a FileDataset, you can use the [`as_hdfs()`](/python/api/azureml-core/azureml.data.filedataset#as-hdfs--) method. When the run is submitted, the dataset is made available to the Synapse Spark pool as a Hadoop distributed file system (HFDS)
 * For a [TabularDataset](how-to-create-register-datasets.md#tabulardataset), you can use the [`as_named_input()`](/python/api/azureml-core/azureml.data.abstract_dataset.abstractdataset#as-named-input-name-) method

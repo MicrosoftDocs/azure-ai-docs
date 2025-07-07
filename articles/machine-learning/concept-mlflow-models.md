@@ -9,7 +9,7 @@ ms.reviewer: cacrest
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.date: 09/30/2024
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom: cliv2, sdkv2, FY25Q1-Linter
 #Customer intent: As a data scientist, I want to understand MLflow artifacts and models so I can use MLflow models to enable streamlined deployment workflows.
 ---
@@ -170,7 +170,7 @@ name: mlflow-env
 
 All MLflow models contain a `predict` function, which is called when the model is deployed by using a no-code deployment. What the `predict` function returns, for example classes, probabilities, or a forecast, depends on the framework or flavor used for training. The documentation of each flavor describes what it returns.
 
-You can customize the `predict` function to change the way inference is executed. You can either [log models with a different behavior](how-to-log-mlflow-models.md#logging-models-with-a-different-behavior-in-the-predict-method), or [log a custom model flavor](how-to-log-mlflow-models.md#logging-custom-models).
+You can customize the `predict` function to change the way inference is executed. You can either [log models with a different behavior](how-to-log-mlflow-models.md#log-models-that-use-modified-prediction-behavior), or [log a custom model flavor](how-to-log-mlflow-models.md#log-custom-models).
 
 ## Workflows for loading MLflow models
 

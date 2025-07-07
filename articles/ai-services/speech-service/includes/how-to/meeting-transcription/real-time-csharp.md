@@ -68,7 +68,7 @@ internal class VoiceSignatureData
 
 private static async Task<string> GetVoiceSignatureString()
 {
-    var subscriptionKey = "your-subscription-key";
+    var subscriptionKey = "your-speech-resource-key";
     var region = "your-region";
 
     byte[] fileBytes = File.ReadAllBytes("path-to-voice-sample.wav");
@@ -104,7 +104,7 @@ This sample code does the following:
 * Creates a `MeetingTranscriber` using the constructor, and subscribes to the necessary events.
 * Adds participants to the meeting. The strings `voiceSignatureStringUser1` and `voiceSignatureStringUser2` should come as output from the steps above from the function `GetVoiceSignatureString()`.
 * Joins the meeting and begins transcription.
-* If you want to differentiate speakers without providing voice samples, enable the `DifferentiateGuestSpeakers` feature as in [Meeting Transcription Overview](../../../meeting-transcription.md). 
+* If you want to differentiate speakers without providing voice samples, enable the `DifferentiateGuestSpeakers` feature. 
 
 > [!NOTE]
 > `AudioStreamReader` is a helper class you can get on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/quickstart/csharp/dotnet/meeting-transcription/helloworld/AudioStreamReader.cs).
@@ -127,7 +127,7 @@ class TranscribeMeeting
 
     public static async Task TranscribeMeetingsAsync(string voiceSignatureStringUser1, string voiceSignatureStringUser2)
     {
-        var subscriptionKey = "your-subscription-key";
+        var subscriptionKey = "your-speech-resource-key";
         var region = "your-region";
         var filepath = "audio-file-to-transcribe.wav";
 

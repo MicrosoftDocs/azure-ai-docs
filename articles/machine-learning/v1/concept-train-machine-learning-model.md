@@ -8,7 +8,7 @@ author: manashgoswami
 ms.author: manashg
 ms.reviewer: ssalgado
 ms.subservice: core
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 08/30/2022
 ms.custom: UpdateFrequency5, devx-track-python, devx-track-azurecli
 ms.devlang: azurecli
@@ -17,6 +17,8 @@ ms.devlang: azurecli
 # Train models with Azure Machine Learning (v1)
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 Azure Machine Learning provides several ways to train your models, from code-first solutions using the SDK to low-code solutions such as automated machine learning and the visual designer. Use the following list to determine which training method is right for you:
 

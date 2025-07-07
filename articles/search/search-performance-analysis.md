@@ -17,8 +17,6 @@ This article describes the tools, behaviors, and approaches for analyzing query 
 
 In any large implementation, it's critical to do a performance benchmarking test of your Azure AI Search service before you roll it into production. You should test both the search query load that you expect, but also the expected data ingestion workloads (if possible, run both workloads simultaneously). Having benchmark numbers helps to validate the proper [search tier](search-sku-tier.md), [service configuration](search-capacity-planning.md), and expected [query latency](search-performance-analysis.md#average-query-latency).
 
-<!-- To develop benchmarks, we recommend the [azure-search-performance-testing (GitHub)](https://github.com/Azure-Samples/azure-search-performance-testing) tool. -->
-
 To isolate the effects of a distributed service architecture, try testing on service configurations of one replica and one partition.
 
 > [!NOTE]

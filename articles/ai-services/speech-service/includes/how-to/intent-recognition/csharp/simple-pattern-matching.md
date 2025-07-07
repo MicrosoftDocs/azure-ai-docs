@@ -1,11 +1,10 @@
 ---
-author: chschrae
-manager: travisw
+author: eric-urban
+manager: nitinme
 ms.service: azure-ai-speech
 ms.date: 01/03/2022
 ms.topic: include
-ms.author: chschrae
-zone_pivot_groups: programming-languages-set-two
+ms.author: eur
 ---
 
 ## Create a project
@@ -33,7 +32,7 @@ namespace helloworld
 
         private static async Task IntentPatternMatchingWithMicrophoneAsync()
         {
-            var config = SpeechConfig.FromSubscription("YOUR_SUBSCRIPTION_KEY", "YOUR_SUBSCRIPTION_REGION");
+            var config = SpeechConfig.FromSubscription("YourSpeechResourceKey", "YourSpeechResourceRegion");
         }
     }
 }
@@ -43,8 +42,8 @@ namespace helloworld
 
 Before you can initialize an `IntentRecognizer` object, you need to create a configuration that uses the key and location for your Azure AI services prediction resource.
 
-* Replace `"YOUR_SUBSCRIPTION_KEY"` with your Azure AI services prediction key.
-* Replace `"YOUR_SUBSCRIPTION_REGION"` with your Azure AI services resource region.
+* Replace `"YourSpeechResourceKey"` with your Azure AI services prediction key.
+* Replace `"YourSpeechResourceRegion"` with your Azure AI Foundry resource region.
 
 This sample uses the `FromSubscription()` method to build the `SpeechConfig`. For a full list of available methods, see [SpeechConfig Class](/dotnet/api/microsoft.cognitiveservices.speech.speechconfig).
 
@@ -62,7 +61,7 @@ using (var intentRecognizer = new IntentRecognizer(config))
 ## Add some intents
 
 You need to associate some patterns with the `IntentRecognizer` by calling `AddIntent()`.
-We will add 2 intents with the same ID for changing floors, and another intent with a separate ID for opening and closing doors.
+We'll add two intents with the same ID for changing floors, and another intent with a separate ID for opening and closing doors.
 Insert this code inside the `using` block:
 
 ```C#
@@ -72,7 +71,7 @@ intentRecognizer.AddIntent("{action} the door.", "OpenCloseDoor");
 ```
 
 > [!NOTE]
-> There is no limit to the number of entities you can declare, but they will be loosely matched. If you add a phrase like "{action} door" it will match any time there is text before the word "door". Intents are evaluated based on their number of entities. If two patterns would match, the one with more defined entities is returned.
+> There's no limit to the number of entities you can declare, but they'll be loosely matched. If you add a phrase like "{action} door", it matches any time there's text before the word "door". Intents are evaluated based on their number of entities. If two patterns would match, the one with more defined entities is returned.
 
 ## Recognize an intent
 
@@ -88,7 +87,7 @@ var result = await intentRecognizer.RecognizeOnceAsync();
 
 ## Display the recognition results (or errors)
 
-When the recognition result is returned by the Speech service, we will print the result.
+When the Speech service returns the recognition result, we print the result.
 
 Insert this code below `var result = await recognizer.RecognizeOnceAsync();`:
 
@@ -175,7 +174,7 @@ namespace helloworld
 
         private static async Task IntentPatternMatchingWithMicrophoneAsync()
         {
-            var config = SpeechConfig.FromSubscription("YOUR_SUBSCRIPTION_KEY", "YOUR_SUBSCRIPTION_REGION");
+            var config = SpeechConfig.FromSubscription("YourSpeechResourceKey", "YourSpeechResourceRegion");
             using (var intentRecognizer = new IntentRecognizer(config))
             {
                 intentRecognizer.AddIntent("Take me to floor {floorName}.", "ChangeFloors");
@@ -256,7 +255,7 @@ Now you're ready to build your app and test our speech recognition using the Spe
 
 1. **Compile the code** - From the menu bar of Visual Studio, choose **Build** > **Build Solution**.
 2. **Start your app** - From the menu bar, choose **Debug** > **Start Debugging** or press <kbd>F5</kbd>.
-3. **Start recognition** - It will prompt you to say something. The default language is English. Your speech is sent to the Speech service, transcribed as text, and rendered in the console.
+3. **Start recognition** - It prompts you to say something. The default language is English. Your speech is sent to the Speech service, transcribed as text, and rendered in the console.
 
 For example if you say "Take me to floor 7", this should be the output:
 

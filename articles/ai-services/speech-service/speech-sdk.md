@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 9/24/2024
+ms.date: 3/10/2025
 ms.author: eur
 #Customer intent: As a developer, I want to learn about the Speech SDK.
 ---
@@ -23,7 +23,7 @@ The Speech SDK supports the following languages and platforms:
 
 | Programming language | Reference | Platform support |
 |----------------------|----------|----------|
-| [C#](quickstarts/setup-platform.md?pivots=programming-language-csharp) <sup>1</sup> | [.NET](/dotnet/api/microsoft.cognitiveservices.speech) | Windows, Linux, macOS, Mono, Xamarin.iOS, Xamarin.Mac, Xamarin.Android, UWP, Unity |
+| [C#](quickstarts/setup-platform.md?pivots=programming-language-csharp) <sup>1</sup> | [.NET](/dotnet/api/microsoft.cognitiveservices.speech) | Windows, Linux, macOS, Mono, UWP, Unity |
 | [C++](quickstarts/setup-platform.md?pivots=programming-language-cpp) <sup>2</sup> | [C++](/cpp/cognitive-services/speech/) | Windows, Linux, macOS |
 | [Go](quickstarts/setup-platform.md?pivots=programming-language-go) | [Go](https://github.com/Microsoft/cognitive-services-speech-sdk-go) | Linux | 
 | [Java](quickstarts/setup-platform.md?pivots=programming-language-java) | [Java](/java/api/com.microsoft.cognitiveservices.speech) | Android, Windows, Linux, macOS |
@@ -58,7 +58,7 @@ If a sample isn't available in your preferred programming language, you can sele
 
 ### GitHub samples
 
-In depth samples are available in the [Azure-Samples/cognitive-services-speech-sdk](https://aka.ms/csspeech/samples) repository on GitHub. There are samples for C# (including UWP, Unity, and Xamarin), C++, Java, JavaScript (including Browser and Node.js), Objective-C, Python, and Swift. Code samples for Go are available in the [Microsoft/cognitive-services-speech-sdk-go](https://github.com/Microsoft/cognitive-services-speech-sdk-go) repository on GitHub.
+In depth samples are available in the [Azure-Samples/cognitive-services-speech-sdk](https://aka.ms/csspeech/samples) repository on GitHub. There are samples for C# (including UWP and Unity), C++, Java, JavaScript (including Browser and Node.js), Objective-C, Python, and Swift. Code samples for Go are available in the [Microsoft/cognitive-services-speech-sdk-go](https://github.com/Microsoft/cognitive-services-speech-sdk-go) repository on GitHub.
 
 ## Help options
 

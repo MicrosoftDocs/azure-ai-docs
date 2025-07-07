@@ -17,6 +17,8 @@ ms.custom: UpdateFrequency5, sdkv1, FY25Q1-Linter
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 In this article, you learn how to use secrets in training jobs securely. Authentication information such as your user name and password are secrets. For example, if you connect to an external database in order to query training data, you would need to pass your username and password to the remote job context. Coding such values into training scripts in cleartext is insecure as it would expose the secret. 
 
 Instead, your Azure Machine Learning workspace has an associated resource called a [Azure Key Vault](/azure/key-vault/general/overview). Use this Key Vault to pass secrets to remote jobs securely through a set of APIs in the Azure Machine Learning Python SDK.

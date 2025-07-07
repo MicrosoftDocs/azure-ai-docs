@@ -2,12 +2,11 @@
 title: Image Moderation - Content Moderator
 titleSuffix: Azure AI services
 description: Use Content Moderator's machine-assisted image moderation to moderate images for adult and racy content.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-moderator
 ms.topic: conceptual
-ms.date: 01/18/2024
+ms.date: 06/12/2025
 ms.author: pafarley
 
 ---

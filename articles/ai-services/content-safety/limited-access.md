@@ -7,16 +7,16 @@ ms.author: pafarley
 manager: nitinme
 ms.topic: conceptual
 ms.service: azure-ai-content-safety
-ms.date: 09/23/2024
+ms.date: 04/29/2025
 ---
 
 # Limited Access to Content Safety features
 
-The Azure AI Content Safety [disconnected containers](./how-to/containers/container-overview.md) and [embedded SDK](./how-to/embedded-content-safety.md) allow for on-device analysis where cloud connectivity is intermittent or unavailable. They are Limited Access features available by registration only, and only for certain use cases.
+The Azure AI Content Safety [disconnected containers](./how-to/containers/container-overview.md) and [embedded SDK](./how-to/embedded-content-safety.md) are Limited Access features available by registration only, and only for certain use cases. These features allow for on-device analysis where cloud connectivity is intermittent or unavailable.
 
 ## Registration process
 
-The content safety disconnected containers and embedded SDK require registration. Only customers managed by Microsoft, meaning those who are working directly with Microsoft account teams, are eligible for access. Customers who wish to use this feature are required to register by submitting a registration form. The use of either feature is limited to the use case selected at the time of registration. Microsoft may require customers to re-verify this information.
+The content safety disconnected containers and embedded SDK require registration. Only customers managed by Microsoft, meaning those who are working directly with Microsoft account teams, are eligible for access. Customers who wish to use this feature must register by submitting a registration form. The use of either feature is limited to the use case selected at the time of registration. Microsoft may require customers to re-verify this information.
 - [Request access to content safety disconnected containers](https://aka.ms/csdisconnectedcontainers)
 - [Request access to embedded content safety](https://aka.ms/aacs-embedded-application)
 
@@ -26,13 +26,13 @@ Learn more about the legal terms that apply to this feature [here](https://azure
 
 ## Help and support
 
-FAQ about Limited Access features can be found [here](/azure/ai-services/cognitive-services-limited-access).
+See the FAQ about Limited Access features [here](/azure/ai-services/cognitive-services-limited-access).
 
 If you need help with Azure AI Content Safety, find support [here](/azure/ai-services/cognitive-services-support-options).
 
 Report abuse [here](https://aka.ms/reportabuse).
 
-## Next steps
+## Related content
 
 * [How to use embedded speech](/azure/ai-services/content-safety/how-to/embedded-content-safety)
 * [Content safety containers](./how-to/containers/container-overview.md)

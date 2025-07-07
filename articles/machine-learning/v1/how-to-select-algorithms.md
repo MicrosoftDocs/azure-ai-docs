@@ -14,6 +14,8 @@ ms.date: 09/30/2024
 
 # How to select algorithms for Azure Machine Learning
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 If you're wondering which machine learning algorithm to use, the answer depends primarily on two aspects of your data science scenario:
 
 - **What do you want to do with your data?** Specifically, what's the business question you want to answer by learning from your past data?

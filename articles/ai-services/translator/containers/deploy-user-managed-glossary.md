@@ -2,7 +2,6 @@
 title: Deploy a user-managed glossary in Azure AI Translator container
 titleSuffix: Azure AI services
 description: How to deploy a user-managed glossary in the Azure AI Translator container environment.
-#services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator

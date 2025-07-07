@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: reference
-ms.date: 08/20/2024
+ms.date: 04/15/2025
 ---
 # Skill context and input annotation language
 
@@ -232,6 +232,13 @@ When used inside an expression, paths should be enclosed between `"$("` and `")"
 |---|---|
 |`=15%4`|`3`|
 |`=$(/document/merged_content/entities/0/offset)%2`|`1`|
+
+### String concatenation `'+'`
+
+|Expression|Value|
+|---|---|
+|`="Hello," + "world!"`|`"Hello, world!"`|
+|`=$(/document/merged_content/entities/0/text) + $(/document/merged_content/entities/0/category)`|`"BMN Organization"`|
 
 ### Less than, less than or equal, greater than and greater than or equal `'<'` `'<='` `'>'` `'>='`
 

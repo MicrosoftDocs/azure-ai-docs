@@ -1,15 +1,15 @@
 ---
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
 ms.date: 02/16/2025
-ms.author: jboback
+ms.author: lajanuar
 ---
 
 ## Prerequisites
 
-* [Create a Project in Foundry in the Azure AI Foundry Portal](../../../../../ai-studio/how-to/create-projects.md)
+* [Create a Project in Foundry in the Azure AI Foundry Portal](../../../../../ai-foundry/how-to/create-projects.md)
 
 ## Navigate to the Azure AI Foundry Playground
 
@@ -53,4 +53,4 @@ After your operation is completed, the type of entity is displayed beneath each 
 |Length| The character length of the entity.|
 |Confidence| How confident the model is in the correctness of identification of entity's type.|
 
-:::image type="content" source="../../media/quickstarts/azure-ai-foundry/named-entity-recognition.png" alt-text="A screenshot of an example of extract named entities in azure AI studio." lightbox="../../media/quickstarts/azure-ai-foundry/named-entity-recognition.png":::
+:::image type="content" source="../../media/quickstarts/azure-ai-foundry/named-entity-recognition.png" alt-text="A screenshot of an example of extract named entities in Azure AI Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/named-entity-recognition.png":::

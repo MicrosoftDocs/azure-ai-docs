@@ -10,12 +10,12 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 09/17/2024
+ms.date: 05/08/2025
 ---
 
 # Data import in Azure AI Search
 
-In Azure AI Search, queries execute over user-owned content that's loaded into a [search index](search-what-is-an-index.md). This article describes the two basic workflows for populating an index: *push* your data into the index programmatically, or *pull* in the data using a [search indexer](search-indexer-overview.md).
+In Azure AI Search, queries execute over your content that's loaded into a [search index](search-what-is-an-index.md). This article describes the two basic workflows for populating an index: *push* your data into the index programmatically, or *pull* in the data using a [search indexer](search-indexer-overview.md).
 
 Both approaches load documents from an external data source. Although you can create an empty index, it's not queryable until you add the content.
 
@@ -28,7 +28,7 @@ Push model is an approach that uses APIs to upload documents into an existing se
 
 Key benefits include:
 
-+ No restrictions on data source type. The payload must be composed of JSON documents that map to your index schema, but the data can be sourced from anywhere. 
++ No restrictions on data source type. The payload must be composed of JSON documents that map to your index schema, but the data can be sourced from anywhere.
 
 + No restrictions on frequency of execution. You can push changes to an index as often as you like. For applications having low latency requirements (for example, when the index needs to be in sync with product inventory fluctuations), the push model is your only option.
 
@@ -48,9 +48,9 @@ There's no support for pushing data via the Azure portal.
 
 For an introduction to the push APIs, see:
 
-+ [Quickstart: Full text search using the Azure SDKs](search-get-started-text.md)
++ [Quickstart: Full-text search](search-get-started-text.md)
 + [C# Tutorial: Optimize indexing with the push API](tutorial-optimize-indexing-push-api.md)
-+ [REST Quickstart: Create an Azure AI Search index using PowerShell](search-get-started-powershell.md)
++ [REST Quickstart: Create an Azure AI Search index using PowerShell](search-get-started-text.md)
 
 <a name="indexing-actions"></a>
 
@@ -98,7 +98,7 @@ Use the following tools and APIs for indexer-based indexing:
 
 Indexer functionality is exposed in the [Azure portal], the [REST API](/rest/api/searchservice/indexers/create), and the [.NET SDK](/dotnet/api/azure.search.documents.indexes.searchindexerclient).
 
-An advantage to using the Azure portal is that Azure AI Search can usually generate a default index schema by reading the metadata of the source dataset. 
+An advantage to using the Azure portal is that Azure AI Search can usually generate a default index schema by reading the metadata of the source dataset.
 
 ## Verify data import with Search explorer
 

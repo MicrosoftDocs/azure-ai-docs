@@ -30,7 +30,7 @@ ms.custom: devx-track-csharp
 - The key and endpoint from the resource you create to connect your application to the Azure Document Intelligence service.
 
   1. After your resource deploys, select **Go to resource**.
-  1. In the left navigation menu, select **Keys and Endpoint**.
+  1. In the left pane, select **Keys and Endpoint**.
   1. Copy one of the keys and the **Endpoint** for use later in this article.
 
   :::image type="content" source="../../../media/containers/keys-and-endpoint.png" alt-text="Screenshot of keys and endpoint location in the Azure portal.":::
@@ -74,7 +74,7 @@ From the project directory, open the *Program.cs* file in an editor or IDE. Add 
 In the application's `Program` class, create variables for your resource's key and endpoint.
 
 > [!IMPORTANT]
-> Go to the Azure portal. If the Document Intelligence resource you created in the Prerequisites section deployed successfully, select the **Go to Resource** button under **Next Steps**. In the left navigation menu, under **Resource Management**, select **Keys and Endpoint**.
+> Go to the Azure portal. If the Document Intelligence resource you created in the Prerequisites section deployed successfully, select the **Go to Resource** button under **Next Steps**. In the left pane, under **Resource Management**, select **Keys and Endpoint**.
 >
 > Remember to remove the key from your code when you're done. Never post it publicly. For production, use secure methods to store and access your credentials. For more information, see [Azure AI services security](../../../../../ai-services/security-features.md).
 

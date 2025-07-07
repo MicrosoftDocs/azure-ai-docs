@@ -19,6 +19,8 @@ ms.date: 10/13/2021
     
 [!INCLUDE [cli-version-info](../includes/machine-learning-cli-v1-deprecation.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 > [!IMPORTANT]
 > This feature is currently in public preview. This preview version is provided without a service-level agreement. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 

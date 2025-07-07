@@ -10,7 +10,7 @@ ms.reviewer: wenxwei
 ms.subservice: automl
 ms.topic: how-to
 ms.custom: devplatv2, sdkv2, cliv2, build-2023, build-2023-dataai, devx-track-python
-ms.date: 06/15/2023
+ms.date: 02/26/2025
 #Customer intent: I'm a data scientist with ML knowledge in the natural language processing space, looking to build ML models using language specific data in Azure Machine Learning with full control of the model algorithm, hyperparameters, and training and deployment environments.
 ---
 
@@ -232,7 +232,7 @@ Named entity recognition (NER)|`"eng"` <br>  `"deu"` <br> `"mul"`|  English&nbsp
 
 [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
 
-You can specify your dataset language in the featurization section of your configuration YAML file. BERT is also used in the featurization process of automated ML experiment training, learn more about [BERT integration and featurization in automated ML (SDK v1)](./v1/how-to-configure-auto-features.md#bert-integration-in-automated-ml).
+You can specify your dataset language in the featurization section of your configuration YAML file. BERT is also used in the featurization process of automated ML experiment training, learn more about [BERT integration and featurization in AutoML (SDK v1)](./v1/how-to-configure-auto-features.md#bert-integration-in-automl).
 
 ```azurecli
 featurization:
@@ -243,7 +243,7 @@ featurization:
 
  [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
 
-You can specify your dataset language with the `set_featurization()` method. BERT is also used in the featurization process of automated ML experiment training, learn more about [BERT integration and featurization in automated ML (SDK v1)](./v1/how-to-configure-auto-features.md?view=azureml-api-1&preserve-view=true#bert-integration-in-automated-ml).
+You can specify your dataset language with the `set_featurization()` method. BERT is also used in the featurization process of automated ML experiment training, learn more about [BERT integration and featurization in AutoML (SDK v1)](./v1/how-to-configure-auto-features.md?view=azureml-api-1&preserve-view=true#bert-integration-in-automl).
 
 ```python
 text_classification_job.set_featurization(dataset_language='eng')

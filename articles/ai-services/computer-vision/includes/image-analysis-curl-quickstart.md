@@ -2,7 +2,6 @@
 title: "Quickstart: Image Analysis REST API"
 titleSuffix: "Azure AI services"
 description: In this quickstart, get started with the Image Analysis REST API.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 
@@ -10,6 +9,7 @@ ms.service: azure-ai-vision
 ms.topic: include
 ms.date: 09/30/2024
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
+ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 

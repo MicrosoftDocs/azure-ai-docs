@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 02/07/2025
+ms.date: 07/01/2025
 ---
 
 # Make outbound connections through a shared private link
@@ -28,6 +28,7 @@ Shared private link is a premium feature that's billed by usage. When you set up
 
 Azure AI Search makes outbound calls to other Azure resources in the following scenarios:
 
++ Knowledge agent connections to Azure OpenAI for agentic retrieval workflows
 + Indexer or query connections to Azure OpenAI, Azure AI Vision, or the Azure AI Foundry model catalog for vectorization
 + Indexer connections to supported data sources
 + Indexer (skillset) connections to Azure Storage for caching enrichments, debug session sate, or writing to a knowledge store
@@ -35,7 +36,7 @@ Azure AI Search makes outbound calls to other Azure resources in the following s
 + Encryption key requests to Azure Key Vault
 + Custom skill requests to Azure Functions or similar resource
 
-Shared private links only work for Azure-to-Azure connections. If you're connecting to OpenAI or another external model, the connection must be over the public internet.
+Shared private links only work for Azure-to-Azure connections. If you're connecting to OpenAI or another external model provider, the connection must be over the public internet.
 
 Shared private links are for operations and data accessed through a [private endpoint](/azure/private-link/private-endpoint-overview) for Azure resources or clients that run in an Azure virtual network.
 
@@ -51,7 +52,7 @@ Once you set up the private link, it's used automatically whenever the search se
 
 There are two scenarios for using [Azure Private Link](/azure/private-link/private-link-overview) and Azure AI Search together.
 
-+ Scenario one: create a shared private link when an *outbound* (indexer) connection to Azure requires a private connection.
++ Scenario one: create a shared private link when an *outbound* (indexer or knowledge agent) connection to Azure requires a private connection.
 
 + Scenario two: [configure search for a private *inbound* connection](service-create-private-endpoint.md) from clients that run in a virtual network.
 
@@ -63,7 +64,7 @@ While both scenarios have a dependency on Azure Private Link, they're independen
 
 When evaluating shared private links for your scenario, remember these constraints.
 
-+ Several of the resource types used in a shared private link are in preview. If you're connecting to a preview resource (Azure Database for MySQL or Azure SQL Managed Instance), use a preview version of the Management REST API to create the shared private link. These versions include `2020-08-01-preview`, `2021-04-01-preview`, `2024-03-01-preview`, and `2024-06-01-preview`. We recommend the latest preview API.
++ Several of the resource types used in a shared private link are in preview. If you're connecting to a preview resource (Azure Database for MySQL or Azure SQL Managed Instance), use a preview version of the Management REST API to create the shared private link. These versions include `2020-08-01-preview`, `2021-04-01-preview`, `2024-03-01-preview`, `2024-06-01-preview`, and `2025-02-01-preview`. We recommend the latest preview API.
 
 + Indexer execution must use the [private execution environment](search-howto-run-reset-indexers.md#indexer-execution-environment) that's specific to your search service. Private endpoint connections aren't supported from the multitenant content processing environment. The configuration setting for this requirement is covered in this article.
 
@@ -78,8 +79,9 @@ When evaluating shared private links for your scenario, remember these constrain
   | Workload | Tier requirements | Region requirements | Service creation requirements |
   |----------|-------------------|---------------------|---------------------|
   | Indexers without skillsets | Basic and higher | None | None |
-  | Skillsets with embedding skills ([integrated vectorization](vector-search-integrated-vectorization.md)) | Basic and higher | [High capacity regions](search-limits-quotas-capacity.md#partition-storage-gb) | [After April 3, 2024](vector-search-index-size.md#how-to-check-service-creation-date) |
-  | Skillsets using other [built-in](cognitive-search-predefined-skills.md) or custom skills | Standard 2 (S2) and higher | None | [After April 3, 2024](vector-search-index-size.md#how-to-check-service-creation-date) |
+  | Skillsets with embedding skills ([integrated vectorization](vector-search-integrated-vectorization.md)) | Basic and higher | [High capacity regions](search-limits-quotas-capacity.md#partition-storage-gb) | [After April 3, 2024](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date) |
+  | Skillsets using other [built-in](cognitive-search-predefined-skills.md) or custom skills | Standard 1 (S1) and higher | None | [After April 3, 2024](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date) |
+  | Knowledge agents calling Azure OpenAI for query planning or passing search results | Basic and higher | None | None |
 
 + Permissions on both Azure AI Search and the Azure resource:
 
@@ -88,9 +90,11 @@ When evaluating shared private links for your scenario, remember these constrain
   | Azure AI Search | `Microsoft.Search/searchServices/sharedPrivateLinkResources/write`<br> `Microsoft.Search/searchServices/sharedPrivateLinkResources/read`<br> `Microsoft.Search/searchServices/sharedPrivateLinkResources/operationStatuses/read` |
   | Other Azure resource | Permission to approve private endpoint connections. For example, on Azure Storage, you need `Microsoft.Storage/storageAccounts/privateEndpointConnectionsApproval/action`. |
 
-<!-- + For [integrated vectorization](vector-search-integrated-vectorization.md) only, outbound connections through shared private link are supported on all billable tiers, on services [created after April 3, 2024](vector-search-index-size.md#how-to-check-service-creation-date), in regions providing [higher capacity](search-limits-quotas-capacity.md#partition-storage-gb).  -->
+<!-- + For [integrated vectorization](vector-search-integrated-vectorization.md) only, outbound connections through shared private link are supported on all billable tiers, on services [created after April 3, 2024](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date), in regions providing [higher capacity](search-limits-quotas-capacity.md#partition-storage-gb).  -->
 
-<!-- + For [AI enrichment](cognitive-search-concept-intro.md) and skillset processing, shared private link  that doesn't include an embedding skill and in services [created before April 3, 2024](vector-search-index-size.md#how-to-check-service-creation-date), Azure AI Search must be Standard 2 (S2) or higher. -->
+<!-- + For [AI enrichment](cognitive-search-concept-intro.md) and skillset processing, shared private link in services [created before April 3, 2024](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date), Azure AI Search must be Standard 2 (S2) or higher. -->
+
+<!-- + For [AI enrichment](cognitive-search-concept-intro.md) and skillset processing, shared private link in services [created after April 3, 2024](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date), Azure AI Search must be Standard 1 (S1) or higher. -->
 
 <!-- + For all other use cases, that don't involve skillsets, Azure AI Search can be Basic or higher. -->
 
@@ -126,7 +130,7 @@ You can create a shared private link for the following resources.
 
 <sup>7</sup> Shared private link for Azure OpenAI is only supported in public cloud and [Microsoft Azure Government](https://azure.microsoft.com/explore/global-infrastructure/government/). Other cloud offerings don't have support for shared private links for `openai_account` Group ID.
 
-<sup>8</sup> Shared private links are now supported (as of November 2024) for connections to Azure AI multiservice accounts. Azure AI Search connects to Azure AI multiservice for [billing purposes](cognitive-search-attach-cognitive-services.md). These connections can now be private through a shared private link. Shared private link is only supported when configuring [a managed identity (keyless configuration)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) in the skillset definition. 
+<sup>8</sup> Shared private links are now supported (as of November 2024) for connections to Azure AI services multi-service accounts. Azure AI Search connects to Azure AI services multi-service for [billing purposes](cognitive-search-attach-cognitive-services.md). These connections can now be private through a shared private link. Shared private link is only supported when configuring [a managed identity (keyless configuration)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) in the skillset definition. 
 
 ## 1 - Create a shared private link
 
@@ -142,7 +146,7 @@ When you complete the steps in this section, you have a shared private link that
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
-1. Under **Settings** on the left navigation pane, select **Networking**.
+1. Under **Settings** on the left pane, select **Networking**.
 
 1. On the **Shared Private Access** page, select **+ Add Shared Private Access**.
 

@@ -2,7 +2,6 @@
 title: "Use limited access tokens - Face"
 titleSuffix: Azure AI services
 description: Learn how ISVs can manage the Face API usage of their clients by issuing access tokens that grant access to Face features which are normally gated.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 #customer intent: As an ISV, I want to manage Face API usage for my clients so that they can use Face features without formal approval.

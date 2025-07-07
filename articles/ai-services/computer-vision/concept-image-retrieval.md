@@ -2,7 +2,6 @@
 title: Multimodal embeddings concepts - Image Analysis 4.0
 titleSuffix: Azure AI services
 description: Learn about concepts related to image vectorization and search/retrieval using the Image Analysis 4.0 API.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 
@@ -10,6 +9,7 @@ ms.service: azure-ai-vision
 ms.topic: conceptual
 ms.date: 09/25/2024
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
+ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 
@@ -61,12 +61,12 @@ The following are the main steps of the image retrieval process using Multimodal
 
 ### Relevance score 
 
-The image and video retrieval services return a field called "relevance." The term "relevance" denotes a measure of similarity between a query and image or video frame embeddings. The relevance score is composed of two parts:
-1. The cosine similarity (that falls in the range of [0,1]) between the query and image or video frame embeddings.
-1. A metadata score, which reflects the similarity between the query and the metadata associated with the image or video frame.
+The image retrieval service returns a field called "relevance." The term "relevance" denotes a measure of similarity between a query and image embeddings. The relevance score is composed of two parts:
+1. The cosine similarity (that falls in the range of [0,1]) between the query and image embeddings.
+1. A metadata score, which reflects the similarity between the query and the metadata associated with the image.
 
 > [!IMPORTANT]
-> The relevance score is a good measure to rank results such as images or video frames with respect to a single query. However, the relevance score cannot be accurately compared across queries. Therefore, it's not possible to easily map the relevance score to a confidence level. It's also not possible to trivially create a threshold algorithm to eliminate irrelevant results based solely on the relevance score. 
+> The relevance score is a good measure to rank results such as images with respect to a single query. However, the relevance score cannot be accurately compared across queries. Therefore, it's not possible to easily map the relevance score to a confidence level. It's also not possible to trivially create a threshold algorithm to eliminate irrelevant results based solely on the relevance score. 
 
 ## Input requirements
 

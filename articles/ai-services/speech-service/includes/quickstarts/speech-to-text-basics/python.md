@@ -12,7 +12,7 @@ ms.author: eur
 
 ## Prerequisites
 
-[!INCLUDE [Prerequisites](../../common/azure-prerequisites.md)]
+[!INCLUDE [Prerequisites](../../common/azure-prerequisites-resourcekey-endpoint.md)]
 
 ## Set up the environment
 
@@ -25,7 +25,7 @@ Install a version of [Python from 3.7 or later](https://www.python.org/downloads
 
 ### Set environment variables
 
-[!INCLUDE [Environment variables](../../common/environment-variables.md)]
+[!INCLUDE [Environment variables](../../common/environment-variables-resourcekey-endpoint.md)]
 
 ## Recognize speech from a microphone
 
@@ -49,8 +49,9 @@ Follow these steps to create a console application.
    import azure.cognitiveservices.speech as speechsdk
 
    def recognize_from_microphone():
-       # This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
-       speech_config = speechsdk.SpeechConfig(subscription=os.environ.get('SPEECH_KEY'), region=os.environ.get('SPEECH_REGION'))
+        # This example requires environment variables named "SPEECH_KEY" and "ENDPOINT"
+        # Replace with your own subscription key and endpoint, the endpoint is like : "https://YourServiceRegion.api.cognitive.microsoft.com"
+       speech_config = speechsdk.SpeechConfig(subscription=os.environ.get('SPEECH_KEY'), endpoint=os.environ.get('ENDPOINT'))
        speech_config.speech_recognition_language="en-US"
 
        audio_config = speechsdk.audio.AudioConfig(use_default_microphone=True)
@@ -68,7 +69,7 @@ Follow these steps to create a console application.
            print("Speech Recognition canceled: {}".format(cancellation_details.reason))
            if cancellation_details.reason == speechsdk.CancellationReason.Error:
                print("Error details: {}".format(cancellation_details.error_details))
-               print("Did you set the speech resource key and region values?")
+               print("Did you set the speech resource key and endpoint values?")
 
    recognize_from_microphone()
    ```
@@ -82,7 +83,7 @@ Follow these steps to create a console application.
    ```
 
    > [!IMPORTANT]
-   > Make sure that you set the `SPEECH_KEY` and `SPEECH_REGION` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
+   > Make sure that you set the `SPEECH_KEY` and `ENDPOINT` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
 
 1. Speak into your microphone when prompted. What you speak should appear as text:
 

@@ -40,7 +40,7 @@ Let's get started:
     * **Subscription**. Select your current subscription.
     * **Resource group**. The [Azure resource group](/azure/cloud-adoption-framework/govern/resource-consistency/resource-access-management#what-is-an-azure-resource-group) that contains your resource. You can create a new group or add it to an existing group.
     * **Region**. Select your local region.
-    * **Name**. Enter a name for your resource. We recommend using a descriptive name, for example *YourNameFormRecognizer*.
+    * **Name**. Enter a name for your resource. We recommend using a descriptive name, for example *YourNameDocumentIntelligence*.
     * **Pricing tier**. The cost of your resource depends on the pricing tier you choose and your usage. For more information, see [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/). You can use the free pricing tier (F0) to try the service, and upgrade later to a paid tier for production.
 
 1. Select **Review + Create**.
@@ -59,7 +59,7 @@ Let's get started:
 
 1. Copy the key and endpoint values from your Document Intelligence resource paste them in a convenient location, such as *Microsoft Notepad*. You need the key and endpoint values to connect your application to the Document Intelligence API.
 
-1. If your overview page doesn't have the keys and endpoint visible, you can select the **Keys and Endpoint** button, on the left navigation bar, and retrieve them there.
+1. If your overview page doesn't have the keys and endpoint visible, you can select the **Keys and Endpoint** button, on the left pane, and retrieve them there.
 
     :::image border="true" type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Still photo showing how to access resource key and endpoint URL.":::
 

@@ -8,9 +8,9 @@ ms.author: ssalgado
 ms.reviewer: nivmishra
 ms.service: azure-machine-learning
 ms.subservice: automl
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom: automl, sdkv1
-ms.date: 08/15/2023
+ms.date: 03/03/2025
 ---
 
 # Calendar features for time series forecasting in AutoML

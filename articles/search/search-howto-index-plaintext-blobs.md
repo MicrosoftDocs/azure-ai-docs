@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 07/25/2024
+ms.date: 02/24/2025
 ---
 
 # Index plain text blobs and files in Azure AI Search

@@ -1,12 +1,11 @@
 ---
 title: Anomaly Detector multivariate Java client library quickstart 
 titleSuffix: Azure AI services
-#services: cognitive-services
 author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-anomaly-detector
 ms.topic: include
-ms.date: 01/18/2024
+ms.date: 06/12/2025
 ms.author: mbullwin
 ---
 
@@ -241,7 +240,7 @@ UUID resultId = UUID.fromString(substring[substring.length - 1]);
 DetectionResult detectionResult;
 while (true) {
     detectionResult = anomalyDetectorClient.getDetectionResult(resultId);
-    DetectionStatus detectionStatus = detectionResult.getSummary().getStatus();;
+    DetectionStatus detectionStatus = detectionResult.getSummary().getStatus();
     if (detectionStatus == DetectionStatus.READY || detectionStatus == DetectionStatus.FAILED) {
         break;
     }

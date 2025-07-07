@@ -10,15 +10,12 @@ ms.author: mesameki
 author: mesameki
 ms.reviewer: lgayhardt
 ms.custom: responsible-ml, mktng-kw-nov2021, build-2023, devx-track-python
-ms.date: 02/29/2024
+ms.date: 03/25/2025
 ---
 
 # Model interpretability
 
 This article describes methods you can use for model interpretability in Azure Machine Learning.
-
-> [!IMPORTANT]
-> With the release of the Responsible AI dashboard, which includes model interpretability, we recommend that you migrate to the new experience, because the older SDK v1 preview model interpretability dashboard will no longer be actively maintained.
 
 ## Why model interpretability is important to model debugging
 
@@ -53,18 +50,9 @@ By using the classes and methods in the Responsible AI dashboard and by using SD
 * Achieve model interpretability on real-world datasets at scale.
 * Use an interactive visualization dashboard to discover patterns in your data and its explanations at training time.
 
-By using the classes and methods in the SDK v1, you can:
-
-* Explain model prediction by generating feature-importance values for the entire model or individual data points.
-* Achieve model interpretability on real-world datasets at scale during training and inference.
-* Use an interactive visualization dashboard to discover patterns in your data and its explanations at training time.
-
-> [!NOTE]
-> Model interpretability classes are made available through the SDK v1 package. For more information, see [Install SDK packages for Azure Machine Learning](/python/api/overview/azure/ml/install) and [azureml.interpret](/python/api/azureml-interpret/azureml.interpret).
-
 ## Supported model interpretability techniques
 
-The Responsible AI dashboard and `azureml-interpret` use the interpretability techniques that were developed in [Interpret-Community](https://github.com/interpretml/interpret-community/), an open-source Python package for training interpretable models and helping to explain opaque-box AI systems. Opaque-box models are those for which we have no information about their internal workings. 
+The Responsible AI dashboard uses the interpretability techniques that were developed in [Interpret-Community](https://github.com/interpretml/interpret-community/), an open-source Python package for training interpretable models and helping to explain opaque-box AI systems. Opaque-box models are those for which we have no information about their internal workings. 
 
 Interpret-Community serves as the host for the following supported explainers, and currently supports the interpretability techniques presented in the next sections.
 
@@ -91,56 +79,8 @@ Interpret-Community serves as the host for the following supported explainers, a
 | XRAI | [XRAI](https://arxiv.org/pdf/1906.02825.pdf) is a novel region-based saliency method based on Integrated Gradients (IG). It over-segments the image and iteratively tests the importance of each region, coalescing smaller regions into larger segments based on attribution scores. This strategy yields high quality, tightly bounded saliency regions that outperform existing saliency techniques. XRAI can be used with any DNN-based model as long as there's a way to cluster the input features into segments through some similarity metric. | AutoML | Image Multi-class Classification, Image Multi-label Classification |
 | D-RISE  | D-RISE is a model agnostic method for creating visual explanations for the predictions of object detection models. By accounting for both the localization and categorization aspects of object detection, D-RISE can produce saliency maps that highlight parts of an image that most contribute to the prediction of the detector. Unlike gradient-based methods, D-RISE is more general and doesn't need access to the inner workings of the object detector; it only requires access to the inputs and outputs of the model. The method can be applied to one-stage detectors (for example, YOLOv3), two-stage detectors (for example, Faster-RCNN), and Vision Transformers (for example, DETR, OWL-ViT). <br> D-Rise provides the saliency map by creating random masks of the input image and will send it to the object detector with the random masks of the input image. By assessing the change of the object detector's score, it aggregates all the detections with each mask and produce a final saliency map. | Model Agnostic | Object Detection |
 
-
-### Supported in Python SDK v1
-
-|Interpretability technique|Description|Type|
-|--|--|--|
-|SHAP Tree Explainer| The [SHAP](https://github.com/slundberg/shap) Tree Explainer, which focuses on a polynomial, time-fast, SHAP value-estimation algorithm that's specific to *trees and ensembles of trees*.|Model-specific|
-|SHAP Deep Explainer| Based on the explanation from SHAP, Deep Explainer is a "high-speed approximation algorithm for SHAP values in deep learning models that builds on a connection with DeepLIFT described in the [SHAP NIPS paper](https://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions). *TensorFlow* models and *Keras* models using the TensorFlow back end are supported (there's also preliminary support for PyTorch)."|Model-specific|
-|SHAP Linear Explainer| The SHAP Linear Explainer computes SHAP values for a *linear model*, optionally accounting for inter-feature correlations.|Model-specific|
-|SHAP Kernel Explainer| The SHAP Kernel Explainer uses a specially weighted local linear regression to estimate SHAP values for *any model*.|Model-agnostic|
-|Mimic Explainer (Global Surrogate)| Mimic Explainer is based on the idea of training [global surrogate models](https://christophm.github.io/interpretable-ml-book/global.html) to mimic opaque-box models. A global surrogate model is an intrinsically interpretable model that's trained to approximate the predictions of *any opaque-box model* as accurately as possible. Data scientists can interpret the surrogate model to draw conclusions about the opaque-box model. You can use one of the following interpretable models as your surrogate model: LightGBM (LGBMExplainableModel), Linear Regression (LinearExplainableModel), Stochastic Gradient Descent explainable model (SGDExplainableModel), or Decision Tree (DecisionTreeExplainableModel).|Model-agnostic|
-|Permutation Feature Importance Explainer| Permutation Feature Importance (PFI) is a technique used to explain classification and regression models that's inspired by [Breiman's Random Forests paper](https://www.stat.berkeley.edu/~breiman/randomforest2001.pdf) (see section 10). At a high level, the way it works is by randomly shuffling data one feature at a time for the entire dataset and calculating how much the performance metric of interest changes. The larger the change, the more important that feature is. PFI can explain the overall behavior of *any underlying model* but doesn't explain individual predictions. |Model-agnostic|
-
-Besides the interpretability techniques described in the previous section, we support another SHAP-based explainer, called Tabular Explainer. Depending on the model, Tabular Explainer uses one of the supported SHAP explainers:
-
-* Tree Explainer for all tree-based models
-* Deep Explainer for deep neural network (DNN) models
-* Linear Explainer for linear models
-* Kernel Explainer for all other models
-
-Tabular Explainer has also made significant feature and performance enhancements over the direct SHAP explainers:
-
-* **Summarization of the initialization dataset**: When speed of explanation is most important, we summarize the initialization dataset and generate a small set of representative samples. This approach speeds up the generation of overall and individual feature importance values.
-* **Sampling the evaluation data set**: If you pass in a large set of evaluation samples but don't actually need all of them to be evaluated, you can set the sampling parameter to `true` to speed up the calculation of overall model explanations.
-
-The following diagram shows the current structure of supported explainers:
-
-:::image type="content" source="./media/how-to-machine-learning-interpretability/interpretability-architecture.png" alt-text=" Diagram of Machine Learning Interpretability architecture." lightbox="./media/how-to-machine-learning-interpretability/interpretability-architecture.png":::
-
-## Supported machine learning models
-
-The `azureml.interpret` package of the SDK supports models that are trained with the following dataset formats:
-
-* `numpy.array`
-* `pandas.DataFrame`
-* `iml.datatypes.DenseData`
-* `scipy.sparse.csr_matrix`
-
-The explanation functions accept both models and pipelines as input. If a model is provided, it must implement the prediction function `predict` or `predict_proba` that conforms to the Scikit convention. If your model doesn't support this, you can wrap it in a function that generates the same outcome as `predict` or `predict_proba` in Scikit and use that wrapper function with the selected explainer.
-
-If you provide a pipeline, the explanation function assumes that the running pipeline script returns a prediction. When you use this wrapping technique, `azureml.interpret` can support models that are trained via PyTorch, TensorFlow, Keras deep learning frameworks, and classic machine learning models.
-
-## Local and remote compute target
-
-The `azureml.interpret` package is designed to work with both local and remote compute targets. If you run the package locally, the SDK functions won't contact any Azure services.
-
-You can run the explanation remotely on Azure Machine Learning Compute and log the explanation info into the Azure Machine Learning Run History Service. After this information is logged, reports and visualizations from the explanation are readily available on Azure Machine Learning studio for analysis.
-
 ## Next steps
 
 * Learn how to generate the Responsible AI dashboard via [CLI v2 and SDK v2](how-to-responsible-ai-dashboard-sdk-cli.md) or the [Azure Machine Learning studio UI](how-to-responsible-ai-dashboard-ui.md).
 * Explore the [supported interpretability visualizations](how-to-responsible-ai-dashboard.md#feature-importances-model-explanations) of the Responsible AI dashboard.
 * Learn how to generate a [Responsible AI scorecard](how-to-responsible-ai-scorecard.md) based on the insights observed in the Responsible AI dashboard.
-* Learn how to enable [interpretability for automated machine learning models (SDK v1)](./v1/how-to-machine-learning-interpretability-automl.md).

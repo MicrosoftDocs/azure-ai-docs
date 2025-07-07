@@ -10,13 +10,15 @@ ms.custom: UpdateFrequency5, data4ml, devx-track-arm-template
 ms.author: yogipandey
 author: ynpandey
 ms.reviewer: franksolomon
-ms.date: 02/28/2024
+ms.date: 03/06/2025
 #Customer intent: As an experienced data scientist, I need to package my data into a consumable and reusable object to train my machine learning models.
 ---
 
 # Create Azure Machine Learning datasets
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 In this article, you learn how to create Azure Machine Learning datasets to access data for your local or remote experiments with the Azure Machine Learning Python SDK. For more information about how datasets fit in Azure Machine Learning's overall data access workflow, visit the [Securely access data](concept-data.md#data-workflow) article.
 
@@ -32,7 +34,7 @@ With Azure Machine Learning datasets, you can:
 
 > [!IMPORTANT]
 > Items in this article marked as "preview" are currently in public preview.
-> The preview version is provided without a service level agreement, and it's not recommended for production workloads. Certain features might not be supported or might have constrained capabilities. 
+> The preview version is provided without a service level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities.
 > For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 ## Prerequisites
@@ -55,7 +57,7 @@ To create and work with datasets, you need:
 > Some dataset classes have dependencies on the [azureml-dataprep](https://pypi.org/project/azureml-dataprep/) package, which is only compatible with 64-bit Python. If you develop on __Linux__, these classes rely on .NET Core 2.1, and only specific distributions support them. For more information about the supported distros, read the .NET Core 2.1 column in the [Install .NET on Linux](/dotnet/core/install/linux) article.
 
 > [!IMPORTANT]
-> While the package may work on older versions of Linux distros, we do not recommend use of a distro that is out of mainstream support. Distros that are out of mainstream support may have security vulnerabilities, because they do not receive the latest updates. We recommend using the latest supported version of your distro that is compatible with .
+> While the package might work on older versions of Linux distros, we don't recommend use of a distro that is out of mainstream support. Distros that are out of mainstream support might have security vulnerabilities, because they don't receive the latest updates. We recommend using the latest supported version of your distro that is compatible with .
 
 ## Compute size guidance
 
@@ -71,7 +73,7 @@ There are two dataset types, based on how users consume datasets in training: Fi
 
 ### FileDataset
 
-A [FileDataset](/python/api/azureml-core/azureml.data.file_dataset.filedataset) references single or multiple files in your datastores or public URLs. If your data is already cleaned, and ready to use in training experiments, you can [download or mount](how-to-train-with-datasets.md#mount-vs-download) the files to your compute as a FileDataset object.
+A [FileDataset](/python/api/azureml-core/azureml.data.file_dataset.filedataset) references single or multiple files in your datastores or public URLs. If you have cleaned data that is ready for use in training experiments, you can [download or mount](how-to-train-with-datasets.md#mount-vs-download) the files to your compute as a FileDataset object.
 
 We recommend FileDatasets for your machine learning workflows, because the source files can be in any format. This enables a wider range of machine learning scenarios, including deep learning.
 
@@ -87,8 +89,8 @@ Create a TabularDataset with [the Python SDK](#create-a-tabulardataset) or [Azur
 
 >[!NOTE]
 > [Automated ML](../concept-automated-ml.md) workflows generated via the Azure Machine Learning studio currently only support TabularDatasets.
->  
->Also, for TabularDatasets generated from [SQL query results](/python/api/azureml-core/azureml.data.dataset_factory.tabulardatasetfactory#azureml-data-dataset-factory-tabulardatasetfactory-from-sql-query), T-SQL (e.g. 'WITH' sub query) or duplicate column names are not supported. Complex T-SQL queries can cause performance issues. Duplicate column names in a dataset can cause ambiguity issues.
+> 
+>Also, for TabularDatasets generated from [SQL query results](/python/api/azureml-core/azureml.data.dataset_factory.tabulardatasetfactory#azureml-data-dataset-factory-tabulardatasetfactory-from-sql-query), T-SQL (e.g. 'WITH' sub query) or duplicate column names aren't supported. Complex T-SQL queries can cause performance issues. Duplicate column names in a dataset can cause ambiguity issues.
 
 ## Access datasets in a virtual network
 
@@ -108,7 +110,7 @@ To create datasets from a datastore with the Python SDK:
 1. Create the dataset by referencing paths in the datastore. You can create a dataset from multiple paths in multiple datastores. There's no hard limit on the number of files or data size from which you can create a dataset.
 
 > [!NOTE]
-> For each data path, a few requests will be sent to the storage service to check whether it points to a file or a folder. This overhead may lead to degraded performance or failure. A dataset referencing one folder with 1000 files inside is considered referencing one data path. For optimal performance, we recommend creating datasets that reference less than 100 paths in datastores.
+> For each data path, a few requests are sent to the storage service to check whether it points to a file or a folder. This overhead might lead to degraded performance or failure. A dataset that references one folder with 1,000 files inside is considered referencing one data path. For optimal performance, we recommend creating datasets that reference fewer than 100 paths in datastores.
 
 ### Create a FileDataset
 
@@ -206,7 +208,7 @@ After you create and [register](#register-datasets) your dataset, you can load t
 
 Filtering capabilities depends on the type of dataset you have.
 > [!IMPORTANT]
-> Filtering datasets with the [`filter()`](/python/api/azureml-core/azureml.data.tabulardataset#azureml-data-tabulardataset-filter) preview method is an [experimental](/python/api/overview/azure/ml/#stable-vs-experimental) preview feature, and may change at any time.
+> Filtering datasets with the [`filter()`](/python/api/azureml-core/azureml.data.tabulardataset#azureml-data-tabulardataset-filter) preview method is an [experimental](/python/api/overview/azure/ml/#stable-vs-experimental) preview feature, and could change at any time.
 > 
 For **TabularDatasets**, you can keep or remove columns with the [keep_columns()](/python/api/azureml-core/azureml.data.tabulardataset#azureml-data-tabulardataset-keep-columns) and [drop_columns()](/python/api/azureml-core/azureml.data.tabulardataset#azureml-data-tabulardataset-drop-columns) methods.
 
@@ -338,7 +340,7 @@ dataset = Dataset.Tabular.register_pandas_dataframe(pandas_df, datastore, "datas
 
 ```
 > [!TIP]
-> Create and register a TabularDataset from an in memory spark dataframe or a dask dataframe with the public preview methods, [`register_spark_dataframe()`](/python/api/azureml-core/azureml.data.dataset_factory.tabulardatasetfactory#azureml-data-dataset-factory-tabulardatasetfactory-register-spark-dataframe) and [`register_dask_dataframe()`](/python/api/azureml-core/azureml.data.dataset_factory.tabulardatasetfactory#azureml-data-dataset-factory-tabulardatasetfactory-register-dask-dataframe). These methods are [experimental](/python/api/overview/azure/ml/#stable-vs-experimental) preview features, and may change at any time.
+> Create and register a TabularDataset from an in memory spark dataframe or a dask dataframe with the public preview methods, [`register_spark_dataframe()`](/python/api/azureml-core/azureml.data.dataset_factory.tabulardatasetfactory#azureml-data-dataset-factory-tabulardatasetfactory-register-spark-dataframe) and [`register_dask_dataframe()`](/python/api/azureml-core/azureml.data.dataset_factory.tabulardatasetfactory#azureml-data-dataset-factory-tabulardatasetfactory-register-dask-dataframe). These methods are [experimental](/python/api/overview/azure/ml/#stable-vs-experimental) preview features, and might change at any time.
 >  
 > These methods upload data to your underlying storage, and as a result incur storage costs.
 
