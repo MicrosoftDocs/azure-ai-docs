@@ -22,9 +22,9 @@ This article explains the algorithms used to find relevant matches and the simil
 
 Vector search algorithms include:
 
-+ [Exhaustive k-nearest neighbors (KNN)](#about-exhaustive-knn), which performs a brute-force scan of the entire vector space.
++ [Exhaustive K-Nearest Neighbors (KNN)](#about-exhaustive-knn), which performs a brute-force scan of the entire vector space.
 
-+ [Hierarchical navigable small world (HNSW)](#about-hnsw), which performs an [approximate nearest neighbor (ANN)](#about-ann) search.
++ [Hierarchical Navigable Small World (HNSW)](#about-hnsw), which performs an [Approximate Nearest Neighbor (ANN)](#about-ann) search.
 
 Only vector fields marked as `searchable` in the index or `searchFields` in the query are used for searching and scoring.
 
