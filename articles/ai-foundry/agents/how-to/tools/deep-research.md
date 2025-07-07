@@ -35,24 +35,28 @@ The deep research tool is a **code-only release** and available for use using th
 ## Knowledge source support
 The deep research tool is tightly integrated with Grounding with Bing Search and only supports web-based research.
 
-## How Deep Research works
+## Region support
+The Deep Research tool is supported in the following regions where the deep research model is available for deployment.
+|West US  | Norway East |
+|---------|---------|
+| ✔️ | ✔️ | 
 
-At its core, the Deep Research tool orchestrates a multi-step research pipeline uses the Azure OpenAI's `o3-deep-research` model together with Grounding with Bing Search to autonomously search for and read information from multiple online sources appropriate to the user prompt. This enables the Deep Research tool to generate thorough, documented, and cited reports on complex topics. 
+## Deep research model
+The Deep Research tool uses the Azure OpenAI `o3-deep-research` model for its research tasks. The model was fine-tuned on the Azure OpenAI `o3` reasoning model. Key features:
 
-### Deep research model deployment
-
-The Deep Research tool uses the Azure OpenAI `o3-deep-research` model for its research tasks. The model was fine-tuned on the Azure OpenAI `o3` reasoning model.
-
-**Key features**:
 - Handles data as part of its research tasks.
 - 200-K context length, 100-K completion tokens, and May 31, 2024 knowledge cutoff.
 - Outputs its thinking as reasoning summary as it analyzes information.
 - Delivers a synthesized report at the end of the research task.
 
-**Deployment information**:
-- Deployment type: Global Standard
-- Available regions: West US, Norway East
-- Quotas and limits: Enterprise: `30K RPS / 30M TPM`, Default: `3K RPS / 3M TPM`
+### Deployment information
+- **Deployment type**: Global Standard
+- **Available regions**: West US, Norway East
+- **Quotas and limits**: Enterprise: `30K RPS / 30M TPM`, Default: `3K RPS / 3M TPM`
+  
+## How Deep Research works
+
+At its core, the Deep Research tool orchestrates a multi-step research pipeline uses the Azure OpenAI's `o3-deep-research` model and any GPT model together with Grounding with Bing Search to autonomously search for and read information from multiple online sources appropriate to the user prompt. This enables the Deep Research tool to generate thorough, documented, and cited reports on complex topics. 
 
 ### GPT model deployment for clarifying intent
 
@@ -74,15 +78,18 @@ The output is a structured report that documents not only the comprehensive answ
 
 ## Prerequisites
 - If you already have access to the Azure OpenAI `o3` model, no request is required to access the `o3-deep-research`  model. Otherwise, fill out the [request form](https://aka.ms/OAI/deepresearchaccess). 
-- An Azure subscription with the ability to create resources [Set up your environment](../../environment-setup.md)
+- An Azure subscription with the ability to create AI Foundry project, Grounding with Bing Search, deep research model and GPT model resources [Set up your environment](../../environment-setup.md) in the **West US** and **Norway East** regions.
 - [Grounding with Bing Search tool](./bing-grounding.md) resource for connecting to your Azure AI Foundry project.
 - [Model deployments](../../../model-inference/how-to/create-model-deployments.md) for the following models
     - `o3-deep-research` version `2025-06-26`. This model is available in `West US` and `Norway East`.
-    - Any Azure OpenAI GPT model like `gpt-4o` for intent clarification.
+    - Any Azure OpenAI GPT model like `gpt-4o` for intent clarification. Deploy in the same regions.
 
 ## Setup 
 
 To use the Deep Research tool, you need to create the Azure AI Foundry type project, add your Grounding with Bing Search resource as a new connection, deploy the `o3-deep-research-model`, and deploy the selected Azure OpenAI GPT model. 
+
+> [!NOTE]
+> * The Azure AI Foundry, the `o3-deep-research` model, and the GPT model for intent clarification should all be in the same region. Supported regions are **West US** and N**orway East**.
 
 :::image type="content" source="../../media/tools/deep-research/setup-deep-research-tool.png" alt-text="A diagram of the steps to set up the deep research tool." lightbox="../../media/tools/deep-research/setup-deep-research-tool.png":::
 
