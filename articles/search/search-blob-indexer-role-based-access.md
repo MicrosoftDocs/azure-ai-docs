@@ -1,5 +1,5 @@
 ---  
-title: Use Blob indexer to ingest Rbac scopes metadata
+title: Use a Blob indexer to ingest Rbac scopes metadata
 titleSuffix: Azure AI Search  
 description: Learn how to configure Azure AI Search indexers for ingesting Azure Role-Based Access (RBAC) metadata on Azure Blobs.
 ms.service: azure-ai-search  
@@ -9,7 +9,7 @@ author: vaishalishah
 ms.author: vaishalishah
 ---  
 
-# Use an Blob indexer to ingest Rbac scopes metadata
+# Use a Blob indexer to ingest Rbac scopes metadata
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
@@ -82,8 +82,8 @@ JSON example with system managed identity:
     "connectionString": "ResourceId=/subscriptions/<your subscription ID>/resourceGroups/<your resource group name>/providers/Microsoft.Storage/storageAccounts/<your storage account name>/;"
     },
     "container": {
-    "name": "<your container name>",
-    "query": "<optional-query>"
+        "name": "<your container name>",
+        "query": "<optional-query>"
     }
 }
 ```
@@ -99,12 +99,12 @@ JSON schema example with a user-managed identity in the connection string:
     "connectionString": "ResourceId=/subscriptions/<your subscription ID>/resourceGroups/<your resource group name>/providers/Microsoft.Storage/storageAccounts/<your storage account name>/;"
     },
     "container": {
-    "name": "<your container name>",
-    "query": "<optional-query>"
+        "name": "<your container name>",
+        "query": "<optional-query>"
     },
     "identity": {
-    "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
-    "userAssignedIdentity": "/subscriptions/{subscription-ID}/resourceGroups/{resource-group-name}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{user-assigned-managed-identity-name}"
+        "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",
+        "userAssignedIdentity": "/subscriptions/{subscription-ID}/resourceGroups/{resource-group-name}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{user-assigned-managed-identity-name}"
     }
 }
 ```
