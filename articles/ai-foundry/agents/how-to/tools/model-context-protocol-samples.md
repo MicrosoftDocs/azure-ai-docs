@@ -17,7 +17,7 @@ ms.custom: azure-ai-agents-code
 
 Use this article to find step-by-step instructions and code samples for connecting Foundry Agent service with MCP.
 
-Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`, and `API_VERSION`.
 
 
 ## Create an Agent with the MCP tool enabled
@@ -69,11 +69,12 @@ curl --request POST \
 ## Create a run and check the output
 
 Create a run to pass headers for the tool and observe that the model uses the Grounding with Bing Search tool to provide a response to the user's question. 
-`require_approval` parameter is optional. if not provided, `always` is the default value, meaning each time developer needs to approve before calling. Supported values:
-      1. `always` by default
-      2. `never` meaning no approval is required
-      3. `{"never":[<tool_name_1>, <tool_name_2>]}` you can also provide a list of tools without required approval
-      4. `{"always":[<tool_name_1>, <tool_name_2>]}` you can provide a list of tools with required approval
+`require_approval` parameter is optional. If not provided, `always` is the default value, meaning each time developer needs to approve before calling. Supported values:
+
+- `always` by default
+- `never` meaning no approval is required
+- `{"never":[<tool_name_1>, <tool_name_2>]}` you can also provide a list of tools without required approval
+- `{"always":[<tool_name_1>, <tool_name_2>]}` you can provide a list of tools with required approval
 
 ```bash
 curl --request POST \
@@ -104,7 +105,7 @@ curl --request GET \
   -H "Authorization: Bearer $AGENT_TOKEN"
 ```
 
-If the model is trying to invoke a tool in your MCP server with approval required, you will get a run with `require_action` status.
+If the model is trying to invoke a tool in your MCP server with approval required, you get a run with `require_action` status.
 ```bash
 {
   "id": "run_123",
@@ -141,7 +142,7 @@ If the model is trying to invoke a tool in your MCP server with approval require
 Make sure you carefully reviewed the tool and argument(s) to be passed and make an informed decision for approval.
 
 ## Submit your approval
-If you decide to approve, you need to set the `approve` parameter to be `true` with the `id` for tool calls above.
+If you decide to approve, you need to set the `approve` parameter to be `true` with the `id` for the preceding tool calls.
 ```bash
 curl --request POST \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/threads/thread_abc123/runs/run_abc123/submit_tool_outputs?api-version=$API_VERSION \
