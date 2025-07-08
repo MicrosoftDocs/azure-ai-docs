@@ -258,7 +258,7 @@ print(json.dumps(outputs, indent=2))
 
 #### Simulate and evaluate for groundedness
 
-There's a dataset of 287 query and associated context pairs in the SDK. To use this dataset as the conversation starter with your `Simulator`, use the previous `callback` function defined previously.
+We provide a dataset of 287 query/context pairs in the SDK. To use this dataset as the conversation starter with your `Simulator`, use the previous `callback` function defined previously.
 
 ```python
 import importlib.resources as pkg_resources
