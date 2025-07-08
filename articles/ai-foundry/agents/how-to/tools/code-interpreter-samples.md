@@ -5,7 +5,7 @@ description: Find code samples to enable code interpreter for Azure AI Agents.
 author: aahill
 ms.author: aahi
 manager: nitinme
-ms.date: 04/09/2025
+ms.date: 06/30/2025
 ms.service: azure-ai-agent-service
 ms.topic: how-to
 ms.custom:

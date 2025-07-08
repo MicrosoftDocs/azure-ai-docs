@@ -10,7 +10,7 @@ metadata:
   author: eric-urban
   ms.author: eur
   manager: nitinme
-  ms.date: 5/19/2025
+  ms.date: 7/4/2025
   ms.service: azure-ai-foundry
   ms.topic: hub-page
   ms.custom:
@@ -92,6 +92,8 @@ productDirectory:
     - title: Azure AI Search
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/search.svg
       links:
+        - url: /azure/search/search-get-started-agentic-retrieval
+          text: Agentic retrieval
         - url: /azure/search
           text: Bring AI-powered cloud search to your mobile and web applications
         - url: /azure/search/tutorial-rag-build-solution
@@ -180,8 +182,8 @@ additionalContent:
               url: ../ai-services/document-intelligence/index.yml
             - text: Face
               url: ../ai-services/computer-vision/overview-identity.md
-            - text: Custom Vision
-              url: ../ai-services/translator/index.yml
+            - text: Vision
+              url: ../ai-services/computer-vision/index.yml
             - text: Immersive Reader
               url: ../ai-services/immersive-reader/index.yml
         - title: Training & certification

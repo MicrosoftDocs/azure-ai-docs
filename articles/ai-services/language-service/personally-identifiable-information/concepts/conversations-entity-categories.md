@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 11/21/2024
+ms.date: 06/21/2025
 ms.author: lajanuar
 ms.custom: language-service-pii, build-2024
 ---

@@ -285,6 +285,8 @@ groups:
     title: Python
   - id: typescript
     title: TypeScript
+  - id: csharp
+    title: C#
 # Owner: diberry
 - id: programming-languages-rest-ps-py-js
   title: Programming languages
@@ -1237,6 +1239,15 @@ groups:
     title: TypeScript
   - id: rest-api
     title: REST
+- id: voice-live-quickstart
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+  - id: ai-foundry-portal
+    title: Foundry portal
+  - id: programming-language-python
+    title: Python
 - id: structured-outputs
   title: Programming languages
   prompt: Choose a language or API
@@ -1248,19 +1259,23 @@ groups:
   - id: programming-language-rest
     title: REST
 - id: search-quickstart-full-text
-# Owner: eur
-  title: Programming languages
-  prompt: Choose a programming language
+# Owner: haileytapia
+  title: Usage methods
+  prompt: Choose a usage method
   pivots:
-  - id: programming-language-csharp
+  - id: csharp
     title: C#
-  - id: programming-language-java
+  - id: java
     title: Java
-  - id: programming-language-javascript
+  - id: javascript
     title: JavaScript
-  - id: programming-language-python
+  - id: powershell
+    title: PowerShell
+  - id: python
     title: Python
-  - id: programming-language-typescript
+  - id: rest
+    title: REST
+  - id: typescript
     title: TypeScript
 - id: azure-portal-and-cli
 # Owner: Larryfr
@@ -1353,10 +1368,38 @@ groups:
     title: REST
 # Owner: haileytapia
 - id: search-get-started-vector-search
-  title: Python and REST
+  title: Programming languages
   prompt: Choose a usage method
   pivots:
+  - id: javascript
+    title: JavaScript
+  - id: python
+    title: Python
+  - id: dotnet
+    title: C#
+  - id: rest
+    title: REST
+  - id: typescript
+    title: TypeScript
+# Owner: haileytapia
+- id: search-get-started-semantic
+  title: Programming languages
+  prompt: Choose a usage method
+  pivots:
+  - id: csharp
+    title: C#
   - id: python
     title: Python
   - id: rest
     title: REST
+# Owner: haileytapia
+- id: search-how-to-manage-index
+  title: Usage methods
+  prompt: Choose a usage method
+  pivots:
+  - id: azure-portal
+    title: Azure portal
+  - id: rest
+    title: REST APIs
+  - id: azure-sdks
+    title: Azure SDKs

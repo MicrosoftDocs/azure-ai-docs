@@ -35,6 +35,13 @@ items:
         - name: Tool Overview
           href: how-to/tools/overview.md
           displayName: tools
+        - name: Deep Research (preview)
+          items:
+            - name: Overview
+              href: how-to/tools/deep-research.md
+              displayName: deep research
+            - name: How to use Deep Research
+              href: how-to/tools/deep-research-samples.md
         - name: Grounding with Bing Search
           items:
           - name: Overview
@@ -42,7 +49,6 @@ items:
             displayName: bing, grounding with bing  
           - name: How to use Grounding with Bing Search
             href: how-to/tools/bing-code-samples.md
-      
         - name: Use Grounding with Bing Custom Search
           items:
           - name: Overview
@@ -86,6 +92,14 @@ items:
               href: how-to/tools/openapi-spec-samples.md
             - name: Invoke an OpenAPI App Service web app
               href: /azure/app-service/invoke-openapi-web-app-from-azure-ai-agent-service?context=/azure/ai-services/agents/context/context
+        - name: Model Context Protocol (MCP)
+          items:
+            - name: Overview
+              href: how-to/tools/model-context-protocol.md
+              displayName: model context protocol, mcp
+            - name: How to use Model Context Protocol
+              displayName: model context protocol, mcp samples
+              href: how-to/tools/model-context-protocol-samples.md
         - name: Azure Functions
           items:
             - name: Overview

@@ -7,7 +7,7 @@ ms.topic: how-to
 author: laujan
 ms.author: lajanuar
 recommendations: false
-ms.date: 11/21/2024
+ms.date: 06/21/2025
 ---
 # Export-import-refresh in custom question answering
 

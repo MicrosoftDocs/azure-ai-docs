@@ -7,7 +7,7 @@ keywords: Azure AI services, cognitive
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.topic: overview
-ms.date: 05/20/2025
+ms.date: 07/03/2025
 ms.reviewer: samkemp
 ms.author: jburchel
 author: jburchel
