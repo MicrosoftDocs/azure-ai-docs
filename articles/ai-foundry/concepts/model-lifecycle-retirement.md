@@ -1,4 +1,4 @@
----
+﻿---
 title: Deprecation for Foundry Models
 titleSuffix: Azure AI Foundry
 description: Learn about the lifecycle stages, deprecation, and retirement for Azure AI Foundry Models.
@@ -18,7 +18,7 @@ reviewer: fkriti
 
 Azure AI Foundry Models are continually refreshed with newer and more capable models. As part of this process, model providers might deprecate and retire their older models, and you might need to update your applications to use a newer model. This document communicates information about the model lifecycle and deprecation timelines and explains how you're informed of model lifecycle stages.
 
-This article covers general deprecation and retirement information for Foundry Models. For details specific to Azure OpenAI in Foundry Models, see [Azure OpenAI in Azure AI Foundry Models model deprecations and retirements](../../ai-services/openai/concepts/model-retirements.md). 
+This article covers general deprecation and retirement information for Foundry Models. For details specific to Azure OpenAI in Foundry Models, see [Azure OpenAI in Azure AI Foundry Models model deprecations and retirements](../openai/concepts/model-retirements.md). 
 
 
 ## Model lifecycle stages
@@ -60,7 +60,7 @@ Customers that have Foundry Model deployments receive notifications for upcoming
 
 - Models are labeled _Deprecated_ and remain in the deprecated state for at least 90 days before being moved to the retired state. During this notification period, you can migrate any existing deployments to newer or replacement models.
 
-For each subscription that has a model deployed as a standard deployment or deployed to an Azure AI Foundry resource, members of the _owner_, _contributor_, _reader_, _monitoring contributor_, and _monitoring reader_ roles receive a notification when a model deprecation is announced. The notification contains the dates when the model enters legacy, deprecated, and retired states. The notification might provide information about possible replacement model options, if applicable.
+For each subscription that has a model deployed as a serverless API deployment or deployed to an Azure AI Foundry resource, members of the _owner_, _contributor_, _reader_, _monitoring contributor_, and _monitoring reader_ roles receive a notification when a model deprecation is announced. The notification contains the dates when the model enters legacy, deprecated, and retired states. The notification might provide information about possible replacement model options, if applicable.
 
 ## Notifications for Azure OpenAI in Foundry Models
 
@@ -74,7 +74,7 @@ Members of the _owner_, _contributor_, _reader_, _monitoring contributor_, and _
 
 Retirements are done on a rolling basis, region by region. Notifications are sent from an unmonitored mailbox, `azure-noreply@microsoft.com`.
 
-To learn more about the Azure OpenAI models lifecycle, including information for current, deprecated, and retired models, see [Azure OpenAI in Azure AI Foundry Models model deprecations and retirements](../../ai-services/openai/concepts/model-retirements.md). 
+To learn more about the Azure OpenAI models lifecycle, including information for current, deprecated, and retired models, see [Azure OpenAI in Azure AI Foundry Models model deprecations and retirements](../openai/concepts/model-retirements.md). 
 
 ## Timelines for Foundry Models
 
@@ -149,6 +149,6 @@ The following tables list the timelines for models that are on track for retirem
 
 ## Related content
 
-- [Azure OpenAI in Azure AI Foundry Models model deprecations and retirements](../../ai-services/openai/concepts/model-retirements.md)
+- [Azure OpenAI in Azure AI Foundry Models model deprecations and retirements](../openai/concepts/model-retirements.md)
 - [Explore Azure AI Foundry Models](foundry-models-overview.md)
 - [Data, privacy, and security for use of models through the model catalog in Azure AI Foundry portal](../how-to/concept-data-privacy.md)

@@ -1,4 +1,4 @@
----
+﻿---
 title: Tag Utterances in Conversational Language Understanding
 titleSuffix: Azure AI services
 description: This article shows you how to tag your utterances in conversational language understanding projects.
@@ -101,7 +101,7 @@ To use the Azure AI Foundry resource, you need to provide your Azure AI Foundry 
 
 ### Connect with separate Language and Azure OpenAI resources
 
-You first need to get access and create a resource in Azure OpenAI. Next, create a connection to the Azure OpenAI resource within the same Azure AI Foundry project in the **Management center** on the left pane of the Azure AI Foundry page. You then need to create a deployment for the Azure OpenAI models within the connected Azure OpenAI resource. To create a new resource, follow the steps in [Create and deploy an Azure OpenAI in Azure AI Foundry Models resource](../../../openai/how-to/create-resource.md).
+You first need to get access and create a resource in Azure OpenAI. Next, create a connection to the Azure OpenAI resource within the same Azure AI Foundry project in the **Management center** on the left pane of the Azure AI Foundry page. You then need to create a deployment for the Azure OpenAI models within the connected Azure OpenAI resource. To create a new resource, follow the steps in [Create and deploy an Azure OpenAI in Azure AI Foundry Models resource](../../../../ai-foundry/openai/how-to/create-resource.md).
 
 Before you get started, the suggested utterances feature is available only if your Language resource is in the following regions:
 

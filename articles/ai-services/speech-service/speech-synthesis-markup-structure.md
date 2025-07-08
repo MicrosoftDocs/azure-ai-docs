@@ -36,6 +36,7 @@ Here's a subset of the basic structure and syntax of an SSML document:
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="string">
     <mstts:backgroundaudio src="string" volume="string" fadein="string" fadeout="string"/>
+    <mstts:voiceconversion url="string"/>
     <voice name="string" effect="string">
         <audio src="string"></audio>
         <bookmark mark="string"/>
@@ -69,6 +70,7 @@ Some examples of contents that are allowed in each element are described in the 
 - `math`: This element can only contain text and MathML elements.
 - `mstts:audioduration`: This element can't contain text or any other elements.
 - `mstts:backgroundaudio`: This element can't contain text or any other elements.
+- `<mstts:voiceconversion>`: This element can't contain text or any other elements. It specifies the source audio URL for the voice conversion.
 - `mstts:embedding`: This element can contain text and the following elements: `audio`, `break`, `emphasis`, `lang`, `phoneme`, `prosody`, `say-as`, and `sub`.
 - `mstts:express-as`: This element can contain text and the following elements: `audio`, `break`, `emphasis`, `lang`, `phoneme`, `prosody`, `say-as`, and `sub`.
 - `mstts:silence`: This element can't contain text or any other elements.
@@ -256,36 +258,6 @@ As an example, you might want to know the time offset of each flower word in the
     <voice name="en-US-AvaNeural">
         We are selling <bookmark mark='flower_1'/>roses and <bookmark mark='flower_2'/>daisies.
     </voice>
-</speak>
-```
-
-## Viseme element
-
-A viseme is the visual description of a phoneme in spoken language. It defines the position of the face and mouth while a person is speaking. You can use the `mstts:viseme` element in SSML to request viseme output. For more information, see [Get facial position with viseme](how-to-speech-synthesis-viseme.md).
-
-The viseme setting is applied to all input text within its enclosing `voice` element. To reset or change the viseme setting again, you must use a new `voice` element with either the same voice or a different voice.
-
-Usage of the `viseme` element's attributes are described in the following table.
-
-| Attribute | Description | Required or optional |
-| ---------- | ---------- | ---------- |
-| `type`    | The type of viseme output.<ul><li>`redlips_front` – lip-sync with viseme ID and audio offset output </li><li>`FacialExpression` – blend shapes output</li></ul> | Required  |
-
-> [!NOTE]
-> Currently, `redlips_front` only supports neural voices in `en-US` locale, and `FacialExpression` supports neural voices in `en-US` and `zh-CN` locales.
-
-### Viseme examples
-
-The supported values for attributes of the `viseme` element were [described previously](#viseme-element).
-
-This SSML snippet illustrates how to request blend shapes with your synthesized speech.
-
-```xml
-<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="en-US">
-  <voice name="en-US-AvaNeural">
-    <mstts:viseme type="FacialExpression"/>
-    Rainbow has seven colors: Red, orange, yellow, green, blue, indigo, and violet.
-  </voice>
 </speak>
 ```
 

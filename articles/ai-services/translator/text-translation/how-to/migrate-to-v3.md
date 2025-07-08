@@ -54,10 +54,6 @@ Microsoft Translator Translation V2 accepted and returned data in XML format. In
 
 This change affects several aspects of an application written for the V2 Text translation API. As an example: The Languages API returns language information for text translation, transliteration, and the two dictionary methods. You can request all language information for all methods in one call or request them individually.
 
-The languages method doesn't require authentication; by selecting the following link you can see all the language information for V3 in JSON:
-
-[https://api.cognitive.microsofttranslator.com/languages?api-version=3.0&scope=translation,dictionary,transliteration](https://api.cognitive.microsofttranslator.com/languages?api-version=3.0&scope=translation,dictionary,transliteration)
-
 ## Authentication Key
 
 The authentication key used for V2 is accepted for V3. You don't need to get a new subscription. You can mix V2 and V3 in your apps during the yearlong migration period, making it easier for you to release new versions while you migrate from V2-XML to V3-JSON.

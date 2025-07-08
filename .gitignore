@@ -18,4 +18,5 @@ _repo.*/
 # CoPilot instructions and prompts
 .github/copilot-instructions.md
 .github/prompts/*.md
+.github/prompts/*.zip
 .github/patterns/*.md

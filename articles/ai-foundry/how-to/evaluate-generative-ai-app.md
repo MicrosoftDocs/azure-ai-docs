@@ -1,4 +1,4 @@
----
+﻿---
 title: How to evaluate generative AI models and applications with Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: Evaluate your generative AI models and applications with Azure AI Foundry.
@@ -160,7 +160,7 @@ Set up the test dataset that is used for evaluation. This dataset is sent to the
 
 ##### Generate sample questions
 
-If you don't have a dataset readily available and would like to run an evaluation with a small sample, select the model deployment you want to evaluate based on a chosen topic. We support both Azure OpenAI models and other open models compatible with standard deployment, such as Meta LIama and Phi-3 family models. The topic helps tailor the generated content to your area of interest. The queries and responses are generated in real time, and you have the option to regenerate them as needed.
+If you don't have a dataset readily available and would like to run an evaluation with a small sample, select the model deployment you want to evaluate based on a chosen topic. We support both Azure OpenAI models and other open models compatible with serverless API deployment, such as Meta LIama and Phi-3 family models. The topic helps tailor the generated content to your area of interest. The queries and responses are generated in real time, and you have the option to regenerate them as needed.
 
 :::image type="content" source="../media/evaluations/evaluate/create-test-data-model.png" alt-text="Screenshot of create test data highlighting generate with." lightbox="../media/evaluations/evaluate/create-test-data-model.png":::
 
@@ -200,5 +200,5 @@ Learn more about how to evaluate your generative AI applications:
 
 - [Evaluate your generative AI apps via the playground](./evaluate-prompts-playground.md)
 - [View the evaluation results](./evaluate-results.md)
-- [Creating evaluations specifically with OpenAI evaluation graders in Azure OpenAI Hub](../../ai-services/openai/how-to/evaluations.md)
+- [Creating evaluations specifically with OpenAI evaluation graders in Azure OpenAI Hub](../openai/how-to/evaluations.md)
 - [Transparency Note for Azure AI Foundry safety evaluations](../concepts/safety-evaluations-transparency-note.md).

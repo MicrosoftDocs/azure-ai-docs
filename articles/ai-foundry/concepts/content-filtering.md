@@ -1,4 +1,4 @@
----
+﻿---
 title: Azure AI Foundry content filtering
 titleSuffix: Azure AI Foundry
 description: Learn about the content filtering capabilities of Azure OpenAI in Azure AI Foundry portal.
@@ -20,13 +20,13 @@ author: PatrickFarley
 [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) includes a content filtering system that works alongside core models and image generation models.
 
 > [!IMPORTANT]
-> The content filtering system isn't applied to prompts and completions processed by the Whisper model in Azure OpenAI in Azure AI Foundry Models. Learn more about the [Whisper model in Azure OpenAI](../../ai-services/openai/concepts/models.md).
+> The content filtering system isn't applied to prompts and completions processed by the Whisper model in Azure OpenAI in Azure AI Foundry Models. Learn more about the [Whisper model in Azure OpenAI](../openai/concepts/models.md).
 
 ## How it works 
 
 The content filtering system is powered by [Azure AI Content Safety](../../ai-services/content-safety/overview.md), and it works by running both the model prompt input and completion output through a set of classification models designed to detect and prevent the output of harmful content. Variations in API configurations and application design might affect completions and thus filtering behavior.
 
-With Azure OpenAI model deployments, you can use the default content filter or create your own content filter (described later). Models available through **standard deployments** have content filtering enabled by default. To learn more about the default content filter enabled for standard deployments, see [Content safety for Models Sold Directly by Azure ](model-catalog-content-safety.md).
+With Azure OpenAI model deployments, you can use the default content filter or create your own content filter (described later). Models available through **serverless API deployments** have content filtering enabled by default. To learn more about the default content filter enabled for serverless API deployments, see [Content safety for Models Sold Directly by Azure ](model-catalog-content-safety.md).
 
 ## Language support
 
@@ -73,12 +73,12 @@ You can also enable the following special output filters:
 
 ### Configurability (preview)
 
-[!INCLUDE [content-filter-configurability](../../ai-services/openai/includes/content-filter-configurability.md)]
+[!INCLUDE [content-filter-configurability](../openai/includes/content-filter-configurability.md)]
 
 
 ## Related content
 
-- Learn more about the [underlying models that power Azure OpenAI](../../ai-services/openai/concepts/models.md).
+- Learn more about the [underlying models that power Azure OpenAI](../openai/concepts/models.md).
 - Azure AI Foundry content filtering is powered by [Azure AI Content Safety](../../ai-services/content-safety/overview.md).
 - Learn more about understanding and mitigating risks associated with your application: [Overview of Responsible AI practices for Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/overview).
 - Learn more about evaluating your generative AI models and AI systems via [Azure AI Evaluation](https://aka.ms/genaiopsevals). 

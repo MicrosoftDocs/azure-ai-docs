@@ -14,7 +14,7 @@ zone_pivot_groups: search-get-started-agentic-retrieval
 
 ::: zone pivot="programming-language-csharp"
 
-[!INCLUDE [Python quickstart](includes/quickstarts/agentic-retrieval-csharp.md)]
+[!INCLUDE [C# quickstart](includes/quickstarts/agentic-retrieval-csharp.md)]
 
 ::: zone-end
 

@@ -37,7 +37,7 @@ To configure and run the indexer, you can use:
 
 + Read permissions on Azure Storage. A "full access" connection string includes a key that grants access to the content.
 
-+ Use a [REST client](search-get-started-rest.md) to formulate REST calls similar to the ones shown in this article.
++ Use a [REST client](search-get-started-text.md) to formulate REST calls similar to the ones shown in this article.
 
 ## Supported tasks
 
