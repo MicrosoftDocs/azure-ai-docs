@@ -426,6 +426,31 @@
        "redirect_document_id": false
      },
      {
+      "source_path_from_root": "/articles/ai-foundry/responsible-ai/computer-vision/transparency-note-spatial-analysis.md",
+       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-foundry/responsible-ai/computer-vision/responsible-use-deployment.md",
+       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-foundry/responsible-ai/computer-vision/disclosure-design.md",
+       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-foundry/responsible-ai/computer-vision/research-insights.md",
+       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-foundry/responsible-ai/computer-vision/compliance-privacy-security-2.md",
+       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+       "redirect_document_id": false
+     },
+     {
       "source_path_from_root": "/articles/ai-services/computer-vision/reference-video-search.md",
        "redirect_url": "/azure/ai-services/content-understanding/video/overview",
        "redirect_document_id": false
