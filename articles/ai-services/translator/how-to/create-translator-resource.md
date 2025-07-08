@@ -11,9 +11,12 @@ ms.topic: how-to
 
 ---
 
+# Create and  Azure resources for Translator capabilities
+
 You might have an existing Translator resource for Azure AI services that you used as a standalone resource or in the Language studio. The good  news is that you can pick up where you left off by using your existing resources in the Azure AI Foundry portal. For more information, *see* [How to use Azure AI services in the Azure AI Foundry portal](../../connect-services-ai-foundry-portal.md).
 
 The following table provides an overview of the resource solutions for Translator and the Azure AI platform:
+
 |AI Service|Scope|Description|
 |---------|------------|---------|
 | [Azure AI Foundry resource](/azure/ai-foundry/what-is-azure-ai-foundry) | A platform for building, deploying, and managing generative AI applications and agents. Supports a wide range of AI capabilities, including language, translation, vision, and speech.| It's the primary resource type for designing, deploying, and managing generative AI applications and agents. It provides access to agent service, models that are hosted using a serverless hosting model, evaluations, and Azure OpenAI service. This resource type is recommended resource for most applications built in Azure AI Foundry. |
@@ -28,11 +31,11 @@ An Azure AI Foundry resource is your main tool for creating, deploying, and mana
 
 In this article, you learn how to create a Translator resource in the Azure portal. [Azure AI Translator](../overview.md) is a cloud-based machine translation service that is part of the [Azure AI services](../../what-are-ai-services.md) family. Azure resources are instances of services that you create. All API requests to Azure AI services require an *endpoint* URL and a read-only *key* for authenticating access.
 
-## Prerequisites
+### Prerequisites
 
 To get started, you need an active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/). If you don't have one, you can [**create a free 12-month subscription**](https://azure.microsoft.com/free/).
 
-## Create your resource
+### Create your resource
 
 With your Azure account, you can access the Translator service through two different resource types:
 
@@ -79,7 +82,7 @@ All Azure AI services API requests require an endpoint URL and a read-only key f
 
 * **Endpoint URL**. Use the Global endpoint in your API request unless you need a specific Azure region or custom endpoint. For more information, see [Base URLs](../text-translation/reference/v3/reference.md#base-urls). The Global endpoint URL is `api.cognitive.microsofttranslator.com`.
 
-## Get your authentication keys and endpoint
+### Get your authentication keys and endpoint
 
 To authenticate your connection to your Translator resource, you need the key and endpoint for your resource.
 
@@ -89,7 +92,7 @@ To authenticate your connection to your Translator resource, you need the key an
 
 :::image type="content" source="../media/keys-and-endpoint-resource.png" alt-text="Screenshot of the Azure portal showing the Keys and Endpoint page of a Translator resource. The keys and endpoints are highlighted.":::
 
-## Create a Text translation client
+### Create a Text translation client
 
 Text translation supports both [global and regional endpoints](#complete-your-project-and-instance-details). Once you have your [authentication keys](#authentication-keys-and-endpoint-url), you need to create an instance of the `TextTranslationClient`, using an `AzureKeyCredential` for authentication, to interact with the Text translation service:
 
@@ -109,7 +112,7 @@ Text translation supports both [global and regional endpoints](#complete-your-pr
 
 ## How to get started with Azure AI Translator REST APIs
 
-In our quickstart, you learn how to use the Translator service with REST APIs.
+In our quickstart, learn how to use the Translator service with REST APIs.
 
 > [!div class="nextstepaction"]
 > [Get Started with Translator](../text-translation/quickstart/rest-api.md)
@@ -144,10 +147,10 @@ In addition, we show you how to assign the correct roles and permissions within 
 
 ## Prerequisites
 
-Before you can set up your resources, you need:
+Before you can set up your environment, you need:
 
 * **An active Azure subscription**. If you don't have one, you can [create one for free](https://azure.microsoft.com/free/cognitive-services).
-* **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Azure AI Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](../../../openai/how-to/role-based-access-control.md#cognitive-services-contributor).
+* **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Azure AI Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](../../openai/how-to/role-based-access-control.md#cognitive-services-contributor).
 * An [Azure AI Foundry multi-service resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) or an [Azure AI Translator resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation).
 
 > [!NOTE]
