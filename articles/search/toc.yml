@@ -610,7 +610,7 @@ items:
 - name: Responsible AI
   items:
   - name: Transparency note
-    href: /azure/ai-foundry/responsible-ai/search/transparency-note
+    href: ../ai-foundry/responsible-ai/search/transparency-note.md
 - name: Reference
   items:
   - name: REST API reference
