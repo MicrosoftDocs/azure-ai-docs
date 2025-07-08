@@ -77,7 +77,7 @@ relevance_eval = RelevanceEvaluator(model_config)
 relevance_eval(query=query, response=response)
 ```
 
-To run batch evaluations using [local evaluation](#local-evaluation-on-test-datasets-using-evaluate) or [upload your dataset to run a cloud evaluation](./cloud-evaluation.md#uploading-evaluation-data), you need to represent the dataset in JSONL format. The previous single-turn data (a query-and-response pair) is equivalent to a line of a dataset like the following (we show three lines as an example):
+To run batch evaluations by using [local evaluation](#local-evaluation-on-test-datasets-using-evaluate) or [upload your dataset to run a cloud evaluation](./cloud-evaluation.md#uploading-evaluation-data), you need to represent the dataset in JSONL format. The previous single-turn data (a query-and-response pair) is equivalent to a line of a dataset like the following (we show three lines as an example):
 
 ```json
 {"query":"What is the capital of France?","response":"Paris."}
@@ -476,7 +476,7 @@ result = evaluate(
 
 ## Local evaluation on a target
 
-If you have a list of queries that you want to run and then evaluate, the `evaluate()` API also supports a `target` parameter, which can send queries to an application to collect answers, then run your evaluators on the resulting query and response.
+If you have a list of queries that you want to run and then evaluate, the `evaluate()` API also supports a `target` parameter. This parameter can send queries to an application to collect answers, and then run your evaluators on the resulting query and response.
 
 A target can be any callable class in your directory. In this case, we have a Python script `askwiki.py` with a callable class `askwiki()` that we can set as our target. If we have a dataset of queries we can send into our simple `askwiki` app, we can evaluate the groundedness of the outputs. Make sure that you specify the proper column mapping for your data in `"column_mapping"`. You can use `"default"` to specify column mapping for all evaluators.
 
