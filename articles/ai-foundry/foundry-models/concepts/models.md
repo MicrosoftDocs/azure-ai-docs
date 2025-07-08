@@ -21,7 +21,7 @@ ms.custom:
 
 Azure AI Foundry Models gives you access to flagship models in Azure AI Foundry to consume them as APIs with flexible deployment options.
 
-This article lists a selection of current model offerings and their capabilities, excluding [deprecated and legacy models](../../concepts/model-lifecycle-retirement.md#deprecated). .Many of the models listed can also be deployed to serverless APIs, with a few exceptions, which are indicated in the model lists.
+This article lists a selection of current model offerings and their capabilities, excluding [deprecated and legacy models](../../concepts/model-lifecycle-retirement.md#deprecated). Many of the models listed can also be deployed to serverless APIs, with a few exceptions, which are indicated in the model lists.
 
 Foundry models in the model catalog belong to two main categories:
 * [Models sold directly by Azure](#models-sold-directly-by-azure)
