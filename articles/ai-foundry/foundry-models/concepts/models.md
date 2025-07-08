@@ -17,7 +17,7 @@ ms.custom:
   - build-2025
 ---
 
-# Models and capabilities
+# Foundry Models and their capabilities
 
 Azure AI Foundry Models gives you access to flagship models in Azure AI Foundry to consume them as APIs with flexible deployment options.
 
