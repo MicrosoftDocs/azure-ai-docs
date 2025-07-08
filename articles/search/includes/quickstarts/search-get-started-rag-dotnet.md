@@ -211,7 +211,7 @@ You should now be logged in to Azure from your local device.
 
 To follow along with the steps ahead, you can either clone the completed sample app from GitHub, or create the app yourself.
 
-### Clone the sample repo
+### Clone the sample app
 
 To access the completed sample app for this article: 
 
@@ -256,7 +256,7 @@ Complete the following steps to create a .NET console app to connect to an AI mo
 
 ## Set up the query and chat thread
 
-THe following example demonstrates how to set up a minimal RAG scenario using Azure AI Search to provide an OpenAI model with contextual resources to improve the generated responses.
+The following example demonstrates how to set up a minimal RAG scenario using Azure AI Search to provide an OpenAI model with contextual resources to improve the generated responses.
 
 1. In the `minimal-query` project of the sample repo, open the `Program.cs` file to view the first example. If you created the project yourself, add the following code to connect to and query the Azure AI Search and Azure OpenAI services.
 
@@ -308,7 +308,7 @@ You might receive any of the following errors while testing:
 
 Azure AI Search supports [complex types](../../search-howto-complex-data-types.md) for nested JSON structures. In the hotels-sample-index, `Address` is an example of a complex type, consisting of `Address.StreetAddress`, `Address.City`, `Address.StateProvince`, `Address.PostalCode`, and `Address.Country`. The index also has complex collection of `Rooms` for each hotel. If your index has complex types, your query can provide those fields if you first convert the search results output to JSON, and then pass the JSON to the chat model.
 
-1. In the `complex-query` project of the sample repo, open the `Program.cs` file. If you created the project yourself, replace your code with the following::
+1. In the `complex-query` project of the sample repo, open the `Program.cs` file. If you created the project yourself, replace your code with the following:
 
     :::code language="csharp" source="~/azure-search-dotnet-samples/quickstart-rag/complex-query/Program.cs" :::
 
