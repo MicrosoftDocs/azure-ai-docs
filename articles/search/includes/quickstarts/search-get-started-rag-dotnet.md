@@ -17,7 +17,7 @@ ms.date: 06/05/2025
   - We recommend using the Basic tier or higher.
   - [Enable semantic ranking](../../semantic-how-to-enable-disable.md).
 - [Visual Studio Code](https://code.visualstudio.com/download) or [Visual Studio](https://visualstudio.com).
-- [.NET 9.0](https://dotnet.microsoft.com/download) installed
+- [.NET 9.0](https://dotnet.microsoft.com/download) installed.
 
 ## Configure access
 
