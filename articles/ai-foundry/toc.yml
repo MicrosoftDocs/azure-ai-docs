@@ -721,8 +721,6 @@ items:
       - name: Troubleshooting guidance
         href: openai/how-to/fine-tuning-troubleshoot.md?context=/azure/ai-foundry/context/context
         displayName: finetuning, fine-tuning 
-    - name: Distillation
-      href: concepts/concept-model-distillation.md
   - name: Build apps with prompt flow
     items:
     - name: Prompt flow overview
