@@ -125,7 +125,13 @@ JSON schema example:
   ...
   "fields": [
     ...
-    { "name": "RbacScope", "type": "Edm.String", "permissionFilter": "rbacScope", "filterable": true, "retrievable": false }
+    { 
+        "name": "RbacScope", 
+        "type": "Edm.String", 
+        "permissionFilter": "rbacScope", 
+        "filterable": true, 
+        "retrievable": false 
+    }
   ],
   "permissionFilterOption": "enabled"
 }
