@@ -62,7 +62,7 @@ In Azure AI Search, configure an indexer, data source, and index to pull permiss
 
 + Data source must have `indexerPermissionOptions` with `rbacScope`.
 
-  + For`rbacScope`, configure the [connection string](search-howto-index-azure-data-lake-storage.md#supported-credentials-and-connection-strings) with managed identity format.
+  + For `rbacScope`, configure the [connection string](search-howto-index-azure-data-lake-storage.md#supported-credentials-and-connection-strings) with managed identity format.
   
   + For connection strings using a [user-assigned managed identity](search-howto-managed-identities-storage.md#user-assigned-managed-identity), you must also specify the `identity` property.
 
