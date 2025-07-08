@@ -93,7 +93,7 @@ To set up your request file:
         Authorization: Bearer {{token}}
     ```
 
-1. Replace the `@baseUrl` and `@token` placeholders with the values you obtained in [Get endpoint and token](#get-endpoint-and-token). Don't include quotation marks.
+1. Replace the `@baseUrl` and `@token` placeholders with the values you obtained in [Get endpoint and token](#get-endpoint-and-token).
 
 1. Under `### List existing indexes by name`, select **Send Request**.
 
