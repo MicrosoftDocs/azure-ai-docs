@@ -50,7 +50,7 @@ In this article, learn how to:
 
 1. Under **View**, select **JSON view** so that you can paste in a vector query. 
 
-1. Replace the default query template with a hybrid query, such as the "Run a hybrid query" example starting on line 539 in the [vector quickstart](https://github.com/Azure-Samples/cognitive-services-REST-api-samples). For brevity, the vector is truncated in this article. 
+1. Replace the default query template with a hybrid query, such as the "Run a hybrid query" example starting on line 539 in the [vector quickstart](https://raw.githubusercontent.com/Azure-Samples/azure-search-rest-samples/refs/heads/main/Quickstart-vectors/az-search-quickstart-vectors.rest). For brevity, the vector is truncated in this article. 
 
    A hybrid query has a text query specified in `search`, and a vector query specified under `vectorQueries.vector`.
 
