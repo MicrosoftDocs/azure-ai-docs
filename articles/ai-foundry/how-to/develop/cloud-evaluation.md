@@ -22,7 +22,7 @@ The Azure AI Evaluation SDK supports running evaluations locally on your own mac
 
 In this article, you learn how to run evaluations in the cloud (preview) in pre-deployment testing on a test dataset. When you use the Azure AI Projects SDK, evaluation results are automatically logged into your Azure AI project for better observability. This feature supports all Microsoft-curated [built-in evaluators](../../concepts/observability.md#what-are-evaluators) and your own [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md). Your evaluators can be located in the [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) and have the same project-scope role-based access control (RBAC).
 
-## Prerequisites
+#Prerequisites
 
 - Azure AI Foundry project in the same supported [regions](../../concepts/evaluation-evaluators/risk-safety-evaluators.md#azure-ai-foundry-project-configuration-and-region-support) as risk and safety evaluators (preview). If you don't have an existing project, create one by following the guide [How to create Azure AI Foundry project](../create-projects.md?tabs=ai-studio).
 - Azure OpenAI Deployment with GPT model supporting `chat completion`. For example, `gpt-4`.
@@ -50,12 +50,12 @@ If this is your first time running evaluations and logging it to your Azure AI F
    ```python
    import os
 
-   # Required environment variables:
-   endpoint = os.environ["PROJECT_ENDPOINT"] # https://<account>.services.ai.azure.com/api/projects/<project>
-   model_endpoint = os.environ["MODEL_ENDPOINT"] # https://<account>.services.ai.azure.com
+   Required environment variables:
+   endpoint = os.environ["PROJECT_ENDPOINT"] https://<account>.services.ai.azure.com/api/projects/<project>
+   model_endpoint = os.environ["MODEL_ENDPOINT"] https://<account>.services.ai.azure.com
    model_api_key = os.environ["MODEL_API_KEY"] 
 
-   # Optional: Reuse an existing dataset.
+   Optional: Reuse an existing dataset.
    dataset_name    = os.environ.get("DATASET_NAME",    "dataset-test")
    dataset_version = os.environ.get("DATASET_VERSION", "1.0")
    ```
@@ -162,7 +162,7 @@ from azure.ai.ml import MLClient
 from azure.ai.ml.entities import Model
 from promptflow.client import PFClient
 
-# Define ml_client to register the custom evaluator.
+# Define `ml_client` to register the custom evaluator.
 ml_client = MLClient(
        subscription_id=os.environ["AZURE_SUBSCRIPTION_ID"],
        resource_group_name=os.environ["AZURE_RESOURCE_GROUP"],
@@ -213,7 +213,7 @@ model_config = dict(
     type="azure_openai"
 )
 
-# Define ml_client to register the custom evaluator.
+# Define `ml_client` to register the custom evaluator.
 ml_client = MLClient(
        subscription_id=os.environ["AZURE_SUBSCRIPTION_ID"],
        resource_group_name=os.environ["AZURE_RESOURCE_GROUP"],
