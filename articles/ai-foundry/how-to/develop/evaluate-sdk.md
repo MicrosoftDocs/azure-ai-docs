@@ -174,7 +174,7 @@ model_config = AzureOpenAIModelConfiguration(
     api_version=os.environ.get("AZURE_API_VERSION"),
 )
 
-# Initializing Groundedness and Groundedness Pro evaluators
+# Initializing the Groundedness and Groundedness Pro evaluators:
 groundedness_eval = GroundednessEvaluator(model_config)
 
 conversation = {
@@ -186,7 +186,7 @@ conversation = {
     ]
 }
 
-# Alternatively, you can load the same content from a JSONL file
+# Alternatively, you can load the same content from a JSONL file.
 groundedness_conv_score = groundedness_eval(conversation=conversation)
 print(json.dumps(groundedness_conv_score, indent=4))
 ```
@@ -241,10 +241,10 @@ from pathlib import Path
 from azure.ai.evaluation import ContentSafetyEvaluator
 import base64
 
-# create an instance of an evaluator with image and multi-modal support
+# Create an instance of an evaluator with image and multi-modal support.
 safety_evaluator = ContentSafetyEvaluator(credential=azure_cred, azure_ai_project=project_scope)
 
-# example of a conversation with an image URL
+# Example of a conversation with an image URL:
 conversation_image_url = {
     "messages": [
         {
@@ -277,7 +277,7 @@ conversation_image_url = {
     ]
 }
 
-# example of a conversation with base64 encoded images
+# Example of a conversation with base64 encoded images:
 base64_image = ""
 
 with Path.open("Image1.jpg", "rb") as image_file:
@@ -293,7 +293,7 @@ conversation_base64 = {
     ]
 }
 
-# run the evaluation on the conversation to output the result
+# Run the evaluation on the conversation to output the result.
 safety_score = safety_evaluator(conversation=conversation_image_url)
 ```
 
@@ -350,12 +350,12 @@ To ensure the `evaluate()` API can correctly parse the data, you must specify co
 from azure.ai.evaluation import evaluate
 
 result = evaluate(
-    data="data.jsonl", # provide your data here
+    data="data.jsonl", # Provide your data here
     evaluators={
         "groundedness": groundedness_eval,
         "answer_length": answer_length
     },
-    # column mapping
+    # Column mapping
     evaluator_config={
         "groundedness": {
             "column_mapping": {
@@ -365,9 +365,9 @@ result = evaluate(
             } 
         }
     },
-    # Optionally provide your Azure AI Foundry project information to track your evaluation results in your project portal
+    # Optionally, provide your Azure AI Foundry project information to track your evaluation results in your project portal.
     azure_ai_project = azure_ai_project,
-    # Optionally provide an output path to dump a json of metric summary, row level data and metric and Azure AI project URL
+    # Optionally, provide an output path to dump a JSON file of metric summary, row level data, and metric and Azure AI project URL.
     output_path="./myevalresults.json"
 )
 ```
