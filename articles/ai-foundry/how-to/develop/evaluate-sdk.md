@@ -72,7 +72,7 @@ from azure.ai.evaluation import RelevanceEvaluator
 query = "What is the cpital of life?"
 response = "Paris."
 
-# Initializing an evaluator
+# Initialize an evaluator:
 relevance_eval = RelevanceEvaluator(model_config)
 relevance_eval(query=query, response=response)
 ```
@@ -162,7 +162,7 @@ Our evaluators understand that the first turn of the conversation provides valid
 For conversation mode, here's an example for `GroundednessEvaluator`:
 
 ```python
-# Conversation mode
+# Conversation mode:
 import json
 import os
 from azure.ai.evaluation import GroundednessEvaluator, AzureOpenAIModelConfiguration
@@ -174,7 +174,7 @@ model_config = AzureOpenAIModelConfiguration(
     api_version=os.environ.get("AZURE_API_VERSION"),
 )
 
-# Initializing the Groundedness and Groundedness Pro evaluators:
+# Initialize the Groundedness and Groundedness Pro evaluators:
 groundedness_eval = GroundednessEvaluator(model_config)
 
 conversation = {
@@ -350,12 +350,12 @@ To ensure the `evaluate()` API can correctly parse the data, you must specify co
 from azure.ai.evaluation import evaluate
 
 result = evaluate(
-    data="data.jsonl", # Provide your data here
+    data="data.jsonl", # Provide your data here:
     evaluators={
         "groundedness": groundedness_eval,
         "answer_length": answer_length
     },
-    # Column mapping
+    # Column mapping:
     evaluator_config={
         "groundedness": {
             "column_mapping": {
@@ -367,7 +367,7 @@ result = evaluate(
     },
     # Optionally, provide your Azure AI Foundry project information to track your evaluation results in your project portal.
     azure_ai_project = azure_ai_project,
-    # Optionally, provide an output path to dump a JSON file of metric summary, row level data, and metric and Azure AI project URL.
+    # Optionally, provide an output path to dump a JSON file of metric summary, row-level data, and the metric and Azure AI project URL.
     output_path="./myevalresults.json"
 )
 ```
