@@ -68,7 +68,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Define some custom python function
+# Define a custom Python function.
 def fetch_weather(location: str) -> str:
     """
     Fetches the weather information for the specified location.
@@ -89,14 +89,14 @@ user_functions: Set[Callable[..., Any]] = {
     fetch_weather,
 }
 
-# Adding Tools to be used by Agent 
+# Add tools that agent will use. 
 functions = FunctionTool(user_functions)
 
 toolset = ToolSet()
 toolset.add(functions)
 
 
-# Create the agent
+# Create the agent.
 AGENT_NAME = "Seattle Tourist Assistant"
 
 project_client = AIProjectClient.from_connection_string(
@@ -115,7 +115,7 @@ print(f"Created agent, ID: {agent.id}")
 thread = project_client.agents.create_thread()
 print(f"Created thread, ID: {thread.id}")
 
-# Create message to thread
+# Create a message to thread.
 MESSAGE = "Can you fetch me the weather in Seattle?"
 
 message = project_client.agents.create_message(
@@ -134,7 +134,7 @@ if run.status == "failed":
 
 print(f"Run ID: {run.id}")
 
-# display messages
+# Display messages.
 for message in project_client.agents.list_messages(thread.id, order="asc").data:
     print(f"Role: {message.role}")
     print(f"Content: {message.content[0].text.value}")
@@ -149,10 +149,10 @@ After you create agent runs, you can easily use our converter to transform the A
 import json, os
 from azure.ai.evaluation import AIAgentConverter, IntentResolutionEvaluator
 
-# Initialize the converter for Azure AI agents
+# Initialize the converter for Azure AI agents.
 converter = AIAgentConverter(project_client)
 
-# Specify the thread and run id
+# Specify the thread and run the ID.
 thread_id = thread.id
 run_id = run.id
 
