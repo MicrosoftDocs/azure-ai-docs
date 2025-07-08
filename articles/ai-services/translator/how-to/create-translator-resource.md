@@ -16,13 +16,13 @@ You might have an existing Translator resource for Azure AI services that you us
 The following table provides an overview of the resource solutions for Translator and the Azure AI platform:
 |AI Service|Scope|Description|
 |---------|------------|---------|
-| [Azure AI Foundry resource](/azure/ai-foundry/what-is-azure-ai-foundry) | A platform for building, deploying, and managing generative AI applications and agents. Supports a wide range of AI capabilities, including language, translation, vision, and speech.  | It is the primary resource type for designing, deploying, and managing generative AI applications and agents. It provides access to agent service, models that are hosted using a serverless hosting model, evaluations and Azure OpenAI service. This is the recommended resource type for most applications built in Azure AI Foundry. |
-|[Azure AI Services resource](../../../ai-services/what-are-ai-services.md)|Azure AI services provide prebuilt APIs for common AI scenarios. Azure AI Services is part of the Azure AI Foundry platform. Azure AI services can be used in Azure AI Foundry portal to enhance your models with prebuilt AI capabilities.|provides pre-built, ready-to-use AI models accessible through APIs for tasks like language understanding, translation, speech recognition, and computer vision|
-| [Translator services resource](../overview.md) | Single service resource specifically for language translation| Various services that provide prebuilt generative and non-generative AI models |
+| [Azure AI Foundry resource](/azure/ai-foundry/what-is-azure-ai-foundry) | A platform for building, deploying, and managing generative AI applications and agents. Supports a wide range of AI capabilities, including language, translation, vision, and speech.| It's the primary resource type for designing, deploying, and managing generative AI applications and agents. It provides access to agent service, models that are hosted using a serverless hosting model, evaluations, and Azure OpenAI service. This resource type is recommended resource for most applications built in Azure AI Foundry. |
+|[Azure AI Services resource](../../../ai-services/what-are-ai-services.md)|Azure AI services provide prebuilt APIs for common AI scenarios. Azure AI Services is part of the Azure AI Foundry platform. Azure AI services can be used in Azure AI Foundry portal to enhance your models with prebuilt AI capabilities.|provides prebuilt, ready-to-use AI models accessible through APIs for tasks like language understanding, translation, speech recognition, and computer vision.|
+| [Translator services resource](../overview.md) | Single service resource specifically for language translation| Various services that provide prebuilt generative and nongenerative AI models. |
 
 ## [Azure AI Foundry resource](#tab/foundry)
 
-An Azure AI Foundry resource is your main tool for creating, deploying, and managing generative AI applications and agents. With this resource, you can access agent services, use models hosted in a serverless environment, run evaluations, and connect to the Azure OpenAI service. For most projects built in Azure AI Foundry, this is the recommended resource type. To learn how to create and manage an AI Foundry resource *see* [Create your first AI Foundry resource](../../../ai-services/multi-service-resource.md)
+An Azure AI Foundry resource is your main tool for creating, deploying, and managing generative AI applications and agents. With this resource, you can access agent services, use models hosted in a serverless environment, run evaluations, and connect to the Azure OpenAI service. To learn how to create and manage an AI Foundry resource *see* [Create your first AI Foundry resource](../../../ai-services/multi-service-resource.md)
 
 ## [Azure AI Translator resource](#tab/translator)
 
@@ -159,7 +159,7 @@ Azure AI Foundry offers a unified platform for building, managing, and deploying
 
 1. Navigate to the [Azure portal](https://azure.microsoft.com/#home).
 
-1. Go to your Azure AI Foundry resource (select **All resources** to locate your Azure AI Foundry or Azure AI Tranlsator resource).
+1. Go to your Azure AI Foundry resource (select **All resources** to locate your Azure AI Foundry or Azure AI Translator resource).
 
 1. Next, select **Access Control (IAM)** on the left panel, then select **Add role assignment**.
 
@@ -177,7 +177,7 @@ Azure AI Foundry offers a unified platform for building, managing, and deploying
 
 1. Finally, select **Review + assign** to confirm your selection.
 
-1. Your resources are now set up properly. Continue with setting up the fine-tuning task and continue customizing your CLU project.
+1. Your resources are now set up properly. Continue with setting up the fine-tuning task and continue customizing your Azure AI Translator projects.
 
 ## Next Steps
 
