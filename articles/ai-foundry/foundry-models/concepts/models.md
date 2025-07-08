@@ -1,7 +1,7 @@
 ---
 title: Models available in Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
-description: Explore the models available via Azure AI Foundry Models and their capabilities.
+description: Explore the available Azure AI Foundry Models and their capabilities.
 author: msakande
 ms.author: mopeakande
 manager: scottpolly
