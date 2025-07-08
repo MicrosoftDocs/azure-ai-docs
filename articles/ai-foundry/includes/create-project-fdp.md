@@ -4,7 +4,7 @@ description: Include file
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: deeikele
-ms.date: 05/05/2025
+ms.date: 07/03/2025
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.custom:
@@ -20,16 +20,15 @@ ms.custom:
 
 * This project type gives you the best support for:
 
-    * Agents
-    * AI Model Inference including Azure OpenAI	
-    * AI Foundry API that works with agents and across models	
+    * Agents 
+    * AI Foundry API to work with agents and across models
+    * Models sold directly by Azure - Azure OpenAI, DeepSeek, xAI, etc.
+    * Partner & Community Models sold through Marketplace - Stability, Bria, Cohere, etc. 
     * Project files (directly upload files and start experimenting)
+    * Project-level isolation of files and outputs 
     * Evaluations
     * Fine-tuning
     * Playgrounds
-
-* You can also [Use a Bicep file](../how-to/create-azure-ai-project-template.md) to create a [!INCLUDE [fdp-project-name](fdp-project-name.md)].
-
 
 ## Prerequisites
 
@@ -38,7 +37,7 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 # [Azure AI Foundry portal](#tab/ai-foundry)
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
-- You must be **Owner** of the subscription to receive the appropriate access control needed to use the project.
+- You must be **Owner** of the subscription to have appropriate access control necessary to create the Azure AI Foundry resource that is the parent of the project.  If you don't have this access, have your administrator [create an AI Foundry resource](../../ai-services/multi-service-resource.md) for you to use.  Then skip to [Create multiple projects on the same resource](#create-multiple) to create your project.
 
 
 # [Python SDK](#tab/python)
@@ -47,6 +46,28 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 - You must be **Owner** of the subscription to receive the appropriate access control needed to use the project.
 - [Set up your development environment](../how-to/develop/install-cli-sdk.md?tabs=python)
 - Authenticate with `az login` or `az login --use-device-code` in your environment before running code.
+- Complete these steps to start your Python script:
+    1. Install packages: `pip install azure-identity azure-mgmt-cognitiveservices==13.7.0b1
+`. If in a notebook cell, use `%pip install` instead
+`.
+    1. Use `pip show azure-mgmt-cognitiveservices` to verify your version is 13.7 or greater.
+    1. Start your script with the following code to create the `client` connection and variables used throughout this article.  This example creates the project in East US:
+    
+        :::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/create_project.py" id="create_client":::
+
+    1. (Optional) If you have multiple accounts, add the tenant ID of the Microsoft Entra ID you wish to use into the `DefaultAzureCredential`. Find your tenant ID from the [Azure portal](https://portal.azure.com) under **Microsoft Entra ID, External Identities**.
+            
+        ```python
+        DefaultAzureCredential(interactive_browser_tenant_id="<TENANT_ID>")
+        ```
+            
+    1. (Optional) If you're working on in the [Azure Government - US](/azure/azure-government/documentation-government-welcome) or [Azure China 21Vianet](https://azure.microsoft.com/global-infrastructure/services/?regions=china-east-2%2cchina-non-regional&products=all) regions, specify the region into which you want to authenticate. You can specify the region with `DefaultAzureCredential`. The following example authenticates to the Azure Government - US region:
+            
+        ```python
+        from azure.identity import AzureAuthorityHosts
+        DefaultAzureCredential(authority=AzureAuthorityHosts.AZURE_GOVERNMENT)
+        ```
+    
 
 
 # [Azure CLI](#tab/azurecli)
@@ -61,21 +82,21 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 
 # [Azure AI Foundry portal](#tab/ai-foundry)
 
+These steps provide a way to create a new Azure resource with basic, defaulted, settings. 
+
+> [!TIP]
+> If your organization requires customized Azure configurations like alternative names, security controls or cost tags, use one of these methods instead to comply with your organization's Azure Policy compliance:
+> * [Create your first AI Foundry resource](../../ai-services/multi-service-resource.md) 
+> * [Create an Azure AI Foundry resource using a Bicep file](../how-to/create-resource-template.md) 
+
 To create a [!INCLUDE [fdp-project-name](fdp-project-name.md)] in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), follow these steps:
 
-1. Go to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
-2. What you do next depends on where you are:
+1. [!INCLUDE [create-project-access](create-project-access.md)]
 
-    * **If you don't have any existing projects**: Follow the steps in [Quickstart: Get started with Azure AI Foundry](../quickstarts/get-started-code.md) to create your first project.
-
-    * **If you're in a project**: Select the project breadcrumb, then select **Create new resource**.
-    
-        :::image type="content" source="../media/how-to/projects/create-new-resource.png" alt-text="Screenshot shows creating a new project from a breadcrumb.":::
-    
-    * **If you're not in a project**: Select **Create new** in the top right to create a new [!INCLUDE [fdp-project-name-plural](fdp-project-name.md)]
-    
-        :::image type="content" source="../media/how-to/projects/create-new.png" alt-text="Screenshot shows how to create a new project in Azure AI Foundry.":::
+1. Select **Azure AI Foundry resource**, then select **Next**.
+1. Provide a name for your project and select **Create**.  Or see next section for advanced options.
 
 ### Advanced options
 
@@ -98,63 +119,10 @@ To customize the settings for your project, follow these steps:
 
 To create a [!INCLUDE [fdp](../includes/fdp-project-name.md)]:
 
-1. Install packages: `pip install azure-identity azure-mgmt-cognitiveservices`. If in a notebook cell, use `%pip install azure-identity azure-mgmt-cognitiveservices`.
-1. Use `pip show azure-mgmt-cognitiveservices` to verify your version is 13.7 or greater.
-1. Use the following code to create a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)].  This example creates the project in West US:
 
-    ```python
-    from azure.identity import DefaultAzureCredential
-    from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
-    import os
-    import json
-    
-    sub_id = 'your-sub'
-    rgp = 'your-resource-group'
-    resource_name = 'your-resource'
-    project_name = 'your-project'
-    location = 'westus'
-    
-    client = CognitiveServicesManagementClient(
-        credential=DefaultAzureCredential(), 
-        subscription_id=sub_id,
-        api_version="2025-04-01-preview"
-    )
-    # Create resource
-    resource = client.accounts.begin_create(
-        resource_group_name=rgp,
-        account_name=resource_name,
-        account={
-            "location": location,
-            "kind": "AIServices",
-            "sku": {"name": "S0",},
-            "identity": {"type": "SystemAssigned"},
-            "properties": {"allowProjectManagement": True}
-        }
-    )
-    # Create default project
-    project = client.projects.begin_create(
-        resource_group_name=rgp,
-        account_name=resource_name,
-        project_name=project_name,
-        project={
-            "location": location,
-            "identity": {"type": "SystemAssigned"},
-            "properties": {}
-        }
-    )
-    ```
-1. (Optional) If you have multiple accounts, add the tenant ID of the Microsoft Entra ID you wish to use into the `DefaultAzureCredential`. Find your tenant ID from the [Azure portal](https://portal.azure.com) under **Microsoft Entra ID, External Identities**.
-        
-    ```python
-    DefaultAzureCredential(interactive_browser_tenant_id="<TENANT_ID>")
-    ```
-        
-1. (Optional) If you're working on in the [Azure Government - US](/azure/azure-government/documentation-government-welcome) or [Azure China 21Vianet](https://azure.microsoft.com/global-infrastructure/services/?regions=china-east-2%2cchina-non-regional&products=all) regions, specify the region into which you want to authenticate. You can specify the region with `DefaultAzureCredential`. The following example authenticates to the Azure Government - US region:
-        
-    ```python
-    from azure.identity import AzureAuthorityHosts
-    DefaultAzureCredential(authority=AzureAuthorityHosts.AZURE_GOVERNMENT)
-    ```
+1. Add this code to create a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)], using the variables and `client` connection from the [Prerequisites](#prerequisites).
+
+    :::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/create_project.py" id="create_resource_project":::
 
 
 # [Azure CLI](#tab/azurecli)
@@ -184,7 +152,7 @@ CLI commands not currently available for creating a [!INCLUDE [fdp-project-name]
 
 ---
 
-## Create multiple projects on the same resource
+## <a name="create-multiple"></a> Create multiple projects on the same resource
 
 [!INCLUDE [create-second-fdp-project](create-second-fdp-project.md)]
 
@@ -201,15 +169,7 @@ On the project **Home** page, you can find information about the project.
 
 # [Python SDK](#tab/python)
 
-```python
-    # Get project
-    project = client.projects.get(
-        resource_group_name=rgp,
-        account_name=account_name,
-        project_name=project_name
-    )
-    print(project)
-```
+:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/create_project.py" id="show_project":::
 
 # [Azure CLI](#tab/azurecli)
 

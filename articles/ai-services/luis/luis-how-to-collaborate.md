@@ -2,13 +2,13 @@
 title: Collaborate with others - LUIS
 titleSuffix: Azure AI services
 description: An app owner can add contributors to the authoring resource. These contributors can modify the model, train, and publish the app.
-author: aahill
-ms.author: aahi
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
 ms.topic: how-to
-ms.date: 02/05/2024
+ms.date: 06/12/2025
 ---
 
 # Add contributors to your app

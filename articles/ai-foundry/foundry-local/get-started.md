@@ -2,13 +2,15 @@
 title: Get started with Foundry Local
 titleSuffix: Foundry Local
 description: Learn how to install, configure, and run your first AI model with Foundry Local
-author: samuel100
-ms.author: samkemp
 manager: scottpolly
-ms.reviewer: samkemp
-ms.date: 05/23/2025
+ms.date: 07/03/2025
 ms.service: azure-ai-foundry
+ms.subservice: foundry-local
 ms.topic: quickstart
+ms.reviewer: samkemp
+ms.author: jburchel
+author: jburchel
+reviewer: samuel100
 ms.custom:
   - build-2025
   - build-aifnd
@@ -106,6 +108,33 @@ foundry cache --help
 > [!TIP]
 > For a complete guide to all CLI commands and their usage, see the [Foundry Local CLI Reference](reference/reference-cli.md).
 
+## Upgrading Foundry Local
+
+To upgrade Foundry Local to the latest version, use the following commands based on your operating system:
+
+- **Windows**: Open a terminal and run:
+    ```bash
+    winget upgrade --id Microsoft.FoundryLocal
+    ```
+- **macOS**: Open a terminal and run:
+    ```bash
+    brew upgrade foundrylocal
+    ```
+
+## Uninstalling Foundry Local
+
+If you wish to uninstall Foundry Local, use the following commands based on your operating system:
+
+- **Windows**: Open a terminal and run:
+    ```bash
+    winget uninstall Microsoft.FoundryLocal
+    ```
+- **macOS**: Open a terminal and run:
+    ```bash
+    brew rm foundrylocal
+    brew untap microsoft/foundrylocal
+    brew cleanup --scrub
+    ```
 
 ## Next steps
 

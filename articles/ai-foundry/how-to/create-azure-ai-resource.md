@@ -11,15 +11,14 @@ ms.custom:
 ms.topic: how-to
 ms.date: 05/08/2025
 ms.reviewer: deeikele
-ms.author: larryfr
-author: Blackmist
+ms.author: sgilley
+author: sdgilley
 # Customer Intent: As an admin, I need to create and manage an Azure AI Foundry hub so that my team can use it to create projects for collaboration.
 ---
 
 # How to create and manage an Azure AI Foundry hub
 
-> [!NOTE]
-> The information provided in this article is specific to a **[!INCLUDE [hub](../includes/hub-project-name.md)]**, and doesn't apply for a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. For more information, see [Types of projects](../what-is-azure-ai-foundry.md#project-types).
+[!INCLUDE [hub-only-alt](../includes/uses-hub-only-alt.md)]
 
 In [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), hubs provide the environment for a team to collaborate and organize work, and help you as a team lead or IT admin centrally set up security settings and govern usage and spend. You can create and manage a hub from the Azure portal, and then your developers can create projects from the hub.
 

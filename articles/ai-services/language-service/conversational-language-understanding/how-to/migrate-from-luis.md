@@ -41,7 +41,7 @@ The following table presents a side-by-side comparison between the features of L
 |Intents and utterances| Intents and utterances |All intents and utterances are transferred. Utterances are labeled with their transferred entities. |
 |Application GUIDs |Project names| A project is created for each migrating application with the application name. Any special characters in the application names are removed in CLU.|
 |Versioning| Every time you train, a model is created and acts as a version of your [project](#how-do-i-manage-versions-in-clu). | A project is created for the selected application version. |
-|Evaluation using batch testing |Evaluation using testing sets | [Adding your testing dataset](../how-to/tag-utterances.md#how-to-label-your-utterances) is required.|  
+|Evaluation using batch testing |Evaluation using testing sets | [Adding your testing dataset](../how-to/tag-utterances.md#label-your-utterances) is required.|  
 |Role-Based Access Control (RBAC) for LUIS resources |Role-Based Access Control (RBAC) available for Language resources |Language resource RBAC must be [manually added after migration](../../concepts/role-based-access-control.md). |
 |Single training mode| Standard and advanced [training modes](#how-are-the-training-times-different-in-clu-how-is-standard-training-different-from-advanced-training) | Training is required after application migration. |
 |Two publishing slots and version publishing |Ten deployment slots with custom naming | Deployment is required after the application’s migration and training. |

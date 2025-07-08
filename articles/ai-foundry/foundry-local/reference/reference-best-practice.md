@@ -4,11 +4,14 @@ titleSuffix: Foundry Local
 description: Guidance on best practices and troubleshooting for Foundry Local.
 manager: scottpolly
 ms.service: azure-ai-foundry
+ms.subservice: foundry-local
 ms.custom: build-2025
 ms.topic: reference
-ms.date: 05/02/2025
-ms.author: maanavdalal
-author: maanavd
+ms.date: 07/03/2025
+ms.author: jburchel
+author: jonburchel
+reviewer: maanavdalal
+ms.reviewer: maanavd
 ---
 
 # Best practices and troubleshooting guide for Foundry Local
@@ -44,6 +47,7 @@ Foundry Local is designed for on-device inference and *not* distributed, contain
 | Model download failures | Network connectivity issues | Check your internet connection and run `foundry cache list` to verify cache status |
 | The service fails to start | Port conflicts or permission issues | Try `foundry service restart` or [report an issue](https://github.com/microsoft/Foundry-Local/issues) with logs using `foundry zip-logs` |
 | Qualcomm NPU error (`Qnn error code 5005: "Failed to load from EpContext model. qnn_backend_manager."`) | Qualcomm NPU error | Under investigation |
+| `winget install Microsoft.FoundryLocal --scope machine` fails with “The current system configuration does not support the installation of this package.” | Winget blocks MSIX machine-scope installs due to an OS bug when using provisioning APIs from a packaged context | Use `Add-AppxProvisionedPackage` instead. Download the `.msix` and its dependency, then run in **elevated** PowerShell: `Add-AppxProvisionedPackage -Online -PackagePath .\FoundryLocal.msix -DependencyPackagePath .\VcLibs.appx -SkipLicense`. This installs Foundry Local for all users.|
 
 ### Improving performance
 

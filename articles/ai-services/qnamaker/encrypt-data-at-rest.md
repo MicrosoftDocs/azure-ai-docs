@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-language
 ms.subservice: azure-ai-qna-maker
 ms.topic: conceptual
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ms.author: egeaney
 #Customer intent: As a user of the QnA Maker service, I want to learn how encryption at rest works.
 ---

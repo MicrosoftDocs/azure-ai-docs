@@ -29,7 +29,7 @@ In this article, you learn how to:
 
 ## Find your evaluation results
 
-After you submit your evaluation, you can locate the submitted evaluation run within the run list. Navigate to the **Evaluation** page.
+After you submit your evaluation, you can locate the submitted evaluation run within the run list. Go to the **Evaluation** page.
 
 You can monitor and manage your evaluation runs within the run list. You have the flexibility to modify the columns by using the column editor and implement filters, and you can customize and create your own version of the run list. Additionally, you can swiftly review the aggregated evaluation metrics across the runs and perform quick comparisons.
 
@@ -48,7 +48,7 @@ When you review the table of evaluation runs, you can select a specific one, whi
 
 ### Metric dashboard
 
-In the **Metric dashboard** section, aggregate views are broken down by metrics that include **AI quality (AI Assisted)**, **Risk and safety (preview)**, **AI Quality (NLP)**, and **Custom** (when applicable). Results are measured as percentages of pass/fail based on the criteria selected when the evaluation was created. For more in-depth information on each metric definition and how it's calculated, see [What are evaluators?](../concepts/observability.md#what-are-evaluators).
+In the **Metric dashboard** section, aggregate views are broken down by metrics that include **AI quality (AI Assisted)**, **Risk and safety (preview)**, **AI Quality (NLP)**, and **Custom** (when applicable). Results are measured as percentages of pass/fail based on the criteria selected when the evaluation was created. For more in-depth information on metric definitions and how they're calculated, see [What are evaluators?](../concepts/observability.md#what-are-evaluators).
 
 - For **AI quality (AI Assisted)** metrics, results are aggregated by calculating an average across all the scores for each metric. If you calculate by using the **Groundedness Pro** metric, the output is binary and the aggregated score is passing rate, which is calculated by `(#trues / #instances) × 100`.
     :::image type="content" source="../media/evaluations/view-results/ai-quality-ai-assisted-chart.png" alt-text="Screenshot that shows the AI quality (AI Assisted) metrics dashboard tab." lightbox="../media/evaluations/view-results/ai-quality-ai-assisted-chart.png":::
@@ -65,10 +65,10 @@ Within the data section, you can conduct a comprehensive examination of each ind
 
 Some potential action items based on the evaluation metrics could include:
 
-- Pattern recognition: By filtering for numerical values and metrics, you can drill down to samples with lower scores. Investigate these samples to identify recurring patterns or issues in your model's responses. For one example, you might notice that low scores often occur when the model generates content on a certain topic.
-- Model refinement: Use the insights from lower-scoring samples to improve the system prompt instruction or fine-tune your model. If you observe consistent issues with, for example, coherence or relevance, you can also adjust the model's training data or parameters accordingly.
-- Column customization: You can use the column editor to create a customized view of the table, focusing on the metrics and data that are most relevant to your evaluation goals. The column editor can streamline your analysis and help you spot trends more effectively.
-- Keyword search: You can use the search box to look for specific words or phrases in the generated output, and to pinpoint issues or patterns related to particular topics or keywords. Then, you can address them specifically.
+- **Pattern recognition**: By filtering for numerical values and metrics, you can drill down to samples with lower scores. Investigate these samples to identify recurring patterns or issues in your model's responses. For one example, you might notice that low scores often occur when the model generates content on a certain topic.
+- **Model refinement**: Use the insights from lower-scoring samples to improve the system prompt instruction or fine-tune your model. If you observe consistent issues with, for example, coherence or relevance, you can also adjust the model's training data or parameters accordingly.
+- **Column customization**: You can use the column editor to create a customized view of the table, focusing on the metrics and data that are most relevant to your evaluation goals. The column editor can streamline your analysis and help you spot trends more effectively.
+- **Keyword search**: You can use the search box to look for specific words or phrases in the generated output, and to pinpoint issues or patterns related to particular topics or keywords. Then, you can address them specifically.
 
 The metrics detail table offers a wealth of data that can guide your model improvement efforts. You can recognize patterns, customize your view for efficient analysis, and refine your model based on identified issues.
 
@@ -104,11 +104,9 @@ Evaluation results might have different meanings for different audiences. For ex
 
 :::image type="content" source="../media/evaluations/view-results/risk-safety-metric-human-feedback.png" alt-text="Screenshot that shows risk and safety metrics results with human feedback." lightbox="../media/evaluations/view-results/risk-safety-metric-human-feedback.png":::
 
-To understand each content risk metric, you can view metric definitions by navigating back to the **Report** section, or you can review the test in the **Metric dashboard** section.
+To understand each content risk metric, you can view metric definitions by going back to the **Report** section, or you can review the test in the **Metric dashboard** section.
 
-If there's something wrong with the run, you can also use the logs to debug your evaluation run.
-
-Here are some examples of logs that you can use to debug your evaluation run:
+If there's something wrong with the run, you can also use the logs to debug your evaluation run. Here are some examples of logs that you can use to debug your evaluation run:
 
 :::image type="content" source="../media/evaluations/view-results/evaluation-log.png" alt-text="Screenshot that shows logs that you can use to debug your evaluation run." lightbox="../media/evaluations/view-results/evaluation-log.png":::
 
@@ -116,14 +114,14 @@ If you're evaluating a prompt flow, you can select the **View in flow** button t
 
 ## Compare the evaluation results
 
-To facilitate a comprehensive comparison between two or more runs, you can select the desired runs and initiate the process. Select either the **Compare** button or, for a general detailed dashboard view, the **Switch to dashboard view** button. You are empowered to analyze and contrast the performance and outcomes of multiple runs, allowing for more informed decision making and targeted improvements.
+To facilitate a comprehensive comparison between two or more runs, you can select the desired runs and initiate the process. Select either the **Compare** button or, for a general detailed dashboard view, the **Switch to dashboard view** button. You're empowered to analyze and contrast the performance and outcomes of multiple runs, allowing for more informed decision-making and targeted improvements.
 
 :::image type="content" source="../media/evaluations/view-results/evaluation-list-compare.png" alt-text="Screenshot that shows the option to compare evaluations." lightbox="../media/evaluations/view-results/evaluation-list-compare.png":::
 
 In the dashboard view, you have access to two valuable components: the metric distribution comparison **Chart** and the comparison **Table**. You can use these tools to perform a side-by-side analysis of the selected evaluation runs. You can compare various aspects of each data sample with ease and precision.
 
 > [!NOTE]
-> Older evaluation runs will, by default, have matching rows between columns. However, newly run evaluations have to be intentionally configured to have matching columns during evaluation creation. Ensure the same name is used as the **Criteria Name** across all evaluations you want to compare.
+> By default, older evaluation runs have matching rows between columns. However, newly run evaluations have to be intentionally configured to have matching columns during evaluation creation. Ensure that the same name is used as the **Criteria Name** value across all evaluations that you want to compare.
 
 The following screenshot shows the experience when the fields are the same:  
 
@@ -133,13 +131,13 @@ When a user doesn't use the same **Criteria Name** in creating the evaluation, f
 
 :::image type="content" source="../media/evaluations/view-results/evaluation-criteria-name-mismatch.png" alt-text="Screenshot that shows automated evaluations when the fields aren't the same." lightbox="../media/evaluations/view-results/evaluation-criteria-name-mismatch.png":::
 
-Within the comparison **Table**, you can establish a baseline for your comparison by hovering over the specific run you want to use as the reference point and set as baseline. You can also activate the **Show delta** toggle to readily visualize the differences between the baseline run and the other runs for numerical values. Additionally, you can select the **Show only difference** toggle so that the table displays only the rows that differ among the selected runs, aiding in the identification of distinct variations.
+Within the comparison table, you can establish a baseline for your comparison by hovering over the specific run that you want to use as the reference point and set as baseline. You can also activate the **Show delta** toggle to readily visualize the differences between the baseline run and the other runs for numerical values. Additionally, you can select the **Show only difference** toggle so that the table displays only the rows that differ among the selected runs, aiding in the identification of distinct variations.
 
 By using these comparison features, you can make an informed decision to select the best version:
 
-- Baseline comparison: By setting a baseline run, you can identify a reference point against which to compare the other runs. You can see how each run deviates from your chosen standard.
-- Numerical value assessment: Enabling the **Show delta** option helps you understand the extent of the differences between the baseline and other runs. This can help you evaluate how various runs perform in terms of specific evaluation metrics.
-- Difference isolation: The **Show only difference** feature streamlines your analysis by highlighting only the areas where there are discrepancies between runs. This can be instrumental in pinpointing where improvements or adjustments are needed.
+- **Baseline comparison**: By setting a baseline run, you can identify a reference point against which to compare the other runs. You can see how each run deviates from your chosen standard.
+- **Numerical value assessment**: Enabling the **Show delta** option helps you understand the extent of the differences between the baseline and other runs. This information can help you evaluate how various runs perform in terms of specific evaluation metrics.
+- **Difference isolation**: The **Show only difference** feature streamlines your analysis by highlighting only the areas where there are discrepancies between runs. This information can be instrumental in pinpointing where improvements or adjustments are needed.
 
 By using these comparison tools effectively, you can identify which version of your model or system performs the best in relation to your defined criteria and metrics, ultimately assisting you in selecting the most optimal option for your application.
 
@@ -147,9 +145,9 @@ By using these comparison tools effectively, you can identify which version of y
 
 ## Measure jailbreak vulnerability
 
-Evaluating jailbreak vulnerability is a comparative measurement, not an AI-assisted metric. Run evaluations on two different, red-teamed datasets: a baseline adversarial test dataset versus the same adversarial test dataset with jailbreak injections in the first turn. You can use the adversarial data simulator to generate the dataset with or without jailbreak injections. Ensure the **Criteria Name** is the same for each evaluation metric when you configure the runs.
+Evaluating jailbreak vulnerability is a comparative measurement, not an AI-assisted metric. Run evaluations on two different, red-teamed datasets: a baseline adversarial test dataset versus the same adversarial test dataset with jailbreak injections in the first turn. You can use the adversarial data simulator to generate the dataset with or without jailbreak injections. Ensure that the **Criteria Name** value is the same for each evaluation metric when you configure the runs.
 
-To understand if your application is vulnerable to jailbreak, you can specify the baseline and then turn on the **Jailbreak defect rates** toggle in the comparison table. The jailbreak defect rate is defined as the percentage of instances in your test dataset where a jailbreak injection generated a higher severity score for *any* content risk metric with respect to a baseline over the whole dataset size. You can select multiple evaluations in your **Compare** dashboard to view the difference in defect rates.
+To understand if your application is vulnerable to jailbreak, you can specify the baseline and then turn on the **Jailbreak defect rates** toggle in the comparison table. The jailbreak defect rate is the percentage of instances in your test dataset where a jailbreak injection generated a higher severity score for *any* content risk metric with respect to a baseline over the whole dataset size. You can select multiple evaluations in your **Compare** dashboard to view the difference in defect rates.
 
 :::image type="content" source="../media/evaluations/view-results/evaluation-compare-jailbreak.png" alt-text="Screenshot that shows side-by-side evaluation results with jailbreak defect toggled on." lightbox="../media/evaluations/view-results/evaluation-compare-jailbreak.png":::
 
@@ -171,6 +169,6 @@ Learn more about how to evaluate your generative AI applications:
 
 - [Evaluate your generative AI apps via the playground](../how-to/evaluate-prompts-playground.md)
 - [Evaluate your generative AI apps with the Azure AI Foundry portal or SDK](../how-to/evaluate-generative-ai-app.md)
-- [Creating evaluations specifically with OpenAI evaluation graders in Azure OpenAI Hub](../../ai-services/openai/how-to/evaluations.md)
+- [Create evaluations specifically with OpenAI evaluation graders in Azure OpenAI Hub](../openai/how-to/evaluations.md)
 
 Learn more about [harm mitigation techniques](../concepts/evaluation-approach-gen-ai.md).

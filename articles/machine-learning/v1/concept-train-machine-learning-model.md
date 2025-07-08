@@ -8,7 +8,7 @@ author: manashgoswami
 ms.author: manashg
 ms.reviewer: ssalgado
 ms.subservice: core
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 08/30/2022
 ms.custom: UpdateFrequency5, devx-track-python, devx-track-azurecli
 ms.devlang: azurecli

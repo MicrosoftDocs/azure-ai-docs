@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.reviewer: None
 ms.author: larryfr
 author: Blackmist
-ms.date: 05/21/2025
+ms.date: 06/09/2025
 ms.custom: how-to, devx-track-azurecli, devx-track-arm-template, FY25Q1-Linter, ignite-2024
 monikerRange: 'azureml-api-1 || azureml-api-2'
 # Customer Intent: As an admin, I want to understand what permissions I need to assign resources so my users can accomplish their tasks.
@@ -52,15 +52,9 @@ You can combine the roles to grant different levels of access. For example, you 
 > [!IMPORTANT]
 > Role access can be scoped to multiple levels in Azure. For example, someone with owner access to a workspace may not have owner access to the resource group that contains the workspace. For more information, see [How Azure RBAC works](/azure/role-based-access-control/overview#how-azure-rbac-works).
 
-## Azure AI Administrator role (preview)
+## Azure AI Administrator role
 
 Prior to 11/19/2024, the system-assigned managed identity created for the workspace was automatically assigned the __Contributor__ role for the resource group that contains the workspace. Workspaces created after this date have the system-assigned managed identity assigned to the __Azure AI Administrator__ role. This role is more narrowly scoped to the minimum permissions needed for the managed identity to perform its tasks.
-
-The __Azure AI Administrator__ role is currently in public preview. If you encounter issues when using the Azure AI Administrator role with your workspace's managed identity, you can try [reverting to the Contributor role](#revert-to-the-contributor-role).
-
-The __Azure AI Administrator__ role is currently in public preview.
-
-[!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
 The __Azure AI Administrator__ role has the following permissions:
 
@@ -293,7 +287,11 @@ The following table is a summary of Azure Machine Learning activities and the pe
 
 2. When attaching an AKS cluster, you also need to have the [Azure Kubernetes Service Cluster Admin Role](/azure/role-based-access-control/built-in-roles#azure-kubernetes-service-cluster-admin-role) on the cluster.
 
-3. These scenarios don't include the permissions needed to create workspace dependent resources. For more information, see the write permissions for [Storage](https://learn.microsoft.com/azure/role-based-access-control/permissions/storage#microsoftstorage), [OperationalInsights](https://learn.microsoft.com/azure/role-based-access-control/permissions/monitor#microsoftoperationalinsights), [Key Vault](https://learn.microsoft.com/azure/role-based-access-control/permissions/security#microsoftkeyvault) and [Container Registry](https://learn.microsoft.com/azure/role-based-access-control/permissions/containers#microsoftcontainerregistry).
+3. These scenarios don't include the permissions needed to create workspace dependent resources. For more information, see the write permissions for [Storage](/azure/role-based-access-control/permissions/storage#microsoftstorage), [OperationalInsights](/azure/role-based-access-control/permissions/monitor#microsoftoperationalinsights), [Key Vault](/azure/role-based-access-control/permissions/security#microsoftkeyvault) and [Container Registry](/azure/role-based-access-control/permissions/containers#microsoftcontainerregistry).
+
+4. When attaching user-managed identities, you also need to have `Microsoft.ManagedIdentity/userAssignedIdentities/assign/action` permission on the identities. For more information, see [Azure built-in roles for Identity](/azure/role-based-access-control/built-in-roles/identity).
+
+5. When specifying a serverless compute custom subnet, you also need to have `Microsoft.Network/virtualNetworks/subnets/join/action` on the virtual network. For more information, see [Azure permissions for Networking](/azure/role-based-access-control/permissions/networking).
 
 ###  Deploy into a virtual network or subnet
 

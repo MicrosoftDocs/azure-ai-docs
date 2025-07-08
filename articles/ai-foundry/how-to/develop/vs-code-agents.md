@@ -111,21 +111,20 @@ The following tools are available:
 - Knowledge tools:
   - [Grounding with Bing search](/azure/ai-services/agents/how-to/tools/bing-grounding?tabs=python&pivots=overview)
   - [File search]( /azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview)
-  - [Azure AI Search](/azure/ai-services/agents/how-to/tools/azure-ai-search?tabs=azurecli%2Cpython&pivots=overview-azure-ai-search)   
-  - [Microsoft Fabric](/azure/ai-services/agents/how-to/tools/fabric?tabs=csharp&pivots=overview)
-  - [Use licensed data](/azure/ai-services/agents/how-to/tools/licensed-data) 
+  - [Azure AI Search](/azure/ai-services/agents/how-to/tools/azure-ai-search?tabs=pythonsdk&pivots=overview)   
+  - [Microsoft Fabric](/azure/ai-services/agents/how-to/tools/fabric?pivots=portal)
 
 - Action tools:
- - [Azure AI Agents function calling](/azure/ai-services/agents/how-to/tools/function-calling?tabs=python&pivots=overview)
+ - [Azure AI Agents function calling](/azure/ai-services/agents/how-to/tools/function-calling?pivots=python)
 
 Azure AI Foundry Agent Service has a set of knowledge and action tools that you can use to interact with your data sources, such as:
  - [Grounding with Bing search](/azure/ai-services/agents/how-to/tools/bing-grounding?tabs=python&pivots=overview)
- - [Azure AI Search](/azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview) 
- - [Azure Functions](/azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview) 
- - [File retrieval](/azure/ai-services/agents/how-to/tools/azure-functions?tabs=python&pivots=overview) 
+ - [Azure AI Search](/azure/ai-services/agents/how-to/tools/azure-ai-search?tabs=pythonsdk&pivots=overview) 
+ - [Azure Functions](/azure/ai-services/agents/how-to/tools/azure-functions?tabs=python&pivots=overview) 
+ - [File search](/azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview) 
  - [Code interpreter](/azure/ai-services/agents/how-to/tools/code-interpreter?tabs=python&pivots=overview)
  - [OpenAPI Specified tools](/azure/ai-services/agents/how-to/tools/openapi-spec?tabs=python&pivots=overview)
- - [Azure Functions](/azure/ai-services/agents/how-to/tools/azure-functions?tabs=python&pivots=overview)
+ - [SharePoint](/azure/ai-services/agents/how-to/tools/sharepoint?tabs=python&pivots=overview)
 
 #### Configure the tools YAML file
 

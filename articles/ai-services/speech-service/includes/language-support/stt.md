@@ -24,7 +24,7 @@ ms.author: eur
 | `ar-OM` | Arabic (Oman) | No | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-PS` | Arabic (Palestinian Authority) | No | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-QA` | Arabic (Qatar) | No | Audio + human-labeled transcript<br/><br/>Plain text |
-| `ar-SA` | Arabic (Saudi Arabia) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Phrase list |
+| `ar-SA` | Arabic (Saudi Arabia) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Phrase list |
 | `ar-SY` | Arabic (Syria) | No | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-TN` | Arabic (Tunisia) | No | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-YE` | Arabic (Yemen) | No | Audio + human-labeled transcript<br/><br/>Plain text |

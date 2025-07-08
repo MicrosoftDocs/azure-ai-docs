@@ -1,4 +1,4 @@
----
+﻿---
 title: Include file
 description: Include file
 author: lgayhardt
@@ -20,8 +20,12 @@ ms.custom: include file
 >
 > For the dataset upload and bring your own storage scenario, there are a few configuration requirements:
 >
+<<<<<<< HEAD
 > - Account authentication must be Microsoft Entra ID.
 > - The storage must be added to the account, because if it's added to the project, you get service errors.
 > - The user must add their project to their storage account through access control in the Azure portal.
 >
 > To learn more about creating evaluations with OpenAI evaluation graders in the Azure OpenAI hub, see [How to use Azure OpenAI in Azure AI Foundry models evaluation](../../ai-services/openai/how-to/evaluations.md).
+=======
+> To learn more about creating evaluations specifically with OpenAI evaluation graders in Azure OpenAI Hub, see [How to use Azure OpenAI in Azure AI Foundry Models evaluation](../openai/how-to/evaluations.md)
+>>>>>>> 616b89c2f7d3ed485057e4170db4ee679403eb42

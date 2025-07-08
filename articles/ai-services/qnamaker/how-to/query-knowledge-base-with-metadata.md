@@ -3,12 +3,12 @@ title: Contextually filter by using metadata
 titleSuffix: Azure AI services
 description: QnA Maker filters QnA pairs by metadata.
 manager: nitinme
-ms.author: jboback
-author: jboback
+ms.author: lajanuar
+author: laujan
 ms.service: azure-ai-language
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 
 # Filter Responses with Metadata
