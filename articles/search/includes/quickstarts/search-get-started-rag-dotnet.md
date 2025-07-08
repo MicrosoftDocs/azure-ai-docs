@@ -222,7 +222,7 @@ To access the completed sample app for this article:
     ```
 
 1. Navigate into the `quickstart-rag` folder.
-1. Open the project you want to test in Visual Studio code or Visual Studio.
+1. Open the project you want to test in Visual Studio Code or Visual Studio.
 
 ### Create the sample app
 
@@ -256,9 +256,20 @@ Complete the following steps to create a .NET console app to connect to an AI mo
 
 ## Set up the query and chat thread
 
-Add the following code to connect to and query the Azure AI Search and Azure OpenAI services.
+If you are following along with the completed sample repo, open the project in the `minimal-query` folder. If you created the project yourself, add the following code to connect to and query the Azure AI Search and Azure OpenAI services:
+
+> [!NOTE]
+> Make sure to replace the placeholders for the Azure OpenAI endpoint and model name, as well as the Azure AI Search endpoint and index name.
 
 :::code language="csharp" source="~/azure-search-dotnet-samples/quickstart-rag/minimal-query/Program.cs" :::
+
+The preceding code accomplishes the following:
+
+- Searches an Azure Search index for hotels matching a user query about complimentary breakfast, retrieving hotel name, description, and tags.
+- Formats the search results into a structured list to serve as contextual sources for the generative AI model.
+- Constructs a prompt instructing the Azure OpenAI model to answer using only the provided sources.
+- Sends the prompt to the AI model and streams the generated response.
+- Outputs the AI’s response to the console, displaying both the role and content as it streams.
 
 The output from Azure OpenAI consists of recommendations for several hotels, such as the following example:
 
