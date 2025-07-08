@@ -37,6 +37,7 @@ The deep research tool is tightly integrated with Grounding with Bing Search and
 
 ## Region support
 The Deep Research tool is supported in the following regions where the deep research model is available for deployment.
+
 |West US  | Norway East |
 |---------|---------|
 | ✔️ | ✔️ | 
