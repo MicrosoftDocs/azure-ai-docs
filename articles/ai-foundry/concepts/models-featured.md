@@ -168,10 +168,6 @@ Nixtla's TimeGEN-1 is a generative pre-trained forecasting and anomaly detection
 
 To perform inferencing, TimeGEN-1 requires you to use Nixtla's custom inference API.
 
-| Model  | Type | Capabilities | Inference API|
-| ------ | ---- | --- | ------------ |
-| [TimeGEN-1](https://ai.azure.com/explore/models/TimeGEN-1/version/1/registry/azureml-nixtla) | Forecasting  | - **Input:** Time series data as JSON or dataframes (with support for multivariate input)  <br /> - **Output:**  Time series data as JSON <br /> - **Tool calling:** No <br /> - **Response formats:** JSON  | [Forecast client to interact with Nixtla's API](https://nixtlaverse.nixtla.io/nixtla/docs/reference/nixtla_client.html#nixtlaclient-forecast) |
-
 #### Estimate the number of tokens needed
 
 Before you create a TimeGEN-1 deployment, it's useful to estimate the number of tokens that you plan to consume and be billed for.
