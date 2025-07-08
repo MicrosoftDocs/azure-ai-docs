@@ -1,5 +1,5 @@
 ---  
-title: Use a Blob indexer to ingest Rbac scopes metadata
+title: Use a Blob indexer to ingest RBAC scopes metadata
 titleSuffix: Azure AI Search  
 description: Learn how to configure Azure AI Search indexers for ingesting Azure Role-Based Access (RBAC) metadata on Azure Blobs.
 ms.service: azure-ai-search  
@@ -9,11 +9,11 @@ author: vaishalishah
 ms.author: vaishalishah
 ---  
 
-# Use a Blob indexer to ingest Rbac scopes metadata
+# Use a Blob indexer to ingest RBAC scopes metadata
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-Starting in 2025-05-01-preview, you can now include Rbac scope alongside document ingestion in Azure AI Search and use those permissions to control access to search results.
+Starting in 2025-05-01-preview, you can now include RBAC scope alongside document ingestion in Azure AI Search and use those permissions to control access to search results.
 
 You can use the push APIs to upload and index content and permission metadata manually see [Indexing Permissions using the push REST API](search-index-access-control-lists-and-rbac-push-api.md), or you can use an indexer to automate data ingestion. This article focuses on the indexer approach.
 
@@ -27,9 +27,9 @@ The indexer approach is built on this foundation:
 
 ## Prerequisites
 
-+ Microsoft Entra ID authentication and authorization. Services and apps must be in the same tenant. Role assignments are used for each authenticated connection.
++ [Microsoft Entra ID authentication and authorization](https://learn.microsoft.com/en-us/entra/identity/authentication/overview-authentication). Services and apps must be in the same tenant. Role assignments are used for each authenticated connection.
 
-+ Azure AI Search, any region, but you must have a billable tier (basic and higher) for managed identity support. The search service must be [configured for role-based access](search-security-enable-roles.md) and it must [have a managed identity (either system or user)](search-howto-managed-identities-data-sources.md).
++ Azure AI Search, any region, but you must have a billable tier (basic and higher) see [Service limits](search-limits-quotas-capacity.md) for managed identity support. The search service must be [configured for role-based access](search-security-enable-roles.md) and it must [have a managed identity (either system or user)](search-howto-managed-identities-data-sources.md).
 
 ## Limitations
 
@@ -39,9 +39,7 @@ The indexer approach is built on this foundation:
 
 ### Authorization
 
-For indexer execution, your search service identity must have **Storage Blob Data Reader** permission. 
-
-If you're testing locally, you should also have a **Storage Blob Data Reader** role assignment. For more information, see [Connect to Azure Storage using a managed identity](search-howto-managed-identities-storage.md).
+For indexer execution, your search service identity must have **Storage Blob Data Reader** permission see [Connect to Azure Storage using a managed identity](search-howto-managed-identities-storage.md).
 
 ## Configure Azure AI Search for indexing permission filters
 
@@ -52,9 +50,7 @@ Recall that the search service must have:
 
 ### Authorization
 
-For indexer execution, the client issuing the API call must have **Search Service Contributor** permission to create objects, **Search Index Data Contributor** permission to perform data import, and **Search Index Data Reader** to query an index. 
-
-If you're testing locally, you should have the same role assignments. For more information, see [Connect to Azure AI Search using roles](search-security-rbac.md).
+For indexer execution, the client issuing the API call must have **Search Service Contributor** permission to create objects, **Search Index Data Contributor** permission to perform data import, and **Search Index Data Reader** to query an index see [Connect to Azure AI Search using roles](search-security-rbac.md).
 
 ## Indexing permission metadata
 
