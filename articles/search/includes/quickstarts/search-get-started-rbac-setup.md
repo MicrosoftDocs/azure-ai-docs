@@ -39,4 +39,4 @@ To get your service information:
 
 1. Make a note of the subscription ID and endpoint.
 
-   :::image type="content" source="../../media/search-get-started-rbac/subscription-and-endpoint.png" lightbox="../../media/search-get-started-rbac/subscription-and-endpoint-name.png" alt-text="Screenshot of the subscription ID and endpoint in the Azure portal.":::
+   :::image type="content" source="../../media/search-get-started-rbac/subscription-and-endpoint.png" lightbox="../../media/search-get-started-rbac/subscription-and-endpoint.png" alt-text="Screenshot of the subscription ID and endpoint in the Azure portal.":::
