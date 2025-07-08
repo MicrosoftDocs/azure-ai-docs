@@ -26,7 +26,7 @@ This is the one-time, fixed cost associated with teaching a base model your spec
 It's straightforward to estimate the costs for SFT & DPO: you are charged based on the number of tokens in your training file, and the number of epochs for your training job.
 
 $$
-\text{price} = \# \text{training tokens} \times \# \text{epochs} \times \text{price per token}
+\text{price} = \text{\# training tokens} \times \text{\# epochs} \times \text{price per token}
 $$
 
 In general, smaller models and more recent models have lower prices per token than larger, older models. To estimate the number of tokens in your file, you can use the tiktoken library – or, for a less precise estimate, one word is roughly equivalent to four tokens.
