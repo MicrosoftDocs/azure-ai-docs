@@ -2,7 +2,7 @@
 title: Identify and extract Personally Identifying Information (PII) from native documents
 titleSuffix: Azure AI services
 description: This article shows you how to redact Personally Identifying Information (PII) from native documents.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to

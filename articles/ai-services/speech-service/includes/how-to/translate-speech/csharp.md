@@ -34,7 +34,7 @@ For more information on environment variables, see [Environment variables and ap
 
 ## Create a speech translation configuration
 
-To call the Speech service by using the Speech SDK, you need to create a [`SpeechTranslationConfig`][speechtranslationconfig] instance. This class includes information about your subscription, like your key and associated region, endpoint, host, or authorization token.
+To call the Speech service by using the Speech SDK, you need to create a [`SpeechTranslationConfig`][speechtranslationconfig] instance. This class includes information about your Speech resource, like your key and associated region, endpoint, host, or authorization token.
 
 > [!TIP]
 > Regardless of whether you're performing speech recognition, speech synthesis, translation, or intent recognition, you'll always create a configuration.
@@ -384,12 +384,12 @@ For a complete code sample, see [language identification](../../../language-iden
 
 Multi-lingual speech translation implements a new level of speech translation technology that unlocks various capabilities, including having no specified input language, and handling language switches within the same session. These features enable a new level of speech translation powers that can be implemented into your products.
 
-Currently when you use Language ID with speech translation, you must create the `SpeechTranslationConfig` object from the v2 endpoint. Replace the string "YourServiceRegion" with your Speech resource region (such as "westus"). Replace "YourSubscriptionKey" with your Speech resource key.
+Currently when you use Language ID with speech translation, you must create the `SpeechTranslationConfig` object from the v2 endpoint. Replace the string "YourServiceRegion" with your Speech resource region (such as "westus"). Replace "YourSpeechResoureKey" with your Speech resource key.
 
 ```csharp
 var v2EndpointInString = String.Format("wss://{0}.stt.speech.microsoft.com/speech/universal/v2", "YourServiceRegion");
 var v2EndpointUrl = new Uri(v2EndpointInString);
-var speechTranslationConfig = SpeechTranslationConfig.FromEndpoint(v2EndpointUrl, "YourSubscriptionKey");
+var speechTranslationConfig = SpeechTranslationConfig.FromEndpoint(v2EndpointUrl, "YourSpeechResoureKey");
 ```
 
 Specify the translation target languages. Replace with languages of your choice. You can add more lines.

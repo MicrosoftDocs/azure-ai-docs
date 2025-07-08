@@ -2,14 +2,14 @@
 title: Migrate from QnA Maker to custom question answering
 description: Details on features, requirements, and examples for migrating from QnA Maker to custom question answering
 ms.service: azure-ai-language
-ms.author: jboback
-author: jboback
+ms.author: lajanuar
+author: laujan
 ms.manager: nitinme
 ms.topic: how-to
-ms.date: 11/21/2024
+ms.date: 06/04/2025
 ms.custom: language-service-question-answering
 ---
-# Migrate from QnA Maker to custom question answering 
+# Migrate from QnA Maker to Custom question answering 
 
 **Purpose of this document:** This article aims to provide information that can be used to successfully migrate applications that use QnA Maker to custom question answering. Using this article, we hope customers gain clarity on the following: 
 
@@ -23,7 +23,7 @@ ms.custom: language-service-question-answering
 **Intended Audience:** Existing QnA Maker customers
 
 > [!IMPORTANT]
-> Custom question Answering, a feature of Azure AI Language was introduced in November 2021 with several new capabilities including enhanced relevance using a deep learning ranker, precise answers, and end-to-end region support. Each custom question answering project is equivalent to a knowledge base in QnA Maker. Resource level settings such as Role-based access control (RBAC) aren't migrated to the new resource. These resource level settings would have to be reconfigured for the language resource post migration:
+> Custom question Answering, a feature of Azure AI Language was introduced in November 2021 with several new capabilities including enhanced relevance using a deep learning ranker, precise answers, and end-to-end region support. Each Custom question answering project is equivalent to a knowledge base in QnA Maker. Resource level settings such as Role-based access control (RBAC) aren't migrated to the new resource. These resource level settings would have to be reconfigured for the language resource post migration:
 >
 >  - Automatic RBAC to Language project (not resource)
 >  - Automatic enabling of analytics.
@@ -113,7 +113,7 @@ This topic compares two hypothetical scenarios when migrating from QnA Maker to 
 > An attempt has been made to ensure these scenarios are representative of real customer migrations, however, individual customer scenarios differ. Also, this article doesn't include pricing details. Visit the [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/language-service/) page for more information.
 
 > [!IMPORTANT] 
-> Each custom question answering project is equivalent to a knowledge base in QnA Maker. Resource level settings such as Role-based access control (RBAC) aren't migrated to the new resource. These resource level settings would have to be reconfigured for the language resource post migration. You'll also need to [re-enable analytics](analytics.md) for the language resource.
+> Each Custom question answering project is equivalent to a knowledge base in QnA Maker. Resource level settings such as Role-based access control (RBAC) aren't migrated to the new resource. These resource level settings would have to be reconfigured for the language resource post migration. You'll also need to [re-enable analytics](analytics.md) for the language resource.
 
 ### Migration scenario 1: No custom authoring portal
 

@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 05/12/2025
+ms.date: 6/24/2025
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -21,92 +21,28 @@ This quickstart is based on the [Quickstart-Agentic-Retrieval](https://github.co
 
 + An [Azure AI Search service](../../search-create-service-portal.md) on the Basic tier or higher with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
 
-+ An [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource).
++ An [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects). You get an Azure AI Foundry resource (that you need for model deployments) when you create an Azure AI Foundry project.
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and [Jupyter package](https://pypi.org/project/jupyter/).
 
-## Deploy models
++ The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
-To run agentic retrieval, you must deploy three models to your Azure OpenAI resource:
-
-+ An LLM for query planning.
-
-+ An LLM for answer generation.
-
-+ (Optional) An embedding model for vector queries.
-
-Agentic retrieval [supports several models](../../search-agentic-retrieval-how-to-create.md#supported-models), but this quickstart assumes `gpt-4o-mini` for both LLMs and `text-embedding-3-large` for the embedding model.
-
-To deploy the Azure OpenAI models:
-
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/).
-
-1. On the home page, find the Azure OpenAI tile and select **Let's go**.
-
-    :::image type="content" source="../../media/search-get-started-agentic-retrieval/azure-openai-lets-go-tile.png" alt-text="Screenshot of the Azure OpenAI tile in the Azure AI Foundry portal." border="true" lightbox="../../media/search-get-started-agentic-retrieval/azure-openai-lets-go-tile.png":::
-
-   Your most recently used Azure OpenAI resource appears. If you have multiple Azure OpenAI resources, select **All resources** to switch between them.
-
-1. From the left pane, select **Model catalog**.
-
-1. Deploy `gpt-4o-mini` and `text-embedding-3-large` to your Azure OpenAI resource.
-
-   > [!NOTE]
-   > To simplify your code, don't use a custom deployment name for either model. This quickstart assumes the deployment and model names are the same.
-
-## Configure role-based access
-
-Azure AI Search needs access to your Azure OpenAI models. For this task, you can use API keys or Microsoft Entra ID with role assignments. Keys are easier to start with, but roles are more secure. This quickstart assumes roles.
-
-To configure the recommended role-based access:
-
-1. Sign in to the [Azure portal](https://portal.azure.com/).
-
-1. [Enable role-based access](../../search-security-enable-roles.md) on your Azure AI Search service.
-
-1. [Create a system-assigned managed identity](../../search-howto-managed-identities-data-sources.md#create-a-system-managed-identity) on your Azure AI Search service.
-
-1. On your Azure AI Search service, [assign the following roles](../../search-security-rbac.md#how-to-assign-roles-in-the-azure-portal) to yourself.
-
-    + **Search Service Contributor**
-
-    + **Search Index Data Contributor**
-
-    + **Search Index Data Reader**
-
-1. On your Azure OpenAI resource, assign **Cognitive Services User** to the managed identity of your search service.
-
-## Get endpoints
-
-In your code, you specify the following endpoints to establish connections with Azure AI Search and Azure OpenAI. These steps assume that you configured role-based access in the previous section.
-
-To obtain your service endpoints:
-
-1. Sign in to the [Azure portal](https://portal.azure.com/).
-
-1. On your Azure AI Search service:
-
-    1. From the left pane, select **Overview**.
-
-    1. Copy the URL, which should be similar to `https://my-service.search.windows.net`.
-
-1. On your Azure OpenAI resource:
-
-    1. From the left pane, select **Resource Management** > **Keys and Endpoint**.
-
-    1. Copy the URL, which should be similar to `https://my-resource.openai.azure.com`.
+[!INCLUDE [Setup](./agentic-retrieval-setup.md)]
 
 ## Connect from your local system
 
-You configured role-based access to interact with Azure AI Search and Azure OpenAI. From the command line, use the Azure CLI to sign in to the same subscription and tenant for both services. For more information, see [Quickstart: Connect without keys](../../search-get-started-rbac.md).
+You configured role-based access to interact with Azure AI Search and Azure OpenAI. 
 
-```Azure CLI
-az account show
+To connect from your local system:
 
-az account set --subscription <PUT YOUR SUBSCRIPTION ID HERE>
-    
-az login --tenant <PUT YOUR TENANT ID HERE>
-```
+1. Open a new terminal in Visual Studio Code and change to the directory where you want to save your files.
+1. Run the following Azure CLI command and sign in with your Azure account. If you have multiple subscriptions, select the one that contains your Azure AI Search service and Azure AI Foundry project.
+
+    ```azurecli
+    az login
+    ```
+
+For more information, see [Quickstart: Connect without keys](../../search-get-started-rbac.md).
 
 ## Install packages and load connections
 
@@ -114,9 +50,9 @@ Before you run any code, install Python packages and define credentials, endpoin
 
 To install the packages and load the connections:
 
-1. In Visual Studio Code, create a `.ipynb` file.
+1. In Visual Studio Code, create a `.ipynb` file. For example, you can name the file `quickstart-agentic-retrieval.ipynb`.
 
-1. Install the following packages.
+1. In the first code cell, paste the following code to install the required packages. 
 
     ```Python
     ! pip install azure-search-documents==11.6.0b12 --quiet
@@ -127,7 +63,9 @@ To install the packages and load the connections:
     ! pip install requests --quiet
     ```
 
-1. In another code cell, paste the following import statements and variables.
+    You can run this cell by selecting the **Run Cell** button or pressing `Shift+Enter`.
+
+1. Add another code cell and paste the following import statements and variables.
 
     ```Python
     from azure.identity import DefaultAzureCredential, get_bearer_token_provider
@@ -136,25 +74,27 @@ To install the packages and load the connections:
     endpoint = "PUT YOUR SEARCH SERVICE ENDPOINT HERE"
     credential = DefaultAzureCredential()
     token_provider = get_bearer_token_provider(credential, "https://search.azure.com/.default")
-    azure_openai_endpoint = "PUT YOUR AZURE OPENAI ENDPOINT HERE"
-    azure_openai_gpt_deployment = "gpt-4o-mini"
-    azure_openai_gpt_model = "gpt-4o-mini"
+    azure_openai_endpoint = "PUT YOUR AZURE AI FOUNDRY ENDPOINT HERE"
+    azure_openai_gpt_deployment = "gpt-4.1-mini"
+    azure_openai_gpt_model = "gpt-4.1-mini"
     azure_openai_api_version = "2025-03-01-preview"
     azure_openai_embedding_deployment = "text-embedding-3-large"
     azure_openai_embedding_model = "text-embedding-3-large"
     index_name = "earth_at_night"
     agent_name = "earth-search-agent"
-    answer_model = "gpt-4o-mini"
+    answer_model = "gpt-4.1-mini"
     api_version = "2025-05-01-Preview"
     ```
 
-1. Replace `endpoint` and `azure_openai_endpoint` with the values you obtained in [Get endpoints](#get-endpoints).
+1. Set `endpoint` to your Azure AI Search endpoint, which looks like `https://<your-search-service-name>.search.windows.net.` Set `azure_openai_endpoint` to your Azure AI Foundry endpoint, which looks like `https://<your-foundry-resource-name>.openai.azure.com.` You obtained both values in the [Get endpoints](#get-endpoints) section. 
 
 1. To verify the variables, run the code cell.
 
 ## Create a search index
 
 In Azure AI Search, an index is a structured collection of data. The following code defines an index named `earth_at_night`, which you specified using the `index_name` variable in the previous section.
+
+Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
 
 ```Python
 from azure.search.documents.indexes.models import SearchIndex, SearchField, VectorSearch, VectorSearchProfile, HnswAlgorithmConfiguration, AzureOpenAIVectorizer, AzureOpenAIVectorizerParameters, SemanticSearch, SemanticConfiguration, SemanticPrioritizedFields, SemanticField
@@ -204,17 +144,11 @@ print(f"Index '{index_name}' created or updated successfully")
 
 The index schema contains fields for document identification and page content, embeddings, and numbers. It also includes configurations for semantic ranking and vector queries, which use the `text-embedding-3-large` model you previously deployed.
 
-> [!IMPORTANT]
-> Agentic retrieval has two token-based billing models:
->
-> + Billing from Azure OpenAI for query planning.
-> + Billing from Azure AI Search for query execution (semantic ranking).
->
-> Semantic ranking is free in the initial public preview. After the preview, standard token billing applies. For more information, see [Availability and pricing of agentic retrieval](../../search-agentic-retrieval-concept.md#availability-and-pricing).
-
 ## Upload documents to the index
 
-Currently, the `earth_at_night` index is empty. Run the following code to populate the index with JSON documents from NASA's Earth at Night e-book. As required by Azure AI Search, each document conforms to the fields and data types defined in the index schema.
+Currently, the `earth_at_night` index is empty. Run the following code to populate the index with JSON documents from [NASA's Earth at Night e-book](https://raw.githubusercontent.com/Azure-Samples/azure-search-sample-data/refs/heads/main/nasa-e-book/earth-at-night-json/documents.json). As required by Azure AI Search, each document conforms to the fields and data types defined in the index schema.
+
+Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
 
 ```Python
 from azure.search.documents import SearchIndexingBufferedSender
@@ -231,9 +165,11 @@ print(f"Documents uploaded to index '{index_name}'")
 
 ## Create a knowledge agent
 
-To connect Azure AI Search to your `gpt-4o-mini` deployment and target the `earth_at_night` index at query time, you need a knowledge agent. The following code defines a knowledge agent named `earth-search-agent`, which you specified using the `agent_name` variable in a previous section.
+To connect Azure AI Search to your `gpt-4.1-mini` deployment and target the `earth_at_night` index at query time, you need a knowledge agent. The following code defines a knowledge agent named `earth-search-agent`, which you specified using the `agent_name` variable in a previous section.
 
 To ensure relevant and semantically meaningful responses, `default_reranker_threshold` is set to exclude responses with a reranker score of `2.5` or lower.
+
+Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
 
 ```Python
 from azure.search.documents.indexes.models import KnowledgeAgent, KnowledgeAgentAzureOpenAIModel, KnowledgeAgentTargetIndex, KnowledgeAgentRequestLimits, AzureOpenAIVectorizerParameters
@@ -267,6 +203,8 @@ The next step is to define the knowledge agent instructions and conversation con
 
 For now, create the following assistant message, which instructs `earth-search-agent` to answer questions about the Earth at night, cite sources using their `ref_id`, and respond with "I don't know" when answers are unavailable.
 
+Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
+
 ```Python
 instructions = """
 An Q&A agent that can answer questions about the Earth at night.
@@ -288,6 +226,8 @@ You're ready to initiate the agentic retrieval pipeline. The input for this pipe
 
 The following code sends a two-part user query to `earth-search-agent`, which deconstructs the query into subqueries, runs the subqueries against both text fields and vector embeddings in the `earth_at_night` index, and ranks and merges the results. The response is then appended to the `messages` array.
 
+Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
+
 ```Python
 from azure.search.documents.agent import KnowledgeAgentRetrievalClient
 from azure.search.documents.agent.models import KnowledgeAgentRetrievalRequest, KnowledgeAgentMessage, KnowledgeAgentMessageTextContent, KnowledgeAgentIndexParams
@@ -302,9 +242,9 @@ messages.append({
     """
 })
 
-retrieval_result = agent_client.knowledge_retrieval.retrieve(
+retrieval_result = agent_client.retrieve(
     retrieval_request=KnowledgeAgentRetrievalRequest(
-        messages=[KnowledgeAgentMessage(role=msg["role"], content=[KnowledgeAgentMessageTextContent(text=msg["content"])]) for msg in messages],
+        messages=[KnowledgeAgentMessage(role=msg["role"], content=[KnowledgeAgentMessageTextContent(text=msg["content"])]) for msg in messages if msg["role"] != "system"],
         target_index_params=[KnowledgeAgentIndexParams(index_name=index_name, reranker_threshold=2.5)]
     )
 )
@@ -316,7 +256,9 @@ messages.append({
 
 ### Review the response, activity, and results
 
-To output the response, activity, and results of the retrieval pipeline, run the following code.
+Now you want to display the response, activity, and results of the retrieval pipeline.
+
+Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
 
 ```Python
 import textwrap
@@ -336,7 +278,7 @@ The output should be similar to the following example, where:
 
 + `Response` provides a text string of the most relevant documents (or chunks) in the search index based on the user query. As shown later in this quickstart, you can pass this string to an LLM for answer generation.
 
-+ `Activity` tracks the steps that were taken during the retrieval process, including the subqueries generated by your `gpt-4o-mini` deployment and the tokens used for query planning and execution.
++ `Activity` tracks the steps that were taken during the retrieval process, including the subqueries generated by your `gpt-4.1-mini` deployment and the tokens used for query planning and execution.
 
 + `Results` lists the documents that contributed to the response, each one identified by their `doc_key`.
 
@@ -392,7 +334,9 @@ Results
 
 ## Create the Azure OpenAI client
 
-To extend the retrieval pipeline from answer *extraction* to answer *generation*, set up the Azure OpenAI client to interact with your `gpt-4o-mini` deployment, which you specified using the `answer_model` variable in a previous section.
+To extend the retrieval pipeline from answer *extraction* to answer *generation*, set up the Azure OpenAI client to interact with your `gpt-4.1-mini` deployment, which you specified using the `answer_model` variable in a previous section.
+
+Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
 
 ```Python
 from openai import AzureOpenAI
@@ -408,7 +352,9 @@ client = AzureOpenAI(
 
 ### Use the Responses API to generate an answer
 
-You can now use the Responses API to generate a detailed answer based on the indexed documents. The following code sends the `messages` array, which contains the conversation history, to your `gpt-4o-mini` deployment.
+You can now use the Responses API to generate a detailed answer based on the indexed documents. The following code sends the `messages` array, which contains the conversation history, to your `gpt-4.1-mini` deployment.
+
+Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
 
 ```Python
 response = client.responses.create(
@@ -420,7 +366,7 @@ wrapped = textwrap.fill(response.output_text, width=100)
 print(wrapped)
 ```
 
-The output should be similar to the following example, which uses the reasoning capabilities of `gpt-4o-mini` to provide contextually relevant answers.
+The output should be similar to the following example, which uses the reasoning capabilities of `gpt-4.1-mini` to provide contextually relevant answers.
 
 ```
 Suburban belts often exhibit larger December brightening than urban cores primarily because of the type of development and light distribution in those areas. Suburbs tend to have more uniform and expansive lighting, making them more visible in nighttime satellite images. In contrast, urban cores, although having higher absolute light levels, often contain dense building clusters that can cause light to be obscured or concentrated in smaller areas, leading to less visible brightening when viewed from space.  Regarding the visibility of the Phoenix nighttime street grid from space, it is attributed to the city's grid layout and the intensity of its street lighting. The grid pattern of the streets and the significant development around them create a stark contrast against less developed areas. Conversely, large stretches of interstate in the Midwest may remain dimmer due to fewer densely populated structures and less intensive street lighting, resulting in less illumination overall.  For more detailed insights, you can refer to the sources: [0] and [1].
@@ -429,6 +375,8 @@ Suburban belts often exhibit larger December brightening than urban cores primar
 ### Use the Chat Completions API to generate an answer
 
 Alternatively, you can use the Chat Completions API for answer generation.
+
+Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
 
 ```Python
 response = client.chat.completions.create(
@@ -450,15 +398,17 @@ Suburban belts tend to display larger December brightening than urban cores, des
 
 Continue the conversation by sending another user query to `earth-search-agent`. The following code reruns the retrieval pipeline, fetching relevant content from the `earth_at_night` index and appending the response to the `messages` array. However, unlike before, you can now use the Azure OpenAI client to generate an answer based on the retrieved content.
 
+Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
+
 ```Python
 messages.append({
     "role": "user",
     "content": "How do I find lava at night?"
 })
 
-retrieval_result = agent_client.knowledge_retrieval.retrieve(
+retrieval_result = agent_client.retrieve(
     retrieval_request=KnowledgeAgentRetrievalRequest(
-        messages=[KnowledgeAgentMessage(role=msg["role"], content=[KnowledgeAgentMessageTextContent(text=msg["content"])]) for msg in messages],
+        messages=[KnowledgeAgentMessage(role=msg["role"], content=[KnowledgeAgentMessageTextContent(text=msg["content"])]) for msg in messages if msg["role"] != "system"],
         target_index_params=[KnowledgeAgentIndexParams(index_name=index_name, reranker_threshold=2.5)]
     )
 )
@@ -470,7 +420,9 @@ messages.append({
 
 ### Review the new response, activity, and results
 
-To output the latest response, activity, and results of the retrieval pipeline, run the following code.
+Now you want to display the response, activity, and results of the retrieval pipeline.
+
+Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
 
 ```Python
 import textwrap
@@ -488,7 +440,9 @@ print(json.dumps([r.as_dict() for r in retrieval_result.references], indent=2))
 
 ## Generate an LLM-powered answer
 
-Now that you've sent multiple user queries, use the Responses API to generate an answer based on the indexed documents and conversation history, which is captured in the `messages` array.
+Now that you sent multiple user queries, use the Responses API to generate an answer based on the indexed documents and conversation history, which is captured in the `messages` array.
+
+Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
 
 ```Python
 response = client.responses.create(
@@ -504,4 +458,30 @@ The output should be similar to the following example.
 
 ```
 To find lava at night, you can look for the following signs:  1. **Active Volcanoes**: Research volcanoes that are currently active. Notable examples include Mount Etna in Italy and Kilauea in Hawaii. Both have had significant eruptions that can be observed at night due to the glow of lava. 2. **Satellite Imagery**: Use satellite imagery, especially those from sources like VIIRS (Visible Infrared Imaging Radiometer Suite) on the Suomi NPP satellite, which captures nighttime images of active lava flows. During eruptions, lava glows brightly in thermal infrared images, making it detectable from space.  3. **Safe Viewing Locations**: If you’re near an active volcano, find designated viewing areas for safety. Many national parks with volcanoes offer nighttime lava viewing experiences.  4. **Moonlight**: The presence of moonlight can enhance visibility, allowing you to spot lava flows more easily against the backdrop of the dark landscape.  5. **Monitoring Reports**: Follow updates from geological services or local authorities that monitor volcanic activity, which often provide real-time information about eruptions and visible lava flows at night.  6. **Photography**: If you're an enthusiast, consider using long-exposure photography techniques to capture the glow of lava flows at night.  For more information on observing volcanic activity, satellite imagery can provide vital data for detecting lava flows and volcanic eruptions.
+```
+
+## Clean up resources
+
+When working in your own subscription, it's a good idea to finish a project by determining whether you still need the resources you created. Resources that are left running can cost you money. You can delete resources individually, or you can delete the resource group to delete the entire set of resources.
+
+In the Azure portal, you can find and manage resources by selecting **All resources** or **Resource groups** from the left pane. You can also run the following code to delete the objects you created in this quickstart.
+
+### Delete the knowledge agent
+
+Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
+
+```Python
+index_client = SearchIndexClient(endpoint=endpoint, credential=credential)
+index_client.delete_agent(agent_name)
+print(f"Knowledge agent '{agent_name}' deleted successfully")
+```
+
+### Delete the search index
+
+Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
+
+```Python
+index_client = SearchIndexClient(endpoint=endpoint, credential=credential)
+index_client.delete_index(index_name)
+print(f"Index '{index_name}' deleted successfully")
 ```

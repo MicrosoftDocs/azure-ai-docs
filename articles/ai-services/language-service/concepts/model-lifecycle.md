@@ -2,12 +2,12 @@
 title: Model Lifecycle of Language service models
 titleSuffix: Azure AI services
 description: This article describes the timelines for models and model versions used by Language service features.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
 ms.date: 01/31/2025
-ms.author: jboback
+ms.author: lajanuar
 ---
 
 # Model lifecycle

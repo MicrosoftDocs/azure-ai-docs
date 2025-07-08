@@ -289,10 +289,10 @@ To turn off logging for a custom endpoint, use the [Endpoints_Update](/rest/api/
 
 - Set the `contentLoggingEnabled` property within `properties`. Set this property to `true` to enable logging of the endpoint's traffic. Set this property to `false` to disable logging of the endpoint's traffic. 
 
-Make an HTTP PATCH request using the URI as shown in the following example. Replace `YourSubscriptionKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, replace `YourEndpointId` with your endpoint ID, and set the request body properties as previously described.
+Make an HTTP PATCH request using the URI as shown in the following example. Replace `YourSpeechResoureKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, replace `YourEndpointId` with your endpoint ID, and set the request body properties as previously described.
 
 ```azurecli-interactive
-curl -v -X PATCH -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey" -H "Content-Type: application/json" -d '{
+curl -v -X PATCH -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content-Type: application/json" -d '{
   "properties": {
     "contentLoggingEnabled": false
   },

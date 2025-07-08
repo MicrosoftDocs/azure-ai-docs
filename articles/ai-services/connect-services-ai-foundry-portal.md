@@ -17,7 +17,7 @@ author: eric-urban
 
 # How to use Azure AI services in Azure AI Foundry portal
 
-You might have existing resources for Azure AI services that you used in the old studios such as Azure OpenAI Studio or Speech Studio. You can pick up where you left off by using your existing resources in the [Azure AI Foundry portal](https://ai.azure.com).
+You might have existing resources for Azure AI services that you used in the old studios such as Azure OpenAI Studio or Speech Studio. You can pick up where you left off by using your existing resources in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 This article describes how to use new or existing Azure AI services resources in an Azure AI Foundry project.
 

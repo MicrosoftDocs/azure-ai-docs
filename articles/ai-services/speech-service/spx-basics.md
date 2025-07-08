@@ -54,7 +54,7 @@ spx config @region --clear
 
 # [PowerShell](#tab/powershell)
 
-To get started, you need an API key and region identifier (for example, `eastus`, `westus`). Create an AI Foundry resource for Speech on the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices). 
+To get started, you need an API key and region identifier (for example, `eastus`, `westus`). Create an AI Foundry resource for Speech on the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry). 
 
 To configure your Speech resource key and region identifier, run the following commands in PowerShell: 
 

@@ -2,18 +2,23 @@
 title: Include file
 description: Include file
 author: sdgilley
-ms.reviewer: deeikele
 ms.author: sgilley
+ms.reviewer: deeikele
+ms.date: 04/09/2025
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 04/09/2025
-ms.custom: include, build-2024, ignite-2024
+ms.custom:
+  - include
+  - build-2024
+  - ignite-2024
+  - build-aifnd
+  - build-2025
 ---
 
 
-Create multiple [!INCLUDE [fdp-project-name-plural](fdp-project-name-plural.md)] on an existing `AI Foundry` resource, so you can share your environment with your team for collaboration. 
+Create multiple [!INCLUDE [fdp-project-name](fdp-project-name.md)]s on an existing `AI Foundry` resource, so you can share your environment with your team for collaboration. 
 
-[!INCLUDE [fdp-project-name-plural](fdp-project-name-plural.md)] as Azure child resources may get assigned their own access controls, but share common settings such as network security, deployments, and Azure tool integration from their parent resource.
+[!INCLUDE [fdp-project-name](fdp-project-name.md)]s as Azure child resources may get assigned their own access controls, but share common settings such as network security, deployments, and Azure tool integration from their parent resource.
 
 Your first project (default project) plays a special role and has access to more features:
 
@@ -36,7 +41,7 @@ Your first project (default project) plays a special role and has access to more
     
     [!INCLUDE [tip-left-pane](tip-left-pane.md)]
     
-    1. In [Azure AI Foundry](https://ai.azure.com), select either the [!INCLUDE [fdp-project-name](fdp-project-name.md)] or its associated resource.
+    1. In [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), select either the [!INCLUDE [fdp-project-name](fdp-project-name.md)] or its associated resource.
     1. In the left pane, select **Management center**.
     1. In the resource section, select  **Overview**.
     1. Select **New project** and provide a name.
@@ -46,22 +51,9 @@ Your first project (default project) plays a special role and has access to more
     
     # [Python SDK](#tab/python)
     
-    ```python
-    new_project_name = 'your-new-project-name'
-    
-    project = client.projects.begin_create(
-      resource_group_name=resource_group_name,
-      account_name=foundry_resource_name,
-      project_name=new_project_name,
-      project={
-          "location": location,
-          "identity": {
-              "type": "SystemAssigned"
-          },
-          "properties": {}
-      }
-    )
-    ```
+    Add this code to your script to create a new project on your existing resource:
+
+    :::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/create_project.py" id="create_additional":::
     
     
     # [Azure CLI](#tab/azurecli)

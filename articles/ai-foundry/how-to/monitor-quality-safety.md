@@ -110,7 +110,7 @@ In this section, you learn how to deploy your prompt flow with inferencing data 
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com).
+1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 1. If you're not already in your project, select it.
    [!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 

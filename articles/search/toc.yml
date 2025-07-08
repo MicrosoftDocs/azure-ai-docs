@@ -14,149 +14,13 @@ items:
   - name: FAQ
     href: search-faq-frequently-asked-questions.yml
   expanded: true
-- name: Quickstarts
-  items:
-  - name: Agentic search
-    href: search-get-started-agentic-retrieval.md
-  - name: Vector search
-    href: search-get-started-vector.md
-  - name: Generative search (RAG)
-    href: search-get-started-rag.md
-  - name: Full text search
-    href: search-get-started-text.md
-  - name: Semantic ranking
-    href: search-get-started-semantic.md
-  - name: Chat with your data
-    href: /azure/ai-services/openai/use-your-data-quickstart?context=/azure/search/context/context
-  - name: Connect without keys
-    href: search-get-started-rbac.md
-  - name: Azure portal
-    items:
-    - name: Keyword search wizard
-      href: search-get-started-portal.md
-    - name: RAG wizard
-      href: search-get-started-portal-import-vectors.md
-    - name: Multimodal RAG wizard
-      href: search-get-started-portal-image-search.md
-    - name: Create a demo app
-      href: search-create-app-portal.md
-    - name: Create a skillset
-      href: search-get-started-skillset.md
-    - name: Create a knowledge store
-      href: knowledge-store-create-portal.md
-    - name: Query with Search Explorer
-      href: search-explorer.md
-  - name: REST
-    href: search-get-started-rest.md
-  - name: PowerShell
-    href: search-get-started-powershell.md
-  - name: Deployment
-    items:
-    - name: ARM template
-      displayName: Resource Manager
-      href: search-get-started-arm.md
-    - name: Bicep
-      displayName: ARM, Resource Manager, Template
-      href: search-get-started-bicep.md
-    - name: Terraform
-      href: search-get-started-terraform.md
-- name: Tutorials
-  items:
-  - name: Dev tutorials
-    items:
-    - name: Add search to ASP.NET Core (MVC)
-      href: tutorial-csharp-create-mvc-app.md
-    - name: Add search to static web apps
-      items:
-      - name: Overview
-        href: tutorial-csharp-overview.md
-      - name: Create a search index
-        href: tutorial-csharp-create-load-index.md
-      - name: Deploy static web app
-        href: tutorial-csharp-deploy-static-web-app.md
-      - name: Explore the code
-        href: tutorial-csharp-search-query-integration.md
-    - name: Query from Power Apps
-      href: search-howto-powerapps.md
-  - name: Indexing tutorials
-    items:
-    - name: Index any data
-      href: tutorial-optimize-indexing-push-api.md
-    - name: Index at scale (Apache Spark)
-      href: search-synapseml-cognitive-services.md
-    - name: Index Azure SQL Database
-      href: search-indexer-tutorial.md
-    - name: Index JSON in Azure blobs
-      href: search-semi-structured-data.md
-    - name: Index Markdown in Azure blobs
-      href: search-markdown-data-tutorial.md
-    - name: Index multiple Azure data sources
-      href: tutorial-multiple-data-sources.md
-    - name: Create a custom analyzer
-      href: tutorial-create-custom-analyzer.md
-  - name: Security tutorials
-    items:
-    - name: Index encrypted blobs
-      href: search-howto-index-encrypted-blobs.md
-    - name: Index permissioned ADLS Gen2 blobs
-      href: tutorial-adls-gen2-indexer-acls.md
-    - name: Index any permission metadata
-      href: search-index-access-control-lists-and-rbac-push-api.md
-  - name: Multimodal indexing tutorials
-    items:
-    - name: Use document extraction and multimodal embeddings
-      href: tutorial-multimodal-indexing-with-embedding-and-doc-extraction.md
-    - name: Use document extraction and image verbalizations
-      href: tutorial-multimodal-indexing-with-image-verbalization-and-doc-extraction.md
-    - name: Use semantic chunking and multimodal embeddings
-      href: tutorial-multimodal-index-embeddings-skill.md
-    - name: Use semantic chunking and image verbalizations
-      href: tutorial-multimodal-index-image-verbalization-skill.md      
-  - name: RAG tutorials
-    items:
-    - name: Build a RAG solution
-      href: tutorial-rag-build-solution.md
-    - name: Choose models
-      href: tutorial-rag-build-solution-models.md
-    - name: Design an index
-      href: tutorial-rag-build-solution-index-schema.md
-    - name: Build an indexing pipeline
-      href: tutorial-rag-build-solution-pipeline.md
-    - name: Search and generate answers
-      href: tutorial-rag-build-solution-query.md
-    - name: Maximize relevance
-      href: tutorial-rag-build-solution-maximize-relevance.md
-    - name: Minimize storage and costs
-      href: tutorial-rag-build-solution-minimize-storage.md
-  - name: Skills tutorials
-    items:
-    - name: C#
-      href: cognitive-search-tutorial-blob-dotnet.md
-    - name: REST
-      href: cognitive-search-tutorial-blob.md
-    - name: Debug a skillset
-      href: cognitive-search-tutorial-debug-sessions.md
-- name: Samples
-  items:
-  - name: C# samples
-    href: samples-dotnet.md
-  - name: Java samples
-    href: samples-java.md
-  - name: JavaScript samples
-    href: samples-javascript.md
-  - name: Python samples
-    href: samples-python.md
-  - name: REST samples
-    href: samples-rest.md
-  - name: Vector samples
-    href: https://github.com/Azure/azure-search-vector-samples
 - name: Concepts
   items:
   - name: Data
     items:
     - name: Search index
       href: search-what-is-an-index.md
-    - name: Vector store
+    - name: Vector index
       href: vector-store.md
     - name: Knowledge store
       href: knowledge-store-concept-intro.md
@@ -206,15 +70,122 @@ items:
       href: search-security-overview.md
     - name: Secure access to external data
       href: search-indexer-securing-resources.md
-    - name: Security controls by Azure Policy
-      displayName: regulatory, compliance, standards, domains
-      href: ./security-controls-policy.md
-    - name: Security baseline
-      href: /security/benchmark/azure/baselines/cognitive-search-security-baseline?toc=/azure/search/TOC.json
-    - name: Document-level security
-      href: search-document-level-access-overview.md
-    - name: Query with permission filters
-      href: search-query-access-control-rbac-enforcement.md
+- name: Quickstarts
+  items:
+  - name: Agentic search
+    href: search-get-started-agentic-retrieval.md
+  - name: Vector search
+    href: search-get-started-vector.md
+  - name: Generative search (RAG)
+    href: search-get-started-rag.md
+  - name: Full-text search
+    href: search-get-started-text.md
+  - name: Semantic ranking
+    href: search-get-started-semantic.md
+  - name: Chat with your data
+    href: /azure/ai-services/openai/use-your-data-quickstart?context=/azure/search/context/context
+  - name: Connect without keys
+    href: search-get-started-rbac.md
+  - name: Azure portal
+    items:
+    - name: Create a search index
+      href: search-get-started-portal.md
+    - name: Create a vector index
+      href: search-get-started-portal-import-vectors.md
+    - name: Create a multimodal index
+      href: search-get-started-portal-image-search.md
+    - name: Create a demo app
+      href: search-create-app-portal.md
+    - name: Create a skillset
+      href: search-get-started-skillset.md
+    - name: Create a knowledge store
+      href: knowledge-store-create-portal.md
+    - name: Query with Search Explorer
+      href: search-explorer.md
+  - name: Deployment
+    items:
+    - name: ARM template
+      displayName: Resource Manager
+      href: search-get-started-arm.md
+    - name: Bicep
+      displayName: ARM, Resource Manager, Template
+      href: search-get-started-bicep.md
+    - name: Terraform
+      href: search-get-started-terraform.md
+- name: Tutorials
+  items:
+  - name: Dev tutorials
+    items:
+    - name: Add search to ASP.NET Core (MVC)
+      href: tutorial-csharp-create-mvc-app.md
+    - name: Add search to static web apps
+      items:
+      - name: Overview
+        href: tutorial-csharp-overview.md
+      - name: Create a search index
+        href: tutorial-csharp-create-load-index.md
+      - name: Deploy static web app
+        href: tutorial-csharp-deploy-static-web-app.md
+      - name: Explore the code
+        href: tutorial-csharp-search-query-integration.md
+    - name: Query from Power Apps
+      href: search-howto-powerapps.md
+  - name: Indexing tutorials
+    items:
+    - name: Index any data
+      href: tutorial-optimize-indexing-push-api.md
+    - name: Index at scale (Apache Spark)
+      href: search-synapseml-cognitive-services.md
+    - name: Index Azure SQL Database
+      href: search-indexer-tutorial.md
+    - name: Index JSON in Azure blobs
+      href: search-semi-structured-data.md
+    - name: Index Markdown in Azure blobs
+      href: search-markdown-data-tutorial.md
+    - name: Index multiple Azure data sources
+      href: tutorial-multiple-data-sources.md
+    - name: Create a custom analyzer
+      href: tutorial-create-custom-analyzer.md
+  - name: Security tutorials
+    items:
+    - name: Index encrypted blobs
+      href: search-howto-index-encrypted-blobs.md
+    - name: Index permissioned ADLS Gen2 files
+      href: tutorial-adls-gen2-indexer-acls.md
+  - name: Multimodal indexing tutorials
+    items:
+    - name: Use document extraction and multimodal embeddings
+      href: tutorial-document-extraction-multimodal-embeddings.md
+    - name: Use document extraction and image verbalizations
+      href: tutorial-document-extraction-image-verbalization.md
+    - name: Use semantic chunking and multimodal embeddings
+      href: tutorial-document-layout-multimodal-embeddings.md
+    - name: Use semantic chunking and image verbalizations
+      href: tutorial-document-layout-image-verbalization.md      
+  - name: RAG tutorials
+    items:
+    - name: Build a RAG solution
+      href: tutorial-rag-build-solution.md
+    - name: Choose models
+      href: tutorial-rag-build-solution-models.md
+    - name: Design an index
+      href: tutorial-rag-build-solution-index-schema.md
+    - name: Build an indexing pipeline
+      href: tutorial-rag-build-solution-pipeline.md
+    - name: Search and generate answers
+      href: tutorial-rag-build-solution-query.md
+    - name: Maximize relevance
+      href: tutorial-rag-build-solution-maximize-relevance.md
+    - name: Minimize storage and costs
+      href: tutorial-rag-build-solution-minimize-storage.md
+  - name: Skills tutorials
+    items:
+    - name: C#
+      href: cognitive-search-tutorial-blob-dotnet.md
+    - name: REST
+      href: cognitive-search-tutorial-blob.md
+    - name: Debug a skillset
+      href: cognitive-search-tutorial-debug-sessions.md
 - name: How-to guides
   items:
   - name: Service management
@@ -237,8 +208,6 @@ items:
       href: search-sku-manage-costs.md
     - name: Reliability and recovery
       href: search-reliability.md
-    - name: Availability zone migration guidance
-      href: /azure/reliability/migrate-search-service
     - name: Multi-tenancy
       href: search-modeling-multitenant-saas-applications.md
     - name: Manage
@@ -251,20 +220,74 @@ items:
         href: search-manage-rest.md
       - name: Move service across regions
         href: search-howto-move-across-regions.md
-  - name: Index management
+  - name: Indexing
     items:
     - name: Create an index
       href: search-how-to-create-search-index.md
     - name: Load an index
       href: search-how-to-load-search-index.md
-    - name: Index via portal wizards
-      href: search-import-data-portal.md
     - name: Update or rebuild an index
       href: search-howto-reindex.md
+    - name: Manage an index
+      href: search-how-to-manage-index.md
     - name: Alias an index
       href: search-how-to-alias.md
     - name: Import large data sets
       href: search-how-to-large-index.md
+    - name: Text indexing
+      items:
+      - name: Add synonyms
+        href: search-synonyms.md
+      - name: Add a suggester for typeahead
+        href: index-add-suggesters.md
+      - name: Design a multilingual index
+        href: search-language-support.md
+      - name: Model complex data types
+        href: search-howto-complex-data-types.md
+      - name: Model relational data
+        href: index-sql-relational-data.md
+      - name: Analyzers
+        items:
+        - name: Analyzers overview
+          href: search-analyzers.md
+        - name: Add a language analyzer
+          href: index-add-language-analyzers.md
+        - name: Add a custom analyzer
+          href: index-add-custom-analyzers.md
+    - name: Vector indexing
+      items:
+      - name: Create a vector index
+        href: vector-search-how-to-create-index.md
+      - name: Chunk documents
+        href: vector-search-how-to-chunk-documents.md
+      - name: Chunk and vectorize by document layout
+        href: search-how-to-semantic-chunking.md
+      - name: Generate embeddings
+        href: vector-search-how-to-generate-embeddings.md
+      - name: Use integrated vectorization
+        href: search-how-to-integrated-vectorization.md
+      - name: Use embedding models from Azure AI Foundry
+        href: vector-search-integrated-vectorization-ai-studio.md
+      - name: Reduce vector size
+        items:
+        - name: Understand vector quotas and limits
+          href: vector-search-index-size.md
+        - name: Choose an optimization strategy
+          href: vector-search-how-to-configure-compression-storage.md
+        - name: Compress using binary or scalar quantization
+          href: vector-search-how-to-quantization.md
+        - name: Index binary data for vector search
+          href: vector-search-how-to-index-binary-data.md
+        - name: Assign narrow data types
+          href: vector-search-how-to-assign-narrow-data-types.md
+        - name: Eliminate redundant storage
+          href: vector-search-how-to-storage-options.md
+        - name: Truncate dimensions
+          href: vector-search-how-to-truncate-dimensions.md
+  - name: Indexer and enrichment pipelines
+    items:
+    - name: Index via portal wizards
+      href: search-import-data-portal.md
     - name: Logic Apps workflows
       items:
       - name: Create a workflow
@@ -337,7 +360,7 @@ items:
         href: search-how-to-index-onelake-files.md
       - name: SharePoint Online
         href: search-howto-index-sharepoint-online.md
-    - name: Skillsets
+    - name: Skillsets (indexers)
       items:
       - name: Create a skillset
         href: cognitive-search-defining-skillset.md
@@ -371,145 +394,111 @@ items:
           href: cognitive-search-custom-skill-scale.md
         - name: Example - Bing Entity Search
           href: cognitive-search-create-custom-skill-example.md
-  - name: Agentic retrieval
+  - name: Retrieval
     items:
-    - name: Create a knowledge agent
-      href: search-agentic-retrieval-how-to-create.md
-    - name: Use a knowledge agent to retrieve data
-      href: search-agentic-retrieval-how-to-retrieve.md
-    - name: Define an index for agentic retrieval
-      href: search-agentic-retrieval-how-to-index.md
-    - name: Build an agentic retrieval pipeline
-      href: search-agentic-retrieval-how-to-pipeline.md
-  - name: Vector search
-    items:
-    - name: Create a vector index
-      href: vector-search-how-to-create-index.md
-    - name: Chunk documents
-      href: vector-search-how-to-chunk-documents.md
-    - name: Chunk and vectorize by document layout
-      href: search-how-to-semantic-chunking.md
-    - name: Generate embeddings
-      href: vector-search-how-to-generate-embeddings.md
-    - name: Use integrated vectorization
-      href: search-how-to-integrated-vectorization.md
-    - name: Use embedding models from Azure AI Foundry
-      href: vector-search-integrated-vectorization-ai-studio.md
-    - name: Reduce vector size
+    - name: Agentic retrieval
       items:
-      - name: Understand vector quotas and limits
-        href: vector-search-index-size.md
-      - name: Choose an optimization strategy
-        href: vector-search-how-to-configure-compression-storage.md
-      - name: Compress using binary or scalar quantization
-        href: vector-search-how-to-quantization.md
-      - name: Index binary data for vector search
-        href: vector-search-how-to-index-binary-data.md
-      - name: Assign narrow data types
-        href: vector-search-how-to-assign-narrow-data-types.md
-      - name: Eliminate redundant storage
-        href: vector-search-how-to-storage-options.md
-      - name: Truncate dimensions
-        href: vector-search-how-to-truncate-dimensions.md
-    - name: Query vectors
-      href: vector-search-how-to-query.md
-    - name: Use multi-vector fields
-      href: vector-search-multi-vector-fields.md
-    - name: Add a vectorizer for text-to-vector queries
-      displayName: query
-      href: vector-search-how-to-configure-vectorizer.md
-    - name: Filter on vector queries
-      displayName: query
-      href: vector-search-filters.md
-  - name: Keyword search
-    items:
-    - name: Full text query
-      href: search-query-create.md
-    - name: Typeahead query
-      href: search-add-autocomplete-suggestions.md
-    - name: Query examples (simple syntax)
-      href: search-query-simple-examples.md
-    - name: Add spell check
-      href: speller-how-to-add.md
-    - name: Add synonyms
-      href: search-synonyms.md
-    - name: Add a suggester for typeahead
-      href: index-add-suggesters.md
-    - name: Design a multilingual index
-      href: search-language-support.md
-    - name: Model complex data types
-      href: search-howto-complex-data-types.md
-    - name: Model relational data
-      href: index-sql-relational-data.md
-    - name: Analyzers
+      - name: Design an index for agentic retrieval
+        href: search-agentic-retrieval-how-to-index.md
+      - name: Create a knowledge agent
+        href: search-agentic-retrieval-how-to-create.md
+      - name: Retrieve data using a knowledge agent
+        href: search-agentic-retrieval-how-to-retrieve.md
+      - name: Build a retrieval pipeline
+        href: search-agentic-retrieval-how-to-pipeline.md
+    - name: Vector search
       items:
-      - name: Analyzers overview
-        href: search-analyzers.md
-      - name: Add a language analyzer
-        href: index-add-language-analyzers.md
-      - name: Add a custom analyzer
-        href: index-add-custom-analyzers.md
-    - name: Filters and facets
-      items:
-      - name: Filters in text queries
+      - name: Query vectors
+        href: vector-search-how-to-query.md
+      - name: Use multi-vector fields
+        href: vector-search-multi-vector-fields.md
+      - name: Add a vectorizer for text-to-vector queries
         displayName: query
-        href: search-filters.md
-      - name: Understand collection filters
-        href: search-query-understand-collection-filters.md
-      - name: Troubleshoot collection filters
-        href: search-query-troubleshoot-collection-filters.md
-      - name: Normalize text for filters
-        href: search-normalizers.md
-      - name: Add faceted navigation
-        href: search-faceted-navigation.md
-      - name: Faceted navigation examples
-        href: search-faceted-navigation-examples.md
-    - name: Search results
+        href: vector-search-how-to-configure-vectorizer.md
+      - name: Filter on vector queries
+        displayName: query
+        href: vector-search-filters.md
+    - name: Keyword search
       items:
-      - name: Page, sort, and shape results
-        href: search-pagination-page-layout.md
-      - name: Return a semantic answer
-        href: semantic-answers.md
-    - name: Advanced queries
+      - name: Full-text query
+        href: search-query-create.md
+      - name: Typeahead query
+        href: search-add-autocomplete-suggestions.md
+      - name: Query examples (simple syntax)
+        href: search-query-simple-examples.md
+      - name: Add spell check
+        href: speller-how-to-add.md
+      - name: Filters and facets
+        items:
+        - name: Filters in text queries
+          displayName: query
+          href: search-filters.md
+        - name: Understand collection filters
+          href: search-query-understand-collection-filters.md
+        - name: Troubleshoot collection filters
+          href: search-query-troubleshoot-collection-filters.md
+        - name: Normalize text for filters
+          href: search-normalizers.md
+        - name: Add faceted navigation
+          href: search-faceted-navigation.md
+        - name: Faceted navigation examples
+          href: search-faceted-navigation-examples.md
+      - name: Search results
+        items:
+        - name: Page, sort, and shape results
+          href: search-pagination-page-layout.md
+        - name: Return a semantic answer
+          href: semantic-answers.md
+      - name: Advanced queries
+        items:
+        - name: Use full Lucene (examples)
+          href: search-query-lucene-examples.md
+        - name: Partial terms and special characters
+          href: search-query-partial-matching.md
+        - name: Fuzzy search
+          href: search-query-fuzzy.md
+    - name: Hybrid search
+      href: hybrid-search-how-to-query.md
+    - name: Ranking and relevance
       items:
-      - name: Use full Lucene (examples)
-        href: search-query-lucene-examples.md
-      - name: Partial terms and special characters
-        href: search-query-partial-matching.md
-      - name: Fuzzy search
-        href: search-query-fuzzy.md
-  - name: Hybrid search
-    href: hybrid-search-how-to-query.md
-  - name: Ranking and relevance
-    items:
-    - name: Add a scoring profile
-      href: index-add-scoring-profiles.md
-    - name: Configure BM25 ranking
-      href: index-ranking-similarity.md
-    - name: Enable or disable semantic ranker
-      href: semantic-how-to-enable-disable.md
-    - name: Configure semantic ranker
-      href: semantic-how-to-configure.md
-    - name: Add semantic ranking to queries
-      href: semantic-how-to-query-request.md
-    - name: Rewrite queries with semantic ranker
-      href: semantic-how-to-query-rewrite.md
-    - name: Migrate semantic ranking code
-      href: semantic-code-migration.md
-    - name: Enable scoring profiles in semantic ranker
-      href: semantic-how-to-enable-scoring-profiles.md
+      - name: Add a scoring profile
+        href: index-add-scoring-profiles.md
+      - name: Configure BM25 ranking
+        href: index-ranking-similarity.md
+      - name: Enable or disable semantic ranker
+        href: semantic-how-to-enable-disable.md
+      - name: Configure semantic ranker
+        href: semantic-how-to-configure.md
+      - name: Add semantic ranking to queries
+        href: semantic-how-to-query-request.md
+      - name: Rewrite queries with semantic ranker
+        href: semantic-how-to-query-rewrite.md
+      - name: Migrate semantic ranking code
+        href: semantic-code-migration.md
+      - name: Enable scoring profiles in semantic ranker
+        href: semantic-how-to-enable-scoring-profiles.md
   - name: Security
     items:
-    - name: Configure network access
-      href: service-configure-firewall.md
-    - name: Enable role-based access
-      href: search-security-enable-roles.md
-    - name: Assign roles (users)
-      href: search-security-rbac.md
-    - name: Assign roles (apps)
-      href: keyless-connections.md
-    - name: Authenticate with keys
-      href: search-security-api-keys.md
+    - name: Network access
+      items:
+      - name: Configure network access
+        href: service-configure-firewall.md
+      - name: Create a private endpoint
+        href: service-create-private-endpoint.md
+      - name: Troubleshoot private connections
+        href: troubleshoot-shared-private-link-resources.md
+      - name: Join a network security perimeter
+        href: search-security-network-security-perimeter.md
+    - name: Authentication and authorization
+      items:
+      - name: Enable role-based access
+        href: search-security-enable-roles.md
+      - name: Assign roles (users)
+        href: search-security-rbac.md
+      - name: Assign roles (apps)
+        href: keyless-connections.md
+      - name: Authenticate with keys
+        href: search-security-api-keys.md
     - name: Outbound connections
       items:
       - name: Configure a managed identity
@@ -528,32 +517,32 @@ items:
           href: search-howto-managed-identities-azure-functions.md
       - name: Connect through a firewall
         href: search-indexer-howto-access-ip-restricted.md
-      - name: Connect using Network Security Perimeter
-        href: search-security-network-security-perimeter.md
       - name: Connect as a trusted service
         href: search-indexer-howto-access-trusted-service-exception.md
       - name: Connect through a shared private link
         href: search-indexer-howto-access-private.md
       - name: Connect to a SQL managed instance private endpoint
         href: search-indexer-how-to-access-private-sql.md
-    - name: Document-level permissions
+    - name: Document-level access
       items:
-      - name: Security filters
+      - name: Document-level security overview
+        href: search-document-level-access-overview.md
+      - name: Use security filters
         href: search-security-trimming-for-azure-search.md
-      - name: ADLS Gen2 permission filters
-        href: search-indexer-access-control-lists-and-role-based-access.md
-    - name: Advanced options
-      items:
-      - name: Create a private endpoint
-        href: service-create-private-endpoint.md
-      - name: Troubleshoot private connections
-        href: troubleshoot-shared-private-link-resources.md
-      - name: Data encryption
+      - name: Use ACLs
         items:
-        - name: Customer-managed keys
-          href: search-security-manage-encryption-keys.md
-        - name: Find encrypted objects
-          href: search-security-get-encryption-keys.md
+        - name: Push document-level permissions to an index
+          href: search-index-access-control-lists-and-rbac-push-api.md
+        - name: Pull ADLS Gen2 permissions into an index
+          href: search-indexer-access-control-lists-and-role-based-access.md
+        - name: Query with permission filters
+          href: search-query-access-control-rbac-enforcement.md
+    - name: Data encryption
+      items:
+      - name: Customer-managed keys
+        href: search-security-manage-encryption-keys.md
+      - name: Find encrypted objects
+        href: search-security-get-encryption-keys.md
   - name: Development
     items:
     - name: API versions
@@ -602,11 +591,25 @@ items:
       href: knowledge-store-projection-example-long.md
     - name: Connect with Power BI
       href: knowledge-store-connect-power-bi.md
+- name: Samples
+  items:
+  - name: C# samples
+    href: samples-dotnet.md
+  - name: Java samples
+    href: samples-java.md
+  - name: JavaScript samples
+    href: samples-javascript.md
+  - name: Python samples
+    href: samples-python.md
+  - name: REST samples
+    href: samples-rest.md
+  - name: Vector samples
+    href: https://github.com/Azure/azure-search-vector-samples
 - name: Responsible AI
   items:
   - name: Transparency note
-    href: /legal/search/transparency-note?context=/azure/search/context/context
-- name: Reference
+    href: /azure/ai-foundry/responsible-ai/search/transparency-note
+- name: References
   items:
   - name: REST API reference
     items:
@@ -695,6 +698,13 @@ items:
       href: ./policy-reference.md
     - name: Monitoring data reference
       href: monitor-azure-cognitive-search-data-reference.md
+  - name: Security reference
+    items:
+    - name: Security controls by Azure Policy
+      displayName: regulatory, compliance, standards, domains
+      href: ./security-controls-policy.md
+    - name: Security baseline
+      href: /security/benchmark/azure/baselines/cognitive-search-security-baseline?toc=/azure/search/TOC.json
   - name: Skills reference
     items:
     - name: Overview

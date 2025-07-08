@@ -65,11 +65,11 @@ items:
   - name: Responsible use of AI
     items:
     - name: Transparency note
-      href: /legal/cognitive-services/computer-vision/imageanalysis-transparency-note?context=/azure/ai-services/computer-vision/context/context
+      href: ../../ai-foundry/responsible-ai/computer-vision/image-analysis-transparency-note.md
     - name: Data, privacy, and security 
-      href: /legal/cognitive-services/computer-vision/imageanalysis-data-privacy-security?context=/azure/ai-services/computer-vision/context/context
+      href: ../../ai-foundry/responsible-ai/computer-vision/image-analysis-data-privacy-security.md
     - name: Limited Access features
-      href: /legal/cognitive-services/computer-vision/limited-access?context=/azure/ai-services/computer-vision/context/context
+      href: ../../ai-foundry/responsible-ai/computer-vision/limited-access.md
   - name: How-to guides
     items:
     - name: Version 4.0
@@ -260,6 +260,8 @@ items:
       href: Tutorials/liveness.md
     - name: Add users to a Face identification app
       href: Tutorials/build-enrollment-app.md
+    - name: Face liveness quick link (preview)
+      href: Tutorials/liveness-quick-link.md
   - name: Samples
     href: https://aka.ms/FaceSamples
 
@@ -268,19 +270,19 @@ items:
     - name: Transparency notes
       items:
       - name: Face use cases
-        href: /legal/cognitive-services/face/transparency-note?context=/azure/ai-services/computer-vision/context/context
+        href: ../../ai-foundry/responsible-ai/face/transparency-note.md
       - name: Characteristics and limitations
-        href: /legal/cognitive-services/face/characteristics-and-limitations?context=/azure/ai-services/computer-vision/context/context
+        href: ../../ai-foundry/responsible-ai/face/characteristics-and-limitations.md
     - name: Integration and responsible use
-      href: /legal/cognitive-services/face/guidance-integration-responsible-use?context=/azure/ai-services/computer-vision/context/context
+      href: ../../ai-foundry/responsible-ai/face/guidance-integration-responsible-use.md
     - name: Best practices for enrolling users
       href: enrollment-overview.md
     - name: Code of conduct
       href: /legal/ai-code-of-conduct?context=/azure/ai-services/computer-vision/context/context
     - name: Data privacy and security
-      href: /legal/cognitive-services/face/data-privacy-security?context=/azure/ai-services/computer-vision/context/context
+      href: ../../ai-foundry/responsible-ai/face/data-privacy-security.md
     - name: Limited Access features
-      href: /legal/cognitive-services/computer-vision/limited-access-identity?context=/azure/ai-services/computer-vision/context/context
+      href: ../../ai-foundry/responsible-ai/computer-vision/limited-access-identity.md
     - name: Shared responsibility for face liveness detection
       href: liveness-detection-shared-responsibility.md
 
@@ -310,7 +312,26 @@ items:
         href: https://aka.ms/azure-ai-vision-face-liveness-client-sdk-web-api-reference
       - name: Understand the liveness versions
         href: sdk/understand-the-liveness-sdk-versions.md
-
+- name: Optical character recognition (OCR) (legacy)
+  items:
+  - name: OCR overview
+    href: overview-ocr.md
+  - name: OCR quickstart
+    href: quickstarts-sdk/client-library.md
+  - name: Samples
+    href: /samples/browse/?products=azure&terms=computer-vision
+  - name: Responsible use of AI
+    items:
+    - name: Transparency notes
+      items:
+      - name: OCR use cases
+        href: ../../ai-foundry/responsible-ai/computer-vision/ocr-transparency-note.md
+      - name: Characteristics and limitations
+        href: ../../ai-foundry/responsible-ai/computer-vision/ocr-characteristics-and-limitations.md
+    - name: Integration and responsible use
+      href: ../../ai-foundry/responsible-ai/computer-vision/ocr-guidance-integration-responsible-use.md
+    - name: Data, privacy, and security
+      href: ../../ai-foundry/responsible-ai/computer-vision/ocr-data-privacy-security.md
   - name: How-to guides
     items:
     - name: Call the Read API

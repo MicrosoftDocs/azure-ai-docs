@@ -2,12 +2,14 @@
 title: Best practices for using Content Understanding
 titleSuffix: Azure AI services
 description: Learn how to best use Azure AI Content Understanding for document, image, video, and audio file content and field extractions.
-author: laujan
+author: PatrickFarley 
 ms.author: jfilcik
 manager: nitinme
+ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 05/19/2025
+ms.custom:
+  - build-2025
 ---
 
 # Best practices for Azure AI Content Understanding

@@ -7,7 +7,7 @@ manager: nitinme
 zone_pivot_groups: anomaly-detector-quickstart
 ms.service: azure-ai-anomaly-detector
 ms.topic: quickstart
-ms.date: 01/18/2024
+ms.date: 06/12/2025
 ms.author: mbullwin
 keywords: anomaly detection, algorithms
 ms.devlang: csharp

@@ -16,7 +16,7 @@ Each request requires an authorization header. This table illustrates which head
 When you're using the `Ocp-Apim-Subscription-Key` header, only your resource key must be provided. For example:
 
 ```http
-'Ocp-Apim-Subscription-Key': 'YOUR_SUBSCRIPTION_KEY'
+'Ocp-Apim-Subscription-Key': 'YourSpeechResourceKey'
 ```
 
 When you're using the `Authorization: Bearer` header, you need to make a request to the `issueToken` endpoint. In this request, you exchange your resource key for an access token that's valid for 10 minutes.
@@ -33,17 +33,17 @@ The `issueToken` endpoint has this format:
 https://<REGION_IDENTIFIER>.api.cognitive.microsoft.com/sts/v1.0/issueToken
 ```
 
-Replace `<REGION_IDENTIFIER>` with the identifier that matches the [region](../regions.md) of your subscription.
+Replace `<REGION_IDENTIFIER>` with the identifier that matches the [region](../regions.md) of your Speech resource.
 
 Use the following samples to create your access token request.
 
 #### HTTP sample
 
-This example is a simple HTTP request to get a token. Replace `YOUR_SUBSCRIPTION_KEY` with your resource key for the Speech service. If your subscription isn't in the West US region, replace the `Host` header with your region's host name.
+This example is a simple HTTP request to get a token. Replace `YourSpeechResourceKey` with your resource key for the Speech service. If your Speech resource isn't in the West US region, replace the `Host` header with your region's host name.
 
 ```http
 POST /sts/v1.0/issueToken HTTP/1.1
-Ocp-Apim-Subscription-Key: YOUR_SUBSCRIPTION_KEY
+Ocp-Apim-Subscription-Key: YourSpeechResourceKey
 Host: eastus.api.cognitive.microsoft.com
 Content-type: application/x-www-form-urlencoded
 Content-Length: 0
@@ -53,13 +53,13 @@ The body of the response contains the access token in JSON Web Token (JWT) forma
 
 #### PowerShell sample
 
-This example is a simple PowerShell script to get an access token. Replace `YOUR_SUBSCRIPTION_KEY` with your resource key for the Speech service. Make sure to use the correct endpoint for the region that matches your subscription. This example is currently set to West US.
+This example is a simple PowerShell script to get an access token. Replace `YourSpeechResourceKey` with your resource key for the Speech service. Make sure to use the correct endpoint for the region that matches your Speech resource. This example is currently set to West US.
 
 ```powershell
 $FetchTokenHeader = @{
   'Content-type'='application/x-www-form-urlencoded';
   'Content-Length'= '0';
-  'Ocp-Apim-Subscription-Key' = 'YOUR_SUBSCRIPTION_KEY'
+  'Ocp-Apim-Subscription-Key' = 'YourSpeechResourceKey'
 }
 
 $OAuthToken = Invoke-RestMethod -Method POST -Uri https://eastus.api.cognitive.microsoft.com/sts/v1.0/issueToken
@@ -72,19 +72,19 @@ $OAuthToken
 
 #### cURL sample
 
-cURL is a command-line tool available in Linux (and in the Windows Subsystem for Linux). This cURL command illustrates how to get an access token. Replace `YOUR_SUBSCRIPTION_KEY` with your resource key for the Speech service. Make sure to use the correct endpoint for the region that matches your subscription. This example is currently set to West US.
+cURL is a command-line tool available in Linux (and in the Windows Subsystem for Linux). This cURL command illustrates how to get an access token. Replace `YourSpeechResourceKey` with your resource key for the Speech service. Make sure to use the correct endpoint for the region that matches your Speech resource. This example is currently set to West US.
 
 ```console
 curl -v -X POST \
  "https://eastus.api.cognitive.microsoft.com/sts/v1.0/issueToken" \
  -H "Content-type: application/x-www-form-urlencoded" \
  -H "Content-Length: 0" \
- -H "Ocp-Apim-Subscription-Key: YOUR_SUBSCRIPTION_KEY"
+ -H "Ocp-Apim-Subscription-Key: YourSpeechResourceKey"
 ```
 
 #### C# sample
 
-This C# class illustrates how to get an access token. Pass your resource key for the Speech service when you instantiate the class. If your subscription isn't in the West US region, change the value of `FetchTokenUri` to match the region for your subscription.
+This C# class illustrates how to get an access token. Pass your resource key for the Speech service when you instantiate the class. If your Speech resource isn't in the West US region, change the value of `FetchTokenUri` to match the region for your Speech resource.
 
 ```csharp
 public class Authentication

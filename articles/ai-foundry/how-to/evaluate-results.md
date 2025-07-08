@@ -1,4 +1,4 @@
----
+﻿---
 title: How to view evaluation results in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to view evaluation results in Azure AI Foundry portal.
@@ -165,6 +165,6 @@ Understanding the built-in metrics is vital for assessing the performance and ef
 Learn more about how to evaluate your generative AI applications:
 - [Evaluate your generative AI apps via the playground](../how-to/evaluate-prompts-playground.md)
 - [Evaluate your generative AI apps with the Azure AI Foundry portal or SDK](../how-to/evaluate-generative-ai-app.md)
-- [Creating evaluations specifically with OpenAI evaluation graders in Azure OpenAI Hub](../../ai-services/openai/how-to/evaluations.md)
+- [Creating evaluations specifically with OpenAI evaluation graders in Azure OpenAI Hub](../openai/how-to/evaluations.md)
 
 Learn more about [harm mitigation techniques](../concepts/evaluation-approach-gen-ai.md).

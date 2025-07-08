@@ -15,7 +15,7 @@ All data you upload must meet the requirements for the data type that you choose
 
 > [!NOTE]
 > - Standard subscription (S0) users can upload five data files simultaneously. If you reach the limit, wait until at least one of your data files finishes importing. Then try again.
-> - The maximum number of data files allowed to be imported per subscription is 500 .zip files for standard subscription (S0) users. Please see out [Speech service quotas and limits](../../../../speech-services-quotas-and-limits.md#custom-neural-voice---professional) for more details.
+> - The maximum number of data files allowed to be imported per subscription is 500 .zip files for standard subscription (S0) users. Please see out [Speech service quotas and limits](../../../../speech-services-quotas-and-limits.md#custom-voice---professional) for more details.
 
 ## Upload your data
 
@@ -25,7 +25,7 @@ All data you upload must meet the requirements for the data type that you choose
 When you're ready to upload your data, go to the **Prepare training data** tab to add your first training set and upload data. A *training set* is a set of audio utterances and their mapping scripts used for training a voice model. You can use a training set to organize your training data. The service checks data readiness per each training set. You can import multiple data to a training set.
 
 To upload training data, follow these steps:
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com).
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
 1. Select the professional voice fine-tuning task (by model name) that you [started as described in the create professional voice article](/azure/ai-services/speech-service/professional-voice-create-project).
 1. Select **Prepare training data** > **Upload data**. 

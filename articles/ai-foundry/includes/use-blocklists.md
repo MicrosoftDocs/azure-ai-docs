@@ -13,7 +13,7 @@ ms.custom: include
 
 ## Create a blocklist
 
-1. Go to [Azure AI Foundry](https://ai.azure.com/) and navigate to your project. Then select the **Guardrails + controls** page on the left nav and select the **Blocklists** tab.
+1. Go to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and navigate to your project. Then select the **Guardrails + controls** page on the left nav and select the **Blocklists** tab.
 
     :::image type="content" source="../media/content-safety/content-filter/select-blocklists.png" lightbox="../media/content-safety/content-filter/select-blocklists.png" alt-text="Screenshot of the Blocklists page tab.":::
 

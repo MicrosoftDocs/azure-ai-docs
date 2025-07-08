@@ -2,12 +2,12 @@
 title: Conversational Language Understanding - Azure AI services
 titleSuffix: Azure AI services
 description: Customize an AI model to predict the intentions of utterances, and extract important information from them.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
 ms.date: 05/01/2025
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-clu
 ---
 
@@ -46,7 +46,7 @@ In a large corporation, an enterprise chat bot may handle various employee affai
 
 ### Agents
 
-CLU is utilized by the [intent routing](https://aka.ms/intent-triage-agent-template) agent template, which detects user intent and provides exact answering. Perfect for deterministically intent routing and exact question answering with human control.
+CLU is utilized by the [intent routing](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/agent-catalog/msft-agent-samples/foundry-agent-service-sdk/intent-routing-agent) agent template, which detects user intent and provides exact answering. Perfect for deterministically intent routing and exact question answering with human control.
 
 ## Project development lifecycle
 

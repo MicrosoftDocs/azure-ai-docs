@@ -9,16 +9,16 @@ ms.date: 5/19/2025
 ms.custom: include
 ---
 
-After you've successfully created and [trained](../../../../professional-voice-train-voice.md) your voice model, you deploy it to a custom neural voice endpoint. 
+After you've successfully created and [trained](../../../../professional-voice-train-voice.md) your voice model, you deploy it to a custom voice endpoint. 
 
 > [!NOTE]
-> You can create up to 50 endpoints with a standard (S0) Speech resource, each with its own custom neural voice.
+> You can create up to 50 endpoints with a standard (S0) Speech resource, each with its own custom voice.
 
-To use your custom neural voice, you must specify the voice model name, use the custom URI directly in an HTTP request, and use the same Speech resource to pass through the authentication of the text to speech service.
+To use your custom voice, you must specify the voice model name, use the custom URI directly in an HTTP request, and use the same Speech resource to pass through the authentication of the text to speech service.
 
 ## Add a deployment endpoint
 
-To create a custom neural voice endpoint:
+To create a custom voice endpoint:
 
 1. Sign in to the [Speech Studio](https://aka.ms/speechstudio/customvoice).
 1. Select **Custom voice** > Your project name > **Deploy model** > **Deploy model**. 
@@ -72,7 +72,7 @@ You can suspend or resume an endpoint, to limit spend and conserve resources tha
 > [!NOTE]
 > The suspend operation completes almost immediately. The resume operation completes in about the same amount of time as a new deployment. 
 
-This section describes how to suspend or resume a custom neural voice endpoint in the Speech Studio portal.
+This section describes how to suspend or resume a custom voice endpoint in the Speech Studio portal.
 
 ### Suspend endpoint
 
@@ -92,6 +92,6 @@ This section describes how to suspend or resume a custom neural voice endpoint i
 
 ## Next steps
 
-- Learn more about custom neural voice in the [overview](../../../../custom-neural-voice.md).
+- Learn more about custom voice in the [overview](../../../../custom-neural-voice.md).
 - Learn more about Speech Studio in the [overview](../../../../speech-studio-overview.md).
 

@@ -3,11 +3,11 @@ title: Manage knowledge bases - QnA Maker
 description: QnA Maker allows you to manage your knowledge bases by providing access to the knowledge base settings and content.
 ms.service: azure-ai-language
 manager: nitinme
-ms.author: jboback
-author: jboback
+ms.author: lajanuar
+author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 
 # Create knowledge base and manage settings

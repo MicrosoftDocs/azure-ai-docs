@@ -2,12 +2,14 @@
 title: Azure AI Content Understanding video overview
 titleSuffix: Azure AI services
 description: Learn about Azure AI Content Understanding video solutions.
-author: laujan
-ms.author: lajanuar
+author: PatrickFarley 
+ms.author: pafarley
 manager: nitinme
+ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 05/19/2025
+ms.custom:
+  - build-2025
 ---
 
 # Azure AI Content Understanding video solutions (preview)
@@ -270,7 +272,7 @@ As with all Azure AI services, review Microsoft's [Data, protection, and privacy
 
 > [!IMPORTANT]
 >
-> If you process **Biometric Data** (for example, enable **Face Grouping** or **Face Identification**), you must meet all notice, consent, and deletion requirements under GDPR or other applicable laws. See [Data and Privacy for Face](/legal/cognitive-services/face/data-privacy-security).
+> If you process **Biometric Data** (for example, enable **Face Grouping** or **Face Identification**), you must meet all notice, consent, and deletion requirements under GDPR or other applicable laws. See [Data and Privacy for Face](/azure/ai-foundry/responsible-ai/face/data-privacy-security).
 
 ## Next steps
 

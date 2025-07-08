@@ -36,7 +36,7 @@ To improve model performance, you might consider fine-tuning a foundation model 
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com).
+1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
 1. If you're not already in your project, select it. 
 1. Select **Fine-tuning** from the left pane.

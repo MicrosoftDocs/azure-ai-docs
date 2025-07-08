@@ -2,24 +2,26 @@
 title: Plan and manage costs for Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: Learn how to plan for and manage costs for Azure AI Foundry by using cost analysis in the Azure portal.
+ms.author: mopeakande
+author: msakande 
 manager: scottpolly
+ms.reviewer: obiume
+ms.date: 05/07/2025
 ms.service: azure-ai-foundry
+ms.topic: concept-article
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
-ms.topic: conceptual
-ms.date: 05/07/2025
-ms.reviewer: obiume
-ms.author: larryfr
-author: Blackmist
+  - build-aifnd
+  - build-2025
 ---
 
 # Plan and manage costs for Azure AI Foundry
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-This article describes how you plan for and manage costs for [Azure AI Foundry](https://ai.azure.com). First, you use the Azure pricing calculator to help plan for Azure AI Foundry costs before you add any resources for the service to estimate costs. Next, as you add Azure resources, review the estimated costs.
+This article describes how you plan for and manage costs for [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). First, you use the Azure pricing calculator to help plan for Azure AI Foundry costs before you add any resources for the service to estimate costs. Next, as you add Azure resources, review the estimated costs.
 
 > [!TIP]
 > Azure AI Foundry does not have a specific page in the Azure pricing calculator. Azure AI Foundry is composed of several other Azure services, some of which are optional. This article provides information on using the pricing calculator to estimate costs for these services.
@@ -108,7 +110,7 @@ For the examples in this section, assume that all Azure AI Foundry Services are 
 
 Here's an example of how to monitor costs for a project. The costs are used as an example only. Your costs vary depending on the services that you use and the amount of usage.
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com).
+1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 1. Select your project and then select **Management center** from the left menu. 
 1. Under the **Project** heading, select **Overview**. 
 1. Select **View cost for resources** from the **Total cost** section. The [Azure portal](https://portal.azure.com) opens to the resource group for your project.
@@ -151,7 +153,7 @@ For more information, see the [Azure pricing calculator](https://azure.microsoft
 
 ### Monitor costs for models offered through the Azure Marketplace
 
-Standard deployments are offered through the Azure Marketplace. The model publishers might apply different costs depending on the offering. Each project in Azure AI Foundry portal has its own subscription with the offering, which allows you to monitor the costs and the consumption happening on that project. Use [Microsoft Cost Management](https://azure.microsoft.com/products/cost-management) to monitor the costs:
+Serverless API deployments are offered through the Azure Marketplace. The model publishers might apply different costs depending on the offering. Each project in Azure AI Foundry portal has its own subscription with the offering, which allows you to monitor the costs and the consumption happening on that project. Use [Microsoft Cost Management](https://azure.microsoft.com/products/cost-management) to monitor the costs:
 
 1. Sign in to [Azure portal](https://portal.azure.com).
 
@@ -209,7 +211,7 @@ Azure AI services run on Azure infrastructure that accrues costs along with Azur
 
 When you create or use Azure AI services resources, you might get charged based on the services that you use. There are two billing models available for Azure AI services: 
 
-- Standard: Standard pricing, you're billed according to the Azure AI services offering that you use, based on its billing information.
+- serverless API: serverless API pricing, you're billed according to the Azure AI services offering that you use, based on its billing information.
 - Commitment tiers: With commitment tier pricing, you commit to using several service features for a fixed fee, enabling you to have a predictable total cost based on the needs of your workload. You're billed according to the plan you choose. See [Quickstart: purchase commitment tier pricing](../../ai-services/commitment-tier.md) for information on available services, how to sign up, and considerations when purchasing a plan.
 
 > [!NOTE]

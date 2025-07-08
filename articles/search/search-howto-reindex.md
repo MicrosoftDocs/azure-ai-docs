@@ -158,7 +158,7 @@ Status code 429 indicates that you've exceeded your quota on the number of docum
 
 + To merge inline changes into string collection, provide the entire value. Recall the `tags` field example from the previous section. New values overwrite the old values for an entire field, and there's no merging within the content of a field.
 
-Here's a [REST API example](search-get-started-rest.md) demonstrating these tips:
+Here's a [REST API example](search-get-started-text.md) demonstrating these tips:
 
 ```rest
 ### Get Stay-Kay City Hotel by ID
@@ -256,7 +256,7 @@ To minimize disruption to application code, consider [creating an index alias](s
 
 ## Add an index description (preview)
 
-Beginning with REST API version 2025-05-01-preview, an `indexdescription` is now supported. This human-readable text is invaluable when a system must access several indexes and make a decision based on the description. Consider a Model Context Protocol (MCP) server that must pick the correct index at run time. The decision can be  based on the description rather than on the index name alone.
+Beginning with REST API version 2025-05-01-preview, a `ddescription` is now supported. This human-readable text is invaluable when a system must access several indexes and make a decision based on the description. Consider a Model Context Protocol (MCP) server that must pick the correct index at run time. The decision can be  based on the description rather than on the index name alone.
 
 An index description is a schema update, and you can add it without having to rebuild the entire index.
 
@@ -275,7 +275,7 @@ The Azure portal supports the latest preview API.
 
 1. Select **Edit JSON**.
 
-1. Insert `"indexDescription"`, followed by the description.
+1. Insert `"description"`, followed by the description. The value must be less than 4,000 characters and in Unicode.
 
    :::image type="content" source="media/search-how-to-index/edit-index-json.png" alt-text="Screenshot of the JSON definition of an index in the Azure portal.":::
 
@@ -285,11 +285,13 @@ The Azure portal supports the latest preview API.
 
 1. [GET an index definition](/rest/api/searchservice/indexes/get).
 
-1. Copy the JSON.
+1. Copy the JSON so that you can use it as the basis of a new request.
 
-1. [Formulate an index update PUT request](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) using the preview API, providing the *full* JSON of the existing schema, plus the new description field.
+1. [Formulate an index update using a PUT request](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) and the preview API.
 
-1. To confirm the description, issue another [GET using the 2025-05-01-preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true).
+1. Provide the *full* JSON of the existing schema, plus the new `description` field. The field must be a top-level field, on the same level as `name` or `fields`. The value must be less than 4,000 characters and in Unicode.
+
+1. To confirm the change, issue another [GET using the 2025-05-01-preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true).
 
 ---
 
@@ -303,7 +305,7 @@ If indexing workloads introduce unacceptable levels of query latency, conduct [p
 
 You can begin querying an index as soon as the first document is loaded. If you know a document's ID, the [Lookup Document REST API](/rest/api/searchservice/documents/get) returns the specific document. For broader testing, you should wait until the index is fully loaded, and then use queries to verify the context you expect to see.
 
-You can use [Search Explorer](search-explorer.md) or a [REST client](search-get-started-rest.md) to check for updated content.
+You can use [Search Explorer](search-explorer.md) or a [REST client](search-get-started-text.md) to check for updated content.
 
 If you added or renamed a field, use [select](search-query-odata-select.md) to return that field: 
 

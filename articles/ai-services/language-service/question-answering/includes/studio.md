@@ -4,7 +4,7 @@ description: You can create a custom question answering project from your own co
 ms.service: azure-ai-language
 ms.subservice: azure-ai-qna-maker
 ms.topic: include
-ms.date: 12/19/2023
+ms.date: 06/30/2025
 ---
 
 You can create a custom question answering project from your own content, such as FAQs or product manuals. This article includes an example of creating a custom question answering project from a product manual, to answer questions.

@@ -2,12 +2,12 @@
 title: Deploy custom language projects to multiple regions in Azure AI Language
 titleSuffix: Azure AI services
 description: Learn about how to deploy your custom language projects to multiple regions.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
 ms.date: 04/29/2025
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-clu, ignite-2024
 ---
 

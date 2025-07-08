@@ -16,7 +16,7 @@ ms.custom: references_regions
 
 Text to speech avatar converts text into a digital video of a photorealistic human (either a standard avatar or a [custom text to speech avatar](#custom-text-to-speech-avatar)) speaking with a natural-sounding voice. The text to speech avatar video can be synthesized asynchronously or in real time. Developers can build applications integrated with text to speech avatar through an API, or use a content creation tool on Speech Studio to create video content without coding.
 
-With text to speech avatar's advanced neural network models, the feature empowers users to deliver life-like and high-quality synthetic talking avatar videos for various applications while adhering to [responsible AI practices](/legal/cognitive-services/speech-service/disclosure-voice-talent?context=/azure/ai-services/speech-service/context/context).
+With text to speech avatar's advanced neural network models, the feature empowers users to deliver life-like and high-quality synthetic talking avatar videos for various applications while adhering to [responsible AI practices](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/disclosure-voice-talent).
 
 > [!TIP]
 > To convert text to speech with a no-code approach, try the [Text to speech avatar tool in Speech Studio](https://speech.microsoft.com/portal/talkingavatar).
@@ -38,7 +38,7 @@ With text to speech avatar's advanced neural network models, the feature empower
 
 You can choose from a range of standard voices for the avatar. The language support for text to speech avatar is the same as the language support for text to speech. For details, see [Language and voice support for the Speech service](../language-support.md?tabs=tts). Standard text to speech avatars can be accessed through the [Speech Studio portal](https://speech.microsoft.com/portal/talkingavatar) or via API.
 
-The voice in the synthetic video could be a standard voice available on Azure AI Speech or the [custom neural voice](../custom-neural-voice.md) of voice talent selected by you.
+The voice in the synthetic video could be an Azure AI Speech standard voice or the [custom voice](../custom-neural-voice.md) of voice talent selected by you.
 
 ## Avatar video output
 
@@ -52,11 +52,11 @@ Both batch synthesis and real-time synthesis resolution are 1920 x 1080, and the
 
 ## Custom text to speech avatar
 
-You can create custom text to speech avatars that are unique to your product or brand. All it takes to get started is taking 10 minutes of video recordings. If you're also creating a custom neural voice for the actor, the avatar can be highly realistic. 
+You can create custom text to speech avatars that are unique to your product or brand. All it takes to get started is taking 10 minutes of video recordings. If you're also fine-tuning a professional voice for the actor, the avatar can be highly realistic. 
 
 Voice sync for avatar is trained alongside the custom avatar utilizing audio from the training video. The voice is exclusively associated with the custom avatar and cannot be independently used.
 
-[Custom neural voice](../custom-neural-voice.md) and [custom text to speech avatar](what-is-custom-text-to-speech-avatar.md) are separate features. You can use them independently or together. If you plan to also use [custom neural voice](../custom-neural-voice.md) with a text to speech avatar, you need to deploy or [copy](../professional-voice-train-voice.md#copy-your-voice-model-to-another-project) your custom neural voice model to one of the [avatar supported regions](#available-locations).
+[Professional voice fine-tuning](../custom-neural-voice.md) and [custom text to speech avatar](what-is-custom-text-to-speech-avatar.md) are separate features. You can use them independently or together. If you plan to also use [professional voice fine-tuning](../custom-neural-voice.md) with a text to speech avatar, you need to deploy or [copy](../professional-voice-train-voice.md#copy-your-voice-model-to-another-project) your fine-tuned professional voice model to one of the [avatar supported regions](#available-locations).
 
 For more information, see [What is custom text to speech avatar](./what-is-custom-text-to-speech-avatar.md).
 
@@ -82,7 +82,7 @@ The text to speech avatar feature is only available in the following service reg
 
 ### Responsible AI
 
-We care about the people who use AI and the people who will be affected by it as much as we care about technology. For more information, see the Responsible AI [transparency notes](/legal/cognitive-services/speech-service/text-to-speech/transparency-note?context=/azure/ai-services/speech-service/context/context) and [disclosure for voice and avatar talent](/legal/cognitive-services/speech-service/disclosure-voice-talent?context=/azure/ai-services/speech-service/context/context).
+We care about the people who use AI and the people who will be affected by it as much as we care about technology. For more information, see the Responsible AI [transparency notes](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note) and [disclosure for voice and avatar talent](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/disclosure-voice-talent).
 
 ## Next steps
 

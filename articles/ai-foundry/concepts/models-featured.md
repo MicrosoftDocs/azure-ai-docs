@@ -1,25 +1,28 @@
 ---
-title: Models available for standard deployment in Azure AI Foundry
+title: Azure AI Foundry Models available for serverless API deployment
 titleSuffix: Azure AI Foundry
-description: Explore various models available for standard deployment in Azure AI Foundry.
-manager: scottpolly
+description: Explore various models available for serverless API deployment in Azure AI Foundry.
 author: msakande
-reviewer: santiagxf
-ms.service: azure-ai-foundry
-ms.topic: conceptual
-ms.date: 03/06/2025
 ms.author: mopeakande
+manager: scottpolly
+reviewer: santiagxf
 ms.reviewer: fasantia
-ms.custom: references_regions
+ms.date: 05/19/2025
+ms.service: azure-ai-foundry
+ms.topic: concept-article
+ms.custom:
+  - references_regions
+  - build-aifnd
+  - build-2025
 ---
 
-# Featured models of Azure AI Foundry
+# Azure AI Foundry Models available for serverless API deployment
 
-The Azure AI model catalog offers a large selection of Azure AI Foundry Models from a wide range of providers. You have various options for deploying models from the model catalog. This article lists Azure AI Foundry Models that  can be deployed via standard deployment. For some of these models, you can also host them on your infrastructure for deployment via managed compute.
+The Azure AI model catalog offers a large selection of Azure AI Foundry Models from a wide range of providers. You have various options for deploying models from the model catalog. This article lists Azure AI Foundry Models that  can be deployed via serverless API deployment. For some of these models, you can also host them on your infrastructure for deployment via managed compute.
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
 
-To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others support inferencing using the [Foundry Models API](../model-inference/overview.md). You can find more details about individual models by reviewing their model cards in the [model catalog for Azure AI Foundry portal](https://ai.azure.com/explore/models).
+To perform inferencing with the models, some models such as [Nixtla's TimeGEN-1](#nixtla) and [Cohere rerank](#cohere-rerank) require you to use custom APIs from the model providers. Others support inferencing using the [Model Inference API](../model-inference/overview.md). You can find more details about individual models by reviewing their model cards in the [model catalog for Azure AI Foundry portal](https://ai.azure.com/explore/models).
 
 :::image type="content" source="../media/models-featured/models-catalog.gif" alt-text="An animation showing Azure AI Foundry model catalog section and the models available." lightbox="../media/models-featured/models-catalog.gif":::
 
@@ -64,7 +67,7 @@ The Cohere family of models includes various models optimized for different use 
 
 ### Cohere command and embed
 
-The following table lists the Cohere models that you can inference via the Foundry Models API.
+The following table lists the Cohere models that you can inference via the Model Inference API.
 
 | Model  | Type | Capabilities | 
 | ------ | ---- | --- | 
@@ -73,7 +76,7 @@ The following table lists the Cohere models that you can inference via the Found
 | [Cohere-command-r-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-08-2024/version/1/registry/azureml-cohere) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 | [Cohere-command-r-plus](https://ai.azure.com/explore/models/Cohere-command-r-plus/version/1/registry/azureml-cohere) <br> (deprecated) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 | [Cohere-command-r](https://ai.azure.com/explore/models/Cohere-command-r/version/1/registry/azureml-cohere) <br> (deprecated)| [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
-| [Cohere-embed-4](https://aka.ms/aistudio/landing/cohere-embed-4) | [embeddings](../model-inference/how-to/use-embeddings.md?context=/azure/ai-foundry/context/context) <br /> [image-embeddings](../model-inference/how-to/use-image-embeddings.md?context=/azure/ai-foundry/context/context) | - **Input:** image, text <br /> - **Output:** image, text (128,000 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** image, text  |
+| [Cohere-embed-v-4](https://aka.ms/aistudio/landing/cohere-embed-4) | [embeddings](../model-inference/how-to/use-embeddings.md?context=/azure/ai-foundry/context/context) <br /> [image-embeddings](../model-inference/how-to/use-image-embeddings.md?context=/azure/ai-foundry/context/context) | - **Input:** image, text <br /> - **Output:** image, text (128,000 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** image, text  |
 | [Cohere-embed-v3-english](https://ai.azure.com/explore/models/Cohere-embed-v3-english/version/1/registry/azureml-cohere) | [embeddings](../model-inference/how-to/use-embeddings.md?context=/azure/ai-foundry/context/context) <br /> [image-embeddings](../model-inference/how-to/use-image-embeddings.md?context=/azure/ai-foundry/context/context) | - **Input:** text (512 tokens) <br /> - **Output:** Vector (1,024 dim.) |
 | [Cohere-embed-v3-multilingual](https://ai.azure.com/explore/models/Cohere-embed-v3-multilingual/version/1/registry/azureml-cohere) | [embeddings](../model-inference/how-to/use-embeddings.md?context=/azure/ai-foundry/context/context) <br /> [image-embeddings](../model-inference/how-to/use-image-embeddings.md?context=/azure/ai-foundry/context/context) | - **Input:** text (512 tokens) <br /> - **Output:** Vector (1,024 dim.) |
 
@@ -147,6 +150,7 @@ DeepSeek family of models includes DeepSeek-R1, which excels at reasoning tasks 
 
 | Model  | Type | Capabilities | 
 | ------ | ---- | --- | 
+| [DeepSeek-R1-0528](https://ai.azure.com/explore/models/DeepSeek-R1-0528/version/1/registry/azureml-deepseek) <br /> | [chat-completion with reasoning content](../model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context) | - **Input:** text (163,840 tokens) <br /> - **Output:** text (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No  <br /> - **Response formats:** Text |
 | [DeekSeek-V3-0324](https://ai.azure.com/explore/models/deepseek-v3-0324/version/1/registry/azureml-deepseek) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:** (131,072 tokens) <br /> - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
 | [DeepSeek-V3](https://ai.azure.com/explore/models/deepseek-v3/version/1/registry/azureml-deepseek) <br />(Legacy) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
 | [DeepSeek-R1](https://ai.azure.com/explore/models/deepseek-r1/version/1/registry/azureml-deepseek) | [chat-completion with reasoning content](../model-inference/how-to/use-chat-reasoning.md?context=/azure/ai-foundry/context/context) | - **Input:** text (163,840 tokens) <br /> - **Output:** text (163,840 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |
@@ -178,8 +182,8 @@ Meta Llama models and tools are a collection of pretrained and fine-tuned genera
 
 | Model  | Type | Capabilities |
 | ------ | ---- | ------------ |
-| [Llama-4-Scout-17B-16E-Instruct](https://aka.ms/aifoundry/landing/llama-4-scout-17b-16e-instruct) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text and image (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text |
-| [Llama 4-Maverick-17B-128E-Instruct-FP8](https://aka.ms/aifoundry/landing/llama-4-maverick-17b-128e-instruct-fp8) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text and image (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text |
+| [Llama-4-Scout-17B-16E-Instruct](https://aka.ms/aifoundry/landing/llama-4-scout-17b-16e-instruct) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text and image (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Tool calling:** No <br /> - **Response formats:** Text |
+| [Llama 4-Maverick-17B-128E-Instruct-FP8](https://aka.ms/aifoundry/landing/llama-4-maverick-17b-128e-instruct-fp8) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text and image (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Tool calling:** No <br /> - **Response formats:** Text |
 | [Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Tool calling:** No <br /> - **Response formats:** Text |
 | [Llama-3.2-90B-Vision-Instruct](https://ai.azure.com/explore/models/Llama-3.2-90B-Vision-Instruct/version/1/registry/azureml-meta) | [chat-completion (with images)](../model-inference/how-to/use-chat-multi-modal.md?context=/azure/ai-foundry/context/context) | - **Input:** text and image (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Tool calling:** No <br /> - **Response formats:** Text |
 | [Llama-3.2-11B-Vision-Instruct](https://ai.azure.com/explore/models/Llama-3.2-11B-Vision-Instruct/version/1/registry/azureml-meta) | [chat-completion (with images)](../model-inference/how-to/use-chat-multi-modal.md?context=/azure/ai-foundry/context/context) | - **Input:** text and image (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Tool calling:** No <br /> - **Response formats:** Text |
@@ -336,7 +340,7 @@ See the [Nixtla model collection in Azure AI Foundry portal](https://ai.azure.co
 
 | Model  | Type | Capabilities |
 | ------ | ---- | ------------ |
-| [tsuzumi-7b](https://ai.azure.com/explore/models/Tsuzumi-7b/version/1/registry/azureml-nttdata) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (8,192 tokens) <br /> - **Output:** text (8,192 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
+| [tsuzumi-7b](https://ai.azure.com/explore/models/Tsuzumi-7b/version/2/registry/azureml-nttdata) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (8,192 tokens) <br /> - **Output:** text (8,192 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
 
 ## Stability AI
 
@@ -359,7 +363,7 @@ xAI's Grok 3 and Grok 3 Mini models are designed to excel in various enterprise 
 
 #### Inference examples: Stability AI
 
-Stability AI models deployed via standard deployment implement the Foundry Models API on the route `/image/generations`.
+Stability AI models deployed via serverless API deployment implement the Model Inference API on the route `/image/generations`.
 For examples of how to use Stability AI models, see the following examples:
 
 - [Use OpenAI SDK with Stability AI models for text to image requests](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/stabilityai/Text_to_Image_openai_library.ipynb)
@@ -370,8 +374,8 @@ For examples of how to use Stability AI models, see the following examples:
 
 ## Related content
 
-- [Deploy models as standard deployments](../how-to/deploy-models-serverless.md)
+- [Deploy models as serverless API deployments](../how-to/deploy-models-serverless.md)
 - [Model catalog and collections in Azure AI Foundry portal](../how-to/model-catalog-overview.md)
-- [Region availability for models in standard deployments](../how-to/deploy-models-serverless-availability.md)
+- [Region availability for models in serverless API deployments](../how-to/deploy-models-serverless-availability.md)
 - [Content safety for  Models Sold Directly by Azure ](model-catalog-content-safety.md)
 

@@ -5,7 +5,7 @@ description: SDK and CLI v2 use expressions when a value may not be known when a
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.topic: conceptual
+ms.topic: concept-article
 ms.author: larryfr
 author: Blackmist
 ms.reviewer: zhanxia

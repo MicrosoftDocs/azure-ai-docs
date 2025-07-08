@@ -8,6 +8,15 @@ ms.author: eur
 
 > [!IMPORTANT]
 > Content assessment (preview) via the Speech SDK is being retired in July 2025. Instead, you can use Azure OpenAI models to get content assessment results as described in the [content assessment documentation](../../how-to-pronunciation-assessment.md#content-assessment).
+### Speech SDK 1.44.1: Patch release
+
+SDK version 1.44.1 is being released for JavaScript only with 4 bug fixes:
+
+#### Bug fixes
+* Fixed an out of range exception when only one segmentation control parameter was provided.
+* enableDictation was not correctly passed to the Speech Service.
+* ConversationTranscriber did not use the correct URL path when created using the fromEndpoint method.
+* Fixed error when data is pushed to an input stream after it is detached.
 
 ### Speech SDK 1.44: 2025-May release
 
@@ -893,7 +902,7 @@ This table shows the previous and new object names for real-time diarization and
 ### Speech SDK 1.16.0: 2021-March release
 
 > [!NOTE]
-> The Speech SDK on Windows depends on the shared Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019. Download it [here](https://support.microsoft.com/help/2977003/the-latest-supported-visual-c-downloads).
+> The Speech SDK on Windows depends on the shared Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019.
 
 #### New features
 
@@ -938,7 +947,7 @@ This table shows the previous and new object names for real-time diarization and
 ### Speech SDK 1.15.0: 2021-January release
 
 > [!NOTE]
-> The Speech SDK on Windows depends on the shared Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019. Download it [here](https://support.microsoft.com/help/2977003/the-latest-supported-visual-c-downloads).
+> The Speech SDK on Windows depends on the shared Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019.
 
 #### Highlights summary
 - Smaller memory and disk footprint making the SDK more efficient.
@@ -992,7 +1001,7 @@ This table shows the previous and new object names for real-time diarization and
 ### Speech SDK 1.14.0: 2020-October release
 
 > [!NOTE]
-> The Speech SDK on Windows depends on the shared Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019. Download it [here](https://support.microsoft.com/help/2977003/the-latest-supported-visual-c-downloads).
+> The Speech SDK on Windows depends on the shared Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019.
 
 #### New features
 - **Linux**: Added support for Debian 10 and Ubuntu 20.04 LTS.
@@ -1040,7 +1049,7 @@ Stay healthy!
 ### Speech SDK 1.13.0: 2020-July release
 
 > [!NOTE]
-> The Speech SDK on Windows depends on the shared Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019. Download and install it from [here](https://support.microsoft.com/help/2977003/the-latest-supported-visual-c-downloads).
+> The Speech SDK on Windows depends on the shared Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017 and 2019.
 
 #### New features
 - **C#**: Added support for asynchronous conversation transcription. See documentation [here](../../get-started-stt-diarization.md).
@@ -1434,7 +1443,7 @@ The following new content is available in our [sample repository](https://aka.ms
 
 - Empty proxy username and proxy password weren't handled correctly. With this release, if you set proxy username and proxy password to an empty string, they won't be submitted when connecting to the proxy.
 - SessionId's created by the SDK weren't always truly random for some languages&nbsp;/ environments. Added random generator initialization to fix this issue.
-- Improve handling of authorization token. If you want to use an authorization token, specify in the `SpeechConfig` and leave the subscription key empty. Then create the recognizer as usual.
+- Improve handling of authorization token. If you want to use an authorization token, specify in the `SpeechConfig` and leave the API key empty. Then create the recognizer as usual.
 - In some cases, the `Connection` object wasn't released correctly. This issue has been fixed.
 - The JavaScript sample was fixed to support audio output for translation synthesis also on Safari.
 

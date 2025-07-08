@@ -11,7 +11,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 12/10/2024
+ms.date: 05/29/2025
 ---
 
 # Index data from Azure Cosmos DB for Apache Gremlin for queries in Azure AI Search
@@ -35,7 +35,7 @@ Because terminology can be confusing, it's worth noting that [Azure Cosmos DB in
 
 + Read permissions. A "full access" connection string includes a key that grants access to the content, but if you're using Azure roles, make sure the [search service managed identity](search-howto-managed-identities-data-sources.md) has **Cosmos DB Account Reader Role** permissions.
 
-+ A [REST client](search-get-started-rest.md) to create the data source, index, and indexer. 
++ A [REST client](search-get-started-text.md) to create the data source, index, and indexer. 
 
 ## Define the data source
 

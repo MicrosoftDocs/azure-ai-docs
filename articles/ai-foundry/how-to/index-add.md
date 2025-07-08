@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 01/31/2025
+ms.date: 05/15/2025
 ms.reviewer: estraight
 ms.author: ssalgado
 author: ssalgadodev
@@ -34,7 +34,7 @@ You must have:
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com).
+1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 1. Go to your project or [create a new project](../how-to/create-projects.md) in Azure AI Foundry portal.
 1. From the menu on the left, select **Playgrounds**. Select the **Chat Playground**.
 
@@ -70,7 +70,7 @@ You must have:
 
 ## Use an index in prompt flow
 
-1. Sign in to [Azure AI Foundry](https://ai.azure.com) and select your project. 
+1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and select your project. 
 1. From the collapsible left menu, select **Prompt flow** from the **Build and customize** section.
 1. Open an existing prompt flow or select **+ Create** to create a new flow.
 1. On the top menu of the flow designer, select **More tools**, and then select ***Index Lookup***.

@@ -7,7 +7,7 @@ ms.author: larryfr
 ms.reviewer: osiotugo
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.date: 04/19/2022
+ms.date: 06/13/2025
 ms.topic: how-to
 ms.custom: UpdateFrequency5, devx-track-python, cliv1
 ms.devlang: azurecli

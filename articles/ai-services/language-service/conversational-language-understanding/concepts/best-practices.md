@@ -2,12 +2,12 @@
 title: Conversational language understanding best practices
 titleSuffix: Azure AI services
 description: Learn how to apply best practices when you use conversational language understanding.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: best-practice
-ms.date: 11/21/2024
-ms.author: jboback
+ms.date: 06/04/2025
+ms.author: lajanuar
 ms.custom: language-service-clu
 ---
 
@@ -112,7 +112,7 @@ If you enable this feature, the utterance count of your training set increases. 
 
 ## Address model overconfidence
 
-Customers can use the LoraNorm traning configuration version if the model is being incorrectly overconfident. An example of this behavior can be like the following scenario where the model predicts the incorrect intent with 100% confidence. This score makes the confidence threshold project setting unusable.
+Customers can use the LoraNorm training configuration version if the model is being incorrectly overconfident. An example of this behavior can be like the following scenario where the model predicts the incorrect intent with 100% confidence. This score makes the confidence threshold project setting unusable.
 
 | Text |	Predicted intent |	Confidence score |
 |----|----|----|
@@ -272,6 +272,6 @@ After the request is sent, you can track the progress of the training job in Lan
 
 Caveats:
 
-- The None score threshold for the app (confidence threshold below which `topIntent` is marked as `None`) when you use this training configuration should be set to 0. This setting is used because this new training configuration attributes a certain portion of the in-domain probabilities to out of domain so that the model isn't incorrectly overconfident about in-domain utterances. As a result, users might see slightly reduced confidence scores for in-domain utterances as compared to the prod training configuration.
+- The None score threshold for the app (confidence threshold below which `topIntent` is marked as `None`) when you use this training configuration should be set to 0. This setting is used because this new training configuration attributes a certain portion of the in-domain probabilities to out of domain so that the model isn't incorrectly overconfident about in-domain utterances. As a result, users might see slightly reduced confidence scores for in-domain utterances as compared to the production training configuration.
 - We don't recommend this training configuration for apps with only two intents, such as `IntentA` and `None`, for example.
 - We don't recommend this training configuration for apps with a low number of utterances per intent. We highly recommend a minimum of 25 utterances per intent.

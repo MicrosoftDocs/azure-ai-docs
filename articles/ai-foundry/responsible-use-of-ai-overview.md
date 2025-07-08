@@ -6,7 +6,7 @@ manager: nitinme
 keywords: Azure AI services, cognitive
 ms.service: azure-ai-foundry
 ms.topic: overview
-ms.date: 05/09/2025
+ms.date: 05/31/2025
 ms.author: pafarley
 author: PatrickFarley
 ms.custom: ignite-2024

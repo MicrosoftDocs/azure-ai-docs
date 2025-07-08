@@ -1,9 +1,9 @@
 ---
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/21/2024
+ms.date: 06/30/2025
 ms.author: haelhamm
 ---
 

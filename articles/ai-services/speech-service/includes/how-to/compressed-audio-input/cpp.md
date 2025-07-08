@@ -43,7 +43,7 @@ using namespace Microsoft::CognitiveServices::Speech::Audio;
 
  auto config =
     SpeechConfig::FromSubscription(
-        "YourSubscriptionKey",
+        "YourSpeechResoureKey",
         "YourServiceRegion"
     );
 

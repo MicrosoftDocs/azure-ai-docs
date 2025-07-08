@@ -2,12 +2,14 @@
 title: Azure AI Content Understanding document overview
 titleSuffix: Azure AI services
 description: Learn about Azure AI Content Understanding document solutions.
-author: laujan
-ms.author: lajanuar
+author: PatrickFarley 
+ms.author: pafarley
 manager: nitinme
+ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
-ms.date: 05/19/2025
+ms.custom:
+  - build-2025
 ---
 
 # Azure AI Content Understanding document solutions (preview)

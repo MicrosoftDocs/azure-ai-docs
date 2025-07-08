@@ -12,9 +12,9 @@ ms.author: eur
 
 ## Create a speech configuration instance
 
-To call the Speech service by using the Speech SDK, you need to create a [`SpeechConfig`](/python/api/azure-cognitiveservices-speech/azure.cognitiveservices.speech.speechconfig) instance. This class includes information about your subscription, like your speech key and associated region, endpoint, host, or authorization token.
+To call the Speech service by using the Speech SDK, you need to create a [`SpeechConfig`](/python/api/azure-cognitiveservices-speech/azure.cognitiveservices.speech.speechconfig) instance. This class includes information about your Speech resource, like your speech key and associated region, endpoint, host, or authorization token.
 
-1. Create an AI Foundry resource for Speech in the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices). Get the Speech resource key and region.
+1. Create an AI Foundry resource for Speech in the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry). Get the Speech resource key and region.
 1. Create a `SpeechConfig` instance by using the following code. Replace `YourSpeechKey` and `YourSpeechRegion` with your Speech resource key and region.
 
 ```Python
@@ -170,7 +170,7 @@ For a complete code sample, see [Language identification](../../../language-iden
 With [custom speech](../../../custom-speech-overview.md), you can upload your own data, test and train a custom model, compare accuracy between models, and deploy a model to a custom endpoint. The following example shows how to set a custom endpoint.
 
 ```python
-speech_config = speechsdk.SpeechConfig(subscription="YourSubscriptionKey", region="YourServiceRegion")
+speech_config = speechsdk.SpeechConfig(subscription="YourSpeechResoureKey", region="YourServiceRegion")
 speech_config.endpoint_id = "YourEndpointId"
 speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config)
 ```

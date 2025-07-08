@@ -7,13 +7,15 @@ brand: azure
 metadata:
   title: Azure AI Foundry documentation
   description: The agent factory - Design, customize, manage, and support AI applications and agents at scale.
-  ms.service: azure-ai-foundry
-  ms.topic: hub-page
   author: eric-urban
   ms.author: eur
   manager: nitinme
-  ms.custom: build-2025
-  ms.date: 5/19/2025
+  ms.date: 7/4/2025
+  ms.service: azure-ai-foundry
+  ms.topic: hub-page
+  ms.custom:
+    - build-2025
+    - build-aifnd
 highlightedContent:
 # itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | whats-new
   items:
@@ -90,6 +92,8 @@ productDirectory:
     - title: Azure AI Search
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/search.svg
       links:
+        - url: /azure/search/search-get-started-agentic-retrieval
+          text: Agentic retrieval
         - url: /azure/search
           text: Bring AI-powered cloud search to your mobile and web applications
         - url: /azure/search/tutorial-rag-build-solution
@@ -104,10 +108,12 @@ productDirectory:
           text: Speech
         - url: ../ai-services/computer-vision/index.yml
           text: Vision
-        - url: ../ai-services/custom-vision-service/index.yml
+        - url: ../ai-services/translator/index.yml
           text: Translator
         - url: ../ai-services/language-service/index.yml
           text: Language
+        - url: ../ai-services/document-intelligence/index.yml
+          text: Document Intelligence
         - url: ../ai-services/content-understanding/index.yml
           text: Content Understanding
     # Card
@@ -176,8 +182,8 @@ additionalContent:
               url: ../ai-services/document-intelligence/index.yml
             - text: Face
               url: ../ai-services/computer-vision/overview-identity.md
-            - text: Custom Vision
-              url: ../ai-services/translator/index.yml
+            - text: Vision
+              url: ../ai-services/computer-vision/index.yml
             - text: Immersive Reader
               url: ../ai-services/immersive-reader/index.yml
         - title: Training & certification

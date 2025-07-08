@@ -1,7 +1,7 @@
 ---
 title: Truncate dimensions
 titleSuffix: Azure AI Search
-description: Truncate dimensions on text-embedding-3 models using Matryoshka Representation Learning (MRL) compression
+description: Truncate dimensions on text-embedding-3 models using Matryoshka Representation Learning (MRL) compression.
 
 author: haileytap
 ms.author: haileytapia
@@ -9,47 +9,45 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 06/12/2025
 ---
 
 # Truncate dimensions using MRL compression (preview)
 
 > [!IMPORTANT]
-> This feature is in public preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [preview REST API](/rest/api/searchservice/search-service-api-versions#preview-versions) supports this feature.
+> This feature is in public preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). We recommend the latest [preview REST API version](/rest/api/searchservice/search-service-api-versions#preview-versions) for this feature.
 
-Exercise the ability to use fewer dimensions on text-embedding-3 models. On Azure OpenAI, text-embedding-3 models are retrained on the [Matryoshka Representation Learning (MRL)](https://arxiv.org/abs/2205.13147) technique that produces multiple vector representations at different levels of compression. This approach produces faster searches and reduced storage costs, with minimal loss of semantic information. 
+Exercise the ability to use fewer dimensions on text-embedding-3 models. On Azure OpenAI, text-embedding-3 models are retrained on the [Matryoshka Representation Learning](https://arxiv.org/abs/2205.13147) (MRL) technique that produces multiple vector representations at different levels of compression. This approach produces faster searches and reduced storage costs with minimal loss of semantic information.
 
-In Azure AI Search, MRL support supplements [scalar and binary quantization](vector-search-how-to-quantization.md). When you use either quantization method, you can also specify a `truncationDimension` property on your vector fields to reduce the dimensionality of text embeddings. 
+In Azure AI Search, MRL support supplements [scalar and binary quantization](vector-search-how-to-quantization.md). When you use either quantization method, you can specify a `truncationDimension` property on your vector fields to reduce the dimensionality of text embeddings.
 
-MRL multilevel compression saves on vector storage and improves query response times for vector queries based on text embeddings. In Azure AI Search, MRL support is only offered together with another method of quantization. Using binary quantization with MRL provides the maximum vector index size reduction. To achieve maximum storage reduction, use binary quantization with MRL, and `stored` set to false.
-
-This feature is in preview. It's available in `2024-09-01-preview` and in beta SDK packages targeting that preview API version.
+MRL multilevel compression saves on vector storage and improves query response times for vector queries based on text embeddings. In Azure AI Search, MRL support is only offered together with another method of quantization. Using binary quantization with MRL provides the maximum vector index size reduction. To achieve maximum storage reduction, use binary quantization with MRL and set `stored` to false.
 
 ## Prerequisites
 
-- Text-embedding-3 models such as Text-embedding-3-small or Text-embedding-3-large (text content only).
+- A text-embedding-3 model, such as text-embedding-3-small or text-embedding-3-large.
 
-- [New vector fields](vector-search-how-to-create-index.md) of type `Edm.Half` or `Edm.Single` (you can't add MRL compression to an existing field).
+- A [supported client](#supported-clients).
 
-- [Hierarchical Navigable Small World (HNSW)algorithm](vector-search-ranking.md) (no support for exhaustive KNN in this preview).
+- [New vector fields](vector-search-how-to-create-index.md) of type `Edm.Half` or `Edm.Single`. You can't add MRL compression to an existing field.
+
+- [Hierarchical Navigable Small World (HNSW) algorithm](vector-search-ranking.md). This preview doesn't support exhaustive KNN.
 
 - [Scalar or binary quantization](vector-search-how-to-quantization.md). Truncated dimensions can be set only when scalar or binary quantization is configured. We recommend binary quantization for MRL compression.
 
-## Supported clients
+### Supported clients
 
-You can use the REST APIs or Azure SDK beta packages to implement MRL compression.
+You can use the REST APIs or Azure SDK beta packages to implement MRL compression. At this time, there's no Azure portal or Azure AI Foundry support.
 
-- [REST API 2024-09-01-preview](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-09-01-preview&preserve-view=true) or [REST API 2024-11-01-preview](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-11-01-preview&preserve-view=true)
+- [REST API 2024-09-01-preview](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-09-01-preview&preserve-view=true) or later. We recommend the latest preview API.
 
 - Check the change logs for each Azure SDK beta package: [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md), [Java](https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.1.3/sdk/search/azure-search-documents/CHANGELOG.md), [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md).
 
-There's no Azure portal or Azure AI Foundry support at this time.
+## Use MRL-extended text embeddings
 
-## How to use MRL-extended text embeddings
+MRL is built into the text embedding model you're already using. To use MRL capabilities in Azure AI Search:
 
-MRL is a capability that's built into the text embedding model you're already using. To benefit from those capabilities in Azure AI Search, follow these steps.
-
-1. Use the [Create or Update index (preview)](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-09-01-preview&preserve-view=true) or equivalent API to specify the index schema.
+1. Use [Create or Update Index (preview)](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-09-01-preview&preserve-view=true) or an equivalent API to specify the index schema.
 
 1. [Add vector fields](vector-search-how-to-create-index.md) to the index definition.
 
@@ -57,17 +55,17 @@ MRL is a capability that's built into the text embedding model you're already us
 
 1. Include a quantization method, either scalar or binary (recommended).
 
-1. Include the `truncationDimension` parameter set to 512, or as low as 256 if you use the text-embedding-3-large model.
+1. Include the `truncationDimension` parameter and set it to 512. If you're using the text-embedding-3-large model, you can set it as low as 256.
 
-1. Specify a vector profile that specifies the HNSW algorithm and the vector compression object.
+1. Include a vector profile that specifies the HNSW algorithm and the vector compression object.
 
 1. Assign the vector profile to a vector field of type `Edm.Half` or `Edm.Single` in the fields collection.
 
-There are no query-side modifications for using an MRL-capable text embedding model. Integrated vectorization, text-to-query conversions at query time, semantic ranking and other relevance enhancement features such as reranking with original vectors and oversampling are unaffected by MRL support.
+There are no query-side modifications for using an MRL-capable text embedding model. MRL support doesn't affect integrated vectorization, text-to-query conversions at query time, semantic ranking, and other relevance-enhancement features, such as reranking with original vectors and oversampling.
 
-Indexing is slower due to the extra steps, but queries are faster.
+Although indexing is slower due to the extra steps, queries are faster.
 
-## Example of a vector search configuration that supports MRL
+## Example: Vector search configuration that supports MRL
 
 The following example illustrates a vector search configuration that meets the requirements and recommendations of MRL.
 
@@ -114,9 +112,13 @@ The following example illustrates a vector search configuration that meets the r
 } 
 ```
 
-Here's an example of a [fully specified vector field definition](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-09-01-preview&preserve-view=true#searchfield) that satisfies the requirements for MRL.
+Here's an example of a [fully specified vector field definition](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-09-01-preview&preserve-view=true#searchfield) that satisfies the requirements for MRL. Recall that vector fields must:
 
-Recall that vector fields must be of type `Edm.Half` or `Edm.Single`. Vector fields must have a `vectorSearchProfile` property that determines the algorithm and compression settings. Vector fields have a `dimensions` property used for specifying the number of dimensions for scoring and ranking results. Its value should be dimensions limit of the model you're using (1,536 for text-embedding-3-small).
+- Be of type `Edm.Half` or `Edm.Single`.
+
+- Have a `vectorSearchProfile` property that specifies the algorithm and compression settings.
+
+- Have a `dimensions` property that specifies the number of dimensions for scoring and ranking results. Its value should be the dimensions limit of the model you're using (1,536 for text-embedding-3-small).
 
 ```json
 {

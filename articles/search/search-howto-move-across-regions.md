@@ -11,7 +11,7 @@ ms.topic: how-to
 ms.custom:
   - subject-moving-resources
   - ignite-2023
-ms.date: 12/10/2024
+ms.date: 05/29/2025
 ---
 
 # Move your Azure AI Search service to another Azure region

@@ -5,14 +5,15 @@ summary: Information retrieval at scale for agentic retrieval, with vector and t
 metadata:
   title: Azure AI Search documentation
   description: Information retrieval at scale for agentic retrieval, with vector and text content in traditional or generative search scenarios.
-  ms.service: azure-ai-search
-  ms.custom:
-    - ignite-2023
-    - ignite-2024
-  ms.topic: landing-page
   author: HeidiSteen
   ms.author: heidist
   ms.date: 05/12/2025
+  ms.service: azure-ai-search
+  ms.topic: landing-page
+  ms.custom:
+    - ignite-2023
+    - ignite-2024
+    - build-2025
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 
 landingContent:
@@ -37,7 +38,7 @@ landingContent:
             url: search-manage.md
           - text: Create a search index
             url: search-get-started-portal.md
-          - text: Create a vector index
+          - text: Add vectors to an index
             url: search-get-started-vector.md
           - text: Query a vector index
             url: vector-search-how-to-query.md
@@ -61,10 +62,10 @@ landingContent:
             url: vector-search-how-to-quantization.md
       - linkListType: quickstart
         links:
-          - text: Run an agentic retrieval pipeline
+          - text: 'Classic RAG'
             url: search-get-started-agentic-retrieval.md
-          - text: Retrieve data using an LLM
-            url: search-get-started-rag.md
+          - text: 'Agentic retrieval'
+            url: search-get-started-agentic-retrieval.md
 
 
 

@@ -7,7 +7,7 @@ ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
+ms.date: 5/25/2025
 ms.reviewer: alexeyo
 #Customer intent: As a developer, I need to know how to get the session ID and transcription ID for speech to text so that I can debug issues with my application.
 ---
@@ -91,11 +91,11 @@ https://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiv
 
 ## Getting Transcription ID for Batch transcription
 
-[Batch transcription API](batch-transcription.md) is a subset of the [Speech to text REST API](rest-speech-to-text.md). 
+[Batch transcription API](batch-transcription.md) is part of the [Speech to text REST API](rest-speech-to-text.md). 
 
-The required Transcription ID is the GUID value contained in the main `self` element of the Response body returned by requests, like [Transcriptions_Create](/rest/api/speechtotext/transcriptions/create).
+The required Transcription ID is the GUID value contained in the main `self` element of the Response body returned by requests, like [Transcriptions - Submit](/rest/api/speechtotext/transcriptions/submit).
 
-The following is and example response body of a [Transcriptions_Create](/rest/api/speechtotext/transcriptions/create) request. GUID value `537216f8-0620-4a10-ae2d-00bdb423b36f` found in the first `self` element is the Transcription ID.
+The following is and example response body of a [Transcriptions - Submit](/rest/api/speechtotext/transcriptions/submit) request. GUID value `537216f8-0620-4a10-ae2d-00bdb423b36f` found in the first `self` element is the Transcription ID.
 
 ```json
 {
@@ -127,4 +127,4 @@ The following is and example response body of a [Transcriptions_Create](/rest/ap
 > Use the same technique to determine different IDs required for debugging issues related to [custom speech](custom-speech-overview.md), like uploading a dataset using [Datasets_Create](/rest/api/speechtotext/datasets/create) request.
 
 > [!NOTE]
-> You can also see all existing transcriptions and their Transcription IDs for a given Speech resource by using [Transcriptions_Get](/rest/api/speechtotext/transcriptions/get) request.
+> You can also see all existing transcriptions and their Transcription IDs for a given Speech resource by using [Transcriptions - Get](/rest/api/speechtotext/transcriptions/get) request.

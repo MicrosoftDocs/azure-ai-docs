@@ -47,9 +47,9 @@ Use this table to determine *availability of neural voices* by region or endpoin
 > [!TIP]
 > [Voices in preview](../language-support.md?tabs=tts) are available in only these three regions: East US, West Europe, and Southeast Asia.
 
-### Custom neural voices
+### Custom voices
 
-If you've created a custom neural voice font, use the endpoint that you've created. You can also use the following endpoints. Replace `{deploymentId}` with the deployment ID for your neural voice model.
+If you created a custom voice, use the endpoint that you created. You can also use the following endpoints. Replace `{deploymentId}` with the deployment ID for your custom voice model.
 
 | Region | Training |Deployment |Endpoint |
 |--------|----------|----------|----------|
@@ -84,7 +84,7 @@ If you've created a custom neural voice font, use the endpoint that you've creat
 | West US 3 | No |Yes| `https://westus3.voice.speech.microsoft.com/cognitiveservices/v1?deploymentId={deploymentId}` |
 
 > [!NOTE]
-> The preceding regions are available for neural voice model hosting and real-time synthesis. Custom neural voice training is only available in some regions. But users can easily copy a neural voice model from these regions to other regions in the preceding list.
+> The preceding regions are available for standard voice model hosting and real-time synthesis. Custom voice training is only available in some regions. But you can easily [copy a custom voice model](../professional-voice-train-voice.md) from these regions to other regions in the preceding list.
 
 ### Long Audio API
 

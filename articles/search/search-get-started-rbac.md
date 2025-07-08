@@ -6,7 +6,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 03/04/2025
+ms.date: 07/02/2025
 ---
 
 # Quickstart: Connect without keys
@@ -154,7 +154,7 @@ You should have a `.rest` or `.http` file, similar to the one described in [Quic
 
 - Check the search service **Settings** > **Keys** options in the Azure portal and confirm the service is configured for **Both"** or **Role-based access control**.
 
-- For the REST client only: Check the token and endpoint specified in your file and make sure there's no surrounding quotes or extra spaces.
+- For the REST client only: Check the token and endpoint specified in your file and make sure there's no surrounding quotes or extra spaces. A 401 invalid token message occurs if the token in the request header includes the `@` symbol. For example, if the variable is `@token`, the reference in the request is simply `{{token}}`.
 
 If all else fails, restart your device to remove any cached tokens, and then repeat the steps in this section, starting with `az login`.
 

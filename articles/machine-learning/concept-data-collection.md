@@ -8,7 +8,7 @@ ms.author: mopeakande
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.reviewer: alehughes
-ms.topic: conceptual 
+ms.topic: concept-article 
 ms.date: 04/15/2024
 ms.custom: devplatv2, event-tier1-build-2023, build-2023
 ---

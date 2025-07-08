@@ -8,7 +8,7 @@ ms.author: larryfr
 ms.reviewer: roastala
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
-ms.date: 05/31/2024
+ms.date: 06/13/2025
 ms.topic: how-to
 ms.custom: UpdateFrequency5, has-adal-ref, subject-rbac-steps, sdkv1
 ---
@@ -46,18 +46,18 @@ All the authentication workflows for your workspace rely on Microsoft Entra ID. 
 
 For more on Microsoft Entra ID, see [What is Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication).
 
-Once you've created the Microsoft Entra accounts, see [Manage access to Azure Machine Learning workspace](../how-to-assign-roles.md) for information on granting them access to the workspace and other operations in Azure Machine Learning.
+Once you create the Microsoft Entra accounts, see [Manage access to Azure Machine Learning workspace](../how-to-assign-roles.md) for information on granting them access to the workspace and other operations in Azure Machine Learning.
 
 ## Configure a service principal
 
 To use a service principal (SP), you must first create the SP. Then grant it access to your workspace. As mentioned earlier, Azure role-based access control (Azure RBAC) is used to control access, so you must also decide what access to grant the SP.
 
 > [!IMPORTANT]
-> When using a service principal, grant it the __minimum access required for the task__ it is used for. For example, you would not grant a service principal owner or contributor access if all it is used for is reading the access token for a web deployment.
+> When using a service principal, grant it the __minimum access required for the task__ it's used for. For example, you wouldn't grant a service principal owner or contributor access if all it's used for is reading the access token for a web deployment.
 >
-> The reason for granting the least access is that a service principal uses a password to authenticate, and the password may be stored as part of an automation script. If the password is leaked, having the minimum access required for a specific tasks minimizes the malicious use of the SP.
+> The reason for granting the least access is that a service principal uses a password to authenticate, and the password might be stored as part of an automation script. If the password is leaked, having the minimum access required for a specific task minimizes the malicious use of the SP.
 > 
-> You should rotate secrets such as the service principal password on a regular basis.
+> You should rotate secrets such as the service principal password regularly.
 
 The easiest way to create an SP and grant access to your workspace is by using the [Azure CLI](/cli/azure/install-azure-cli). To create a service principal and grant it access to your workspace, use the following steps:
 
@@ -70,7 +70,7 @@ The easiest way to create an SP and grant access to your workspace is by using t
     az login
     ```
 
-    If the CLI can open your default browser, it will do so and load a sign-in page. Otherwise, you need to open a browser and follow the instructions on the command line. The instructions involve browsing to [https://aka.ms/devicelogin](https://aka.ms/devicelogin) and entering an authorization code.
+    If the CLI can open your default browser, it does so and loads a sign-in page. Otherwise, you need to open a browser and follow the instructions on the command line. The instructions involve browsing to [https://aka.ms/devicelogin](https://aka.ms/devicelogin) and entering an authorization code.
 
     If you have multiple Azure subscriptions, you can use the `az account set -s <subscription name or ID>` command to set the subscription. For more information, see [Use multiple Azure subscriptions](/cli/azure/manage-azure-subscriptions-azure-cli).
 
@@ -84,7 +84,7 @@ The easiest way to create an SP and grant access to your workspace is by using t
 
     The parameter `--json-auth` is available in Azure CLI versions >= 2.51.0. Versions prior to this use `--sdk-auth`.
 
-    The output will be a JSON similar to the following. Take note of the `clientId`, `clientSecret`, and `tenantId` fields, as you'll need them for other steps in this article.
+    The output is a JSON similar to the following. Take note of the `clientId`, `clientSecret`, and `tenantId` fields, as you need them for other steps in this article.
 
     ```json
     {
@@ -127,7 +127,7 @@ The easiest way to create an SP and grant access to your workspace is by using t
     * [How to assign roles in the CLI](/azure/role-based-access-control/role-assignments-cli)
 
     > [!IMPORTANT]
-    > Owner access allows the service principal to do virtually any operation in your workspace. It is used in this document to demonstrate how to grant access; in a production environment Microsoft recommends granting the service principal the minimum access needed to perform the role you intend it for. For information on creating a custom role with the access needed for your scenario, see [Manage access to Azure Machine Learning workspace](../how-to-assign-roles.md).
+    > Owner access allows the service principal to do virtually any operation in your workspace. It's used in this document to demonstrate how to grant access; in a production environment Microsoft recommends granting the service principal the minimum access needed to perform the role you intend it for. For information on creating a custom role with the access needed for your scenario, see [Manage access to Azure Machine Learning workspace](../how-to-assign-roles.md).
 
 
 ## Configure a managed identity
@@ -159,11 +159,11 @@ For more information, see [Set up managed identity for compute cluster](../how-t
 ## Use interactive authentication
 
 > [!IMPORTANT]
-> Interactive authentication uses your browser, and requires cookies (including 3rd party cookies). If you have disabled cookies, you may receive an error such as "we couldn't sign you in." This error may also occur if you have enabled [Microsoft Entra multifactor authentication](/azure/active-directory/authentication/concept-mfa-howitworks).
+> Interactive authentication uses your browser, and requires cookies (including 3rd party cookies). If you disabled cookies, you might receive an error such as "we couldn't sign you in." This error might also occur if you enabled [Microsoft Entra multifactor authentication](/azure/active-directory/authentication/concept-mfa-howitworks).
 
-Most examples in the documentation and samples use interactive authentication. For example, when using the SDK there are two function calls that will automatically prompt you with a UI-based authentication flow:
+Most examples in the documentation and samples use interactive authentication. For example, when using the SDK there are two function calls that automatically prompts you with a UI-based authentication flow:
 
-* Calling the `from_config()` function will issue the prompt.
+* Calling the `from_config()` function issues the prompt.
 
     ```python
     from azureml.core import Workspace
@@ -172,7 +172,7 @@ Most examples in the documentation and samples use interactive authentication. F
 
     The `from_config()` function looks for a JSON file containing your workspace connection information.
 
-* Using the `Workspace` constructor to provide subscription, resource group, and workspace information, will also prompt for interactive authentication.
+* Using the `Workspace` constructor to provide subscription, resource group, and workspace information, also prompts for interactive authentication.
 
     ```python
     ws = Workspace(subscription_id="your-sub-id",
@@ -182,17 +182,17 @@ Most examples in the documentation and samples use interactive authentication. F
     ```
 
 > [!TIP]
-> If you have access to multiple tenants, you might need to import the class and explicitly define what tenant you are targeting. Calling the constructor for `InteractiveLoginAuthentication` will also prompt you to login similar to the calls above.
+> If you have access to multiple tenants, you might need to import the class and explicitly define what tenant you're targeting. Calling the constructor for `InteractiveLoginAuthentication` also prompts you to login similar to the previous examples.
 >
 > ```python
 > from azureml.core.authentication import InteractiveLoginAuthentication
 > interactive_auth = InteractiveLoginAuthentication(tenant_id="your-tenant-id")
 > ```
 
-When using the Azure CLI, the `az login` command is used to authenticate the CLI session. For more information, see [Get started with Azure CLI](/cli/azure/get-started-with-azure-cli).
+When you use the Azure CLI, the `az login` command is used to authenticate the CLI session. For more information, see [Get started with Azure CLI](/cli/azure/get-started-with-azure-cli).
 
 > [!TIP]
-> If you are using the SDK from an environment where you have previously authenticated interactively using the Azure CLI, you can use the `AzureCliAuthentication` class to authenticate to the workspace using the credentials cached by the CLI:
+> If you're using the SDK from an environment where you authenticated interactively using the Azure CLI, you can use the `AzureCliAuthentication` class to authenticate to the workspace using the credentials cached by the CLI:
 >
 > ```python
 > from azureml.core.authentication import AzureCliAuthentication
@@ -208,7 +208,7 @@ When using the Azure CLI, the `az login` command is used to authenticate the CLI
 
 ## Use service principal authentication
 
-To authenticate to your workspace from the SDK, using a service principal, use the `ServicePrincipalAuthentication` class constructor. Use the values you got when creating the service provider as the parameters. The `tenant_id` parameter maps to `tenantId` from above, `service_principal_id` maps to `clientId`, and `service_principal_password` maps to `clientSecret`.
+To authenticate to your workspace from the SDK, using a service principal, use the `ServicePrincipalAuthentication` class constructor. Use the values you got when creating the service provider as the parameters. The `tenant_id` parameter maps to `tenantId` from earlier, `service_principal_id` maps to `clientId`, and `service_principal_password` maps to `clientSecret`.
 
 ```python
 from azureml.core.authentication import ServicePrincipalAuthentication
@@ -218,7 +218,7 @@ sp = ServicePrincipalAuthentication(tenant_id="your-tenant-id", # tenantID
                                     service_principal_password="your-client-secret") # clientSecret
 ```
 
-The `sp` variable now holds an authentication object that you use directly in the SDK. In general, it's a good idea to store the ids/secrets used above in environment variables as shown in the following code. Storing in environment variables prevents the information from being accidentally checked into a GitHub repo.
+The `sp` variable now holds an authentication object that you use directly in the SDK. In general, it's a good idea to store the IDs/secrets used previously in environment variables as shown in the following code. Storing in environment variables prevents the information from being accidentally checked into a GitHub repo.
 
 ```python
 import os

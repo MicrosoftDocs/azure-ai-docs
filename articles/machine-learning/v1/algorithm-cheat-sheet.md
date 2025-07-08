@@ -5,7 +5,7 @@ description: A printable Machine Learning Algorithm Cheat Sheet helps you choose
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: training
-ms.topic: conceptual
+ms.topic: concept-article
 ms.reviewer: None
 author: lgayhardt
 ms.author: lagayhar

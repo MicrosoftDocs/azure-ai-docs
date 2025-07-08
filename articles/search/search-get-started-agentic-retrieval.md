@@ -6,29 +6,29 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 05/08/2025
+ms.date: 6/24/2025
 zone_pivot_groups: search-get-started-agentic-retrieval
 ---
 
 # Quickstart: Run agentic retrieval in Azure AI Search
 
-::: zone pivot="python"
+::: zone pivot="programming-language-csharp"
+
+[!INCLUDE [C# quickstart](includes/quickstarts/agentic-retrieval-csharp.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-python"
 
 [!INCLUDE [Python quickstart](includes/quickstarts/agentic-retrieval-python.md)]
 
 ::: zone-end
 
-::: zone pivot="rest"
+::: zone pivot="programming-language-rest"
 
 [!INCLUDE [REST quickstart](includes/quickstarts/agentic-retrieval-rest.md)]
 
 ::: zone-end
-
-## Clean up resources
-
-When working in your own subscription, it's a good idea to finish a project by determining whether you still need the resources you created. Resources that are left running can cost you money. You can delete resources individually, or you can delete the resource group to delete the entire set of resources.
-
-In the Azure portal, you can find and manage resources by selecting **All resources** or **Resource groups** from the left pane.
 
 ## Related content
 

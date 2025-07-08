@@ -2,12 +2,12 @@
 title: How to perform language detection
 titleSuffix: Azure AI services
 description: This article will show you how to detect the language of written text using language detection.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/21/2024
-ms.author: jboback
+ms.date: 06/04/2025
+ms.author: lajanuar
 ms.custom: language-service-language-detection
 ---
 
@@ -49,7 +49,7 @@ Analysis is performed upon receipt of the request. Using the language detection 
 
 When you get results from language detection, you can stream the results to an application or save the output to a file on the local system.
 
-Language detection will return one predominant language for each document you submit, along with it's [ISO 639-1](https://www.iso.org/standard/22109.html) name, a human-readable name, a confidence score, script name and script code according to the [ISO 15924 standard](https://wikipedia.org/wiki/ISO_15924). A positive score of 1 indicates the highest possible confidence level of the analysis.
+Language detection will return one predominant language for each document you submit, along with it's [ISO 639-1](https://www.iso.org/standard/22109.html) name, a human-readable name, a confidence score, script name, and script code according to the [ISO 15924 standard](https://wikipedia.org/wiki/ISO_15924). A positive score of 1 indicates the highest possible confidence level of the analysis.
 
 
 ### Ambiguous content

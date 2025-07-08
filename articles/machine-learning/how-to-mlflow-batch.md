@@ -235,6 +235,8 @@ To test your endpoint, you use a sample of unlabeled data located in this reposi
    # [Python](#tab/python)
 
    [!INCLUDE [batch-endpoint-invoke-inputs-sdk](includes/batch-endpoint-invoke-inputs-sdk.md)]
+
+   Refer to this notebook for the full code: [Heart Classifier MLflow Batch Notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/endpoints/batch/deploy-models/heart-classifier-mlflow/mlflow-for-batch-tabular.ipynb). 
    
    [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/heart-classifier-mlflow/mlflow-for-batch-tabular.ipynb?name=start_batch_scoring_job)]
 
@@ -279,6 +281,8 @@ To download the predictions, use the following command:
 :::code language="azurecli" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/heart-classifier-mlflow/deploy-and-run.sh" ID="download_outputs" :::
 
 # [Python](#tab/python)
+
+Refer to this notebook for the full code: [Heart Classifier MLflow Batch Notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/endpoints/batch/deploy-models/heart-classifier-mlflow/mlflow-for-batch-tabular.ipynb). 
 
 To download the predictions, use the following code:
 

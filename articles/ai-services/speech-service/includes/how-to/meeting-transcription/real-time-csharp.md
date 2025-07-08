@@ -68,7 +68,7 @@ internal class VoiceSignatureData
 
 private static async Task<string> GetVoiceSignatureString()
 {
-    var subscriptionKey = "your-subscription-key";
+    var subscriptionKey = "your-speech-resource-key";
     var region = "your-region";
 
     byte[] fileBytes = File.ReadAllBytes("path-to-voice-sample.wav");
@@ -127,7 +127,7 @@ class TranscribeMeeting
 
     public static async Task TranscribeMeetingsAsync(string voiceSignatureStringUser1, string voiceSignatureStringUser2)
     {
-        var subscriptionKey = "your-subscription-key";
+        var subscriptionKey = "your-speech-resource-key";
         var region = "your-region";
         var filepath = "audio-file-to-transcribe.wav";
 

@@ -7,15 +7,15 @@ ms.author: eur
 ---
 
 > [!IMPORTANT]
-> You can use a <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices" title="Create an AI Foundry resource"  target="_blank">multi-service</a> resource or separate <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics"  title="Create a Language resource"  target="_blank">Language</a> and <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices"  title="Create an AI Foundry resource for Speech"  target="_blank">Speech</a> resources. In either case, the `--languageKey` and `--languageEndpoint` values must correspond to a resource that's in one of the regions supported by the [conversation summarization API](https://aka.ms/convsumregions): `eastus`, `northeurope`, and `uksouth`.  
+> You can use a <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry" title="Create an AI Foundry resource"  target="_blank">multi-service</a> resource or separate <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics"  title="Create a Language resource"  target="_blank">Language</a> and <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry"  title="Create an AI Foundry resource for Speech"  target="_blank">Speech</a> resources. In either case, the `--languageKey` and `--languageEndpoint` values must correspond to a resource that's in one of the regions supported by the [conversation summarization API](https://aka.ms/convsumregions): `eastus`, `northeurope`, and `uksouth`.  
 
 Connection options include:
 
-- `--speechKey KEY`: Your <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices" title="AI Foundry"  target="_blank">AI Foundry</a> resource key. Required for audio transcriptions with the `--input` from URL option.
-- `--speechRegion REGION`: Your <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices" title="AI Foundry"  target="_blank">AI Foundry</a> resource region. Required for audio transcriptions with the `--input` from URL option. Examples: `eastus`, `northeurope`
+- `--speechKey KEY`: Your <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry" title="AI Foundry"  target="_blank">AI Foundry</a> resource key. Required for audio transcriptions with the `--input` from URL option.
+- `--speechRegion REGION`: Your <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry" title="AI Foundry"  target="_blank">AI Foundry</a> resource region. Required for audio transcriptions with the `--input` from URL option. Examples: `eastus`, `northeurope`
 
-- `--languageKey KEY`: Your <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices" title="AI Foundry"  target="_blank">AI Foundry</a> resource key. Required.
-- `--languageEndpoint ENDPOINT`: Your <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices" title="AI Foundry"  target="_blank">AI Foundry</a> resource endpoint. Required. Example: `https://YourResourceName.cognitiveservices.azure.com`
+- `--languageKey KEY`: Your <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry" title="AI Foundry"  target="_blank">AI Foundry</a> resource key. Required.
+- `--languageEndpoint ENDPOINT`: Your <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry" title="AI Foundry"  target="_blank">AI Foundry</a> resource endpoint. Required. Example: `https://YourResourceName.cognitiveservices.azure.com`
 
 Input options include:
 

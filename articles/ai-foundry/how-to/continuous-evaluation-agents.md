@@ -27,7 +27,7 @@ Continuous evaluation for Agents provides near real-time observability and monit
 
 ### Steps to connect Application Insights
 
-1. Navigate to your project in [Azure AI Foundry](https://ai.azure.com).
+1. Navigate to your project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 2. Select **Monitoring** on the left-hand menu and go to **Application Analytics**.
 3. Connect your Application Insights resource to the project.
 

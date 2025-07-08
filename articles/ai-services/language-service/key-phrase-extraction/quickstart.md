@@ -2,12 +2,12 @@
 title: "Quickstart: Use the Key Phrase Extraction client library"
 titleSuffix: Azure AI services
 description: Use this quickstart to start using the Key Phrase Extraction API.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
 ms.date: 02/17/2025
-ms.author: jboback
+ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
 ms.custom: language-service-key-phrase, mode-api, devx-track-extended-java, devx-track-js, devx-track-python

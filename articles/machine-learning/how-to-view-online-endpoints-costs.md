@@ -9,7 +9,7 @@ ms.author: mopeakande
 ms.reviewer: sehan
 ms.subservice: core
 ms.date: 08/15/2024
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom: how-to, deploy, devplatv2
 #customer intent: As an analyst, I need to view the costs associated with the machine learning endpoints for a workspace.
 ---

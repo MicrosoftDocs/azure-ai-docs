@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: tutorial
-ms.date: 03/11/2025
+ms.date: 06/11/2025
 ---
 
 # Tutorial: Maximize relevance (RAG in Azure AI Search)
@@ -34,9 +34,9 @@ This tutorial updates the search index created by the [indexing pipeline](tutori
 
 - [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and the [Jupyter package](https://pypi.org/project/jupyter/).
 
-- [Azure AI Search](search-create-service-portal.md), Basic tier or higher for managed identity and semantic ranking, in the same region as Azure OpenAI and Azure AI Services.
+- [Azure AI Search](search-create-service-portal.md), Basic tier or higher for managed identity and semantic ranking.
 
-- [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource), with a deployment of text-embedding-002 and gpt-35-turbo, in the same region as Azure AI Search.
+- [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource), with a deployment of text-embedding-002 and gpt-35-turbo.
 
 ## Download the sample
 

@@ -1,10 +1,10 @@
----
+﻿---
 title: Azure AI Foundry feature availability across clouds regions
 titleSuffix: Azure AI Foundry
 description: This article lists Azure AI Foundry feature availability across clouds regions.
 manager: scottpolly
 ms.service: azure-ai-foundry
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 04/28/2025
 ms.reviewer: deeikele
 ms.author: sgilley
@@ -14,7 +14,7 @@ ms.custom: references_regions, build-2024
 
 # Azure AI Foundry feature availability across clouds regions
 
-[Azure AI Foundry](https://ai.azure.com) brings together various Azure AI capabilities that previously were only available as standalone Azure services. While we strive to make all features available in all regions where Azure AI Foundry is supported at the same time, feature availability may vary by region. In this article, you'll learn what Azure AI Foundry features are available across cloud regions.  
+[Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) brings together various Azure AI capabilities that previously were only available as standalone Azure services. While we strive to make all features available in all regions where Azure AI Foundry is supported at the same time, feature availability may vary by region. In this article, you'll learn what Azure AI Foundry features are available across cloud regions.  
 
 ## Azure AI Foundry projects
 
@@ -74,7 +74,7 @@ Available to US government entities and their partners only. See more informatio
 - **Available pricing tiers:**
   - Standard. See more pricing details [here](https://azure.microsoft.com/pricing/details/ai-foundry/)
 - **Supported features:**
-  - [Azure OpenAI in Azure AI Foundry Modelss](../../ai-services/openai/azure-government.md)
+  - [Azure OpenAI in Azure AI Foundry Modelss](../openai/azure-government.md)
   - Azure AI Services
     - [Speech](../../ai-services/speech-service/regions.md)
     - Speech playground (preview)

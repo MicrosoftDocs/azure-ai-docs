@@ -5,7 +5,7 @@ description: Learn how to monitor inference server logs of Kubernetes online end
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.topic: conceptual
+ms.topic: concept-article
 author: Blackmist
 ms.author: larryfr
 ms.reviewer: zetia

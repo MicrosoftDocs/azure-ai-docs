@@ -2,13 +2,16 @@
 title: Textual similarity evaluators for generative AI
 titleSuffix: Azure AI Foundry
 description: Learn about textual similarity evaluators for generative AI, including semantic similarity, F1 score, BLEU, GLEU, ROUGE, and METEOR metrics.
+author: lgayhardt
+ms.author: lagayhar
 manager: scottpolly
+ms.reviewer: changliu2
+ms.date: 05/19/2025
 ms.service: azure-ai-foundry
 ms.topic: reference
-ms.date: 05/19/2025
-ms.reviewer: changliu2
-ms.author: lagayhar
-author: lgayhardt
+ms.custom:
+  - build-aifnd
+  - build-2025
 ---
 
 # Textual similarity evaluators
@@ -55,7 +58,7 @@ similarity(
 
 ### Similarity output
 
-The numerical score on a likert scale (integer 1 to 5) and a higher score means a higher degree of similarity. Given a numerical threshold (default to 3), we also output "pass" if the score <= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
+The numerical score on a likert scale (integer 1 to 5) and a higher score means a higher degree of similarity. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
 
 ```python
 {
@@ -84,7 +87,7 @@ f1_score(
 
 ### F1 score output
 
-The numerical score is a 0-1 float and a higher score is better. Given a numerical threshold (default to 0.5), we also output "pass" if the score <= threshold, or "fail" otherwise.
+The numerical score is a 0-1 float and a higher score is better. Given a numerical threshold (default to 0.5), we also output "pass" if the score >= threshold, or "fail" otherwise.
 
 ```python
 {
@@ -112,7 +115,7 @@ bleu_score(
 
 ### BLEU output
 
-The numerical score is a 0-1 float and a higher score is better. Given a numerical threshold (default to 0.5), we also output "pass" if the score <= threshold, or "fail" otherwise.
+The numerical score is a 0-1 float and a higher score is better. Given a numerical threshold (default to 0.5), we also output "pass" if the score >= threshold, or "fail" otherwise.
 
 ```python
 {
@@ -141,7 +144,7 @@ gleu_score(
 
 ### GLEU score output
 
-The numerical score is a 0-1 float and a higher score is better. Given a numerical threshold (default to 0.5), we also output "pass" if the score <= threshold, or "fail" otherwise.
+The numerical score is a 0-1 float and a higher score is better. Given a numerical threshold (default to 0.5), we also output "pass" if the score >= threshold, or "fail" otherwise.
 
 ```python
 {
@@ -170,7 +173,7 @@ rouge(
 
 ### ROUGE score output
 
-The numerical score is a 0-1 float and a higher score is better. Given a numerical threshold (default to 0.5), we also output "pass" if the score <= threshold, or "fail" otherwise.
+The numerical score is a 0-1 float and a higher score is better. Given a numerical threshold (default to 0.5), we also output "pass" if the score >= threshold, or "fail" otherwise.
 
 ```python
 {
@@ -205,7 +208,7 @@ meteor_score(
 
 ### METEOR score output
 
-The numerical score is a 0-1 float and a higher score is better. Given a numerical threshold (default to 0.5), we also output "pass" if the score <= threshold, or "fail" otherwise.
+The numerical score is a 0-1 float and a higher score is better. Given a numerical threshold (default to 0.5), we also output "pass" if the score >= threshold, or "fail" otherwise.
 
 ```python
 {

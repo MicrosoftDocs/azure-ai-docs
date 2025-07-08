@@ -7,20 +7,19 @@ ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 05/09/2025
+ms.date: 07/08/2025
 ms.reviewer: meerakurup 
-ms.author: larryfr
-author: Blackmist
+ms.author: sgilley
+author: sdgilley
 # Customer intent: As an administrator, I want to create a secure hub and project with a managed virtual network so that I can secure access to the Azure AI Foundry hub and project resources.
 
 ---
 
 # How to create a secure Azure AI Foundry hub and project with a managed virtual network
 
-> [!NOTE]
-> The information provided in this article is specific to a **[!INCLUDE [hub](../includes/hub-project-name.md)]**, and doesn't apply for a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. For more information, see [Types of projects](../what-is-azure-ai-foundry.md#project-types).
+[!INCLUDE [hub-only-alt](../includes/uses-hub-only-alt.md)]
 
-You can secure your [Azure AI Foundry](https://ai.azure.com) hub, projects, and managed resources in a managed virtual network. With a managed virtual network, inbound access is only allowed through a private endpoint for your hub. Outbound access can be configured to allow either all outbound access, or only allowed outbound that you specify. For more information, see [Managed virtual network](configure-managed-network.md).
+You can secure your [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) hub, projects, and managed resources in a managed virtual network. With a managed virtual network, inbound access is only allowed through a private endpoint for your hub. Outbound access can be configured to allow either all outbound access, or only allowed outbound that you specify. For more information, see [Managed virtual network](configure-managed-network.md).
 
 > [!IMPORTANT]
 > The managed virtual network doesn't provide inbound connectivity for your clients. For more information, see the [Connect to the hub](#connect-to-the-hub) section. 
@@ -32,7 +31,7 @@ You can secure your [Azure AI Foundry](https://ai.azure.com) hub, projects, and 
 
 ## Create a hub
 
-1. From the Azure portal, search for `Azure AI Foundry`. From the left menu, select **AI Hubs**, and then select **+ Create** and **Hub**.
+1. From the [Azure portal](https://portal.azure.com), search for `Azure AI Foundry`. From the left menu, select **AI Hubs**, and then select **+ Create** and **Hub**.
 
     :::image type="content" source="../media/how-to/hubs/create-hub.png" alt-text="Screenshot of the Azure AI Foundry portal." lightbox="../media/how-to/hubs/create-hub.png":::
 

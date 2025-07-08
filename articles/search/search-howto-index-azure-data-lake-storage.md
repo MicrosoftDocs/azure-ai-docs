@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 12/10/2024
+ms.date: 05/29/2025
 ---
 
 # Index data from Azure Data Lake Storage Gen2
@@ -33,7 +33,7 @@ For a code sample in C#, see [Index Data Lake Gen2 using Microsoft Entra ID](htt
 
 + Read permissions on Azure Storage. A "full access" connection string includes a key that grants access to the content, but if you're using Azure roles instead, make sure the [search service managed identity](search-howto-managed-identities-data-sources.md) has **Storage Blob Data Reader** permissions.
 
-+ Use a [REST client](search-get-started-rest.md) to formulate REST calls similar to the ones shown in this article.
++ Use a [REST client](search-get-started-text.md) to formulate REST calls similar to the ones shown in this article.
 
 <a name="SupportedFormats"></a>
 
