@@ -78,7 +78,7 @@ def fetch_weather(location: str) -> str:
     :rtype: str
     """
     # In a real-world scenario, you'd integrate with a weather API.
-    # Here, we'll mock the response.
+    # In the following code snippet, we mock the response.
     mock_weather_data = {"Seattle": "Sunny, 25°C", "London": "Cloudy, 18°C", "Tokyo": "Rainy, 22°C"}
     weather = mock_weather_data.get(location, "Weather data not available for this location.")
     weather_json = json.dumps({"weather": weather})
@@ -89,7 +89,7 @@ user_functions: Set[Callable[..., Any]] = {
     fetch_weather,
 }
 
-# Add tools that agent will use. 
+# Add tools that the agent will use. 
 functions = FunctionTool(user_functions)
 
 toolset = ToolSet()
@@ -162,9 +162,9 @@ converted_data = converter.convert(thread_id, run_id)
 And that's it! You don't need to read the input requirements for each evaluator and do any work to parse them. You need only to select your evaluator and call the evaluator on this single run. For model choice, we recommend a strong reasoning model like `o3-mini` and later models. We set up a list of quality and safety evaluators in `quality_evaluators` and `safety_evaluators` and reference them in [Evaluating multiples agent runs or a thread](#evaluate-multiple-agent-runs-or-threads).
 
 ```python
-# specific to agentic workflows
+# This is specific to agentic workflows.
 from azure.ai.evaluation import IntentResolutionEvaluator, TaskAdherenceEvaluator, ToolCallAccuracyEvaluator 
-# other quality as well as risk and safety metrics
+# Other quality, risk, and safety metrics:
 from azure.ai.evaluation import RelevanceEvaluator, CoherenceEvaluator, CodeVulnerabilityEvaluator, ContentSafetyEvaluator, IndirectAttackEvaluator, FluencyEvaluator
 from azure.ai.projects.models import ConnectionType
 from azure.identity import DefaultAzureCredential
@@ -196,7 +196,7 @@ azure_ai_project = os.environ.get("AZURE_AI_PROJECT")
 
 safety_evaluators = {evaluator.__name__: evaluator(azure_ai_project=azure_ai_project, credential=DefaultAzureCredential()) for evaluator in[ContentSafetyEvaluator, IndirectAttackEvaluator, CodeVulnerabilityEvaluator]}
 
-# reference the quality and safety evaluator list above
+# Reference the quality and safety evaluator list above.
 quality_and_safety_evaluators = {**quality_evaluators, **safety_evaluators}
 
 for name, evaluator in quality_and_safety_evaluators.items():
@@ -268,10 +268,10 @@ To evaluate multiple agent runs or threads, we recommend using the batch `evalua
 import json
 from azure.ai.evaluation import AIAgentConverter
 
-# Initialize the converter
+# Initialize the converter.
 converter = AIAgentConverter(project_client)
 
-# Specify a file path to save agent output (which is evaluation input data)
+# Specify a file path to save the agent output (evaluation input data) to.
 filename = os.path.join(os.getcwd(), "evaluation_input_data.jsonl")
 
 evaluation_data = converter.prepare_evaluation_data(thread_ids=thread_id, filename=filename) 
@@ -287,23 +287,23 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-# Batch evaluation API (local)
+# Batch evaluation API (local):
 from azure.ai.evaluation import evaluate
 
 response = evaluate(
     data=filename,
     evaluation_name="agent demo - batch run",
     evaluators=quality_and_safety_evaluators,
-    # optionally, log your results to your Azure AI Foundry project for rich visualization 
+    # Optionally, log your results to your Azure AI Foundry project for rich visualization.
     azure_ai_project={
         "subscription_id": os.environ["AZURE_SUBSCRIPTION_ID"],
         "project_name": os.environ["PROJECT_NAME"],
         "resource_group_name": os.environ["RESOURCE_GROUP_NAME"],
     }
 )
-# Inspect the average scores at a high-level
+# Inspect the average scores at a high level.
 print(response["metrics"])
-# Use the URL to inspect the results on the UI
+# Use the URL to inspect the results on the UI.
 print(f'AI Foundary URL: {response.get("studio_url")}')
 ```
 
@@ -358,8 +358,8 @@ model_config = AzureOpenAIModelConfiguration(
  
 intent_resolution_evaluator = IntentResolutionEvaluator(model_config)
 
-# Evaluating query and response as strings
-# A positive example. Intent is identified and understood and the response correctly resolves user intent
+# Evaluate the query and response as strings.
+# The following is a positive example. Intent is identified and understood and the response correctly resolves user intent.
 result = intent_resolution_evaluator(
     query="What are the opening hours of the Eiffel Tower?",
     response="Opening hours of the Eiffel Tower are 9:00 AM to 11:00 PM.",
@@ -455,13 +455,13 @@ In agent message format, `query` and `response` are a list of OpenAI-style messa
 ```python
 import json
 
-# user asked a question
+# The user asked a question.
 query = [
     {
         "role": "system",
         "content": "You are a friendly and helpful customer service agent."
     },
-    # past interactions omitted 
+    # Past interactions are omitted. 
     # ...
     {
         "createdAt": "2025-03-14T06:14:20Z",
@@ -474,7 +474,7 @@ query = [
         ]
     }
 ]
-# the agent emits multiple messages to fulfill the request
+# The agent emits multiple messages to fulfill the request.
 response = [
     {
         "createdAt": "2025-03-14T06:14:30Z",
@@ -502,9 +502,9 @@ response = [
             }
         ]
     },
-    # many more messages omitted 
+    # Many more messages are omitted. 
     # ...
-    # here is the agent's final response 
+    # Here is the agent's final response:
     {
         "createdAt": "2025-03-14T06:15:05Z",
         "run_id": "0",
@@ -518,7 +518,7 @@ response = [
     }
 ]
 
-# An example of tool definitions available to the agent 
+# An example of tool definitions available to the agent:
 tool_definitions = [
     {
         "name": "get_orders",
@@ -533,14 +533,14 @@ tool_definitions = [
             }
         }
     },
-    # other tool definitions omitted 
+    # Other tool definitions are omitted. 
     # ...
 ]
 
 result = intent_resolution_evaluator(
     query=query,
     response=response,
-    # optionally provide the tool definitions
+    # Optionally, provide the tool definitions.
     tool_definitions=tool_definitions 
 )
 print(json.dumps(result, indent=4))
