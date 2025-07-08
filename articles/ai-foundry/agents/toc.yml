@@ -122,6 +122,8 @@ items:
           href: ../../ai-services/openai/how-to/content-filters.md?context=/azure/ai-services/agents/context/context
         - name: Use virtual networks
           href: how-to/virtual-networks.md
+        - name: Capability hosts
+          href: concepts/capability-hosts.md
     - name: Multi-agent workflows
       items:
         - name: Connected agents
