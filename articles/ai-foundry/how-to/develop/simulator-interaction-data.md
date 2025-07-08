@@ -58,7 +58,7 @@ from azure.identity import DefaultAzureCredential
 import wikipedia
 import os
 from typing import List, Dict, Any, Optional
-# Prepare the text to send to the simulator
+# Prepare the text to send to the simulator.
 wiki_search_term = "Leonardo da vinci"
 wiki_title = wikipedia.search(wiki_search_term)[0]
 wiki_page = wikipedia.page(wiki_title)
@@ -126,7 +126,7 @@ async def callback(
     # Get the last message.
     latest_message = messages_list[-1]
     query = latest_message["content"]
-    context = latest_message.get("context", None) # looks for context, default None
+    context = latest_message.get("context", None) # Looks for context. The default is None.
     # Call your endpoint or AI application here:
     current_dir = os.path.dirname(__file__)
     prompty_path = os.path.join(current_dir, "application.prompty")
@@ -169,7 +169,7 @@ With the simulator initialized, you can now run it to generate synthetic convers
     outputs = await simulator(
         target=callback,
         text=text,
-        num_queries=1,  # Minimal number of queries
+        num_queries=1,  # Minimal number of queries.
     )
     
 ```
@@ -199,7 +199,7 @@ outputs = await simulator(
     num_queries=4,
     max_conversation_turns=2,
     tasks=tasks,
-    query_response_generating_prompty=query_response_prompty_override # Optional, use your own prompt to control how query-response pairs are generated from the input text to be used in your simulator.
+    query_response_generating_prompty=query_response_prompty_override # Optional: Use your own prompt to control how query-response pairs are generated from the input text to be used in your simulator.
 )
  
 for output in outputs:
@@ -220,9 +220,9 @@ user_simulator_prompty_kwargs = {
 outputs = await simulator(
     target=callback,
     text=text,
-    num_queries=1,  # Minimal number of queries
-    user_simulator_prompty="user_simulating_application.prompty", # A prompty which accepts all the following kwargs can be passed to override default user behaviour.
-    user_simulator_prompty_kwargs=user_simulator_prompty_kwargs # Uses a dictionary to override default model parameters such as `temperature` and `top_p`.
+    num_queries=1,  # Minimal number of queries.
+    user_simulator_prompty="user_simulating_application.prompty", # A prompty that accepts all the following kwargs can be passed to override the default user behavior.
+    user_simulator_prompty_kwargs=user_simulator_prompty_kwargs # It uses a dictionary to override default model parameters such as `temperature` and `top_p`.
 ) 
 ```
 
@@ -295,7 +295,7 @@ eval_output = evaluate(
         "groundedness": groundedness_evaluator
     },
     output_path="groundedness_eval_output.json",
-    azure_ai_project=project_scope # Optional for uploading to your Azure AI Project
+    azure_ai_project=project_scope # This is an optional step used for uploading to your Azure AI Project.
 )
 ```
 
@@ -339,7 +339,7 @@ async def callback(
     if 'file_content' in messages["template_parameters"]:
         query += messages["template_parameters"]['file_content']
     
-    # Call your own endpoint and pass your query as input. Make sure to handle the error responses of function_call_to_your_endpoint.
+    # Call your own endpoint and pass your query as input. Make sure to handle the error responses of `function_call_to_your_endpoint`.
     response = await function_call_to_your_endpoint(query) 
     
     # Format responses in OpenAI message protocol:
@@ -368,9 +368,9 @@ scenario = AdversarialScenario.ADVERSARIAL_QA
 adversarial_simulator = AdversarialSimulator(azure_ai_project=azure_ai_project, credential=credential)
 
 outputs = await adversarial_simulator(
-        scenario=scenario, # required adversarial scenario to simulate
-        target=callback, # callback function to simulate against
-        max_conversation_turns=1, #optional, applicable only to conversation scenario
+        scenario=scenario, # Required: Adversarial scenario to simulate.
+        target=callback, # Callback function to simulate against.
+        max_conversation_turns=1, # Optional: Applicable only to the conversation scenario.
         max_simulation_results=3, #optional
     )
 
@@ -526,9 +526,9 @@ Usage example:
 from azure.ai.evaluation.simulator import SupportedLanguages
 
 outputs = await simulator(
-        scenario=scenario, # required, adversarial scenario to simulate
-        target=callback, # required, callback function to simulate against
-        language=SupportedLanguages.Spanish # optional, default english
+        scenario=scenario, # Required: Adversarial scenario to simulate.
+        target=callback, # Required: Callback function to simulate against.
+        language=SupportedLanguages.Spanish # Optional: The default is English.
     )
 ```
 
@@ -538,9 +538,9 @@ By default, the `AdversarialSimulator` class randomizes interactions in every si
 
 ```python
 outputs = await simulator(
-        scenario=scenario, # required, adversarial scenario to simulate
-        target=callback, # required, callback function to simulate against
-        randomization_seed=1 # optional
+        scenario=scenario, # Required: Adversarial scenario to simulate.
+        target=callback, # Required: Callback function to simulate against.
+        randomization_seed=1 # Optional.
     )
 ```
 
