@@ -17,9 +17,9 @@ GPT-4o, GPT-4o-mini, and GPT-4 are our most advanced models that can be fine-tun
 
 - Evaluations are conducted in dedicated, customer specific, private workspaces;
 - Evaluation endpoints are in the same geography as the Azure OpenAI resource;
-- Training data is not stored in connection with performing evaluations; only the final model assessment (deployable or not deployable) is persisted; and
+- Training data isn't stored in connection with performing evaluations; only the final model assessment (deployable or not deployable) is persisted; and
 
-GPT-4o, GPT-4o-mini, and GPT-4 fine-tuned model evaluation filters are set to predefined thresholds and cannot be modified by customers; they aren't tied to any custom content filtering configuration you might have created.
+GPT-4o, GPT-4o-mini, and GPT-4 fine-tuned model evaluation filters are set to predefined thresholds and can't be modified by customers; they aren't tied to any custom content filtering configuration you might have created.
 
 ## Data evaluation
 
@@ -51,8 +51,9 @@ This model is unable to be deployed. Model evaluation identified that this fine 
 
 As with data evaluation, the model is evaluated automatically within your fine-tuning job as part of providing the fine-tuning capability. Only the resulting assessment (deployable or not deployable) is logged by the service. If deployment of the fine-tuned model fails due to the detection of harmful content in model outputs, you won't be charged for the training run.
 
-
 ## Next steps
+
+- To modify content safety for fine-tuning refer to terms listed in the [form](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMlBQNkZMR0lFRldORTdVQzQ0TEI5Q1ExOSQlQCN0PWcu)
 
 - Explore the fine-tuning capabilities in the [Azure OpenAI fine-tuning tutorial](../tutorials/fine-tune.md).
 - Review fine-tuning [model regional availability](../concepts/models.md#fine-tuning-models)
