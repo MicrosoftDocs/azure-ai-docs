@@ -24,21 +24,21 @@ Text translation documentation contains the following article types:
 
 ### [Latest preview version](#tab/linux)
 
-* [**Languages**](reference/preview/get-languages.md). Returns a list of languages supported by **Translate** and **Transliterate. This request doesn't require authentication; just copy and paste the following `GET` request into your preferred REST API tool or browser:
+### [**Languages**](reference/preview/get-languages.md). Returns a list of languages supported by **Translate** and **Transliterate. This request doesn't require authentication; just copy and paste the following `GET` request into your preferred REST API tool or browser:
 
  ```bash
      https://api.cognitive.microsofttranslator.com/languages?api-version=2025-05-01-preview
 
  ```
 
-* [**Translate**](reference/preview/translate-api.md. Renders single source-language text to multiple target-language texts with a single `POST` request:
+### [**Translate**](reference/preview/translate-api.md). Renders single source-language text to multiple target-language texts with a single `POST` request:
 
  ```bash
     https://api.cognitive.microsofttranslator.com/translate?api-version=2025-05-01-preview
 
  ```
 
-* [**Transliterate**](reference/preview/transliterate-api.md). Converts characters or letters of a source language to the corresponding characters or letters of a target language with a single `POST` request.
+### [**Transliterate**](reference/preview/transliterate-api.md). Converts characters or letters of a source language to the corresponding characters or letters of a target language with a single `POST` request.
 
  ```bash
  https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-05-01-preview
@@ -66,10 +66,6 @@ Text translation documentation contains the following article types:
 * [**Dictionary example**](reference/v3/dictionary-examples.md) Returns grammatical structure and context examples for the source term and target term pair.
 
 ---
-
- Text translation supports the following methods:
-
-
 
 ## Text translation deployment options
 
