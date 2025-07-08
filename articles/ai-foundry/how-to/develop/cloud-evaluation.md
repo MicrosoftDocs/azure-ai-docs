@@ -32,7 +32,7 @@ If this is your first time running evaluations and logging it to your Azure AI F
 
 1. Create and connect your storage account to your Azure AI Foundry project at the resource level. There are two ways you can do this. You can [use a Bicep template](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/01-connections/connection-storage-account.bicep), which provisions and connects a storage account to your Foundry project with key authentication. You can also [manually create and provision access](../evaluations-storage-account.md) to your storage account in the Azure portal.
 1. Make sure the connected storage account has access to all projects.
-1. If you connected your storage account with Microsoft Entra ID, make sure to give MSI (Microsoft Identity) **Storage Blob Data Owner** permissions to both your account and the Foundry project resource in the Azure portal.
+1. If you connected your storage account with Microsoft Entra ID, make sure to give managed identity **Storage Blob Data Owner** permissions to both your account and the Foundry project resource in the Azure portal.
 
 ### Get started
 
