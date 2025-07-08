@@ -1399,3 +1399,12 @@ groups:
     title: REST APIs
   - id: azure-sdks
     title: Azure SDKs
+# Owner: haileytapia
+- id: search-get-started-rbac
+  title: Usage methods
+  prompt: Choose a usage method
+  pivots:
+  - id: python
+    title: Python
+  - id: rest
+    title: REST
