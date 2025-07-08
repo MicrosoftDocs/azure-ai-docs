@@ -123,16 +123,16 @@ async def callback(
     context: Optional[Dict[str, Any]] = None,
 ) -> dict:
     messages_list = messages["messages"]
-    # Get the last message
+    # Get the last message.
     latest_message = messages_list[-1]
     query = latest_message["content"]
     context = latest_message.get("context", None) # looks for context, default None
-    # Call your endpoint or AI application here
+    # Call your endpoint or AI application here:
     current_dir = os.path.dirname(__file__)
     prompty_path = os.path.join(current_dir, "application.prompty")
     _flow = load_flow(source=prompty_path, model={"configuration": azure_ai_project})
     response = _flow(query=query, context=context, conversation_history=messages_list)
-    # Format the response to follow the OpenAI chat protocol
+    # Format the response so that it follows the OpenAI chat protocol.
     formatted_response = {
         "content": response,
         "role": "assistant",
@@ -199,7 +199,7 @@ outputs = await simulator(
     num_queries=4,
     max_conversation_turns=2,
     tasks=tasks,
-    query_response_generating_prompty=query_response_prompty_override # optional, use your own prompt to control how query-response pairs are generated from the input text to be used in your simulator
+    query_response_generating_prompty=query_response_prompty_override # Optional, use your own prompt to control how query-response pairs are generated from the input text to be used in your simulator.
 )
  
 for output in outputs:
@@ -231,7 +231,7 @@ outputs = await simulator(
 When you incorporate conversation starters, the simulator can handle prespecified repeatable contextually relevant interactions. This capability is useful for simulating the same user turns in a conversation or interaction and evaluating the differences.
 
 ```python
-conversation_turns = [ # Defines predefined conversation sequences, each starting with a conversation starter.
+conversation_turns = [ # Defines predefined conversation sequences. Each starts with a conversation starter.
     [
         "Hello, how are you?",
         "I want to learn more about Leonardo da Vinci",
@@ -247,7 +247,7 @@ conversation_turns = [ # Defines predefined conversation sequences, each startin
 outputs = await simulator(
     target=callback,
     text=text,
-    conversation_turns=conversation_turns, # optional, ensures the user simulator follows the predefined conversation sequences
+    conversation_turns=conversation_turns, # This is optional. It ensures the user simulator follows the predefined conversation sequences.
     max_conversation_turns=5,
     user_simulator_prompty="user_simulating_application.prompty",
     user_simulator_prompty_kwargs=user_simulator_prompty_kwargs,
@@ -287,7 +287,7 @@ with open(output_file, "w") as file:
     for output in outputs:
         file.write(output.to_eval_qr_json_lines())
 
-# Then you can pass it into our Groundedness evaluator to evaluate it for groundedness
+# Then, you can pass it into our Groundedness evaluator to evaluate it for groundedness:
 groundedness_evaluator = GroundednessEvaluator(model_config=model_config)
 eval_output = evaluate(
     data=output_file,
@@ -335,14 +335,14 @@ async def callback(
     query = messages["messages"][0]["content"]
     context = None
 
-    # Add file contents for summarization or re-write
+    # Add file contents for summarization or re-write.
     if 'file_content' in messages["template_parameters"]:
         query += messages["template_parameters"]['file_content']
     
-    # Call your own endpoint and pass your query as input. Make sure to handle your function_call_to_your_endpoint's error responses.
+    # Call your own endpoint and pass your query as input. Make sure to handle the error responses of function_call_to_your_endpoint.
     response = await function_call_to_your_endpoint(query) 
     
-    # Format responses in OpenAI message protocol
+    # Format responses in OpenAI message protocol:
     formatted_response = {
         "content": response,
         "role": "assistant",
@@ -374,7 +374,7 @@ outputs = await adversarial_simulator(
         max_simulation_results=3, #optional
     )
 
-# By default simulator outputs json, use the following helper function to convert to QA pairs in JSONL format
+# By default, the simulator outputs in JSON format. Use the following helper function to convert to QA pairs in JSONL format:
 print(outputs.to_eval_qa_json_lines())
 ```
 
