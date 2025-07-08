@@ -50,12 +50,12 @@ If this is your first time running evaluations and logging it to your Azure AI F
    ```python
    import os
 
-   # Required environment variables
+   # Required environment variables:
    endpoint = os.environ["PROJECT_ENDPOINT"] # https://<account>.services.ai.azure.com/api/projects/<project>
    model_endpoint = os.environ["MODEL_ENDPOINT"] # https://<account>.services.ai.azure.com
    model_api_key = os.environ["MODEL_API_KEY"] 
 
-   # Optional – reuse an existing dataset
+   # Optional: reuse an existing dataset.
    dataset_name    = os.environ.get("DATASET_NAME",    "dataset-test")
    dataset_version = os.environ.get("DATASET_VERSION", "1.0")
    ```
@@ -67,7 +67,7 @@ If this is your first time running evaluations and logging it to your Azure AI F
    from azure.identity import DefaultAzureCredential
    from azure.ai.projects import AIProjectClient
 
-   # Create the project client (Foundry project and credentials)
+   # Create the project client (Foundry project and credentials):
    project_client = AIProjectClient(
        endpoint=endpoint,
        credential=DefaultAzureCredential(),
@@ -77,7 +77,7 @@ If this is your first time running evaluations and logging it to your Azure AI F
 ## <a name = "uploading-evaluation-data"></a> Upload evaluation data
 
 ```python
-# Upload a local JSONL file (skip if you already have a Dataset registered)
+# Upload a local JSONL file. Skip this step if you already have a dataset registered.
 data_id = project_client.datasets.upload_file(
     name=dataset_name,
     version=dataset_version,
@@ -97,7 +97,7 @@ from azure.ai.projects.models import (
     EvaluatorIds,
 )
 
-# Built-in evaluator configurations
+# Built-in evaluator configurations:
 evaluators = {
     "relevance": EvaluatorConfiguration(
         id=EvaluatorIds.RELEVANCE.value,
@@ -127,7 +127,7 @@ from azure.ai.projects.models import (
     InputDataset
 )
 
-# Create an evaluation with the dataset and evaluators specified
+# Create an evaluation with the dataset and evaluators specified.
 evaluation = Evaluation(
     display_name="Cloud evaluation",
     description="Evaluation of dataset",
@@ -135,7 +135,7 @@ evaluation = Evaluation(
     evaluators=evaluators,
 )
 
-# Run the evaluation 
+# Run the evaluation.
 evaluation_response = project_client.evaluations.create(
     evaluation,
     headers={
@@ -162,7 +162,7 @@ from azure.ai.ml import MLClient
 from azure.ai.ml.entities import Model
 from promptflow.client import PFClient
 
-# Define ml_client to register custom evaluator
+# Define ml_client to register the custom evaluator.
 ml_client = MLClient(
        subscription_id=os.environ["AZURE_SUBSCRIPTION_ID"],
        resource_group_name=os.environ["AZURE_RESOURCE_GROUP"],
@@ -170,18 +170,18 @@ ml_client = MLClient(
        credential=DefaultAzureCredential()
 )
 
-# Load evaluator from module
+# Load the evaluator from the module.
 from answer_len.answer_length import AnswerLengthEvaluator
 
-# Then we convert it to evaluation flow and save it locally
+# Convert it to an evaluation flow, and save it locally.
 pf_client = PFClient()
 local_path = "answer_len_local"
 pf_client.flows.save(entry=AnswerLengthEvaluator, path=local_path)
 
-# Specify evaluator name to appear in the Evaluator library
+# Specify the evaluator name that appears in the Evaluator library.
 evaluator_name = "AnswerLenEvaluator"
 
-# Finally register the evaluator to the Evaluator library
+# Register the evaluator to the Evaluator library.
 custom_evaluator = Model(
     path=local_path,
     name=evaluator_name,
@@ -201,10 +201,10 @@ After you register your custom evaluator to your Azure AI project, you can view 
 Follow the example to register a custom `FriendlinessEvaluator` built as described in [Prompt-based evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md#prompt-based-evaluators):
 
 ```python
-# Import your prompt-based custom evaluator
+# Import your prompt-based custom evaluator.
 from friendliness.friend import FriendlinessEvaluator
 
-# Define your deployment 
+# Define your deployment.
 model_config = dict(
     azure_endpoint=os.environ.get("AZURE_ENDPOINT"),
     azure_deployment=os.environ.get("AZURE_DEPLOYMENT_NAME"),
@@ -213,7 +213,7 @@ model_config = dict(
     type="azure_openai"
 )
 
-# Define ml_client to register custom evaluator
+# Define ml_client to register the custom evaluator.
 ml_client = MLClient(
        subscription_id=os.environ["AZURE_SUBSCRIPTION_ID"],
        resource_group_name=os.environ["AZURE_RESOURCE_GROUP"],
@@ -221,15 +221,15 @@ ml_client = MLClient(
        credential=DefaultAzureCredential()
 )
 
-# # Convert evaluator to evaluation flow and save it locally
+# # Convert the evaluator to evaluation flow and save it locally.
 local_path = "friendliness_local"
 pf_client = PFClient()
 pf_client.flows.save(entry=FriendlinessEvaluator, path=local_path) 
 
-# Specify evaluator name to appear in the Evaluator library
+# Specify the evaluator name that appears in the Evaluator library.
 evaluator_name = "FriendlinessEvaluator"
 
-# Register the evaluator to the Evaluator library
+# Register the evaluator to the Evaluator library.
 custom_evaluator = Model(
     path=local_path,
     name=evaluator_name,
