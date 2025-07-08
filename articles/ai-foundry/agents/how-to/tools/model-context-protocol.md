@@ -27,7 +27,7 @@ You can bring multiple remote MCP servers to Foundry Agent service by adding the
 
 > [!Note]
 > * You need to bring a remote MCP server (an existing MCP server endpoint)
-> * With current MCP tool in Foundry Agent, explicit approval is not supported (only `never` is accepted for `require_approval` parameter). Please review carefully what MCP server(s) you added to Foundry Agent service. We recommend reviewing all data being shared with remote MCP servers and optionally logging it for auditing purposes.
+> * With current MCP tool in Foundry Agent, approval is required by default. Please review carefully what MCP server(s) you added to Foundry Agent service. We recommend reviewing all data being shared with remote MCP servers and optionally logging it for auditing purposes.
 > * Supported regions: `westus`, `westus2`, `uaenorth`, `southindia` and `switzerlandnorth`
 > * The MCP tool supports custom headers for a specific run, allowing you to pass headers as needed by MCP server, such as authentication schema. Headers you pass in will only be available for the current run and will not be persisted.
 
@@ -43,11 +43,20 @@ You can bring multiple remote MCP servers to Foundry Agent service by adding the
 1. Find the remote MCP server you want to connect to, such as GitHub MCP Server. Create or update a Foundry Agent with a `mcp` tool with the following information:
    1. `server_url`: the url of the MCP server, for example, `https://api.githubcopilot.com/mcp/`
    2. `server_label`: a unique identifier of this MCP server to the agent, for example, `github`
-   3. `require_approval`: only `never` is supported right now
+   3. `allowed_tools`: optional, a list of tools you want to allow without approval
   
 1. Create a run and pass additional information about the `mcp` tool in `tool_resources` with headers
    1. `tool_label`: use the identifier you provided during create/update agent
    2. `headers`: pass a set of headers required by the MCP server
+   3. `require_approval`: optional, if not provided, `always` is the default value, meaning each time developer needs to approve before calling. Supported values:
+      1. `always` by default
+      2. `never` meaning no approval is required
+      3. `{"never":[<tool_name_1>, <tool_name_2>]}` you can also provide a list of tools without required approval
+      4. `{"always":[<tool_name_1>, <tool_name_2>]}` you can provide a list of tools with required approval
+
+1. If the model is trying to invoke a tool in your MCP server with approval required, you will get Run status as `require_action`. Within `require_action` field, you can get more details on which tool in MCP server to be called, argument(s) to be passed and `call_id`. Make sur eyou review the tool, argument(s) and make an informed decision for approval. 
+
+1. Submit your approval to the agent with `call_id` by setting `approve` to `true.
 
 ## Next steps
 
