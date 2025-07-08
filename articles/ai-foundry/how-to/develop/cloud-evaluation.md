@@ -34,7 +34,7 @@ If this is your first time running evaluations and logging it to your Azure AI F
 1. Make sure the connected storage account has access to all projects.
 1. If you connected your storage account with Microsoft Entra ID, make sure to give managed identity **Storage Blob Data Owner** permissions to both your account and the Foundry project resource in the Azure portal.
 
-### Get started
+##Get started
 
 1. Install the Azure AI Foundry SDK project client that runs the evaluations in the cloud:
 
@@ -55,7 +55,7 @@ If this is your first time running evaluations and logging it to your Azure AI F
    model_endpoint = os.environ["MODEL_ENDPOINT"] # https://<account>.services.ai.azure.com
    model_api_key = os.environ["MODEL_API_KEY"] 
 
-   # Optional: reuse an existing dataset.
+   # Optional: Reuse an existing dataset.
    dataset_name    = os.environ.get("DATASET_NAME",    "dataset-test")
    dataset_version = os.environ.get("DATASET_VERSION", "1.0")
    ```
