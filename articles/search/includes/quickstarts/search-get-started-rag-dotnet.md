@@ -222,7 +222,7 @@ To access the completed sample app for this article:
     ```
 
 1. Navigate into the `quickstart-rag` folder.
-1. Open the project you want to test in Visual Studio Code or Visual Studio.
+1. Open the `quickstart-rag` folder in Visual Studio Code or open the solution file using Visual Studio.
 
 ### Create the sample app
 
@@ -256,41 +256,43 @@ Complete the following steps to create a .NET console app to connect to an AI mo
 
 ## Set up the query and chat thread
 
-If you are following along with the completed sample repo, open the project in the `minimal-query` folder. If you created the project yourself, add the following code to connect to and query the Azure AI Search and Azure OpenAI services:
+THe following example demonstrates how to set up a minimal RAG scenario using Azure AI Search to provide an OpenAI model with contextual resources to improve the generated responses.
 
-> [!NOTE]
-> Make sure to replace the placeholders for the Azure OpenAI endpoint and model name, as well as the Azure AI Search endpoint and index name.
+1. In the `minimal-query` project of the sample repo, open the `Program.cs` file to view the first example. If you created the project yourself, add the following code to connect to and query the Azure AI Search and Azure OpenAI services.
 
-:::code language="csharp" source="~/azure-search-dotnet-samples/quickstart-rag/minimal-query/Program.cs" :::
+    > [!NOTE]
+    > Make sure to replace the placeholders for the Azure OpenAI endpoint and model name, as well as the Azure AI Search endpoint and index name.
+    
+    :::code language="csharp" source="~/azure-search-dotnet-samples/quickstart-rag/minimal-query/Program.cs" :::
+    
+    The preceding code accomplishes the following:
+    
+    - Searches an Azure Search index for hotels matching a user query about complimentary breakfast, retrieving hotel name, description, and tags.
+    - Formats the search results into a structured list to serve as contextual sources for the generative AI model.
+    - Constructs a prompt instructing the Azure OpenAI model to answer using only the provided sources.
+    - Sends the prompt to the AI model and streams the generated response.
+    - Outputs the AI’s response to the console, displaying both the role and content as it streams.
 
-The preceding code accomplishes the following:
-
-- Searches an Azure Search index for hotels matching a user query about complimentary breakfast, retrieving hotel name, description, and tags.
-- Formats the search results into a structured list to serve as contextual sources for the generative AI model.
-- Constructs a prompt instructing the Azure OpenAI model to answer using only the provided sources.
-- Sends the prompt to the AI model and streams the generated response.
-- Outputs the AI’s response to the console, displaying both the role and content as it streams.
-
-The output from Azure OpenAI consists of recommendations for several hotels, such as the following example:
-
-```output
-Sure! Here are a few hotels that offer complimentary breakfast:
-
-- **Head Wind Resort**
-- Complimentary continental breakfast in the lobby
-- Free Wi-Fi throughout the hotel
-
-- **Double Sanctuary Resort**
-- Continental breakfast included
-
-- **White Mountain Lodge & Suites**
-- Continental breakfast available
-
-- **Swan Bird Lake Inn**
-- Continental-style breakfast each morning with a variety of food and drinks 
-   such as caramel cinnamon rolls, coffee, orange juice, milk, cereal, 
-   instant oatmeal, bagels, and muffins
-```
+1. Run the project to initiate a basic RAG scenario. The output from Azure OpenAI consists of recommendations for several hotels, such as the following example:
+    
+    ```output
+    Sure! Here are a few hotels that offer complimentary breakfast:
+    
+    - **Head Wind Resort**
+    - Complimentary continental breakfast in the lobby
+    - Free Wi-Fi throughout the hotel
+    
+    - **Double Sanctuary Resort**
+    - Continental breakfast included
+    
+    - **White Mountain Lodge & Suites**
+    - Continental breakfast available
+    
+    - **Swan Bird Lake Inn**
+    - Continental-style breakfast each morning with a variety of food and drinks 
+       such as caramel cinnamon rolls, coffee, orange juice, milk, cereal, 
+       instant oatmeal, bagels, and muffins
+    ```
 
 To experiment further, change the query and rerun the last step to better understand how the model works with the grounding data. You can also modify the prompt to change the tone or structure of the output.
 
@@ -304,40 +306,38 @@ You might receive any of the following errors while testing:
 
 ## Send a complex RAG query
 
-Azure AI Search supports [complex types](../../search-howto-complex-data-types.md) for nested JSON structures. In the hotels-sample-index, `Address` is an example of a complex type, consisting of `Address.StreetAddress`, `Address.City`, `Address.StateProvince`, `Address.PostalCode`, and `Address.Country`. The index also has complex collection of `Rooms` for each hotel.
+Azure AI Search supports [complex types](../../search-howto-complex-data-types.md) for nested JSON structures. In the hotels-sample-index, `Address` is an example of a complex type, consisting of `Address.StreetAddress`, `Address.City`, `Address.StateProvince`, `Address.PostalCode`, and `Address.Country`. The index also has complex collection of `Rooms` for each hotel. If your index has complex types, your query can provide those fields if you first convert the search results output to JSON, and then pass the JSON to the chat model.
 
-If your index has complex types, your query can provide those fields if you first convert the search results output to JSON, and then pass the JSON to the chat model.
+1. In the `complex-query` project of the sample repo, open the `Program.cs` file. If you created the project yourself, replace your code with the following::
 
-The following example updates the user prompt and adds complex types to the request:
+    :::code language="csharp" source="~/azure-search-dotnet-samples/quickstart-rag/complex-query/Program.cs" :::
 
-:::code language="csharp" source="~/azure-search-dotnet-samples/quickstart-rag/complex-query/Program.cs" :::
+2. Run the project to initiate a basic RAG scenario. The output from Azure OpenAI consists of recommendations for several hotels, such as the following example:
 
-The output from Azure OpenAI consists of recommendations for several hotels, such as the following example:
-
-```output
-1. **Double Sanctuary Resort**
-   - **Description**: 5-star luxury hotel with the biggest rooms in the city. Recognized as the #1 hotel in the area by Traveler magazine. Features include free WiFi, flexible check-in/out, a fitness center, and in-room espresso.
-   - **Address**: 2211 Elliott Ave, Seattle, WA, 98121, USA
-   - **Tags**: view, pool, restaurant, bar, continental breakfast
-   - **Room Rate for 4 People**: 
-     - Suite, 2 Queen Beds: $254.99 per night
-
-2. **Starlight Suites**
-   - **Description**: Spacious all-suite hotel with complimentary airport shuttle and WiFi. Facilities include an indoor/outdoor pool, fitness center, and Florida Green certification. Complimentary coffee and HDTV are also available.
-   - **Address**: 19575 Biscayne Blvd, Aventura, FL, 33180, USA
-   - **Tags**: pool, coffee in lobby, free wifi
-   - **Room Rate for 4 People**:
-     - Suite, 2 Queen Beds (Cityside): $231.99 per night
-     - Deluxe Room, 2 Queen Beds (Waterfront View): $148.99 per night
-
-3. **Good Business Hotel**
-   - **Description**: Located one mile from the airport with free WiFi, an outdoor pool, and a complimentary airport shuttle. Close proximity to Lake Lanier and downtown. The business center includes printers, a copy machine, fax, and a work area.
-   - **Address**: 4400 Ashford Dunwoody Rd NE, Atlanta, GA, 30346, USA
-   - **Tags**: pool, continental breakfast, free parking
-   - **Room Rate for 4 People**:
-     - Budget Room, 2 Queen Beds (Amenities): $60.99 per night
-     - Deluxe Room, 2 Queen Beds (Amenities): $139.99 per night
-```
+    ```output
+    1. **Double Sanctuary Resort**
+       - **Description**: 5-star luxury hotel with the biggest rooms in the city. Recognized as the #1 hotel in the area by Traveler magazine. Features include free WiFi, flexible check-in/out, a fitness center, and in-room espresso.
+       - **Address**: 2211 Elliott Ave, Seattle, WA, 98121, USA
+       - **Tags**: view, pool, restaurant, bar, continental breakfast
+       - **Room Rate for 4 People**: 
+         - Suite, 2 Queen Beds: $254.99 per night
+    
+    2. **Starlight Suites**
+       - **Description**: Spacious all-suite hotel with complimentary airport shuttle and WiFi. Facilities include an indoor/outdoor pool, fitness center, and Florida Green certification. Complimentary coffee and HDTV are also available.
+       - **Address**: 19575 Biscayne Blvd, Aventura, FL, 33180, USA
+       - **Tags**: pool, coffee in lobby, free wifi
+       - **Room Rate for 4 People**:
+         - Suite, 2 Queen Beds (Cityside): $231.99 per night
+         - Deluxe Room, 2 Queen Beds (Waterfront View): $148.99 per night
+    
+    3. **Good Business Hotel**
+       - **Description**: Located one mile from the airport with free WiFi, an outdoor pool, and a complimentary airport shuttle. Close proximity to Lake Lanier and downtown. The business center includes printers, a copy machine, fax, and a work area.
+       - **Address**: 4400 Ashford Dunwoody Rd NE, Atlanta, GA, 30346, USA
+       - **Tags**: pool, continental breakfast, free parking
+       - **Room Rate for 4 People**:
+         - Budget Room, 2 Queen Beds (Amenities): $60.99 per night
+         - Deluxe Room, 2 Queen Beds (Amenities): $139.99 per night
+    ```
 
 ## Troubleshooting
 
