@@ -9,7 +9,7 @@ ms.custom:
   - build-2023
   - ignite-2023
 ms.topic: whats-new
-ms.date: 03/11/2024
+ms.date: 06/30/2025
 ms.collection: ce-skilling-fresh-tier2
 ms.update-cycle: 365-days
 ms.author: pafarley
@@ -51,7 +51,7 @@ For more information, see the [SDK release notes](https://github.com/Azure-Sampl
 
 ### Image Analysis 4.0 Preview API deprecation
 
-On March 31, 2025, the Image Analysis 4.0 Preview APIs will be retired. Before that date, you'll need to migrate your Azure Image Analysis workloads to the [Image Analysis 4.0 GA ](/rest/api/computervision/operation-groups?view=rest-computervision-v4.0%20(2024-02-01))API.
+On March 31, 2025, the Image Analysis 4.0 Preview APIs will be retired. Before that date, you need to migrate your Azure Image Analysis workloads to the [Image Analysis 4.0 GA ](/rest/api/computervision/operation-groups?view=rest-computervision-v4.0%20(2024-02-01))API.
 
 We encourage you to make the transition sooner to gain access to improvements such as multimodal embedding, synchronous OCR, people detection, image tagging, smart cropping, caption, dense caption, and image object detection.
 These Image Analysis 4.0 preview APIs will be retired on March 31, 2025:

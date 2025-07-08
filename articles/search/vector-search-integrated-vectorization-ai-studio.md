@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 05/30/2025
+ms.date: 07/07/2025
 ---
 
 # Use embedding models from Azure AI Foundry model catalog for integrated vectorization
@@ -276,6 +276,9 @@ If you can't use key-based authentication, you can instead configure the AML ski
 "resourceId": "subscriptions/<YOUR_SUBSCRIPTION_ID_HERE>/resourceGroups/<YOUR_RESOURCE_GROUP_NAME_HERE>/providers/Microsoft.MachineLearningServices/workspaces/<YOUR_AML_WORKSPACE_NAME_HERE>/onlineendpoints/<YOUR_AML_ENDPOINT_NAME_HERE>",
 "region": "westus", // Only need if AML project lives in different region from search service
 ```
+
+> [!NOTE]
+> Token authentication is not currently supported for Cohere models for this integration; only key authentication is available at this time.  
 
 ## Next steps
 

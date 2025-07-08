@@ -8,6 +8,15 @@ ms.author: eur
 
 > [!IMPORTANT]
 > Content assessment (preview) via the Speech SDK is being retired in July 2025. Instead, you can use Azure OpenAI models to get content assessment results as described in the [content assessment documentation](../../how-to-pronunciation-assessment.md#content-assessment).
+### Speech SDK 1.44.1: Patch release
+
+SDK version 1.44.1 is being released for JavaScript only with 4 bug fixes:
+
+#### Bug fixes
+* Fixed an out of range exception when only one segmentation control parameter was provided.
+* enableDictation was not correctly passed to the Speech Service.
+* ConversationTranscriber did not use the correct URL path when created using the fromEndpoint method.
+* Fixed error when data is pushed to an input stream after it is detached.
 
 ### Speech SDK 1.44: 2025-May release
 

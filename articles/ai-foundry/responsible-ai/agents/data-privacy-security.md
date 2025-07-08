@@ -37,7 +37,7 @@ Azure AI Agent Service processes the following types of data:
 
 * **External Data**. When you use the Grounding with Bing Search tool or tools that support function calling, the service processes and stores the outputs of these tools.  
 
-**Data for stateful entities**. When you use Threads, Messages and Runs, the service will create a data store to persist message history and other content, in accordance with how you configure the feature and in keeping with applicable privacy, security, and compliance commitments. 
+**Data for stateful entities**. When you use Threads, Messages and Runs, the service will create a data store to persist message history and other content, in accordance with how you configure the feature and in keeping with applicable privacy, security, and compliance commitments. When you use the MCP tool, the data you pass in headers is only available for the current Run and will not persist.
 
 **Augmented data included with or via prompts**. When using data associated with stateful entities, the service retrieves relevant data from your configured data store and augments the prompt to produce generations that are grounded with your data. Prompts may also be augmented with data retrieved from a source included in the prompt itself, such as a URL.  
 

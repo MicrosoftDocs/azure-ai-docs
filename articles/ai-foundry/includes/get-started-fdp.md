@@ -3,13 +3,14 @@ title: Include file
 description: Include file
 author: sgilley
 ms.author: sgilley
-ms.date: 05/13/2025
+ms.date: 07/03/2025
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.custom:
   - include file
   - build-aifnd
   - build-2025
+  - update-code
 ---
 
 In this quickstart, you use [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) to:
@@ -24,7 +25,7 @@ In this quickstart, you use [Azure AI Foundry](https://ai.azure.com/?cid=learnDo
 The Azure AI Foundry SDK is available in multiple languages, including Python, Java, JavaScript, and C#. This quickstart provides instructions for each of these languages.
 
 > [!TIP]
-> The rest of this article shows how to use a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. Select **[!INCLUDE [hub](../includes/hub-project-name.md)]** at the top of this article if you want to use a [!INCLUDE [hub](../includes/hub-project-name.md)] instead.
+> The rest of this article shows how to use a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. Select **[!INCLUDE [hub](../includes/hub-project-name.md)]** at the top of this article if you want to use a [!INCLUDE [hub](../includes/hub-project-name.md)] instead. [Which type of project do I need?](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need)
 
 ## Prerequisites
 
@@ -71,8 +72,11 @@ No installation is necessary to use the Azure AI Foundry portal.
 1. [!INCLUDE [find-endpoint](find-endpoint.md)]
 1. Set these environment variables to use in your scripts:
 
-    :::code language="plaintext" source="~/foundry-samples-main/samples/microsoft/java/mslearn-resources/quickstart/.env.template":::
-
+    ```txt
+    MODEL_DEPLOYMENT_NAME=gpt-4o
+    PROJECT_ENDPOINT=https://<your-foundry-resource-name>.services.ai.azure.com/api/projects/<your-foundry-project-name>
+    ```
+    
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
 1. Download [POM.XML](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart/pom.xml) to your Java IDE.
 
@@ -255,10 +259,9 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
 
 ## Clean up resources
 
-If you no longer need them, delete the resource group associated with your project.
+[!INCLUDE [clean-up-resources](clean-up-resources.md)]
 
-In the Azure AI Foundry portal, select your project name in the top right corner. Then select the link for the resource group to open it in the Azure portal. Select the resource group, and then select **Delete**. Confirm that you want to delete the resource group.
+## Next step
 
-## Related content
-
-[Azure AI Foundry client library overview](../how-to/develop/sdk-overview.md)
+> [!div class="nextstepaction"]
+> [Azure AI Foundry client library overview](../how-to/develop/sdk-overview.md)

@@ -55,6 +55,6 @@ Search APIs report storage and vector size at the index level, so indexes and no
 
 ## Related content
 
-- [Get started with REST](search-get-started-rest.md)
+- [Quickstart: Full-text search using REST](search-get-started-text.md)
 - [Supported data types](/rest/api/searchservice/supported-data-types)
 - [Search REST APIs](/rest/api/searchservice/)

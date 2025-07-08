@@ -67,4 +67,4 @@ GET /indexes/hotels-sample-index/docs?moreLikeThis=20&searchFields=Description&$
 You can use any REST client for this exercise.
 
 > [!div class="nextstepaction"]
-> [Quickstart: Text search using REST](search-get-started-rest.md)
+> [Quickstart: Full-text search using REST](search-get-started-text.md)

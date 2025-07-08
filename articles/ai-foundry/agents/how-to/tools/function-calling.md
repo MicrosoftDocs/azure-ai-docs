@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 01/30/2025
+ms.date: 06/30/2025
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-function-calling
@@ -18,7 +18,7 @@ ms.custom: azure-ai-agents
 Azure AI Agents supports function calling, which allows you to describe the structure of functions to an agent and then return the functions that need to be called along with their arguments.
 
 > [!NOTE]
-> Runs expire ten minutes after creation. Be sure to submit your tool outputs before the expiration.
+> Runs expire 10 minutes after creation. Be sure to submit your tool outputs before the expiration.
 
 ### Usage support
 
