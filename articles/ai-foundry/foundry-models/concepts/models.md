@@ -187,6 +187,8 @@ The model catalog offers a larger selection of models, from a bigger range of pr
 
 Furthermore, these models can be open-access or IP protected. In both cases, you have to deploy them in Managed Compute offerings in Azure AI Foundry. To get started, see [How-to: Deploy to Managed compute](../../how-to/deploy-models-managed.md).
 
+## Other Models available for serverless deployment
+
 ## Related content
 
 - Get started today and [deploy your first model in Azure AI Foundry Models](../../model-inference/how-to/create-model-deployments.md)
