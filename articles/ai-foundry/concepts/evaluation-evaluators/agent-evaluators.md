@@ -95,10 +95,10 @@ If you're building agents outside of Azure AI Agent Serice, this evaluator accep
 
 ## Tool call accuracy
 
-`ToolCallAccuracyEvaluator` measures an agent's ability to select appropriate tools, extract, and process correct parameters from previous steps of the agentic workflow. It detects whether each tool call made is accurate (binary) and reports back the average scores, which can be interpreted as a passing rate across tool calls made.
+`ToolCallAccuracyEvaluator` measures the accuracy and efficiency of tool calls made by an agent in a run. It provides a 1-5 score based on relevance, correctness of parameters, and whether the calls led to a helpful output, also identifying missing or excessive calls.
 
 > [!NOTE]
-> `ToolCallAccuracyEvaluator` only supports Azure AI Agent's Function Tool evaluation, but does not support Built-in Tool evaluation. The agent messages must have at least one Function Tool actually called to be evaluated.    
+> `ToolCallAccuracyEvaluator` only supports Azure AI Agent's Function Tool evaluation, but does not support Built-in Tool evaluation. The agent messages must have at least one Function Tool call and no Built-in Tool calls made to be evaluated.
 
 ### Tool call accuracy example
 
@@ -137,20 +137,36 @@ tool_call_accuracy(
 
 ### Tool call accuracy output
 
-The numerical score (passing rate of correct tool calls) is 0-1 and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason and tool call detail fields can help you understand why the score is high or low.
+The numerical score (passing rate of correct tool calls) is 1-5 and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason and tool call detail fields can help you understand why the score is high or low.
 
 ```python
 {
-    "tool_call_accuracy": 1.0,
+    "tool_call_accuracy": 5.0,
     "tool_call_accuracy_result": "pass",
-    "tool_call_accuracy_threshold": 0.8,
-    "per_tool_call_details": [
-        {
-            "tool_call_accurate": True,
-            "tool_call_accurate_reason": "The input Data should get a Score of 1 because the TOOL CALL is directly relevant to the user's question about the weather in Seattle, includes appropriate parameters that match the TOOL DEFINITION, and the parameter values are correct and relevant to the user's query.",
-            "tool_call_id": "call_CUdbkBfvVBla2YP3p24uhElJ"
+    "tool_call_accuracy_threshold": 3,
+    "tool_call_accuracy_reason": "Let's think step by step: The user asked “How is the weather in Seattle?” The agent called the tool fetch_weather with the parameter location='Seattle'. This tool call exactly matches the user’s request, uses the correct and grounded parameter, and is the only call needed to address the query. There were no errors and no unnecessary calls. Therefore this is an optimal, single, correct tool call that fully addresses the user’s question without excess or missing calls.",
+    "per_tool_call_details": {
+        "tool_calls_made_by_agent": 1,
+        "correct_tool_calls_made_by_agent": 1,
+        "details": [
+            {
+                "tool_name": "fetch_weather",
+                "total_calls_required": 1,
+                "correct_calls_made_by_agent": 1,
+                "correct_tool_percentage": 1.0,
+                "tool_call_errors": 0,
+                "tool_success_result": "pass"
+            }
+        ],
+        "excess_tool_calls": {
+            "total": 0,
+            "details": []
+        },
+        "missing_tool_calls": {
+            "total": 0,
+            "details": []
         }
-    ]
+    }
 }
 ```
 
