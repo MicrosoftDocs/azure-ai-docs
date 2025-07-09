@@ -34,9 +34,11 @@ For customers without an existing virtual network, the Standard Setup with Priva
 ### Known limitations
 
 - **Subnet IP address limitation**: both subnets must have IP ranges under `172.16.0.0/12` or `192.168.0.0/16`, i.e. class B or C address ranges reserved for private networking.
-- **All Foundry workspace resources should be in the same region as the VNet**, including CosmosDB, Storage Account, AI Search, Foundry Account, Project, Managed Identity. The only exception is within the Foundry Account, you may choose to deploy your model to a different region, and any cross-region communication will be handled securely within the Azure network infrastructure. 
-  > For the availability of the regions to deploy the Foundry workspace resources, please refer to the list of regions [where AI Foundry is available](https://learn.microsoft.com/azure/ai-foundry/reference/region-support#azure-ai-foundry-projects).
-  > For the availability of the regions to deploy the OpenAI model, please refer to [this table](https://learn.microsoft.com/azure/ai-foundry/agents/concepts/model-region-support#azure-openai-models). 
+- **All Foundry workspace resources should be in the same region as the VNet**, including CosmosDB, Storage Account, AI Search, Foundry Account, Project, Managed Identity. The only exception is within the Foundry Account, you may choose to deploy your model to a different region, and any cross-region communication will be handled securely within the Azure network infrastructure.
+- **Region availability**:
+  - For a list of supported regions for Foundry workspace resources, see:
+[Azure AI Foundry project region availability](https://learn.microsoft.com/azure/ai-foundry/reference/region-support#azure-ai-foundry-projects).
+  - For supported regions for OpenAI model deployments, see: [Azure OpenAI model region support](https://learn.microsoft.com/azure/ai-foundry/agents/concepts/model-region-support#azure-openai-models).
 - **Azure Blob Storage**: using Azure Blob Storage files with the File Search tool isn't supported.
 
 
