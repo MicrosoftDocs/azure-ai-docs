@@ -5,7 +5,7 @@ description: Learn how to efficiently index data using Azure AI Search's push AP
 author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
-ms.update.cycle: 180-days
+ms.update-cycle: 180-days
 ms.topic: tutorial
 ms.date: 03/28/2025
 ms.custom:

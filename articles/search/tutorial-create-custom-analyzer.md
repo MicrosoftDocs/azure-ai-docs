@@ -5,7 +5,7 @@ description: Learn how to build a custom analyzer to improve the quality of sear
 author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
-ms.update.cycle: 180-days
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: tutorial

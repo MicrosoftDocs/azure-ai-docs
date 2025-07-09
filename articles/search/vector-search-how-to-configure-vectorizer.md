@@ -6,7 +6,7 @@ description: Steps for adding a vectorizer to a search index in Azure AI Search.
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
-ms.update.cycle: 180-days
+ms.update-cycle: 180-days
 ms.custom:
   - build-2024
 ms.topic: how-to

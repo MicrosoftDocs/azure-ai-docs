@@ -3,7 +3,7 @@ title: Multimodal Search Concepts and Guidance
 titleSuffix: Azure AI Search
 description: Learn what multimodal search is, how Azure AI Search supports it for text and image content, and where to find detailed concepts, tutorials, and samples.
 ms.service: azure-ai-search
-ms.update.cycle: 00-days
+ms.update-cycle: 00-days
 ms.topic: conceptual
 ms.date: 05/29/2025
 author: gmndrg

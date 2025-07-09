@@ -6,7 +6,7 @@ description: In vector search, configure storage to exclude optional copies of v
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
-ms.update.cycle: 180-days
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
 ms.topic: how-to

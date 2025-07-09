@@ -7,7 +7,7 @@ ms.author: heidist
 manager: nitinme
 ms.date: 04/15/2025
 ms.service: azure-ai-search
-ms.update.cycle: 90-days
+ms.update-cycle: 90-days
 ms.topic: conceptual
 ms.custom:
   - ignite-2023

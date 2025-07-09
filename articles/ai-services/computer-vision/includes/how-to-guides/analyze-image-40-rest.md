@@ -6,7 +6,7 @@ ms.subservice: computer-vision
 ms.topic: include
 ms.date: 06/30/2025
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update.cycle: 365-days
+ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 

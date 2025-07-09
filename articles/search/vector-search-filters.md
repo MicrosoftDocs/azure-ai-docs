@@ -6,7 +6,7 @@ description: Explains prefilters and post-filters in vector queries, and how fil
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
-ms.update.cycle: 180-days
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: how-to

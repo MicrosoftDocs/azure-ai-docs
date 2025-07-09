@@ -8,7 +8,7 @@ metadata:
   author: haileytap
   ms.author: haileytapia
   ms.service: azure-ai-search
-  ms.update.cycle: 90-days
+  ms.update-cycle: 90-days
   ms.topic: faq
   ms.date: 03/21/2025
 title: Azure AI Search Frequently Asked Questions
