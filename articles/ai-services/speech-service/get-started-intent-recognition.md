@@ -13,6 +13,7 @@ zone_pivot_groups: programming-languages-speech-services
 keywords: intent recognition
 ---
 
+
 # Quickstart: Recognize intents with the Speech service and LUIS
 
 > [!IMPORTANT]
