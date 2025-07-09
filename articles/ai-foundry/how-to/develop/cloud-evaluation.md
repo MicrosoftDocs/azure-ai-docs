@@ -22,7 +22,7 @@ The Azure AI Evaluation SDK supports running evaluations locally on your own mac
 
 In this article, you learn how to run evaluations in the cloud (preview) in pre-deployment testing on a test dataset. When you use the Azure AI Projects SDK, evaluation results are automatically logged into your Azure AI project for better observability. This feature supports all Microsoft-curated [built-in evaluators](../../concepts/observability.md#what-are-evaluators) and your own [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md). Your evaluators can be located in the [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) and have the same project-scope role-based access control (RBAC).
 
-#Prerequisites
+## Prerequisites
 
 - Azure AI Foundry project in the same supported [regions](../../concepts/evaluation-evaluators/risk-safety-evaluators.md#azure-ai-foundry-project-configuration-and-region-support) as risk and safety evaluators (preview). If you don't have an existing project, create one by following the guide [How to create Azure AI Foundry project](../create-projects.md?tabs=ai-studio).
 - Azure OpenAI Deployment with GPT model supporting `chat completion`. For example, `gpt-4`.
@@ -34,7 +34,7 @@ If this is your first time running evaluations and logging it to your Azure AI F
 1. Make sure the connected storage account has access to all projects.
 1. If you connected your storage account with Microsoft Entra ID, make sure to give managed identity **Storage Blob Data Owner** permissions to both your account and the Foundry project resource in the Azure portal.
 
-##Get started
+## Get started
 
 1. Install the Azure AI Foundry SDK project client that runs the evaluations in the cloud:
 
@@ -221,7 +221,7 @@ ml_client = MLClient(
        credential=DefaultAzureCredential()
 )
 
-# # Convert the evaluator to evaluation flow and save it locally.
+# Convert the evaluator to evaluation flow and save it locally.
 local_path = "friendliness_local"
 pf_client = PFClient()
 pf_client.flows.save(entry=FriendlinessEvaluator, path=local_path) 
