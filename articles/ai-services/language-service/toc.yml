@@ -7,6 +7,9 @@ items:
   - name: What is Azure AI Language?
     href: overview.md
     displayName: overview, introduction
+  - name: What's new
+    href: whats-new.md
+    displayName: release notes, updates, new features, changelog
   - name: Pricing
     href: https://aka.ms/unifiedLanguagePricing
   - name: Language support
@@ -18,9 +21,6 @@ items:
   - name: Quotas and limits
     href: concepts/data-limits.md
     displayName: service limits, rate, usage
-  - name: What's new
-    href: whats-new.md
-    displayName: release notes, updates, new features, changelog
 - name: Azure AI Language capabilities
   items:
   - name: Custom text classification

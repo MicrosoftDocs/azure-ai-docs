@@ -10,22 +10,14 @@ ms.date: 06/05/2025
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
-- An [Azure AI Search service](../../search-create-service-portal.md), any tier and region.
-
 - An [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource).
   - [Choose a region](/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#global-standard-model-availability) that supports the chat completion model you want to use (gpt-4o, gpt-4o-mini, or an equivalent model).
   - [Deploy the chat completion model](/azure/ai-foundry/how-to/deploy-models-openai) in Azure AI Foundry or [use another approach](/azure/ai-services/openai/how-to/working-with-models).
 - An [Azure AI Search resource](../../search-create-service-portal.md).
   - We recommend using the Basic tier or higher.
   - [Enable semantic ranking](../../semantic-how-to-enable-disable.md).
-- [Visual Studio Code](https://code.visualstudio.com/download).
-- [Node.JS with LTS](https://nodejs.org/en/download/).
-- [TypeScript](https://www.typescriptlang.org/download). You can globally install TypeScript using npm:
-
-   ```bash
-   npm install -g typescript
-   ```
-
+- [Visual Studio Code](https://code.visualstudio.com/download) or [Visual Studio](https://visualstudio.com).
+- [.NET 9.0](https://dotnet.microsoft.com/download) installed.
 
 ## Configure access
 
@@ -199,77 +191,6 @@ In the remaining sections, you set up API calls to Azure OpenAI and Azure AI Sea
 
 1. On the **Overview** home page, select the link to view the endpoints. Copy the URL. An example endpoint might look like `https://example.openai.azure.com/`.
 
-## Set up environment variables for local development
-
-1. Create a `.env` file.
-1. Add the following environment variables to the `.env` file, replacing the values with your own service endpoints and keys.
-
-   ```plaintext
-   AZURE_SEARCH_ENDPOINT=<YOUR AZURE AI SEARCH ENDPOINT>
-   AZURE_SEARCH_INDEX_NAME=hotels-sample-index
-
-   AZURE_OPENAI_ENDPOINT=<YOUR AZURE OPENAI ENDPOINT>
-   AZURE_OPENAI_VERSION=<YOUR AZURE OPENAI API VERSION>
-   AZURE_DEPLOYMENT_MODEL=<YOUR DEPLOYMENT NAME>
-   ```
-
-## Set up the Node.JS project
-
-Set up project with Visual Studio Code and TypeScript.
-
-1. Start Visual Studio Code in a new directory.
-
-   ```bash
-   mkdir rag-quickstart && cd rag-quickstart
-   code .
-   ```
-1. Create a new package for ESM modules in your project directory.
-
-   ```bash
-   npm init -y
-   npm pkg set type=module
-   ```
-
-   This creates a `package.json` file with default values.
-
-1. Install the following npm packages.
-
-   ```bash
-   npm install @azure/identity @azure/search-documents openai dotenv @types/node
-   ``` 
-
-1. Create a `src` directory in your project directory.
-
-   ```bash
-   mkdir src
-   ```
-
-1. Create a `tsconfig.json` file in the project directory for ESM with the following content.
-
-    ```json
-    {
-      "compilerOptions": {
-        "target": "esnext",
-        "module": "NodeNext",
-        "moduleResolution": "nodenext",
-        "rootDir": "./src",
-        "outDir": "./dist/",
-        "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true,
-        "strict": true,
-        "skipLibCheck": true,
-        "declaration": true,
-        "sourceMap": true,
-        "resolveJsonModule": true,
-        "moduleDetection": "force", // Add this for ESM
-        "allowSyntheticDefaultImports": true // Helpful for ESM interop
-      },
-      "include": [
-        "src/**/*.ts"
-      ]
-    }
-   ```
-
 ## Sign in to Azure
 
 You're using Microsoft Entra ID and role assignments for the connection. Make sure you're logged in to the same tenant and subscription as Azure AI Search and Azure OpenAI. You can use the Azure CLI on the command line to show current properties, change properties, and to sign in. For more information, see [Connect without keys](../../search-get-started-rbac.md). 
@@ -286,44 +207,75 @@ az login --tenant <PUT YOUR TENANT ID HERE>
 
 You should now be logged in to Azure from your local device.
 
-## Set up query and chat thread
+## Set up the .NET app
 
-Create a query script that uses the Azure AI Search index and the chat model to generate responses based on grounding data. The following steps guide you through setting up the query script.
+To follow along with the steps ahead, you can either clone the completed sample app from GitHub, or create the app yourself.
 
+### Clone the sample app
 
-1. Create a `query.ts` file in the `src` directory with the following code.
+To access the completed sample app for this article: 
 
-    :::code language="typescript" source="~/azure-search-javascript-samples/quickstart-rag-ts/src/query.ts" :::
-
-
-
-    The preceding code does the following:
-    - Imports the necessary libraries for Azure AI Search and Azure OpenAI.
-    - Uses environment variables to configure the Azure AI Search and Azure OpenAI clients.
-    - Defines a function to get the clients for Azure AI Search and Azure OpenAI, using environment variables for configuration.
-    - Defines a function to query Azure AI Search for sources based on the user query.
-    - Defines a function to query Azure OpenAI for a response based on the user query and the sources retrieved from Azure AI Search.
-    - The `main` function orchestrates the flow by calling the search and OpenAI functions, and then prints the response.    
-    
-1. Build the TypeScript code to JavaScript.
-
-   ```bash
-   tsc
-   ```
-
-   This command compiles the TypeScript code in the `src` directory and outputs the JavaScript files in the `dist` directory.
-
-1. Run the following command in a terminal to execute the query script:
+1. Clone the [azure-search-dotnet-samples](https://github.com/Azure-Samples/azure-search-dotnet-samples) repo from GitHub.
 
     ```bash
-    node -r dotenv/config dist/query.js
+    git clone https://github.com/Azure-Samples/azure-search-dotnet-samples
     ```
 
-    The `.env` is passed into the runtime using the `-r dotenv/config`. 
+1. Navigate into the `quickstart-rag` folder.
+1. Open the `quickstart-rag` folder in Visual Studio Code or open the solution file using Visual Studio.
 
-1. View the output consists of recommendations for several hotels. Here's an example of what the output might look like:
+### Create the sample app
 
+Complete the following steps to create a .NET console app to connect to an AI model.
+
+1. In an empty directory on your computer, use the `dotnet new` command to create a new console app:
+
+    ```dotnetcli
+    dotnet new console -o AISearchRag
     ```
+
+1. Change directory into the app folder:
+
+    ```dotnetcli
+    cd AISearchRag
+    ```
+
+1. Install the required packages:
+
+    ```bash
+    dotnet add package Azure.AI.OpenAI
+    dotnet add package Azure.Identity
+    dotnet add package Azure.Search.Documents
+    ```
+
+1. Open the app in Visual Studio Code (or your editor of choice).
+
+    ```bash
+    code .
+    ```
+
+## Set up the query and chat thread
+
+The following example demonstrates how to set up a minimal RAG scenario using Azure AI Search to provide an OpenAI model with contextual resources to improve the generated responses.
+
+1. In the `minimal-query` project of the sample repo, open the `Program.cs` file to view the first example. If you created the project yourself, add the following code to connect to and query the Azure AI Search and Azure OpenAI services.
+
+    > [!NOTE]
+    > Make sure to replace the placeholders for the Azure OpenAI endpoint and model name, as well as the Azure AI Search endpoint and index name.
+    
+    :::code language="csharp" source="~/azure-search-dotnet-samples/quickstart-rag/minimal-query/Program.cs" :::
+    
+    The preceding code accomplishes the following:
+    
+    - Searches an Azure Search index for hotels matching a user query about complimentary breakfast, retrieving hotel name, description, and tags.
+    - Formats the search results into a structured list to serve as contextual sources for the generative AI model.
+    - Constructs a prompt instructing the Azure OpenAI model to answer using only the provided sources.
+    - Sends the prompt to the AI model and streams the generated response.
+    - Outputs the AI’s response to the console, displaying both the role and content as it streams.
+
+1. Run the project to initiate a basic RAG scenario. The output from Azure OpenAI consists of recommendations for several hotels, such as the following example:
+    
+    ```output
     Sure! Here are a few hotels that offer complimentary breakfast:
     
     - **Head Wind Resort**
@@ -338,107 +290,70 @@ Create a query script that uses the Azure AI Search index and the chat model to 
     
     - **Swan Bird Lake Inn**
     - Continental-style breakfast each morning with a variety of food and drinks 
-        such as caramel cinnamon rolls, coffee, orange juice, milk, cereal, 
-        instant oatmeal, bagels, and muffins
+       such as caramel cinnamon rolls, coffee, orange juice, milk, cereal, 
+       instant oatmeal, bagels, and muffins
+    ```
+
+To experiment further, change the query and rerun the last step to better understand how the model works with the grounding data. You can also modify the prompt to change the tone or structure of the output.
+
+### Troubleshooting
+
+You might receive any of the following errors while testing:
+
+- **Forbidden**: Check Azure AI Search configuration to make sure role-based access is enabled.
+- **Authorization failed**: Wait a few minutes and try again. It can take several minutes for role assignments to become operational.
+- **Resource not found**: Check the resource URIs and make sure the API version on the chat model is valid.
+
+## Send a complex RAG query
+
+Azure AI Search supports [complex types](../../search-howto-complex-data-types.md) for nested JSON structures. In the hotels-sample-index, `Address` is an example of a complex type, consisting of `Address.StreetAddress`, `Address.City`, `Address.StateProvince`, `Address.PostalCode`, and `Address.Country`. The index also has complex collection of `Rooms` for each hotel. If your index has complex types, your query can provide those fields if you first convert the search results output to JSON, and then pass the JSON to the chat model.
+
+1. In the `complex-query` project of the sample repo, open the `Program.cs` file. If you created the project yourself, replace your code with the following:
+
+    :::code language="csharp" source="~/azure-search-dotnet-samples/quickstart-rag/complex-query/Program.cs" :::
+
+2. Run the project to initiate a basic RAG scenario. The output from Azure OpenAI consists of recommendations for several hotels, such as the following example:
+
+    ```output
+    1. **Double Sanctuary Resort**
+       - **Description**: 5-star luxury hotel with the biggest rooms in the city. Recognized as the #1 hotel in the area by Traveler magazine. Features include free WiFi, flexible check-in/out, a fitness center, and in-room espresso.
+       - **Address**: 2211 Elliott Ave, Seattle, WA, 98121, USA
+       - **Tags**: view, pool, restaurant, bar, continental breakfast
+       - **Room Rate for 4 People**: 
+         - Suite, 2 Queen Beds: $254.99 per night
+    
+    2. **Starlight Suites**
+       - **Description**: Spacious all-suite hotel with complimentary airport shuttle and WiFi. Facilities include an indoor/outdoor pool, fitness center, and Florida Green certification. Complimentary coffee and HDTV are also available.
+       - **Address**: 19575 Biscayne Blvd, Aventura, FL, 33180, USA
+       - **Tags**: pool, coffee in lobby, free wifi
+       - **Room Rate for 4 People**:
+         - Suite, 2 Queen Beds (Cityside): $231.99 per night
+         - Deluxe Room, 2 Queen Beds (Waterfront View): $148.99 per night
+    
+    3. **Good Business Hotel**
+       - **Description**: Located one mile from the airport with free WiFi, an outdoor pool, and a complimentary airport shuttle. Close proximity to Lake Lanier and downtown. The business center includes printers, a copy machine, fax, and a work area.
+       - **Address**: 4400 Ashford Dunwoody Rd NE, Atlanta, GA, 30346, USA
+       - **Tags**: pool, continental breakfast, free parking
+       - **Room Rate for 4 People**:
+         - Budget Room, 2 Queen Beds (Amenities): $60.99 per night
+         - Deluxe Room, 2 Queen Beds (Amenities): $139.99 per night
     ```
 
 ## Troubleshooting
 
-If you get a **Forbidden** error message, check Azure AI Search configuration to make sure role-based access is enabled.
-
-If you get an **Authorization failed** error message, wait a few minutes and try again. It can take several minutes for role assignments to become operational.
-
-If you get a **Resource not found** error message, check the resource URIs and make sure the API version on the chat model is valid.
-
-Otherwise, to experiment further, change the query and rerun the last step to better understand how the model works with the grounding data.
-
-You can also modify the prompt to change the tone or structure of the output.
-
-You might also try the query without semantic ranking by setting `use_semantic_reranker=False` in the query parameters step. Semantic ranking can noticably improve the relevance of query results and the ability of the LLM to return useful information. Experimentation can help you decide whether it makes a difference for your content.
-
-## Send a complex RAG query
-
-Azure AI Search supports [complex types](../../search-howto-complex-data-types.md) for nested JSON structures. In the hotels-sample-index, `Address` is an example of a complex type, consisting of `Address.StreetAddress`, `Address.City`, `Address.StateProvince`, `Address.PostalCode`, and `Address.Country`. The index also has complex collection of `Rooms` for each hotel.
-
-If your index has complex types, change your prompt to include formatting instructions: 
-
-```text
-Can you recommend a few hotels that offer complimentary breakfast? 
-Tell me their description, address, tags, and the rate for one room that sleeps 4 people.
-```
-
-1. Create a new file `queryComplex.ts` in the `src` directory.
-1. Copy the following code to the file:
-
-    :::code language="typescript" source="~/azure-search-javascript-samples/quickstart-rag-ts/src/queryComplex.ts" :::
-
-1. Build the TypeScript code to JavaScript.
-
-   ```bash
-   tsc
-   ```
-
-   This command compiles the TypeScript code in the `src` directory and outputs the JavaScript files in the `dist` directory.
-
-1. Run the following command in a terminal to execute the query script:
-
-    ```bash
-    node -r dotenv/config dist/queryComplex.js
-    ```
-
-    The `.env` is passed into the runtime using the `-r dotenv/config`. 
-
-
-1. View the output from Azure OpenAI, and it adds content from complex types.
-
-```
-Here are a few hotels that offer complimentary breakfast and have rooms that sleep 4 people:
-
-1. **Head Wind Resort**
-   - **Description:** The best of old town hospitality combined with views of the river and 
-   cool breezes off the prairie. Enjoy a complimentary continental breakfast in the lobby, 
-   and free Wi-Fi throughout the hotel.
-   - **Address:** 7633 E 63rd Pl, Tulsa, OK 74133, USA
-   - **Tags:** Coffee in lobby, free Wi-Fi, view
-   - **Room for 4:** Suite, 2 Queen Beds (Amenities) - $254.99
-
-2. **Double Sanctuary Resort**
-   - **Description:** 5-star Luxury Hotel - Biggest Rooms in the city. #1 Hotel in the area 
-   listed by Traveler magazine. Free WiFi, Flexible check in/out, Fitness Center & espresso 
-   in room. Offers continental breakfast.
-   - **Address:** 2211 Elliott Ave, Seattle, WA 98121, USA
-   - **Tags:** View, pool, restaurant, bar, continental breakfast
-   - **Room for 4:** Suite, 2 Queen Beds (Amenities) - $254.99
-
-3. **Swan Bird Lake Inn**
-   - **Description:** Continental-style breakfast featuring a variety of food and drinks. 
-   Locally made caramel cinnamon rolls are a favorite.
-   - **Address:** 1 Memorial Dr, Cambridge, MA 02142, USA
-   - **Tags:** Continental breakfast, free Wi-Fi, 24-hour front desk service
-   - **Room for 4:** Budget Room, 2 Queen Beds (City View) - $85.99
-
-4. **Gastronomic Landscape Hotel**
-   - **Description:** Known for its culinary excellence under the management of William Dough, 
-   offers continental breakfast.
-   - **Address:** 3393 Peachtree Rd, Atlanta, GA 30326, USA
-   - **Tags:** Restaurant, bar, continental breakfast
-   - **Room for 4:** Budget Room, 2 Queen Beds (Amenities) - $66.99
-...
-   - **Tags:** Pool, continental breakfast, free parking
-   - **Room for 4:** Budget Room, 2 Queen Beds (Amenities) - $60.99
-
-Enjoy your stay! Let me know if you need any more information.
-```
-
-## Troubleshooting errors
-
-To debug Azure SDK errors, set the environment variable `AZURE_LOG_LEVEL` to one of the following: `verbose`, `info`, `warning`, `error`. This will enable detailed logging for the Azure SDK, which can help identify [issues with authentication](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/TROUBLESHOOTING.md#enable-and-configure-logging), network connectivity, or other problems.
-
-Rerun the query script. You should now get informational statements from the SDKs in the output that provide more detail about any issues.
-
-If you see output messages related to ManagedIdentityCredential and token acquisition failures, it could be that you have multiple tenants, and your Azure sign-in is using a tenant that doesn't have your search service. To get your tenant ID, search the Azure portal for "tenant properties" or run `az login tenant list`.
+If you see output messages while debugging related to `ManagedIdentityCredential` and token acquisition failures, it could be that you have multiple tenants, and your Azure sign-in is using a tenant that doesn't have your search service. To get your tenant ID, search the Azure portal for "tenant properties" or run `az login tenant list`.
 
 Once you have your tenant ID, run `az login --tenant <YOUR-TENANT-ID>` at a command prompt, and then rerun the script.
+
+You can also log errors in your code by creating an instance of `ILogger`:
+
+```csharp
+using var loggerFactory = LoggerFactory.Create(builder =>
+{
+   builder.AddConsole();
+});
+ILogger logger = loggerFactory.CreateLogger<Program>();
+```
 
 ## Clean up
 

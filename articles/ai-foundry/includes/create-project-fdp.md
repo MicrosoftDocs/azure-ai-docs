@@ -47,7 +47,7 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 - [Set up your development environment](../how-to/develop/install-cli-sdk.md?tabs=python)
 - Authenticate with `az login` or `az login --use-device-code` in your environment before running code.
 - Complete these steps to start your Python script:
-    1. Install packages: `pip install azure-identity azure-mgmt-cognitiveservices==13.7.0b1
+    1. Install packages: `pip install azure-identity azure-mgmt-cognitiveservices~=13.7.0b1
 `. If in a notebook cell, use `%pip install` instead
 `.
     1. Use `pip show azure-mgmt-cognitiveservices` to verify your version is 13.7 or greater.

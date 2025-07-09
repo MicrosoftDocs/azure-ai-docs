@@ -279,10 +279,14 @@ groups:
   title: Programming languages
   prompt: Choose a programming language
   pivots:
+  - id: csharp
+    title: C#
   - id: javascript
     title: JavaScript
   - id: python
     title: Python
+  - id: rest
+    title: REST
   - id: typescript
     title: TypeScript
 # Owner: diberry
@@ -1373,6 +1377,8 @@ groups:
     title: JavaScript
   - id: python
     title: Python
+  - id: dotnet
+    title: C#
   - id: rest
     title: REST
   - id: typescript

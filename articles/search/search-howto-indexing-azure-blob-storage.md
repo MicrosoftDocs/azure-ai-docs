@@ -27,6 +27,9 @@ To configure and run the indexer, you can use:
 
 This article uses the REST APIs to illustrate each step.
 
+> [!NOTE]
+> Azure AI Search can now ingest RBAC scope during indexing and transfers those permissions to indexed content in the search index. For more information about RBAC scope during indexing, see [Indexing Azure Role-Based Access Control scope using Indexers](search-blob-indexer-role-based-access.md).
+
 ## Prerequisites
 
 + [Azure Blob Storage](/azure/storage/blobs/storage-blobs-overview), Standard performance (general-purpose v2).
