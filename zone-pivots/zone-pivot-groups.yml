@@ -279,14 +279,16 @@ groups:
   title: Programming languages
   prompt: Choose a programming language
   pivots:
+  - id: csharp
+    title: C#
   - id: javascript
     title: JavaScript
   - id: python
     title: Python
+  - id: rest
+    title: REST
   - id: typescript
     title: TypeScript
-  - id: csharp
-    title: C#
 # Owner: diberry
 - id: programming-languages-rest-ps-py-js
   title: Programming languages
@@ -1403,3 +1405,12 @@ groups:
     title: REST APIs
   - id: azure-sdks
     title: Azure SDKs
+# Owner: haileytapia
+- id: search-get-started-rbac
+  title: Usage methods
+  prompt: Choose a usage method
+  pivots:
+  - id: python
+    title: Python
+  - id: rest
+    title: REST

@@ -1,6 +1,6 @@
 ---
 manager: nitinme
-author: haileytapia
+author: heidisteen
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
