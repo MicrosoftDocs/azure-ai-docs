@@ -13,6 +13,8 @@ zone_pivot_groups: programming-languages-set-thirteen
 keywords: intent recognition
 ---
 
+[!INCLUDE [deprecation notice](./includes/intent-recognition-retire.md)]
+
 # Quickstart: Recognize intents with Conversational Language Understanding
 
 ::: zone pivot="programming-language-csharp"

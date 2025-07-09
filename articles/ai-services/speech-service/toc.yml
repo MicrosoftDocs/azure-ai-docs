@@ -244,20 +244,6 @@ items:
       href: voice-live-how-to.md
     - name: Audio events reference
       href: /azure/ai-services/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context
-- name: Intent recognition
-  items:
-    - name: Intent recognition overview
-      href: intent-recognition.md
-    - name: Pattern matching concepts
-      href: pattern-matching-overview.md
-    - name: Intent recognition with simple pattern matching quickstart
-      href: how-to-use-simple-language-pattern-matching.md
-    - name: Intent recognition with custom entity pattern matching
-      href: how-to-use-custom-entity-pattern-matching.md
-    - name: Intent recognition with CLU quickstart
-      href: get-started-intent-recognition-clu.md
-    - name: Recognize speech intents with LUIS (deprecated)
-      href: get-started-intent-recognition.md
 - name: Keyword recognition
   items:
     - name: Keyword recognition overview
@@ -503,6 +489,21 @@ items:
       - name: Speaker recognition
         href: speaker-recognition-overview.md
         displayName: migrate,migration,deprecate,retire,sunset
+      - name: Intent recognition
+        displayName: migrate,migration,deprecate,retire,sunset
+        items:
+          - name: Intent recognition overview
+            href: intent-recognition.md
+          - name: Pattern matching concepts
+            href: pattern-matching-overview.md
+          - name: Intent recognition with simple pattern matching quickstart
+            href: how-to-use-simple-language-pattern-matching.md
+          - name: Intent recognition with custom entity pattern matching
+            href: how-to-use-custom-entity-pattern-matching.md
+          - name: Intent recognition with CLU quickstart
+            href: get-started-intent-recognition-clu.md
+          - name: Recognize speech intents with LUIS (deprecated)
+            href: get-started-intent-recognition.md
       - name: Custom commands
         href: custom-commands.md
         displayName: migrate,migration,deprecate,retire,sunset

@@ -13,6 +13,8 @@ zone_pivot_groups: programming-languages-speech-services
 keywords: intent recognition
 ---
 
+[!INCLUDE [deprecation notice](./includes/intent-recognition-retire.md)]
+
 # Quickstart: Recognize intents with the Speech service and LUIS
 
 > [!IMPORTANT]

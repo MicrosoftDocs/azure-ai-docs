@@ -13,6 +13,8 @@ keywords: intent recognition pattern matching
 #Customer intent: I want to understand what pattern matching is and how to use it.
 ---
 
+[!INCLUDE [deprecation notice](./includes/intent-recognition-retire.md)]
+
 # What is pattern matching?
 
 Pattern matching can be customized to group together pattern intents and entities inside a ``PatternMatchingModel``. Using this grouping, it's possible to access more advanced entity types that help make your intent recognition more precise.

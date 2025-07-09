@@ -14,6 +14,8 @@ ms.custom: devx-track-cpp, devx-track-csharp, mode-other, devx-track-extended-ja
 #Customer intent: As a developer, I want to learn how to recognize intents and entities from simple patterns so that I can understand what the user wants to do.
 ---
 
+[!INCLUDE [deprecation notice](./includes/intent-recognition-retire.md)]
+
 # How to recognize intents with simple language pattern matching
 
 The Azure AI services [Speech SDK](speech-sdk.md) has a built-in feature to provide **intent recognition** with **simple language pattern matching**. An intent is something the user wants to do: close a window, mark a checkbox, insert some text, etc.
