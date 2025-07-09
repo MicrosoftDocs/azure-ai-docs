@@ -23,7 +23,7 @@ SDK version 1.44.1 is being released for JavaScript only with 4 bug fixes:
 > [!IMPORTANT]
 > Support for target platforms is changing:
 > * The minimum supported Android version is now Android 8.0 (API level 26).
-> * The publishing of Speech SDK Unity packages are suspended after this release.
+> * The publishing of Speech SDK Unity packages is suspended after this release.
 
 #### New features:
   * Added support for Android 16 KB memory page sizes.
