@@ -72,6 +72,8 @@ items:
       href: search-indexer-securing-resources.md
 - name: Quickstarts
   items:
+  - name: Connect to a search service
+    href: search-get-started-rbac.md
   - name: Agentic search
     href: search-get-started-agentic-retrieval.md
   - name: Vector search
@@ -84,8 +86,6 @@ items:
     href: search-get-started-semantic.md
   - name: Chat with your data
     href: /azure/ai-services/openai/use-your-data-quickstart?context=/azure/search/context/context
-  - name: Connect without keys
-    href: search-get-started-rbac.md
   - name: Azure portal
     items:
     - name: Create a search index
