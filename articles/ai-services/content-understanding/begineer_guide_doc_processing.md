@@ -12,7 +12,7 @@ ms.topic: overview
 ---
  
 
-# Beginner’s Guide: Choosing Between Azure Document Intelligence, Azure AI Content Understanding, and Azure OpenAI for Document Processing
+# Beginner’s Guide: Deciding the right Azure AI service between Azure Document Intelligence, Azure AI Content Understanding, and Azure OpenAI for Document Processing
 
 As organizations increasingly rely on Generative AI to manage documents and unstructured data, selecting the right tools is essential for building robust, secure, and scalable document processing workflows. Let's review a comparative overview of the leading Azure AI solutions for Intelligent Document Processing (IDP), helping you evaluate and choose the most effective approach for your business requirements. 
 
@@ -218,9 +218,15 @@ Aggregate content from diverse formats, cross-reference details, validate consis
 
 ## Conclusion
 
-Choosing the right document processing service depends on your document complexity, format diversity, reasoning needs, and enterprise integration requirements.
+Choosing the right document processing service is dependent on the complexity of the task, format or template diversity, reasoning needs, latency sensitivity, human review needs and enterprise integration requirements. 
 
-- Start with **Azure AI Document Intelligence** for well-defined forms with prebuilt models and simple workflows, low latency, consistenct outputs, grounding and confidence scores. 
-- Move to **Azure AI Content Understanding** for reasoning, multi-input files for complex document processing with reasoning over multi input files, grounding, confidence score and improvements with samples
-- Leverage **Azure OpenAI Service** for custom, experimental, or conversational AI workflows where managed services aren’t a fit.
+For new applications and workloads, Content Understanding matches Document Intelligence capabilities and have more feature set to handle complex diverse documents.  
+
+Start with Azure AI Document Intelligence for well-defined forms and simple workflows if you have a latency sensitive workload and need to rely on the consistency of the outputs. Move to Azure AI Content Understanding for reasoning, multi-format content, or complex business logic. Both services have grounding and confidence scores for quality. 
+
+Leverage Azure OpenAI Service for custom, experimental, or conversational AI workflows where managed services aren’t a fit. Layout from Document Intelligence or Content Understanding can be leveraged as preprocessing service for all input documents. 
+
+Many enterprises combine these services into hybrid solutions — using Document Intelligence/ Content Understanding for extraction integrated as tools with AI agent based solutions. 
+
+
 
