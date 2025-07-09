@@ -22,7 +22,7 @@ Azure AI Language is updated on an ongoing basis. Bookmark this page to stay up 
 
 * The following [.NET SDKs](/dotnet/api/overview/azure/ai.textanalytics-readme?view=azure-dotnet&preserve-view=true) are now available, and support the latest REST API version `2025-15-05-preview`:
 
-  * [`Azure.AI.Language.Text 1.0.0-beta.3](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/cognitivelanguage/Azure.AI.Language.Conversations/CHANGELOG.md)` provides inference capabilities for a wide range of language processing tasks, including language detection, sentiment analysis, key phrase extraction, named entity recognition (NER), personally identifiable information (PII) entity recognition, entity linking, text analytics for healthcare, custom NER, custom text classification, as well as both extractive and abstractive text summarization.
+  * [Azure.AI.Language.Text 1.0.0-beta.3](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/cognitivelanguage/Azure.AI.Language.Conversations/CHANGELOG.md)` provides inference capabilities for a wide range of language processing tasks, including language detection, sentiment analysis, key phrase extraction, named entity recognition (NER), personally identifiable information (PII) entity recognition, entity linking, text analytics for healthcare, custom NER, custom text classification, as well as both extractive and abstractive text summarization.
 
   * [Azure.AI.Language.Conversation 2.0.0-beta.3](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/cognitivelanguage/Azure.AI.Language.Conversations/CHANGELOG.md) provides inference capabilities for conversational PII, conversational language understanding (CLU), and conversation summarization.
 
