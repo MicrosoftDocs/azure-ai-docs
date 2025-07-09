@@ -43,7 +43,7 @@ You can bring multiple remote MCP servers to Foundry Agent service by adding the
 1. Find the remote MCP server you want to connect to, such as GitHub MCP Server. Create or update a Foundry Agent with a `mcp` tool with the following information:
    1. `server_url`: the url of the MCP server, for example, `https://api.githubcopilot.com/mcp/`
    2. `server_label`: a unique identifier of this MCP server to the agent, for example, `github`
-   3. `allowed_tools`: optional, a list of tools you want to allow without approval
+   3. `allowed_tools`: optional, specify the tools that this agent can have access to and use.
   
 1. Create a run and pass additional information about the `mcp` tool in `tool_resources` with headers
    1. `tool_label`: use the identifier you provided during create/update agent
