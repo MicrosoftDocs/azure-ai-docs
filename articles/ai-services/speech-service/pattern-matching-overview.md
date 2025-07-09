@@ -19,6 +19,9 @@ Pattern matching can be customized to group together pattern intents and entitie
 
 For supported locales, see [here](./language-support.md?tabs=intent-recognition).
 
+> [!IMPORTANT]
+> Intent recognition services will be retired on October 1st 2025. The IntentRecognizer API in the Speech SDK will be deprecated shortly after.
+
 ## Patterns vs. Exact Phrases
 
 There are two types of strings used in the pattern matcher: "exact phrases" and "patterns". It's important to understand the differences.

@@ -28,6 +28,9 @@ In this guide, you use the Speech SDK to develop a C++ console application that 
 > - Recognize speech from a microphone
 > - Use asynchronous, event-driven continuous recognition
 
+> [!IMPORTANT]
+> Intent recognition services will be retired on October 1st 2025. The IntentRecognizer API in the Speech SDK will be deprecated shortly after.
+
 ## When to use pattern matching
 
 Use pattern matching if: 
