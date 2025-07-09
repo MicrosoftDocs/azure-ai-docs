@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI's new stateful Responses API.
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 06/20/2025
+ms.date: 07/08/2025
 ms.service: azure-ai-openai
 ms.topic: include
 ms.custom:
@@ -51,6 +51,8 @@ The responses API is currently available in the following regions:
 - `gpt-4.1-nano` (Version: `2025-04-14`)
 - `gpt-4.1-mini` (Version: `2025-04-14`)
 - `gpt-image-1` (Version: `2025-04-15`)
+- `o1` (Version: `2024-12-17`)
+- `o3-mini` (Version: `2025-01-31`)
 - `o3` (Version: `2025-04-16`)
 - `o4-mini` (Version: `2025-04-16`)
 

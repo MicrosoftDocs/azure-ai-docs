@@ -529,12 +529,14 @@ items:
         href: search-document-level-access-overview.md
       - name: Use security filters
         href: search-security-trimming-for-azure-search.md
-      - name: Use ACLs
+      - name: Use ACLs or RBAC scopes
         items:
         - name: Push document-level permissions to an index
           href: search-index-access-control-lists-and-rbac-push-api.md
         - name: Pull ADLS Gen2 permissions into an index
           href: search-indexer-access-control-lists-and-role-based-access.md
+        - name: Pull Blob RBAC scopes into an index
+          href: search-blob-indexer-role-based-access.md
         - name: Query with permission filters
           href: search-query-access-control-rbac-enforcement.md
     - name: Data encryption
