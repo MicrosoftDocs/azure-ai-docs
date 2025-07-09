@@ -7,7 +7,7 @@ ms.topic: include
 ms.date: 07/09/2025
 ---
 
-In this quickstart, you use role-based access control (RBAC) and Microsoft Entra ID to establish a keyless connection to your Azure AI Search service. You then use Python in Visual Studio Code to interact with the service.
+In this quickstart, you use role-based access control (RBAC) and Microsoft Entra ID to establish a keyless connection to your Azure AI Search service. You then use Python in Visual Studio Code to interact with your service.
 
 Keyless connections provide enhanced security through granular permissions and identity-based authentication. We don't recommend hard-coded API keys, but if you prefer them, see [Connect to Azure AI Search using keys](../../search-security-api-keys.md).
 
@@ -27,24 +27,22 @@ Keyless connections provide enhanced security through granular permissions and i
 
 ## Sign in to Azure
 
-Before you connect to your Azure AI Search service, use the Azure CLI to sign in to the subscription that contains the service. This step establishes your Microsoft Entra identity, which `DefaultAzureCredential` uses to authenticate requests in the next section.
+Before you connect to your Azure AI Search service, use the Azure CLI to sign in to the subscription that contains your service. This step establishes your Microsoft Entra identity, which `DefaultAzureCredential` uses to authenticate requests in the next section.
 
 To sign in:
 
 1. On your local system, open a command-line tool.
 
-1. Sign in to Azure.
+1. Sign in to Azure. If you have multiple subscriptions, select the one whose ID you obtained in [Get service information](#get-service-information).
 
    ```azurecli
    az login
    ```
 
-1. (Conditional) If you have multiple subscriptions, select the one whose ID you obtained in [Get service information](#get-service-information).
-
 ## Connect to Azure AI Search
 
 > [!NOTE]
-> This section illustrates the basic Python pattern for keyless connections. For comprehensive guidance, see a specific quickstart or tutorial, such as [Quickstart: Run agentic retrieval in Azure AI Search](../../search-quickstart-agentic-retrieval.md).
+> This section illustrates the basic Python pattern for keyless connections. For comprehensive guidance, see a specific quickstart or tutorial, such as [Quickstart: Run agentic retrieval in Azure AI Search](../../search-get-started-agentic-retrieval.md).
 
 You can use Python notebooks in Visual Studio Code to send requests to your Azure AI Search service. For request authentication, use the `DefaultAzureCredential` class from the Azure Identity library.
 
@@ -82,7 +80,7 @@ To connect using Python:
 
 1. Select **Run All** to run both code cells.
 
-   The output should list existing indexes on your search service, indicating a successful connection.
+   The output should list the existing indexes (if any) on your search service, indicating a successful connection.
 
 ### Troubleshoot 401 errors
 

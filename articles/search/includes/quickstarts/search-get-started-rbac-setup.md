@@ -33,7 +33,7 @@ To configure access:
 
 ## Get service information
 
-In this section, you retrieve the subscription ID and endpoint of your Azure AI Search service. If you have one subscription, skip the subscription ID and only retrieve the endpoint. You use these values in the remaining sections of this quickstart.
+In this section, you retrieve the subscription ID and endpoint of your Azure AI Search service. If you only have one subscription, skip the subscription ID and only retrieve the endpoint. You use these values in the remaining sections of this quickstart.
 
 To get your service information:
 

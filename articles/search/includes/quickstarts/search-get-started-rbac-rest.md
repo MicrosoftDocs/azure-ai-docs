@@ -7,7 +7,7 @@ ms.topic: include
 ms.date: 07/09/2025
 ---
 
-In this quickstart, you use role-based access control (RBAC) and Microsoft Entra ID to establish a keyless connection to your Azure AI Search service. You then use REST in Visual Studio Code to interact with the service.
+In this quickstart, you use role-based access control (RBAC) and Microsoft Entra ID to establish a keyless connection to your Azure AI Search service. You then use REST in Visual Studio Code to interact with your service.
 
 Keyless connections provide enhanced security through granular permissions and identity-based authentication. We don't recommend hard-coded API keys, but if you prefer them, see [Connect to Azure AI Search using keys](../../search-security-api-keys.md).
 
@@ -27,19 +27,17 @@ Keyless connections provide enhanced security through granular permissions and i
 
 ## Get token
 
-Before you connect to your Azure AI Search service, use the Azure CLI to sign in to the subscription that contains the service and generate a Microsoft Entra ID token. You use this token to authenticate requests in the next section.
+Before you connect to your Azure AI Search service, use the Azure CLI to sign in to the subscription that contains your service and generate a Microsoft Entra ID token. You use this token to authenticate requests in the next section.
 
 To get your token:
 
 1. On your local system, open a command-line tool.
 
-1. Sign in to Azure.
+1. Sign in to Azure. If you have multiple subscriptions, select the one whose ID you obtained in [Get service information](#get-service-information).
 
    ```azurecli
    az login
    ```
-
-1. (Conditional) If you have multiple subscriptions, select the one whose ID you obtained in [Get service information](#get-service-information).
 
 1. Generate an access token.
 
@@ -52,7 +50,7 @@ To get your token:
 ## Connect to Azure AI Search
 
 > [!NOTE]
-> This section illustrates the basic REST pattern for keyless connections. For comprehensive guidance, see a specific quickstart or tutorial, such as [Quickstart: Run agentic retrieval in Azure AI Search](../../search-quickstart-agentic-retrieval.md).
+> This section illustrates the basic REST pattern for keyless connections. For comprehensive guidance, see a specific quickstart or tutorial, such as [Quickstart: Run agentic retrieval in Azure AI Search](../../search-get-started-agentic-retrieval.md).
 
 You can use the REST Client extension in Visual Studio Code to send requests to your Azure AI Search service. For request authentication, include an `Authorization` header with the Microsoft Entra ID token you previously generated.
 
@@ -69,7 +67,7 @@ To connect using REST:
    @token = PUT-YOUR-PERSONAL-IDENTITY-TOKEN-HERE
 
    ### List existing indexes
-   GET {{baseUrl}}/indexes?api-version=2024-07-01 HTTP/1.1
+   GET {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
       Content-Type: application/json
       Authorization: Bearer {{token}}
    ```
