@@ -1175,6 +1175,8 @@ groups:
   pivots:
   - id: portal
     title: Azure AI Foundry portal
+  - id: python
+    title: Python
   - id: rest
     title: REST API
 - id: selection-openapi-function

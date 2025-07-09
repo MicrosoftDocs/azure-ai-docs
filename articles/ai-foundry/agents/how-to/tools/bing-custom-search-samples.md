@@ -5,7 +5,7 @@ description: Find samples to ground Azure AI Foundry Agents using Custom Bing Se
 author: aahill
 ms.author: aahi
 manager: nitinme
-ms.date: 04/15/2025
+ms.date: 07/09/2025
 ms.service: azure-ai-agent-service
 ms.topic: how-to
 ms.custom:
@@ -36,7 +36,6 @@ zone_pivot_groups: selection-bing-custom-grounding
 
 :::zone-end
 
-<!--
 ::: zone pivot="python"
 
 ## Create a project client
@@ -46,8 +45,8 @@ Create a client object, which will contain the connection string for connecting 
 ```python
 import os
 from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import MessageRole, BingCustomSearchTool
 from azure.identity import DefaultAzureCredential
+from azure.ai.agents.models import BingCustomSearchTool
 
 
 # Create an Azure AI Client from an endpoint, copied from your Azure AI Foundry project.
@@ -56,9 +55,8 @@ project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT
 
 # Create an AIProjectClient instance
 project_client = AIProjectClient(
-    endpoint=project_endpoint,
-    credential=DefaultAzureCredential(),  # Use Azure Default Credential for authentication
-    api_version="latest",
+    endpoint=os.environ["PROJECT_ENDPOINT"],
+    credential=DefaultAzureCredential(),
 )
 ```
 
@@ -73,16 +71,18 @@ conn_id = bing_custom_connection.id
 
 print(conn_id)
 
-# Initialize agent bing custom search tool and add the connection id
+# Initialize Bing Custom Search tool with connection id and instance name
 bing_custom_tool = BingCustomSearchTool(connection_id=conn_id, instance_name="<config_instance_name>")
 
 # Create agent with the bing custom search tool and process assistant run
 with project_client:
-    agent = project_client.agents.create_agent(
+    agents_client = project_client.agents
+
+    agent = agents_client.create_agent(
         model=os.environ["MODEL_DEPLOYMENT_NAME"],
         name="my-agent",
         instructions="You are a helpful agent",
-        tools=bing_custom_tool.definitions
+        tools=bing_custom_tool.definitions,
     )
     print(f"Created agent, ID: {agent.id}")
 ```
@@ -91,13 +91,13 @@ with project_client:
 
 ```python
 # Create thread for communication
-thread = project_client.agents.create_thread()
+thread = agents_client.threads.create()
 print(f"Created thread, ID: {thread.id}")
 
 # Create message to thread
-message = project_client.agents.create_message(
+message = agents_client.messages.create(
     thread_id=thread.id,
-    role=MessageRole.USER,
+    role="user",
     content="How many medals did the USA win in the 2024 summer olympics?",
 )
 print(f"Created message, ID: {message.id}")
@@ -109,31 +109,29 @@ Create a run and observe that the model uses the Grounding with Bing Search tool
 
 
 ```python
-# Create and process agent run in thread with tools
-run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
+# Create and process Agent run in thread with tools
+run = agents_client.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
 print(f"Run finished with status: {run.status}")
 
 if run.status == "failed":
     print(f"Run failed: {run.last_error}")
 
-# Delete the assistant when done
-project_client.agents.delete_agent(agent.id)
-print("Deleted agent")
+# Uncomment these lines to delete the Agent when done
+#agents_client.delete_agent(agent.id)
+#print("Deleted agent")
 
-# Print the Agent's response message with optional citation
-response_message = project_client.agents.list_messages(thread_id=thread.id).get_last_message_by_role(
-    MessageRole.AGENT
-)
-if response_message:
-    for text_message in response_message.text_messages:
-        print(f"Agent response: {text_message.text.value}")
-    for annotation in response_message.url_citation_annotations:
-        print(f"URL Citation: [{annotation.url_citation.title}]({annotation.url_citation.url})")
+# Fetch and log all messages
+messages = agents_client.messages.list(thread_id=thread.id)
+for msg in messages:
+    if msg.text_messages:
+        for text_message in msg.text_messages:
+            print(f"Agent response: {text_message.text.value}")
+        for annotation in msg.url_citation_annotations:
+            print(f"URL Citation: [{annotation.url_citation.title}]({annotation.url_citation.url})")
 ```
 
 
 :::zone-end
--->
 
 <!--
 ::: zone pivot="csharp"
