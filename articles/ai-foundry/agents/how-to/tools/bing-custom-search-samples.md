@@ -47,11 +47,17 @@ Use this article to find step-by-step instructions and code samples for using th
 
     Save this endpoint to an environment variable named `PROJECT_ENDPOINT`. 
 
-* The name of your Grounding with Bing Search resource name. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Then selecting **Connected resources**.
+* The name of your Grounding with Bing Custom Search resource name. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Then selecting **Connected resources**.
     
-    :::image type="content" source="../../media/tools/deep-research/bing-resource-name.png" alt-text="A screenshot showing the Grounding with Bing Search resource name. " lightbox="../../media/tools/deep-research/bing-resource-name.png":::
+    :::image type="content" source="../../media/tools/bing/custom-resource-name.png" alt-text="A screenshot showing the Grounding with Bing Custom Search resource name. " lightbox="../../media/tools/bing/custom-resource-name.png":::
 
     Save this resource name to an environment variable named `BING_CUSTOM_CONNECTION_NAME`. 
+
+* The name of your Grounding with Bing Custom Search configuration, which contains the URLs you want to allow or disallow. You can find it by navigating to the overview page for your resource in the [Azure portal](https://portal.azure.com/). Select **Configurations**, then select your configuration. 
+
+    :::image type="content" source="../../media/tools/bing/custom-connection-name.png" alt-text="A screenshot showing the Grounding with Bing Custom Search connection name. " lightbox="../../media/tools/bing/custom-connection-name.png":::
+
+    Save this connection name to an environment variable named `BING_CUSTOM_CONNECTION_NAME`. 
 
 ## Create a project client
 
@@ -81,13 +87,14 @@ project_client = AIProjectClient(
 To make the Grounding with Bing Custom Search tool available to your agent, use a connection to initialize the tool and attach it to the agent.
 
 ```python
-bing_custom_connection = project_client.connections.get(connection_name=os.environ["BING_CUSTOM_CONNECTION_NAME"])
+bing_custom_connection = project_client.connections.get(name=os.environ["BING_CUSTOM_CONNECTION_NAME"])
 conn_id = bing_custom_connection.id
 
 print(conn_id)
 
-# Initialize Bing Custom Search tool with connection id and instance name
-bing_custom_tool = BingCustomSearchTool(connection_id=conn_id, instance_name="<config_instance_name>")
+configuration_name = os.environ["BING_CUSTOM_INSTANCE_NAME"]
+# Initialize Bing Custom Search tool with connection id and configuration name
+bing_custom_tool = BingCustomSearchTool(connection_id=conn_id, instance_name=configuration_name)
 
 # Create agent with the bing custom search tool and process assistant run
 with project_client:
