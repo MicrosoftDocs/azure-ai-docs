@@ -5,7 +5,7 @@ description: Learn how to perform data analytics in Azure AI Foundry Agents usin
 author: aahill
 ms.author: aahi
 manager: nitinme
-ms.date: 06/17/2025
+ms.date: 07/09/2025
 ms.service: azure-ai-agent-service
 ms.topic: how-to
 ms.custom:
@@ -23,7 +23,7 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 
 |Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
-| ✔️ |  |  |  | ✔️ | ✔️ | ✔️ |
+| ✔️ | ✔️ |  |  | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 * You have created and published a Fabric data agent endpoint
