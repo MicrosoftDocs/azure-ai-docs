@@ -13,8 +13,7 @@ zone_pivot_groups: programming-languages-speech-services
 keywords: intent recognition
 ---
 
-
-# Quickstart: Recognize intents with the Speech service and LUIS
+# Quickstart: Recognize intents with the Speech service and LUIS...
 
 > [!IMPORTANT]
 > LUIS will be retired on October 1st 2025. As of April 1st 2023 you can't create new LUIS resources. We recommend [migrating your LUIS applications](../language-service/conversational-language-understanding/how-to/migrate-from-luis.md) to [conversational language understanding](../language-service/conversational-language-understanding/overview.md) to benefit from continued product support and multilingual capabilities.
