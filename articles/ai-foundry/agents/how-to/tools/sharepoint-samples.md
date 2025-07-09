@@ -22,6 +22,20 @@ Use this article to find step-by-step instructions and code samples for using th
 
 :::zone pivot="python"
 
+## Prerequisites
+
+* Your Azure AI Foundry Project endpoint.
+
+    [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]
+
+    Save this endpoint to an environment variable named `PROJECT_ENDPOINT`. 
+
+
+* The name of your SharePoint connection name. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Then selecting **Connected resources**.
+    
+    :::image type="content" source="../../media/tools/sharepoint-connection.png" alt-text="A screenshot showing the SharePoint connection name. " lightbox="../../media/tools/sharepoint-connection.png":::
+
+    Save this endpoint to an environment variable named `SHAREPOINT_RESOURCE_NAME`
 
 ## Create a project client
 
@@ -48,11 +62,8 @@ project_client = AIProjectClient(
 To make the Microsoft Fabric tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the Azure AI Foundry portal.
 
 ```python
-# The Fabric connection id can be found in the Azure AI Foundry project as a property of the Fabric tool
-# Your connection id is in the format /subscriptions/<your-subscription-id>/resourceGroups/<your-resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<your-project-name>/connections/<your-fabric-connection-name>
 
-# Retrieve the Fabric connection ID from environment variables
-conn_id = os.environ["SHAREPOINT_CONNECTION_ID"] # Ensure the environment variable is set
+conn_id = project_client.connections.get(name=os.environ["SHAREPOINT_RESOURCE_NAME"]).id
 
 # Initialize Sharepoint tool with connection id
 sharepoint = SharepointTool(connection_id=conn_id)

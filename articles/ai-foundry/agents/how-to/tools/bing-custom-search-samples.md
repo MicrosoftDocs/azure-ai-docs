@@ -16,6 +16,7 @@ zone_pivot_groups: selection-bing-custom-grounding
 
 # How to use Grounding with Bing Custom Search (preview)
 
+Use this article to find step-by-step instructions and code samples for using the Grounding with Bing Custom Search tool in the Azure AI Foundry Agent Service.
 
 ::: zone pivot="portal"
 
@@ -38,6 +39,20 @@ zone_pivot_groups: selection-bing-custom-grounding
 
 ::: zone pivot="python"
 
+## Prerequisites
+
+* Your Azure AI Foundry Project endpoint.
+
+    [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]
+
+    Save this endpoint to an environment variable named `PROJECT_ENDPOINT`. 
+
+* The name of your Grounding with Bing Search resource name. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Then selecting **Connected resources**.
+    
+    :::image type="content" source="../../media/tools/deep-research/bing-resource-name.png" alt-text="A screenshot showing the Grounding with Bing Search resource name. " lightbox="../../media/tools/deep-research/bing-resource-name.png":::
+
+    Save this resource name to an environment variable named `BING_CUSTOM_CONNECTION_NAME`. 
+
 ## Create a project client
 
 Create a client object, which will contain the connection string for connecting to your AI project and other resources.
@@ -55,7 +70,7 @@ project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT
 
 # Create an AIProjectClient instance
 project_client = AIProjectClient(
-    endpoint=os.environ["PROJECT_ENDPOINT"],
+    endpoint=project_endpoint,
     credential=DefaultAzureCredential(),
 )
 ```
@@ -63,7 +78,7 @@ project_client = AIProjectClient(
 
 ## Create an Agent with the Grounding with Bing Custom Search tool enabled
 
-To make the Grounding with Bing Custom Search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+To make the Grounding with Bing Custom Search tool available to your agent, use a connection to initialize the tool and attach it to the agent.
 
 ```python
 bing_custom_connection = project_client.connections.get(connection_name=os.environ["BING_CUSTOM_CONNECTION_NAME"])
