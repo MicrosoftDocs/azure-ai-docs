@@ -50,12 +50,13 @@ If this is your first time running evaluations and logging it to your Azure AI F
    ```python
    import os
 
-   Required environment variables:
-   endpoint = os.environ["PROJECT_ENDPOINT"] https://<account>.services.ai.azure.com/api/projects/<project>
-   model_endpoint = os.environ["MODEL_ENDPOINT"] https://<account>.services.ai.azure.com
-   model_api_key = os.environ["MODEL_API_KEY"] 
+   # Required environment variables:
+   endpoint = os.environ["PROJECT_ENDPOINT"] # https://<account>.services.ai.azure.com/api/projects/<project>
+   model_endpoint = os.environ["MODEL_ENDPOINT"] # https://<account>.services.ai.azure.com
+   model_api_key = os.environ["MODEL_API_KEY"]
+   model_deployment_name = os.environ["MODEL_DEPLOYMENT_NAME"] # E.g. gpt-4o-mini
 
-   Optional: Reuse an existing dataset.
+   # Optional: Reuse an existing dataset.
    dataset_name    = os.environ.get("DATASET_NAME",    "dataset-test")
    dataset_version = os.environ.get("DATASET_VERSION", "1.0")
    ```
@@ -162,7 +163,7 @@ from azure.ai.ml import MLClient
 from azure.ai.ml.entities import Model
 from promptflow.client import PFClient
 
-# Define `ml_client` to register the custom evaluator.
+# Define ml_client to register the custom evaluator.
 ml_client = MLClient(
        subscription_id=os.environ["AZURE_SUBSCRIPTION_ID"],
        resource_group_name=os.environ["AZURE_RESOURCE_GROUP"],
@@ -213,7 +214,7 @@ model_config = dict(
     type="azure_openai"
 )
 
-# Define `ml_client` to register the custom evaluator.
+# Define ml_client to register the custom evaluator.
 ml_client = MLClient(
        subscription_id=os.environ["AZURE_SUBSCRIPTION_ID"],
        resource_group_name=os.environ["AZURE_RESOURCE_GROUP"],
@@ -221,7 +222,7 @@ ml_client = MLClient(
        credential=DefaultAzureCredential()
 )
 
-# Convert the evaluator to evaluation flow and save it locally.
+# # Convert the evaluator to evaluation flow and save it locally.
 local_path = "friendliness_local"
 pf_client = PFClient()
 pf_client.flows.save(entry=FriendlinessEvaluator, path=local_path) 
