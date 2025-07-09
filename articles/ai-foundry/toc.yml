@@ -714,7 +714,9 @@ items:
         displayName: finetuning, fine-tuning 
       - name: Tool calling
         href: openai/how-to/fine-tuning-functions.md?context=/azure/ai-foundry/context/context
-        displayName: finetuning, fine-tuning         
+        displayName: finetuning, fine-tuning       
+      - name: Fine-tuning cost management
+        href: openai/how-to/fine-tuning-cost-management.md
       - name: Weights & Biases integration (preview)
         href: openai/how-to/weights-and-biases-integration.md?context=/azure/ai-foundry/context/context
         displayName: finetuning, fine-tuning 
