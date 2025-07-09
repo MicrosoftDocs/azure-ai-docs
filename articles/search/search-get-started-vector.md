@@ -5,6 +5,7 @@ description: Learn how to call the Search REST and Azure SDK APIs for vector wor
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
+ms.update-cycle: 90-days
 ms.custom:
   - ignite-2023
 ms.topic: quickstart
