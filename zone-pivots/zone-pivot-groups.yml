@@ -287,6 +287,8 @@ groups:
     title: TypeScript
   - id: csharp
     title: C#
+  - id: rest
+    title: rest
 # Owner: diberry
 - id: programming-languages-rest-ps-py-js
   title: Programming languages

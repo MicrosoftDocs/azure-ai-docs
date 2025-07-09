@@ -16,16 +16,9 @@ zone_pivot_groups: programming-languages-ai-search-rag-qs
 
 In this quickstart, you send queries to a chat completion model for a conversational search experience over your indexed content on Azure AI Search. After setting up Azure OpenAI and Azure AI Search resources in the Azure portal, you run code to call the APIs.
 
+::: zone pivot="csharp"
 
-::: zone pivot="python"
-
-[!INCLUDE [Python quickstart](includes/quickstarts/search-get-started-rag-python.md)]
-
-::: zone-end
-
-::: zone pivot="typescript"
-
-[!INCLUDE [TypeScript quickstart](includes/quickstarts/search-get-started-rag-typescript.md)]
+[!INCLUDE [.NET quickstart](includes/quickstarts/search-get-started-rag-dotnet.md)]
 
 ::: zone-end
 
@@ -35,9 +28,21 @@ In this quickstart, you send queries to a chat completion model for a conversati
 
 ::: zone-end
 
-::: zone pivot="csharp"
+::: zone pivot="python"
 
-[!INCLUDE [.NET quickstart](includes/quickstarts/search-get-started-rag-dotnet.md)]
+[!INCLUDE [Python quickstart](includes/quickstarts/search-get-started-rag-python.md)]
+
+::: zone-end
+
+::: zone pivot="rest"
+
+[!INCLUDE [Rest quickstart](includes/quickstarts/search-get-started-rag-rest.md)]
+
+::: zone-end
+
+::: zone pivot="typescript"
+
+[!INCLUDE [TypeScript quickstart](includes/quickstarts/search-get-started-rag-typescript.md)]
 
 ::: zone-end
 
