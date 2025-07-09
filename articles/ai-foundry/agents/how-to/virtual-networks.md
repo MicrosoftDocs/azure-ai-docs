@@ -41,8 +41,6 @@ For customers without an existing virtual network, the Standard Setup with Priva
   - For supported regions for OpenAI model deployments, see: [Azure OpenAI model region support](https://learn.microsoft.com/azure/ai-foundry/agents/concepts/model-region-support#azure-openai-models).
 - **Azure Blob Storage**: using Azure Blob Storage files with the File Search tool isn't supported.
 
-
-
 ## Prerequisites
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
 * Ensure that the individual creating the account and project has the **Azure AI Account Owner** role at the subscription scope
