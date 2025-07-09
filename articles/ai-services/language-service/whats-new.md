@@ -6,13 +6,27 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: whats-new
-ms.date: 06/02/2025
+ms.date: 07/09/2025
 ms.author: lajanuar
 ---
 
 # What's new in Azure AI Language?
 
 Azure AI Language is updated on an ongoing basis. Bookmark this page to stay up to date with release notes, feature enhancements, and our newest documentation.
+
+## June 2025
+
+* CLU Training config version (Vodafone Turkey) 
+
+* The accelerator project "Build your conversational agent" is updated with a new routing strategy, TRIAGE_AGENT, which implements an agent hosted in Azure AI Foundry Agent Service using Conversational Language Understanding (CLU) and Custom Question Answering (CQA) as agent tools for intent triage for downstream agent routing and providing exact question answering.  
+
+* The following .NET SDKs are now available, and support the latest REST API version `2025-15-05-preview`:
+
+  * `Azure.AI.Language.Text 1.0.0-beta.3` provides inference capabilities for a wide range of language processing tasks, including language detection, sentiment analysis, key phrase extraction, named entity recognition (NER), personally identifiable information (PII) entity recognition, entity linking, text analytics for healthcare, custom NER, custom text classification, as well as both extractive and abstractive text summarization.
+
+  * Azure.AI.Language.Conversation 2.0.0-beta.3 provides inference capabilities for conversational PII, conversational language understanding (CLU), and conversation summarization.  
+
+* The Text PII GPU container is now available for integration. You can access it on the [Microsoft Artifact Registry](https://mcr.microsoft.com/artifact/mar/azure-cognitive-services/textanalytics/pii/) using the tag `gpu`. 
 
 ## May 2025
 
@@ -30,10 +44,10 @@ Azure AI Language is updated on an ongoing basis. Bookmark this page to stay up 
 *  [Use entity synonyms for tailored PII detection](personally-identifiable-information/how-to/adapt-to-domain-pii.md#api-schema-for-the-entitysynoyms-parameter).
   
 **Enhanced CLU and CQA Capabilities in Azure AI Foundry**. Azure AI Foundry now offers enhanced capabilities for fine-tuning with custom conversational language understanding (CLU) and conversational question-and-answer (CQA) AI features:
-*	CLU and CQA authoring tools are now available in Azure AI Foundry.
-*	CLU offers a quick deploy option powered by large language models (LLMs) for rapid deployment.
-*	CQA incorporates the QnA Maker scoring algorithm for more accurate responses.
-*	CQA enables exact match answering for precise query resolutions.
+*    CLU and CQA authoring tools are now available in Azure AI Foundry.
+*    CLU offers a quick deploy option powered by large language models (LLMs) for rapid deployment.
+*    CQA incorporates the QnA Maker scoring algorithm for more accurate responses.
+*    CQA enables exact match answering for precise query resolutions.
 
 **For more updates, see our latest [TechCommunity Blog Post](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/announcing-azure-ai-language-new-features-to-accelerate-your-agent-development/4415216)**.
 
