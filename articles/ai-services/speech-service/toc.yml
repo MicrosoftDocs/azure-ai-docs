@@ -297,10 +297,6 @@ items:
           href: multi-device-conversation.md
         - name: Multi-device conversation quickstart
           href: quickstarts/multi-device-conversation.md
-    # - name: Voice assistants
-    #   items:
-    #     - name: Voice assistants overview
-    #       href: voice-assistants.md
 - name: Infrastructure & security
   items:
     - name: Access control and authentication
