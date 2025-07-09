@@ -724,7 +724,7 @@ This table shows the previous and new object names for real-time diarization and
 
 #### New features
 
-- **Objective-C, Swift, and Python**: Added support for DialogServiceConnector, used for [Voice-Assistant scenarios](../../voice-assistants.md).
+- **Objective-C, Swift, and Python**: Added support for DialogServiceConnector, used for voice assistant scenarios.
 - **Python**: Support for Python 3.10 was added. Support for Python 3.6 was removed, per Python's [end-of-life for 3.6](https://devguide.python.org/devcycle/#end-of-life-branches).
 - **Unity**: Speech SDK is now supported for Unity applications on Linux.
 - **C++, C#**: IntentRecognizer using pattern matching is now supported in C#. In addition, scenarios with custom entities, optional groups, and entity roles are now supported in C++ and C#.
@@ -1102,7 +1102,7 @@ Stay healthy!
 ### Speech SDK 1.12.0: 2020-May release
 
 #### New features
-- **Go**: New Go language support for [Speech Recognition](../../get-started-speech-to-text.md?pivots=programming-language-go) and [custom voice assistant](../../quickstarts/voice-assistants.md?pivots=programming-language-go). Set up your dev environment [here](../../quickstarts/setup-platform.md?pivots=programming-language-go). For sample code, see the Samples section below.
+- **Go**: New Go language support for [Speech Recognition](../../get-started-speech-to-text.md?pivots=programming-language-go) and custom voice assistant. Set up your dev environment [here](../../quickstarts/setup-platform.md?pivots=programming-language-go). For sample code, see the Samples section below.
 - **JavaScript**: Added Browser support for text to speech. See documentation [here](../../get-started-text-to-speech.md?pivots=programming-language-JavaScript).
 - **C++, C#, Java**: New `KeywordRecognizer` object and APIs supported on Windows, Android, Linux & iOS platforms. Read the documentation [here](../../keyword-recognition-overview.md). For sample code, see the Samples section below.
 - **Java**: Added multi-device conversation with translation support. See the reference doc [here](/java/api/com.microsoft.cognitiveservices.speech.transcription).
@@ -1124,7 +1124,7 @@ Stay healthy!
 - Fixed memory leaks in the keyword recognizer engine.
 
 #### Samples
-- **Go**: Added quickstarts for [speech recognition](../../get-started-speech-to-text.md?pivots=programming-language-go) and [custom voice assistant](../../quickstarts/voice-assistants.md?pivots=programming-language-go). Find sample code [here](https://github.com/microsoft/cognitive-services-speech-sdk-go/tree/master/samples).
+- **Go**: Added quickstarts for [speech recognition](../../get-started-speech-to-text.md?pivots=programming-language-go) and custom voice assistant. Find sample code [here](https://github.com/microsoft/cognitive-services-speech-sdk-go/tree/master/samples).
 - **JavaScript**: Added quickstarts for [Text to speech](../../get-started-text-to-speech.md?pivots=programming-language-javascript), [Translation](../../get-started-speech-translation.md?pivots=programming-language-csharp&tabs=script), and [Intent Recognition](../../get-started-intent-recognition.md?pivots=programming-language-javascript).
 - Keyword recognition samples for [C\#](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/quickstart/csharp/uwp/keyword-recognizer) and [Java](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/quickstart/java/android/keyword-recognizer) (Android). 
 
