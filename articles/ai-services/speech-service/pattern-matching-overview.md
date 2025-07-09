@@ -81,12 +81,12 @@ When an entity of type ID "List" is used in "Strict" mode, the engine only match
 
 > "take me to floor 5" will not.
 
-It's important to note that the entire Intent won't match, not just the entity.
+It's important to note that the entire Intent doesn't match, not just the entity.
 
 When an entity of type ID "List" is used in "Fuzzy" mode, the engine still matches the intent, and returns the text that appeared in the slot in the utterance, even if it's not in the list. This match is useful behind the scenes to help make the speech recognition better.
 
 > [!WARNING]
-> Fuzzy list entities are implemented, but not integrated into the speech recognition part. Therefore, they will match entities, but not improve speech recognition.
+> Fuzzy list entities are implemented, but not integrated into the speech recognition part. Therefore, they'll match entities, but not improve speech recognition.
 
 ### Prebuilt Integer Entity
 
