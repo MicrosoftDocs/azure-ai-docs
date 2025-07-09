@@ -9,7 +9,7 @@ ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.date: 12/08/2023
 ms.topic: how-to
-ms.custom: update-code
+ms.custom: update-code-2
 ---
 
 # Deploy model packages to online endpoints (preview)
