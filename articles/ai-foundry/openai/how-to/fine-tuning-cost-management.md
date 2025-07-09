@@ -13,7 +13,7 @@ show_latex: true
 
 # Cost management for fine-tuning
 
-Fine-tuning can be intimidating: unlike base models, where you're just paying for input and output tokens for inferencing, fine-tuning requires training your custom models and dealing with hosting. This guide is intended to help you better understand the costs of fine-tuning and how to manage them.
+Fine-tuning can be intimidating: unlike base models, where you're just paying for input and output tokens for inferencing, fine-tuning requires training your custom models and dealing with hosting. This guide is intended to help you better understand the costs associated with fine-tuning and how to manage them.
 
 > [!IMPORTANT]
 > The numbers in this article are for example purposes only. You should always refer to the official [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service) for pricing details to use in the formulas provided in this article.
@@ -41,7 +41,7 @@ We offer both regional and global training for SFT; if you don't need data resid
 
 #### Example: Supervised fine-tuning (SFT)
 
-Projecting the costs to fine-tune a model that takes natural language and outputs code.
+Projecting the hypothetical costs to fine-tune a model that takes natural language and outputs code.
 
 1. Prepare the training data file: 500 prompt / response pairs, with a total of 1 million tokens, and a validation file with 20 examples and 40,000 tokens.
 2. Configure training run:
@@ -68,7 +68,7 @@ $$
 $$
 
 - **Time**: Total time in hours rounded to two decimal places (for example, 1.25 hours).
-- **Hourly Training cost**: $100 per hour of core training time for `o4-mini-2025-04-16`.
+- **Hourly Training cost**: $100 per hour of core training time for `o4-mini-2025-04-16`. Refer to the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service) for actual pricing details.
 - **Model grading**: Tokens used to grade outputs during training are billed separately at data zone rates once training is complete.
 
 #### Example: Training model with graders (without Model grader – Score_model)
@@ -76,7 +76,7 @@ $$
 Let's project the cost to train a customer service chatbot.
 
 - Submit fine-tuning job: Time when the fine-tuning job was submitted: 02:00 hrs
-- Data preprocessing completed: It took 30mins for data preprocessing to be completed which includes data safety checks. This time isn't used for billing.
+- Data preprocessing completed: It took 30 minutes for data preprocessing to be completed which includes data safety checks. This time isn't used for billing.
 - Training started: Training starts at 02:30 hours
 - Training completed: Training is completed at 06:30 hours
 - Model creation: A deployable model checkpoint is created after training completion, which included post-training model safety steps. This time isn't used for billing.
@@ -94,7 +94,7 @@ Your one-time investment to create this `o4-mini` custom fine tuned model would 
 Let's project the cost to train a customer service chatbot.
 
 - Submit fine tuning job: Time when FT job has started say 02:00 hrs
-- Data preprocessing completed: It took 30mins for data preprocessing to be completed which includes data safety checks. This time isn't used for billing.
+- Data preprocessing completed: It took 30 minutes for data preprocessing to be completed which includes data safety checks. This time isn't used for billing.
 - Training started: Training starts at 02:30 hours
 - Training completed: Training is completed at 06:30 hours
 - Model grader pricing:
@@ -147,7 +147,7 @@ After your model is trained, you can deploy it any number of times using the fol
 We have three options for hosting:
 
 - **Standard**: pay per-token at the same rate as base model Standard deployments with an additional $1.70/hour hosting fee. Offers regional data residency guarantees.
-- **Global Standard**: pay per-token at the same rate as base model Global Standard deployments with an additional $1.70/hour hosting fee. Doesn't offer data residency guarantees. Offers higher throughput than Standard deployments.
+- **Global Standard**: pay per-token at the same rate as base model Global Standard deployments with an additional hosting fee. Doesn't offer data residency guarantees. Offers higher throughput than Standard deployments.
 - **Regional Provisioned Throughput**: offers latency guarantees, designed for latency-sensitive workloads. Instead of paying per-token or an hourly hosting fee, deployments accrue PTU-hours based on the number of provisioned throughput units (PTU) assigned to the deployment, and billed at a rate determined by your agreements or reservations with Microsoft Azure.
 - **Developer Tier (Public Preview)**: pay per-token and without an hourly hosting fee but offers neither data residency nor availability guarantees. Developer Tier is designed for model candidate evaluation and proof of concepts, deployments are removed automatically after 24 hours regardless of usage but may be redeployed as needed.
 
@@ -185,3 +185,5 @@ Total Cost = Hosting charges + Token usage cost
 $$
 \text{Total Cost} = (1.70 \times 30 \times 24) + (22 + 176) = \$1422.00
 $$
+
+Always refer to the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service) for pricing information. The numbers in this article are for example purposes only.
