@@ -6,6 +6,7 @@ description: Explains how to configure fields for binary vectors and the vector 
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - build-2024
   - ignite-2024

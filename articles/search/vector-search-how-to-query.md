@@ -6,6 +6,7 @@ description: Learn how to build queries for vector search.
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - build-2024
 ms.topic: how-to
