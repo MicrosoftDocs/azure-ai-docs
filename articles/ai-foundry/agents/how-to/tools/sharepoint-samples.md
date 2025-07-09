@@ -10,7 +10,7 @@ ms.date: 07/03/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents-code
-zone_pivot_groups: selection-sharepoint
+zone_pivot_groups: selection-agent-sharepoint
 ---
 
 # How to use the SharePoint tool
