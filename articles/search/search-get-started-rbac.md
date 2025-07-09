@@ -5,6 +5,7 @@ description: Learn how to use role-based access control (RBAC) to connect to an 
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
+ms.update.cycle: 90-days
 ms.topic: quickstart
 ms.date: 07/08/2025
 zone_pivot_groups: search-get-started-rbac

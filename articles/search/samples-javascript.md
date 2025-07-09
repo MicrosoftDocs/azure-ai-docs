@@ -6,6 +6,7 @@ manager: nitinme
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
+ms.update.cycle: 180-days
 ms.custom:
   - devx-track-dotnet
   - devx-track-js

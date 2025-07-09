@@ -6,6 +6,7 @@ description: Learn about the vector compression options in Azure AI Search, and 
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
+ms.update.cycle: 180-days
 ms.custom:
   - ignite-2024
 ms.topic: how-to

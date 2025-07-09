@@ -4,6 +4,7 @@ description: Use keyless connections with an Azure Identity library for Microsof
 ms.topic: how-to
 ms.date: 06/17/2025
 ms.service: azure-ai-search
+ms.update.cycle: 180-days
 author: HeidiSteen
 ms.author: heidist
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-track-python, Keyless-dotnet, Keyless-java, Keyless-js, Keyless-python, build-2024-intelligent-apps

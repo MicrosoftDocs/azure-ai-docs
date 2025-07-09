@@ -424,7 +424,7 @@
         "articles/machine-learning/prompt-flow/*.md": "ce-skilling-ai-copilot",
         "articles/machine-learning/v1/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
       },
-      "ms.update-cycle": {
+      "ms.update.cycle": {
         "articles/ai-services/openai/**/*.md": "90-days",
         "articles/ai-services/openai/**/*.yml": "90-days",
         "articles/ai-services/agents/**/*.md": "90-days",
@@ -460,7 +460,9 @@
         "articles/machine-learning/component-reference-v2/*.yml": "365-days",
         "articles/open-datasets/**/*.md": "365-days", 
         "articles/open-datasets/**/*.yml": "365-days", 
-        "articles/machine-learning/v1/*.md": "365-days"
+        "articles/machine-learning/v1/*.md": "365-days",
+        "articles/search/*.md": "365-days",
+        "articles/search/*.yml": "365-days"
       },
       "ms.custom": {
         "articles/machine-learning/v1/*.md": "UpdateFrequency5"

@@ -6,6 +6,7 @@ description: Learn strategies for chunking PDFs, HTML files, and other large doc
 author: arv100kri
 ms.author: arjagann
 ms.service: azure-ai-search
+ms.update.cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: conceptual

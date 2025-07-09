@@ -5,6 +5,7 @@ description: Learn how to create a knowledge agent that processes multi-turn con
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
+ms.update.cycle: 90-days
 ms.topic: quickstart
 ms.date: 6/24/2025
 zone_pivot_groups: search-get-started-agentic-retrieval

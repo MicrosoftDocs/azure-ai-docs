@@ -7,6 +7,7 @@ manager: arjagann
 author: rawan
 ms.author: rawan
 ms.service: azure-ai-search
+ms.update.cycle: 180-days
 ms.custom:
 ms.topic: tutorial
 ms.date: 06/11/2025

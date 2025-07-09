@@ -8,6 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 
 ms.service: azure-ai-search
+ms.update.cycle: 180-days
 ms.topic: how-to
 ms.date: 05/08/2025
 ---

@@ -6,6 +6,7 @@ description: Learn how to generate embeddings for downstream indexing into an Az
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
+ms.update.cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: how-to

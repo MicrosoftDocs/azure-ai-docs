@@ -5,6 +5,7 @@ description: Learn how to index and search for multimodal content in the Azure p
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
+ms.update.cycle: 90-days
 ms.topic: quickstart
 ms.date: 06/11/2025
 ms.custom:

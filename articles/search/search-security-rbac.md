@@ -7,6 +7,7 @@ ms.author: heidist
 manager: nitinme
 ms.date: 03/31/2025
 ms.service: azure-ai-search
+ms.update.cycle: 180-days
 ms.topic: how-to
 ms.custom:
   - subject-rbac-steps
