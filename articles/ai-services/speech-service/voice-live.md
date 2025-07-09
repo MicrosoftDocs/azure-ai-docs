@@ -110,9 +110,9 @@ You don't select a tier. You choose a generative AI model and the corresponding 
 
 | Pricing category | Models |
 | ----- | ------ |
-| Voice live Pro | `gpt-4o-realtime-preview`, `gpt-4o`, `gpt-4.1` |
-| Voice live Basic | `gpt-4o-mini-realtime-preview`, `gpt-4o-mini`, `gpt-4.1-mini` |
-| Voice live Lite | `gpt-4.1-nano`, `phi4-mm-realtime`, `phi4-mini` |
+| Voice live pro | `gpt-4o-realtime-preview`, `gpt-4o`, `gpt-4.1` |
+| Voice live basic | `gpt-4o-mini-realtime-preview`, `gpt-4o-mini`, `gpt-4.1-mini` |
+| Voice live lite | `gpt-4.1-nano`, `phi4-mm-realtime`, `phi4-mini` |
 
 If you choose to use custom voice for your speech output, you are charged separately for custom voice model training and hosting. Refer to the [Text to Speech – Custom Voice – Professional](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services) pricing for details. Custom voice is a limited access feature. [Learn more about how to create custom voices.](https://aka.ms/CNVPro)
 
@@ -128,7 +128,7 @@ Here are some example pricing scenarios to help you understand how the voice liv
 
 A customer service agent built with standard Azure AI Speech input, GPT-4.1, custom Azure AI Speech output, and a custom avatar.  
 
-You're charged at the voice live Pro rate for:
+You're charged at the voice live pro rate for:
 - Text
 - Audio with Azure AI Speech - Standard 
 - Audio with Azure AI Speech - Custom
@@ -141,7 +141,7 @@ You're charged separately for the training and model hosting of:
 
 A learning agent built with `gpt-4o-realtime-preview` native audio input and standard Azure AI Speech output. 
 
-You're charged at the voice live Pro rate for:
+You're charged at the voice live pro rate for:
 - Text
 - Native audio with `gpt-4o-realtime-preview`
 - Audio with Azure AI Speech - Standard
@@ -150,7 +150,7 @@ You're charged at the voice live Pro rate for:
 
 A talent interview agent built with `gpt-4o-mini-realtime-preview` native audio input, and standard Azure AI Speech output and standard avatar. 
 
-You're charged at the voice live Basic rate for:
+You're charged at the voice live basic rate for:
 - Text
 - Native audio with `gpt-4o-mini-realtime-preview`
 - Audio with Azure AI Speech - Standard
@@ -162,11 +162,11 @@ You're charged separately for:
 
 An in-car assistant built with `phi4-mm-realtime` and Azure custom voice.  
 
-You're charged at the voice live Lite rate for:
+You're charged at the voice live lite rate for:
 - Text
 - Native audio with `phi4-mm-realtime`
 
-You're charged at the voice live Pro rate for:
+You're charged at the voice live pro rate for:
 - Audio with Azure AI Speech - Custom
 
 You're charged separately for the training and model hosting of:
