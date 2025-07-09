@@ -1,5 +1,5 @@
 ---
-title: voice live API overview
+title: Voice live API overview
 titleSuffix: Azure AI services
 description: Learn about the voice live API for real-time voice agents.
 manager: nitinme
