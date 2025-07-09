@@ -157,7 +157,7 @@ The right deployment type for your use case depends on weighing your AI requirem
 |----------------------------|------------------|-------------|--------------------|-----------------|
 | Standard                   | [SLA](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services)            | -        | Same as base model | $1.70/hour      |
 | Global Standard            | [SLA](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services)            | -       | Same as base model | $1.70/hour      |
-| Regional Provisioned Throughput | [SLA](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services)       | [PTU](azure/ai-foundry/openai/concepts/provisioned-throughput?tabs=global-ptum#when-to-use-provisioned-throughput) | None         | PTU/hour        |
+| Regional Provisioned Throughput | [SLA](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services)       | [PTU](/azure/ai-foundry/openai/concepts/provisioned-throughput?tabs=global-ptum#when-to-use-provisioned-throughput) | None         | PTU/hour        |
 | Developer Tier             | None             | -        | Same as Global Standard | None      |
 
 Full pricing information for all models is available on the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service).
