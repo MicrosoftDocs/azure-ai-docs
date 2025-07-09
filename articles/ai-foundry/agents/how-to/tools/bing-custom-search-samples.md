@@ -59,6 +59,12 @@ Use this article to find step-by-step instructions and code samples for using th
 
     Save this connection name to an environment variable named `BING_CUSTOM_CONNECTION_NAME`. 
 
+* The names of your model's deployment name. You can find it in **Models + Endpoints** in the left navigation menu. 
+
+    :::image type="content" source="../../media/tools/model-deployment-4o.png" alt-text="A screenshot showing the model deployment screen the AI Foundry portal." lightbox="../../media/tools/model-deployment-4o.png":::
+    
+    Save the name of your `o3-deep-research-model` deployment name as an environment variable named `DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME` and Azure OpenAI GPT model deployment name as an environment variable named `MODEL_DEPLOYMENT_NAME`. 
+
 ## Create a project client
 
 Create a client object, which will contain the connection string for connecting to your AI project and other resources.
