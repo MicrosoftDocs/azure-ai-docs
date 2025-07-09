@@ -6,10 +6,10 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: references_regions, build-2024
 ms.topic: concept-article
-ms.date: 12/19/2024
+ms.date: 07/07/2025
 ms.reviewer: shubhirajMsft
-ms.author: scottpolly
-author: s-polly
+ms.author: ssalgado
+author: ssalgadodev
 #Customer intent: As a data scientist, I want to learn about data privacy and security for use of models in the model catalog.
 ---
 # Data, privacy, and security for use of models through the model catalog in Azure AI Foundry portal
@@ -23,7 +23,7 @@ This article describes how the data that you provide is processed, used, and sto
 
 ## What data is processed for models deployed in Azure AI Foundry portal?
 
-When you deploy models in Azure AI Foundry portal, the following types of data are processed to provide the service:
+When you deploy models in Azure AI Foundry, the following types of data are processed to provide the service:
 
 * **Prompts and generated content**. A user submits a prompt, and the model generates content (output) via the operations that the model supports. Prompts might include content added via retrieval-augmented generation (RAG), metaprompts, or other functionality included in an application.
 

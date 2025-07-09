@@ -16,24 +16,12 @@ recommendations: false
 
 Prompt caching allows you to reduce overall request latency and cost for longer prompts that have identical content at the beginning of the prompt. *"Prompt"* in this context is referring to the input you send to the model as part of your chat completions request. Rather than reprocess the same input tokens over and over again, the service is able to retain a temporary cache of processed input token computations to improve overall performance. Prompt caching has no impact on the output content returned in the model response beyond a reduction in latency and cost. For supported models, cached tokens are billed at a [discount on input token pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for Standard deployment types and up to [100% discount on input tokens](/azure/ai-services/openai/concepts/provisioned-throughput) for Provisioned deployment types.
 
-Caches are typically cleared within 5-10 minutes of inactivity and are always removed within one hour of the cache's last use. Prompt caches are not shared between Azure subscriptions. 
+Caches are typically cleared within 5-10 minutes of inactivity and are always removed within one hour of the cache's last use. Prompt caches are not shared between Azure subscriptions.
 
 ## Supported models
 
-Currently only the following models support prompt caching with Azure OpenAI:
-
-- `o3-mini-2025-01-31`
-- `o1-2024-12-17`
-- `o1-preview-2024-09-12`
-- `o1-mini-2024-09-12`
-- `gpt-4o-2024-11-20`
-- `gpt-4o-2024-08-06`
-- `gpt-4o-mini-2024-07-18`
-- `gpt-4o-realtime-preview` (version 2024-12-17)
-- `gpt-4o-mini-realtime-preview` (version 2024-12-17)
-- `gpt-4.1-2025-04-14`
-- `gpt-4.1-nano-2025-04-14`
-- `gpt-4.1-mini-2025-04-14`
+- Prompt caching is supported with all Azure OpenAI models GPT-4o or newer.
+- Prompt caching applies to models that have chat-completion, completion, responses, or real-time operations. For models which do not have these operations, this feature is not available.
 
 ## API support
 
@@ -77,7 +65,7 @@ A single character difference in the first 1,024 tokens will result in a cache m
 
 ## What is cached?
 
-o1-series models feature support varies by model. For more details, see our dedicated [reasoning models guide](./reasoning.md). 
+o1-series models feature support varies by model. For more information, see our dedicated [reasoning models guide](./reasoning.md). 
 
 Prompt caching is supported for:
 

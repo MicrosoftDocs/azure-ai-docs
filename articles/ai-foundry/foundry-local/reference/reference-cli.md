@@ -11,7 +11,7 @@ ms.reviewer: samkemp
 author: jburchel
 reviewer: samuel100
 ms.topic: concept-article
-ms.date: 05/20/2025
+ms.date: 07/03/2025
 ---
 
 # Foundry Local CLI Reference

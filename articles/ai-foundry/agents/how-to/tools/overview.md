@@ -30,6 +30,7 @@ To keep your AI agent informed with richer context from various data sources. Th
 
 To streamline workflows with your AI agent with capabilities to take actions. The Foundry Agent Service provides different action tools for you with different level of flexibility, control, and ease of integration:
 
+- **Deep Research tool**: Web-based integrated deep research pipeline with the `o3-deep-research` model and Grounding with Bing Search.
 - **Azure Logic Apps**: Low-code / no-code solution to add a workflow to your AI Agent
 - **OpenAPI Spec tool**: Bring an existing OpenAPI specification of a service API you want to add to your AI agent, with no or minor changes.
 - **MCP tool**: Bring an existing Model Context Protocol (MCP) endpoint that you want to add to your AI agent.
@@ -72,6 +73,7 @@ The Foundry Agent Service provides the following built-in tools. You can use the
 |[Azure AI Search](azure-ai-search.md)     | Use an existing Azure AI Search index to ground agents with data in the index, and chat with your data.        |
 |[Azure Functions](azure-functions.md)     | Leverage your Azure Functions to create intelligent, event-driven applications.        |
 |[Code Interpreter](code-interpreter.md)     | Enable agents to write and run Python code in a sandboxed execution environment.         |
+|[Deep Research](./deep-research.md) | Use OpenAI's advanced agentic research capability for analysis and reasoning. | 
 |[File Search](file-search.md)     | Augment agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.          |
 |[Function calling](function-calling.md)     |Describe the structure of functions you create to an agent and have them be called when appropriate during the agent's interactions with users.         |
 |[Grounding with Bing Search](bing-grounding.md)     | Enable your agent to use Grounding with Bing Search to access and return information from the internet.         |
