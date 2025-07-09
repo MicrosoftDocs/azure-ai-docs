@@ -16,11 +16,13 @@ Azure AI Language is updated on an ongoing basis. Bookmark this page to stay up 
 
 ## June 2025
 
-* A new version of the Conversational Language Understanding (CLU) training configuration, aimed at minimizing overpredictions of the None intent—particularly in multilingual contexts—is now supported in [REST API version `2025-15-05-preview](/rest/api/language/analyze-conversations/analyze-conversations?view=rest-language-2025-05-15-preview&preserve-view=true)`.
+* A new version of the Conversational Language Understanding (CLU) training configuration, aimed at minimizing overpredictions of the None intent—particularly in multilingual contexts—is now supported in [REST API version 2025-15-05-preview](/rest/api/language/analyze-conversations/analyze-conversations?view=rest-language-2025-05-15-preview&preserve-view=true).
 
-* The accelerator project "Build your conversational agent" is updated with a new routing strategy, TRIAGE_AGENT, which implements an agent hosted in Azure AI Foundry Agent Service using Conversational Language Understanding (CLU) and Custom Question Answering (CQA) as agent tools for intent triage for downstream agent routing and providing exact question answering.
+* The [Build your conversational agent](https://github.com/Azure-Samples/Azure-Language-OpenAI-Conversational-Agent-Accelerator) accelerator project has been updated to include a new routing strategy—**TRIAGE_AGENT**. This strategy uses an agent hosted on Azure AI Foundry Agent Service, utilizing Conversational Language Understanding (CLU) and Custom Question Answering (CQA) as tools to triage user intent for downstream agent routing and to deliver precise answers to specific questions.
 
-* The following [.NET SDKs](/dotnet/api/overview/azure/ai.textanalytics-readme?view=azure-dotnet&preserve-view=true) are now available, and support the latest REST API version `2025-15-05-preview`:
+ For more information, *see* [TechCommunity Blog Post](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/announcing-azure-ai-language-new-features-to-accelerate-your-agent-development/4415216)
+
+* The following [.NET SDKs](/dotnet/api/overview/azure/ai.textanalytics-readme?view=azure-dotnet&preserve-view=true) are now available, and support the latest REST API version **2025-15-05-preview**:
 
   * [Azure.AI.Language.Text 1.0.0-beta.3](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/cognitivelanguage/Azure.AI.Language.Conversations/CHANGELOG.md)` provides inference capabilities for a wide range of language processing tasks, including language detection, sentiment analysis, key phrase extraction, named entity recognition (NER), personally identifiable information (PII) entity recognition, entity linking, text analytics for healthcare, custom NER, custom text classification, as well as both extractive and abstractive text summarization.
 
