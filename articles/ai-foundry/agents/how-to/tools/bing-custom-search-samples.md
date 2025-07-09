@@ -63,7 +63,7 @@ Use this article to find step-by-step instructions and code samples for using th
 
     :::image type="content" source="../../media/tools/model-deployment-4o.png" alt-text="A screenshot showing the model deployment screen the AI Foundry portal." lightbox="../../media/tools/model-deployment-4o.png":::
     
-    Save the name of your `o3-deep-research-model` deployment name as an environment variable named `DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME` and Azure OpenAI GPT model deployment name as an environment variable named `MODEL_DEPLOYMENT_NAME`. 
+    Save the name of your model deployment name as an environment variable named `MODEL_DEPLOYMENT_NAME`. 
 
 ## Create a project client
 

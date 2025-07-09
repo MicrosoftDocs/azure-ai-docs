@@ -37,6 +37,13 @@ Use this article to find step-by-step instructions and code samples for using th
 
     Save this endpoint to an environment variable named `SHAREPOINT_RESOURCE_NAME`
 
+
+* The names of your model's deployment name. You can find it in **Models + Endpoints** in the left navigation menu. 
+
+    :::image type="content" source="../../media/tools/model-deployment-4o.png" alt-text="A screenshot showing the model deployment screen the AI Foundry portal." lightbox="../../media/tools/model-deployment-4o.png":::
+    
+    Save the name of your model deployment name as an environment variable named `MODEL_DEPLOYMENT_NAME`. 
+
 ## Create a project client
 
 Create a client object, which will contain the connection string for connecting to your AI project and other resources.
