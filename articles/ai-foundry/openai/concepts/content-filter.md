@@ -48,6 +48,7 @@ The following table summarizes the risk categories supported by Azure OpenAI's c
 | [Protected Material for Text](/azure/ai-services/openai/concepts/content-filter-protected-material)<sup>1</sup> | Protected material text describes known text content (for example, song lyrics, articles, recipes, and selected web content) that can be outputted by large language models.|
 | [Protected Material for Code](/azure/ai-services/openai/concepts/content-filter-protected-material) | Protected material code describes source code that matches a set of source code from public repositories, which can be outputted by large language models without proper citation of source repositories.|
 
+
 <sup>1</sup> If you're an owner of text material and want to submit text content for protection, [file a request](https://aka.ms/protectedmaterialsform).
 
 <sup>2</sup> Not available in non-streaming scenarios; only available for streaming scenarios. The following regions support Groundedness Detection: Central US, East US, France Central, and Canada East 
