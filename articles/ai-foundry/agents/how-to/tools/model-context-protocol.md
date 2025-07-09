@@ -58,7 +58,7 @@ For more information on using MCP, see:
 
    1. `server_url`: The URL of the MCP server; for example, `https://api.githubcopilot.com/mcp/`.
    2. `server_label`: A unique identifier of this MCP server to the agent; for example, `github`.
-   3. `allowed_tools`: An optional list of tools that you want to allow without approval.
+   3. `allowed_tools`: An optional list of tools that this agent can access and use.
   
 1. Create a run and pass additional information about the `mcp` tool in `tool_resources` with headers:
 
