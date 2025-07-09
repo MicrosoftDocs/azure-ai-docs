@@ -19,9 +19,13 @@ To configure access:
 
 1. Select **Role-based access control** or **Both** if you need time to transition clients to RBAC.
 
+   :::image type="content" source="../../media/search-get-started-rbac/access-control-options.png" lightbox="../../media/search-get-started-rbac/access-control-options.png" alt-text="Screenshot of the access control options in the Azure portal.":::
+
 1. From the left pane, select **Access control (IAM)**.
 
 1. Select **Add** > **Add role assignment**.
+
+   :::image type="content" source="../../media/search-get-started-rbac/add-role-assignment.png" lightbox="../../media/search-get-started-rbac/add-role-assignment.png" alt-text="Screenshot of the dropdown menu for adding a role assignment in the Azure portal.":::
 
 1. Assign the **Search Service Contributor** role to your user account or managed identity.
 
@@ -29,7 +33,7 @@ To configure access:
 
 ## Get service information
 
-In this section, you retrieve the subscription ID and endpoint of your Azure AI Search service. You use these values for authentication and connection in the following sections.
+In this section, you retrieve the subscription ID and endpoint of your Azure AI Search service. If you have one subscription, skip the subscription ID and only retrieve the endpoint. You use these values in the remaining sections of this quickstart.
 
 To get your service information:
 

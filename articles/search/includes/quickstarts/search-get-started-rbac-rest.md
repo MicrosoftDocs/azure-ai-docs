@@ -4,12 +4,12 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 07/08/2025
+ms.date: 07/09/2025
 ---
 
-In this quickstart, you use role-based access control (RBAC) and Microsoft Entra ID to connect to Azure AI Search from your local system. You then use REST in Visual Studio Code to interact with your search service.
+In this quickstart, you use role-based access control (RBAC) and Microsoft Entra ID to establish a keyless connection to your Azure AI Search service. You then use REST in Visual Studio Code to interact with the service.
 
-We recommend keyless connections for granular permissions and identity-based authentication, which eliminate the need for hard-coded API keys in your code. However, if you prefer key-based connections, see [Connect to Azure AI Search using keys](../../search-security-api-keys.md).
+Keyless connections provide enhanced security through granular permissions and identity-based authentication. We don't recommend hard-coded API keys, but if you prefer them, see [Connect to Azure AI Search using keys](../../search-security-api-keys.md).
 
 <!-- This quickstart is a prerequisite for other quickstarts that use Microsoft Entra ID with role assignments. -->
 
@@ -25,73 +25,73 @@ We recommend keyless connections for granular permissions and identity-based aut
 
 [!INCLUDE [Setup](./search-get-started-rbac-setup.md)]
 
-## Set up authentication
+## Get token
 
-Before you establish a keyless connection to your Azure AI Search service, you must use the Azure CLI to authenticate your identity and generate a Microsoft Entra ID token. You specify this token in the next section.
+Before you connect to your Azure AI Search service, use the Azure CLI to sign in to the subscription that contains the service and generate a Microsoft Entra ID token. You use this token to authenticate requests in the next section.
 
-To set up authentication:
+To get your token:
 
 1. On your local system, open a command-line tool.
 
-1. Sign in to the subscription whose ID you obtained in [Get service information](#get-service-information).
+1. Sign in to Azure.
 
    ```azurecli
    az login
    ```
 
+1. (Conditional) If you have multiple subscriptions, select the one whose ID you obtained in [Get service information](#get-service-information).
+
 1. Generate an access token.
 
-    ```azurecli
-    az account get-access-token --scope https://search.azure.com/.default --query accessToken --output tsv
-    ```
+   ```azurecli
+   az account get-access-token --scope https://search.azure.com/.default --query accessToken --output tsv
+   ```
 
-1. Make a note of the token.
+1. Make a note of the token output.
 
 ## Connect to Azure AI Search
 
-You can use the REST Client extension to send requests to Azure AI Search. For request authentication, include an `Authorization` header with the Microsoft Entra ID token you previously generated.
+> [!NOTE]
+> This section illustrates the basic REST pattern for keyless connections. For comprehensive guidance, see a specific quickstart or tutorial, such as [Quickstart: Run agentic retrieval in Azure AI Search](../../search-quickstart-agentic-retrieval.md).
 
-To use REST for keyless connections:
+You can use the REST Client extension in Visual Studio Code to send requests to your Azure AI Search service. For request authentication, include an `Authorization` header with the Microsoft Entra ID token you previously generated.
+
+To connect using REST:
 
 1. On your local system, open Visual Studio Code.
 
 1. Create a `.rest` or `.http` file.
 
-1. Paste the following placeholders into the file.
+1. Paste the following placeholders and request into the file.
 
    ```http
    @baseUrl = PUT-YOUR-SEARCH-SERVICE-ENDPOINT-HERE
    @token = PUT-YOUR-PERSONAL-IDENTITY-TOKEN-HERE
+
+   ### List existing indexes
+   GET {{baseUrl}}/indexes?api-version=2024-07-01 HTTP/1.1
+      Content-Type: application/json
+      Authorization: Bearer {{token}}
    ```
 
 1. Replace `@baseUrl` with the value you obtained in [Get service information](#get-service-information).
 
-1. Replace `@token` with the value you obtained in [Set up authentication](#set-up-authentication).
+1. Replace `@token` with the value you obtained in [Get token](#get-token).
 
-1. Make a REST call to authenticate with your token and connect to your search service.
+1. Under `### List existing indexes`, select **Send Request**.
 
-   ```http
-   POST https://{{baseUrl}}/indexes/hotels-sample-index/docs/search?api-version=2024-07-01 HTTP/1.1
-      Content-type: application/json
-      Authorization: Bearer {{token}}
-    
-      {
-         "queryType": "simple",
-         "search": "beach access",
-         "filter": "",
-         "select": "HotelName,Description,Category,Tags",
-         "count": true
-      }
-   ```
+   You should receive an `HTTP/1.1 200 OK` response, indicating a successful connection to your search service.
 
 ### Troubleshoot 401 errors
 
+If you encounter a 401 error, follow these troubleshooting steps:
+
 + Revisit [Configure role-based access](#configure-role-based-access). Your search service must have **Role-based access control** or **Both** enabled. Policies at the subscription or resource group level might also override your role assignments.
 
-+ Revisit [Set up authentication](#set-up-authentication). You must sign in to the correct subscription for your search service.
++ Revisit [Get token](#get-token). You must sign in to the subscription that contains your search service.
 
 + Make sure your endpoint and token variables don't have surrounding quotes or extra spaces.
 
 + Make sure your token doesn't have the `@` symbol in the request header. For example, if the variable is `@token`, the reference in the request should be `{{token}}`.
 
-If all else fails, restart your device to remove cached tokens and then repeat the steps in this quickstart, starting with [Set up authentication](#set-up-authentication).
++ If all else fails, restart your device to remove cached tokens and then repeat the steps in this quickstart, starting with [Get token](#get-token).

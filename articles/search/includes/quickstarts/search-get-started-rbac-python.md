@@ -4,12 +4,12 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 07/08/2025
+ms.date: 07/09/2025
 ---
 
-In this quickstart, you use role-based access control (RBAC) and Microsoft Entra ID to connect to Azure AI Search from your local system. You then use Python in Visual Studio Code to interact with your search service.
+In this quickstart, you use role-based access control (RBAC) and Microsoft Entra ID to establish a keyless connection to your Azure AI Search service. You then use Python in Visual Studio Code to interact with the service.
 
-We recommend keyless connections for granular permissions and identity-based authentication, which eliminate the need for hard-coded API keys in your code. However, if you prefer key-based connections, see [Connect to Azure AI Search using keys](../../search-security-api-keys.md).
+Keyless connections provide enhanced security through granular permissions and identity-based authentication. We don't recommend hard-coded API keys, but if you prefer them, see [Connect to Azure AI Search using keys](../../search-security-api-keys.md).
 
 <!-- This quickstart is a prerequisite for other quickstarts that use Microsoft Entra ID with role assignments. -->
 
@@ -25,25 +25,30 @@ We recommend keyless connections for granular permissions and identity-based aut
 
 [!INCLUDE [Setup](./search-get-started-rbac-setup.md)]
 
-## Set up authentication
+## Sign in to Azure
 
-Before you establish a keyless connection to your Azure AI Search service, you must use the Azure CLI to authenticate your identity with Microsoft Entra ID.
+Before you connect to your Azure AI Search service, use the Azure CLI to sign in to the subscription that contains the service. This step establishes your Microsoft Entra identity, which `DefaultAzureCredential` uses to authenticate requests in the next section.
 
-To set up authentication:
+To sign in:
 
 1. On your local system, open a command-line tool.
 
-1. Sign in to the subscription whose ID you obtained in [Get service information](#get-service-information).
+1. Sign in to Azure.
 
    ```azurecli
    az login
    ```
 
+1. (Conditional) If you have multiple subscriptions, select the one whose ID you obtained in [Get service information](#get-service-information).
+
 ## Connect to Azure AI Search
 
-You can use the Python extension and Jupyter package to send requests to your Azure AI Search service. For request authentication, use the `DefaultAzureCredential` class from the Azure Identity library.
+> [!NOTE]
+> This section illustrates the basic Python pattern for keyless connections. For comprehensive guidance, see a specific quickstart or tutorial, such as [Quickstart: Run agentic retrieval in Azure AI Search](../../search-quickstart-agentic-retrieval.md).
 
-To use Python for keyless connections:
+You can use Python notebooks in Visual Studio Code to send requests to your Azure AI Search service. For request authentication, use the `DefaultAzureCredential` class from the Azure Identity library.
+
+To connect using Python:
 
 1. On your local system, open Visual Studio Code.
 
@@ -55,27 +60,38 @@ To use Python for keyless connections:
    pip install azure-identity azure-search-documents
    ```
 
-1. Create another code cell to authenticate with `DefaultAzureCredential` and connect to your search service.
+1. Create another code cell to authenticate and connect to your search service.
 
    ```python
    from azure.identity import DefaultAzureCredential
-   from azure.search.documents import SearchClient
+   from azure.search.documents.indexes import SearchIndexClient
     
    service_endpoint = "PUT-YOUR-SEARCH-SERVICE-ENDPOINT-HERE"
-   index_name = "hotels-sample-index"
-    
    credential = DefaultAzureCredential()
-   client = SearchClient(endpoint=service_endpoint, index_name=index_name, credential=credential)
+   client = SearchIndexClient(endpoint=service_endpoint, credential=credential)
     
-   results = client.search("beach access")
-   for result in results:
-      print(result)
+   # List existing indexes
+   indexes = client.list_indexes()
+    
+   for index in indexes:
+      index_dict = index.as_dict()
+      print(json.dumps(index_dict, indent=2))
    ```
+
+1. Set `service_endpoint` to the value you obtained in [Get service information](#get-service-information).
+
+1. Select **Run All** to run both code cells.
+
+   The output should list existing indexes on your search service, indicating a successful connection.
 
 ### Troubleshoot 401 errors
 
+If you encounter a 401 error, follow these troubleshooting steps:
+
 + Revisit [Configure role-based access](#configure-role-based-access). Your search service must have **Role-based access control** or **Both** enabled. Policies at the subscription or resource group level might also override your role assignments.
 
-+ Revisit [Set up authentication](#set-up-authentication). You must sign in to the correct subscription for your search service.
++ Revisit [Sign in to Azure](#sign-in-to-azure). You must sign in to the subscription that contains your search service.
 
-If all else fails, restart your device to remove cached tokens and then repeat the steps in this quickstart, starting with [Set up authentication](#set-up-authentication).
++ Make sure your endpoint variable has surrounding quotes.
+
++ If all else fails, restart your device to remove cached tokens and then repeat the steps in this quickstart, starting with [Sign in to Azure](#sign-in-to-azure).

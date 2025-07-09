@@ -26,8 +26,6 @@ zone_pivot_groups: search-get-started-rbac
 
 ## Related content
 
-+ [Configure a system- or user-assigned managed identity](search-howto-managed-identities-data-sources.md) for your search service.
-
-+ [Use role assignments](keyless-connections.md) to authorize access to other Azure resources.
-
-+ [Set inbound rules](service-configure-firewall.md) to accept or reject Azure AI Search requests based on IP address.
++ [Configure a managed identity in Azure AI Search](search-howto-managed-identities-data-sources.md)
++ [Connect your app to Azure AI Search using identities](keyless-connections.md)
++ [Configure network access and firewall rules for Azure AI Search](service-configure-firewall.md)
