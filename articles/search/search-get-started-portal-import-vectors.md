@@ -5,6 +5,7 @@ description: Learn how to use a wizard to automate data chunking and vectorizati
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
+ms.update-cycle: 90-days
 ms.custom:
   - build-2024
   - ignite-2024

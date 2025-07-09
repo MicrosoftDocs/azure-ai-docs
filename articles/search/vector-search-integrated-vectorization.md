@@ -6,6 +6,7 @@ description: Add a vector embedding step in an Azure AI Search skillset to vecto
 author: heidisteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
