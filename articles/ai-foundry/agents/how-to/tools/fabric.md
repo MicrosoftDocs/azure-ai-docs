@@ -65,7 +65,7 @@ You can add the Microsoft Fabric tool to an agent programmatically using the cod
         :::image type="content" source="../../media\tools\fabric-foundry.png" alt-text="A screenshot showing the fabric connection in the Azure AI Foundry portal." lightbox="../../media\tools\fabric-foundry.png":::
 
 :::zone-end
-<!--
+
 :::zone pivot="python"
 
 ## Create a project client
@@ -74,18 +74,17 @@ Create a client object, which will contain the connection string for connecting 
 
 ```python
 import os
-from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
-from azure.ai.agents.models import FabricTool
+from azure.identity import DefaultAzureCredential
+from azure.ai.agents.models import FabricTool, ListSortOrder
 
 # Retrieve the endpoint and credentials
 project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT environment variable is set
 
 # Initialize the AIProjectClient
 project_client = AIProjectClient(
-    endpoint=project_endpoint,
-    credential=DefaultAzureCredential(exclude_interactive_browser_credential=False),  # Use Azure Default Credential for authentication
-    api_version="latest",
+    endpoint=os.environ["PROJECT_ENDPOINT"],
+    credential=DefaultAzureCredential(),
 )
 ``` 
 
@@ -104,13 +103,14 @@ conn_id = os.environ["FABRIC_CONNECTION_ID"]  # Ensure the FABRIC_CONNECTION_ID 
 fabric = FabricTool(connection_id=conn_id)
 
 # Create an agent with the Fabric tool
+# Create an Agent with the Fabric tool and process an Agent run
 with project_client:
-    agent = project_client.agents.create_agent(
-        model=os.environ["MODEL_DEPLOYMENT_NAME"],  # Model deployment name
-        name="my-agent",  # Name of the agent
-        instructions="You are a helpful agent",  # Instructions for the agent
-        tools=fabric.definitions,  # Attach the Fabric tool
-        headers={"x-ms-enable-preview": "true"},  # Enable preview features
+    agents_client = project_client.agents
+    agent = agents_client.create_agent(
+        model=os.environ["MODEL_DEPLOYMENT_NAME"],
+        name="my-agent",
+        instructions="You are a helpful agent",
+        tools=fabric.definitions,
     )
     print(f"Created Agent, ID: {agent.id}")
 ```
@@ -134,26 +134,27 @@ print(f"Created message, ID: {message['id']}")
 ## Create a run and check the output
 
 ```python
-# Create and process an agent run in the thread
-run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
+# Create and process an Agent run in thread with tools
+run = agents_client.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
 print(f"Run finished with status: {run.status}")
 
-# Check if the run failed
 if run.status == "failed":
     print(f"Run failed: {run.last_error}")
 
-# Fetch and log all messages from the thread
-messages = project_client.agents.messages.list(thread_id=thread.id)
-for message in messages.data:
-    print(f"Role: {message.role}, Content: {message.content}")
+# Uncomment the following lines to delete the agent when done
+#agents_client.delete_agent(agent.id)
+#print("Deleted agent")
 
-# Delete the agent after use
-project_client.agents.delete_agent(agent.id)
-print("Deleted agent")
+# Fetch and log all messages
+messages = agents_client.messages.list(thread_id=thread.id, order=ListSortOrder.ASCENDING)
+for msg in messages:
+    if msg.text_messages:
+        last_text = msg.text_messages[-1]
+        print(f"{msg.role}: {last_text.text.value}")
 ```
 
 :::zone-end
--->
+
 
 <!--
 :::zone pivot="csharp"
