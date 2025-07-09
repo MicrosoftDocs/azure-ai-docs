@@ -38,8 +38,8 @@ The most commonly used header is the authorization header. Headers that you pass
 
 For more information on using MCP, see:
 
-* [Security Best Practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices) on the Model Context Protocol website
-* [Understanding and mitigating security risks in MCP implementations](https://techcommunity.microsoft.com/blog/microsoft-security-blog/understanding-and-mitigating-security-risks-in-mcp-implementations/4404667) in the Microsoft Security Community Blog
+* [Security Best Practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices) on the Model Context Protocol website.
+* [Understanding and mitigating security risks in MCP implementations](https://techcommunity.microsoft.com/blog/microsoft-security-blog/understanding-and-mitigating-security-risks-in-mcp-implementations/4404667) in the Microsoft Security Community Blog.
 
 > [!NOTE]
 > Supported regions are `westus`, `westus2`, `uaenorth`, `southindia`, and `switzerlandnorth`.
@@ -70,7 +70,7 @@ For more information on using MCP, see:
       * `{"never":[<tool_name_1>, <tool_name_2>]}`: You provide a list of tools that don't require approval.
       * `{"always":[<tool_name_1>, <tool_name_2>]}`: You provide a list of tools that require approval.
 
-1. If the model tries to invoke a tool in your MCP server with approval required, you get a run status of `require_action`. In the `requires_action` field, you can get more details on which tool in MCP server is called, arguments to be passed, and `call_id` value. Review the tool and arguments so that you can make an informed decision for approval.
+1. If the model tries to invoke a tool in your MCP server with approval required, you get a run status of `requires_action`. In the `requires_action` field, you can get more details on which tool in the MCP server is called, arguments to be passed, and `call_id` value. Review the tool and arguments so that you can make an informed decision for approval.
 
 1. Submit your approval to the agent with `call_id` by setting `approve` to `true`.
 

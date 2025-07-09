@@ -34,7 +34,7 @@ curl --request POST \
           {
               "type": "mcp",
               "server_label": "<unique name for your MCP server>",
-              "server_url": "<your MCP server url>",
+              "server_url": "<your MCP server URL>",
               "allowed_tools": ["<tool_name>"], # optional
           }
       ],
