@@ -142,7 +142,7 @@ For guidance on the specific data mapping requirements for each metric, refer to
 
 #### Review and finish
 
-After completing all the necessary configurations, you can provide an optional name for your evaluation. Then you can review and select **Submit** to submit the evaluation run.
+After you complete all the necessary configurations, you can provide an optional name for your evaluation. Then you can review and select **Submit** to submit the evaluation run.
 
 :::image type="content" source="../media/evaluations/evaluate/review-and-finish.png" alt-text="Screenshot that shows the review page to create a new evaluation." lightbox="../media/evaluations/evaluate/review-and-finish.png":::
 
