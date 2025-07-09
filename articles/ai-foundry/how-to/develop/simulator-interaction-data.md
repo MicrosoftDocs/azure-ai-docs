@@ -184,7 +184,7 @@ The `query_response_generating_prompty_override` parameter allows you to customi
 
 ```python
 current_dir = os.path.dirname(__file__)
-query_response_prompty_override = os.path.join(current_dir, "query_generator_long_answer.prompty") # Passes the `query_response_generating_prompty` parameter with the path to the custom prompt template.
+query_response_prompty_override = os.path.join(current_dir, "query_generator_long_answer.prompty") # Passes the query_response_generating_prompty parameter with the path to the custom prompt template.
  
 tasks = [
     f"I am a student and I want to learn more about {wiki_search_term}",
@@ -222,7 +222,7 @@ outputs = await simulator(
     text=text,
     num_queries=1,  # Minimal number of queries.
     user_simulator_prompty="user_simulating_application.prompty", # A prompty that accepts all the following kwargs can be passed to override the default user behavior.
-    user_simulator_prompty_kwargs=user_simulator_prompty_kwargs # It uses a dictionary to override default model parameters such as `temperature` and `top_p`.
+    user_simulator_prompty_kwargs=user_simulator_prompty_kwargs # It uses a dictionary to override default model parameters such as temperature and top_p.
 ) 
 ```
 
@@ -278,7 +278,7 @@ for item in data:
 
 outputs = asyncio.run(grounding_simulator(
     target=callback,
-    conversation_turns=conversation_turns, #generates 287 rows of data
+    conversation_turns=conversation_turns, # This generates 287 rows of data.
     max_conversation_turns=1,
 ))
 
@@ -339,7 +339,7 @@ async def callback(
     if 'file_content' in messages["template_parameters"]:
         query += messages["template_parameters"]['file_content']
     
-    # Call your own endpoint and pass your query as input. Make sure to handle the error responses of `function_call_to_your_endpoint`.
+    # Call your own endpoint and pass your query as input. Make sure to handle the error responses of function_call_to_your_endpoint.
     response = await function_call_to_your_endpoint(query) 
     
     # Format responses in OpenAI message protocol:
