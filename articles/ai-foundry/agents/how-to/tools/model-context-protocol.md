@@ -20,7 +20,7 @@ MCP is an open standard that defines how applications provide tools and contextu
 
 ## Considerations for using non-Microsoft services and servers
 
-Your use of connected non-Microsoft services is subject to the terms between you and the service provider. By connecting to a non-Microsoft service, some of your data (such as prompt content) is passed to the non-Microsoft service, or your application might receive data from the non-Microsoft service. You're responsible for your use of non-Microsoft services and data, along with any charges associated with that use.
+Your use of connected non-Microsoft services is subject to the terms between you and the service provider. When you connect to a non-Microsoft service, some of your data (such as prompt content) is passed to the non-Microsoft service, or your application might receive data from the non-Microsoft service. You're responsible for your use of non-Microsoft services and data, along with any charges associated with that use.
 
 The remote MCP servers that you decide to use with the MCP tool described in this article were created by third parties, not Microsoft. Microsoft hasn't tested or verified these servers. Microsoft has no responsibility to you or others in relation to your use of any remote MCP servers.
 
@@ -42,7 +42,7 @@ For more information on using MCP, see:
 * [Understanding and mitigating security risks in MCP implementations](https://techcommunity.microsoft.com/blog/microsoft-security-blog/understanding-and-mitigating-security-risks-in-mcp-implementations/4404667) in the Microsoft Security Community Blog
 
 > [!NOTE]
-> Supported regions are `westus`, `westus2`, `uaenorth`, `southindia` and `switzerlandnorth`.
+> Supported regions are `westus`, `westus2`, `uaenorth`, `southindia`, and `switzerlandnorth`.
 
 ## Usage support
 
