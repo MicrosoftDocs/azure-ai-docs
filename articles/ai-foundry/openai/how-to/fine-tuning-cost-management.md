@@ -15,8 +15,8 @@ show_latex: true
 
 Fine-tuning can be intimidating: unlike base models, where you're just paying for input and output tokens for inferencing, fine-tuning requires training your custom models and dealing with hosting. This guide is intended to help you better understand the costs of fine-tuning and how to manage them.
 
-> [!NOTE]
-> The prices in this article are for example purposes only. In some cases they may match current pricing, but you should refer to the official [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service) for exact pricing details to use in the formulas provided in this article.
+> [!IMPORTANT]
+> The numbers in this article are for example purposes only. You should always refer to the official [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service) for pricing details to use in the formulas provided in this article.
 
 ## Upfront investment - training your model
 
@@ -39,7 +39,7 @@ We offer both regional and global training for SFT; if you don't need data resid
 > [!IMPORTANT]
 > We don't charge you for time spent in queue, failed jobs, jobs canceled prior to training beginning, or data safety checks.
 
-#### Example: Supervised Fine-Tuning
+#### Example: Supervised fine-tuning (SFT)
 
 Projecting the costs to fine-tune a model that takes natural language and outputs code.
 
@@ -57,7 +57,7 @@ $$
 \$2 \div 1\text{M tokens} \times 1\text{M training tokens} \times 2\text{ epochs} = \$4
 $$
 
-### Reinforcement Fine-Tuning (RFT)
+### Reinforcement fine-tuning (RFT)
 
 The cost is determined by the time spent on training the model for Reinforcement fine tuning technique.
 
@@ -175,27 +175,13 @@ Let's assume your chatbot handles 10,000 customer conversations in its first mon
 - Hosting charges: $1.70 per hour
 - Total Input: The user queries sent to the model total 20 million tokens.
 - Total Output: The model's responses to users total 40 million tokens.
+- Input Cost Calculation: 20× $1.10 = $22.00
+- Output Cost Calculation: 40 × $4.40 = $176.00
+
+Your total operational cost for the month would be:
+
+Total Cost = Hosting charges + Token usage cost
 
 $$
-\textbf{Input Cost Calculation:} \quad 20 \times \$1.10 = \$22.00
-$$
-
-$$
-\textbf{Output Cost Calculation:} \quad 40 \times \$4.40 = \$176.00
-$$
-
-$$
-\textbf{Your total operational cost for the month would be:}
-$$
-
-$$
-= \text{Hosting charges} + \text{Token usage cost}
-$$
-
-$$
-= (1.70 \times 30 \times 24) + (22 + 176) = 1422.00
-$$
-
-$$
-\text{Total Monthly Cost} = \$1422.00
+\text{Total Cost} = (1.70 \times 30 \times 24) + (22 + 176) = \$1422.00
 $$
