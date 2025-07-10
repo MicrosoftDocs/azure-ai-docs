@@ -7,7 +7,7 @@ ms.author: mopeakande
 manager: scottpolly
 reviewer: santiagxf
 ms.reviewer: fasantia
-ms.date: 07/03/2025
+ms.date: 07/10/2025
 ms.service: azure-ai-model-inference
 ms.topic: how-to
 ms.custom:
@@ -21,15 +21,15 @@ ms.custom:
 
 Azure AI Foundry Models gives you access to flagship models in Azure AI Foundry to consume them as APIs with flexible deployment options.
 
-This article lists a selection of current model offerings and their capabilities, excluding [deprecated and legacy models](../../concepts/model-lifecycle-retirement.md#deprecated). Many of the models listed can also be deployed to serverless APIs, with a few exceptions, which are indicated in the model lists.
+This article lists a selection of current model offerings and their capabilities, excluding [deprecated and legacy models](../../concepts/model-lifecycle-retirement.md#deprecated). The models listed support [standard deployment in Azure AI Foundry resources](../../concepts/deployments-overview.md#standard-deployment-in-azure-ai-foundry-resources), and many of them also support deployment to serverless APIs (those that don't support serverless deployment are indicated in the model lists).
 
 Foundry models in the model catalog belong to two main categories:
 * [Models sold directly by Azure](#models-sold-directly-by-azure)
 * [Models from Partners and Community](#models-from-partners-and-community)
 
-Follow this link for more information on [Models sold directly by Azure](foundry-models-overview.md#models-sold-directly-by-azure). Follow this link for more information on [Models from Partners and Community](foundry-models-overview.md#models-from-partners-and-community).
+To learn more about these two categories, see [Models Sold Directly by Azure](../../concepts/foundry-models-overview.md#models-sold-directly-by-azure) and [Models from Partners and Community](../../concepts/foundry-models-overview.md#models-from-partners-and-community).
 
-## Azure OpenAI
+### Azure OpenAI
 
 Azure OpenAI in Azure AI Foundry Models offers a diverse set of models with different capabilities and price points. Learn more details at [Azure OpenAI Model availability](../../../ai-services/openai/concepts/models.md). These models include:
 
@@ -111,7 +111,7 @@ Meta Llama models and tools are a collection of pretrained and fine-tuned genera
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=meta). There are also several Meta models available as [Models Sold Directly by Azure](../../concepts/foundry-models-overview.md#models-sold-directly-by-azure). 
 
-## Microsoft
+### Microsoft
 
 Microsoft models include various model groups such as MAI models, Phi models, healthcare AI models, and more. To see all the available Microsoft models, view [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi).
 
@@ -135,7 +135,7 @@ Microsoft models include various model groups such as MAI models, Phi models, he
 
 See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi).
 
-## Mistral AI
+### Mistral AI
 
 Mistral AI offers two categories of models: premium models including Mistral Large and Mistral Small and open models including Mistral Nemo.
 
@@ -150,7 +150,7 @@ Mistral AI offers two categories of models: premium models including Mistral Lar
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=mistral).
 
-## NTT Data
+### NTT Data
 
 **tsuzumi** is an autoregressive language optimized transformer. The tuned versions use supervised fine-tuning (SFT). tsuzumi handles both Japanese and English language with high efficiency.
 
@@ -172,7 +172,7 @@ DeepSeek family of models includes DeepSeek-R1, which excels at reasoning tasks 
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=deepseek).
 
-## xAI
+### xAI
 
 xAI's Grok 3 and Grok 3 Mini models are designed to excel in various enterprise domains. Grok 3, a non-reasoning model pre-trained by the Colossus datacenter, is tailored for business use cases such as data extraction, coding, and text summarization, with exceptional instruction-following capabilities. It supports a 131,072 token context window, allowing it to handle extensive inputs while maintaining coherence and depth, and is particularly adept at drawing connections across domains and languages. On the other hand, Grok 3 Mini is a lightweight reasoning model trained to tackle agentic, coding, mathematical, and deep science problems with test-time compute. It also supports a 131,072 token context window for understanding codebases and enterprise documents, and excels at using tools to solve complex logical problems in novel environments, offering raw reasoning traces for user inspection with adjustable thinking budgets.
 
@@ -183,13 +183,8 @@ xAI's Grok 3 and Grok 3 Mini models are designed to excel in various enterprise 
 
 <sup>1</sup> These models do not support deployment to a serverless API.
 
-## Open and custom models
 
-The model catalog offers a larger selection of models, from a bigger range of providers. For these models, you cannot use the option for [standard deployment in Azure AI Foundry resources](../../concepts/deployments-overview.md#standard-deployment-in-azure-ai-foundry-resources), where models are provided as APIs; rather, to deploy these models, you might be required to host them on your infrastructure, create an AI hub, and provide the underlying compute quota to host the models.
-
-Furthermore, these models can be open-access or IP protected. In both cases, you have to deploy them in Managed Compute offerings in Azure AI Foundry. To get started, see [How-to: Deploy to Managed compute](../../how-to/deploy-models-managed.md).
-
-## Other Models available for Serverless API deployment
+## Other Foundry Models available for serverless API deployment
 
 This section lists a selection of models available only through Serverless API deployment. For more information on these models, visit the [Azure AI Foundry Models Serverless API Inference Examples](models-featured.md) page.  
 
@@ -206,7 +201,14 @@ This section lists a selection of models available only through Serverless API d
 | [Cohere-rerank-v3-english](https://ai.azure.com/explore/models/Cohere-rerank-v3-english/version/1/registry/azureml-cohere) <br> (deprecated) | rerank <br> text classification | Partners and Community | | [Cohere's v2/rerank API](https://docs.cohere.com/v2/reference/rerank) <br> [Cohere's v1/rerank API](https://docs.cohere.com/v1/reference/rerank) |
 | [Cohere-rerank-v3-multilingual](https://ai.azure.com/explore/models/Cohere-rerank-v3-multilingual/version/1/registry/azureml-cohere) <br> (deprecated) | rerank <br> text classification | Partners and Community | | [Cohere's v2/rerank API](https://docs.cohere.com/v2/reference/rerank) <br> [Cohere's v1/rerank API](https://docs.cohere.com/v1/reference/rerank) |
 
+## Open and custom models
+
+The model catalog offers a larger selection of models, from a bigger range of providers. For these models, you cannot use the option for [standard deployment in Azure AI Foundry resources](../../concepts/deployments-overview.md#standard-deployment-in-azure-ai-foundry-resources), where models are provided as APIs; rather, to deploy these models, you might be required to host them on your infrastructure, create an AI hub, and provide the underlying compute quota to host the models.
+
+Furthermore, these models can be open-access or IP protected. In both cases, you have to deploy them in Managed Compute offerings in Azure AI Foundry. To get started, see [How-to: Deploy to Managed compute](../../how-to/deploy-models-managed.md).
+
 
 ## Related content
 
-- Get started today and [deploy your first model in Azure AI Foundry Models](../../model-inference/how-to/create-model-deployments.md)
+- [Deployment overview for Azure AI Foundry Models](../../concepts/deployments-overview.md)
+- [Add and configure models to Azure AI Foundry Models](../how-to/create-model-deployments.md)

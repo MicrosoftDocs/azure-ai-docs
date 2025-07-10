@@ -111,6 +111,11 @@
             "redirect_document_id": true
           },
           {
+            "source_path_from_root": "/articles/ai-foundry/concepts/models-featured.md",
+            "redirect_url": "/azure/ai-foundry/concepts/models-inference-examples",
+            "redirect_document_id": false
+          },
+          {
             "source_path_from_root": "/articles/ai-foundry/model-inference/reference/api-version-updates.md",
             "redirect_url": "/rest/api/aifoundry/modelinference",
             "redirect_document_id": false

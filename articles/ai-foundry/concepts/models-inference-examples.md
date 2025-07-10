@@ -1,13 +1,13 @@
 ---
-title: Azure AI Foundry Models available for serverless API deployment
+title: Serverless API inference examples for Foundry Models
 titleSuffix: Azure AI Foundry
-description: Explore various models available for serverless API deployment in Azure AI Foundry.
+description: Inference examples for Foundry Models that support deployment to serverless APIs in Azure AI Foundry.
 author: msakande
 ms.author: mopeakande
 manager: scottpolly
 reviewer: santiagxf
 ms.reviewer: fasantia
-ms.date: 05/19/2025
+ms.date: 07/10/2025
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.custom:
@@ -16,7 +16,7 @@ ms.custom:
   - build-2025
 ---
 
-# Azure AI Foundry Models Serverless API Inference Examples
+# Serverless API inference examples for Foundry Models
 
 The Azure AI model catalog offers a large selection of Azure AI Foundry Models from a wide range of providers. You have various options for deploying models from the model catalog. This article lists Azure AI Foundry Models that  can be deployed via serverless API deployment. For some of these models, you can also host them on your infrastructure for deployment via managed compute.
 
