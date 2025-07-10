@@ -13,7 +13,7 @@ ms.topic: how-to
 # Deep Research tool (preview)
 
 > [!NOTE]
-> * The `o3-deep-research` model is available for use only with the Deep Research tool. It is **not** available for use with the Azure OpenAI Chat Completions and Responses APIs.
+> * The `o3-deep-research` model is available for use **only with the Deep Research tool**. It is **not** available in the Azure OpenAI Chat Completions and Responses APIs.
 > * The **parent** AI Foundry project resource and the contained  `o3-deep-research` and GPT models **children** resources **must exist** in the same Azure subscription and region. Supported regions are **West US** and **Norway East**.
 
 The Deep Research tool in the Azure AI Foundry Agent Service enables you to integrate a web-based research capability into your systems. The Deep Research capability is a specialized AI capability designed to perform in-depth, multi-step research using data from the public web.  
