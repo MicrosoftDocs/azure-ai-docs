@@ -14,8 +14,6 @@ zone_pivot_groups: openai-quickstart-dall-e
 
 # Quickstart: Generate images with Azure OpenAI in Azure AI Foundry Models
 
-> [!NOTE]
-> The image generation API creates an image from a text prompt. It doesn't edit or create variations from existing images.
 
 ::: zone pivot="programming-language-studio"
 
