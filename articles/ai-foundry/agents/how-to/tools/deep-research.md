@@ -13,8 +13,8 @@ ms.topic: how-to
 # Deep Research tool (preview)
 
 > [!NOTE]
-> * The Agents service and SDK use the Azure OpenAI `o3-deep-research` model. This model is not accessible from Azure OpenAI Chat Completions and Responses APIs.
-> * When using Grounding with Bing Search, only the Bing search query, tool parameters, and your resource key are sent to Bing, and no end user-specific information is included. Your resource key is sent to Bing solely for billing and rate limiting purposes. 
+> * The Agents service and SDK use the Azure OpenAI `o3-deep-research` model. This model is currently **not** available for use in Azure OpenAI Chat Completions and Responses APIs.
+> * The  `o3-deep-research` model and the GPT model deployments should be part of your AI Foundry project resulting in all three resources in the same Azure subscription and same region. Supported regions are **West US** and **Norway East**.
 
 The Deep Research tool in the Azure AI Foundry Agent Service enables you to integrate a web-based research capability into your systems. The Deep Research capability is a specialized AI capability designed to perform in-depth, multi-step research using data from the public web.  
 
@@ -22,6 +22,9 @@ The Deep Research tool in the Azure AI Foundry Agent Service enables you to inte
 > 1. Your usage of Grounding with Bing Search can incur costs. See the [pricing page](https://www.microsoft.com/bing/apis/grounding-pricing) for details.
 > 1. By creating and using a Grounding with Bing Search resource through code-first experience, such as Azure CLI, or deploying through deployment template, you agree to be bound by and comply with the terms available at https://www.microsoft.com/en-us/bing/apis/grounding-legal, which may be updated from time to time.
 > 1. When you use Grounding with Bing Search, your customer data is transferred outside of the Azure compliance boundary to the Grounding with Bing Search service. Grounding with Bing Search is not subject to the same data processing terms (including location of processing) and does not have the same compliance standards and certifications as the Azure AI Foundry Agent Service, as described in the [Grounding with Bing Search Terms of Use](https://www.microsoft.com/en-us/bing/apis/grounding-legal). It is your responsibility to assess whether use of Grounding with Bing Search in your agent meets your needs and requirements.
+
+> [!NOTE]
+> * When using Grounding with Bing Search, only the Bing search query, tool parameters, and your resource key are sent to Bing, and no end user-specific information is included. Your resource key is sent to Bing solely for billing and rate limiting purposes.
 
 ## Usage support
 The deep research tool is a **code-only release** and available for use using the Agents Python SDK once you complete the Azure AI Foundry project setup described in the following sections.
@@ -89,9 +92,6 @@ The output is a structured report that documents not only the comprehensive answ
 ## Setup 
 
 To use the Deep Research tool, you need to create the Azure AI Foundry type project, add your Grounding with Bing Search resource as a new connection, deploy the `o3-deep-research-model`, and deploy the selected Azure OpenAI GPT model. 
-
-> [!NOTE]
-> * The  `o3-deep-research` model and the GPT model deployments should be part of your AI Foundry project resulting in all three resources in the same Azure subscription and same region. Supported regions are **West US** and **Norway East**.
 
 :::image type="content" source="../../media/tools/deep-research/setup-deep-research-tool.png" alt-text="A diagram of the steps to set up the deep research tool." lightbox="../../media/tools/deep-research/setup-deep-research-tool.png":::
 
