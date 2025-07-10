@@ -18,7 +18,7 @@ ms.custom:
 
 # Serverless API inference examples for Foundry Models
 
-The Azure AI model catalog offers a large selection of Azure AI Foundry Models from a wide range of providers. You have various options for deploying models from the model catalog. This article lists Azure AI Foundry Models that  can be deployed via serverless API deployment. For some of these models, you can also host them on your infrastructure for deployment via managed compute.
+The Azure AI model catalog offers a large selection of Azure AI Foundry Models from a wide range of providers. You have various options for deploying models from the model catalog. This article lists inference examples for serverless API deployments.
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
 
@@ -33,7 +33,7 @@ The Cohere family of models includes various models optimized for different use 
 
 #### Inference examples: Cohere command and embed
 
-For more examples of how to use Cohere models, see the following examples:
+The following table provides links to examples of how to use Cohere models.
 
 | Description                               | Language          | Sample                                                          |
 |-------------------------------------------|-------------------|-----------------------------------------------------------------|
@@ -59,13 +59,7 @@ For more examples of how to use Cohere models, see the following examples:
 
 ### Cohere rerank
 
-The following table lists the Cohere rerank models. To perform inferencing with these rerank models, you're required to use Cohere's custom rerank APIs that are listed in the table.
-
-| Model  | Type | Inference API | 
-| ------ | ---- | --- | 
-| [Cohere-rerank-v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/1/registry/azureml-cohere) | rerank <br> text classification | [Cohere's v2/rerank API](https://docs.cohere.com/v2/reference/rerank) |
-| [Cohere-rerank-v3-english](https://ai.azure.com/explore/models/Cohere-rerank-v3-english/version/1/registry/azureml-cohere) <br> (deprecated) | rerank <br> text classification  | [Cohere's v2/rerank API](https://docs.cohere.com/v2/reference/rerank) <br> [Cohere's v1/rerank API](https://docs.cohere.com/v1/reference/rerank) |
-| [Cohere-rerank-v3-multilingual](https://ai.azure.com/explore/models/Cohere-rerank-v3-multilingual/version/1/registry/azureml-cohere) <br> (deprecated) | rerank <br> text classification | [Cohere's v2/rerank API](https://docs.cohere.com/v2/reference/rerank) <br> [Cohere's v1/rerank API](https://docs.cohere.com/v1/reference/rerank) |
+To perform inferencing with Cohere rerank models, you're required to use Cohere's custom rerank APIs. For more information, see the table for [Other Foundry Models available for serverless API deployment](../foundry-models/concepts/models.md#other-foundry-models-available-for-serverless-api-deployment).
 
 
 #### Pricing for Cohere rerank models
@@ -76,7 +70,8 @@ See the [Cohere model collection in Azure AI Foundry portal](https://ai.azure.co
 
 ## Core42
 
-For more examples of how to use Jais models, see the following examples:    
+The following table provides links to examples of how to use Jais models.
+
 
 | Description                               | Language          | Sample                                                          |    
 |-------------------------------------------|-------------------|-----------------------------------------------------------------|    
@@ -89,7 +84,8 @@ For more examples of how to use Jais models, see the following examples:
 
 DeepSeek family of models includes DeepSeek-R1, which excels at reasoning tasks using a step-by-step training process, such as language, scientific reasoning, and coding tasks, DeepSeek-V3-0324, a Mixture-of-Experts (MoE) language model, and more. 
 
-For more examples of how to use DeepSeek models, see the following examples:    
+The following table provides links to examples of how to use DeepSeek models.
+  
 
 | Description                               | Language          | Sample                                                          |    
 |-------------------------------------------|-------------------|-----------------------------------------------------------------|    
@@ -109,7 +105,8 @@ Meta Llama models and tools are a collection of pretrained and fine-tuned genera
 - High-performant natively multimodal models, Llama 4 Scout and Llama 4 Maverick, leverage a mixture-of-experts architecture to offer industry-leading performance in text and image understanding.
 
 
-For more examples of how to use Meta Llama models, see the following examples:  
+The following table provides links to examples of how to use Meta Llama models.
+
   
 | Description                               | Language          | Sample                                                             |    
 |-------------------------------------------|-------------------|------------------------------------------------------------------- |    
@@ -126,7 +123,8 @@ For more examples of how to use Meta Llama models, see the following examples:
 
 Microsoft models include various model groups such as MAI models, Phi models, healthcare AI models, and more. To see all the available Microsoft models, view [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi).
 
-For more examples of how to use Microsoft models, see the following examples:    
+The following table provides links to examples of how to use Microsoft models.
+ 
 
 | Description                               | Language          | Sample                                                          |    
 |-------------------------------------------|-------------------|-----------------------------------------------------------------|    
@@ -148,7 +146,8 @@ Mistral AI offers two categories of models, namely:
 - _Open models_: These include Mistral-small-2503, Codestral, and Mistral Nemo (that are available as serverless APIs with pay-as-you-go token-based billing), and [Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01](../how-to/deploy-models-mistral-open.md)(that are available to download and run on self-hosted managed endpoints).
 
 
-For more examples of how to use Mistral models, see the following examples and tutorials:    
+The following table provides links to examples of how to use Mistral models.
+   
 
 | Description                               | Language          | Sample                                                          |    
 |-------------------------------------------|-------------------|-----------------------------------------------------------------|    
@@ -218,7 +217,8 @@ For examples of how to use Stability AI models, see the following examples:
 ## Related content
 
 - [Deploy models as serverless API deployments](../how-to/deploy-models-serverless.md)
-- [Model catalog and collections in Azure AI Foundry portal](../how-to/model-catalog-overview.md)
+- [Explore Azure AI Foundry Models](foundry-models-overview.md)
+- [Foundry Models and their capabilities](../foundry-models/concepts/models.md)
 - [Region availability for models in serverless API deployments](../how-to/deploy-models-serverless-availability.md)
 - [Content safety for  Models Sold Directly by Azure ](model-catalog-content-safety.md)
 
