@@ -5,6 +5,14 @@ ms.topic: include
 ms.date: 08/01/2024
 ms.author: eur
 ---
+### Speech CLI 1.44: 2025-May release
+
+#### New features
+  * Added support for authentication with Microsoft Entra token credentials.
+  * Added support for the Fast transcription API.
+  
+##### Bug fixes
+  * Fixed non-working semicolon-separated input URLs and input file/URL lists from a file.
 
 ### Speech CLI 1.43: 2025-March release
 
