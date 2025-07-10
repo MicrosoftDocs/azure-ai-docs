@@ -5,8 +5,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: reference
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: balapv
 ms.date: 07/26/2024
 ms.custom: UpdateFrequency5, devx-track-azurecli, cliv1

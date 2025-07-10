@@ -2,8 +2,8 @@
 title: Troubleshoot data labeling project creation
 titleSuffix: Azure Machine Learning
 description: Learn how to troubleshoot and resolve issues when creating your data labeling project.
-author: sdgilley
-ms.author: sgilley
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: vkann
 services: machine-learning
 ms.service: azure-machine-learning

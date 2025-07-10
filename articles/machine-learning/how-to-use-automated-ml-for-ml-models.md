@@ -5,8 +5,8 @@ description: Learn how to set up Automated ML training jobs for tabular data wit
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: automl
-author: ssalgadodev
-ms.author: ssalgado
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: manashg
 ms.date: 07/15/2024
 ms.topic: how-to

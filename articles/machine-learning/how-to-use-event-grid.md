@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.topic: how-to
 ms.custom: devx-track-azurecli
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: truptiparkar
 ms.date: 03/06/2025
 monikerRange: 'azureml-api-2 || azureml-api-1'

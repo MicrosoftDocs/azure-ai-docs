@@ -3,8 +3,8 @@ title: Secure your RAG workflows with network isolation (preview)
 titleSuffix: Azure Machine Learning
 description: Learn how to secure your RAG workflows with managed network and custom virtual network scenarios.
 services: machine-learning
-ms.author: ssalgado
-author: ssalgadodev
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: namohan
 ms.service: azure-machine-learning
 ms.subservice: core

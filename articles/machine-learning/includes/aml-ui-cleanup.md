@@ -6,7 +6,7 @@ ms.service: azure-machine-learning
 ms.custom: "include file"
 ms.topic: "include"
 author: sgilley
-ms.author: sgilley
+ms.author: scottpolly
 ms.date: 11/06/2019
 ---
 

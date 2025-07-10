@@ -3,8 +3,8 @@ title: Get started with RAG using a prompt flow sample (preview)
 titleSuffix: Azure Machine Learning
 description: Set up a prompt flow using the samples gallery.
 services: machine-learning
-ms.author: ssalgado
-author: ssalgadodev
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: balapv
 ms.service: azure-machine-learning
 ms.subservice: core

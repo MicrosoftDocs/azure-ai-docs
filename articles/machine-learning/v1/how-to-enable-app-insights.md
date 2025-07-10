@@ -5,8 +5,8 @@ description: Learn how to collect data from models deployed to web service endpo
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: alehughes
 ms.date: 03/10/2025
 ms.topic: how-to

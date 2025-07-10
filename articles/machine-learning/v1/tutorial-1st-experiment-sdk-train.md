@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: training
 ms.topic: tutorial
-author: sdgilley
-ms.author: sgilley
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: amsaied
 ms.date: 04/03/2024
 ms.custom: UpdateFrequency5, devx-track-python, contperf-fy21q, sdkv1
