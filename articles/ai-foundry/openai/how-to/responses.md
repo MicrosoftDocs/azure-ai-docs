@@ -70,7 +70,7 @@ Not every model is available in the regions supported by the responses API. Chec
 
 ### Reference documentation
 
-- [Responses API reference documentation](/azure/ai-services/openai/reference-preview-latest?#responses-api---create)
+- [Responses API reference documentation](/azure/ai-services/openai/reference-preview-latest?#create-response)
 
 ## Getting started with the responses API
 
