@@ -48,12 +48,12 @@ Here's a table to illustrate the options in different network setups for prompt 
 
 |Ingress|Egress |Compute type in authoring               |Compute type in inference                                |Network options for workspace|
 |-------|-------|----------------------------------------|---------------------------------------------------------|-----------------------------|
-|Public |Public |Serverless (recommend), Compute instance| Managed online endpoint (recommend)     |Managed (recommend)|
-|Public |Public |Serverless (recommend), Compute instance|  K8s online endpoint                                 | Bring your own        |
-|Private|Public |Serverless (recommend), Compute instance| Managed online endpoint (recommend)     |Managed (recommend)|
-|Private|Public |Serverless (recommend), Compute instance|  K8s online endpoint                                |Bring your own        |
-|Public |Private|Serverless (recommend), Compute instance| Managed online endpoint                          |Managed|
-|Private|Private|Serverless (recommend), Compute instance| Managed online endpoint                         |Managed|
+|Public |Public |Serverless (recommended), Compute instance| Managed online endpoint (recommend)     |Managed (recommended)|
+|Public |Public |Serverless (recommended), Compute instance|  K8s online endpoint                                   | Bring your own |
+|Private|Public |Serverless (recommended), Compute instance| Managed online endpoint (recommended)     |Managed (recommended)|
+|Private|Public |Serverless (recommended), Compute instance|  K8s online endpoint                                |Bring your own|
+|Public |Private|Serverless (recommended), Compute instance| Managed online endpoint                          |Managed|
+|Private|Private|Serverless (recommended), Compute instance| Managed online endpoint                         |Managed|
 
 - In private virtual network scenarios, we recommend using a workspace-enabled managed virtual network. It's the easiest way to secure your workspace and related resources. 
 - The use of managed vNet and bring your own virtual network in a single workspace isn't supported. Additionally, since managed online endpoint is supported only with a managed virtual network, you can't deploy prompt flow to managed online endpoint in a workspace with an enabled bring your own virtual network.
