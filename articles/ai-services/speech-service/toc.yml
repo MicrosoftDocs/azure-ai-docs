@@ -136,7 +136,7 @@ items:
     - name: High definition (HD) voices
       href: high-definition-voices.md
       displayName: hd voice
-    - name: Voice conversion
+    - name: Voice conversion (preview)
       href: voice-conversion.md
       displayName: voice conversion
     - name: Custom voice

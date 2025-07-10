@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
+ms.date: 7/9/2025
 ms.author: eur
 ms.custom: references_regions
 #Customer intent: As a developer, I want to learn how to use Speech Synthesis Markup Language (SSML) elements to customize what my Speech service voice sounds like.
@@ -559,9 +559,9 @@ This SSML snippet illustrates how to request blend shapes with your synthesized 
 
 ## Voice conversion element
 
-Voice conversion is the process of transforming the voice characteristics of a given audio to a target voice speaker. After voice conversion, the resulting audio reserves source audio's linguistic content and prosody while the voice timbre sounds like the target speaker. For more information, see [voice conversion](./voice-conversion.md).
+Voice conversion (preview) is the process of transforming the voice characteristics of a given audio to a target voice speaker. After voice conversion, the resulting audio reserves source audio's linguistic content and prosody while the voice timbre sounds like the target speaker. For more information, see [voice conversion](./voice-conversion.md).
 
-Use the `<mstts:voiceconversion>` tag via Speech Synthesis Markup Language (SSML) to specify the source audio URL and the target voice for the conversion. For a complete list of supported target voices, see [supported voices for voice conversion](./language-support.md#voice-conversion).
+Use the `<mstts:voiceconversion>` tag via Speech Synthesis Markup Language (SSML) to specify the source audio URL and the target voice for the conversion. For a complete list of supported target voices, see [supported voices for voice conversion](./language-support.md?tabs=tts#voice-conversion).
 
 The following table describes the usage of the `mstts:voiceconversion` element's attributes:
 
@@ -573,7 +573,7 @@ Here's how the voice conversion works:
 - The source audio is a prerecorded audio file that contains the spoken words and prosody.
   - Text content: The final synthesized speech follows the spoken words in the source audio.
   - Prosody and rhythm: The speech maintains the timing and intonation from the source.
-- The `<voice>` tag specifies the target voice used for the output audio. For information about the supported target voices, see [supported voices for voice conversion](./language-support.md#voice-conversion).
+- The `<voice>` tag specifies the target voice used for the output audio. For information about the supported target voices, see [supported voices for voice conversion](./language-support.md?tabs=tts#voice-conversion).
 - The output audio keeps the timbre (tone and voice quality) of the target voice, but follows the text and speaking style of the source audio.
 
 > [!NOTE]
