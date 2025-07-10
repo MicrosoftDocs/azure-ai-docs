@@ -1,5 +1,5 @@
 ---
-title: Connect to a Model Context Protocol Server Endpoint in Azure AI Foundry Agent Service
+title: Connect to a Model Context Protocol Server Endpoint in Azure AI Foundry Agent Service (Preview)
 titleSuffix: Azure AI Foundry
 description: Learn how to add MCP servers to Azure AI Foundry Agent Service.
 services: cognitive-services
