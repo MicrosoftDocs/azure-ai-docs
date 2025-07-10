@@ -10,7 +10,7 @@ items:
   - name: What's new?
     displayName: release,ga,update,support, cognitive
     href: whats-new.md
-  - name: Create a Translator resource
+  - name: Configure Azure AI resources
     displayName: endpoint,key,portal,azure,authentication,delete,resource
     href: create-translator-resource.md
   - name: Language Support

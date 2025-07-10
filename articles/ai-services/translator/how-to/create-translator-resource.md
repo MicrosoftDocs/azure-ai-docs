@@ -13,7 +13,9 @@ ms.topic: how-to
 
 # Create Azure resources for Azure AI translation 
 
-You might have an existing Azure AI Translator or multi-service resource that you used as standalone resources or in the Language studio. The good  news is that you can still use your existing Translator resources in the Azure AI Foundry portal. For more information, *see* [How to use Azure AI services in the Azure AI Foundry portal](../../connect-services-ai-foundry-portal.md).
+Azure AI Translator is a cloud-based neural machine translation (NMT) service that allows users to add multilingual capabilities to their applications and workflows by translating text and documents both asynchronously and in real time.  If you already have an Azure AI Translator or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Translator resources within the Azure AI Foundry portal for NMT deployment. For more information, *see* [How to use Azure AI services in the Azure AI Foundry portal](../../connect-services-ai-foundry-portal.md).
+
+By default, Azure AI Translator uses NMT technology. With the latest preview release, however, you can now choose between two Large Language Model (LLM) deployment types: GPT-4o-mini and GPT-4o. To use an LLM model, you must have an Azure AI Foundry resource.
 
 The following table provides an overview of the resource solutions for Translator within the Azure AI ecosystem:
 
@@ -119,26 +121,6 @@ In our quickstart, learn how to use the Translator service with REST APIs.
 
 ---
 
-## How to delete a  resource or resource group
-
-> [!WARNING]
->
-> Deleting a resource group also deletes all resources contained in the group.
-
-To delete the resource:
-
-1. Search and select **Resource groups** in the Azure portal, and select your resource group.
-1. Select the resources to be deleted by selecting the adjacent check box.
-1. Select **Delete** from the top menu near the right edge.
-1. Enter *delete* in the **Delete Resources** dialog box.
-1. Select **Delete**.
-
-To delete the resource group:
-
-1. Go to your Resource Group in the Azure portal.
-1. Select **Delete resource group** from the top menu bar.
-1. Confirm the deletion request by entering the resource group name and selecting **Delete**.
-
 ## Configure your resources for Azure AI Foundry
 
 Completing this setup is essential for fully integrating your environment with Azure AI Foundry. You only need to perform this setup once—afterward, you have seamless access to advanced, AI-powered question answering capabilities.
@@ -181,6 +163,26 @@ Azure AI Foundry offers a unified platform for building, managing, and deploying
 1. Finally, select **Review + assign** to confirm your selection.
 
 1. Your resources are now set up properly. Continue with setting up the fine-tuning task and continue customizing your Azure AI Translator projects.
+
+## How to delete a  resource or resource group
+
+> [!WARNING]
+>
+> Deleting a resource group also deletes all resources contained in the group.
+
+To delete the resource:
+
+1. Search and select **Resource groups** in the Azure portal, and select your resource group.
+1. Select the resources to be deleted by selecting the adjacent check box.
+1. Select **Delete** from the top menu near the right edge.
+1. Enter *delete* in the **Delete Resources** dialog box.
+1. Select **Delete**.
+
+To delete the resource group:
+
+1. Go to your Resource Group in the Azure portal.
+1. Select **Delete resource group** from the top menu bar.
+1. Confirm the deletion request by entering the resource group name and selecting **Delete**.
 
 ## Next Steps
 

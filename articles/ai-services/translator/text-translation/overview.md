@@ -24,34 +24,33 @@ Text translation documentation contains the following article types:
 
 ### [Latest preview version](#tab/linux)
 
-### [**Languages**](reference/preview/get-languages.md). Returns a list of languages supported by **Translate** and **Transliterate. This request doesn't require authentication; just copy and paste the following `GET` request into your preferred REST API tool or browser:
+* [**Languages**](reference/preview/get-languages.md). Returns a list of languages supported by **Translate** and **Transliterate. This request doesn't require authentication; just copy and paste the following `GET` request into your preferred REST API tool or browser:
 
- ```bash
-     https://api.cognitive.microsofttranslator.com/languages?api-version=2025-05-01-preview
+    ```bash
+        https://api.cognitive.microsofttranslator.com/languages?api-version=2025-05-01-preview
 
- ```
+    ```
 
-### [**Translate**](reference/preview/translate-api.md). Renders single source-language text to multiple target-language texts with a single `POST` request:
+* [**Translate**](reference/preview/translate-api.md). Renders single source-language text to multiple target-language texts with a single `POST` request:
 
- ```bash
-    https://api.cognitive.microsofttranslator.com/translate?api-version=2025-05-01-preview
+    ```bash
+       https://api.cognitive.microsofttranslator.com/translate?api-version=2025-05-01-preview
 
- ```
+    ```
+* [**Transliterate**](reference/preview/transliterate-api.md). Converts characters or letters of a source language to the corresponding characters or letters of a target language with a single `POST` request.
 
-### [**Transliterate**](reference/preview/transliterate-api.md). Converts characters or letters of a source language to the corresponding characters or letters of a target language with a single `POST` request.
-
- ```bash
- https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-05-01-preview
- ```
+    ```bash
+    https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-05-01-preview
+    ```
 
 
 ### [Latest GA version](#tab/windows)
 
 * [**Languages**](reference/v3/languages.md). Returns a list of languages supported by **Translate**, **Transliterate**, and **Dictionary Lookup** operations. This request doesn't require authentication; just copy and paste the following GET request into your favorite REST API tool or browser:
 
- ```bash
- https://api.cognitive.microsofttranslator.com/languages?api-version=3.0
- ```
+    ```bash
+    https://api.cognitive.microsofttranslator.com/languages?api-version=3.0
+    ```
 
 * [**Translate**](reference/v3/translate.md#translate-to-multiple-languages). Renders single source-language text to multiple target-language texts with a single request.
 
