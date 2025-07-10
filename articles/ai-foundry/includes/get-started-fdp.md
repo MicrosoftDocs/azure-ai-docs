@@ -10,7 +10,7 @@ ms.custom:
   - include file
   - build-aifnd
   - build-2025
-  - update-code-2
+  - update-code-3
 ---
 
 In this quickstart, you use [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) to:
@@ -83,7 +83,7 @@ No installation is necessary to use the Azure AI Foundry portal.
 > [!NOTE]
 > All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart).
 
-# [JavaScript (preview)](#tab/javascript)
+# [JavaScript](#tab/javascript)
 
 1. [Install Node.js and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-javascript)
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your JavaScript scripts.
@@ -154,7 +154,7 @@ Substitute your endpoint for the `endpoint` in this code:
 
 :::code language="java" source="~/foundry-samples-main/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/ChatCompletionSample.java" :::
 
-# [JavaScript (preview)](#tab/javascript)
+# [JavaScript](#tab/javascript)
 
 :::code language="javascript" source="~/foundry-samples-main/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="chat_completion":::
 
@@ -194,7 +194,7 @@ Substitute your endpoint for the `endpoint` in this code:
 
 :::code language="java" source="~/foundry-samples-main/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/AgentSample.java" :::
 
-# [JavaScript (preview)](#tab/javascript)
+# [JavaScript](#tab/javascript)
 
 :::code language="javascript" source="~/foundry-samples-main/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="create_and_run_agent" :::
 
@@ -240,7 +240,7 @@ Substitute your endpoint for the `endpoint` in this code:
 :::code language="java" source="~/foundry-samples-main/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/FileSearchAgentSample.java" :::
 
 
-# [JavaScript (preview)](#tab/javascript)
+# [JavaScript](#tab/javascript)
 
 :::code language="javascript" source="~/foundry-samples-main/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="create_filesearch_agent":::
 
