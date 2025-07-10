@@ -84,7 +84,7 @@ The quickstart assumes the following is available on your computer:
 1. Create `.env`, and provide your search service endpoint. You can get the endpoint from the Azure portal on the search service **Overview** page.
 
     ```ini
-    AZURE_SEARCH_ENDPOINT=https://<>.search.windows.net
+    AZURE_SEARCH_ENDPOINT=YOUR-SEARCH-SERVICE-ENDPOINT
     AZURE_SEARCH_INDEX_NAME=hotels-sample-index
     SEMANTIC_CONFIGURATION_NAME=semantic-config
     ```

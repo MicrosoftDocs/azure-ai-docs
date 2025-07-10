@@ -46,7 +46,7 @@ The quickstart assumes the following is available on your computer:
 1. Rename `sample.env` to `.env`, and provide your search service endpoint. You can get the endpoint from the Azure portal on the search service **Overview** page.
 
     ```ini
-    AZURE_SEARCH_ENDPOINT=https://ai-search-dib-2.search.windows.net
+    AZURE_SEARCH_ENDPOINT=YOUR-SEARCH-SERVICE-ENDPOINT
     AZURE_SEARCH_INDEX_NAME=hotels-sample-index
     SEMANTIC_CONFIGURATION_NAME=semantic-config
     ```
