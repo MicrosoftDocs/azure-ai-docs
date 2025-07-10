@@ -34,7 +34,29 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 
 * Your Fabric Data Agent and Azure AI Foundry Agent need to be in the same tenant.
 
+
+* Your Azure AI Foundry Project endpoint.
+
+    [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]
+
+    Save this endpoint to an environment variable named `PROJECT_ENDPOINT`. 
+
+
+* The name of your Microsoft Fabric connection name. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Then selecting **Connected resources**.
+    
+    :::image type="content" source="../../media/tools/fabric-connection.png" alt-text="A screenshot showing the SharePoint connection name. " lightbox="../../media/tools/fabric-connection.png":::
+
+    Save this endpoint to an environment variable named `FABRIC_CONNECTION_ID`
+
+
+* The names of your model's deployment name. You can find it in **Models + Endpoints** in the left navigation menu. 
+
+    :::image type="content" source="../../media/tools/model-deployment-4o.png" alt-text="A screenshot showing the model deployment screen the AI Foundry portal." lightbox="../../media/tools/model-deployment-4o.png":::
+    
+    Save the name of your model deployment name as an environment variable named `MODEL_DEPLOYMENT_NAME`. 
+
 ## Setup  
+
 > [!NOTE]
 > * The model you selected in Azure AI Foundry Agent setup is only used for agent orchestration and response generation. It doesn't impact which model Fabric data agent uses for NL2SQL operation.
 > * To help your model invoke your Microsoft Fabric tool in the expected way, make sure you update agent instructions with descriptions of your Fabric data agent and what data it can access. An example is "for customer and product sales related data, please use the Fabric tool". We recommend using a smaller AI model such as `gpt-4o-mini`. You can also use `tool_choice` parameter in SDK or API to force Fabric tool to be invoked at each run. 
@@ -83,7 +105,7 @@ project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT
 
 # Initialize the AIProjectClient
 project_client = AIProjectClient(
-    endpoint=os.environ["PROJECT_ENDPOINT"],
+    endpoint=project_endpoint,
     credential=DefaultAzureCredential(),
 )
 ``` 
