@@ -1,6 +1,4 @@
 items:
-- name: Azure AI Foundry Agent Service Documentation
-  href: index.yml
 - name: Overview
   expanded: true
   items:
