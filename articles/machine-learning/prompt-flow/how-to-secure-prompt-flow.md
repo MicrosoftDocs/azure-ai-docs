@@ -20,15 +20,25 @@ You can secure prompt flow using private networks. This article explains the req
 
 ## Involved services
 
-When you're developing your AI application using prompt flow, you want a secured environment. You can make the following services private via network settings.
+When you develop AI applications using prompt flow, you need a secured environment. You can configure network isolation for the following services:
 
-- Workspace: you can make the Azure Machine Learning workspace private and limit its inbound and outbound traffic.
-- Compute resource: you can also limit inbound and outbound rules of the compute resource in the workspace.
-- Storage account: you can limit the accessibility of the storage account to a specific virtual network.
-- Container registry: you can secure your container registry with a virtual network.
-- Endpoint: you want to limit which Azure services or IP addresses can access your endpoint.
-- Related Azure AI Services such as Azure OpenAI, Azure content safety, and Azure AI Search: you can use network configuration to make them private and then use private endpoints to let Azure Machine Learning services communicate with them.
-- Other non-Azure resources such as SerpAPI: If you have strict outbound rules, you need to add FQDN rules to access them. 
+### Core Azure Machine Learning services
+
+- **Workspace**: Configure the Azure Machine Learning workspace as private and restrict its inbound and outbound traffic.
+- **Compute resource**: Apply inbound and outbound rules to limit compute resource access within the workspace.
+- **Storage account**: Restrict storage account accessibility to a specific virtual network.
+- **Container registry**: Secure your container registry using virtual network configuration.
+- **Endpoint**: Control which Azure services or IP addresses can access your deployed endpoints.
+
+### Azure AI Services
+
+- **Azure OpenAI**: Use network configuration to make Azure OpenAI private, then use private endpoints for Azure Machine Learning communication.
+- **Azure Content Safety**: Configure private network access and establish private endpoints for secure communication.
+- **Azure AI Search**: Enable private network settings and use private endpoints for secure integration.
+
+### External resources
+
+- **Non-Azure resources**: For external APIs like SerpAPI, add FQDN rules to your outbound traffic restrictions to maintain access.
 
 ## Options in different network setups
 
