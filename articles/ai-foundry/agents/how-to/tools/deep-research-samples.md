@@ -29,9 +29,8 @@ Use this article to learn how to use the Deep Research tool with the Azure AI Pr
 
 * Your Azure AI Foundry Project endpoint.
 
-    You can find your endpoint in the main project **overview** for your project in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), under **Endpoint and keys** > **Libraries** > **Azure AI Foundry**.
-
-    :::image type="content" source="../../media/quickstart/portal-endpoint-string.png" alt-text="A screenshot showing the endpoint in the Azure AI Foundry portal." lightbox="../../media/quickstart/portal-endpoint-string.png":::
+    
+    [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]
 
     Save this endpoint to an environment variable named `PROJECT_ENDPOINT`. 
 
