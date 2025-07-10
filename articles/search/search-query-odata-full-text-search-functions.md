@@ -70,7 +70,6 @@ The `search.ismatch` function returns a value of type `Edm.Boolean`, which allow
 > [!NOTE]
 > Azure AI Search doesn't support using `search.ismatch` or `search.ismatchscoring` inside lambda expressions. This means it isn't possible to write filters over collections of objects that can correlate full-text search matches with strict filter matches on the same object. For more information on this limitation as well as examples, see [Troubleshooting collection filters in Azure AI Search](search-query-troubleshoot-collection-filters.md). For more in-depth information on why this limitation exists, see [Understanding collection filters in Azure AI Search](search-query-understand-collection-filters.md).
 
-
 ### search.ismatchscoring
 
 The `search.ismatchscoring` function, like the `search.ismatch` function, returns `true` for documents that match the full-text search query passed as a parameter. The difference between them is that the relevance score of documents matching the `search.ismatchscoring` query contributes to the overall document score, whereas for `search.ismatch`, the document score doesn't change. The following overloads of this function are available with parameters identical to those of `search.ismatch`:
@@ -127,9 +126,22 @@ Find documents without the word "luxury".
     not search.ismatch('luxury')
 ```
 
+Here's the full query syntax for this request. Output consists of matches on the term luxury.
+
+```json
+{
+  "search": "*",
+  "select": "HotelId, HotelName, Description, Tags, Rating",
+  "searchMode": "all",
+  "queryType": "simple",
+  "count": true,
+  "filter": "not search.ismatch('luxury')"
+}
+```
+
 Find documents with the phrase "ocean" or rating equal to 3.2. The `search.ismatchscoring` query is executed only against fields `HotelName` and `Description`.
 
-Documents that matched only the second clause of the disjunction will be returned too -- hotels with `Rating` equal to `3.2`. To make it clear that those documents didn't match any of the scored parts of the expression, they're returned with score equal to zero.
+Here's the full query syntax for this request. Documents that match only the second clause of the disjunction are returned too (specifically, hotels with `Rating` equal to `3.2`). To make it clear that those documents didn't match any of the scored parts of the expression, they're returned with score equal to zero.
 
 ```json
 {
@@ -142,7 +154,7 @@ Documents that matched only the second clause of the disjunction will be returne
 }
 ```
 
-Output consists of 4 matches: hotels that mention "ocean" in the Description or Hotel Name, or hotels with a rating of 3.2.
+Output consists of 4 matches: hotels that mention "ocean" in the Description or Hotel Name, or hotels with a rating of 3.2. Notice the search score of zero for matches on the second clause.
 
 ```json
 {
@@ -240,7 +252,7 @@ Here's a full query:
 }
 ```
 
-Here's the output:
+Output consists of the following matches.
 
 ```json
 {
