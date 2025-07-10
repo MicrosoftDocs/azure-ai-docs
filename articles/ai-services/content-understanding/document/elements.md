@@ -77,7 +77,7 @@ The following document elements can be extracted through content extraction:
   * [**Selection marks**](#selection-marks)
   * [**Barcodes**](#barcodes)
   * [**Formulas**](#formulas)
-  * [**Images**](#images)
+  * [**Figures**](#Figures)
 * Layout elements
   * [**Pages**](#pages)
   * [**Paragraphs**](#paragraphs)
