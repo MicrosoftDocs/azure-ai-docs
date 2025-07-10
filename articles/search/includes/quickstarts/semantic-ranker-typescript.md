@@ -98,7 +98,7 @@ If you signed in to the [Azure portal](https://portal.azure.com), you're signed 
 
 ## Create a common authentication file
 
-Create a file in `./src` called `config.ts` to hold the environment variables and authentication credential. Copy in the following code. This file will be used by all the other files in this quickstart.
+1. Create a file in `./src` called `config.ts` to hold the environment variables and authentication credential. Copy in the following code. This file will be used by all the other files in this quickstart.
 
     ```typescript
     import { DefaultAzureCredential } from "@azure/identity";
