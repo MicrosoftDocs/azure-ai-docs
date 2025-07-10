@@ -52,12 +52,9 @@ For example, your endpoint may look something like:
 
 `https://myresource.services.ai.azure.com/api/projects/myproject`
 
-Set this endpoint in an appsetting variable named `ProjectEndpoint`.
+Set this endpoint in an environment variable variable named `ProjectEndpoint`.
 
-
-You also need your model's deployment name. You can find it in **Models + Endpoints** in the left navigation menu. 
-
-:::image type="content" source="../media/tools/model-deployment-4o.png" alt-text="A screenshot showing the model deployment screen the AI Foundry portal." lightbox="../../media/tools/model-deployment-4o.png":::
+[!INCLUDE [model-name-portal](model-name-portal.md)]
 
 Save the name of your model deployment name as an environment variable named `ModelDeploymentName`. 
 

@@ -51,7 +51,7 @@ You need to first build and publish a Fabric data agent and then connect your Fa
 
 * The names of your model's deployment name. You can find it in **Models + Endpoints** in the left navigation menu. 
 
-    :::image type="content" source="../../media/tools/model-deployment-4o.png" alt-text="A screenshot showing the model deployment screen the AI Foundry portal." lightbox="../../media/tools/model-deployment-4o.png":::
+    :::image type="content" source="../../media/tools/model-deployment-portal.png" alt-text="A screenshot showing the model deployment screen the AI Foundry portal." lightbox="../../media/tools/model-deployment-portal.png":::
     
     Save the name of your model deployment name as an environment variable named `MODEL_DEPLOYMENT_NAME`. 
 
