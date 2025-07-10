@@ -1,5 +1,5 @@
 ---
-title: Code Samples for Model Context Protocol Tools
+title: Code Samples for the Model Context Protocol Tool (Preview)
 titleSuffix: Azure AI Foundry
 description: Find code samples to connect Azure AI Foundry Agent Service with MCP servers.
 services: cognitive-services
