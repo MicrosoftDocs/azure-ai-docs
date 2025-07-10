@@ -43,13 +43,6 @@ The quickstart assumes the following is available on your computer:
    npm install @azure/identity @azure/search-documents dotenv
     ```
 
-
-1. Create a `src` directory in your project directory.
-
-   ```bash
-   mkdir src
-   ```
-
 1. Rename `sample.env` to `.env`, and provide your search service endpoint. You can get the endpoint from the Azure portal on the search service **Overview** page.
 
     ```ini
@@ -57,6 +50,14 @@ The quickstart assumes the following is available on your computer:
     AZURE_SEARCH_INDEX_NAME=hotels-sample-index
     SEMANTIC_CONFIGURATION_NAME=semantic-config
     ```
+
+
+1. Create a `src` directory in your project directory.
+
+   ```bash
+   mkdir src
+   ```
+
 
 ### Sign in to Azure
 

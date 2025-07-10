@@ -81,19 +81,20 @@ The quickstart assumes the following is available on your computer:
    "build": "tsc"
    ```
 
+1. Create `.env`, and provide your search service endpoint. You can get the endpoint from the Azure portal on the search service **Overview** page.
+
+    ```ini
+    AZURE_SEARCH_ENDPOINT=https://<>.search.windows.net
+    AZURE_SEARCH_INDEX_NAME=hotels-sample-index
+    SEMANTIC_CONFIGURATION_NAME=semantic-config
+    ```
+
 1. Create a `src` directory in your project directory.
 
    ```bash
    mkdir src
    ```
 
-1. Rename `sample.env` to `.env`, and provide your search service endpoint. You can get the endpoint from the Azure portal on the search service **Overview** page.
-
-    ```ini
-    AZURE_SEARCH_ENDPOINT=https://ai-search-dib-2.search.windows.net
-    AZURE_SEARCH_INDEX_NAME=hotels-sample-index
-    SEMANTIC_CONFIGURATION_NAME=semantic-config
-    ```
 
 ### Sign in to Azure
 
