@@ -8,10 +8,10 @@ ms.subservice: prompt-flow
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-author: lgayhardt
-ms.author: lagayhar
-ms.reviewer: lochen
-ms.date: 11/02/2023
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: sooryar 
+ms.date: 7/10/2025
 ---
 
 # Network isolation in prompt flow 
@@ -20,40 +20,40 @@ You can secure prompt flow using private networks. This article explains the req
 
 ## Involved services
 
-When you're developing your LLM application using prompt flow, you want a secured environment. You can make the following services private via network settings.
+When you're developing your AI application using prompt flow, you want a secured environment. You can make the following services private via network settings.
 
 - Workspace: you can make the Azure Machine Learning workspace private and limit its inbound and outbound traffic.
 - Compute resource: you can also limit inbound and outbound rules of the compute resource in the workspace.
 - Storage account: you can limit the accessibility of the storage account to a specific virtual network.
-- Container registry: you also want to secure your container registry with a virtual network.
+- Container registry: you can secure your container registry with a virtual network.
 - Endpoint: you want to limit which Azure services or IP addresses can access your endpoint.
 - Related Azure AI Services such as Azure OpenAI, Azure content safety, and Azure AI Search: you can use network configuration to make them private and then use private endpoints to let Azure Machine Learning services communicate with them.
 - Other non-Azure resources such as SerpAPI: If you have strict outbound rules, you need to add FQDN rules to access them. 
 
 ## Options in different network setups
 
-In Azure Machine Learning, we have two options to secure network isolation: bring your own network or use workspace managed virtual network. Learn more about [Secure workspace resources](../how-to-network-isolation-planning.md).
+In Azure Machine Learning, we have two options to secure network isolation: bring your own network or use a workspace-managed virtual network. Learn more about [Secure workspace resources](../how-to-network-isolation-planning.md).
 
-Here is a table to illustrate the options in different network setups for prompt flow.
+Here's a table to illustrate the options in different network setups for prompt flow.
 
 |Ingress|Egress |Compute type in authoring               |Compute type in inference                                |Network options for workspace|
 |-------|-------|----------------------------------------|---------------------------------------------------------|-----------------------------|
-|Public |Public |Serverless (recommend), Compute instance| Managed online endpoint (recommend)|Managed (recommend)|
-|Public |Public |Serverless (recommend), Compute instance|  K8s online endpoint| Bring your own|
-|Private|Public |Serverless (recommend), Compute instance| Managed online endpoint (recommend)|Managed (recommend)|
-|Private|Public |Serverless (recommend), Compute instance|  K8s online endpoint|Bring your own|
-|Public |Private|Serverless (recommend), Compute instance| Managed online endpoint                                 |Managed|
-|Private|Private|Serverless (recommend), Compute instance| Managed online endpoint                                 |Managed|
+|Public |Public |Serverless (recommend), Compute instance| Managed online endpoint (recommend)     |Managed (recommend)|
+|Public |Public |Serverless (recommend), Compute instance|  K8s online endpoint                                 | Bring your own        |
+|Private|Public |Serverless (recommend), Compute instance| Managed online endpoint (recommend)     |Managed (recommend)|
+|Private|Public |Serverless (recommend), Compute instance|  K8s online endpoint                                |Bring your own        |
+|Public |Private|Serverless (recommend), Compute instance| Managed online endpoint                          |Managed|
+|Private|Private|Serverless (recommend), Compute instance| Managed online endpoint                         |Managed|
 
-- In private VNet scenarios, we recommend using workspace-enabled managed virtual network. It's the easiest way to secure your workspace and related resources. 
-- You can also have one workspace for prompt flow authoring with your virtual network and another workspace for prompt flow deployment using managed online endpoint with workspace managed virtual network.
-- The use of managed virtual network and bring your own virtual network in a single workspace is not supported. Additionally, since managed online endpoint is supported only with a managed virtual network, you can't deploy prompt flow to managed online endpoint in a workspace with an enabled bring your own virtual network.
+- In private virtual network scenarios, we recommend using a workspace-enabled managed virtual network. It's the easiest way to secure your workspace and related resources. 
+- The use of managed vNet and bring your own virtual network in a single workspace isn't supported. Additionally, since managed online endpoint is supported only with a managed virtual network, you can't deploy prompt flow to managed online endpoint in a workspace with an enabled bring your own virtual network.
+- You can have one workspace for prompt flow authoring with your own virtual network,  and another workspace for prompt flow deployment using a  managed online endpoint with a workspace-managed virtual network.
 
-## Secure prompt flow with workspace managed virtual network
+## Secure prompt flow with workspace-managed virtual network
 
-Workspace managed virtual network is the recommended way to support network isolation in prompt flow. It provides easy configuration to secure your workspace. After you enable managed virtual network at the workspace level, resources related to the workspace in the same virtual network will use the same network settings at the workspace level. You can also configure the workspace to use private endpoints to access other Azure resources such as Azure OpenAI, Azure content safety, and Azure AI Search. You can also configure FQDN rules to approve outbound connections to non-Azure resources used by your prompt flow such as SerpAPI.
+A workspace-managed virtual network is the recommended way to support network isolation in prompt flow. It provides an easy configuration to secure your workspace. After you enable managed vNet at the workspace level, resources related to the workspace in the same virtual network will use the same network settings at the workspace level. You can also configure the workspace to use private endpoints to access other Azure resources such as Azure OpenAI, Azure content safety, and Azure AI Search. You can also configure FQDN rules to approve outbound connections to non-Azure resources used by your prompt flow such as SerpAPI.
 
-1. Follow [Workspace managed network isolation](../how-to-managed-network.md) to enable workspace managed virtual network.
+1. Follow [workspace-managed network isolation](../how-to-managed-network.md) to enable workspace-managed virtual network.
 
     > [!IMPORTANT]
     > The creation of the managed virtual network is deferred until a compute resource is created or provisioning is manually started. You can use the following command to manually trigger network provisioning.
@@ -86,7 +86,7 @@ Workspace managed virtual network is the recommended way to support network isol
     > [!NOTE]
     > This operation might take several minutes to take effect.
 
-3. If you want to communicate with [private Azure AI Services](/azure/ai-services/cognitive-services-virtual-networks), you need to add related user-defined outbound rules to the related resource. The Azure Machine Learning workspace creates a private endpoint in the related resource with auto-approval. If the status is stuck in pending, go to the related resource to approve the private endpoint manually.
+3. If you want to communicate with [private Azure AI Services](/azure/ai-services/cognitive-services-virtual-networks), you need to add related user-defined outbound rules to the related resource. The Azure Machine Learning workspace creates a private endpoint in the related resource with autoapproval. If the status is stuck in pending, go to the related resource to approve the private endpoint manually.
 
     :::image type="content" source="./media/how-to-secure-prompt-flow/outbound-rule-cognitive-services.png" alt-text="Screenshot of user defined outbound rule for Azure AI Services." lightbox = "./media/how-to-secure-prompt-flow/outbound-rule-cognitive-services.png":::
 
@@ -102,8 +102,8 @@ Workspace managed virtual network is the recommended way to support network isol
 
 - To set up Azure Machine Learning related resources as private, see [Secure workspace resources](../how-to-secure-workspace-vnet.md).
 - If you have strict outbound rules, make sure you have opened the [Required public internet access](../how-to-secure-workspace-vnet.md#required-public-internet-access).
-- Add workspace MSI as `Storage File Data Privileged Contributor` to the storage account linked with the workspace. Follow step 2 in [Secure prompt flow with workspace managed virtual network](#secure-prompt-flow-with-workspace-managed-virtual-network).
-- If you are using serverless compute type in flow authoring, you need to set the custom virtual network at the workspace level. Learn more about [Secure an Azure Machine Learning training environment with virtual networks](../how-to-secure-training-vnet.md)
+- Add workspace MSI as `Storage File Data Privileged Contributor` to the storage account linked with the workspace. Follow step 2 in [Secure prompt flow with workspace managed vNet](#secure-prompt-flow-with-workspace-managed-virtual-network).
+- If you're using serverless compute type in flow authoring, you need to set the custom virtual network at the workspace level. Learn more about [Secure an Azure Machine Learning training environment with virtual networks](../how-to-secure-training-vnet.md)
 
     ```yaml
     serverless_compute:
@@ -113,14 +113,13 @@ Workspace managed virtual network is the recommended way to support network isol
 
 - Meanwhile, you can follow [private Azure AI Services](/azure/ai-services/cognitive-services-virtual-networks) to make them private.
 - If you want to deploy prompt flow in a workspace that is secured by your own virtual network, you can deploy it to an AKS cluster that is in the same virtual network. You can follow [Secure Azure Kubernetes Service inferencing environment](../how-to-secure-kubernetes-inferencing-environment.md) to secure your AKS cluster. Learn more about [How to deploy prompt flow to AKS cluster via code](./how-to-deploy-to-code.md).
-- You can either create a private endpoint to the same virtual network or leverage virtual network peering to make them communicate with each other.
+- You can either create a private endpoint to the same virtual network or use virtual network peering to make them communicate with each other.
 
 ## Known limitations
 
-- Azure AI Foundry doesn't support bring your own virtual network; it only supports workspace managed virtual network.
-- Managed online endpoints with selected egress require a workspace with managed virtual network. If you're using your own virtual network, consider this two-workspace approach:
+- Managed online endpoints with selected egress require a workspace with managed vNet. If you're using your own virtual network, consider this two-workspace approach:
       - Use one workspace with your virtual network for prompt flow authoring
-      - Use a separate workspace with managed virtual network for prompt flow deployment via managed online endpoint
+      - Use a separate workspace with managed vNet for prompt flow deployment via managed online endpoint
 
 ## Next steps
 
