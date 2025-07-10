@@ -8,7 +8,7 @@ ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: conceptual
 ms.date: 07/10/2025
-ms.custom: azure-ai-agents
+ms.custom: azure-ai-agents, references_regions
 ---
 
 # Models supported by Azure AI Foundry Agent Service
