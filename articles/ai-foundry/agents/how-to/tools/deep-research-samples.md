@@ -14,8 +14,8 @@ ms.author: aahi
 # How to use the Deep Research tool
 
 > [!NOTE]
-> * The Agents service and SDK use the Azure OpenAI `o3-deep-research` model. This model is not accessible from Azure OpenAI Chat Completions and Responses APIs.
-> * The `o3-deep-research` model, GPT model deployment, and the AI Foundry project containing them **must all exist exist** in the same region and Azure subscription. Supported regions are **West US** and **Norway East**.
+> * The `o3-deep-research` model is available for use **only with the Deep Research tool**. It is **not** available in the Azure OpenAI Chat Completions and Responses APIs.
+> * The **parent** AI Foundry project resource and the contained  `o3-deep-research` model and GPT models **must exist** in the same Azure subscription and region. Supported regions are **West US** and **Norway East**.
 
 Use this article to learn how to use the Deep Research tool with the Azure AI Projects SDK, including code examples and setup instructions.
 
