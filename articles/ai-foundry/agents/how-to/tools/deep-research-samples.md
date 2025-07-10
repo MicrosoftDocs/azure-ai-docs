@@ -9,6 +9,7 @@ ms.topic: how-to
 ms.date: 07/10/2025
 author: aahill
 ms.author: aahi
+ms.custom: references_regions
 ---
 
 # How to use the Deep Research tool
