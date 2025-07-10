@@ -63,7 +63,7 @@ At its core, the Deep Research tool orchestrates a multi-step research pipeline 
 
 The Deep Research tool uses a second model deployment to clarify the question contained in the user prompt, gather additional context if needed, and precisely scope the research task. This helps make the output of an agent using the Deep Research tool more relevant and actionable, and can help optimize the search for your business scenario.
 
-This second model is selected by the customer during configuration of the Deep Research tool and can be any of the GPT-series models including GPT-4o and GPT-4.1.
+This second model is selected by the customer during configuration of the Deep Research tool and can be any of the GPT-series models including GPT-4o.
 
 ### Grounding with Bing Search
 

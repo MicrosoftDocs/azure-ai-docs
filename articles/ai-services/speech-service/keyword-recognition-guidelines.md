@@ -47,4 +47,4 @@ For applications that require latency optimization, applications can provide lig
 ## Next steps
 
 * [Get the Speech SDK.](speech-sdk.md)
-* [Learn more about Voice Assistants.](voice-assistants.md)
+* [Learn more about voice agents](voice-live.md)
