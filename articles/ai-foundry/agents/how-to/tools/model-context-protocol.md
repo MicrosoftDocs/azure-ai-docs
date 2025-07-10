@@ -76,4 +76,4 @@ For more information on using MCP, see:
 
 ## Related content
 
-* [Code samples for Model Context Protocol tools](./model-context-protocol-samples.md)
+* [Code samples for the Model Context Protocol tool](./model-context-protocol-samples.md)
