@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 06/30/2025
+ms.date: 07/10/2025
 author: aahill
 ms.author: aahi
 ---
@@ -18,6 +18,7 @@ Use this article to learn how to use the Deep Research tool with the Azure AI Pr
 ## Prerequisites
 
 > [!NOTE]
+> * The Agents service and SDK use the Azure OpenAI `o3-deep-research` model. This model is not accessible from Azure OpenAI Chat Completions and Responses APIs.
 > * The  `o3-deep-research` model and the GPT model deployments should be part of your AI Foundry project resulting in all three resources in the same Azure subscription and same region. Supported regions are **West US** and **Norway East**.
 
 * The requirements in the [Deep Research overview](./deep-research.md).
