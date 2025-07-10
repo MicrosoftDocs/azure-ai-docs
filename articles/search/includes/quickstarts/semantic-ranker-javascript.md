@@ -14,7 +14,9 @@ ms.date: 07/09/2025
 
 In this quickstart, you use an IDE and the [**@azure/search-documents**](https://www.npmjs.com/package/@azure/search-documents) client library to add semantic ranking to an existing search index.
 
-We recommend [Visual Studio Code](https://code.visualstudio.com/) for this quickstart.
+The quickstart assumes the following is available on your computer:
+- [Visual Studio Code](https://code.visualstudio.com/) for this quickstart.
+- [Node.js](https://nodejs.org/) (version 14.x or later) for running the sample.
 
 > [!TIP]
 > You can [download the source code](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-semantic-ranking-js) to start with a finished project or follow these steps to create your own. 
