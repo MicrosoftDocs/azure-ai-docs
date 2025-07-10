@@ -13,7 +13,7 @@ zone_pivot_groups: selection-mcp-code
 ms.custom: azure-ai-agents-code
 ---
 
-# Code samples for Model Context Protocol tools
+# Code samples for the Model Context Protocol tool (preview)
 
 Use this article to find code samples for connecting Azure AI Foundry Agent Service with Model Context Protocol (MCP) servers.
 
