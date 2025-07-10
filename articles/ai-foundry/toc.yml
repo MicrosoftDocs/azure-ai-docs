@@ -540,7 +540,7 @@ items:
 - name: Agents
   items:
   - name: What is Foundry Agent Service?
-    href: overview.md
+    href: ./agents/overview.md
   - name: Overview
     expanded: true
     items:
