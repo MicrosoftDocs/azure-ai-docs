@@ -52,7 +52,11 @@ For example, your endpoint may look something like:
 
 `https://myresource.services.ai.azure.com/api/projects/myproject`
 
-Set this endpoint in an appsetting variable named `ProjectEndpoint`.
+Set this endpoint in an environment variable variable named `ProjectEndpoint`.
+
+[!INCLUDE [model-name-portal](model-name-portal.md)]
+
+Save the name of your model deployment name as an environment variable named `ModelDeploymentName`. 
 
 
 ```csharp
