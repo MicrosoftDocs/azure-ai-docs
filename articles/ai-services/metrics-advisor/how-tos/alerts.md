@@ -92,7 +92,7 @@ To create a web hook, you will need to add the following information:
 	"hookId": "b0f27e91-28cf-4aa2-aa66-ac0275df14dd",
 	"alertType": "Anomaly",
 	"alertInfo": {
-		"anomalyAlertingConfigurationId": "1bc6052e-9a2a-430b-9cbd-80cd07a78c64",
+		"anomalyAlertingConfigurationId": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
 		"alertId": "172536dbc00",
 		"timestamp": "2020-05-27T00:00:00Z",
 		"createdTime": "2020-05-29T10:04:45.590Z",
