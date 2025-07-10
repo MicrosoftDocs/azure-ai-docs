@@ -48,7 +48,7 @@ The Deep Research tool is supported in the following regions where the deep rese
 
 ## GPT model for clarifying research scope
 
-The Deep Research tool uses a GPT model to clarify the question contained in the user prompt, gather additional context if needed, and precisely scope the research task. This model is deployed during configuration of the Deep Research tool and can be one of the GPT-series models including GPT-4o, **except** the GPT-4.1 family, The 4.1 family is not supported by the Agents service and SDK.
+The Deep Research tool uses a GPT model to clarify the question contained in the user prompt, gather additional context if needed, and precisely scope the research task. This model is deployed during configuration of the Deep Research tool and can be one of the GPT-series models including GPT-4o, **except** the GPT-4.1 family, The 4.1 family is not supported by the Agents service.
 
 ## Deep research model for deep analysis
 
