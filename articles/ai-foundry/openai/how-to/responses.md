@@ -696,6 +696,8 @@ print(response)
 
 ## File input
 
+Models with vision capabilities support PDF input. PDF files can be provided either as Base64-encoded data or as file IDs. To help models interpret PDF content, both the extracted text and an image of each page are included in the model’s context. This is useful when key information is conveyed through diagrams or non-textual content.
+
 > [!NOTE]
 > - All extracted text and images are put into the model's context. Make sure you understand the pricing and token usage implications of using PDFs as input.
 >
