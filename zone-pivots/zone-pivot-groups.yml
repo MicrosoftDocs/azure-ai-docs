@@ -1402,10 +1402,14 @@ groups:
   pivots:
   - id: csharp
     title: C#
+  - id: javascript
+    title: JavaScript
   - id: python
     title: Python
   - id: rest
     title: REST
+  - id: typescript
+    title: TypeScript
 # Owner: haileytapia
 - id: search-how-to-manage-index
   title: Usage methods
