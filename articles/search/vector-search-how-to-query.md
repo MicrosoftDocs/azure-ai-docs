@@ -1,5 +1,5 @@
 ---
-title: Vector query how-to
+title: Create a Vector Query
 titleSuffix: Azure AI Search
 description: Learn how to build queries for vector search.
 

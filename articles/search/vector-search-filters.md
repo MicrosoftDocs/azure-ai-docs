@@ -45,7 +45,7 @@ If you don't have source fields with text or numeric values, check for document 
 
 In the following example, the vector is a representation of this query string: "what Azure services support full text search". The query targets the `contentVector` field. The actual vector has 1,536 embeddings, so it's trimmed for readability.
 
-The filter criteria (`category eq 'Databases'`) are applied to a filterable text field (`category`) before the search engine executes the vector query.
+The filter criteria are applied to a filterable text field (`category` in this example) before the search engine executes the vector query.
 
 ```http
 POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2024-07-01
@@ -83,7 +83,7 @@ api-key: {{admin-api-key}}
 
 In the following example, the vector is a representation of this query string: "what Azure services support full text search". The query targets the `contentVector` field. The actual vector has 1,536 embeddings, so it's trimmed for readability.
 
-The filter criteria (`category eq 'Databases'`) are applied to a filterable text field (`category`) before the search engine executes the vector query.
+The filter criteria are applied to a filterable text field (`category` in this example) before the search engine executes the vector query.
 
 ```http
 POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2024-05-01-preview
@@ -223,9 +223,7 @@ The following graph shows prefilter relative QPS, computed as prefilter QPS divi
 The vertical axis represents the relative performance of prefiltering compared to postfiltering, expressed as a ratio of QPS (queries per second). For example:
 
 + A value of `0.0` means prefiltering is 100% slower than postfiltering.
-
 + A value of `0.5` means prefiltering is 50% slower.
-
 + A value of `1.0` means prefiltering and post filtering are equivalent.
 
 The horizontal axis represents the filtering rate, or the percentage of candidate documents after applying the filter. For example, a rate of `1.00%` means that the filter criteria selected one percent of the search corpus.
