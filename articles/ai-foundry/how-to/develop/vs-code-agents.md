@@ -177,11 +177,44 @@ Create your agent directly on Azure AI Foundry with the following steps:
 
 Selecting the deployed agent opens the **Agent Preferences** page in a view only mode.  
 
-- Select the **Open Yaml File** to view the yaml definition of the agent. 
-
+- Select the **Edit Agent** button to view the Agent designer and yaml definition of the agent for editing. 
+- Select the **Open Code File** button to create a sample code file that uses the agent. 
 - Select the **Open Playground** button to open the **Agent Playground**.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/deployed-agent-view.png" alt-text="Screenshot of the Agent Preferences page with the 'Open Yaml File' and 'Open Playground' buttons highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/deployed-agent-view.png":::
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/deployed-agent-view.png" alt-text="Screenshot of the Agent Preferences page with the 'Edit Agent', 'Open Code File', and 'Open Playground' buttons highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/deployed-agent-view.png":::
+
+### Edit and update the deployed AI Agent
+
+To edit the deployed agent, select the **Edit Agent** button in the **Agent Preferences** page. The agent designer opens with the agent .yaml file.
+Edit the agent's configuration, such as the model, tools, and instructions. After you finish editing, select the **Update on Azure AI Foundry** button in the lower left corner to save your changes.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/update-agent.png" alt-text="Screenshot of the Agent Preferences page with the 'Update on Azure AI Foundry' button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/update-agent.png":::
+
+### Explore the agent sample code
+
+Create a sample code file using the following steps.
+
+1. Right-click on your deployed agent and select the **Open Code File** option or select the **Open Code File** button in the **Agent Preferences** page.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/open-agent-code-file.png" alt-text="Screenshot of the agent context menu with the Open Code file option highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/open-agent-code-file.png":::
+
+1. In the top center, select your preferred SDK to use in the **Choose preferred SDK** dropdown and press Enter.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/choose-agent-preferred-sdk.png" alt-text="Screenshot of the Choose preferred SDK dropdown for agent code file selection." lightbox="../../media/how-to/get-started-projects-vs-code/choose-agent-preferred-sdk.png":::
+
+1. In the top center, select your preferred language to use in the **Choose language** dropdown and press Enter.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/choose-agent-language.png" alt-text="Screenshot of the Choose language dropdown for agent code file selection." lightbox="../../media/how-to/get-started-projects-vs-code/choose-agent-language.png":::
+
+1. In the top center, select your preferred authentication method to use in the **Choose authentication method** dropdown and press Enter.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/choose-agent-auth-method.png" alt-text="Screenshot of the Choose authentication method dropdown for agent code file selection." lightbox="../../media/how-to/get-started-projects-vs-code/choose-agent-auth-method.png":::
+
+#### Explore the sample code file
+
+This Python sample code file that demonstrates a basic call to interact with the agent through the AI Foundry projects API: 
+
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/sample-agent-code-file.png" alt-text="Screenshot of generated agent sample code file." lightbox="../../media/how-to/get-started-projects-vs-code/sample-agent-code-file.png":::
 
 
 ### Interact with Agents using agents playground
