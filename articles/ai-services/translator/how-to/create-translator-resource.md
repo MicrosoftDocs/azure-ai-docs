@@ -1,7 +1,7 @@
 ---
 title: Create and configure Azure AI resources
 titleSuffix: Azure AI services
-description: Learn how to create and configure an Azure AI resources for translation services.
+description: Learn how to create and configure Azure AI resources for translation services.
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -13,28 +13,27 @@ ms.topic: how-to
 
 # Azure resources for Azure AI translation
 
-Azure AI Translator is a cloud-based neural machine translation (NMT) service that allows users to add multilingual capabilities to their applications and workflows by translating text and documents both asynchronously and in real time.
+Azure AI Translator is a cloud-based neural machine translation (NMT) service that allows users to add multilingual capabilities to their applications and workflows. The service supports both instant translation and batch processing, making it suitable for a wide range of business needs.
 
-If you already have an Azure AI Translator or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Translator resources within the Azure AI Foundry portal for NMT deployment.<br>
-For more information, *see* [How to use Azure AI services in the Azure AI Foundry portal](../../connect-services-ai-foundry-portal.md).
+If you already have an Azure AI Translator or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Translator resources within the Azure AI Foundry portal for NMT deployment. For more information, *see* [How to use Azure AI services in the Azure AI Foundry portal](../../connect-services-ai-foundry-portal.md).
 
-By default, Azure AI Translator uses NMT technology. However, with the latest preview release, you can now choose between the standard NMT translation or two Large Language Model (LLM) deployment types: GPT-4o-mini and GPT-4o. To use an LLM model, you must have an Azure AI Foundry resource.
+By default, Azure AI Translator is based on Neural Machine Translation (NMT) technology. With the newest preview release, you now can optionally select either the standard NMT translation or one of two Large Language Model (LLM) deployment types: GPT-4o-mini or GPT-4o. However, **using an LLM model requires you to have an Azure AI Foundry resource**.
 
 The following table provides an overview of the resource solutions for Translator within the Azure AI ecosystem:
 
-|AI Service|Scope|Description|
+|AI Service|Scope|Use cases|
 |---------|------------|---------|
-| [Azure AI Foundry resource](/azure/ai-foundry/what-is-azure-ai-foundry) |This resource type is recommended resource for building, deploying, and managing generative AI applications and agents in Azure AI Foundry. |A platform designed to build, deploy, and manage generative AI applications and agents, and offering comprehensive support for AI features such as language processing, translation, vision, and speech.|
-|[Azure AI Services resource](../../../ai-services/what-are-ai-services.md)|Azure AI services is part of the Azure AI Foundry platform and provides prebuilt, ready-to-use AI models accessible through APIs for tasks like language understanding, translation, speech recognition, and computer vision.|Azure AI Services can be used in the Azure AI Foundry portal to enhance your models with prebuilt AI capabilities.|
-| [Azure AI Translator services resource](../overview.md) | Azure AI Translator is a cloud-based single-service neural machine translation resource specifically for translating text and documents between languages|  Azure AI Translator offers both general translation capabilities and the ability to create customized translation models using Custom Translator. This allows you to tailor translations to specific terminology and industries.|
+| [Azure AI Foundry resource](/azure/ai-foundry/what-is-azure-ai-foundry) |This resource type is recommended resource for building, deploying, and managing generative AI applications and agents in Azure AI Foundry. |The Azure AI Foundry resource is suitable for scenarios requiring orchestration of multiple AI models, custom AI agent development, and advanced AI application lifecycle management. |
+|[Azure AI Services resource](../../../ai-services/what-are-ai-services.md)|Azure AI services are part of the Azure AI Foundry platform. The multi-service resource provides prebuilt, ready-to-use AI models accessible through APIs for tasks like language understanding, translation, speech recognition, and computer vision. It allows you to access multiple Azure AI services through a single key and endpoint.|An Azure AI Services resource enables you to add features like speech transcription, text translation, or image recognition to applications and enhance models in the Azure AI Foundry portal with prebuilt AI capabilities.|
+| [Azure AI Translator services resource](../overview.md) | The Azure AI Translator resource offers access to our cloud-based neural machine translation service. This service enables the translation of text and documents across multiple languages.| Azure AI Translator offers both general translation capabilities and the ability to create customized translation models using Custom Translator. Azure AI Translator is production-ready and can seamlessly scale up or down based on translation needs, accommodating both small and large volumes of text or documents.|
 
-## Step one: create your resource
+## Step 1: create your resource
 
 ## [Azure AI Foundry resource](#tab/foundry)
 
 * An Azure AI Foundry resource is your main tool for creating, deploying, and managing generative AI applications and agents. With this resource, you can access agent services, use models hosted in a serverless environment, run evaluations, and connect to the Azure OpenAI service.<br>
 
-* If you plan to use to use an LLM model for translation, you must have an Azure AI Foundry resource.<br>
+* If you plan to use an LLM model for translation, **you must use an Azure AI Foundry resource**.<br>
 
 * To learn how to create and manage an AI Foundry resource *see* [Create your first AI Foundry resource](../../../ai-services/multi-service-resource.md)
 
@@ -130,7 +129,7 @@ In our quickstart, learn how to use the Translator service with REST APIs.
 
 ---
 
-## Step Two: configure your resources for Azure AI Foundry
+## Step 2: configure your resources for Azure AI Foundry
 
 Completing this setup is essential for fully integrating your environment with Azure AI Foundry. You only need to perform this setup once—afterward, you have seamless access to advanced, AI-powered question answering capabilities.
 
@@ -173,7 +172,7 @@ Azure AI Foundry offers a unified platform for building, managing, and deploying
 
 1. Your resources are now set up properly. Continue with setting up the fine-tuning task and continue customizing your Azure AI Translator projects.
 
-### Step three (optional): clean up resource
+### Step 3 (optional): clean up resource
 
 If you want to clean up and remove an Azure AI resource, you can delete the resource or resource group. 
 
