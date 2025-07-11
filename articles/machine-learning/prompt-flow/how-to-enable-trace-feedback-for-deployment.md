@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: prompt-flow
 ms.custom:
 ms.topic: how-to
-author: lgayhardt
-ms.author: lagayhar
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: keli19
 ms.date: 05/09/2024
 ---

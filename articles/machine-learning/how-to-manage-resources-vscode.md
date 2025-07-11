@@ -3,8 +3,8 @@ title: Manage Resources with the VS Code Extension
 titleSuffix: Azure Machine Learning
 description: Learn how to create and manage Azure Machine Learning resources using the Azure Machine Learning Visual Studio Code extension.
 services: machine-learning
-author: ssalgadodev
-ms.author: ssalgado
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: tbombach
 ms.service: azure-machine-learning
 ms.subservice: core

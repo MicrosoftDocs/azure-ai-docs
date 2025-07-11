@@ -8,8 +8,8 @@ ms.subservice: training
 ms.custom: devx-track-python, update-code
 ms.topic: how-to
 ms.reviewer: None
-author: ssalgadodev
-ms.author: ssalgado
+author: s-polly
+ms.author: scottpolly
 ms.date: 12/11/2024
 ms.collection: ce-skilling-ai-copilot
 ---

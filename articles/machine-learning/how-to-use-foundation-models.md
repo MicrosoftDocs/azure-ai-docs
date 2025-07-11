@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: training
 ms.topic: how-to
 ms.reviewer: None
-author: ssalgadodev
-ms.author: ssalgado
+author: s-polly
+ms.author: scottpolly
 ms.date: 01/07/2025
 ms.collection: ce-skilling-ai-copilot
 ---

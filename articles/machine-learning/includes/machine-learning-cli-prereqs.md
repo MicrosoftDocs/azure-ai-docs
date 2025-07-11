@@ -1,9 +1,9 @@
 ---
-author: blackmist
+author: s-polly
 ms.service: azure-machine-learning
 ms.topic: include
 ms.date: 02/10/2025
-ms.author: larryfr
+ms.author: scottpolly
 ---
 
 * The [Azure CLI](/cli/azure/install-azure-cli) and the `ml` extension to the Azure CLI, installed and configured. For more information, see [Install and set up the CLI (v2)](../how-to-configure-cli.md).

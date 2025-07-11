@@ -1,9 +1,9 @@
 ---
-author: sdgilley
+author: s-polly
 ms.service: azure-machine-learning
 ms.topic: include
 ms.date: 09/20/2022
-ms.author: sgilley
+ms.author: scottpolly
 ---
 
 Run this code to connect to your Azure Machine Learning workspace. 

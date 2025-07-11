@@ -6,8 +6,8 @@ ms.service: azure-machine-learning
 ms.subservice: core
 ms.date: 03/21/2025
 ms.topic: how-to
-author: sdgilley
-ms.author: sgilley
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: mavaisma
 ms.devlang: r
 # customer intent: As a data scientist, I want to use R interactively in Azure Machine Learning so that I can develop and test my models.

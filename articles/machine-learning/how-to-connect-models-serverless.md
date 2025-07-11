@@ -8,8 +8,8 @@ ms.subservice: inferencing
 ms.topic: how-to
 ms.date: 05/09/2024
 ms.reviewer: None
-ms.author: mopeakande
-author: msakande
+ms.author: scottpolly
+author: s-polly
 ms.collection: ce-skilling-ai-copilot 
 ms.custom: 
  - build-2024

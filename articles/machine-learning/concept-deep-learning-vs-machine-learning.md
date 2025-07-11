@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: training
 ms.topic: concept-article
-ms.author: lagayhar
-author: lgayhardt
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: lagayhar
 ms.date: 08/29/2024
 ms.custom: engagement-fy23

@@ -1,11 +1,11 @@
 ---
-author: Blackmist
+author: s-polly
 ms.service: azure-machine-learning
 ms.custom:
   - ignite-2023
 ms.topic: include
 ms.date: 02/10/2025
-ms.author: larryfr
+ms.author: scottpolly
 monikerRange: 'azureml-api-2 || azureml-api-1'
 ---
 
