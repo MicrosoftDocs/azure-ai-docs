@@ -38,11 +38,18 @@ The quickstart assumes the following is available on your computer:
    npm pkg set type=module
    ```
 
-1. Install packages, including [azure-search-documents](/javascript/api/%40azure/search-documents). 
+1. Install development packages, including [azure-search-documents](/javascript/api/%40azure/search-documents). 
 
     ```bash
    npm install @azure/identity @azure/search-documents dotenv
     ```
+
+1. Install development dependency packages. 
+
+    ```bash
+   npm install dotenv @types/node --save-dev
+    ```
+
 
 1. Create a `tsconfig.json` file in your project directory to enable ESM modules and set the module resolution.
 
