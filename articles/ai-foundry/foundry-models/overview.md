@@ -30,7 +30,7 @@ You can get access to the key model providers in the industry. Explore the follo
 - [Azure OpenAI](concepts/models.md#azure-openai)
 - [Cohere](concepts/models.md#cohere)
 - [Core42](concepts/models.md#core42)
-- [DeepSeek](concepts/models.md#deepseek)
+- [DeepSeek](concepts/models.md#deepseek-models-sold-directly-by-Azure)
 - [Meta](concepts/models.md#meta)
 - [Microsoft](concepts/models.md#microsoft)
 - [Mistral AI](concepts/models.md#mistral-ai)
