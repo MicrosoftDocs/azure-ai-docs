@@ -15,7 +15,17 @@ ms.custom:
 
 # Azure OpenAI in Azure AI Foundry Models quotas and limits
 
-This article contains a quick reference and a detailed description of the quotas and limits for Azure OpenAI. Quota is not restricted at the tenant level. At its highest level, quota is scoped per individual Azure subscription. Tokens per minute (TPM) and Requests per minute (RPM) quota limits for each model and deployment type are set per region. For example, if `gpt-4.1` global standard has 5 million TPM and 5,000 RPM, each region where the [model/deployment type is available](./concepts/models.md) can use up that amount of quota for an individual subscription. Quota is not shared cross region. 
+This article contains a quick reference and a detailed description of the quotas and limits for Azure OpenAI.
+
+**Scope of quota**:
+
+- Quotas and limits are not enforced at the tenant level.
+- Instead, the highest level of quota restrictions are scoped at the Azure subscription level.
+
+**Regional quota allocation:**
+
+- Tokens per minute (TPM) and requests per minute (RPM) limits are defined **per region, per subscription, and per model/deployment type**.
+- For example, if the `gpt-4.1` global standard model is listed with a quota of **5 million TPM and 5,000 RPM**, then **each region** where that [model/deployment type is available](./concepts/models.md) has its own dedicated pool of quota of that amount for **each of your Azure subscriptions**. So within a single Azure subscription, it is possible to use a larger quantity of total TPM/RPM quota for a given model/deployment type, as long as you have resources/model deployments spread across multiple regions.
 
 ## Quotas and limits reference
 
