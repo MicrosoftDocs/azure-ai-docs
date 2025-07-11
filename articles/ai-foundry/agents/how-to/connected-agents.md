@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure
 ms.topic: how-to
-ms.date: 06/04/2025
+ms.date: 07/11/2025
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -237,7 +237,6 @@ To create a multi-agent setup, follow these steps:
     project_client = AIProjectClient(
     endpoint=os.environ["PROJECT_ENDPOINT"],
     credential=DefaultAzureCredential(),
-    api_version="latest",
     )
     ```
 
