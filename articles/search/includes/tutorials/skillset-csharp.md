@@ -1,22 +1,11 @@
 ---
-title: 'Tutorial: Skillsets Using C#'
-titleSuffix: Azure AI Search
-description: Use C# and the Azure SDK for .NET to create skillsets. This skillset applies AI transformations and analyses to create searchable content from images and unstructured text.
-
+manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-manager: nitinme
-
 ms.service: azure-ai-search
-ms.topic: tutorial
+ms.topic: include
 ms.date: 07/11/2025
-ms.custom:
-  - devx-track-csharp
-  - devx-track-dotnet
-  - ignite-2023
 ---
-
-# C# Tutorial: Use skillsets to generate searchable content in Azure AI Search
 
 Learn how to use the [Azure SDK for .NET](https://www.nuget.org/packages/Azure.Search.Documents/) to create an [AI enrichment pipeline](cognitive-search-concept-intro.md) for content extraction and transformations during indexing.
 

@@ -1,18 +1,11 @@
 ---
-title: 'Tutorial: Skillsets Using REST'
-titleSuffix: Azure AI Search
-description: Use the Search REST APIs to create skillsets. This skillset applies AI transformations and analyses to create searchable content from images and unstructured text.
-
+manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
-ms.topic: tutorial
-ms.date: 03/31/2025
+ms.topic: include
+ms.date: 07/11/2025
 ---
-
-# REST Tutorial: Use skillsets to generate searchable content in Azure AI Search
 
 Learn how to call REST APIs that create an [AI enrichment pipeline](cognitive-search-concept-intro.md) for content extraction and transformations during indexing.
 
