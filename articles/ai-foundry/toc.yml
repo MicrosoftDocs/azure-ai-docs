@@ -537,7 +537,7 @@ items:
         href: /azure/ai-services/computer-vision/concept-face-recognition?context=/azure/ai-foundry/context/context
       - name: Liveness detection tutorial
         href: /azure/ai-services/computer-vision/tutorials/liveness?context=/azure/ai-foundry/context/context
-- name: Agents
+- name: Agent Service
   href: agents/toc.yml
 - name: Solutions
   items:
@@ -935,7 +935,7 @@ items:
       href: /python/api/overview/azure/ai-projects-readme
     - name: REST API
       href: /rest/api/aifoundry/aiprojects/
-  - name: Agents
+  - name: Agent Service
     items:
       - name: C#
         href: /dotnet/api/overview/azure/ai.agents.persistent-readme
