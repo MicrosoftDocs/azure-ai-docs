@@ -1426,3 +1426,12 @@ groups:
     title: Python
   - id: rest
     title: REST
+# Owner: heidist
+- id: tutorial-create-skillset
+  title: Usage methods
+  prompt: Choose a usage method
+  pivots:
+  - id: csharp
+    title: C#
+  - id: rest
+    title: REST

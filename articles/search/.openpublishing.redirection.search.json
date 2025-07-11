@@ -10,6 +10,16 @@
             "redirect_url": "/azure/search/search-get-started-skillset",
             "redirect_document_id": true
         },
+                {
+            "source_path_from_root": "/articles/search/cognitive-search-tutorial-blob.md",
+            "redirect_url": "/azure/search/tutorial-skillset.md",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/cognitive-search-tutorial-blob-csharp.md",
+            "redirect_url": "/azure/search/tutorial-skillset.md",
+            "redirect_document_id": false
+        },
         {
             "source_path_from_root": "/articles/search/search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md",
             "redirect_url": "/azure/search/search-how-to-index-sql-database",
