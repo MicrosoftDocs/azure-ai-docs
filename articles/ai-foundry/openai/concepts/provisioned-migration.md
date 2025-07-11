@@ -206,9 +206,7 @@ Customers that have commitments today can continue to use them at least until th
 
 ## Migrating existing resources off commitments
 
-Existing customers can choose to migrate their existing resources from the Commitment to the Hourly/Reservation payment model to benefit from the ability to deploy the latest models, or to consolidate discounting for diverse deployments under a single reservation.
-
-Two approaches are available for customers to migrate resources using the Commitment model to the Hourly/Reservation model.
+Existing customers can choose to migrate their existing resources from the Commitment to the Hourly/Reservation payment model to benefit from the ability to deploy the latest models, or to consolidate discounting for diverse deployments under a single reservation, using a self-service approach.
 
 ### Self-service migration
 
