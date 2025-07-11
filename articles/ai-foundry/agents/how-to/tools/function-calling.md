@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 06/30/2025
+ms.date: 07/11/2025
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-function-calling
@@ -77,8 +77,7 @@ project_endpoint = os.environ["PROJECT_ENDPOINT"]
 # Initialize the AIProjectClient
 project_client = AIProjectClient(
     endpoint=project_endpoint,
-    credential=DefaultAzureCredential(),
-    api_version="latest",
+    credential=DefaultAzureCredential()
 )
 
 # Initialize the FunctionTool with user-defined functions
