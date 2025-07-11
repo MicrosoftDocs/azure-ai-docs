@@ -43,7 +43,7 @@ The quickstart assumes the following is available on your computer:
    npm install @azure/identity @azure/search-documents dotenv
     ```
 
-1. Rename `sample.env` to `.env`, and provide your search service endpoint. You can get the endpoint from the Azure portal on the search service **Overview** page.
+1. Create `.env`, and provide your search service endpoint. You can get the endpoint from the Azure portal on the search service **Overview** page.
 
     ```ini
     AZURE_SEARCH_ENDPOINT=YOUR-SEARCH-SERVICE-ENDPOINT
@@ -72,8 +72,8 @@ import { DefaultAzureCredential } from "@azure/identity";
 
 // Configuration - use environment variables
 export const searchEndpoint = process.env.AZURE_SEARCH_ENDPOINT || "PUT-YOUR-SEARCH-SERVICE-ENDPOINT-HERE";
-export const searchApiKey = process.env.AZURE_SEARCH_API_KEY || "PUT-YOUR-SEARCH-SERVICE-ADMIN-API-KEY-HERE";
 export const indexName = process.env.AZURE_SEARCH_INDEX_NAME || "hotels-sample-index";
+export const semanticConfigurationName = process.env.SEMANTIC_CONFIGURATION_NAME || "semantic-config";
 
 // Create credential
 export const credential = new DefaultAzureCredential();
@@ -137,30 +137,67 @@ In this section, you get settings for the existing `hotels-sample-index` index o
     import {
         SearchIndexClient
     } from "@azure/search-documents";
-    import { searchEndpoint, indexName, credential } from "./config.js";
+    import { searchEndpoint, indexName, credential, semanticConfigurationName } from "./config.js";
     
-    const indexClient = new SearchIndexClient(searchEndpoint, credential);
+    try {
     
-    console.log('Getting semantic search index settings...');
+        const indexClient = new SearchIndexClient(searchEndpoint, credential);
     
-    // Get the existing schema
-    const index = await indexClient.getIndex(indexName);
+        const existingIndex = await indexClient.getIndex(indexName);
     
-    console.log(`Index name: ${index.name}`);
-    console.log(`Number of fields: ${index.fields.length}`);
+        const fields = {
+            titleField: {
+                name: "HotelName"
+            },
+            keywordsFields: [{
+                name: "Tags"
+            }],
+            contentFields: [{
+                name: "Description"
+            }]
+        };
     
-    for(const field of index.fields) {
-        console.log(`Field: ${field.name}, Type: ${field.type}, Searchable: ${field.searchable}`);
-    }
+        const newSemanticConfiguration = {
+            name: semanticConfigurationName,
+            prioritizedFields: fields
+        };
     
-    if(index.semanticSearch && index.semanticSearch.configurations) {
-        console.log(`Semantic search configurations: ${index.semanticSearch.configurations.length}`);
-        for(const config of index.semanticSearch.configurations) {
-            console.log(`Configuration name: ${config.name}`);
-            console.log(`Title field: ${config.prioritizedFields.titleField?.name}`);
+        // Add the new semantic configuration to the existing index
+        if (existingIndex.semanticSearch && existingIndex.semanticSearch.configurations) {
+            existingIndex.semanticSearch.configurations.push(newSemanticConfiguration);
+        } else {
+            const configExists = existingIndex.semanticSearch?.configurations?.some(
+                config => config.name === semanticConfigurationName
+            );
+            if (!configExists) {
+                existingIndex.semanticSearch = {
+                    configurations: [newSemanticConfiguration]
+                };
+            }
         }
-    } else {
-        console.log("No semantic configuration exists for this index.");
+    
+        await indexClient.createOrUpdateIndex(existingIndex);
+    
+        const updatedIndex = await indexClient.getIndex(indexName);
+    
+        console.log(`Semantic configurations:`);
+        console.log("-".repeat(40));
+    
+        if (updatedIndex.semanticSearch && updatedIndex.semanticSearch.configurations) {
+            for (const config of updatedIndex.semanticSearch.configurations) {
+                console.log(`Configuration name: ${config.name}`);
+                console.log(`Title field: ${config.prioritizedFields.titleField?.name}`);
+                console.log(`Keywords fields: ${config.prioritizedFields.keywordsFields?.map(f => f.name).join(", ")}`);
+                console.log(`Content fields: ${config.prioritizedFields.contentFields?.map(f => f.name).join(", ")}`);
+                console.log("-".repeat(40));
+            }
+        } else {
+            console.log("No semantic configurations found.");
+        }
+    
+        console.log("Semantic configuration updated successfully.");
+    } catch (error) {
+        console.error("Error updating semantic configuration:", error);
     }
     ```
     
