@@ -201,7 +201,14 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 | ------ | ---- | ------------ |
 | [tsuzumi-7b](https://ai.azure.com/explore/models/Tsuzumi-7b/version/1/registry/azureml-nttdata) | chat-completion | - **Input:** text (8,192 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` and `jp` <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
 
+## AI21 Labs
 
+The Jamba family models are AI21's production-grade Mamba-based large language model (LLM) which uses AI21's hybrid Mamba-Transformer architecture. It's an instruction-tuned version of AI21's hybrid structured state space model (SSM) transformer Jamba model. The Jamba family models are built for reliable commercial use with respect to quality and performance.
+
+| Model  | Type | Capabilities |
+| ------ | ---- | --- |
+| [AI21-Jamba-1.5-Mini](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Mini/version/1/registry/azureml-ai21) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (262,144 tokens) <br /> - **Output:**  text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
+| [AI21-Jamba-1.5-Large](https://ai.azure.com/explore/models/AI21-Jamba-1.5-Large/version/1/registry/azureml-ai21) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | - **Input:** text (262,144 tokens) <br /> - **Output:**  text (4,096 tokens) <br /> - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON, structured outputs |
 
 
 ## Other Foundry Models available for serverless API deployment
