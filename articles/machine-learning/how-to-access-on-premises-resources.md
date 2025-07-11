@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.topic: how-to
 ms.date: 02/27/2025
 ms.reviewer: meerakurup 
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 # Customer intent: As an admin, I want to allow my developers to securely access on-premises resources from Azure Machine Learning.
 ---
 

@@ -5,8 +5,8 @@ description: Learn how to deploy your MLflow model to the deployment targets tha
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: cacrest
 ms.date: 09/27/2024
 ms.topic: concept-article

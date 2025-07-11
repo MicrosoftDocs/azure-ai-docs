@@ -2,8 +2,8 @@
 title: Compare network isolation configurations
 title-suffix: Azure Machine Learning
 description: "Azure Machine Learning can use both managed and custom virtual networks for network isolation. Learn about the differences between the two configurations."
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: meerakurup
 ms.service: azure-machine-learning
 ms.topic: concept-article #Don't change.

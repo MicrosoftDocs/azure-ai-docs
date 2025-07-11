@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.date: 11/09/2023
 ms.topic: how-to
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: timanghn
 ms.custom: deploy, devplatv2, devx-track-azurecli, cliv2, sdkv2
 ms.devlang: azurecli

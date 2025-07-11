@@ -1,9 +1,9 @@
 ---
-author: sdgilley
+author: s-polly
 ms.service: azure-machine-learning
 ms.topic: include
 ms.date: 08/05/2022
-ms.author: sgilley
+ms.author: scottpolly
 ---
 
 After you create a compute with SSH access enabled, use these steps for access.

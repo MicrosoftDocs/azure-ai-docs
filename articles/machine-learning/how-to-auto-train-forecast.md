@@ -3,8 +3,8 @@ title: Set up AutoML for time-series forecasting
 titleSuffix: Azure Machine Learning
 description: Set up Azure Machine Learning automated machine learning (AutoML) to train time-series forecasting models with the Azure Machine Learning CLI and Python SDK.
 services: machine-learning
-author: ssalgadodev
-ms.author: ssalgado
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: erwright
 ms.service: azure-machine-learning
 ms.subservice: automl

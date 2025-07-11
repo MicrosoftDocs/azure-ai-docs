@@ -2,8 +2,8 @@
 title: Audit and manage Azure Machine Learning
 titleSuffix: Azure Machine Learning
 description: Learn how to use Azure Policy with Azure Machine Learning to make sure your workspaces are compliant with your requirements.
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.date: 09/04/2024
 services: machine-learning
 ms.service: azure-machine-learning
