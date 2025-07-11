@@ -10,33 +10,53 @@ items:
   - name: What's new?
     displayName: release,ga,update,support, cognitive
     href: whats-new.md
-  - name: Create a Translator resource
+  - name: Configure Azure AI resources
     displayName: endpoint,key,portal,azure,authentication,delete,resource
     href: create-translator-resource.md
   - name: Language Support
     displayName: iso,language code,translation,transliteration,detection,detect,pdf,document
     href: language-support.md
+  - name: Enable Microsoft Entra ID authentication
+    href: how-to/microsoft-entra-id-auth.md
   - name: Pricing
     displayName: cost,free,standard,custom,tier,S1,S2,S3,S4,C2,C3,C4,D3,hosting
     href: https://azure.microsoft.com/pricing/details/cognitive-services/translator
   - name: Service limits
     displayName: detection,detect,region,
     href: service-limits.md
-
   - name: Translator Service FAQ
     displayName: character,count,usage,attribution, cognitive
     href: translator-faq.md
+
 - name: Text translation
   items:
   - name: What is Text translation?
     displayName: features,develop,development,free
     href: text-translation/overview.md
-  - name: "Migrate to 2025-05-01-preview 🆕"
-    displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
-    href: text-translation/how-to/migrate-to-preview.md
   - name: Text translation SDK
     displayName: get started,sdk,keys,endpoint
     href: text-sdk-overview.md
+  - name: Authentication and authorization
+    displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
+    href: text-translation/reference/authentication.md
+  - name: 2025-05-01-preview 🆕
+    items:
+    - name: Overview 🆕
+      displayName: gpt, adaptive, tone, gender
+      href: text-translation/reference/preview/overview.md
+    - name: "Migrate to 2025-05-01-preview 🆕"
+      displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
+      href: text-translation/how-to/migrate-to-preview.md  
+    - name: REST API guide (preview) 🆕
+      displayName: resource,endpoint,region,location,resource,token,header,header value,header-value
+      href: text-translation/reference/preview/rest-api-guide.md
+    - name: Get languages
+      href: text-translation/reference/preview/get-languages.md
+    - name: Translate
+      displayName: detection,detect
+      href: text-translation/reference/preview/translate-api.md
+    - name: Transliterate
+      href: text-translation/reference/preview/transliterate-api.md
   - name: Quickstarts
     items:
     - name: Translator Text SDK
@@ -50,8 +70,6 @@ items:
     - name: Use the Text translation APIs
       displayName: detection,detect,translation,transliteration,identification,length,sentence length,alternate,usage,headers,set up,status,401
       href: text-translation/how-to/use-rest-api.md
-    - name: Enable Microsoft Entra ID authentication
-      href: how-to/microsoft-entra-id-auth.md
     - name: Add profanity filtering
       displayName: profanityMarker,marker,profanityAction,action
       href: profanity-filtering.md
@@ -66,58 +84,58 @@ items:
     - name: Translate behind firewalls
       displayName: domain,IP,filtering,tag,endpoints,CognitiveServicesManagement
       href: firewalls.md
-  - name: Authentication and authorization
-    displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
-    href: text-translation/reference/authentication.md
+
+  - name: Azure AI Translator v3
+    items:
+    - name: Overview
+      displayName: resource,endpoint,region,location,resource,token,header,header value,header-value
+      href: text-translation/reference/v3/reference.md
+    - name: Text Translation v3 REST APIs
+      href:  text-translation/reference/rest-api-guide.md
+    - name: Get languages
+      href: text-translation/reference/v3/languages.md
+    - name: Translate
+      displayName: detection,detect
+      href: text-translation/reference/v3/translate.md
+    - name: Transliterate
+      href: text-translation/reference/v3/transliterate.md
+    - name: Detect
+      href: text-translation/reference/v3/detect.md
+    - name: BreakSentence
+      displayName: detection,detect
+      href: text-translation/reference/v3/break-sentence.md
+    - name: Dictionary Lookup
+      href: text-translation/reference/v3/dictionary-lookup.md
+    - name: Dictionary Examples
+      href: text-translation/reference/v3/dictionary-examples.md
+    - name: Migrate to v3 Text translation API
+      displayName: "speech,error,version,endpoint,compatibility,json,authentication,pricing"
+      href: text-translation/how-to/migrate-to-v3.md
+
   - name: Reference
     items:
-    - name: 2025-05-01-preview 🆕
-      items:
-      - name: Overview 🆕
-        displayName: gpt, adaptive, tone, gender
-        href: text-translation/reference/preview/overview.md  
-      - name: REST API guide (preview) 🆕
-        displayName: resource,endpoint,region,location,resource,token,header,header value,header-value
-        href: text-translation/reference/preview/rest-api-guide.md
-      - name: Get languages
-        href: text-translation/reference/preview/get-languages.md
-      - name: Translate
-        displayName: detection,detect
-        href: text-translation/reference/preview/translate-api.md
-      - name: Transliterate
-        href: text-translation/reference/preview/transliterate-api.md
-    - name: Azure AI Translator v3
-      items:
-      - name: Overview
-        displayName: resource,endpoint,region,location,resource,token,header,header value,header-value
-        href: text-translation/reference/v3/reference.md
-      - name: Text Translation v3 REST APIs
-        href:  text-translation/reference/rest-api-guide.md
-      - name: Get languages
-        href: text-translation/reference/v3/languages.md
-      - name: Translate
-        displayName: detection,detect
-        href: text-translation/reference/v3/translate.md
-      - name: Transliterate
-        href: text-translation/reference/v3/transliterate.md
-      - name: Detect
-        href: text-translation/reference/v3/detect.md
-      - name: BreakSentence
-        displayName: detection,detect
-        href: text-translation/reference/v3/break-sentence.md
-      - name: Dictionary Lookup
-        href: text-translation/reference/v3/dictionary-lookup.md
-      - name: Dictionary Examples
-        href: text-translation/reference/v3/dictionary-examples.md
-      - name: Migrate to v3 Text translation API
-        displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
-        href: text-translation/how-to/migrate-to-v3.md
-    - name: Authentication and authorization
-      displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
-      href: text-translation/reference/authentication.md
-    - name: Status codes
-      displayName: 401000,405000,400000
-      href: text-translation/reference/status-response-codes.md
+      - name: Status codes
+        displayName: 401000,405000,400000
+        href: text-translation/reference/status-response-codes.md
+      - name: V3 code samples
+        items:
+        - name: Code Sample page
+          href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples
+        - name: C# samples
+          href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/blob/main/C%23-Code-Samples
+        - name: Java
+          href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/Java-Code-Samples
+        - name: Python
+          href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/Python-Code-Samples
+        - name: Node.js
+          href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/NodeJS-Code-Samples
+        - name: Go
+          href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/GO-Code-Samples
+        - name: PHP
+          href: https://github.com/MicrosoftTranslator/Text-Translation-API-v3-PHP
+        - name: Ruby
+          href: https://github.com/MicrosoftTranslator/Text-Translation-API-v3-Ruby
+          
 - name: Document translation
   items:
   - name: What is Document translation?

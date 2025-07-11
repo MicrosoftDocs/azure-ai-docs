@@ -29,8 +29,6 @@ The Translator service is an optimal solution for managing extensive multilingua
 
 * **Adaptive custom translation**. You can provide reference translations or translation memory datasets to enable an `LLM` model to perform few-shot translations tailored to your needs. 
 
-* The **Translator** resource doesn't support Neural Machine Translation (`NMT`) translations.
-
 * You need to create an **Azure AI Foundry** resource to use an `LLM` model.
 
 ## Base URLs
