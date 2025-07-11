@@ -17,14 +17,14 @@ Azure AI Translator is a cloud-based neural machine translation (NMT) service th
 
 If you already have an Azure AI Translator or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Translator resources within the Azure AI Foundry portal for NMT deployment. For more information, *see* [How to use Azure AI services in the Azure AI Foundry portal](../../connect-services-ai-foundry-portal.md).
 
-By default, Azure AI Translator is based on Neural Machine Translation (NMT) technology. With the newest preview release, you now can optionally select either the standard NMT translation or one of two Large Language Model (LLM) deployment types: GPT-4o-mini or GPT-4o. However, **using an LLM model requires you to have an Azure AI Foundry resource**.
+By default, Azure AI Translator is based on neural Machine Translation (NMT) technology. With the newest preview release, you now can optionally select either the standard NMT translation or one of two Large Language Model (LLM) deployment types: GPT-4o-mini or GPT-4o. However, **using an LLM model requires you to have an Azure AI Foundry resource**.
 
 The following table provides an overview of the resource solutions for Translator within the Azure AI ecosystem:
 
 |AI Service|Scope|Use cases|
 |---------|------------|---------|
 | [Azure AI Foundry resource](/azure/ai-foundry/what-is-azure-ai-foundry) |This resource type is the recommended resource for building, deploying, and managing generative AI applications and agents in Azure AI Foundry. |The Azure AI Foundry resource is suitable for scenarios requiring orchestration of multiple AI models, custom AI agent development, and advanced AI application lifecycle management. |
-|[Azure AI Services resource](../../../ai-services/what-are-ai-services.md)|Azure AI services are part of the Azure AI Foundry platform. This multi-service resource provides prebuilt, ready-to-use AI models accessible through APIs for tasks like translation, language understanding, speech recognition, and computer vision.|An Azure AI Services resource allows you to integrate advanced features such as text translation, speech transcription,  and image recognition into your applications. You can also enhance models within the Azure AI Foundry portal using prebuilt AI capabilities.|
+|[Azure AI Services resource](../../../ai-services/what-are-ai-services.md)|This multi-service resource provides prebuilt, ready-to-use AI models accessible through APIs for tasks like translation, language understanding, speech recognition, and computer vision.|An Azure AI Services resource allows you to integrate advanced features such as text translation, speech transcription,  and image recognition into your applications. You can also enhance models within the Azure AI Foundry portal using prebuilt AI capabilities.|
 | [Azure AI Translator services resource](../overview.md) | The Azure AI Translator resource offers access to cloud-based neural machine translation capabilities and the ability to create customized translation models using Custom Translator.|  Azure AI Translator is production-ready and can seamlessly scale up or down based on translation needs, accommodating both small and large volumes of text or documents across multiple languages.|
 
 ## Step 1: create your resource
@@ -43,7 +43,7 @@ An Azure AI Translator resources is an instance of the service that you create. 
 
 ### Prerequisites
 
-To get started, you need an active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/). Each request to an Azure AI service must include an authentication header.
+To get started, you need an active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/).
 
 ### Create your Azure AI Translator resource
 
@@ -86,7 +86,7 @@ After you decide which resource type you want use to access the Translator servi
 
 ### Authentication keys and endpoint URL
 
-All Azure AI services API requests require an endpoint URL and a read-only key for authentication.
+The quickest method for authenticating your Azure AI services API requests is to include your endpoint URL and a read-only key in an authentication header. For more information, *see* [Authentication and authorization](../../authentication.md#authenticate-with-a-single-service-resource-key)
 
 * **Authentication keys**. Your key is a unique string that is passed on every request to the Translation service. You can pass your key through a query-string parameter or by specifying it in the HTTP request header.
 

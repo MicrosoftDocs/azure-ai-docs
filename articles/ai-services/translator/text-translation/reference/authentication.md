@@ -16,10 +16,7 @@ Each request to an Azure AI service must include an authentication header. This 
 
 * Authenticate with a [single-service regional](#authenticating-with-a-regional-resource), [single-service-global](#authenticating-with-a-global-resource) or [multi-service](#authenticating-with-a-multi-service-resource) resource key.
 * Authenticate with a [bearer token](#authenticating-with-an-access-token).
-
-## Microsoft Entra ID authentication
-
-Microsoft Entra ID is a cloud-based identity solution designed to manage user access and permissions for Microsoft services, resources, and applications. Microsoft Entra ID enables you to authenticate requests to your Azure AI resources without the need for passwords or keys. To learn more about Microsoft Entra ID authentication, *see* [**Enable Microsoft Entra ID authentication**](../../how-to/microsoft-entra-id-auth.md).
+* Authenticate with [Microsoft Entra ID](../../how-to/microsoft-entra-id-auth.md) is a cloud-based identity solution designed to manage user access and permissions for Microsoft services, resources, and applications. Microsoft Entra ID enables you to authenticate requests to your Azure AI resources without the need for passwords or keys. 
 
 ## Headers
 

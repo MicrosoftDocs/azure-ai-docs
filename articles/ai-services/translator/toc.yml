@@ -44,6 +44,9 @@ items:
     - name: Overview 🆕
       displayName: gpt, adaptive, tone, gender
       href: text-translation/reference/preview/overview.md
+    - name: "Migrate to 2025-05-01-preview 🆕"
+      displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
+      href: text-translation/how-to/migrate-to-preview.md  
     - name: REST API guide (preview) 🆕
       displayName: resource,endpoint,region,location,resource,token,header,header value,header-value
       href: text-translation/reference/preview/rest-api-guide.md
@@ -54,9 +57,6 @@ items:
       href: text-translation/reference/preview/translate-api.md
     - name: Transliterate
       href: text-translation/reference/preview/transliterate-api.md
-  - name: "Migrate to 2025-05-01-preview 🆕"
-    displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
-    href: text-translation/how-to/migrate-to-preview.md
   - name: Quickstarts
     items:
     - name: Translator Text SDK
