@@ -12,13 +12,13 @@ zone_pivot_groups: tutorial-create-skillset
 
 # Quickstart: Skillsets in Azure AI Search
 
-::: zone pivot="programming-language-csharp"
+::: zone pivot="csharp"
 
 [!INCLUDE [C# quickstart](includes/tutorials/skillset-csharp.md)]
 
 ::: zone-end
 
-::: zone pivot="programming-language-rest"
+::: zone pivot="rest"
 
 [!INCLUDE [REST quickstart](includes/tutorials/skillset-rest.md)]
 
