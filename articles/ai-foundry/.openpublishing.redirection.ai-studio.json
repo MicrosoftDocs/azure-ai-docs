@@ -1222,6 +1222,11 @@
           "source_path_from_root": "/articles/ai-foundry/openai/context/context.json",
           "redirect_url": "/azure/ai-foundry/context/context",
           "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/agents/concepts/agent-catalog.md",
+          "redirect_url": "/azure/ai-foundry/agents/overview",
+          "redirect_document_id": false
         }
     ]
 }
