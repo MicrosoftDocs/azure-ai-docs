@@ -5,7 +5,7 @@ author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 07/03/2025
+ms.date: 07/11/2025
 ms.author: mbullwin
 recommendations: false
 ---
@@ -73,6 +73,7 @@ This role has all the permissions of Cognitive Services OpenAI User and is also 
 ✅ Upload datasets for fine-tuning <br>
 ✅ View, query, filter Stored completions data <br>
 ✅ Create new model deployments or edit existing model deployments **[Added Fall 2023]** <br>
+✅ Grant access to the Assistants API <br> 
 ✅ Add data sources to Azure OpenAI On Your Data. **You must also have the [Cognitive Services Contributor](#cognitive-services-contributor) role as well**.
 
 A user with only this role assigned would be unable to:

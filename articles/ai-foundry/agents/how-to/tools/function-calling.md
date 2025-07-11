@@ -18,7 +18,8 @@ ms.custom: azure-ai-agents
 Azure AI Agents supports function calling, which allows you to describe the structure of functions to an agent and then return the functions that need to be called along with their arguments.
 
 > [!NOTE]
-> Runs expire 10 minutes after creation. Be sure to submit your tool outputs before the expiration.
+> * Runs expire 10 minutes after creation. Be sure to submit your tool outputs before the expiration.
+> * Although function calling isn't supported in the Azure AI Foundry portal, agents will appear in the portal after creation. Agents run in the portal won't perform function calling.
 
 ### Usage support
 
