@@ -132,6 +132,8 @@ Postfiltering applies filters after query execution, narrowing the search result
 
 :::image type="content" source="media/vector-search-filters/post-filter.svg" alt-text="Diagram of post-filters." border="true" lightbox="media/vector-search-filters/post-filter.png":::
 
+---
+
 ### Benchmark testing of vector filter modes
 
 To understand the conditions under which one filter mode performs better than the other, we ran a series of tests to evaluate query outcomes over small, medium, and large indexes.
