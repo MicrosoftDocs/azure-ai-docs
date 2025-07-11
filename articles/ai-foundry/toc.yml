@@ -946,7 +946,7 @@ items:
       - name: REST API
         href: /rest/api/aifoundry/aiagents 
       - name: Data monitoring reference
-        href: reference/monitor-service.md
+        href: agents/reference/monitor-service.md
   - name: Azure AI Evaluation SDK
     href: /python/api/overview/azure/ai-evaluation-readme
   - name: Azure Machine Learning Python SDK
