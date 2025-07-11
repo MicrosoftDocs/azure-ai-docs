@@ -27,8 +27,15 @@ Document Intelligence service is updated on an ongoing basis. Bookmark this page
 > [!IMPORTANT]
 > Preview API versions are retired once the GA API is released. The 2023-02-28-preview API version is retiring. If you're still using the preview API or the associated SDK versions, update your code to target the latest API version `2024-11-30 (GA)`. </br>
 
+## June 2025
+**Document Intelligence v4.0 Read container is now available!**
+<br>
+This container image includes highly requested Read features like searchable PDF! For more information, *see:*
+* [Install and run containers](containers/install-run.md?view=doc-intel-4.0.0&preserve-view=true)
+* [Container image tags](containers/image-tags.md?view=doc-intel-4.0.0&preserve-view=true)
+
 ## April 2025
-**Document Intelligence v4.0 container is now available! Currently, Layout model is the only supported model for v4.0 release.**
+**Document Intelligence v4.0 Layout container is now available!**
 <br>
 For more information, *see:*
 * [Install and run containers](containers/install-run.md?view=doc-intel-4.0.0&preserve-view=true)

@@ -6,7 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: ignite-2023, devx-track-python, build-2024, ignite-2024
 ms.topic: reference
-ms.date: 01/29/2025
+ms.date: 6/30/2025
 ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt

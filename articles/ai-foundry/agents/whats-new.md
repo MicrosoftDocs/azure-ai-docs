@@ -7,7 +7,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: overview
-ms.date: 04/23/2025
+ms.date: 06/26/2025
 ms.custom: azure-ai-agents
 ---
 
@@ -15,33 +15,39 @@ ms.custom: azure-ai-agents
 
 This article provides a summary of the latest releases and major documentation updates for Azure AI Foundry Agent Service.
 
+## June 2025
+
+### Deep Research tool
+
+Use the [Deep Research tool](./how-to/tools/deep-research.md) to utilize a multi-step research process built on top of the Azure OpenAI `o3-deep-research` model and uses the Grounding with Bing Search as the knowledge source.
+
+### Model Context Protocol (MCP) tool
+
+You can new extend the capabilities of your agents by connecting them to tools hosted on remote [Model Context Protocol](https://modelcontextprotocol.io/introduction) (MCP) servers by using the [MCP tool](./how-to/tools/model-context-protocol.md). 
+
 ## May 2025
 
 ### Azure AI Foundry Agent Service GA
 
 The Azure AI Foundry Agent Service is now Generally Available (GA). Along with this milestone, the service offers the following feature updates:
 
-### Agent catalog
-
-The [agent catalog](concepts\agent-catalog.md) helps streamline your agent deployment with prebuilt, task-specific agent code samples across a variety of domains such as translation, sales prep, computer use, and more.
-
-### AI Foundry Visual Studio Code extension
+#### AI Foundry Visual Studio Code extension
 
 The [AI Foundry Visual Studio Code extension](../../ai-foundry/how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context) is now available with the ability to perform a variety of AI Foundry actions, such as deploying and configure agents natively.
 
-### Connected agents
+#### Connected agents
 
 [Connected agents](how-to\connected-agents.md) allow you to create task-specific agents that can interact seamlessly with a primary agent. This feature enables you to build multi-agent systems without the need for external orchestrators.
 
-### Trace agents
+#### Trace agents
 
 Debug and monitor your agents by [tracing agent threads](concepts\tracing.md) to clearly see the inputs and outputs of each primitive involved in a particular agent run, in the order in which they were invoked. 
 
-### Trigger agents using Azure Logic Apps 
+#### Trigger agents using Azure Logic Apps 
 
 [Automatically invoke](how-to\triggers.md) your AI agent when an event occurs, such as receiving a new email, or getting a new customer ticket so that your AI agent can immediately respond to the new event without manual invocation.
 
-### New agent tools
+#### New agent tools
 
 This release brings a number of new tools to extend agents' capabilities:
 

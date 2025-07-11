@@ -25,10 +25,10 @@ Speech is available for many [languages](language-support.md), [regions](regions
 
 Common scenarios for speech include:
 - [Captioning](./captioning-concepts.md): Learn how to synchronize captions with your input audio, apply profanity filters, get partial results, apply customizations, and identify spoken languages for multilingual scenarios.
-- [Audio Content Creation](text-to-speech.md#more-about-neural-text-to-speech-features): You can use neural voices to make interactions with chatbots and voice assistants more natural and engaging, convert digital texts such as e-books into audiobooks and enhance in-car navigation systems.
+- [Audio Content Creation](text-to-speech.md#more-about-neural-text-to-speech-features): You can use neural voices to make interactions with chatbots and voice agents more natural and engaging, convert digital texts such as e-books into audiobooks and enhance in-car navigation systems.
 - [Call Center](call-center-overview.md): Transcribe calls in real-time or process a batch of calls, redact personally identifying information, and extract insights such as sentiment to help with your call center use case.
 - [Language learning](language-learning-overview.md): Provide pronunciation assessment feedback to language learners, support real-time transcription for remote learning conversations, and read aloud teaching materials with neural voices.
-- [Voice assistants](voice-assistants.md): Create natural, human like conversational interfaces for their applications and experiences. The voice assistant feature provides fast, reliable interaction between a device and an assistant implementation.
+- [Voice live](voice-live.md): Create natural, human like conversational interfaces for applications and experiences. The voice live feature provides fast, reliable interaction between a human and an agent implementation.
 
 Microsoft uses Speech for many scenarios, such as captioning in Teams, dictation in Office 365, and Read Aloud in the Microsoft Edge browser. 
 
@@ -136,7 +136,6 @@ Sample code for the Speech service is available on GitHub. These samples cover c
 - [Speech to text, text to speech, and speech translation samples (SDK)](https://github.com/Azure-Samples/cognitive-services-speech-sdk)
 - [Batch transcription samples (REST)](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/batch)
 - [Text to speech samples (REST)](https://github.com/Azure-Samples/Cognitive-Speech-TTS)
-- [Voice assistant samples (SDK)](https://aka.ms/csspeech/samples)
 
 ## Responsible AI 
 
@@ -145,8 +144,8 @@ An AI system includes not only the technology, but also the people who use it, t
 ### Speech to text
 
 * [Transparency note and use cases](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note)
-* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/characteristics-and-limitations)
-* [Integration and responsible use](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/guidance-integration-responsible-use)
+* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note)
+* [Integration and responsible use](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note)
 * [Data, privacy, and security](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/data-privacy-security)
 
 ### Pronunciation Assessment
@@ -156,15 +155,15 @@ An AI system includes not only the technology, but also the people who use it, t
 
 ### Custom voice
 
-* [Transparency note and use cases](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note-custom-neural-voice)
-* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/characteristics-and-limitations-custom-neural-voice)
-* [Limited access](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access-custom-neural-voice)
-* [Responsible deployment of synthetic speech](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-guidelines-responsible-deployment-synthetic)
-* [Disclosure of voice talent](/azure/ai-foundry/responsible-ai/speech-service/disclosure-voice-talent)
+* [Transparency note and use cases](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note)
+* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note)
+* [Limited access](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access)
+* [Responsible deployment of synthetic speech](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note)
+* [Disclosure of voice talent](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/disclosure-voice-talent)
 * [Disclosure of design guidelines](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-guidelines)
 * [Disclosure of design patterns](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-patterns)
-* [Code of conduct](/azure/ai-foundry/responsible-ai/speech-service/tts-code-of-conduct)
-* [Data, privacy, and security](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security-custom-neural-voice)
+* [Code of conduct](/azure/ai-foundry/responsible-use-of-ai-overview)
+* [Data, privacy, and security](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security)
 
 ### Speaker Recognition
 

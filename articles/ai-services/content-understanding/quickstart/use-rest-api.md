@@ -2,7 +2,7 @@
 title: "Quickstart: Azure AI Content Understanding REST APIs"
 titleSuffix: Azure AI services
 description: Learn about Content Understanding REST APIs
-author: laujan
+author: PatrickFarley 
 ms.author: paulhsu
 manager: nitinme
 ms.date: 05/19/2025
@@ -96,11 +96,11 @@ Operation-Location: {endpoint}/contentunderstanding/analyzerResults/{resultId}?a
 Use the `resultId` from the [`POST` response](#post-response) and retrieve the result of the analysis.
 
 1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Foundry instance.
-2. Replace `{resultId}` with the `resultId` from the `POST` response.
+2. Replace `{analyzerResultId}` with the `id` from the `POST` response or use the complete URL from the `Operation-Location` response header.
 
 #### GET request
 ```bash
-curl -i -X GET "GET {endpoint}/contentunderstanding/analyzers/{analyzerId}?api-version=2025-05-01-preview" \
+curl -i -X GET "GET {endpoint}/contentunderstanding/analyzerResults/{analyzerResultId}?api-version=2025-05-01-preview" \
   -H "Ocp-Apim-Subscription-Key: {key}"
 ```
 

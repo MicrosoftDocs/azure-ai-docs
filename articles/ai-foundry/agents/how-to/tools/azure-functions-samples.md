@@ -6,7 +6,7 @@ services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 05/20/2025
+ms.date: 07/11/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
@@ -101,8 +101,7 @@ Next, create an AI project client and then create an agent, attaching the Azure 
 # Initialize the AIProjectClient
 project_client = AIProjectClient(
     endpoint=os.environ["PROJECT_ENDPOINT"],
-    credential=DefaultAzureCredential(),
-    api_version="latest",
+    credential=DefaultAzureCredential()
 )
 # Create an agent with the Azure Function tool
 agent = project_client.agents.create_agent(

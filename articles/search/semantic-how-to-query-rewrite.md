@@ -6,6 +6,7 @@ manager: nitinme
 author: eric-urban
 ms.author: eur
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
   - references_regions

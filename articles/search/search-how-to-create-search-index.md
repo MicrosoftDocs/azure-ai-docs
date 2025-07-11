@@ -6,6 +6,7 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.topic: how-to
 ms.date: 05/19/2025
 ---
@@ -164,7 +165,7 @@ After an index is created, you can find it again on the **Indexes** page from th
 
 ### [**REST**](#tab/index-rest)
 
-[**Create Index (REST API)**](/rest/api/searchservice/indexes/create) is used to create an index. You need a REST client to connect to your search service and send requests. See [Quickstart: Full text search using REST](search-get-started-rest.md) or [Quickstart: Vector search using REST](search-get-started-vector.md) to get started.
+[**Create Index (REST API)**](/rest/api/searchservice/indexes/create) is used to create an index. You need a REST client to connect to your search service and send requests. See [Quickstart: Full-text search using REST](search-get-started-text.md) or [Quickstart: Vector search using REST](search-get-started-vector.md) to get started.
 
 The REST API provides defaults for field attribution. For example, all `Edm.String` fields are searchable by default. Attributes are shown in full below for illustrative purposes, but you can omit attribution in cases where the default values apply.
 

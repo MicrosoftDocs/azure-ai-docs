@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.topic: concept-article
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: sehan
 ms.custom: mktng-kw-nov2021, FY25Q1-Linter
 ms.date: 09/25/2024

@@ -3,8 +3,8 @@ title: Concept vector stores in Azure Machine Learning (preview)
 titleSuffix: Azure Machine Learning embedding vectors in AzureML
 description: Explore concepts about vector indexes in Azure Machine Learning and how you can use them for retrieval-augmented generation.
 services: machine-learning
-ms.author: ssalgado
-author: ssalgadodev
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: balapv
 ms.service: azure-machine-learning
 ms.subservice: core

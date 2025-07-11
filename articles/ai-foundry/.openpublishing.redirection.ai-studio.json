@@ -111,6 +111,11 @@
             "redirect_document_id": true
           },
           {
+            "source_path_from_root": "/articles/ai-foundry/concepts/models-featured.md",
+            "redirect_url": "/azure/ai-foundry/concepts/models-inference-examples",
+            "redirect_document_id": false
+          },
+          {
             "source_path_from_root": "/articles/ai-foundry/model-inference/reference/api-version-updates.md",
             "redirect_url": "/rest/api/aifoundry/modelinference",
             "redirect_document_id": false
@@ -451,8 +456,18 @@
             "redirect_document_id": true
           },
           {
+            "source_path_from_root": "/articles/ai-foundry/foundry-models/supported-languages-openai.md",
+            "redirect_url": "/azure/ai-services/openai/supported-languages",
+            "redirect_document_id": false
+          },
+          {
             "source_path_from_root": "/articles/ai-studio/how-to/use-blocklists.md",
-            "redirect_url": "/azure/ai-foundry/how-to/use-blocklists",
+            "redirect_url": "/azure/ai-foundry/foundry-models/how-to/use-blocklists",
+            "redirect_document_id": false
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/how-to/use-blocklists.md",
+            "redirect_url": "/azure/ai-foundry/foundry-models/how-to/use-blocklists",
             "redirect_document_id": true
           },
           {
@@ -770,6 +785,16 @@
         {
           "source_path_from_root": "/articles/ai-studio/context/context.yml",
           "redirect_url": "/azure/ai-foundry/context/context.json",
+          "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-foundry/foundry-models/index.yml",
+            "redirect_url": "/azure/ai-foundry/",
+            "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/foundry-models/context/context.yml",
+          "redirect_url": "/azure/ai-foundry/context/context",
           "redirect_document_id": false
         },
         {
@@ -1181,6 +1206,26 @@
         {
           "source_path_from_root": "/articles/ai-foundry/how-to/online-evaluation.md",
           "redirect_url": "/azure/ai-foundry/how-to/monitor-applications",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/openai/index.yml",
+          "redirect_url": "/azure/ai-foundry/",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/openai/context/context.yml",
+          "redirect_url": "/azure/ai-foundry/context/context",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/openai/context/context.json",
+          "redirect_url": "/azure/ai-foundry/context/context",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/agents/concepts/agent-catalog.md",
+          "redirect_url": "/azure/ai-foundry/agents/overview",
           "redirect_document_id": false
         }
     ]

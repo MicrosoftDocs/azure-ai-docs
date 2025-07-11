@@ -5,8 +5,8 @@ description: Learn how to deploy your machine learning model to an online endpoi
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: sehan
 ms.date: 04/28/2025
 ms.topic: how-to

@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.custom: devx-track-arm-template
 ms.topic: how-to
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: meerakurup
 ms.date: 03/28/2025
 ---

@@ -158,7 +158,7 @@ Status code 429 indicates that you've exceeded your quota on the number of docum
 
 + To merge inline changes into string collection, provide the entire value. Recall the `tags` field example from the previous section. New values overwrite the old values for an entire field, and there's no merging within the content of a field.
 
-Here's a [REST API example](search-get-started-rest.md) demonstrating these tips:
+Here's a [REST API example](search-get-started-text.md) demonstrating these tips:
 
 ```rest
 ### Get Stay-Kay City Hotel by ID
@@ -305,7 +305,7 @@ If indexing workloads introduce unacceptable levels of query latency, conduct [p
 
 You can begin querying an index as soon as the first document is loaded. If you know a document's ID, the [Lookup Document REST API](/rest/api/searchservice/documents/get) returns the specific document. For broader testing, you should wait until the index is fully loaded, and then use queries to verify the context you expect to see.
 
-You can use [Search Explorer](search-explorer.md) or a [REST client](search-get-started-rest.md) to check for updated content.
+You can use [Search Explorer](search-explorer.md) or a [REST client](search-get-started-text.md) to check for updated content.
 
 If you added or renamed a field, use [select](search-query-odata-select.md) to return that field: 
 

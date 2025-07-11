@@ -5,10 +5,11 @@ description: Learn how to use grounding data from Azure AI Search with a chat mo
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
+ms.update-cycle: 90-days
 ms.custom:
   - ignite-2024
 ms.topic: quickstart
-ms.date: 03/04/2025
+ms.date: 07/09/2025
 zone_pivot_groups: programming-languages-ai-search-rag-qs
 ---
 
@@ -16,6 +17,17 @@ zone_pivot_groups: programming-languages-ai-search-rag-qs
 
 In this quickstart, you send queries to a chat completion model for a conversational search experience over your indexed content on Azure AI Search. After setting up Azure OpenAI and Azure AI Search resources in the Azure portal, you run code to call the APIs.
 
+::: zone pivot="csharp"
+
+[!INCLUDE [.NET quickstart](includes/quickstarts/search-get-started-rag-dotnet.md)]
+
+::: zone-end
+
+::: zone pivot="javascript"
+
+[!INCLUDE [JavaScript quickstart](includes/quickstarts/search-get-started-rag-javascript.md)]
+
+::: zone-end
 
 ::: zone pivot="python"
 
@@ -23,15 +35,15 @@ In this quickstart, you send queries to a chat completion model for a conversati
 
 ::: zone-end
 
-::: zone pivot="typescript"
+::: zone pivot="rest"
 
-[!INCLUDE [TypeScript quickstart](includes/quickstarts/search-get-started-rag-typescript.md)]
+[!INCLUDE [Rest quickstart](includes/quickstarts/search-get-started-rag-rest.md)]
 
 ::: zone-end
 
-::: zone pivot="javascript"
+::: zone pivot="typescript"
 
-[!INCLUDE [JavaScript quickstart](includes/quickstarts/search-get-started-rag-javascript.md)]
+[!INCLUDE [TypeScript quickstart](includes/quickstarts/search-get-started-rag-typescript.md)]
 
 ::: zone-end
 
