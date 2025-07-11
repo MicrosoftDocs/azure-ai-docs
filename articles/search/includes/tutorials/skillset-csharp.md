@@ -773,17 +773,25 @@ CheckIndexerOverallStatus(indexerClient, demoIndexer);
 
 In Azure AI Search tutorial console apps, we typically add a 2-second delay before running queries that return results, but because enrichment takes several minutes to complete, we'll close the console app and use another approach instead.
 
-The easiest option is [Search explorer](../../search-explorer.md) in the Azure portal. You can first run an empty query that returns all documents, or a more targeted search that returns new field content created by the pipeline. 
+The easiest option is [Search Explorer](../../search-explorer.md) in the Azure portal. You can first run an empty query that returns all documents, or a more targeted search that returns new field content created by the pipeline. 
 
-1. In Azure portal, in the search Overview page, select **Indexes**.
+1. In the Azure portal, in the search service pages, expand **Search Management** > **Indexes**.
 
 1. Find **`demoindex`** in the list. It should have 14 documents. If the document count is zero, the indexer is either still running or the page hasn't been refreshed yet. 
 
-1. Select **`demoindex`**. Search explorer is the first tab.
+1. Select **`demoindex`**. Search Explorer is the first tab.
 
 1. Content is searchable as soon as the first document is loaded. To verify content exists, run an unspecified query by clicking **Search**. This query returns all currently indexed documents, giving you an idea of what the index contains.
 
-1. Next, paste in the following string for more manageable results: `search=*&$select=id, languageCode, organizations`
+1. For more manageable results, switch to JSON view and set parameters to select the fields:
+
+   ```json
+   {
+       "search": "*",
+       "count": true,
+       "select": "id, languageCode, organizations"
+   }
+   ```
 
 <a name="reset"></a>
 
