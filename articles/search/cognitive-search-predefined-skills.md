@@ -81,4 +81,4 @@ For guidance on creating a custom skill, see [Define a custom interface](cogniti
 
 + [How to define a skillset](cognitive-search-defining-skillset.md)
 + [Custom Skills interface definition](cognitive-search-custom-skill-interface.md)
-+ [Tutorial: Enriched indexing with AI](tutorial-skillset-md)
++ [Tutorial: Enriched indexing with AI](tutorial-skillset.md)
