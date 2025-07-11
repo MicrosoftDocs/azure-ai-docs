@@ -13,7 +13,7 @@ ms.topic: how-to
 
 # Azure resources for Azure AI translation
 
-Azure AI Translator is a cloud-based neural machine translation (NMT) service that allows users to add multilingual capabilities to their applications and workflows. The service supports both instant translation and batch processing, making it suitable for a wide range of business needs.
+Azure AI Translator is a cloud-based neural machine translation (NMT) service that allows you to add multilingual capabilities to your applications and workflows. The service supports both instant translation and batch processing, making it suitable for a wide range of business needs.
 
 If you already have an Azure AI Translator or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Translator resources within the Azure AI Foundry portal for NMT deployment. For more information, *see* [How to use Azure AI services in the Azure AI Foundry portal](../../connect-services-ai-foundry-portal.md).
 
@@ -23,9 +23,9 @@ The following table provides an overview of the resource solutions for Translato
 
 |AI Service|Scope|Use cases|
 |---------|------------|---------|
-| [Azure AI Foundry resource](/azure/ai-foundry/what-is-azure-ai-foundry) |This resource type is recommended resource for building, deploying, and managing generative AI applications and agents in Azure AI Foundry. |The Azure AI Foundry resource is suitable for scenarios requiring orchestration of multiple AI models, custom AI agent development, and advanced AI application lifecycle management. |
-|[Azure AI Services resource](../../../ai-services/what-are-ai-services.md)|Azure AI services are part of the Azure AI Foundry platform. The multi-service resource provides prebuilt, ready-to-use AI models accessible through APIs for tasks like language understanding, translation, speech recognition, and computer vision. It allows you to access multiple Azure AI services through a single key and endpoint.|An Azure AI Services resource enables you to add features like speech transcription, text translation, or image recognition to applications and enhance models in the Azure AI Foundry portal with prebuilt AI capabilities.|
-| [Azure AI Translator services resource](../overview.md) | The Azure AI Translator resource offers access to our cloud-based neural machine translation service. This service enables the translation of text and documents across multiple languages.| Azure AI Translator offers both general translation capabilities and the ability to create customized translation models using Custom Translator. Azure AI Translator is production-ready and can seamlessly scale up or down based on translation needs, accommodating both small and large volumes of text or documents.|
+| [Azure AI Foundry resource](/azure/ai-foundry/what-is-azure-ai-foundry) |This resource type is the recommended resource for building, deploying, and managing generative AI applications and agents in Azure AI Foundry. |The Azure AI Foundry resource is suitable for scenarios requiring orchestration of multiple AI models, custom AI agent development, and advanced AI application lifecycle management. |
+|[Azure AI Services resource](../../../ai-services/what-are-ai-services.md)|Azure AI services are part of the Azure AI Foundry platform. This multi-service resource provides prebuilt, ready-to-use AI models accessible through APIs for tasks like translation, language understanding, speech recognition, and computer vision.|An Azure AI Services resource allows you to integrate advanced features such as text translation, speech transcription,  and image recognition into your applications. You can also enhance models within the Azure AI Foundry portal using prebuilt AI capabilities.|
+| [Azure AI Translator services resource](../overview.md) | The Azure AI Translator resource offers access to cloud-based neural machine translation capabilities and the ability to create customized translation models using Custom Translator.|  Azure AI Translator is production-ready and can seamlessly scale up or down based on translation needs, accommodating both small and large volumes of text or documents across multiple languages.|
 
 ## Step 1: create your resource
 
@@ -39,11 +39,11 @@ The following table provides an overview of the resource solutions for Translato
 
 ## [Azure AI Translator resource](#tab/translator)
 
-In this article, you learn how to create a Translator resource in the Azure portal. [Azure AI Translator](../overview.md) is a cloud-based machine translation service that is part of the [Azure AI services](../../what-are-ai-services.md) family. Azure resources are instances of services that you create. All API requests to Azure AI services require an *endpoint* URL and a read-only *key* for authenticating access.
+An Azure AI Translator resources is an instance of the service that you create. All API requests to Azure AI services can be accessed with an *endpoint* URL and a read-only *key* for authenticating access.
 
 ### Prerequisites
 
-To get started, you need an active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/). If you don't have one, you can [**create a free 12-month subscription**](https://azure.microsoft.com/free/).
+To get started, you need an active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/). Each request to an Azure AI service must include an authentication header.
 
 ### Create your Azure AI Translator resource
 
