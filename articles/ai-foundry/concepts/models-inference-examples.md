@@ -7,7 +7,7 @@ ms.author: mopeakande
 manager: scottpolly
 reviewer: santiagxf
 ms.reviewer: fasantia
-ms.date: 07/10/2025
+ms.date: 07/11/2025
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.custom:
@@ -57,7 +57,7 @@ The following table provides links to examples of how to use Cohere models.
 
 ### Cohere rerank
 
-To perform inferencing with Cohere rerank models, you're required to use Cohere's custom rerank APIs. For more information, see the table for [Other Foundry Models available for serverless API deployment](../foundry-models/concepts/models.md#other-foundry-models-available-for-serverless-api-deployment).
+To perform inferencing with Cohere rerank models, you're required to use Cohere's custom rerank APIs. For more information on the Cohere rerank model and its capabilities, see [Cohere rerank](../foundry-models/concepts/models.md#cohere-rerank).
 
 
 #### Pricing for Cohere rerank models
@@ -163,7 +163,7 @@ The following table provides links to examples of how to use Mistral models.
 
 Nixtla's TimeGEN-1 is a generative pre-trained forecasting and anomaly detection model for time series data. TimeGEN-1 can produce accurate forecasts for new time series without training, using only historical values and exogenous covariates as inputs.
 
-To perform inferencing, TimeGEN-1 requires you to use Nixtla's custom inference API.
+To perform inferencing, TimeGEN-1 requires you to use Nixtla's custom inference API.  For more information on the TimeGEN-1 model and its capabilities, see [Nixtla](../foundry-models/concepts/models.md#nixtla).
 
 #### Estimate the number of tokens needed
 
