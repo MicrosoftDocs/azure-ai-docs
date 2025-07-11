@@ -80,9 +80,9 @@ All Azure AI Foundry projects use a managed Azure Key Vault, not shown in your s
 
 - After an Azure Key Vault connection is created, it cannot be switched back to a managed Key Vault.
 - Only one Azure Key Vault connection per AI Foundry resource is allowed at a given time.
-- Deleting an Azure Key Vault connection is not permitted, as that would break the AI Foundry resource.
-- Deleting the underlying Azure Key Vault would break the AI Foundry resource as well.
-- Deleting the Foundry resource's underlying connection secrets stored on the Azure Key Vault may break connections to other services.
+- You can't delete an Azure Key Vault connection, as that would break the AI Foundry resource.
+- You shouldn't delete the underlying Azure Key Vault, since that would break the AI Foundry resource as well.
+- You shouldn't delete the Foundry resource's underlying connection secrets stored on the Azure Key Vault, since that may break connections to other services.
 
 > [!NOTE]
 > You can update the Azure Key Vault connection from Azure Key Vault 1 to Azure Key Vault 2, secret migration is handled by AI Foundry.
