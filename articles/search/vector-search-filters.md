@@ -130,6 +130,8 @@ In a vector query, `preFilter` is the default.
 
 Postfiltering applies filters after query execution, narrowing the search results.
 
+In a vector query, use `postFilter` for this task.
+
 :::image type="content" source="media/vector-search-filters/post-filter.svg" alt-text="Diagram of post-filters." border="true" lightbox="media/vector-search-filters/post-filter.png":::
 
 ---
@@ -228,4 +230,4 @@ The vertical axis represents the relative performance of prefiltering compared t
 + A value of `0.5` means prefiltering is 50% slower.
 + A value of `1.0` means prefiltering and post filtering are equivalent.
 
-The horizontal axis represents the filtering rate, or the percentage of candidate documents after applying the filter. For example, a rate of `1.00%` means that the filter criteria selected one percent of the search corpus.
+The horizontal axis represents the filtering rate, or the percentage of candidate documents after applying the filter. For example, a rate of `1.00%` means the filter criteria selected one percent of the search corpus.
