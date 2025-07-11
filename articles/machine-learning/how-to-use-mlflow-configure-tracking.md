@@ -3,8 +3,8 @@ title: Configure MLflow for Azure Machine Learning
 titleSuffix: Azure Machine Learning
 description: Find out how to connect MLflow to an Azure Machine Learning workspace to log metrics, track artifacts, and deploy models.
 services: machine-learning
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: fasantia
 ms.service: azure-machine-learning
 ms.subservice: mlops

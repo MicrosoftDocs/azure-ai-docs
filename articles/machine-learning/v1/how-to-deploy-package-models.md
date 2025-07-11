@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.date: 02/05/2025
 ms.topic: how-to
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: bozhlin
 ms.custom: UpdateFrequency5, deploy
 ---

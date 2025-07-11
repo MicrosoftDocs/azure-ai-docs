@@ -3,8 +3,8 @@ title: Run Jupyter notebooks in your workspace
 titleSuffix: Azure Machine Learning
 description: Learn how to run Jupyter notebooks in Azure Machine Learning studio, using Jupyter, JupyterLab, or Visual Studio Code.
 services: machine-learning
-author: sdgilley
-ms.author: sgilley
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: sgilley
 ms.service: azure-machine-learning
 ms.subservice: core

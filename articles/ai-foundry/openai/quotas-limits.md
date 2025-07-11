@@ -47,6 +47,7 @@ The following sections provide you with a quick guide to the default quotas and 
 | Maximum number of Provisioned throughput units per deployment | 100,000 |
 | Max files per Assistant/thread | 10,000 when using the API or [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).|
 | Max file size for Assistants & fine-tuning | 512 MB<br/><br/>200 MB via [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) |
+| Max file upload requests per resource | 30 requests per second |
 | Max size for all uploaded files for Assistants |200 GB |
 | Assistants token limit | 2,000,000 token limit |
 | GPT-4o and GPT-4.1 max images per request (# of images in the messages array/conversation history) | 50 |

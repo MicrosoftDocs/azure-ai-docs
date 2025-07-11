@@ -3,8 +3,8 @@ title: Azure Container for PyTorch
 titleSuffix: Azure Machine Learning
 description: Azure Container for PyTorch (ACPT), a curated environment that includes the best of Microsoft technologies for training with PyTorch on Azure.
 services: machine-learning
-author: ssalgadodev
-ms.author: ssalgado
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: parinitarahi
 ms.service: azure-machine-learning
 ms.subservice: core

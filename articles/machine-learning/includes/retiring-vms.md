@@ -1,10 +1,10 @@
 ---
-author: sdgilley
+author: s-polly
 ms.service: azure-machine-learning
 ms.custom: build-2023
 ms.topic: include
 ms.date: 10/17/2024
-ms.author: sgilley
+ms.author: scottpolly
 ---
 
 > [!IMPORTANT]

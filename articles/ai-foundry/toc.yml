@@ -112,8 +112,8 @@ items:
         href: how-to/deploy-models-serverless-availability.md
       - name: Guardrails & controls for serverless API 
         href: concepts/model-catalog-content-safety.md
-      - name: Models available for serverless API
-        href: concepts/models-featured.md
+      - name: Inference examples for serverless deployments
+        href: concepts/models-inference-examples.md
       - name: Gretel Navigator model
         href: how-to/deploy-models-gretel-navigator.md
       - name: Mistral-7B and Mixtral models

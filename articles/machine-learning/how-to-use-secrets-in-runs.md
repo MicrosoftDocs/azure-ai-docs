@@ -3,8 +3,8 @@ title: Authentication secrets
 titleSuffix: Azure Machine Learning
 description: Learn how to securely get secrets from Azure Key Vault in your training jobs by using the Key Vault Secrets client library.
 services: machine-learning
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: roastala
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness

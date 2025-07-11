@@ -5,8 +5,8 @@ description: Use Azure Machine Learning components to build machine learning pip
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.author: lagayhar
-author: lgayhardt
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: keli19
 ms.date: 09/30/2024
 ms.topic: concept-article
