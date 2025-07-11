@@ -227,7 +227,7 @@ Open the **Agents Playground** using the following steps:
 
 1. The **Playground** page is displayed.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-display-playground.png" alt-text="Screenshot of the **Agents Playground** page in VS Code." lightbox="../../media/how-to/get-started-projects-vs-code/agent-display-playground.png":::
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-display-playground.png" alt-text="Screenshot of the **Agents Playground** VS Code page." lightbox="../../media/how-to/get-started-projects-vs-code/agent-display-playground.png":::
 
 1. Type your prompt and see the outputs. The **Grounding with Bing search** tool is used to search the web for information. The agent uses the model and tools you configured in the agent designer. The source of the information is displayed in the **Agent Annotations** section, highlighted in the following image. 
 
