@@ -9,7 +9,7 @@ manager: nitinme
 
 ms.service: azure-ai-search
 ms.topic: tutorial
-ms.date: 03/31/2025
+ms.date: 07/11/2025
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet
@@ -46,7 +46,7 @@ Once content is extracted, the [skillset](cognitive-search-working-with-skillset
 
 + [Azure AI Search](search-create-app-portal.md).
 
-+ [Azure.Search.Documents 11.x NuGet package](https://www.nuget.org/packages/Azure.Search.Documents).
++ [Azure.Search.Documents package](https://www.nuget.org/packages/Azure.Search.Documents).
 
 + [Visual Studio](https://visualstudio.microsoft.com/downloads/).
 
@@ -55,15 +55,15 @@ Once content is extracted, the [skillset](cognitive-search-working-with-skillset
 
 ### Download files
 
-Download a zip file of the sample data repository and extract the contents. [Learn how](https://docs.github.com/get-started/start-your-journey/downloading-files-from-github).
++ Download a zip file of the sample data repository and extract the contents. [Learn how](https://docs.github.com/get-started/start-your-journey/downloading-files-from-github).
 
-+ [Sample data files (mixed media)](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/ai-enrichment-mixed-media)
++ Download the [sample data files (mixed media)](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/ai-enrichment-mixed-media)
 
 ### Upload sample data to Azure Storage
 
-1. In Azure Storage, create a new container and name it *cog-search-demo*.
+1. In Azure Storage, [create a new container](/azure/storage/blobs/storage-quickstart-blobs-portal) and name it *mixed-content-types*.
 
-1. [Upload the sample data files](/azure/storage/blobs/storage-quickstart-blobs-portal).
+1. Upload the sample data files.
 
 1. Get a storage connection string so that you can formulate a connection in Azure AI Search.
 
@@ -87,11 +87,9 @@ For this tutorial, connections to Azure AI Search require an endpoint and an API
 
 1. Under **Settings** > **Keys**, copy an admin key. Admin keys are used to add, modify, and delete objects. There are two interchangeable admin keys. Copy either one.
 
-   :::image type="content" source="media/search-get-started-rest/get-url-key.png" alt-text="Screenshot of the URL and API keys in the Azure portal.":::
-
 ## Set up your environment
 
-Begin by opening Visual Studio and creating a new Console App project that can run on .NET Core.
+Begin by opening Visual Studio and creating a new Console App project.
 
 ### Install Azure.Search.Documents
 
@@ -173,7 +171,7 @@ public static void Main(string[] args)
 > The clients connect to your search service. In order to avoid opening too many connections, you should try to share a single instance in your application if possible. The methods are thread-safe to enable such sharing.
 > 
 
-### Add function to exit the program during failure
+### Add a function to exit the program during failure
 
 This tutorial is meant to help you understand each step of the indexing pipeline. If there's a critical issue that prevents the program from creating the data source, skillset, index, or indexer the program will output the error message and exit so that the issue can be understood and addressed.
 
@@ -206,7 +204,7 @@ private static SearchIndexerDataSourceConnection CreateOrUpdateDataSource(Search
         name: "demodata",
         type: SearchIndexerDataSourceType.AzureBlob,
         connectionString: configuration["AzureBlobConnectionString"],
-        container: new SearchIndexerDataContainer("cog-search-demo"))
+        container: new SearchIndexerDataContainer("mixed-content-type"))
     {
         Description = "Demo files to demonstrate Azure AI Search capabilities."
     };
@@ -419,14 +417,16 @@ private static EntityRecognitionSkill CreateEntityRecognitionSkill()
         TargetName = "organizations"
     });
 
-    EntityRecognitionSkill entityRecognitionSkill = new EntityRecognitionSkill(inputMappings, outputMappings)
+    // Specify the V3 version of the EntityRecognitionSkill
+    var skillVersion = EntityRecognitionSkill.SkillVersion.V3;
+
+    var entityRecognitionSkill = new EntityRecognitionSkill(inputMappings, outputMappings, skillVersion)
     {
         Description = "Recognize organizations",
         Context = "/document/pages/*",
         DefaultLanguageCode = EntityRecognitionSkillLanguage.En
     };
     entityRecognitionSkill.Categories.Add(EntityCategory.Organization);
-
     return entityRecognitionSkill;
 }
 ```
