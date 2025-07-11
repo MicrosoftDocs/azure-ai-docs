@@ -1,5 +1,5 @@
 ---
-author: haileytap
+author: diberry
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.custom:
@@ -109,45 +109,45 @@ If you signed in to the [Azure portal](https://portal.azure.com), you're signed 
 
 ## Create a common authentication file
 
-1. Create a file in `./src` called `config.ts` to hold the environment variables and authentication credential. Copy in the following code. This file will be used by all the other files in this quickstart.
+Create a file in `./src` called `config.ts` to read the `.env` file and hold the environment variables and authentication credential. Copy in the following code; don't change it. This file will be used by all the other files in this quickstart.
 
-    ```typescript
-    import { DefaultAzureCredential } from "@azure/identity";
-    
-    // Configuration - use environment variables
-    export const searchEndpoint = process.env.AZURE_SEARCH_ENDPOINT || "PUT-YOUR-SEARCH-SERVICE-ENDPOINT-HERE";
-    export const indexName = process.env.AZURE_SEARCH_INDEX_NAME || "hotels-sample-index";
-    export const semanticConfigurationName = process.env.SEMANTIC_CONFIGURATION_NAME || "semantic-config";
-    
-    // Create credential
-    export const credential = new DefaultAzureCredential();
-    
-    console.log(`Using Azure Search endpoint: ${searchEndpoint}`);
-    console.log(`Using index name: ${indexName}\n\n`);
-    
-    // Hotel document interface
-    export interface HotelDocument {
-        "@search.action"?: string;
-        HotelId: string;
-        HotelName: string;
-        Description: string;
-        Category: string;
-        Tags: string[];
-        ParkingIncluded: string;
-        LastRenovationDate: string;
-        Rating: number;
-        Address: {
-            StreetAddress: string;
-            City: string;
-            StateProvince: string;
-            PostalCode: string;
-            Country: string;
-        };
-    }
-    ```
+```typescript
+import { DefaultAzureCredential } from "@azure/identity";
+
+// Configuration - use environment variables
+export const searchEndpoint = process.env.AZURE_SEARCH_ENDPOINT || "PUT-YOUR-SEARCH-SERVICE-ENDPOINT-HERE";
+export const indexName = process.env.AZURE_SEARCH_INDEX_NAME || "hotels-sample-index";
+export const semanticConfigurationName = process.env.SEMANTIC_CONFIGURATION_NAME || "semantic-config";
+
+// Create credential
+export const credential = new DefaultAzureCredential();
+
+console.log(`Using Azure Search endpoint: ${searchEndpoint}`);
+console.log(`Using index name: ${indexName}\n\n`);
+
+// Hotel document interface
+export interface HotelDocument {
+    "@search.action"?: string;
+    HotelId: string;
+    HotelName: string;
+    Description: string;
+    Category: string;
+    Tags: string[];
+    ParkingIncluded: string;
+    LastRenovationDate: string;
+    Rating: number;
+    Address: {
+        StreetAddress: string;
+        City: string;
+        StateProvince: string;
+        PostalCode: string;
+        Country: string;
+    };
+}
+```
 
 
-## Get configuration for the index
+## Get the index schema
 
 In this section, you get settings for the existing `hotels-sample-index` index on your search service.
 
@@ -192,8 +192,6 @@ In this section, you get settings for the existing `hotels-sample-index` index o
     ```bash
     npm run build && node -r dotenv/config dist/getIndexSettings.js
     ```
-
-1. The output
 
 1. Output is the name of the index, list of fields, and a statement indicating whether a semantic configuration exists. For the purposes of this quickstart, the message should say `No semantic configuration exists for this index`.
 
@@ -430,7 +428,7 @@ To produce a semantic answer, the question and answer must be closely aligned, a
         credential
     );
     
-    const results = await searchClient.search("walking distance to live music", {
+    const results = await searchClient.search("What's a good hotel for people who like to read", {
         queryType: "semantic",
         semanticSearchOptions: {
             configurationName: semanticConfigurationName,
@@ -499,6 +497,6 @@ To produce a semantic answer, the question and answer must be closely aligned, a
     
     ```console
     Semantic answer result #1:
-    Semantic Answer: All of the suites feature full-sized kitchens stocked with cookware, separate living and sleeping areas and sofa beds. Some of the larger rooms have fireplaces and patios or balconies. Experience real country hospitality in the heart of bustling Nashville. The most vibrant<em> music scene </em>in the world is<em> just outside your front door.</em>
-    Semantic Answer Score: 0.9860000014305115
+    Semantic Answer: Nature is Home on the beach. Explore the shore by day, and then come home to our shared living space to relax around a stone fireplace, sip something warm, and explore the<em> library </em>by night. Save up to 30 percent. Valid Now through the end of the year. Restrictions and blackouts may apply.
+    Semantic Answer Score: 0.9829999804496765
     ```
