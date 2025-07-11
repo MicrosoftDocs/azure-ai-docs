@@ -12,12 +12,12 @@
         },
                 {
             "source_path_from_root": "/articles/search/cognitive-search-tutorial-blob.md",
-            "redirect_url": "/azure/search/tutorial-skillset.md",
+            "redirect_url": "/azure/search/tutorial-skillset",
             "redirect_document_id": true
         },
         {
             "source_path_from_root": "/articles/search/cognitive-search-tutorial-blob-csharp.md",
-            "redirect_url": "/azure/search/tutorial-skillset.md",
+            "redirect_url": "/azure/search/tutorial-skillset",
             "redirect_document_id": false
         },
         {
