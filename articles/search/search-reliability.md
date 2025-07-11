@@ -6,7 +6,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: reliability-article
-ms.date: 07/02/2025
+ms.date: 07/11/2025
 ms.custom:
   - subject-reliability
   - ignite-2023
@@ -20,7 +20,7 @@ Reliability is a shared responsibility between you and Microsoft, so this articl
 
 In Azure AI Search, you can achieve reliability by:
 
-+ **Scaling a single search service**. Add multiple [replicas](search-capacity-planning.md#concepts-search-units-replicas-partitions) to increase availability and handle higher indexing and query workloads. If your region supports availability zones, replicas are automatically provisioned in different physical data centers for extra resiliency.
++ **Scaling a single search service**. Add multiple [replicas](search-capacity-planning.md#concepts-search-units-replicas-partitions) to increase availability and handle higher indexing and query workloads. If your region supports availability zones, replicas are distributed across different physical data centers on a best-effort basis for extra resiliency.
 
 + **Deploying multiple search services across different regions**. Each service operates independently within its region. However, in a multi-service scenario, you have options for synchronizing content across all services. You can also use a load-balancing solution to redistribute requests or fail over if there's a service outage.
 
@@ -44,7 +44,10 @@ Availability zones are physically separate groups of datacenters within each Azu
 
 Azure AI Search is a zone-redundant service that spreads your replicas across availability zones. A search service runs in one region, while its replicas run in zones within that region.
 
-When you add two or more replicas to your service, Azure AI Search automatically places each replica in a different availability zone. If your service has more than three replicas, they're distributed across zones as evenly as possible.
+When you add two or more replicas to your service, Azure AI Search strives to place each replica in a different availability zone. For services with more replicas than available zones, replicas are distributed across zones as evenly as possible.
+
+> [!IMPORTANT]
+> Azure AI Search doesn't guarantee the exact placement of replicas, which are subject to capacity constraints, scaling operations, and other factors.
 
 ### Region support
 
@@ -68,7 +71,7 @@ Each search service starts with one replica. Zone redundancy requires two or mor
 
 ### Configure availability zone support
 
-If your search service meets the [requirements for zone redundancy](#requirements), no extra configuration is necessary. Azure AI Search automatically places your replicas in different availability zones.
+If your search service meets the [requirements for zone redundancy](#requirements), no extra configuration is necessary. Whenever possible, Azure AI Search attempts to place your replicas in different availability zones.
 
 ### Zone-down experience
 
@@ -82,7 +85,7 @@ When an availability zone experiences an outage, your search service continues t
 
 + **Expected data loss**: A zone failure isn't expected to cause data loss.
 
-+ **Expected downtime**: A zone failure isn't expected to cause downtime to your search service, but it can temporarily reduce your service's overall capacity. To maintain optimal performance, consider provisioning more replicas than you typically need.
++ **Expected downtime**: A zone failure isn't expected to cause downtime to your search service, but it can temporarily reduce your service's overall capacity. To maintain optimal performance, consider provisioning more replicas than you typically need. Adding replicas during an outage is challenging, so overprovisioning helps ensure that your service can handle normal request volumes, even with reduced capacity.
 
 + **Traffic rerouting**: When a zone fails, Azure AI Search detects the failure and routes requests to active replicas in the surviving zones.
 

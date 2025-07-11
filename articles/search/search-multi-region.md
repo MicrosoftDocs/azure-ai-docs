@@ -6,12 +6,14 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 06/23/2025
+ms.date: 07/11/2025
 ---
 
 # Multi-region deployments in Azure AI Search
 
-Although Azure AI Search is a single-region service, you can achieve higher availability and resiliency by deploying multiple search services with identical configurations and content across multiple regions. This article describes the components of a multi-region solution, which relies on your custom script or code to handle failover if a service becomes unavailable.
+Although Azure AI Search is a single-region service, you can achieve higher availability and resiliency by deploying multiple search services with identical configurations and content across multiple regions.
+
+This article describes the components of a multi-region solution, which relies on your custom script or code to handle failover if a service becomes unavailable.
 
 For more information about the reliability features of Azure AI Search, including intra-regional resiliency via availability zones, see [Reliability in Azure AI Search](search-reliability.md).
 
@@ -19,9 +21,9 @@ For more information about the reliability features of Azure AI Search, includin
 
 If you need two or more search services, creating them in different regions can meet the following operational requirements:
 
-+ Resiliency to region outages. If there's an outage, Azure AI Search doesn't provide instant failover to another region.
++ **Resiliency to region outages**. If there's an outage, Azure AI Search doesn't provide instant failover to another region.
 
-+ Fast performance for a globally distributed application. If indexing and query requests come from around the world, users who are closest to the host data center experience faster performance. Creating more services in regions with close proximity to these users can equalize performance for everyone.
++ **Fast performance for a globally distributed application**. If indexing and query requests come from around the world, users who are closest to the host data center experience faster performance. Creating more services in regions with close proximity to these users can equalize performance for everyone.
 
 ## Multi-region architecture
 
