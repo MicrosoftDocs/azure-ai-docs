@@ -2,13 +2,13 @@
 title: Featured models of Azure AI model catalog
 titleSuffix: Azure Machine Learning
 description: Explore various models available within the Azure AI model catalog.
-author: msakande
+author: s-polly
 reviewer: santiagxf
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: concept-article
 ms.date: 04/16/2025
-ms.author: mopeakande
+ms.author: scottpolly
 ms.reviewer: fasantia
 ms.custom: references_regions, tool_generated
 ms.collection: ce-skilling-ai-copilot 

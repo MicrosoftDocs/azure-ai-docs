@@ -5,8 +5,8 @@ description: Build a machine learning pipeline for image classification. Focus o
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.topic: how-to
-author: lgayhardt
-ms.author: lagayhar
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: keli19
 ms.date: 06/12/2025
 ms.custom:

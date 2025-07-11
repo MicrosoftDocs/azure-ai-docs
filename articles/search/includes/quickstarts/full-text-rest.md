@@ -89,7 +89,7 @@ To set up your request file:
     @token = PUT-YOUR-PERSONAL-IDENTITY-TOKEN-HERE
 
     ### List existing indexes by name
-        GET {{baseUrl}}/indexes?api-version=2024-07-01
+    GET {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
         Authorization: Bearer {{token}}
     ```
 

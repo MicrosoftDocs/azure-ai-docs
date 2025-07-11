@@ -3,14 +3,14 @@ title: Include file
 description: Include file
 author: sgilley
 ms.author: sgilley
-ms.date: 05/13/2025
+ms.date: 07/03/2025
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.custom:
   - include file
   - build-aifnd
   - build-2025
-  - update-code
+  - update-code-3
 ---
 
 In this quickstart, you use [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) to:
@@ -70,13 +70,20 @@ No installation is necessary to use the Azure AI Foundry portal.
 
 1. [Install Java and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-java).
 1. [!INCLUDE [find-endpoint](find-endpoint.md)]
+1. Set these environment variables to use in your scripts:
+
+    ```txt
+    MODEL_DEPLOYMENT_NAME=gpt-4o
+    PROJECT_ENDPOINT=https://<your-foundry-resource-name>.services.ai.azure.com/api/projects/<your-foundry-project-name>
+    ```
+    
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
 1. Download [POM.XML](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart/pom.xml) to your Java IDE.
 
 > [!NOTE]
 > All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart).
 
-# [JavaScript (preview)](#tab/javascript)
+# [JavaScript](#tab/javascript)
 
 1. [Install Node.js and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-javascript)
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your JavaScript scripts.
@@ -145,17 +152,9 @@ Substitute your endpoint for the `endpoint` in this code:
 
 # [Java (preview)](#tab/java)
 
-Set these environment variables:
-
-- **AZURE_ENDPOINT**: Required. The base endpoint for your Azure AI service.
-- AZURE_AI_API_KEY: Optional. The API key for authentication (falls back to DefaultAzureCredential if not provided).
-- AZURE_MODEL_DEPLOYMENT_NAME: Optional. The model deployment name (defaults to "phi-4").
-- AZURE_MODEL_API_PATH: Optional. The API path segment (defaults to "deployments").
-- CHAT_PROMPT: Optional. The prompt to send to the model (uses a default if not provided).
-
 :::code language="java" source="~/foundry-samples-main/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/ChatCompletionSample.java" :::
 
-# [JavaScript (preview)](#tab/javascript)
+# [JavaScript](#tab/javascript)
 
 :::code language="javascript" source="~/foundry-samples-main/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="chat_completion":::
 
@@ -193,17 +192,9 @@ Substitute your endpoint for the `endpoint` in this code:
 
 # [Java (preview)](#tab/java)
 
-Set these environment variables:
-
-- AZURE_ENDPOINT: Optional fallback. The base endpoint for your Azure AI service if PROJECT_ENDPOINT is not provided.
-- **PROJECT_ENDPOINT**: Required. The endpoint for your Azure AI Project.
-- MODEL_DEPLOYMENT_NAME: Optional. The model deployment name (defaults to "gpt-4o").
-- AGENT_NAME: Optional. The name to give to the created agent (defaults to "java-quickstart-agent").
-- AGENT_INSTRUCTIONS: Optional. The instructions for the agent (defaults to a helpful assistant).
-
 :::code language="java" source="~/foundry-samples-main/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/AgentSample.java" :::
 
-# [JavaScript (preview)](#tab/javascript)
+# [JavaScript](#tab/javascript)
 
 :::code language="javascript" source="~/foundry-samples-main/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="create_and_run_agent" :::
 
@@ -246,18 +237,10 @@ Substitute your endpoint for the `endpoint` in this code:
 
 # [Java (preview)](#tab/java)
 
-Set these environment variables:
-
-- AZURE_ENDPOINT: Optional fallback. The base endpoint for your Azure AI service if PROJECT_ENDPOINT is not provided.
-- **PROJECT_ENDPOINT**: Required. The endpoint for your Azure AI Project.
-- MODEL_DEPLOYMENT_NAME: Optional. The model deployment name (defaults to "gpt-4o").
-- AGENT_NAME: Optional. The name to give to the created agent (defaults to "java-file-search-agent").
-- AGENT_INSTRUCTIONS: Optional. The instructions for the agent (defaults to document-focused instructions).
-
 :::code language="java" source="~/foundry-samples-main/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/FileSearchAgentSample.java" :::
 
 
-# [JavaScript (preview)](#tab/javascript)
+# [JavaScript](#tab/javascript)
 
 :::code language="javascript" source="~/foundry-samples-main/samples/microsoft/javascript/mslearn-resources/quickstart/src/quickstart.js" id="create_filesearch_agent":::
 

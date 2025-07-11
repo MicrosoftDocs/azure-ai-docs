@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 
 ms.subservice: core
 ms.topic: tutorial
-author: fbsolo-ms1
-ms.author: franksolomon
+author: s-polly
+ms.author: scottpolly
 ms.date: 03/29/2024
 ms.reviewer: yogipandey
 ms.custom: sdkv2

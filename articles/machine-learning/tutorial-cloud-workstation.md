@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: core
 ms.custom: devx-track-python
 ms.topic: tutorial
-author: sdgilley
-ms.author: sgilley
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: lebaro
 ms.date: 08/05/2024
 #Customer intent: As a data scientist, I want to know how to prototype and develop machine learning models on a cloud workstation.

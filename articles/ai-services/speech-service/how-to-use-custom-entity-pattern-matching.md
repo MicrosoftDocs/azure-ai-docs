@@ -16,6 +16,8 @@ ms.custom: devx-track-cpp, devx-track-csharp, mode-other, devx-track-extended-ja
 
 # How to recognize intents with custom entity pattern matching
 
+[!INCLUDE [deprecation notice](./includes/intent-recognition-retire.md)]
+
 The Azure AI services [Speech SDK](speech-sdk.md) has a built-in feature to provide **intent recognition** with **simple language pattern matching**. An intent is something the user wants to do: close a window, mark a checkbox, insert some text, etc.
 
 In this guide, you use the Speech SDK to develop a console application that derives intents from speech utterances spoken through your device's microphone. You learn how to:

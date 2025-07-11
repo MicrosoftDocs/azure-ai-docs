@@ -3,8 +3,8 @@ title: GenAIOps with prompt flow and Azure DevOps
 titleSuffix: Azure Machine Learning
 description: Use Azure Machine Learning to set up an end-to-end Azure DevOps and GenAIOps pipeline to run a prompt flow.
 services: machine-learning
-author: lgayhardt
-ms.author: lagayhar
+author: s-polly
+ms.author: scottpolly
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
 ms.topic: how-to

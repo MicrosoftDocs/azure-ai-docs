@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: concept-article
-ms.author: mopeakande
-author: msakande
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: kritifaujdar
 ms.date: 09/30/2024
 #customer intent: As a data scientist, I want to learn about ONNX so I can use it to optimize the inference of my machine learning models.

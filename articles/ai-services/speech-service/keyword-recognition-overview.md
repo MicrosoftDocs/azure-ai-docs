@@ -117,4 +117,4 @@ The offline keyword recognition scenario is best suited for products without net
 ## Related content
 
 * [Read the quickstart to generate on-device keyword recognition models using custom keyword](custom-keyword-basics.md)
-* [Learn more about voice assistants](voice-assistants.md)
+* [Learn more about voice agents](voice-live.md)

@@ -13,6 +13,8 @@ ms.date: 3/10/2025
 
 # What is intent recognition?
 
+[!INCLUDE [deprecation notice](./includes/intent-recognition-retire.md)]
+
 In this overview, you learn about the benefits and capabilities of intent recognition. An intent is something the user wants to do: book a flight, check the weather, or make a call. With intent recognition, your applications, tools, and devices can determine what the user wants to initiate or do based on options. You define user intent in the intent recognizer or conversational language understanding (CLU) model.
 
 > [!IMPORTANT]

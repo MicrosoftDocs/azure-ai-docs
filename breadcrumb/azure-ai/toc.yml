@@ -16,13 +16,6 @@ items:
     tocHref: /azure/ai-foundry/
     topicHref: /azure/ai-foundry/
     items:
-    - name: Foundry Models
-      tocHref: /azure/ai-foundry/foundry-models/
-      topicHref: /azure/ai-foundry/foundry-models/
-  - name: AI Foundry
-    tocHref: /azure/ai-foundry/
-    topicHref: /azure/ai-foundry/
-    items:
     - name: AI Services
       tocHref: /azure/ai-services/
       topicHref: /azure/ai-services/

@@ -2,12 +2,12 @@
 title: Package a model for deployment (preview)
 titleSuffix: Azure Machine Learning
 description: Learn how you can package a model and deploy it for online inferencing.
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: fasantia
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.custom: devx-track-python, update-code
+ms.custom: devx-track-python, update-code-2
 ms.date: 12/08/2023
 ms.topic: how-to
 ---

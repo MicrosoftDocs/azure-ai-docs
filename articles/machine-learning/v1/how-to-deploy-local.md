@@ -6,7 +6,7 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.author: joburges
-author: ssalgadodev
+author: s-polly
 ms.date: 08/15/2022
 ms.topic: how-to
 ms.custom: UpdateFrequency5, deploy, sdkv1, build-2023

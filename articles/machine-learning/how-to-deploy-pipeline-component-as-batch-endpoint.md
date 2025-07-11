@@ -3,8 +3,8 @@ title: 'How to deploy pipeline as batch endpoint'
 titleSuffix: Azure Machine Learning
 description: Learn how to deploy pipeline component as batch endpoint to trigger the pipeline using REST endpoint.
 ms.reviewer: None
-author: lgayhardt
-ms.author: lagayhar
+author: s-polly
+ms.author: scottpolly
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core

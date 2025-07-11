@@ -6,6 +6,7 @@ description: In vector search, assign narrow data types to vector fields to redu
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
 ms.topic: how-to
