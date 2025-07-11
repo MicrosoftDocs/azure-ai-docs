@@ -188,7 +188,7 @@ Selecting the deployed agent opens the **Agent Preferences** page in a view only
 To edit the deployed agent, select the **Edit Agent** button in the **Agent Preferences** page. The agent designer opens with the agent .yaml file.
 Edit the agent's configuration, such as the model, tools, and instructions. After you finish editing, select the **Update on Azure AI Foundry** button in the lower left corner to save your changes.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/update-agent.png" alt-text="Screenshot of the Agent Preferences page with the 'Update on Azure AI Foundry' button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/update-agent.png":::
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/update-agent.png" alt-text="Screenshot of the Agent Preferences page with the 'Update on Azure AI Foundry' button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/update-agent.png":::
 
 ### Explore the agent sample code
 
