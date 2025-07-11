@@ -925,14 +925,28 @@ items:
     href: openai/concepts/system-message.md?context=/azure/ai-foundry/context/context
 - name: SDK + API Reference
   items:
-  - name: Azure AI Projects SDK
+  - name: Azure AI Projects
     items:
     - name: C#
-      href: /dotnet/api/overview/azure/ai.agents.persistent-readme
+      href: /dotnet/api/overview/azure/ai.projects-readme
     - name: JavaScript
       href: /javascript/api/overview/azure/ai-projects-readme
     - name: Python
       href: /python/api/overview/azure/ai-projects-readme
+    - name: REST API
+      href: /rest/api/aifoundry/aiprojects/
+  - name: Agents
+    items:
+      - name: C#
+        href: /dotnet/api/overview/azure/ai.agents.persistent-readme
+      - name: JavaScript
+        href: /javascript/api/overview/azure/ai-projects-readme
+      - name: Python
+        href: /python/api/overview/azure/ai-projects-readme
+      - name: REST API
+        href: /rest/api/aifoundry/aiagents 
+      - name: Data monitoring reference
+        href: reference/monitor-service.md
   - name: Azure AI Evaluation SDK
     href: /python/api/overview/azure/ai-evaluation-readme
   - name: Azure Machine Learning Python SDK
@@ -942,8 +956,6 @@ items:
   - name: Azure AI services SDKs
     displayName: client library libraries development kit
     href: ../ai-services/reference/sdk-package-resources.md?context=/azure/ai-foundry/context/context
-  - name: Azure AI Agent Service REST API
-    href: /rest/api/aifoundry/aiagents
   - name: Azure AI services REST APIs
     displayName: swagger http
     href: ../ai-services/reference/rest-api-resources.md?context=/azure/ai-foundry/context/context

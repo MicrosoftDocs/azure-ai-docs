@@ -146,23 +146,3 @@ items:
       href: ../../ai-foundry/responsible-ai/agents/transparency-note.md
     - name: Data, privacy, and security For Azure AI Foundry Agent Service
       href: ../../ai-foundry/responsible-ai/agents/data-privacy-security.md
-- name: Reference
-  items:
-    - name: REST API
-      href: /rest/api/aifoundry/aiagents
-    - name: SDK
-      items:
-      - name: C#
-        href: /dotnet/api/overview/azure/ai.agents.persistent-readme
-      - name: Python
-        href: https://aka.ms/azsdk/azure-ai-projects/python/reference
-      - name: JavaScript
-        href: /javascript/api/overview/azure/ai-projects-readme
-    - name: Data monitoring reference
-      href: reference/monitor-service.md
-- name: Resources
-  items: 
-    - name: Support and help options
-      href: ../../ai-services/cognitive-services-support-options.md?context=/azure/ai-services/agents/context/context
-    - name: Terms of use
-      href: https://www.microsoft.com/licensing/terms/productoffering/MicrosoftAzure/MCA#ServiceSpecificTerms
