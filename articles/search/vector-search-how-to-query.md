@@ -15,14 +15,14 @@ ms.date: 06/19/2025
 
 # Create a vector query in Azure AI Search
 
-In Azure AI Search, if you have a [vector index](vector-search-how-to-create-index.md), this article explains how to:
+If you have a [vector index](vector-search-how-to-create-index.md) in Azure AI Search, this article explains how to:
 
 > [!div class="checklist"]
-> + [Query vector fields](#vector-query-request).
-> + [Query multiple vector fields at once](#multiple-vector-fields).
-> + [Set vector weights](#vector-weighting).
-> + [Query with integrated vectorization](#query-with-integrated-vectorization).
-> + [Set thresholds to exclude low-scoring results (preview)](#set-thresholds-to-exclude-low-scoring-results-preview).
+> + [Query vector fields](#vector-query-request)
+> + [Query multiple vector fields at once](#multiple-vector-fields)
+> + [Set vector weights](#vector-weighting)
+> + [Query with integrated vectorization](#query-with-integrated-vectorization)
+> + [Set thresholds to exclude low-scoring results (preview)](#set-thresholds-to-exclude-low-scoring-results-preview)
 
 This article uses REST for illustration. After you understand the basic workflow, continue with the Azure SDK code samples in the [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples) repo, which provides end-to-end solutions that include vector queries.
 
