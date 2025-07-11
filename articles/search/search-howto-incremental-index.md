@@ -174,7 +174,7 @@ To verify whether the cache is operational, modify a skillset and run the indexe
 
 Skillsets that include image analysis and Optical Character Recognition (OCR) of scanned documents make good test cases. If you modify a downstream text skill or any skill that isn't image-related, the indexer can retrieve all of the previously processed image and OCR content from cache, updating and processing only the text-related changes indicated by your edits.  You can expect to see fewer documents in the indexer execution document count, shorter execution times, and fewer charges on your bill. 
 
-The [file set](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/ai-enrichment-mixed-media) used in [cog-search-demo tutorials](cognitive-search-tutorial-blob.md) is a useful test case because it contains 14 files of various formats JPG, PNG, HTML, DOCX, PPTX, and other types. Change `en` to `es` or another language in the text translation skill for proof-of-concept testing of incremental enrichment.
+The [file set](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/ai-enrichment-mixed-media) used in [cog-search-demo tutorials](tutorial-skillset-md) is a useful test case because it contains 14 files of various formats JPG, PNG, HTML, DOCX, PPTX, and other types. Change `en` to `es` or another language in the text translation skill for proof-of-concept testing of incremental enrichment.
 
 ## Common errors
 
@@ -191,4 +191,4 @@ Incremental enrichment is applicable on indexers that contain skillsets, providi
 + [Incremental enrichment (lifecycle and management)](cognitive-search-incremental-indexing-conceptual.md)
 + [Skillset concepts and composition](cognitive-search-working-with-skillsets.md)
 + [Create a skillset](cognitive-search-defining-skillset.md)
-+ [Tutorial: Use REST and AI to generate searchable content from Azure blobs](cognitive-search-tutorial-blob.md)
++ [Tutorial: Use REST and AI to generate searchable content from Azure blobs](tutorial-skillset-md)
