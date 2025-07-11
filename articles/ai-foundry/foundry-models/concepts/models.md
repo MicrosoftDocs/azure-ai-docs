@@ -7,7 +7,7 @@ ms.author: mopeakande
 manager: scottpolly
 reviewer: santiagxf
 ms.reviewer: fasantia
-ms.date: 07/10/2025
+ms.date: 07/11/2025
 ms.service: azure-ai-model-inference
 ms.topic: how-to
 ms.custom:
@@ -17,14 +17,15 @@ ms.custom:
   - build-2025
 ---
 
-# Models available in Azure AI Foundry Models
+# Foundry Models and capabilities
 
 Azure AI Foundry Models gives you access to flagship models in Azure AI Foundry to consume them as APIs with flexible deployment options.
 This article lists a selection of model offerings and their capabilities, excluding [deprecated and legacy models](../../concepts/model-lifecycle-retirement.md#deprecated). 
 
-Depending on what [kind of project](../../what-is-azure-ai-foundry.md#work-in-an-azure-ai-foundry-project) you're using in Azure AI Foundry, you might see a different selection of these models. Specifically, if you're using a Foundry project, built on an Azure AI Foundry resource, you'll see the models that are available for standard deployment to a Foundry resource. Alternatively, if you're using a hub-based project, hosted by an Azure AI Foundry hub, you'll see models that are available for deployment to managed compute and serverless APIs. These model selections do overlap in many cases, since many models support standard deployment to a Foundry resource, serverless API deployment, and deployment to a managed compute.
+Depending on what [kind of project](../../what-is-azure-ai-foundry.md#work-in-an-azure-ai-foundry-project) you're using in Azure AI Foundry, you might see a different selection of these models. Specifically, if you're using a Foundry project, built on an Azure AI Foundry resource, you see the models that are available for standard deployment to a Foundry resource. Alternatively, if you're using a hub-based project, hosted by an Azure AI Foundry hub, you see models that are available for deployment to managed compute and serverless APIs. These model selections do overlap in many cases, since many models support the multiple [deployment options](../../concepts/deployments-overview.md). 
 
 Foundry Models in the model catalog belong to two main categories:
+
 * [Models sold directly by Azure](#models-sold-directly-by-azure)
 * [Models from partners and community](#models-from-partners-and-community)
 
@@ -99,7 +100,7 @@ See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure
 
 ### xAI models sold directly by Azure
 
-xAI's Grok 3 and Grok 3 Mini models are designed to excel in various enterprise domains. Grok 3, a non-reasoning model pre-trained by the Colossus datacenter, is tailored for business use cases such as data extraction, coding, and text summarization, with exceptional instruction-following capabilities. It supports a 131,072 token context window, allowing it to handle extensive inputs while maintaining coherence and depth, and is particularly adept at drawing connections across domains and languages. On the other hand, Grok 3 Mini is a lightweight reasoning model trained to tackle agentic, coding, mathematical, and deep science problems with test-time compute. It also supports a 131,072 token context window for understanding codebases and enterprise documents, and excels at using tools to solve complex logical problems in novel environments, offering raw reasoning traces for user inspection with adjustable thinking budgets.
+xAI's Grok 3 and Grok 3 Mini models are designed to excel in various enterprise domains. Grok 3, a non-reasoning model pretrained by the Colossus datacenter, is tailored for business use cases such as data extraction, coding, and text summarization, with exceptional instruction-following capabilities. It supports a 131,072 token context window, allowing it to handle extensive inputs while maintaining coherence and depth, and is adept at drawing connections across domains and languages. On the other hand, Grok 3 Mini is a lightweight reasoning model trained to tackle agentic, coding, mathematical, and deep science problems with test-time compute. It also supports a 131,072 token context window for understanding codebases and enterprise documents, and excels at using tools to solve complex logical problems in novel environments, offering raw reasoning traces for user inspection with adjustable thinking budgets.
 
 | Model  | Type | Capabilities | Project type |
 | ------ | ---- | ------------ | ------------ |
@@ -111,7 +112,7 @@ See [the xAI model collection in Azure AI Foundry portal](https://ai.azure.com/e
 
 ## Models from partners and community
 
-Models from partners and community constitute the vast majority of the Azure AI Foundry Models and are provided by trusted third-party organizations, partners, research labs, and community contributors. To learn more about these models, see [Models from Partners and Community](#models-from-partners-and-community).
+Models from partners and community constitute the majority of the Azure AI Foundry Models and are provided by trusted third-party organizations, partners, research labs, and community contributors. To learn more about these models, see [Models from Partners and Community](#models-from-partners-and-community).
 
 
 ### Cohere
@@ -180,7 +181,7 @@ See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure
 
 ### Mistral AI
 
-Mistral AI offers two categories of models: premium models including Mistral Large and Mistral Small and open models including Mistral Nemo.
+Mistral AI offers two categories of models: premium models such as Mistral Large 2411 and Ministral 3B, and open models such as Mistral Nemo.
 
 | Model | Type | Capabilities | Project type |
 | ------ | ---- | ------------ | ------------ |
@@ -196,46 +197,50 @@ Mistral AI offers two categories of models: premium models including Mistral Lar
 | [mistralai-Mixtral-8x7B-Instruct-v01](https://ai.azure.com/explore/models/mistralai-Mixtral-8x7B-Instruct-v01/version/10/registry/azureml) | chat-completion | - **Input:** text  <br /> - **Output:** text <br /> - **Languages:** en <br /> - **Response formats:** Text | Hub-based |
 | [mistralai-Mixtral-8x22B-Instruct-v0-1](https://ai.azure.com/explore/models/mistralai-Mixtral-8x22B-Instruct-v0-1/version/5/registry/azureml) | chat-completion | - **Input:** text (64,000 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Languages:** fr, it, de, es, en <br /> - **Response formats:** Text | Hub-based |
 
-
-
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=mistral).
+
+
+### Nixtla
+
+Nixtla's TimeGEN-1 is a generative pretrained forecasting and anomaly detection model for time series data. TimeGEN-1 can produce accurate forecasts for new time series without training, using only historical values and exogenous covariates as inputs.
+
+To perform inferencing, TimeGEN-1 requires you to use Nixtla's custom inference API.
+
+| Model  | Type | Capabilities | Inference API | Project type |
+| ------ | ---- | --- | ------------ | ------------ |
+| [TimeGEN-1](https://ai.azure.com/explore/models/TimeGEN-1/version/1/registry/azureml-nixtla) | Forecasting  | - **Input:** Time series data as JSON or dataframes (with support for multivariate input)  <br /> - **Output:**  Time series data as JSON <br /> - **Tool calling:** No <br /> - **Response formats:** JSON  | [Forecast client to interact with Nixtla's API](https://nixtlaverse.nixtla.io/nixtla/docs/reference/nixtla_client.html#nixtlaclient-forecast) | Hub-based |
 
 ### NTT Data
 
 **tsuzumi** is an autoregressive language optimized transformer. The tuned versions use supervised fine-tuning (SFT). tsuzumi handles both Japanese and English language with high efficiency.
 
-| Model  | Type | Capabilities |
-| ------ | ---- | ------------ |
-| [tsuzumi-7b](https://ai.azure.com/explore/models/Tsuzumi-7b/version/1/registry/azureml-nttdata) | chat-completion | - **Input:** text (8,192 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` and `jp` <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
+| Model  | Type | Capabilities | Project type |
+| ------ | ---- | ------------ | ------------ |
+| [tsuzumi-7b](https://ai.azure.com/explore/models/Tsuzumi-7b/version/1/registry/azureml-nttdata) | chat-completion | - **Input:** text (8,192 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` and `jp` <br />  - **Tool calling:** No <br /> - **Response formats:** Text | Hub-based |
+
+### Stability AI
+
+The Stability AI collection of image generation models include Stable Image Core, Stable Image Ultra, and Stable Diffusion 3.5 Large. Stable Diffusion 3.5 Large allows for an image and text input. 
+
+| Model  | Type | Capabilities | Project type |
+| ------ | ---- | ------------ | ------------ |
+| [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai) | Image generation | - **Input:** text and image (1,000 tokens and 1 image)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats**: Image (PNG and JPG) | Hub-based |
+| [Stable Image Core](https://ai.azure.com/explore/models/Stable-Image-Core/version/1/registry/azureml-stabilityai) | Image generation | - **Input:** text (1,000 tokens)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) | Hub-based |
+| [Stable Image Ultra](https://ai.azure.com/explore/models/Stable-Image-Ultra/version/1/registry/azureml-stabilityai) | Image generation | - **Input:** text (1,000 tokens)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) | Hub-based |
+
+See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=stabilityai).
 
 
+## Open and custom models
 
+The model catalog offers a larger selection of models, from a bigger range of providers. For these models, you can't use the option for [standard deployment in Azure AI Foundry resources](../../concepts/deployments-overview.md#standard-deployment-in-azure-ai-foundry-resources), where models are provided as APIs; rather, to deploy these models, you might be required to host them on your infrastructure, create an AI hub, and provide the underlying compute quota to host the models.
 
-## Other Foundry Models available for serverless API deployment
-
-This section lists a selection of models available only through Serverless API deployment. For more information on these models, visit the [Azure AI Foundry Models Serverless API Inference Examples](../../concepts/models-inference-examples.md) page.  
-
-
-| Model | Type | Offering | Capabilities | API Reference |
-| ------ | ---- | -------- | ------------ | ------------- |
-| [TimeGEN-1](https://ai.azure.com/explore/models/TimeGEN-1/version/1/registry/azureml-nixtla) | Forecasting | Partners and Community | - **Input:** Time series data as JSON or dataframes (with support for multivariate input)  <br /> - **Output:**  Time series data as JSON <br /> - **Tool calling:** No <br /> - **Response formats:** JSON  | [Forecast client to interact with Nixtla's API](https://nixtlaverse.nixtla.io/nixtla/docs/reference/nixtla_client.html#nixtlaclient-forecast) |
-| [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai) | Image generation | Partners and Community | - **Input:** text and image (1000 tokens and 1 image)  <br /> - **Output:** 1 Image  <br />  - **Tool calling:** No <br /> - **Response formats**: Image (PNG and JPG) |
-| [Stable Image Core](https://ai.azure.com/explore/models/Stable-Image-Core/version/1/registry/azureml-stabilityai) | Image generation | Partners and Community | - **Input:** text (1000 tokens)  <br /> - **Output:** 1 Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) |
-| [Stable Image Ultra](https://ai.azure.com/explore/models/Stable-Image-Ultra/version/1/registry/azureml-stabilityai) | Image generation | Partners and Community | - **Input:** text (1000 tokens)  <br /> - **Output:** 1 Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) |
-| [Mistral-OCR-2503](https://aka.ms/aistudio/landing/mistral-ocr-2503) | [image to text](../how-to/use-image-models.md) | Models sold directly by Azure |  - **Input:** image or PDF pages (1,000 pages, max 50MB PDF file) <br> - **Output:** text <br /> - **Tool calling:** No <br /> - **Response formats:** Text, JSON, Markdown |
-| [Mistral-medium-2505](https://aka.ms/aistudio/landing/mistral-medium-2505) | [chat-completion](../model-inference/how-to/use-chat-completions.md?context=/azure/ai-foundry/context/context) | Models sold directly by Azure |  - **Input:** text (128,000 tokens), image <br /> - **Output:** text (128,000 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
-| [Cohere-rerank-v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/1/registry/azureml-cohere) | rerank <br> text classification | Partners and Community | | [Cohere's v2/rerank API](https://docs.cohere.com/v2/reference/rerank) |
-| [Cohere-rerank-v3-english](https://ai.azure.com/explore/models/Cohere-rerank-v3-english/version/1/registry/azureml-cohere) <br> (deprecated) | rerank <br> text classification | Partners and Community | | [Cohere's v2/rerank API](https://docs.cohere.com/v2/reference/rerank) <br> [Cohere's v1/rerank API](https://docs.cohere.com/v1/reference/rerank) |
-| [Cohere-rerank-v3-multilingual](https://ai.azure.com/explore/models/Cohere-rerank-v3-multilingual/version/1/registry/azureml-cohere) <br> (deprecated) | rerank <br> text classification | Partners and Community | | [Cohere's v2/rerank API](https://docs.cohere.com/v2/reference/rerank) <br> [Cohere's v1/rerank API](https://docs.cohere.com/v1/reference/rerank) |
-
-## Foundry Models available for deployment to managed compute
-
-The model catalog offers a larger selection of models, from a bigger range of providers. For these models, you cannot use the option for [standard deployment in Azure AI Foundry resources](../../concepts/deployments-overview.md#standard-deployment-in-azure-ai-foundry-resources), where models are provided as APIs; rather, to deploy these models, you might be required to host them on your infrastructure, create an AI hub, and provide the underlying compute quota to host the models.
-
-Furthermore, these models can be open-access or IP protected. In both cases, you have to deploy them in Managed Compute offerings in Azure AI Foundry. To get started, see [How-to: Deploy to Managed compute](../../how-to/deploy-models-managed.md).
+Furthermore, these models can be open-access or IP protected. In both cases, you have to deploy them in managed compute offerings in Azure AI Foundry. To get started, see [How-to: Deploy to Managed compute](../../how-to/deploy-models-managed.md).
 
 
 ## Related content
 
 - [Deployment overview for Azure AI Foundry Models](../../concepts/deployments-overview.md)
 - [Add and configure models to Azure AI Foundry Models](../how-to/create-model-deployments.md)
+- [How to generate chat completions with Azure AI Foundry Models](../how-to/use-chat-completions.md)
+- [Serverless API inference examples for Foundry Models](../../concepts/models-inference-examples.md)
