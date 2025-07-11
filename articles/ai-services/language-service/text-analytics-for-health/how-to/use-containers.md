@@ -7,7 +7,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/21/2024
+ms.date: 06/21/2025
 ms.author: lajanuar
 ms.custom: language-service-health, devx-track-azurecli
 ms.devlang: azurecli
@@ -128,7 +128,7 @@ Run this PowerShell script using the Azure CLI to create a Web App for Container
 ```azurecli
 $subscription_name = ""                    # THe name of the subscription you want you resource to be created on.
 $resource_group_name = ""                  # The name of the resource group you want the AppServicePlan
-                                           #    and AppSerivce to be attached to.
+                                           #    and AppService to be attached to.
 $resources_location = ""                   # This is the location you wish the AppServicePlan to be deployed to.
                                            #    You can use the "az account list-locations -o table" command to
                                            #    get the list of available locations and location code names.

@@ -2,8 +2,8 @@
 title: Package and deploy models outside Azure Machine Learning (preview)
 titleSuffix: Azure Machine Learning
 description:  Learn how you can package a model to deploy outside of Azure Machine Learning for online serving.
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: fasantia
 ms.service: azure-machine-learning
 ms.subservice: mlops

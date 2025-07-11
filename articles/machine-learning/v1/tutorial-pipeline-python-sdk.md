@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.topic: tutorial
-author: lgayhardt
-ms.author: lagayhar
+author: s-polly
+ms.author: scottpolly
 ms.date: 01/28/2022
 ms.custom: UpdateFrequency5, devx-track-python, sdkv1
 ---

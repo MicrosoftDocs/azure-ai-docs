@@ -1,4 +1,4 @@
----
+﻿---
 
 title: How to configure a private link for an Azure AI Foundry hub
 titleSuffix: Azure AI Foundry
@@ -424,7 +424,7 @@ If your storage account is private (uses a private endpoint to communicate with 
     |--|--|--|--|--|
     | `Reader` | Azure AI Foundry project | Private endpoint of the storage account | Read data from the private storage account. | 
     | `Storage File Data Privileged Contributor` | Azure AI Foundry project | Storage Account | Read/Write prompt flow data. | [Prompt flow doc](/azure/machine-learning/prompt-flow/how-to-secure-prompt-flow#secure-prompt-flow-with-workspace-managed-virtual-network) |
-    | `Storage Blob Data Contributor` | Azure AI Service | Storage Account | Read from input container, write to preprocess result to output container. | [Azure OpenAI Doc](../../ai-services/openai/how-to/managed-identity.md) |
+    | `Storage Blob Data Contributor` | Azure AI Service | Storage Account | Read from input container, write to preprocess result to output container. | [Azure OpenAI Doc](../openai/how-to/managed-identity.md) |
     | `Storage Blob Data Contributor` | Azure AI Search | Storage Account | Read blob and write knowledge store | [Search doc](/azure/search/search-howto-managed-identities-data-sources). |
 
     > [!TIP]

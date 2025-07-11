@@ -1,9 +1,9 @@
----
+﻿---
 title: Content Understanding region and language support
 titleSuffix: Azure AI services
 description: Azure AI Content Understanding region and language support
-author: laujan
-ms.author: lajanuar
+author: PatrickFarley 
+ms.author: pafarley
 manager: nitinme
 ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
@@ -38,7 +38,7 @@ To use Azure AI Content Understanding, create your Azure AI Service resource in 
 
 Azure AI Content Understanding enables you to process data in multiple languages simultaneously. Our language support capabilities enable users to communicate with your applications in natural ways and empower global outreach.
 
-Content Understanding applies [Azure OpenAI models](../openai/overview.md) which support a wide array of languages. While there's no definitive list of supported languages, users can expect robust language capabilities across most common languages. For specific language support related to `OCR` and speech transcription, refer to the respective sections detailing the supported languages for these modalities.
+Content Understanding applies [Azure OpenAI models](../../ai-foundry/openai/overview.md) which support a wide array of languages. While there's no definitive list of supported languages, users can expect robust language capabilities across most common languages. For specific language support related to `OCR` and speech transcription, refer to the respective sections detailing the supported languages for these modalities.
 
 ### Text optical character recognition (OCR)
 

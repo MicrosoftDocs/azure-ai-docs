@@ -28,29 +28,25 @@ We recommend using the `latest` model version to utilize the latest and highest 
 
 Preview models used for preview features do not maintain a minimum retirement period and may be deprecated at any time.
 
-By default, API and SDK requests will use the latest Generally Available model. You can use an optional parameter to select the version of the model to be used (not recommended).
+By default, API and SDK requests will use the latest Generally Available model. To use a model in preview, you can use an optional parameter `modelVersion` to select the preview version of the model to be used (not recommended for GA models).
 
 > [!NOTE]
 > If you are using a model version that is not listed in the table, then it was subjected to the expiration policy.
 
 Use the table below to find which model versions are supported by each feature:
 
-| Feature                                             | Supported generally available (GA) version     | Supported preview versions                  |
+| Feature                                             | Supported generally available (GA) version     | Latest supported preview versions           |
 |-----------------------------------------------------|------------------------------------------------|---------------------------------------------|
-| Sentiment Analysis and opinion mining               | `latest*`                                      |                                             |
-| Language Detection                                  | `latest*`                                      |                                             |
-| Entity Linking                                      | `latest*`                                      |                                             |
-| Named Entity Recognition (NER)                      | `latest*`                                      | `2024-04-15-preview**`                      |
-| Personally Identifiable Information (PII) detection | `latest*`                                      | `2024-04-15-preview**`                      | 
-| PII detection for conversations                     | `latest*`                                      | `2024-11-01-preview**`                      |
-| Question answering                                  | `latest*`                                      |                                             |
-| Text Analytics for health                           | `latest*`                                      | `2022-08-15-preview`, `2023-01-01-preview**`|
-| Key phrase extraction                               | `latest*`                                      |                                             | 
-| Summarization                                       |  `latest*`                                     |                                             |
-
-
-\* Latest Generally Available (GA) model version
-\*\* Latest preview version
+| Sentiment Analysis and opinion mining               | `latest`                                      |                                              |
+| Language Detection                                  | `latest`                                      |                                              |
+| Entity Linking                                      | `latest`                                      |                                              |
+| Named Entity Recognition (NER)                      | `latest`                                      | `2025-05-15-preview`                         |
+| Personally Identifiable Information (PII) detection | `latest`                                      | `2025-05-15-preview`                         | 
+| PII detection for conversations                     | `latest`                                      | `2024-11-01-preview`                         |
+| Question answering                                  | `latest`                                      |                                              |
+| Text Analytics for health                           | `latest`                                      | `2023-04-15-preview`                         |
+| Key phrase extraction                               | `latest`                                      |                                              | 
+| Summarization                                       | `latest`                                      | `2025-06-10-preview` (only available for `issue` and `resolution` aspects in conversation summarization)  |
 
 
 ## Custom features

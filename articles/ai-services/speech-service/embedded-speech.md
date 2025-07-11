@@ -29,8 +29,6 @@ Embedded speech is included with the Speech SDK (version 1.24.1 and higher) for 
 
 Requires Android 8.0 (API level 26) or higher on Arm64 (`arm64-v8a`) or Arm32 (`armeabi-v7a`) hardware.
 
-Embedded TTS with neural voices is only supported on Arm64.
-
 # [Linux](#tab/linux-target)
 
 Requires Linux on x64, Arm64, or Arm32 hardware with [supported Linux distributions](quickstarts/setup-platform.md?tabs=linux).

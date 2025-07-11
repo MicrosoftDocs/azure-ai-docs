@@ -6,17 +6,20 @@ description: Create or update a search index to include vector fields.
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 06/20/2025
+ms.date: 07/07/2025
 ---
 
 # Create a vector index
 
-In Azure AI Search, you can store vectors in a search index and send vector queries for matching based on semantic similarity. A vector index is defined by an index schema that has vector fields, nonvector fields, and a vector configuration section.
+In Azure AI Search, you can use [Create or Update Index (REST API)](/rest/api/searchservice/indexes/create-or-update) to store vectors in a search index. A vector index is defined by an index schema that has vector fields, nonvector fields, and a vector configuration section.
 
-The [Create or Update Index](/rest/api/searchservice/indexes/create-or-update) REST API creates the vector index. To index vectors in Azure AI Search, follow these steps:
+When you create a vector index, you implicitly create an *embedding space* that serves as the corpus for vector queries. The embedding space consists of all vector fields populated with embeddings from the same embedding model. At query time, the system compares the vector query to the indexed vectors, returning results based on semantic similarity.
+
+To index vectors in Azure AI Search, follow these steps:
 
 > [!div class="checklist"]
 > + Start with a basic schema definition.
@@ -99,8 +102,8 @@ A vector configuration includes:
 
 [**2024-07-01**](/rest/api/searchservice/search-service-api-versions#2024-07-01) is generally available. It supports a vector configuration that has:
 
-+ Hierarchical navigable small world (HNSW) algorithm.
-+ Exhaustive k-nearest neighbor (KNN) algorithm.
++ Hierarchical Navigable Small World (HNSW) algorithm.
++ Exhaustive K-Nearest Neighbor (KNN) algorithm.
 + Scalar compression.
 + Binary compression, which is available in 2024-07-01 only and in newer Azure SDK packages.
 + Oversampling.
@@ -185,7 +188,7 @@ Be sure to have a strategy for [vectorizing your content](vector-search-how-to-g
 
    + `vectorSearch.compressions.scalarQuantizationParameters.quantizedDataType` must be set to `int8`. This is the only primitive data type supported at this time. This property is optional. Default is `int8`.
 
-   + `vectorSearch.algorithms` is either `hnsw` or `exhaustiveKnn`. These are the approximate nearest neighbors (ANN) algorithms used to organize vector content during indexing.
+   + `vectorSearch.algorithms` is either `hnsw` or `exhaustiveKnn`. These are the Approximate Nearest Neighbors (ANN) algorithms used to organize vector content during indexing.
 
    + `vectorSearch.algorithms.m` is the bi-directional link count. Default is 4. The range is 4 to 10. Lower values should return less noise in the results.
 
@@ -269,7 +272,7 @@ Preview and stable API versions support the same `vectorSearch` configurations. 
 
    + `vectorSearch.compressions.scalarQuantizationParameters.quantizedDataType` must be set to `int8`. This is the only primitive data type supported at this time. This property is optional. Default is `int8`.
 
-   + `vectorSearch.algorithms.kind` is either `hnsw` or `exhaustiveKnn`. These are the approximate nearest neighbors (ANN) algorithms used to organize vector content during indexing.
+   + `vectorSearch.algorithms.kind` is either `hnsw` or `exhaustiveKnn`. These are the Approximate Nearest Neighbors (ANN) algorithms used to organize vector content during indexing.
 
    + `vectorSearch.algorithms.m` is the bi-directional link count. Default is 4. The range is 4 to 10. Lower values should return less noise in the results.
 

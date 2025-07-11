@@ -1,4 +1,4 @@
----
+﻿---
 title: Data, privacy, and security for use of models through the model catalog in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: Get details about how data that customers provide is processed, used, and stored when a user deploys a model from the model catalog.
@@ -6,10 +6,10 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: references_regions, build-2024
 ms.topic: concept-article
-ms.date: 12/19/2024
+ms.date: 07/07/2025
 ms.reviewer: shubhirajMsft
-ms.author: scottpolly
-author: s-polly
+ms.author: ssalgado
+author: ssalgadodev
 #Customer intent: As a data scientist, I want to learn about data privacy and security for use of models in the model catalog.
 ---
 # Data, privacy, and security for use of models through the model catalog in Azure AI Foundry portal
@@ -23,7 +23,7 @@ This article describes how the data that you provide is processed, used, and sto
 
 ## What data is processed for models deployed in Azure AI Foundry portal?
 
-When you deploy models in Azure AI Foundry portal, the following types of data are processed to provide the service:
+When you deploy models in Azure AI Foundry, the following types of data are processed to provide the service:
 
 * **Prompts and generated content**. A user submits a prompt, and the model generates content (output) via the operations that the model supports. Prompts might include content added via retrieval-augmented generation (RAG), metaprompts, or other functionality included in an application.
 
@@ -61,7 +61,7 @@ Prompts and outputs are processed within the geography specified during deployme
 If a model that's available for serverless API deployments supports fine-tuning, you can upload data to (or designate data already in) a [datastore](../concepts/connections.md#connections-to-datastores) to fine-tune the model. You can then create a serverless API deployment for the fine-tuned model. The fine-tuned model can't be downloaded, but:
 
 * It's available exclusively for your use.
-* You can use double [encryption at rest](../../ai-services/openai/encrypt-data-at-rest.md): the default Microsoft AES-256 encryption and an optional customer-managed key.
+* You can use double [encryption at rest](../openai/encrypt-data-at-rest.md): the default Microsoft AES-256 encryption and an optional customer-managed key.
 * You can delete it at any time.
 
 Training data uploaded for fine-tuning isn't used to train, retrain, or improve any Microsoft or non-Microsoft model, except as you direct those activities within the service.

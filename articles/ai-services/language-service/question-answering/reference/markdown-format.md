@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 ms.author: lajanuar
 author: laujan
 ms.topic: reference
-ms.date: 11/21/2024
+ms.date: 06/21/2025
 ---
 
 # Markdown format supported in answer text

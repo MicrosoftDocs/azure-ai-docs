@@ -135,7 +135,7 @@ items:
           href: https://github.com/MicrosoftTranslator/Text-Translation-API-v3-PHP
         - name: Ruby
           href: https://github.com/MicrosoftTranslator/Text-Translation-API-v3-Ruby
-
+          
 - name: Document translation
   items:
   - name: What is Document translation?

@@ -5,8 +5,8 @@ description: Learn how to create common user accounts that can be used across mu
 keywords: deep learning, AI, data science tools, data science virtual machine, geospatial analytics, team data science process
 services: machine-learning
 ms.service: azure-data-science-virtual-machines
-author: fbsolo-ms1
-ms.author: franksolomon
+author: s-polly
+ms.author: scottpolly
 ms.topic: conceptual
 ms.reviewer: vijetaj
 ms.date: 10/28/2024

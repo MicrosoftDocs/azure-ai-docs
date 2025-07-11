@@ -1,4 +1,4 @@
----
+﻿---
 title: LLM tool in Azure Machine Learning prompt flow
 titleSuffix: Azure Machine Learning
 description: The prompt flow LLM tool enables you to take advantage of widely used large language models like OpenAI or Azure OpenAI for natural language processing.
@@ -8,15 +8,15 @@ ms.subservice: prompt-flow
 ms.custom:
   - ignite-2023
 ms.topic: reference
-author: lgayhardt
-ms.author: lagayhar
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: keli19
 ms.date: 11/02/2023
 ---
 
 # LLM tool
 
-The large language model (LLM) tool in prompt flow enables you to take advantage of widely used large language models like [OpenAI](https://platform.openai.com/), or [Azure OpenAI in Azure AI Foundry Models](../../../ai-services/openai/overview.md), or any language model supported by the [Azure AI model inference API](https://aka.ms/azureai/modelinference) for natural language processing.
+The large language model (LLM) tool in prompt flow enables you to take advantage of widely used large language models like [OpenAI](https://platform.openai.com/), or [Azure OpenAI in Azure AI Foundry Models](../../../ai-foundry/openai/overview.md), or any language model supported by the [Azure AI model inference API](https://aka.ms/azureai/modelinference) for natural language processing.
 
 Prompt flow provides a few different large language model APIs:
 
@@ -39,7 +39,7 @@ Create OpenAI resources:
 
 - **Azure OpenAI**:
 
-    - Create Azure OpenAI resources with [these instructions](../../../ai-services/openai/how-to/create-resource.md).
+    - Create Azure OpenAI resources with [these instructions](../../../ai-foundry/openai/how-to/create-resource.md).
 
 - **Models deployed to standard deployments**
 
@@ -60,7 +60,7 @@ Set up connections to provisioned resources in prompt flow.
   > [!TIP]
   > - To use Microsoft Entra ID auth type for Azure OpenAI connection, you need assign either the `Cognitive Services OpenAI User` or `Cognitive Services OpenAI Contributor role` to user or user assigned managed identity.
   > - Learn more about [how to specify to use user identity to submit flow run](../how-to-create-manage-runtime.md#create-an-automatic-runtime-preview-on-a-flow-page).
-  > - Learn more about [How to configure Azure OpenAI with managed identities](../../../ai-services/openai/how-to/managed-identity.md).
+  > - Learn more about [How to configure Azure OpenAI with managed identities](../../../ai-foundry/openai/how-to/managed-identity.md).
 
 ## Inputs
 

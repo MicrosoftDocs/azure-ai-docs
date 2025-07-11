@@ -9,8 +9,8 @@ ms.topic: how-to
 ms.date: 07/19/2024
 ms.reviewer: fasantia
 reviewer: santiagxf
-ms.author: mopeakande
-author: msakande
+ms.author: scottpolly
+author: s-polly
 ms.collection: ce-skilling-ai-copilot 
 ms.custom: build-2024, serverless, devx-track-azurecli
 ---

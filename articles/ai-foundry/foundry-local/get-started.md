@@ -3,7 +3,7 @@ title: Get started with Foundry Local
 titleSuffix: Foundry Local
 description: Learn how to install, configure, and run your first AI model with Foundry Local
 manager: scottpolly
-ms.date: 05/23/2025
+ms.date: 07/03/2025
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.topic: quickstart

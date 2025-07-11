@@ -3,8 +3,8 @@ title: How to access a compute instance terminal in your workspace
 titleSuffix: Azure Machine Learning
 description: Learn how to use the terminal on a compute instance for Git operations, to install packages, and add kernels.
 services: machine-learning
-author: sdgilley
-ms.author: sgilley
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: kritifaujdar
 ms.service: azure-machine-learning
 ms.subservice: compute

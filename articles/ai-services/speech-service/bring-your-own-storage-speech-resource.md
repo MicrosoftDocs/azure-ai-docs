@@ -447,7 +447,7 @@ Custom voice uses [User delegation SAS](/azure/storage/common/storage-sas-overvi
 
 Many [Speech Studio](https://speech.microsoft.com/) operations like dataset upload, or custom model training and testing don't require any special configuration of a BYOS-enabled Speech resource.
 
-However, if you need to read data stored withing BYOS-associated Storage account through Speech Studio Web interface, you need to configure more settings of your BYOS-associated Storage account. For example, it's required to view the contents of a dataset.
+However, if you need to read data stored within BYOS-associated Storage account through Speech Studio Web interface, you need to configure more settings of your BYOS-associated Storage account. For example, it's required to view the contents of a dataset.
 
 ### Configure Cross-Origin Resource Sharing (CORS)
 

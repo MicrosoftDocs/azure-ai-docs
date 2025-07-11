@@ -5,6 +5,7 @@ description: Learn how to combine scoring profiles with semantic ranking in Azur
 author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.topic: how-to
 ms.date: 06/10/2025
 ---

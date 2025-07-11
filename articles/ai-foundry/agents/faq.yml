@@ -7,7 +7,7 @@ metadata:
   manager: nitinme
   ms.service: azure-ai-agent-service
   ms.topic: faq
-  ms.date: 01/15/2025
+  ms.date: 06/30/2025
   ms.author: aahi
   author: aahill
 title: Azure AI Foundry Agent Service frequently asked questions
@@ -25,7 +25,8 @@ sections:
       - question: |
           Where is this data stored?
         answer: |
-          Data is stored in a secure, Microsoft-managed storage account that is logically separated.  
+          Basic Setup: Data is stored in a secure, Microsoft-managed storage account that is logically separated.  
+          Standard Setup: Data is stored in your own Azure resources, giving you full ownership and control.
       - question: |
           How long is this data stored?
         answer: |

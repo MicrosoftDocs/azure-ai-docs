@@ -11,7 +11,7 @@ ms.author: jburchel
 ms.reviewer: samkemp
 author: jonburchel
 reviewer: samuel100
-ms.date: 05/20/2025
+ms.date: 07/03/2025
 ---
 
 # Compile Hugging Face models to run on Foundry Local

@@ -1,4 +1,4 @@
----
+﻿---
 title: How to use autolabeling in custom text classification
 titleSuffix: Azure AI services
 description: Learn how to use autolabeling in custom text classification.
@@ -7,7 +7,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/21/2024
+ms.date: 06/30/2025
 ms.author: lajanuar
 ---
 
@@ -22,7 +22,7 @@ Before you can use autolabeling with GPT, you need:
 * Text data that [has been uploaded](design-schema.md#data-preparation) to your storage account.
 * Class names that are meaningful. The GPT models label documents based on the names of the classes you've provided.
 * [Labeled data](tag-data.md) isn't required.
-* An Azure OpenAI [resource and deployment](../../../openai/how-to/create-resource.md). 
+* An Azure OpenAI [resource and deployment](../../../../ai-foundry/openai/how-to/create-resource.md). 
 
 ---
 
@@ -39,7 +39,7 @@ When you trigger an autolabeling job with GPT, you're charged to your Azure Open
 
     :::image type="content" source="../media/choose-models.png" alt-text="A screenshot showing model choice for auto labeling." lightbox="../media/choose-models.png":::
 
-5. Choose your Azure OpenAI resource and deployment. You must [create an Azure OpenAI resource and deploy a model](../../../openai/how-to/create-resource.md) in order to proceed.
+5. Choose your Azure OpenAI resource and deployment. You must [create an Azure OpenAI resource and deploy a model](../../../../ai-foundry/openai/how-to/create-resource.md) in order to proceed.
 
     :::image type="content" source="../media/autotag-choose-open-ai.png" alt-text="A screenshot showing how to choose OpenAI resource and deployments" lightbox="../media/autotag-choose-open-ai.png":::
     

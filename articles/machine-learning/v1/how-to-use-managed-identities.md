@@ -3,8 +3,8 @@ title: Use managed identities for access control (v1)
 titleSuffix: Azure Machine Learning
 description: Learn how to use CLI and SDK v1 with managed identities to control access to Azure resources from Azure Machine Learning workspace.
 services: machine-learning
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.reviewer: roastala

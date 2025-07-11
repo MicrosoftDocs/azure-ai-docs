@@ -6,17 +6,20 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 06/05/2025
+ms.date: 07/09/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
 ---
 # Use the Microsoft SharePoint tool (preview)
 
+> [!NOTE]
+> This article describes the Microsoft SharePoint tool for Azure AI Foundry Agent Service. For information on using and deploying SharePoint sites, see the [SharePoint documentation](/sharepoint/). 
+
 Integrate your agents with the **Microsoft SharePoint** to chat with your private documents securely. You can connect to your SharePoint site, such as `contoso.sharepoint.com/sites/policies` to ground your Agents with that data. When a user sends a query, the agent will determine if SharePoint should be leveraged or not. If so, it will send a query using the SharePoint tool, which checks if the user has a Microsoft 365 Copilot license and use managed identity to retrieve relevant documents they have access to. The scope of retrieval includes all supported documents in this SharePoint site. Lastly, the agent will generate responses based on retrieved information. With identity passthrough (On-Behalf-Of) authorization, this integration simplifies access to enterprise data in SharePoint while maintaining robust security, ensuring proper access control and enterprise-grade protection. 
 
 ## How it works
-The SharePoint tool makes it possible by enabling seamless integrations between AI agents and business documents stored in SharePoint empowered by [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview). To ground your SharePoint documents, you can simply enter the sites or folders to connect with, and SharePoint tool will leverage [built-in indexing capabilities](/microsoftsearch/semantic-index-for-copilot) to enhance search and retrieval experience, including intelligent indexing, query processing, and content chunking.
+The SharePoint tool makes it possible by enabling seamless integrations between AI agents and business documents stored in SharePoint empowered by [Microsoft 365 Copilot API](/microsoft-365-copilot/extensibility/api-reference/retrieval-api-overview). To ground your SharePoint documents, you can enter the sites or folders to connect with, and SharePoint tool will leverage [built-in indexing capabilities](/microsoftsearch/semantic-index-for-copilot) to enhance search and retrieval experience, including intelligent indexing, query processing, and content chunking.
 
 Instead of requiring developers to export SharePoint content, build a custom semantic index, manage governance controls, and configure refresh logic, this capability automates the entire retrieval pipeline. It dynamically indexes documents, breaks content into meaningful chunks, and applies advanced query processing to surface the most relevant information. By leveraging the same enterprise-grade retrieval stack that powers Microsoft 365 Copilot, it ensures AI agent responses are grounded in the most up-to-date and contextually relevant content. 
 
@@ -26,7 +29,7 @@ Customers rely on data security in SharePoint to access, create, and share docum
 
 |Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
-| ✔️ | - | - | - | ✔️ | ✔️ | ✔️ |
+| ✔️ | ✔️ | - | - | ✔️ | ✔️ | ✔️ |
 
 ## Prerequisites
 

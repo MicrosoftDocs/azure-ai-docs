@@ -3,7 +3,7 @@ title: Troubleshoot automated ML experiments
 titleSuffix: Azure Machine Learning
 description: Learn how to troubleshoot and resolve issues in your automated machine learning experiments.
 author: manashgoswami
-ms.author: ssalgado
+ms.author: scottpolly
 ms.reviewer: ssalgado
 services: machine-learning
 ms.service: azure-machine-learning

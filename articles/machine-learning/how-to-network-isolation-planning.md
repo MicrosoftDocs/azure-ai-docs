@@ -2,8 +2,8 @@
 title: Plan for network isolation
 titleSuffix: Azure Machine Learning
 description: "Learn about the network isolation options available in Azure Machine Learning and which one is right for your scenario."
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.service: azure-machine-learning
 ms.topic: concept-article #Don't change.
 ms.date: 01/13/2025

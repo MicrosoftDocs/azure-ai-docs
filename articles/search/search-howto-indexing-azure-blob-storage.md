@@ -27,6 +27,9 @@ To configure and run the indexer, you can use:
 
 This article uses the REST APIs to illustrate each step.
 
+> [!NOTE]
+> Azure AI Search can now ingest RBAC scope during indexing and transfers those permissions to indexed content in the search index. For more information about RBAC scope during indexing, see [Indexing Azure Role-Based Access Control scope using Indexers](search-blob-indexer-role-based-access.md).
+
 ## Prerequisites
 
 + [Azure Blob Storage](/azure/storage/blobs/storage-blobs-overview), Standard performance (general-purpose v2).
@@ -39,7 +42,7 @@ This article uses the REST APIs to illustrate each step.
 
   By default, both search and storage accept requests from public IP addresses. If network security isn't an immediate concern, you can index blob data using just the connection string and read permissions. When you're ready to add network protections, see [Indexer access to content protected by Azure network security features](search-indexer-securing-resources.md) for guidance about data access.
 
-+ Use a [REST client](search-get-started-rest.md) to formulate REST calls similar to the ones shown in this article.
++ Use a [REST client](search-get-started-text.md) to formulate REST calls similar to the ones shown in this article.
 
 ## Supported tasks
 
