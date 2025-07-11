@@ -213,7 +213,7 @@ The Jamba family models are AI21's production-grade Mamba-based large language m
 
 ## Other Foundry Models available for serverless API deployment
 
-This section lists a selection of models available only through Serverless API deployment. For more information on these models, visit the [Azure AI Foundry Models Serverless API Inference Examples](../concepts/models-inference-examples.md) page.  
+This section lists a selection of models available only through Serverless API deployment. For more information on these models, visit the [Azure AI Foundry Models Serverless API Inference Examples](../../concepts/models-inference-examples.md) page.  
 
 
 | Model | Type | Offering | Capabilities | API Reference |
