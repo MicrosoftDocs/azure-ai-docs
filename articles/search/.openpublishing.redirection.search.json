@@ -11,7 +11,7 @@
             "redirect_document_id": true
         },
                 {
-            "source_path_from_root": "/articles/search/tutorial-skillset.md",
+            "source_path_from_root": "/articles/search/cognitive-search-tutorial-blob.md",
             "redirect_url": "/azure/search/tutorial-skillset.md",
             "redirect_document_id": true
         },
