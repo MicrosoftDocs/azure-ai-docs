@@ -13,6 +13,7 @@ ms.reviewer: cacrest
 ms.custom:
   - devplatv2
   - ignite-2023
+  - sfi-image-nochange
 ---
 
 # Run batch endpoints from Event Grid events in storage

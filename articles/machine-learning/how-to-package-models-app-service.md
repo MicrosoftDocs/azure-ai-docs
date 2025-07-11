@@ -9,7 +9,9 @@ ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.date: 12/08/2023
 ms.topic: how-to
-ms.custom: update-code
+ms.custom:
+  - update-code
+  - sfi-image-nochange
 ---
 
 # Package and deploy models outside Azure Machine Learning (preview)

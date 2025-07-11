@@ -7,10 +7,11 @@ manager: nitinme
 author: mrcarter8
 ms.author: mcarter
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2024
 ms.topic: how-to
 ms.date: 07/01/2025
+ms.custom:
+  - ignite-2024
+  - sfi-image-nochange
 ---
 
 # Make outbound connections through a shared private link

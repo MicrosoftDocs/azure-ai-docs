@@ -11,6 +11,7 @@ author: s-polly
 ms.date: 08/09/2024
 ms.topic: how-to
 monikerRange: 'azureml-api-2 || azureml-api-1'
+ms.custom: sfi-image-nochange
 ---
 # Tutorial: How to create a secure workspace with a managed virtual network
 

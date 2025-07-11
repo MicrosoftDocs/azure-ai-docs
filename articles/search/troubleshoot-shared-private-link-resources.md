@@ -7,10 +7,11 @@ manager: nitinme
 author: arv100kri
 ms.author: arjagann
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: conceptual
 ms.date: 06/04/2025
+ms.custom:
+  - ignite-2023
+  - sfi-image-nochange
 ---
 
 # Troubleshoot issues with shared private links in Azure AI Search

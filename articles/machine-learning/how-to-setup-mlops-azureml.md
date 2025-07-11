@@ -10,7 +10,10 @@ ms.reviewer: kritifaujdar
 ms.subservice: mlops
 ms.date: 11/20/2024
 ms.topic: concept-article
-ms.custom: cli-v2, sdk-v2
+ms.custom:
+  - cli-v2
+  - sdk-v2
+  - sfi-image-nochange
 ---
 
 # Set up MLOps with Azure DevOps

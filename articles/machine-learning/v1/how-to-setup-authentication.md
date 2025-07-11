@@ -10,7 +10,12 @@ ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.date: 06/13/2025
 ms.topic: how-to
-ms.custom: UpdateFrequency5, has-adal-ref, subject-rbac-steps, sdkv1
+ms.custom:
+  - UpdateFrequency5
+  - has-adal-ref
+  - subject-rbac-steps
+  - sdkv1
+  - sfi-ropc-nochange
 ---
 
 # Set up authentication for Azure Machine Learning resources and workflows using SDK v1

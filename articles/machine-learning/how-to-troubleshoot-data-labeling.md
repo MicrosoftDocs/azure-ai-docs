@@ -10,6 +10,7 @@ ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.date: 03/10/2025
 ms.topic: troubleshooting
+ms.custom: sfi-image-nochange
 #customer intent: To troubleshoot and resolve issues that occur when creating your data labeling project.
 ---
 

@@ -7,11 +7,12 @@ manager: nitinme
 author: mgottein
 ms.author: magottei
 ms.service: azure-ai-search
+ms.topic: how-to
+ms.date: 05/08/2025
 ms.custom:
   - devx-track-dotnet
   - ignite-2023
-ms.topic: how-to
-ms.date: 05/08/2025
+  - sfi-ropc-nochange
 ---
 
 # Index data from Azure Cosmos DB for NoSQL for queries in Azure AI Search

@@ -10,7 +10,12 @@ ms.author: scottpolly
 ms.reviewer: sehan
 ms.date: 09/25/2024
 ms.topic: troubleshooting
-ms.custom: devplatv2, devx-track-azurecli, cliv2, sdkv2
+ms.custom:
+  - devplatv2
+  - devx-track-azurecli
+  - cliv2
+  - sdkv2
+  - sfi-image-nochange
 #Customer intent: As a data scientist, I want to figure out why my online endpoint deployment failed so that I can fix it.
 ---
 

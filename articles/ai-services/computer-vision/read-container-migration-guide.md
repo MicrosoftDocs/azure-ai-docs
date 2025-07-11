@@ -10,7 +10,9 @@ ms.date: 02/27/2024
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.update-cycle: 365-days
 ms.author: aahi
-ms.custom: cogserv-non-critical-vision
+ms.custom:
+  - cogserv-non-critical-vision
+  - sfi-ropc-nochange
 ---
 
 # Migrate to v3.x of the Read OCR container

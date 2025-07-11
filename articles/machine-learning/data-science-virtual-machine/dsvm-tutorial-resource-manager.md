@@ -9,7 +9,11 @@ ms.reviewer: franksolomon
 ms.date: 04/23/2024
 ms.topic: quickstart
 ms.service: azure-data-science-virtual-machines
-ms.custom: subject-armqs, mode-arm, devx-track-arm-template
+ms.custom:
+  - subject-armqs
+  - mode-arm
+  - devx-track-arm-template
+  - sfi-image-nochange
 ---
 
 # Quickstart: Create an Ubuntu Data Science Virtual Machine using an ARM template

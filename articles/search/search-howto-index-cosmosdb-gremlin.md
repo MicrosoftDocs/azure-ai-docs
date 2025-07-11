@@ -8,10 +8,11 @@ ms.author: magottei
 manager: nitinme
 
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: how-to
 ms.date: 05/29/2025
+ms.custom:
+  - ignite-2023
+  - sfi-ropc-nochange
 ---
 
 # Index data from Azure Cosmos DB for Apache Gremlin for queries in Azure AI Search

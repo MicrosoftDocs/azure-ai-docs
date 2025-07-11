@@ -14,6 +14,7 @@ ms.custom:
   - devx-track-csharp
   - devx-track-dotnet
   - ignite-2023
+  - sfi-ropc-nochange
 ---
 
 # C# Tutorial: Use skillsets to generate searchable content in Azure AI Search

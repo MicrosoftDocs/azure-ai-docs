@@ -10,7 +10,11 @@ author: s-polly
 ms.author: scottpolly
 ms.reviewer: cacrest
 ms.date: 04/02/2024
-ms.custom: how-to, devplatv2, update-code
+ms.custom:
+  - how-to
+  - devplatv2
+  - update-code
+  - sfi-image-nochange
 #Customer intent: As an ML engineer or data scientist, I want to create an endpoint to host my models for batch scoring, so that I can use the same endpoint continuously for different large datasets on-demand or on-schedule.
 ---
 

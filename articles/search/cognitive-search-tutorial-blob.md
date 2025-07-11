@@ -6,10 +6,11 @@ description: Use the Search REST APIs to create skillsets. This skillset applies
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: tutorial
 ms.date: 03/31/2025
+ms.custom:
+  - ignite-2023
+  - sfi-ropc-nochange
 ---
 
 # REST Tutorial: Use skillsets to generate searchable content in Azure AI Search

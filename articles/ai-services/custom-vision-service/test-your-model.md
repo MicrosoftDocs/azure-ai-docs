@@ -10,6 +10,7 @@ ms.service: azure-ai-custom-vision
 ms.topic: how-to
 ms.date: 01/22/2025
 ms.author: pafarley
+ms.custom: sfi-image-nochange
 ---
 
 # Test and retrain a Custom Vision model

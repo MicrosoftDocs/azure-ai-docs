@@ -7,10 +7,11 @@ author: HeidiSteen
 ms.author: heidist
 manager: nitinme
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: tutorial
 ms.date: 03/31/2025
+ms.custom:
+  - ignite-2023
+  - sfi-image-nochange
 ---
 
 # Tutorial: Fix a skillset using Debug Sessions
