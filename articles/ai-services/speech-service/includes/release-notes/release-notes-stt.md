@@ -7,21 +7,27 @@ ms.author: eur
 ms.custom: references_regions
 ---
 
+### July 2025 release
+
+#### Improved speech to text models
+
+The English models (all `en-*` models except for `en-IN`) were updated to incorporate a new VAD (voice activity detector) which helps reduce the latency by 100 ms or more. It can affect the accuracy and silence segmentation both positively and negatively, with the aim of reducing latency. Further language expansion is coming in the next few months.
+
 ### June 2025 release
 
 #### Improved pronunciation assessment model
 
-We've rolled out significant upgrades to the pronunciation assessment models for `ta-IN` and `ms-MY`. You'll see a noticeable jump in Pearson Correlation Coefficients (PCC), which means more precise and dependable evaluations.
+We rolled out significant upgrades to the pronunciation assessment models for `ta-IN` and `ms-MY`. You're seeing a noticeable jump in Pearson Correlation Coefficients (PCC), which means more precise and dependable evaluations.
 
 These updated models are ready to use through the API and the Azure AI Foundry playground, just like before.
 
 #### Improved speech to text models
-Accuracy of speech to text models in [fast transcription](../../fast-transcription-create.md) for `de-DE`, `en-US`, `en-GB`, `es-ES`, `es-MX`,  `fr-FR`, `it-IT`, `ja-JP`, `ko-KR`, `pt-BR`, and `zh-CN` locales are improved by 10%-25% percent respectively, particularly with improved readaibility and recognition on entities.
+Accuracy of speech to text models in [fast transcription](../../fast-transcription-create.md) for `de-DE`, `en-US`, `en-GB`, `es-ES`, `es-MX`,  `fr-FR`, `it-IT`, `ja-JP`, `ko-KR`, `pt-BR`, and `zh-CN` locales improving by 10%-25% percent respectively, particularly with improved readability and recognition on entities.
 
 ### May 2025 release
 
 #### Improved speech to text models
-Accuracy of speech to text models for `ta-IN`, `te-IN`, `en-IN`, and `hu-HU` locales are improved by 5-10 percent respectively. We also approximate a 20x reduction in ghost words for the `ta-IN` and `te-IN` models.
+Accuracy of speech to text models for `ta-IN`, `te-IN`, `en-IN`, and `hu-HU` locales improving by 5-10 percent respectively. We also approximate a 20x reduction in ghost words for the `ta-IN` and `te-IN` models.
 
 #### Fast transcription API - Multi-lingual speech transcription
 
