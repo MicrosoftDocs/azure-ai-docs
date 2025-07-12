@@ -8,6 +8,25 @@ ms.author: eur
 
 > [!IMPORTANT]
 > Content assessment (preview) via the Speech SDK is being retired in July 2025. Instead, you can use Azure OpenAI models to get content assessment results as described in the [content assessment documentation](../../how-to-pronunciation-assessment.md#content-assessment).
+
+### Speech SDK 1.45: 2025-July release
+
+#### New features:
+  * Added support for setting the phrase list grammar weight. (Currently only effects embedded scenarios)
+  * Added more specific file opening error codes.
+  * Updated Unicode path support so that SDK Windows DLLs can be located under non-ASCII paths.
+  * Updated descriptions of segmentation strategy properties to align with the service logic.
+  * [C#, Java] Added support for authentication using ApiKeyCredential.
+  
+#### Bug fixes
+  * Fixed the Microsoft Audio Stack (MAS) initialization error about microphone geometry in certain regions.
+  * Fixed profanity settings not working in speech translation (https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/2856).
+  * Fixed a crash in intent recognition pattern matching with Japanese language.
+  * Fixed custom domain resolution not working with Node.js v22 or newer.
+
+#### Samples
+  * [Java ] Added sample code to demonstrate AAD token credential authentication.
+
 ### Speech SDK 1.44.1: Patch release
 
 SDK version 1.44.1 is being released for JavaScript only with 4 bug fixes:
@@ -65,16 +84,6 @@ SDK version 1.44.1 is being released for JavaScript only with 4 bug fixes:
   
 ##### Bug fixes
   * Fixed an infinite connection retry loop on unsupported connection closing codes (https://github.com/microsoft/cognitive-services-speech-sdk-js/issues/896).
-
-### Speech CLI (SPX)
-
-#### New features
-  * Added support for authentication with Microsoft Entra token credentials.
-  * Added support for the Fast transcription API.
-  
-##### Bug fixes
-  * Fixed non-working semicolon-separated input URLs and input file/URL lists from a file.
-
 
 ### Speech SDK 1.43: 2025-March release
 
