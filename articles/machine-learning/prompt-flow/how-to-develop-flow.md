@@ -5,14 +5,15 @@ description: Learn how to develop a prompt flow and a chat flow in Azure Machine
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
-ms.custom:
-  - ignite-2023
-  - build-2024
 ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: jinzhong
 ms.date: 10/16/2024
+ms.custom:
+  - ignite-2023
+  - build-2024
+  - sfi-image-nochange
 ---
 # Develop prompt flow
 

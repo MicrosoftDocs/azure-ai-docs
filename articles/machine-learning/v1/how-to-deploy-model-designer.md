@@ -10,7 +10,12 @@ author: s-polly
 ms.reviewer: keli19
 ms.date: 06/13/2025
 ms.topic: how-to
-ms.custom: UpdateFrequency5, deploy, studio, designer
+ms.custom:
+  - UpdateFrequency5
+  - deploy
+  - studio
+  - designer
+  - sfi-image-nochange
 ---
 
 # Use Azure Machine Learning studio to deploy models trained in the designer

@@ -9,6 +9,7 @@ ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
 ms.date: 04/19/2024
+ms.custom: sfi-image-nochange
 #Customer intent: As a Full Stack ML Pro, I want to perform interactive data wrangling in Azure Machine Learning with Apache Spark.
 ---
 

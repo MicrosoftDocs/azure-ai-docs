@@ -5,11 +5,12 @@ description: Learn how to attach an Azure AI services resource to an AI enrichme
 author: eric-urban 
 ms.author: eur 
 ms.service: azure-ai-search
+ms.topic: how-to
+ms.date: 06/11/2025
 ms.custom:
   - ignite-2023
   - ignite-2024
-ms.topic: how-to
-ms.date: 06/11/2025
+  - sfi-image-nochange
 ---
 
 # Attach an Azure AI services resource to a skillset in Azure AI Search

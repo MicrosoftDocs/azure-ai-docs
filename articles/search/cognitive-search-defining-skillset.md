@@ -5,10 +5,11 @@ description: Learn about skillsets and create a skillset in Azure AI Search usin
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: conceptual
 ms.date: 05/08/2025
+ms.custom:
+  - ignite-2023
+  - sfi-ropc-nochange
 ---
 
 # Create a skillset in Azure AI Search

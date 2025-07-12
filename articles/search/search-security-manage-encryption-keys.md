@@ -12,6 +12,7 @@ ms.date: 04/07/2025
 ms.custom:
   - references_regions
   - ignite-2023
+  - sfi-image-nochange
 ---
 
 # Configure customer-managed keys for data encryption in Azure AI Search

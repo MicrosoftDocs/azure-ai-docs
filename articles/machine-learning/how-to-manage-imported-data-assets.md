@@ -10,7 +10,10 @@ ms.author: scottpolly
 author: s-polly
 ms.reviewer: ambadal
 ms.date: 07/30/2024
-ms.custom: data4ml, devx-track-azurecli
+ms.custom:
+  - data4ml
+  - devx-track-azurecli
+  - sfi-image-nochange
 ---
 
 # Manage imported data assets (preview)

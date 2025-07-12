@@ -5,10 +5,11 @@ description: Cache intermediate content and incremental changes from AI enrichme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: conceptual
 ms.date: 07/11/2025
+ms.custom:
+  - ignite-2023
+  - sfi-ropc-nochange
 ---
 
 # Incremental enrichment and caching in Azure AI Search

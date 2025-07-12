@@ -10,8 +10,10 @@ ms.author: scottpolly
 author: s-polly
 ms.date: 03/17/2025
 ms.topic: how-to
-ms.custom: security
 monikerRange: 'azureml-api-2 || azureml-api-1'
+ms.custom:
+  - security
+  - sfi-image-nochange
 ---
 
 # Attach an Azure Databricks compute that is secured in a virtual network (VNet)

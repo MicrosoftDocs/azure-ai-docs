@@ -5,10 +5,11 @@ description: Enable caching of enriched content for potential reuse when modifyi
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: how-to
 ms.date: 02/24/2025
+ms.custom:
+  - ignite-2023
+  - sfi-ropc-nochange
 ---
 
 # Enable caching for incremental enrichment in Azure AI Search

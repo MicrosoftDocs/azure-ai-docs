@@ -9,6 +9,7 @@ ms.topic: how-to
 ms.date: 11/19/2024
 ms.author: jppark
 monikerRange: '>=doc-intel-3.0.0'
+ms.custom: sfi-image-nochange
 ---
 
 

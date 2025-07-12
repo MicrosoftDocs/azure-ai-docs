@@ -18,6 +18,7 @@ ms.custom:
   - ignite-2022
   - build-2023
   - ignite-2023
+  - sfi-image-nochange
 #Customer intent: As an experienced Python developer, I need to read my data, to make it available to a remote compute resource, to train my machine learning models.
 ---
 

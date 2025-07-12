@@ -9,6 +9,7 @@ ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
 ms.date: 03/06/2025
+ms.custom: sfi-image-nochange
 # customer intent: As a data labeling project manager, I want to add users to my data labeling project so that they can label data, but with restricted permissions.
 ---
 

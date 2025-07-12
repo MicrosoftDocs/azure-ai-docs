@@ -9,7 +9,10 @@ ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to 
 ms.date: 04/12/2024
-ms.custom: template-how-to, devx-track-azurecli
+ms.custom:
+  - template-how-to
+  - devx-track-azurecli
+  - sfi-image-nochange
 ---
 
 # Attach and manage a Synapse Spark pool in Azure Machine Learning

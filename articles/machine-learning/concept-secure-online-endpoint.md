@@ -9,8 +9,12 @@ ms.topic: concept-article
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: sehan
-ms.custom: devplatv2, moe-wsvnet, ignite-2024
 ms.date: 02/29/2024
+ms.custom:
+  - devplatv2
+  - moe-wsvnet
+  - ignite-2024
+  - sfi-image-nochange
 ---
 
 # Network isolation with managed online endpoints
