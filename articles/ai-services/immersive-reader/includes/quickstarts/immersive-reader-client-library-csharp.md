@@ -9,8 +9,8 @@ ms.topic: include
 ms.date: 02/14/2024
 ms.author: sharmas
 ms.custom:
-  - "devx-track-js
-  - devx-track-csharp"
+  - devx-track-js
+  - devx-track-csharp
   - sfi-image-nochange
 ---
 
