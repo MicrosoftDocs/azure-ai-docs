@@ -5,6 +5,13 @@ ms.topic: include
 ms.date: 08/01/2024
 ms.author: eur
 ---
+### Speech CLI 1.45.0: 2025-June release
+Updated to use Speech SDK 1.45.0
+#### New features
+* none
+#### Bug fixes
+* none
+
 ### Speech CLI 1.44: 2025-May release
 
 #### New features
