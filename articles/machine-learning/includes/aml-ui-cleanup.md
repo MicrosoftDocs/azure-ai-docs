@@ -8,7 +8,7 @@ author: sgilley
 ms.author: scottpolly
 ms.date: 11/06/2019
 ms.custom:
-  - "include file"
+  - include file
   - sfi-image-nochange
 ---
 
