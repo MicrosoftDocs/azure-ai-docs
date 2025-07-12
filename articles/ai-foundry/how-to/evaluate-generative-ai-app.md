@@ -201,7 +201,6 @@ You can select the evaluator name to see more details. You can see the name, des
 
 Learn more about how to evaluate your generative AI applications:
 
-- [Evaluate your generative AI apps via the playground](./evaluate-prompts-playground.md)
 - [View the evaluation results](./evaluate-results.md)
 - [Creating evaluations specifically with OpenAI evaluation graders in Azure OpenAI Hub](../openai/how-to/evaluations.md)
 - [Transparency note for Azure AI Foundry safety evaluations](../concepts/safety-evaluations-transparency-note.md).
