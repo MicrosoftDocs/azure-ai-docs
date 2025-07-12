@@ -345,7 +345,7 @@ For greater detail on intended uses, visit the [OpenAI o1 System Card](https://c
 
 #### Deep research use cases
 
-Deep research models are fine-tuned versions of the o-series reasoning models that are designed to take a high-level query and return a structured, citation-rich report. The models create subqueries and gather information from web searches in several iterations before returning a final response. Use cases could include:
+Deep research models are fine-tuned versions of the o-series reasoning models that are designed to take a high-level query and return a structured, citation-rich report. The models create subqueries and gather information from web searches in several iterations before returning a final response. Use cases could include the following, with adequate human review:
 - **Complex research & literature review**: Synthesizing findings across hundreds of papers, identifying gaps or contradictions in research, proposing novel hypotheses or research directions.
 - **Scientific discovery & hypothesis generation**: Exploring connections between findings across disciplines, generating testable hypotheses or experimental designs, assisting in interpretation of raw experimental data
 - **Advanced technical problem solving**: Debugging complex systems (for example, distributed software, robotics), designing novel algorithms or architectures, and solving advanced math or physics problems.
@@ -407,7 +407,8 @@ When choosing a use case for Computer Use, users should factor in the following 
 - For further information, consult the [Fostering appropriate reliance on Generative AI guide](/ai/playbook/technology-guidance/overreliance-on-ai/overreliance-on-ai). 
 
 When choosing a use case for deep research, users should factor in the following considerations in addition to those listed above: 
-- Check citations for copyright: Deep research models conduct web searches to when preparing their responses, and it's possible they return information from copyrighted materials. Check the source citations (included automatically) of the information you plan to use.
+- Ensure adequate human oversight and control: Provide mechanisms to help ensure that users review deep research reports and validate cited sources and content.
+- Check citations for copyrighted content: The deep research tool conducts web searches when preparing responses, and copyrighted materials may be cited. Check the source citations included in the report, and ensure you use and attribute copyrighted material appropriately.
 
 #### [Vision models](#tab/image)
 
