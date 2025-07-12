@@ -16,9 +16,9 @@ keywords: intent recognition, deprecation
 # Quickstart: Recognize intents with the Speech service and LUIS
 
 > [!IMPORTANT]
-> Intent recognition services will be retired on October 1st 2025. The IntentRecognizer API in the Speech SDK will be deprecated shortly after.
+> LUIS will be retired on October 1st 2025. As of April 1st 2023 you can't create new LUIS resources. We recommend [migrating your LUIS applications](../language-service/conversational-language-understanding/how-to/migrate-from-luis.md) to [conversational language understanding](../language-service/conversational-language-understanding/overview.md) to benefit from continued product support and multilingual capabilities.
 > 
-> As of April 1st 2023 you can't create new LUIS resources.
+> Conversational Language Understanding (CLU) is available for C# and C++ with the [Speech SDK](speech-sdk.md) version 1.25 or later. See the [quickstart](get-started-intent-recognition-clu.md) to recognize intents with the Speech SDK and CLU.
 
 ::: zone pivot="programming-language-csharp"
 [!INCLUDE [C# include](includes/quickstarts/intent-recognition/csharp.md)]

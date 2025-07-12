@@ -30,9 +30,6 @@ In this guide, you use the Speech SDK to develop a console application that deri
 > - Add custom entities via the Speech SDK API
 > - Use asynchronous, event-driven continuous recognition
 
-> [!IMPORTANT]
-> Intent recognition services will be retired on October 1st 2025. The IntentRecognizer API in the Speech SDK will be deprecated shortly after.
-
 ## When to use pattern matching
 
 Use pattern matching if: 
