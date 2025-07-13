@@ -15,6 +15,7 @@ ms.custom:
   - build-2023
   - devx-track-python
   - ignite-2023
+  - sfi-image-nochange
 #Customer intent: As a professional data scientist, I want to know how to build and deploy a model with Azure Machine Learning by using Python in a Jupyter Notebook.
 ---
 

@@ -5,6 +5,11 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 07/11/2025
+ms.custom:
+  - devx-track-csharp
+  - devx-track-dotnet
+  - ignite-2023
+  - sfi-ropc-nochange
 ---
 
 Learn how to use the [Azure SDK for .NET](https://www.nuget.org/packages/Azure.Search.Documents/) to create an [AI enrichment pipeline](../../cognitive-search-concept-intro.md) for content extraction and transformations during indexing.

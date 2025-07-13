@@ -11,7 +11,9 @@ author: s-polly
 ms.author: scottpolly
 ms.date: 03/29/2024
 ms.reviewer: yogipandey
-ms.custom: sdkv2
+ms.custom:
+  - sdkv2
+  - sfi-image-nochange
 #Customer intent: As a professional data scientist, I want to know how to build and deploy a model with Azure Machine Learning by using Python in a Jupyter Notebook.
 ---
 

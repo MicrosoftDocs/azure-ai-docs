@@ -12,6 +12,7 @@ ms.date: 02/18/2025
 ms.custom:
   - subject-rbac-steps
   - ignite-2023
+  - sfi-ropc-nochange
 ---
 
 # Connect to Azure Storage using a managed identity (Azure AI Search)

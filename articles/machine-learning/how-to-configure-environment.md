@@ -10,7 +10,11 @@ ms.subservice: core
 ms.reviewer: roastala
 ms.date: 04/03/2025
 ms.topic: how-to
-ms.custom: devx-track-python, devx-track-azurecli, py-fresh-zinc
+ms.custom:
+  - devx-track-python
+  - devx-track-azurecli
+  - py-fresh-zinc
+  - sfi-image-nochange
 ---
 
 # Set up a Python development environment for Azure Machine Learning

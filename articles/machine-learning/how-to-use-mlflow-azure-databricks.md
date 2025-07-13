@@ -10,7 +10,9 @@ ms.subservice: core
 ms.reviewer: fasantia
 ms.date: 08/16/2024
 ms.topic: how-to
-ms.custom: sdkv2
+ms.custom:
+  - sdkv2
+  - sfi-image-nochange
 #customer intent: As a data scientist, I want to integrate Azure Databricks with Azure Machine Learning to connect the products.
 ---
 

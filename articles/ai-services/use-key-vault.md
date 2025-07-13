@@ -4,10 +4,14 @@ description: Learn how to develop Azure AI services applications securely by usi
 author: aahill
 ms.author: aahi
 ms.service: azure-ai-services
-ms.custom: devx-track-extended-java, devx-track-js, devx-track-python
 ms.topic: how-to
 ms.date: 5/19/2025
 zone_pivot_groups: programming-languages-set-twenty-eight
+ms.custom:
+  - devx-track-extended-java
+  - devx-track-js
+  - devx-track-python
+  - sfi-image-nochange
 ---
 
 # Develop Azure AI services applications with Azure Key Vault

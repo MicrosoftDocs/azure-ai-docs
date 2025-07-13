@@ -5,13 +5,14 @@ description: Learn how to manage prompt flow compute session in Azure Machine Le
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
-ms.custom:
-  - build-2024
 ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: lochen
 ms.date: 04/19/2024
+ms.custom:
+  - build-2024
+  - sfi-image-nochange
 ---
 
 # Manage prompt flow compute session in Azure Machine Learning studio

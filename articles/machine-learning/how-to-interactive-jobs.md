@@ -9,9 +9,13 @@ ms.reviewer: joburges
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: how-to
-ms.custom: devplatv2, sdkv2, cliv2
 
 ms.date: 08/15/2024
+ms.custom:
+  - devplatv2
+  - sdkv2
+  - cliv2
+  - sfi-image-nochange
 #Customer intent: I'm a data scientist with ML knowledge in the machine learning space, looking to build ML models using data in Azure Machine Learning with full control of the model training including debugging and monitoring of live jobs.
 ---
 

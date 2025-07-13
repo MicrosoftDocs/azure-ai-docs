@@ -5,14 +5,15 @@ description: This article addresses frequent questions prompt flow usage.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
-ms.custom:
-  - ignite-2023
-  - build-2024
 ms.topic: reference
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: chenjieting
 ms.date: 09/05/2023
+ms.custom:
+  - ignite-2023
+  - build-2024
+  - sfi-image-nochange
 ---
 
 # Troubleshoot guidance

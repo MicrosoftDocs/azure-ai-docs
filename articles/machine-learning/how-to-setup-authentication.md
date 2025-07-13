@@ -10,7 +10,12 @@ ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.date: 01/21/2025
 ms.topic: how-to
-ms.custom: has-adal-ref, subject-rbac-steps, cliv2, sdkv2
+ms.custom:
+  - has-adal-ref
+  - subject-rbac-steps
+  - cliv2
+  - sdkv2
+  - sfi-image-nochange
 # Customer intent: As a data scientist, I want to learn how to set up authentication for Azure Machine Learning resources and workflows so that I can access the resources I need.
 ---
 

@@ -11,6 +11,7 @@ author: s-polly
 ms.date: 05/06/2025
 ms.topic: how-to
 monikerRange: 'azureml-api-2 || azureml-api-1'
+ms.custom: sfi-image-nochange
 ---
 
 # How to use your workspace with a custom DNS server

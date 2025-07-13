@@ -8,6 +8,7 @@ ms.service: azure-ai-services
 ms.topic: how-to
 ms.date: 5/19/2025
 ms.author: eur
+ms.custom: sfi-image-nochange
 ---
 
 # Recover or purge deleted Azure AI Foundry resources

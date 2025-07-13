@@ -8,7 +8,10 @@ ms.author: scottpolly
 ms.topic: quickstart
 ms.reviewer: jeffshep
 ms.date: 10/14/2024
-ms.custom: mode-other, linux-related-content
+ms.custom:
+  - mode-other
+  - linux-related-content
+  - sfi-image-nochange
 #Customer intent: As a data scientist, I want to learn how to provision the Linux DSVM so that I can move my existing workflow to the cloud.
 ---
 

@@ -17,6 +17,7 @@ ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
+  - sfi-image-nochange
 ---
 
 # Workspace Managed Virtual Network Isolation
