@@ -95,7 +95,7 @@ AGENT_NAME = "Seattle Tourist Assistant"
 If you are using [Azure AI Foundry (non-Hub) project](../create-projects.md?tabs=ai-foundry&pivots=fdp-project), create an agent with the toolset as follows:
 
 > [!NOTE]
-> If you are using a [Foundry Hub-based project](../create-projects.md?tabs=ai-foundry&pivots=hub-project) (which only supports lower versions of `azure-ai-projects<1.0.0b10 azure-ai-agents<1.0.0b10`), we strongly recommend migrating to [the latest Foundry Agent Service SDK python client library](../../agents/quickstart.md?pivots=programming-language-python-azure) with a [Foundry project set up](../../how-to/develop/evaluate-sdk.md#prerequisite-set-up-steps-for-azure-ai-foundry-projects).
+> If you are using a [Foundry Hub-based project](../create-projects.md?tabs=ai-foundry&pivots=hub-project) (which only supports lower versions of `azure-ai-projects<1.0.0b10 azure-ai-agents<1.0.0b10`), we strongly recommend migrating to [the latest Foundry Agent Service SDK python client library](../../agents/quickstart.md?pivots=programming-language-python-azure) with a [Foundry project set up for loggging batch evaluation results](../../how-to/develop/evaluate-sdk.md#prerequisite-set-up-steps-for-azure-ai-foundry-projects).
 
 ```python
 import os
