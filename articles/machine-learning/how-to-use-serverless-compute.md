@@ -159,55 +159,54 @@ print(ws)
 
 ```
 
-#  [Azure CLI](#tab/cli)
+# [Azure CLI](#tab/cli)
 
-  ```bash
-  
-      az ml workspace show --name <wsname>  --resource-group <rgname>
-  ```
-  ---
-    Look for the user assigned identities in the output. If it's missing, create a new workspace with a user assigned managed identity by following the instructions here: Set up service authentication - Azure Machine Learning | Microsoft Learn
+```bash
+az ml workspace show --name <wsname>  --resource-group <rgname>
+```
+
+---
+
+Look for the user assigned identities in the output. If it's missing, create a new workspace with a user assigned managed identity by following the instructions here: Set up service authentication - Azure Machine Learning | Microsoft Learn
 
 1. Use user assigned managed identity in your job.
-    
 
-    # [Python SDK](#tab/python)
+# [Python SDK](#tab/python)
 
-  ```python
-      from azure.ai.ml import command
-      from azure.ai.ml import MLClient     # Handle to the workspace
-      from azure.identity import DefaultAzureCredential    # Authentication package
-      from azure.ai.ml.entities import ResourceConfiguration
-      from azure.ai.ml.entities import ManagedIdentityConfiguration
-      
-      credential = DefaultAzureCredential()
-      # Get a handle to the workspace. You can find the info on the workspace tab on ml.azure.com
-      ml_client = MLClient(
-          credential=credential,
-          subscription_id="<Azure subscription id>", 
-          resource_group_name="<Azure resource group>",
-          workspace_name="<Azure Machine Learning Workspace>",
-      )
-      job = command(
-          command="echo 'hello world'",
-          environment="azureml://registries/azureml/environments/sklearn-1.5/labels/latest",
-              identity= ManagedIdentityConfiguration(client_id="<workspace-uami-client-id>"),
-      )
-      # submit the command job
-      ml_client.create_or_update(job)
+```python
+from azure.ai.ml import command
+from azure.ai.ml import MLClient     # Handle to the workspace
+from azure.identity import DefaultAzureCredential    # Authentication package
+from azure.ai.ml.entities import ResourceConfiguration
+from azure.ai.ml.entities import ManagedIdentityConfiguration
 
-  ```
+credential = DefaultAzureCredential()
+# Get a handle to the workspace. You can find the info on the workspace tab on ml.azure.com
+ml_client = MLClient(
+    credential=credential,
+    subscription_id="<Azure subscription id>", 
+    resource_group_name="<Azure resource group>",
+    workspace_name="<Azure Machine Learning Workspace>",
+)
+job = command(
+    command="echo 'hello world'",
+    environment="azureml://registries/azureml/environments/sklearn-1.5/labels/latest",
+    identity= ManagedIdentityConfiguration(client_id="<workspace-uami-client-id>"),
+)
+# submit the command job
+ml_client.create_or_update(job)
+```
 
-    # [Azure CLI](#tab/cli)
+# [Azure CLI](#tab/cli)
 
-  ```bash
-  $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
-  command: echo "hello world"
-  environment:
-    image: library/python:latest
-  identity:
-    type: managed
-  ```
+```yaml
+$schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
+command: echo "hello world"
+environment:
+  image: library/python:latest
+identity:
+  type: managed
+```
 
   ---
 
