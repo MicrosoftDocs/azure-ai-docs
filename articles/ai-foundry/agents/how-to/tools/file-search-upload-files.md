@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 05/28/2025
+ms.date: 07/11/2025
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-bing-grounding-code
@@ -58,8 +58,7 @@ project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT
 # Initialize the AIProjectClient
 project_client = AIProjectClient(
     endpoint=project_endpoint,
-    credential=DefaultAzureCredential(exclude_interactive_browser_credential=False),  # Use Azure Default Credential for authentication
-    api_version="latest",
+    credential=DefaultAzureCredential(exclude_interactive_browser_credential=False)  # Use Azure Default Credential for authentication
 )
 ```
 
@@ -78,7 +77,7 @@ file = project_client.agents.files.upload_and_poll(file_path=file_path, purpose=
 print(f"Uploaded file, file ID: {file.id}")
 
 # Create a vector store with the uploaded file
-vector_store = project_client.agents.create_vector_store_and_poll(file_ids=[file.id], name="my_vectorstore")
+vector_store = project_client.agents.vector_stores.create_and_poll(file_ids=[file.id], name="my_vectorstore")
 print(f"Created vector store, vector store ID: {vector_store.id}")
 ```
 
@@ -134,7 +133,7 @@ if run.status == "failed":
     print(f"Run failed: {run.last_error}")
 
 # Cleanup resources
-project_client.agents.delete_vector_store(vector_store.id)
+project_client.agents.vector_stores.delete(vector_store.id)
 print("Deleted vector store")
 
 project_client.agents.delete_file(file_id=file.id)
@@ -145,8 +144,16 @@ print("Deleted agent")
 
 # Fetch and log all messages from the thread
 messages = project_client.agents.messages.list(thread_id=thread.id)
-for message in messages.data:
-    print(f"Role: {message.role}, Content: {message.content}")
+file_name = os.path.split(file_path)[-1]
+for msg in messages:
+    if msg.text_messages:
+        last_text = msg.text_messages[-1].text.value
+        for annotation in msg.text_messages[-1].text.annotations:
+            citation = (
+                file_name if annotation.file_citation.file_id == file.id else annotation.file_citation.file_id
+            )
+            last_text = last_text.replace(annotation.text, f" [{citation}]")
+        print(f"{msg.role}: {last_text}")
 ```
 :::zone-end
 

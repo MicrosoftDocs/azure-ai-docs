@@ -3,7 +3,7 @@ author: sgilley
 ms.service: azure-machine-learning
 ms.topic: include
 ms.date: 03/12/2024
-ms.author: sgilley
+ms.author: scottpolly
 ---
 
 

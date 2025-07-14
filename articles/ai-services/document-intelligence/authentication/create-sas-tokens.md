@@ -7,6 +7,7 @@ manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.date: 11/19/2024
 ms.author: lajanuar
+ms.custom: sfi-image-nochange
 ---
 
 

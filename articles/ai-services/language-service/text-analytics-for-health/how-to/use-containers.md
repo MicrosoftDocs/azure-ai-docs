@@ -7,7 +7,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/21/2024
+ms.date: 06/21/2025
 ms.author: lajanuar
 ms.custom: language-service-health, devx-track-azurecli
 ms.devlang: azurecli
@@ -64,7 +64,7 @@ Once the container is on the host computer, use the [docker run](https://docs.do
 > [!IMPORTANT]
 > * The docker commands in the following sections use the back slash, `\`, as a line continuation character. Replace or remove this based on your host operating system's requirements. 
 > * The `Eula`, `Billing`, and `ApiKey` options must be specified to run the container; otherwise, the container won't start.  For more information, see [Billing](#billing).
->   * The [responsible AI](/legal/cognitive-services/text-analytics/transparency-note-health)  (RAI) acknowledgment must also be present with a value of `accept`.
+>   * The [responsible AI](/azure/ai-foundry/responsible-ai/text-analytics/transparency-note-health)  (RAI) acknowledgment must also be present with a value of `accept`.
 > * The sentiment analysis and language detection containers use v3 of the API, and are generally available. The key phrase extraction container uses v2 of the API, and is in preview.
 
 There are multiple ways you can install and run the Text Analytics for health container. 
@@ -128,7 +128,7 @@ Run this PowerShell script using the Azure CLI to create a Web App for Container
 ```azurecli
 $subscription_name = ""                    # THe name of the subscription you want you resource to be created on.
 $resource_group_name = ""                  # The name of the resource group you want the AppServicePlan
-                                           #    and AppSerivce to be attached to.
+                                           #    and AppService to be attached to.
 $resources_location = ""                   # This is the location you wish the AppServicePlan to be deployed to.
                                            #    You can use the "az account list-locations -o table" command to
                                            #    get the list of available locations and location code names.

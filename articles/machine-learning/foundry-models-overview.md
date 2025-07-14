@@ -11,8 +11,8 @@ ms.custom:
   - build-2025
 ms.date: 05/12/2025
 ms.reviewer: jcioffi
-ms.author: ssalgado
-author: ssalgadodev
+ms.author: scottpolly
+author: s-polly
 ---
 
 # Explore Azure AI Foundry Models in Azure Machine Learning

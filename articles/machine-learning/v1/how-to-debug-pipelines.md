@@ -5,11 +5,15 @@ description: How to troubleshoot when you get errors running a machine learning 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.author: lagayhar
-author: lgayhardt
+ms.author: scottpolly
+author: s-polly
 ms.date: 03/31/2025
 ms.topic: troubleshooting
-ms.custom: UpdateFrequency5, troubleshooting, sdkv1
+ms.custom:
+  - UpdateFrequency5
+  - troubleshooting
+  - sdkv1
+  - sfi-ropc-blocked
 #Customer intent: As a data scientist, I want to figure out why my pipeline doesn't run so that I can fix it.
 ---
 

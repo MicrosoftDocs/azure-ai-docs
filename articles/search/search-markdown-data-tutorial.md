@@ -6,10 +6,11 @@ description: Learn how to index and search Markdown in Azure blobs using Azure A
 author: mdonovan
 ms.author: mdonovan
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2024
 ms.topic: tutorial
 ms.date: 03/28/2025
+ms.custom:
+  - ignite-2024
+  - sfi-ropc-nochange
 
 ---
 
@@ -216,7 +217,7 @@ For this tutorial, connections to Azure AI Search require an endpoint and an API
 
 1. Save the file using a `.rest` or `.http` file extension.
 
-For help with the REST client, see [Quickstart: Keyword search using REST](search-get-started-rest.md).
+For help with the REST client, see [Quickstart: Full-text search using REST](search-get-started-text.md).
 
 ## Create a data source
 

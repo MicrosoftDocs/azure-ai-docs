@@ -9,8 +9,8 @@ ms.custom:
 ms.topic: how-to
 ms.date: 04/30/2025
 ms.reviewer: meerakurup
-ms.author: larryfr
-author: Blackmist
+ms.author: jburchel 
+author: jonburchel 
 ---
 
 # Troubleshoot connection to a project with a private endpoint

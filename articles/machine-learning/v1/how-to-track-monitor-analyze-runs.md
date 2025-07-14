@@ -5,8 +5,8 @@ description: Learn how to start, monitor, and track your machine learning experi
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-author: sdgilley
-ms.author: sgilley
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: shwinne
 ms.date: 04/25/2022
 ms.topic: how-to

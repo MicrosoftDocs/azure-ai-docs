@@ -3,13 +3,17 @@ title: MLflow Tracking for models
 titleSuffix: Azure Machine Learning
 description:  Set up MLflow Tracking with Azure Machine Learning to log metrics and artifacts from ML models.
 services: machine-learning
-author: lgayhardt
-ms.author: lagayhar
+author: s-polly
+ms.author: scottpolly
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.date: 10/21/2021
 ms.topic: how-to
-ms.custom: UpdateFrequency5, mlflow, sdkv1
+ms.custom:
+  - UpdateFrequency5
+  - mlflow
+  - sdkv1
+  - sfi-image-nochange
 ---
 
 # Track ML models with MLflow and Azure Machine Learning 

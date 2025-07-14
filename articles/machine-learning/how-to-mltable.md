@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
-ms.author: franksolomon
-author: fbsolo-ms1
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: samkemp
 ms.date: 04/18/2024
 ms.custom: data4ml

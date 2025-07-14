@@ -7,6 +7,7 @@ manager: arjagann
 author: rawan    
 ms.author: rawan
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
 ms.topic: tutorial
 ms.date: 05/29/2025
@@ -115,7 +116,7 @@ For this tutorial, connections to Azure AI Search require an endpoint and an API
 
 1. Save the file using a `.rest` or `.http` file extension.
 
-For help with the REST client, see [Quickstart: Keyword search using REST](search-get-started-rest.md).
+For help with the REST client, see [Quickstart: Full-text search using REST](search-get-started-text.md).
 
 ## Create a data source
 

@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
 ms.topic: reference
-ms.date: 01/29/2025
+ms.date: 06/30/2025
 ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt

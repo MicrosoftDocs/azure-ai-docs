@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: tutorial
-author: lgayhardt
-ms.author: lagayhar
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: keli19
 ms.date: 05/15/2024
 ms.custom:

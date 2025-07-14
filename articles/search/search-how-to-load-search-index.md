@@ -8,6 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.topic: how-to
 ms.date: 05/08/2025
 ---
@@ -53,7 +54,7 @@ In the Azure portal, use the [import wizards](search-import-data-portal.md) to c
 
 [Documents - Index](/rest/api/searchservice/documents) is the REST API for importing data into a search index. REST APIs are useful for initial proof-of-concept testing, where you can test indexing workflows without having to write much code. The `@search.action` parameter determines whether documents are added in full, or partially in terms of new or replacement values for specific fields.
 
-[**Quickstart: Text search using REST**](search-get-started-rest.md) explains the steps. The following example is a modified version of the example. It's been trimmed for brevity and the first HotelId value has been altered to avoid overwriting an existing document.
+[**Quickstart: Full-text search using REST**](search-get-started-text.md) explains the steps. The following example is a modified version of the example. It's been trimmed for brevity and the first HotelId value has been altered to avoid overwriting an existing document.
 
 1. Formulate a POST call specifying the index name, the "docs/index" endpoint, and a request body that includes the `@search.action` parameter.
 
@@ -144,7 +145,7 @@ The Azure SDK for JavaScript/TypeScript provides the following APIs for simple a
 
 Code samples include:
 
-+ See this quickstart for basic steps: [Quickstart: Full text search using the Azure SDKs](search-get-started-text.md?tabs=javascript)
++ See this quickstart for basic steps: [Quickstart: Full-text search](search-get-started-text.md?tabs=keyless%2Cwindows&pivots=javascript)
 
 + Be sure to check the [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples) repo for code examples showing how to index vector fields.
 

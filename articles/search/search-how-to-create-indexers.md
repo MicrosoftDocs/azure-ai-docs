@@ -8,10 +8,11 @@ author: HeidiSteen
 ms.author: heidist
 
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: how-to
 ms.date: 06/17/2025
+ms.custom:
+  - ignite-2023
+  - sfi-ropc-nochange
 ---
 
 # Create an indexer in Azure AI Search
@@ -78,7 +79,7 @@ Data source-specific indexers for blobs, SQL, and Azure Cosmos DB provide extra 
 "parameters" : { "configuration" : { "indexedFileNameExtensions" : ".pdf,.docx" } }
 ```
 
-If the source is Azure SQL, you can set a query time out parameter.
+If the source is Azure SQL, you can set a query time-out parameter.
 
 [Field mappings](search-indexer-field-mappings.md) are used to explicitly map source-to-destination fields if there are discrepancies by name or type between a field in the data source and a field in the search index.
 
@@ -199,7 +200,7 @@ POST /indexers?api-version=[api-version]
 
 Parameters are used to set the batch size and how to handle processing failures. The [execution environment](search-howto-run-reset-indexers.md#indexer-execution-environment) determines whether indexer and skillset processing can use the multitenant capabilities provided by Microsoft or the private processing nodes allocated exclusively to your search service. If your search service is Standard2 or higher, you can set `executionEnvironment` to private to pin all indexer processing to just your search service clusters.
 
-There are numerous tutorials and examples that demonstrate REST clients for creating objects. [Quickstart: Text search using REST](search-get-started-rest.md) can get you started.
+There are numerous tutorials and examples that demonstrate REST clients for creating objects. [Quickstart: Full-text search using REST](search-get-started-text.md) can get you started.
 
 ### [**.NET SDK**](#tab/indexer-csharp)
 

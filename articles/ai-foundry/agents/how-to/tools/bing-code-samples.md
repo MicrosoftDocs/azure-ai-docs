@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 06/17/2025
+ms.date: 07/11/2025
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-bing-grounding-code
@@ -64,8 +64,7 @@ project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT
 # Create an AIProjectClient instance
 project_client = AIProjectClient(
     endpoint=project_endpoint,
-    credential=DefaultAzureCredential(),  # Use Azure Default Credential for authentication
-    api_version="latest",
+    credential=DefaultAzureCredential()  # Use Azure Default Credential for authentication
 )
 ```
 
@@ -129,8 +128,32 @@ if run.status == "failed":
 messages = project_client.agents.messages.list(thread_id=thread.id)
 for message in messages:
     print(f"Role: {message.role}, Content: {message.content}")
+```
 
-# Delete the agent when done
+## Optionally output the run steps used by the agent
+```python
+run_steps = project_client.agents.run_steps.list(thread_id=thread.id, run_id=run.id)
+for step in run_steps:
+    print(f"Step {step['id']} status: {step['status']}")
+
+    # Check if there are tool calls in the step details
+    step_details = step.get("step_details", {})
+    tool_calls = step_details.get("tool_calls", [])
+
+    if tool_calls:
+        print("  Tool calls:")
+        for call in tool_calls:
+            print(f"    Tool Call ID: {call.get('id')}")
+            print(f"    Type: {call.get('type')}")
+
+            function_details = call.get("function", {})
+            if function_details:
+                print(f"    Function name: {function_details.get('name')}")
+    print()  # add an extra newline between steps
+```
+
+## Delete the agent when done
+```python
 project_client.agents.delete_agent(agent.id)
 print("Deleted agent")
 ```

@@ -1,9 +1,9 @@
 ---
-author: blackmist
+author: s-polly
 ms.service: azure-machine-learning
 ms.topic: include
 ms.date: 02/10/2025
-ms.author: larryfr
+ms.author: scottpolly
 ---
 
 * An Azure Machine Learning workspace. For steps for creating a workspace, see [Create the workspace](../quickstart-create-resources.md#create-the-workspace).

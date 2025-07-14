@@ -33,7 +33,7 @@ compliant with the specific standard.
 
 [!INCLUDE [azure-policy-compliancecontrols-introwarning](~/azure-docs-pr-policy-includes/includes/policy/standards/intro-warning.md)]
 
-[!INCLUDE [azure-policy-compliancecontrols-search](~/azure-docs-pr-policy-includes/includes/policy/standards/byrp/microsoft.search.md)]
+[!INCLUDE [azure-policy-compliancecontrols-search](~/azure-policy-autogen-docs/includes/policy/standards/byrp/microsoft.search.md)]
 
 ## Next steps
 

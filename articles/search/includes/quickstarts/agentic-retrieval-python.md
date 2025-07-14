@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 6/17/2025
+ms.date: 6/24/2025
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -21,7 +21,7 @@ This quickstart is based on the [Quickstart-Agentic-Retrieval](https://github.co
 
 + An [Azure AI Search service](../../search-create-service-portal.md) on the Basic tier or higher with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
 
-+ An [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects). You get an Azure AI Foundry resource (that's needed for model deployments) when you create an Azure AI Foundry project.
++ An [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects). You get an Azure AI Foundry resource (that you need for model deployments) when you create an Azure AI Foundry project.
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and [Jupyter package](https://pypi.org/project/jupyter/).
 
@@ -144,17 +144,9 @@ print(f"Index '{index_name}' created or updated successfully")
 
 The index schema contains fields for document identification and page content, embeddings, and numbers. It also includes configurations for semantic ranking and vector queries, which use the `text-embedding-3-large` model you previously deployed.
 
-> [!IMPORTANT]
-> Agentic retrieval has two token-based billing models:
->
-> + Billing from Azure OpenAI for query planning.
-> + Billing from Azure AI Search for query execution (semantic ranking).
->
-> Semantic ranking is free in the initial public preview. After the preview, standard token billing applies. For more information, see [Availability and pricing of agentic retrieval](../../search-agentic-retrieval-concept.md#availability-and-pricing).
-
 ## Upload documents to the index
 
-Currently, the `earth_at_night` index is empty. Run the following code to populate the index with JSON documents from NASA's Earth at Night e-book. As required by Azure AI Search, each document conforms to the fields and data types defined in the index schema.
+Currently, the `earth_at_night` index is empty. Run the following code to populate the index with JSON documents from [NASA's Earth at Night e-book](https://raw.githubusercontent.com/Azure-Samples/azure-search-sample-data/refs/heads/main/nasa-e-book/earth-at-night-json/documents.json). As required by Azure AI Search, each document conforms to the fields and data types defined in the index schema.
 
 Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
 
@@ -448,7 +440,7 @@ print(json.dumps([r.as_dict() for r in retrieval_result.references], indent=2))
 
 ## Generate an LLM-powered answer
 
-Now that you've sent multiple user queries, use the Responses API to generate an answer based on the indexed documents and conversation history, which is captured in the `messages` array.
+Now that you sent multiple user queries, use the Responses API to generate an answer based on the indexed documents and conversation history, which is captured in the `messages` array.
 
 Add and run a new code cell in the `quickstart-agentic-retrieval.ipynb` notebook with the following code:
 

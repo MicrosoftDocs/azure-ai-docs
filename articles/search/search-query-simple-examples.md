@@ -24,7 +24,7 @@ In Azure AI Search, the [simple query syntax](query-simple-syntax.md) invokes th
 
 The following queries are based on the hotels-sample-index, which you can create by following the instructions in [Quickstart: Create a search index in the Azure portal](search-get-started-portal.md).
 
-Example queries are articulated using the REST API and POST requests. You can paste and run them in a [REST client](search-get-started-rest.md). Or, use the JSON view of [Search explorer](search-explorer.md) in the Azure portal. In JSON view, you can paste in the query examples shown here in this article.
+Example queries are articulated using the REST API and POST requests. You can paste and run them in a [REST client](search-get-started-text.md). Or, use the JSON view of [Search explorer](search-explorer.md) in the Azure portal. In JSON view, you can paste in the query examples shown here in this article.
 
 Request headers must have the following values:
 
@@ -546,7 +546,7 @@ The response for the second batch skips the first five matches, returning the ne
 
 Now that you have some practice with the basic query syntax, try specifying queries in code. The following link covers how to set up search queries using the Azure SDKs.
 
-+ [Quickstart: Full text search using the Azure SDKs](search-get-started-text.md)
++ [Quickstart: Full-text search](search-get-started-text.md)
 
 More syntax reference, query architecture, and examples can be found in the following links:
 

@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: quickstart
-ms.date: 1/15/2025
+ms.date: 7/12/2025
 ms.reviewer: ralphe
 ms.author: eur
 zone_pivot_groups: programming-languages-set-nine

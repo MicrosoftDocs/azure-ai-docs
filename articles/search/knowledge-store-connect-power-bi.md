@@ -6,10 +6,11 @@ author: HeidiSteen
 ms.author: heidist
 manager: nitinme
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: conceptual
 ms.date: 05/27/2025
+ms.custom:
+  - ignite-2023
+  - sfi-image-nochange
 ---
 
 # Connect a knowledge store with Power BI

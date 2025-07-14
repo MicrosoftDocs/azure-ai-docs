@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 01/30/2025
+ms.date: 07/11/2025
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-function-calling
@@ -18,7 +18,8 @@ ms.custom: azure-ai-agents
 Azure AI Agents supports function calling, which allows you to describe the structure of functions to an agent and then return the functions that need to be called along with their arguments.
 
 > [!NOTE]
-> Runs expire ten minutes after creation. Be sure to submit your tool outputs before the expiration.
+> * Runs expire 10 minutes after creation. Be sure to submit your tool outputs before the expiration.
+> * Although function calling isn't supported in the Azure AI Foundry portal, agents will appear in the portal after creation. Agents run in the portal won't perform function calling.
 
 ### Usage support
 
@@ -77,8 +78,7 @@ project_endpoint = os.environ["PROJECT_ENDPOINT"]
 # Initialize the AIProjectClient
 project_client = AIProjectClient(
     endpoint=project_endpoint,
-    credential=DefaultAzureCredential(),
-    api_version="latest",
+    credential=DefaultAzureCredential()
 )
 
 # Initialize the FunctionTool with user-defined functions

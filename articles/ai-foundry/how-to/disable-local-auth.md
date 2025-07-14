@@ -2,13 +2,13 @@
 title: "Disable shared key access to the hub storage account"
 titleSuffix: Azure AI Foundry
 description: "Disable shared key access to the default storage account used by your Azure AI Foundry hub and projects."
-author: Blackmist
-ms.author: larryfr
+ms.author: jburchel 
+author: jonburchel 
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 05/09/2025
+ms.date: 07/14/2025
 ms.reviewer: meerakurup
 #customer intent: As an admin, I want to disable shared key access to my resources to improve security.
 ---

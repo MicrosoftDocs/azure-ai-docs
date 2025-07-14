@@ -6,10 +6,11 @@ author: HeidiSteen
 manager: nitinme
 ms.author: heidist
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: conceptual
 ms.date: 05/27/2025
+ms.custom:
+  - ignite-2023
+  - sfi-ropc-nochange
 ---
 
 # Knowledge store in Azure AI Search

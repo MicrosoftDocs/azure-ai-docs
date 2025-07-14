@@ -1,4 +1,4 @@
----
+﻿---
 title: What is Azure AI Foundry Agent Service?
 titleSuffix: Azure AI Foundry
 description: Learn how to create agents that apply advanced language models for workflow automation.
@@ -7,7 +7,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: overview
-ms.date: 05/15/2025
+ms.date: 06/25/2025
 ms.custom: azure-ai-agents
 ---
 
@@ -80,14 +80,14 @@ Next, the agent needs coordination. [Connected agents](how-to\connected-agents.m
 
     :::column-end:::
     :::column span="1":::
-### 5. Trust
-
-It's important to ensure agents are suitable and reliable for the workload they're assigned to. AI Foundry applies enterprise-grade trust features including identity via Microsoft Entra, RBAC, content filters, encryption, and network isolation. You choose how and where your agents run - using platform-managed or bring-your-own infrastructure.
-    :::column-end:::
-    :::column span="1":::
-### 6. Observability
+### 5. Observability
 
 Finally, agents are tested and monitored. AI Foundry can capture logs, traces, and evaluations at every step. With full thread-level visibility and Application Insights integration, teams can inspect every decision and continuously improve agents over time.
+    :::column-end:::
+    :::column span="1":::
+### 6. Trust
+
+It's important to ensure agents are suitable and reliable for the workload they're assigned to. AI Foundry applies enterprise-grade trust features including identity via Microsoft Entra, RBAC, content filters, encryption, and network isolation. You choose how and where your agents run - using platform-managed or bring-your-own infrastructure.
     :::column-end:::
 :::row-end:::
 
@@ -102,7 +102,7 @@ Azure AI Foundry Agent Service provides a production-ready foundation for deploy
 | **1. Visibility into conversations** | Full access to structured [threads](./concepts/threads-runs-messages.md#threads), including both user↔agent and agent↔agent messages. Ideal for UIs, debugging, and training |
 | **2. Multi-agent coordination** | Built-in support for agent-to-agent messaging. |
 | **3. Tool orchestration** | Server-side execution and retry of [tool calls](how-to\tools\overview.md) with structured logging. No manual orchestration required. |
-| **4. Trust and safety** | Integrated [content filters](../../ai-services/openai/how-to/content-filters.md) help prevent misuse and mitigate prompt injection risks (XPIA). all outputs are policy-governed. |
+| **4. Trust and safety** | Integrated [content filters](../openai/how-to/content-filters.md) help prevent misuse and mitigate prompt injection risks (XPIA). all outputs are policy-governed. |
 | **5. Enterprise integration** | Bring your own [storage](./how-to/use-your-own-resources.md#use-an-existing-azure-cosmos-db-for-nosql-account-for-thread-storage), [Azure AI Search index](./how-to/use-your-own-resources.md#use-an-existing-azure-ai-search-resource), and [virtual network](how-to\virtual-networks.md) to meet compliance needs. |
 | **6. Observability and debugging** | Threads, tool invocations, and message traces are [fully traceable](concepts\tracing.md); [Application Insights integration](./how-to/metrics.md) for telemetry |
 | **7. Identity and policy control** | Built on Microsoft Entra with full support for RBAC, audit logs, and enterprise conditional access. |

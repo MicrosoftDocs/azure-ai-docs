@@ -6,11 +6,12 @@ manager: vinodva
 author: mattgotteiner
 ms.author: magottei
 ms.service: azure-ai-search
+ms.topic: how-to
+ms.date: 05/08/2025
 ms.custom:
   - ignite-2023
   - ignite-2024
-ms.topic: how-to
-ms.date: 05/08/2025
+  - sfi-ropc-nochange
 ---
 
 # Index data from Azure Files
@@ -37,7 +38,7 @@ To configure and run the indexer, you can use:
 
 + Read permissions on Azure Storage. A "full access" connection string includes a key that grants access to the content.
 
-+ Use a [REST client](search-get-started-rest.md) to formulate REST calls similar to the ones shown in this article.
++ Use a [REST client](search-get-started-text.md) to formulate REST calls similar to the ones shown in this article.
 
 ## Supported tasks
 

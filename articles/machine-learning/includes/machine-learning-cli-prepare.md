@@ -1,9 +1,9 @@
 ---
-author: blackmist
+author: s-polly
 ms.service: azure-machine-learning
 ms.topic: include
 ms.date: 02/10/2025
-ms.author: larryfr
+ms.author: scottpolly
 ---
 
 The information in this article is based on code samples contained in the [azureml-examples](https://github.com/azure/azureml-examples) repository. To run the commands locally without having to copy/paste YAML and other files, clone the repo and then change directories to the `cli` directory in the repo:

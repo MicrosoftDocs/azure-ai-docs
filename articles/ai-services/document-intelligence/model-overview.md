@@ -8,6 +8,7 @@ ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
 ms.date: 03/14/2025
 ms.author: lajanuar
+ms.custom: sfi-image-nochange
 ---
 
 

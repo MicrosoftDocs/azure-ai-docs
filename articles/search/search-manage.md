@@ -8,6 +8,7 @@ ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 05/08/2025
+ms.custom: sfi-image-nochange
 ---
 
 # Configure your Azure AI Search service in the Azure portal

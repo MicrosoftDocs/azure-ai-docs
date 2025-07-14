@@ -158,7 +158,7 @@ Status code 429 indicates that you've exceeded your quota on the number of docum
 
 + To merge inline changes into string collection, provide the entire value. Recall the `tags` field example from the previous section. New values overwrite the old values for an entire field, and there's no merging within the content of a field.
 
-Here's a [REST API example](search-get-started-rest.md) demonstrating these tips:
+Here's a [REST API example](search-get-started-text.md) demonstrating these tips:
 
 ```rest
 ### Get Stay-Kay City Hotel by ID
@@ -305,7 +305,7 @@ If indexing workloads introduce unacceptable levels of query latency, conduct [p
 
 You can begin querying an index as soon as the first document is loaded. If you know a document's ID, the [Lookup Document REST API](/rest/api/searchservice/documents/get) returns the specific document. For broader testing, you should wait until the index is fully loaded, and then use queries to verify the context you expect to see.
 
-You can use [Search Explorer](search-explorer.md) or a [REST client](search-get-started-rest.md) to check for updated content.
+You can use [Search Explorer](search-explorer.md) or a [REST client](search-get-started-text.md) to check for updated content.
 
 If you added or renamed a field, use [select](search-query-odata-select.md) to return that field: 
 
@@ -327,7 +327,7 @@ Deleting a document doesn't immediately free up space in the index. Every few mi
 
 1. Check the values of the document key field: `search=*&$select=HotelId`. A simple string is straightforward, but if the index uses a base-64 encoded field, or if search documents were generated from a `parsingMode` setting, you might be working with values that you aren't familiar with.
 
-1. [Look up the document](/rest/api/searchservice/documents/get) to verify the value of the document ID and to review its content before deleting it. Specify the key or document ID in the request. The following examples illustrate a simple string for the [Hotels sample index](search-get-started-portal.md) and a base-64 encoded string for the metadata_storage_path key of the [cog-search-demo index](cognitive-search-tutorial-blob.md).
+1. [Look up the document](/rest/api/searchservice/documents/get) to verify the value of the document ID and to review its content before deleting it. Specify the key or document ID in the request. The following examples illustrate a simple string for the [Hotels sample index](search-get-started-portal.md) and a base-64 encoded string for the metadata_storage_path key of the [cog-search-demo index](tutorial-skillset.md).
 
     ```http
     GET https://[service name].search.windows.net/indexes/hotel-sample-index/docs/1111?api-version=2024-07-01

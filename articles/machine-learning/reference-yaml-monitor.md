@@ -6,9 +6,9 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.topic: reference
-ms.custom: cliv2, update-code
-author: msakande
-ms.author: mopeakande
+ms.custom: cliv2, update-code2
+author: s-polly
+ms.author: scottpolly
 ms.date: 02/26/2024
 ms.reviewer: alehughes
 ---
