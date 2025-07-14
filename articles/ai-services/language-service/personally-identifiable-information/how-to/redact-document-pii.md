@@ -2,7 +2,7 @@
 title: Identify and extract Personally Identifying Information (PII) from native documents
 titleSuffix: Azure AI services
 description: This article shows you how to redact Personally Identifying Information (PII) from native documents.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
@@ -77,7 +77,7 @@ A native document refers to the file format used to create the original document
   * **Source container**. This container is where you upload your native files for analysis (required).
   * **Target container**. This container is where your analyzed files are stored (required).
 
-* A [**single-service Language resource**](https://ms.portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics) (**not** a multi-service Azure AI services resource):
+* A [**single-service Language resource**](https://ms.portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics) (**not** a multi-service Azure AI Foundry resource):
 
   **Complete the Language resource project and instance details fields as follows:**
 

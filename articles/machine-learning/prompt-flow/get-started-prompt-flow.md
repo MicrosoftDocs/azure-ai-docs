@@ -5,14 +5,15 @@ description: Learn how to set up, create, evaluate, and deploy a prompt flow in 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
+ms.topic: tutorial
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: yijunzhang
+ms.date: 10/03/2024
 ms.custom:
   - ignite-2023
   - build-2024
-ms.topic: tutorial
-author: lgayhardt
-ms.author: lagayhar
-ms.reviewer: yijunzhang
-ms.date: 10/03/2024
+  - sfi-image-nochange
 ---
 
 # Get started with prompt flow
@@ -49,7 +50,7 @@ A connection helps securely store and manage secret keys or other sensitive cred
 
    :::image type="content" source="./media/get-started-prompt-flow/create-aoai-connection.png" alt-text="Screenshot of the chat playground showing the Key and Endpoint for an Azure OpenAI resource." lightbox = "./media/get-started-prompt-flow/create-aoai-connection.png":::
 
-   For information about Microsoft Entra ID authentication, see [How to configure Azure OpenAI Service with Microsoft Entra ID authentication](/azure/ai-services/openai/how-to/managed-identity).
+   For information about Microsoft Entra ID authentication, see [How to configure Azure OpenAI in Azure AI Foundry Models with Microsoft Entra ID authentication](/azure/ai-services/openai/how-to/managed-identity).
 
 1. After you fill out all fields, select **Save** to create the connection.
 

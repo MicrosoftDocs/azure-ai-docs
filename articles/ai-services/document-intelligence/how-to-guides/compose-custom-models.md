@@ -8,6 +8,7 @@ ms.service: azure-ai-document-intelligence
 ms.topic: how-to
 ms.date: 11/19/2024
 ms.author: lajanuar
+ms.custom: sfi-image-nochange
 ---
 
 # Compose custom models

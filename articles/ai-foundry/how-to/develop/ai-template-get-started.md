@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 04/28/2025
+ms.date: 07/01/2025
 ms.reviewer: varundua
 ms.author: sgilley
 author: sdgilley
@@ -24,18 +24,18 @@ Available templates include:
 * [Get started with AI agents](https://github.com/Azure-Samples/get-started-with-ai-agents)
 * [Unlock insights from conversational data](https://github.com/microsoft/Conversation-Knowledge-Mining-Solution-Accelerator)
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
-
 ## Prerequisites
 
 - [Azure subscription](https://azure.microsoft.com/free)
-- An [Azure AI Foundry project](../create-projects.md).
+- Either a [[!INCLUDE [fdp-project-name](../../includes/fdp-project-name.md)]](../create-projects.md?pivots=fdp-project) or a [[!INCLUDE [hub-project-name](../../includes/hub-project-name.md)]](../create-projects.md?pivots=hub-project).
 
 ## Start with a sample application
 
-1. Go to [Azure AI Foundry portal](https://ai.azure.com).
+[!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
+
+1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Open your project in Azure AI Foundry portal.
-1. On the left pane, select **Templates** (preview).
+1. On the left pane, select **Templates**.
 1. Find the solution template you want to use.
 1. Select **Open in Github** to view the entire sample application.
 1. In some cases, you can also view a step-by-step tutorial that explains the AI code.

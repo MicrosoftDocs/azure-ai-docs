@@ -7,9 +7,9 @@ ms.service: azure-machine-learning
 ms.subservice: core
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-author: lgayhardt
-ms.author: lagayhar
+ms.topic: concept-article
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: keli19
 ms.date: 06/28/2024
 ---

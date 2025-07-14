@@ -16,6 +16,8 @@ ms.custom: devx-track-cpp, devx-track-csharp, mode-other, devx-track-extended-ja
 
 # How to recognize intents with simple language pattern matching
 
+[!INCLUDE [deprecation notice](./includes/intent-recognition-retire.md)]
+
 The Azure AI services [Speech SDK](speech-sdk.md) has a built-in feature to provide **intent recognition** with **simple language pattern matching**. An intent is something the user wants to do: close a window, mark a checkbox, insert some text, etc.
 
 In this guide, you use the Speech SDK to develop a C++ console application that derives intents from user utterances through your device's microphone. You learn how to:
@@ -40,12 +42,12 @@ For more information, see the [pattern matching overview](./pattern-matching-ove
 
 Be sure you have the following items before you begin this guide:
 
-- An [Azure AI services resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) or a [Unified Speech resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices)
+- An [Azure AI Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) or a [Unified Speech resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry)
 - [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/) (any edition).
 
 ## Speech and simple patterns
 
-The simple patterns are a feature of the Speech SDK and need an Azure AI services resource or a Unified Speech resource.
+The simple patterns are a feature of the Speech SDK and need an AI Foundry resource or a Unified Speech resource.
 
 A pattern is a phrase that includes an Entity somewhere within it. An Entity is defined by wrapping a word in curly brackets. This example defines an Entity with the ID "floorName", which is case-sensitive:
 

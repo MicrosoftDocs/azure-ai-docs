@@ -5,10 +5,11 @@ description: Set up a search indexer to index data stored in Azure Cosmos DB for
 author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
+ms.topic: how-to
+ms.date: 05/29/2025
 ms.custom:
   - ignite-2023
-ms.topic: how-to
-ms.date: 12/10/2024
+  - sfi-ropc-nochange
 ---
 
 # Index data from Azure Cosmos DB for MongoDB for queries in Azure AI Search
@@ -32,7 +33,7 @@ Because terminology can be confusing, it's worth noting that [Azure Cosmos DB in
 
 + Read permissions. A "full access" connection string includes a key that grants access to the content, but if you're using Azure roles, make sure the [search service managed identity](search-howto-managed-identities-data-sources.md) has **Cosmos DB Account Reader Role** permissions.
 
-+ A [REST client](search-get-started-rest.md) to create the data source, index, and indexer. 
++ A [REST client](search-get-started-text.md) to create the data source, index, and indexer. 
 
 ## Limitations
 

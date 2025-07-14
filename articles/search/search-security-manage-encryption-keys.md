@@ -12,6 +12,7 @@ ms.date: 04/07/2025
 ms.custom:
   - references_regions
   - ignite-2023
+  - sfi-image-nochange
 ---
 
 # Configure customer-managed keys for data encryption in Azure AI Search
@@ -93,7 +94,7 @@ We recommend using a managed identity and roles. You can use either a system-man
 
 Enable the system assigned managed identity for your search service. It's a two-click operation, enable and save.
 
-![Screenshot of turn on system assigned managed identity.](./media/search-managed-identities/turn-on-system-assigned-identity.png "Screenshot showing how to turn on the system-assigned managed identity.")
+![Screenshot of turn on system assigned managed identity.](media/search-managed-identities/turn-on-system-assigned-identity.png "Screenshot showing how to turn on the system-assigned managed identity.")
 
 ### [**User-managed identity (preview)**](#tab/managed-id-user)
 

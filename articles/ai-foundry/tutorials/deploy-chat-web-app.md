@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: tutorial
-ms.date: 02/13/2025
+ms.date: 06/18/2025
 ms.reviewer: tgokal
 ms.author: sgilley
 author: sdgilley
@@ -17,8 +17,6 @@ author: sdgilley
 ---
 
 # Tutorial: Deploy an enterprise chat web app
-
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 In this article, you deploy an enterprise chat web app that uses your own data with a large language model in Azure AI Foundry portal.
 
@@ -34,7 +32,8 @@ The steps in this tutorial are:
 
 ## Prerequisites
 
-- An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
+[!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
+
 - A [deployed Azure OpenAI](../how-to/deploy-models-openai.md) chat model. Complete the [Azure AI Foundry playground quickstart](../quickstarts/get-started-playground.md) to create this resource if you haven't already.
 
 - A Search service connection to index the sample product data.  If you don't have one, follow the steps to [create](copilot-sdk-create-resources.md#create-search) and [connect](copilot-sdk-create-resources.md#connect) a search service.
@@ -62,7 +61,7 @@ In order for the resources to work correctly inside a web app, you need to confi
 
 To start, identify the resources you need to configure from the Azure AI Foundry portal.
 
-1. Open the [Azure AI Foundry portal](https://ai.azure.com) and select the project you used to deploy the Azure OpenAI chat model.
+1. Open the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select the project you used to deploy the Azure OpenAI chat model.
 1. Select **Management center** from the left pane.
 1. Select **Connected resources** under your project.
 1. Identify the three resources you need to configure:  the **Azure OpenAI**, the **Azure AI Search**, and the **Azure Blob storage** that corresponds to your **workspaceblobstore**.
@@ -74,7 +73,7 @@ To start, identify the resources you need to configure from the Azure AI Foundry
 
 1. For each resource, select the link to open the resource details.  From the details page, select the resource name to open the resource in the Azure portal.  (For the workspaceblobstore, select **View in Azure Portal**). 
 1. After the browser tab opens, go back to the Azure AI Foundry portal and repeat the process for the next resource. 
-1. When you're done, you should have three new browser tabs open, for **Search service**, **Azure AI services**, and **blobstore Container**. Keep all three new tabs open as you'll go back and forth between them to configure the resources.
+1. When you're done, you should have three new browser tabs open, for **Search service**, **Azure AI Foundry**, and **blobstore Container**. Keep all three new tabs open as you'll go back and forth between them to configure the resources.
 
 ### Enable managed identity
 
@@ -84,7 +83,7 @@ On the browser tab for the **Search service** resource in the Azure portal, enab
 1. Switch **Status** to **On**.
 1. Select **Save**.
 
-On the browser tab for the **Azure AI services** resource in the Azure portal, enable the managed identity:
+On the browser tab for the **Azure AI Foundry** resource in the Azure portal, enable the managed identity:
 
 1. From the left pane, under **Resource Management**, select **Identity**.
 1. Switch **Status** to **On**.
@@ -107,18 +106,18 @@ You'll repeat this pattern multiple times in the bulleted items below.
 Use these steps to assign roles for the resources you're configuring in this tutorial:
 
 * Assign the following roles on the browser tab for **Search service** in the Azure portal:
-    * **Search Index Data Reader** to the **Azure AI services** managed identity
-    * **Search Service Contributor** to the **Azure AI services** managed identity
+    * **Search Index Data Reader** to the **Azure AI Foundry** managed identity
+    * **Search Service Contributor** to the **Azure AI Foundry** managed identity
     * **Contributor** to yourself (to find **Contributor**, switch to the **Privileged administrator roles** tab at the top.  All other roles are in the **Job function roles** tab.)
 
-* Assign the following roles on the browser tab for **Azure AI services** in the Azure portal:
+* Assign the following roles on the browser tab for **Azure AI Foundry** in the Azure portal:
 
     * **Cognitive Services OpenAI Contributor** to the **Search service** managed identity
     * **Contributor** to yourself.
 
 * Assign the following roles on the browser tab for **Azure Blob storage** in the Azure portal:
 
-    * **Storage Blob Data Contributor** to the **Azure AI services** managed identity
+    * **Storage Blob Data Contributor** to the **Azure AI Foundry** managed identity
     * **Storage Blob Data Reader** to the **Search service** managed identity
     * **Contributor** to yourself
 
@@ -140,7 +139,7 @@ In this tutorial, your web app is deployed to the same resource group as your [A
 
 Follow these steps to navigate to your resource group in the Azure portal:
 
-1. Go to your project in [Azure AI Foundry](https://ai.azure.com). Then select **Management center** from the left pane.
+1. Go to your project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). Then select **Management center** from the left pane.
 1. Under the **Project** heading, select **Overview**.
 1. Select the resource group name to open the resource group in the Azure portal. In this example, the resource group is named `rg-sdg-ai`.
 

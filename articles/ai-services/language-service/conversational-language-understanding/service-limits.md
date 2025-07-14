@@ -2,12 +2,12 @@
 title: Conversational Language Understanding limits
 titleSuffix: Azure AI services
 description: Learn about the data, region, and throughput limits for Conversational Language Understanding
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 11/21/2024
-ms.author: jboback
+ms.date: 06/04/2025
+ms.author: lajanuar
 ms.custom: language-service-clu, references_regions
 ---
 
@@ -48,9 +48,9 @@ See [Language service regional availability](../concepts/regional-support.md#con
 |Pricing tier |Item |Limit |
 | --- | --- | ---|
 |F|Training time| 1 hour per month  |
-|S|Training time| Unlimited, Pay as you go |
+|S|Training time| Unlimited, Standard |
 |F|Prediction Calls| 5,000 request per month  |
-|S|Prediction Calls| Unlimited, Pay as you go |
+|S|Prediction Calls| Unlimited, Standard |
 
 ## Data limits
 

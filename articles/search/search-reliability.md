@@ -2,8 +2,8 @@
 title: Reliability in Azure AI Search
 titleSuffix: Azure AI Search
 description: Learn how to improve the reliability and availability of Azure AI Search services.
-author: mattgotteiner
-ms.author: magottei
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 04/14/2025

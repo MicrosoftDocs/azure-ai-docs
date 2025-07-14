@@ -8,9 +8,9 @@ ms.subservice: core
 ms.custom:
   - ignite-2023
   - build-2024
-ms.topic: conceptual
-author: lgayhardt
-ms.author: lagayhar
+ms.topic: concept-article
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: keli19
 ms.date: 06/26/2024
 ---

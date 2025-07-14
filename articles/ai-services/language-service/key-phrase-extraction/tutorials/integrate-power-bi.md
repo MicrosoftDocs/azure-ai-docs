@@ -2,13 +2,16 @@
 title: 'Tutorial: Integrate Power BI with key phrase extraction'
 titleSuffix: Azure AI services
 description: Learn how to use the key phrase extraction feature to get text stored in Power BI.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: tutorial
-ms.date: 11/21/2024
-ms.author: jboback
-ms.custom: language-service-key-phrase, cogserv-non-critical-language
+ms.date: 06/04/2025
+ms.author: lajanuar
+ms.custom:
+  - language-service-key-phrase
+  - cogserv-non-critical-language
+  - sfi-image-nochange
 ---
 
 # Tutorial: Extract key phrases from text stored in Power BI

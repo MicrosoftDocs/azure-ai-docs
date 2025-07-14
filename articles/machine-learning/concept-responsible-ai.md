@@ -5,9 +5,9 @@ description: Learn what Responsible AI is and how to use it with Azure Machine L
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: responsible-ai
-ms.topic: conceptual
-ms.author: lagayhar
-author: lgayhardt
+ms.topic: concept-article
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: mesameki
 ms.date: 09/13/2024
 ms.custom: responsible-ai, build-2023, build-2023-dataai

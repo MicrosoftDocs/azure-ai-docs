@@ -1,11 +1,11 @@
 ---
 title: Chinese support notes
-author: aahill
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 01/19/2024
-ms.author: aahi
+ms.date: 06/12/2025
+ms.author: lajanuar
 ---
 
 ### **Language service support notes

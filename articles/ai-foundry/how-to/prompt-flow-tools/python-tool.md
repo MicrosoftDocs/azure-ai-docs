@@ -6,7 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: ignite-2023, devx-track-python, build-2024, ignite-2024
 ms.topic: reference
-ms.date: 01/29/2025
+ms.date: 6/30/2025
 ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
@@ -22,7 +22,7 @@ The prompt flow Python tool offers customized code snippets as self-contained ex
 
 ## Build with the Python tool
 
-1. Create or open a flow in [Azure AI Foundry](https://ai.azure.com). For more information, see [Create a flow](../flow-develop.md).
+1. Create or open a flow in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). For more information, see [Create a flow](../flow-develop.md).
 1. Select **+ Python** to add the Python tool to your flow.
 
     :::image type="content" source="../../media/prompt-flow/python-tool.png" alt-text="Screenshot that shows the Python tool added to a flow in Azure AI Foundry portal." lightbox="../../media/prompt-flow/python-tool.png":::
@@ -111,6 +111,8 @@ If you're developing a Python tool that requires calling external services with 
 ### Create a custom connection
 
 Create a custom connection that stores all your large language model API key or other required credentials.
+
+[!INCLUDE [hub-only-prereq](../../includes/hub-only-prereq.md)]
 
 1. Go to the **Management center** page for your project. 
 1. Under either the **Hub** or **Project** heading, select **Connected resources**.

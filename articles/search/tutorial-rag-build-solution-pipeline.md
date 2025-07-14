@@ -7,10 +7,12 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
+ms.topic: tutorial
+ms.date: 06/11/2025
 ms.custom:
   - ignite-2024
-ms.topic: tutorial
-ms.date: 03/24/2025
+  - sfi-ropc-nochange
 ---
 
 # Tutorial: Build an indexing pipeline for RAG on Azure AI Search
@@ -37,9 +39,9 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 - [Azure Storage](/azure/storage/common/storage-account-create) general purpose account. This exercise uploads PDF files into blob storage for automated indexing.
 
-- [Azure AI Search](search-create-service-portal.md), Basic tier or above for managed identity and semantic ranking. Choose a region that's shared with Azure OpenAI and Azure AI Services.
+- [Azure AI Search](search-create-service-portal.md), Basic tier or above for managed identity and semantic ranking. Choose a region that's shared with Azure AI services.
 
-- [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource), with a deployment of text-embedding-3-large, in the same region as Azure AI Search. For more information about embedding models used in RAG solutions, see [Choose embedding models for RAG in Azure AI Search](tutorial-rag-build-solution-models.md).
+- [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource), with a deployment of text-embedding-3-large. For more information about embedding models used in RAG solutions, see [Choose embedding models for RAG in Azure AI Search](tutorial-rag-build-solution-models.md).
 
 - [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills), in the same region as Azure AI Search. This resource is used for the Entity Recognition skill that detects locations in your content.
 

@@ -7,11 +7,12 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.devlang: csharp
 ms.custom:
   - ignite-2023
 ms.topic: tutorial
-ms.date: 01/17/2025
+ms.date: 07/10/2025
 ---
 
 # Create a search app in ASP.NET Core
@@ -44,9 +45,9 @@ Sample code for this tutorial can be found in the [azure-search-dotnet-samples](
 
 1. Provide a project name, and then select **Next**.
 
-1. On the next page, select **.NET 6.0** or **.NET 7.0** or **.NET 8.0**.
+1. On the next page, select **.NET 9.0**.
 
-1. Verify that **Do not use top-level statements** is unchecked.
+1. Accept the defaults.
 
 1. Select **Create**.
 
@@ -73,7 +74,7 @@ Modify `appsettings.json` to specify your search service and [query API key](sea
 
 You can get the service URL and API key from the Azure portal. Because this code is querying an index and not creating one, you can use a query key instead of an admin key.
 
-Make sure to specify the search service that has the hotels-sample-index.
+Make sure to specify a search service that has the hotels-sample-index.
 
 ## Add models
 
@@ -475,11 +476,8 @@ In the hotels-sample-index, sortable fields include Rating and LastRenovated. Th
 
 For more information about sorting, see [OData $orderby syntax in Azure AI Search](search-query-odata-orderby.md).
 
-## Next steps
+## Next step
 
 In this tutorial, you created an ASP.NET Core (MVC) project that connected to a search service and called Search APIs for server-side filtering and sorting.
 
-If you want to explore client-side code that responds to user actions, consider adding a React template to your solution:
-
-> [!div class="nextstepaction"]
-> [C# Tutorial: Add search to a website with .NET](tutorial-csharp-overview.md)
+To add client-side code that responds to user actions, use a React template in your solution: [C# Tutorial: Add search to a website with .NET](tutorial-csharp-overview.md)

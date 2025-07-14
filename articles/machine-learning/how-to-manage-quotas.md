@@ -5,12 +5,14 @@ description: Learn about the quotas and limits on resources for Azure Machine Le
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: siarora
 ms.date: 10/04/2024
 ms.topic: how-to
-ms.custom: troubleshooting
+ms.custom:
+  - troubleshooting
+  - sfi-image-nochange
 # Customer intent: As an admin, I want to understand how to manage and increase quotas and limits for resources with Azure Machine Learning.
 ---
 
@@ -36,7 +38,7 @@ Along with managing quotas and limits, you can learn how to [plan and manage cos
   > [!NOTE]
   > Azure Machine Learning compute is an exception. It has a separate quota from the core compute quota. 
 
-+ **Default limits vary by offer category type**, such as free trial, pay-as-you-go, and virtual machine (VM) series (such as Dv2, F, and G).
++ **Default limits vary by offer category type**, such as free trial, Standard, and virtual machine (VM) series (such as Dv2, F, and G).
 
 ## Default resource quotas and limits
 

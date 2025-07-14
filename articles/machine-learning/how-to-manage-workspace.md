@@ -5,12 +5,20 @@ description: Learn how to manage Azure Machine Learning workspaces in the Azure 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: fsolomon
 ms.date: 03/05/2025
 ms.topic: how-to
-ms.custom: fasttrack-edit, FY21Q4-aml-seo-hack, contperf-fy21q4, sdkv2, event-tier1-build-2022, ignite-2022, devx-track-python
+ms.custom:
+  - fasttrack-edit
+  - FY21Q4-aml-seo-hack
+  - contperf-fy21q4
+  - sdkv2
+  - event-tier1-build-2022
+  - ignite-2022
+  - devx-track-python
+  - sfi-image-nochange
 ---
 
 # Manage Azure Machine Learning workspaces in the portal or with the Python SDK (v2)
@@ -185,7 +193,7 @@ This class requires an existing virtual network.
 
 # [Studio](#tab/studio)
 
-1. To create a workspace with disabled internet connectivity via Studio, you should specify a hub workspace that has public network access disabled. Workspaces created without a hub in [Azure AI Foundry portal](https://ai.azure.com/), have public internet access enabled. A private hub has a 'lock' icon.
+1. To create a workspace with disabled internet connectivity via Studio, you should specify a hub workspace that has public network access disabled. Workspaces created without a hub in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), have public internet access enabled. A private hub has a 'lock' icon.
 
    :::image type="content" source="media/how-to-manage-workspace/studio-private-hub-selection.png" alt-text="Screenshot of the private hub with the 'lock' icon.":::
  
@@ -238,7 +246,7 @@ ml_client.workspaces.begin_create(ws)
 
 # [Portal](#tab/azure-portal)
 
-1. Select **Encrypt data using a ustomer-managed key**, and then select **Click to select key**. This configuration creates Azure resources used to encrypt data in your Azure subscription. Alternatively, select **Use service-side encryption (preview)** to use service-side resources for encryption. For more information, see [Customer-managed keys](concept-customer-managed-keys.md).
+1. Select **Encrypt data using a ustomer-managed key**, and then select **Click to select key**. This configuration creates Azure resources used to encrypt data in your Azure subscription. Alternatively, select **Use service-side encryption** to use service-side resources for encryption. For more information, see [Customer-managed keys](concept-customer-managed-keys.md).
 
     :::image type="content" source="media/how-to-manage-workspace/advanced-workspace.png" alt-text="Screenshot of the customer-managed keys.":::
 

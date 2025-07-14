@@ -7,10 +7,11 @@ manager: nitinme
 author: arv100kri
 ms.author: arjagann
 ms.service: azure-ai-search
+ms.topic: how-to
+ms.date: 05/29/2025
 ms.custom:
   - ignite-2023
-ms.topic: how-to
-ms.date: 12/10/2024
+  - sfi-image-nochange
 ---
 
 # Make indexer connections to Azure Storage as a trusted service

@@ -6,8 +6,9 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
+  - update-code
 ms.topic: how-to
-ms.date: 03/11/2025
+ms.date: 06/26/2025
 ms.reviewer: fasantia
 ms.author: sgilley
 author: sdgilley
@@ -17,9 +18,9 @@ author: sdgilley
 
 LangChain is a development ecosystem that makes as easy possible for developers to build applications that reason. The ecosystem is composed by multiple components. Most of the them can be used by themselves, allowing you to pick and choose whichever components you like best.
 
-Models deployed to [Azure AI Foundry](https://ai.azure.com) can be used with LangChain in two ways:
+Models deployed to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) can be used with LangChain in two ways:
 
-- **Using the Azure AI model inference API:** All models deployed to Azure AI Foundry support the [Azure AI model inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md), which offers a common set of functionalities that can be used for most of the models in the catalog. The benefit of this API is that, since it's the same for all the models, changing from one to another is as simple as changing the model deployment being use. No further changes are required in the code. When working with LangChain, install the extensions `langchain-azure-ai`.
+- **Using the Azure AI Model Inference API:** All models deployed to Azure AI Foundry support the [Model Inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md), which offers a common set of functionalities that can be used for most of the models in the catalog. The benefit of this API is that, since it's the same for all the models, changing from one to another is as simple as changing the model deployment being use. No further changes are required in the code. When working with LangChain, install the extensions `langchain-azure-ai`.
 
 - **Using the model's provider specific API:** Some models, like OpenAI, Cohere, or Mistral, offer their own set of APIs and extensions for LangChain. Those extensions might include specific functionalities that the model support and hence are suitable if you want to exploit them. When working with LangChain, install the extension specific for the model you want to use, like `langchain-openai` or `langchain-cohere`.
 
@@ -30,15 +31,16 @@ In this tutorial, you learn how to use the packages `langchain-azure-ai` to buil
 To run this tutorial, you need:
 
 * An [Azure subscription](https://azure.microsoft.com).
-* A model deployment supporting the [Azure AI model inference API](https://aka.ms/azureai/modelinference) deployed. In this example, we use a `Mistral-Large-2407` deployment in the [Azure AI model inference](../../../ai-foundry/model-inference/overview.md).
+
+* A model deployment supporting the [Model Inference API](https://aka.ms/azureai/modelinference) deployed. In this example, we use a `Mistral-Large-2411` deployment in the [Foundry Models](../../../ai-foundry/model-inference/overview.md).
 * Python 3.9 or later installed, including pip.
 * LangChain installed. You can do it with:
 
     ```bash
-    pip install langchain-core
+    pip install langchain
     ```
 
-* In this example, we're working with the Azure AI model inference API, hence we install the following packages:
+* In this example, we're working with the Model Inference API, hence we install the following packages:
 
     ```bash
     pip install -U langchain-azure-ai
@@ -46,40 +48,23 @@ To run this tutorial, you need:
 
 ## Configure the environment
 
-To use LLMs deployed in Azure AI Foundry portal, you need the endpoint and credentials to connect to it. Follow these steps to get the information you need from the model you want to use:
+[!INCLUDE [set-endpoint](../../includes/set-endpoint.md)]
 
-1. Go to the [Azure AI Foundry](https://ai.azure.com/).
-1. Open the project where the model is deployed, if it isn't already open.
-1. Go to **Models + endpoints** and select the model you deployed as indicated in the prerequisites.
-1. Copy the endpoint URL and the key.
-
-    :::image type="content" source="../../media/how-to/inference/serverless-endpoint-url-keys.png" alt-text="Screenshot of the option to copy endpoint URI and keys from an endpoint." lightbox="../../media/how-to/inference/serverless-endpoint-url-keys.png":::
-    
-    > [!TIP]
-    > If your model was deployed with Microsoft Entra ID support, you don't need a key.
-
-In this scenario, we placed both the endpoint URL and key in the following environment variables:
-
-```bash
-export AZURE_INFERENCE_ENDPOINT="<your-model-endpoint-goes-here>"
-export AZURE_INFERENCE_CREDENTIAL="<your-key-goes-here>"
-```
-
-Once configured, create a client to connect to the endpoint. In this case, we're working with a chat completions model hence we import the class `AzureAIChatCompletionsModel`.
+Once configured, create a client to connect with the chat model by using the `init_chat_model`. For Azure OpenAI models, configure the client as indicated at [Using Azure OpenAI models](#using-azure-openai-models).
 
 ```python
-import os
-from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
+from langchain.chat_models import init_chat_model
 
-model = AzureAIChatCompletionsModel(
-    endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
-    credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
-    model="mistral-large-2407",
-)
+llm = init_chat_model(model="Mistral-Large-2411", model_provider="azure_ai")
 ```
 
-> [!TIP]
-> For Azure OpenAI models, configure the client as indicated at [Using Azure OpenAI models](#using-azure-openai-models).
+You can also use the class `AzureAIChatCompletionsModel` directly.
+
+[!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-chat-models.ipynb?name=create_client)]
+
+
+> [!CAUTION]
+> **Breaking change:** Parameter `model_name` was renamed `model` in version `0.1.3`.
 
 You can use the following code to create the client if your endpoint supports Microsoft Entra ID:
 
@@ -91,7 +76,7 @@ from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 model = AzureAIChatCompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=DefaultAzureCredential(),
-    model_name="mistral-large-2407",
+    model="Mistral-Large-2411",
 )
 ```
 
@@ -109,11 +94,11 @@ from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 model = AzureAIChatCompletionsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=DefaultAzureCredentialAsync(),
-    model_name="mistral-large-2407",
+    model="Mistral-Large-2411",
 )
 ```
 
-If your endpoint is serving one model, like with the Serverless API Endpoints, you don't have to indicate `model_name` parameter:
+If your endpoint is serving one model, like with the serverless API deployment, you don't have to indicate `model` parameter:
 
 ```python
 import os
@@ -129,21 +114,13 @@ model = AzureAIChatCompletionsModel(
 
 Let's first use the model directly. `ChatModels` are instances of LangChain `Runnable`, which means they expose a standard interface for interacting with them. To call the model, we can pass in a list of messages to the `invoke` method.
 
-```python
-from langchain_core.messages import HumanMessage, SystemMessage
-
-messages = [
-    SystemMessage(content="Translate the following from English into Italian"),
-    HumanMessage(content="hi!"),
-]
-
-model.invoke(messages)
-```
+[!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-chat-models.ipynb?name=human_message)] 
 
 You can also compose operations as needed in **chains**. Let's now use a prompt template to translate sentences:
 
 ```python
 from langchain_core.output_parsers import StrOutputParser
+from langchain_core.prompts import ChatPromptTemplate
 
 system_template = "Translate the following into {language}:"
 prompt_template = ChatPromptTemplate.from_messages(
@@ -153,10 +130,7 @@ prompt_template = ChatPromptTemplate.from_messages(
 
 As you can see from the prompt template, this chain has a `language` and `text` input. Now, let's create an output parser:
 
-```python
-from langchain_core.prompts import ChatPromptTemplate
-parser = StrOutputParser()
-```
+[!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-chat-models.ipynb?name=create_output_parser)]
 
 We can now combine the template, model, and the output parser from above using the pipe (`|`) operator:
 
@@ -170,65 +144,27 @@ To invoke the chain, identify the inputs required and provide values using the `
 chain.invoke({"language": "italian", "text": "hi"})
 ```
 
-```output
-'ciao'
-```
-
 ### Chaining multiple LLMs together
 
-Models deployed to Azure AI Foundry support the Azure AI model inference API, which is standard across all the models. Chain multiple LLM operations based on the capabilities of each model so you can optimize for the right model based on capabilities. 
+Models deployed to Azure AI Foundry support the Model Inference API, which is standard across all the models. Chain multiple LLM operations based on the capabilities of each model so you can optimize for the right model based on capabilities. 
 
-In the following example, we create two model clients. One is a producer and another one is a verifier. To make the distinction clear, we're using a multi-model endpoint like the [Azure AI model inference service](../../model-inference/overview.md) and hence we're passing the parameter `model_name` to use a `Mistral-Large` and a `Mistral-Small` model, quoting the fact that **producing content is more complex than verifying it**.
+In the following example, we create two model clients. One is a producer and another one is a verifier. To make the distinction clear, we're using a multi-model endpoint like the [Foundry Models API](../../model-inference/overview.md) and hence we're passing the parameter `model` to use a `Mistral-Large` and a `Mistral-Small` model, quoting the fact that **producing content is more complex than verifying it**.
 
-```python
-from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
+[!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-chat-models.ipynb?name=create_producer_verifier)]
 
-producer = AzureAIChatCompletionsModel(
-    endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
-    credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
-    model_name="mistral-large-2407",
-)
-
-verifier = AzureAIChatCompletionsModel(
-    endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
-    credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
-    model_name="mistral-small",
-)
-```
 
 > [!TIP]
 > Explore the model card of each of the models to understand the best use cases for each model.
 
 The following example generates a poem written by an urban poet:
 
-```python
-from langchain_core.prompts import PromptTemplate
-
-producer_template = PromptTemplate(
-    template="You are an urban poet, your job is to come up \
-             verses based on a given topic.\n\
-             Here is the topic you have been asked to generate a verse on:\n\
-             {topic}",
-    input_variables=["topic"],
-)
-
-verifier_template = PromptTemplate(
-    template="You are a verifier of poems, you are tasked\
-              to inspect the verses of poem. If they consist of violence and abusive language\
-              report it. Your response should be only one word either True or False.\n \
-              Here is the lyrics submitted to you:\n\
-              {input}",
-    input_variables=["input"],
-)
-```
+[!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-chat-models.ipynb?name=generate_poem)]
 
 Now let's chain the pieces:
 
-```python
-chain = producer_template | producer | parser | verifier_template | verifier | parser
-```
+[!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-chat-models.ipynb?name=create_chain)]
 
-The previous chain returns the output of the step `verifier` only. Since we want to access the intermediate result generated by the `producer`, in LangChain you need to use a `RunnablePassthrough` object to also output that intermediate step. The following code shows how to do it:
+The previous chain returns the output of the step `verifier` only. Since we want to access the intermediate result generated by the `producer`, in LangChain you need to use a `RunnablePassthrough` object to also output that intermediate step. 
 
 ```python
 from langchain_core.runnables import RunnablePassthrough, RunnableParallel
@@ -241,16 +177,8 @@ chain = generate_poem | RunnableParallel(poem=RunnablePassthrough(), verificatio
 
 To invoke the chain, identify the inputs required and provide values using the `invoke` method:
 
-```python
-chain.invoke({"topic": "living in a foreign country"})
-```
+[!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-chat-models.ipynb?name=invoke_chain)]
 
-```output
-{
-  "peom": "...",
-  "verification: "false"
-}
-```
 
 ## Use embeddings models
 
@@ -263,71 +191,33 @@ export AZURE_INFERENCE_CREDENTIAL="<your-key-goes-here>"
 
 Then create the client:
 
-```python
-from langchain_azure_ai.embeddings import AzureAIEmbeddingsModel
-
-embed_model = AzureAIEmbeddingsModel(
-    endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
-    credential=os.environ['AZURE_INFERENCE_CREDENTIAL'],
-    model_name="text-embedding-3-large",
-)
-```
+[!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-embeddings.ipynb?name=create_embed_model_client)]
 
 The following example shows a simple example using a vector store in memory:
 
-```python
-from langchain_core.vectorstores import InMemoryVectorStore
+[!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-embeddings.ipynb?name=create_vector_store)]
 
-vector_store = InMemoryVectorStore(embed_model)
-```
 
 Let's add some documents:
 
-```python
-from langchain_core.documents import Document
+[!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-embeddings.ipynb?name=add_documents)]
 
-document_1 = Document(id="1", page_content="foo", metadata={"baz": "bar"})
-document_2 = Document(id="2", page_content="thud", metadata={"bar": "baz"})
-
-documents = [document_1, document_2]
-vector_store.add_documents(documents=documents)
-```
 
 Let's search by similarity:
 
-```python
-results = vector_store.similarity_search(query="thud",k=1)
-for doc in results:
-    print(f"* {doc.page_content} [{doc.metadata}]")
-```
+[!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-embeddings.ipynb?name=search_similarity)]
 
 ## Using Azure OpenAI models
 
-If you are using Azure OpenAI service or Azure AI model inference service with OpenAI models with `langchain-azure-ai` package, you might need to use `api_version` parameter to select a specific API version. The following example shows how to connect to an Azure OpenAI model deployment in Azure OpenAI service:
+If you're using Azure OpenAI models with `langchain-azure-ai` package, use the following URL:
 
 ```python
 from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
 
 llm = AzureAIChatCompletionsModel(
-    endpoint="https://<resource>.openai.azure.com/openai/deployments/<deployment-name>",
+    endpoint="https://<resource>.openai.azure.com/openai/v1",
     credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
-    api_version="2024-05-01-preview",
-)
-```
-
-> [!IMPORTANT]
-> Check which is the API version that your deployment is using. Using a wrong `api_version` or one not supported by the model results in a `ResourceNotFound` exception.
-
-If the deployment is hosted in Azure AI Services, you can use the Azure AI model inference service:
-
-```python
-from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
-
-llm = AzureAIChatCompletionsModel(
-    endpoint="https://<resource>.services.ai.azure.com/models",
-    credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
-    model_name="<model-name>",
-    api_version="2024-05-01-preview",
+    model="gpt-4o"
 )
 ```
 
@@ -337,41 +227,13 @@ If you need to debug your application and understand the requests sent to the mo
 
 First, configure logging to the level you are interested in:
 
-```python
-import sys
-import logging
+[!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-chat-models.ipynb?name=configure_logging)]
 
-# Acquire the logger for this client library. Use 'azure' to affect both
-# 'azure.core` and `azure.ai.inference' libraries.
-logger = logging.getLogger("azure")
-
-# Set the desired logging level. logging.INFO or logging.DEBUG are good options.
-logger.setLevel(logging.DEBUG)
-
-# Direct logging output to stdout:
-handler = logging.StreamHandler(stream=sys.stdout)
-# Or direct logging output to a file:
-# handler = logging.FileHandler(filename="sample.log")
-logger.addHandler(handler)
-
-# Optional: change the default logging format. Here we add a timestamp.
-formatter = logging.Formatter("%(asctime)s:%(levelname)s:%(name)s:%(message)s")
-handler.setFormatter(formatter)
-```
 
 To see the payloads of the requests, when instantiating the client, pass the argument `logging_enable`=`True` to the `client_kwargs`:
 
-```python
-import os
-from langchain_azure_ai.chat_models import AzureAIChatCompletionsModel
+[!notebook-python[](~/azureai-samples-main/scenarios/langchain/getting-started-with-langchain-chat-models.ipynb?name=create_client_with_logging)]
 
-model = AzureAIChatCompletionsModel(
-    endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
-    credential=os.environ["AZURE_INFERENCE_CREDENTIAL"],
-    model_name="mistral-large-2407",
-    client_kwargs={"logging_enable": True},
-)
-```
 
 Use the client as usual in your code.
 
@@ -381,11 +243,13 @@ You can use the tracing capabilities in Azure AI Foundry by creating a tracer. L
 
 ### Get your instrumentation connection string
 
+[!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
+
 You can configure your application to send telemetry to Azure Application Insights either by:
 
 1. Using the connection string to Azure Application Insights directly:
 
-    1. Go to [Azure AI Foundry portal](https://ai.azure.com) and select **Tracing**.
+    1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select **Tracing**.
 
     2. Select **Manage data source**. In this screen you can see the instance that is associated with the project.
 
@@ -397,11 +261,11 @@ You can configure your application to send telemetry to Azure Application Insigh
         application_insights_connection_string = "instrumentation...."
         ```
 
-2. Using the Azure AI Foundry SDK and the project connection string.
+2. Using the Azure AI Foundry SDK and the project connection string (**[!INCLUDE [hub-project-name](../../includes/hub-project-name.md)]s only**).
 
     1. Ensure you have the package `azure-ai-projects` installed in your environment.
 
-    2. Go to [Azure AI Foundry portal](https://ai.azure.com).
+    2. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
     
     3. Copy your project's connection string and set it the following code:
 
@@ -452,7 +316,7 @@ chain.invoke({"topic": "living in a foreign country"})
 
 To see traces:
 
-1. Go to [Azure AI Foundry portal](https://ai.azure.com).
+1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 2. Navigate to **Tracing** section.
 
@@ -466,5 +330,5 @@ Learn more about [how to visualize and manage traces](visualize-traces.md).
 
 * [Develop applications with LlamaIndex](llama-index.md)
 * [Visualize and manage traces in Azure AI Foundry](visualize-traces.md)
-* [Use the Azure AI model inference service](../../model-inference/overview.md)
-* [Reference: Azure AI model inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md)
+* [Use Azure AI Foundry Models](../../model-inference/overview.md)
+* [Reference: Model Inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md)

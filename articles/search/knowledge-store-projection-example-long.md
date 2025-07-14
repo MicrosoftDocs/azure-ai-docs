@@ -7,10 +7,11 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.topic: conceptual
+ms.date: 06/17/2025
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 12/10/2024
+  - sfi-ropc-nochange
 ---
 
 # Detailed example of shapes and projections in a knowledge store

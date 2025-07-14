@@ -8,10 +8,10 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 12/10/2024
+ms.date: 05/08/2025
 ---
 
-# Tips for AI enrichment in Azure AI Search 
+# Tips for AI enrichment in Azure AI Search
 
 This article contains tips to help you get started with AI enrichment and skillsets used during indexing.
 
@@ -71,7 +71,7 @@ For [parallel indexing](search-howto-large-index.md), distribute your data into 
 ## See also
 
 + [Quickstart: Create an AI enrichment pipeline in the Azure portal](search-get-started-skillset.md)
-+ [Tutorial: Learn AI enrichment REST APIs](cognitive-search-tutorial-blob.md)
++ [Tutorial: Learn AI enrichment REST APIs](tutorial-skillset.md)
 + [How to configure blob indexers](search-howto-indexing-azure-blob-storage.md)
 + [How to define a skillset](cognitive-search-defining-skillset.md)
 + [How to map enriched fields to an index](cognitive-search-output-field-mapping.md)

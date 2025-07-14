@@ -108,7 +108,7 @@ In Azure Storage, a [knowledge store](knowledge-store-concept-intro.md) can assu
 
 Enrichment is available in regions that have Azure AI services. You can check the availability of enrichment on the [regions list](search-region-support.md) page. 
 
-Billing follows a pay-as-you-go pricing model. The costs of using built-in skills are passed on when a multi-region Azure AI services key is specified in the skillset. There are also costs associated with image extraction, as metered by Azure AI Search. Text extraction and utility skills, however, aren't billable. For more information, see [How you're charged for Azure AI Search](search-sku-manage-costs.md#how-youre-charged-for-azure-ai-search).
+Billing follows a Standard pricing model. The costs of using built-in skills are passed on when a multi-region Azure AI services key is specified in the skillset. There are also costs associated with image extraction, as metered by Azure AI Search. Text extraction and utility skills, however, aren't billable. For more information, see [How you're charged for Azure AI Search](search-sku-manage-costs.md#how-youre-charged-for-the-base-service).
 
 ## Checklist: A typical workflow
 
@@ -135,7 +135,7 @@ To repeat any of the above steps, [reset the indexer](search-howto-reindex.md) b
 ## Next steps
 
 + [Quickstart: Create a skillset for AI enrichment](search-get-started-skillset.md)
-+ [Tutorial: Learn about the AI enrichment REST APIs](cognitive-search-tutorial-blob.md)
++ [Tutorial: Learn about the AI enrichment REST APIs](tutorial-skillset.md)
 + [Skillset concepts](cognitive-search-working-with-skillsets.md)
 + [Knowledge store concepts](knowledge-store-concept-intro.md)
 + [Create a skillset](cognitive-search-defining-skillset.md)

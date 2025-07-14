@@ -7,8 +7,9 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.topic: overview
-ms.date: 04/14/2024
+ms.date: 05/29/2025
 
 ---
 

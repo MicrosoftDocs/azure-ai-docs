@@ -4,7 +4,7 @@ manager: cpoulain
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 04/04/2020
-ms.author: ralphe
+ms.author: eur
 ms.custom: devx-track-csharp
 ---
 
@@ -13,7 +13,7 @@ ms.custom: devx-track-csharp
 Before you get started, make sure to:
 
 > [!div class="checklist"]
-> * [Create an AI Services resource for Speech](~/articles/ai-services/multi-service-resource.md?pivots=azportal)
+> * [Create an AI Foundry resource for Speech](~/articles/ai-services/multi-service-resource.md?pivots=azportal)
 > * [Setup your development environment and create an empty project](../../../../quickstarts/setup-platform.md?tabs=dotnet&pivots=programming-language-csharp)
 
 ## Add sample code
@@ -39,7 +39,7 @@ Before you get started, make sure to:
             static async Task CreateConversationAsync()
             {
                 // Replace these values with the details of your Cognitive Speech subscription
-                string subscriptionKey = "YourSubscriptionKey";
+                string subscriptionKey = "YourSpeechResoureKey";
 
                 // Replace below with your region identifier from here: https://aka.ms/speech/sdkregion
                 string region = "YourServiceRegion";
@@ -193,9 +193,9 @@ Before you get started, make sure to:
     }
     ```
 
-1. In the same file, replace the string `YourSubscriptionKey` with your Cognitive Speech subscription key.
+1. In the same file, replace the string `YourSpeechResoureKey` with your Cognitive Speech subscription key.
 
-1. Replace the string `YourServiceRegion` with the [region](~/articles/ai-services/speech-service/regions.md) associated with your subscription.
+1. Replace the string `YourServiceRegion` with the [region](~/articles/ai-services/speech-service/regions.md) associated with your Speech resource.
 
 1. From the menu bar, choose **File** > **Save All**.
 

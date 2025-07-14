@@ -5,9 +5,9 @@ description: Learn about the different stages of Generative Artificial Intellige
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
-ms.topic: conceptual
-author: sdgilley
-ms.author: sgilley
+ms.topic: concept-article
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: sasahami
 ms.date: 03/28/2024
 ---

@@ -3,8 +3,8 @@ title: Create a vector index in an Azure Machine Learning prompt flow (preview)
 titleSuffix: Azure Machine Learning
 description: Learn how to create a vector index in Azure Machine Learning and use it in a prompt flow.
 services: machine-learning
-ms.author: ssalgado
-author: ssalgadodev
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: balapv
 ms.service: azure-machine-learning
 ms.subservice: core
@@ -38,7 +38,7 @@ When you create a vector index, Azure Machine Learning chunks the data, creates 
 
 * An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
 
-* Access to Azure OpenAI Service.
+* Access to Azure OpenAI in Azure AI Foundry Models.
 
 * Prompt flows enabled in your Azure Machine Learning workspace. You can enable prompt flows by turning on **Build AI solutions with Prompt flow** on the **Manage preview features** panel.
 

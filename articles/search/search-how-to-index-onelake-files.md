@@ -6,29 +6,31 @@ author: gmndrg
 ms.author: gimondra
 manager: nitinme
 ms.service: azure-ai-search
+ms.topic: how-to
+ms.date: 05/08/2025
 ms.custom:
   - build-2024
   - ignite-2024
-ms.topic: how-to
-ms.date: 02/12/2025
+  - sfi-image-nochange
+  - sfi-ropc-nochange
 ---
 
 # Index data from OneLake files and shortcuts
   
-In this article, learn how to configure a OneLake files indexer for extracting searchable data and metadata data from a [lakehouse](/fabric/onelake/create-lakehouse-onelake) on top of [OneLake](/fabric/onelake/onelake-overview). 
+In this article, learn how to configure a OneLake files indexer for extracting searchable data and metadata data from a [lakehouse](/fabric/onelake/create-lakehouse-onelake) on top of [OneLake](/fabric/onelake/onelake-overview).
 
 To configure and run the indexer, you can use:
 
 + [2024-05-01-preview REST API](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2024-05-01-preview&tabs=HTTP&preserve-view=true) or a newer preview REST API.
 + An Azure SDK beta package that provides the feature.
-+ [Import data](search-get-started-portal.md) wizard in the Azure portal.
-+ [Import and vectorize data](search-get-started-portal-import-vectors.md) wizard in the Azure portal.
++ [Import data wizard](search-get-started-portal.md) in the Azure portal.
++ [Import and vectorize data wizard](search-get-started-portal-import-vectors.md) in the Azure portal.
 
 This article uses the REST APIs to illustrate each step.
   
 ## Prerequisites  
   
-+ A Fabric workspace. Follow this tutorial to [create a Fabric workspace](/fabric/data-engineering/tutorial-lakehouse-get-started). 
++ A Fabric workspace. Follow this tutorial to [create a Fabric workspace](/fabric/data-engineering/tutorial-lakehouse-get-started).
 
 + A lakehouse in a Fabric workspace. Follow this tutorial to [create a lakehouse](/fabric/data-engineering/tutorial-build-lakehouse).
 
@@ -44,7 +46,7 @@ This article uses the REST APIs to illustrate each step.
   
 + A Contributor role assignment in the Microsoft Fabric workspace where the lakehouse is located. Steps are outlined in the [Grant permissions](#assign-service-permissions) section of this article.
 
-+ [A REST client](search-get-started-rest.md) to formulate REST calls similar to the ones shown in this article.
++ A [REST client](search-get-started-text.md) to formulate REST calls similar to the ones shown in this article.
 
 ## Supported tasks
 
@@ -98,7 +100,7 @@ Before you set up indexing, review your source data to determine whether any cha
 
 + Include or exclude arbitrary files. If you want to skip a specific file for whatever reason, you can add metadata properties and values to files in your OneLake lakehouse. When an indexer encounters this property, it skips the file or its content in the indexing run.
 
-File inclusion and exclusion is covered in the [indexer configuration](#configure-and-run-the-onelake-files-indexer) step. If you don't set criteria, the indexer reports an ineligible file as an error and moves on. If enough errors occur, processing might stop. You can specify error tolerance in the indexer [configuration settings](#configure-and-run-the-onelake-files-indexer).
+File inclusion and exclusion are covered in the [indexer configuration](#configure-and-run-the-onelake-files-indexer) step. If you don't set criteria, the indexer reports an ineligible file as an error and moves on. If enough errors occur, processing might stop. You can specify error tolerance in the indexer [configuration settings](#configure-and-run-the-onelake-files-indexer).
 
 An indexer typically creates one search document per file, where the text content and metadata are captured as searchable fields in an index. If files are whole files, you can potentially parse them into [multiple search documents](search-howto-index-one-to-many-blobs.md). For example, you can parse rows in a [CSV file](search-howto-index-csv-blobs.md) to create one search document per row. If you need to chunk a single document into smaller passages to vectorize data, consider using [integrated vectorization](vector-search-integrated-vectorization.md).
 

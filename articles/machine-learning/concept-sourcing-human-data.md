@@ -1,12 +1,12 @@
 ---
 title: Manually sourcing human data for AI development
 description: Learn best practices for mitigating potential harm to people—especially in vulnerable groups—and building balanced datasets when collecting human data manually.
-author: lgayhardt
-ms.author: lagayhar
+author: s-polly
+ms.author: scottpolly
 ms.service: azure-machine-learning
 ms.subservice: responsible-ai
 ms.reviewer: nhudo
-ms.topic: conceptual 
+ms.topic: concept-article 
 ms.date: 03/17/2025
 ms.custom: responsible-ml 
 ---

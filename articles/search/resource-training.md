@@ -41,7 +41,7 @@ Learning paths are a collection of training modules that are organized around sp
 ## RAG-centric modules
 
 + [Build a RAG-based copilot solution with your own data using Azure AI Foundry](/training/modules/build-copilot-ai-studio/)
-+ [Implement Retrieval Augmented Generation (RAG) with Azure OpenAI Service](/training/modules/use-own-data-azure-openai/)
++ [Implement Retrieval Augmented Generation (RAG) with Azure OpenAI in Azure AI Foundry Models](/training/modules/use-own-data-azure-openai/)
 
 ## Pluralsight training
 

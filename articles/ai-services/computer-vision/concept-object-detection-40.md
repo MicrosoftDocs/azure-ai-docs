@@ -7,8 +7,9 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: conceptual
-ms.date: 05/01/2025
+ms.date: 05/31/2025
 ms.author: pafarley
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ---
 
 # Object detection (version 4.0)

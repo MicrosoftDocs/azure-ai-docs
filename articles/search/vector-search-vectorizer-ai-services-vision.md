@@ -19,7 +19,7 @@ ms.date: 08/05/2024
 The **Azure AI Vision** vectorizer connects to an Azure AI Vision resource to generate embeddings at query time using [the Multimodal embeddings API](/azure/ai-services/computer-vision/concept-image-retrieval). Refer to the [region availability for multimodal embeddings](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0#region-availability) to determine the regions where this model is accessible. Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your model is deployed. 
 
 > [!NOTE]
-> This vectorizer is bound to Azure AI services. Execution of the vectorizer is charged at the existing [Azure AI services pay-as-you go price](https://azure.microsoft.com/pricing/details/cognitive-services/).
+> This vectorizer is bound to Azure AI services. Execution of the vectorizer is charged at the existing [Azure AI services Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
 
 ## Vectorizer parameters
 
@@ -30,7 +30,7 @@ Parameters are case-sensitive.
 | `resourceUri` | The URI of the AI Services resource.  |
 | `apiKey`   |  The API key of the AI Services resource. |
 | `modelVersion` | (Required) The model version to be passed to the Azure AI Vision API for generating embeddings. It's important that all embeddings stored in a given index field are generated using the same `modelVersion`. For information about version support for this model refer to [multimodal embeddings](/azure/ai-services/computer-vision/concept-image-retrieval#what-are-vector-embeddings). |
-| `authIdentity`   | A user-managed identity used by the search service for connecting to AI Services. You can use either a [system or user managed identity](search-howto-managed-identities-data-sources.md). To use a system manged identity, leave `apiKey` and `authIdentity` blank. The system-managed identity is used automatically. A managed identity must have Cognitive Services User permissions to use this vectorizer. |
+| `authIdentity`   | A user-managed identity used by the search service for connecting to AI Services. You can use either a [system or user managed identity](search-howto-managed-identities-data-sources.md). To use a system managed identity, leave `apiKey` and `authIdentity` blank. The system-managed identity is used automatically. A managed identity must have Cognitive Services User permissions to use this vectorizer. |
 
 ## Supported vector query types
 

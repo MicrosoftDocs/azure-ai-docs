@@ -3,8 +3,8 @@ title: Manage and optimize costs
 titleSuffix: Azure Machine Learning
 description: Use these tips to optimize your cost when you build machine learning models in Azure Machine Learning.
 ms.reviewer: None
-author: ssalgadodev
-ms.author: ssalgado
+author: s-polly
+ms.author: scottpolly
 ms.custom: subject-cost-optimization
 ms.service: azure-machine-learning
 ms.subservice: core
@@ -121,7 +121,7 @@ When you create a [compute instance](concept-compute-instance.md), the VM stays 
 
 ## Use reserved instances
 
-Another way to save money on compute resources is Azure Reserved VM Instance. With this offering, you commit to one-year or three-year terms. These discounts range up to 72% of the pay-as-you-go prices and are applied directly to your monthly Azure bill.
+Another way to save money on compute resources is Azure Reserved VM Instance. With this offering, you commit to one-year or three-year terms. These discounts range up to 72% of the Standard prices and are applied directly to your monthly Azure bill.
 
 Azure Machine Learning Compute supports reserved instances inherently. If you purchase a one-year or three-year reserved instance, we automatically apply discount against your Azure Machine Learning managed compute.
 

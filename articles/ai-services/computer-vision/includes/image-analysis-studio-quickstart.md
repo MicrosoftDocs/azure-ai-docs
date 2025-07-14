@@ -15,7 +15,7 @@ ms.author: pafarley
 
 ## Prerequisites
 
-* Sign in to [Vision Studio](https://portal.vision.cognitive.azure.com/) with your Azure subscription and Azure AI services resource. See the [Get started section](../overview-vision-studio.md#get-started-using-vision-studio) of the overview if you need help with this step.
+* Sign in to [Vision Studio](https://portal.vision.cognitive.azure.com/) with your Azure subscription and Azure AI Foundry resource. See the [Get started section](../overview-vision-studio.md#get-started-using-vision-studio) of the overview if you need help with this step.
 
 
 ## Analyze an image

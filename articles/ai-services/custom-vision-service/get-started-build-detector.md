@@ -8,8 +8,10 @@ ms.service: azure-ai-custom-vision
 ms.topic: quickstart
 ms.date: 11/06/2024
 ms.author: pafarley
-ms.custom: mode-other
 keywords: image recognition, image recognition app, custom vision
+ms.custom:
+  - mode-other
+  - sfi-image-nochange
 ---
 
 # Quickstart: Build an object detector with the Custom Vision website

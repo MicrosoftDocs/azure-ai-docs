@@ -12,20 +12,20 @@ ms.author: eur
 
 ## Prerequisites
 
-[!INCLUDE [Prerequisites](../../common/azure-prerequisites.md)]
+[!INCLUDE [Prerequisites](../../common/azure-prerequisites-resourcekey-endpoint.md)]
 
 ## Set up the environment
 
 The Speech SDK for Python is available as a [Python Package Index (PyPI) module](https://pypi.org/project/azure-cognitiveservices-speech/). The Speech SDK for Python is compatible with Windows, Linux, and macOS.
 
-- You must install the [Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017, 2019, and 2022](/cpp/windows/latest-supported-vc-redist?view=msvc-170&preserve-view=true) for your platform. Installing this package for the first time might require a restart.
-- On Linux, you must use the x64 target architecture.
+- Install the [Microsoft Visual C++ Redistributable for Visual Studio 2015, 2017, 2019, and 2022](/cpp/windows/latest-supported-vc-redist?view=msvc-170&preserve-view=true) for your platform. Restart your machine if this is your first installation of the package.
+- Use the x64 target architecture on Linux.
 
 Install a version of [Python from 3.7 or later](https://www.python.org/downloads/). First check the [SDK installation guide](../../../quickstarts/setup-platform.md?pivots=programming-language-python) for any more requirements. 
 
 ### Set environment variables
 
-[!INCLUDE [Environment variables](../../common/environment-variables.md)]
+[!INCLUDE [Environment variables](../../common/environment-variables-resourcekey-endpoint.md)]
 
 ## Implement diarization from file with conversation transcription
 
@@ -69,8 +69,9 @@ Follow these steps to create a new console application.
         print('SessionStarted event')
 
     def recognize_from_file():
-        # This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
-        speech_config = speechsdk.SpeechConfig(subscription=os.environ.get('SPEECH_KEY'), region=os.environ.get('SPEECH_REGION'))
+        # This example requires environment variables named "SPEECH_KEY" and "ENDPOINT"
+        # Replace with your own subscription key and endpoint, the endpoint is like : "https://YourServiceRegion.api.cognitive.microsoft.com"
+        speech_config = speechsdk.SpeechConfig(subscription=os.environ.get('SPEECH_KEY'), endpoint=os.environ.get('ENDPOINT'))
         speech_config.speech_recognition_language="en-US"
         speech_config.set_property(property_id=speechsdk.PropertyId.SpeechServiceResponse_DiarizeIntermediateResults, value='true')
 
@@ -124,7 +125,7 @@ Follow these steps to create a new console application.
    ```
 
 > [!IMPORTANT]
-> Make sure that you set the `SPEECH_KEY` and `SPEECH_REGION` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
+> Make sure that you set the `SPEECH_KEY` and `ENDPOINT` [environment variables](#set-environment-variables). If you don't set these variables, the sample fails with an error message.
 
 The transcribed conversation should be output as text:
 
@@ -355,7 +356,7 @@ TRANSCRIBED:
 Speakers are identified as Guest-1, Guest-2, and so on, depending on the number of speakers in the conversation.
 
 > [!NOTE]
-> You might see `Speaker ID=Unknown` in some of the early intermediate results when the speaker is not yet identified. Without intermediate diarization results (if you don't set the `PropertyId.SpeechServiceResponse_DiarizeIntermediateResults` property to "true"), the speaker ID is always "Unknown".
+> You might see `Speaker ID=Unknown` in some of the early intermediate results when the speaker isn't yet identified. Without intermediate diarization results (if you don't set the `PropertyId.SpeechServiceResponse_DiarizeIntermediateResults` property to "true"), the speaker ID is always "Unknown."
 
 ## Clean up resources
 

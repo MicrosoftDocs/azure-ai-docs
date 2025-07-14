@@ -30,9 +30,9 @@ Follow these steps to build and run the captioning quickstart code example.
     ```
 1. Run the application with your preferred command line arguments. See [usage and arguments](#usage-and-arguments) for the available options. Here is an example:
     ```console
-    node captioning.js --key YourSubscriptionKey --region YourServiceRegion --input caption.this.wav --output caption.output.txt --srt --recognizing --threshold 5 --profanity mask --phrases "Contoso;Jessie;Rehaan"
+    node captioning.js --key YourSpeechResoureKey --region YourServiceRegion --input caption.this.wav --output caption.output.txt --srt --recognizing --threshold 5 --profanity mask --phrases "Contoso;Jessie;Rehaan"
     ```
-    Replace `YourSubscriptionKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource [region](~/articles/ai-services/speech-service/regions.md), such as `westus` or `northeurope`. Make sure that the paths specified by `--input` and `--output` are valid. Otherwise you must change the paths.
+    Replace `YourSpeechResoureKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource [region](~/articles/ai-services/speech-service/regions.md), such as `westus` or `northeurope`. Make sure that the paths specified by `--input` and `--output` are valid. Otherwise you must change the paths.
 
     > [!NOTE]
     > The Speech SDK for JavaScript doesn't support [compressed input audio](~/articles/ai-services/speech-service/how-to-use-codec-compressed-audio-input-streams.md). You must use a WAV file as shown in the example.

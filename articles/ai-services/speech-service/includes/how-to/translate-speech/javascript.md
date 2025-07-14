@@ -13,7 +13,7 @@ ms.custom: devx-track-js
 
 ## Create a translation configuration
 
-To call the translation service by using the Speech SDK, you need to create a [`SpeechTranslationConfig`](/javascript/api/microsoft-cognitiveservices-speech-sdk/speechtranslationconfig) instance. This class includes information about your subscription, like your key and associated region, endpoint, host, or authorization token.
+To call the translation service by using the Speech SDK, you need to create a [`SpeechTranslationConfig`](/javascript/api/microsoft-cognitiveservices-speech-sdk/speechtranslationconfig) instance. This class includes information about your Speech resource, like your key and associated region, endpoint, host, or authorization token.
 
 > [!NOTE]
 > Regardless of whether you're performing speech recognition, speech synthesis, translation, or intent recognition, you'll always create a configuration.
@@ -28,7 +28,7 @@ You can initialize `SpeechTranslationConfig` in a few ways:
 Let's look at how you create a `SpeechTranslationConfig` instance by using a key and region. Get the Speech resource key and region in the [Azure portal](https://portal.azure.com).
 
 ```javascript
-const speechTranslationConfig = SpeechTranslationConfig.fromSubscription("YourSubscriptionKey", "YourServiceRegion");
+const speechTranslationConfig = SpeechTranslationConfig.fromSubscription("YourSpeechResoureKey", "YourServiceRegion");
 ```
 
 ## Initialize a translator

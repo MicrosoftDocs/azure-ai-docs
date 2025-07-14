@@ -13,6 +13,8 @@ ms.date: 3/10/2025
 
 # What is intent recognition?
 
+[!INCLUDE [deprecation notice](./includes/intent-recognition-retire.md)]
+
 In this overview, you learn about the benefits and capabilities of intent recognition. An intent is something the user wants to do: book a flight, check the weather, or make a call. With intent recognition, your applications, tools, and devices can determine what the user wants to initiate or do based on options. You define user intent in the intent recognizer or conversational language understanding (CLU) model.
 
 ## Pattern matching
@@ -31,7 +33,7 @@ For more information, see the [pattern matching concepts](./pattern-matching-ove
 
 Conversational language understanding (CLU) enables users to build custom natural language understanding models to predict the overall intention of an incoming utterance and extract important information from it.
 
-Both an AI Services resource for Speech and Language resource are required to use CLU with the Speech SDK. The Speech resource is used to transcribe the user's speech into text, and the Language resource is used to recognize the intent of the utterance. To get started, see the [quickstart](get-started-intent-recognition-clu.md).
+Both an AI Foundry resource for Speech and Language resource are required to use CLU with the Speech SDK. The Speech resource is used to transcribe the user's speech into text, and the Language resource is used to recognize the intent of the utterance. To get started, see the [quickstart](get-started-intent-recognition-clu.md).
 
 > [!IMPORTANT]
 > When you use conversational language understanding with the Speech SDK, you are charged both for the speech to text recognition request and the Language service request for CLU. For more information about pricing for conversational language understanding, see [Language service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/language-service/).

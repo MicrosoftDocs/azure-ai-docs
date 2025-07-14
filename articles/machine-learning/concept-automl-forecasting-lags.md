@@ -3,8 +3,8 @@ title: Lag features for time-series forecasting in AutoML
 titleSuffix: Azure Machine Learning
 description: Explore how automated machine learning (AutoML) in Azure Machine Learning creates lag and rolling window aggregation to forecast time-series regression models.
 services: machine-learning
-author: ssalgadodev
-ms.author: ssalgado
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: vlbejan
 ms.service: azure-machine-learning
 ms.subservice: automl

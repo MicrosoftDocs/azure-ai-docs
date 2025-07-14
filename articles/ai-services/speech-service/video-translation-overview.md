@@ -5,7 +5,7 @@ description: With video translation, you can seamlessly integrate multi-language
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 4/15/2025
+ms.date: 6/13/2025
 ms.reviewer: eur
 ms.author: eur
 author: eric-urban
@@ -13,9 +13,7 @@ ms.custom: references_regions
 #Customer intent: As a developer, I want to learn about video translation in Azure AI Speech.
 ---
 
-# What is video translation (preview) 
-
-[!INCLUDE [Feature preview](../includes/preview-feature.md)]
+# What is video translation?
 
 Video translation is a feature in Azure AI Speech that enables you to seamlessly translate and generate videos in multiple languages automatically. This feature is designed to help you localize your video content to cater to diverse audiences around the globe. You can efficiently create immersive, localized videos across various use cases such as vlogs, education, news, enterprise training, advertising, film, TV shows, and more.
 
@@ -56,7 +54,7 @@ Video translation provided by Azure AI Speech has a wide range of use cases acro
   Translates the transcribed content from the original language (Language A) to the target language (Language B) using advanced language processing techniques. Enhances translation quality and refines gender-aware translated text through LLM reformulation. 
 - **Automatic translation – voice generation in other language.**
   
-  Utilizes AI-powered text-to-speech technology to automatically generate human-like voices in the target language. These voices are precisely synchronized with the video, ensuring a flawless translation experience. This includes utilizing prebuilt neural voices for high-quality output and offering options for personal voice. 
+  Utilizes AI-powered text-to-speech technology to automatically generate human-like voices in the target language. These voices are precisely synchronized with the video, ensuring a flawless translation experience. This includes utilizing standard voices for high-quality output and offering options for personal voice. 
 - **Human in the loop for content editing.**
   
   Allows for human intervention to review and edit the translated content, ensuring accuracy and cultural appropriateness before finalizing the dubbed video. 

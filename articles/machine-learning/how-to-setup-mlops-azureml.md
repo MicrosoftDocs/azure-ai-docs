@@ -3,14 +3,17 @@ title: Set up MLOps with Azure DevOps
 titleSuffix: Azure Machine Learning
 description: Learn how to set up a sample MLOps environment in Azure Machine Learning
 services: machine-learning
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.service: azure-machine-learning
 ms.reviewer: kritifaujdar
 ms.subservice: mlops
 ms.date: 11/20/2024
-ms.topic: conceptual
-ms.custom: cli-v2, sdk-v2
+ms.topic: concept-article
+ms.custom:
+  - cli-v2
+  - sdk-v2
+  - sfi-image-nochange
 ---
 
 # Set up MLOps with Azure DevOps

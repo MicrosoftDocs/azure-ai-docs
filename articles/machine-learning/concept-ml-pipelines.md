@@ -5,9 +5,9 @@ description: Learn how machine learning pipelines help you build, optimize, and 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.topic: conceptual
-ms.author: lagayhar
-author: lgayhardt
+ms.topic: concept-article
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: lagayhar
 ms.date: 09/13/2024
 monikerRange: 'azureml-api-2 || azureml-api-1'

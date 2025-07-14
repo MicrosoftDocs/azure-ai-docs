@@ -5,7 +5,7 @@ description: Learn how to generate a synthetic dataset in Azure AI Foundry porta
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 03/11/2025
+ms.date: 05/20/2025
 ms.reviewer: vkann
 reviewer: anshirga
 ms.author: ssalgado

@@ -2,12 +2,12 @@
 title: Data limits for Language service features
 titleSuffix: Azure AI services
 description: Data and service limitations for Azure AI Language features.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 04/29/2025
-ms.author: jboback
+ms.date: 05/23/2025
+ms.author: lajanuar
 ---
 
 # Service limits for Azure AI Language

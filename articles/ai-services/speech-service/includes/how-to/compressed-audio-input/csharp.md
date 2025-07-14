@@ -43,7 +43,7 @@ using Microsoft.CognitiveServices.Speech.Audio;
 
 var speechConfig =
     SpeechConfig.FromSubscription(
-        "YourSubscriptionKey",
+        "YourSpeechResoureKey",
         "YourServiceRegion");
 
 // Create an audio config specifying the compressed

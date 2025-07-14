@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 01/27/2025
+ms.date: 05/19/2025
 ms.author: lajanuar
 ms.custom: cogserv-non-critical-translator
 #Customer intent: As an Azure AI Custom Translator user, I want to understand how BLEU score works so that I understand system test outcome better.

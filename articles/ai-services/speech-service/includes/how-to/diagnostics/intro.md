@@ -1,9 +1,9 @@
 ---
-author: charles-fu
+author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 03/20/2025
-ms.author: changfu001
+ms.author: eur
 ---
 
 With Speech SDK version 1.43.0, the logging mechanism is extended with more types of loggers: `File logger`, `Memory logger` and `Event logger`. 

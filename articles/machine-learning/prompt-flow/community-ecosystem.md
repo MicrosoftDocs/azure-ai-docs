@@ -7,9 +7,9 @@ ms.service: azure-machine-learning
 ms.subservice: prompt-flow
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-author: lgayhardt
-ms.author: lagayhar
+ms.topic: concept-article
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: chenlujiao
 ms.date: 09/30/2024
 ---

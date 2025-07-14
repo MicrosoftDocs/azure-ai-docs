@@ -1,9 +1,9 @@
 ---
-author: alexeyo26
+author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 03/19/2021
-ms.author: alexeyo
+ms.author: eur
 ---
 
 ## Simultaneous use of private endpoints and Virtual Network service endpoints

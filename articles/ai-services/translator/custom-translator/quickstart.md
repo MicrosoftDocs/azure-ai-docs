@@ -5,13 +5,13 @@ description: A step-by-step guide to building a translation system using the Azu
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 01/27/2025
+ms.date: 05/19/2025
 ms.author: lajanuar
 ms.topic: quickstart
 ---
 # Quickstart: Build, publish, and translate with custom models
 
-Translator is a cloud-based neural machine translation service that is part of the Azure AI services family of REST API that can be used with any operating system. Translator powers many Microsoft products and services used by thousands of businesses worldwide to perform language translation and other language-related operations. In this quickstart, learn to build custom solutions for your applications across all [supported languages](../language-support.md).
+Translator is a cloud-based neural machine translation service that is part of the Azure AI services family of REST API that can be used with any operating system. Translator powers many Microsoft products and services used by thousands of businesses worldwide to perform language translation and other language-related operations. In this quickstart, learn to build custom solutions for your applications across all [supported languages](../../language-support.md).
 
 ## Prerequisites
 
@@ -47,7 +47,7 @@ You can read an overview of translation and custom translation, learn some tips,
 
 1. [**Publish (deploy) your trained model**](#publish-your-model). Your custom model is made available for runtime translation requests.
 
-1. [**Translate text**](#translate-text). Use the cloud-based, secure, high performance, highly scalable Microsoft Translator [Text API V3](../text-translation/reference/v3/translate.md?tabs=curl) to make translation requests.
+1. [**Translate text**](#translate-text). Use the cloud-based, secure, high performance, highly scalable Microsoft Translator [Text API v3](../text-translation/reference/v3/translate.md?tabs=curl) to make translation requests.
 
 ## Create a workspace
 
@@ -69,7 +69,7 @@ You can read an overview of translation and custom translation, learn some tips,
 
 1. Select **Done**.
 
-   >[!Note]
+   >[!NOTE]
    > Region must match the region that was selected during the resource creation. You can use **KEY 1** or **KEY 2.**
 
    :::image type="content" source="media/quickstart/resource-key.png" alt-text="Screenshot illustrating the resource key.":::
@@ -102,8 +102,8 @@ In order to create a custom model, you need to upload all or a combination of [t
 
 In this quickstart, we show you how to upload [training](concepts/model-training.md#training-document-type-for-azure-ai-custom-translator) documents for customization.
 
->[!Note]
-> You can use our sample training, phrase and sentence dictionaries dataset, [Customer sample English-to-German datasets](https://github.com/MicrosoftTranslator/CustomTranslatorSampleDatasets), for this quickstart. However, for production, it's better to upload your own training dataset.
+>[!NOTE]
+> You can use our sample training, phrase, and sentence dictionaries dataset, [Customer sample English-to-German datasets](https://github.com/MicrosoftTranslator/CustomTranslatorSampleDatasets), for this quickstart. However, for production, it's better to upload your own training dataset.
 
 1. Select *English-to-German* project name.
 
@@ -121,7 +121,7 @@ In this quickstart, we show you how to upload [training](concepts/model-training
 
 1. Select **Upload**
 
-    >[!Note]
+    >[!NOTE]
     >You can upload the sample phrase and sentence dictionaries dataset. This step is left for you to complete.
 
    :::image type="content" source="media/quickstart/upload-model.png" alt-text="Screenshot illustrating how to upload documents.":::
@@ -142,8 +142,8 @@ Now you're ready to train your English-to-German model.
 
 1. Select **Train** to confirm.
 
-    >[!Note]
-    >**Notifications** displays model training in progress, e.g., **Submitting data** state. Training model takes few hours, subject to the number of selected sentences.
+    >[!NOTE]
+    >**Notifications** displays model training in progress, for example, **Submitting data** state. Training model takes few hours, subject to the number of selected sentences.
 
     :::image type="content" source="media/quickstart/train-model.png" alt-text="Screenshot illustrating how to create a model.":::
 
@@ -153,8 +153,8 @@ Now you're ready to train your English-to-German model.
 
 1. Evaluate the model [`BLEU`](beginners-guide.md#what-is-a-bleu-score) score. The test set **BLEU score** is the custom model score and **Baseline BLEU** is the pretrained baseline model used for customization. A higher **BLEU score** means higher translation quality using the custom model.
 
-    >[!Note]
-    >If you train with our shared customer sample datasets, BLEU score will be different than the image.
+    > [!NOTE]
+    > If you train with our shared customer sample datasets, `BLEU` score can be different than the image.
 
     :::image type="content" source="media/quickstart/model-details.png" alt-text="Screenshot illustrating model details.":::
 
@@ -182,7 +182,7 @@ Publishing your model makes it available for use with the Translator API. A proj
 
 ## Translate text
 
-1. Developers should use the `Category ID` when making translation requests with Microsoft Translator [Text API V3](../text-translation/reference/v3/translate.md?tabs=curl). More information about the Translator Text API can be found on the [API Reference](../text-translation/reference/v3/reference.md) webpage.
+1. Developers should use the `Category ID` when making translation requests with Microsoft Translator [Text API v3](../text-translation/reference/v3/translate.md?tabs=curl). More information about the Translator Text API can be found on the [API Reference](../text-translation/reference/v3/reference.md) webpage.
 
 1. Business users can download and install our free [DocumentTranslator app for Windows](https://github.com/MicrosoftTranslator/DocumentTranslation/releases).
 

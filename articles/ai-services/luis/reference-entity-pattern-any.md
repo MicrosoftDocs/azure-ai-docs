@@ -2,13 +2,13 @@
 title: Pattern.any entity type - LUIS
 titleSuffix: Azure AI services
 description: Pattern.any is a variable-length placeholder used only in a pattern's template utterance to mark where the entity begins and ends.
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
 ms.topic: reference
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 # Pattern.any entity
 

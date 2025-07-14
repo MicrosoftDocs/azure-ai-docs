@@ -6,10 +6,11 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
 ms.topic: how-to
-ms.author: lagayhar
-author: lgayhardt
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: jinzhong
 ms.date: 12/18/2023
+ms.custom: sfi-image-nochange
 ---
 
 # Incorporate images into prompt flow (preview)

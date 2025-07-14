@@ -5,7 +5,7 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 12/1/2023
+ms.date: 5/19/2025
 ms.custom: include
 ---
 
@@ -15,7 +15,7 @@ All data you upload must meet the requirements for the data type that you choose
 
 > [!NOTE]
 > - Standard subscription (S0) users can upload five data files simultaneously. If you reach the limit, wait until at least one of your data files finishes importing. Then try again.
-> - The maximum number of data files allowed to be imported per subscription is 500 .zip files for standard subscription (S0) users. Please see out [Speech service quotas and limits](../../../../speech-services-quotas-and-limits.md#custom-neural-voice---professional) for more details.
+> - The maximum number of data files allowed to be imported per subscription is 500 .zip files for standard subscription (S0) users. Please see out [Speech service quotas and limits](../../../../speech-services-quotas-and-limits.md#custom-voice---professional) for more details.
 
 ## Upload your data
 
@@ -24,9 +24,12 @@ When you're ready to upload your data, go to the **Prepare training data** tab t
 To upload training data, follow these steps:
 
 1. Sign in to the [Speech Studio](https://aka.ms/speechstudio/customvoice).
-1. Select **Custom voice** > Your project name > **Prepare training data** > **Upload data**. 
+1. Select **Custom voice** > Your project name > **Prepare training data** > **Upload data**.
 1. In the **Upload data** wizard, choose a [data type](../../../../how-to-custom-voice-training-data.md) and then select **Next**.
 1. Select local files from your computer or enter the Azure Blob storage URL to upload data.
+1. If you selected **Long audio + transcript** or **Audio only** data types in contextual support projects, you'll see an option to choose the processing mode:
+   - **Processed as Contextual**: Processes audio while preserving contextual information for enhanced conversational abilities and more natural speech patterns.
+   - **Segmented**: Processes audio and transcript into individual utterances using standard segmentation.
 1. Under **Specify the target training set**, select an existing training set or create a new one. If you created a new training set, make sure it's selected in the drop-down list before you continue.
 1. Select **Next**.
 1. Enter a name and description for your data and then select **Next**.
@@ -36,6 +39,8 @@ To upload training data, follow these steps:
 > Duplicate IDs are not accepted. Utterances with the same ID will be removed.
 > 
 > Duplicate audio names are removed from the training. Make sure the data you select don't contain the same audio names within the .zip file or across multiple .zip files. If utterance IDs (either in audio or script files) are duplicates, they're rejected.
+>
+> A training set can only contain data processed in the same mode. For example, if you upload data with **Processed as Contextual** mode to a training set, all subsequent uploads to that same training set must also use the **Processed as Contextual** mode.
 
 Data files are automatically validated when you select **Submit**. Data validation includes series of checks on the audio files to verify their file format, size, and sampling rate. If there are any errors, fix them and submit again. 
 
@@ -45,7 +50,9 @@ After you upload the data, you can check the details in the training set detail 
 
 After upload, you can check the data details of the training set. Before continuing to [train your voice model](../../../../professional-voice-train-voice.md), you should try to resolve any data issues.
 
-You can identify and resolve data issues per utterance in [Speech Studio](https://aka.ms/custom-voice-portal). 
+You can identify and resolve data issues per utterance in [Speech Studio](https://aka.ms/custom-voice-portal).
+
+#### Processed as Segmented
 
 1. On the detail page, go to the **Accepted data** or **Rejected data** page. Select individual utterances you want to change, then select **Edit**.
 
@@ -76,6 +83,38 @@ You can identify and resolve data issues per utterance in [Speech Studio](https:
    :::image type="content" source="../../../../media/custom-voice/cnv-edit-trainingset-analyze.png" alt-text="Screenshot of selecting Analyze data on Data details page.":::
 
    You can also delete utterances with issues by selecting them and clicking **Delete**.
+
+
+#### Processed as Contextual
+
+Unlike processed as segmented, **Processed as Contextual** preserves the original audio files and generates corresponding contextual information.
+
+1. On the detail page, click on individual utterances with "Number Of issues".
+
+   :::image type="content" source="../../../../media/custom-voice/contextual-training/contextual-details.png" alt-text="Screenshot of contextual utterances details page.":::
+
+   Contextual information is presented as segments. Select the segment you want to modify, then click the **Edit** button.
+   
+   :::image type="content" source="../../../../media/custom-voice/contextual-training/contextual-segments.png" alt-text="Screenshot of contextual segments to be displayed.":::
+
+   You can choose which data issues to be displayed based on your criteria.
+   
+   :::image type="content" source="../../../../media/custom-voice/cnv-issues-display-criteria.png" alt-text="Screenshot of choosing which data issues to be displayed.":::
+
+1. Edit the transcript in the text box according to the issue description, then select Done.
+
+   :::image type="content" source="../../../../media/custom-voice/contextual-training/contextual-edit-segment.png" alt-text="Screenshot of selecting Done button after editing transcript.":::
+
+1. After you've made changes to your data, you need to check the data quality by clicking Analyze data before using this dataset for training.
+
+   You can't select this training set for training model before the analysis is complete.
+
+   :::image type="content" source="../../../../media/custom-voice/cnv-edit-trainingset-analyze.png" alt-text="Screenshot of selecting Analyze data on Data details page.":::
+
+> [!NOTE]
+> Deleting a segment of contextual information will not exclude that content from training. Only delete segments when their information is already included or will be included in adjacent segments.
+>
+> Rejected segments will not be used for training.
 
 ### Typical data issues
 

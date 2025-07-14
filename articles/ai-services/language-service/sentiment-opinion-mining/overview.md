@@ -2,12 +2,12 @@
 title: What is sentiment analysis and opinion mining in the Language service?
 titleSuffix: Azure AI services
 description: An overview of the sentiment analysis feature in Azure AI services, which helps you find out what people think of a topic by mining text for clues.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
 ms.date: 02/17/2025
-ms.author: jboback
+ms.author: lajanuar
 ms.custom: language-service-sentiment-opinion-mining
 ---
 
@@ -46,7 +46,7 @@ As you use sentiment analysis, see the following reference documentation and sam
 
 ## Responsible AI 
 
-An AI system includes not only the technology, but also the people who use it, the people who are affected by it, and the environment in which it's deployed. Read the [transparency note for sentiment analysis](/legal/cognitive-services/language-service/transparency-note-sentiment-analysis?context=/azure/ai-services/language-service/context/context) to learn about responsible AI use and deployment in your systems. You can also see the following articles for more information:
+An AI system includes not only the technology, but also the people who use it, the people who are affected by it, and the environment in which it's deployed. Read the [transparency note for sentiment analysis](/azure/ai-foundry/responsible-ai/language-service/transparency-note-sentiment-analysis) to learn about responsible AI use and deployment in your systems. You can also see the following articles for more information:
 
 ## Next steps
 
