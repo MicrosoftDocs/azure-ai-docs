@@ -10,6 +10,7 @@ ms.author: scottpolly
 ms.topic: conceptual
 ms.reviewer: vijetaj
 ms.date: 10/28/2024
+ms.custom: sfi-ropc-nochange
 ---
 
 # Set up a common identity on a Data Science Virtual Machine

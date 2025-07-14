@@ -10,7 +10,9 @@ ms.author: scottpolly
 ms.reviewer: siarora
 ms.date: 10/04/2024
 ms.topic: how-to
-ms.custom: troubleshooting
+ms.custom:
+  - troubleshooting
+  - sfi-image-nochange
 # Customer intent: As an admin, I want to understand how to manage and increase quotas and limits for resources with Azure Machine Learning.
 ---
 

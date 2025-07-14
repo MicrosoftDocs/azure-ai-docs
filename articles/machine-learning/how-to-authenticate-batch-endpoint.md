@@ -10,7 +10,9 @@ author: s-polly
 ms.author: scottpolly
 ms.date: 10/10/2023
 ms.reviewer: cacrest
-ms.custom: devplatv2
+ms.custom:
+  - devplatv2
+  - sfi-image-blocked
 ---
 
 # Authorization on batch endpoints

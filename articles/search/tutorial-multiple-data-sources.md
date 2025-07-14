@@ -13,6 +13,7 @@ ms.custom:
   - devx-track-csharp
   - devx-track-dotnet
   - ignite-2023
+  - sfi-ropc-nochange
 ---
 
 # Tutorial: Index from multiple data sources using the .NET SDK

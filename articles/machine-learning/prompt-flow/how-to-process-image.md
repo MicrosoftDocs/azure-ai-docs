@@ -10,6 +10,7 @@ ms.author: scottpolly
 author: s-polly
 ms.reviewer: jinzhong
 ms.date: 12/18/2023
+ms.custom: sfi-image-nochange
 ---
 
 # Incorporate images into prompt flow (preview)

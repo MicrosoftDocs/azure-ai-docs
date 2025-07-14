@@ -5,13 +5,14 @@ description: Learn how to secure prompt flow with virtual network.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
-ms.custom:
-  - ignite-2023
 ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: sooryar 
 ms.date: 7/10/2025
+ms.custom:
+  - ignite-2023
+  - sfi-image-nochange
 ---
 
 # Network isolation in prompt flow 

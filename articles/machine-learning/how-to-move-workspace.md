@@ -10,6 +10,7 @@ ms.subservice: enterprise-readiness
 ms.reviewer: deeikele
 ms.topic: how-to
 ms.date: 06/12/2025
+ms.custom: sfi-image-nochange
 ---
 
 # Move Azure Machine Learning workspaces between subscriptions (preview)

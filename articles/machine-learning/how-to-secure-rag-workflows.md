@@ -15,6 +15,7 @@ ms.custom:
   - prompt-flow
   - ignite-2023
   - code03
+  - sfi-image-nochange
 ---
 
 # Secure your RAG workflows with network isolation (preview)

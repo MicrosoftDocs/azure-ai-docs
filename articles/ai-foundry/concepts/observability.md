@@ -187,7 +187,6 @@ Observability features such as Risk and Safety Evaluations and Continuous Evalua
 
 ## Related content
 
-- [Evaluate your generative AI apps via the playground](../how-to/evaluate-prompts-playground.md)
 - [Evaluate with the Azure AI evaluate SDK](../how-to/develop/evaluate-sdk.md)
 - [Evaluate your generative AI apps with the Azure AI Foundry portal](../how-to/evaluate-generative-ai-app.md)
 - [View the evaluation results](../how-to/evaluate-results.md)

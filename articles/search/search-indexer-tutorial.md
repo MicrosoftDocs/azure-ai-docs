@@ -13,6 +13,7 @@ ms.custom:
   - devx-track-csharp
   - devx-track-dotnet
   - ignite-2023
+  - sfi-ropc-nochange
 ---
 
 # Tutorial: Index Azure SQL data using the .NET SDK

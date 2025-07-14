@@ -5,10 +5,12 @@ titleSuffix: Azure AI services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
-ms.custom: build-2023
 ms.topic: conceptual
 ms.date: 01/29/2025
 ms.author: pafarley
+ms.custom:
+  - build-2023
+  - sfi-image-nochange
 ---
 
 

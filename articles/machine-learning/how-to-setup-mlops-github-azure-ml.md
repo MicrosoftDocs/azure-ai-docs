@@ -10,7 +10,13 @@ ms.reviewer: kritifaujdar
 ms.subservice: mlops
 ms.date: 02/07/2025
 ms.topic: concept-article
-ms.custom: cli-v2, sdk-v2, github-actions-azure, build-2023, build-2023-dataai
+ms.custom:
+  - cli-v2
+  - sdk-v2
+  - github-actions-azure
+  - build-2023
+  - build-2023-dataai
+  - sfi-image-nochange
 ---
 
 # Set up MLOps with GitHub

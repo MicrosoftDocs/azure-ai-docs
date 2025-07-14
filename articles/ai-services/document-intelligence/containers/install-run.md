@@ -8,6 +8,7 @@ ms.service: azure-ai-document-intelligence
 ms.topic: how-to
 ms.date: 04/03/2025
 ms.author: lajanuar
+ms.custom: sfi-ropc-nochange
 ---
 
 # Install and run containers

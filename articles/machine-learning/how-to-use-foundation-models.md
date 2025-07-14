@@ -11,6 +11,7 @@ author: s-polly
 ms.author: scottpolly
 ms.date: 01/07/2025
 ms.collection: ce-skilling-ai-copilot
+ms.custom: sfi-image-nochange
 ---
 
 # How to use Open Source foundation models curated by Azure Machine Learning 

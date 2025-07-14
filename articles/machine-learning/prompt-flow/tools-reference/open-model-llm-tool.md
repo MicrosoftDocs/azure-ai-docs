@@ -5,12 +5,14 @@ description: The prompt flow Open Model LLM tool enables you to utilize various 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
-ms.custom: ignite-2023
 ms.topic: reference
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: GEWOODS
 ms.date: 11/02/2023
+ms.custom:
+  - ignite-2023
+  - sfi-image-nochange
 ---
 
 # Open Model LLM tool

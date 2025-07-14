@@ -10,6 +10,7 @@ ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: tutorial
 ms.date: 02/05/2025
+ms.custom: sfi-ropc-nochange
 
 ---
 
