@@ -40,14 +40,15 @@ pip install azure-ai-evaluation
 ```
 
 ## Evaluate Azure AI agents
-If you use [Foundry Agent Service](../../../ai-services/agents/overview.md), however, you can seamlessly evaluate your agents via our converter support for Azure AI agent threads and runs. We support this list of evaluators for Azure AI agent messages from our converter: 
+If you use [Foundry Agent Service](../../../ai-services/agents/overview.md), you can seamlessly evaluate your agents via our converter support for Azure AI agent threads and runs. We support this list of evaluators for Azure AI agent messages from our converter: 
+
+### Evaluators supported for evaluation data converter
 - Quality: `IntentResolution`, `ToolCallAccuracy`, `TaskAdherence`, `Relevance`, `Coherence`, `Fluency`
 - Safety: `CodeVulnerabilities`, `Violence`, `Self-harm`, `Sexual`, `HateUnfairness`, `IndirectAttack`, `ProtectedMaterials`.
 
 
 > [!NOTE]
-> `ToolCallAccuracyEvaluator` only supports Foundry Agent's Function Tool evaluation (user-defined python functions), but doesn't support Built-in Tool evaluation. The agent messages must have at least one Function Tool actually called to be evaluated.    
-
+> `ToolCallAccuracyEvaluator` only supports Foundry Agent's Function Tool evaluation (user-defined python functions), but doesn't support other Tool evaluation. If an agent run invoked a tool other than Function Tool, it will output a "pass" and a reason that evaluating the invoked tool(s) is not supported. 
 
 
 Here's an example to seamlessly build and evaluate an Azure AI agent. Separately from evaluation, Azure AI Foundry Agent Service requires `pip install azure-ai-projects azure-identity` and an Azure AI project connection string and the supported models.
@@ -91,10 +92,10 @@ toolset.add(functions)
 AGENT_NAME = "Seattle Tourist Assistant"
 ```
 
-If you are using Azure AI Foundry (non-Hub) project, create an agent with the toolset as follows:
+If you are using [Azure AI Foundry (non-Hub) project](../create-projects.md?tabs=ai-foundry&pivots=fdp-project), create an agent with the toolset as follows:
 
 > [!NOTE]
-> If you are using a Foundry Hub project (which only supports lower versions of `azure-ai-projects<1.0.0b10 azure-ai-agents<1.0.0b10`), we strongly recommend migrating to Foundry project by simply creating a new Foundry project.
+> If you are using a [Foundry Hub-based project](../create-projects.md?tabs=ai-foundry&pivots=hub-project) (which only supports lower versions of `azure-ai-projects<1.0.0b10 azure-ai-agents<1.0.0b10`), we strongly recommend migrating to [the latest Foundry Agent Service SDK python client library](../../agents/quickstart.md?pivots=programming-language-python-azure) with a [Foundry project set up](../../how-to/develop/evaluate-sdk.md#prerequisite-set-up-steps-for-azure-ai-foundry-projects).
 
 ```python
 import os
@@ -106,7 +107,8 @@ load_dotenv()
 
 # Create an Azure AI Client from an endpoint, copied from your Azure AI Foundry project.
 # You need to login to Azure subscription via Azure CLI and set the environment variables
-project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT environment variable is set
+# Azure AI Foundry project endpoint, example: AZURE_AI_PROJECT=https://your-account.services.ai.azure.com/api/projects/your-project
+project_endpoint = os.environ["AZURE_AI_PROJECT"]  # Ensure the PROJECT_ENDPOINT environment variable is set
 
 # Create an AIProjectClient instance
 project_client = AIProjectClient(
@@ -115,44 +117,40 @@ project_client = AIProjectClient(
 )
 
 
-with project_client:
-    # Create an agent with the 
-    agent = project_client.agents.create_agent(
-        model=os.environ["MODEL_DEPLOYMENT_NAME"],  # Model deployment name
-        name="my-agent",  # Name of the agent
-        instructions="You are a helpful agent",  # Instructions for the agent
-        toolset=toolset
-    )
-    print(f"Created agent, ID: {agent.id}")
+# Create an agent with the 
+agent = project_client.agents.create_agent(
+    model=os.environ["MODEL_DEPLOYMENT_NAME"],  # Model deployment name
+    name="my-agent",  # Name of the agent
+    instructions="You are a helpful agent",  # Instructions for the agent
+    toolset=toolset
+)
+print(f"Created agent, ID: {agent.id}")
 
-    # Create a thread for communication
-    thread = project_client.agents.threads.create()
-    print(f"Created thread, ID: {thread.id}")
+# Create a thread for communication
+thread = project_client.agents.threads.create()
+print(f"Created thread, ID: {thread.id}")
+
+# Add a message to the thread
+message = project_client.agents.messages.create(
+    thread_id=thread.id,
+    role="user",  # Role of the message sender
+    content="What is the weather in Seattle today?",  # Message content
+)
+print(f"Created message, ID: {message['id']}")
+
+# Create and process an agent run
+run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
+print(f"Run finished with status: {run.status}")
+
+# Check if the run failed
+if run.status == "failed":
+    print(f"Run failed: {run.last_error}")
+
+# Fetch and log all messages
+messages = project_client.agents.messages.list(thread_id=thread.id)
+for message in messages:
+    print(f"Role: {message.role}, Content: {message.content}")
     
-    # Add a message to the thread
-    message = project_client.agents.messages.create(
-        thread_id=thread.id,
-        role="user",  # Role of the message sender
-        content="What is the weather in Seattle today?",  # Message content
-    )
-    print(f"Created message, ID: {message['id']}")
-    
-    # Create and process an agent run
-    run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
-    print(f"Run finished with status: {run.status}")
-    
-    # Check if the run failed
-    if run.status == "failed":
-        print(f"Run failed: {run.last_error}")
-    
-    # Fetch and log all messages
-    messages = project_client.agents.messages.list(thread_id=thread.id)
-    for message in messages:
-        print(f"Role: {message.role}, Content: {message.content}")
-    
-    # Delete the agent when done
-    project_client.agents.delete_agent(agent.id)
-    print("Deleted agent")
 ```
 
 
@@ -174,14 +172,15 @@ run_id = run.id
 
 converted_data = converter.convert(thread_id, run_id)
 ```
-And that's it! You don't need to read the input requirements for each evaluator and do any work to parse them. All you need to do is select your evaluator and call the evaluator on this single run. We support AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the judge depending on the evaluators:
+
+And that's it! `converted_data` will contain all inputs required for [these evaluators](#evaluators-supported-for-evaluation-data-converter). You don't need to read the input requirements for each evaluator and do any work to parse the inputs. All you need to do is select your evaluator and call the evaluator on this single run. We support AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the judge depending on the evaluators:
 
 | Evaluators | Reasoning Models as Judge (ex: o-series models from Azure OpenAI / OpenAI) | Non-reasoning models as Judge (ex: gpt-4.1, gpt-4o, etc.) | To enable |
 |------------|-----------------------------------------------------------------------------|-------------------------------------------------------------|-------|
 | `Intent Resolution` / `Task Adherence` / `Tool Call Accuracy` / `Response Completeness`) | Supported | Supported | Set additional parameter `is_reasoning_model=True` in initializing evaluators |
 | Other quality evaluators| Not Supported | Supported | -- |
 
-For complex evaluation that requires refined reasoning, we recommend a strong reasoning model like `o3-mini` and o-series mini models released afterwards with a balance of reasoning performance and cost efficiency.
+For complex tasks that requires refined reasoning for the evaluation, we recommend a strong reasoning model like `o3-mini` or the o-series mini models released afterwards with a balance of reasoning performance and cost efficiency.
 
 We set up a list of quality and safety evaluator in `quality_evaluators` and `safety_evaluators` and reference them in [evaluating multiples agent runs or a thread](#evaluate-multiple-agent-runs-or-threads).
 
@@ -210,16 +209,13 @@ reasoning_model_config = {
     "api_version": os.getenv("AZURE_API_VERSION"),
 }
 
+# evaluators with reasoning model support
 quality_evaluators = {evaluator.__name__: evaluator(model_config=reasoning_model_config, is_reasoning_model=True) for evaluator in [IntentResolutionEvaluator, TaskAdherenceEvaluator, ToolCallAccuracyEvaluator]}
+
+# other evaluators do not support reasoning models 
 quality_evaluators.update({ evaluator.__name__: evaluator(model_config=model_config) for evaluator in [CoherenceEvaluator, FluencyEvaluator, RelevanceEvaluator]})
 
 
-## Using Azure AI Foundry Hub
-azure_ai_project = {
-    "subscription_id": os.environ.get("AZURE_SUBSCRIPTION_ID"),
-    "resource_group_name": os.environ.get("AZURE_RESOURCE_GROUP"),
-    "project_name": os.environ.get("AZURE_PROJECT_NAME"),
-}
 ## Using Azure AI Foundry (non-Hub) project endpoint, example: AZURE_AI_PROJECT=https://your-account.services.ai.azure.com/api/projects/your-project
 azure_ai_project = os.environ.get("AZURE_AI_PROJECT")
 
@@ -229,13 +225,10 @@ safety_evaluators = {evaluator.__name__: evaluator(azure_ai_project=azure_ai_pro
 quality_and_safety_evaluators = {**quality_evaluators, **safety_evaluators}
 
 for name, evaluator in quality_and_safety_evaluators.items():
-   try:
-      result = evaluator(**converted_data)
-      print(name)
-      print(json.dumps(result, indent=4)) 
-   except:
-      print("Note: if there is no tool call to evaluate in the run history, ToolCallAccuracyEvaluator will raise an error")
-      pass
+    result = evaluator(**converted_data)
+    print(name)
+    print(json.dumps(result, indent=4)) 
+
 
 ```
 
@@ -260,14 +253,7 @@ Example output for some evaluators:
     "intent_resolution": 5.0, # likert scale: 1-5 integer 
     "intent_resolution_result": "pass", # pass because 5 > 3 the threshold
     "intent_resolution_threshold": 3,
-    "intent_resolution_reason": "The assistant correctly understood the user's request to fetch the weather in Seattle. It used the appropriate tool to get the weather information and provided a clear and accurate response with the current weather conditions in Seattle. The response fully resolves the user's query with all necessary information.",
-    "additional_details": {
-        "conversation_has_intent": true,
-        "agent_perceived_intent": "fetch the weather in Seattle",
-        "actual_user_intent": "fetch the weather in Seattle",
-        "correct_intent_detected": true,
-        "intent_resolved": true
-    }
+    "intent_resolution_reason": "The assistant correctly understood the user's request to fetch the weather in Seattle. It used the appropriate tool to get the weather information and provided a clear and accurate response with the current weather conditions in Seattle. The response fully resolves the user's query with all necessary information."
 }
 {
     "task_adherence": 5.0, # likert scale: 1-5 integer 
@@ -279,12 +265,8 @@ Example output for some evaluators:
     "tool_call_accuracy": 1.0,  # this is the average of all correct tool calls (or passing rate) 
     "tool_call_accuracy_result": "pass", # pass because 1.0 > 0.8 the threshold
     "tool_call_accuracy_threshold": 0.8,
-    "per_tool_call_details": [
-        {
-            "tool_call_accurate": true,
-            "tool_call_accurate_reason": "The tool call is directly relevant to the user's query, uses the correct parameter, and the parameter value is correctly extracted from the conversation.",
-            "tool_call_id": "call_2svVc9rNxMT9F50DuEf1XExx"
-        }
+    "details": [
+
     ]
 }
 ```
@@ -325,11 +307,7 @@ response = evaluate(
     evaluation_name="agent demo - batch run",
     evaluators=quality_and_safety_evaluators,
     # optionally, log your results to your Azure AI Foundry project for rich visualization 
-    azure_ai_project={
-        "subscription_id": os.environ["AZURE_SUBSCRIPTION_ID"],
-        "project_name": os.environ["PROJECT_NAME"],
-        "resource_group_name": os.environ["RESOURCE_GROUP_NAME"],
-    }
+    azure_ai_project=os.environ.get("AZURE_AI_PROJECT"),  # example: https://your-account.services.ai.azure.com/api/projects/your-project
 )
 # Inspect the average scores at a high-level
 print(response["metrics"])

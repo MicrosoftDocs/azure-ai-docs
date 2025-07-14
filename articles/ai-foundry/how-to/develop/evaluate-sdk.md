@@ -56,6 +56,10 @@ Built-in evaluators can accept *either* query and response pairs or a list of co
 |--------------------|------------------------------|---------------|
 | `GroundednessEvaluator`, `GroundednessProEvaluator`, `RetrievalEvaluator`, `DocumentRetrievalEvaluator`,`RelevanceEvaluator`, `CoherenceEvaluator`, `FluencyEvaluator`, `ResponseCompletenessEvaluator`, `IndirectAttackEvaluator`, `AzureOpenAILabelGrader`, `AzureOpenAIStringCheckGrader`, `AzureOpenAITextSimilarityGrader`, `AzureOpenAIGrader` | `ViolenceEvaluator`, `SexualEvaluator`, `SelfHarmEvaluator`, `HateUnfairnessEvaluator`, `ProtectedMaterialEvaluator`, `ContentSafetyEvaluator` | `UngroundedAttributesEvaluator`, `CodeVulnerabilityEvaluator`, `ResponseCompletenessEvaluator`, `SimilarityEvaluator`, `F1ScoreEvaluator`, `RougeScoreEvaluator`, `GleuScoreEvaluator`, `BleuScoreEvaluator`, `MeteorScoreEvaluator`, `QAEvaluator` |
 
+| Evaluators requiring `ground_truth` | evaluators supporting agent inputs  |
+|--------------------|------------------------------|
+| `DocumentRetrievalEvaluator`, `ResponseCompletenessEvaluator`,`AzureOpenAITextSimilarityGrader`, `SimilarityEvaluator`, `F1ScoreEvaluator`, `RougeScoreEvaluator`, `GleuScoreEvaluator`, `BleuScoreEvaluator`, `MeteorScoreEvaluator`, `QAEvaluator` | `IntentResolutionEvaluator`, `ToolCallAccuracyEvaluator`, `TaskAdherenceEvaluator`, `RelevanceEvaluator`, `CoherenceEvaluator`, `FluencyEvaluator`, `CodeVulnerabilitiesEvaluator`, `ViolenceEvaluator`, `Self-harEvaluator`, `SexualEvaluator`, `HateUnfairnessEvaluator`, `IndirectAttackEvaluator`, `ProtectedMaterialsEvaluator`, `ContentSafetyEvaluator` |
+
 > [!NOTE]
 > AI-assisted quality evaluators except for `SimilarityEvaluator` come with a reason field. They employ techniques including chain-of-thought reasoning to generate an explanation for the score. Therefore they consume more token usage in generation as a result of improved evaluation quality. Specifically, `max_token` for evaluator generation has been set to 800 for all AI-assisted evaluators (and 1600 for `RetrievalEvaluator` to accommodate for longer inputs.)
 
