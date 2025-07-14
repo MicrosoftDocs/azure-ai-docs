@@ -7,7 +7,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: conceptual
-ms.date: 07/10/2025
+ms.date: 07/14/2025
 ms.custom: azure-ai-agents, references_regions
 ---
 
@@ -46,17 +46,7 @@ Azure AI Foundry Agent Service supports the following Azure OpenAI models in the
 | westus           | X                            | X                  | X                  | X                  | X                       |             | X                       |                 | X                  |                    |
 | westus3          |                              | X                  | X                  | X                  | X                       |             | X                       |                 |                    |                    |
 
-## Non-Microsoft models
 
-The Azure AI Foundry Agent Service also supports the following models from the Azure AI Foundry model catalog.
-
-* Meta-Llama-405B-Instruct
-
-To use these models, you can use [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) to make a deployment, and then reference the deployment name in your agent. For example:
-
-```python
-agent = project_client.agents.create_agent( model="llama-3", name="my-agent", instructions="You are a helpful agent" ) 
-```
 ## Azure AI Foundry models
 
 ### Models with tool-calling 
