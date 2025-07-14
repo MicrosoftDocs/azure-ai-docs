@@ -81,7 +81,7 @@ Content-Type: application/json
 {
   "tags": {
     "name": "Alice",
-    "age": "20"
+    "employeeId": "E12345"
   }
 }
 ```
@@ -98,7 +98,7 @@ The API returns a `personId` that uniquely identifies the created person.
   "personId": "4f66b612-e57d-4d17-9ef7-b951aea2cf0f",
   "tags": {
     "name": "Alice",
-    "age": "20"
+    "employeeId": "E12345"
   }
 }
 ```
@@ -195,7 +195,7 @@ The API returns the detected bounding box of the face along with the top person 
       "personId": "{personId1}",
       "tags": {
         "name": "Alice",
-        "age": "20"
+        "employeeId": "E12345"
       },
       "confidence": 0.92
     }
