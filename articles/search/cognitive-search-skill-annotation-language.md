@@ -108,7 +108,7 @@ Specific elements of an array can be referenced by using their numeric index lik
 
 There are three characters that have a special meaning and need to be escaped if they are to be interpreted as-is instead of a syntax element: 
 
-|Value|Usage|Escape sequence| Example |
+|Value|Special meaning (usage in path syntax) |Escape sequence| Example for usage in string |
 |---|---|---|---|
 | `#` | Used in array enumeration | ~2 | "~2#~2"  |
 | `/` | Used in node paths | ~1  | "~1/~1"  |
