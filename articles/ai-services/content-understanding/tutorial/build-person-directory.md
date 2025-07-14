@@ -81,7 +81,7 @@ Content-Type: application/json
 {
   "tags": {
     "name": "Alice",
-     "employeeId": "E12345"
+    "employeeId": "E12345"
   }
 }
 ```
