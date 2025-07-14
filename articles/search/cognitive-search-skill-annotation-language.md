@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: reference
-ms.date: 04/15/2025
+ms.date: 07/14/2025
 ---
 # Skill context and input annotation language
 
@@ -106,8 +106,13 @@ Specific elements of an array can be referenced by using their numeric index lik
 
 ### Escape sequences
 
-There are two characters that have special meaning and need to be escaped if they appear in an expression and must be interpreted as is instead of as their special meaning: `'/'` and `'~'`.
-Those characters must be escaped respectively as `'~0'` and `'~1'`. 
+There are three characters that have a special meaning and need to be escaped if they are to be interpreted as-is instead of a syntax element: 
+
+|Value|Usage|Escape sequence| Example |
+|---|---|---|---|
+| `/` | Used in node paths | ~0  | "~0/~0"  |
+| `~` | Used in ???? | ~1  | "~1~~1  |
+| `#` | Used in array enumeration | ~2 | "~2#~2"  |
 
 ## Array enumeration
 
