@@ -17,7 +17,7 @@ ms.custom:
   - no-code-deployment
   - devx-track-azurecli
   - cliv2
-  - update-code2
+  - update-code3
   - sfi-image-nochange
 # customer intent: As a developer, I want to see how to deploy an MLflow model to an online endpoint so that I can use the model to make predictions in real time.
 ---
