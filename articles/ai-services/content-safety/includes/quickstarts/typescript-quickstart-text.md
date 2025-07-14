@@ -17,36 +17,36 @@ ms.author: pafarley
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/) 
 * [Node.js LTS](https://nodejs.org/)
-* [TypeScript](https://www.typescriptlang.org/) for writing the sample code
-* [Visual Studio Code](https://code.visualstudio.com/) or another IDE of your choice
+* [TypeScript](https://www.typescriptlang.org/)
+* [Visual Studio Code](https://code.visualstudio.com/)
 * Once you have your Azure subscription, <a href="https://aka.ms/acs-create"  title="Create a Content Safety resource"  target="_blank">create a Content Safety resource </a> in the Azure portal to get your key and endpoint. Enter a unique name for your resource, select your subscription, and select a resource group, supported region (see [Region availability](/azure/ai-services/content-safety/overview#region-availability)), and supported pricing tier. Then select **Create**.
   * The resource takes a few minutes to deploy. After it finishes, Select **go to resource**. In the left pane, under **Resource Management**, select **Subscription Key and Endpoint**. The endpoint and either of the keys are used to call APIs.
 
 ## Set up application
 
-Create a new TypeScript application. In a console window (such as cmd, PowerShell, or Bash), create a new directory for your app, and navigate to it.
+1. Create a new TypeScript application. In a console window (such as cmd, PowerShell, or Bash), create a new directory for your app, and navigate to it.
 
-```console
-mkdir content-safety-typescript && cd content-safety-typescript
-code .
-```
+    ```console
+    mkdir content-safety-typescript && cd content-safety-typescript
+    code .
+    ```
+    
+2. Initialize a new Node.js project with TypeScript:
 
-Initialize a new Node.js project with TypeScript:
-
-```bash
-npm init -y
-npm pkg set type=module
-```
+    ```console
+    npm init -y
+    npm pkg set type=module
+    ```
 
 3. Install the required packages:
 
-   ```bash
+   ```console
    npm install @azure-rest/ai-content-safety @azure/core-auth
    ```
 
 4. Install development dependencies:
 
-   ```bash
+```console
    npm install typescript @types/node --save-dev
    ```
 
@@ -90,9 +90,7 @@ npm pkg set type=module
    }
    ```
 
-7. Create a `resources` folder and add a sample image to it.
-
-8. Create a `src` directory for your TypeScript code.
+7. Create a `src` directory for your TypeScript code.
 
 [!INCLUDE [Create environment variables](../env-vars.md)]
 
@@ -106,18 +104,15 @@ Create a file in the `src` directory named `index.ts`. Open it in your preferred
 > See [Input requirements](../../overview.md#input-requirements) for maximum text length limitations.
 
 ```typescript
-import ContentSafetyClient, { isUnexpected } from "@azure-rest/ai-content-safety";
+import ContentSafetyClient, { 
+  isUnexpected, 
+  AnalyzeTextParameters,
+  AnalyzeText200Response,
+  AnalyzeTextDefaultResponse,
+  AnalyzeTextOptions,
+  TextCategoriesAnalysisOutput 
+} from "@azure-rest/ai-content-safety";
 import { AzureKeyCredential } from "@azure/core-auth";
-
-// Define interfaces for better type safety
-interface TextAnalysisOptions {
-  text: string;
-}
-
-interface CategoryAnalysis {
-  category: string;
-  severity: number;
-}
 
 // Get endpoint and key from environment variables
 const endpoint = process.env.CONTENT_SAFETY_ENDPOINT;
@@ -133,12 +128,12 @@ try {
   const client = ContentSafetyClient(endpoint, credential);
   
   // Replace with your own sample text string
-  const text = "<your sample text>";
-  const analyzeTextOption: TextAnalysisOptions = { text };
-  const analyzeTextParameters = { body: analyzeTextOption };
+  const text = "Replace with your text sample";
+  const analyzeTextOption: AnalyzeTextOptions = { text };
+  const analyzeTextParameters: AnalyzeTextParameters = { body: analyzeTextOption };
   
   // Call the Content Safety API to analyze the text
-  const result = await client.path("/text:analyze").post(analyzeTextParameters);
+  const result: AnalyzeText200Response | AnalyzeTextDefaultResponse = await client.path("/text:analyze").post(analyzeTextParameters);
   
   if (isUnexpected(result)) {
     throw result;
@@ -147,7 +142,7 @@ try {
   // Process and display the analysis results
   console.log("Text analysis results:");
   
-  const categoriesAnalysis = result.body.categoriesAnalysis as CategoryAnalysis[];
+  const categoriesAnalysis = result.body.categoriesAnalysis as TextCategoriesAnalysisOutput[];
   
   for (const analysis of categoriesAnalysis) {
     console.log(`${analysis.category} severity: ${analysis.severity}`);
@@ -161,13 +156,13 @@ try {
 
 1. Build the TypeScript code:
 
-```bash
+```console
 npm run build
 ```
 
 2. Run the application:
 
-```bash
+```console
 npm start
 ```
 

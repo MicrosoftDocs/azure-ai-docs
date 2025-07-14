@@ -7,9 +7,9 @@ manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom: build-2023, devx-track-python, devx-track-dotnet, devx-track-extended-java, devx-track-js
 ms.topic: quickstart
-ms.date: 01/22/2025
+ms.date: 7/14/2025
 ms.author: pafarley
-zone_pivot_groups: programming-languages-content-safety
+zone_pivot_groups: programming-languages-content-safety-2
 ---
 
 # QuickStart: Analyze text content
@@ -58,7 +58,11 @@ For more information on text moderation, see the [Harm categories concept page](
 [!INCLUDE [Python SDK quickstart](./includes/quickstarts/javascript-quickstart-text.md)]
 
 ::: zone-end
+::: zone pivot="programming-language-typescript"
 
+[!INCLUDE [TypeScript SDK quickstart](./includes/quickstarts/typescript-quickstart-text.md)]
+
+::: zone-end
 
 
 ## Clean up resources

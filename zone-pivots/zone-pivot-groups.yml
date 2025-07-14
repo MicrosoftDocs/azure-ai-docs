@@ -68,6 +68,7 @@ groups:
     title: Python
   - id: programming-language-rest
     title: REST
+
 - id: programming-languages-content-safety-abridged
 # Owner: pafarley
   title: Programming languages
@@ -81,6 +82,25 @@ groups:
     title: Python
   - id: programming-language-rest
     title: REST
+- id: programming-languages-content-safety-2
+# Owner: pafarley
+  title: Programming languages
+  prompt: Choose a platform
+  pivots:
+  - id: programming-language-foundry-portal
+    title: Foundry portal
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-rest
+    title: REST
+  - id: programming-language-typescript
+    title: TypeScript
 - id: programming-languages-content-safety-foundry-rest
 # Owner: pafarley
   title: Programming languages
