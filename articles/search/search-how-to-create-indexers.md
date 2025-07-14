@@ -8,10 +8,11 @@ author: HeidiSteen
 ms.author: heidist
 
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: how-to
 ms.date: 06/17/2025
+ms.custom:
+  - ignite-2023
+  - sfi-ropc-nochange
 ---
 
 # Create an indexer in Azure AI Search

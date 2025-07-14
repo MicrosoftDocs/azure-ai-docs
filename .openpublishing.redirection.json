@@ -461,6 +461,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "articles/ai-foundry/concepts/concept-model-distillation.md",
+      "redirect_url": "../openai/how-to/stored-completions",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/ai-foundry/model-inference/quotas-limits.md",
       "redirect_url": "../foundry-models/quotas-limits",
       "redirect_document_id": false

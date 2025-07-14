@@ -31,27 +31,23 @@ You can new extend the capabilities of your agents by connecting them to tools h
 
 The Azure AI Foundry Agent Service is now Generally Available (GA). Along with this milestone, the service offers the following feature updates:
 
-### Agent catalog
-
-The [agent catalog](concepts\agent-catalog.md) helps streamline your agent deployment with prebuilt, task-specific agent code samples across a variety of domains such as translation, sales prep, computer use, and more.
-
-### AI Foundry Visual Studio Code extension
+#### AI Foundry Visual Studio Code extension
 
 The [AI Foundry Visual Studio Code extension](../../ai-foundry/how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context) is now available with the ability to perform a variety of AI Foundry actions, such as deploying and configure agents natively.
 
-### Connected agents
+#### Connected agents
 
 [Connected agents](how-to\connected-agents.md) allow you to create task-specific agents that can interact seamlessly with a primary agent. This feature enables you to build multi-agent systems without the need for external orchestrators.
 
-### Trace agents
+#### Trace agents
 
 Debug and monitor your agents by [tracing agent threads](concepts\tracing.md) to clearly see the inputs and outputs of each primitive involved in a particular agent run, in the order in which they were invoked. 
 
-### Trigger agents using Azure Logic Apps 
+#### Trigger agents using Azure Logic Apps 
 
 [Automatically invoke](how-to\triggers.md) your AI agent when an event occurs, such as receiving a new email, or getting a new customer ticket so that your AI agent can immediately respond to the new event without manual invocation.
 
-### New agent tools
+#### New agent tools
 
 This release brings a number of new tools to extend agents' capabilities:
 

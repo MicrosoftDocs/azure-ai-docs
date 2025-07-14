@@ -1,8 +1,8 @@
 ---
 services: machine-learning
-author: msakande
+author: s-polly
 ms.service: azure-machine-learning
-ms.author: mopeakande
+ms.author: scottpolly
 ms.topic: "include"
 ms.date: 12/07/2023
 ---

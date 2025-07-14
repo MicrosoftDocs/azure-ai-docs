@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: compute
 ms.topic: how-to
-ms.author: sgilley
-author: sdgilley
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: vijetaj
 ms.date: 09/23/2024
 ms.custom: update-code

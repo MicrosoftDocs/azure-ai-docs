@@ -7,7 +7,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 05/09/2025
+ms.date: 07/08/2025
 ms.reviewer: meerakurup 
 ms.author: sgilley
 author: sdgilley
@@ -31,7 +31,7 @@ You can secure your [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) hub,
 
 ## Create a hub
 
-1. From the Azure portal, search for `Azure AI Foundry`. From the left menu, select **AI Hubs**, and then select **+ Create** and **Hub**.
+1. From the [Azure portal](https://portal.azure.com), search for `Azure AI Foundry`. From the left menu, select **AI Hubs**, and then select **+ Create** and **Hub**.
 
     :::image type="content" source="../media/how-to/hubs/create-hub.png" alt-text="Screenshot of the Azure AI Foundry portal." lightbox="../media/how-to/hubs/create-hub.png":::
 

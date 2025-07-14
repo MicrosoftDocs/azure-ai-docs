@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: reference
-author: fbsolo-ms1
-ms.author: franksolomon
+author: s-polly
+ms.author: scottpolly
 ms.date: 04/15/2024
 ms.reviewer: xunwan
 ms.custom: migration

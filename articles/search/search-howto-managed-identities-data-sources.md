@@ -7,11 +7,12 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.topic: how-to
+ms.date: 05/29/2025
 ms.custom:
   - ignite-2023
   - build-2024
-ms.topic: how-to
-ms.date: 05/29/2025
+  - sfi-ropc-nochange
 ---
 
 # Configure a search service to connect using a managed identity in Azure AI Search

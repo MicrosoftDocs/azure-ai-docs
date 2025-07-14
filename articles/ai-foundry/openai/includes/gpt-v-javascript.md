@@ -70,6 +70,9 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 Select an image from the [azure-samples/cognitive-services-sample-data-files](https://github.com/Azure-Samples/cognitive-services-sample-data-files/tree/master/ComputerVision/Images). Use the image URL in the code below or set the `IMAGE_URL` environment variable to the image URL.
 
+> [!IMPORTANT]
+> If you use a SAS URL to an image stored in Azure blob storage, you need to enable Managed Identity and assign the **Storage Blob Reader** role to your Azure OpenAI resource (do this in the Azure portal). This allows the model to access the image in blob storage.
+
 > [!TIP]
 > You can also use a base 64 encoded image data instead of a URL. For more information, see the [GPT-4 Turbo with Vision how-to guide](../how-to/gpt-with-vision.md#use-a-local-image).
 

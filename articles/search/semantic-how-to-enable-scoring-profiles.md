@@ -5,6 +5,7 @@ description: Learn how to combine scoring profiles with semantic ranking in Azur
 author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.topic: how-to
 ms.date: 06/10/2025
 ---
@@ -91,7 +92,7 @@ POST https://{service-name}.search.windows.com/indexes/{index-name}/docs/search?
 }
 ```
 
-The response includes the new `rerankerBoostedScore`, alongside the L1 `@search.score` and the L2 `@search.rerankerSocre`. Results are ordered by `@search.rerankerBoostedScore`.
+The response includes the new `rerankerBoostedScore`, alongside the L1 `@search.score` and the L2 `@search.rerankerScore`. Results are ordered by `@search.rerankerBoostedScore`.
 
 ```json
 {

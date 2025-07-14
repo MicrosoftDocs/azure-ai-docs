@@ -6,10 +6,11 @@ author: gmndrg
 ms.author: gimondra
 manager: vinodva
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: how-to
 ms.date: 05/29/2025
+ms.custom:
+  - ignite-2023
+  - sfi-ropc-nochange
 ---
 
 # Index data from Azure Data Lake Storage Gen2

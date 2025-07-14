@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: how-to
-ms.author: ssalgado
-author: ssalgadodev
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: ssalgado
 ms.date: 03/11/2021
 ms.custom:

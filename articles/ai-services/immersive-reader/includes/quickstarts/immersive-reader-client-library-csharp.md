@@ -8,7 +8,10 @@ ms.service: azure-ai-immersive-reader
 ms.topic: include
 ms.date: 02/14/2024
 ms.author: sharmas
-ms.custom: "devx-track-js, devx-track-csharp"
+ms.custom:
+  - devx-track-js
+  - devx-track-csharp
+  - sfi-image-nochange
 ---
 
 In this quickstart guide, you build a web app from scratch using C#, and integrate Immersive Reader using the client library. A full working sample of this quickstart is [available on GitHub](https://github.com/microsoft/immersive-reader-sdk/tree/master/js/samples/quickstart-csharp).

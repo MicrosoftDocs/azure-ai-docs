@@ -6,11 +6,15 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: tutorial
-author: sdgilley
-ms.author: sgilley
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: amsaied
 ms.date: 04/03/2024
-ms.custom: UpdateFrequency5, devx-track-python, sdkv1
+ms.custom:
+  - UpdateFrequency5
+  - devx-track-python
+  - sdkv1
+  - sfi-image-nochange
 ---
 
 # Tutorial: Get started with a Python script in Azure Machine Learning (SDK v1, part 1 of 3)

@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: concept-article
-ms.author: sgilley
-author: sdgilley
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: balapv
 ms.date: 09/30/2024
 ms.custom: cliv2, sdkv2, devx-track-python

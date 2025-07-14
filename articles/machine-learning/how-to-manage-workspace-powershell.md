@@ -5,8 +5,8 @@ description: Learn how to use the Azure PowerShell module to create and manage a
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: deeikele
 ms.date: 02/05/2025
 ms.topic: how-to

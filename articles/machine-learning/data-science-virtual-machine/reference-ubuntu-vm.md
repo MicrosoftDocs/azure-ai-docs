@@ -5,8 +5,8 @@ description: Details on tools included in the Ubuntu Data Science Virtual Machin
 services: machine-learning
 ms.service: azure-data-science-virtual-machines
 ms.custom: devx-track-python, linux-related-content
-author: fbsolo-ms1 
-ms.author: franksolomon 
+author: s-polly 
+ms.author: scottpolly 
 ms.reviewer: jcioffi
 ms.date: 04/30/2024
 ms.topic: reference

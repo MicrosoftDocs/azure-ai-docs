@@ -1,24 +1,18 @@
 ---
-title: 'Tutorial: Skillsets Using C#'
-titleSuffix: Azure AI Search
-description: Use C# and the Azure SDK for .NET to create skillsets. This skillset applies AI transformations and analyses to create searchable content from images and unstructured text.
-
+manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-manager: nitinme
-
 ms.service: azure-ai-search
-ms.topic: tutorial
-ms.date: 03/31/2025
+ms.topic: include
+ms.date: 07/11/2025
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet
   - ignite-2023
+  - sfi-ropc-nochange
 ---
 
-# C# Tutorial: Use skillsets to generate searchable content in Azure AI Search
-
-Learn how to use the [Azure SDK for .NET](https://www.nuget.org/packages/Azure.Search.Documents/) to create an [AI enrichment pipeline](cognitive-search-concept-intro.md) for content extraction and transformations during indexing.
+Learn how to use the [Azure SDK for .NET](https://www.nuget.org/packages/Azure.Search.Documents/) to create an [AI enrichment pipeline](../../cognitive-search-concept-intro.md) for content extraction and transformations during indexing.
 
 Skillsets add AI processing to raw content, making it more uniform and searchable. Once you know how skillsets work, you can support a broad range of transformations, from image analysis to natural language processing to customized processing that you provide externally.
 
@@ -34,9 +28,9 @@ In this tutorial, you:
 
 This tutorial uses C# and the [**Azure.Search.Documents**](/dotnet/api/overview/azure/search.documents-readme) client library to create a data source, index, indexer, and skillset.
 
-The [indexer](search-indexer-overview.md) drives each step in the pipeline, starting with content extraction of sample data (unstructured text and images) in a blob container on Azure Storage.
+The [indexer](../../search-indexer-overview.md) drives each step in the pipeline, starting with content extraction of sample data (unstructured text and images) in a blob container on Azure Storage.
 
-Once content is extracted, the [skillset](cognitive-search-working-with-skillsets.md) executes built-in skills from Microsoft to find and extract information. These skills include Optical Character Recognition (OCR) on images, language detection on text, key phrase extraction, and entity recognition (organizations). New information created by the skillset is sent to fields in an [index](search-what-is-an-index.md). Once the index is populated, you can use the fields in queries, facets, and filters.
+Once content is extracted, the [skillset](../../cognitive-search-working-with-skillsets.md) executes built-in skills from Microsoft to find and extract information. These skills include Optical Character Recognition (OCR) on images, language detection on text, key phrase extraction, and entity recognition (organizations). New information created by the skillset is sent to fields in an [index](../../search-what-is-an-index.md). Once the index is populated, you can use the fields in queries, facets, and filters.
 
 ## Prerequisites
 
@@ -44,9 +38,9 @@ Once content is extracted, the [skillset](cognitive-search-working-with-skillset
 
 + [Azure Storage](/azure/storage/common/storage-account-create).
 
-+ [Azure AI Search](search-create-app-portal.md).
++ [Azure AI Search](../../search-create-service-portal.md).
 
-+ [Azure.Search.Documents 11.x NuGet package](https://www.nuget.org/packages/Azure.Search.Documents).
++ [Azure.Search.Documents package](https://www.nuget.org/packages/Azure.Search.Documents).
 
 + [Visual Studio](https://visualstudio.microsoft.com/downloads/).
 
@@ -55,15 +49,15 @@ Once content is extracted, the [skillset](cognitive-search-working-with-skillset
 
 ### Download files
 
-Download a zip file of the sample data repository and extract the contents. [Learn how](https://docs.github.com/get-started/start-your-journey/downloading-files-from-github).
++ Download a zip file of the sample data repository and extract the contents. [Learn how](https://docs.github.com/get-started/start-your-journey/downloading-files-from-github).
 
-+ [Sample data files (mixed media)](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/ai-enrichment-mixed-media)
++ Download the [sample data files (mixed media)](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/ai-enrichment-mixed-media)
 
 ### Upload sample data to Azure Storage
 
-1. In Azure Storage, create a new container and name it *cog-search-demo*.
+1. In Azure Storage, [create a new container](/azure/storage/blobs/storage-quickstart-blobs-portal) and name it *mixed-content-types*.
 
-1. [Upload the sample data files](/azure/storage/blobs/storage-quickstart-blobs-portal).
+1. Upload the sample data files.
 
 1. Get a storage connection string so that you can formulate a connection in Azure AI Search.
 
@@ -77,7 +71,7 @@ Download a zip file of the sample data repository and extract the contents. [Lea
 
 ### Azure AI services
 
-Built-in AI enrichment is backed by Azure AI services, including Language service and Azure AI Vision for natural language and image processing. For small workloads like this tutorial, you can use the free allocation of 20 transactions per indexer. For larger workloads, [attach an Azure AI Services multi-region resource to a skillset](cognitive-search-attach-cognitive-services.md) for Standard pricing.
+Built-in AI enrichment is backed by Azure AI services, including Language service and Azure AI Vision for natural language and image processing. For small workloads like this tutorial, you can use the free allocation of 20 transactions per indexer. For larger workloads, [attach an Azure AI Services multi-region resource to a skillset](../../cognitive-search-attach-cognitive-services.md) for Standard pricing.
 
 ### Copy a search service URL and API key
 
@@ -87,11 +81,9 @@ For this tutorial, connections to Azure AI Search require an endpoint and an API
 
 1. Under **Settings** > **Keys**, copy an admin key. Admin keys are used to add, modify, and delete objects. There are two interchangeable admin keys. Copy either one.
 
-   :::image type="content" source="media/search-get-started-rest/get-url-key.png" alt-text="Screenshot of the URL and API keys in the Azure portal.":::
-
 ## Set up your environment
 
-Begin by opening Visual Studio and creating a new Console App project that can run on .NET Core.
+Begin by opening Visual Studio and creating a new Console App project.
 
 ### Install Azure.Search.Documents
 
@@ -173,7 +165,7 @@ public static void Main(string[] args)
 > The clients connect to your search service. In order to avoid opening too many connections, you should try to share a single instance in your application if possible. The methods are thread-safe to enable such sharing.
 > 
 
-### Add function to exit the program during failure
+### Add a function to exit the program during failure
 
 This tutorial is meant to help you understand each step of the indexing pipeline. If there's a critical issue that prevents the program from creating the data source, skillset, index, or indexer the program will output the error message and exit so that the issue can be understood and addressed.
 
@@ -206,7 +198,7 @@ private static SearchIndexerDataSourceConnection CreateOrUpdateDataSource(Search
         name: "demodata",
         type: SearchIndexerDataSourceType.AzureBlob,
         connectionString: configuration["AzureBlobConnectionString"],
-        container: new SearchIndexerDataContainer("cog-search-demo"))
+        container: new SearchIndexerDataContainer("mixed-content-type"))
     {
         Description = "Demo files to demonstrate Azure AI Search capabilities."
     };
@@ -239,29 +231,29 @@ SearchIndexerDataSourceConnection dataSource = CreateOrUpdateDataSource(indexerC
 
 Build and run the solution. Since this is your first request, check the Azure portal to confirm the data source was created in Azure AI Search. On the search service overview page, verify the Data Sources list has a new item. You might need to wait a few minutes for the Azure portal page to refresh.
 
-  ![Data sources tile in the Azure portal](./media/cognitive-search-tutorial-blob/data-source-tile.png "Data sources tile in the Azure portal")
+  ![Data sources tile in the Azure portal](../../media/cognitive-search-tutorial-blob/data-source-tile.png "Data sources tile in the Azure portal")
 
 ### Step 2: Create a skillset
 
-In this section, you define a set of enrichment steps that you want to apply to your data. Each enrichment step is called a *skill* and the set of enrichment steps, a *skillset*. This tutorial uses [built-in skills](cognitive-search-predefined-skills.md) for the skillset:
+In this section, you define a set of enrichment steps that you want to apply to your data. Each enrichment step is called a *skill* and the set of enrichment steps, a *skillset*. This tutorial uses [built-in skills](../../cognitive-search-predefined-skills.md) for the skillset:
 
-* [Optical Character Recognition](cognitive-search-skill-ocr.md) to recognize printed and handwritten text in image files.
+* [Optical Character Recognition](../../cognitive-search-skill-ocr.md) to recognize printed and handwritten text in image files.
 
-* [Text Merger](cognitive-search-skill-textmerger.md) to consolidate text from a collection of fields into a single "merged content" field.
+* [Text Merger](../../cognitive-search-skill-textmerger.md) to consolidate text from a collection of fields into a single "merged content" field.
 
-* [Language Detection](cognitive-search-skill-language-detection.md) to identify the content's language.
+* [Language Detection](../../cognitive-search-skill-language-detection.md) to identify the content's language.
 
-* [Entity Recognition](cognitive-search-skill-entity-recognition-v3.md) for extracting the names of organizations from content in the blob container.
+* [Entity Recognition](../../cognitive-search-skill-entity-recognition-v3.md) for extracting the names of organizations from content in the blob container.
 
-* [Text Split](cognitive-search-skill-textsplit.md) to break large content into smaller chunks before calling the key phrase extraction skill and the entity recognition skill. Key phrase extraction and entity recognition accept inputs of 50,000 characters or less. A few of the sample files need splitting up to fit within this limit.
+* [Text Split](../../cognitive-search-skill-textsplit.md) to break large content into smaller chunks before calling the key phrase extraction skill and the entity recognition skill. Key phrase extraction and entity recognition accept inputs of 50,000 characters or less. A few of the sample files need splitting up to fit within this limit.
 
-* [Key Phrase Extraction](cognitive-search-skill-keyphrases.md) to pull out the top key phrases.
+* [Key Phrase Extraction](../../cognitive-search-skill-keyphrases.md) to pull out the top key phrases.
 
 During initial processing, Azure AI Search cracks each document to extract content from different file formats. Text originating in the source file is placed into a generated `content` field, one for each document. As such, set the input as `"/document/content"` to use this text. Image content is placed into a generated `normalized_images` field, specified in a skillset as `/document/normalized_images/*`.
 
 Outputs can be mapped to an index, used as input to a downstream skill, or both as is the case with language code. In the index, a language code is useful for filtering. As an input, language code is used by text analysis skills to inform the linguistic rules around word breaking.
 
-For more information about skillset fundamentals, see [How to define a skillset](cognitive-search-defining-skillset.md).
+For more information about skillset fundamentals, see [How to define a skillset](../../cognitive-search-defining-skillset.md).
 
 ### OCR skill
 
@@ -419,14 +411,16 @@ private static EntityRecognitionSkill CreateEntityRecognitionSkill()
         TargetName = "organizations"
     });
 
-    EntityRecognitionSkill entityRecognitionSkill = new EntityRecognitionSkill(inputMappings, outputMappings)
+    // Specify the V3 version of the EntityRecognitionSkill
+    var skillVersion = EntityRecognitionSkill.SkillVersion.V3;
+
+    var entityRecognitionSkill = new EntityRecognitionSkill(inputMappings, outputMappings, skillVersion)
     {
         Description = "Recognize organizations",
         Context = "/document/pages/*",
         DefaultLanguageCode = EntityRecognitionSkillLanguage.En
     };
     entityRecognitionSkill.Categories.Add(EntityCategory.Organization);
-
     return entityRecognitionSkill;
 }
 ```
@@ -634,13 +628,13 @@ To learn more about index concepts, see [Create Index (REST API)](/rest/api/sear
 
 ### Step 4: Create and run an indexer
 
-So far you have created a data source, a skillset, and an index. These three components become part of an [indexer](search-indexer-overview.md) that pulls each piece together into a single multi-phased operation. To tie these together in an indexer, you must define field mappings.
+So far you have created a data source, a skillset, and an index. These three components become part of an [indexer](../../search-indexer-overview.md) that pulls each piece together into a single multi-phased operation. To tie these together in an indexer, you must define field mappings.
 
 * The fieldMappings are processed before the skillset, mapping source fields from the data source to target fields in an index. If field names and types are the same at both ends, no mapping is required.
 
 * The outputFieldMappings are processed after the skillset, referencing sourceFieldNames that don't exist until document cracking or enrichment creates them. The targetFieldName is a field in an index.
 
-In addition to hooking up inputs to outputs, you can also use field mappings to flatten data structures. For more information, see [How to map enriched fields to a searchable index](cognitive-search-output-field-mapping.md).
+In addition to hooking up inputs to outputs, you can also use field mappings to flatten data structures. For more information, see [How to map enriched fields to a searchable index](../../cognitive-search-output-field-mapping.md).
 
 ```csharp
 private static SearchIndexer CreateDemoIndexer(SearchIndexerClient indexerClient, SearchIndexerDataSourceConnection dataSource, SearchIndexerSkillset skillSet, SearchIndex index)
@@ -784,17 +778,25 @@ CheckIndexerOverallStatus(indexerClient, demoIndexer);
 
 In Azure AI Search tutorial console apps, we typically add a 2-second delay before running queries that return results, but because enrichment takes several minutes to complete, we'll close the console app and use another approach instead.
 
-The easiest option is [Search explorer](search-explorer.md) in the Azure portal. You can first run an empty query that returns all documents, or a more targeted search that returns new field content created by the pipeline. 
+The easiest option is [Search Explorer](../../search-explorer.md) in the Azure portal. You can first run an empty query that returns all documents, or a more targeted search that returns new field content created by the pipeline. 
 
-1. In Azure portal, in the search Overview page, select **Indexes**.
+1. In the Azure portal, in the search service pages, expand **Search Management** > **Indexes**.
 
 1. Find **`demoindex`** in the list. It should have 14 documents. If the document count is zero, the indexer is either still running or the page hasn't been refreshed yet. 
 
-1. Select **`demoindex`**. Search explorer is the first tab.
+1. Select **`demoindex`**. Search Explorer is the first tab.
 
 1. Content is searchable as soon as the first document is loaded. To verify content exists, run an unspecified query by clicking **Search**. This query returns all currently indexed documents, giving you an idea of what the index contains.
 
-1. Next, paste in the following string for more manageable results: `search=*&$select=id, languageCode, organizations`
+1. For more manageable results, switch to JSON view and set parameters to select the fields:
+
+   ```json
+   {
+       "search": "*",
+       "count": true,
+       "select": "id, languageCode, organizations"
+   }
+   ```
 
 <a name="reset"></a>
 
@@ -808,7 +810,7 @@ The sample code for this tutorial checks for existing objects and deletes them s
 
 This tutorial demonstrated the basic steps for building an enriched indexing pipeline through the creation of component parts: a data source, skillset, index, and indexer.
 
-[Built-in skills](cognitive-search-predefined-skills.md) were introduced, along with skillset definition and the mechanics of chaining skills together through inputs and outputs. You also learned that `outputFieldMappings` in the indexer definition is required for routing enriched values from the pipeline into a searchable index on an Azure AI Search service.
+[Built-in skills](../../cognitive-search-predefined-skills.md) were introduced, along with skillset definition and the mechanics of chaining skills together through inputs and outputs. You also learned that `outputFieldMappings` in the indexer definition is required for routing enriched values from the pipeline into a searchable index on an Azure AI Search service.
 
 Finally, you learned how to test results and reset the system for further iterations. You learned that issuing queries against the index returns the output created by the enriched indexing pipeline. You also learned how to check indexer status, and which objects to delete before rerunning a pipeline.
 
@@ -823,4 +825,4 @@ You can find and manage resources in the Azure portal, using the All resources o
 Now that you're familiar with all of the objects in an AI enrichment pipeline, let's take a closer look at skillset definitions and individual skills.
 
 > [!div class="nextstepaction"]
-> [How to create a skillset](cognitive-search-defining-skillset.md)
+> [How to create a skillset](../../cognitive-search-defining-skillset.md)

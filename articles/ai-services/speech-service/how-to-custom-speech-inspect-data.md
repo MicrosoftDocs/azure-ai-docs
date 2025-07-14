@@ -78,31 +78,31 @@ To create a test, use the `spx csr evaluation create` command. Construct the req
 Here's an example Speech CLI command that creates a test:
 
 ```azurecli-interactive
-spx csr evaluation create --api-version v3.2 --project 0198f569-cc11-4099-a0e8-9d55bc3d0c52 --dataset 23b6554d-21f9-4df1-89cb-f84510ac8d23 --model1 13fb305e-09ad-4bce-b3a1-938c9124dda3 --model2 13fb305e-09ad-4bce-b3a1-938c9124dda3 --name "My Inspection" --description "My Inspection Description"
+spx csr evaluation create --api-version v3.2 --project aaaabbbb-0000-cccc-1111-dddd2222eeee --dataset bbbbcccc-1111-dddd-2222-eeee3333ffff --model1 ccccdddd-2222-eeee-3333-ffff4444aaaa --model2 ccccdddd-2222-eeee-3333-ffff4444aaaa --name "My Inspection" --description "My Inspection Description"
 ```
 
 You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/evaluations/9c06d5b1-213f-4a16-9069-bc86efacdaac",
+  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/evaluations/ddddeeee-3333-ffff-4444-aaaa5555bbbb",
   "model1": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/13fb305e-09ad-4bce-b3a1-938c9124dda3"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "model2": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/13fb305e-09ad-4bce-b3a1-938c9124dda3"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "dataset": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/23b6554d-21f9-4df1-89cb-f84510ac8d23"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "transcription2": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/b50642a8-febf-43e1-b9d3-e0c90b82a62a"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/eeeeffff-4444-aaaa-5555-bbbb6666cccc"
   },
   "transcription1": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/b50642a8-febf-43e1-b9d3-e0c90b82a62a"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/eeeeffff-4444-aaaa-5555-bbbb6666cccc"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/aaaabbbb-0000-cccc-1111-dddd2222eeee"
   },
   "links": {
     "files": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/evaluations/9c06d5b1-213f-4a16-9069-bc86efacdaac/files"
@@ -160,16 +160,16 @@ Make an HTTP POST request using the URI as shown in the following example. Repla
 ```azurecli-interactive
 curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content-Type: application/json" -d '{
   "model1": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/13fb305e-09ad-4bce-b3a1-938c9124dda3"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "model2": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/13fb305e-09ad-4bce-b3a1-938c9124dda3"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "dataset": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/23b6554d-21f9-4df1-89cb-f84510ac8d23"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/aaaabbbb-0000-cccc-1111-dddd2222eeee"
   },
   "displayName": "My Inspection",
   "description": "My Inspection Description",
@@ -181,24 +181,24 @@ You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/evaluations/9c06d5b1-213f-4a16-9069-bc86efacdaac",
+  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/evaluations/ddddeeee-3333-ffff-4444-aaaa5555bbbb",
   "model1": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/13fb305e-09ad-4bce-b3a1-938c9124dda3"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "model2": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/13fb305e-09ad-4bce-b3a1-938c9124dda3"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "dataset": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/23b6554d-21f9-4df1-89cb-f84510ac8d23"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "transcription2": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/b50642a8-febf-43e1-b9d3-e0c90b82a62a"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/eeeeffff-4444-aaaa-5555-bbbb6666cccc"
   },
   "transcription1": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/b50642a8-febf-43e1-b9d3-e0c90b82a62a"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/eeeeffff-4444-aaaa-5555-bbbb6666cccc"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/aaaabbbb-0000-cccc-1111-dddd2222eeee"
   },
   "links": {
     "files": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/evaluations/9c06d5b1-213f-4a16-9069-bc86efacdaac/files"
@@ -267,7 +267,7 @@ To get test results, use the `spx csr evaluation status` command. Construct the 
 Here's an example Speech CLI command that gets test results:
 
 ```azurecli-interactive
-spx csr evaluation status --api-version v3.2 --evaluation 9c06d5b1-213f-4a16-9069-bc86efacdaac
+spx csr evaluation status --api-version v3.2 --evaluation ddddeeee-3333-ffff-4444-aaaa5555bbbb
 ```
 
 The models, audio dataset, transcriptions, and more details are returned in the response body.
@@ -276,24 +276,24 @@ You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/evaluations/9c06d5b1-213f-4a16-9069-bc86efacdaac",
+  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/evaluations/ddddeeee-3333-ffff-4444-aaaa5555bbbb",
   "model1": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/13fb305e-09ad-4bce-b3a1-938c9124dda3"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "model2": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/13fb305e-09ad-4bce-b3a1-938c9124dda3"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "dataset": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/23b6554d-21f9-4df1-89cb-f84510ac8d23"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "transcription2": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/b50642a8-febf-43e1-b9d3-e0c90b82a62a"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/eeeeffff-4444-aaaa-5555-bbbb6666cccc"
   },
   "transcription1": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/b50642a8-febf-43e1-b9d3-e0c90b82a62a"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/eeeeffff-4444-aaaa-5555-bbbb6666cccc"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/aaaabbbb-0000-cccc-1111-dddd2222eeee"
   },
   "links": {
     "files": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/evaluations/9c06d5b1-213f-4a16-9069-bc86efacdaac/files"
@@ -405,24 +405,24 @@ You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/evaluations/9c06d5b1-213f-4a16-9069-bc86efacdaac",
+  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/evaluations/ddddeeee-3333-ffff-4444-aaaa5555bbbb",
   "model1": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/13fb305e-09ad-4bce-b3a1-938c9124dda3"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "model2": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/13fb305e-09ad-4bce-b3a1-938c9124dda3"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "dataset": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/23b6554d-21f9-4df1-89cb-f84510ac8d23"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "transcription2": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/b50642a8-febf-43e1-b9d3-e0c90b82a62a"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/eeeeffff-4444-aaaa-5555-bbbb6666cccc"
   },
   "transcription1": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/b50642a8-febf-43e1-b9d3-e0c90b82a62a"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/eeeeffff-4444-aaaa-5555-bbbb6666cccc"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/aaaabbbb-0000-cccc-1111-dddd2222eeee"
   },
   "links": {
     "files": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/evaluations/9c06d5b1-213f-4a16-9069-bc86efacdaac/files"
@@ -567,4 +567,3 @@ If you're comparing quality between two models, pay particular attention to diff
 - [Test model quantitatively](how-to-custom-speech-evaluate-data.md)
 - [Train your model](how-to-custom-speech-train-model.md)
 - [Deploy your model](./how-to-custom-speech-train-model.md)
-

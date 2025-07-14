@@ -5,8 +5,8 @@ description: Learn how to troubleshoot issues with environment image builds and 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: ericadebarge
 ms.date: 06/13/2025
 ms.topic: troubleshooting

@@ -6,12 +6,13 @@ manager: nitinme
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
+ms.update-cycle: 90-days
 ms.custom:
   - devx-track-dotnet
   - devx-track-python
   - ignite-2023
 ms.topic: quickstart
-ms.date: 06/27/2025
+ms.date: 07/09/2025
 zone_pivot_groups: search-get-started-semantic
 ---
 
@@ -20,6 +21,12 @@ zone_pivot_groups: search-get-started-semantic
 ::: zone pivot="csharp"
 
 [!INCLUDE [C# quickstart](includes/quickstarts/semantic-ranker-csharp.md)]
+
+::: zone-end
+
+::: zone pivot="javascript"
+
+[!INCLUDE [JavaScript quickstart](includes/quickstarts/semantic-ranker-javascript.md)]
 
 ::: zone-end
 
@@ -32,6 +39,12 @@ zone_pivot_groups: search-get-started-semantic
 ::: zone pivot="rest"
 
 [!INCLUDE [REST quickstart](includes/quickstarts/semantic-ranker-rest.md)]
+
+::: zone-end
+
+::: zone pivot="typescript"
+
+[!INCLUDE [TypeScript quickstart](includes/quickstarts/semantic-ranker-typescript.md)]
 
 ::: zone-end
 

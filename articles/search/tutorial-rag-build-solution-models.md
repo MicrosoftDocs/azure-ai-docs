@@ -6,6 +6,7 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.topic: tutorial
 ms.custom: references_regions
 ms.date: 06/11/2025

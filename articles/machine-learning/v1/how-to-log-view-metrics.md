@@ -3,8 +3,8 @@ title: Log & view metrics and log files v1
 titleSuffix: Azure Machine Learning
 description: Enable logging on your ML training runs to monitor real-time run metrics, and to help diagnose errors and warnings.
 services: machine-learning
-author: sdgilley
-ms.author: sgilley
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: shwinne
 ms.service: azure-machine-learning
 ms.subservice: core

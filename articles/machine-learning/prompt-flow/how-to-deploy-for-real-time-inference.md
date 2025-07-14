@@ -5,14 +5,15 @@ description: Learn how to deploy in prompt flow a flow as a managed online endpo
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
+ms.topic: how-to
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: keli19
+ms.date: 05/08/2024
 ms.custom:
   - ignite-2023
   - build-2024
-ms.topic: how-to
-author: lgayhardt
-ms.author: lagayhar
-ms.reviewer: keli19
-ms.date: 05/08/2024
+  - sfi-image-nochange
 ---
 
 

@@ -2,7 +2,8 @@
 title: Use ADLS Gen2 indexer to ingest permission metadata
 titleSuffix: Azure AI Search  
 description: Learn how to configure Azure AI Search indexers for ingesting Access Control Lists (ACLs) and Azure Role-Based Access (RBAC) metadata on Azure Data Lake Storage (ADLS) Gen2 blobs.
-ms.service: azure-ai-search  
+ms.service: azure-ai-search
+ms.update-cycle: 90-days
 ms.topic: how-to
 ms.date: 05/08/2025  
 author: wlifuture

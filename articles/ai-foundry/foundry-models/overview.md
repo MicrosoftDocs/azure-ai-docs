@@ -26,16 +26,15 @@ AI Foundry Models is part of Azure AI Foundry, and users can access the service 
 
 You can get access to the key model providers in the industry. Explore the following model families available:
 
-- [AI21 Labs](concepts/models.md#ai21-labs)
 - [Azure OpenAI](concepts/models.md#azure-openai)
 - [Cohere](concepts/models.md#cohere)
 - [Core42](concepts/models.md#core42)
-- [DeepSeek](concepts/models.md#deepseek)
+- [DeepSeek](concepts/models.md#deepseek-models-sold-directly-by-azure)
 - [Meta](concepts/models.md#meta)
 - [Microsoft](concepts/models.md#microsoft)
 - [Mistral AI](concepts/models.md#mistral-ai)
 - [NTT Data](concepts/models.md#ntt-data)
-- [xAI](concepts/models.md#xai)
+- [xAI](concepts/models.md#xai-models-sold-directly-by-azure)
 
 To see details for each model including language, types, and capabilities, see [Models](../model-inference/concepts/models.md) article.
 

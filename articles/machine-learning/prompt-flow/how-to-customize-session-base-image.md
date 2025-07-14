@@ -8,8 +8,8 @@ ms.subservice: prompt-flow
 ms.custom:
   - build-2024
 ms.topic: how-to
-author: lgayhardt
-ms.author: lagayhar
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: lochen
 ms.date: 04/19/2024
 ---

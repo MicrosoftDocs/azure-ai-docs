@@ -11,6 +11,7 @@ ms.date: 03/04/2025
 ms.custom:
   - mode-ui
   - ignite-2023
+  - sfi-image-nochange
 ---
 
 # Quickstart: Create a knowledge store in the Azure portal

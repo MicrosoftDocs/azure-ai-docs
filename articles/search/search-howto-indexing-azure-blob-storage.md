@@ -7,11 +7,12 @@ ms.author: gimondra
 manager: vinodva
 
 ms.service: azure-ai-search
+ms.topic: how-to
+ms.date: 05/08/2025
 ms.custom:
   - ignite-2023
   - ignite-2024
-ms.topic: how-to
-ms.date: 05/08/2025
+  - sfi-ropc-nochange
 ---
 
 # Index data from Azure Blob Storage
@@ -26,6 +27,9 @@ To configure and run the indexer, you can use:
 + [Import and vectorize data wizard](search-get-started-portal-import-vectors.md) in the Azure portal.
 
 This article uses the REST APIs to illustrate each step.
+
+> [!NOTE]
+> Azure AI Search can now ingest RBAC scope during indexing and transfers those permissions to indexed content in the search index. For more information about RBAC scope during indexing, see [Indexing Azure Role-Based Access Control scope using Indexers](search-blob-indexer-role-based-access.md).
 
 ## Prerequisites
 
