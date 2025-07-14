@@ -110,9 +110,9 @@ There are several characters that have a special meaning and need to be escaped 
 
 | Escape sequence | Special meaning (usage in path syntax)  | Example |
 |---|---|
-| ~0 | Used for escaping `~` | "~0" where "~/documents" becomes "~0~1documents"|
-| ~1 | Used for escaping `/` | "~1" where "~/documents" becomes "~0~1documents" |
-| ~2 | Used for generically to escape arbitrary sequences (including but not limited to `#` and `*`) | "~2#~2" where "readme#requirements" becomes "readme~2#~2requirements" |
+| `~0` | Used for escaping `~` | "~0" for `~`, where "~/documents" becomes "~0~1documents"|
+| `~1` | Used for escaping `/` | "~1" for `/`, where "~/documents" becomes "~0~1documents" |
+| `~2` | Used for generically to escape arbitrary sequences (including but not limited to `#` and `*`) | "~2#~2" where "readme#requirements" becomes "readme~2#~2requirements" |
 
 
 ## Array enumeration
