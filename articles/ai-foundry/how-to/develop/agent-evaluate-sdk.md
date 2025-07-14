@@ -215,7 +215,6 @@ quality_evaluators = {evaluator.__name__: evaluator(model_config=reasoning_model
 # other evaluators do not support reasoning models 
 quality_evaluators.update({ evaluator.__name__: evaluator(model_config=model_config) for evaluator in [CoherenceEvaluator, FluencyEvaluator, RelevanceEvaluator]})
 
-
 ## Using Azure AI Foundry (non-Hub) project endpoint, example: AZURE_AI_PROJECT=https://your-account.services.ai.azure.com/api/projects/your-project
 azure_ai_project = os.environ.get("AZURE_AI_PROJECT")
 
@@ -248,7 +247,7 @@ To further improve intelligibility, all evaluators accept a binary threshold (un
 
 Example output for some evaluators: 
 
-```json
+```
 {
     "intent_resolution": 5.0, # likert scale: 1-5 integer 
     "intent_resolution_result": "pass", # pass because 5 > 3 the threshold
@@ -262,12 +261,10 @@ Example output for some evaluators:
     "task_adherence_reason": "The response accurately follows the instructions, fetches the correct weather information, and relays it back to the user without any errors or omissions."
 }
 {
-    "tool_call_accuracy": 1.0,  # this is the average of all correct tool calls (or passing rate) 
+    "tool_call_accuracy": 5,  # a score bewteen 1-5, higher is better
     "tool_call_accuracy_result": "pass", # pass because 1.0 > 0.8 the threshold
-    "tool_call_accuracy_threshold": 0.8,
-    "details": [
-
-    ]
+    "tool_call_accuracy_threshold": 3,
+    "details": { ... } # helpful details for debugging the tool calls made by the agent
 }
 ```
 
@@ -379,7 +376,7 @@ print(json.dumps(result, indent=4))
 
 Output (see [output format](#output-format) for details): 
 
-```json
+```
 {
     "intent_resolution": 5.0,
     "intent_resolution_result": "pass",
@@ -435,23 +432,12 @@ print(json.dumps(response, indent=4))
 ```
 Output (see [output format](#output-format) for details): 
 
-```json
+```
 {
-    "tool_call_accuracy": 0.5,
+    "tool_call_accuracy": 3,  # a score bewteen 1-5, higher is better
     "tool_call_accuracy_result": "fail",
-    "tool_call_accuracy_threshold": 0.8,
-    "per_tool_call_details": [
-        {
-            "tool_call_accurate": true,
-            "tool_call_accurate_reason": "The TOOL CALL is directly relevant to the user's query, uses appropriate parameters, and the parameter values are correctly extracted from the conversation. It is likely to provide useful information to advance the conversation.",
-            "tool_call_id": "call_CUdbkBfvVBla2YP3p24uhElJ"
-        },
-        {
-            "tool_call_accurate": false,
-            "tool_call_accurate_reason": "The TOOL CALL is not relevant to the user's query about the weather in Seattle and uses a parameter value that is not present or inferred from the conversation.",
-            "tool_call_id": "call_CUdbkBfvVBla2YP3p24uhElJ"
-        }
-    ]
+    "tool_call_accuracy_threshold": 4,
+    "details": { ... } # helpful details for debugging the tool calls made by the agent
 }
 ```
 
@@ -556,23 +542,12 @@ print(json.dumps(result, indent=4))
 
 Output (see [output format](#output-format) for details): 
 
-```json
+```
 {
-    "tool_call_accuracy": 0.5,
+    "tool_call_accuracy": 2,  # a score bewteen 1-5, higher is better
     "tool_call_accuracy_result": "fail",
-    "tool_call_accuracy_threshold": 0.8,
-    "per_tool_call_details": [
-        {
-            "tool_call_accurate": true,
-            "tool_call_accurate_reason": "The TOOL CALL is directly relevant to the user's query, uses appropriate parameters, and the parameter values are correctly extracted from the conversation. It is likely to provide useful information to advance the conversation.",
-            "tool_call_id": "call_CUdbkBfvVBla2YP3p24uhElJ"
-        },
-        {
-            "tool_call_accurate": false,
-            "tool_call_accurate_reason": "The TOOL CALL is not relevant to the user's query about the weather in Seattle and uses a parameter value that is not present or inferred from the conversation.",
-            "tool_call_id": "call_CUdbkBfvVBla2YP3p24uhElJ"
-        }
-    ]
+    "tool_call_accuracy_threshold": 3,
+    "details": { ... } # helpful details for debugging the tool calls made by the agent
 }
 ```
 This evaluation schema helps you parse your agent data outside of Azure AI Foundry Agent Service, so that you can use our evaluators to support observability into your agentic workflows.   
