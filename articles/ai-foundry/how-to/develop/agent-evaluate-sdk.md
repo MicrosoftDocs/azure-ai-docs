@@ -8,7 +8,7 @@ ms.custom:
   - build-2025
   - references_regions
 ms.topic: how-to
-ms.date: 06/26/2025
+ms.date: 07/14/2025
 ms.reviewer: changliu2
 ms.author: lagayhar
 author: lgayhardt
