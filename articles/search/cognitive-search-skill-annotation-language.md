@@ -106,13 +106,13 @@ Specific elements of an array can be referenced by using their numeric index lik
 
 ### Escape sequences
 
-There are three characters that have a special meaning and need to be escaped if they are to be interpreted as-is instead of a syntax element: 
+There are several characters that have a special meaning and need to be escaped if they are to be interpreted as-is instead of a syntax element. These characters include `#`, `/`, and `~` among others.
 
-|Value|Special meaning (usage in path syntax) |Escape sequence| Example for usage in string |
-|---|---|---|---|
-| `#` | Used in array enumeration | ~2 | "~2#~2"  |
-| `/` | Used in node paths | ~1  | "~1/~1"  |
-| `~` | Used for escaping other special characters within a JSON Pointer path | ~0  | "~0~~0"  |
+| Escape sequence | Special meaning (usage in path syntax)  | Example |
+|---|---|
+| ~0 | Used for escaping `~` | "~0" where "~/documents" becomes "~0~1documents"|
+| ~1 | Used for escaping `/` | "~1" where "~/documents" becomes "~0~1documents" |
+| ~2 | Used for generically to escape arbitrary sequences (including but not limited to `#` and `*`) | "~2#~2" where "readme#requirements" becomes "readme~2#~2requirements" |
 
 
 ## Array enumeration
