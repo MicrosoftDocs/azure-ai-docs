@@ -47,37 +47,6 @@ Azure AI Foundry Agent Service supports the following Azure OpenAI models in the
 | westus3          |                              | X                  | X                  | X                  | X                       |             | X                       |                 |                    |                    |
 
 
-## Azure AI Foundry models
-
-### Models with tool-calling 
-
-To best support agentic scenarios, we recommend using models that support tool-calling. The Azure AI Foundry Agent Service currently supports all agent-compatible models from the Azure AI Foundry model catalog. 
-
-To use these models, use the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) to make a model deployment, then reference the deployment name in your agent. For example: 
-
-`agent = project_client.agents.create_agent( model="llama-3", name="my-agent", instructions="You are a helpful agent")`
-
-> [!NOTE]
-> This option should only be used for open-source models (for example, Cepstral, Mistral, Llama) and not for OpenAI models, which are natively supported in the service. This option should also only be used for models that support tool-calling. 
-
-### Models without tool-calling 
-
-Though tool-calling support is a core capability for agentic scenarios, we now provide the ability to use models that don’t support tool-calling in our API and SDK. This option can be helpful when you have specific use-cases that don’t require tool-calling. 
-
-The following steps will allow you to utilize any chat-completion model that is available through a [serverless API](/azure/ai-foundry/how-to/model-catalog-overview): 
-
- 
-
-1. Deploy your desired model through serverless API. Model will show up on your **Models + Endpoints** page. 
-
-1. Click on model name to see model details, where you'll find your model's target URI and key. 
-
-1. Create a new Serverless connection on **Connected Resources** page, using the target URI and key. 
-
-The model can now be referenced in your code (`Target URI` + `@` + `Model Name`), for example: 
-
-`Model=https://Phi-4-mejco.eastus.models.ai.azure.com/@Phi-4-mejco`
-
 ## Next steps
 
 [Create a new Agent project](../quickstart.md)
