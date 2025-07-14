@@ -7,7 +7,7 @@ ms.author: scottpolly
 ms.reviewer: fasantia
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.custom: devx-track-python, update-code-2
+ms.custom: devx-track-python, update-code-3
 ms.date: 12/08/2023
 ms.topic: how-to
 ---
