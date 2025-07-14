@@ -109,6 +109,18 @@ xAI's Grok 3 and Grok 3 Mini models are designed to excel in various enterprise 
 
 See [the xAI model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=xai).
 
+### Mistral models sold directly by Azure
+
+Mistral AI offers...
+
+Mistral AI also offers models under [Azure models from partners and community](#mistral-ai). 
+
+
+| Model | Type | Capabilities | Project type |
+| ------ | ---- | ------------ | ------------ |
+| [mistral-ocr-2505]() | chat-completion | - **Input:** text () <br /> - **Output:** text () <br /> - **Languages:** en <br />  - **Tool calling:**  <br /> - **Response formats:**  | Foundry|
+
+
 
 ## Models from partners and community
 
