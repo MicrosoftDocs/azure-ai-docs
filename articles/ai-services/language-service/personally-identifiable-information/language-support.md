@@ -11,7 +11,7 @@ ms.author: lajanuar
 ms.custom: language-service-pii, build-2024
 ---
 
-# Personally Identifiable Information (PII) detection language support 
+# Personally Identifiable Information (PII) detection language support
 
 Use this article to learn which natural languages are supported by the text PII, document PII, and conversation PII features of Azure AI Language Service.
 # [Text PII](#tab/text)
@@ -190,7 +190,20 @@ Use this article to learn which natural languages are supported by the text PII,
 
 ## PII language support
 
-The Generally Available Conversational PII service currently supports English. Preview model version `2023-04-15-preview` supports English, German, Spanish, and French. 
+Preview PII conversation model version `2023-04-15-preview` supports the following languages:
+
+* English
+* French
+* German
+* Spanish
+
+
+Generally Available PII conversation version currently supports the following languages:
+
+* English
+* French
+* Spanish
+
 
 
 ---
