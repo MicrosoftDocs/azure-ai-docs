@@ -110,9 +110,10 @@ There are three characters that have a special meaning and need to be escaped if
 
 |Value|Usage|Escape sequence| Example |
 |---|---|---|---|
-| `/` | Used in node paths | ~0  | "~0/~0"  |
-| `~` | Used in ???? | ~1  | "~1~~1  |
 | `#` | Used in array enumeration | ~2 | "~2#~2"  |
+| `/` | Used in node paths | ~1  | "~1/~1"  |
+| `~` | Used for escaping other special characters within a JSON Pointer path | ~0  | "~0~~0"  |
+
 
 ## Array enumeration
 
