@@ -46,7 +46,7 @@ ms.author: pafarley
 
 4. Install development dependencies:
 
-```console
+   ```console
    npm install typescript @types/node --save-dev
    ```
 

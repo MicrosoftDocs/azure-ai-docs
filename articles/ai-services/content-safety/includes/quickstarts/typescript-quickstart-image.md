@@ -157,13 +157,13 @@ try {
 
 ## Build and run the sample
 
-2. Compile the TypeScript code:
+1. Compile the TypeScript code:
 
    ```console
    npm run build
    ```
 
-3. Run the compiled JavaScript:
+1. Run the compiled JavaScript:
 
    ```console
    node dist/index.js
