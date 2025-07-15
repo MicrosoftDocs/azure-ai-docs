@@ -25,7 +25,7 @@ The Translator service is an optimal solution for managing extensive multilingua
 
 ## What's new for 2025-05-01-preview?
 
-* **`LLM` choice**. By default, Azure AI Translator uses neural Machine Translation (NMT) technology. With the newest preview release, you now can optionally select either the standard NMT translation or one of two Large Language Model (LLM) deployment types: GPT-4o-mini or GPT-4o. You can choose a large language model for translation based on factors such as quality, cost, and other considerations. However, **using an LLM model requires you to have an Azure AI Foundry resource**. For more information, *see* [Configure Azure AI resources](../../../how-to/create-translator-resource.md)
+* **`LLM` choice**. By default, Azure AI Translator uses neural Machine Translation (NMT) technology. With the newest preview release, you now can optionally select either the standard NMT translation or one of two Large Language Model (LLM) deployment types: GPT-4o-mini or GPT-4o. You can choose a large language model for translation based on factors such as quality, cost, and other considerations. However, **using an LLM model requires you to have an Azure AI Foundry resource**. For more information, *see* [Configure Azure AI resources](../../how-to/create-translator-resource.md)
 
 * **Adaptive custom translation**. You can provide reference translations or translation memory datasets to enable an `LLM` model to perform few-shot translations tailored to your needs. 
 
@@ -53,7 +53,7 @@ Customers with a resource located in Switzerland North or Switzerland West can e
 
 Metrics allow you to view the translator usage and availability information in Azure portal, under metrics section as shown in the following screenshot. For more information, see [Data and platform metrics](/azure/azure-monitor/essentials/data-platform-metrics).
 
-:::image type="content" source="../../../media/azure-portal-metrics-v4.png" alt-text="Screenshot of HTTP request metrics in the Azure portal.":::
+:::image type="content" source="../../media/azure-portal-metrics-v4.png" alt-text="Screenshot of HTTP request metrics in the Azure portal.":::
 
 #### Metrics terminology
 
@@ -114,7 +114,7 @@ The following tables list available metrics with description of how they're used
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [View 2025-05-01-preview migration guide](../../how-to/migrate-to-preview.md)
+> [View 2025-05-01-preview migration guide](../how-to/migrate-to-preview.md)
 
 
 

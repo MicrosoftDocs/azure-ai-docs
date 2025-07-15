@@ -57,7 +57,7 @@ Custom Translator isn't currently available in Switzerland.
 
 ## Virtual Network support
 
-The Translator service is now available with Virtual Network (`VNET`) capabilities in all regions of the Azure public cloud. To enable Virtual Network, *See* [Configuring Azure AI services virtual networks](../../../../cognitive-services-virtual-networks.md?tabs=portal).
+The Translator service is now available with Virtual Network (`VNET`) capabilities in all regions of the Azure public cloud. To enable Virtual Network, *See* [Configuring Azure AI services virtual networks](../../../cognitive-services-virtual-networks.md?tabs=portal).
 
 Once you turn on this capability, you must use the custom endpoint to call the Translator. You can't use the global translator endpoint ("api.cognitive.microsofttranslator.com") and you can't authenticate with an access token.
 
@@ -67,14 +67,14 @@ You can find the custom endpoint after you create a [translator resource](https:
 1. Select **Networking** from the **Resource Management** section.
 1. Under the **Firewalls and virtual networks** tab, choose **Selected Networks and Private Endpoints**.
 
-   :::image type="content" source="../../../media/virtual-network-setting-azure-portal.png" alt-text="Screenshot of the virtual network setting in the Azure portal.":::
+   :::image type="content" source="../../media/virtual-network-setting-azure-portal.png" alt-text="Screenshot of the virtual network setting in the Azure portal.":::
 
 1. Select **Save** to apply your changes.
 1. Select **Keys and Endpoint** from the **Resource Management** section.
 1. Select the **Virtual Network** tab.
 1. Listed there are the endpoints for Text translation and Document translation.
 
-   :::image type="content" source="../../../media/virtual-network-endpoint.png" alt-text="Screenshot of the virtual network endpoint.":::
+   :::image type="content" source="../../media/virtual-network-endpoint.png" alt-text="Screenshot of the virtual network endpoint.":::
 
 |Headers|Description|
 |:-----|:----|
@@ -95,7 +95,7 @@ curl -X POST "https://<your-custom-domain>.cognitiveservices.azure.com/translato
 ## Metrics
 Metrics allow you to view the translator usage and availability information in Azure portal. For more information, see [Data and platform metrics](/azure/azure-monitor/essentials/data-platform-metrics).
 
-![Translator Metrics](../../../media/azure-portal-metrics-v3.png)
+![Translator Metrics](../../media/azure-portal-metrics-v3.png)
 
 This table lists available metrics with description of how they're used to monitor translation API calls.
 

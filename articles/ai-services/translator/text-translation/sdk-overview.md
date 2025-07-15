@@ -364,4 +364,4 @@ The [Microsoft Q & A](/answers/tags/132/azure-translator) and [Stack Overflow](h
 > [**Text translation quickstart**](quickstart/client-library-sdk.md)
 
 >[!div class="nextstepaction"]
-> [**Text translation v3.0 reference guide**](reference/v3/reference.md)
+> [**Text translation v3.0 reference guide**](v3/reference.md)

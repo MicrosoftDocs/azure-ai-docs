@@ -40,9 +40,9 @@ Request parameters passed on the query string are:
 
 | Query parameter | Description |
 | --- | --- |
-| from | _Optional parameter_.  <br>Specifies the language of the input text. Find which languages are available to translate from by looking up [supported languages](languages.md) using the `translation` scope. If the `from` parameter isn't specified, automatic language detection is applied to determine the source language.  <br>  <br>You must use the `from` parameter rather than autodetection when using the [dynamic dictionary](../../how-to/use-dynamic-dictionary.md) feature. **Note**: the dynamic dictionary feature is case-sensitive. |
+| from | _Optional parameter_.  <br>Specifies the language of the input text. Find which languages are available to translate from by looking up [supported languages](languages.md) using the `translation` scope. If the `from` parameter isn't specified, automatic language detection is applied to determine the source language.  <br>  <br>You must use the `from` parameter rather than autodetection when using the [dynamic dictionary](../how-to/use-dynamic-dictionary.md) feature. **Note**: the dynamic dictionary feature is case-sensitive. |
 | textType | _Optional parameter_.  <br>Defines whether the text being translated is plain text or HTML text. Any HTML needs to be a well-formed, complete element. Possible values are: `plain` (default) or `html`. |
-| category | _Optional parameter_.  <br>A string specifying the category (domain) of the translation. This parameter is used to get translations from a customized system built with [Custom Translator](../../../custom-translator/concepts/customization.md). To use your deployed customized system, add the Category ID from your Custom Translator [project details](../../../custom-translator/how-to/create-manage-project.md) to the category parameter. Default value is: `general`. |
+| category | _Optional parameter_.  <br>A string specifying the category (domain) of the translation. This parameter is used to get translations from a customized system built with [Custom Translator](../../custom-translator/concepts/customization.md). To use your deployed customized system, add the Category ID from your Custom Translator [project details](../../custom-translator/how-to/create-manage-project.md) to the category parameter. Default value is: `general`. |
 | profanityAction | _Optional parameter_.  <br>Specifies how profanities should be treated in translations. Possible values are: `NoAction` (default), `Marked`, or `Deleted`. To understand ways to treat profanity, see [Profanity handling](#handle-profanity). |
 | profanityMarker | _Optional parameter_.  <br>Specifies how profanities should be marked in translations. Possible values are: `Asterisk` (default) or `Tag`. To understand ways to treat profanity, see [Profanity handling](#handle-profanity). |
 | includeAlignment | _Optional parameter_.  <br>Specifies whether to include alignment projection from source text to translated text. Possible values are: `true` or `false` (default). |
@@ -56,7 +56,7 @@ Request headers include:
 
 | Headers | Description |
 | --- | --- |
-| Authentication headers | _Required request header_.  <br>See [available options for authentication](./../authentication.md). |
+| Authentication headers | _Required request header_.  <br>See [available options for authentication](./../reference/authentication.md). |
 | Content-Type | _Required request header_.  <br>Specifies the content type of the payload.  <br>Accepted value is `application/json; charset=UTF-8`. |
 | Content-Length | _Optional_.  <br>The length of the request body. |
 | X-ClientTraceId | _Optional_.  <br>A client-generated GUID to uniquely identify the request. You can omit this header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |
@@ -71,7 +71,7 @@ The body of the request is a JSON array. Each array element is a JSON object wit
 ]
 ```
 
-For information on character and array limits, _see_ [Request limits](../../../service-limits.md#character-and-array-limits-per-request).
+For information on character and array limits, _see_ [Request limits](../../service-limits.md#character-and-array-limits-per-request).
 
 ## Response body
 
@@ -136,7 +136,7 @@ The following are the possible HTTP status codes that a request returns.
 |500 |  An unexpected error occurred. If the error persists, report it with: date and time of the failure, request identifier from response header X-RequestId, and client identifier from request header X-ClientTraceId. |
 |503 |Server temporarily unavailable. Retry the request. If the error persists, report it with: date and time of the failure, request identifier from response header X-RequestId, and client identifier from request header X-ClientTraceId. |
 
-If an error occurs, the request returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [v3 Translator reference page](../status-response-codes.md).
+If an error occurs, the request returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [v3 Translator reference page](../reference/status-response-codes.md).
 
 ## Examples
 
@@ -382,7 +382,7 @@ Obtaining alignment information is an experimental feature that we enabled for p
   * from Japanese to Chinese Simplified and Chinese Simplified to Japanese
   * from Chinese Simplified to Chinese Traditional and Chinese Traditional to Chinese Simplified
 * You don't alignment if the sentence is a canned translation. Example of a canned translation is `This is a test`, `I love you`, and other high frequency sentences
-* Alignment isn't available when you apply any of the approaches to prevent translation as described [here](../../how-to/prevent-translation.md)
+* Alignment isn't available when you apply any of the approaches to prevent translation as described [here](../how-to/prevent-translation.md)
 
 ### Obtain sentence boundaries
 
@@ -436,9 +436,9 @@ The result is:
 ]
 ```
 
-This dynamic-dictionary feature works the same way with `textType=text` or with `textType=html`. The feature should be used sparingly. The appropriate and far better way of customizing translation is by using Custom Translator. Custom Translator makes full use of context and statistical probabilities. If you can create training data that shows your work or phrase in context, you get better results. [Learn more about Custom Translator](../../../custom-translator/concepts/customization.md).
+This dynamic-dictionary feature works the same way with `textType=text` or with `textType=html`. The feature should be used sparingly. The appropriate and far better way of customizing translation is by using Custom Translator. Custom Translator makes full use of context and statistical probabilities. If you can create training data that shows your work or phrase in context, you get better results. [Learn more about Custom Translator](../../custom-translator/concepts/customization.md).
 
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Try the Translator quickstart](../../quickstart/rest-api.md)
+> [Try the Translator quickstart](../quickstart/rest-api.md)

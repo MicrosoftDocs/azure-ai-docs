@@ -90,7 +90,7 @@ The quickest method for authenticating your Azure AI services API requests is to
 
 * **Authentication keys**. Your key is a unique string that is passed on every request to the Translation service. You can pass your key through a query-string parameter or by specifying it in the HTTP request header.
 
-* **Endpoint URL**. Use the Global endpoint in your API request unless you need a specific Azure region or custom endpoint. For more information, see [Base URLs](../text-translation/reference/v3/reference.md#base-urls). The Global endpoint URL is `api.cognitive.microsofttranslator.com`.
+* **Endpoint URL**. Use the Global endpoint in your API request unless you need a specific Azure region or custom endpoint. For more information, see [Base URLs](../text-translation/v3/reference.md#base-urls). The Global endpoint URL is `api.cognitive.microsofttranslator.com`.
 
 ### Get your authentication keys and endpoint
 

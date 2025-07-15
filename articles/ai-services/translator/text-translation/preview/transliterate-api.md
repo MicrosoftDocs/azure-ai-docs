@@ -22,7 +22,7 @@ Send a `POST` request to:
 https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-05-01-preview
 ```
 
-For more information on Translator service selected network and private endpoint configuration and support, *see* [**Virtual Network Support**](../authentication.md#virtual-network-support).
+For more information on Translator service selected network and private endpoint configuration and support, *see* [**Virtual Network Support**](../reference/authentication.md#virtual-network-support).
 
 ## Request parameters
 
@@ -41,7 +41,7 @@ Request headers include:
 
 | Headers | Description |
 | --- | --- |
-| Authentication headers | _Required request header_.<br/>*See* [available options for authentication](../authentication.md). |
+| Authentication headers | _Required request header_.<br/>*See* [available options for authentication](../reference/authentication.md). |
 | Content-Type | _Required request header_.<br/>Specifies the content type of the payload. Accepted values are: `application/json` |
 | Content-Length | _Optional_.<br/>The length of the request body. |
 | X-ClientTraceId | _Optional_.<br/>A client-generated GUID to uniquely identify the request. You can omit this optional header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |
@@ -88,7 +88,7 @@ An example JSON response is:
 
 ## Response status codes
 
-If an error occurs, the request also returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [Translator status code reference page](../status-response-codes.md).
+If an error occurs, the request also returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [Translator status code reference page](../reference/status-response-codes.md).
 
 ## Examples
 
