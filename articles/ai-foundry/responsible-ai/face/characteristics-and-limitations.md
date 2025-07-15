@@ -40,7 +40,7 @@ You can use the [Fairness Assessment Sample Notebook](https://go.microsoft.com/f
 
 ## How accurate is the facial liveness detection model? 
 
-The facial liveness detection solution from Microsoft is conformant to [ISO/IEC 30107-3:2017 – Biometric presentation attack detection – Part 3: Testing and reporting](https://webstore.ansi.org/standards/iso/isoiec301072017-1662258) standard as validated by iBeta level 1 and level 2 conformance testing. 
+The facial liveness detection solution from Microsoft achieved a 0% penetration rate in [iBeta Level 1 and 2 Presentation Attack Detection (PAD) tests](https://servicetrust.microsoft.com/DocumentPage/ea3fa18f-3940-4c0b-aa96-41cb50898aee), conducted by a NIST/NVLAP-accredited laboratory and conformant to the [ISO/IEC 30107-3 PAD international standard](https://www.iso.org/standard/79520.html).
 
 ## Tradeoffs
 

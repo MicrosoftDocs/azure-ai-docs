@@ -114,7 +114,7 @@ The other features of Image Analysis, such as model customization, background re
 
 The Face Liveness SDK supports liveness detection on your users' mobile or edge devices. It's available in Java/Kotlin for Android and Swift/Objective-C for iOS.
 
-Our liveness detection service meets iBeta Level 1 and 2 ISO/IEC 30107-3 compliance.
+Our liveness detection service achieved a 0% penetration rate in [iBeta Level 1 and 2 Presentation Attack Detection (PAD) tests](https://servicetrust.microsoft.com/DocumentPage/ea3fa18f-3940-4c0b-aa96-41cb50898aee), conducted by a NIST/NVLAP-accredited laboratory and conformant to the [ISO/IEC 30107-3 PAD international standard](https://www.iso.org/standard/79520.html).
 
 ## September 2023
 
