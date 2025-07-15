@@ -213,6 +213,34 @@ You can use the `load_component()` function to load the score component, which i
 
 [!notebook-python[] (~/azureml-examples-main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet/image_classification_keras_minist_convnet.ipynb?name=load-from-yaml)]
 
+### Load registered components from the workspace
+
+If you have components that are already registered in your workspace, you can load them directly using the `ml_client.components.get()` method. This approach is useful when you want to reuse components that were previously registered by you or shared by other team members.
+
+```python
+# Load a registered component by name and version
+registered_component = ml_client.components.get(
+    name="my_registered_component", 
+    version="1.0.0"
+)
+
+# Load the latest version of a registered component
+latest_component = ml_client.components.get(
+    name="my_registered_component"
+)
+```
+
+You can list all available components in your workspace to find the ones you need:
+
+```python
+# List all components in the workspace
+components = ml_client.components.list()
+for component in components:
+    print(f"Name: {component.name}, Version: {component.version}")
+```
+
+Once loaded, you can use registered components in your pipeline exactly like components loaded from local files or Python functions.
+
 ## Build your pipeline
 
 You've created and loaded all the components and input data to build the pipeline. You can now compose them into a pipeline:
