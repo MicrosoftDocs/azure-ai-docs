@@ -106,7 +106,7 @@ You can deploy a model by selecting the **Use this model** button on the model c
 
 #### Deployment settings
 
-When you select **Serverless API**, you are taken to the deployment form. The deployment  form allows you to specify the deployment name, and whether to enable content filtering.  and the model version to use for the deployment. You can also provide sample input data to test the model.
+When you select **Serverless API**, you are taken to the deployment form. The deployment form allows you to specify the deployment name, and whether to enable content filtering and the model version to use for the deployment. You can also provide sample input data to test the model.
 
 
 When you select **Managed Compute**, you are taken to the deployment settings form. The deployment settings form allows you to specify the Virtual machine SKU to use, number of instances, and the endpoint name to use for the deployment.
