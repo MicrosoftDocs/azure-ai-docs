@@ -195,7 +195,7 @@ Aggregate content from diverse formats, cross-reference details, validate consis
 
 ---
 
-## Conclusion
+## Summary
 
 Choosing the right document processing service is dependent on the complexity of the task, format or template diversity, reasoning needs, latency sensitivity, human review needs and enterprise integration requirements. 
 For new applications and workloads, Content Understanding matches Document Intelligence capabilities and have more feature set to handle complex diverse documents.  
