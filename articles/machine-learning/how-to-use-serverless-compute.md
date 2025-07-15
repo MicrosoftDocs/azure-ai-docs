@@ -113,7 +113,7 @@ When you [view your usage and quota in the Azure portal](how-to-manage-quotas.md
 
     Create a file named hello.yaml with the following content:
 
-    ```bash
+    ```YAML
     $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
     command: echo "hello world"
     environment:
@@ -161,15 +161,15 @@ When you [view your usage and quota in the Azure portal](how-to-manage-quotas.md
     
     # [Azure CLI](#tab/cli)
     
-    ```bash
+    ```Azure CLI
     az ml workspace show --name <wsname>  --resource-group <rgname>
     ```    
     
     ---
 
-    Look for the user assigned identities in the output. If it's missing, create a new workspace with a user assigned managed identity by following the instructions here: Set up service authentication - Azure Machine Learning | Microsoft Learn
+    Look for the user-assigned identities in the output. If it's missing, create a new workspace with a user-assigned managed identity by following the instructions in [Set up authentication between Azure Machine Learning and other services](how-to-identity-based-service-authentication.md).
 
-1. Use user assigned managed identity in your job.
+1. Use your user-assigned managed identity in your job.
 
     # [Python SDK](#tab/python)
     
@@ -199,7 +199,7 @@ When you [view your usage and quota in the Azure portal](how-to-manage-quotas.md
     
     # [Azure CLI](#tab/cli)
     
-    ```yaml
+    ```YAML
     $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
     command: echo "hello world"
     environment:
@@ -241,7 +241,7 @@ ml_client.create_or_update(job)
 
 # [Azure CLI](#tab/cli)
 
-```yaml
+```YAML
 $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
 command: echo "hello world"
 environment:
@@ -288,7 +288,7 @@ You can override these defaults. If you want to specify the VM type or number of
 
     # [Azure CLI](#tab/cli)
 
-    ```bash
+    ```YAML
     $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
     command: echo "hello world"
     environment:
@@ -328,7 +328,7 @@ You can override these defaults. If you want to specify the VM type or number of
     ```
 
     # [Azure CLI](#tab/cli)
-    ```bash
+    ```YAML
     $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
     component: ./train.yml 
     queue_settings:
@@ -371,7 +371,7 @@ ml_client.create_or_update(job)
 ```
 
 # [Azure CLI](#tab/cli)
-```bash
+```YAML
 $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
 command: echo "hello world"
 environment:
@@ -428,7 +428,7 @@ For a pipeline job, specify `azureml:serverless` as your default compute type to
 You can also set serverless compute as the default compute in Designer.
 
 ### Configure Serverless Pipeline Jobs with User-Assigned Managed Identity
-When using serverless compute in pipeline jobs, we recommend setting user identity at the individual step level that will be executed on a compute, rather than at the root pipeline level. (While identity setting is supported at both root pipeline and step levels, the step level setting takes precedence if both are set. However, for pipelines containing pipeline components, identity must be set on individual steps that will be executed. Identity set at the root pipeline or pipeline component level won't function. Therefore, we suggest setting identity at the individual step level for simplicity.)
+When using serverless compute in pipeline jobs, we recommend setting user identity at the individual step level that will be executed on a compute, rather than at the root pipeline level. (While the identity setting is supported at both root pipeline and step levels, the step-level setting takes precedence if both are set. However, for pipelines containing pipeline components, identity must be set on individual steps that will be executed. Identity set at the root pipeline or pipeline component level won't function. Therefore, we suggest setting identity at the individual step level for simplicity.)
 
 # [Python SDK](#tab/python)
 
@@ -446,7 +446,7 @@ pipeline_job = my_pipeline()
 pipeline_job.settings.default_compute = "serverless"
 ```
 # [Azure CLI](#tab/cli)
-```bash    
+```YAML    
 $schema: https://azuremlschemas.azureedge.net/latest/pipelineJob.schema.json
 type: pipeline
 description: E2E dummy train-score-eval pipeline with registered components
