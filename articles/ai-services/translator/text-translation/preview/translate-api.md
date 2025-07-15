@@ -60,13 +60,13 @@ Request parameters passed with the request are as follows:
 
 >[!NOTE]
 > The current preview only supports the following two `LLM` deployment types:
-> * GPT 4o
-> * GPT 4o mini
+> * `GPT 4o`
+> * `GPT 4o mini`
 
 | Parameter | Type | Required? | Description |
 | --- | --- | --- | --- |
 | **targets.language** | string | True |The language code for the translated (`target`) text *specified in the `targets` array*. Accepted values are [supported language](../../../language-support.md) codes for the translation operation.|
-|**targets.deploymentName** | string | False | &bullet; Default is `general`, which uses `NMT` system.<br>&bullet; `your-model-name-gpt-4o-mini` is an example deployment name for the GPT-4o-mini model. For more information, *see* [Translate using GPT-4o mini and NMT deployments](translate-api.md#translate-using-gpt-4o-mini-and-nmt-deployments)<br>&bullet; `<categoryID>` uses the custom `NMT` model trained by customer. For more information, *see* [Train a custom model in Azure AI Foundry](../../custom-translator/azure-ai-foundry/how-to/train-model.md)<br>  |
+|**targets.deploymentName** | string | False | &bullet; Default is `general`, which uses a neural machine translation (NMT) system.<br>&bullet; `your-model-name-gpt-4o-mini` is an example deployment name for the GPT-4o-mini model. For more information, *see* [Translate using GPT-4o mini and NMT deployments](translate-api.md#translate-using-gpt-4o-mini-and-nmt-deployments)<br>&bullet; `<categoryID>` uses the custom `NMT` model trained by customer. For more information, *see* [Train a custom model in Azure AI Foundry](../../custom-translator/azure-ai-foundry/how-to/train-model.md)<br>  |
 | **targets.tone** | string | False | Desired tone of target translation. Accepted values are `formal`, `informal`, or `neutral`. |
 | **targets.gender** (For more information, *see* [Gender-specific translations](#gender-specific-translations))| string | False | Desired gender of target translation. Accepted values are `male`, `female`, or `neutral`.|
 | **targets.adaptiveDatasetId** | string | False | Reference dataset ID having sentence pair to generate adaptive customized translation. The maximum number of reference text pairs to generate adaptive customized translation is five (5).|
@@ -248,7 +248,7 @@ Examples of JSON responses are provided in the [examples](#examples) section.
 
 #### Translate using `GPT-4o mini` and `NMT` deployments
 
-Here, users request specific `GPT` models for deployment. Using an LLM model requires you to have an Azure AI Foundry resource. For more information, *see* [Configure Azure AI resources](../../how-to/create-translator-resource.md).
+Here, users request specific `GPT` models for deployment. Using an `LLM` model requires you to have an Azure AI Foundry resource. For more information, *see* [Configure Azure AI resources](../../how-to/create-translator-resource.md).
 
 ***Request***
 
@@ -308,7 +308,7 @@ Here, users request specific `GPT` models for deployment. Using an LLM model req
 
 #### Translate specifying gender and tone using `GPT-4o mini` deployment
 
-Using an LLM model requires you to have an Azure AI Foundry resource. For more information, *see* [Configure Azure AI resources](../../how-to/create-translator-resource.md).
+Using an `LLM` model requires you to have an Azure AI Foundry resource. For more information, *see* [Configure Azure AI resources](../../how-to/create-translator-resource.md).
 
 ***Request***
 

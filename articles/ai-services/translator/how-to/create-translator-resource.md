@@ -39,7 +39,7 @@ The following table provides an overview of the resource solutions for Translato
 
 ## [Azure AI Translator resource](#tab/translator)
 
-An Azure AI Translator resources is an instance of the service that you create. All API requests to Azure AI services can be accessed with an *endpoint* URL and a read-only *key* for authenticating access.
+An Azure AI Translator resource is an instance of the service that you create. All API requests to Azure AI services can be accessed with an *endpoint* URL and a read-only *key* for authenticating access.
 
 ### Prerequisites
 

@@ -14,7 +14,7 @@ ms.author: lajanuar
 
 Text translation is a cloud-based feature of the Azure AI Translator service and is part of the Azure AI service family of REST APIs. The Text translation API translates text between language pairs across all [supported languages and dialects](../../../language-support.md). If you already have an Azure AI Translator or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Translator resources within the Azure AI Foundry portal for NMT deployment. 
 
-By default, Azure AI Translator utilizes neural Machine Translation (NMT) technology. With the newest preview release, you now can optionally select either the standard NMT translation or one of two Large Language Model (LLM) deployment types: GPT-4o-mini or GPT-4o. However, using an LLM model requires you to have an Azure AI Foundry resource. For more information *see*, [Configure Azure AI resources](../../how-to/create-translator-resource.md).
+By default, Azure AI Translator utilizes neural Machine Translation (NMT) technology. With the newest preview release, you now can optionally select either the standard NMT translation or one of two Large Language Model (LLM) deployment types: GPT-4o-mini or GPT-4o. However, using an LLM model requires you to have an Azure AI Foundry resource. For more information, *see*, [Configure Azure AI resources](../../how-to/create-translator-resource.md).
 
 The available preview methods are listed in the following table:
 
