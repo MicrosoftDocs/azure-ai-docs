@@ -33,8 +33,13 @@ For customers without an existing virtual network, the Standard Setup with Priva
 :::image type="content" source="../media\private-network-isolation.png" alt-text="A diagram showing virtual network architecture.":::
 ### Known limitations
 
-- Subnet IP address limitation: both subnets must have IP ranges under `172.16.0.0/12` or `192.168.0.0/16`, i.e. class B or C address ranges reserved for private networking.
-- Azure Blob Storage: Using Azure Blob Storage files with the File Search tool isn't supported.
+- **Subnet IP address limitation**: both subnets must have IP ranges under `172.16.0.0/12` or `192.168.0.0/16`, i.e. class B or C address ranges reserved for private networking.
+- **All Foundry workspace resources must be deployed in the same region as the virtual network (VNet)**. This includes Cosmos DB, Storage Account, AI Search, Foundry Account, Project, and Managed Identity.  
+    - **Exception:** You may connect your Foundry Project to models deployed in a different region (on another AI Foundry or Azure OpenAI resource) by configuring an appropriate AI Services connection on the Project's [capability host](/azure/templates/microsoft.cognitiveservices/accounts/projects/capabilityhosts).
+- **Region availability**:
+  - For supported regions for Foundry workspace resources, see: [Azure AI Foundry project region availability](../../reference/region-support.md#azure-ai-foundry-projects).
+  - For supported regions for model deployments, see: [Azure OpenAI model region support](../concepts/model-region-support.md#azure-openai-models).
+- **Azure Blob Storage**: using Azure Blob Storage files with the File Search tool isn't supported.
 
 ## Prerequisites
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
