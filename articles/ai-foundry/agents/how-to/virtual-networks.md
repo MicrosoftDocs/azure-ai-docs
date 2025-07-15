@@ -68,6 +68,9 @@ For customers without an existing virtual network, the Standard Setup with Priva
        az provider register --namespace 'Microsoft.Storage'
        az provider register --namespace 'Microsoft.MachineLearningServices'
        az provider register --namespace 'Microsoft.Search'
+       az provider register --namespace 'Microsoft.Network'
+       az provider register --namespace 'Microsoft.App'
+       az provider register --namespace 'Microsoft.ContainerService'
        # only to use Grounding with Bing Search tool
        az provider register --namespace 'Microsoft.Bing'
     ```
@@ -169,6 +172,8 @@ The following DNS zones are configured:
 ### Virtual network (Vnet) capabilities
 Virtual networks enable you to specify which endpoints can make API calls to your resources. The Azure service automatically rejects API calls from devices outside your defined network. You can establish allowed networks using either formula-based definitions or by creating an exhaustive list of permitted endpoints. This security layer can be combined with other security measures for enhanced protection.
 
+> [!NOTE]
+> If you bring your existing virtual network and subnet with the *Microsoft.App/environments* delegation, the minimize size of your subnet should be /27 (32 addresses). We recommend a subnet size of /24 (256 addresses) and is the default subnet size set in the network secured template. 
 
 ### Network rules
 
