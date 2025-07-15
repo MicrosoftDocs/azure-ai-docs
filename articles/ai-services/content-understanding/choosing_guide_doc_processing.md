@@ -21,28 +21,28 @@ Azure AI Document Intelligence is the trusted choice for many document-centric s
 
 * Document digitization or [Optical Character Recognition (OCR)](/azure/ai-services/document-intelligence/prebuilt/read?view=doc-intel-4.0.0&branch=main&tabs=sample-code) to extract printed or handwritten text from documents.
 
-* Document structure extraction with [Layout](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/prebuilt/layout?view=doc-intel-4.0.0&branch=main&tabs=rest%2Csample-code) to extract table, selection marks, sections and document structure along with OCR.
+* Document structure extraction with [Layout](/azure/ai-services/document-intelligence/prebuilt/layout?view=doc-intel-4.0.0&branch=main&tabs=rest%2Csample-code) to extract table, selection marks, sections, and document structure along with OCR.
 
-* Document [classification](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/train/custom-classifier?view=doc-intel-4.0.0) to accurately identify, split and classify multiple documents.
+* Document [classification](/azure/ai-services/document-intelligence/train/custom-classifier?view=doc-intel-4.0.0) to accurately identify, split and classify multiple documents.
 
-* Document field extraction with [prebuilt models](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/model-overview?view=doc-intel-4.0.0) for predefined schema extraction from standard document type like tax, mortgage, bank checks and forms with higher variations like invoices, receipts, ID and [custom models](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/train/custom-model?view=doc-intel-4.0.0) to label and train your own model. 
+* Document field extraction with [prebuilt models](/azure/ai-services/document-intelligence/model-overview?view=doc-intel-4.0.0) for predefined schema extraction from standard document types like tax, mortgage, bank checks, forms with higher variations like invoices, receipts, and ID, and [custom models](/azure/ai-services/document-intelligence/train/custom-model?view=doc-intel-4.0.0) to label and train your own model. 
 
 
 ## Azure AI Content Understanding 
 
-Built on the same foundational capabilities of Document Intelligence, it extends document scenarios to images and embedded content, expanding to truly multimodal scenarios with audio and video. Content Understanding is built for a content processing with Generative AI, maximizing your ability to generate the specific output you need with inferred fields, enrichments, validations and reasoning. Content Understanding simplifies the process of building an effective document processing solution, packaging these capabilities into a simple and easy to use analyzer building process with zero shot output and no labeling, all while providing a rich schema that includes confidence scores and grounding, whereever applicable. Content Understanding provides a rich set of tools among others that can be configured to solve most document processing challenges.
+Built on the same foundational capabilities of Document Intelligence, it extends document scenarios to images and embedded content, expanding to truly multimodal scenarios with audio and video. Content Understanding is built for content processing with Generative AI, improving your ability to generate the specific output you need with inferred fields, enrichments, validations, and reasoning. Content Understanding simplifies the process of building an effective document processing solution, packaging these capabilities into a simple and easy to use analyzer building process with zero-shot output and no labeling, all while providing a rich schema that includes confidence scores and grounding, wherever applicable. Content Understanding provides a rich set of tools among others that can be configured to solve most document processing challenges.
 
 * Inferred fields & enrichments: Output required that are not always directly present in the document, like the total tax on an invoice or the jurisdiction on a contract that can be inferred from the parties’ addresses or clause wording. 
 * Multi-file input: Process multiple input files in the same request and extract a unified schema across all the input files.
 * Classification & Splitting: For parsing large files into individual documents for routing and schema extraction. 
-* Reasoning: Intelligent Document Processing typically is a multi-step process with extraction, validation, aggregation and reviews. Content Understanding is built for IDP, simplifying everything into a single step process. 
-* Post processing & validations: Use the description to define any post processing rules like converting date formats, currency codes and consistency checks. 
+* Reasoning: Intelligent document processing typically is a multi-step process with extraction, validation, aggregation, and reviews. Content Understanding is built for IDP, simplifying everything into a single step process. 
+* Post processing & validations: Use the description to define any post processing rules like converting date formats, currency codes, and consistency checks. 
 
-## Azure hosted LLM Models (Azure Open AI)
+## Azure-hosted LLMs (Azure Open AI)
 
-For organizations requiring niche AI workflows, custom solutions built with Azure OpenAI Service/ or any other Azure based LLM services offer maximum flexibility. Developers can combine models like GPT-4o, Vision, Whisper, and Embeddings to build highly customized AI solutions, typically integrating Azure Document Intelligence/ Azure AI Content Understanding for pre-processing documents into custom workflows. This approach provides the maximum flexibility, but requires users to evaluate models, update models as needed, manage the prompts and optimize for costs. A common challenge with these solutions is the trade-off between cost management and accuracy as this approach lacks adequate tools to trigger reviews only for challenging cases. 
+For organizations requiring niche AI workflows, custom solutions built with Azure OpenAI Service or any other Azure-based LLM services offer maximum flexibility. Developers can combine models like GPT-4o, Vision, Whisper, and Embeddings to build highly customized AI solutions, typically integrating Azure Document Intelligence or Azure AI Content Understanding for pre-processing documents into custom workflows. This approach provides the maximum flexibility but requires users to evaluate models, update models as needed, manage the prompts, and optimize for costs. A common challenge with these solutions is the trade-off between cost management and accuracy as this approach lacks adequate tools to trigger reviews only for challenging cases. 
 
-## Service Overview
+## Overview of services
 
 Here’s a summary of the three available services:
 | Service | What it Does | Ideal For | Strengths | Core Features |
@@ -52,8 +52,8 @@ Here’s a summary of the three available services:
 | Build your own solution with Azure OpenAI Service | Build a solution with any Azure-hosted LLM models, Fully control on model, prompt and tools | Developers aiming to build, own and manage a solution that require fine grained control on models, costs and prompts | Maximum flexibility and control | Multiple options to plug and play with model choice, prompt tuning, workflow defination with complete flexibility in building each component |
 
 
-## Capabilites Overview
-Here's an capabilites overview for all three services. 
+## Service capabilities
+Here's a capabilities overview for all three services. 
 
 | Capabilities             | Document Intelligence                              | Content Understanding                              | Build Your Own with AOAI                          |
 |--------------------------|----------------------------------------------------|----------------------------------------------------|---------------------------------------------------|
@@ -90,9 +90,9 @@ Here's an capabilites overview for all three services.
 
 ---
 
-## Guided Scenario Walkthrough
+## Guided scenario walkthrough
 
-Let's take a look at various categories of document processing scenarios that you may encounter and how to navigate each of such scenarios with the best fitted service. Here are a few examples of different document processing scenarios, the associated challenges and the considerations for building an effective solution. If the document type you are processing is supported by a prebuilt, you should start there and only choose to build a custom solution if the prebuilt schema does not cover your scenario.
+Let's take a look at various categories of document processing scenarios that you may encounter and how to navigate each one with the best fitted service. Here are a few examples of different document processing scenarios, the associated challenges, and the considerations for building an effective solution. If the document type you are processing is supported by a prebuilt, you should start there and only choose to build a custom solution if the prebuilt schema does not cover your scenario.
 
 Considerations: 
 
@@ -104,7 +104,7 @@ Considerations:
 * Build Effort: Effort to build the model including handling complex logic, business requriements, labeling data and putting complex workflows together. 
 * Total cost of ownership: Comparative view of infrastructure, management and maintenance costs for your use case with handling scale. 
 
-### Scenario 1: Processing a Standardized, Single-Format Form
+### Scenario 1: Processing a standardized, single-format form
 
 **Business Process**:  
 Extract fixed fields like Name, Date of Birth, Address, Account Number, and other details from forms with identical templates every time.  **Examples**:
@@ -120,7 +120,7 @@ Extract fixed fields like Name, Date of Birth, Address, Account Number, and othe
 
 ---
 
-### Scenario 2: Managing Document with Few Known Variants
+### Scenario 2: Managing document with few known variants
 
 **Business Process**:  
 Extract consistent fields (name, amount, policy number, claim date) across a small, known set of templates.  **Examples**:
@@ -140,7 +140,7 @@ Extract consistent fields (name, amount, policy number, claim date) across a sma
 
 ---
 
-### Scenario 3: High-Variation Semi-Structured Documents
+### Scenario 3: High-variation semi-structured documents
 
 **Business Process**:  
 Extract key fields like Invoice Number, Vendor Name, Total Amount, Line Items, and Dates from highly varied documents with inconsistent templates.  **Examples**:
@@ -159,7 +159,7 @@ Extract key fields like Invoice Number, Vendor Name, Total Amount, Line Items, a
 * Build a custom solution: Build and configure the components needed for parsing the documents (Layout), extracting the fields and any build any post-processing needed. The solution will need to be tested and verified with different variations and you will need to scale and manage the deployed solution. With no confidence scores, you are either accepting all results or reviewing all results based on the expected error rate.Shape 
 ---
 
-### Scenario 4: Extracting Insights from Unstructured Documents
+### Scenario 4: Extracting insights from unstructured documents
 
 **Business Process**:  
 Extract, generate abstract details like obligations, summaries, inferencing details like contract parties, risk indicators, sentiment, or decisions from free-text, multi-page, narrative documents.  **Examples**:
@@ -177,7 +177,7 @@ Extract, generate abstract details like obligations, summaries, inferencing deta
 
 ---
 
-### Scenario 5: Multi-Document, Mixed Media Processing
+### Scenario 5: Multi-document, mixed media processing
 
 **Business Process**:  
 Aggregate content from diverse formats, cross-reference details, validate consistency (e.g., name matches across documents), and surface inconsistencies. **Examples**:
