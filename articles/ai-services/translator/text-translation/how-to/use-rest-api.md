@@ -617,7 +617,7 @@ After a successful call, you should see the following response:
 ]
 ```
 
-You can check the consumption (the number of characters charged) for each request in the [**response headers: x-metered-usage**](../reference/v3/translate.md#response-headers) field.
+You can check the consumption (the number of characters charged) for each request in the [**response headers: x-metered-usage**](../v3/translate.md#response-headers) field.
 
 ## Detect language
 
@@ -906,7 +906,7 @@ After a successful call, you should see the following response:
 
 ### Detect source language without translation
 
-It's possible to use the Translator service to detect the language of source text without performing a translation. To do so, you use the [`/detect`](../reference/v3/detect.md) endpoint.
+It's possible to use the Translator service to detect the language of source text without performing a translation. To do so, you use the [`/detect`](../v3/detect.md) endpoint.
 
 ### [C#](#tab/csharp)
 
@@ -2555,7 +2555,7 @@ print(json.dumps(response, sort_keys=True, ensure_ascii=False, indent=4, separat
 
 ---
 
-After a successful call, you should see the following response. Let's examine the response more closely since the JSON is more complex than some of the other examples in this article. The `translations` array includes a list of translations. Each object in this array includes a confidence score (`confidence`), the text optimized for end-user display (`displayTarget`), the normalized text (`normalizedText`), the part of speech (`posTag`), and information about previous translation (`backTranslations`). For more information about the response, see [Dictionary Lookup](../reference/v3/dictionary-lookup.md)
+After a successful call, you should see the following response. Let's examine the response more closely since the JSON is more complex than some of the other examples in this article. The `translations` array includes a list of translations. Each object in this array includes a confidence score (`confidence`), the text optimized for end-user display (`displayTarget`), the normalized text (`normalizedText`), the part of speech (`posTag`), and information about previous translation (`backTranslations`). For more information about the response, see [Dictionary Lookup](../v3/dictionary-lookup.md)
 
 ```json
 [
@@ -2982,7 +2982,7 @@ print(json.dumps(response, sort_keys=True, ensure_ascii=False, indent=4, separat
 
 ---
 
-After a successful call, you should see the following response. For more information about the response, see [Dictionary Lookup](../reference/v3/dictionary-examples.md)
+After a successful call, you should see the following response. For more information about the response, see [Dictionary Lookup](../v3/dictionary-examples.md)
 
 ```json
 [

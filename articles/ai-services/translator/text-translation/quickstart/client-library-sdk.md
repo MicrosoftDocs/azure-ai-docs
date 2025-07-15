@@ -22,7 +22,7 @@ zone_pivot_groups:  programming-languages-set-translator-sdk
 
 # Quickstart: Azure AI Translator text client libraries 
 
-In this quickstart, get started using the Translator service to [translate text](../reference/v3/translate.md) using a programming language of your choice. For this project, we recommend using the free pricing tier (F0), while you're learning the technology, and later upgrading to a paid tier for production.
+In this quickstart, get started using the Translator service to [translate text](../v3/translate.md) using a programming language of your choice. For this project, we recommend using the free pricing tier (F0), while you're learning the technology, and later upgrading to a paid tier for production.
 
 ## Prerequisites
 
@@ -63,4 +63,4 @@ That's it, congratulations! In this quickstart, you used a Text translation SDK 
 Learn more about Text translation development options:
 
 > [!div class="nextstepaction"]
->[Text translation SDK overview](../../text-sdk-overview.md) </br></br>[Text translation V3 reference](../reference/v3/reference.md)
+>[Text translation SDK overview](../../text-sdk-overview.md) </br></br>[Text translation V3 reference](../v3/reference.md)

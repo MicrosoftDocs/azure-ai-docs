@@ -21,7 +21,7 @@ ms.custom: devx-track-python
 
 # Quickstart: Azure AI Translator REST APIs
 
-Try the latest version of Azure AI Translator. In this quickstart, get started using the Translator service to [translate text](../reference/v3/translate.md) using a programming language of your choice or the REST API. For this project, we recommend using the free pricing tier (F0), while you're learning the technology, and later upgrading to a paid tier for production.
+Try the latest version of Azure AI Translator. In this quickstart, get started using the Translator service to [translate text](../v3/translate.md) using a programming language of your choice or the REST API. For this project, we recommend using the free pricing tier (F0), while you're learning the technology, and later upgrading to a paid tier for production.
 
 ## Prerequisites
 

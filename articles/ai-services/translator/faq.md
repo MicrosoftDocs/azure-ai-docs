@@ -20,8 +20,8 @@ Azure AI Translator counts every code point defined in Unicode as a character. E
 Azure AI Translator counts the following input:
 
 * Text passed to Azure AI Translator in the body of a request.
-  * `Text` when using the [Translate](text-translation/reference/v3/translate.md), [Transliterate](text-translation/reference/v3/transliterate.md), and [Dictionary Lookup](text-translation/reference/v3/dictionary-lookup.md) methods
-  * `Text` and `Translation` when using the [Dictionary Examples](text-translation/reference/v3/dictionary-examples.md) method.
+  * `Text` when using the [Translate](text-translation/v3/translate.md), [Transliterate](text-translation/v3/transliterate.md), and [Dictionary Lookup](text-translation/v3/dictionary-lookup.md) methods
+  * `Text` and `Translation` when using the [Dictionary Examples](text-translation/v3/dictionary-examples.md) method.
 
 * All markup: HTML, XML tags, etc. within the request body text field. JSON notation used to build the request (for instance the key "Text:") is **not** counted.
 * An individual letter.

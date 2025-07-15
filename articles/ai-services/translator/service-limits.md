@@ -93,4 +93,4 @@ The Translator has a maximum latency of 15 seconds using standard models and 120
 
 * [Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator-text-api/)
 * [Regional availability](https://azure.microsoft.com/global-infrastructure/services/?products=cognitive-services)
-* [v3 Translator reference](./text-translation/reference/v3/reference.md)
+* [v3 Translator reference](./text-translation/v3/reference.md)
