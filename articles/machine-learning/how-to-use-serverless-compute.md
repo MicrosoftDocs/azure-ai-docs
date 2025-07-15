@@ -124,7 +124,7 @@ When you [view your usage and quota in the Azure portal](how-to-manage-quotas.md
 
     Submit the job with the following command:
 
-    ```bash
+    ```azurecli
     az ml job create --file hello.yaml --resource-group my-resource-group --workspace-name my-workspace
     ```
 
@@ -161,7 +161,7 @@ When you [view your usage and quota in the Azure portal](how-to-manage-quotas.md
     
     # [Azure CLI](#tab/cli)
     
-    ```Azure CLI
+    ```azurecli
     az ml workspace show --name <wsname>  --resource-group <rgname>
     ```    
     
