@@ -66,7 +66,7 @@ A successful response is a JSON array with one result for each element in the in
 ### Sample request
 
 ```bash
-curl -X POST "http://localhost:5000/transliterate?api-version=3.0&language=ja&fromScript=Jpan&toScript=Latn"
+curl -X POST "http://localhost:5000/transliterate?api-version=3.0&language=ja&fromScript=Jpan&toScript=Latin"
 ```
 
 ### Sample request body
@@ -92,11 +92,11 @@ The following limitations apply:
 [
   {
     "text": "Kon'nichiwa​",
-    "script": "Latn"
+    "script": "Latin"
   },
   {
     "text": "sayonara",
-    "script": "Latn"
+    "script": "Latin"
   }
 ]
 ```
@@ -111,7 +111,7 @@ The following limitations apply:
 
 ```bash
 
-  curl -X POST "http://localhost:5000/transliterate?api-version=3.0&language=ja&fromScript=Jpan&toScript=Latn" -H "Content-Type: application/json" -d "[{'Text':'こんにちは'},{'Text':'さようなら'}]"
+  curl -X POST "http://localhost:5000/transliterate?api-version=3.0&language=ja&fromScript=Jpan&toScript=Latin" -H "Content-Type: application/json" -d "[{'Text':'こんにちは'},{'Text':'さようなら'}]"
 
 ```
 
