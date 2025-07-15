@@ -500,9 +500,6 @@ items:
             href: get-started-intent-recognition-clu.md
           - name: Recognize speech intents with LUIS (deprecated)
             href: get-started-intent-recognition.md
-      - name: Custom commands
-        href: custom-commands.md
-        displayName: migrate,migration,deprecate,retire,sunset
   - name: Speech to text REST API migration
     items:
     - name: From Speech to text v3.2 to 2024-11-15
