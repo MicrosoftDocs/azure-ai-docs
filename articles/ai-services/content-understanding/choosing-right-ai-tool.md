@@ -130,7 +130,7 @@ Extract consistent fields (name, amount, policy number, claim date) across a sma
 - Employee expense reports with department-specific templates
 
 :::image type="content" source="media/overview/mid_form.png" alt-text="Forms with few variations" :::
-:::image type="content" source="media/overview/mid_form1.png" alt-text="Forms with few variations" :::
+:::image type="content" source="media/overview/mid_form2.png" alt-text="Forms with few variations" :::
 
 **Recommendation**:
 
