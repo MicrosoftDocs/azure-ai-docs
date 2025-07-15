@@ -25,11 +25,9 @@ The Translator service is an optimal solution for managing extensive multilingua
 
 ## What's new for 2025-05-01-preview?
 
-* **`LLM` choice**. You can choose a large language model for translation based on factors such as quality, cost, and other considerations.
+* **`LLM` choice**. By default, Azure AI Translator uses neural Machine Translation (NMT) technology. With the newest preview release, you now can optionally select either the standard NMT translation or one of two Large Language Model (LLM) deployment types: GPT-4o-mini or GPT-4o. You can choose a large language model for translation based on factors such as quality, cost, and other considerations. However, **using an LLM model requires you to have an Azure AI Foundry resource**. For more information, *see* [Configure Azure AI resources](../../../how-to/create-translator-resource.md)
 
 * **Adaptive custom translation**. You can provide reference translations or translation memory datasets to enable an `LLM` model to perform few-shot translations tailored to your needs. 
-
-* You need to create an **Azure AI Foundry** resource to use an `LLM` model.
 
 ## Base URLs
 
