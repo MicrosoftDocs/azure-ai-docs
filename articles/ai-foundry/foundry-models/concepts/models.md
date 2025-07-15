@@ -116,9 +116,9 @@ Mistral AI offers...
 Mistral AI also offers models under [Azure models from partners and community](#mistral-ai). 
 
 
-| Model | Type | Capabilities | Project type |
+| Model | Type | Capabilities | Project type 
 | ------ | ---- | ------------ | ------------ |
-| [mistral-ocr-2505]() | chat-completion | - **Input:** text () <br /> - **Output:** text () <br /> - **Languages:** en <br />  - **Tool calling:**  <br /> - **Response formats:**  | Foundry|
+| [mistral-document-ai-2505]() | embeddings | - **Input:** image, text ( tokens) <br /> - **Output:** text () <br /> - **Languages:** en <br />  - **Tool calling:**  <br /> - **Response formats:**  | Foundry |
 
 
 
