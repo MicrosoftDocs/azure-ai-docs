@@ -85,6 +85,8 @@ You can deploy and customize the Standard Setup with Private Networking using ei
 * Azure resources for storing customer data — Azure Storage, Azure Cosmos DB, and Azure AI Search — are automatically created if existing resources are not provided. 
 * These resources are connected to your project to store files, threads, and vector data.
 * Microsoft-managed encryption keys for Storage Account and Cognitive Account (AI Foundry) are used by default.
+ 
+Select one of the available deployment methods:
 
 - **Bicep templates**: follow instructions in [this sample from GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/15-private-network-standard-agent-setup).
 
