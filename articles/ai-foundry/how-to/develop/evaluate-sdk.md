@@ -6,7 +6,7 @@ author: lgayhardt
 ms.author: lagayhar
 manager: scottpolly
 ms.reviewer: minthigpen
-ms.date: 05/19/2025
+ms.date: 07/15/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:
@@ -51,14 +51,44 @@ Built-in quality and safety metrics take in query and response pairs, along with
 ### Data requirements for built-in evaluators
 
 Built-in evaluators can accept query and response pairs, a list of conversations in JSON Lines (JSONL) format, or both.
+| Evaluator | Conversation & single-turn support for text | Conversation & single-turn support for text and image | Single-turn support for text only | Requires `ground_truth` | Supports [agent inputs](./agent-evaluate-sdk.md#agent-messages) |
+|-----------|---------------------------------------------|-------------------------------------------------------|-----------------------------------|---------------------|----------------------|
+| **Quality Evaluators** |
+| `IntentResolutionEvaluator` | | | | | ✓ |
+| `ToolCallAccuracyEvaluator` | | | | | ✓ |
+| `TaskAdherenceEvaluator` | | | | | ✓ |
+| `GroundednessEvaluator` | ✓ | | | | |
+| `GroundednessProEvaluator` | ✓ | | | | |
+| `RetrievalEvaluator` | ✓ | | | | |
+| `DocumentRetrievalEvaluator` | ✓ | | | ✓ | |
+| `RelevanceEvaluator` | ✓ | | | | ✓ |
+| `CoherenceEvaluator` | ✓ | | | | ✓ |
+| `FluencyEvaluator` | ✓ | | | | ✓ |
+| `ResponseCompletenessEvaluator` | ✓ | | ✓ | ✓ | |
+| `QAEvaluator` | | | ✓ | ✓ | |
+| **NLP Evaluators** |
+| `SimilarityEvaluator` | | | ✓ | ✓ | |
+| `F1ScoreEvaluator` | | | ✓ | ✓ | |
+| `RougeScoreEvaluator` | | | ✓ | ✓ | |
+| `GleuScoreEvaluator` | | | ✓ | ✓ | |
+| `BleuScoreEvaluator` | | | ✓ | ✓ | |
+| `MeteorScoreEvaluator` | | | ✓ | ✓ | |
+| **Safety Evaluators** |
+| `ViolenceEvaluator` | | ✓ | | | ✓ |
+| `SexualEvaluator` | | ✓ | | | ✓ |
+| `SelfHarmEvaluator` | | ✓ | | | ✓ |
+| `HateUnfairnessEvaluator` | | ✓ | | | ✓ |
+| `ProtectedMaterialEvaluator` | | ✓ | | | ✓ |
+| `ContentSafetyEvaluator` | | ✓ | | | ✓ |
+| `UngroundedAttributesEvaluator` | | | ✓ | | |
+| `CodeVulnerabilityEvaluator` | | | ✓ | | ✓ |
+| `IndirectAttackEvaluator` | ✓ | | | | ✓ |
+| **Azure OpenAI Graders** |
+| `AzureOpenAILabelGrader` | ✓ | | | | |
+| `AzureOpenAIStringCheckGrader` | ✓ | | | | |
+| `AzureOpenAITextSimilarityGrader` | ✓ | | | ✓ | |
+| `AzureOpenAIGrader` | ✓ | | | | |
 
-| Conversation *and* single-turn support for text | Conversation *and* single-turn support for text and image | Single-turn support for text only |
-|--------------------|------------------------------|---------------|
-| `GroundednessEvaluator`, `GroundednessProEvaluator`, `RetrievalEvaluator`, `DocumentRetrievalEvaluator`, `RelevanceEvaluator`, `CoherenceEvaluator`, `FluencyEvaluator`, `ResponseCompletenessEvaluator`, `IndirectAttackEvaluator`, `AzureOpenAILabelGrader`, `AzureOpenAIStringCheckGrader`, `AzureOpenAITextSimilarityGrader`, `AzureOpenAIGrader` | `ViolenceEvaluator`, `SexualEvaluator`, `SelfHarmEvaluator`, `HateUnfairnessEvaluator`, `ProtectedMaterialEvaluator`, `ContentSafetyEvaluator` | `UngroundedAttributesEvaluator`, `CodeVulnerabilityEvaluator`, `ResponseCompletenessEvaluator`, `SimilarityEvaluator`, `F1ScoreEvaluator`, `RougeScoreEvaluator`, `GleuScoreEvaluator`, `BleuScoreEvaluator`, `MeteorScoreEvaluator`, `QAEvaluator` |
-
-| Evaluators requiring `ground_truth` | Evaluators supporting agent inputs  |
-|--------------------|------------------------------|
-| `DocumentRetrievalEvaluator`, `ResponseCompletenessEvaluator`,`AzureOpenAITextSimilarityGrader`, `SimilarityEvaluator`, `F1ScoreEvaluator`, `RougeScoreEvaluator`, `GleuScoreEvaluator`, `BleuScoreEvaluator`, `MeteorScoreEvaluator`, `QAEvaluator` | `IntentResolutionEvaluator`, `ToolCallAccuracyEvaluator`, `TaskAdherenceEvaluator`, `RelevanceEvaluator`, `CoherenceEvaluator`, `FluencyEvaluator`, `CodeVulnerabilitiesEvaluator`, `ViolenceEvaluator`, `Self-harEvaluator`, `SexualEvaluator`, `HateUnfairnessEvaluator`, `IndirectAttackEvaluator`, `ProtectedMaterialsEvaluator`, `ContentSafetyEvaluator` |
 
 > [!NOTE]
 > AI-assisted quality evaluators except for `SimilarityEvaluator` come with a reason field. They employ techniques including chain-of-thought reasoning to generate an explanation for the score. Therefore they consume more token usage in generation as a result of improved evaluation quality. Specifically, `max_token` for evaluator generation has been set to 800 for all AI-assisted evaluators (and 1600 for `RetrievalEvaluator` to accommodate for longer inputs.)

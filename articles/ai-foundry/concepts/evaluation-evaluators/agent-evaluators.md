@@ -6,7 +6,7 @@ author: lgayhardt
 ms.author: lagayhar
 manager: scottpolly
 ms.reviewer: changliu2
-ms.date: 06/26/2025
+ms.date: 07/15/2025
 ms.service: azure-ai-foundry
 ms.topic: reference
 ms.custom:
@@ -18,7 +18,7 @@ ms.custom:
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-Agents are powerful productivity assistants. They can plan, make decisions, and execute actions. Agents typically first [reason through user intents in conversations](#intent-resolution), [select the correct tools](#tool-call-accuracy) to call and satisfy the user requests, and [complete various tasks](#task-adherence) according to their instructions. We current support evaluating:
+Agents are powerful productivity assistants. They can plan, make decisions, and execute actions. Agents typically first [reason through user intents in conversations](#intent-resolution), [select the correct tools](#tool-call-accuracy) to call and satisfy the user requests, and [complete various tasks](#task-adherence) according to their instructions. We currently support these agent-specific evaluators for agentic workflows:
 - [Intent resolution](#intent-resolution)
 - [Tool call accuracy](#tool-call-accuracy)
 - [Task adherence](#task-adherence)
@@ -184,7 +184,7 @@ task_adherence(
 
 ### Task adherence output
 
-The numerical score on a likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
+The numerical score on a Likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
 
 ```python
 {

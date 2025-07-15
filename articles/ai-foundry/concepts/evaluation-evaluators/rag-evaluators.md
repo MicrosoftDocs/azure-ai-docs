@@ -6,7 +6,7 @@ author: lgayhardt
 ms.author: lagayhar
 manager: scottpolly
 ms.reviewer: changliu2
-ms.date: 06/26/2025
+ms.date: 07/15/2025
 ms.service: azure-ai-foundry
 ms.topic: reference
 ms.custom:
@@ -25,9 +25,9 @@ A retrieval-augmented generation (RAG) system tries to generate the most relevan
 - [Response Completeness](#response-completeness)
 
 These evaluators address three aspects:
-1. The relevance of the retrieval results to the user's query: use [Document Retrieval](#document-retrieval) if you have labels for query-specific document relevance, or query relevance judgement (qrels) for more accurate measurements. Use [Retrieval](#retrieval) if you only have the retrieved context, but you don't have such labels and have a higher tolerance for a less fine-grained measurement.
-2. The consistency of the generated response with respect to the grounding documents: use [Groundedness](#groundedness) if you want to potentially customize the definition of groundedness in our open-source LLM-judge prompt, [Groundedness Pro](#groundedness-pro) if you want a straightforward definition.
-3. The relevance of the final response to the query: [Relevance](#relevance) if you don't have ground truth, and [Response Completeness](#response-completeness) if you have ground truth and don't want your response to miss critical information.
+- The relevance of the retrieval results to the user's query: use [Document Retrieval](#document-retrieval) if you have labels for query-specific document relevance, or query relevance judgement (qrels) for more accurate measurements. Use [Retrieval](#retrieval) if you only have the retrieved context, but you don't have such labels and have a higher tolerance for a less fine-grained measurement.
+- The consistency of the generated response with respect to the grounding documents: use [Groundedness](#groundedness) if you want to potentially customize the definition of groundedness in our open-source LLM-judge prompt, [Groundedness Pro](#groundedness-pro) if you want a straightforward definition.
+- The relevance of the final response to the query: [Relevance](#relevance) if you don't have ground truth, and [Response Completeness](#response-completeness) if you have ground truth and don't want your response to miss critical information.
 
 A good way to think about **Groundedness** and **Response Completeness** is: groundedness is about the **precision** aspect of the response that it shouldn't contain content outside of the grounding context, whereas response completeness is about the **recall** aspect of the response that it shouldn't miss critical information compared to the expected response (ground truth).
 
@@ -162,8 +162,10 @@ retrieved_documents = [
 ]
 
 document_retrieval_evaluator = DocumentRetrievalEvaluator(
+    # Specify the ground truth label range
     ground_truth_label_min=ground_truth_label_min, 
     ground_truth_label_max=ground_truth_label_max,
+    # Optionally override the binarization threshold for pass/fail output
     ndcg_threshold = 0.5,
     xdcg_threshold = 50.0,
     fidelity_threshold = 0.5,

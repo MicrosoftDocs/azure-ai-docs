@@ -50,7 +50,7 @@ If you use [Foundry Agent Service](../../../ai-services/agents/overview.md), you
 
 
 > [!NOTE]
-> `ToolCallAccuracyEvaluator` only supports Foundry Agent's Function Tool evaluation (user-defined python functions), but doesn't support other Tool evaluation. If an agent run invoked a tool other than Function Tool, it will output a "pass" and a reason that evaluating the invoked tool(s) is not supported. 
+> `ToolCallAccuracyEvaluator` only supports Foundry Agent's Function Tool evaluation (user-defined Python functions), but doesn't support other Tool evaluation. If an agent run invoked a tool other than Function Tool, it will output a "pass" and a reason that evaluating the invoked tool(s) is not supported. 
 
 
 Here's an example that shows you how to seamlessly build and evaluate an Azure AI agent. Separately from evaluation, Azure AI Foundry Agent Service requires `pip install azure-ai-projects azure-identity`, an Azure AI project connection string, and the supported models.
@@ -97,7 +97,7 @@ AGENT_NAME = "Seattle Tourist Assistant"
 If you are using [Azure AI Foundry (non-Hub) project](../create-projects.md?tabs=ai-foundry&pivots=fdp-project), create an agent with the toolset as follows:
 
 > [!NOTE]
-> If you are using a [Foundry Hub-based project](../create-projects.md?tabs=ai-foundry&pivots=hub-project) (which only supports lower versions of `azure-ai-projects<1.0.0b10 azure-ai-agents<1.0.0b10`), we strongly recommend migrating to [the latest Foundry Agent Service SDK python client library](../../agents/quickstart.md?pivots=programming-language-python-azure) with a [Foundry project set up for loggging batch evaluation results](../../how-to/develop/evaluate-sdk.md#prerequisite-set-up-steps-for-azure-ai-foundry-projects).
+> If you are using a [Foundry Hub-based project](../create-projects.md?tabs=ai-foundry&pivots=hub-project) (which only supports lower versions of `azure-ai-projects<1.0.0b10 azure-ai-agents<1.0.0b10`), we strongly recommend migrating to [the latest Foundry Agent Service SDK Python client library](../../agents/quickstart.md?pivots=programming-language-python-azure) with a [Foundry project set up for logging batch evaluation results](../../how-to/develop/evaluate-sdk.md#prerequisite-set-up-steps-for-azure-ai-foundry-projects).
 
 ```python
 import os
@@ -184,7 +184,7 @@ And that's it! `converted_data` will contain all inputs required for [these eval
 | `Intent Resolution` / `Task Adherence` / `Tool Call Accuracy` / `Response Completeness`) | Supported | Supported | Set additional parameter `is_reasoning_model=True` in initializing evaluators |
 | Other quality evaluators| Not Supported | Supported | -- |
 
-For complex tasks that requires refined reasoning for the evaluation, we recommend a strong reasoning model like `o3-mini` or the o-series mini models released afterwards with a balance of reasoning performance and cost efficiency.
+For complex tasks that require refined reasoning for the evaluation, we recommend a strong reasoning model like `o3-mini` or the o-series mini models released afterwards with a balance of reasoning performance and cost efficiency.
 
 We set up a list of quality and safety evaluator in `quality_evaluators` and `safety_evaluators` and reference them in [evaluating multiples agent runs or a thread](#evaluate-multiple-agent-runs-or-threads).
 
@@ -266,7 +266,7 @@ See the following example output for some evaluators:
     "task_adherence_reason": "The response accurately follows the instructions, fetches the correct weather information, and relays it back to the user without any errors or omissions."
 }
 {
-    "tool_call_accuracy": 5,  # a score bewteen 1-5, higher is better
+    "tool_call_accuracy": 5,  # a score between 1-5, higher is better
     "tool_call_accuracy_result": "pass", # pass because 1.0 > 0.8 the threshold
     "tool_call_accuracy_threshold": 3,
     "details": { ... } # helpful details for debugging the tool calls made by the agent
@@ -439,7 +439,7 @@ See the following output (reference [Output format](#output-format) for details)
 
 ```
 {
-    "tool_call_accuracy": 3,  # a score bewteen 1-5, higher is better
+    "tool_call_accuracy": 3,  # a score between 1-5, higher is better
     "tool_call_accuracy_result": "fail",
     "tool_call_accuracy_threshold": 4,
     "details": { ... } # helpful details for debugging the tool calls made by the agent
@@ -549,7 +549,7 @@ See the following output (reference [Output format](#output-format) for details)
 
 ```
 {
-    "tool_call_accuracy": 2,  # a score bewteen 1-5, higher is better
+    "tool_call_accuracy": 2,  # a score between 1-5, higher is better
     "tool_call_accuracy_result": "fail",
     "tool_call_accuracy_threshold": 3,
     "details": { ... } # helpful details for debugging the tool calls made by the agent
