@@ -70,7 +70,7 @@ For customers without an existing virtual network, the Standard Setup with Priva
 ## Configure a new network-secured environment 
 
 > [!NOTE]
-> Programmatic deployment is the only way to deploy a network secured environment for Azure AI Foundry Agent Service, it is currently not possibly on Azure Portal.
+> Programmatic deployment is required to set up a network-secured environment for Azure AI Foundry Agent Service. Deployment through the Azure Portal is currently not supported.
 
 > [!NOTE]
 > If you want to delete your Foundry resource and Standard Agent with secured network set-up, delete your AI Foundry resource and virtual network last. Before deleting the virtual network, ensure to delete and [purge](../../../ai-services/recover-purge-resources.md#purge-a-deleted-resource) your AI Foundry resource.
