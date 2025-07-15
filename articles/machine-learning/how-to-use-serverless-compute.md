@@ -42,9 +42,6 @@ Serverless compute can be used to fine-tune models in the model catalog such as 
 
 ## How to use serverless compute
 
-* You can fine-tune foundation models such as LLAMA 2 using these notebooks:
-  *  [Fine Tune LLAMA 2](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/system/finetune/Llama-notebooks/text-classification/emotion-detection-llama-serverless-compute.ipynb)
-  *  [Fine Tune LLAMA 2 using multiple nodes](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/system/finetune/Llama-notebooks/multinode-text-classification/emotion-detection-llama-multinode-serverless.ipynb)
 * When you create your own compute cluster, you use its name in the command job, such as `compute="cpu-cluster"`. With serverless, you can skip creation of a compute cluster, and omit the `compute` parameter to instead use serverless compute. When `compute` isn't specified for a job, the job runs on serverless compute. Omit the compute name in your CLI or SDK jobs to use serverless compute in the following job types and optionally provide resources a job would need in terms of instance count and instance type:
 
   * Command jobs, including interactive jobs and distributed training
@@ -58,6 +55,10 @@ Serverless compute can be used to fine-tune models in the model catalog such as 
 * When using [Azure Machine Learning designer](concept-designer.md), select **Serverless** as default compute.
 * You can use serverless compute for responsible AI dashboard:
   * [AutoML Image Classification scenario with RAI Dashboard](https://github.com/Azure/azureml-examples/blob/main/sdk/python/responsible-ai/vision/responsibleaidashboard-automl-image-classification-fridge.ipynb) 
+
+* You can explore serverless fine-tune of foundation models using these notebooks:
+  *  [Fine Tune LLAMA 2](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/system/finetune/Llama-notebooks/text-classification/emotion-detection-llama-serverless-compute.ipynb)
+  *  [Fine Tune LLAMA 2 using multiple nodes](https://github.com/Azure/azureml-examples/blob/main/sdk/python/foundation-models/system/finetune/Llama-notebooks/multinode-text-classification/emotion-detection-llama-multinode-serverless.ipynb)
 
 ## Performance considerations
 
