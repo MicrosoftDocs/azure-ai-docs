@@ -58,7 +58,7 @@ Use this article to learn how to use the Deep Research tool with the Azure AI Pr
     Save the name of your `o3-deep-research` deployment name as an environment variable named `DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME` and the `gpt-4o` deployment name as an environment variable named `MODEL_DEPLOYMENT_NAME`.
 
 > [!NOTE]
-> Other GPT-series models including GPT-4o-mini and the GPT-4.1 family are not supported for scope clarification.
+> Other GPT-series models including GPT-4o-mini and the GPT-4.1 series are not supported for scope clarification.
 
 ## Create an agent with the Deep Research tool
 
