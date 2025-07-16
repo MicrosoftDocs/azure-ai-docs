@@ -55,7 +55,7 @@ mcp_tool.allow_tool(search_api_code)
 print(f"Allowed tools: {mcp_tool.allowed_tools}")
 ```
 
-## Agent Creation
+## Agent creation
 An agent is created using the `project_client.agents.create_agent` method.
 
 ```python
@@ -74,7 +74,7 @@ with project_client:
     )
 ```
 
-## Thread Management
+## Thread management
 Create the thread and add the initial user message.
 
 ```python
