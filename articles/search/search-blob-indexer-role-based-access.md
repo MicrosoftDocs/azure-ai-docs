@@ -35,7 +35,7 @@ The indexer approach is built on this foundation:
 
 + Permission inheritance isn't available if the blob indexer is using a [one-to-many parsing mode](/rest/api/searchservice/indexers/create?view=rest-searchservice-2025-05-01-preview&preserve-view=true#blobindexerparsingmode), such as: `delimitedText`, `jsonArray`, `jsonLines`, and `markdown` with sub-mode `oneToMany`. You must use the default parsing mode that creates one search document for each blob in the container.
 
-## Configure Blob storage for indexing permission metadata
+## Configure Blob storage
 
 Verify your blob container uses role-based access.
 
@@ -49,7 +49,7 @@ Verify your blob container uses role-based access.
 
 For indexer execution, your search service identity must have **Storage Blob Data Reader** permission. For more information, see [Connect to Azure Storage using a managed identity](search-howto-managed-identities-storage.md).
 
-## Configure Azure AI Search for indexing permission metadata
+## Configure Azure AI Search
 
 Recall that the search service must have:
 
@@ -60,11 +60,11 @@ Recall that the search service must have:
 
 For indexer execution, the client issuing the API call must have **Search Service Contributor** permission to create objects, **Search Index Data Contributor** permission to perform data import, and **Search Index Data Reader** to query an index see [Connect to Azure AI Search using roles](search-security-rbac.md).
 
-## Index permission metadata
+## Configure indexing
 
 In Azure AI Search, configure an indexer, data source, and index to pull permission metadata from blobs.
 
-### Configure the data source
+### Create the data source
 
 + Data Source type must be `azureblob`.
 

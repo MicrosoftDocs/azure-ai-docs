@@ -54,7 +54,7 @@ This article supplements [**Index data from ADLS  Gen2**](search-howto-index-azu
   + [Debug sessions](cognitive-search-debug-session.md)
   + One-to-many [parsing modes](/rest/api/searchservice/indexers/create?view=rest-searchservice-2025-05-01-preview&preserve-view=true#blobindexerparsingmode), such as: `delimitedText`, `jsonArray`, `jaonLines`, and `markdown` with sub-mode `oneToMany`
 
-## Supported ADLS Gen2 permission features
+## Support for the permission model
 
 This section compares document-level access control features between ADLS Gen2 and Azure AI Search. It highlights which ADLS Gen2 access control mechanisms are supported or mapped when integrating with AI Search, helping you understand how permissions are enforced at the document level.
 
@@ -84,7 +84,7 @@ The indexer fetches ACLs from each container and directory, resolves them into t
       => Data.txt effective access
 ```
 
-## Configure ADLS Gen2 for indexing permission metadata
+## Configure ADLS Gen2
 
 An indexer can retrieve ACLs on a storage account if the following criteria are met. For more information about ACL assignments, see [ADLS Gen2 ACL assignments](/azure/storage/blobs/data-lake-storage-access-control#how-to-set-acls).
 
@@ -122,7 +122,7 @@ Here's a diagram of the ACL assignment structure for the [fictitious directory h
 
 Over time, as any new ACL assignments are added or modified, repeat the above steps to ensure proper propagation and permissions alignment. Updated permissions in ADLS Gen2 are updated in the search index when you re-ingest the content using the indexer.
 
-## Configure Azure AI Search for indexing permission metadata
+## Configure Azure AI Search
 
 Recall that the search service must have:
 
@@ -135,11 +135,11 @@ For indexer execution, the client issuing the API call must have **Search Servic
 
 If you're testing locally, you should have the same role assignments. For more information, see [Connect to Azure AI Search using roles](search-security-rbac.md).
 
-## Index permission metadata
+## Configure indexing
 
 In Azure AI Search, configure an indexer, data source, and index to pull permission metadata from ADLS Gen2 blobs.
 
-### Configure the data source
+### Create the data source
 
 This section supplements  [**Index data from ADLS  Gen2**](search-howto-index-azure-data-lake-storage.md) with information that's specific to ingesting permissions alongside document content into an Azure AI Search index.
 
