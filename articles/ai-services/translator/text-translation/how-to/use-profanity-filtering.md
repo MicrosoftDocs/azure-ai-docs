@@ -32,4 +32,4 @@ In the above examples, **\<insert-profane-word>** is a placeholder for profane w
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Apply profanity filtering with your Translator call](../../text-translation/v3/translate.md)
+> [Apply profanity filtering with your Translator call](../../text-translation/reference/v3/translate.md)

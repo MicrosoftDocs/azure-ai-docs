@@ -58,7 +58,7 @@ Request parameters passed on the query string are:
 | from |Specifies the language of the input text.|*Required parameter*|
 | to  |Specifies the language of the output text. For example, use `to=de` to translate to German.<br>It's possible to translate to multiple languages simultaneously by repeating the parameter in the query string. For example, use `to=de&to=it` to translate to German and Italian. |*Required parameter*|
 
-* You can query the service for `translation` scope [supported languages](../text-translation/v3/languages.md).
+* You can query the service for `translation` scope [supported languages](../text-translation/reference/v3/languages.md).
 * *See also* [Language support for transliteration](../language-support.md#translation).
 
 ### Optional parameters

@@ -81,9 +81,9 @@ landingContent:
       - linkListType: reference
         links:
           - text: Text translation REST API
-            url: text-translation/v3/reference.md
+            url: text-translation/reference/v3/reference.md
           - text: Text translation reference (v3)
-            url: text-translation/v3/reference.md
+            url: text-translation/reference/v3/reference.md
           - text: Request limits
             url: service-limits.md
       - linkListType: how-to-guide

@@ -37,7 +37,7 @@ Request parameters passed on the query string are:
 | fromScript | Specifies the script used by the input text. |*Required parameter*|
 | toScript |Specifies the output script.|*Required parameter*|
 
-* You can query the service for `transliteration` scope [supported languages](../text-translation/v3/languages.md).
+* You can query the service for `transliteration` scope [supported languages](../text-translation/reference/v3/languages.md).
 * *See also* [Language support for transliteration](../language-support.md#transliteration).
 
 ## Request headers
@@ -118,4 +118,4 @@ The following limitations apply:
 ## Next Steps
 
 > [!div class="nextstepaction"]
-> [Learn more about text transliteration](../text-translation/v3/transliterate.md)
+> [Learn more about text transliteration](../text-translation/reference/v3/transliterate.md)

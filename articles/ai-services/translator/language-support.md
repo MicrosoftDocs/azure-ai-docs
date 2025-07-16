@@ -19,7 +19,7 @@ ms.author: lajanuar
 
 **Auto Language Detection:** Automatically detect the language of the source text while using Text translation or Document translation.
 
-**Dictionary:** To display alternative translations from or to English and examples of words in context, use the [Dictionary Lookup](text-translation/v3/dictionary-lookup.md) or [Dictionary Examples](text-translation/v3/dictionary-examples.md) operations from the Text translation feature.
+**Dictionary:** To display alternative translations from or to English and examples of words in context, use the [Dictionary Lookup](text-translation/reference/v3/dictionary-lookup.md) or [Dictionary Examples](text-translation/reference/v3/dictionary-examples.md) operations from the Text translation feature.
 
 ## Translation
 
@@ -27,7 +27,7 @@ ms.author: lajanuar
 > Language code `pt` defaults to `pt-br`, Portuguese (Brazil).
 
 |Language|Language code|Cloud – Text translation and Document translation|Containers – Text translation|Custom Translator|Auto Language Detection|Dictionary|LLM translation|Adaptive custom translation|
-|:----|:----|:----|:----|:----|:----|:----|:----|
+|:----|:----|:----|:----|:----|:----|:----|:----|:----|
 |Afrikaans|`af`|✔|✔|✔|✔|✔| | | |
 |Albanian|`sq`|✔|✔| |✔| | | |
 |Amharic|`am`|✔|✔| |✔| | | |
@@ -282,7 +282,7 @@ ms.author: lajanuar
 
 ## Transliteration
 
-[Transliterate](text-translation/v3/transliterate.md) is a Text translation operation that supports the following languages. In the `To/From`, `<-->` indicates that the language can be transliterated from or to either of the scripts listed. The `-->` indicates that the language can only be transliterated from one script to the other.
+[Transliterate](text-translation/reference/v3/transliterate.md) is a Text translation operation that supports the following languages. In the `To/From`, `<-->` indicates that the language can be transliterated from or to either of the scripts listed. The `-->` indicates that the language can only be transliterated from one script to the other.
 
 | Language    | Language code | Script | To/From | Script|
 |:----------- |:-------------:|:-------------:|:-------------:|:-------------:|
@@ -336,6 +336,6 @@ View all [Azure AI services](../index.yml).
 
 ## Next steps
 
-* [Text translation reference](text-translation/v3/reference.md)
+* [Text translation reference](text-translation/reference/v3/reference.md)
 * [Document translation reference](document-translation/reference/rest-api-guide.md)
 * [Custom Translator overview](custom-translator/overview.md)

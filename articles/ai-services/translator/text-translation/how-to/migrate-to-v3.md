@@ -34,17 +34,17 @@ The following list of V2 and V3 methods identifies the V3 methods and APIs that 
 
 | V2 API Method   | V3 API Compatibility |
 |:----------- |:-------------|
-| `Translate`     | [Translate](../v3/translate.md)          |
-| `TranslateArray`      | [Translate](../v3/translate.md)        |
-| `GetLanguageNames`      | [Languages](../v3/languages.md)         |
-| `GetLanguagesForTranslate`     | [Languages](../v3/languages.md)       |
+| `Translate`     | [Translate](../reference/v3/translate.md)          |
+| `TranslateArray`      | [Translate](../reference/v3/translate.md)        |
+| `GetLanguageNames`      | [Languages](../reference/v3/languages.md)         |
+| `GetLanguagesForTranslate`     | [Languages](../reference/v3/languages.md)       |
 | `GetLanguagesForSpeak`      | [Microsoft Speech Service](../../../speech-service/language-support.md)         |
 | `Speak`     | [Microsoft Speech Service](../../../speech-service/text-to-speech.md)          |
-| `Detect`     | [Detect](../v3/detect.md)         |
-| `DetectArray`     | [Detect](../v3/detect.md)         |
+| `Detect`     | [Detect](../reference/v3/detect.md)         |
+| `DetectArray`     | [Detect](../reference/v3/detect.md)         |
 | `AddTranslation`     | Feature is no longer supported       |
 | `AddTranslationArray`    | Feature is no longer supported          |
-| `BreakSentences`      | [BreakSentence](../v3/break-sentence.md)       |
+| `BreakSentences`      | [BreakSentence](../reference/v3/break-sentence.md)       |
 | `GetTranslations`      | Feature is no longer supported         |
 | `GetTranslationsArray`      | Feature is no longer supported         |
 
@@ -79,19 +79,19 @@ Global
 
 ## V3 API text translations methods
 
-[`Languages`](../v3/languages.md)
+[`Languages`](../reference/v3/languages.md)
 
-[`Translate`](../v3/translate.md)
+[`Translate`](../reference/v3/translate.md)
 
-[`Transliterate`](../v3/transliterate.md)
+[`Transliterate`](../reference/v3/transliterate.md)
 
-[`BreakSentence`](../v3/break-sentence.md)
+[`BreakSentence`](../reference/v3/break-sentence.md)
 
-[`Detect`](../v3/detect.md)
+[`Detect`](../reference/v3/detect.md)
 
-[`Dictionary/lookup`](../v3/dictionary-lookup.md)
+[`Dictionary/lookup`](../reference/v3/dictionary-lookup.md)
 
-[`Dictionary/example`](../v3/dictionary-examples.md)
+[`Dictionary/example`](../reference/v3/dictionary-examples.md)
 
 ## Compatibility and customization
 
@@ -135,4 +135,4 @@ No version of the Azure AI Translator creates a record of your translations. You
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [View Azure AI Translator V3.0 Documentation](../v3/reference.md)
+> [View Azure AI Translator V3.0 Documentation](../reference/v3/reference.md)

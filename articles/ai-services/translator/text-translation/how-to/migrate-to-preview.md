@@ -49,12 +49,12 @@ The following table compares Translator `2025-05-01-preview` and Translator v3 A
 
 |Translator 2025-05-01-preview method|Translator v3 compatibility|
 |---|---|
-|[Translate text](../preview/translate-api.md)|[Translate text](../v3/translate.md)|
-|[Transliterate](../preview/transliterate-api.md)|[Transliterate](../v3/transliterate.md)|
-|[Languages](../preview/get-languages.md)|[Languages](../v3/languages.md)|
-[BreakSentence](../v3/break-sentence.md)|Feature no longer supported.<br>Use sentence delimiters function or a Natural Language Processing (NLP) library supported for your programming language.|
-[Dictionary Lookup](../v3/dictionary-lookup.md)|Feature no longer supported|
-|[Dictionary Examples](../v3/dictionary-examples.md)|Feature no longer supported|
+|[Translate text](../preview/translate-api.md)|[Translate text](../reference/v3/translate.md)|
+|[Transliterate](../preview/transliterate-api.md)|[Transliterate](../reference/v3/transliterate.md)|
+|[Languages](../preview/get-languages.md)|[Languages](../reference/v3/languages.md)|
+[BreakSentence](../reference/v3/break-sentence.md)|Feature no longer supported.<br>Use sentence delimiters function or a Natural Language Processing (NLP) library supported for your programming language.|
+[Dictionary Lookup](../reference/v3/dictionary-lookup.md)|Feature no longer supported|
+|[Dictionary Examples](../reference/v3/dictionary-examples.md)|Feature no longer supported|
 
 
 ## Next Steps

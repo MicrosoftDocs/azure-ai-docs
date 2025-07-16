@@ -1092,42 +1092,42 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/translator/reference/v3-0-break-sentence.md",
-      "redirect_url": "/azure/ai-services/translator/text-translation/reference/v3/break-sentence",
+      "redirect_url": "/azure/ai-services/translator/text-translation/reference/reference/v3/break-sentence",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/translator/reference/v3-0-detect.md",
-      "redirect_url": "/azure/ai-services/translator/text-translation/reference/v3/detect",
+      "redirect_url": "/azure/ai-services/translator/text-translation/reference/reference/v3/detect",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/translator/reference/v3-0-dictionary-examples.md",
-      "redirect_url": "/azure/ai-services/translator/text-translation/reference/v3/dictionary-examples",
+      "redirect_url": "/azure/ai-services/translator/text-translation/reference/reference/v3/dictionary-examples",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/translator/reference/v3-0-dictionary-lookup.md",
-      "redirect_url": "/azure/ai-services/translator/text-translation/reference/v3/dictionary-lookup",
+      "redirect_url": "/azure/ai-services/translator/text-translation/reference/reference/v3/dictionary-lookup",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/translator/reference/v3-0-languages.md",
-      "redirect_url": "/azure/ai-services/translator/text-translation/reference/v3/languages",
+      "redirect_url": "/azure/ai-services/translator/text-translation/reference/reference/v3/languages",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/translator/reference/v3-0-reference.md",
-      "redirect_url": "/azure/ai-services/translator/text-translation/reference/v3/reference",
+      "redirect_url": "/azure/ai-services/translator/text-translation/reference/reference/v3/reference",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/translator/reference/v3-0-translate.md",
-      "redirect_url": "/azure/ai-services/translator/text-translation/reference/v3/translate",
+      "redirect_url": "/azure/ai-services/translator/text-translation/reference/reference/v3/translate",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/translator/reference/v3-0-transliterate.md",
-      "redirect_url": "/azure/ai-services/translator/text-translation/reference/v3/transliterate",
+      "redirect_url": "/azure/ai-services/translator/text-translation/reference/reference/v3/transliterate",
       "redirect_document_id": true
     },
     {

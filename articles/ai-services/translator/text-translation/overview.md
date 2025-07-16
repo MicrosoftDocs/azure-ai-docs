@@ -18,7 +18,7 @@ Text translation documentation contains the following article types:
 
 * [**Quickstarts**](quickstart/rest-api.md). Getting-started instructions to guide you through making requests to the service.
 * [**How-to guides**](../how-to/create-translator-resource.md). Instructions for accessing and using the service in more specific or customized ways.
-* [**Reference articles**](v3/reference.md). REST API documentation and programming language-based content.
+* [**Reference articles**](reference/v3/reference.md). REST API documentation and programming language-based content.
 
 ## Text translation features
 
@@ -42,23 +42,23 @@ By default, Azure AI Translator uses neural Machine Translation (NMT) technology
 
 ### [Latest GA version](#tab/windows)
 
-* [**Languages**](v3/languages.md). Returns a list of languages supported by **Translate**, **Transliterate**, and **Dictionary Lookup** operations. This request doesn't require authentication; just copy and paste the following GET request into your favorite REST API tool or browser:
+* [**Languages**](reference/v3/languages.md). Returns a list of languages supported by **Translate**, **Transliterate**, and **Dictionary Lookup** operations. This request doesn't require authentication; just copy and paste the following GET request into your favorite REST API tool or browser:
 
     ```bash
     https://api.cognitive.microsofttranslator.com/languages?api-version=3.0
     ```
 
-* [**Translate**](v3/translate.md#translate-to-multiple-languages). Renders single source-language text to multiple target-language texts with a single request.
+* [**Translate**](reference/v3/translate.md#translate-to-multiple-languages). Renders single source-language text to multiple target-language texts with a single request.
 
-* [**Transliterate**](v3/transliterate.md). Converts characters or letters of a source language to the corresponding characters or letters of a target language.
+* [**Transliterate**](reference/v3/transliterate.md). Converts characters or letters of a source language to the corresponding characters or letters of a target language.
 
-* [**Detect**](v3/detect.md). Returns the source code language code and a boolean variable denoting whether the detected language is supported for text translation and transliteration.
+* [**Detect**](reference/v3/detect.md). Returns the source code language code and a boolean variable denoting whether the detected language is supported for text translation and transliteration.
 
     > [!NOTE]
-    > You can **Translate, Transliterate, and Detect** text with [a single REST API call](v3/translate.md#translate-a-single-input-with-language-autodetection) .
+    > You can **Translate, Transliterate, and Detect** text with [a single REST API call](reference/v3/translate.md#translate-a-single-input-with-language-autodetection) .
 
-* [**Dictionary lookup**](v3/dictionary-lookup.md). Returns equivalent words for the source term in the target language.
-* [**Dictionary example**](v3/dictionary-examples.md) Returns grammatical structure and context examples for the source term and target term pair.
+* [**Dictionary lookup**](reference/v3/dictionary-lookup.md). Returns equivalent words for the source term in the target language.
+* [**Dictionary example**](reference/v3/dictionary-examples.md) Returns grammatical structure and context examples for the source term and target term pair.
 
 ---
 
@@ -130,4 +130,4 @@ Ready to begin?
 Dive deeper into the Text translation REST API:
 
 > [!div class="nextstepaction"]
-> [See the REST API reference](v3/reference.md)
+> [See the REST API reference](reference/v3/reference.md)

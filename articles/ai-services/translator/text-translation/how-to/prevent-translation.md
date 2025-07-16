@@ -53,4 +53,4 @@ Azure AI Translator allows you to tag content so that it isn't translated. For e
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Translate text reference](../v3/translate.md)
+> [Translate text reference](../reference/v3/translate.md)
