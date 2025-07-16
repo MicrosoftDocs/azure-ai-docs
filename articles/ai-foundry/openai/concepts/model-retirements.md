@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn about the model deprecations and retirements in Azure OpenAI.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 06/25/2025
+ms.date: 07/16/2025
 ms.custom: 
 manager: nitinme
 author: mrbullwinkle
@@ -101,4 +101,6 @@ These models are currently available for use in Azure OpenAI.
 
 ## Retirement and deprecation history
 
-To track individual updates to this article refer to the [Git History](https://github.com/MicrosoftDocs/azure-ai-docs/commits/main/articles/ai-services/openai/includes/retirement/models.md)
+- To track individual updates to this article refer to the [Git History](https://github.com/MicrosoftDocs/azure-ai-docs/commits/main/articles/ai-foundry/openai/includes/retirement/models.md)
+
+- For a list of retired models, refer to the [retired models page](./legacy-models.md).

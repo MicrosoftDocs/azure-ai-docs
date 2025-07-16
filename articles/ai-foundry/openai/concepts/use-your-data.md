@@ -7,7 +7,7 @@ ms.service: azure-ai-openai
 ms.topic: quickstart
 author: aahill
 ms.author: aahi
-ms.date: 06/30/2025
+ms.date: 07/16/2025
 recommendations: false
 ms.custom: references_regions, ignite-2024
 ---
@@ -722,6 +722,7 @@ Each user message can translate to multiple search queries, all of which get sen
 > * o1 models
 > * o3 models
 > * model-router
+> * GPT 4.1 models
 
 | Region | `gpt-35-turbo-16k (0613)` | `gpt-35-turbo (1106)` | `gpt-4-32k (0613)` | `gpt-4 (1106-preview)` | `gpt-4 (0125-preview)` | `gpt-4 (0613)`  | `gpt-4o`\*\* | `gpt-4 (turbo-2024-04-09)` |
 |------|---|---|---|---|---|----|----|----|
