@@ -229,6 +229,9 @@ You can use the `load_component()` function to load the score component, which i
 
 ### Load registered components from the workspace
 
+> [!NOTE]
+> To load registered components from your workspace, you must first configure your workspace connection as described in the [Get access to your workspace](#get-access-to-your-workspace) section. The `ml_client` object is required for the following operations.
+
 If you have components that are already registered in your workspace, you can load them directly using the `ml_client.components.get()` method. This approach is useful when you want to reuse components that were previously registered by you or shared by other team members.
 
 ```python
