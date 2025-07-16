@@ -17,6 +17,7 @@ ms.custom:
 # Retrieval-augmented Generation (RAG) evaluators
 
 A retrieval-augmented generation (RAG) system tries to generate the most relevant answer consistent with grounding documents in response to a user's query. At a high level, a user's query triggers a search retrieval in the corpus of grounding documents to provide grounding context for the AI model to generate a response. It's important to evaluate:
+
 - [Document Retrieval](#document-retrieval)
 - [Retrieval](#retrieval)
 - [Groundedness](#groundedness)
@@ -25,6 +26,7 @@ A retrieval-augmented generation (RAG) system tries to generate the most relevan
 - [Response Completeness](#response-completeness)
 
 These evaluators address three aspects:
+
 - The relevance of the retrieval results to the user's query: use [Document Retrieval](#document-retrieval) if you have labels for query-specific document relevance, or query relevance judgement (qrels) for more accurate measurements. Use [Retrieval](#retrieval) if you only have the retrieved context, but you don't have such labels and have a higher tolerance for a less fine-grained measurement.
 - The consistency of the generated response with respect to the grounding documents: use [Groundedness](#groundedness) if you want to potentially customize the definition of groundedness in our open-source LLM-judge prompt, [Groundedness Pro](#groundedness-pro) if you want a straightforward definition.
 - The relevance of the final response to the query: [Relevance](#relevance) if you don't have ground truth, and [Response Completeness](#response-completeness) if you have ground truth and don't want your response to miss critical information.
@@ -43,25 +45,26 @@ load_dotenv()
 
 model_config = AzureOpenAIModelConfiguration(
     azure_endpoint=os.environ["AZURE_ENDPOINT"],
-    api_key=os.environ.get["AZURE_API_KEY"],
+    api_key=os.environ.get("AZURE_API_KEY"),
     azure_deployment=os.environ.get("AZURE_DEPLOYMENT_NAME"),
     api_version=os.environ.get("AZURE_API_VERSION"),
 )
 ```
 
 ### Evaluator model support
+
 We support AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the LLM-judge depending on the evaluators:
 
-| Evaluators | Reasoning Models as Judge (ex: o-series models from Azure OpenAI / OpenAI) | Non-reasoning models as Judge (ex: gpt-4.1, gpt-4o, etc.) | To enable |
-|------------|-----------------------------------------------------------------------------|-------------------------------------------------------------|-------|
-| `Intent Resolution` / `Task Adherence` / `Tool Call Accuracy` / `Response Completeness`) | Supported | Supported | Set additional parameter `is_reasoning_model=True` in initializing evaluators |
+| Evaluators | Reasoning Models as Judge (example: o-series models from Azure OpenAI / OpenAI) | Non-reasoning models as Judge (example: gpt-4.1, gpt-4o, etc.) | To enable |
+|--|--|--|--|
+| `Intent Resolution` / `Task Adherence` / `Tool Call Accuracy` / `Response Completeness` | Supported | Supported | Set additional parameter `is_reasoning_model=True` in initializing evaluators |
 | Other quality evaluators| Not Supported | Supported | -- |
 
 For complex evaluation that requires refined reasoning, we recommend a strong reasoning model like `o3-mini` and o-series mini models released afterwards with a balance of reasoning performance and cost efficiency.
 
 ## Retrieval
 
-Retrieval quality is very important given its upstream role in RAG: if the retrieval quality is poor and the response requires corpus-specific knowledge, there's less chance your LLM model gives you a satisfactory answer. `RetrievalEvaluator` measures the **textual quality** of retrieval results with an LLM without requiring ground truth (also known as query relevance judgment), which provides value compared to `DocumentRetrievalEvaluator` measuring `ndcg`,  `xdcg`, `fidelity`, and other classical information retrieval metrics that require ground truth. This metric focuses on how relevant the context chunks (encoded as a string) are to address a query and how the most relevant context chunks are surfaced at the top of the list.
+Retrieval quality is important given its upstream role in RAG: if the retrieval quality is poor and the response requires corpus-specific knowledge, there's less chance your LLM model gives you a satisfactory answer. `RetrievalEvaluator` measures the **textual quality** of retrieval results with an LLM without requiring ground truth (also known as query relevance judgment), which provides value compared to `DocumentRetrievalEvaluator` measuring `ndcg`,  `xdcg`, `fidelity`, and other classical information retrieval metrics that require ground truth. This metric focuses on how relevant the context chunks (encoded as a string) are to address a query and how the most relevant context chunks are surfaced at the top of the list.
 
 ### Retrieval example
 
@@ -77,7 +80,7 @@ retrieval(
 
 ### Retrieval output
 
-The numerical score on a likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (a default is set), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
+The numerical score on a Likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (a default is set), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
 
 ```python
 {
@@ -91,7 +94,7 @@ The numerical score on a likert scale (integer 1 to 5) and a higher score is bet
 
 ## Document retrieval
 
-Retrieval quality is very important given its upstream role in RAG: if the retrieval quality is poor and the response requires corpus-specific knowledge, there's less chance your LLM model gives you a satisfactory answer. Therefore, it's important to use `DocumentRetrievalEvaluator` to evaluate the retrieval quality but also optimize your search parameters for RAG.
+Retrieval quality is important given its upstream role in RAG: if the retrieval quality is poor and the response requires corpus-specific knowledge, there's less chance your LLM model gives you a satisfactory answer. Therefore, it's important to use `DocumentRetrievalEvaluator` to evaluate the retrieval quality but also optimize your search parameters for RAG.
 
 - Document Retrieval evaluator measures how well the RAG retrieves the correct documents from the document store. As a composite evaluator useful for RAG scenario with ground truth, it computes a list of useful search quality metrics for debugging your RAG pipelines:
 
@@ -103,14 +106,14 @@ Retrieval quality is very important given its upstream role in RAG: if the retri
 | Max Relevance N | Search Max Relevance | Maximum relevance in the top-k chunks |
 | Holes | Search Label Sanity | Number of documents with missing query relevance judgments (Ground truth) |
 
-- To optimize your RAG in a scenario called "parameter sweep", you can use these metrics to calibrate the search parameters for the optimal RAG results. Simply generate different retrieval results for various search parameters such as search algorithms (vector, semantic), top_k, and chunk sizes you're interested in testing. Then use `DocumentRetrievalEvaluator` to find the search parameters that yield the highest retrieval quality.
+- To optimize your RAG in a scenario called "parameter sweep", you can use these metrics to calibrate the search parameters for the optimal RAG results. Generate different retrieval results for various search parameters such as search algorithms (vector, semantic), top_k, and chunk sizes you're interested in testing. Then use `DocumentRetrievalEvaluator` to find the search parameters that yield the highest retrieval quality.
 
 ### Document retrieval example
 
 ```python
 from azure.ai.evaluation import DocumentRetrievalEvaluator
 
-# these query_relevance_label are given by your human- or LLM-judges.
+# These query_relevance_labels are given by your human- or LLM-judges.
 retrieval_ground_truth = [
     {
         "document_id": "1",
@@ -133,11 +136,11 @@ retrieval_ground_truth = [
         "query_relevance_label": 0
     },
 ]
-# the min and max of the label scores are inputs to document retrieval evaluator
+# The min and max of the label scores are inputs to document retrieval evaluator
 ground_truth_label_min = 0
 ground_truth_label_max = 4
 
-# these relevance scores come from your search retrieval system
+# These relevance scores come from your search retrieval system
 retrieved_documents = [
     {
         "document_id": "2",
@@ -199,7 +202,7 @@ All numerical scores have `high_is_better=True` except for `holes` and `holes_ra
     "fidelity_result": "fail",
     "top1_relevance_result": "fail",
     "top3_max_relevance_result": "fail",
-    # omitting more fields ...
+    # Omitting more fields ...
 }
 ```
 
@@ -222,7 +225,7 @@ groundedness(
 
 ### Groundedness output
 
-The numerical score on a likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
+The numerical score on a Likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
 
 ```python
 {
@@ -292,7 +295,7 @@ relevance(
 
 ### Relevance output
 
-The numerical score on a likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
+The numerical score on a Likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
 
 ```python
 {
@@ -306,7 +309,7 @@ The numerical score on a likert scale (integer 1 to 5) and a higher score is bet
 
 ## Response completeness
 
-AI systems can fabricate content or generate irrelevant responses outside the given context. Given ground truth response, `ResponseCompletenessEvaluator` that captures the **recall** aspect of response alignment with the expected response. This is complementary to `GroundednessEvaluator` which captures the **precision** aspect of response alignment with the grounding source.
+AI systems can fabricate content or generate irrelevant responses outside the given context. Given ground truth response, `ResponseCompletenessEvaluator` that captures the **recall** aspect of response alignment with the expected response. This is complementary to `GroundednessEvaluator`, which captures the **precision** aspect of response alignment with the grounding source.
 
 ### Response completeness example
 
@@ -322,7 +325,7 @@ response_completeness(
 
 ### Response completeness output
 
-The numerical score on a likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
+The numerical score on a Likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
 
 ```python
 {

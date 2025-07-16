@@ -8,7 +8,7 @@ ms.custom:
 - build-2025
 - references_regions
 ms.topic: how-to
-ms.date: 07/14/2025
+ms.date: 07/16/2025
 ms.reviewer: changliu2
 ms.author: lagayhar
 author: lgayhardt
@@ -20,18 +20,15 @@ author: lgayhardt
 
 AI agents are powerful productivity assistants that can create workflows for business needs. However, observability can be a challenge, due to their complex interaction patterns. In this article, you learn how to run built-in evaluators locally on simple agent data or agent messages.
 
-To build production-ready agentic applications and enable observability and transparency, developers need tools to assess not just the final output from an agent's workflows, but the quality and efficiency of the workflows themselves. For example, consider a typical agentic workflow:
-
-:::image type="content" source="../../media/evaluations/agent-workflow-evaluation.gif" alt-text="Animation of the agent's workflow that shows a user query, intent resolution, tool calls, and the final response." lightbox="../../media/evaluations/agent-workflow-evaluation.gif":::
+To build production-ready agentic applications and enable observability and transparency, developers need tools to assess not just the final output from an agent's workflows, but the quality and efficiency of the workflows themselves.
 
 An event like a user querying "weather tomorrow" triggers an agentic workflow. To produce a final response, the agentic workflow runs multiple steps that include reasoning through user intents, tool calling, and utilizing retrieval-augmented generation. In this process, it's crucial to evaluate each step of the workflow, and the quality and safety of the final output. We formulate these evaluation aspects into the following evaluators for agents:
 
 - [Intent resolution](https://aka.ms/intentresolution-sample): Measures whether the agent correctly identifies the user's intent.
--	[Tool call accuracy](https://aka.ms/toolcallaccuracy-sample): Measures whether the agent made the correct function tool calls to a user's request.
--	[Task adherence](https://aka.ms/taskadherence-sample): Measures whether the agent's final response adheres to its assigned tasks, according to its system message and prior steps.
+- [Tool call accuracy](https://aka.ms/toolcallaccuracy-sample): Measures whether the agent made the correct function tool calls to a user's request.
+- [Task adherence](https://aka.ms/taskadherence-sample): Measures whether the agent's final response adheres to its assigned tasks, according to its system message and prior steps.
 
-You can also assess other quality and safety aspects of your agentic workflows, using our comprehensive suite of built-in evaluators. In general, agents emit agent messages. Transforming agent messages into the right evaluation data to use our evaluators can be a nontrivial task. If you build your agent using [Foundry Agent Service](../../../ai-services/agents/overview.md), you can [seamlessly evaluate it via our converter support](#evaluate-azure-ai-agents). If you build your agent outside of Foundry Agent Service, you can still use our evaluators as appropriate to your agentic workflow, by parsing your agent messages into the [required data formats](./evaluate-sdk.md#data-requirements-for-built-in-evaluators). See examples in [Evaluating other agents](#evaluating-other-agents). 
-
+You can also assess other quality and safety aspects of your agentic workflows, using our comprehensive suite of built-in evaluators. In general, agents emit agent messages. Transforming agent messages into the right evaluation data to use our evaluators can be a nontrivial task. If you build your agent using [Foundry Agent Service](../../../ai-services/agents/overview.md), you can [seamlessly evaluate it via our converter support](#evaluate-azure-ai-agents). If you build your agent outside of Foundry Agent Service, you can still use our evaluators as appropriate to your agentic workflow, by parsing your agent messages into the [required data formats](./evaluate-sdk.md#data-requirements-for-built-in-evaluators). See examples in [Evaluating other agents](#evaluating-other-agents).
 
 ## Get started
 
@@ -42,24 +39,22 @@ pip install azure-ai-evaluation
 ```
 
 ## Evaluate Azure AI agents
-If you use [Foundry Agent Service](../../../ai-services/agents/overview.md), you can seamlessly evaluate your agents via our converter support for Azure AI agent threads and runs. We support this list of evaluators for Azure AI agent messages from our converter: 
+
+If you use [Foundry Agent Service](../../../ai-services/agents/overview.md), you can seamlessly evaluate your agents via our converter support for Azure AI agent threads and runs. We support this list of evaluators for Azure AI agent messages from our converter:
 
 ### Evaluators supported for evaluation data converter
+
 - Quality: `IntentResolution`, `ToolCallAccuracy`, `TaskAdherence`, `Relevance`, `Coherence`, `Fluency`
 - Safety: `CodeVulnerabilities`, `Violence`, `Self-harm`, `Sexual`, `HateUnfairness`, `IndirectAttack`, `ProtectedMaterials`.
 
-
 > [!NOTE]
-> `ToolCallAccuracyEvaluator` only supports Foundry Agent's Function Tool evaluation (user-defined Python functions), but doesn't support other Tool evaluation. If an agent run invoked a tool other than Function Tool, it will output a "pass" and a reason that evaluating the invoked tool(s) is not supported. 
-
+> `ToolCallAccuracyEvaluator` only supports Foundry Agent's Function Tool evaluation (user-defined Python functions), but doesn't support other Tool evaluation. If an agent run invoked a tool other than Function Tool, it outputs a "pass" and a reason that evaluating the invoked tool(s) isn't supported.
 
 Here's an example that shows you how to seamlessly build and evaluate an Azure AI agent. Separately from evaluation, Azure AI Foundry Agent Service requires `pip install azure-ai-projects azure-identity`, an Azure AI project connection string, and the supported models.
 
 ### Create agent threads and runs
 
-
-Agents can use tool. Here is an example of creating custom tools you intend the agent to use (using a mock weather function as an example):
-
+Agents can use tool. Here's an example of creating custom tools you intend the agent to use (using a mock weather function as an example):
 
 ```python
 from azure.ai.projects.models import FunctionTool, ToolSet
@@ -94,10 +89,10 @@ toolset.add(functions)
 AGENT_NAME = "Seattle Tourist Assistant"
 ```
 
-If you are using [Azure AI Foundry (non-Hub) project](../create-projects.md?tabs=ai-foundry&pivots=fdp-project), create an agent with the toolset as follows:
+If you're using [Azure AI Foundry (non-Hub) project](../create-projects.md?tabs=ai-foundry&pivots=fdp-project), create an agent with the toolset as follows:
 
 > [!NOTE]
-> If you are using a [Foundry Hub-based project](../create-projects.md?tabs=ai-foundry&pivots=hub-project) (which only supports lower versions of `azure-ai-projects<1.0.0b10 azure-ai-agents<1.0.0b10`), we strongly recommend migrating to [the latest Foundry Agent Service SDK Python client library](../../agents/quickstart.md?pivots=programming-language-python-azure) with a [Foundry project set up for logging batch evaluation results](../../how-to/develop/evaluate-sdk.md#prerequisite-set-up-steps-for-azure-ai-foundry-projects).
+> If you're using a [Foundry Hub-based project](../create-projects.md?tabs=ai-foundry&pivots=hub-project) (which only supports lower versions of `azure-ai-projects<1.0.0b10 azure-ai-agents<1.0.0b10`), we strongly recommend migrating to [the latest Foundry Agent Service SDK Python client library](../../agents/quickstart.md?pivots=programming-language-python-azure) with a [Foundry project set up for logging batch evaluation results](../../how-to/develop/evaluate-sdk.md#prerequisite-set-up-steps-for-azure-ai-foundry-projects).
 
 ```python
 import os
@@ -119,7 +114,7 @@ project_client = AIProjectClient(
 )
 
 
-# Create an agent with the 
+# Create an agent with the toolset 
 agent = project_client.agents.create_agent(
     model=os.environ["MODEL_DEPLOYMENT_NAME"],  # Model deployment name
     name="my-agent",  # Name of the agent
@@ -155,9 +150,6 @@ for message in messages:
     
 ```
 
-
-
-
 ### Evaluate a single agent run
 
 After you create agent runs, you can easily use our converter to transform the Azure AI agent thread data into the required evaluation data that the evaluators can understand.
@@ -169,15 +161,14 @@ from azure.ai.evaluation import AIAgentConverter, IntentResolutionEvaluator
 # Initialize the converter for Azure AI agents.
 converter = AIAgentConverter(project_client)
 
-# Specify the thread and run the ID.
+# Specify the thread and run ID.
 thread_id = thread.id
 run_id = run.id
 
 converted_data = converter.convert(thread_id, run_id)
 ```
 
-
-And that's it! `converted_data` will contain all inputs required for [these evaluators](#evaluators-supported-for-evaluation-data-converter). You don't need to read the input requirements for each evaluator and do any work to parse the inputs. All you need to do is select your evaluator and call the evaluator on this single run. We support AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the judge depending on the evaluators:
+And that's it! `converted_data` contains all inputs required for [these evaluators](#evaluators-supported-for-evaluation-data-converter). You don't need to read the input requirements for each evaluator and do any work to parse the inputs. All you need to do is select your evaluator and call the evaluator on this single run. We support AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the judge depending on the evaluators:
 
 | Evaluators | Reasoning Models as Judge (ex: o-series models from Azure OpenAI / OpenAI) | Non-reasoning models as Judge (ex: gpt-4.1, gpt-4o, etc.) | To enable |
 |------------|-----------------------------------------------------------------------------|-------------------------------------------------------------|-------|
@@ -187,7 +178,6 @@ And that's it! `converted_data` will contain all inputs required for [these eval
 For complex tasks that require refined reasoning for the evaluation, we recommend a strong reasoning model like `o3-mini` or the o-series mini models released afterwards with a balance of reasoning performance and cost efficiency.
 
 We set up a list of quality and safety evaluator in `quality_evaluators` and `safety_evaluators` and reference them in [evaluating multiples agent runs or a thread](#evaluate-multiple-agent-runs-or-threads).
-
 
 ```python
 # This is specific to agentic workflows.
@@ -214,10 +204,10 @@ reasoning_model_config = {
     "api_version": os.getenv("AZURE_API_VERSION"),
 }
 
-# evaluators with reasoning model support
+# Evaluators with reasoning model support
 quality_evaluators = {evaluator.__name__: evaluator(model_config=reasoning_model_config, is_reasoning_model=True) for evaluator in [IntentResolutionEvaluator, TaskAdherenceEvaluator, ToolCallAccuracyEvaluator]}
 
-# other evaluators do not support reasoning models 
+# Other evaluators do not support reasoning models 
 quality_evaluators.update({ evaluator.__name__: evaluator(model_config=model_config) for evaluator in [CoherenceEvaluator, FluencyEvaluator, RelevanceEvaluator]})
 
 ## Using Azure AI Foundry (non-Hub) project endpoint, example: AZURE_AI_PROJECT=https://your-account.services.ai.azure.com/api/projects/your-project
@@ -313,7 +303,7 @@ response = evaluate(
 # Inspect the average scores at a high level.
 print(response["metrics"])
 # Use the URL to inspect the results on the UI.
-print(f'AI Foundary URL: {response.get("studio_url")}')
+print(f'AI Foundry URL: {response.get("studio_url")}')
 ```
 
 After the URL, you'll be redirected to Foundry. You can view your evaluation results in your Azure AI project and debug your application. Using reason fields and pass/fail, you can easily assess the quality and safety performance of your applications. You can run and compare multiple runs to test for regression or improvements.  
