@@ -37,8 +37,8 @@ ms.author: eur
 | `cs-CZ` | Czech (Czechia) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `cy-GB` | Welsh (United Kingdom) | No | Plain text |
 | `da-DK` | Danish (Denmark) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
-| `de-AT` | German (Austria) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
-| `de-CH` | German (Switzerland) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Pronunciation<br/><br/>Phrase list |
+| `de-AT` | German (Austria) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
+| `de-CH` | German (Switzerland) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Pronunciation<br/><br/>Phrase list |
 | `de-DE` | German (Germany) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
 | `el-GR` | Greek (Greece) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text |
 | `en-AU` | English (Australia) | No | Audio + human-labeled transcript<br/><br/>Audio<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
