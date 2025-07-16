@@ -28,7 +28,7 @@ ms.author: lajanuar
 
 |Language|Language code|Cloud – Text translation and Document translation|Containers – Text translation|Custom Translator|Auto Language Detection|Dictionary|LLM translation|Adaptive custom translation|
 |:----|:----|:----|:----|:----|:----|:----|:----|:----|
-|Afrikaans|`af`|✔|✔|✔|✔|✔| | | |
+|Afrikaans|`af`|✔|✔|✔|✔|✔| | |
 |Albanian|`sq`|✔|✔| |✔| | | |
 |Amharic|`am`|✔|✔| |✔| | | |
 |Arabic|`ar`|✔|✔|✔|✔|✔|✔| |
