@@ -35,7 +35,7 @@ Azure AI Language is updated on an ongoing basis. Bookmark this page to stay up 
 * Improved AI quality for `PhoneNumber` entity type.
 
 **New agent templates**. Azure AI Language now supports the following agent templates:
-*  [Intent routing](../azure/ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md): Detects user intent and provides precise answers, ideal for deterministic intent routing, and exact question answering with human oversight.
+*  [Intent routing](../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md): Detects user intent and provides precise answers, ideal for deterministic intent routing, and exact question answering with human oversight.
 *   [Exact question answering](../agents/concepts/agent-catalog.md): Delivers consistent, accurate responses to high-value predefined questions through deterministic methods.
 
 **PII detection enhancements**. Azure AI Language introduces new customization and entity subtype features for PII detection:
