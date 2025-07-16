@@ -9,7 +9,7 @@ ms.custom: July-2025
 ms.date: 07/02/2025
 ---
 
-# Azure AI Services docs: What's new for July 2025
+# What's new in Azure AI Services documentation?
 
 Welcome! This article highlights key changes and updates in Azure AI Services documentation for July 2025.
 

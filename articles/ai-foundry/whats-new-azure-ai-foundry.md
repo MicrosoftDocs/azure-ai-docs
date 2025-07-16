@@ -9,7 +9,7 @@ ms.custom: July-2025
 ms.date: 07/02/2025
 ---
 
-# Azure AI Foundry docs: What's new for July 2025
+# What's new in Azure AI Foundry documentation?
 
 Welcome! This article highlights key changes and updates in Azure AI Foundry documentation for July 2025.
 
