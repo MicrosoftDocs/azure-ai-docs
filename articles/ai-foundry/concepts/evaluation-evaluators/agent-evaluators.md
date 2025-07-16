@@ -6,7 +6,7 @@ author: lgayhardt
 ms.author: lagayhar
 manager: scottpolly
 ms.reviewer: changliu2
-ms.date: 05/19/2025
+ms.date: 07/15/2025
 ms.service: azure-ai-foundry
 ms.topic: reference
 ms.custom:
@@ -18,7 +18,10 @@ ms.custom:
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-Agents are powerful productivity assistants. They can plan, make decisions, and execute actions. Agents typically first [reason through user intents in conversations](#intent-resolution), [select the correct tools](#tool-call-accuracy) to call and satisfy the user requests, and [complete various tasks](#task-adherence) according to their instructions.
+Agents are powerful productivity assistants. They can plan, make decisions, and execute actions. Agents typically first [reason through user intents in conversations](#intent-resolution), [select the correct tools](#tool-call-accuracy) to call and satisfy the user requests, and [complete various tasks](#task-adherence) according to their instructions. We currently support these agent-specific evaluators for agentic workflows:
+- [Intent resolution](#intent-resolution)
+- [Tool call accuracy](#tool-call-accuracy)
+- [Task adherence](#task-adherence)
 
 ## Evaluating Azure AI agents
 
@@ -48,8 +51,15 @@ model_config = AzureOpenAIModelConfiguration(
 )
 ```
 
-> [!TIP]
-> We recommend using `o3-mini` for a balance of reasoning capability and cost efficiency. 
+### Evaluator model support
+We support AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the LLM-judge depending on the evaluators:
+
+| Evaluators | Reasoning Models as Judge (ex: o-series models from Azure OpenAI / OpenAI) | Non-reasoning models as Judge (ex: gpt-4.1, gpt-4o, etc.) | To enable |
+|------------|-----------------------------------------------------------------------------|-------------------------------------------------------------|-------|
+| `Intent Resolution` / `Task Adherence` / `Tool Call Accuracy` / `Response Completeness`) | Supported | Supported | Set additional parameter `is_reasoning_model=True` in initializing evaluators |
+| Other quality evaluators| Not Supported | Supported | -- |
+
+For complex evaluation that requires refined reasoning, we recommend a strong reasoning model like `o3-mini` and o-series mini models released afterwards with a balance of reasoning performance and cost efficiency.
 
 ## Intent resolution
 
@@ -174,7 +184,7 @@ task_adherence(
 
 ### Task adherence output
 
-The numerical score on a likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
+The numerical score on a Likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
 
 ```python
 {

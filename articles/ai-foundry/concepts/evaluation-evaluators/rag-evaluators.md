@@ -6,7 +6,7 @@ author: lgayhardt
 ms.author: lagayhar
 manager: scottpolly
 ms.reviewer: changliu2
-ms.date: 05/19/2025
+ms.date: 07/15/2025
 ms.service: azure-ai-foundry
 ms.topic: reference
 ms.custom:
@@ -17,7 +17,14 @@ ms.custom:
 # Retrieval-augmented Generation (RAG) evaluators
 
 A retrieval-augmented generation (RAG) system tries to generate the most relevant answer consistent with grounding documents in response to a user's query. At a high level, a user's query triggers a search retrieval in the corpus of grounding documents to provide grounding context for the AI model to generate a response. It's important to evaluate:
+- [Document Retrieval](#document-retrieval)
+- [Retrieval](#retrieval)
+- [Groundedness](#groundedness)
+- [Groundedness Pro](#groundedness-pro)
+- [Relevance](#relevance)
+- [Response Completeness](#response-completeness)
 
+These evaluators address three aspects:
 - The relevance of the retrieval results to the user's query: use [Document Retrieval](#document-retrieval) if you have labels for query-specific document relevance, or query relevance judgement (qrels) for more accurate measurements. Use [Retrieval](#retrieval) if you only have the retrieved context, but you don't have such labels and have a higher tolerance for a less fine-grained measurement.
 - The consistency of the generated response with respect to the grounding documents: use [Groundedness](#groundedness) if you want to potentially customize the definition of groundedness in our open-source LLM-judge prompt, [Groundedness Pro](#groundedness-pro) if you want a straightforward definition.
 - The relevance of the final response to the query: [Relevance](#relevance) if you don't have ground truth, and [Response Completeness](#response-completeness) if you have ground truth and don't want your response to miss critical information.
@@ -42,8 +49,15 @@ model_config = AzureOpenAIModelConfiguration(
 )
 ```
 
-> [!TIP]
-> We recommend using `o3-mini` for a balance of reasoning capability and cost efficiency.
+### Evaluator model support
+We support AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the LLM-judge depending on the evaluators:
+
+| Evaluators | Reasoning Models as Judge (ex: o-series models from Azure OpenAI / OpenAI) | Non-reasoning models as Judge (ex: gpt-4.1, gpt-4o, etc.) | To enable |
+|------------|-----------------------------------------------------------------------------|-------------------------------------------------------------|-------|
+| `Intent Resolution` / `Task Adherence` / `Tool Call Accuracy` / `Response Completeness`) | Supported | Supported | Set additional parameter `is_reasoning_model=True` in initializing evaluators |
+| Other quality evaluators| Not Supported | Supported | -- |
+
+For complex evaluation that requires refined reasoning, we recommend a strong reasoning model like `o3-mini` and o-series mini models released afterwards with a balance of reasoning performance and cost efficiency.
 
 ## Retrieval
 
@@ -148,8 +162,10 @@ retrieved_documents = [
 ]
 
 document_retrieval_evaluator = DocumentRetrievalEvaluator(
+    # Specify the ground truth label range
     ground_truth_label_min=ground_truth_label_min, 
     ground_truth_label_max=ground_truth_label_max,
+    # Optionally override the binarization threshold for pass/fail output
     ndcg_threshold = 0.5,
     xdcg_threshold = 50.0,
     fidelity_threshold = 0.5,
