@@ -84,4 +84,4 @@ Content-Type: application/json
 
 - [Use an ADLS Gen2 indexer to ingest permission metadata and filter search results based on user access rights](search-indexer-access-control-lists-and-role-based-access.md) 
 
-- [Use a Blob indexer to ingest RBAC scopes metadata](search-blob-indexer-role-based-access)
+- [Use a Blob indexer to ingest RBAC scopes metadata](search-blob-indexer-role-based-access.md)
