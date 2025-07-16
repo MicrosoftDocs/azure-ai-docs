@@ -6,7 +6,7 @@ author: lgayhardt
 ms.author: lagayhar
 manager: scottpolly
 ms.reviewer: mithigpe
-ms.date: 05/19/2025
+ms.date: 07/16/2025
 ms.service: azure-ai-foundry
 ms.topic: reference
 ms.custom:
@@ -47,7 +47,7 @@ model_config = AzureOpenAIModelConfiguration(
 
 Here's an example `data.jsonl` that is used in the following code snippets:
 
-```json
+```jsonl
 [
     {
         "query": "What is the importance of choosing the right provider in getting the most value out of your health insurance plan?",
