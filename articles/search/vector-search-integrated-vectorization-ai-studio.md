@@ -41,7 +41,7 @@ Integrated vectorization and the [Import and vectorize data wizard](search-impor
 | Image | Facebook-DinoV2-Image-Embeddings-ViT-Base, Facebook-DinoV2-Image-Embeddings-ViT-Giant |
 | Multimodal (text and image) | embed-v-4-0 <sup>1</sup> |
 
-<sup>1</sup> At this time, you can only specify `embed-v-4-0` programmatically through the [AML skill](cognitive-search-aml-skill.md), not through the Azure portal. However, you can use the portal to view and manage the skillset afterward.
+<sup>1</sup> At this time, you can only specify `embed-v-4-0` programmatically through the [AML skill](cognitive-search-aml-skill.md) or [Azure AI Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md), not through the Azure portal. However, you can use the portal to manage the skillset or vectorizer afterward.
 
 ## Deploy an embedding model from the Azure AI Foundry model catalog
 

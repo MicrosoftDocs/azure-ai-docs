@@ -62,7 +62,7 @@ For content embedding, you can choose either image verbalization (followed by te
 
 <sup>4</sup> `phi-4` is only available to Azure AI Foundry projects.
 
-<sup>5</sup> The Azure portal doesn't support `embed-v-4-0` for vectorization, so don't use it for this quickstart. Instead, use the [AML skill](cognitive-search-aml-skill.md) to programmatically specify this model. You can then use the portal to view and manage the skillset.
+<sup>5</sup> The Azure portal doesn't support `embed-v-4-0` for vectorization, so don't use it for this quickstart. Instead, use the [AML skill](cognitive-search-aml-skill.md) or [Azure AI Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) to programmatically specify this model. You can then use the portal to manage the skillset or vectorizer.
 
 ### Public endpoint requirements
 
