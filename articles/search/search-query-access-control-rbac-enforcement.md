@@ -53,19 +53,20 @@ The security filter efficiently matches the userIds, groupIds, and rbacScope fro
 
 ## Limitations
 
-- If ACL evaluation fails (for example, Graph API is unavailable), the service returns **5xx** and does **not** return a partially filtered result set.
+- If ACL evaluation fails (for example, the Graph API is unavailable), the service returns **5xx** and does **not** return a partially filtered result set.
+
 - Document visibility requires both:
-  - the calling application’s RBAC role (Authorization header), and  
-  - the user identity carried by **x-ms-query-source-authorization**.
+  - the calling application’s RBAC role (Authorization header)  
+  - the user identity carried by **x-ms-query-source-authorization**
 
 ## Query example
 
-Here's an example of a query request from [sample code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-ACL). The query token is passed in the request header.
+Here's an example of a query request from [sample code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-ACL). The query token is passed in the request header. THe query token is the personal access token of a user or a group identity.
 
 ```http
 POST  {{endpoint}}/indexes/stateparks/docs/search?api-version=2025-05-01-preview
-Authorization: Bearer {{search-token}}
-x-ms-query-source-authorization: {{search-token}}
+Authorization: Bearer {{query-token}}
+x-ms-query-source-authorization: {{query-token}}
 Content-Type: application/json
 
 {
@@ -77,6 +78,10 @@ Content-Type: application/json
 
 ## Related content
 
-- [Tutorial: Index ADLS Gen2 permission metadata](tutorial-adls-gen2-indexer-acls.md) provides a detailed walkthrough of how to set up an index with ACLs using Azure Search indexers.
+- [Tutorial: Index ADLS Gen2 permission metadata](tutorial-adls-gen2-indexer-acls.md) 
 
-- [Indexing ACLs and RBAC using Push API in Azure AI Search](search-index-access-control-lists-and-rbac-push-api.md) provides a walkthrough of how to set up an index with ACLs using the push indexing approach with the REST APIs.
+- [Indexing ACLs and RBAC using the push API in Azure AI Search](search-index-access-control-lists-and-rbac-push-api.md)
+
+- [Use an ADLS Gen2 indexer to ingest permission metadata and filter search results based on user access rights](search-indexer-access-control-lists-and-role-based-access.md) 
+
+- [Use a Blob indexer to ingest RBAC scopes metadata](search-blob-indexer-role-based-access)
