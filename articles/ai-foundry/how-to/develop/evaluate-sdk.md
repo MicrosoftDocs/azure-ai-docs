@@ -52,6 +52,7 @@ Built-in quality and safety metrics take in query and response pairs, along with
 
 Built-in evaluators can accept query and response pairs, a list of conversations in JSON Lines (JSONL) format, or both.
 
+
 **Quality Evaluators:**
 
 | Evaluator | Conversation & single-turn support for text | Conversation & single-turn support for text and image | Single-turn support for text only | Requires `ground_truth` | Supports [agent inputs](./agent-evaluate-sdk.md#agent-messages) |
@@ -69,6 +70,7 @@ Built-in evaluators can accept query and response pairs, a list of conversations
 | `ResponseCompletenessEvaluator` | ✓ | | ✓ | ✓ | |
 | `QAEvaluator` | | | ✓ | ✓ | |
 
+
 **Natural Language Processing (NLP) Evaluators:**
 
 | Evaluator | Conversation & single-turn support for text | Conversation & single-turn support for text and image | Single-turn support for text only | Requires `ground_truth` | Supports [agent inputs](./agent-evaluate-sdk.md#agent-messages) |
@@ -79,6 +81,7 @@ Built-in evaluators can accept query and response pairs, a list of conversations
 | `GleuScoreEvaluator` | | | ✓ | ✓ | |
 | `BleuScoreEvaluator` | | | ✓ | ✓ | |
 | `MeteorScoreEvaluator` | | | ✓ | ✓ | |
+
 
 **Safety Evaluators:**
 
@@ -93,6 +96,7 @@ Built-in evaluators can accept query and response pairs, a list of conversations
 | `UngroundedAttributesEvaluator` | | | ✓ | | |
 | `CodeVulnerabilityEvaluator` | | | ✓ | | ✓ |
 | `IndirectAttackEvaluator` | ✓ | | | | ✓ |
+
 
 **Azure OpenAI Graders:**
 

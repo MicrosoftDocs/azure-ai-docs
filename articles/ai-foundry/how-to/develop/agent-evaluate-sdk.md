@@ -170,9 +170,9 @@ converted_data = converter.convert(thread_id, run_id)
 
 And that's it! `converted_data` contains all inputs required for [these evaluators](#evaluators-supported-for-evaluation-data-converter). You don't need to read the input requirements for each evaluator and do any work to parse the inputs. All you need to do is select your evaluator and call the evaluator on this single run. We support AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the judge depending on the evaluators:
 
-| Evaluators | Reasoning Models as Judge (ex: o-series models from Azure OpenAI / OpenAI) | Non-reasoning models as Judge (ex: gpt-4.1, gpt-4o, etc.) | To enable |
-|------------|-----------------------------------------------------------------------------|-------------------------------------------------------------|-------|
-| `Intent Resolution` / `Task Adherence` / `Tool Call Accuracy` / `Response Completeness`) | Supported | Supported | Set additional parameter `is_reasoning_model=True` in initializing evaluators |
+| Evaluators | Reasoning Models as Judge (example: o-series models from Azure OpenAI / OpenAI) | Non-reasoning models as Judge (example: gpt-4.1, gpt-4o, etc.) | To enable |
+|--|--|--|--|
+| `Intent Resolution`, `Task Adherence`, `Tool Call Accuracy`, `Response Completeness`| Supported | Supported | Set additional parameter `is_reasoning_model=True` in initializing evaluators |
 | Other quality evaluators| Not Supported | Supported | -- |
 
 For complex tasks that require refined reasoning for the evaluation, we recommend a strong reasoning model like `o3-mini` or the o-series mini models released afterwards with a balance of reasoning performance and cost efficiency.
