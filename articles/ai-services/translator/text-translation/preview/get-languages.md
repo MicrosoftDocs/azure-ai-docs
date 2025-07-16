@@ -30,7 +30,7 @@ For virtual networks, use your custom domain endpoint:
 https://<your-custom-domain>.cognitiveservices.azure.com/languages?api-version=2025-05-01-preview
 ```
 
-For more information on Translator service selected network and private endpoint configuration and support, *see* [**Virtual Network Support**](../authentication.md#virtual-network-support).
+For more information on Translator service selected network and private endpoint configuration and support, *see* [**Virtual Network Support**](../reference/authentication.md#virtual-network-support).
 
 ## Request parameters
 
@@ -224,7 +224,7 @@ The list of supported languages doesn't change frequently. To save network bandw
 
 ## Response status codes
 
-If an error occurs, the request also returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [Translator status code reference page](../status-response-codes.md).
+If an error occurs, the request also returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [Translator status code reference page](../reference/status-response-codes.md).
 
 ## Examples
 

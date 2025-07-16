@@ -24,17 +24,21 @@ Text translation documentation contains the following article types:
 
 ### [Latest preview version](#tab/linux)
 
-* [**Languages**](reference/preview/get-languages.md). Returns a list of languages supported by the [**Translate**](reference/preview/translate-api.md) and [**Transliterate**](reference/preview/transliterate-api.md) APIs. This request doesn't require authentication; just copy and paste the following `GET` request into your preferred REST API tool or browser:
+If you already have an Azure AI Translator or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Translator resources within the Azure AI Foundry portal for NMT deployment. For more information, see How to use Azure AI services in the Azure AI Foundry portal.
+
+By default, Azure AI Translator uses neural Machine Translation (NMT) technology. With the newest preview release, you now can optionally select either the standard NMT translation or one of two Large Language Model (LLM) deployment types: GPT-4o-mini or GPT-4o. However, using an LLM model requires you to have an Azure AI Foundry resource.
+
+* [**Languages**](preview/get-languages.md). Returns a list of languages supported by the [**Translate**](preview/translate-api.md) and [**Transliterate**](preview/transliterate-api.md) APIs. This request doesn't require authentication; just copy and paste the following `GET` request into your preferred REST API tool or browser:
 
     ```bash
         https://api.cognitive.microsofttranslator.com/languages?api-version=2025-05-01-preview
 
     ```
 
-* [**Translate**](reference/preview/translate-api.md). Renders single source-language text to multiple target-language texts with a single `POST` request:
+* [**Translate**](preview/translate-api.md). Renders single source-language text to multiple target-language texts with a single `POST` request:
 
 
-* [**Transliterate**](reference/preview/transliterate-api.md). Converts characters or letters of a source language to the corresponding characters or letters of a target language with a single `POST` request.
+* [**Transliterate**](preview/transliterate-api.md). Converts characters or letters of a source language to the corresponding characters or letters of a target language with a single `POST` request.
 
 ### [Latest GA version](#tab/windows)
 

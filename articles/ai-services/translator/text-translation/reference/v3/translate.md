@@ -4,7 +4,6 @@ titleSuffix: Azure AI services
 description: Understand the parameters, headers, and body messages for the Azure AI Translator to translate text method.
 author: laujan
 manager: nitinme
-
 ms.service: azure-ai-translator
 ms.topic: reference
 ms.date: 06/19/2025
@@ -56,7 +55,7 @@ Request headers include:
 
 | Headers | Description |
 | --- | --- |
-| Authentication headers | _Required request header_.  <br>See [available options for authentication](./../authentication.md). |
+| Authentication headers | _Required request header_.  <br>See [available options for authentication](../authentication.md). |
 | Content-Type | _Required request header_.  <br>Specifies the content type of the payload.  <br>Accepted value is `application/json; charset=UTF-8`. |
 | Content-Length | _Optional_.  <br>The length of the request body. |
 | X-ClientTraceId | _Optional_.  <br>A client-generated GUID to uniquely identify the request. You can omit this header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |

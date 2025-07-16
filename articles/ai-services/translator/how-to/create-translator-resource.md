@@ -17,7 +17,7 @@ Azure AI Translator is a cloud-based neural machine translation (NMT) service th
 
 If you already have an Azure AI Translator or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Translator resources within the Azure AI Foundry portal for NMT deployment. For more information, *see* [How to use Azure AI services in the Azure AI Foundry portal](../../connect-services-ai-foundry-portal.md).
 
-By default, Azure AI Translator is based on neural Machine Translation (NMT) technology. With the newest preview release, you now can optionally select either the standard NMT translation or one of two Large Language Model (LLM) deployment types: GPT-4o-mini or GPT-4o. However, **using an LLM model requires you to have an Azure AI Foundry resource**.
+By default, Azure AI Translator utilizes neural Machine Translation (NMT) technology. With the newest preview release, you now can optionally select either the standard NMT translation or one of two Large Language Model (LLM) deployment types: GPT-4o-mini or GPT-4o. However, **using an LLM model requires you to have an Azure AI Foundry resource**.
 
 The following table provides an overview of the resource solutions for Translator within the Azure AI ecosystem:
 
@@ -39,7 +39,7 @@ The following table provides an overview of the resource solutions for Translato
 
 ## [Azure AI Translator resource](#tab/translator)
 
-An Azure AI Translator resources is an instance of the service that you create. All API requests to Azure AI services can be accessed with an *endpoint* URL and a read-only *key* for authenticating access.
+An Azure AI Translator resource is an instance of the service that you create. All API requests to Azure AI services can be accessed with an *endpoint* URL and a read-only *key* for authenticating access.
 
 ### Prerequisites
 
