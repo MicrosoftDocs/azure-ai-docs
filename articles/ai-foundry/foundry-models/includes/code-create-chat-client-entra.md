@@ -25,7 +25,7 @@ from azure.identity import DefaultAzureCredential
 client = ChatCompletionsClient(
     endpoint="https://<resource>.services.ai.azure.com/models",
     credential=DefaultAzureCredential(),
-    credential_scopes=["https://cognitiveservices.azure.com/.default"],
+    credential_scopes=["https://ai.azure.com/.default"],
 )
 ```
 
@@ -44,7 +44,7 @@ import ModelClient from "@azure-rest/ai-inference";
 import { isUnexpected } from "@azure-rest/ai-inference";
 import { DefaultAzureCredential } from "@azure/identity";
 
-const clientOptions = { credentials: { "https://cognitiveservices.azure.com" } };
+const clientOptions = { credentials: { "https://ai.azure.com" } };
 
 const client = new ModelClient(
     "https://<resource>.services.ai.azure.com/models", 
@@ -80,7 +80,7 @@ Then, you can use the package to consume the model. The following example shows 
 ```csharp
 TokenCredential credential = new DefaultAzureCredential();
 AzureAIInferenceClientOptions clientOptions = new AzureAIInferenceClientOptions();
-BearerTokenAuthenticationPolicy tokenPolicy = new BearerTokenAuthenticationPolicy(credential, new string[] { "https://cognitiveservices.azure.com/.default" });
+BearerTokenAuthenticationPolicy tokenPolicy = new BearerTokenAuthenticationPolicy(credential, new string[] { "https://ai.azure.com/.default" });
 clientOptions.AddPolicy(tokenPolicy, HttpPipelinePosition.PerRetry);
 
 ChatCompletionsClient client = new ChatCompletionsClient(
@@ -131,11 +131,11 @@ Authorization: Bearer <bearer-token>
 Content-Type: application/json
 ```
 
-Tokens have to be issued with scope `https://cognitiveservices.azure.com/.default`.
+Tokens have to be issued with scope `https://ai.azure.com/.default`.
 
 For testing purposes, the easiest way to get a valid token for your user account is to use the Azure CLI. In a console, run the following Azure CLI command:
 
 ```azurecli
-az account get-access-token --resource https://cognitiveservices.azure.com --query "accessToken" --output tsv
+az account get-access-token --resource https://ai.azure.com --query "accessToken" --output tsv
 ```
 ---
