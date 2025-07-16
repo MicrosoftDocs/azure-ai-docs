@@ -71,7 +71,18 @@ Import all the Azure Machine Learning libraries that you need for this article:
 
 You need to prepare the input data for the image classification pipeline.
 
-Fashion MNIST is a dataset of fashion images divided into 10 classes. Each image is a 28 x 28 grayscale image. There are 60,000 training images and 10,000 test images. As an image classification problem, Fashion MNIST is more challenging than the classic MNIST handwritten digit database. It's distributed in the same compressed binary format as the original [handwritten digit database](http://yann.lecun.com/exdb/mnist/).
+Fashion MNIST is a dataset of fashion images divided into 10 classes. Each image is a 28 x 28 grayscale image. There are 60,000 training images and 10,000 test images.
+
+```python
+from azure.ai.ml import Input
+from azure.ai.ml.constants import AssetTypes
+
+# Create input data reference
+fashion_ds = Input(
+    type=AssetTypes.URI_FOLDER,
+    path="azureml://datastores/workspaceblobstore/paths/sample_data/fashion_mnist"
+)
+```
 
 By defining an `Input`, you create a reference to the data source location. The data remains in its existing location, so no extra storage cost is incurred.
 
@@ -109,9 +120,9 @@ The preceding code defines a component with display name `Prep Data` using the `
 
 * `name` is the unique identifier of the component
 * `version` is the current version of the component. A component can have multiple versions
-* `display_name` is a friendly display name of the component for the UI. It isn't unique
+* `display_name` is a friendly display name of the component for the UI
 * `description` describes the task the component can complete
-* `environment` specifies the runtime environment for the component. The environment specifies a Docker image and refers to the `conda.yaml` file
+* `environment` specifies the runtime environment for the component using a conda.yaml file
 
     The `conda.yaml` file contains all packages used for the component:
 
