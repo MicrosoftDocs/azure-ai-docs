@@ -5,12 +5,16 @@ description: Run machine learning workflows with machine learning pipelines and 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-author: lgayhardt
-ms.author: lagayhar
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: zhanxia
 ms.date: 06/18/2025
 ms.topic: how-to
-ms.custom: UpdateFrequency5, sdkv1, devx-track-python
+ms.custom:
+  - UpdateFrequency5
+  - sdkv1
+  - devx-track-python
+  - sfi-image-nochange
 
 #customer intent: As a machine learning engineer, I want to publish a machine learning pipeline so that I can share it.
 ---

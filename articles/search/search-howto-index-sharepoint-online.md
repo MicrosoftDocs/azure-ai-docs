@@ -6,10 +6,12 @@ author: gmndrg
 ms.author: gimondra
 
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: how-to
 ms.date: 06/17/2025
+ms.custom:
+  - ignite-2023
+  - sfi-image-nochange
+  - sfi-ropc-nochange
 ---
 
 # Index data from SharePoint document libraries

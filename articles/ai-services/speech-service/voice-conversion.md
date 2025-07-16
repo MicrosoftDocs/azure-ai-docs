@@ -8,11 +8,13 @@ ms.reviewer: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 7/1/2025
+ms.date: 7/9/2025
 ms.custom: references_regions
 ---
 
-# What is voice conversion?
+# What is voice conversion? (Preview)
+
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 Voice conversion is the process of transforming the voice characteristics of a given audio to a target voice speaker. After voice conversion, the resulting audio reserves source audio's linguistic content and prosody while the voice timbre sounds like the target speaker.
 
@@ -31,13 +33,13 @@ Voice conversion (or voice changer or speech to speech conversion) is built on s
 | **High speaker similarity**   | Captures the timbre and vocal identity of the target speaker.<br>Generates audio that accurately matches the target voice. |
 | **Prosody preservation**      | Maintains rhythm, stress, and intonation of source audio.<br>Preserves expressive and emotional qualities. |
 | **High audio fidelity**       | Generates realistic, natural-sounding audio.<br>Minimizes artifacts.                                      |
-| **Multilingual support**      | Enables multilingual voice conversion.<br>Supports 91 locales (same as standard text to speech locale support).<br>See [supported voices for voice conversion](./language-support.md#voice-conversion) for the complete list. |
+| **Multilingual support**      | Enables multilingual voice conversion.<br>Supports 91 locales (same as standard text to speech locale support).<br>See [supported voices for voice conversion](./language-support.md?tabs=tts#voice-conversion) for the complete list. |
 
 ## Use voice conversion
 
 You can use Azure AI Speech voice conversion with either the Speech SDK or text to speech REST APIs.
 
-Use the `<mstts:voiceconversion>` tag via Speech Synthesis Markup Language (SSML) to specify the source audio URL and the target voice for the conversion. For a complete list of supported target voices, see [supported voices for voice conversion](./language-support.md#voice-conversion).
+Use the `<mstts:voiceconversion>` tag via Speech Synthesis Markup Language (SSML) to specify the source audio URL and the target voice for the conversion. For a complete list of supported target voices, see [supported voices for voice conversion](./language-support.md?tabs=tts#voice-conversion).
 
 ### Example SSML
 

@@ -8,8 +8,8 @@ ms.subservice: prompt-flow
 ms.topic: reference
 ms.date: 08/29/2024
 ms.reviewer: jingyizhu
-ms.author: lagayhar
-author: lgayhardt
+ms.author: scottpolly
+author: s-polly
 ---
 
 # Rerank tool (preview)

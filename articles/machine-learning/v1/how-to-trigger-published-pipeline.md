@@ -5,12 +5,16 @@ description: Trigger pipelines so that you can automate routine, time-consuming 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.author: lagayhar
-author: lgayhardt
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: keli19
 ms.date: 06/24/2025
 ms.topic: how-to
-ms.custom: UpdateFrequency5, devx-track-python, sdkv1
+ms.custom:
+  - UpdateFrequency5
+  - devx-track-python
+  - sdkv1
+  - sfi-image-nochange
 #Customer intent: As a data scientist who uses Python, I want to improve my operational efficiency by scheduling the training pipeline of my model with the latest data.
 ---
 

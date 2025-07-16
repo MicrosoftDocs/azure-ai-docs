@@ -6,7 +6,7 @@ author: lgayhardt
 ms.author: lagayhar
 manager: scottpolly
 ms.reviewer: minthigpen
-ms.date: 05/19/2025
+ms.date: 07/15/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:
@@ -52,13 +52,65 @@ Built-in quality and safety metrics take in query and response pairs, along with
 
 Built-in evaluators can accept query and response pairs, a list of conversations in JSON Lines (JSONL) format, or both.
 
-| Conversation *and* single-turn support for text | Conversation *and* single-turn support for text and image | Single-turn support for text only |
-|--------------------|------------------------------|---------------|
-| `GroundednessEvaluator`, `GroundednessProEvaluator`, `RetrievalEvaluator`, `DocumentRetrievalEvaluator`, `RelevanceEvaluator`, `CoherenceEvaluator`, `FluencyEvaluator`, `ResponseCompletenessEvaluator`, `IndirectAttackEvaluator`, `AzureOpenAILabelGrader`, `AzureOpenAIStringCheckGrader`, `AzureOpenAITextSimilarityGrader`, `AzureOpenAIGrader` | `ViolenceEvaluator`, `SexualEvaluator`, `SelfHarmEvaluator`, `HateUnfairnessEvaluator`, `ProtectedMaterialEvaluator`, `ContentSafetyEvaluator` | `UngroundedAttributesEvaluator`, `CodeVulnerabilityEvaluator`, `ResponseCompletenessEvaluator`, `SimilarityEvaluator`, `F1ScoreEvaluator`, `RougeScoreEvaluator`, `GleuScoreEvaluator`, `BleuScoreEvaluator`, `MeteorScoreEvaluator`, `QAEvaluator` |
 
-AI-assisted quality evaluators come with a reason field (except for `SimilarityEvaluator`). They employ techniques that include chain-of-thought reasoning to generate an explanation for the score. Therefore, they consume more token usage in generation due to improved evaluation quality. Specifically, `max_token` for evaluator generation is set to 800 for all AI-assisted evaluators (and 1,600 for `RetrievalEvaluator` to accommodate for longer inputs.)
+**Quality Evaluators:**
+
+| Evaluator | Conversation & single-turn support for text | Conversation & single-turn support for text and image | Single-turn support for text only | Requires `ground_truth` | Supports [agent inputs](./agent-evaluate-sdk.md#agent-messages) |
+|--|--|--|--|--|--|
+| `IntentResolutionEvaluator` | | | | | ✓ |
+| `ToolCallAccuracyEvaluator` | | | | | ✓ |
+| `TaskAdherenceEvaluator` | | | | | ✓ |
+| `GroundednessEvaluator` | ✓ | | | | |
+| `GroundednessProEvaluator` | ✓ | | | | |
+| `RetrievalEvaluator` | ✓ | | | | |
+| `DocumentRetrievalEvaluator` | ✓ | | | ✓ | |
+| `RelevanceEvaluator` | ✓ | | | | ✓ |
+| `CoherenceEvaluator` | ✓ | | | | ✓ |
+| `FluencyEvaluator` | ✓ | | | | ✓ |
+| `ResponseCompletenessEvaluator` | ✓ | | ✓ | ✓ | |
+| `QAEvaluator` | | | ✓ | ✓ | |
+
+
+**Natural Language Processing (NLP) Evaluators:**
+
+| Evaluator | Conversation & single-turn support for text | Conversation & single-turn support for text and image | Single-turn support for text only | Requires `ground_truth` | Supports [agent inputs](./agent-evaluate-sdk.md#agent-messages) |
+|--|--|--|--|--|--|
+| `SimilarityEvaluator` | | | ✓ | ✓ | |
+| `F1ScoreEvaluator` | | | ✓ | ✓ | |
+| `RougeScoreEvaluator` | | | ✓ | ✓ | |
+| `GleuScoreEvaluator` | | | ✓ | ✓ | |
+| `BleuScoreEvaluator` | | | ✓ | ✓ | |
+| `MeteorScoreEvaluator` | | | ✓ | ✓ | |
+
+
+**Safety Evaluators:**
+
+| Evaluator | Conversation & single-turn support for text | Conversation & single-turn support for text and image | Single-turn support for text only | Requires `ground_truth` | Supports [agent inputs](./agent-evaluate-sdk.md#agent-messages) |
+|--|--|--|--|--|--|
+| `ViolenceEvaluator` | | ✓ | | | ✓ |
+| `SexualEvaluator` | | ✓ | | | ✓ |
+| `SelfHarmEvaluator` | | ✓ | | | ✓ |
+| `HateUnfairnessEvaluator` | | ✓ | | | ✓ |
+| `ProtectedMaterialEvaluator` | | ✓ | | | ✓ |
+| `ContentSafetyEvaluator` | | ✓ | | | ✓ |
+| `UngroundedAttributesEvaluator` | | | ✓ | | |
+| `CodeVulnerabilityEvaluator` | | | ✓ | | ✓ |
+| `IndirectAttackEvaluator` | ✓ | | | | ✓ |
+
+
+**Azure OpenAI Graders:**
+
+| Evaluator | Conversation & single-turn support for text | Conversation & single-turn support for text and image | Single-turn support for text only | Requires `ground_truth` | Supports [agent inputs](./agent-evaluate-sdk.md#agent-messages) |
+|--|--|--|--|--|--|
+| `AzureOpenAILabelGrader` | ✓ | | | | |
+| `AzureOpenAIStringCheckGrader` | ✓ | | | | |
+| `AzureOpenAITextSimilarityGrader` | ✓ | | | ✓ | |
+| `AzureOpenAIGrader` | ✓ | | | | |
 
 Azure OpenAI graders require a template that describes how their input columns are turned into the *real* input that the grader uses. Example: If you have two inputs called *query* and *response*, and a template that was formatted as `{{item.query}}`, then only the query would be used. Similarly, you could have something like `{{item.conversation}}` to accept a conversation input, but the ability of the system to handle that depends on how you configure the rest of the grader to expect that input.
+
+> [!NOTE]
+> AI-assisted quality evaluators except for `SimilarityEvaluator` come with a reason field. They employ techniques including chain-of-thought reasoning to generate an explanation for the score. Therefore they consume more token usage in generation as a result of improved evaluation quality. Specifically, `max_token` for evaluator generation has been set to 800 for all AI-assisted evaluators (and 1600 for `RetrievalEvaluator` to accommodate for longer inputs.)
 
 For more information on data requirements for agentic evaluators, go to [Run agent evaluations locally with the Azure AI Evaluation SDK](agent-evaluate-sdk.md).
 
@@ -69,7 +121,7 @@ All built-in evaluators take single-turn inputs as query-and-response pairs in s
 ```python
 from azure.ai.evaluation import RelevanceEvaluator
 
-query = "What is the cpital of life?"
+query = "What is the capital of life?"
 response = "Paris."
 
 # Initialize an evaluator:
@@ -500,8 +552,8 @@ result = evaluate(
     evaluator_config={
         "default": {
             "column_mapping": {
-                "query": "${data.queries}"
-                "context": "${outputs.context}"
+                "query": "${data.queries}",
+                "context": "${outputs.context}",
                 "response": "${outputs.response}"
             } 
         }

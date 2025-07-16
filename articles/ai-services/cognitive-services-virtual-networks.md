@@ -5,10 +5,13 @@ description: Configure layered network security for your Azure AI services resou
 author: aahill
 manager: nitinme
 ms.service: azure-ai-services
-ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.topic: how-to
 ms.date: 5/19/2025
 ms.author: aahi
+ms.custom:
+  - devx-track-azurepowershell
+  - devx-track-azurecli
+  - sfi-image-nochange
 ---
 
 # Configure Azure AI services virtual networks

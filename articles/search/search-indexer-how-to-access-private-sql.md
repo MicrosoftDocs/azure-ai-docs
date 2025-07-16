@@ -8,6 +8,7 @@ ms.author: magottei
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 01/27/2025
+ms.custom: sfi-ropc-nochange
 ---
 
 # Create a shared private link for a SQL managed instance from Azure AI Search

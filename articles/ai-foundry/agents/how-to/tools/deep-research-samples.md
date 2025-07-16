@@ -6,22 +6,32 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 06/30/2025
+ms.date: 07/10/2025
 author: aahill
 ms.author: aahi
+ms.custom: references_regions
 ---
 
 # How to use the Deep Research tool
+
+> [!NOTE]
+> * The `o3-deep-research` model is available for use **only with the Deep Research tool**. It is **not** available in the Azure OpenAI Chat Completions and Responses APIs.
+> * The **parent** AI Foundry project resource and the contained  `o3-deep-research` model and GPT models **must exist** in the same Azure subscription and region. Supported regions are **West US** and **Norway East**.
 
 Use this article to learn how to use the Deep Research tool with the Azure AI Projects SDK, including code examples and setup instructions.
 
 ## Prerequisites
 
-> [!NOTE]
-> * The  `o3-deep-research` model and the GPT model deployments should be part of your AI Foundry project resulting in all three resources in the same Azure subscription and same region. Supported regions are **West US** and **Norway East**.
-
 * The requirements in the [Deep Research overview](./deep-research.md).
-* The Deep Research tool requires the latest prerelease versions of the `azure-ai-projects` library. You can install it with the following command:
+* The Deep Research tool requires the latest prerelease versions of the `azure-ai-projects` library. First we recommend creating a [virtual environment](https://docs.python.org/3/library/venv.html) to work in:
+
+    ```console
+    python -m venv env
+    # after creating the virtual environment, activate it with:
+    .\env\Scripts\activate
+    ```
+
+    You can install the package with the following command:
 
     ```console
     pip install --pre azure-ai-projects
@@ -29,9 +39,8 @@ Use this article to learn how to use the Deep Research tool with the Azure AI Pr
 
 * Your Azure AI Foundry Project endpoint.
 
-    You can find your endpoint in the main project **overview** for your project in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), under **Endpoint and keys** > **Libraries** > **Azure AI Foundry**.
-
-    :::image type="content" source="../../media/quickstart/portal-endpoint-string.png" alt-text="A screenshot showing the endpoint in the Azure AI Foundry portal." lightbox="../../media/quickstart/portal-endpoint-string.png":::
+    
+    [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]
 
     Save this endpoint to an environment variable named `PROJECT_ENDPOINT`. 
 

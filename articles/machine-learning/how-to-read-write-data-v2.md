@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
-ms.author: franksolomon
-author: fbsolo-ms1
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: yogipandey
 ms.date: 02/06/2024
 ms.custom:
@@ -18,6 +18,7 @@ ms.custom:
   - ignite-2022
   - build-2023
   - ignite-2023
+  - sfi-image-nochange
 #Customer intent: As an experienced Python developer, I need to read my data, to make it available to a remote compute resource, to train my machine learning models.
 ---
 

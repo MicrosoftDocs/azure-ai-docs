@@ -15,6 +15,8 @@ keywords: intent recognition
 
 # Quickstart: Recognize intents with Conversational Language Understanding
 
+[!INCLUDE [deprecation notice](./includes/intent-recognition-retire.md)]
+
 ::: zone pivot="programming-language-csharp"
 [!INCLUDE [C# include](includes/quickstarts/intent-recognition-clu/csharp.md)]
 ::: zone-end

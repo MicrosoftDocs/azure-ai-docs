@@ -10,7 +10,12 @@ author: manashgoswami
 ms.author: manashg
 ms.reviewer: ssalgado
 ms.date: 07/11/2024
-ms.custom: UpdateFrequency5, devx-track-python, automl, sdkv1
+ms.custom:
+  - UpdateFrequency5
+  - devx-track-python
+  - automl
+  - sdkv1
+  - sfi-image-nochange
 
 #customer intent: As a developer, I want to train a regression model with Automated ML, so I can use the Azure Machine Learning Python SDK.
 ---

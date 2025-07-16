@@ -7,10 +7,12 @@ ms.author: gimondra
 manager: nitinme
 
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: how-to
 ms.date: 02/24/2025
+ms.custom:
+  - ignite-2023
+  - sfi-image-nochange
+  - sfi-ropc-nochange
 ---
 
 # Change and delete detection using indexers for Azure Storage in Azure AI Search
