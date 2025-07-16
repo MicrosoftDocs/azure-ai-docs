@@ -272,7 +272,7 @@ Based on the model's performance, you need to decide if the model is appropriate
 
 ## Next steps
 
-* [Responsible deployment of Image Analysis](/azure/ai-foundry/responsible-ai/computer-vision/imageanalysis-guidance-for-integration)
+* [Responsible deployment of Image Analysis](/azure/ai-foundry/responsible-ai/computer-vision/image-analysis-guidance-for-integration)
 * [Image Analysis Overview](/azure/ai-services/computer-vision/overview-image-analysis)
 * [QuickStart your Image Analysis use case development](/azure/ai-services/computer-vision/quickstarts-sdk/image-analysis-client-library)
-* [Data, privacy, and security for Image Analysis](/azure/ai-foundry/responsible-ai/computer-vision/imageanalysis-data-privacy-security)
+* [Data, privacy, and security for Image Analysis](/azure/ai-foundry/responsible-ai/computer-vision/image-analysis-data-privacy-security)

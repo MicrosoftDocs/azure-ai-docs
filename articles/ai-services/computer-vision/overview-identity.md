@@ -96,7 +96,7 @@ Concepts
 - [Abuse monitoring](concept-liveness-abuse-monitoring.md)
 
 Face liveness SDK reference docs:
-- [Java (Android)](https://aka.ms/liveness-sdk-java)
+- [Java (Android)](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/vision/azure-ai-vision-imageanalysis/src/samples/README.md)
 - [Swift (iOS)](https://aka.ms/liveness-sdk-ios)
 - [JavaScript (Web)](https://aka.ms/liveness-sdk-web)
 
