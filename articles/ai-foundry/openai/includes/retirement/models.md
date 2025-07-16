@@ -16,8 +16,6 @@ ms.custom: references_regions, build-2025
 
 | Model                     | Version         | Retirement date                    | Replacement model                    |
 | --------------------------|-----------------|------------------------------------|--------------------------------------|
-| `gpt-4.5-preview`         | 2025-02-27      | No Auto-upgrades <br>July 14, 2025 | `gpt-4.1` version: `2025-04-14`      |
-| `gpt-3.5-turbo-instruct`  | 0914            | No earlier than July 16, 2025      |                                      |
 | `o1-preview`              | 2024-09-12      | July 28, 2025                      | `o1`                                 |
 | `computer-use-preview`    | 2025-03-11      | No earlier than September 1, 2025  |                                      |
 | `gpt-35-turbo`            | 1106            | No earlier than September 1, 2025  | `gpt-4.1-mini` version: `2025-04-14` |
@@ -26,6 +24,7 @@ ms.custom: references_regions, build-2025
 | `model router`            | 2025-05-19      | No earlier than September 1, 2025  |                                      |
 | `gpt-4o`                  | 2024-05-13      | No earlier than September 15, 2025 | `gpt-4.1` version: `2025-04-14`      |
 | `gpt-4o-mini`             | 2024-07-18      | No earlier than September 15, 2025 | `gpt-4.1-mini` version: `2025-04-14` |
+| `gpt-3.5-turbo-instruct`  | 0914            | No earlier than September 16, 2025 |                                      |
 | `o1-mini`                 | 2024-09-12      | No earlier than September 26, 2025 |                                      |
 | `gpt-4o`                  | 2024-08-06      | No earlier than October 15, 2025   | `gpt-4.1` version: `2025-04-14`      |
 | `o1`                      | 2024-12-17      | No earlier than December 17, 2025  |                                      |
