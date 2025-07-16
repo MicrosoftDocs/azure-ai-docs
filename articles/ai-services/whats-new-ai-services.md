@@ -1,6 +1,6 @@
 ﻿---
 title: "Azure AI Services docs: What's new for July 2025"
-description: "What's new in the Azure AI Services docs for July 2025."
+description: Discover key changes and updates in Azure AI Services documentation for July 2025.
 ms.author: smcdowell
 author: skpmcdowell
 ms.topic: whats-new
@@ -11,7 +11,7 @@ ms.date: 07/02/2025
 
 # Azure AI Services docs: What's new for July 2025
 
-Welcome to what's new in the Azure AI Services docs for July 2025. This article lists some of the major changes to we've made to docs.
+Welcome! This article highlights key changes and updates in Azure AI Services documentation for July 2025.
 
 ## New articles
 
@@ -21,9 +21,9 @@ Welcome to what's new in the Azure AI Services docs for July 2025. This article 
 
 ## Updated articles
 
-- [How to use the Voice Live API (Preview)](../ai-services/speech-service/voice-live-how-to.md)
+- [Use the Voice Live API (Preview)](../ai-services/speech-service/voice-live-how-to.md)
 - [Label your utterances in Azure AI Foundry](../ai-services/language-service/conversational-language-understanding/how-to/tag-utterances.md) 
 - [Supported PII entities](../ai-services/language-service/personally-identifiable-information/concepts/entity-categories.md)
 - [Train a conversational language understanding model](../ai-services/language-service/conversational-language-understanding/how-to/train-model.md)
-- [Voice Live API for real-time voice agents (Preview)](../ai-services/speech-service/voice-live.md) 
-- [What's new in Azure AI Language?](../ai-services/language-service/whats-new.md) 
+- [Use voice Live API for real-time voice agents (Preview)](../ai-services/speech-service/voice-live.md) 
+- [Learn what's new in Azure AI Language?](../ai-services/language-service/whats-new.md) 

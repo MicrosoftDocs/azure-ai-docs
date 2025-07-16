@@ -1,6 +1,6 @@
 ---
 title: "Azure AI Foundry docs: What's new for July 2025"
-description: "What's new in the Azure AI Foundry docs for July 2025."
+description: Discover key changes and updates in Azure AI Foundry documentation for July 2025.
 ms.author: smcdowell
 author: skpmcdowell
 ms.topic: whats-new
@@ -11,7 +11,7 @@ ms.date: 07/02/2025
 
 # Azure AI Foundry docs: What's new for July 2025
 
-Welcome to what's new in the Azure AI Foundry docs for July 2025. This article lists some of the major changes we've made to docs.
+Welcome! This article highlights key changes and updates in Azure AI Foundry documentation for July 2025.
 
 ## New articles
 
