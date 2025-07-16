@@ -7,7 +7,7 @@ ms.author: lajanuar
 author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
-ms.date: 06/12/2025
+ms.date: 07/16/2025
 ms.custom: mode-ui
 ---
 
@@ -35,7 +35,7 @@ Once metadata is added to a QnA pair, the client application can:
 
 ## Sign in to the QnA Maker portal
 
-1. Sign in to the [QnA Maker portal](https://www.qnamaker.ai).
+1. Sign in to the QnA Maker portal.
 
 1. Select your existing knowledge base from the [previous quickstart](./create-publish-knowledge-base.md).
 

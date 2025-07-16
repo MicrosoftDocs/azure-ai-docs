@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 author: laujan
 ms.author: lajanuar
 ms.topic: conceptual
-ms.date: 06/21/2025
+ms.date: 07/16/2025
 ms.custom: language-service-question-answering
 ---
 
@@ -19,7 +19,7 @@ Custom question answering is continually improving the algorithms that extract q
 
 ## Creating good questions and answers
 
-We’ve used the following list of question and answer pairs as representation of a project to highlight best practices when authoring projects for custom question answering.
+We've used the following list of question and answer pairs as representation of a project to highlight best practices when authoring projects for custom question answering.
 
 | Question | Answer |
 |----------|----------|
@@ -39,15 +39,15 @@ Custom question answering employs a transformer-based ranker that takes care of 
 
 The service can return the expected response for semantically similar queries such as:
 
-“How much is Microsoft stock worth?
-“How much is Microsoft share value?”
-“How much does a Microsoft share cost?”
-“What is the market value of a Microsoft stock?”
-“What is the market value of a Microsoft share?”
+"How much is Microsoft stock worth?
+"How much is Microsoft share value?"
+"How much does a Microsoft share cost?"
+"What is the market value of a Microsoft stock?"
+"What is the market value of a Microsoft share?"
 
-However, it’s important to understand that the confidence score with which the system returns the correct response will vary based on the input query and how different it is from the original question answer pair.  
+However, it's important to understand that the confidence score with which the system returns the correct response will vary based on the input query and how different it is from the original question answer pair.  
 
-There are certain scenarios that require the customer to add an alternate question. When it’s already verified that for a particular query the correct answer isn’t returned despite being present in the project, we advise adding that query as an alternate question to the intended question answer pair.
+There are certain scenarios that require the customer to add an alternate question. When it's already verified that for a particular query the correct answer isn't returned despite being present in the project, we advise adding that query as an alternate question to the intended question answer pair.
 
 ### How many alternate questions per question answer pair is optimal?
 
@@ -55,7 +55,7 @@ Users can add as many alternate questions as they want, but only first 5 will be
 
 Semantic understanding in custom question answering should be able to take care of similar alternate questions.
 
-The return on investment will start diminishing once you exceed 10 questions. Even if you’re adding more than 10 alternate questions, try to make the initial 10 questions as semantically dissimilar as possible so that all kinds of intents for the answer are captured by these 10 questions.  For the project at the beginning of this section, in question answer pair #1, adding alternate questions such as “How can I buy a car”, “I wanna buy a car” aren’t required. Whereas adding alternate questions such as “How to purchase a car”, “What are the options of buying a vehicle” can be useful.
+The return on investment will start diminishing once you exceed 10 questions. Even if you're adding more than 10 alternate questions, try to make the initial 10 questions as semantically dissimilar as possible so that all kinds of intents for the answer are captured by these 10 questions.  For the project at the beginning of this section, in question answer pair #1, adding alternate questions such as "How can I buy a car", "I wanna buy a car" aren't required. Whereas adding alternate questions such as "How to purchase a car", "What are the options of buying a vehicle" can be useful.
 
 ### When to add synonyms to a project?
 
@@ -67,17 +67,17 @@ For better relevance, you need to provide a list of acronyms that the end user i
 * `ID` – Identification
 * `ETA` – Estimated time of Arrival
 
-Other than acronyms, if you think your words are similar in context of a particular domain and generic language models won’t consider them similar, it’s better to add them as synonyms. For instance, if an auto company producing a car model X receives queries such as “my car’s audio isn’t working” and the project has questions on “fixing audio for car X”, then we need to add ‘X’ and ‘car’ as synonyms.
+Other than acronyms, if you think your words are similar in context of a particular domain and generic language models won't consider them similar, it's better to add them as synonyms. For instance, if an auto company producing a car model X receives queries such as "my car's audio isn't working" and the project has questions on "fixing audio for car X", then we need to add 'X' and 'car' as synonyms.
 
-The transformer-based model already takes care of most of the common synonym cases, for example: `Purchase – Buy`, `Sell - Auction`, `Price – Value`. For another example, consider the following question answer pair: Q: “What is the price of Microsoft Stock?” A: “$200”.  
+The transformer-based model already takes care of most of the common synonym cases, for example: `Purchase – Buy`, `Sell - Auction`, `Price – Value`. For another example, consider the following question answer pair: Q: "What is the price of Microsoft Stock?" A: "$200".  
 
-If we receive user queries like “Microsoft stock value”,” Microsoft share value”, “Microsoft stock worth”, “Microsoft share worth”, “stock value”, etc., you should be able to get the correct answer even though these queries have words like "share", "value", and "worth", which aren’t originally present in the project.
+If we receive user queries like "Microsoft stock value"," Microsoft share value", "Microsoft stock worth", "Microsoft share worth", "stock value", etc., you should be able to get the correct answer even though these queries have words like "share", "value", and "worth", which aren't originally present in the project.
 
 Special characters are not allowed in synonyms.
 
 ### How are lowercase/uppercase characters treated?
 
-Question answering takes casing into account but it's intelligent enough to understand when it’s to be ignored. You shouldn’t be seeing any perceivable difference due to wrong casing.
+Question answering takes casing into account but it's intelligent enough to understand when it's to be ignored. You shouldn't be seeing any perceivable difference due to wrong casing.
 
 ### How are question answer pairs prioritized for multi-turn questions?
 
@@ -89,7 +89,7 @@ Accents are supported for all major European languages. If the query has an inco
 
 ### How is punctuation in a user query treated?
 
-Punctuation is ignored in a user query before sending it to the ranking stack. Ideally it shouldn’t impact the relevance scores. Punctuation that is ignored is as follows:  `,?:;\"'(){}[]-+。./!*؟`
+Punctuation is ignored in a user query before sending it to the ranking stack. Ideally it shouldn't impact the relevance scores. Punctuation that is ignored is as follows:  `,?:;\"'(){}[]-+。./!*؟`
 
 ## Chit-Chat
 
@@ -109,7 +109,7 @@ Chit-chat is supported for several predefined personalities:
 |Caring |[qna_chitchat_caring.tsv](https://qnamakerstore.blob.core.windows.net/qnamakerdata/editorial/qna_chitchat_caring.tsv) |
 |Enthusiastic |[qna_chitchat_enthusiastic.tsv](https://qnamakerstore.blob.core.windows.net/qnamakerdata/editorial/qna_chitchat_enthusiastic.tsv) |
 
-The responses range from formal to informal and irreverent. You should select the personality that is closest aligned with the tone you want for your bot. You can view the [datasets](https://github.com/Microsoft/BotBuilder-PersonalityChat/tree/master/CSharp/Datasets), and choose one that serves as a base for your bot, and then customize the responses.
+The responses range from formal to informal and irreverent. You should select the personality that is closest aligned with the tone you want for your bot. You can view the datasets, and choose one that serves as a base for your bot, and then customize the responses.
 
 ### Edit bot-specific questions
 
@@ -131,15 +131,15 @@ If you add your own chit-chat question answer pairs, make sure to add metadata s
 
 The custom question answering REST API uses both questions and the answer to search for best answers to a user's query.
 
-### Searching questions only when answer isn’t relevant
+### Searching questions only when answer isn't relevant
 
 Use the [`RankerType=QuestionOnly`](#choosing-ranker-type) if you don't want to search answers.
 
-An example of this is when the project is a catalog of acronyms as questions with their full form as the answer. The value of the answer won’t help to search for the appropriate answer.
+An example of this is when the project is a catalog of acronyms as questions with their full form as the answer. The value of the answer won't help to search for the appropriate answer.
 
 ## Ranking/Scoring
 
-Make sure you’re making the best use of the supported ranking features. Doing so will improve the likelihood that a given user query is answered with an appropriate response.
+Make sure you're making the best use of the supported ranking features. Doing so will improve the likelihood that a given user query is answered with an appropriate response.
 
 ### Choosing a threshold
 
@@ -160,11 +160,11 @@ Alternate questions to improve the likelihood of a match with a user query. Alte
 
 ### Use metadata tags to filter questions and answers
 
-Metadata adds the ability for a client application to know it shouldn’t take all answers but instead to narrow down the results of a user query based on metadata tags. The project answer can differ based on the metadata tag, even if the query is the same. For example, *"where is parking located"* can have a different answer if the location of the restaurant branch is different - that is, the metadata is *Location: Seattle* versus *Location: Redmond*.
+Metadata adds the ability for a client application to know it shouldn't take all answers but instead to narrow down the results of a user query based on metadata tags. The project answer can differ based on the metadata tag, even if the query is the same. For example, *"where is parking located"* can have a different answer if the location of the restaurant branch is different - that is, the metadata is *Location: Seattle* versus *Location: Redmond*.
 
 ### Use synonyms
 
-While there’s some support for synonyms in the English language, use case-insensitive [word alterations](../tutorials/adding-synonyms.md) to add synonyms to keywords that take different forms.
+While there's some support for synonyms in the English language, use case-insensitive [word alterations](../tutorials/adding-synonyms.md) to add synonyms to keywords that take different forms.
 
 |Original word|Synonyms|
 |--|--|
@@ -191,7 +191,7 @@ Custom question answering allows users to collaborate on a project. Users need a
 
 ## Active learning
 
-[Active learning](../tutorials/active-learning.md) does the best job of suggesting alternative questions when it has a wide range of quality and quantity of user-based queries. It’s important to allow client-applications' user queries to participate in the active learning feedback loop without censorship. Once questions are suggested in Language Studio, you can review and accept or reject those suggestions.
+[Active learning](../tutorials/active-learning.md) does the best job of suggesting alternative questions when it has a wide range of quality and quantity of user-based queries. It's important to allow client-applications' user queries to participate in the active learning feedback loop without censorship. Once questions are suggested in Language Studio, you can review and accept or reject those suggestions.
 
 ## Next steps
 

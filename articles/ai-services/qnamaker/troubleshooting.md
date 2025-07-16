@@ -7,7 +7,7 @@ ms.author: lajanuar
 author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: troubleshooting
-ms.date: 06/12/2025
+ms.date: 07/16/2025
 ---
 # Troubleshooting for QnA Maker
 
@@ -174,7 +174,7 @@ If you have content from multiple languages, be sure to create a separate servic
 <summary><b>When should I restart my app service?</b></summary>
 
 **Answer**:
-Refresh your app service when the caution icon is next to the version value for the knowledge base in the **Endpoint keys** table on the **User Settings** [page](https://www.qnamaker.ai/UserSettings).
+Refresh your app service when the caution icon is next to the version value for the knowledge base in the **Endpoint keys** table on the **User Settings** page.
 
 </details>
 
@@ -195,10 +195,10 @@ In case you deleted the `testkb` index in your Search service, you can restore t
 </details>
 
 <details>
-<summary><b>I am receiving the following error: Please check if QnA Maker App service's CORS settings allow https://www.qnamaker.ai or if there are any organization specific network restrictions. How can I resolve this?</b></summary>
+<summary><b>I am receiving the following error: Please check if there are any organization specific network restrictions. How can I resolve this?</b></summary>
 
 **Answer**:
-In the API section of the App service pane, update the CORS setting to * or "https://www.qnamaker.ai". If this doesn't resolve the issue, check for any organization-specific restrictions.
+In the API section of the App service pane, update the CORS setting. If this doesn't resolve the issue, check for any organization-specific restrictions.
 
 </details>
 
@@ -266,7 +266,7 @@ Please cross check and update below steps to fix the issue:
 **Answer**:
 Please follow the below given steps: 
 
-1.  Copy the value of '“APPINSIGHTS_INSTRUMENTATIONKEY” name' into 'UserAppInsightsKey' name by overriding if there is some value already present there. 
+1.  Copy the value of '"APPINSIGHTS_INSTRUMENTATIONKEY" name' into 'UserAppInsightsKey' name by overriding if there is some value already present there. 
 
 1.  If the 'UserAppInsightsKey' key does not exist in app settings, please add a new key with that name and copy the value.
 

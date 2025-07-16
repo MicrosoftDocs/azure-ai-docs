@@ -7,7 +7,7 @@ ms.author: lajanuar
 author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: tutorial
-ms.date: 06/12/2025
+ms.date: 07/16/2025
 ---
 
 # Tutorial: Add your knowledge base to Power Virtual Agents
@@ -38,7 +38,7 @@ In this tutorial, you learn how to:
     > [!div class="mx-imgBorder"]
     > ![Screenshot of published knowledge base settings](../media/how-to-integrate-power-virtual-agent/published-knowledge-base-settings.png)
 
-    Enter your published knowledge base settings found on the **Settings** page in the [QnA Maker](https://www.qnamaker.ai/) portal. You will need this information for the [Power Automate step](#create-a-power-automate-flow-to-connect-to-your-knowledge-base) to configure your QnA Maker `GenerateAnswer` connection.
+    Enter your published knowledge base settings found on the **Settings** page in the QnA Maker portal. You will need this information for the [Power Automate step](#create-a-power-automate-flow-to-connect-to-your-knowledge-base) to configure your QnA Maker `GenerateAnswer` connection.
 
 1. In the QnA Maker portal, on the **Settings** page, find the endpoint key, endpoint host, and knowledge base ID.
 

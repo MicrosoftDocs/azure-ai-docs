@@ -7,7 +7,7 @@ ms.author: lajanuar
 author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: reference
-ms.date: 06/12/2025
+ms.date: 07/16/2025
 ---
 
 # Markdown format supported in QnA Maker answer text
@@ -32,12 +32,12 @@ A new line between 2 sentences.|`\n\n`|`How can I create a bot with \n\n QnA Mak
 |Headers from h1 to h6, the number of `#` denotes which header. 1 `#` is the h1.|`\n# text \n## text \n### text \n####text \n#####text` |`## Creating a bot \n ...text.... \n### Important news\n ...text... \n### Related Information\n ....text...`<br><br>`\n# my h1 \n## my h2\n### my h3 \n#### my h4 \n##### my h5`|![format with markdown headers](./media/qnamaker-concepts-datasources/format-headers.png)<br>![format with markdown headers H1 to H5](./media/qnamaker-concepts-datasources/format-h1-h5.png)|
 |Italics |`*text*`|`How do I create a bot with *QnA Maker*?`|![format with italics](./media/qnamaker-concepts-datasources/format-italics.png)|
 |Strong (bold)|`**text**`|`How do I create a bot with **QnA Maker**?`|![format with strong marking for bold](./media/qnamaker-concepts-datasources/format-strong.png)|
-|URL for link|`[text](https://www.my.com)`|`How do I create a bot with [QnA Maker](https://www.qnamaker.ai)?`|![format for URL (hyperlink)](./media/qnamaker-concepts-datasources/format-url.png)|
+|URL for link|`[text](https://www.my.com)`|`How do I create a bot with QnA Maker?`|![format for URL (hyperlink)](./media/qnamaker-concepts-datasources/format-url.png)|
 |*URL for public image|`![text](https://www.my.com/image.png)`|`How can I create a bot with ![QnAMaker](https://review.learn.microsoft.com/azure/ai-services/qnamaker/media/qnamaker-how-to-key-management/qnamaker-resource-list.png)`|![format for public image URL](./media/qnamaker-concepts-datasources/format-image-url.png)|
 |Strikethrough|`~~text~~`|`some ~~questoins~~ questions need to be asked`|![format for strikethrough](./media/qnamaker-concepts-datasources/format-strikethrough.png)|
 |Bold and italics|`***text***`|`How can I create a ***QnA Maker*** bot?`|![format for bold and italics](./media/qnamaker-concepts-datasources/format-bold-italics.png)|
-|Bold URL for link|`[**text**](https://www.my.com)`|`How do I create a bot with [**QnA Maker**](https://www.qnamaker.ai)?`|![format for bold URL](./media/qnamaker-concepts-datasources/format-bold-url.png)|
-|Italics URL for link|`[*text*](https://www.my.com)`|`How do I create a bot with [*QnA Maker*](https://www.qnamaker.ai)?`|![format for italics URL](./media/qnamaker-concepts-datasources/format-url-italics.png)|
+|Bold URL for link|`[**text**](https://www.my.com)`|`How do I create a bot with **QnA Maker**?`|![format for bold URL](./media/qnamaker-concepts-datasources/format-bold-url.png)|
+|Italics URL for link|`[*text*](https://www.my.com)`|`How do I create a bot with *QnA Maker*?`|![format for italics URL](./media/qnamaker-concepts-datasources/format-url-italics.png)|
 |Escape markdown symbols|`\*text\*`|`How do I create a bot with \*QnA Maker\*?`|![Format for escape markdown symbols.](./media/qnamaker-concepts-datasources/format-escape-markdown-symbols.png)|
 |Ordered list|`\n 1. item1 \n 1. item2`|`This is an ordered list: \n 1. List item 1 \n 1. List item 2`<br>The preceding example uses automatic numbering built into markdown.<br>`This is an ordered list: \n 1. List item 1 \n 2. List item 2`<br>The preceding example uses explicit numbering.|![format for ordered list](./media/qnamaker-concepts-datasources/format-ordered-list.png)|
 |Unordered list|`\n * item1 \n * item2`<br>or<br>`\n - item1 \n - item2`|`This is an unordered list: \n * List item 1 \n * List item 2`|![format for unordered list](./media/qnamaker-concepts-datasources/format-unordered-list.png)|

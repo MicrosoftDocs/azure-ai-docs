@@ -7,7 +7,7 @@ ms.author: lajanuar
 author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
-ms.date: 06/12/2025
+ms.date: 07/16/2025
 ---
 
 # Add a secured SharePoint data source to your knowledge base
@@ -69,7 +69,7 @@ Once the QnA Maker manager selects the account, the Microsoft Entra administrato
 
 ### Active directory manager: grant file read access to QnA Maker
 
-The Active Directory manager (not the QnA Maker manager) needs to grant access to QnA Maker to access the SharePoint resource by selecting [this link](https://login.microsoftonline.com/common/oauth2/v2.0/authorize?response_type=id_token&scope=Files.Read%20Files.Read.All%20Sites.Read.All%20User.Read%20User.ReadBasic.All%20profile%20openid%20email&client_id=c2c11949-e9bb-4035-bda8-59542eb907a6&redirect_uri=https%3A%2F%2Fwww.qnamaker.ai%3A%2FCreate&state=68) to authorize the QnA Maker Portal SharePoint enterprise app to have file read permissions.
+The Active Directory manager (not the QnA Maker manager) needs to grant access to QnA Maker to access the SharePoint resource to authorize the QnA Maker Portal SharePoint enterprise app to have file read permissions.
 
 ![Microsoft Entra manager grants permission interactively](../media/add-sharepoint-datasources/aad-manager-grants-permission-interactively.png)
 

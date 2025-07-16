@@ -5,7 +5,7 @@ description: include file
 manager: nitinme
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
-ms.date: 01/19/2024
+ms.date: 07/16/2025
 ms.topic: include
 ms.custom: include file
 ---
@@ -16,7 +16,7 @@ Use the Language Understanding (LUIS) client libraries for Python to:
 * Train and publish app
 * Query prediction runtime
 
-[Reference documentation](/python/api/azure-cognitiveservices-language-luis/index) | [Authoring](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/cognitiveservices/azure-cognitiveservices-language-luis/azure/cognitiveservices/language/luis/authoring) and [Prediction](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/cognitiveservices/azure-cognitiveservices-language-luis/azure/cognitiveservices/language/luis/runtime)  Library source code | [Package (Pypi)](https://pypi.org/project/azure-cognitiveservices-language-luis/) | [Samples](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/python/LUIS/sdk-3x/authoring_and_predict.py)
+[Reference documentation](/python/api/azure-cognitiveservices-language-luis/index) |Library source code | [Package (Pypi)](https://pypi.org/project/azure-cognitiveservices-language-luis/) | [Samples](https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/python/LUIS/sdk-3x/authoring_and_predict.py)
 
 ## Prerequisites
 

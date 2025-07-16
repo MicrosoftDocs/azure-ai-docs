@@ -7,7 +7,7 @@ ms.author: lajanuar
 author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: conceptual
-ms.date: 06/12/2025
+ms.date: 07/16/2025
 ---
 
 # Importing from data sources
@@ -101,7 +101,7 @@ Each type indicates an expected format.
 
 ### File-based content
 
-You can add files to a knowledge base from a public source, or your local file system, in the [QnA Maker portal](https://www.qnamaker.ai).
+You can add files to a knowledge base from a public source, or your local file system.
 
 ### Content format guidelines
 

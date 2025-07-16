@@ -7,7 +7,7 @@ ms.author: lajanuar
 author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
-ms.date: 06/12/2025
+ms.date: 07/16/2025
 ---
 
 # Configure QnA Maker resources
@@ -52,7 +52,7 @@ Learn more about how to configure the App Service [Application settings](/azure/
 
 The QnAMaker runtime is part of the Azure App Service instance that's deployed when you [create a QnAMaker service](./set-up-qnamaker-service-azure.md) in the Azure portal. Updates are made periodically to the runtime. The QnA Maker App Service instance is in auto-update mode after the April 2019 site extension release (version 5+). This update is designed to take care of ZERO downtime during upgrades.
 
-You can check your current version at https://www.qnamaker.ai/UserSettings. If your version is older than version 5.x, you must restart App Service to apply the latest updates:
+You can check your current version. If your version is older than version 5.x, you must restart App Service to apply the latest updates:
 
 1. Go to your QnAMaker service (resource group) in the [Azure portal](https://portal.azure.com).
 

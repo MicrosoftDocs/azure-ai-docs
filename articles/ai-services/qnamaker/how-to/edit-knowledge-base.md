@@ -7,7 +7,7 @@ ms.author: lajanuar
 author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
-ms.date: 06/12/2025
+ms.date: 07/16/2025
 ---
 
 # Edit QnA pairs in your knowledge base
@@ -41,7 +41,7 @@ The **optional** settings for a pair include:
 
 If you do not have pre-existing content to populate the knowledge base, you can add QnA pairs editorially in the QnA Maker portal.
 
-1. Sign in to the [QnA portal](https://www.qnamaker.ai/), then select the knowledge base to add the QnA pair to.
+1. Sign in to the QnA portal, then select the knowledge base to add the QnA pair to.
 1. On the **EDIT** page of the knowledge base, select **Add QnA pair** to add a new QnA pair.
 
     > [!div class="mx-imgBorder"]
