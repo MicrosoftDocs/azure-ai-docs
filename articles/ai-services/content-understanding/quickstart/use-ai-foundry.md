@@ -34,7 +34,7 @@ To get started, make sure you have the following resources and permissions:
 
 ## Create your single-file task powered by Content Understanding Standard mode
 
-Follow these steps to create a custom task in the Azure AI Foundry. This task is used to build your first analyzer.
+Follow these steps to create a custom task in the Azure AI Foundry. Use this task to build your first analyzer.
 
 1. Go to the **Home** page of [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 1. Select your hub based project. You might need to select **View all resources** to see your project.
