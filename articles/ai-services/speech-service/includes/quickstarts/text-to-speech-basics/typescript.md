@@ -28,10 +28,21 @@ ms.author: eur
     npm init -y
     ```
 
+1. Update the `package.json` to ECMAScript with the following command:
+    ```shell
+    npm pkg set type=module
+    ```
+
 1. Install the Speech SDK for JavaScript with:
 
     ```console
     npm install microsoft-cognitiveservices-speech-sdk
+    ```
+
+1. You need to install the Node.js type definitions to avoid TypeScript errors. Run the following command:
+
+    ```shell
+    npm install --save-dev @types/node
     ```
 
 ### Retrieve resource information
@@ -42,51 +53,87 @@ ms.author: eur
 
 To translate speech from a file:
 
-1. Create a new file named *synthesis.js* with the following content:
+1. Create a new file named *synthesis.ts* with the following content:
 
-    ```javascript
+    ```typescript
     import { createInterface } from "readline";
-    import { SpeechConfig, AudioConfig, SpeechSynthesizer, ResultReason } from "microsoft-cognitiveservices-speech-sdk";
-    function synthesizeSpeech() {
+    import { 
+        SpeechConfig, 
+        AudioConfig, 
+        SpeechSynthesizer, 
+        ResultReason,
+        SpeechSynthesisResult 
+    } from "microsoft-cognitiveservices-speech-sdk";
+    
+    function synthesizeSpeech(): void {
         const audioFile = "YourAudioFile.wav";
         // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
-        const speechConfig = SpeechConfig.fromSubscription(process.env.SPEECH_KEY, process.env.SPEECH_REGION);
-        const audioConfig = AudioConfig.fromAudioFileOutput(audioFile);
+        const speechConfig: SpeechConfig = SpeechConfig.fromSubscription(process.env.SPEECH_KEY!, process.env.SPEECH_REGION!);
+        const audioConfig: AudioConfig = AudioConfig.fromAudioFileOutput(audioFile);
+        
         // The language of the voice that speaks.
         speechConfig.speechSynthesisVoiceName = "en-US-AvaMultilingualNeural";
+        
         // Create the speech synthesizer.
-        const synthesizer = new SpeechSynthesizer(speechConfig, audioConfig);
+        const synthesizer: SpeechSynthesizer = new SpeechSynthesizer(speechConfig, audioConfig);
+        
         const rl = createInterface({
             input: process.stdin,
             output: process.stdout
         });
-        rl.question("Enter some text that you want to speak >\n> ", function (text) {
+        
+        rl.question("Enter some text that you want to speak >\n> ", function (text: string) {
             rl.close();
             // Start the synthesizer and wait for a result.
-            synthesizer.speakTextAsync(text, function (result) {
-                if (result.reason === ResultReason.SynthesizingAudioCompleted) {
-                    console.log("synthesis finished.");
-                }
-                else {
-                    console.error("Speech synthesis canceled, " + result.errorDetails +
-                        "\nDid you set the speech resource key and region values?");
-                }
-                synthesizer.close();
-            }, function (err) {
-                console.trace("err - " + err);
-                synthesizer.close();
-            });
+            synthesizer.speakTextAsync(text,
+                function (result: SpeechSynthesisResult) {
+                    if (result.reason === ResultReason.SynthesizingAudioCompleted) {
+                        console.log("synthesis finished.");
+                    } else {
+                        console.error("Speech synthesis canceled, " + result.errorDetails +
+                            "\nDid you set the speech resource key and region values?");
+                    }
+                    synthesizer.close();
+                },
+                function (err: string) {
+                    console.trace("err - " + err);
+                    synthesizer.close();
+                });
             console.log("Now synthesizing to: " + audioFile);
         });
     }
+    
     synthesizeSpeech();
     ```
 
-    In *synthesis.js*, optionally you can rename *YourAudioFile.wav* to another output file name.
+    In *synthesis.ts*, optionally you can rename *YourAudioFile.wav* to another output file name.
 
     To change the speech synthesis language, replace `en-US-AvaMultilingualNeural` with another [supported voice](~/articles/ai-services/speech-service/language-support.md#standard-voices).
 
     All neural voices are multilingual and fluent in their own language and English. For example, if the input text in English is *I'm excited to try text to speech* and you set `es-ES-ElviraNeural`, the text is spoken in English with a Spanish accent. If the voice doesn't speak the language of the input text, the Speech service doesn't output synthesized audio.
+
+1. Create the `tsconfig.json` file to transpile the TypeScript code and copy the following code for ECMAScript.
+
+    ```json
+    {
+        "compilerOptions": {
+          "module": "NodeNext",
+          "target": "ES2022", // Supports top-level await
+          "moduleResolution": "NodeNext",
+          "skipLibCheck": true, // Avoid type errors from node_modules
+          "strict": true // Enable strict type-checking options
+        },
+        "include": ["*.ts"]
+    }
+    ```
+
+1. Transpile from TypeScript to JavaScript.
+
+    ```shell
+    tsc
+    ```
+
+    This command should produce no output if successful.
 
 1. Run your console application to start speech synthesis to a file:
 
