@@ -245,20 +245,20 @@ See the following example output for some evaluators:
 ```
 {
     "intent_resolution": 5.0, # likert scale: 1-5 integer 
-    "intent_resolution_result": "pass", # pass because 5 > 3 the threshold
     "intent_resolution_threshold": 3,
+    "intent_resolution_result": "pass", # pass because 5 > 3 the threshold
     "intent_resolution_reason": "The assistant correctly understood the user's request to fetch the weather in Seattle. It used the appropriate tool to get the weather information and provided a clear and accurate response with the current weather conditions in Seattle. The response fully resolves the user's query with all necessary information."
 }
 {
     "task_adherence": 5.0, # likert scale: 1-5 integer 
-    "task_adherence_result": "pass", # pass because 5 > 3 the threshold
     "task_adherence_threshold": 3,
+    "task_adherence_result": "pass", # pass because 5 > 3 the threshold
     "task_adherence_reason": "The response accurately follows the instructions, fetches the correct weather information, and relays it back to the user without any errors or omissions."
 }
 {
     "tool_call_accuracy": 5,  # a score between 1-5, higher is better
-    "tool_call_accuracy_result": "pass", # pass because 1.0 > 0.8 the threshold
     "tool_call_accuracy_threshold": 3,
+    "tool_call_accuracy_result": "pass", # pass because 5 > 3 the threshold
     "details": { ... } # helpful details for debugging the tool calls made by the agent
 }
 ```
@@ -316,7 +316,7 @@ If you're using agents outside Azure AI Foundry Agent Service, you can still eva
 
 Agents typically emit messages to interact with a user or other agents. Our built-in evaluators can accept simple data types such as strings in `query`, `response`, and `ground_truth` according to the [single-turn data input requirements](./evaluate-sdk.md#data-requirements-for-built-in-evaluators). However, it can be a challenge to extract these simple data types from agent messages, due to the complex interaction patterns of agents and framework differences. For example, a single user query can trigger a long list of agent messages, typically with multiple tool calls invoked.
 
-As illustrated in the following example, we enable agent message support specifically for the built-in evaluators `IntentResolution`, `ToolCallAccuracy`, and `TaskAdherence` to evaluate these aspects of agentic workflow. These evaluators take `tool_calls` or `tool_definitions` as parameters unique to agents.
+As illustrated in the following example, we enable agent message support specifically for the built-in evaluators `IntentResolutionEvaluator`, `ToolCallAccuracyEvaluator`, and `TaskAdherenceEvaluator` to evaluate these aspects of agentic workflow. These evaluators take `tool_calls` or `tool_definitions` as parameters unique to agents.
 
 | Evaluator       | `query`      | `response`      | `tool_calls`       | `tool_definitions`  |
 |----------------|---------------|---------------|---------------|---------------|
@@ -375,16 +375,9 @@ See the following output (reference [Output format](#output-format) for details)
     "intent_resolution_result": "pass",
     "intent_resolution_threshold": 3,
     "intent_resolution_reason": "The response provides the opening hours of the Eiffel Tower, which directly addresses the user's query. The information is clear, accurate, and complete, fully resolving the user's intent.",
-    "additional_details": {
-        "conversation_has_intent": true,
-        "agent_perceived_intent": "inquire about the opening hours of the Eiffel Tower",
-        "actual_user_intent": "inquire about the opening hours of the Eiffel Tower",
-        "correct_intent_detected": true,
-        "intent_resolved": true
-    }
 }
 ```
-
+### Agent tool calls and definitions
 See the following examples of `tool_calls` and `tool_definitions` for `ToolCallAccuracyEvaluator`:
 
 ```python
@@ -421,6 +414,10 @@ tool_definitions = [{
                         }
                     }
                 }]
+
+from azure.ai.evaluation import ToolCallAccuracyEvaluator
+
+tool_call_accuracy = ToolCallAccuracyEvaluator(model_config) # reuse the config defined above
 response = tool_call_accuracy(query=query, tool_calls=tool_calls, tool_definitions=tool_definitions)
 print(json.dumps(response, indent=4))
 ```
@@ -436,9 +433,161 @@ See the following output (reference [Output format](#output-format) for details)
 }
 ```
 
-### Agent messages
+### Agent message schema
 
-In agent message format, `query` and `response` are a list of OpenAI-style messages. Specifically, `query` carries the past agent-user interactions leading up to the last user query and requires the system message (of the agent) on top of the list; and `response` carries the last message of the agent in response to the last user query. See the following example:
+In agent message format, `query` and `response` are a list of OpenAI-style messages. Specifically, `query` carries the past agent-user interactions leading up to the last user query and requires the system message (of the agent) on top of the list; and `response` carries the last message of the agent in response to the last user query. 
+
+The expected input format for the evaluators is a Python list of messages as follows:
+```
+[
+  {
+    "role": "system" | "user" | "assistant" | "tool",
+    "createdAt": "ISO 8601 timestamp",     // Optional for 'system'
+    "run_id": "string",                    // Optional, only for assistant/tool in tool call context
+    "tool_call_id": "string",              // Optional, only for tool/tool_result
+    "name": "string",                      // Present if it's a tool call
+    "arguments": { ... },                  // Parameters passed to the tool (if tool call)
+    "content": [
+      {
+        "type": "text" | "tool_call" | "tool_result",
+        "text": "string",                  // if type == text
+        "tool_call_id": "string",         // if type == tool_call
+        "name": "string",                 // tool name if type == tool_call
+        "arguments": { ... },             // tool args if type == tool_call
+        "tool_result": { ... }            // result if type == tool_result
+      }
+    ]
+  }
+]
+```
+
+Sample query and response objects:
+
+```python
+query = [
+    {
+        "role": "system",
+        "content": "You are an AI assistant interacting with Azure Maps services to serve user requests."
+    },
+    {
+        "createdAt": "2025-04-25T23:55:43Z",
+        "role": "user",
+        "content": [
+            {
+                "type": "text",
+                "text": "Find the address for coordinates 41.8781,-87.6298."
+            }
+        ]
+    },
+    {
+        "createdAt": "2025-04-25T23:55:45Z",
+        "run_id": "run_DGE8RWPS8A9SmfCg61waRx9u",
+        "role": "assistant",
+        "content": [
+            {
+                "type": "tool_call",
+                "tool_call_id": "call_nqNyhOFRw4FmF50jaCCq2rDa",
+                "name": "azure_maps_reverse_address_search",
+                "arguments": {
+                    "lat": "41.8781",
+                    "lon": "-87.6298"
+                }
+            }
+        ]
+    },
+    {
+        "createdAt": "2025-04-25T23:55:47Z",
+        "run_id": "run_DGE8RWPS8A9SmfCg61waRx9u",
+        "tool_call_id": "call_nqNyhOFRw4FmF50jaCCq2rDa",
+        "role": "tool",
+        "content": [
+            {
+                "type": "tool_result",
+                "tool_result": {
+                    "address": "300 South Federal Street, Chicago, IL 60604",
+                    "position": {
+                        "lat": "41.8781",
+                        "lon": "-87.6298"
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "createdAt": "2025-04-25T23:55:48Z",
+        "run_id": "run_DGE8RWPS8A9SmfCg61waRx9u",
+        "role": "assistant",
+        "content": [
+            {
+                "type": "text",
+                "text": "The address for the coordinates 41.8781, -87.6298 is 300 South Federal Street, Chicago, IL 60604."
+            }
+        ]
+    },
+    {
+        "createdAt": "2025-04-25T23:55:50Z",
+        "role": "user",
+        "content": [
+            {
+                "type": "text",
+                "text": "What timezone corresponds to 41.8781,-87.6298?"
+            }
+        ]
+    },
+]
+
+response = [
+    {
+        "createdAt": "2025-04-25T23:55:52Z",
+        "run_id": "run_DmnhUGqYd1vCBolcjjODVitB",
+        "role": "assistant",
+        "content": [
+            {
+                "type": "tool_call",
+                "tool_call_id": "call_qi2ug31JqzDuLy7zF5uiMbGU",
+                "name": "azure_maps_timezone",
+                "arguments": {
+                    "lat": 41.878100000000003,
+                    "lon": -87.629800000000003
+                }
+            }
+        ]
+    },
+    {
+        "createdAt": "2025-04-25T23:55:54Z",
+        "run_id": "run_DmnhUGqYd1vCBolcjjODVitB",
+        "tool_call_id": "call_qi2ug31JqzDuLy7zF5uiMbGU",
+        "role": "tool",
+        "content": [
+            {
+                "type": "tool_result",
+                "tool_result": {
+                    "ianaId": "America/Chicago",
+                    "utcOffset": None,
+                    "abbreviation": None,
+                    "isDaylightSavingTime": None
+                }
+            }
+        ]
+    },
+    {
+        "createdAt": "2025-04-25T23:55:55Z",
+        "run_id": "run_DmnhUGqYd1vCBolcjjODVitB",
+        "role": "assistant",
+        "content": [
+            {
+                "type": "text",
+                "text": "The timezone for the coordinates 41.8781, -87.6298 is America/Chicago."
+            }
+        ]
+    }
+]
+```
+
+> [!NOTE]
+> The evaluator throws a warning that query (i.e. the conversation history till the current run) or agent response (the response to the query) cannot be parsed when their format is not the expected one.
+
+See an example of evaluating the agent messages with `ToolCallAccuracyEvaluator`:
 
 ```python
 import json
@@ -525,10 +674,9 @@ tool_definitions = [
     # ...
 ]
 
-result = intent_resolution_evaluator(
+result = tool_call_accuracy(
     query=query,
     response=response,
-    # Optionally, provide the tool definitions.
     tool_definitions=tool_definitions 
 )
 print(json.dumps(result, indent=4))
