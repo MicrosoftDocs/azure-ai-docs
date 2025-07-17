@@ -49,10 +49,6 @@ You need an active Azure subscription. If you don't have an Azure subscription, 
     > macOS `curl -V`
     > Linux: `curl --version`
 
-* If cURL isn't installed, here are installation links for your platform:
-
-  * [Windows](https://curl.haxx.se/windows/)
-
 ## Asynchronously translate documents (POST)
 
 1. Using your preferred editor or IDE, create a new directory for your app named `document-translation`.
