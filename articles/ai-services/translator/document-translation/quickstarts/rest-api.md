@@ -52,7 +52,6 @@ You need an active Azure subscription. If you don't have an Azure subscription, 
 * If cURL isn't installed, here are installation links for your platform:
 
   * [Windows](https://curl.haxx.se/windows/)
-  * [Mac or Linux](https://learn2torials.com/)
 
 ## Asynchronously translate documents (POST)
 

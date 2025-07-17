@@ -68,7 +68,6 @@ A native document refers to the file format used to create the original document
 * If cURL isn't installed, here are installation links for your platform:
 
   * [Windows](https://curl.haxx.se/windows/).
-  * [Mac or Linux](https://learn2torials.com/).
 
 * An active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/). If you don't have one, you can [**create a free account**](https://azure.microsoft.com/free/).
 

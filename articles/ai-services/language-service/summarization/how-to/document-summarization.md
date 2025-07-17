@@ -63,7 +63,6 @@ Azure AI Language is a cloud-based service that applies Natural Language Process
 * If cURL isn't installed, here are installation links for your platform:
 
   * [Windows](https://curl.haxx.se/windows/).
-  * [Mac or Linux](https://learn2torials.com/).
 
 * An active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/). If you don't have one, you can [**create a free account**](https://azure.microsoft.com/free/).
 

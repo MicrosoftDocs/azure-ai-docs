@@ -33,7 +33,6 @@ In this quickstart, learn to use the Document Intelligence REST API to analyze a
 * curl command line tool installed.
 
   * [Windows](https://curl.haxx.se/windows/)
-  * [Mac or Linux](https://learn2torials.com/)
 
 * **PowerShell version 7.*+** (or a similar command-line application.):
   * [Windows](/powershell/scripting/install/installing-powershell-on-windows)
