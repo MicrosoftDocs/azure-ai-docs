@@ -48,9 +48,9 @@ Here’s a summary of the three available services:
 
 |Service | What it Does | Ideal For | Strengths | Core Features |
 |--------|---------------|-----------|-----------|----------------|
-| Azure AI Document Intelligence | Extracts text, key-value pairs, tables, and layout from structured, semi and unstructured documents, field extraction with grounding,confidence, support for classification and splitting | Standard forms, invoices, receipts, purchase orders, IDs, contracts, legal documents | Proven, high-accuracy extraction, consistency, low latency, confidence score and grounding, predefined schemas for many document types | OCR/Read/Layout models, Prebuilt Models (invoice, tax, receipt, etc), Custom model (extraction and classification) |
-| Azure AI Content Understanding | Processes documents, images, audio, and video; integrated reasoning for complex tasks, richer field extraction with built in support for validation, enrichment, and post processing | Complex document processing requiring extractive and inferred fields, document formats with large number of complex variations or truly unstructured documents, inferring, summarization and generate metadata | Built-in unified process for multimodal inputs with zero shot model Unified process for multimodal inputs, handles varying templates and unstructured documents, supports continuous improvement with labeled samples| Support for content extraction(OCR, layout), field extraction, inferred fields and classification for handling complex, large documents with high variations, reasoning with multi-file inputs and knowledge base |
-| Build your own solution with Azure OpenAI Service | Build a solution with any Azure-hosted LLM models, Fully control on model, prompt and tools | Developers aiming to build, own and manage a solution that require fine grained control on models, costs and prompts | Maximum flexibility and control | Multiple options to plug and play with model choice, prompt tuning, workflow definition with complete flexibility in building each component |
+| Azure AI Document Intelligence | Extracts text, key-value pairs, tables, and layout from structured, semi and unstructured documents, field extraction with grounding, confidence, support for classification and splitting | Standard forms, invoices, receipts, purchase orders, IDs, contracts, legal documents | Proven, high-accuracy extraction, consistency, low latency, confidence score and grounding, predefined schemas for many document types | OCR/Read/Layout models, Prebuilt Models (invoice, tax, receipt, etc.), Custom model (extraction and classification) |
+| Azure AI Content Understanding | Processes documents, images, audio, and video; integrated reasoning for complex tasks, richer field extraction with built-in support for validation, enrichment, and post processing | Complex document processing requiring extractive and inferred fields, document formats with large number of complex variations or truly unstructured documents, inferring, summarization and generate metadata | Built-in unified process for multimodal inputs with zero shot model Unified process for multimodal inputs, handles varying templates and unstructured documents, supports continuous improvement with labeled samples| Support for content extraction(OCR, layout), field extraction, inferred fields and classification for handling complex, large documents with high variations, reasoning with multi-file inputs and knowledge base |
+| Build your own solution with Azure OpenAI Service | Build a solution with any Azure-hosted LLM models, Fully control on model, prompt and tools | Developers aiming to build, own and manage a solution that requires fine grained control on models, costs and prompts | Maximum flexibility and control | Multiple options to plug and play with model choice, prompt tuning, workflow definition with complete flexibility in building each component |
 
 
 ## Service capabilities
@@ -130,8 +130,8 @@ Extract consistent fields (name, amount, policy number, claim date) across a sma
 - University admission applications for different degree programs
 - Employee expense reports with department-specific templates
 
-:::image type="content" source="media/overview/mid-form.png" alt-text="Scan of a sample driver's license" :::
-:::image type="content" source="media/overview/mid-form2.png" alt-text="Scan of a sample passport." :::
+:::image type="content" source="media/overview/mid-form.png" alt-text="Scan of a sample driver's license." :::
+:::image type="content" source="media/overview/mid-form-2.png" alt-text="Scan of a sample passport." :::
 
 **Recommendation**:
 
@@ -151,8 +151,8 @@ Extract key fields like Invoice Number, Vendor Name, Total Amount, Line Items, a
 - Purchase orders with inconsistent layouts across suppliers
 - Student transcripts from different universities
 
-:::image type="content" source="media/overview/invoice1.png" alt-text="Scan of a sample invoice form" :::
-:::image type="content" source="media/overview/invoice2.png" alt-text="Scan of a sample invoice form with a vertical layout" :::
+:::image type="content" source="media/overview/invoice-1.png" alt-text="Scan of a sample invoice form." :::
+:::image type="content" source="media/overview/invoice-2.png" alt-text="Scan of a sample invoice form with a vertical layout." :::
 
 **Recommendation**:
 * Azure AI Document Intelligence Prebuilt Model if they're applicable or you can build your own custom models with multiple labeling to get grounded, low latency, consistent output. 
