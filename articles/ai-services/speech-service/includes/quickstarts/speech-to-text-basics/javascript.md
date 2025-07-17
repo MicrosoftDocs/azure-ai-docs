@@ -16,7 +16,7 @@ ms.author: eur
 
 You also need a *.wav* audio file on your local machine. You can use your own *.wav* file (up to 30 seconds) or download the [https://crbn.us/whatstheweatherlike.wav](https://crbn.us/whatstheweatherlike.wav) sample file.
 
-## Set up
+## Setup
 
 1. Create a new folder `transcription-quickstart` and go to the quickstart folder with the following command:
 
