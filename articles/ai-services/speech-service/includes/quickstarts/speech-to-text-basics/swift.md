@@ -4,7 +4,7 @@ ms.service: azure-ai-speech
 ms.custom:
   - build-2024
 ms.topic: include
-ms.date: 01/30/2024
+ms.date: 7/16/2025
 ms.author: eur
 ---
 

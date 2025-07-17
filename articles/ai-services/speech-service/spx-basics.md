@@ -106,27 +106,86 @@ More help commands are listed in the console output. You can enter these command
 
 ## Speech to text (speech recognition)
 
-> [!NOTE]
-> You can't use your computer's microphone when you run the Speech CLI within a Docker container. However, you can read from and save audio files in your local mounted directory. 
-
-To convert speech to text (speech recognition) by using your system's default microphone, run the following command: 
-
-```console
-spx recognize --microphone
-```
-
-After you run the command, SPX begins listening for audio on the current active input device. It stops listening when you select **Enter**. The spoken audio is then recognized and converted to text in the console output.
-
-With the Speech CLI, you can also recognize speech from an audio file. Run the following command:
-
-```console
-spx recognize --file /path/to/file.wav
-```
-
 > [!TIP]
 > If you get stuck or want to learn more about the Speech CLI recognition options, you can run ```spx help recognize```.
 
+### Recognize speech from a microphone
+
+1. Run the following command to start speech recognition from a microphone:
+
+   ```console
+   spx recognize --microphone --source en-US
+   ```
+
+1. Speak into the microphone, and you see transcription of your words into text in real-time. The Speech CLI stops after a period of silence, 30 seconds, or when you select **Ctrl**+**C**.
+
+   ```output
+   Connection CONNECTED...
+   RECOGNIZED: I'm excited to try speech to text.
+   ```
+
+> [!NOTE]
+> You can't use your computer's microphone when you run the Speech CLI within a Docker container. However, you can read from and save audio files in your local mounted directory. 
+
+### Recognize speech from a file
+
+To recognize speech from an audio file, use `--file` instead of `--microphone`. For compressed audio files such as MP4, install GStreamer and use `--format`. For more information, see [How to use compressed input audio](~/articles/ai-services/speech-service/how-to-use-codec-compressed-audio-input-streams.md).
+
+# [Terminal](#tab/terminal)
+
+```console
+spx recognize --file YourAudioFile.wav
+spx recognize --file YourAudioFile.mp4 --format any
+```
+
+# [PowerShell](#tab/powershell)
+
+```powershell
+spx recognize --file YourAudioFile.wav
+spx --% recognize --file YourAudioFile.mp4 --format any
+```
+
+***
+
+### Phrase lists
+To improve recognition accuracy of specific words or utterances, use a [phrase list](~/articles/ai-services/speech-service/improve-accuracy-phrase-list.md). You include a phrase list in-line or with a text file along with the `recognize` command:
+
+# [Terminal](#tab/terminal)
+
+```console
+spx recognize --microphone --phrases "Contoso;Jessie;Rehaan;"
+spx recognize --microphone --phrases @phrases.txt
+```
+
+# [PowerShell](#tab/powershell)
+
+```powershell
+spx --% recognize --microphone --phrases "Contoso;Jessie;Rehaan;"
+spx --% recognize --microphone --phrases @phrases.txt
+
+```
+
+***
+
+### Language support
+To change the speech recognition language, replace `en-US` with another [supported language](~/articles/ai-services/speech-service/language-support.md). For example, use `es-ES` for Spanish (Spain). If you don't specify a language, the default is `en-US`.
+
+```console
+spx recognize --microphone --source es-ES
+```
+
+### Continuous recognition
+
+For continuous recognition of audio longer than 30 seconds, append `--continuous`:
+
+```console
+spx recognize --microphone --source es-ES --continuous
+```
+
 ## Text to speech (speech synthesis)
+
+> [!TIP]
+> If you get stuck or want to learn more about the Speech CLI recognition options, you can run ```spx help synthesize```.
 
 The following command takes text as input and then outputs the synthesized speech to the current active output device (for example, your computer speakers).
 
@@ -152,8 +211,6 @@ Here's a command for using one of the voices you discovered.
 spx synthesize --text "Bienvenue chez moi." --voice fr-FR-AlainNeural --speakers
 ```
 
-> [!TIP]
-> If you get stuck or want to learn more about the Speech CLI recognition options, you can run ```spx help synthesize```.
 
 ## Speech to text translation
 
