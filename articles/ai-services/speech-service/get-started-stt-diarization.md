@@ -7,9 +7,9 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: quickstart
-ms.date: 3/10/2025
+ms.date: 7/16/2025
 ms.author: eur
-zone_pivot_groups: programming-languages-speech-services
+zone_pivot_groups: programming-languages-speech-diarization
 keywords: speech to text, speech to text software
 #customer intent: As a developer, I want to create speech to text applications that use diarization to identify speakers in multiple person conversations.
 ---
@@ -52,8 +52,8 @@ keywords: speech to text, speech to text software
 [!INCLUDE [REST include](includes/quickstarts/stt-diarization/rest.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-cli"
-[!INCLUDE [CLI include](includes/quickstarts/stt-diarization/cli.md)]
+::: zone pivot="programming-language-typescript"
+[!INCLUDE [TypeScript include](includes/quickstarts/stt-diarization/typescript.md)]
 ::: zone-end
 
 ## Next step

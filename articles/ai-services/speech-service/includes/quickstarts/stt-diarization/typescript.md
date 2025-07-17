@@ -28,10 +28,21 @@ ms.author: eur
     npm init -y
     ```
 
+1. Update the `package.json` to ECMAScript with the following command:
+    ```shell
+    npm pkg set type=module
+    ```
+
 1. Install the Speech SDK for JavaScript with:
 
     ```console
     npm install microsoft-cognitiveservices-speech-sdk
+    ```
+
+1. You need to install the Node.js type definitions to avoid TypeScript errors. Run the following command:
+
+    ```shell
+    npm install --save-dev @types/node
     ```
 
 ### Retrieve resource information
@@ -42,25 +53,30 @@ ms.author: eur
 
 Follow these steps to create a new console application for conversation transcription.
 
-1. Create a new file named *transcription.js* with the following content:
+1. Create a new file named *transcription.ts* with the following content:
 
-    ```javascript
-    const fs = require("fs");
-    const sdk = require("microsoft-cognitiveservices-speech-sdk");
+    ```typescript
+    import { readFileSync, createReadStream } from "fs";
+    import { 
+        SpeechConfig, 
+        AudioConfig, 
+        ConversationTranscriber,
+        AudioInputStream 
+    } from "microsoft-cognitiveservices-speech-sdk";
     
     // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
-    const speechConfig = sdk.SpeechConfig.fromSubscription(process.env.SPEECH_KEY, process.env.SPEECH_REGION);
+    const speechConfig: SpeechConfig = SpeechConfig.fromSubscription(process.env.SPEECH_KEY!, process.env.SPEECH_REGION!);
     
-    function fromFile() {
+    function fromFile(): void {
         const filename = "katiesteve.wav";
     
-        let audioConfig = sdk.AudioConfig.fromWavFileInput(fs.readFileSync(filename));
-        let conversationTranscriber = new sdk.ConversationTranscriber(speechConfig, audioConfig);
+        const audioConfig: AudioConfig = AudioConfig.fromWavFileInput(readFileSync(filename));
+        const conversationTranscriber: ConversationTranscriber = new ConversationTranscriber(speechConfig, audioConfig);
     
-        var pushStream = sdk.AudioInputStream.createPushStream();
+        const pushStream = AudioInputStream.createPushStream();
     
-        fs.createReadStream(filename).on('data', function(arrayBuffer) {
-            pushStream.write(arrayBuffer.slice());
+        createReadStream(filename).on('data', function(chunk: string | Buffer) {
+            pushStream.write((chunk as Buffer).slice());
         }).on('end', function() {
             pushStream.close();
         });
@@ -102,6 +118,29 @@ Follow these steps to create a new console application for conversation transcri
    The application recognizes speech from multiple participants in the conversation. Your audio file should contain multiple speakers.
 
 1. To change the speech recognition language, replace `en-US` with another [supported language](/azure/cognitive-services/speech-service/supported-languages). For example, `es-ES` for Spanish (Spain). The default language is `en-US` if you don't specify a language. For details about how to identify one of multiple languages that might be spoken, see [language identification](/azure/cognitive-services/speech-service/language-identification).
+
+1. Create the `tsconfig.json` file to transpile the TypeScript code and copy the following code for ECMAScript.
+
+    ```json
+    {
+        "compilerOptions": {
+          "module": "NodeNext",
+          "target": "ES2022", // Supports top-level await
+          "moduleResolution": "NodeNext",
+          "skipLibCheck": true, // Avoid type errors from node_modules
+          "strict": true // Enable strict type-checking options
+        },
+        "include": ["*.ts"]
+    }
+    ```
+
+1. Transpile from TypeScript to JavaScript.
+
+    ```shell
+    tsc
+    ```
+
+    This command should produce no output if successful.
 
 1. Run your new console application to start speech recognition from a file:
 
