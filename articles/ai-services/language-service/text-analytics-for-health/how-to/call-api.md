@@ -7,7 +7,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/21/2025
+ms.date: 07/17/2025
 ms.author: lajanuar
 ms.custom: language-service-health
 ---
