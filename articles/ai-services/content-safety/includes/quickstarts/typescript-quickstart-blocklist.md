@@ -117,10 +117,6 @@ import ContentSafetyClient, {
   TextBlocklistItem
 } from "@azure-rest/ai-content-safety";
 import { AzureKeyCredential } from "@azure/core-auth";
-import * as dotenv from "dotenv";
-
-// Load the .env file
-dotenv.config();
 
 // Get endpoint and key from environment variables
 const key = process.env.CONTENT_SAFETY_KEY;
