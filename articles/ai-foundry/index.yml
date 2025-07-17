@@ -66,7 +66,7 @@ productDirectory:
     - title: Azure AI Foundry Agent Service
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-agents.png
       links:
-        - url: ../ai-services/agents/index.yml
+        - url: ../ai-services/agents/overview.md
           text: Orchestrate and host AI agents to automate and execute business processes
         - url: ../ai-services/agents/quickstart.md
           text: Create a custom AI agent using Azure AI Foundry Agent Service

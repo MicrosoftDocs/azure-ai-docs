@@ -107,7 +107,7 @@ In addition to the deployment-level content filtering configuration, we now also
 
 The latest GPT model that excels at diverse text and image tasks is now available on Azure OpenAI.
 
-For more information on model capabilities, and region availability see the [models documentation](./concepts/models.md#gpt-45-preview).
+For more information on model capabilities, and region availability see the [models documentation](./concepts/models.md).
 
 ### Stored completions API
 

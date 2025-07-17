@@ -101,6 +101,23 @@ groups:
     title: REST
   - id: programming-language-typescript
     title: TypeScript
+- id: programming-languages-content-safety-3
+# Owner: pafarley - doesn't have Java
+  title: Programming languages
+  prompt: Choose a platform
+  pivots:
+  - id: programming-language-foundry-portal
+    title: Foundry portal
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-rest
+    title: REST
+  - id: programming-language-typescript
+    title: TypeScript
 - id: programming-languages-content-safety-foundry-rest
 # Owner: pafarley
   title: Programming languages
@@ -423,12 +440,87 @@ groups:
     title: Objective-C
   - id: programming-language-python
     title: Python
+  - id: programming-language-swift
+    title: Swift
   - id: programming-language-rest
     title: REST
   - id: programming-language-cli
     title: Speech CLI
+- id: programming-languages-speech-diarization
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a programming language or tool
+  pivots:
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-cpp
+    title: C++
+  - id: programming-language-go
+    title: Go
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-objectivec
+    title: Objective-C
+  - id: programming-language-python
+    title: Python
   - id: programming-language-swift
     title: Swift
+  - id: programming-language-typescript
+    title: TypeScript
+  - id: programming-language-rest
+    title: REST
+- id: programming-languages-speech-translation
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a programming language or tool
+  pivots:
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-cpp
+    title: C++
+  - id: programming-language-go
+    title: Go
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-objectivec
+    title: Objective-C
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-swift
+    title: Swift
+  - id: programming-language-typescript
+    title: TypeScript
+  - id: programming-language-rest
+    title: REST
+- id: programming-languages-text-to-speech
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a programming language or tool
+  pivots:
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-cpp
+    title: C++
+  - id: programming-language-go
+    title: Go
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-objectivec
+    title: Objective-C
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-swift
+    title: Swift
+  - id: programming-language-typescript
+    title: TypeScript
+  - id: programming-language-rest
+    title: REST
 - id: programming-languages-set-thirteen
   title: Programming languages
   prompt: Choose a programming language
@@ -439,13 +531,13 @@ groups:
     title: C++
   - id: programming-language-java
     title: Java
-- id: programming-languages-speech-services-studio
+- id: programming-languages-get-started-transcription
 # Owner: eur
   title: Programming languages
   prompt: Choose a programming language or tool
   pivots:
-  - id: ai-studio
-    title: Portal
+  - id: ai-foundry
+    title: Foundry portal
   - id: programming-language-csharp
     title: C#
   - id: programming-language-cpp
@@ -458,10 +550,10 @@ groups:
     title: JavaScript
   - id: programming-language-python
     title: Python
-  - id: programming-language-cli
-    title: Speech CLI
   - id: programming-language-swift
     title: Swift
+  - id: programming-language-typescript
+    title: TypeScript
   - id: programming-language-rest
     title: REST
 - id: programming-languages-set-twenty-one
@@ -1125,6 +1217,14 @@ groups:
   pivots:
   - id: portal
     title: Azure AI Foundry portal
+  - id: python
+    title: Python
+  - id: rest
+    title: REST API
+- id: selection-mcp-code
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
   - id: python
     title: Python
   - id: rest

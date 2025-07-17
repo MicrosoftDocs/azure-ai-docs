@@ -131,7 +131,7 @@ For demo purposes, the permission field has `retrievable` enabled so that you ca
 
 ## Create a data source
 
-Modify [data source configuration](search-indexer-access-control-lists-and-role-based-access.md#configure-the-data-source) to specify indexer permission ingestion and the types of permission metadata that you want to index.
+Modify [data source configuration](search-indexer-access-control-lists-and-role-based-access.md#create-the-data-source) to specify indexer permission ingestion and the types of permission metadata that you want to index.
 
 A data source needs `indexerPermissionOptions`.
 
@@ -154,7 +154,7 @@ In this tutorial, use a system-assigned managed identity for the authenticated c
 
 ## Create and run the indexer
 
-Indexer configuration for permission ingestion is primarily about defining `fieldMappings` from [permission metadata](search-indexer-access-control-lists-and-role-based-access.md#indexing-permission-metadata).
+Indexer configuration for permission ingestion is primarily about defining `fieldMappings` from [permission metadata](search-indexer-access-control-lists-and-role-based-access.md#).
 
 ```json
 {
