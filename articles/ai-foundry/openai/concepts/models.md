@@ -26,7 +26,6 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 | [GPT-4.1 series](#gpt-41-series) | Latest model release from Azure OpenAI |
 | [model-router](#model-router) | A model that intelligently selects from a set of underlying chat models to respond to a given prompt. |
 | [computer-use-preview](#computer-use-preview) | An experimental model trained for use with the Responses API computer use tool. |
-| [GPT-4.5 Preview](#gpt-45-preview) |The latest GPT model that excels at diverse text and image tasks.  |
 | [o-series models](#o-series-models) |[Reasoning models](../how-to/reasoning.md) with advanced problem-solving and increased focus and capability.  |
 | [GPT-4o & GPT-4o mini & GPT-4 Turbo](#gpt-4o-and-gpt-4-turbo) | The latest most capable Azure OpenAI models with multimodal versions, which can accept both text and images as input. |
 | [GPT-4](#gpt-4) | A set of models that improve on GPT-3.5 and can understand and generate natural language and code. |
@@ -98,24 +97,6 @@ Once access has been granted, you will need to create a deployment for the model
 |  --- |  :--- |:--- |:---|:---: |
 | `computer-use-preview` (2025-03-11)  | Specialized model for use with the [Responses API](../how-to/responses.md) computer use tool <br> <br>-Tools <br>-Streaming<br>-Text(input/output)<br>- Image(input)   | 8,192 | 1,024 | October 2023 |
 
-
-## GPT-4.5 Preview
-
-### Region availability
-
-| Model | Region |
-|---|---|
-| `gpt-4.5-preview` |  See the [models table](#model-summary-table-and-region-availability).|
-
-### Capabilities
-
-|  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
-|  --- |  :--- |:--- |:---|:---: |
-| `gpt-4.5-preview` (2025-02-27) <br> **GPT-4.5 Preview**  | [GPT 4.1](#gpt-41-series) is the recommended replacement for this model. Excels at diverse text and image tasks. <br>- Structured outputs <br>- Prompt caching <br>- Tools <br>- Streaming<br>- Text(input/output)<br>- Image(input)   | 128,000 | 16,384 | October 2023 |
-
-> [!NOTE]
-> It is expected behavior that the model cannot answer questions about itself. If you want to know when the knowledge cutoff for the model's training data is, or other details about the model you should refer to the model documentation above.
-
 ## o-series models
 
 The Azure OpenAI o<sup>&#42;</sup> series models are specifically designed to tackle reasoning and problem-solving tasks with increased focus and capability. These models spend more time processing and understanding the user's request, making them exceptionally strong in areas like science, coding, and math compared to previous iterations.
@@ -173,12 +154,6 @@ GPT-4 Turbo is a large multimodal model (accepting text or image inputs and gene
 
 GPT-4 is the predecessor to GPT-4 Turbo. Both the GPT-4 and GPT-4 Turbo models have a base model name of `gpt-4`. You can distinguish between the GPT-4 and Turbo models by examining the model version.
 
-- `gpt-4` **Version** `0314`
-- `gpt-4` **Version** `0613`
-- `gpt-4-32k` **Version** `0613`
-
-You can see the token context length supported by each model in the [model summary table](#model-summary-table-and-region-availability).
-
 ## GPT-4 and GPT-4 Turbo models
 
 - These models can only be used with the Chat Completion API.
@@ -192,10 +167,6 @@ See [model versions](../concepts/model-versions.md) to learn about how Azure Ope
 |`gpt-4o-mini` (2024-07-18) <br> **GPT-4o mini** | **Latest small GA model** <br> - Fast, inexpensive, capable model ideal for replacing GPT-3.5 Turbo series models. <br> - Text, image processing <br>- JSON Mode <br> - parallel function calling | Input: 128,000 <br> Output: 16,384  | October 2023 |
 |`gpt-4o` (2024-05-13) <br> **GPT-4o (Omni)** | Text, image processing <br> - JSON Mode <br> - parallel function calling <br> - Enhanced accuracy and responsiveness <br> - Parity with English text and coding tasks compared to GPT-4 Turbo with Vision <br> - Superior performance in non-English languages and in vision tasks |Input: 128,000  <br> Output: 4,096| October 2023 |
 | `gpt-4` (turbo-2024-04-09) <br>**GPT-4 Turbo with Vision** | **New GA model** <br> - Replacement for all previous GPT-4 preview models (`vision-preview`, `1106-Preview`, `0125-Preview`). <br> - [**Feature availability**](#gpt-4o-and-gpt-4-turbo) is currently different depending on method of input, and deployment type. | Input: 128,000  <br> Output: 4,096  | Dec 2023 |
-| `gpt-4-32k` (0613) | **Older GA model** <br> - Basic function calling with tools  | 32,768               | Sep 2021         |
-| `gpt-4` (0613)     | **Older GA model** <br> - Basic function calling with tools | 8,192                | Sep 2021         |
-| `gpt-4-32k`(0314)  | **Older GA model** <br> - [Retirement information](./model-retirements.md#current-models) | 32,768               | Sep 2021         |
-| `gpt-4` (0314) | **Older GA model** <br> - [Retirement information](./model-retirements.md#current-models)  | 8,192 | Sep 2021         |
 
 > [!CAUTION]
 > We don't recommend using preview models in production. We will upgrade all deployments of preview models to either future preview versions or to the latest stable GA version. Models that are designated preview don't follow the standard Azure OpenAI model lifecycle.
@@ -413,15 +384,6 @@ This table doesn't include fine-tuning regional availability information.  Consu
 > Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time access to `o1-mini` standard (regional) deployments is not being expanded.
 
 ### GPT-4 and GPT-4 Turbo model availability
-
-#### Select customer access
-
-In addition to the regions above which are available to all Azure OpenAI customers, some select preexisting customers have been granted access to versions of GPT-4 in additional regions:
-
-| Model | Region |  
-|---|:---|  
-| `gpt-4` (0314) <br> `gpt-4-32k` (0314) | East US <br> France Central <br> South Central US <br> UK South |  
-| `gpt-4` (0613) <br> `gpt-4-32k` (0613) | East US <br> East US 2 <br> Japan East <br> UK South |  
 
 ### GPT-3.5 models
 
