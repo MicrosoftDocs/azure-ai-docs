@@ -5,11 +5,11 @@ description: Learn how to set up, create, evaluate, and deploy a prompt flow in 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
-ms.topic: tutorial
+ms.topic: how-to
 author: s-polly
 ms.author: scottpolly
-ms.reviewer: yijunzhang
-ms.date: 10/03/2024
+ms.reviewer: sooryar 
+ms.date: 07/17/2025
 ms.custom:
   - ignite-2023
   - build-2024
@@ -31,6 +31,9 @@ This article walks you through the main user journey of using prompt flow in Azu
 ## Set up a connection
 
 A connection helps securely store and manage secret keys or other sensitive credentials required for interacting with Large Language Models (LLM) and other external tools such as Azure Content Safety. Connection resources are shared with all members in the workspace.
+
+> [!NOTE]
+> Prompt Flow's LLM Node does not support reasoning models like o1 or o3. Please use a Python node to call the models directly if you need to use a reasoning model.
 
 1. To check if you already have an Azure OpenAI connection, select **Prompt flow** from the Azure Machine Learning studio left menu and then select the **Connections** tab on the **Prompt flow** screen.
 
