@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 12/11/2024
+ms.date: 07/17/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
@@ -30,13 +30,13 @@ File search augments agents with knowledge from outside its model, such as propr
 
 ### Supported file types
 
-- [Supported file types](#supported-file-types)
+See [Supported file types](#supported-file-types).
 
 ### Usage support
 
 |Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
-| ✔️  | ✔️ | ✔️ | ✔️ | ✔️ | File upload only | File upload and using  BYO blob storage | 
+| ✔️  | ✔️ | ✔️ | ✔️ | ✔️ | File upload only | File upload and using  bring-your-own blob storage | 
 
 ## Dependency on agent setup
 
@@ -49,9 +49,8 @@ The file search tool has the same functionality as Azure OpenAI Assistants. Micr
 The file search tool uses the Azure AI Search and Azure Blob Storage resources you connected during agent setup. 
 - Uploaded files get stored in your connected Azure Blob Storage account 
 - Vector stores get created using your connected Azure AI Search resource 
-<br> </br>
 
-For both agent setups, Azure OpenAI handles the entire ingestion process, which includes:
+For both agent setups, the service handles the entire ingestion process, which includes:
 - Automatically parsing and chunking documents
 - Generating and storing embeddings
 - Utilizing both vector and keyword searches to retrieve relevant content for user queries. 
@@ -169,7 +168,7 @@ vector_store = project_client.agents.create_vector_store_and_poll(
 
 Vector stores created using thread helpers (like `tool_resources.file_search.vector_stores` in Threads or `message.attachments` in Messages) have a default expiration policy of seven days after they were last active (defined as the last time the vector store was part of a run).
 
-When a vector store expires, the runs on that thread fail.  To fix this issue, you can recreate a new vector_store with the same files and reattach it to the thread.
+When a vector store expires, the runs on that thread fail. To fix this issue, you can recreate a new vector_store with the same files and reattach it to the thread.
 
 ### Supported file types
 
