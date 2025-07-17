@@ -15,6 +15,9 @@ ms.custom: responsible-ml, build-2023
 
 # Use the responsible AI image dashboard (preview)
 
+> [!IMPORTANT]
+> Responsible AI image dashboard is deprecated. Support will end on August 1, 2025. Use the open source [Responsible AI toolkit](https://github.com/microsoft/responsible-ai-toolbox?tab=readme-ov-file) instead.
+
 [Responsible AI (RAI) dashboards](how-to-responsible-ai-dashboard.md) include visualizations and functionality to help you analyze your machine learning model and make data-driven business decisions. The steps to view and configure RAI dashboards are similar across scenarios, but some features are unique to image scenarios. This article describes how to access and configure RAI image dashboard components and functionality.
 
 Responsible AI image dashboards are linked to your registered computer vision models in Azure Machine Learning. The [Responsible AI Vision Insights component](how-to-responsible-ai-vision-insights.md) supports image classification and object detection scenarios.

@@ -17,9 +17,12 @@ ms.custom: responsible-ml, build-2023, devx-track-python
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
+> [!IMPORTANT]
+> Responsible AI image dashboard is deprecated. Support will end on August 1, 2025. Use the open source [Responsible AI toolkit](https://github.com/microsoft/responsible-ai-toolbox?tab=readme-ov-file) instead.
+
 The [Responsible AI (RAI) dashboard](concept-responsible-ai-dashboard.md) brings together several RAI tools in a single interface to help inform data-driven decisions about your models. Understanding computer vision models can be different from assessing tabular or text data. RAI dashboard model debugging and visualizations now support image data.
 
-The Responsible AI text dashboard provides several mature RAI tools in the areas of model performance, data exploration, and model interpretability. The dashboard supports holistic assessment and debugging of computer vision models, leading to informed mitigations for fairness issues and transparency across stakeholders to build trust.
+The Responsible AI image dashboard provides several mature RAI tools in the areas of model performance, data exploration, and model interpretability. The dashboard supports holistic assessment and debugging of computer vision models, leading to informed mitigations for fairness issues and transparency across stakeholders to build trust.
 
 This article describes the Responsible AI vision insights component and how to use it in a pipeline job to generate a Responsible AI image dashboard. The following sections provide specifications and requirements for the vision insights component and example code snippets in YAML and Python. To view the full code, see the [sample YAML and Python notebooks for Responsible AI](https://github.com/Azure/azureml-examples/tree/main/sdk/python/responsible-ai).
 

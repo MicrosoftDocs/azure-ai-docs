@@ -15,6 +15,9 @@ ms.custom: responsible-ml, build-2023
 
 # Use the responsible AI text dashboard (preview)
 
+> [!IMPORTANT]
+> Responsible AI text dashboard is deprecated. Support will end on August 1, 2025. Use the open source [Responsible AI toolkit](https://github.com/microsoft/responsible-ai-toolbox?tab=readme-ov-file) instead.
+
 The [Responsible AI (RAI) dashboard](concept-responsible-ai-dashboard.md) brings together several RAI tools in a single interface to help inform data-driven decisions about your models. Understanding natural language processing (NLP) models can be different from assessing tabular data. RAI dashboard debugging and visualizations now support text data.
 
 The Responsible AI text dashboard is a customizable, interoperable toolbox where you can select components to perform model assessment and debugging. This article describes how to access and configure RAI text dashboard components and functionality.
