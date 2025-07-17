@@ -16,10 +16,10 @@ ms.author: eur
 
 ## Set up
 
-1. Create a new folder `translation-quickstart` and go to the quickstart folder with the following command:
+1. Create a new folder `synthesis-quickstart` and go to the quickstart folder with the following command:
 
     ```shell
-    mkdir translation-quickstart && cd translation-quickstart
+    mkdir synthesis-quickstart && cd synthesis-quickstart
     ```
     
 1. Create the `package.json` with the following command:
