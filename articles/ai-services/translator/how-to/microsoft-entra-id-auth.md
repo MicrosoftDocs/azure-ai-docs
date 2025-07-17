@@ -36,7 +36,7 @@ Before you get started, you need an Azure account and an Azure AI services subsc
 > [!IMPORTANT]
 > [Regional endpoints](../../cognitive-services-custom-subdomains.md#is-there-a-list-of-regional-endpoints) don't support Microsoft Entra authentication.
 
-* curl command line tool installed.
+* cURL command-line tool installed.
 
 * **PowerShell version 7.*+** (or a similar command-line application.):
   * [Windows](/powershell/scripting/install/installing-powershell-on-windows)
