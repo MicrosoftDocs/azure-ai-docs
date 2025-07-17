@@ -10,7 +10,7 @@ items:
       href: how-to/develop/sdk-overview.md
     - name: Ask the Foundry agent
       href: foundry-agent/ask-foundry-agent.md
-- name: Azure AI Foundry Models
+- name: Models
   items:
   - name: Explore Foundry Models
     href: concepts/foundry-models-overview.md
@@ -420,7 +420,7 @@ items:
           href: ./responsible-ai/openai/customer-copyright-commitment.md
   - name: Foundry Models FAQ
     href: faq.yml
-- name: Azure AI services
+- name: AI services
   items:
   - name: Use Azure AI services in Azure AI Foundry portal
     href: ../ai-services/connect-services-ai-foundry-portal.md?context=/azure/ai-foundry/context/context
@@ -537,14 +537,10 @@ items:
         href: /azure/ai-services/computer-vision/concept-face-recognition?context=/azure/ai-foundry/context/context
       - name: Liveness detection tutorial
         href: /azure/ai-services/computer-vision/tutorials/liveness?context=/azure/ai-foundry/context/context
+- name: Agent Service
+  href: agents/toc.yml
 - name: Solutions
   items:
-  - name: Agents
-    items:
-    - name: What is Azure AI Foundry Agent Service
-      href: ../ai-services/agents/overview.md?context=/azure/ai-foundry/context/context
-    - name: "Quickstart: Create a new agent"
-      href: ../ai-services/agents/quickstart.md?context=/azure/ai-foundry/context/context
   - name: Azure AI Search for RAG
     items:
     - name: Retrieval Augmented Generation (RAG) overview
@@ -927,8 +923,28 @@ items:
     href: openai/concepts/system-message.md?context=/azure/ai-foundry/context/context
 - name: SDK + API Reference
   items:
-  - name: Azure AI Projects SDK
-    href: /python/api/overview/azure/ai-projects-readme
+  - name: Azure AI Projects
+    items:
+    - name: C#
+      href: /dotnet/api/overview/azure/ai.projects-readme
+    - name: JavaScript
+      href: /javascript/api/overview/azure/ai-projects-readme
+    - name: Python
+      href: /python/api/overview/azure/ai-projects-readme
+    - name: REST API
+      href: /rest/api/aifoundry/aiprojects/
+  - name: Agent Service
+    items:
+      - name: C#
+        href: /dotnet/api/overview/azure/ai.agents.persistent-readme
+      - name: JavaScript
+        href: /javascript/api/overview/azure/ai-projects-readme
+      - name: Python
+        href: /python/api/overview/azure/ai-projects-readme
+      - name: REST API
+        href: /rest/api/aifoundry/aiagents 
+      - name: Data monitoring reference
+        href: agents/reference/monitor-service.md
   - name: Azure AI Evaluation SDK
     href: /python/api/overview/azure/ai-evaluation-readme
   - name: Azure Machine Learning Python SDK
