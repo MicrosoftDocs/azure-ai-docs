@@ -335,9 +335,7 @@ All deployments can perform the exact same inference operations, however the bil
 [!INCLUDE [Standard Global](../includes/model-matrix/standard-global.md)]
 
 > [!NOTE]
-> `o1-mini` is currently available to all customers for global standard deployment.
->
-> Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time access to `o1-mini` standard (regional) deployments is not being expanded.
+> `o3-deep-research` is currently only available with Azure AI Foundry Agent Service. To learn more, see the [Deep Research tool guidance](/azure/ai-foundry/agents/how-to/tools/deep-research).
 
 # [Global Provisioned Managed](#tab/global-ptum)
 
