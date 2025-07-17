@@ -73,6 +73,8 @@ You need to prepare the input data for the image classification pipeline.
 
 Fashion MNIST is a dataset of fashion images divided into 10 classes. Each image is a 28 x 28 grayscale image. There are 60,000 training images and 10,000 test images.
 
+[!notebook-python[] (~/azureml-examples-main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet/image_classification_keras_minist_convnet.ipynb?name=define-input)]
+
 ```python
 from azure.ai.ml import Input
 from azure.ai.ml.constants import AssetTypes
