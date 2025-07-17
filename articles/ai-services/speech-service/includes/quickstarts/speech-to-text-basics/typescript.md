@@ -125,7 +125,7 @@ To transcribe speech from a file:
 1. Transpile from TypeScript to JavaScript.
 
     ```shell
-    npx tsc --noEmit
+    tsc
     ```
 
     This command should produce no output if successful.
