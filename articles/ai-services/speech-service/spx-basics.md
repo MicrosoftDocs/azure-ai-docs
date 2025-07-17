@@ -214,11 +214,84 @@ spx synthesize --text "Bienvenue chez moi." --voice fr-FR-AlainNeural --speakers
 
 ## Speech to text translation
 
-With the Speech CLI, you can also do speech to text translation. Run the following command to capture audio from your default microphone and output the translation as text. Keep in mind that you need to supply the `source` and `target` language with the `translate` command.
+> [!TIP]
+> If you get stuck or want to learn more about the Speech CLI translation options, you can run ```spx help translate```.
+
+### Translate speech from a microphone
+
+1. Run the following command to start speech translation from a microphone:
+
+   ```console
+   spx translate --source en-US --target it --microphone
+   ```
+
+1. Speak into the microphone, and you see the transcription of your translated speech in real-time. The Speech CLI stops after a period of silence, 30 seconds, or when you select **Ctrl**+**C**.
+
+   ```output
+   Connection CONNECTED...
+   TRANSLATING into 'it': Sono (from 'I'm')
+   TRANSLATING into 'it': Sono entusiasta (from 'I'm excited to')
+   TRANSLATING into 'it': Sono entusiasta di provare la parola (from 'I'm excited to try speech')
+   TRANSLATED into 'it': Sono entusiasta di provare la traduzione vocale. (from 'I'm excited to try speech translation.')
+   ```
+
+> [!NOTE]
+> You can't use your computer's microphone when you run the Speech CLI within a Docker container. However, you can read from and save audio files in your local mounted directory. 
+
+### Translate speech from a file
+
+To translate speech from an audio file, use `--file` instead of `--microphone`. For compressed audio files such as MP4, install GStreamer and use `--format`. For more information, see [How to use compressed input audio](~/articles/ai-services/speech-service/how-to-use-codec-compressed-audio-input-streams.md).
+
+# [Terminal](#tab/terminal)
 
 ```console
-spx translate --microphone --source en-US --target ru-RU
+spx translate --source en-US --target it --file YourAudioFile.wav
+spx translate --source en-US --target it --file YourAudioFile.mp4 --format any
 ```
+
+# [PowerShell](#tab/powershell)
+
+```powershell
+spx translate --source en-US --target it --file YourAudioFile.wav
+spx translate --source en-US --target it --file YourAudioFile.mp4 --format any
+```
+
+***
+
+### Phrase lists
+To improve recognition accuracy of specific words or utterances, use a [phrase list](~/articles/ai-services/speech-service/improve-accuracy-phrase-list.md). You include a phrase list in-line or with a text file along with the `translate` command:
+
+# [Terminal](#tab/terminal)
+
+```console
+spx translate --source en-US --target it --microphone --phrases "Contoso;Jessie;Rehaan;"
+spx translate --source en-US --target it --microphone --phrases @phrases.txt
+```
+
+# [PowerShell](#tab/powershell)
+
+```powershell
+spx --% translate --source en-US --target it --microphone --phrases "Contoso;Jessie;Rehaan;"
+spx --% translate --source en-US --target it --microphone --phrases @phrases.txt
+
+```
+
+***
+
+### Language support
+To change the speech recognition language, replace `en-US` with another [supported language](~/articles/ai-services/speech-service/language-support.md?tabs=stt#supported-languages). Specify the full locale with a dash (`-`) separator. For example, `es-ES` for Spanish (Spain). The default language is `en-US` if you don't specify a language.
+
+```console
+spx translate --microphone --source es-ES
+```
+
+To change the translation target language, replace `it` with another [supported language](~/articles/ai-services/speech-service/language-support.md?tabs=speech-translation#supported-languages). With few exceptions you only specify the language code that precedes the locale dash (`-`) separator. For example, use `es` for Spanish (Spain) instead of `es-ES`. The default language is `en` if you don't specify a language.
+
+```console
+spx translate --microphone --target es
+```
+
+### Multiple target languages
 
 When you're translating into multiple languages, separate the language codes with a semicolon (`;`).
 
@@ -226,14 +299,22 @@ When you're translating into multiple languages, separate the language codes wit
 spx translate --microphone --source en-US --target 'ru-RU;fr-FR;es-ES'
 ```
 
+### Save translation output
+
 If you want to save the output of your translation, use the `--output` flag. In this example, you also read from a file.
 
 ```console
 spx translate --file /some/file/path/input.wav --source en-US --target ru-RU --output file /some/file/path/russian_translation.txt
 ```
 
-> [!TIP]
-> If you get stuck or want to learn more about the Speech CLI recognition options, you can run ```spx help translate```.
+### Continuous translation
+
+For continuous translation of audio longer than 30 seconds, append `--continuous`:
+
+```console
+spx translate --source en-US --target it --microphone --continuous
+```
+
 
 
 ## Next steps
