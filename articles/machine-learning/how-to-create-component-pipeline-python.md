@@ -75,16 +75,6 @@ Fashion MNIST is a dataset of fashion images divided into 10 classes. Each image
 
 [!notebook-python[] (~/azureml-examples-main/sdk/python/jobs/pipelines/2e_image_classification_keras_minist_convnet/image_classification_keras_minist_convnet.ipynb?name=define-input)]
 
-```python
-from azure.ai.ml import Input
-from azure.ai.ml.constants import AssetTypes
-
-# Create input data reference
-fashion_ds = Input(
-    type=AssetTypes.URI_FOLDER,
-    path="azureml://datastores/workspaceblobstore/paths/sample_data/fashion_mnist"
-)
-```
 
 By defining an `Input`, you create a reference to the data source location. The data remains in its existing location, so no extra storage cost is incurred.
 
