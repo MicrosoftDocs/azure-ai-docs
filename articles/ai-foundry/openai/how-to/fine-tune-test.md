@@ -52,7 +52,7 @@ deploy_params = {'api-version': "2024-10-21"}
 deploy_headers = {'Authorization': 'Bearer {}'.format(token), 'Content-Type': 'application/json'}
 
 deploy_data = {
-    "sku": {"name": "developer", "capacity": 50}, 
+    "sku": {"name": "developertier", "capacity": 50},
     "properties": {
         "model": {
             "format": "OpenAI",
@@ -94,7 +94,7 @@ curl -X POST "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resource
   -H "Authorization: Bearer <TOKEN>" \
   -H "Content-Type: application/json" \
   -d '{
-    "sku": {"name": "developer", "capacity": 50},
+    "sku": {"name": "developertier", "capacity": 50},
     "properties": {
         "model": {
             "format": "OpenAI",
