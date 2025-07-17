@@ -101,6 +101,23 @@ groups:
     title: REST
   - id: programming-language-typescript
     title: TypeScript
+- id: programming-languages-content-safety-3
+# Owner: pafarley - doesn't have Java
+  title: Programming languages
+  prompt: Choose a platform
+  pivots:
+  - id: programming-language-foundry-portal
+    title: Foundry portal
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-rest
+    title: REST
+  - id: programming-language-typescript
+    title: TypeScript
 - id: programming-languages-content-safety-foundry-rest
 # Owner: pafarley
   title: Programming languages
@@ -455,6 +472,31 @@ groups:
   - id: programming-language-rest
     title: REST
 - id: programming-languages-speech-translation
+# Owner: eur
+  title: Programming languages
+  prompt: Choose a programming language or tool
+  pivots:
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-cpp
+    title: C++
+  - id: programming-language-go
+    title: Go
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-objectivec
+    title: Objective-C
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-swift
+    title: Swift
+  - id: programming-language-typescript
+    title: TypeScript
+  - id: programming-language-rest
+    title: REST
+- id: programming-languages-text-to-speech
 # Owner: eur
   title: Programming languages
   prompt: Choose a programming language or tool
