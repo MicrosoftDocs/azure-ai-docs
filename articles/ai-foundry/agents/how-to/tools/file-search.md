@@ -166,7 +166,7 @@ Vector stores created using thread helpers (like `tool_resources.file_search.vec
 
 When a vector store expires, the runs on that thread fail. To fix this issue, you can recreate a new vector_store with the same files and reattach it to the thread.
 
-### Supported file types
+## Supported file types
 
 > [!NOTE]
 > For text/ MIME types, the encoding must be either utf-8, utf-16, or ASCII.
