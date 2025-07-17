@@ -465,14 +465,9 @@ ml_client.create_or_update(store)
 # [Python SDK: Service principal](#tab/sdk-onelake-sp)
 
 ```python
-from azure.ai.ml.entities import AzureDataLakeGen1Datastore
-from azure.ai.ml.entities._datastore.credentials import ServicePrincipalCredentials
+from azure.ai.ml.entities import AzureDataLakeGen1Datastore, ServicePrincipalConfiguration
 from azure.ai.ml import MLClient
-
-ml_client = MLClient.from_config()
-
-rom azure.ai.ml.entities import OneLakeDatastore, OneLakeArtifact
-from azure.ai.ml import MLClient
+from azure.ai.ml.entities import OneLakeDatastore, OneLakeArtifact
 
 ml_client = MLClient.from_config()
 
@@ -485,7 +480,7 @@ store = OneLakeDatastore(
     name="cccccccc-8888-9999-0000-dddddddddddd/Files", #{your_one_lake_artifact_guid}/Files
     type="lake_house"
     )
-    credentials=ServicePrincipalCredentials(
+    credentials=ServicePrincipalConfiguration(
         tenant_id= "bbbbcccc-1111-dddd-2222-eeee3333ffff",
         client_id= "44445555-eeee-6666-ffff-7777aaaa8888",
         client_secret= "Cc3Dd~4Ee5.-Ff6Gg7Hh8Ii9Jj0Kk1_Ll2Mm3Nn4",
