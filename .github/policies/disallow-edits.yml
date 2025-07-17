@@ -28,14 +28,16 @@ configuration:
               matchAny: true
               pattern: articles/ai-foundry/responsible-ai/*
           - not:
-              activitySenderHasAssociation:
-                association: Member
+              or:
+                - activitySenderHasAssociation:
+                    association: Member
+                - isActivitySender:
+                    user: learn-build-service-prod[bot]
         then:
           - addReply:
               reply: >-
                 @${issueAuthor} - Pull requests that modify files in this folder aren't accepted from public contributors.
           - closePullRequest
-
 
       - description: \@mention specific people when a PR is opened in the "ai-foundry/responsible-ai" folder.
         if:
