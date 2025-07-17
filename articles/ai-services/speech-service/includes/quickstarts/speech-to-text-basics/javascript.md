@@ -47,33 +47,41 @@ To transcribe speech from a file:
 1. Create a new file named *transcription.js* with the following content:
 
     ```javascript
-    import { readFileSync } from "fs";
-    import { SpeechConfig, AudioConfig, SpeechRecognizer, ResultReason, CancellationDetails, CancellationReason } from "microsoft-cognitiveservices-speech-sdk";
+    import { readFileSync, createReadStream } from "fs";
+    import { SpeechConfig, AudioConfig, ConversationTranscriber, AudioInputStream } from "microsoft-cognitiveservices-speech-sdk";
     // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
     const speechConfig = SpeechConfig.fromSubscription(process.env.SPEECH_KEY, process.env.SPEECH_REGION);
-    speechConfig.speechRecognitionLanguage = "en-US";
     function fromFile() {
-        const audioConfig = AudioConfig.fromWavFileInput(readFileSync("YourAudioFile.wav"));
-        const speechRecognizer = new SpeechRecognizer(speechConfig, audioConfig);
-        speechRecognizer.recognizeOnceAsync((result) => {
-            switch (result.reason) {
-                case ResultReason.RecognizedSpeech:
-                    console.log(`RECOGNIZED: Text=${result.text}`);
-                    break;
-                case ResultReason.NoMatch:
-                    console.log("NOMATCH: Speech could not be recognized.");
-                    break;
-                case ResultReason.Canceled:
-                    const cancellation = CancellationDetails.fromResult(result);
-                    console.log(`CANCELED: Reason=${cancellation.reason}`);
-                    if (cancellation.reason === CancellationReason.Error) {
-                        console.log(`CANCELED: ErrorCode=${cancellation.ErrorCode}`);
-                        console.log(`CANCELED: ErrorDetails=${cancellation.errorDetails}`);
-                        console.log("CANCELED: Did you set the speech resource key and region values?");
-                    }
-                    break;
-            }
-            speechRecognizer.close();
+        const filename = "katiesteve.wav";
+        const audioConfig = AudioConfig.fromWavFileInput(readFileSync(filename));
+        const conversationTranscriber = new ConversationTranscriber(speechConfig, audioConfig);
+        const pushStream = AudioInputStream.createPushStream();
+        createReadStream(filename).on('data', function (chunk) {
+            pushStream.write(chunk.slice());
+        }).on('end', function () {
+            pushStream.close();
+        });
+        console.log("Transcribing from: " + filename);
+        conversationTranscriber.sessionStarted = function (s, e) {
+            console.log("SessionStarted event");
+            console.log("SessionId:" + e.sessionId);
+        };
+        conversationTranscriber.sessionStopped = function (s, e) {
+            console.log("SessionStopped event");
+            console.log("SessionId:" + e.sessionId);
+            conversationTranscriber.stopTranscribingAsync();
+        };
+        conversationTranscriber.canceled = function (s, e) {
+            console.log("Canceled event");
+            console.log(e.errorDetails);
+            conversationTranscriber.stopTranscribingAsync();
+        };
+        conversationTranscriber.transcribed = function (s, e) {
+            console.log("TRANSCRIBED: Text=" + e.result.text + " Speaker ID=" + e.result.speakerId);
+        };
+        // Start conversation transcription
+        conversationTranscriber.startTranscribingAsync(function () { }, function (err) {
+            console.trace("err - starting transcription: " + err);
         });
     }
     fromFile();
