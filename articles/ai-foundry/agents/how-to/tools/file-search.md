@@ -26,11 +26,7 @@ File search augments agents with knowledge from outside its model, such as propr
 
 ### File sources  
 - Upload local files 
-- Azure Blob Storage 
-
-### Supported file types
-
-See [Supported file types](#supported-file-types).
+- Azure Blob Storage
 
 ### Usage support
 
