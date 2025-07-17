@@ -13,7 +13,7 @@ ms.author: admayber
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-Indexing documents, along with their associated [Access Control Lists (ACLs)](/azure/storage/blobs/data-lake-storage-access-control) and container [Role-Based Access Control (RBAC) roles](/azure/role-based-access-control/overview), into an Azure AI Search index via the [push REST APIs](/rest/api/searchservice/documents/?view=rest-searchservice-2025-05-01-preview&preserve-view=true) preserves document-level permission on indexed content. 
+Indexing documents, along with their associated [Access Control Lists (ACLs)](/azure/storage/blobs/data-lake-storage-access-control) and container [Role-Based Access Control (RBAC) roles](/azure/role-based-access-control/overview), into an Azure AI Search index via the [push REST APIs](/rest/api/searchservice/documents/?view=rest-searchservice-2025-05-01-preview&preserve-view=true) preserves document-level permission on indexed content at query time. 
 
 Key features include:
 
@@ -29,7 +29,7 @@ This article explains how to use the push REST API to index document-level permi
 
 - Preview REST API version [2025-05-01-preview](/rest/api/searchservice/documents/?view=rest-searchservice-2025-05-01-preview&preserve-view=true) or a preview Azure SDK package providing equivalent features.
 
-- An index schema with a `permissionFilterOption` enabled, plus `permissionFilter` field attributes that hold the RBAC or ACL metadata.
+- An index schema with a `permissionFilterOption` enabled, plus `permissionFilter` field attributes that store the permissions associated with the document.
 
 ## Limitations
 
@@ -39,7 +39,7 @@ This article explains how to use the push REST API to index document-level permi
 
 - A preexisting field can't be converted into a `permissionFilter` field type for use with built-in ACLs or RBAC metadata filtering. To enable filtering on an existing index, new fields must be created with the correct permission filter type.
 
-- Only one field of each `permissionFilter` type (one each of `groupIds`, `usersIds`, and `rbacScope`), can exist in an index.
+- Only one field of each `permissionFilter` type (one each of `groupIds`, `usersIds`, and `rbacScope`) can exist in an index.
 
 ## Create an index with permission filter fields
 
