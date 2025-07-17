@@ -10,6 +10,7 @@ ms.topic: reference
 author: likebupt
 ms.author: keli19
 ms.date: 03/19/2021
+ms.custom: sfi-image-nochange
 ---
 
 # Train PyTorch Model

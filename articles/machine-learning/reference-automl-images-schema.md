@@ -8,8 +8,8 @@ ms.subservice: automl
 ms.custom:  update-code, devx-track-python
 ms.topic: reference
 ms.reviewer: None
-ms.author: ssalgado
-author: ssalgadodev
+ms.author: scottpolly
+author: s-polly
 ms.date: 09/09/2022
 ---
 

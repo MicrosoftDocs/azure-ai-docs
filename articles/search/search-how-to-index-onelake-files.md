@@ -6,11 +6,13 @@ author: gmndrg
 ms.author: gimondra
 manager: nitinme
 ms.service: azure-ai-search
+ms.topic: how-to
+ms.date: 05/08/2025
 ms.custom:
   - build-2024
   - ignite-2024
-ms.topic: how-to
-ms.date: 05/08/2025
+  - sfi-image-nochange
+  - sfi-ropc-nochange
 ---
 
 # Index data from OneLake files and shortcuts

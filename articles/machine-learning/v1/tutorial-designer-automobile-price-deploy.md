@@ -3,14 +3,17 @@ title: Use Designer to Deploy No-Code Models
 titleSuffix: Azure Machine Learning
 description: Learn how to deploy a machine learning model to predict car prices with the Azure Machine Learning designer.
 ms.reviewer: None
-author: lgayhardt
-ms.author: lagayhar
+author: s-polly
+ms.author: scottpolly
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: tutorial
 ms.date: 06/09/2025
-ms.custom: UpdateFrequency5, designer
+ms.custom:
+  - UpdateFrequency5
+  - designer
+  - sfi-image-nochange
 ---
 
 # Tutorial: Deploy a machine learning model using designer

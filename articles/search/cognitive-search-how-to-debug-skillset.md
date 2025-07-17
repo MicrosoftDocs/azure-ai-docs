@@ -7,10 +7,11 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: how-to
 ms.date: 05/08/2025
+ms.custom:
+  - ignite-2023
+  - sfi-image-nochange
 ---
 
 # Debug an Azure AI Search skillset in Azure portal

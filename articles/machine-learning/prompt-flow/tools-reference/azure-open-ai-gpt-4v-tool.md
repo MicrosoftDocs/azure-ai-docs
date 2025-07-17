@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
 ms.topic: reference
-author: lgayhardt
-ms.author: lagayhar
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: keli19
 ms.date: 01/02/2024
 ---

@@ -65,12 +65,12 @@ Not every model is available in the regions supported by the responses API. Chec
 > - Images can't be uploaded as a file and then referenced as input. Coming soon.
 >
 > There's a known issue with the following:
-> - PDF as an input file is not yet supported.
+> - PDF as an input file [is now supported](), but setting file upload purpose to `user_data` is not currently supported.
 > - Performance when background mode is used with streaming. The issue is expected to be resolved soon.
 
 ### Reference documentation
 
-- [Responses API reference documentation](/azure/ai-services/openai/reference-preview-latest?#responses-api---create)
+- [Responses API reference documentation](/azure/ai-services/openai/reference-preview-latest?#create-response)
 
 ## Getting started with the responses API
 
@@ -694,6 +694,181 @@ response = client.responses.create(
 print(response)
 ```
 
+## File input
+
+Models with vision capabilities support PDF input. PDF files can be provided either as Base64-encoded data or as file IDs. To help models interpret PDF content, both the extracted text and an image of each page are included in the model’s context. This is useful when key information is conveyed through diagrams or non-textual content.
+
+> [!NOTE]
+> - All extracted text and images are put into the model's context. Make sure you understand the pricing and token usage implications of using PDFs as input.
+>
+> - You can upload up to 100 pages and 32MB of total content in a single request to the API, across multiple file inputs.
+>
+> - Only models that support both text and image inputs, such as `gpt-4o`, `gpt-4o-mini`, or `o1`, can accept PDF files as input.
+>
+> - A `purpose` of `user_data` is currently not supported. As a temporary workaround you will need to set purpose to `assistants`.
+
+### Convert PDF to Base64 and analyze
+
+
+
+```python
+import base64
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = AzureOpenAI(  
+  base_url = "https://YOUR-RESOURCE=NAME.openai.azure.com/openai/v1/",
+  azure_ad_token_provider=token_provider,
+  api_version="preview"
+)
+
+with open("PDF-FILE-NAME.pdf", "rb") as f: # assumes PDF is in the same directory as the executing script
+    data = f.read()
+
+base64_string = base64.b64encode(data).decode("utf-8")
+
+response = client.responses.create(
+    model="gpt-4o-mini", # model deployment name
+    input=[
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "input_file",
+                    "filename": "PDF-FILE-NAME.pdf",
+                    "file_data": f"data:application/pdf;base64,{base64_string}",
+                },
+                {
+                    "type": "input_text",
+                    "text": "Summarize this PDF",
+                },
+            ],
+        },
+    ]
+)
+
+print(response.output_text)
+```
+
+### Upload PDF and analyze
+
+Upload the PDF file. A `purpose` of `user_data` is currently not supported. As a workaround you will need to set purpose to `assistants`.
+
+```python
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = AzureOpenAI(
+  azure_endpoint = "https://YOUR-RESOURCE=NAME.openai.azure.com/", 
+  azure_ad_token_provider=token_provider,
+  api_version="2024-10-21"
+)
+
+
+# Upload a file with a purpose of "assistants"
+file = client.files.create(
+  file=open("nucleus_sampling.pdf", "rb"), # This assumes a .pdf file in the same directory as the executing script
+  purpose="assistants"
+)
+
+print(file.model_dump_json(indent=2))
+file_id = file.id
+```
+
+**Output:**
+
+```
+{
+  "id": "assistant-KaVLJQTiWEvdz8yJQHHkqJ",
+  "bytes": 4691115,
+  "created_at": 1752174469,
+  "filename": "nucleus_sampling.pdf",
+  "object": "file",
+  "purpose": "assistants",
+  "status": "processed",
+  "expires_at": null,
+  "status_details": null
+}
+```
+
+You will then take the value of the `id` and pass that to a model for processing under `file_id`:
+
+```python
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = AzureOpenAI(  
+  base_url = "https://YOUR-RESOURCE=NAME.openai.azure.com/openai/v1",
+  azure_ad_token_provider=token_provider,
+  api_version="preview"
+)
+
+
+response = client.responses.create(
+    model="gpt-4o-mini",
+    input=[
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "input_file",
+                    "file_id":"assistant-KaVLJQTiWEvdz8yJQHHkqJ"
+                },
+                {
+                    "type": "input_text",
+                    "text": "Summarize this PDF",
+                },
+            ],
+        },
+    ]
+)
+
+print(response.output_text)
+```
+
+```bash
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/files?api-version=2024-10-21 \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -F purpose="assistants" \
+  -F file="@your_file.pdf" \
+
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -d '{
+        "model": "gpt-4.1",
+        "input": [
+            {
+                "role": "user",
+                "content": [
+                    {
+                        "type": "input_file",
+                        "file_id": "assistant-123456789"
+                    },
+                    {
+                        "type": "input_text",
+                        "text": "ASK SOME QUESTION RELATED TO UPLOADED PDF"
+                    }
+                ]
+            }
+        ]
+    }'
+```
+
+
+
 ## Using remote MCP servers
 
 You can extend the capabilities of your model by connecting it to tools hosted on remote Model Context Protocol (MCP) servers. These servers are maintained by developers and organizations and expose tools that can be accessed by MCP-compatible clients, such as the Responses API.
@@ -963,7 +1138,7 @@ while response.status in {"queued", "in_progress"}:
 print(f"Final status: {response.status}\nOutput:\n{response.output_text}")
 ```
 
-You can cancel an in-progress background task using the cancel endpoint. Canceling is idempotent—subsequent calls will return the final response object.
+You can cancel an in-progress background task using the `cancel` endpoint. Canceling is idempotent—subsequent calls will return the final response object.
 
 ```bash
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_1234567890/cancel?api-version=preview \

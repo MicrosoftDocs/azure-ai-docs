@@ -8,7 +8,7 @@ ms.custom:
 - build-2025
 - references_regions
 ms.topic: how-to
-ms.date: 04/04/2025
+ms.date: 07/16/2025
 ms.reviewer: changliu2
 ms.author: lagayhar
 author: lgayhardt
@@ -20,9 +20,7 @@ author: lgayhardt
 
 AI agents are powerful productivity assistants that can create workflows for business needs. However, observability can be a challenge, due to their complex interaction patterns. In this article, you learn how to run built-in evaluators locally on simple agent data or agent messages.
 
-To build production-ready agentic applications and enable observability and transparency, developers need tools to assess not just the final output from an agent's workflows, but the quality and efficiency of the workflows themselves. For example, consider a typical agentic workflow:
-
-:::image type="content" source="../../media/evaluations/agent-workflow-evaluation.gif" alt-text="Animation of the agent's workflow that shows a user query, intent resolution, tool calls, and the final response." lightbox="../../media/evaluations/agent-workflow-evaluation.gif":::
+To build production-ready agentic applications and enable observability and transparency, developers need tools to assess not just the final output from an agent's workflows, but the quality and efficiency of the workflows themselves.
 
 An event like a user querying "weather tomorrow" triggers an agentic workflow. To produce a final response, the agentic workflow runs multiple steps that include reasoning through user intents, tool calling, and utilizing retrieval-augmented generation. In this process, it's crucial to evaluate each step of the workflow, and the quality and safety of the final output. We formulate these evaluation aspects into the following evaluators for agents:
 
@@ -30,7 +28,7 @@ An event like a user querying "weather tomorrow" triggers an agentic workflow. T
 - [Tool call accuracy](https://aka.ms/toolcallaccuracy-sample): Measures whether the agent made the correct function tool calls to a user's request.
 - [Task adherence](https://aka.ms/taskadherence-sample): Measures whether the agent's final response adheres to its assigned tasks, according to its system message and prior steps.
 
-You can also assess other quality and safety aspects of your agentic workflows, by using our comprehensive suite of built-in evaluators. In general, agents emit agent messages. Transforming agent messages into the right evaluation data so that you can use our evaluators can be a nontrivial task. If you use [Azure AI Foundry Agent Service](../../../ai-services/agents/overview.md) to build your agent, you can [seamlessly evaluate it via our converter support](#evaluate-azure-ai-agents). If you build your agent outside Azure AI Foundry Agent Service, you can still use our evaluators as appropriate to your agentic workflow, by parsing your agent messages into the [required data formats](./evaluate-sdk.md#data-requirements-for-built-in-evaluators). See examples in [Evaluate other agents](#evaluating-other-agents).
+You can also assess other quality and safety aspects of your agentic workflows, using our comprehensive suite of built-in evaluators. In general, agents emit agent messages. Transforming agent messages into the right evaluation data to use our evaluators can be a nontrivial task. If you build your agent using [Foundry Agent Service](../../../ai-services/agents/overview.md), you can [seamlessly evaluate it via our converter support](#evaluate-azure-ai-agents). If you build your agent outside of Foundry Agent Service, you can still use our evaluators as appropriate to your agentic workflow, by parsing your agent messages into the [required data formats](./evaluate-sdk.md#data-requirements-for-built-in-evaluators). See examples in [Evaluating other agents](#evaluating-other-agents).
 
 ## Get started
 
@@ -42,31 +40,25 @@ pip install azure-ai-evaluation
 
 ## Evaluate Azure AI agents
 
-If you use [Azure AI Foundry Agent Service](../../../ai-services/agents/overview.md), you can seamlessly evaluate your agents via our converter support for Azure AI agent threads and runs. We support this list of evaluators for Azure AI agent messages from our converter:
+If you use [Foundry Agent Service](../../../ai-services/agents/overview.md), you can seamlessly evaluate your agents via our converter support for Azure AI agent threads and runs. We support this list of evaluators for Azure AI agent messages from our converter:
+
+### Evaluators supported for evaluation data converter
 
 - Quality: `IntentResolution`, `ToolCallAccuracy`, `TaskAdherence`, `Relevance`, `Coherence`, `Fluency`
-- Safety: `CodeVulnerabilities`, `Violence`, `Self-harm`, `Sexual`, `HateUnfairness`, `IndirectAttack`, `ProtectedMaterials`
+- Safety: `CodeVulnerabilities`, `Violence`, `Self-harm`, `Sexual`, `HateUnfairness`, `IndirectAttack`, `ProtectedMaterials`.
 
 > [!NOTE]
-> `ToolCallAccuracyEvaluator` supports only the Function Tool evaluation of the Azure AI Agent, and doesn't support the Built-in Tool evaluation. The agent messages must have at least one Function Tool actually called to be evaluated.
+> `ToolCallAccuracyEvaluator` only supports Foundry Agent's Function Tool evaluation (user-defined Python functions), but doesn't support other Tool evaluation. If an agent run invoked a tool other than Function Tool, it outputs a "pass" and a reason that evaluating the invoked tool(s) isn't supported.
 
 Here's an example that shows you how to seamlessly build and evaluate an Azure AI agent. Separately from evaluation, Azure AI Foundry Agent Service requires `pip install azure-ai-projects azure-identity`, an Azure AI project connection string, and the supported models.
 
 ### Create agent threads and runs
 
-See the following code to create agent threads and runs:
+Agents can use tool. Here's an example of creating custom tools you intend the agent to use (using a mock weather function as an example):
 
 ```python
-import os, json
-import pandas as pd
-from azure.ai.projects import AIProjectClient
-from azure.identity import DefaultAzureCredential
-from typing import Set, Callable, Any
 from azure.ai.projects.models import FunctionTool, ToolSet
-
-from dotenv import load_dotenv
-
-load_dotenv()
+from typing import Set, Callable, Any
 
 # Define a custom Python function.
 def fetch_weather(location: str) -> str:
@@ -84,7 +76,6 @@ def fetch_weather(location: str) -> str:
     weather_json = json.dumps({"weather": weather})
     return weather_json
 
-
 user_functions: Set[Callable[..., Any]] = {
     fetch_weather,
 }
@@ -95,50 +86,68 @@ functions = FunctionTool(user_functions)
 toolset = ToolSet()
 toolset.add(functions)
 
-
-# Create the agent.
 AGENT_NAME = "Seattle Tourist Assistant"
+```
 
-project_client = AIProjectClient.from_connection_string(
-    credential=DefaultAzureCredential(),
-    conn_str=os.environ["PROJECT_CONNECTION_STRING"],
+If you're using [Azure AI Foundry (non-Hub) project](../create-projects.md?tabs=ai-foundry&pivots=fdp-project), create an agent with the toolset as follows:
+
+> [!NOTE]
+> If you're using a [Foundry Hub-based project](../create-projects.md?tabs=ai-foundry&pivots=hub-project) (which only supports lower versions of `azure-ai-projects<1.0.0b10 azure-ai-agents<1.0.0b10`), we strongly recommend migrating to [the latest Foundry Agent Service SDK Python client library](../../agents/quickstart.md?pivots=programming-language-python-azure) with a [Foundry project set up for logging batch evaluation results](../../how-to/develop/evaluate-sdk.md#prerequisite-set-up-steps-for-azure-ai-foundry-projects).
+
+```python
+import os
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+from dotenv import load_dotenv
+
+load_dotenv()
+
+# Create an Azure AI Client from an endpoint, copied from your Azure AI Foundry project.
+# You need to login to Azure subscription via Azure CLI and set the environment variables
+# Azure AI Foundry project endpoint, example: AZURE_AI_PROJECT=https://your-account.services.ai.azure.com/api/projects/your-project
+project_endpoint = os.environ["AZURE_AI_PROJECT"]  # Ensure the PROJECT_ENDPOINT environment variable is set
+
+# Create an AIProjectClient instance
+project_client = AIProjectClient(
+    endpoint=project_endpoint,
+    credential=DefaultAzureCredential(),  # Use Azure Default Credential for authentication
 )
 
+
+# Create an agent with the toolset 
 agent = project_client.agents.create_agent(
-    model=os.environ["MODEL_DEPLOYMENT_NAME"],
-    name=AGENT_NAME,
-    instructions="You are a helpful assistant",
-    toolset=toolset,
+    model=os.environ["MODEL_DEPLOYMENT_NAME"],  # Model deployment name
+    name="my-agent",  # Name of the agent
+    instructions="You are a helpful agent",  # Instructions for the agent
+    toolset=toolset
 )
 print(f"Created agent, ID: {agent.id}")
 
-thread = project_client.agents.create_thread()
+# Create a thread for communication
+thread = project_client.agents.threads.create()
 print(f"Created thread, ID: {thread.id}")
 
-# Create a message to thread.
-MESSAGE = "Can you fetch me the weather in Seattle?"
-
-message = project_client.agents.create_message(
+# Add a message to the thread
+message = project_client.agents.messages.create(
     thread_id=thread.id,
-    role="user",
-    content=MESSAGE,
+    role="user",  # Role of the message sender
+    content="What is the weather in Seattle today?",  # Message content
 )
-print(f"Created message, ID: {message.id}")
+print(f"Created message, ID: {message['id']}")
 
-run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
-
+# Create and process an agent run
+run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
 print(f"Run finished with status: {run.status}")
 
+# Check if the run failed
 if run.status == "failed":
     print(f"Run failed: {run.last_error}")
 
-print(f"Run ID: {run.id}")
-
-# Display messages.
-for message in project_client.agents.list_messages(thread.id, order="asc").data:
-    print(f"Role: {message.role}")
-    print(f"Content: {message.content[0].text.value}")
-    print("-" * 40)
+# Fetch and log all messages
+messages = project_client.agents.messages.list(thread_id=thread.id)
+for message in messages:
+    print(f"Role: {message.role}, Content: {message.content}")
+    
 ```
 
 ### Evaluate a single agent run
@@ -152,46 +161,56 @@ from azure.ai.evaluation import AIAgentConverter, IntentResolutionEvaluator
 # Initialize the converter for Azure AI agents.
 converter = AIAgentConverter(project_client)
 
-# Specify the thread and run the ID.
+# Specify the thread and run ID.
 thread_id = thread.id
 run_id = run.id
 
 converted_data = converter.convert(thread_id, run_id)
 ```
 
-And that's it! You don't need to read the input requirements for each evaluator and do any work to parse them. You need only to select your evaluator and call the evaluator on this single run. For model choice, we recommend a strong reasoning model like `o3-mini` and later models. We set up a list of quality and safety evaluators in `quality_evaluators` and `safety_evaluators` and reference them in [Evaluating multiples agent runs or a thread](#evaluate-multiple-agent-runs-or-threads).
+And that's it! `converted_data` contains all inputs required for [these evaluators](#evaluators-supported-for-evaluation-data-converter). You don't need to read the input requirements for each evaluator and do any work to parse the inputs. All you need to do is select your evaluator and call the evaluator on this single run. We support AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the judge depending on the evaluators:
+
+| Evaluators | Reasoning Models as Judge (example: o-series models from Azure OpenAI / OpenAI) | Non-reasoning models as Judge (example: gpt-4.1, gpt-4o, etc.) | To enable |
+|--|--|--|--|
+| `Intent Resolution`, `Task Adherence`, `Tool Call Accuracy`, `Response Completeness`| Supported | Supported | Set additional parameter `is_reasoning_model=True` in initializing evaluators |
+| Other quality evaluators| Not Supported | Supported | -- |
+
+For complex tasks that require refined reasoning for the evaluation, we recommend a strong reasoning model like `o3-mini` or the o-series mini models released afterwards with a balance of reasoning performance and cost efficiency.
+
+We set up a list of quality and safety evaluator in `quality_evaluators` and `safety_evaluators` and reference them in [evaluating multiples agent runs or a thread](#evaluate-multiple-agent-runs-or-threads).
 
 ```python
 # This is specific to agentic workflows.
 from azure.ai.evaluation import IntentResolutionEvaluator, TaskAdherenceEvaluator, ToolCallAccuracyEvaluator 
 # Other quality, risk, and safety metrics:
 from azure.ai.evaluation import RelevanceEvaluator, CoherenceEvaluator, CodeVulnerabilityEvaluator, ContentSafetyEvaluator, IndirectAttackEvaluator, FluencyEvaluator
-from azure.ai.projects.models import ConnectionType
 from azure.identity import DefaultAzureCredential
 
 import os
 from dotenv import load_dotenv
 load_dotenv()
 
-model_config = project_client.connections.get_default(
-                                            connection_type=ConnectionType.AZURE_OPEN_AI,
-                                            include_credentials=True) \
-                                         .to_evaluator_model_config(
-                                            deployment_name="o3-mini",
-                                            api_version="2023-05-15",
-                                            include_credentials=True
-                                          )
-
-quality_evaluators = {evaluator.__name__: evaluator(model_config=model_config) for evaluator in [IntentResolutionEvaluator, TaskAdherenceEvaluator, ToolCallAccuracyEvaluator, CoherenceEvaluator, FluencyEvaluator, RelevanceEvaluator]}
-
-
-## Using Azure AI Foundry Hub
-azure_ai_project = {
-    "subscription_id": os.environ.get("AZURE_SUBSCRIPTION_ID"),
-    "resource_group_name": os.environ.get("AZURE_RESOURCE_GROUP"),
-    "project_name": os.environ.get("AZURE_PROJECT_NAME"),
+model_config = {
+    "azure_deployment": os.getenv("AZURE_DEPLOYMENT_NAME"),
+    "api_key": os.getenv("AZURE_API_KEY"),
+    "azure_endpoint": os.getenv("AZURE_ENDPOINT"),
+    "api_version": os.getenv("AZURE_API_VERSION"),
 }
-## Using Azure AI Foundry Development Platform, example: AZURE_AI_PROJECT=https://your-account.services.ai.azure.com/api/projects/your-project
+
+reasoning_model_config = {
+    "azure_deployment": "o3-mini",
+    "api_key": os.getenv("AZURE_API_KEY"),
+    "azure_endpoint": os.getenv("AZURE_ENDPOINT"),
+    "api_version": os.getenv("AZURE_API_VERSION"),
+}
+
+# Evaluators with reasoning model support
+quality_evaluators = {evaluator.__name__: evaluator(model_config=reasoning_model_config, is_reasoning_model=True) for evaluator in [IntentResolutionEvaluator, TaskAdherenceEvaluator, ToolCallAccuracyEvaluator]}
+
+# Other evaluators do not support reasoning models 
+quality_evaluators.update({ evaluator.__name__: evaluator(model_config=model_config) for evaluator in [CoherenceEvaluator, FluencyEvaluator, RelevanceEvaluator]})
+
+## Using Azure AI Foundry (non-Hub) project endpoint, example: AZURE_AI_PROJECT=https://your-account.services.ai.azure.com/api/projects/your-project
 azure_ai_project = os.environ.get("AZURE_AI_PROJECT")
 
 safety_evaluators = {evaluator.__name__: evaluator(azure_ai_project=azure_ai_project, credential=DefaultAzureCredential()) for evaluator in[ContentSafetyEvaluator, IndirectAttackEvaluator, CodeVulnerabilityEvaluator]}
@@ -200,13 +219,10 @@ safety_evaluators = {evaluator.__name__: evaluator(azure_ai_project=azure_ai_pro
 quality_and_safety_evaluators = {**quality_evaluators, **safety_evaluators}
 
 for name, evaluator in quality_and_safety_evaluators.items():
-   try:
-      result = evaluator(**converted_data)
-      print(name)
-      print(json.dumps(result, indent=4)) 
-   except:
-      print("Note: if there is no tool call to evaluate in the run history, ToolCallAccuracyEvaluator will raise an error")
-      pass
+    result = evaluator(**converted_data)
+    print(name)
+    print(json.dumps(result, indent=4)) 
+
 
 ```
 
@@ -226,19 +242,12 @@ To further improve intelligibility, all evaluators accept a binary threshold (un
 
 See the following example output for some evaluators:
 
-```json
+```
 {
     "intent_resolution": 5.0, # likert scale: 1-5 integer 
     "intent_resolution_result": "pass", # pass because 5 > 3 the threshold
     "intent_resolution_threshold": 3,
-    "intent_resolution_reason": "The assistant correctly understood the user's request to fetch the weather in Seattle. It used the appropriate tool to get the weather information and provided a clear and accurate response with the current weather conditions in Seattle. The response fully resolves the user's query with all necessary information.",
-    "additional_details": {
-        "conversation_has_intent": true,
-        "agent_perceived_intent": "fetch the weather in Seattle",
-        "actual_user_intent": "fetch the weather in Seattle",
-        "correct_intent_detected": true,
-        "intent_resolved": true
-    }
+    "intent_resolution_reason": "The assistant correctly understood the user's request to fetch the weather in Seattle. It used the appropriate tool to get the weather information and provided a clear and accurate response with the current weather conditions in Seattle. The response fully resolves the user's query with all necessary information."
 }
 {
     "task_adherence": 5.0, # likert scale: 1-5 integer 
@@ -247,16 +256,10 @@ See the following example output for some evaluators:
     "task_adherence_reason": "The response accurately follows the instructions, fetches the correct weather information, and relays it back to the user without any errors or omissions."
 }
 {
-    "tool_call_accuracy": 1.0,  # this is the average of all correct tool calls (or passing rate) 
+    "tool_call_accuracy": 5,  # a score between 1-5, higher is better
     "tool_call_accuracy_result": "pass", # pass because 1.0 > 0.8 the threshold
-    "tool_call_accuracy_threshold": 0.8,
-    "per_tool_call_details": [
-        {
-            "tool_call_accurate": true,
-            "tool_call_accurate_reason": "The tool call is directly relevant to the user's query, uses the correct parameter, and the parameter value is correctly extracted from the conversation.",
-            "tool_call_id": "call_2svVc9rNxMT9F50DuEf1XExx"
-        }
-    ]
+    "tool_call_accuracy_threshold": 3,
+    "details": { ... } # helpful details for debugging the tool calls made by the agent
 }
 ```
 
@@ -294,17 +297,13 @@ response = evaluate(
     data=filename,
     evaluation_name="agent demo - batch run",
     evaluators=quality_and_safety_evaluators,
-    # Optionally, log your results to your Azure AI Foundry project for rich visualization.
-    azure_ai_project={
-        "subscription_id": os.environ["AZURE_SUBSCRIPTION_ID"],
-        "project_name": os.environ["PROJECT_NAME"],
-        "resource_group_name": os.environ["RESOURCE_GROUP_NAME"],
-    }
+    # optionally, log your results to your Azure AI Foundry project for rich visualization 
+    azure_ai_project=os.environ.get("AZURE_AI_PROJECT"),  # example: https://your-account.services.ai.azure.com/api/projects/your-project
 )
 # Inspect the average scores at a high level.
 print(response["metrics"])
 # Use the URL to inspect the results on the UI.
-print(f'AI Foundary URL: {response.get("studio_url")}')
+print(f'AI Foundry URL: {response.get("studio_url")}')
 ```
 
 After the URL, you'll be redirected to Foundry. You can view your evaluation results in your Azure AI project and debug your application. Using reason fields and pass/fail, you can easily assess the quality and safety performance of your applications. You can run and compare multiple runs to test for regression or improvements.  
@@ -370,7 +369,7 @@ print(json.dumps(result, indent=4))
 
 See the following output (reference [Output format](#output-format) for details):
 
-```json
+```
 {
     "intent_resolution": 5.0,
     "intent_resolution_result": "pass",
@@ -428,23 +427,12 @@ print(json.dumps(response, indent=4))
 
 See the following output (reference [Output format](#output-format) for details):
 
-```json
+```
 {
-    "tool_call_accuracy": 0.5,
+    "tool_call_accuracy": 3,  # a score between 1-5, higher is better
     "tool_call_accuracy_result": "fail",
-    "tool_call_accuracy_threshold": 0.8,
-    "per_tool_call_details": [
-        {
-            "tool_call_accurate": true,
-            "tool_call_accurate_reason": "The TOOL CALL is directly relevant to the user's query, uses appropriate parameters, and the parameter values are correctly extracted from the conversation. It is likely to provide useful information to advance the conversation.",
-            "tool_call_id": "call_CUdbkBfvVBla2YP3p24uhElJ"
-        },
-        {
-            "tool_call_accurate": false,
-            "tool_call_accurate_reason": "The TOOL CALL is not relevant to the user's query about the weather in Seattle and uses a parameter value that is not present or inferred from the conversation.",
-            "tool_call_id": "call_CUdbkBfvVBla2YP3p24uhElJ"
-        }
-    ]
+    "tool_call_accuracy_threshold": 4,
+    "details": { ... } # helpful details for debugging the tool calls made by the agent
 }
 ```
 
@@ -549,23 +537,12 @@ print(json.dumps(result, indent=4))
 
 See the following output (reference [Output format](#output-format) for details):
 
-```json
+```
 {
-    "tool_call_accuracy": 0.5,
+    "tool_call_accuracy": 2,  # a score between 1-5, higher is better
     "tool_call_accuracy_result": "fail",
-    "tool_call_accuracy_threshold": 0.8,
-    "per_tool_call_details": [
-        {
-            "tool_call_accurate": true,
-            "tool_call_accurate_reason": "The TOOL CALL is directly relevant to the user's query, uses appropriate parameters, and the parameter values are correctly extracted from the conversation. It is likely to provide useful information to advance the conversation.",
-            "tool_call_id": "call_CUdbkBfvVBla2YP3p24uhElJ"
-        },
-        {
-            "tool_call_accurate": false,
-            "tool_call_accurate_reason": "The TOOL CALL is not relevant to the user's query about the weather in Seattle and uses a parameter value that is not present or inferred from the conversation.",
-            "tool_call_id": "call_CUdbkBfvVBla2YP3p24uhElJ"
-        }
-    ]
+    "tool_call_accuracy_threshold": 3,
+    "details": { ... } # helpful details for debugging the tool calls made by the agent
 }
 ```
 

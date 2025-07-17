@@ -6,11 +6,16 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
-ms.custom: devx-track-azurecli, sdkv2, FY25Q1-Linter, ignite-2024
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: meerakurup
 ms.date: 05/22/2025
+ms.custom:
+  - devx-track-azurecli
+  - sdkv2
+  - FY25Q1-Linter
+  - ignite-2024
+  - sfi-image-nochange
 # Customer Intent: As an admin, I want to understand how to use private links to secure communications between my Azure Machine Learning workspace and my virtual network.
 ---
 

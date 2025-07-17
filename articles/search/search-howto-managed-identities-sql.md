@@ -5,12 +5,14 @@ description: Learn how to set up an indexer connection to Azure SQL Database  us
 author: gmndrg
 ms.author: gimondra
 manager: nitinme
-ms.custom:
-  - subject-rbac-steps
-  - ignite-2023
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 05/29/2025
+ms.custom:
+  - subject-rbac-steps
+  - ignite-2023
+  - sfi-image-nochange
+  - sfi-ropc-nochange
 ---
 
 # Set up an indexer connection to Azure SQL using a managed identity

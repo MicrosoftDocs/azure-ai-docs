@@ -7,10 +7,11 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: conceptual
 ms.date: 01/15/2025
+ms.custom:
+  - ignite-2023
+  - sfi-image-nochange
 ---
 
 # Search over Azure Blob Storage content

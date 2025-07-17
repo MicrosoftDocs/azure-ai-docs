@@ -3,8 +3,8 @@ title: Register and work with models
 titleSuffix: Azure Machine Learning
 description: Learn how to use the Azure Machine Learning CLI or Python SDK to create and work with different registered model types and locations.
 services: machine-learning
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: kritifaujdar
 ms.service: azure-machine-learning
 ms.subservice: mlops

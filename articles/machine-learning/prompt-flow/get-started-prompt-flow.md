@@ -5,14 +5,15 @@ description: Learn how to set up, create, evaluate, and deploy a prompt flow in 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
+ms.topic: tutorial
+author: s-polly
+ms.author: scottpolly
+ms.reviewer: yijunzhang
+ms.date: 10/03/2024
 ms.custom:
   - ignite-2023
   - build-2024
-ms.topic: tutorial
-author: lgayhardt
-ms.author: lagayhar
-ms.reviewer: yijunzhang
-ms.date: 10/03/2024
+  - sfi-image-nochange
 ---
 
 # Get started with prompt flow

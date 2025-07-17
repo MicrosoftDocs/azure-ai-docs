@@ -5,8 +5,8 @@ description: Use a point-in-time join for offline feature retrieval.
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
-ms.author: franksolomon
-author: fbsolo-ms1
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: yogipandey
 ms.date: 01/24/2025
 ms.custom: template-concept

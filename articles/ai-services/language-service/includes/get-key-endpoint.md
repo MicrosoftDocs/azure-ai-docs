@@ -5,6 +5,7 @@ ms.service: azure-ai-language
 ms.topic: include
 ms.date: 06/30/2025
 ms.author: lajanuar
+ms.custom: sfi-image-nochange
 ---
 
 ### Get your key and endpoint

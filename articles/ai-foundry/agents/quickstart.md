@@ -7,7 +7,7 @@ ms.author: aahi
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: quickstart
-ms.date: 06/30/2025
+ms.date: 07/11/2025
 ms.custom:
   - azure-ai-agents
   - build-2025

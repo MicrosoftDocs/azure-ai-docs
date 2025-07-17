@@ -8,10 +8,11 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
+ms.date: 05/29/2025
 ms.custom:
   - subject-moving-resources
   - ignite-2023
-ms.date: 05/29/2025
+  - sfi-image-nochange
 ---
 
 # Move your Azure AI Search service to another Azure region

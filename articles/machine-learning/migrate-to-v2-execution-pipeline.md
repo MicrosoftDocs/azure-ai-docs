@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: reference
-author: sdgilley
-ms.author: sgilley
+author: s-polly
+ms.author: scottpolly
 ms.date: 09/16/2022
 ms.reviewer: lochen
 ms.custom:

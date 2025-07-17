@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: training
 ms.topic: concept-article
 ms.reviewer: None
-author: lgayhardt
-ms.author: lagayhar
+author: s-polly
+ms.author: scottpolly
 ms.date: 08/29/2024
 adobe-target: true
 ---

@@ -9,8 +9,8 @@ ms.custom:
 ms.topic: how-to
 ms.date: 03/27/2025
 ms.reviewer: jcioffi
-ms.author: ssalgado
-author: ssalgadodev
+ms.author: scottpolly
+author: s-polly
 ms.collection: ce-skilling-ai-copilot
 ---
 # Data, privacy, and security for use of models through the Model Catalog

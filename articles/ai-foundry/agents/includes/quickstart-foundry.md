@@ -4,7 +4,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: include
-ms.date: 01/21/2025
+ms.date: 07/11/2025
 ---
 
 ## Prerequisites
@@ -38,7 +38,7 @@ To create an account and project in Azure AI Foundry, follow these steps:
     1. The gpt-4o model will automatically be deployed
     1. A default agent will be created
 
-1. Once complete, you will land directly in the agent playground and you can start creating agents.
+1. Once complete, you will land directly in the agent playground and you can start creating agents. You can give your agent instructions on what to do and how to do it. For example: *"You are a helpful agent that can answer questions about geography."* Then you can start chatting with your agent.
 
     :::image type="content" source="../media\quickstart\agent-playground.png" alt-text="Screenshot of the agent playground." lightbox="../media\quickstart\agent-playground.png":::
 
