@@ -19,7 +19,7 @@ Use this article to find code samples for connecting Azure AI Foundry Agent Serv
 
 :::zone pivot="python"
 
-## Initialization
+## Initialize the client
 
 The code begins by setting up the necessary imports, getting the relevant MCP server configuration, and initializing the AI Project client:
 
@@ -30,7 +30,7 @@ from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
 from azure.ai.agents.models import McpTool, RequiredMcpToolCall, SubmitToolApprovalAction, ToolApproval
 
-# Get MCP server configuration from environment variables
+# Get the MCP server configuration from environment variables
 mcp_server_url = os.environ.get("MCP_SERVER_URL", "https://gitmcp.io/Azure/azure-rest-api-specs")
 mcp_server_label = os.environ.get("MCP_SERVER_LABEL", "github")
 
@@ -42,7 +42,7 @@ project_client = AIProjectClient(
 
 ## Set up the tool
 
-To add the MCP server to the agent, use the following example. The example takes the MCP server label and URL from the last step. You can also add or remove allowed tools dynamically through the `allow_tool` parameter.
+To add the MCP server to the agent, use the following example, which takes the MCP server label and URL from the last step. You can also add or remove allowed tools dynamically through the `allow_tool` parameter.
 
 ```python
 mcp_tool = McpTool(
@@ -63,12 +63,12 @@ You create an agent by using the `project_client.agents.create_agent` method:
 
 ```python
 # Create a new agent.
-# NOTE: To reuse existing agent, fetch it with get_agent(agent_id)
+# NOTE: To reuse an existing agent, fetch it with get_agent(agent_id)
 with project_client:
     agents_client = project_client.agents
 
     # Create a new agent.
-    # NOTE: To reuse existing agent, fetch it with get_agent(agent_id)
+    # NOTE: To reuse an existing agent, fetch it with get_agent(agent_id)
     agent = agents_client.create_agent(
         model=os.environ["MODEL_DEPLOYMENT_NAME"],
         name="my-mcp-agent",
@@ -101,7 +101,7 @@ Set the MCP server update headers and optionally disable tool approval requireme
 
 ```python
 mcp_tool.update_headers("SuperSecret", "123456")
-# mcp_tool.set_approval_mode("never")  # Uncomment to disable approval requirement
+# mcp_tool.set_approval_mode("never")  # Uncomment to disable approval requirements
 run = agents_client.runs.create(thread_id=thread.id, agent_id=agent.id, tool_resources=mcp_tool.resources)
 print(f"Created run, ID: {run.id}")
 ```
