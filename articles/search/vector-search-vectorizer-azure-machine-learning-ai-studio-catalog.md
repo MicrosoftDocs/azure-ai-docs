@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: reference
-ms.date: 07/16/2024
+ms.date: 07/17/2024
 ---
 
 #	Azure AI Foundry model catalog vectorizer
@@ -53,9 +53,9 @@ Which vector query types are supported by the Azure AI Foundry model catalog vec
 |--------------------|-------------|-------------|-------------|
 | Facebook-DinoV2-Image-Embeddings-ViT-Base |  | X | X |
 | Facebook-DinoV2-Image-Embeddings-ViT-Giant |  | X | X |
-| Cohere-embed-v3-english | X |  |  |
-| Cohere-embed-v3-multilingual | X |  |  |
-| Cohere-embed-v4 | X | X | X |
+| Cohere-embed-v3-english | X |  | X |
+| Cohere-embed-v3-multilingual | X |  | X |
+| Cohere-embed-v4 | X |  | X |
 
 ## Expected field dimensions
 
