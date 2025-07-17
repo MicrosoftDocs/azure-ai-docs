@@ -10,7 +10,7 @@ items:
       href: how-to/develop/sdk-overview.md
     - name: Ask the Foundry agent
       href: foundry-agent/ask-foundry-agent.md
-- name: Azure AI Foundry Models
+- name: Models
   items:
   - name: Explore Foundry Models
     href: concepts/foundry-models-overview.md
@@ -420,7 +420,7 @@ items:
           href: ./responsible-ai/openai/customer-copyright-commitment.md
   - name: Foundry Models FAQ
     href: faq.yml
-- name: Azure AI services
+- name: AI services
   items:
   - name: Use Azure AI services in Azure AI Foundry portal
     href: ../ai-services/connect-services-ai-foundry-portal.md?context=/azure/ai-foundry/context/context
