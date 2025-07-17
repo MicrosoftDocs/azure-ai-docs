@@ -115,9 +115,9 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 }
 ```
 > [!NOTE]
-> All Azure AI Foundry projects will inherit these setting. Then override specific settings at the project level as needed.
+> All Azure AI Foundry projects will inherit these settings. Then override specific settings at the project level as needed.
 
-## Deleting capability hosts
+## Delete capability hosts
 
 > [!WARNING]
 > Deleting a capability host will affect all agents that depend on it. Make sure you understand the impact before proceeding. For instance, if you delete the project and account capability host, agents in your project will no longer have access to the files, thread, and vector stores it previously did.
