@@ -31,26 +31,26 @@ ms.author: pafarley
     code .
     ```
     
-2. Initialize a new Node.js project with TypeScript:
+1. Initialize a new Node.js project with TypeScript:
 
     ```console
     npm init -y
     npm pkg set type=module
     ```
 
-3. Install the required packages:
+1. Install the required packages:
 
    ```console
    npm install @azure-rest/ai-content-safety @azure/core-auth
    ```
 
-4. Install development dependencies:
+1. Install development dependencies:
 
    ```console
    npm install typescript @types/node --save-dev
    ```
 
-5. Create a `tsconfig.json` file in your project directory:
+1. Create a `tsconfig.json` file in your project directory:
 
    ```json
    {
@@ -81,7 +81,7 @@ ms.author: pafarley
    }
    ```
 
-6. Update `package.json` to include a script for building TypeScript files:
+1. Update `package.json` to include a script for building TypeScript files:
 
    ```json
    "scripts": {
@@ -90,7 +90,7 @@ ms.author: pafarley
    }
    ```
 
-7. Create a `src` directory for your TypeScript code.
+1. Create a `src` directory for your TypeScript code.
 
 [!INCLUDE [Create environment variables](../env-vars.md)]
 
@@ -160,7 +160,7 @@ try {
 npm run build
 ```
 
-2. Run the application:
+1. Run the application:
 
 ```console
 npm start

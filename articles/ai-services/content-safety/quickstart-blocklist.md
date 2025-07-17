@@ -9,9 +9,8 @@ ms.custom: devx-track-python, devx-track-dotnet
 ms.topic: quickstart
 ms.date: 02/22/2025
 ms.author: pafarley
-zone_pivot_groups: programming-languages-content-safety-abridged
+zone_pivot_groups: programming-languages-content-safety-3
 ---
-
 # QuickStart: Use a text blocklist
 
 Get started using Azure AI Content Safety to create a custom text blocklist and use it to detect harmful content in text.
@@ -41,6 +40,19 @@ Get started using Azure AI Content Safety to create a custom text blocklist and 
 ::: zone pivot="programming-language-python"
 
 [!INCLUDE [Python SDK quickstart](./includes/quickstarts/python-quickstart-blocklist.md)]
+
+::: zone-end
+
+
+::: zone pivot="programming-language-javascript"
+
+[!INCLUDE [JavaScript SDK quickstart](./includes/quickstarts/javascript-quickstart-blocklist.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-typescript"
+
+[!INCLUDE [TypeScript SDK quickstart](./includes/quickstarts/typescript-quickstart-blocklist.md)]
 
 ::: zone-end
 
