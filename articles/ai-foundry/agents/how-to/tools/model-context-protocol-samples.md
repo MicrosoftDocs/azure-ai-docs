@@ -42,7 +42,7 @@ project_client = AIProjectClient(
 
 ## Set up the tool
 
-To add the MCP server to the agent, use the following example, which takes the MCP server label and URL from the last step. You can also add or remove allowed tools dynamically through the `allow_tool` parameter.
+To add the MCP server to the agent, use the following example, which takes the MCP server label and URL from the previous step. You can also add or remove allowed tools dynamically through the `allow_tool` parameter.
 
 ```python
 mcp_tool = McpTool(
