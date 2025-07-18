@@ -17,7 +17,7 @@ ms.date: 07/18/2025
 # What's Azure AI Search?
 
 Azure AI Search is a knowledge retrieval platform that consolidates and organizes information across different types of content. You add your content to a search index. Users, agents, and bots can retrieve your content through queries and apps.
-Indexing and query workloads support native integration with AI models from Azure OpenAI, Azure AI Foundry, and Azure Machine Learning. You can also leverage an extensibility layer to connect workloads to third-party and open-source AI models and tools.
+Indexing and query workloads support native integration with AI models from Azure OpenAI, Azure AI Foundry, and Azure Machine Learning. By leveraging an extensibility layer, you can connect workloads to third-party and open-source AI models and tools.
 
 You can use Azure AI Search for regular search needs (like searching through catalogs or documents) or for AI-powered search that can have conversations with users and generate answers based on your content.
 
@@ -30,10 +30,10 @@ Azure AI Search can be used for both traditional search as well as modern inform
 
 When you create a search service, you work with the following capabilities:
 
-+ A search engine for [agentic search](search-agentic-retrieval-concept.md), [vector search](vector-search-overview.md), [full text](search-lucene-query-architecture.md), or [hybrid search](hybrid-search-overview.md) over your indexed content.
-+ Content processing during indexing, including content generation and transformation.
-+ Extensive query syntax for agents, vectors, text, hybrid queries, multimodal queries, fuzzy search, autocomplete, geo-search, and others.
-+ Smart results through semantic ranking, scoring profiles, compression, and parameters for controlling query behaviors at runtime.
++ A search engine for [agentic search](search-agentic-retrieval-concept.md), [vector search](vector-search-overview.md), [full text](search-lucene-query-architecture.md), [multimodal search](multimodal-search-overview.md), or [hybrid search](hybrid-search-overview.md).
++ Content processing during indexing that can add structure and transformations.
++ Extensive query syntax for agents, vectors, text, hybrid, and multimodal queries.
++ Smart results through semantic ranking, scoring profiles, and parameterized queries.
 + Azure scale, security, and reach.
 + Azure integration at the data layer, machine learning layer, Azure AI services, and Azure OpenAI.
 
@@ -44,35 +44,23 @@ Architecturally, a search service sits between the external data stores that con
 
 ![Azure AI Search architecture](media/search-what-is-azure-search/azure-search.svg "Azure AI Search architecture")
 
-Your app can be an agent or tool, a bot, or any client that sends indexing and query requests to a search index.
+If your content is on Azure, you can used indexers and skillsets for automated and AI-enriched indexing. Or, create a logic app workflow for equivalent automation over an even broader set of supported data sources. On the retrieval side, Your app can be an agent or tool, a bot, or any client that sends requests to a search index or knowledge agent.
 
 ## Inside a search service
 
 On the search service itself, the two primary workloads are *indexing* and *querying*. 
 
-+ [**Indexing**](search-what-is-an-index.md) is an intake process that loads content into your search service and makes it searchable. Internally, inbound text is processed into tokens and stored in inverted indexes, and inbound vectors are stored in vector indexes. The document format that Azure AI Search can index is JSON. You can upload JSON documents, or use an indexer to retrieve and serialize your data into JSON. 
++ [**Indexing**](search-what-is-an-index.md) is an intake process that loads content into your search service and makes it searchable. Internally, inbound text is processed into tokens and stored in inverted indexes, and inbound vectors are stored in vector indexes. The document format that Azure AI Search can index is JSON. You can upload JSON documents, or use an indexer or a logic app workflow to retrieve and serialize your data into JSON. 
 
-  [Applied AI](cognitive-search-concept-intro.md) through a [skillset](cognitive-search-working-with-skillsets.md) extends indexing with image and language models. If you have images or large unstructured text in source document, you can attach skills that perform OCR, analyze and describe images, infer structure, translate text, and more. Output is text that can be serialized into JSON and ingested into a search index.
+  [AI enrichment](cognitive-search-concept-intro.md) is through a [skillset](cognitive-search-working-with-skillsets.md) that extends indexing with image and language models. If you have images or large unstructured text in source document, you can attach skills that chunk and vectorize content. If you have image content, you can use LLMs to summarize content, generate descriptions, or perform OCR and image analysis. Skills can also infer structure, translate text, and more. Output is text or vectors that can be serialized into JSON and ingested into a search index.
 
-  Skillsets can also perform [data chunking and vectorization during indexing](vector-search-integrated-vectorization.md). Skills that attach to Azure OpenAI, the model catalog in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), or custom skills that attach to any external chunking and embedding model can be used during indexing to create vector data. Output is chunked vector content that can be ingested into a search index.
-
-+ [**Querying**](search-query-overview.md) can happen once an index is populated with searchable content, when your client app sends query requests to a search service and handles responses. All query execution is over a search index that you control.
-
-  [Agentic queries](search-agentic-retrieval-how-to-retrieve.md)
-
-  [Vector queries](vector-search-how-to-query.md)
-
-  [Text search](search-query-create.md)
-
-  [Hybrid queries](hybrid-search-how-to-query.md), fuzzy search, autocomplete, geo-search, and others.
-
-  [Semantic ranking](semantic-search-overview.md) is an extension of query execution. It adds secondary ranking, using language understanding to reevaluate a result set, promoting the most semantically relevant results to the top.
-
-  [Integrated vectorization](vector-search-integrated-vectorization.md) is also an extension of query execution. If you have vector fields in your search index, you can submit raw vector queries or text that's vectorized at query time.
++ [**Querying**](search-query-overview.md) can happen once an index is populated with searchable content, when your client app sends query requests to a search service and handles responses. All query execution is over a search index that you control. In your code, set up a search client to handle query requests for [agentic queries](search-agentic-retrieval-how-to-retrieve.md), [vector queries](vector-search-how-to-query.md), [text search](search-query-create.md), [hybrid queries](hybrid-search-how-to-query.md), fuzzy search, autocomplete, geo-search, and others.
 
 ## Why use Azure AI Search?
 
 Azure AI Search is well suited for the following application scenarios:
+
++ Use it for empowering agents and bots with grounding data based on your content.
 
 + Use it for traditional full text search and next-generation vector similarity search. Back your generative AI apps with information retrieval that leverages the strengths of both keyword and similarity search. Use both modalities to retrieve the most relevant results.
 
