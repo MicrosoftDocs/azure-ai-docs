@@ -87,7 +87,7 @@ Follow these steps to prepare your system.
     1. If you're running in an Azure Machine Learning compute instance, create an `MLClient` as follows:
     
         ```python
-        ml_client = MLClient.from_config(DefaultAzureCredential())
+        ml_client = MLClient.from_config(credential=DefaultAzureCredential())
         ```
     
         Otherwise, configure workspace details and get a handle to the workspace:
