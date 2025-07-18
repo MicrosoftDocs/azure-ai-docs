@@ -48,9 +48,11 @@ Architecturally, a search service sits between the external data stores that con
 
 ![Azure AI Search architecture](media/search-what-is-azure-search/azure-search.svg "Azure AI Search architecture")
 
-If your content is on Azure, you can used indexers and skillsets for automated and AI-enriched indexing. Or, create a logic app workflow for equivalent automation over an even broader set of supported data sources. 
+On the indexing side, if your content is on Azure, you can used indexers and skillsets for automated and AI-enriched indexing. Or, create a logic app workflow for equivalent automation over an even broader set of supported data sources. 
 
 On the retrieval side, your app can be an agent or tool, a bot, or any client that sends requests to a search index or knowledge agent.
+
+Within Azure AI Search, the indexing and query engine is the same component operating in read-write and read-only modes, but we split it up in this diagram to indicate the type of work being performed.
 
 ## Inside a search service
 
