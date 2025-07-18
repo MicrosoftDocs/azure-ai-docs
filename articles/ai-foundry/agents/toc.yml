@@ -77,7 +77,7 @@ items:
             displayName: bing, grounding with bing  
           - name: How to use Grounding with Bing Search
             href: how-to/tools/bing-code-samples.md
-        - name: Grounding with Bing Custom Search
+        - name: Grounding with Bing Custom Search (preview)
           items:
           - name: Overview
             href: how-to/tools/bing-custom-search.md
@@ -86,9 +86,9 @@ items:
             href: how-to/tools/bing-custom-search-samples.md
         - name: Logic apps
           href: how-to/tools/logic-apps.md
-        - name: Microsoft Fabric
+        - name: Microsoft Fabric (preview)
           href: how-to/tools/fabric.md
-        - name: Model Context Protocol (MCP)
+        - name: Model Context Protocol (preview)
           items:
             - name: Overview
               href: how-to/tools/model-context-protocol.md
