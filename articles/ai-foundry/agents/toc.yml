@@ -33,13 +33,6 @@ items:
         - name: Tool Overview
           href: how-to/tools/overview.md
           displayName: tools
-        - name: Deep Research (preview)
-          items:
-            - name: Overview
-              href: how-to/tools/deep-research.md
-              displayName: deep research
-            - name: How to use Deep Research
-              href: how-to/tools/deep-research-samples.md
         - name: Azure AI Search
           items:
           - name: Overview
@@ -61,6 +54,13 @@ items:
               displayName: code interpreter
             - name: How to use code interpreter
               href: how-to/tools/code-interpreter-samples.md
+        - name: Deep Research (preview)
+          items:
+            - name: Overview
+              href: how-to/tools/deep-research.md
+              displayName: deep research
+            - name: How to use Deep Research
+              href: how-to/tools/deep-research-samples.md
         - name: File search
           items:
           - name: Overview
@@ -77,6 +77,13 @@ items:
             displayName: bing, grounding with bing  
           - name: How to use Grounding with Bing Search
             href: how-to/tools/bing-code-samples.md
+        - name: Grounding with Bing Custom Search
+          items:
+          - name: Overview
+            href: how-to/tools/bing-custom-search.md
+            displayName: bing, grounding with bing custom search
+          - name: How to use Grounding with Bing Custom Search
+            href: how-to/tools/bing-custom-search-samples.md
         - name: Logic apps
           href: how-to/tools/logic-apps.md
         - name: Microsoft Fabric
@@ -105,13 +112,6 @@ items:
               displayName: sharepoint
             - name: How to use SharePoint
               href: how-to/tools/sharepoint-samples.md
-        - name: Use Grounding with Bing Custom Search
-          items:
-          - name: Overview
-            href: how-to/tools/bing-custom-search.md
-            displayName: bing, grounding with bing custom search
-          - name: How to use Grounding with Bing Custom Search
-            href: how-to/tools/bing-custom-search-samples.md
     - name: Enterprise features
       items: 
         - name: Use your own resources
