@@ -80,6 +80,8 @@ Follow the [Quickstart: Direct web traffic using the portal](/azure/application-
     - Resource name: The name of your Application Gateway resource.
     - Sub resource: `appGwPrivateFrontendIpIPv4` 
     - FQDNs: These FQDNs are the aliases that you want to use inside the Azure AI Foundry portal. They're resolved to the managed private endpoint's private IP address targeting Application Gateway. You might include multiple FQDNs depending on how many resources you would like to connect to with the Application Gateway.
+        - All Added FQDNs will have the same IP address for the targeted Application Gateway.
+        - The IP address is within the managed VNET range, not the customer's VNET range.
 
     > [!NOTE]
     > - If you're using HTTPS listener with certificate uploaded, make sure the FQDN alias matches with the certificate's CN (Common Name) or SAN (Subject Alternative Name) otherwise HTTPS call fails with SNI (Server Name Indication).
