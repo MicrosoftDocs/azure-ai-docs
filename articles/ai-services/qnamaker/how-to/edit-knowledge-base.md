@@ -49,11 +49,11 @@ If you don't have preexisting content to populate the knowledge base, you can ad
 
 1. In the new QnA pair row, add the required question and answer fields. The other fields are optional. All fields can be changed at any time.
 
-1. Optionally, add **[alternate phrasing](../quickstarts/add-question-metadata-portal.md#add-additional-alternatively-phrased-questions)**. Alternate phrasing is any form of the question that is different from the original question but should provide the same answer.
+1. Optionally, add **[alternate phrasing](../quickstarts/add-question-metadata-portal.md)**. Alternate phrasing is any form of the question that is different from the original question but should provide the same answer.
 
     When your knowledge base is published, and you have [active learning](use-active-learning.md) turned on, QnA Maker collects alternate phrasing choices for you to accept. These choices are selected in order to increase the prediction accuracy.
 
-1. Optionally, add **[metadata](../quickstarts/add-question-metadata-portal.md#add-metadata-to-filter-the-answers)**. To view metadata, select **View options** in the context menu. Metadata provides filters to the answers that the client application, such as a chat bot, provides.
+1. Optionally, add **[metadata](../quickstarts/add-question-metadata-portal.md)**. To view metadata, select **View options** in the context menu. Metadata provides filters to the answers that the client application, such as a chat bot, provides.
 
 1. Optionally, add **[follow-up prompts](multi-turn.md)**. Follow-up prompts provide added conversation paths to the client application to present to the user.
 
@@ -134,7 +134,7 @@ You can't link QnA pairs in the answer's metadata.
 Add metadata pairs by first selecting **View options**, then selecting **Show metadata**. This displays the metadata column. Next, select the **+** sign to add a metadata pair. This pair consists of one key and one value.
 
 Learn more about metadata in the QnA Maker portal quickstart for metadata:
-* [Authoring - add metadata to QnA pair](../quickstarts/add-question-metadata-portal.md#add-metadata-to-filter-the-answers)
+* [Authoring - add metadata to QnA pair](../quickstarts/add-question-metadata-portal.md)
 * [Query prediction - filter answers by metadata](../quickstarts/get-answer-from-knowledge-base-using-url-tool.md)
 
 ## Save changes to the QnA pairs

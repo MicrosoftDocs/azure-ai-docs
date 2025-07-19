@@ -58,7 +58,7 @@ Create a fallback topic by following the steps in [Configure the system fallback
 
 ## Use the authoring canvas to add an action
 
-Use the Copilot Studios authoring canvas to connect the fallback topic to your knowledge base. The topic starts with the unrecognized user text. Add an action that passes that text to QnA Maker, and then shows the answer as a message. The last step of displaying an answer is handled as a [separate step](#add-your-solutions-flow-to-power-virtual-agents), later in this tutorial.
+Use the Copilot Studios authoring canvas to connect the fallback topic to your knowledge base. The topic starts with the unrecognized user text. Add an action that passes that text to QnA Maker, and then shows the answer as a message. The last step of displaying an answer is handled as a separate step later in this tutorial.
 
 This section creates the fallback topic conversation flow.
 
