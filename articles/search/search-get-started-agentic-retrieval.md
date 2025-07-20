@@ -1,7 +1,7 @@
 ---
-title: "Quickstart: Agentic Retrieval Using Python or REST APIs"
+title: "Quickstart: Run agentic retrieval in Azure AI Search"
 titleSuffix: Azure AI Search
-description: Learn how to create a knowledge agent that processes multi-turn conversations, retrieves relevant information from an Azure AI Search index, and extracts answers using an Azure OpenAI chat model.
+description: Learn how to use agentic retrieval to create a knowledge agent that processes multi-turn conversations.
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
@@ -9,6 +9,7 @@ ms.update-cycle: 90-days
 ms.topic: quickstart
 ms.date: 7/21/2025
 zone_pivot_groups: search-get-started-agentic-retrieval
+#User intent: I want to learn how to use agentic retrieval to create a knowledge agent that processes multi-turn conversations. It should retrieve relevant information from an Azure AI Search index and extract answers using an Azure OpenAI chat model.
 ---
 
 # Quickstart: Run agentic retrieval in Azure AI Search

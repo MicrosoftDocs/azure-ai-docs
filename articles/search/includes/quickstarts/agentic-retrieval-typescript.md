@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 06/13/2025
+ms.date: 7/21/2025
 ---
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
 
@@ -67,12 +67,6 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
     npm install @azure/identity
     ```
 
-1. For the **recommended** keyless authentication with Microsoft Entra ID, sign in to Azure with the following command:
-
-    ```console
-    az login
-    ```
-
 ## Create the index and knowledge agent
 
 1. Create a new file named `.env` in the `quickstart-agentic-retrieval` folder and add the following environment variables:
@@ -87,7 +81,7 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 
     Replace `<your-search-service-name>` and `<your-ai-foundry-resource-name>` with your actual Azure AI Search service name and Azure AI Foundry resource name.
 
-1. Create a new file named *index.ts* and paste the following code into *index.ts*:
+1. Paste the following code into a new file named `index.ts`:
 
     ```typescript
     import { DefaultAzureCredential, getBearerTokenProvider } from '@azure/identity';
@@ -114,8 +108,8 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
     
     // Configuration - Update these values for your environment
     const config = {
-        searchEndpoint: process.env.AZURE_SEARCH_ENDPOINT || "https://contoso-agentic-search-service.search.windows.net",
-        azureOpenAIEndpoint: process.env.AZURE_OPENAI_ENDPOINT || "https://contoso-proj-agentic-foundry-res.openai.azure.com/",
+        searchEndpoint: process.env.AZURE_SEARCH_ENDPOINT || "https://your-search-service.search.windows.net",
+        azureOpenAIEndpoint: process.env.AZURE_OPENAI_ENDPOINT || "https://your-ai-foundry-resource.openai.azure.com/",
         azureOpenAIGptDeployment: process.env.AZURE_OPENAI_GPT_DEPLOYMENT || "gpt-4.1-mini",
         azureOpenAIGptModel: "gpt-4.1-mini",
         azureOpenAIApiVersion: process.env.OPENAI_API_VERSION || "2025-03-01-preview",
@@ -1143,7 +1137,6 @@ This step runs the retrieval pipeline to extract relevant information from your 
 The following code sends a two-part user query to `earth-search-agent`, which deconstructs the query into subqueries, runs the subqueries against both text fields and vector embeddings in the `earth_at_night` index, and ranks and merges the results. The response is then appended to the `messages` list.
 
 ```typescript
-// Convert messages to the correct format expected by the Knowledge agent
 const agentMessages = messages.map(msg => ({
     role: msg.role,
     content: [
