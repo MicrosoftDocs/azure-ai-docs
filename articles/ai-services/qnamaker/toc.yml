@@ -142,11 +142,11 @@ items:
   - name: REST API
     items:
     - name: QnA Maker 4.0
-      href: /rest/api/qnamaker/alterations?view=rest-qnamaker-v4.0
+      href: /rest/api/qnamaker/alterations?view=rest-qnamaker-v4.0&preserve-view=true
     - name: QnA Maker 5.0 Preview 1
-      href: /rest/api/qnamaker/alterations?view=rest-qnamaker-v5.0-preview.1  
+      href: /rest/api/qnamaker/alterations?view=rest-qnamaker-v5.0-preview.1&preserve-view=true
     - name: QnA Maker 5.0 Preview 2
-      href: /rest/api/qnamaker/alterations?view=rest-qnamaker-v5.0-preview.2
+      href: /rest/api/qnamaker/alterations?view=rest-qnamaker-v5.0-preview.2&preserve-view=true
   - name: SDKs
     items:
     - name: C#
@@ -226,5 +226,3 @@ items:
     href: https://blog.botframework.com/category/QnAMaker/
   - name: Privacy and cookies
     href: https://privacy.microsoft.com/privacystatement
-- name: QnA Maker portal
-  href: https://www.qnamaker.ai
