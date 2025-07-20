@@ -7,28 +7,30 @@ ms.author: haileytapia
 ms.service: azure-ai-search
 ms.update-cycle: 90-days
 ms.topic: quickstart
-ms.date: 6/24/2025
+ms.date: 7/21/2025
 zone_pivot_groups: search-get-started-agentic-retrieval
 ---
 
 # Quickstart: Run agentic retrieval in Azure AI Search
 
 ::: zone pivot="programming-language-csharp"
-
 [!INCLUDE [C# quickstart](includes/quickstarts/agentic-retrieval-csharp.md)]
+::: zone-end
 
+::: zone pivot="programming-language-javascript"
+[!INCLUDE [JavaScript quickstart](includes/quickstarts/agentic-retrieval-javascript.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-python"
-
 [!INCLUDE [Python quickstart](includes/quickstarts/agentic-retrieval-python.md)]
+::: zone-end
 
+::: zone pivot="programming-language-typescript"
+[!INCLUDE [TypeScript quickstart](includes/quickstarts/agentic-retrieval-typescript.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-rest"
-
 [!INCLUDE [REST quickstart](includes/quickstarts/agentic-retrieval-rest.md)]
-
 ::: zone-end
 
 ## Related content
