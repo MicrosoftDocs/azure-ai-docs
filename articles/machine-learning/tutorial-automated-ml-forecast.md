@@ -36,7 +36,7 @@ Also try automated machine learning for these other model types:
 
 * An Azure Machine Learning workspace. See [Create workspace resources](quickstart-create-resources.md). 
 
-* Download the [bike-no.csv](https://github.com/Azure/azureml-examples/blob/v1-archive/v1/python-sdk/tutorials/automl-with-azureml/forecasting-bike-share/bike-no.csv) data file
+* Download the [bike-no.csv](https://github.com/Azure/azureml-examples/blob/v1-archive/v1/python-sdk/tutorials/automl-with-azureml/forecasting-bike-share/bike-no.csv) data file.
 
 ## Sign in to the studio
 
@@ -46,106 +46,96 @@ For this tutorial, you create your automated ML experiment run in Azure Machine 
 
 1. Select your subscription and the workspace you created.
 
-1. Select **Get started**.
 
-1. In the left pane, select **Automated ML** under the **Author** section.
+## Create an experiment
 
-1. Select **+New automated ML job**. 
+1. On the left menu, select **Automated ML** under the **Authoring** section:
 
-## Create and load dataset
+   :::image type="content" source="media/how-to-use-automated-ml-for-ml-models/automated-ml-overview.png" border="false" alt-text="Screenshot that shows the Authoring overview page for Automated ML in Azure Machine Learning studio." lightbox="media/how-to-use-automated-ml-for-ml-models/automated-ml-overview-large.png":::
 
-Before you configure your experiment, upload your data file to your workspace in the form of an Azure Machine Learning dataset. Doing so, allows you to ensure that your data is formatted appropriately for your experiment.
+   The first time you work with experiments in the studio, you see an empty list and links to documentation. Otherwise, you see a list of your recent Automated ML experiments, including items created with the Azure Machine Learning SDK. 
 
-1. On the **Select dataset** form, select **From local files** from the  **+Create dataset** drop-down. 
+1. Select **New automated ML job** to start the **Submit an Automated ML job** process.
 
-    1. On the **Basic info** form, give your dataset a name and provide an optional description. The dataset type  should default to **Tabular**, since automated ML in Azure Machine Learning studio currently only supports tabular datasets.
+   By default, the process selects the **Train automatically** option on the **Training method** tab and continues to the configuration settings.
+
+1. On the **Basics settings** tab, enter values for the required settings, including the **Job** name and **Experiment** name. For this tutorial, use `automl-bikeshare` as the experiment name. You can also provide values for the optional settings, as desired.
+
+1. Select **Next** to continue.
+
+
+
+## Configure your task type and dataset
+
+On the **Task type & data** tab, you specify the data asset for the experiment and the machine learning model to use to train the data.
+
+In this tutorial, you will use the [bike-no.csv](https://github.com/Azure/azureml-examples/blob/v1-archive/v1/python-sdk/tutorials/automl-with-azureml/forecasting-bike-share/bike-no.csv). If you have not downloaded the file,  do so now.
+
+1. On the **Task type and data** form, select **Time series forecasting** as the  task type
+
+1. Select **Create** to create a new data asset from the downloaded file. 
+
+   1. On the **Create data asset** page, select **From local files** from the **+ Create data asset** drop-down menu.
+
+   1. Select **Next** to continue to the **Data type** page.
+
+1. On the **Data type** page:
+
+   1. Enter a **Data asset** name and description.
+   1. For the **Type**, select **Tabular** from the dropdown list.
+   1. Select **Next**.
+
+1. On the **Data source** page, select **From local files**.
+
+   Additional options are displayed in the left menu for you to configure the data source.
+
+1. Select **Next** to continue to the **Destination storage type** page, where you specify the Azure Storage location to upload your data asset.
+
+   1. For the **Datastore type**, select **Azure Blob Storage**.
+   1. In the list of datastores,  select the default datastore that was automatically set up during your workspace creation: "workspaceblobstore".
+   1. Select **Next**.
+
+1. On the **File and folder selection** page, use the **Upload files or folder** dropdown menu and select the **Upload files** option. 
     
-    1. Select **Next** on the bottom left
+   1. Choose the **bike-no.csv** file on your local computer. This is the file you downloaded as a [prerequisite](https://github.com/Azure/azureml-examples/blob/v1-archive/v1/python-sdk/tutorials/automl-with-azureml/forecasting-bike-share/bike-no.csv).
 
-    1. On the **Datastore and file selection** form, select the default datastore that was automatically set up during your workspace creation, **workspaceblobstore (Azure Blob Storage)**. This is the storage location where you upload your data file. 
+   1. After the files upload, select **Next**.
 
-    1. Select **Upload files** from the **Upload** drop-down. 
-    
-    1. Choose the **bike-no.csv** file on your local computer. This is the file you downloaded as a [prerequisite](https://github.com/Azure/azureml-examples/blob/v1-archive/v1/python-sdk/tutorials/automl-with-azureml/forecasting-bike-share/bike-no.csv).
+1. Check your uploaded data on the **Settings** page for accuracy. The fields on the page are prepopulated based on the file type of your data:
 
-    1. Select **Next**
+   | Field | Description |
+   | --- | --- |
+   | **File format**    | Defines the layout and type of data stored in a file. |
+   | **Delimiter**      | Identifies one or more characters for specifying the boundary between separate, independent regions in plain text or other data streams. |
+   | **Encoding**       | Identifies what bit to character schema table to use to read your dataset. |
+   | **Column headers** | Indicates how the headers of the dataset, if any, are treated. |
+   | **Skip rows**      | Indicates how many, if any, rows are skipped in the dataset. |
 
-       When the upload is complete, the Settings and preview form is pre-populated based on the file type. 
-       
-    1. Verify that the **Settings and preview** form is populated as follows and select **Next**.
-        
-        Field|Description| Value for tutorial
-        ---|---|---
-        File format|Defines the layout and type of data stored in a file.| Delimited
-        Delimiter|One or more characters for specifying the boundary between&nbsp; separate, independent regions in plain text or other data streams. |Comma
-        Encoding|Identifies what bit to character schema table to use to read your dataset.| UTF-8
-        Column headers| Indicates how the headers of the dataset, if any, will be treated.| Only first file has headers
-        Skip rows | Indicates how many, if any, rows are skipped in the dataset.| None
-
-    1. The **Schema** form allows for further configuration of your data for this experiment. 
+1. Select **Next** to continue to the **Schema** page. This page is also prepopulated based on your **Settings** selections. 
     
         1. For this example, choose to ignore the **casual** and **registered** columns. These columns are a breakdown of the  **cnt** column so, therefore we don't include them.
 
         1. Also for this example, leave the defaults for the **Properties** and **Type**. 
-        
-        1. Select **Next**.
 
-    1. On the **Confirm details** form, verify the information matches what was previously  populated on the **Basic info** and **Settings and preview** forms.
 
-    1. Select **Create** to complete the creation of your dataset.
+## Configure task and forecast settings
 
-    1. Select your dataset once it appears in the list.
+When the data asset is ready, Machine Learning studio returns to the **Task type & data** tab for the **Submit an Automated ML job** process. The new data asset is listed on the page.
 
-    1. Select  **Next**.
+Follow these steps to complete the job configuration:
 
-## Configure job
+1. Expand the **Select task type** dropdown menu, and choose the training model to use for the experiment. The options include classification, regression, time series forecasting, natural language processing (NLP), or computer vision. For more information about these options, see the descriptions of the [supported task types](concept-automated-ml.md#when-to-use-automl-classification-regression-forecasting-computer-vision--nlp).
 
-After you load and configure your data, set up your remote compute target and select which column in your data you want to predict.
+1. After you specify the training model, select your dataset in the list.
 
-1. Populate the **Configure job** form as follows:
-    1. Enter an experiment name: `automl-bikeshare`
+1. Select **Next** to continue to the **Task settings** tab.
 
-    1. Select **cnt** as the target column, what you want to predict. This column indicates the number of total bike share rentals.
-
-    1. Select **compute cluster** as your compute type. 
-
-    1. Select **+New** to configure your compute target. Automated ML only supports Azure Machine Learning compute. 
-
-        1. Populate the **Select virtual machine** form to set up your compute.
-
-            Field | Description | Value for tutorial
-            ----|---|---
-            Virtual&nbsp;machine&nbsp;tier |Select what priority your experiment should have| Dedicated
-            Virtual&nbsp;machine&nbsp;type| Select the virtual machine type for your compute.|CPU (Central Processing Unit)
-            Virtual&nbsp;machine&nbsp;size| Select the virtual machine size for your compute. A list of recommended sizes is provided based on your data and experiment type. |Standard_DS12_V2
-        
-        1. Select **Next** to populate the **Configure settings form**.
-        
-             Field | Description | Value for tutorial
-            ----|---|---
-            Compute name |    A unique name that identifies your compute context. | bike-compute
-            Min / Max nodes| To profile data, you must specify one or more nodes.|Min nodes: 1<br>Max nodes: 6
-            Idle seconds before scale down | Idle time before  the cluster is automatically scaled down to the minimum node count.|120 (default)
-            Advanced settings | Settings to configure and authorize a virtual network for your experiment.| None 
-  
-        1. Select **Create** to get the compute target. 
-
-            **This takes a couple minutes to complete.** 
-
-        1. After creation, select your new compute target from the drop-down list.
-
-    1. Select **Next**.
-
-## Select forecast settings
-
-Complete the setup for your automated ML experiment by specifying the machine learning task type and configuration settings.
-
-1. On the **Task type and settings** form, select **Time series forecasting** as the machine learning task type.
+1. In the **Target column** dropdown list, select the **cnt** column to use for the model predictions.
 
 1. Select **date** as your **Time column** and leave **Time series identifiers** blank. 
 
 1. The **Frequency** is how often your historic data is collected. Keep **Autodetect** selected. 
-1.
+
 1. The **forecast horizon** is the length of time into the future you want to predict.  Deselect **Autodetect** and type 14 in the field. 
 
 1. Select **View additional configuration settings** and populate the fields as follows. These settings are to better control the training job and specify settings for your forecast. Otherwise, defaults are applied based on experiment selection and data.
@@ -159,17 +149,47 @@ Complete the setup for your automated ML experiment by specifying the machine le
     Exit criterion| If a criteria is met, the training job is stopped. |Training&nbsp;job&nbsp;time (hours): 3 <br> Metric&nbsp;score&nbsp;threshold: None
     Concurrency| The maximum number of parallel iterations executed per iteration| Max&nbsp;concurrent&nbsp;iterations: 6
     
-    Select **Save**.
+1. Select **Save**.
 
-1. Select **Next**.
-    
-1. On the **[Optional] Validate and test** form, 
-    1. Select k-fold cross-validation as your **Validation type**.
-    1.  Select 5 as your **Number of cross validations**.
+## Configure the compute target
+
+After you load and configure your data, set up your remote compute target and select which column in your data you want to predict.
+
+1. Populate the **Compute** form as follows:
+
+   1.  Use the **Select compute type** dropdown list to select **compute cluster** as your compute type. 
+       
+    1. Select **+New** to configure your compute target. Automated ML only supports Azure Machine Learning compute. 
+
+        1. Populate the **Select virtual machine** form to set up your compute.
+
+            Field | Description | Value for tutorial
+            ----|---|---
+            Virtual&nbsp;machine&nbsp;tier |Select what priority your experiment should have| Dedicated
+            Virtual&nbsp;machine&nbsp;type| Select the virtual machine type for your compute.|CPU (Central Processing Unit)
+            Virtual&nbsp;machine&nbsp;size| Select the virtual machine size for your compute. A list of recommended sizes is provided based on your data and experiment type. |Standard_DS12_V2
+        
+        1. Select **Next** to populate the **Configure settings form**.
+        
+            Field | Description | Value for tutorial
+            ----|---|---
+            Compute name |    A unique name that identifies your compute context. | bike-compute
+            Min / Max nodes| To profile data, you must specify one or more nodes.|Min nodes: 1<br>Max nodes: 6
+            Idle seconds before scale down | Idle time before  the cluster is automatically scaled down to the minimum node count.|120 (default)
+            Advanced settings | Settings to configure and authorize a virtual network for your experiment.| None 
+  
+        1. Select **Create** to get the compute target. 
+
+            **This takes a couple minutes to complete.** 
+
+        1. After creation, select your new compute target from the drop-down list.
+
+    1. Select **Next** to continue to the **Review** page. Review the summary of your configuration settings for the job.
+
 
 ## Run experiment
 
-To run your experiment, select **Finish**. The **Job details**  screen opens with the **Job status** at the top next to the job number. This status updates as the experiment progresses. Notifications also appear in the top right corner of the studio, to inform you of the status of your experiment.
+To run your experiment, select **Submit training job**. The **Job details**  screen opens with the **Job status** at the top next to the job number. This status updates as the experiment progresses. Notifications also appear in the top right corner of the studio, to inform you of the status of your experiment.
 
 >[!IMPORTANT]
 > Preparation takes **10-15 minutes** to prepare the experiment job.
