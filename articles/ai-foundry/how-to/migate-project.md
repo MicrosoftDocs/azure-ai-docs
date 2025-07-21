@@ -99,6 +99,8 @@ Starting with your hub-based project, locate your existing AI Foundry resource:
 
 - Locate the resource of the *type CognitiveServices/account/kind=AIServices*. This is your 'AI Foundry resource', as it's displayed in Foundry Portal or Azure Portal.
 
+--- 
+
 ## 2. Create a project to build with agents
 
 New capabilities, including Agent service, are only accessible via projects, which organize your development work as a folder for each use case. You can create multiple of them, to organize the work for use cases with similar setup and connectivity requirements.
@@ -202,6 +204,8 @@ Reasons to keep hubs and hub-based projects around in your subscription include:
 - Remove *Microsoft.MachineLearningServices/workspace/kind=project* and *Microsoft.MachineLearningServices/workspace/kind=hub* from your template definition.
 
 - Use alternative methods for resource deletion, since this is not supported via Bicep.
+
+---
 
 ## Learn more
 
