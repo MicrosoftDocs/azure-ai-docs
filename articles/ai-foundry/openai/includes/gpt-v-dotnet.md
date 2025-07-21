@@ -116,6 +116,8 @@ To run the quickstart, follow these steps:
     Console.WriteLine($"{chatCompletion.Content[0].Text}");
     ```
 
+1. Replace `YOUR_IMAGE_URL` with the publicly accessible of the image you want to upload.
+
 1. Run the application using the `dotnet run` command or the run button at the top of Visual Studio:
 
     ```dotnetcli
