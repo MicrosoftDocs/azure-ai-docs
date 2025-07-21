@@ -479,7 +479,7 @@ The sample in this quickstart works with the Java Runtime. Install a Java Develo
         private static void runAgenticRetrieval(TokenCredential credential, OpenAIAsyncClient openAIClient) {
             System.out.println("[SEARCH] Running agentic retrieval...");
             
-            // Initialize messages with system instructions (like C#)
+            // Initialize messages with system instructions
             List<Map<String, String>> messages = new ArrayList<>();
             
             Map<String, String> systemMessage = new HashMap<>();
@@ -495,14 +495,14 @@ The sample in this quickstart works with the Java Runtime. Install a Java Develo
             messages.add(userMessage);
             
             try {
-                // Call agentic retrieval API (excluding system message like C#)
+                // Call agentic retrieval API (excluding system message)
                 List<Map<String, String>> userMessages = messages.stream()
                     .filter(m -> !"system".equals(m.get("role")))
                     .collect(java.util.stream.Collectors.toList());
                 
                 String retrievalResponse = callAgenticRetrieval(credential, userMessages);
                 
-                // Add assistant response to conversation history (like C#)
+                // Add assistant response to conversation history
                 Map<String, String> assistantMessage = new HashMap<>();
                 assistantMessage.put("role", "assistant");
                 assistantMessage.put("content", retrievalResponse);
@@ -510,7 +510,7 @@ The sample in this quickstart works with the Java Runtime. Install a Java Develo
                 
                 System.out.println(retrievalResponse);
                 
-                // Now do chat completion with full conversation history (like C#)
+                // Now do chat completion with full conversation history
                 generateFinalAnswer(openAIClient, messages);
                 
                 // Continue conversation with second question
