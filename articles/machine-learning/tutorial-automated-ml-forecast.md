@@ -113,9 +113,9 @@ In this tutorial, you will use the [bike-no.csv](https://github.com/Azure/azurem
 
 1. Select **Next** to continue to the **Schema** page. This page is also prepopulated based on your **Settings** selections. 
     
-        1. For this example, choose to ignore the **casual** and **registered** columns. These columns are a breakdown of the  **cnt** column so, therefore we don't include them.
+1. For this example, choose to ignore the **casual** and **registered** columns. These columns are a breakdown of the  **cnt** column so, therefore we don't include them.
 
-        1. Also for this example, leave the defaults for the **Properties** and **Type**. 
+1. Also for this example, leave the defaults for the **Properties** and **Type**. 
 
 
 ## Configure task and forecast settings
