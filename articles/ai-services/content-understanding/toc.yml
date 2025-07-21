@@ -65,7 +65,6 @@ items:
         displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
   - name: Concepts
     items:
-    - name:
     - name: Analyzers
       items:
         - name: Analyzer templates in Azure AI Foundry
