@@ -37,8 +37,9 @@ Integrated vectorization and the [Import and vectorize data wizard](search-impor
 
 | Embedding type | Supported models |
 |--|--|
+| Text | Cohere-embed-v3-english<br>Cohere-embed-v3-multilingual |
 | Image | Facebook-DinoV2-Image-Embeddings-ViT-Base<br>Facebook-DinoV2-Image-Embeddings-ViT-Giant |
-| Text and image (multimodal) | Cohere-embed-v3-english<br>Cohere-embed-v3-multilingual<br>Cohere-embed-v4 <sup>1</sup> |
+| Text and image (multimodal) | Cohere-embed-v4 <sup>1</sup> |
 
 <sup>1</sup> At this time, you can only specify `embed-v-4-0` programmatically through the [AML skill](cognitive-search-aml-skill.md) or [Azure AI Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md), not through the Azure portal. However, you can use the portal to manage the skillset or vectorizer afterward.
 
@@ -171,7 +172,7 @@ The URI and key are generated when you deploy the model from the catalog. For mo
 
 ### [**Cohere embedding models**](#tab/cohere)
 
-This AML skill payload works with the following text embedding models from Azure AI Foundry:
+This AML skill payload works with the following embedding models from Azure AI Foundry:
 
 + Cohere-embed-v3-english
 + Cohere-embed-v3-multilingual
@@ -179,7 +180,7 @@ This AML skill payload works with the following text embedding models from Azure
 
 It assumes that you're chunking your content using the Text Split skill and therefore your text to be vectorized is in the `/document/pages/*` path. If your text comes from a different path, update all references to the `/document/pages/*` path accordingly.
 
-You must add the `/v1/embed` path onto the end of the URL that you copied from your Azure AI Foundry deployment. You might also change the values for the `input_type`, `truncate` and `embedding_types` inputs to better fit your use case. For more information on the available options, review the [Cohere Embed API reference](/azure/ai-foundry/how-to/deploy-models-cohere-embed).
+You must add the `/v1/embed` path onto the end of the URL that you copied from your Azure AI Foundry deployment. You might also change the values for the `input_type`, `truncate`, and `embedding_types` inputs to better fit your use case. For more information on the available options, review the [Cohere Embed API reference](/azure/ai-foundry/how-to/deploy-models-cohere-embed).
 
 The URI and key are generated when you deploy the model from the catalog. For more information about these values, see [How to deploy Cohere Embed models with Azure AI Foundry](/azure/ai-foundry/how-to/deploy-models-cohere-embed).
 
