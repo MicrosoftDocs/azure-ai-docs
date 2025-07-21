@@ -364,9 +364,9 @@ items:
       - name: Transparency note
         href: ../../ai-foundry/responsible-ai/translator/translator-pro-transparency-note.md
     - name: Translate using Language Studio
-    displayName: quickstart, how to, interface
-    href: document-translation/language-studio.md
-  - name: Translator v3 connector
+      displayName: quickstart, how to, interface
+      href: document-translation/language-studio.md
+    - name: Translator v3 connector
     items:
     - name: "Automate document translation (preview)"
       displayName: connect, power, automate, flow
