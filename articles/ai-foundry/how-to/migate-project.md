@@ -46,10 +46,10 @@ New capabilities include:
 
 In the following sections, we will walk step-by-step by how you can move from hub-based projects to Foundry projects:
 
-1. Locate your existing AI Foundry resource [link paragraph]
-1. Create a project [link paragraph]
-1. (optional) Re-create connections [link paragraph]
-1. (optional) Re-create agents [link paragraph]
+1. [Locate your existing AI Foundry resource)(#locate)
+1. [Create a project](#create-project)
+1. (optional) [Recreate connections](#recreate-connections)
+1. (optional) [Migrate agents](#migrate-agents)
 
 What can you take forward to the new project type?
 
@@ -64,12 +64,12 @@ Limitations:
 - Preview Agent's state, including messages, thread, and files cannot be moved. However, you can recreate your agent using code in your new project.
 - Open-source model deployments are not yet supported in Foundry projects.
 
-## 1. Locate your existing AI Foundry resource
+## <a name="locate"></a> 1. Locate your existing AI Foundry resource
 
 Most AI Foundry users will already have an 'AI Foundry' (formerly called 'AI Services') resource, which was previously created alongside your hub-based project to access model deployments.
 
 > [!NOTE]
-> If you don't have an existing AI Foundry resource, most common because your hub was using Azure OpenAI for accessing model deployments, you must [create a new AI Foundry resource first](doc). You may [connect](doc) your existing Azure OpenAI resource for continued access to existing model deployments. Additional configuration steps apply for use with Agent service, see [below](#link-to-bicep-section) and [Agent standard setup](link).
+> If you don't have an existing AI Foundry resource, most common because your hub was using Azure OpenAI for accessing model deployments, you must [create a new AI Foundry resource first](./create-azure-ai-resource.md). You may [connect](./connections-add.md) your existing Azure OpenAI resource for continued access to existing model deployments. Additional configuration steps apply for use with Agent service, see [below](#link-to-bicep-section) and [Agent standard setup](../agents/concepts/standard-agent-setup).
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
@@ -101,7 +101,7 @@ Starting with your hub-based project, locate your existing AI Foundry resource:
 
 --- 
 
-## 2. Create a project to build with agents
+## <a name="create-project"></a> 2. Create a project to build with agents
 
 New capabilities, including Agent service, are only accessible via projects, which organize your development work as a folder for each use case. You can create multiple of them, to organize the work for use cases with similar setup and connectivity requirements.
 
@@ -137,26 +137,33 @@ You are now ready to start building agents in general availability and with the 
 
 :::image type="content" source="../media/migrate-project/agent-playground.png" alt-text="Screenshot of agent building interface.":::
 
-## 3. (Optional) Recreate connections
+## <a name="recreate-connections"></a> 3. (Optional) Recreate connections
 
-If using hub-based projects, you relied on connections to access tools, data sources or models, you can recreate those on your Foundry resource. Hub resource is no longer required to manage connections.
+If your hub based project used connections to access tools, data sources or models, you can recreate those on your upgraded Foundry resource, without the use of a hub.
 
-- **AI Foundry Portal**
+# [Azure AI Foundry portal](#tab/azure-ai-foundry)
+
   Navigate to 'management center' to [add any connections](/azure/ai-foundry/how-to/connections-add?pivots=fdp-project) to tools and data you used before in your hub-based project.
 
-- **Bicep templates**
+# [Azure portal](#tab/azure)
+
+Use either the Azure AI Foundry portal or Bicep template to add your connections.
+
+# [Bicep](#tab/bicep)
 
 If you prefer using Bicep templates, see [this repository with examples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/01-connections).
 
 Note that connections are now defined as instances of type *CognitiveServices/account/connections,* and *CognitiveServices/account/project/connections.* Choose account-level connections for shared access across projects.
 
-## 4. (Optional) Migrate code agents
+---
+
+## <a name="migrate-agents"></a>  4. (Optional) Migrate code agents
 
 Any code agents build using the preview of Agent service, require the following upgrades as you move to Agent service in general availability on Foundry projects:
 
 1. Install the [latest version](/azure/ai-foundry/agents/quickstart?pivots=programming-language-python-azure) of your preferred SDK client.
 
-1. Update your project client, from connecting string to Foundry API project. For example, in Pyton:
+1. Update your project client to  use the Foundry API.  Instead of a connection string, you'll now use the Azure AI Foundry project endpoint. For example, in Pyton:
 
     ```python
     from azure.identity import DefaultAzureCredential
@@ -173,9 +180,9 @@ See the [SDK migration guide](https://github.com/Azure/azure-sdk-for-python/blob
 
 ## 5. (Optional) Clean up hub-based projects
 
-If you no longer require access to your hub-based projects, you may delete them from your Azure subscription.
+If you no longer require access to your hub-based projects, delete them from your Azure subscription.
 
-Reasons to keep hubs and hub-based projects around in your subscription include:
+There are some reasons you might want to keep hubs and hub-based projects around in your subscription:
 
 - Access to select features that are not supported yet in Foundry projects, see [this support matrix](/azure/ai-foundry/what-is-azure-ai-foundry#which-type-of-project-do-i-need).
 
