@@ -1496,6 +1496,8 @@ groups:
   pivots:
   - id: programming-language-csharp
     title: C#
+  - id: programming-language-java
+    title: Java
   - id: programming-language-javascript
     title: JavaScript
   - id: programming-language-python
