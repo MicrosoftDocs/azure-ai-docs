@@ -188,7 +188,7 @@ The sample in this quickstart works with the Java Runtime. Install a Java Develo
         
         public static void main(String[] args) {
             try {
-                System.out.println("🚀 Starting Azure AI Search agentic retrieval quickstart...\n");
+                System.out.println("Starting Azure AI Search agentic retrieval quickstart...\n");
                 
                 // Initialize Azure credentials using managed identity (recommended)
                 TokenCredential credential = new DefaultAzureCredentialBuilder().build();
