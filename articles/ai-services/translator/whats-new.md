@@ -23,7 +23,7 @@ Azure AI Translator service supports language translation for more than 100 lang
 
 ## July 2025
 
-## Microsoft Translator Pro expanded on-device language support
+### Microsoft Translator Pro expanded on-device language support
 
 [**Microsoft Translator Pro**](translator-pro/overview.md) is a mobile app that delivers accurate real-time speech-to-speech translations. It now offers expanded multilingual support on-device (doesn't require internet connectivity). For more information, *see* our [Translator Pro Language support](solutions/translator-pro/language-support.md).
 
