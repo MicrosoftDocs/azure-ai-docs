@@ -183,8 +183,11 @@ In addition, many resources are only accessible by users in your project workspa
 1. Select **Overview** under the **Hub** section.
 1. Select any projects you no longer want to keep.
 1. Select **Delete project**.
-1. Delete any projects you no longer want to keep.
-1. In the **Hub properties** section on the right, select **Delete hub** if you want to delete the hub and all its projects. This link will open the Azure portal for you to delete the hub.
+
+To delete the hub along with all its projects:
+
+1. In the **Hub properties** section on the right, select **Delete hub**. 
+1. The link will open the Azure portal for you to delete the hub there.
 
 
 ## Related content
