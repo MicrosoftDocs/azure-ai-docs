@@ -69,7 +69,7 @@ Limitations:
 Most Azure AI Foundry users already have an 'AI Foundry' (formerly called 'AI Services') resource, which was previously created alongside your hub-based project to access model deployments.
 
 > [!NOTE]
-> If you don't have an existing AI Foundry resource, most common because your hub was using Azure OpenAI for accessing model deployments, you must [create a new AI Foundry resource first](./create-azure-ai-resource.md). You can [connect](./connections-add.md) your existing Azure OpenAI resource for continued access to existing model deployments. Other configuration steps apply for use with Agent service. See details in [Create a project to build with agents (Bicep)](#create-project?tabs=bicep) and [Agent standard setup](../agents/concepts/standard-agent-setup).
+> If you don't have an existing AI Foundry resource, most common because your hub was using Azure OpenAI for accessing model deployments, you must [create a new AI Foundry resource first](./create-azure-ai-resource.md). You can [connect](./connections-add.md) your existing Azure OpenAI resource for continued access to existing model deployments. Other configuration steps apply for use with Agent service. See details in [Create a project to build with agents (Bicep)](#create-project&tabs=bicep) and [Agent standard setup](../agents/concepts/standard-agent-setup.md).
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
