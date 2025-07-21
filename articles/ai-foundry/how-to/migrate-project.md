@@ -27,7 +27,7 @@ Foundry projects are designed to unify and simplify the composition of developer
 
 Previously, AI Foundry project's capabilities required the management of multiple Azure resources and SDKs for workflows in the backend to compose these components.
 
-:::image type="content" source="../media/migrate-project/project-structure.png" alt-text="Screenshot of a diagram showing Azure AI Foundry architecture.":::
+:::image type="content" source="../media/migrate-project/project-structure.svg" alt-text="Screenshot of a diagram showing Azure AI Foundry architecture.":::
 
 New capabilities include:
 
@@ -46,10 +46,15 @@ New capabilities include:
 
 In the following sections, we walk step-by-step by how you can move from [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s to [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s:
 
-1. [Locate your existing AI Foundry resource)(#locate)
-1. [Create a project](#create-project)
+1. [Locate your existing AI Foundry resource](#locate)
+1. [Create a project](#create-project) on the AI resource.
 1. (optional) [Recreate connections](#recreate-connections)
 1. (optional) [Migrate agents](#migrate-agents)
+
+
+You'll use the AI Foundry Models resource from your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)] to create new [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s. 
+
+:::image type="content" source="../media/migrate-project/upgrade.svg" alt-text="Screenshot shows the upgrade path from hub based to Foundry project types.":::
 
 What can you take forward to the new project type?
 
@@ -64,12 +69,13 @@ Limitations:
 - Your Preview Agent's state, including messages, thread, and files can't be moved. However, you can recreate your agent using code in your new project.
 - Open-source model deployments aren't currently supported in Foundry projects.
 
+
 ## <a name="locate"></a> 1. Locate your existing AI Foundry resource
 
 Most Azure AI Foundry users already have an 'AI Foundry' (formerly called 'AI Services') resource, which was previously created alongside your hub-based project to access model deployments.
 
 > [!NOTE]
-> If you don't have an existing AI Foundry resource, most common because your hub was using Azure OpenAI for accessing model deployments, you must [create a new AI Foundry resource first](./create-azure-ai-resource.md). You can [connect](./connections-add.md) your existing Azure OpenAI resource for continued access to existing model deployments. Other configuration steps apply for use with Agent service. See details in [Create a project to build with agents (Bicep)](#create-project&tabs=bicep) and [Agent standard setup](../agents/concepts/standard-agent-setup.md).
+> If you don't have an existing AI Foundry resource, most common because your hub was using Azure OpenAI for accessing model deployments, you must [create a new AI Foundry resource first](./create-azure-ai-resource.md). You can [connect](./connections-add.md) your existing Azure OpenAI resource for continued access to existing model deployments. Other configuration steps apply for use with Agent service. See details in [Create a project to build with agents (Bicep)](#create-project) and [Agent standard setup](../agents/concepts/standard-agent-setup.md).
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
