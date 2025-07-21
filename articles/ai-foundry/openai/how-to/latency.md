@@ -98,7 +98,7 @@ At the time of the request, the requested generation size (`max_tokens` paramete
 In summary, reducing the number of tokens generated per request reduces the latency of each request.
 
 > [!NOTE]
-> `max_tokens` only changes the length of a response and in some cases might truncate it. The paramter doesn't change the quality of the response.
+> `max_tokens` only changes the length of a response and in some cases might truncate it. The parameter doesn't change the quality of the response.
 
 ### Streaming
 Setting `stream: true` in a request makes the service return tokens as soon as they're available, instead of waiting for the full sequence of tokens to be generated. It doesn't change the time to get all the tokens, but it reduces the time for first response. This approach provides a better user experience since end-users can read the response as it is generated. 
