@@ -18,6 +18,10 @@ zone_pivot_groups: search-get-started-agentic-retrieval
 [!INCLUDE [C# quickstart](includes/quickstarts/agentic-retrieval-csharp.md)]
 ::: zone-end
 
+::: zone pivot="programming-language-java"
+[!INCLUDE [Java quickstart](includes/quickstarts/agentic-retrieval-java.md)]
+::: zone-end
+
 ::: zone pivot="programming-language-javascript"
 [!INCLUDE [JavaScript quickstart](includes/quickstarts/agentic-retrieval-javascript.md)]
 ::: zone-end
