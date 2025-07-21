@@ -81,7 +81,7 @@ Key features of Azure AI Agent Service include:
 
 ### Agent Catalog 
 
-Azure AI Foundry Agent Service offers a range of different Agent code samples that can get you started toward building Agents for your specific use case needs. Each Agent code sample should be deployed with [risk management considerations](#considerations-when-choosing-a-use-case) in mind. See the [list of Agent code samples](/azure/ai-services/agents/how-to/agent-catalog#view-all-available-code-samples) currently available.  
+Azure AI Foundry Agent Service offers a range of different Agent code samples that can get you started toward building Agents for your specific use case needs. Each Agent code sample should be deployed with [risk management considerations](#considerations-when-choosing-a-use-case) in mind. See the [list of Agent code samples](/azure/ai-foundry/agents/overview#agent-catalog) currently available.  
 
 ### Extensibility capabilities 
 
@@ -129,7 +129,7 @@ Azure AI Agent Service is **flexible and use-case agnostic.** This presents mult
 * **Education: Assisting with Research and Reference Gathering:** A teacher relies on an agent to gather age-appropriate articles and resources from reputable sources for a planetary science lesson; the teacher verifies the materials for factual accuracy and adjusts them to fit the curriculum, ensuring students receive trustworthy content.
 * **Manufacturing: Inventory Oversight and Task Scheduling:** A factory supervisor deploys an agent to monitor inventory levels, schedule restocking when supplies run low, and optimize shift rosters; management confirms the agent’s suggestions and retains final decision-making authority.
 
-Agent code samples have specific intended uses that are configurable by developers to carefully build upon, implement, and deploy agents. See [list of Agent code samples](/azure/ai-services/agents/how-to/agent-catalog#view-all-available-code-samples).
+Agent code samples have specific intended uses that are configurable by developers to carefully build upon, implement, and deploy agents. See [list of Agent code samples](/azure/ai-foundry/agents/overview#agent-catalog).
 
 
 #### Considerations when choosing a use case

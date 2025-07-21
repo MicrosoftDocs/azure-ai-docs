@@ -57,7 +57,7 @@ This article gives a comparison of scenario(s) in SDK v1 and SDK v2.
     from azure.identity import DefaultAzureCredential
     
     #connect to the workspace
-    ml_client = MLClient.from_config(DefaultAzureCredential())
+    ml_client = MLClient.from_config(credential=DefaultAzureCredential())
     
     # set up pytorch environment
     env = Environment(

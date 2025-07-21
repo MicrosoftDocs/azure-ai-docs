@@ -6,9 +6,8 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 04/29/2025
+ms.date: 07/17/2025
 ms.author: lajanuar
-keywords: on-premises, Docker, container
 ---
 
 # Install and run Conversational Language Understanding (CLU) containers
@@ -24,7 +23,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 You must meet the following prerequisites before using CLU containers.
 
-* If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/).
+* An active Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/cognitive-services/).
 * [Docker](https://docs.docker.com/) installed on a host computer. Docker must be configured to allow the containers to connect with and send billing data to Azure.
     * On Windows, Docker must also be configured to support Linux containers.
     * You should have a basic understanding of [Docker concepts](https://docs.docker.com/get-started/overview/).
@@ -38,17 +37,21 @@ You must meet the following prerequisites before using CLU containers.
 
 The following table describes the minimum and recommended specifications for the available container. Each CPU core must be at least 2.6 gigahertz (GHz) or faster.
 
-It's recommended to have a CPU with AVX-512 instruction set, for the best experience (performance and accuracy).
+We recommended that you have a CPU with AVX-512 instruction set, for the best experience (performance and accuracy).
 
 |  Processor   | Minimum host specs     | Recommended host specs |
 |---------------------|------------------------|------------------------|
+<<<<<<< HEAD
 | **CPU**     | 1 core, 2 GB memory     | 4 cores, 8 GB memory    |
+=======
+| **CLU**     | `1 core`, `2-GB memory`     | `4 cores`, `8-GB memory`    |
+>>>>>>> upstream
 
 CPU core and memory correspond to the `--cpus` and `--memory` settings, which are used as part of the `docker run` command.
 
 ## Export your Conversational Language Understanding model
 
-Before you proceed with running the docker image, you need to export your own trained model to expose it to your container. Use the following command to extract your model and replace the placeholders below with your own values:
+Before you proceed with running the docker image, you need to export your own trained model to expose it to your container. Use the following command to extract your model and replace the placeholders with your own values:
 
 |Placeholder |Value|Format or example|
 |------------|-----|-----------------|
@@ -73,7 +76,7 @@ The CLU container image can be found on the `mcr.microsoft.com` container regist
 
  To use the latest version of the container, you can use the `latest` tag, which is for English. You can also find a full list of containers for supported languages using the [tags on the MCR](https://mcr.microsoft.com/product/azure-cognitive-services/language/clu/tags).
 
-The latest CLU container is available in several languages. To download the container for the English container, use the command below.
+The latest CLU container is available in several languages. To download the container for the English container, use the following command:
 
 ```bash
   docker pull mcr.microsoft.com/azure-cognitive-services/language/clu:latest
@@ -83,17 +86,17 @@ The latest CLU container is available in several languages. To download the cont
 
 ## Run the container in download model mode
 
-After creating the exported model in the section above, users have to run the container in order to download the deployment package that was created specifically for their exported models.
+After the exported model is created, users have to run the container to download the deployment package that was created specifically for their exported models.
 
-  |Placeholder| Value|Format or example|
-  |---|---|---|
-  |**{API_KEY}**| The key for your Language resource. You can find it on your resource's **Key and endpoint** page, in the Azure portal. |xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx| 
-  | **{ENDPOINT_URI}**| The endpoint for accessing the API. You can find it on your resource's **Key and endpoint** page, on the Azure portal. |`https://<your-custom-subdomain>.cognitiveservices.azure.com`|
-  | **{IMAGE_TAG}**| The image tag representing the language of the container you want to run. Make sure this matches the `docker pull` command you used.| latest|
-  | **{LOCAL_CLU_PORT}**| Port number assigned for the container in local machine.| 5000 |
-  | **{LOCAL_MODEL_DIRECTORY}** | Absolute directory in host machine where exported models are saved in. | `C:\usr\local\myDeploymentPackage` |
-  | **{PROJECT_NAME}**| Name of the project for the exported model.| myProject|
-  | **{EXPORTED_MODEL_NAME}** | Exported model to be downloaded | myExportedModel|
+| Placeholder| Value | Format or example  |
+|---|---|---|
+| **{API_KEY}**| The key for your Language resource. You can find it on your resource's **Key and endpoint** page, on the Azure portal. | See Azure portal |
+| **{ENDPOINT_URI}** | The endpoint for accessing the API. You can find it on your resource's **Key and endpoint** page, on the Azure portal. | `https://<your-custom-subdomain>.cognitiveservices.azure.com` |
+| **{IMAGE_TAG}** | The image tag representing the language of the container you want to run. Make sure the tag matches the `docker pull` command you used.  | latest|
+| **{LOCAL_CLU_PORT}** | Port number assigned for the container in local machine.| 5000 |
+| **{LOCAL_MODEL_DIRECTORY}** | Absolute directory in host machine where exported models are saved in. | `C:\usr\local\myDeploymentPackage` |
+| **{PROJECT_NAME}**| Name of the project that the exported model belongs to  | myProject  |
+| **{EXPORTED_MODEL_NAME}**   | Exported model to be downloaded | myExportedModel   |
 
 
   
@@ -110,26 +113,26 @@ After creating the exported model in the section above, users have to run the co
 
 DO NOT alter the downloaded files. Even altering the name or folder structure can affect the integrity of the container and might break it.
 
-Repeat those steps to download as many models as you'd like to test. They can belong to different projects and have different exported model names.
+Repeat those steps to download as many models as you'd like to test. Your models can belong to different projects and have different (exported) model names.
 
 ## Run the container with `docker run`
 
-Once the container is on the host computer, use the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command to run the containers. The container continues to run until you stop it. Replace the placeholders below with your own values:
+Once the container is on the host computer, use the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command to run the containers. The container continues to run until you stop it. Replace the placeholders with your own values:
 
 
 > [!IMPORTANT]
-> * The docker commands in the following sections use the back slash, `\`, as a line continuation character. Replace or remove this based on your host operating system's requirements.
-> * The `Eula`, `Billing`, and `ApiKey` options must be specified to run the container; otherwise, the container won't start.  For more information, see [Billing](#billing).
+> * The docker commands in the following sections use the back slash, `\`, as a line continuation character. Replace or remove the back slash based on your host operating system's requirements.
+> * The `Eula`, `Billing`, and `ApiKey` options must be specified to run the container; otherwise, the container doesn't start. For more information, see [Billing](#billing).
 
-To run the CLU container, execute the following `docker run` command. Replace the placeholders below with your own values:
+To run the CLU container, execute the following `docker run` command. Replace the placeholders with your own values:
 
 | Placeholder | Value | Format or example |
 |-------------|-------|---|
 | **{API_KEY}** | The key for your Language resource. You can find it on your resource's **Key and endpoint** page, on the Azure portal. |`xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`|
 | **{ENDPOINT_URI}** | The endpoint for accessing the API. You can find it on your resource's **Key and endpoint** page, on the Azure portal. | `https://<your-custom-subdomain>.cognitiveservices.azure.com` |
-| **{IMAGE_TAG}** | The image tag representing the language of the container you want to run. Make sure this matches the `docker pull` command you used. | `latest` |
+| **{IMAGE_TAG}** | The image tag representing the language of the container you want to run. Make sure the tag matches the `docker pull` command you used. | `latest` |
 |**{LOCAL_CLU_PORT}** |Port number assigned for the container in local machine. |5000 |
-|**{LOCAL_NER_PORT}** |Port number of the NER container. See Run NER Container section below. |5001 (Has to be different that the above port number) |
+|**{LOCAL_NER_PORT}** |Port number of the `NER` container. See Run `NER` Container section. |5001 (Has to be different than the port number) |
 |**{LOCAL_LOGGING_DIRECTORY}** |Absolute directory in host machine where that logs are saved in. |`C:\usr\local\mylogs` |
 |**{LOCAL_MODEL_DIRECTORY}** |Absolute directory in host machine where exported models are saved in. |`C:\usr\local\myDeploymentPackage` |
 
@@ -145,13 +148,13 @@ This command:
 
 * Runs a *CLU* container from the container image
 * Allocates one CPU core and 8 gigabytes (GB) of memory
-* Exposes TCP port 5000 and allocates a pseudo-TTY for the container
+* Exposes `TCP` port 5000 and allocates a pseudo-TTY for the container
 * Automatically removes the container after it exits. The container image is still available on the host computer.
 
 [!INCLUDE [Running multiple containers on the same host](../../../includes/cognitive-services-containers-run-multiple-same-host.md)]
 
-## Running NER Container
-CLU relies on NER to handle prebuilt entities. The CLU container works properly without NER if users decide not to integrate it. NER billing is disabled when it's used through CLU, no extra charges are generated unless a call is made directly to NER's container.
+## Running named entity recognition (NER) Container
+CLU relies on NER to handle prebuilt entities. The CLU container works properly without NER if users decide not to integrate it. NER billing is turned off when accessed via CLU, so there are no added charges unless you make a direct call to the NER container.
 
 To set up NER in CLU container
 - Follow the [NER container documentation](../../named-entity-recognition/how-to/use-containers.md).
@@ -179,7 +182,7 @@ For information on how to call CLU see [our guide](call-api.md).
 
 ## Troubleshooting
 
-If you run the container with an output [mount](../../concepts/configure-containers.md#mount-settings) and logging enabled, the container generates log files that are helpful to troubleshoot issues that happen while starting or running the container.
+If you run the container with both an output [mount](../../concepts/configure-containers.md#mount-settings) and logging enabled, the container generates log files. The log files can help you troubleshoot any issues that occur during startup or while the container is running.
 
 [!INCLUDE [Azure AI services FAQ note](../../../containers/includes/cognitive-services-faq-note.md)]
 
@@ -201,7 +204,7 @@ In this article, you learned concepts and workflow for downloading, installing, 
 * You must specify billing information when instantiating a container.
 
 > [!IMPORTANT]
-> Azure AI containers aren't licensed to run without being connected to Azure for metering. Customers need to enable the containers to communicate billing information with the metering service at all times. Azure AI containers don't send customer data (for example, text that is being analyzed) to Microsoft.
+> Azure AI containers aren't licensed to run without being connected to Azure for metering. Customers must enable containers to always communicate billing information to the metering service. Azure AI containers don't send customer data (for example, text that is being analyzed) to Microsoft.
 
 ## Next steps
 

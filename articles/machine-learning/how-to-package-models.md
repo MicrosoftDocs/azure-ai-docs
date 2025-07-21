@@ -99,7 +99,7 @@ The workspace is the top-level resource for Azure Machine Learning, providing a 
 2. If you're running in a compute instance in Azure Machine Learning, create an `MLClient` as follows:
 
     ```python
-    ml_client = MLClient.from_config(DefaultAzureCredential())
+    ml_client = MLClient.from_config(credential=DefaultAzureCredential())
     ```
 
     Otherwise, configure your workspace details and get a handle to the workspace:
