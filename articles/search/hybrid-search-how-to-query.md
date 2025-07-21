@@ -274,7 +274,7 @@ api-key: {{admin-api-key}}
 
 + When you postfilter query results, the number of results might be less than top-n.
 
-## Hybrid search with filters targeting vector subqueries (preview)
+### Example: Hybrid search with filters targeting vector subqueries (preview)
 
 Using a [preview API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-05-01-preview&preserve-view=true), you can override a global filter on the search request by applying a secondary filter that targets just the vector subqueries in a hybrid request.
 
