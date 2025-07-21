@@ -35,11 +35,11 @@ In this article, learn how to:
 
 + Search Explorer in the Azure portal (supports both stable and preview API search syntax) has a JSON view that lets you paste in a hybrid request.
 
-+ [**2024-07-01**](/rest/api/searchservice/documents/search-post) stable version or a recent preview API version if you're using preview features like [maxTextRecallSize and countAndFacetMode(preview)](#set-maxtextrecallsize-and-countandfacetmode).
++ Newer stable or preview packages of the Azure SDKs (see change logs for SDK feature support).
+
++ [Stable REST APIs](/rest/api/searchservice/documents/search-post) or a recent preview API version if you're using preview features like [maxTextRecallSize and countAndFacetMode(preview)](#set-maxtextrecallsize-and-countandfacetmode).
 
   For readability, we use REST examples to explain how the APIs work. You can use a REST client like Visual Studio Code with the REST extension to build hybrid queries. You can also use the Azure SDKs. For more information, see [Quickstart: Vector search](search-get-started-vector.md).
-
-+ Newer stable or beta packages of the Azure SDKs (see change logs for SDK feature support).
 
 ## Set up a hybrid query
 
@@ -232,7 +232,11 @@ POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?
     } 
 ```
 
-## Hybrid search with filter
+## Hybrid query examples
+
+This section has multiple query examples that illustrate hybrid query patterns.
+
+### Example: Hybrid search with filter
 
 This example adds a filter, which is applied to the `filterable` nonvector fields of the search index.
 
@@ -314,7 +318,7 @@ POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/d
 }
 ```
 
-## Semantic hybrid search
+### Example: Semantic hybrid search
 
 Assuming that you [have semantic ranker](semantic-how-to-enable-disable.md) and your index definition includes a [semantic configuration](semantic-how-to-query-request.md), you can formulate a query that includes vector search and keyword search, with semantic ranking over the merged result set. Optionally, you can add captions and answers. 
 
@@ -357,7 +361,7 @@ api-key: {{admin-api-key}}
 
 + "captions" and "answers" are optional. Values are extracted from verbatim text in the results. An answer is only returned if the results include content having the characteristics of an answer to the query.
 
-## Semantic hybrid search with filter
+### Example: Semantic hybrid search with filter
 
 Here's the last query in the collection. It's the same semantic hybrid query as the previous example, but with a filter.
 
@@ -429,7 +433,7 @@ Both `k` and `top` are optional. Unspecified, the default number of results in a
 > [!NOTE]
 > If you're using hybrid search in 2024-05-01-preview API, you can control the number of results from the keyword query using [maxTextRecallSize](#set-maxtextrecallsize-and-countandfacetmode). Combine this with a setting for `k` to control the representation from each search subsystem (keyword and vector).
 
-#### Semantic ranker results
+### Semantic ranker results
 
 > [!NOTE]
 > The semantic ranker can take up to 50 results. 
