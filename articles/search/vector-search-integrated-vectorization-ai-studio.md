@@ -38,7 +38,7 @@ Integrated vectorization and the [Import and vectorize data wizard](search-impor
 | Embedding type | Supported models |
 |--|--|
 | Image | Facebook-DinoV2-Image-Embeddings-ViT-Base<br>Facebook-DinoV2-Image-Embeddings-ViT-Giant |
-| Text and image (multimodal) | Cohere-embed-v3-english<br>Cohere-embed-v3-multilingual<br>embed-v-4-0 <sup>1</sup> |
+| Text and image (multimodal) | Cohere-embed-v3-english<br>Cohere-embed-v3-multilingual<br>Cohere-embed-v4 <sup>1</sup> |
 
 <sup>1</sup> At this time, you can only specify `embed-v-4-0` programmatically through the [AML skill](cognitive-search-aml-skill.md) or [Azure AI Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md), not through the Azure portal. However, you can use the portal to manage the skillset or vectorizer afterward.
 
@@ -175,7 +175,7 @@ This AML skill payload works with the following text embedding models from Azure
 
 + Cohere-embed-v3-english
 + Cohere-embed-v3-multilingual
-+ embed-v-4-0
++ Cohere-embed-v4
 
 It assumes that you're chunking your content using the Text Split skill and therefore your text to be vectorized is in the `/document/pages/*` path. If your text comes from a different path, update all references to the `/document/pages/*` path accordingly.
 
