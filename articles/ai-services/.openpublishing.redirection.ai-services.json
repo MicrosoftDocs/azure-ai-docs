@@ -2764,7 +2764,12 @@
       "source_path_from_root": "/articles/ai-services/openai/whisper-quickstart.md",
       "redirect_url": "/azure/ai-foundry/openai/whisper-quickstart",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/qnamaker/tutorials/integrate-with-power-virtual-assistant-fallback-topic.md",
+      "redirect_url": "/azure/ai-services/language-service/tutorials/power-automate",
+      "redirect_document_id": true
     }
-    
+
   ]
 }

@@ -123,8 +123,6 @@ items:
   items:
   - name: Create FAQ Bot with Azure AI Bot Service
     href: tutorials/create-faq-bot-with-azure-bot-service.md
-  - name: Integrate with Power Virtual Agents
-    href: tutorials/integrate-with-power-virtual-assistant-fallback-topic.md
   - name: Customize your FAQ bot
     items:
     - name: Create guided conversations with multi-turn prompts
