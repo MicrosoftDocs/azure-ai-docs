@@ -47,7 +47,7 @@ load_dotenv()
 
 model_config = AzureOpenAIModelConfiguration(
     azure_endpoint=os.environ["AZURE_ENDPOINT"],
-    api_key=os.environ.get["AZURE_API_KEY"],
+    api_key=os.environ.get("AZURE_API_KEY"),
     azure_deployment=os.environ.get("AZURE_DEPLOYMENT_NAME"),
     api_version=os.environ.get("AZURE_API_VERSION"),
 )
@@ -104,7 +104,7 @@ The numerical score is on a Likert scale (integer 1 to 5) and a higher score is 
 
 ```
 
-If you're building agents outside of Azure AI Agent Serice, this evaluator accepts a schema typical for agent messages. To learn more, see our sample notebook for [Intent Resolution](https://aka.ms/intentresolution-sample).
+If you're building agents outside of Azure AI Agent Service, this evaluator accepts a schema typical for agent messages. To learn more, see our sample notebook for [Intent Resolution](https://aka.ms/intentresolution-sample).
 
 ## Tool call accuracy
 
@@ -114,7 +114,7 @@ If you're building agents outside of Azure AI Agent Serice, this evaluator accep
 - the counts of missing or excessive calls.
 
 > [!NOTE]
-> `ToolCallAccuracyEvaluator` only supports Azure AI Agent's Function Tool evaluation, but doesn't support Built-in Tool evaluation. The agent run must have at least one Function Tool call and no Built-in Tool calls made to be evaluated.   
+> `ToolCallAccuracyEvaluator` only supports Azure AI Agent's Function Tool evaluation, but doesn't support Built-in Tool evaluation. The agent run must have at least one Function Tool call and no Built-in Tool calls made to be evaluated.
 
 ### Tool call accuracy example
 

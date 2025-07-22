@@ -59,6 +59,7 @@ Agents can use tool. Here's an example of creating custom tools you intend the a
 ```python
 from azure.ai.projects.models import FunctionTool, ToolSet
 from typing import Set, Callable, Any
+import json
 
 # Define a custom Python function.
 def fetch_weather(location: str) -> str:
@@ -177,7 +178,7 @@ And that's it! `converted_data` contains all inputs required for [these evaluato
 
 For complex tasks that require refined reasoning for the evaluation, we recommend a strong reasoning model like `o3-mini` or the o-series mini models released afterwards with a balance of reasoning performance and cost efficiency.
 
-We set up a list of quality and safety evaluator in `quality_evaluators` and `safety_evaluators` and reference them in [evaluating multiples agent runs or a thread](#evaluate-multiple-agent-runs-or-threads).
+We set up a list of quality and safety evaluators in `quality_evaluators` and `safety_evaluators` and reference them in [evaluating multiples agent runs or a thread](#evaluate-multiple-agent-runs-or-threads).
 
 ```python
 # This is specific to agentic workflows.
@@ -213,7 +214,7 @@ quality_evaluators.update({ evaluator.__name__: evaluator(model_config=model_con
 ## Using Azure AI Foundry (non-Hub) project endpoint, example: AZURE_AI_PROJECT=https://your-account.services.ai.azure.com/api/projects/your-project
 azure_ai_project = os.environ.get("AZURE_AI_PROJECT")
 
-safety_evaluators = {evaluator.__name__: evaluator(azure_ai_project=azure_ai_project, credential=DefaultAzureCredential()) for evaluator in[ContentSafetyEvaluator, IndirectAttackEvaluator, CodeVulnerabilityEvaluator]}
+safety_evaluators = {evaluator.__name__: evaluator(azure_ai_project=azure_ai_project, credential=DefaultAzureCredential()) for evaluator in [ContentSafetyEvaluator, IndirectAttackEvaluator, CodeVulnerabilityEvaluator]}
 
 # Reference the quality and safety evaluator list above.
 quality_and_safety_evaluators = {**quality_evaluators, **safety_evaluators}
@@ -377,7 +378,9 @@ See the following output (reference [Output format](#output-format) for details)
     "intent_resolution_reason": "The response provides the opening hours of the Eiffel Tower, which directly addresses the user's query. The information is clear, accurate, and complete, fully resolving the user's intent.",
 }
 ```
+
 ### Agent tool calls and definitions
+
 See the following examples of `tool_calls` and `tool_definitions` for `ToolCallAccuracyEvaluator`:
 
 ```python
@@ -438,6 +441,7 @@ See the following output (reference [Output format](#output-format) for details)
 In agent message format, `query` and `response` are a list of OpenAI-style messages. Specifically, `query` carries the past agent-user interactions leading up to the last user query and requires the system message (of the agent) on top of the list; and `response` carries the last message of the agent in response to the last user query. 
 
 The expected input format for the evaluators is a Python list of messages as follows:
+
 ```
 [
   {
@@ -585,7 +589,7 @@ response = [
 ```
 
 > [!NOTE]
-> The evaluator throws a warning that query (i.e. the conversation history till the current run) or agent response (the response to the query) cannot be parsed when their format is not the expected one.
+> The evaluator throws a warning that query (the conversation history till the current run) or agent response (the response to the query) can't be parsed when their format isn't the expected one.
 
 See an example of evaluating the agent messages with `ToolCallAccuracyEvaluator`:
 
