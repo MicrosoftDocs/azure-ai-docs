@@ -7,7 +7,7 @@ ms.author: haileytapia
 ms.service: azure-ai-search
 ms.update-cycle: 90-days
 ms.topic: quickstart
-ms.date: 07/16/2025
+ms.date: 07/22/2025
 ms.custom:
   - references_regions
 ---
@@ -52,7 +52,7 @@ For content embedding, you can choose either image verbalization (followed by te
 | Method | Description | Supported models |
 |--|--|--|
 | Image verbalization | Uses an LLM to generate natural-language descriptions of images, and then uses an embedding model to vectorize plain text and verbalized images.<br><br>Requires an [Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource) <sup>1, 2</sup> or [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects).<br><br>For text vectorization, you can also use an [Azure AI services multi-service resource](/azure/ai-services/multi-service-resource#azure-ai-multi-services-resource-for-azure-ai-search-skills) <sup>3</sup> in a [supported region](cognitive-search-skill-vision-vectorize.md). | LLMs:<br>GPT-4o<br>GPT-4o-mini<br>phi-4 <sup>4</sup><br><br>Embedding models:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large |
-| Multimodal embeddings | Uses an embedding model to directly vectorize both text and images.<br><br>Requires an [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects) or [Azure AI services multi-service resource](/azure/ai-services/multi-service-resource#azure-ai-multi-services-resource-for-azure-ai-search-skills) <sup>3</sup> in a [supported region](cognitive-search-skill-vision-vectorize.md). | Cohere-embed-v3-english<br>Cohere-embed-v3-multilingual<br>Cohere-embed-v4 <sup>5</sup> |
+| Multimodal embeddings | Uses an embedding model to directly vectorize both text and images.<br><br>Requires an [Azure AI Foundry hub-based project](/azure/ai-foundry/how-to/create-projects) or [Azure AI services multi-service resource](/azure/ai-services/multi-service-resource#azure-ai-multi-services-resource-for-azure-ai-search-skills) <sup>3</sup> in a [supported region](cognitive-search-skill-vision-vectorize.md). | Cohere-embed-v3-english<br>Cohere-embed-v3-multilingual<br>Cohere-embed-v4 <sup>5</sup> |
 
 <sup>1</sup> The endpoint of your Azure OpenAI resource must have a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains), such as `https://my-unique-name.openai.azure.com`. If you created your resource in the [Azure portal](https://portal.azure.com/), this subdomain was automatically generated during resource setup.
 
@@ -128,6 +128,9 @@ On your Azure OpenAI resource:
 
 The Azure AI Foundry model catalog provides LLMs for image verbalization and embedding models for text and image vectorization. Your search service requires access to call the [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) and [AML skill](cognitive-search-aml-skill.md).
 
+> [!NOTE]
+> If you're using a hub-based project for multimodal embeddings, skip this step. The wizard requires keys instead of managed identities for authentication in that scenario.
+
 On your Azure AI Foundry project:
 
 + Assign **Azure AI Project Manager** to your [search service identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity).
@@ -197,7 +200,7 @@ Azure AI Search requires a connection to a data source for content ingestion and
 
 To connect to your data:
 
-1. On the **Connect to your data** page, specify your Azure subscription.
+1. On the **Connect to your data** page, select your Azure subscription.
 
 1. Select the storage account and container to which you uploaded the sample data.
 
@@ -233,7 +236,7 @@ To use the Document Layout skill:
 
    :::image type="content" source="media/search-get-started-portal-images/extract-your-content-doc-intelligence.png" alt-text="Screenshot of the wizard page with Azure AI Document Intelligence selected for content extraction." border="true" lightbox="media/search-get-started-portal-images/extract-your-content-doc-intelligence.png":::
 
-1. Specify your Azure subscription and multi-service resource.
+1. Select your Azure subscription and multi-service resource.
 
 1. For the authentication type, select **System assigned identity**.
 
@@ -267,7 +270,7 @@ To use the skills for image verbalization:
 
    1. For the kind, select your LLM provider: **Azure OpenAI** or **AI Foundry Hub catalog models**.
 
-   1. Specify your Azure subscription, resource, and LLM deployment.
+   1. Select your Azure subscription, resource, and LLM deployment.
 
    1. For the authentication type, select **System assigned identity**.
 
@@ -279,7 +282,7 @@ To use the skills for image verbalization:
 
    1. For the kind, select your model provider: **Azure OpenAI**, **AI Foundry Hub catalog models**, or **AI Vision vectorization**.
 
-   1. Specify your Azure subscription, resource, and embedding model deployment.
+   1. Select your Azure subscription, resource, and embedding model deployment (if applicable).
 
    1. For the authentication type, select **System assigned identity**.
 
@@ -305,7 +308,9 @@ To use the skills for multimodal embeddings:
 
    If Azure AI Vision is unavailable, make sure your search service and multi-service resource are both in a [region that supports the Azure AI Vision multimodal APIs](/azure/ai-services/computer-vision/how-to/image-retrieval).
 
-1. Specify your Azure subscription, resource, and embedding model deployment.
+1. Select your Azure subscription, resource, and embedding model deployment (if applicable).
+
+1. If you're using Azure AI Vision, select **System assigned identity** for the authentication type. Otherwise, leave it as **API key**.
 
 1. Select the checkbox that acknowledges the billing effects of using this resource.
 
@@ -321,7 +326,7 @@ The next step is to send images extracted from your documents to Azure Storage. 
 
 To store the extracted images:
 
-1. On the **Image output** page, specify your Azure subscription.
+1. On the **Image output** page, select your Azure subscription.
 
 1. Select the storage account and blob container you created to store the images.
 
