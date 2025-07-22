@@ -496,12 +496,12 @@
       "redirect_document_id": false
     },
     {
-      "source_path": "articles/machine-learning/how-to-package-models-app-service",
+      "source_path": "articles/machine-learning/how-to-package-models-moe",
       "redirect_url": "articles/machine-learning/concept-endpoints",
       "redirect_document_id": false
     },
     {
-      "source_path": "articles/machine-learning/how-to-package-models-moe",
+      "source_path": "articles/machine-learning/how-to-package-models-app-service",
       "redirect_url": "articles/machine-learning/concept-endpoints",
       "redirect_document_id": false
     },
