@@ -492,22 +492,22 @@
     },
     {
       "source_path": "articles/machine-learning/concept-package-models.md",
-      "redirect_url": "articles/machine-learning/concept-endpoints",
+      "redirect_url": "/azure/machine-learning/concept-endpoints",
       "redirect_document_id": false
     },
     {
       "source_path": "articles/machine-learning/how-to-package-models-moe.md",
-      "redirect_url": "articles/machine-learning/concept-endpoints",
+      "redirect_url": "/azure/machine-learning/concept-endpoints",
       "redirect_document_id": false
     },
     {
       "source_path": "articles/machine-learning/how-to-package-models-app-service.md",
-      "redirect_url": "articles/machine-learning/concept-endpoints",
+      "redirect_url": "/azure/machine-learning/concept-endpoints",
       "redirect_document_id": false
     },
     {
       "source_path": "articles/machine-learning/how-to-package-models.md",
-      "redirect_url": "articles/machine-learning/concept-endpoints",
+      "redirect_url": "/azure/machine-learning/concept-endpoints",
       "redirect_document_id": false
     }
   ]
