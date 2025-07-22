@@ -13,7 +13,7 @@ ms.reviewer: deeikele
 
 This guide helps existing customers with [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s migrate to the new [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s to access the latest platform capabilities.
 
-Azure AI Foundry is transitioning to a unified platform-as-a-service, replacing the previous resource model that required management of multiple Azure services. As we see AI workloads grow more complex, the [!INCLUDE [fdp-project-name](../../../git/azure-ai-docs-pr/articles/ai-foundry/includes/fdp-project-name.md)]:
+Azure AI Foundry is transitioning to a unified platform-as-a-service, replacing the previous resource model that required management of multiple Azure services. As we see AI workloads grow more complex, the [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]:
 
 - Simplifies platform setup and governance
 - Enhances workflows that span multiple models and Foundry tools
