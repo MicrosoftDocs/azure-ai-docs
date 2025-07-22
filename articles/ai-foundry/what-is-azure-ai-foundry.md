@@ -66,6 +66,7 @@ Azure AI Foundry supports two types of projects: a **[!INCLUDE [hub](includes/hu
 ### Which type of project do I need?
 
 - In general, you should use a [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)] if you're looking to build agents or work with models.
+- To migrate your [!INCLUDE [hub-project-name](includes/hub-project-name.md)] to a[!INCLUDE [fdp-project-name](includes/fdp-project-name.md)], see [Migrate from hub-based to Foundry projects](how-to/migrate-project.md).
 - Use a [!INCLUDE [hub-project-name](includes/hub-project-name.md)] when you need features that aren't available in a [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)]. See the following table for more on feature availability.
 
 > [!NOTE]
