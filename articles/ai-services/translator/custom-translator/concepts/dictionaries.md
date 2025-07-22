@@ -32,7 +32,7 @@ The [neural phrase dictionary](../../neural-dictionary.md) extends our [dynamic 
 
 ## Sentence dictionary
 
-A sentence dictionary is not sensitive to letter case. It lets you define an exact target translation for a specific source sentence. For a match to occur, the entire input sentence must exactly match a source entry in the dictionary. If a source entry ends with punctuation, that punctuation is ignored during matching. Partial matches are not accepted—only full sentence matches count. When a match is found, the dictionary returns the corresponding target translation.
+A sentence dictionary isn't sensitive to letter case. It lets you define an exact target translation for a specific source sentence. For a match to occur, the entire input sentence must exactly match a source entry in the dictionary. If a source entry ends with punctuation, that punctuation is ignored during matching. Partial matches aren't accepted—only full sentence matches count. When a match is found, the dictionary returns the corresponding target translation.
 
 ## Dictionary-only trainings
 
