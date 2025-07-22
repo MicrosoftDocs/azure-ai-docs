@@ -215,37 +215,37 @@ The wizard supports text-embedding-ada-002, text-embedding-3-large, and text-emb
 
 ### [Azure AI Vision](#tab/model-ai-vision)
 
-The wizard supports Azure AI Vision text and image retrieval through multimodal embeddings (version 4.0). Internally, the wizard calls the [multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) to connect to Azure AI Vision.
+The wizard supports text and image retrieval through the Azure AI Vision multimodal APIs, which are built into your Azure AI multi-service resource. Internally, the wizard calls the [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) to make the connection.
 
-The multimodal embeddings are built into your Azure AI multi-service resource, so there's no model deployment step. You only need to assign roles to your search service identity.
+Since no model deployment is required, you only need to assign roles to your search service identity.
 
-1. To assign roles:
+To assign roles:
 
-   1. Sign in to the [Azure portal](https://portal.azure.com/) and select your multi-service resource.
+1. Sign in to the [Azure portal](https://portal.azure.com/) and select your multi-service resource.
 
-   1. From the left pane, select **Access control (IAM)**.
+1. From the left pane, select **Access control (IAM)**.
 
-   1. Select **Add** > **Add role assignment**.
+1. Select **Add** > **Add role assignment**.
 
-   1. Under **Job function roles**, select **Cognitive Services User**, and then select **Next**.
+1. Under **Job function roles**, select **Cognitive Services User**, and then select **Next**.
 
-   1. Under **Members**, select **Managed identity**, and then select **Select members**.
+1. Under **Members**, select **Managed identity**, and then select **Select members**.
 
-   1. Select your subscription and the managed identity of your search service.
+1. Select your subscription and the managed identity of your search service.
 
 ### [Azure AI Foundry model catalog](#tab/model-catalog)
 
 The wizard supports Azure, Cohere, and Facebook embedding models in the Azure AI Foundry model catalog, but it doesn't currently support the OpenAI CLIP models. Internally, the wizard calls the [AML skill](cognitive-search-aml-skill.md) to connect to the catalog.
 
-To complete these steps, you must have a [hub-based project](/azure/ai-foundry/how-to/create-projects) in Azure AI Foundry. Currently, hub-based projects support keys instead of managed identities for authentication, so there's no role assignment step. You only need to deploy a model from the catalog.
+To complete these steps, you must have a [hub-based project](/azure/ai-foundry/how-to/create-projects) in Azure AI Foundry. Currently, hub-based projects support API keys instead of managed identities for authentication, so there's no role assignment step. You only need to deploy a model from the catalog.
 
-1. To deploy an embedding model:
+To deploy an embedding model:
 
-   1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your hub-based project.
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your hub-based project.
 
-   1. From the left pane, select **Model catalog**.
+1. From the left pane, select **Model catalog**.
 
-   1. Deploy a [supported embedding model](#supported-embedding-models).
+1. Deploy a [supported embedding model](#supported-embedding-models).
 
 ---
 
@@ -386,6 +386,8 @@ During this step, the wizard uses your chosen [embedding model](#supported-embed
    :::image type="content" source="media/search-get-started-portal-import-vectors/vectorize-text-catalog.png" alt-text="Screenshot of the Vectorize your text page with the Azure AI Foundry model catalog in the wizard." lightbox="media/search-get-started-portal-import-vectors/vectorize-text-catalog.png":::
 
 1. Select **Next**.
+
+---
 
 ## Vectorize and enrich your images
 
@@ -571,9 +573,9 @@ Search Explorer accepts text strings as input and then vectorizes the text for v
    }
    ```
 
-## Clean up
+## Clean up resource
 
-Azure AI Search is a billable resource. If you no longer need it, delete it from your subscription to avoid charges.
+This quickstart uses billable Azure resources. If you no longer need the resources, delete them from your subscription to avoid charges.
 
 ## Next step
 

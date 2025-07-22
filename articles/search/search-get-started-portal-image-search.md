@@ -129,7 +129,7 @@ On your Azure OpenAI resource:
 The Azure AI Foundry model catalog provides LLMs for image verbalization and embedding models for text and image vectorization. Your search service requires access to call the [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md) and [AML skill](cognitive-search-aml-skill.md).
 
 > [!NOTE]
-> If you're using a hub-based project for multimodal embeddings, skip this step. The wizard requires keys instead of managed identities for authentication in that scenario.
+> If you're using a hub-based project for multimodal embeddings, skip this step. The wizard requires key-based authentication in this scenario.
 
 On your Azure AI Foundry project:
 
