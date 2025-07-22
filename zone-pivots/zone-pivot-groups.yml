@@ -1491,13 +1491,19 @@ groups:
     title: Python
 # Owner: haileytapia
 - id: search-get-started-agentic-retrieval
-  title: Python and REST
+  title: Programming languages
   prompt: Choose a usage method
   pivots:
   - id: programming-language-csharp
     title: C#
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-javascript
+    title: JavaScript
   - id: programming-language-python
     title: Python
+  - id: programming-language-typescript
+    title: TypeScript
   - id: programming-language-rest
     title: REST
 # Owner: haileytapia

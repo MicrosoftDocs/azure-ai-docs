@@ -35,7 +35,7 @@ The rate limits for the playground and free API usage are intended to help you e
 
 To obtain the key and endpoint:
 
-1. Got to [GitHub Models](https://github.com/marketplace/models) and select the model you're interested in.
+1. Go to [GitHub Models](https://github.com/marketplace/models) and select the model you're interested in.
 
 1. In the playground for your model, select **Get API key**.
 
