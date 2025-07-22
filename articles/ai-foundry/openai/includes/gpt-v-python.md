@@ -87,7 +87,7 @@ Create a new Python file named _quickstart.py_. Open the new file in your prefer
 
 1. Make the following changes:
     1. Enter the name of your GPT-4 Turbo with Vision deployment in the appropriate field.
-    1. Change the value of the `"url"` field to the URL of your image.
+    1. Change the value of the `"url"` field to the publicly accessible URL of your image.
         > [!TIP]
         > You can also use a base 64 encoded image data instead of a URL. For more information, see the [GPT-4 Turbo with Vision how-to guide](../how-to/gpt-with-vision.md#use-a-local-image).
 1. Run the application with the `python` command:
