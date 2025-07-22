@@ -52,11 +52,9 @@ Built-in quality and safety metrics take in query and response pairs, along with
 
 Built-in evaluators can accept query and response pairs, a list of conversations in JSON Lines (JSONL) format, or both.
 
-
-**Quality Evaluators:**
-
-| Evaluator | Conversation & single-turn support for text | Conversation & single-turn support for text and image | Single-turn support for text only | Requires `ground_truth` | Supports [agent inputs](./agent-evaluate-sdk.md#agent-messages) |
+| Evaluator | Conversation & single-turn support for text | Conversation & single-turn support for text and image | Single-turn support for text only | Requires `ground_truth` | Supports [agent inputs](./agent-evaluate-sdk.md#agent-message-schema) |
 |--|--|--|--|--|--|
+| **Quality Evaluators** |
 | `IntentResolutionEvaluator` | | | | | ✓ |
 | `ToolCallAccuracyEvaluator` | | | | | ✓ |
 | `TaskAdherenceEvaluator` | | | | | ✓ |
@@ -69,24 +67,14 @@ Built-in evaluators can accept query and response pairs, a list of conversations
 | `FluencyEvaluator` | ✓ | | | | ✓ |
 | `ResponseCompletenessEvaluator` | ✓ | | ✓ | ✓ | |
 | `QAEvaluator` | | | ✓ | ✓ | |
-
-
-**Natural Language Processing (NLP) Evaluators:**
-
-| Evaluator | Conversation & single-turn support for text | Conversation & single-turn support for text and image | Single-turn support for text only | Requires `ground_truth` | Supports [agent inputs](./agent-evaluate-sdk.md#agent-messages) |
-|--|--|--|--|--|--|
+| **Natural Language Processing (NLP) Evaluators** |
 | `SimilarityEvaluator` | | | ✓ | ✓ | |
 | `F1ScoreEvaluator` | | | ✓ | ✓ | |
 | `RougeScoreEvaluator` | | | ✓ | ✓ | |
 | `GleuScoreEvaluator` | | | ✓ | ✓ | |
 | `BleuScoreEvaluator` | | | ✓ | ✓ | |
 | `MeteorScoreEvaluator` | | | ✓ | ✓ | |
-
-
-**Safety Evaluators:**
-
-| Evaluator | Conversation & single-turn support for text | Conversation & single-turn support for text and image | Single-turn support for text only | Requires `ground_truth` | Supports [agent inputs](./agent-evaluate-sdk.md#agent-messages) |
-|--|--|--|--|--|--|
+| **Safety Evaluators** |
 | `ViolenceEvaluator` | | ✓ | | | ✓ |
 | `SexualEvaluator` | | ✓ | | | ✓ |
 | `SelfHarmEvaluator` | | ✓ | | | ✓ |
@@ -96,21 +84,17 @@ Built-in evaluators can accept query and response pairs, a list of conversations
 | `UngroundedAttributesEvaluator` | | | ✓ | | |
 | `CodeVulnerabilityEvaluator` | | | ✓ | | ✓ |
 | `IndirectAttackEvaluator` | ✓ | | | | ✓ |
-
-
-**Azure OpenAI Graders:**
-
-| Evaluator | Conversation & single-turn support for text | Conversation & single-turn support for text and image | Single-turn support for text only | Requires `ground_truth` | Supports [agent inputs](./agent-evaluate-sdk.md#agent-messages) |
-|--|--|--|--|--|--|
+| **Azure OpenAI Graders** |
 | `AzureOpenAILabelGrader` | ✓ | | | | |
 | `AzureOpenAIStringCheckGrader` | ✓ | | | | |
 | `AzureOpenAITextSimilarityGrader` | ✓ | | | ✓ | |
 | `AzureOpenAIGrader` | ✓ | | | | |
 
-Azure OpenAI graders require a template that describes how their input columns are turned into the *real* input that the grader uses. Example: If you have two inputs called *query* and *response*, and a template that was formatted as `{{item.query}}`, then only the query would be used. Similarly, you could have something like `{{item.conversation}}` to accept a conversation input, but the ability of the system to handle that depends on how you configure the rest of the grader to expect that input.
 
 > [!NOTE]
-> AI-assisted quality evaluators except for `SimilarityEvaluator` come with a reason field. They employ techniques including chain-of-thought reasoning to generate an explanation for the score. Therefore they consume more token usage in generation as a result of improved evaluation quality. Specifically, `max_token` for evaluator generation has been set to 800 for all AI-assisted evaluators (and 1600 for `RetrievalEvaluator` to accommodate for longer inputs.)
+> AI-assisted quality evaluators except for `SimilarityEvaluator` come with a reason field. They employ techniques including chain-of-thought reasoning to generate an explanation for the score. Therefore they consume more token usage in generation as a result of improved evaluation quality. Specifically, `max_token` for evaluator generation has been set to 800 for all AI-assisted evaluators, except that it will be 1600 for `RetrievalEvaluator` and 3000 for `ToolCallAccuracyEvaluator` to accommodate for longer inputs.
+
+Azure OpenAI graders require a template that describes how their input columns are turned into the *real* input that the grader uses. Example: If you have two inputs called *query* and *response*, and a template that was formatted as `{{item.query}}`, then only the query would be used. Similarly, you could have something like `{{item.conversation}}` to accept a conversation input, but the ability of the system to handle that depends on how you configure the rest of the grader to expect that input.
 
 For more information on data requirements for agentic evaluators, go to [Run agent evaluations locally with the Azure AI Evaluation SDK](agent-evaluate-sdk.md).
 
@@ -226,7 +210,7 @@ model_config = AzureOpenAIModelConfiguration(
     api_version=os.environ.get("AZURE_API_VERSION"),
 )
 
-# Initialize the Groundedness and Groundedness Pro evaluators:
+# Initialize the Groundedness evaluator:
 groundedness_eval = GroundednessEvaluator(model_config)
 
 conversation = {
@@ -518,9 +502,9 @@ Here's an example of how to set the `evaluators` parameters:
 result = evaluate(
     data="data.jsonl",
     evaluators={
-        "sexual":sexual_evaluator
-        "self_harm":self_harm_evaluator
-        "hate_unfairness":hate_unfairness_evaluator
+        "sexual":sexual_evaluator,
+        "self_harm":self_harm_evaluator,
+        "hate_unfairness":hate_unfairness_evaluator,
         "violence":violence_evaluator
     }
 )
@@ -535,7 +519,7 @@ A target can be any callable class in your directory. In this case, we have a Py
 Here's the content in `"data.jsonl"`:
 
 ```json
-{"query":"When was United Stated found ?", "response":"1776"}
+{"query":"When was United States found ?", "response":"1776"}
 {"query":"What is the capital of France?", "response":"Paris"}
 {"query":"Who is the best tennis player of all time ?", "response":"Roger Federer"}
 ```
