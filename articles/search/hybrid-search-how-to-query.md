@@ -21,7 +21,7 @@ In this article, learn how to:
 + Set up a basic hybrid request
 + Add parameters and filters
 + Improve relevance using semantic ranking or vector weights
-+ Optimize query behaviors by controlling text and vector inputs
++ Optimize query behaviors by controlling inputs (`maxTextRecallSize`)
 
 ## Prerequisites
 
@@ -232,7 +232,7 @@ POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?
     } 
 ```
 
-## Hybrid query examples
+## Examples of hybrid queries
 
 This section has multiple query examples that illustrate hybrid query patterns.
 
