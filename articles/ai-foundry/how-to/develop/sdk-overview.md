@@ -121,7 +121,7 @@ The [Azure AI Foundry Projects client library for JavaScript](/javascript/api/ov
 
 ::: zone pivot="programming-language-csharp"
 
-The [Azure AI Foundry Projects client library for .NET](/dotnet/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
+The [Azure AI Foundry Projects client library for .NET](/dotnet/api/overview/azure/ai.projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
 * Install packages:
 
