@@ -8,14 +8,21 @@ ms.author: sgilley
 ms.reviewer: deeikele
 ---
 
-# Migrate from hub-based to Foundry projects
 
-This guide is for existing customers with hub-based projects and explains the steps for switching from a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)] to the new [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)] to access the latest platform capabilities.
+# Migrate from hub based to Foundry projects
 
-Azure AI Foundry is transitioning to a unified platform-as-a-service, replacing the previous resource model that required management of multiple Azure services. These changes simplify platform setup and governance, enhance workflows that span multiple models and Foundry tools, and reinforce governance capabilities, as we see AI workloads grow more complex. [Learn more](https://techcommunity.microsoft.com/blog/AIPlatformBlog/build-recap-new-azure-ai-foundry-resource-developer-apis-and-tools/4427241ljQ7vS7hdrIhNLjmw?e=PU9gmv).
+This guide helps existing customers with [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s migrate to the new [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s to access the latest platform capabilities.
+
+Azure AI Foundry is transitioning to a unified platform-as-a-service, replacing the previous resource model that required management of multiple Azure services. As we see AI workloads grow more complex, the [!INCLUDE [fdp-project-name](../../../git/azure-ai-docs-pr/articles/ai-foundry/includes/fdp-project-name.md)]:
+
+- Simplifies platform setup and governance
+- Enhances workflows that span multiple models and Foundry tools
+- Reinforces governance capabilities
+
+[Learn more](https://techcommunity.microsoft.com/blog/AIPlatformBlog/build-recap-new-azure-ai-foundry-resource-developer-apis-and-tools/4427241).
 
 > [!IMPORTANT]
-> New generative AI and model-centric features are available only through the AI Foundry resource and its Foundry projects. Currently, some capabilities still require a hub next to your Foundry resource.
+> New generative AI and model-centric features are available only through the AI Foundry resource and its Foundry projects. Currently, some capabilities still require a hub next to your Foundry resource.  For a comparison of capabilities, see [What type of project do I need?](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need)
 
 ## New Foundry projects overview
 
