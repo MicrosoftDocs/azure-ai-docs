@@ -7,6 +7,8 @@ items:
       - name: What is Azure AI Content Understanding?
         displayName: document, text, images, video, audio, multimodal, visual, structured, content, field, extraction, content filtering, filter
         href: overview.md
+      - name: Choose the right tool for document processing
+        href: choosing-right-ai-tool.md
       - name: What's new
         displayName: changelog, release, updates, previews
         href: whats-new.md
