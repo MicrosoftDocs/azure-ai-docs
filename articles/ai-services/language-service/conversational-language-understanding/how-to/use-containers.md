@@ -41,11 +41,7 @@ We recommended that you have a CPU with AVX-512 instruction set, for the best ex
 
 |  Processor   | Minimum host specs     | Recommended host specs |
 |---------------------|------------------------|------------------------|
-<<<<<<< HEAD
-| **CPU**     | 1 core, 2 GB memory     | 4 cores, 8 GB memory    |
-=======
-| **CLU**     | `1 core`, `2-GB memory`     | `4 cores`, `8-GB memory`    |
->>>>>>> upstream
+| **CPU**     | 1-core, 2-GB memory     | 4-cores, 8-GB memory    |
 
 CPU core and memory correspond to the `--cpus` and `--memory` settings, which are used as part of the `docker run` command.
 
