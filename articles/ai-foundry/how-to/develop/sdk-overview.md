@@ -42,9 +42,11 @@ The Azure AI Foundry SDK is a set of client libraries and services designed to w
 
 ## Unified Projects client library
 
-The Azure AI Foundry Projects client library is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
+
 
 ::: zone pivot="programming-language-python"
+
+The [Azure AI Foundry Projects client library for Python](/python/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
 * Install the project client library 
 
@@ -62,15 +64,15 @@ The Azure AI Foundry Projects client library is a unified library that enables y
       endpoint="your_project_endpoint",  # Replace with your endpoint
       credential=DefaultAzureCredential())
     ```
-See [Azure AI Projects client library for Python](/python/api/overview/azure/ai-projects-readme).
-
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 
+The [Azure AI Foundry Projects client library for Java (preview)](/java/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
+
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-* Add these packages to your installation (preview):
+* Add these packages to your installation:
     * `com.azure.ai.projects`
     * `com.azure.core`
 
@@ -89,11 +91,13 @@ See [Azure AI Projects client library for Python](/python/api/overview/azure/ai-
         .buildClient();
     ```
 
-See [Azure AI Projects client library for Java](/java/api/overview/azure/ai-projects-readme).
+
 
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
+
+The [Azure AI Foundry Projects client library for JavaScript](/javascript/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
 * Install dependencies (preview):
 
@@ -112,11 +116,12 @@ See [Azure AI Projects client library for Java](/java/api/overview/azure/ai-proj
     const project = new AIProjectClient(endpoint, new DefaultAzureCredential());
     ```
 
-See [Azure AI Projects client library for JavaScript](/javascript/api/overview/azure/ai-projects-readme).
 
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"
+
+The [Azure AI Foundry Projects client library for .NET](/dotnet/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
 * Install packages:
 
@@ -151,8 +156,6 @@ See [Azure AI Projects client library for JavaScript](/javascript/api/overview/a
         clientOptions
     );
     ```
-
-See [Azure AI Projects client library for .NET](/dotnet/api/overview/azure/ai.projects-readme).
 
 ::: zone-end
 
