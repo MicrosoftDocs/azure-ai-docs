@@ -231,7 +231,6 @@ All possible values for the region (first element of the DNS name) are listed in
 
 | DNS name value | Speech service offering                                    |
 |----------------|-------------------------------------------------------------|
-| `commands`     | [Custom Commands](custom-commands.md)                       |
 | `s2s`          | [Speech Translation](speech-translation.md)                 |
 | `stt`          | [Speech to text](speech-to-text.md)                         |
 | `tts`          | [Text to speech](text-to-speech.md)                         |
