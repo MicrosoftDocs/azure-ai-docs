@@ -62,6 +62,7 @@ The Azure AI Foundry Projects client library is a unified library that enables y
       endpoint="your_project_endpoint",  # Replace with your endpoint
       credential=DefaultAzureCredential())
     ```
+See [Azure AI Projects client library for Python](/python/api/overview/azure/ai-projects-readme).
 
 ::: zone-end
 
@@ -88,11 +89,11 @@ The Azure AI Foundry Projects client library is a unified library that enables y
         .buildClient();
     ```
 
+See [Azure AI Projects client library for Java](/java/api/overview/azure/ai-projects-readme).
+
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
-
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 * Install dependencies (preview):
 
@@ -110,6 +111,8 @@ The Azure AI Foundry Projects client library is a unified library that enables y
     const endpoint = "your_project_endpoint"; // Replace with your actual endpoint
     const project = new AIProjectClient(endpoint, new DefaultAzureCredential());
     ```
+
+See [Azure AI Projects client library for JavaScript](/javascript/api/overview/azure/ai-projects-readme).
 
 ::: zone-end
 
@@ -148,6 +151,8 @@ The Azure AI Foundry Projects client library is a unified library that enables y
         clientOptions
     );
     ```
+
+See [Azure AI Projects client library for .NET](/dotnet/api/overview/azure/ai.projects-readme).
 
 ::: zone-end
 
