@@ -21,7 +21,7 @@ Choose the appropriate [Azure search SKU](https://azure.microsoft.com/pricing/de
 With custom question answering, you have a choice to set up your language resource in a single language or multiple languages. You can make this selection when you create your first project in the [Language Studio](https://language.azure.com/).
 
   > [!IMPORTANT]
-  > You can publish N-1 projects of a single language or N/2 projects of different languages in a particular tier, where N is the maximum indexes allowed in the tier. Also check the maximum size and the number of documents allowed per tier.
+  > You can publish N-1 projects with a single language resource or N-2 projects with multiple language resources in a single tier, where N is the maximum indexes allowed in the tier. Also check the maximum size and the number of documents allowed per tier., where N is the maximum indexes allowed in the tier. Also check the maximum size and the number of documents allowed per tier.
 
 For example, if your tier has 15 allowed indexes, you can publish 14 projects of the same language (one index per published project). The 15th index is used for all the projects for authoring and testing. If you choose to have projects in different languages, then you can only publish seven projects.
 
