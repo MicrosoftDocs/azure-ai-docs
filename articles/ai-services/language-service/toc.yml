@@ -839,8 +839,14 @@ items:
       items:
       - name: C#
         items:
-        - name: Text analysis
-          href: /dotnet/api/overview/azure/ai.textanalytics-readme?view=azure-dotnet-preview&preserve-view=true
+        - name: Language Text
+          href: /dotnet/api/overview/azure/ai.language.text-readme?view=azure-dotnet-preview&preserve-view=true
+        - name: Conversational Language Understanding
+          href: /dotnet/api/overview/azure/ai.language.conversations-readme?view=azure-dotnet-preview&preserve-view=true
+        - name: Conversations Authoring
+          href: /dotnet/api/overview/azure/ai.language.conversations.authoring-readme?view=azure-dotnet-preview&preserve-view=true
+        - name: Text Authoring
+          href: /dotnet/api/overview/azure/ai.language.text.authoring-readme?view=azure-dotnet-preview&preserve-view=true
         - name: Custom question answering
           href: /dotnet/api/overview/azure/ai.language.questionanswering-readme?view=azure-dotnet-preview&preserve-view=true
       - name: Python
