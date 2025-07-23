@@ -62,8 +62,7 @@ A user with only this role assigned would be unable to:
 ❌ Upload datasets for fine-tuning <br>
 ❌ View, query, filter Stored completions data <br>
 ❌ Access quota <br>
-❌ Create customized content filters <br>
-❌ Add a data source for the use your data feature
+❌ Create customized content filters
 
 ### Cognitive Services OpenAI Contributor
 
