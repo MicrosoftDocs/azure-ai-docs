@@ -1098,6 +1098,18 @@ groups:
     title: Python 
   - id: rest-api
     title: REST API
+- id: selection-deep-research
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: portal
+    title: Azure AI Foundry portal
+  - id: csharp
+    title: C#
+  - id: javascript
+    title: JavaScript
+  - id: python
+    title: Python
 # owner: aahi
 - id: selection-fabric-data-agent
   title: Selections

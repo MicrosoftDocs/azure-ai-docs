@@ -10,6 +10,7 @@ ms.date: 07/10/2025
 author: aahill
 ms.author: aahi
 ms.custom: references_regions
+zone_pivot_groups: selection-deep-research
 ---
 
 # How to use the Deep Research tool
@@ -23,20 +24,6 @@ Use this article to learn how to use the Deep Research tool with the Azure AI Pr
 ## Prerequisites
 
 * The requirements in the [Deep Research overview](./deep-research.md).
-* The Deep Research tool requires the latest prerelease versions of the `azure-ai-projects` library. First we recommend creating a [virtual environment](https://docs.python.org/3/library/venv.html) to work in:
-
-    ```console
-    python -m venv env
-    # after creating the virtual environment, activate it with:
-    .\env\Scripts\activate
-    ```
-
-    You can install the package with the following command:
-
-    ```console
-    pip install --pre azure-ai-projects
-    ```
-
 * Your Azure AI Foundry Project endpoint.
 
     You can find your endpoint in the main project **overview** for your project in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), under **Endpoint and keys** > **Libraries** > **Azure AI Foundry**.
@@ -61,6 +48,159 @@ Use this article to learn how to use the Deep Research tool with the Azure AI Pr
 > Other GPT-series models including GPT-4o-mini and the GPT-4.1 series are not supported for scope clarification.
 
 ## Create an agent with the Deep Research tool
+
+:::zone pivot="csharp"
+
+>[!NOTE]
+> You need version `1.1.0-beta.4` or later of the `Azure.AI.Agents.Persistent` package, and the `Azure.Identity` package.
+
+```csharp
+using Azure;
+using Azure.AI.Agents.Persistent;
+using Azure.Identity;
+using System.Collections.Generic;
+using System.Text;
+
+var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+var deepResearchModelDeploymentName = System.Environment.GetEnvironmentVariable("DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME");
+var connectionId = System.Environment.GetEnvironmentVariable("AZURE_BING_CONECTION_ID");
+PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
+
+// DeepResearchToolDefinition should be initialized with the name of deep research model and the Bing connection ID,
+// needed to perform the search in the internet.
+
+DeepResearchToolDefinition deepResearch = new(
+    new DeepResearchDetails(
+        model: deepResearchModelDeploymentName,
+        bingGroundingConnections: [
+            new DeepResearchBingGroundingConnection(connectionId)
+        ]
+    )
+);
+
+// NOTE: To reuse existing agent, fetch it with get_agent(agent_id)
+PersistentAgent agent = client.Administration.CreateAgent(
+    model: modelDeploymentName,
+    name: "Science Tutor",
+    instructions: "You are a helpful Agent that assists in researching scientific topics.",
+    tools: [deepResearch]
+);
+
+//Create a thread and run and wait for the run to complete.
+
+PersistentAgentThreadCreationOptions threadOp = new();
+threadOp.Messages.Add(new ThreadMessageOptions(
+        role: MessageRole.User,
+        content: "Research the current state of studies on orca intelligence and orca language, " +
+        "including what is currently known about orcas' cognitive capabilities, " +
+        "communication systems and problem-solving reflected in recent publications in top thier scientific " +
+        "journals like Science, Nature and PNAS."
+    ));
+ThreadAndRunOptions opts = new()
+{
+    ThreadOptions = threadOp,
+};
+ThreadRun run = client.CreateThreadAndRun(
+    assistantId: agent.Id,
+    options: opts
+);
+
+Console.WriteLine("Start processing the message... this may take a few minutes to finish. Be patient!");
+do
+{
+    Thread.Sleep(TimeSpan.FromMilliseconds(500));
+    run = client.Runs.GetRun(run.ThreadId, run.Id);
+}
+while (run.Status == RunStatus.Queued
+    || run.Status == RunStatus.InProgress);
+
+// We will create a helper function PrintMessagesAndSaveSummary, which prints the response from the agent,
+// and replaces the reference placeholders by links in Markdown format.
+// It also saves the research summary in the file for convenience.
+
+static void PrintMessagesAndSaveSummary(IEnumerable<PersistentThreadMessage> messages, string summaryFilePath)
+{
+    string lastAgentMessage = default;
+    foreach (PersistentThreadMessage threadMessage in messages)
+    {
+        StringBuilder sbAgentMessage = new();
+        Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
+        foreach (MessageContent contentItem in threadMessage.ContentItems)
+        {
+            if (contentItem is MessageTextContent textItem)
+            {
+                string response = textItem.Text;
+                if (textItem.Annotations != null)
+                {
+                    foreach (MessageTextAnnotation annotation in textItem.Annotations)
+                    {
+                        if (annotation is MessageTextUriCitationAnnotation uriAnnotation)
+                        {
+                            response = response.Replace(uriAnnotation.Text, $" [{uriAnnotation.UriCitation.Title}]({uriAnnotation.UriCitation.Uri})");
+                        }
+                    }
+                }
+                if (threadMessage.Role == MessageRole.Agent)
+                    sbAgentMessage.Append(response);
+                Console.Write($"Agent response: {response}");
+            }
+            else if (contentItem is MessageImageFileContent imageFileItem)
+            {
+                Console.Write($"<image from ID: {imageFileItem.FileId}");
+            }
+            Console.WriteLine();
+        }
+        if (threadMessage.Role == MessageRole.Agent)
+            lastAgentMessage = sbAgentMessage.ToString();
+    }
+    if (!string.IsNullOrEmpty(lastAgentMessage))
+    {
+        File.WriteAllText(
+            path: summaryFilePath,
+            contents: lastAgentMessage);
+    }
+}
+
+//List the messages, print them and save the result in research_summary.md file.
+//The file will be saved next to the compiled executable.
+
+Pageable<PersistentThreadMessage> messages
+    = client.Messages.GetMessages(
+        threadId: run.ThreadId, order: ListSortOrder.Ascending);
+PrintMessagesAndSaveSummary([.. messages], "research_summary.md");
+
+// NOTE: Comment out these two lines if you want to delete the agent.
+client.Threads.DeleteThread(threadId: run.ThreadId);
+client.Administration.DeleteAgent(agentId: agent.Id);
+```
+
+:::zone-end 
+
+:::zone pivot="javascript"
+
+```javascript
+TBD
+```
+
+:::zone-end 
+
+:::zone pivot="python"
+
+The Deep Research tool requires the latest prerelease versions of the `azure-ai-projects` library. First we recommend creating a [virtual environment](https://docs.python.org/3/library/venv.html) to work in:
+
+```console
+python -m venv env
+# after creating the virtual environment, activate it with:
+.\env\Scripts\activate
+```
+
+You can install the package with the following command:
+
+```console
+pip install --pre azure-ai-projects
+```
+
 
 ```python
 import os, time
@@ -197,6 +337,8 @@ with project_client:
         agents_client.delete_agent(agent.id)
         print("Deleted agent")
 ```
+
+:::zone-end 
 
 > [!NOTE]
 > Limitation: The Deep Research tool is currently recommended only in nonstreaming scenarios. Using it with streaming can work, but it might occasionally time out and is therefore not recommended.
