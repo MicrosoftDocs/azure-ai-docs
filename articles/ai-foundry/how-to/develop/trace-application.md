@@ -116,7 +116,7 @@ When developing with the OpenAI SDK, you can instrument your code so traces are 
 1. Use the OpenAI SDK as usual:
 
     ```python
-    client = project_client.get_azure_openai_client()
+    client = project_client.inference.get_azure_openai_client()
 
     response = client.chat.completions.create(
         model="deepseek-v3-0324",
