@@ -8,7 +8,7 @@ ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.topic: quickstart
 ms.reviewer: samkemp
-ms.author: jonburchel
+ms.author: jburchel
 author: jonburchel
 reviewer: samuel100
 ms.custom:
