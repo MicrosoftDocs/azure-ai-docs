@@ -60,7 +60,7 @@ Use the following code to create and run an agent which uploads [a CSV file](htt
 
 Set this endpoint as an environment variable named `PROJECT_ENDPOINT` in a `.env` file.
 
-[!INCLUDE [endpoint-string-portal](connection-string-deprecation.md.md)]
+[!INCLUDE [endpoint-string-portal](connection-string-deprecation.md)]
 
 [!INCLUDE [model-name-portal](model-name-portal.md)]
 

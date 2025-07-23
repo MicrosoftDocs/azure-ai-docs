@@ -47,7 +47,7 @@ Use the following code to create and run an agent. To run this code, you will ne
 
 Set this endpoint as an environment variable named `PROJECT_ENDPOINT`.
 
-[!INCLUDE [endpoint-string-portal](connection-string-deprecation.md.md)]
+[!INCLUDE [endpoint-string-portal](connection-string-deprecation.md)]
 
 [!INCLUDE [model-name-portal](model-name-portal.md)]
 
