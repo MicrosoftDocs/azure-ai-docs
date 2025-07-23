@@ -10,7 +10,8 @@ ms.service: azure-machine-learning
 ms.subservice: core
 ms.custom: build-2023, build-2023-dataai
 ms.topic: how-to
-ms.date: 03/04/2024
+ms.date: 07/23/2025
+
 ---
 
 # Create custom curated Azure Container for PyTorch (ACPT) environments in Azure Machine Learning studio
