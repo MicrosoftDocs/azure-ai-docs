@@ -46,11 +46,11 @@ Use the following code to create and run an agent. To run this code, you will ne
 
 `https://<AIFoundryResourceName>.services.ai.azure.com/api/projects/<ProjectName>`
 
+[!INCLUDE [connection-string-deprecation](connection-string-deprecation.md)]
+
 [!INCLUDE [endpoint-string-portal](endpoint-string-portal.md)]
 
 Set this endpoint in an environment variable variable named `ProjectEndpoint`.
-
-[!INCLUDE [endpoint-string-portal](connection-string-deprecation.md)]
 
 [!INCLUDE [model-name-portal](model-name-portal.md)]
 
