@@ -337,7 +337,7 @@ In this case, when you create a deployment, your model is located under the foll
 You can optionally configure your `model_mount_path` value. By adjusting this setting, you can change the path where the model is mounted.
 
 > [!IMPORTANT]
-> The `model_mount_path` value must be a valid absolute path in Linux (the OS of the container image).
+> The `model_mount_path` value must be a valid absolute path in Linux (in the guest OS of the container image).
 
 > [!IMPORTANT]
 > For BYOC scenarios, where a custom `model_mount_path` is to be configured on an online deployment, you must set the [`inference_config` parameter](#the-inference_config-parameter) in the custom environment created for the model, in order for the environment to be recognized as a custom environment. For such scenarios, use the Azure CLI or Python SDK to set the parameter. Do not try to set the parameter when creating the custom environment in the Azure portal, as there are some known limitations with configuring the `inference_config` parameter this way.
