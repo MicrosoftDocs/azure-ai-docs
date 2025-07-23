@@ -95,7 +95,7 @@ This role is typically granted access at the resource group level for a user in 
 ✅ Ability to view what models are available for deployment in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) <br>
 ✅ Use the Chat, Completions, and DALL-E (preview) playground experiences to generate text and images with any models that have already been deployed to this Azure OpenAI resource <br>
 ✅ Create customized content filters <br>
-✅ Add data sources to Azure OpenAI On Your Data. **You must also have the [Cognitive Services OpenAI Contributor](#cognitive-services-openai-contributor) role as well**.
+✅ Add data sources to Azure OpenAI On Your Data. **You must also have the [Cognitive Services OpenAI Contributor](#cognitive-services-openai-contributor) role as well**. <br>
 ✅ Create new model deployments or edit existing model deployments (via API) <br>
 ✅ Create custom fine-tuned models **[Added Fall 2023]**<br>
 ✅ Upload datasets for fine-tuning **[Added Fall 2023]**<br>
