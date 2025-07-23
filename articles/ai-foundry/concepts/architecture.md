@@ -8,7 +8,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: concept-article
-ms.date: 04/28/2025
+ms.date: 07/22/2025
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
@@ -16,165 +16,83 @@ author: sdgilley
 
 # Azure AI Foundry architecture 
 
-[!INCLUDE [hub-only-alt](../includes/uses-hub-only-alt.md)]
-    
-Azure AI Foundry provides a unified experience for AI developers and data scientists to build, evaluate, and deploy AI models through a web portal, SDK, or CLI. Azure AI Foundry is built on capabilities and services provided by other Azure services.
+Azure AI Foundry provides a comprehensive set of tools to support development teams in building, customizing, evaluating and operating AI Agents and its composing models and tools.
 
-:::image type="content" source="../media/concepts/ai-studio-architecture.png" alt-text="Diagram of the high-level architecture of Azure AI Foundry." lightbox="../media/concepts/ai-studio-architecture.png":::
+This article is intended to provide IT security teams with details on the Azure service architecture, its components, and its relation with related Azure resource types. Use this information to guide how to [customize](how-to/configure-private-link.md) your Foundry deployment to your organization's requirements. For additional guidance on how to roll out AI Foundry in your organization, see [Azure AI Foundry Rollout](concepts/planning.md).
 
-At the top level, Azure AI Foundry provides access to the following resources:
+## Azure AI resource types and providers
 
-- **Azure OpenAI**: Provides access to the latest OpenAI models. You can create secure deployments, try playgrounds, fine tune models, content filters, and batch jobs. The Azure OpenAI resource provider is `Microsoft.CognitiveServices/account` and the kind of resource is `OpenAI`. You can also connect to Azure OpenAI by using a kind of `AIServices`, which also includes other [Azure AI services](/azure/ai-services/what-are-ai-services).
+Within the Azure AI product family, we distinguish three [Azure resource providers]() supporting user needs at different layers in the stack.
 
-    When you use Azure AI Foundry portal, you can directly work with Azure OpenAI without an Azure Studio project. Or you can use Azure OpenAI through a project.
+| Resource provider | Purpose | Supports resource type kinds |
+| --- | --- | --- |
+| Microsoft.CognitiveServices | Supports Agentic and GenAI application development composing and customizing pre-built models. | Azure AI Foundry; Azure OpenAI service; Azure Speech; Azure Vision | 
+| Microsoft.Search | Support knowledge retrieval over your data | Azure AI Search | 
+| Microsoft.MachineLearningServices | Train, deploy and operate custom and open source machine learning models | Azure AI Hub (and its projects); Azure Machine Learning Workspace | 
 
-    For more information, visit [Azure OpenAI in Azure AI Foundry portal](../azure-openai-in-azure-ai-foundry.md).
+[Resource provider registration](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider) is required in your Azure subscription before you are able to create the above resource types.
 
-- **Management center**: The management center streamlines governance and management of Azure AI Foundry services such as hubs, projects, connected resources, and deployments.
-
-    For more information, visit [Management center](management-center.md).
-- **Azure AI Foundry hub**: The hub is the top-level resource in Azure AI Foundry portal, and is based on the Azure Machine Learning service. The Azure resource provider for a hub is `Microsoft.MachineLearningServices/workspaces`, and the kind of resource is `Hub`. It provides the following features:
-    - Security configuration including a managed network that spans projects and model endpoints.
-    - Compute resources for interactive development, fine-tuning, open source, and serverless API deployment for models.
-    - Connections to other Azure services such as Azure OpenAI, Azure AI services, and Azure AI Search. Hub-scoped connections are shared with projects created from the hub.
-    - Project management. A hub can have multiple child projects.
-    - An associated Azure storage account for data upload and artifact storage.
-    
-    For more information, visit [Hubs and projects overview](ai-resources.md).
-- **Azure AI Foundry project**: A project is a child resource of the hub. The Azure resource provider for a project is `Microsoft.MachineLearningServices/workspaces`, and the kind of resource is `Project`. The project provides the following features:
-    - Access to development tools for building and customizing AI applications.   
-    - Reusable components including datasets, models, and indexes.
-    - An isolated container to upload data to (within the storage inherited from the hub).
-    - Project-scoped connections. For example, project members might need private access to data stored in an Azure Storage account without giving that same access to other projects.
-    - Open source model deployments from catalog and fine-tuned model endpoints.
-
-    :::image type="content" source="../media/concepts/resource-provider-connected-resources.svg" alt-text="Diagram of the relationship between Azure AI Foundry services." :::
-
-    For more information, visit [Hubs and projects overview](ai-resources.md).
-
-- **Connections**: Azure AI Foundry hubs and projects use connections to access resources provided by other services. For example, data in an Azure Storage Account, Azure OpenAI or other Azure AI services.
-
-    For more information, visit [How to add a new connection in Azure AI Foundry portal](../how-to/connections-add.md).
-
-## Azure resource types and providers
-
-Azure AI Foundry is built on the Azure Machine Learning resource provider, and takes a dependency on several other Azure services. The resource providers for these services must be registered in your Azure subscription. The following table lists the resource types, provider, and kind:
+Azure AI Foundry resource is the primary resource for Azure AI and is recommended for most use cases. It is built on the same [Azure resource provider](#LINK) and [resource type](#LINK) as Azure OpenAI service, Azure Speech, Azure Vision, and Azure Language service. It provides access to the superset of capabilities from each individual services combined. 
 
 [!INCLUDE [Resource provider kinds](../includes/resource-provider-kinds.md)]
 
-When you create a new hub, a set of dependent Azure resources are required to store data, get access to models, and provide compute resources for AI customization. The following table lists the dependent Azure resources and their resource providers:
+Resource types under the same provider namespace use similar [Azure RBAC](#link) actions, networking configurations and aliases for Azure Policy configuration. If you are upgrading from Azure OpenAI to Azure AI Foundry, this means your existing custom Azure policies and Azure RBAC options apply. 
 
-> [!TIP]
-> If you don't provide a dependent resource when creating a hub, and it's a required dependency, Azure AI Foundry creates the resource for you.
+## Security-driven separation of concerns
 
-[!INCLUDE [Dependent Azure resources](../includes/dependent-resources.md)]
+Azure AI Foundry enforces a clear separation between management and development operations to ensure secure and scalable AI workloads.
 
-For information on registering resource providers, see [Register an Azure resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).
+- **Top-Level Resource Governance:** Management operations—such as configuring security, establishing connectivity with other Azure services, and managing deployments—are scoped to the top-level Azure AI Foundry resource. Development activities are isolated within dedicated project containers, which encapsulate use cases and provide boundaries for access control, files, agents, and evaluations.
 
-### Microsoft-hosted resources
+- **Role-Based Access Control (RBAC):** Azure RBAC actions are designed to reflect this separation of concerns. Control plane actions (e.g., creating deployments and projects) are distinct from data plane actions (e.g., building agents, running evaluations, uploading files). RBAC assignments can be scoped at both the top-level resource and individual project level. Managed identities can also be assigned at either scope to support secure automation and service access.
 
-While most of the resources used by Azure AI Foundry live in your Azure subscription, some resources are in an Azure subscription managed by Microsoft. The cost for these managed resources shows on your Azure bill as a line item under the Azure Machine Learning resource provider. The following resources are in the Microsoft-managed Azure subscription, and don't appear in your Azure subscription:
+- **Monitoring and Observability:** Azure Monitor metrics are segmented by scope. Management and usage metrics are available at the top-level resource, while project-specific metrics—such as evaluation performance or agent activity—are scoped to the individual project containers.
 
-- **Managed compute resources**: Provided by Azure Batch resources in the Microsoft subscription.
-- **Managed virtual network**: Provided by Azure Virtual Network resources in the Microsoft subscription. If FQDN rules are enabled, an Azure Firewall (standard) is added and charged to your subscription. For more information, see [Configure a managed virtual network for Azure AI Foundry](../how-to/configure-managed-network.md).
-- **Metadata storage**: Provided by Azure Storage resources in the Microsoft subscription.  
+## Computing infrastructure
 
-    > [!NOTE]
-    > If you use customer-managed keys, the metadata storage resources are created in your subscription. For more information, see [Customer-managed keys](encryption-keys-portal.md).
+Azure AI Foundry leverages a flexible compute architecture to support diverse model hosting and workload execution scenarios.
 
-Managed compute resources and managed virtual networks exist in the Microsoft subscription, but you manage them. For example, you control which VM sizes are used for compute resources, and which outbound rules are configured for the managed virtual network.
+- Model Hosting Architecture: Models are hosted using different compute stacks depending on their origin:
 
-Managed compute resources also require vulnerability management. Vulnerability management is a shared responsibility between you and Microsoft. For more information, see [vulnerability management](vulnerability-management.md).
+  - **Microsoft-hosted** models are served directly by Microsoft's model serving infrastructure.
+  - **Partner models** are served by Microsoft's model serving infrastructure.
+  - **Open-source models** are deployed on managed compute through the Azure ML stack, accessible via AI Hub and hub-based projects. To learn more, see [this link](#some-link) These rely on Azure Batch infrastructure within Microsoft subscriptions, with support for managed virtual networking.
 
-## Centrally set up and govern using hubs
+- **Workload Execution:** Agents and Evaluations are executed on Azure Container Apps compute, fully managed by Microsoft. This ensures scalability and operational consistency across use cases.
 
-Hubs provide a central way for a team to govern security, connectivity, and computing resources across playgrounds and projects. Projects that are created using a hub inherit the same security settings and shared resource access. Teams can create as many projects as needed to organize work, isolate data, and/or restrict access.
+- **Networking Integration:** For enhanced security and compliance, Agents can be injected into your own virtual network (VNet). Evaluations, however, currently do not support VNet injection during the preview phase.
 
-Often, projects in a business domain require access to the same company resources such as vector indices, model endpoints, or repos. As a team lead, you can preconfigure connectivity with these resources within a hub, so developers can access them from any new project workspace without delay on IT.
+## Data storage
 
-Connections let you access objects in Azure AI Foundry that are managed outside of your hub. For example, uploaded data on an Azure storage account, or model deployments on an existing Azure OpenAI resource. A connection can be shared with every project or made accessible to one specific project. Connections can be configured to use key-based access or Microsoft Entra ID passthrough to authorize access to users on the connected resource. As an administrator, you can  track, audit, and manage connections across the organization from a single view in Azure AI Foundry.
+Azure AI Foundry provides flexible and secure data storage options to support a wide range of AI workloads.
 
-:::image type="content" source="../media/concepts/connected-resources-spog.png" alt-text="Screenshot of Azure AI Foundry showing an audit view of all connected resources across a hub and its projects." :::
+* **Managed Storage (Default Configuration)**:
+In the default setup, Azure AI Foundry uses Microsoft-managed, multi-tenant storage accounts. These accounts offer per-tenant isolation and support direct file uploads for select use cases—such as OpenAI models, Assistants, and Agents—without requiring a customer-provided storage account.
 
-### Organize for your team's needs
+* **Bring Your Own Storage (Optional)**:
+Users can optionally connect their own Azure Storage accounts. Foundry tools can read inputs from and write outputs to these accounts, depending on the tool and use case.
 
-The number of hubs and projects you need depends on your way of working. You might create a single hub for a large team with similar data access needs. This configuration maximizes cost efficiency, resource sharing, and minimizes setup overhead. For example, a hub for all projects related to customer support.
+* **Agent Data Storage:**
 
-If you require isolation between dev, test, and production as part of your LLMOps or MLOps strategy, consider creating a hub for each environment. Depending on the readiness of your solution for production, you might decide to replicate your project workspaces in each environment or just in one.
+  * In the basic configuration, the Agent service stores threads, messages, and files in Microsoft-managed multi-tenant storage, with tenant-level isolation.
+  * With the Agent standard setup, users can bring their own storage for thread and message data. In this configuration, data is isolated by project within the customer’s storage account. For details on the container format, refer to the documentation [link to container format doc].
 
-## Role-based access control and control plane proxy
+* **Customer-Managed Key Encryption:**
+  When using customer-managed keys, data remains stored in Microsoft-managed multi-tenant infrastructure, encrypted using the customer’s keys. To support in-product search and optimized query performance, a dedicated Azure Search instance is provisioned for metadata indexing.
 
-Azure AI services including Azure OpenAI provide control plane endpoints for operations such as listing model deployments. These endpoints are secured using a separate Azure role-based access control (RBAC) configuration than the one used for a hub. 
+## Credential storage
 
-To reduce the complexity of Azure RBAC management, Azure AI Foundry provides a *control plane proxy* that allows you to perform operations on connected Azure AI services and Azure OpenAI resources. Performing operations on these resources through the control plane proxy only requires Azure RBAC permissions on the hub. The Azure AI Foundry service then performs the call to the Azure AI services or Azure OpenAI control plane endpoint on your behalf.
+When configuring Azure AI Foundry tools to connect with external Azure or non-Azure services, certain scenarios require storing sensitive credentials such as connection strings or API keys.
 
-For more information, see [Role-based access control in Azure AI Foundry portal](rbac-azure-ai-foundry.md).
+* **Default Configuration:**
+  By default, secrets are stored in Microsoft-managed Key Vault instances.
 
-## Attribute-based access control
-
-Each hub you create has a default storage account. Each child project of the hub inherits the storage account of the hub. The storage account is used to store data and artifacts.
-
-To secure the shared storage account, Azure AI Foundry uses both Azure RBAC and Azure attribute-based access control (Azure ABAC). Azure ABAC is a security model that defines access control based on attributes associated with the user, resource, and environment. Each project has:
-
-- A service principal that is assigned the Storage Blob Data Contributor role on the storage account.
-- A unique ID (workspace ID).
-- A set of containers in the storage account. Each container has a prefix that corresponds to the workspace ID value for the project.
-
-The role assignment for each project's service principal has a condition that only allows the service principal access to containers with the matching prefix value. This condition ensures that each project can only access its own containers.
-
-> [!NOTE]
-> For data encryption in the storage account, the scope is the entire storage and not per-container. So all containers are encrypted using the same key (provided either by Microsoft or by the customer).
-
-For more information on Azure access-based control, see [What is Azure attribute-based access control](/azure/role-based-access-control/conditions-overview).
-
-## Containers in the storage account
-
-The default storage account for a hub has the following containers. These containers are created for each project, and the `{workspace-id}` prefix matches the unique ID for the project. Projects access a container by using a connection.
-
-> [!TIP]
-> To find the ID for your project, go to the project in the [Azure portal](https://portal.azure.com/). Expand **Settings** and then select **Properties**. The **Workspace ID** is displayed.
-
-| Container name | Connection name | Description |
-| --- | --- | --- |
-| `{workspace-ID}-azureml` | workspaceartifactstore | Storage for assets such as metrics, models, and components. |
-| `{workspace-ID}-blobstore`| workspaceblobstore | Storage for data upload, job code snapshots, and pipeline data cache. |
-| `{workspace-ID}-code` | NA | Storage for notebooks, compute instances, and prompt flow. |
-| `{workspace-ID}-file` | NA | Alternative container for data upload. |
-
-## Encryption
-
-Azure AI Foundry uses encryption to protect data at rest and in transit. By default, Microsoft-managed keys are used for encryption. However you can use your own encryption keys. For more information, see [Customer-managed keys](../../ai-services/encryption/cognitive-services-encryption-keys-portal.md?context=/azure/ai-studio/context/context).
-
-## Virtual network
-
-A hub can be configured to use a *managed* virtual network. The managed virtual network secures communications between the hub, projects, and managed resources such as computes. If your dependency services (Azure Storage, Key Vault, and Container Registry) have public access disabled, a private endpoint for each dependency service is created to secure communication between the hub and project and the dependency service.
-
-> [!NOTE]
-> If you want to use a virtual network to secure communications between your clients and the hub or project, you must use an Azure Virtual Network that you create and manage. For example, an Azure Virtual Network that uses a VPN or ExpressRoute connection to your on-premises network.
-
-For more information on how to configure a managed virtual network, see [Configure a managed virtual network for Azure AI Foundry](../how-to/configure-managed-network.md).
-
-## Azure Monitor
-
-Azure monitor and Azure Log Analytics provide monitoring and logging for the underlying resources used by Azure AI Foundry. Since Azure AI Foundry is built on Azure Machine Learning, Azure OpenAI, Azure AI services, and Azure AI Search, use the following articles to learn how to monitor the services:
-
-| Resource | Monitoring and logging |
-| --- | --- |
-| Azure AI Foundry hub and project | [Monitor Azure Machine Learning](/azure/machine-learning/monitor-azure-machine-learning) |
-| Azure OpenAI | [Monitor Azure OpenAI](/azure/ai-services/openai/how-to/monitoring) |
-| Azure AI services | [Monitor Azure AI (training)](/training/modules/monitor-ai-services/) |
-| Azure AI Search | [Monitor Azure AI Search](/azure/search/monitor-azure-cognitive-search) |
-
-## Price and quota
-
-For more information on price and quota, use the following articles:
-
-- [Plan and manage costs](../how-to/costs-plan-manage.md)
-- [Quota management](../how-to/quota.md)
+* **Bring Your Own Key Vault (Preview):**
+  As an optional configuration (preview), you can integrate your own Azure Key Vault instance for credential storage. This allows for greater control over secret management and aligns with enterprise-specific security policies.
 
 ## Next steps
 
-Create a hub using one of the following methods:
-
-- [Azure portal](../how-to/create-secure-ai-hub.md): Create a hub with your own networking.
-- [Bicep template](../how-to/create-azure-ai-hub-template.md).
+* Rollout doc
+* CMK docs
+* Networking odcs
+* AGent standar set up docs

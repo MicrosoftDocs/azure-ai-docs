@@ -783,6 +783,8 @@ items:
       href: ../ai-services/multi-service-resource.md?context=/azure/ai-foundry/context/context
     - name: Create using Bicep template
       href: how-to/create-resource-template.md
+    - name: Create using Terraform template
+      href: how-to/create-resource-terraform.md
     - name: Recover or purge deleted resources
       href: ../ai-services/recover-purge-resources.md?context=/azure/ai-foundry/context/context
   - name: Manage AI Hub resources
@@ -914,7 +916,6 @@ items:
     href: foundry-models/concepts/default-safety-policies.md
   - name: Use blocklists
     href: foundry-models/how-to/use-blocklists.md
-
   - name: Transparency notes for Azure AI Services
     href: ../ai-services/responsible-use-of-ai-overview.md?context=/azure/ai-foundry/context/context
   - name: Limited Access features
