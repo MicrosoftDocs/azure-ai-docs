@@ -16,7 +16,7 @@ ms.custom: build-spring-2022, cliv2, sdkv2
 
 Instance types are an Azure Machine Learning concept that allows targeting certain types of compute nodes for training and inference workloads. For example, in an Azure virtual machine, an instance type is `STANDARD_D2_V3`. This article shows you how to create and manage instance types for your computation requirements. 
 
-In Kubernetes clusters, instance types are represented as a custom resource definition (CRD) that's installed with the Azure Machine Learning extension. Two elements in the Azure Machine Learning extension represent instance types:
+In Kubernetes clusters, instance types are represented as a custom resource definition (CRD) installed with the Azure Machine Learning extension. Two elements in the Azure Machine Learning extension represent instance types:
 
 - **nodeSelector**: Use [nodeSelector](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector) to specify which node a pod should run on. The node must have a corresponding label.
 - **resources**: In the [resources](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) section, you can set the compute resources (CPU, memory, and NVIDIA GPU) for the pod.
@@ -226,7 +226,7 @@ blue_deployment = KubernetesOnlineDeployment(
 In the preceding example, replace `<instance type name>` with the name of the instance type that you want to select. If you don't specify an `instance_type` property, the system uses `defaultinstancetype` to deploy the model.
 
 > [!IMPORTANT]
-> For MLflow model deployment, the resource request requires at least 2 CPU cores and 4 GB of memory. Otherwise, the deployment will fail.
+> For MLflow model deployment, the resource request requires at least 2 CPU cores and 4 GB of memory. Otherwise, the deployment fails.
 
 ### Resource section validation
 
