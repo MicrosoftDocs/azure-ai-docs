@@ -51,7 +51,7 @@ New capabilities include:
 
 ## How to switch to Foundry project
 
-You'll use the AI Foundry Models resource from your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)] to create new [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s. This process allows you to keep work done on the resource in the new project type.
+You'll create new [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s in the AI Foundry models resource from your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]. This process allows the new projects to access work originally done in the [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
 
 :::image type="content" source="../media/migrate-project/upgrade.svg" alt-text="Screenshot shows the upgrade path from hub based to Foundry project types.":::
 
@@ -67,11 +67,12 @@ Limitations:
 
 - Your Preview Agent's state, including messages, thread, and files can't be moved. However, you can recreate your agent using code in your new project.
 - Open-source model deployments aren't currently supported in Foundry projects.
+- Your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)] will not have access to any of the new projects created on the AI Foundry models resource.
 
 In the following sections, we walk through how you can move from [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s to [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s:
 
 1. [Locate your existing AI Foundry resource](#locate)
-1. [Create a new project[!INCLUDE [hub-project-name](../includes/hub-project-name.md)]](#create-project) on the AI resource.
+1. [Create a new [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]](#create-project) on the AI resource.
 
 Once you have your new project, you might want to:
 
