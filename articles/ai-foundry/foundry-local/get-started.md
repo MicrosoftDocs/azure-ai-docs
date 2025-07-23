@@ -35,7 +35,7 @@ Your system must meet the following requirements to run Foundry Local:
 - **Operating System**: Windows 10 (x64), Windows 11 (x64/ARM), Windows Server 2025, macOS.
 - **Hardware**: Minimum 8GB RAM, 3GB free disk space. Recommended 16GB RAM, 15GB free disk space.
 - **Network**: Internet connection for initial model download (optional for offline use)
-- **Acceleration (optional)**: NVIDIA GPU (2,000 series or newer), AMD GPU (6,000 series or newer), Qualcomm Snapdragon X Elite (8GB or more of memory), or Apple silicon.
+- **Acceleration (optional)**: NVIDIA GPU (2,000 series or newer), AMD GPU (6,000 series or newer), Intel iGPU, Qualcomm Snapdragon X Elite (8GB or more of memory), or Apple silicon.
 
 Also, ensure you have administrative privileges to install software on your device.
 
