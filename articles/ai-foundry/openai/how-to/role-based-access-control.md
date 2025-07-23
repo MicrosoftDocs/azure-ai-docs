@@ -5,7 +5,7 @@ author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 07/11/2025
+ms.date: 07/23/2025
 ms.author: mbullwin
 recommendations: false
 ---
@@ -152,7 +152,7 @@ All the capabilities of Cognitive Services Contributor plus the ability to:
 |Create new Azure OpenAI resources|❌|❌|✅| ➖ |
 |View/Copy/Regenerate keys under “Keys and Endpoint”|❌|❌|✅| ➖ |
 |Create customized content filters|❌|❌|✅| ➖ |
-|Add a data source for the “on your data” feature|❌|❌|✅| ➖ |
+|Add a data source for the "on your data" feature|✅|✅|✅| ➖ |
 |Access quota|❌|❌|❌|✅|
 |Make inference API calls with Microsoft Entra ID| ✅ | ✅ | ❌ |  ➖ | 
 ## Common Issues
