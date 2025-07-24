@@ -141,38 +141,6 @@ By default, full text search is subject to a maximum limit of 1,000 matches (see
 
 For more information, see [How to work with search results](search-pagination-page-layout.md).
 
-## Diagram of a search scoring workflow
-
-The following diagram illustrates a hybrid query that invokes keyword and vector search, with [boosting through scoring profiles](index-add-scoring-profiles.md#how-search-scoring-works-in-azure-ai-search), and semantic ranking.
-
-:::image type="content" source="media/scoring-profiles/scoring-over-ranked-results.png" alt-text="Diagram of prefilters." border="true" lightbox="media/scoring-profiles/scoring-over-ranked-results.png":::
-
-A query that generates the previous workflow might look like this:
-
-```http
-POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2024-07-01
-Content-Type: application/json
-api-key: {{admin-api-key}}
-{
-   "queryType":"semantic",
-   "search":"hello world",
-   "searchFields":"field_a, field_b",
-   "vectorQueries": [
-       {
-           "kind":"vector",
-           "vector": [1.0, 2.0, 3.0],
-           "fields": "field_c, field_d"
-       },
-       {
-           "kind":"vector",
-           "vector": [4.0, 5.0, 6.0],
-           "fields": "field_d, field_e"
-       }
-   ],
-   "scoringProfile":"my_scoring_profile"
-}
-```
-
 ## See also
 
 + [Learn more about hybrid search](hybrid-search-overview.md)

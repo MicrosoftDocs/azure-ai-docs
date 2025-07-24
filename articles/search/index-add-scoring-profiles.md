@@ -89,25 +89,6 @@ Query parameters, including `scoringParameters`, are described in [Search Docume
 
 For more scenarios, see the [examples](#examples) in this article.
 
-## How search scoring works in Azure AI Search
-
-Scoring profiles supplement the default scoring algorithm by boosting the scores of matches that meet the profile's criteria. Scoring functions apply to:
-
-+ [Text (keyword) search](search-query-create.md)
-+ [Pure vector queries](vector-search-how-to-query.md)
-+ [Hybrid queries](hybrid-search-how-to-query.md), with text and vector subqueries execute in parallel
-+ [Semantically ranked queries](semantic-how-to-query-request.md)
-
-For standalone text queries, scoring profiles identify the top 1,000 matches in a [BM25-ranked search](index-similarity-and-scoring.md), and the top 50 are returned in results.
-
-For pure vectors, the query is vector-only, but if the [*k*-matching documents](vector-search-ranking.md) include nonvector fields with human-readable content, a scoring profile can be applied to nonvector fields in `k` documents. 
-
-For text queries in a hybrid query, scoring profiles identify the top 1,000 matches in a BM25-ranked search. However, once those 1,000 results are identified, they're restored to their original BM25 order so that they can be rescored alongside vectors results in the final [Reciprocal Ranking Function (RRF)](hybrid-search-ranking.md) ordering, where the scoring profile (identified as "final document boosting adjustment" in the illustration) is applied to the merged results, along with [vector weighting](vector-search-how-to-query.md#vector-weighting), and [semantic ranking](semantic-search-overview.md) as the last step.
-
-:::image type="content" source="media/scoring-profiles/scoring-over-ranked-results.png" alt-text="Diagram showing which fields have a scoring profile and when ranking occurs.":::
-
-For semantically ranked queries (not shown in the diagram), assuming you use the latest preview REST API or preview Azure SDK package, scoring profiles can be applied over an L2 ranked result set, generating a new `@search.rerankerBoostedScore` that determines the final ranking.
-
 ## Add a scoring profile to a search index
 
 1. Start with an [index definition](/rest/api/searchservice/indexes/create). You can add and update scoring profiles on an existing index without having to rebuild it. Use a [Create or Update Index](/rest/api/searchservice/indexes/create-or-update) request to post a revision.
