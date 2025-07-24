@@ -902,6 +902,8 @@ groups:
     title: Java
   - id: programming-language-javascript
     title: JavaScript
+  - id: programming-language-typescript
+    title: TypeScript
   - id: programming-language-python
     title: Python
   - id: programming-language-rest-api
