@@ -109,7 +109,7 @@ Checks the contract against internal standards or uploaded guidelines to identif
 ## Use the .NET SDK 
 
 > [!NOTE]
-> This shows a synchronous usage. You can find an asynchronous example on [GitHub](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Projects/samples/Sample24_Agent_Connected_Agent.md) 
+> This shows a synchronous usage. You can find an asynchronous example on [GitHub](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/samples/Sample23_PersistentAgents_Connected_Agent.md) 
 
 To enable your Agent to use a connected agent, you use `ConnectedAgentToolDefinition` along with the agent ID, name, and a description.
 
@@ -230,7 +230,7 @@ To create a multi-agent setup, follow these steps:
     ```python
     import os
     from azure.ai.projects import AIProjectClient
-    from azure.ai.projects.models import ConnectedAgentTool, MessageRole
+    from azure.ai.agents.models import ConnectedAgentTool, MessageRole
     from azure.identity import DefaultAzureCredential
     
     

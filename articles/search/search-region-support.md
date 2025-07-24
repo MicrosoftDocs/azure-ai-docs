@@ -45,8 +45,8 @@ You can create an Azure AI Search service in any of the following Azure public r
 | Canada Central​​ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Canada East​​ ​|  |  | ✅ | ✅ |  |
 | ​Central US​​ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| East US​ | ✅ | ✅ | ✅ | ✅ |  |
-| East US 2 ​<sup>1</sup>  | ✅ | ✅ | ✅ | ✅ | ✅ |
+| East US​ <sup>1</sup> | ✅ | ✅ | ✅ | ✅ |  |
+| East US 2 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Mexico Central |  | ✅ |  |  |  |
 | North Central US​ ​| ✅ |  | ✅ | ✅ | ✅ |
 | South Central US​ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -55,8 +55,7 @@ You can create an Azure AI Search service in any of the following Azure public r
 | West US 3​ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | West Central US​ ​ | ✅ |  | ✅ | ✅ |  |
 
-<sup>1</sup> This region has capacity constraints on the following tiers: S2, S3, L1, and L2.
-
+<sup>1</sup> This region has capacity constraints in all tiers.
 ### Europe
 
 | Region | AI enrichment | Availability zones | Agentic retrieval | Semantic ranker | Query rewrite |

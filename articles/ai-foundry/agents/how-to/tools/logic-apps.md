@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 07/11/2025
+ms.date: 07/16/2025
 author: aahill
 ms.author: aahi
 ms.reviewer: umangsehgal
@@ -74,7 +74,7 @@ project_client = AIProjectClient(
 
 ## Register the Logic App
 
-Register the Logic App by providing its name and trigger details. You can find code for `AzureLogicAppTool` on[GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/utils/user_functions.py).
+Register the Logic App by providing its name and trigger details. You can find code for `AzureLogicAppTool` on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/python/getting-started-agents/logic_apps/user_logic_apps.py).
 
 ```python
 from user_logic_apps import AzureLogicAppTool

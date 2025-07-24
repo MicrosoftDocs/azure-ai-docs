@@ -1204,6 +1204,11 @@
           "redirect_document_id": false
         },
         {
+          "source_path_from_root": "/articles/ai-foundry/agents/index.yml",
+          "redirect_url": "/azure/ai-foundry/",
+          "redirect_document_id": false
+        },
+        {
           "source_path_from_root": "/articles/ai-foundry/how-to/online-evaluation.md",
           "redirect_url": "/azure/ai-foundry/how-to/monitor-applications",
           "redirect_document_id": false

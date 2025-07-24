@@ -32,26 +32,26 @@ ms.author: pafarley
    code .
    ```
 
-2. Create a new package for ESM modules in your project directory:
+1. Create a new package for ESM modules in your project directory:
 
    ```console
    npm init -y
    npm pkg set type=module
    ```
 
-3. Install the required packages:
+1. Install the required packages:
 
    ```console
    npm install @azure-rest/ai-content-safety
    ```
 
-4. Install development dependencies:
+1. Install development dependencies:
 
    ```console
    npm install typescript @types/node --save-dev
    ```
 
-5. Create a `tsconfig.json` file in your project directory:
+1. Create a `tsconfig.json` file in your project directory:
 
    ```json
    {
@@ -82,7 +82,7 @@ ms.author: pafarley
    }
    ```
 
-6. Update `package.json` to include a script for building TypeScript files:
+1. Update `package.json` to include a script for building TypeScript files:
 
    ```json
    "scripts": {
@@ -91,9 +91,9 @@ ms.author: pafarley
    }
    ```
 
-7. Create a `resources` folder and add a sample image to it.
+1. Create a `resources` folder and add a sample image to it.
 
-8. Create a `src` directory for your TypeScript code.
+1. Create a `src` directory for your TypeScript code.
 
 [!INCLUDE [Create environment variables](../env-vars.md)]
 

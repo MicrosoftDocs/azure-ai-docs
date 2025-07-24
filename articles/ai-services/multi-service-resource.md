@@ -5,7 +5,7 @@ description: Create and manage an AI Foundry resource.
 author: eric-urban
 ms.author: eur
 manager: nitinme
-ms.date: 5/19/2025
+ms.date: 7/16/2025
 ms.service: azure-ai-services
 ms.topic: quickstart
 ms.custom:
@@ -25,7 +25,7 @@ Azure AI Foundry is the next version and renaming of former 'Azure AI Services'.
 
 Looking to use AI Foundry with advanced security settings? See [advanced AI Foundry creation options](../ai-foundry/how-to/create-resource-template.md)
 
-Looking to use Azure AI Search skills? See classic [Azure AI multi-services resource](#azure-ai-multi-services-resource-for-azure-ai-search-skills).
+Looking to use [Azure AI Search skills?](../search/tutorial-skillset.md) See classic [Azure AI multi-services resource](#azure-ai-multi-services-resource-for-azure-ai-search-skills).
 
 ::: zone pivot="azportal"
 
@@ -78,13 +78,13 @@ The AI Foundry resource enables access to the following Azure AI services with a
 
 ## Azure AI multi-services resource for Azure AI Search skills
 
-Azure AI Search skills don't support the AI Foundry resource as described previously in this article. You must create a different kind of multi-service resource for Azure AI Search skills. 
+[Azure AI Search skills](../search/tutorial-skillset.md) don't support the AI Foundry resource as described previously in this article. You must create a different kind of multi-service resource for Azure AI Search skills. 
 
 The multi-service resource that you can use with Azure AI Search skills is listed under **AI Foundry** > **Classic AI services** > **Azure AI services multi-service account (classic)** in the portal. Look for the logo as shown here:
 
 :::image type="content" source="./media/cognitive-services-resource-portal.png" alt-text="Screenshot of the Azure AI services multi-service account in the Azure portal." lightbox="./media/cognitive-services-resource-portal.png":::
 
-To create a multi-service resource for Azure AI Search follow these instructions:
+To create a multi-service resource for Azure AI Search skills follow these instructions:
 1. Select this link to create an **Azure AI services multi-service account (classic)** resource: [https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne](https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne)
 
 1. On the **Create** page, provide the following information:
