@@ -35,7 +35,7 @@ You can use scoring profiles in [keyword search](search-lucene-query-architectur
 
 You can have up to 100 scoring profiles within an index (see [service Limits](search-limits-quotas-capacity.md)), but you can only specify one profile at time in any given query.
 
-You can use [semantic ranker](semantic-how-to-query-request.md) with scoring profiles. When multiple ranking or relevance features are in play, semantic ranking is the last step. [How search scoring works](#how-search-scoring-works-in-azure-ai-search) provides an illustration.
+You can use [semantic ranker](semantic-how-to-query-request.md) with scoring profiles. When multiple ranking or relevance features are in play, semantic ranking is the last step. [How search scoring works](search-relevance-overview.md#diagram-of-ranking-algorithms) provides an illustration.
 
 [Extra rules](#rules-for-using-functions) apply specifically to functions.
 
@@ -87,7 +87,7 @@ POST /indexes/hotels/docs&api-version=2024-07-01
 
 Query parameters, including `scoringParameters`, are described in [Search Documents (REST API)](/rest/api/searchservice/documents/search-post).  
 
-For more scenarios, see the [examples](#examples) in this article.
+For more scenarios, see the [example](#example-of-a-scoring-profile) in this article.
 
 ## Add a scoring profile to a search index
 
