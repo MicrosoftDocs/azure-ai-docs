@@ -177,6 +177,17 @@ When each training epoch completes a checkpoint is generated. A checkpoint is a 
 
 :::image type="content" source="../media/fine-tuning/checkpoints.png" alt-text="Screenshot of checkpoints UI." lightbox="../media/fine-tuning/checkpoints.png":::
 
+## Pause and resume
+
+You can track progress in both fine-tuning views of the AI Foundry portal. You'll see your job go through the same statuses as normal fine tuning jobs (queued, running, succeeded).
+
+You can also review the results files while training runs, to get a peak at the progress and whether your training is proceeding as expected.
+
+> [!NOTE]
+> During the training you can view the logs and metrics and pause the job as needed. Pausing can be useful, if metrics aren't converging or if you feel model isn't learning at the right pace. Once the training job is paused, a deployable checkpoint will be created once safety evals are complete. This checkpoint available for you to deploy and use for inference or resume the job further to completion. Pause operation is only applicable for jobs which have been trained for at least one step and are in *Running* state.
+
+:::image type="content" source="../media/how-to/reinforcement-fine-tuning/pause.png" alt-text="Screenshot of the reinforcement fine-tuning with a running job." lightbox="../media/how-to/reinforcement-fine-tuning/pause.png":::
+
 ## Analyze your fine-tuned model
 
 After fine-tuning is successfully completed, you can download a result file named _results.csv_ from the fine-tuned model page under the **Details** tab. You can use the result file to analyze the training and validation performance of your custom model. 
