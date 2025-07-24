@@ -1,7 +1,7 @@
 ---
-title: How scoring works
+title: How relevance scoring works
 titleSuffix: Azure AI Search
-description: Describes the ranking algorithms in Azure AI Search and how to use them together.
+description: Describes how the scoring and ranking algorithms work in Azure AI Search and how to use them together.
 
 manager: nitinme
 author: HeidiSteen
@@ -11,25 +11,29 @@ ms.topic: concept-article
 ms.date: 07/23/2025
 ---
 
-# How scoring works in Azure AI Search
+# Relevance in Azure AI Search
 
-The query engine in Azure AI Search supports a multi-level approach to ranking search results where there's a built-in ranking modality for each query type, plus extra ranking capabilities for more relevance tuning.
+In a query operation, the relevance of any given result is measured by a ranking algorithm that determines the strength of a match based on how closely it aligns in content or characteristics. An algorithm assigns a score, and results are rank ordered by that score, with the most relevant matches returned in the response. 
 
 Ranking occurs whenever the query request includes full text or vector queries. It doesn't occur if the query invokes strict pattern matching, such as a filter-only query or a specialized query form like autocomplete, suggestions, geospatial search, fuzzy search, or regular expression search. A uniform search score of 1.0 indicates the absence of a ranking algorithm.
 
+The query engine in Azure AI Search supports a multi-level approach to ranking search results, where there's a built-in ranking modality for each query type, plus extra ranking capabilities for extended relevance tuning.
+
 ## Levels of ranking
 
-### Initial ranking
+This section describes the levels of scoring operations. For an illustration of how they work together, see the [diagram](#diagram-of-ranking-algorithms) in this article. A [comparison of search score types and ranges](#types-of-search-scores) is also provided in this article.
 
-Assuming the query engine performs a scoring operation, the initial scoring for level 1 (L1) ranking varies by query type.
+### Level 1 (L1) ranking
+
+Assuming the query engine performs a scoring operation, the initial search score varies by query type.
 
 + Text queries, which match on tokenized strings, are always initially ranked using the [BM25 ranking algorithm](index-similarity-and-scoring.md).
 
-+ Vector query L1 ranking is either Hierarchical Navigable Small World (HNSW) or exhaustive K-nearest neighbor (KNN). Image search or multimodal searches are based on vector queries and scored using the vector L2 ranking algorithms.
++ Vector query L1 ranking is either [Hierarchical Navigable Small World (HNSW) or exhaustive K-nearest neighbor (KNN)](vector-search-ranking.md). Image search or multimodal searches are based on vector queries and scored using the vector L2 ranking algorithms.
 
-### Fused ranking
+### Fused L1 ranking
 
-Hybrid queries that include text and vector components are ranked using the Reciprocal Ranking Fusion (RRF) algorithm that's used for merging the results of multiple queries. RRF is also used if multiple vector queries execute in parallel.
+Hybrid queries that include text and vector components are ranked using the [Reciprocal Ranking Fusion (RRF) algorithm](hybrid-search-ranking.md) that's used for merging the results of multiple queries. RRF is also used if multiple vector queries execute in parallel.
 
 ### Level 2 (L2) ranking
 
@@ -65,7 +69,7 @@ Scored results are indicated for each match in the query response. This table li
 | @search.score | 0 through unlimited | [BM25 ranking algorithm](index-similarity-and-scoring.md#scores-in-a-text-results) for text search |
 | @search.score | 0.333 - 1.00 | [HNSW or exhaustive KNN algorithm](vector-search-ranking.md#scores-in-a-vector-search-results) for vector search |
 | @search.score | 0 through an upper limit determined by the number of queries | [RRF algorithm](hybrid-search-ranking.md#scores-in-a-hybrid-search-results) |
-| @search.rerankerScore | 0.00 - 4.00 | [Semantic ranking algorithm](semantic-search-overview.md#how-ranking-is-scored) for L2 ranking |
+| @search.rerankerScore | 0.00 - 4.00 | [Semantic ranking algorithm](semantic-search-overview.md#how-results-are-scored) for L2 ranking |
 | @search.rerankerScoreBoosted | 0.00 - 4.00 | Semantic ranking algorithm for L2 ranking and custom boosting through a scoring profile |
 
 ## Diagram of ranking algorithms
