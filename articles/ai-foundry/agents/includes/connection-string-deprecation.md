@@ -8,4 +8,4 @@ ms.date: 07/23/2025
 ---
 
 > [!IMPORTANT]
-> Starting in May 2025, the Azure AI Agent Service uses an endpoint for [Foundry projects](../../what-is-azure-ai-foundry.md#project-types) instead of the connection string that were previously used for hub-based projects. See [SDK usage with hub-based projects](../how-to/use-your-own-resources.md#sdk-usage-with-hub-based-projects)
+> Starting in May 2025, the Azure AI Agent Service uses an endpoint for [Foundry projects](../../what-is-azure-ai-foundry.md#project-types) instead of the connection string that were previously used for hub-based projects. See [SDK usage with hub-based projects](../how-to/use-your-own-resources.md#sdk-usage-with-hub-based-projects) for more information.

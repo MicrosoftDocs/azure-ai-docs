@@ -21,7 +21,7 @@ Use this article if you want to set up your Foundry project with your own resour
 
 There are some limitations you should be aware of when you plan to use existing resources wtih the Azure AI Foundry Agent Service
 
-### If previously were using a hub-based project or Azure OpenAI Assistants
+### If you are using a hub-based project or Azure OpenAI Assistants
 
 At this time, there is no direct upgrade path to migrate existing agents or their associated data assets such as files, threads, or vector stores from a hub-based project to an Azure AI Foundry project. There is also no upgrade path to convert existing Azure OpenAI Assistants into Foundry Agents, nor a way to automatically migrate Assistants' files, threads, or vector stores.
 
@@ -45,9 +45,6 @@ If you want to continue using your hub-based project and connection string, you 
 * Use one of the previous versions of the SDK and the associated sample code:
     * [C#](https://github.com/Azure/azure-sdk-for-net/tree/feature/azure-ai-agents/sdk/ai/Azure.AI.Projects/samples): `1.0.0-beta.2` or earlier
     * [Python](https://github.com/Azure/azure-sdk-for-python/tree/feature/azure-ai-projects-beta10/sdk/ai/azure-ai-projects/samples/agents): `1.0.0b10` or earlier
-
-
-
 
 ### Azure Cosmos DB for NoSQL to store threads 
 
@@ -101,7 +98,7 @@ Includes everything in the basic setup and fine-grained control over your data b
 
 ## Basic agent setup: Use an existing Azure OpenAI resource 
 
-Replace the parameter value for `existingAoaiResourceId` with the full arm resource ID of the Azure OpenAI resource you want to use.
+Replace the parameter value for `existingAoaiResourceId`in the [template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/42-basic-agent-setup-with-customization) with the full arm resource ID of the Azure OpenAI resource you want to use.
 
 1. To get the Azure OpenAI account resource ID, sign in to the Azure CLI and select the subscription with your AI Services account:
        
