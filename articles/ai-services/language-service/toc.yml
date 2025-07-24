@@ -148,7 +148,7 @@ items:
             href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
           - name: Azure AI containers overview
             href: ../cognitive-services-container-support.md
-        - name: Create projects
+        - name: Create a CLU Foundry project 
           href: conversational-language-understanding/how-to/create-project.md
           displayName: creation, clu project, setup
         - name: Build a schema
