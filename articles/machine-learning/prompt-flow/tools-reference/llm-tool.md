@@ -27,7 +27,7 @@ Prompt flow provides several large language model APIs:
 The [Embeddings](https://platform.openai.com/docs/api-reference/embeddings) API isn't available in the LLM tool. Use the [embedding tool](embedding-tool.md) to generate embeddings with OpenAI or Azure OpenAI.
 
 > [!NOTE]
-> Prompt Flow's LLM node doesn't support reasoning models like o1 or o3. Use a Python node to call the models directly if you need to use a reasoning model.
+> The LLM tool in prompt flow does not support reasoning models (such as OpenAI o1 or o3). For reasoning model integration, use the Python tool to call the model APIs directly. For more information, see [Call a reasoning model from the Python tool](tools-reference/python-tool.md#call-a-reasoning-model-from-the-python-tool).
 
 ## Prerequisites
 

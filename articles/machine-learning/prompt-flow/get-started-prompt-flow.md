@@ -33,7 +33,7 @@ This article walks you through the main user journey of using prompt flow in Azu
 A connection helps securely store and manage secret keys or other sensitive credentials required for interacting with Large Language Models (LLM) and other external tools such as Azure Content Safety. Connection resources are shared with all members in the workspace.
 
 > [!NOTE]
-> Prompt Flow's LLM Node does not support reasoning models like o1 or o3. Please use a Python node to call the models directly if you need to use a reasoning model.
+> The LLM tool in prompt flow does not support reasoning models (such as OpenAI o1 or o3). For reasoning model integration, use the Python tool to call the model APIs directly. For more information, see [Call a reasoning model from the Python tool](tools-reference/python-tool.md#call-a-reasoning-model-from-the-python-tool).. 
 
 1. To check if you already have an Azure OpenAI connection, select **Prompt flow** from the Azure Machine Learning studio left menu and then select the **Connections** tab on the **Prompt flow** screen.
 
