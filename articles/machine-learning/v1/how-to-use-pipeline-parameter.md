@@ -5,8 +5,8 @@ description: Use pipeline parameters in the Azure Machine Learning designer.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.author: scottpolly
-author: s-polly
+ms.author: lagayhar
+author: lgayhardt
 ms.reviewer: keli19
 ms.date: 06/12/2025
 ms.topic: how-to
