@@ -93,7 +93,8 @@ You can export a CLU project as a JSON file at any time.
 
 ### [Azure AI Foundry](#tab/azure-ai-foundry)
 
-1. In [Azure AI Foundry portal](https://ai.azure.com), open your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]. 
+
+If you no longer need your project, you can delete it from the Azure AI Foundry.
 
 1. Navigate to the [Azure AI Foundry](https://ai.azure.com/) home page and sign in if you haven't already done so.
 1. Select the project that you want to delete from the **Keep building with Azure AI Foundry**
@@ -108,7 +109,7 @@ To delete the hub along with all its projects:
 
 ### [REST APIs](#tab/rest-api)
 
-When you don't need your project anymore, you can use the APIs to delete your project.
+If you no longer need your project, you can delete it using the REST API.
 
 [!INCLUDE [Delete project](../includes/rest-api/delete-project.md)]
 
