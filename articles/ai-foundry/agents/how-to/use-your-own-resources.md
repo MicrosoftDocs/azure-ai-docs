@@ -19,7 +19,7 @@ Use this article if you want to set up your Foundry project with your own resour
 
 ## Limitations
 
-There are some limitations you should be aware of when you plan to use existing resources wtih the Azure AI Foundry Agent Service
+There are some limitations you should be aware of when you plan to use existing resources with the Azure AI Foundry Agent Service.
 
 ### If you are using a hub-based project or Azure OpenAI Assistants
 
