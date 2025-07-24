@@ -28,7 +28,7 @@ This article guides you through the process of
 
 - An Azure AI Foundry project or hubs based project. To learn more, see [Create a project](../create-projects.md).
 
-[!INCLUDE [evaluation-fdp-storage](../../includes/evaluation-fdp-storage.md)]
+[!INCLUDE [evaluation-foundry-project-storage](../../includes/evaluation-foundry-project-storage.md)]
 
 ## Getting started
 

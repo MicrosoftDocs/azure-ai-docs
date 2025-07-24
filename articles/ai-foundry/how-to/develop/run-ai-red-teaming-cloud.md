@@ -23,7 +23,7 @@ Though the AI Red Teaming Agent (preview) can be run [locally](run-scans-ai-red-
 
 [!INCLUDE [uses-fdp-only](../../includes/uses-fdp-only.md)]
 
-[!INCLUDE [evaluation-fdp-storage](../../includes/evaluation-fdp-storage.md)]
+[!INCLUDE [evaluation-foundry-project-storage](../../includes/evaluation-foundry-project-storage.md)]
 
 ## Getting started
 

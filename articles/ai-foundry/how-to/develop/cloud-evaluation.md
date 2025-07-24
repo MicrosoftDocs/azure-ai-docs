@@ -28,7 +28,7 @@ In this article, you learn how to run evaluations in the cloud (preview) in pre-
 - Azure OpenAI Deployment with GPT model supporting `chat completion`. For example, `gpt-4`.
 - Make sure you're first logged into your Azure subscription by running `az login`.
 
-[!INCLUDE [evaluation-fdp-storage](../../includes/evaluation-fdp-storage.md)]
+[!INCLUDE [evaluation-foundry-project-storage](../../includes/evaluation-foundry-project-storage.md)]
 
 ## Get started
 
