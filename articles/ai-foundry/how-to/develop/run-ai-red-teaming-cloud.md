@@ -73,7 +73,7 @@ model_deployment_name = os.environ["MODEL_DEPLOYMENT_NAME"] # Sample : gpt-4o-mi
 
 If you want to use deployments from your Azure OpenAI or AI Services accounts, you first need to connect these resources to your Foundry project through connections.
 
-1. **Create a connection**: Follow the instructions in [Configure project connections](../configure-project-connection.md?pivots=ai-foundry-portal#add-a-connection) to connect your Azure OpenAI or AI Services resource to your Foundry project.
+1. **Create a connection**: Follow the instructions in [Configure project connections](../../foundry-models/how-to/configure-project-connection.md?pivots=ai-foundry-portal#add-a-connection) to connect your Azure OpenAI or AI Services resource to your Foundry project.
 
 2. **Get the connection name**: After connecting the account, you'll see the connection created with a generated name in your Foundry project.
 
