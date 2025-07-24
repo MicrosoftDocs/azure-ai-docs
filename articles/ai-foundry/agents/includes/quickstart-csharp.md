@@ -50,7 +50,7 @@ Use the following code to create and run an agent. To run this code, you will ne
 
 [!INCLUDE [endpoint-string-portal](endpoint-string-portal.md)]
 
-Set this endpoint in an environment variable variable named `ProjectEndpoint`.
+Set this endpoint in an environment variable named `ProjectEndpoint`.
 
 [!INCLUDE [model-name-portal](model-name-portal.md)]
 
