@@ -53,14 +53,14 @@ In addition to these built-in role assignments, there are the Azure Privileged a
  
 Use the following table to help understand what privileges are given to each new built-in role, including the Azure Privileged Administrator roles:
 
-| Built-in role                         | Create Foundry projects | Create Foundry accounts | Build and develop in a project (data actions) | Complete role-assignments                          | Reader access to projects and accounts |
-|--------------------------|-------------------------|--------------------------|-----------------------------------------------|---------------------------------------------------|-----------------------------------------|
-| **Azure AI User**        |                         |                          | ✔                                             |                                                 | ✔                                       |
-| **Azure AI Project Manager** | ✔                     |                          | ✔                                             | ✔ (only assign Azure AI User role)               | ✔                                       |
-| **Azure AI Account Owner**   | ✔                     | ✔                        |                                               | ✔ (only assign Azure AI User role)               | ✔                                       |
-| **Owner**                | ✔                     | ✔                        |                                               | ✔ (assign any role to any user)                  | ✔                                       |
-| **Contributor**          | ✔                     | ✔                        |                                               |                                                 | ✔                                       |
-| **Reader**               |                         |                          |                                               |                                                 | ✔                                       |
+| Built-in role                         | Create Foundry projects | Create Foundry accounts | Build and develop in a project (data actions) | Complete role-assignments                          | Reader access to projects and accounts | Manage models |
+|--------------------------|-------------------------|--------------------------|-----------------------------------------------|---------------------------------------------------|-----------------------------------------|-----------------------------------------|
+| **Azure AI User**        |                         |                          | ✔                                             |                                                 | ✔                                       |                                                 |
+| **Azure AI Project Manager** | ✔                     |                          | ✔                                             | ✔ (only assign Azure AI User role)               | ✔                                       |                                                 |
+| **Azure AI Account Owner**   | ✔                     | ✔                        |                                               | ✔ (only assign Azure AI User role)               | ✔                                       | ✔                                               |
+| **Owner**                | ✔                     | ✔                        |                                               | ✔ (assign any role to any user)                  | ✔                                       | ✔                                               |
+| **Contributor**          | ✔                     | ✔                        |                                               |                                                 | ✔                                       | ✔                                               |
+| **Reader**               |                         |                          |                                               |                                                 | ✔                                       |                                                 |
 
 
 ## Default roles for the project
