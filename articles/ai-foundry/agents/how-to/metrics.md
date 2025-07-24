@@ -15,7 +15,7 @@ ms.service: azure-ai-agent-service
 
 Monitoring is available for agents in a [standard agent setup](../concepts/standard-agent-setup.md).
 
-[!INCLUDE [Feature preview](https://github.com/MicrosoftDocs/azure-ai-docs/blob/main/articles/ai-foundry/openai/includes/preview-feature.md)]
+[!INCLUDE [Feature preview](../../openai/includes/preview-feature.md)]
 
 > [!IMPORTANT]
 > Monitoring support is currently limited to Azure AI Foundry hubs. Azure AI Foundry projects are not supported.
