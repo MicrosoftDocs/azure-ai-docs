@@ -12,7 +12,7 @@ ms.custom: references_regions, build-2025
 
 # [Text generation](#tab/text)
 
-### Text generation
+## Text generation
 
 | Model                     | Version         | Retirement date                    | Replacement model                    |
 | --------------------------|-----------------|------------------------------------|--------------------------------------|
@@ -38,7 +38,7 @@ ms.custom: references_regions, build-2025
 
 # [Audio](#tab/audio)
 
-### Audio
+## Audio
 
 | Model                          | Version         | Retirement date                          | Replacement model                    |
 | -------------------------------|-----------------|------------------------------------------|--------------------------------------|
@@ -53,9 +53,9 @@ ms.custom: references_regions, build-2025
 | `tts-hd`                       | 001             | No earlier than February 1, 2026         |                                      |
 | `whisper`                      | 001             | No earlier than February 1, 2026         |                                      |
 
-# [Image & Video](#tab/image)
+# [Image and video](#tab/image)
 
-### Image & video
+## Image and video
 
 | Model                          | Version         | Retirement date                    | Replacement model                    |
 | -------------------------------|-----------------|------------------------------------|--------------------------------------|
@@ -63,10 +63,9 @@ ms.custom: references_regions, build-2025
 | `sora`                         | 2025-05-02      | No earlier than September 15, 2025 |                                      |
 | `dalle-3`                      | 3               | No earlier than September 15, 2025 |                                      |
 
-
 # [Embedding](#tab/embedding)
 
-### Embedding
+## Embedding
 
 | Model                          | Version         | Retirement date                    | Replacement model                                    |
 | -------------------------------|-----------------|------------------------------------|------------------------------------------------------|
@@ -77,20 +76,20 @@ ms.custom: references_regions, build-2025
 
 ---
 
-We notify all customers with these preview deployments at least 30 days before the start of the upgrades. We publish an upgrade schedule detailing the order of regions and model versions that we follow during the upgrades, and link to that schedule from here.
+We notify all customers with these preview deployments at least 30 days before the start of the upgrades. We publish an upgrade schedule that details the order of regions and model versions that we follow during the upgrades, and link to that schedule from here.
 
 > [!TIP]
-> **Will a model upgrade happen if the new model version is not yet available in that region?**
+> Will a model upgrade happen if the new model version is not yet available in that region?
 >
 > Yes, even in cases where the latest model version is not yet available in a region, we automatically upgrade deployments during the scheduled upgrade window. For more information, see [Azure OpenAI model versions](/azure/ai-services/openai/concepts/model-versions#will-a-model-upgrade-happen-if-the-new-model-version-is-not-yet-available-in-that-region).
 
 ## Fine-tuned models
 
-Fine-tuned models retire in two phases: training and deployment.
+Fine-tuned models retire in two phases: *training* and *deployment*.
 
-All fine-tuned models follow their equivalent base model for **training** retirement. Once retired, a given model is no longer available for fine tuning.
+All fine-tuned models follow their equivalent base model for *training* retirement. Once retired, a given model is no longer available for fine tuning.
 
-For fine-tuned models made generally available since `gpt-4o-2024-08-06`, **deployment** retirement occurs 1 year after **training** retirement. At deployment retirement, inference and deployment returns error responses.
+For fine-tuned models made generally available since `gpt-4o-2024-08-06`, *deployment* retirement occurs 1 year after **training** retirement. At deployment retirement, inference and deployment return error responses.
 
 | Model            | Version     | Training retirement date  | Deployment retirement date       |
 | -----------------|-------------|---------------------------|----------------------------------|

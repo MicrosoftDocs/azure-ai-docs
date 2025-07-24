@@ -16,67 +16,66 @@ recommendations: false
 
 ## Overview
 
-Azure OpenAI models are continually refreshed with newer and more capable models. As part of this process, we deprecate and retire older models. This document provides information about the models that are currently available, deprecated, and retired.
+Azure OpenAI models are continually refreshed with newer and more capable models. As part of this process, we deprecate and retire older models. This article provides information about models that are currently available, deprecated, and retired.
 
 ### Terminology
 
-* Deprecation
-	* When a model is deprecated, it's no longer available for new customers. It continues to be available for use by customers with existing deployments until the model is retired.
-* Retirement
-	* When a model is retired, it's no longer available for use. Azure OpenAI deployments of a retired model always return error responses.
+**Deprecation**: When a model is deprecated, it's no longer available for new customers. It continues to be available for use by customers with existing deployments until the model is retired.
+**Retirement**: When a model is retired, it's no longer available for use. Azure OpenAI deployments of a retired model always return error responses.
 
 ## Notifications
 
 Azure OpenAI notifies customers of active Azure OpenAI deployments for models with upcoming retirements. We notify customers of upcoming retirements as follows for each deployment:
 
-1. At model launch, we programmatically designate a "not sooner than" retirement date (for preview models this is between 90-120 days from launch, for generally available (GA) models this is 365 days from launch).
-2. At least 60 days notice before model retirement for Generally Available (GA) models.
-3. At least 30 days notice before preview model version upgrades.
+- We notify customers at model launch by programmatically designating a *not sooner than* retirement date. For preview models, it's between 90-120 days from launch. For generally available models, it's 365 days from launch.
+- We provide customers with at least 60 days notice before model retirement for generally available models.
+- We provide customers with least 30 days notice before preview model version upgrades.
 
-Retirements are done on a rolling basis, region by region. There is no schedule for when a specific region, or SKU will be upgraded.
+Retirements are done on a rolling basis, region by region. There's no schedule for when a specific region or SKU is upgraded.
 
 ### Who is notified of upcoming retirements
 
 Azure OpenAI notifies customers via two methods:
-- **Azure Resource Health** - Anyone with reader permissions or above can see Azure health alerts, as well as configure personalized alerts via email, SMS, etc. See [Create Service Health Alerts](/azure/service-health/alerts-activity-log-service-notifications-portal)
-- **Email** - email notifications are automatically sent to subscription owners. Any individual with reader permissions may however configure their own alerts by following the guidance above.
 
-**Azure Service Health filter configuration**:
+- **Azure Resource Health**: Anyone with **reader** permissions or higher can see Azure health alerts and configure personalized alerts via email, SMS, etc. See [Create service health alerts](/azure/service-health/alerts-activity-log-service-notifications-portal).
+- **Email**: Email notifications are automatically sent to subscription owners. However, any individual with **reader** permissions can configure their own alerts by following the previous guidance.
 
-**Services** = `azure OpenAI service` (Casing reflects current UX experience).
+#### Azure Service Health filter configuration
 
-**Event types**
-    - `Health advisories = Upgrade, Deprecation, & Retirement Notifications`
-    - `Service issue = Outages` (Recommended only if you wish to be notified of outages)
+Services is `azure OpenAI service`. (The casing reflects the current UX experience).
 
-If you wish to receive SMS text-based alerts rather than just e-mails, you will need to select **Create action group** and under **Notification type**, select **Email/SMS message/Push/Voice** and then configure your phone number.
+Event types include:
+
+- `Health advisories = Upgrade, Deprecation, & Retirement Notifications`
+- `Service issue = Outages` (We recommend this event type only if you want to be notified of outages)
+
+If you want to receive SMS text-based alerts rather than just emails, select **Create action group**. Then, under **Notification type**, select **Email/SMS message/Push/Voice** and configure your phone number.
 
 ## Model availability
 
-1. At least one year of model availability for GA models after the release date of a model in at least one region worldwide
-2. For global deployments, all future model versions starting with `gpt-4o` and `gpt-4 0409` will be available with their (`N`) next succeeding model (`N+1`) for comparison together. 
-1. Customers have 60 days to try out a new GA model in at least one global, or standard region, before any upgrades happen to a newer GA model.  
+See the following information for the availability of models:
 
-### Considerations for the Azure public cloud
+- There is at least one year of model availability for generally available models after the release date of a model in at least one region worldwide
+- For global deployments, all future model versions starting with `gpt-4o` and `gpt-4 0409` will be available with their (`N`) next succeeding model (`N+1`) for comparison together.
+- Customers have 60 days to try out a new generally available model in at least one global or standard region before any upgrades happen to a newer generally available model.  
 
-Be aware of the following: 
+### Considerations for Azure public cloud
 
-1. All model version combinations will **not** be available in all regions.
-2. Model version `N` and `N+1` might not always be available in the same region. 
-3. GA model version `N` might upgrade to a future model version `N+X` in some regions based on capacity limitations, and without the new model version `N+X` separately being available to test in the same region. The new model version will be available to test in other regions before any upgrades are scheduled.   
-4. Preview model versions and GA versions of the same model won't always be available to test together in the same region. There will be preview and GA versions available to test in different regions. 
-5.	We reserve the right to limit future customers using a particular region to balance service quality for existing customers.
-6.	As always at Microsoft, security is of the utmost importance. If a model or model version is found to have compliance or security issues, we reserve the right to invoke the need to do emergency retirements. See the terms of service for more information.
+Be aware of the following information:
+
+- Not all model version combinations will be available in all regions.
+- Model version `N` and `N+1` might not always be available in the same region.
+- A generally available model version `N` might upgrade to a future model version `N+X` in some regions based on capacity limitations, and without the new model version `N+X` separately being available to test in the same region. The new model version will be available to test in other regions before any upgrades are scheduled.
+- Preview model versions and generally available versions of the same model won't always be available to test together in the same region. There will be preview and generally available versions available to test in different regions.
+- We reserve the right to limit future customers' use of a particular region to balance service quality for existing customers.
+- As always at Microsoft, security is of the utmost importance. If a model or model version is found to have compliance or security issues, we reserve the right to invoke the need to do emergency retirements. Refer to the terms of service for more information.
 
 ### Special considerations for Azure Government clouds
 
-1.	Global standard deployments won't be available in government clouds.
-2.	Not all models or model versions available in commercial / public cloud will be available in government clouds.
-3.	In the Azure Government clouds, we intend to support only one version of a given model at a time.
-    1. For example only one version of `gpt-35-turbo 0125` and `gpt-4o (2024-05-13)`.
-4.	There will however be a 30 day overlap between new model versions, where more than two will be available.
-    1. For example if `gpt-35-turbo 0125` or `gpt-4o (2024-05-13)` is updated to a future version, or
-    2. for model family changes beyond version updates, such as when moving from `gpt-4 1106-preview` to `gpt-4o (2024-05-13)`. 
+- Global standard deployments aren't available in government clouds.
+- Not all models or model versions available in commercial and public clouds will be available in government clouds.
+- In the Azure Government clouds, we intend to support only one version of a given model at a time. For example, only one version of `gpt-35-turbo 0125` and `gpt-4o (2024-05-13)`.
+- However, there's a 30-day overlap between new model versions, when more than two will be available. For example, if `gpt-35-turbo 0125` or `gpt-4o (2024-05-13)` is updated to a future version, or for model family changes beyond version updates, such as when moving from `gpt-4 1106-preview` to `gpt-4o (2024-05-13)`.
 
 ## How to get ready for model retirements and version upgrades
 
@@ -86,14 +85,14 @@ For more information on the model evaluation process, see the [Getting started w
 
 For information on the model upgrade process, see [How to upgrade to a new model or version](./model-versions.md).
 
-For more information on how to manage model upgrades and migrations for provisioned deployments, see [Managing models on provisioned deployment types](../how-to/working-with-models.md#managing-models-on-provisioned-deployment-types)
+For more information on how to manage model upgrades and migrations for provisioned deployments, see [Managing models on provisioned deployment types](../how-to/working-with-models.md#managing-models-on-provisioned-deployment-types).
 
 ## Current models
 
 > [!NOTE]
-> Not all models go through a deprecation period prior to retirement. Some models/versions only have a retirement date.
+> Not all models go through a deprecation period before retirement. Some models or versions only have a retirement date.
 >
-> **Fine-tuned models** are subject to a [different](#fine-tuned-models) deprecation and retirement schedule from their equivalent base model.
+> Fine-tuned models are subject to a [different](#fine-tuned-models) deprecation and retirement schedule from their equivalent base model.
 
 These models are currently available for use in Azure OpenAI.
 
@@ -101,6 +100,6 @@ These models are currently available for use in Azure OpenAI.
 
 ## Retirement and deprecation history
 
-- To track individual updates to this article refer to the [Git History](https://github.com/MicrosoftDocs/azure-ai-docs/commits/main/articles/ai-foundry/openai/includes/retirement/models.md)
+To track individual updates to this article refer to the [Git History](https://github.com/MicrosoftDocs/azure-ai-docs/commits/main/articles/ai-foundry/openai/includes/retirement/models.md)
 
-- For a list of retired models, refer to the [retired models page](./legacy-models.md).
+For a list of retired models, refer to the [retired models page](./legacy-models.md).

@@ -10,19 +10,19 @@ ms.date: 02/12/2025
 
 ## Batch limits
 
-| Limit Name | Limit Value |
+| Limit name | Limit value |
 |--|--|
-| Max files per resource | 500 |
-| Max input file size | 200 MB |
-| Max requests per file | 100,000 |
+| Maximum files per resource | 500 |
+| Maximum input file size | 200 MB |
+| Maximum requests per file | 100,000 |
 
 ## Batch quota
 
-The table shows the batch quota limit. Quota values for global batch are represented in terms of enqueued tokens. When you submit a file for batch processing the number of tokens present in the file are counted. Until the batch job reaches a terminal state, those tokens will count against your  total enqueued token limit.
+The table shows the batch quota limit. Quota values for global batch are represented in terms of enqueued tokens. When you submit a file for batch processing, the number of tokens present in the file are counted. Until the batch job reaches a terminal state, those tokens will count against your  total enqueued token limit.
 
 ### Global batch
 
-|Model|Enterprise & MCA-E|Default| Monthly credit card based subscriptions | MSDN subscriptions | Azure for Students, Free Trials |
+|Model|Enterprise and MCA-E|Default| Monthly credit card-based subscriptions | MSDN subscriptions | Azure for Students, Free Trials |
 |---|---|---|---|---|---|
 | `gpt-4.1`| 5 B | 200 M | 50 M | 90 K | N/A |
 | `gpt-4.1 mini` | 15B | 1B | 50M | 90k | N/A |
@@ -39,7 +39,7 @@ B = billion | M = million | K = thousand
 
 ### Data zone batch
 
-|Model|Enterprise & MCA-E|Default| Monthly credit card based subscriptions | MSDN subscriptions | Azure for Students, Free Trials |
+|Model|Enterprise and MCA-E|Default| Monthly credit card-based subscriptions | MSDN subscriptions | Azure for Students, Free Trials |
 |---|---|---|---|---|---|
 | `gpt-4.1` | 500 M | 30 M | 30 M | 90 K | N/A|
 | `gpt-4.1-mini` | 1.5 B | 100 M | 50 M | 90 K | N/A |
