@@ -67,7 +67,7 @@ In the **Flows** tab of the **Prompt flow** home page, select **Create** to crea
 
 In the **Explore gallery**, you can browse the built-in samples and select **View detail** on any tile to preview whether it's suitable for your scenario.
 
-This tutorial uses the **Web Classification** sample to walk through the main user journey. Web Classification is a flow demonstrating multiclass classification with a LLM. Given a URL, the flow classifies the URL into a web category with just a few shots, simple summarization, and classification prompts. For example, given a URL `https://www.imdb.com`, it classifies the URL into `Movie`.
+This tutorial uses the **Web Classification** sample to walk through the main user journey. Web Classification is a flow demonstrating multiclass classification with an LLM. Given a URL, the flow classifies the URL into a web category with just a few shots, simple summarization, and classification prompts. For example, given a URL `https://www.imdb.com`, it classifies the URL into `Movie`.
 
 To clone the sample, select **Clone** on the **Web Classification** tile.
 
