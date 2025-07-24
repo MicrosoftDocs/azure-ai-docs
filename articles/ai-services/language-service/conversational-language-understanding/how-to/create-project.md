@@ -23,11 +23,11 @@ If you already have an Azure AI Language or multi-service resource—whether use
 * **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Azure AI Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](../../../openai/how-to/role-based-access-control.md#cognitive-services-contributor).
 * An [Azure AI Foundry resource](../../../multi-service-resource.md)
   * For more information, *see* [Configure an Azure AI Foundry resource](configure-azure-resources.md#option-1-configure-an-azure-ai-foundry-resource).
-* **A project created in the Azure AI Foundry**. For more information, *see* [Create an AI Foundry project](../../../../ai-foundry/how-to/create-projects.md).
+* After you create an Azure AI Foundry resource, [create a CLU project](#create-a-clu-project).
 
 ## Create a CLU project
 
-After you create an Azure AI Foundry resource, create a CLU project.
+ An Azure AI Foundry project is created using an Azure AI Foundry resource. Projects are designed to help you organize your work. They offer various tools and resources that support the development, customization, and management of AI applications all within a centralized environment.
 
 ### [Azure AI Foundry](#tab/azure-ai-foundry)
 
@@ -96,16 +96,16 @@ You can export a CLU project as a JSON file at any time.
 
 If you no longer need your project, you can delete it from the Azure AI Foundry.
 
-1. Navigate to the [Azure AI Foundry](https://ai.azure.com/) home page and sign in if you haven't already done so.
+1. Navigate to the [Azure AI Foundry](https://ai.azure.com/) home page. Initiate the authentication process by signing in, unless you already completed this step and your session is active.
 1. Select the project that you want to delete from the **Keep building with Azure AI Foundry**
 1. Select **Management center**.
-1. On the right select **Delete project**.
+1. Select **Delete project**.
 
 To delete the hub along with all its projects:
 
 1. Navigate to the **Overview** tab inn the **Hub** section.
 1. On the right, select **Delete hub**. 
-1. The link will open the Azure portal for you to delete the hub there.
+1. The link opens the Azure portal for you to delete the hub there.
 
 ### [REST APIs](#tab/rest-api)
 
