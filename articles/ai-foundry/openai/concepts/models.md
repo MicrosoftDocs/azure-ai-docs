@@ -5,7 +5,7 @@ description: Learn about the different model capabilities that are available wit
 author: mrbullwinkle #ChrisHMSFT
 ms.author: mbullwin #chrhoder#
 manager: nitinme
-ms.date: 06/25/2025
+ms.date: 07/24/2025
 ms.service: azure-ai-openai
 ms.topic: conceptual
 ms.custom:
@@ -35,6 +35,21 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 | [Audio](#audio-models) | A series of models for speech to text, translation, and text to speech. GPT-4o audio models support either low-latency, "speech in, speech out" conversational interactions or audio generation. |
 
 ## GPT 4.1 series
+
+> [!IMPORTANT]
+> There is a known issue impacting all GPT 4.1 series models where large tool/function call definitions exceeding 300,000 tokens will result in failures even though the 1 million token context limit of the models has not been reached.
+>
+> The errors can vary based on API call as well as underlying payload characteristics.
+>
+> **Chat Completions API error messages**:
+>
+> **Error code: 400** - {'error': {'message': "This model's maximum context length is 300000 tokens. However, your messages resulted in 350564 tokens (100 in the messages, 350464 in the functions). Please reduce the length of the messages or functions.", 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}
+>
+> **Error code: 400** - {'error': {'message': "Invalid 'tools[0].function.description': string too long. Expected a string with maximum length 1048576, but got a string with length 2778531 instead.", 'type': 'invalid_request_error', 'param': 'tools[0].function.description', 'code': 'string_above_max_length'}}
+>
+> **Responses API error message:**
+>
+> Error code: 500 - {'error': {'message': 'The server had an error processing your request. Sorry about that! You can retry your request, or contact us through an Azure support request at: https://go.microsoft.com/fwlink/?linkid=2213926 if you keep seeing this error. (Please include the request ID d2008353-291d-428f-adc1-defb5d9fb109 in your email.)', 'type': 'server_error', 'param': None, 'code': None}}
 
 ### Region availability
 
