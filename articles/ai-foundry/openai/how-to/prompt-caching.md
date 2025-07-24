@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 07/23/2025
+ms.date: 07/24/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -14,7 +14,7 @@ recommendations: false
 
 # Prompt caching
 
-Prompt caching allows you to reduce overall request latency and cost for longer prompts that have identical content at the beginning of the prompt. *"Prompt"* in this context is referring to the input you send to the model as part of your chat completions request. Rather than reprocess the same input tokens over and over again, the service is able to retain a temporary cache of processed input token computations to improve overall performance. Prompt caching has no impact on the output content returned in the model response beyond a reduction in latency and cost. For supported models, cached tokens are billed at a [discount on input token pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for Standard deployment types and up to [100% discount on input tokens](/azure/ai-services/openai/concepts/provisioned-throughput) for Provisioned deployment types. If you provide the `user` parameter, it's combined with a prefix hash, allowing you to influence routing and improve cache hit rates. This is especially beneficial when many requests share long, common prefixes.
+Prompt caching allows you to reduce overall request latency and cost for longer prompts that have identical content at the beginning of the prompt. *"Prompt"* in this context is referring to the input you send to the model as part of your chat completions request. Rather than reprocess the same input tokens over and over again, the service is able to retain a temporary cache of processed input token computations to improve overall performance. Prompt caching has no impact on the output content returned in the model response beyond a reduction in latency and cost. For supported models, cached tokens are billed at a [discount on input token pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for Standard deployment types and up to [100% discount on input tokens](/azure/ai-services/openai/concepts/provisioned-throughput) for Provisioned deployment types. 
 
 Caches are typically cleared within 5-10 minutes of inactivity and are always removed within one hour of the cache's last use. Prompt caches aren't shared between Azure subscriptions.
 
@@ -27,12 +27,14 @@ Caches are typically cleared within 5-10 minutes of inactivity and are always re
 
 Official support for prompt caching was first added in API version `2024-10-01-preview`. At this time, only the o-series model family supports the `cached_tokens` API response parameter.
 
-## Get started
+## Getting started
 
 For a request to take advantage of prompt caching the request must be both:
 
 - A minimum of 1,024 tokens in length.
 - The first 1,024 tokens in the prompt must be identical.
+
+Requests are routed based on a hash of the initial prefix of a prompt.
 
 When a match is found between the token computations in a prompt and the current content of the prompt cache, it's referred to as a cache hit. Cache hits will show up as [`cached_tokens`](/azure/ai-services/openai/reference-preview#cached_tokens) under [`prompt_tokens_details`](/azure/ai-services/openai/reference-preview#properties-for-prompt_tokens_details) in the chat completions response.
 
@@ -62,6 +64,8 @@ When a match is found between the token computations in a prompt and the current
 After the first 1,024 tokens cache hits will occur for every 128 additional identical tokens.
 
 A single character difference in the first 1,024 tokens will result in a cache miss which is characterized by a `cached_tokens` value of 0. Prompt caching is enabled by default with no additional configuration needed for supported models.
+
+If you provide the [`user`](/azure/ai-foundry/openai/reference-preview-latest#request-body-2) parameter, it's combined with the prefix hash, allowing you to influence routing and improve cache hit rates. This is especially beneficial when many requests share long, common prefixes.
 
 ## What is cached?
 

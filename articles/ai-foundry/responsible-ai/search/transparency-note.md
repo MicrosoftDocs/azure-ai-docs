@@ -117,7 +117,7 @@ Several [built-in skills](/azure/search/cognitive-search-predefined-skills) for 
 - Entity Recognition Skill: [Azure AI Language - Named Entity Recognition (NER)](/azure/ai-foundry/responsible-ai/language-service/transparency-note-named-entity-recognition)
 - PII Detection Skill: [Azure AI Language - PII Detection](/azure/ai-foundry/responsible-ai/language-service/transparency-note-personally-identifiable-information)
 - Sentiment Skill: [Azure AI Language - Sentiment Analysis](/azure/ai-foundry/responsible-ai/language-service/transparency-note-sentiment-analysis)
-- Image Analysis Skill: [Azure AI Vision - Image Analysis](/azure/ai-foundry/responsible-ai/computer-vision/imageanalysis-transparency-note)
+- Image Analysis Skill: [Azure AI Vision - Image Analysis](/azure/ai-foundry/responsible-ai/computer-vision/image-analysis-transparency-note)
 - OCR Skill: [Azure AI Vision - OCR](/azure/ai-foundry/responsible-ai/computer-vision/ocr-transparency-note)
 
 See the documentation for each skill to learn more about their respective capabilities, limitations, performance, evaluations, and methods for integration and responsible use. Note that using these skills in combination may lead to compounding effects (for example, errors introduced when using OCR will carry through when using key phrase extraction).
