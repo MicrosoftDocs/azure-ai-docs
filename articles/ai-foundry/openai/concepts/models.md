@@ -36,6 +36,16 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 ## GPT 4.1 series
 
+### Region availability
+
+| Model | Region |
+|---|---|
+| `gpt-4.1` (2025-04-14) |  See the [models table](#model-summary-table-and-region-availability). |
+| `gpt-4.1-nano` (2025-04-14) |  See the [models table](#model-summary-table-and-region-availability).|
+| `gpt-4.1-mini` (2025-04-14) |  See the [models table](#model-summary-table-and-region-availability).|
+
+### Capabilities
+
 > [!IMPORTANT]
 > There is a known issue impacting all GPT 4.1 series models where large tool/function call definitions exceeding 300,000 tokens will result in failures even though the 1 million token context limit of the models has not been reached.
 >
@@ -50,16 +60,6 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 > **Responses API error message:**
 >
 > - `Error code: 500 - {'error': {'message': 'The server had an error processing your request. Sorry about that! You can retry your request, or contact us through an Azure support request at: https://go.microsoft.com/fwlink/?linkid=2213926 if you keep seeing this error. (Please include the request ID d2008353-291d-428f-adc1-defb5d9fb109 in your email.)', 'type': 'server_error', 'param': None, 'code': None}}`
-
-### Region availability
-
-| Model | Region |
-|---|---|
-| `gpt-4.1` (2025-04-14) |  See the [models table](#model-summary-table-and-region-availability). |
-| `gpt-4.1-nano` (2025-04-14) |  See the [models table](#model-summary-table-and-region-availability).|
-| `gpt-4.1-mini` (2025-04-14) |  See the [models table](#model-summary-table-and-region-availability).|
-
-### Capabilities
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
