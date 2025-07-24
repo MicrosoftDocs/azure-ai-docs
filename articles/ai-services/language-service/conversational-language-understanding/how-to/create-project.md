@@ -63,6 +63,9 @@ You can download a CLU project as a **config.json** file:
 * Navigate to your project home page.
 * At the top of the page, select your project from the right page ribbon area.
 * Select **Download config file**.
+[text](../media/create-project/download-config-json.png)
+
+  :::image type="content" source="../media/create-project/download-config-json.png" alt-text="Screenshot of project drop-down menu with the download config file hyperlink in the Azure AI Foundry.":::
 
 ### [REST APIs](#tab/rest-api)
 
@@ -76,12 +79,14 @@ You can export a CLU project as a JSON file at any time.
 
 ### [Azure AI Foundry](#tab/azure-ai-foundry)
 
-* On the project Home page, you can find information about the project in the **Project details** section.
-* To view project settings, select **Management center** then select one of the following tabs:
+* On the project Home page, information about the project is found in the **Project details** section.
+* To view project settings, select **Management center** from the bottom of the left navigation pane, then select one of the following tabs:
  *  **Overview** to view project details.
  *  **Users** to manage users and roles.
  *  **Models + endpoints** to manage deployments of your models and services.
  *  **Connected resources to manage connected resources for the project.
+
+  :::image type="content" source="../media/create-project/project-details.png" alt-text="Screenshot of the project details list in the Azure AI Foundry.":::
 
 ### [REST APIs](#tab/rest-api)
 
@@ -101,11 +106,18 @@ If you no longer need your project, you can delete it from the Azure AI Foundry.
 1. Select **Management center**.
 1. Select **Delete project**.
 
+   :::image type="content" source="../create-project/delete-project.png" alt-text="Screenshot of the delete project button in the Azure AI Foundry.":::
+
 To delete the hub along with all its projects:
 
 1. Navigate to the **Overview** tab inn the **Hub** section.
+
+   :::image type="content" source="../media/create-project/hub-details.png" alt-text="Screenshot of the hub details list in the Azure AI Foundry.":::
+
 1. On the right, select **Delete hub**. 
 1. The link opens the Azure portal for you to delete the hub there.
+
+   :::image type="content" source="../media/create-project/delete-hub.png" alt-text="Screenshot of the delete hub button in the Azure AI Foundry.":::
 
 ### [REST APIs](#tab/rest-api)
 
