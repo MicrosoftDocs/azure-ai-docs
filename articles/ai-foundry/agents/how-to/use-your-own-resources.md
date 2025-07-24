@@ -27,12 +27,6 @@ At this time, there is no direct upgrade path to migrate existing agents or thei
 
 You can reuse your existing model deployments and quota from Azure AI Services or Azure OpenAI resources within a Foundry project.
 
-If you want to create a [basic agent setup](#choose-basic-or-standard-agent-setup), you can create a new project in the Azure AI Foundry by selecting **AI Foundry** > **Create new**, or using the bicep template later in this article. 
-
-:::image type="content" source="../media/new-project.png" alt-text="A screenshot of a new project in Azure AI Foundry.":::
-
-If you want to create a [standard agent setup](#choose-basic-or-standard-agent-setup), setup steps are described later in this article. 
-
 ### SDK usage with hub-based projects
 
 Starting in May 2025, the Azure AI Agent Service uses an endpoint for [Foundry projects](../../what-is-azure-ai-foundry.md#project-types) instead of the connection string that were used for hub-based projects before this time. Connection strings are no longer supported in current versions of the SDKs and REST API. We recommend creating a new foundry project.
