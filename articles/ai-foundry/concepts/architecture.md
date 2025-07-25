@@ -30,7 +30,7 @@ Within the Azure AI product family, we distinguish three [Azure resource provide
 | Microsoft.Search | Support knowledge retrieval over your data | Azure AI Search | 
 | Microsoft.MachineLearningServices | Train, deploy, and operate custom and open source machine learning models | Azure AI Hub (and its projects); Azure Machine Learning Workspace | 
 
-Azure AI Foundry resource is the primary resource for Azure AI and is recommended for most use cases. It's built on the same [Azure resource provider and resource type](https://learn.microsoft.com/azure/azure-resource-manager/management/resource-providers-and-types) as Azure OpenAI service, Azure Speech, Azure Vision, and Azure Language service. It provides access to the superset of capabilities from each individual services combined.
+The Azure AI Foundry resource is the primary resource for Azure AI and is recommended for most use cases. It's built on the same [Azure resource provider and resource type](/azure/azure-resource-manager/management/resource-providers-and-types) as the Azure OpenAI, Azure Speech, Azure Vision, and Azure Language services. It provides access to the superset of capabilities from each of the individual services combined.
 
 [!INCLUDE [Resource provider kinds](../includes/resource-provider-kinds.md)]
 
