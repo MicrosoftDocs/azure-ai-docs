@@ -29,7 +29,7 @@ The examples used in article use the [AzAPI](https://learn.microsoft.com/azure/d
 > * Create AI Foundry
 > * Configure projects 
 > * Configure deployments
-> * Configure a connection to other resources
+> * Configure a connection to other resources.
 > * Configure capability host to bring your own storage with Agent service
 
 ## Prerequisites
