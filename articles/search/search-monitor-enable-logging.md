@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 01/28/2025
+ms.date: 07/25/2025
 ---
 
 # Configure diagnostic logging for Azure AI Search
