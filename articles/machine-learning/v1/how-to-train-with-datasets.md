@@ -5,7 +5,7 @@ description:  Learn how to make your data available to your local or remote comp
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
-ms.author: yogipandey
+ms.author: scottpolly
 author: ynpandey
 ms.reviewer: ssalgado
 ms.date: 03/26/2025
