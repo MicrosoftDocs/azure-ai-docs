@@ -14,7 +14,7 @@ ms.custom:
   - build-2025
 ---
 
-|Resource type|Resource provider|Kind|Supported capabilities|
+|Resource type|Resource provider and type|Kind|Supported capabilities|
 |---|---|---|
 |Azure AI Foundry|`Microsoft.CognitiveServices/account`|`AIServices`|Agents, Evaluations, Azure OpenAI, Speech, Vision, Language, Content Understanding|
 |Azure AI Foundry project|`Microsoft.CognitiveServices/account/project`|`AIServices`| **Subresource to the above** |
