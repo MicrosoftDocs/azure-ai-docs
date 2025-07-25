@@ -67,7 +67,7 @@ Azure AI Foundry applies a flexible compute architecture to support diverse [mod
 Azure AI Foundry provides flexible and secure data storage options to support a wide range of AI workloads.
 
 * **Managed storage for file upload**:
-In the default setup, Azure AI Foundry uses Microsoft-managed storage accounts, that are logically separated, and support direct file uploads for select use cases—such as OpenAI models, Assistants, and Agents, without requiring a customer-provided storage account.
+In the default setup, Azure AI Foundry uses Microsoft-managed storage accounts that are logically separated and support direct file uploads for select use cases, such as OpenAI models, Assistants, and Agents, without requiring a customer-provided storage account.
 
 * **Bring Your Own Storage (Optional)**:
 Users can optionally connect their own Azure Storage accounts. Foundry tools can read inputs from and write outputs to these accounts, depending on the tool and use case.
