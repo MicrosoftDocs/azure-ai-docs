@@ -28,7 +28,7 @@ The examples used in article use the [AzAPI](https://learn.microsoft.com/azure/d
 > * Create a resource group
 > * Create AI Foundry
 > * Configure projects 
-> * Configure deployments
+> * Configure deployments.
 > * Configure a connection to other resources.
 > * Configure capability host to bring your own storage with Agent service
 
