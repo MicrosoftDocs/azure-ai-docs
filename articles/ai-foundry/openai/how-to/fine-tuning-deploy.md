@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions
 ms.topic: how-to
-ms.date: 07/02/2025
+ms.date: 07/25/2025
 author: mrbullwinkle
 ms.author: mbullwin
 ---
@@ -297,6 +297,7 @@ az cognitiveservices account deployment create
     --sku-capacity "1" 
     --sku-name "Standard"
 ```
+
 ---
 
 [!INCLUDE [Fine-tuning deletion](../includes/fine-tune.md)]
@@ -343,6 +344,11 @@ curl $AZURE_OPENAI_ENDPOINT/openai/deployments/<deployment_name>/chat/completion
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -d '{"messages":[{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},{"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},{"role": "user", "content": "Do other Azure services support this too?"}]}'
 ```
+
+## [CLI](#tab/cli)
+
+Azure CLI is only for control plane operations such as resource creation and [model deployment](/cli/azure/cognitiveservices/account/deployment). For inference operations, use the [REST API](azure/ai-foundry/openai/reference-preview-latest), or the [language based SDKs](../supported-languages.md).
+
 ---
 
 ### Prompt caching
