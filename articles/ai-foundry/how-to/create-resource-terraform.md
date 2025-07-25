@@ -1,6 +1,6 @@
 ---
 title: 'Use Terraform to create Azure AI Foundry'
-description: In this article, you create an Azure AI Foundry resource, an Azure AI Foundry project, using Terraform infrastrucutre as code templates.
+description: In this article, you create an Azure AI Foundry resource, an Azure AI Foundry project, using Terraform infrastructure as code templates.
 ms.topic: how-to
 ms.date: 07/22/2025
 titleSuffix: Azure AI Foundry 
@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 
 # Use Terraform to create Azure AI Foundry resource
 
-In this article, you use Terraform to create an [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) resource. You will learn how to use Terraform to create AI Foundry management configurations including projects, deployments and connections. 
+In this article, you use Terraform to create an [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) resource. You learn how to use Terraform to create AI Foundry management configurations including projects, deployments, and connections. 
 
 The examples used in article use the [AzAPI](https://learn.microsoft.com/azure/developer/terraform/overview-azapi-provider) Terraform provider. Similar [AzureRM](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/ai_services) provider support is available via the classic `AzureRM_AIServices` module (using `aiservices` kind as value), but is limited in functionality to resource and deployment creation.
 
@@ -39,7 +39,6 @@ The examples used in article use the [AzAPI](https://learn.microsoft.com/azure/d
 - [Install and configure Terraform](/azure/developer/terraform/quickstart-configure)
 
 ## Implement a basic AI Foundry configuration using Terraform code
-!!!update TF samples!!!
 
 > [!NOTE]
 > The sample code for this article is located in the [Azure Terraform GitHub repo](https://github.com/Azure/terraform/tree/master/quickstart/101-azure-ai-foundry). You can view the log file containing the [test results from current and previous versions of Terraform](https://github.com/Azure/terraform/tree/master/quickstart/101-azure-ai-foundry/TestRecord.md). You may need to update the resource provider versions used in the template to use the latest available versions.
