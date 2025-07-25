@@ -30,7 +30,7 @@ The examples used in article use the [AzAPI](https://learn.microsoft.com/azure/d
 > * Configure projects.
 > * Configure deployments.
 > * Configure a connection to other resources.
-> * Configure capability host to bring your own storage with Agent service
+> * Configure capability host to bring your own storage with Agent service.
 
 ## Prerequisites
 
