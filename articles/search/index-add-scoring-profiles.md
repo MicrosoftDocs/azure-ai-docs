@@ -207,7 +207,7 @@ Interpolations set the shape of the slope used for boosting freshness and distan
 |`quadratic`|Penalizes older documents increasingly more as they age. Use this when you want to strongly favor the most recent documents and sharply demote older ones. This interpolation option isn't allowed in the tag scoring function.|  
 |`logarithmic` |Penalizes older documents more sharply at first, then tapers off. Ideal when you want strong preference for very recent content but less sensitivity as documents age. This interpolation option isn't allowed in the tag scoring function.|  
 
- ![Constant, linear, quadratic, log10 lines on graph](media/scoring-profiles/azuresearch_scorefunctioninterpolationgrapht.png "AzureSearch_ScoreFunctionInterpolationGrapht")
+<!--  ![Constant, linear, quadratic, log10 lines on graph](media/scoring-profiles/azuresearch_scorefunctioninterpolationgrapht.png "AzureSearch_ScoreFunctionInterpolationGrapht") -->
   
 :::image type="content" source="media/scoring-profiles/interpolation-graph.png" alt-text="Diagram of slope shapes for constant, linear, logarithmic, and quadratic interpolations over a 365 day range":::
 
