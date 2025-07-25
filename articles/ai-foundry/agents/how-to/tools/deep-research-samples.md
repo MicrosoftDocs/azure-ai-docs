@@ -30,13 +30,7 @@ Use this article to learn how to use the Deep Research tool with the Azure AI Pr
 
     :::image type="content" source="../../media/quickstart/portal-endpoint-string.png" alt-text="A screenshot showing the endpoint in the Azure AI Foundry portal." lightbox="../../media/quickstart/portal-endpoint-string.png":::
 
-    Save this endpoint to an environment variable named `PROJECT_ENDPOINT`. 
-
-* The name of your Grounding with Bing Search resource name. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Then selecting **Connected resources**.
-    
-    :::image type="content" source="../../media/tools/deep-research/bing-resource-name.png" alt-text="A screenshot showing the Grounding with Bing Search resource name. " lightbox="../../media/tools/deep-research/bing-resource-name.png":::
-
-    Save this endpoint to an environment variable named `BING_RESOURCE_NAME`. 
+    Save this endpoint to an environment variable named `PROJECT_ENDPOINT`.
 
 * The deployment names of your `o3-deep-research-model` and `gpt-4o` models. You can find them in **Models + Endpoints** in the left navigation menu.
 
@@ -47,9 +41,17 @@ Use this article to learn how to use the Deep Research tool with the Azure AI Pr
 > [!NOTE]
 > Other GPT-series models including GPT-4o-mini and the GPT-4.1 series are not supported for scope clarification.
 
-## Create an agent with the Deep Research tool
-
 :::zone pivot="csharp"
+
+* The connection ID for your Grounding with Bing Search resource. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Then selecting **Connected resources**. Then select your bing resource.
+    
+    :::image type="content" source="../../media/tools/deep-research/bing-resource-name.png" alt-text="A screenshot showing the Grounding with Bing Search resource name. " lightbox="../../media/tools/deep-research/bing-resource-name.png":::
+
+    Copy the ID, and save it to an environment variable named `AZURE_BING_CONECTION_ID`. 
+
+    :::image type="content" source="../../media/tools/deep-research/bing-id.png" alt-text="A screenshot showing the Grounding with Bing Search ID. " lightbox="../../media/tools/deep-research/bing-id.png":::
+bing-id
+## Create an agent with the Deep Research tool
 
 >[!NOTE]
 > You need version `1.1.0-beta.4` or later of the `Azure.AI.Agents.Persistent` package, and the `Azure.Identity` package.
@@ -178,6 +180,20 @@ client.Administration.DeleteAgent(agentId: agent.Id);
 :::zone-end 
 
 :::zone pivot="typescript"
+
+* The name of your Grounding with Bing Search resource name. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Select **Connected resources**, then select your Grounding with Bing Search resource.
+    
+    :::image type="content" source="../../media/tools/deep-research/bing-resource-name.png" alt-text="A screenshot showing the Grounding with Bing Search resource name. " lightbox="../../media/tools/deep-research/bing-resource-name.png":::
+
+
+    Copy the ID, and save it to an environment variable named `AZURE_BING_CONECTION_ID`. 
+
+    :::image type="content" source="../../media/tools/deep-research/bing-id.png" alt-text="A screenshot showing the Grounding with Bing Search resource ID. " lightbox="../../media/tools/deep-research/bing-id.png":::
+bing-id
+
+    Save this endpoint to an environment variable named `BING_RESOURCE_NAME`. 
+
+## Create an agent with the Deep Research tool
 
 > [!NOTE]
 > You need the latest preview version of the `@azure/ai-projects` package.
@@ -396,6 +412,14 @@ main().catch((err) => {
 :::zone-end 
 
 :::zone pivot="python"
+
+* The name of your Grounding with Bing Search resource name. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Then select **Connected resources**.
+    
+    :::image type="content" source="../../media/tools/deep-research/bing-resource-name.png" alt-text="A screenshot showing the Grounding with Bing Search resource name. " lightbox="../../media/tools/deep-research/bing-resource-name.png":::
+
+    Save this endpoint to an environment variable named `BING_RESOURCE_NAME`. 
+
+## Create an agent with the Deep Research tool
 
 The Deep Research tool requires the latest prerelease versions of the `azure-ai-projects` library. First we recommend creating a [virtual environment](https://docs.python.org/3/library/venv.html) to work in:
 
