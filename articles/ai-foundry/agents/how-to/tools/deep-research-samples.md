@@ -50,7 +50,7 @@ Use this article to learn how to use the Deep Research tool with the Azure AI Pr
     Copy the ID, and save it to an environment variable named `AZURE_BING_CONECTION_ID`. 
 
     :::image type="content" source="../../media/tools/deep-research/bing-id.png" alt-text="A screenshot showing the Grounding with Bing Search ID. " lightbox="../../media/tools/deep-research/bing-id.png":::
-bing-id
+
 ## Create an agent with the Deep Research tool
 
 >[!NOTE]
@@ -189,7 +189,6 @@ client.Administration.DeleteAgent(agentId: agent.Id);
     Copy the ID, and save it to an environment variable named `AZURE_BING_CONECTION_ID`. 
 
     :::image type="content" source="../../media/tools/deep-research/bing-id.png" alt-text="A screenshot showing the Grounding with Bing Search resource ID. " lightbox="../../media/tools/deep-research/bing-id.png":::
-bing-id
 
     Save this endpoint to an environment variable named `BING_RESOURCE_NAME`. 
 
