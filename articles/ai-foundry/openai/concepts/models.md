@@ -202,7 +202,7 @@ OpenAI's MTEB benchmark testing found that even when the third generation model'
 
 ## Image generation models
 
-The image generation models generate images from text prompts that the user provides. GPT-image-1 is in limited access public preview. DALL-E 3 is generally available for use with the REST APIs. DALL-E 2 and DALL-E 3 with client SDKs are in preview.
+The image generation models generate images from text prompts that the user provides. GPT-image-1 is in limited access preview. DALL-E 3 is generally available for use with the REST APIs. DALL-E 2 and DALL-E 3 with client SDKs are in preview.
 
 Registration is required to access `gpt-image-1`. Access is granted based on Microsoft's eligibility criteria. Customers who have access to other limited access models still need to request access for this model.
 
@@ -217,7 +217,7 @@ For region availability, see the following table.
 
 ## Video generation models
 
-Sora is an AI model from OpenAI that can create realistic and imaginative video scenes from text instructions. Sora is in public preview.
+Sora is an AI model from OpenAI that can create realistic and imaginative video scenes from text instructions. Sora is in preview.
 
 For region availability, see the following table.
 
