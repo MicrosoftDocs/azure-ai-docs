@@ -34,7 +34,7 @@ Azure AI Foundry resource is the primary resource for Azure AI and is recommende
 
 [!INCLUDE [Resource provider kinds](../includes/resource-provider-kinds.md)]
 
-Resource types under the same provider namespace share the same control plane, hence use similar [Azure RBAC](#link) actions, networking configurations and aliases for Azure Policy configuration. If you are upgrading from Azure OpenAI to Azure AI Foundry, this means your existing custom Azure policies and Azure RBAC options apply. 
+Resource types under the same provider namespace share the same control plane, hence use similar [Azure RBAC](https://learn.microsoft.com/azure/role-based-access-control/) actions, networking configurations and aliases for Azure Policy configuration. If you are upgrading from Azure OpenAI to Azure AI Foundry, this means your existing custom Azure policies and Azure RBAC options apply. 
 
 ## Security-driven separation of concerns
 
@@ -48,15 +48,15 @@ Azure AI Foundry enforces a clear separation between management and development 
 
 ## Computing infrastructure
 
-Azure AI Foundry leverages a flexible compute architecture to support diverse [model access](../concepts/foundry-models-overview) and workload execution scenarios. 
+Azure AI Foundry leverages a flexible compute architecture to support diverse [model access](../concepts/foundry-models-overview.md) and workload execution scenarios. 
 
 - Model Hosting Architecture: Foundry models can be accessed in different ways:
   
   1. [Standard deployment in Azure AI Foundry resources](deployments-overview.md#standard-deployment-in-azure-ai-foundry-resources)
   1. [Deployment to serverless API endpoints](deployments-overview.md#serverless-api-endpoint)
-  1. [Deployment to managed computes](deployments-overview#managed-compute)
+  1. [Deployment to managed computes](deployments-overview.md#managed-compute)
 
-  For an overview of data, privacy and security considerations with these deployment options, see [Data, privacy, and security for use of models](../how-to/concept-data-privacy?branch=main)
+  For an overview of data, privacy and security considerations with these deployment options, see [Data, privacy, and security for use of models](../how-to/concept-data-privacy.md)
 
 - **Workload Execution:** Agents, Evaluations and Batch jobs are executed as managed container compute, fully managed by Microsoft. 
 
@@ -84,5 +84,5 @@ Users can optionally connect their own Azure Storage accounts. Foundry tools can
 
 * [Azure AI Foundry Rollout Across My Organization](planning.md)
 * [Customer-managed keys for encryption with Azure AI Foundry](encryption-keys-portal.md)
-* [How to configure a private link for Azure AI Foundry](configure-private-link.md)
+* [How to configure a private link for Azure AI Foundry](../how-to/configure-private-link.md)
 * [Bring-your-own resources with Agent service](../agents/how-to/use-your-own-resources.md)

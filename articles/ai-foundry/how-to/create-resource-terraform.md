@@ -20,7 +20,7 @@ ai-usage: ai-assisted
 
 In this article, you use Terraform to create an [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) resource. You will learn how to use Terraform to create AI Foundry management configurations including projects, deployments and connections. 
 
-The examples used in article use the [AzAPI](#link-to-do) Terraform provider. Similar [AzureRM](#link-to-do) provider support is available via the classic AzureRM_AIServices module, but is limited in functionality to resource and deployment creation.
+The examples used in article use the [AzAPI](https://learn.microsoft.com/azure/developer/terraform/overview-azapi-provider) Terraform provider. Similar [AzureRM](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs) provider support is available via the classic AzureRM_AIServices module, but is limited in functionality to resource and deployment creation.
 
 [!INCLUDE [About Terraform](~/azure-dev-docs-pr/articles/terraform/includes/abstract.md)]
 
@@ -50,23 +50,19 @@ The examples used in article use the [AzAPI](#link-to-do) Terraform provider. Si
 
 1. Create a file named `providers.tf` and insert the following code.
 
-    :::code language="Terraform" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup-terraform/
-    15a-private-network-standard-agent-setup/code/providers.tf":::
+    :::code language="Terraform" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup-terraform/15a-private-network-standard-agent-setup/code/providers.tf":::
 
 1. Create a file named `main.tf` and insert the following code.
 
-    :::code language="Terraform" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup-terraform/
-    15a-private-network-standard-agent-setup/code/main.tf":::
+    :::code language="Terraform" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup-terraform/15a-private-network-standard-agent-setup/code/main.tf":::
 
 1. Create a file named `variables.tf` and insert the following code.
 
-    :::code language="Terraform" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup-terraform/
-    15a-private-network-standard-agent-setup/code/variables.tf":::
+    :::code language="Terraform" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup-terraform/15a-private-network-standard-agent-setup/code/variables.tf":::
 
 1. Create a file named `outputs.tf` and insert the following code.
     
-    :::code language="Terraform" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup-terraform/
-    15a-private-network-standard-agent-setup/code/outputs.tf":::
+    :::code language="Terraform" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup-terraform/15a-private-network-standard-agent-setup/code/outputs.tf":::
 
 ## Initialize Terraform
 
