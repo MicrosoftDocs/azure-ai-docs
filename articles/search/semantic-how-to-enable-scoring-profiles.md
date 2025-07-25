@@ -14,25 +14,29 @@ ms.date: 07/22/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-Integrating [scoring profiles](index-add-scoring-profiles.md) with [semantic ranker](semantic-search-overview.md) is supported in newer Azure AI Search preview REST API versions and Azure SDK preview packages. Semantic ranker adds a new response field, `@search.rerankerBoostedScore`, that applies scoring profile logic on semantically ranked results. In search results that include `@search.score` from level 1 ranking, `@search.rerankerScore` from semantic ranker, and `@search.reRankerBoostedScore`, results are sorted by `@search.reRankerBoostedScore`.
+Using a [scoring profile](index-add-scoring-profiles.md) with [semantic ranker](semantic-search-overview.md) is supported in newer Azure AI Search preview REST API versions and Azure SDK preview packages. With this feature, the scoring profile is processed last. Without this feature, semantic ranking is processed last.
 
-If you're using a stable API version or an earlier preview, scoring profiles are used upstream, before the semantic ranking step. For a diagram of the scoring workflow, see [Relevance in Azure AI Search](search-relevance-overview.md).
+To ensure the scoring profile provides the determining score, the semantic ranker adds a new response field, `@search.rerankerBoostedScore`, that applies scoring profile logic on semantically ranked results. In search results that include `@search.score` from level 1 ranking, `@search.rerankerScore` from semantic ranker, and `@search.reRankerBoostedScore`, results are sorted by `@search.reRankerBoostedScore`.
+
+> [!NOTE]
+> If you're using a stable API version or an earlier preview, scoring profiles are only used upstream, before the semantic ranking step. For a diagram of the scoring workflow, see [Relevance in Azure AI Search](search-relevance-overview.md).
 
 ## Prerequisites
 
 - [Azure AI Search](search-create-service-portal.md), Basic pricing tier or higher, with [semantic ranker enabled](semantic-how-to-enable-disable.md).
 
-- [REST API version `2025-05-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) or a prerelease Azure SDK package that provides the new APIs. Currently, there's no Azure portal (Search Explorer) support for this feature so use a REST client or an IDE.
-
-  For all preview features, we recommend reviewing the Azure SDK change logs to check for feature availability: [Python SDK change log](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [.NET SDK change log](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md), [Java SDK change log](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [JavaScript SDK change log](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md).
+- [REST API version `2025-05-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) or a preview Azure SDK package that provides the new APIs.
 
 - A search index with a semantic configuration that specifies `"rankingOrder": "boostedReRankerScore"` and a scoring profile that specifies [functions](index-add-scoring-profiles.md#use-functions).
 
 - A semantic query includes the scoring profile.
 
+> [!TIP]
+> For all preview features, we recommend reviewing the Azure SDK change logs to check for feature availability: [Python SDK change log](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [.NET SDK change log](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md), [Java SDK change log](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [JavaScript SDK change log](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md).
+
 ## Limitations
 
-Boosting of semantically ranked results applies to scoring profile functions only. There's no boosting if the scoring profile consists of just weighted text fields.
+Boosting of semantically ranked results applies to scoring profile functions only. There's no boosting if the scoring profile consists only of weighted text fields.
 
 ## How does semantic configuration with scoring profiles work?
 
@@ -40,14 +44,17 @@ When you execute a semantic query associated with a scoring profile, a third sea
 
 Starting in API version `2025-05-01-preview`, semantic results are sorted by `@search.rerankerBoostedScore` by default if a scoring profile exists. If the `rankingOrder` property isn't specified, then `BoostedReRankerScore` is the default value in the semantic configuration.
 
-When this capability is enabled, the scoring profile defined in your index applies during the initial ranking phase.
-It boosts results from:
+In this scenario, a scoring profile is used twice. 
 
-- Text-based queries (BM25 or RRF)
-- The text portion of vector queries
-- Hybrid queries that combine both types
+1. First, the scoring profile defined in your index is used during the initial L1 ranking phase, boosting results from:
 
-The semantic ranker then reprocesses the top 50 results. It also reapplies the scoring profile after reranking, so your boosts influence the final order of results.
+  - Text-based queries (BM25 or RRF)
+  - The text portion of vector queries
+  - Hybrid queries that combine both types
+
+1. Next, the semantic ranker rescores the top 50 results, promoting more semantically relevant matches to the top. This step can erase the benefit of the scoring profile. For example, if you boosted based on freshness, then semantic reordering replaces that boost with its own logic of what is most relevant.
+
+1. Finally, the scoring profile is applied again, after reranking, restoring the boosts influence over the final order of results. If you boost by freshness, the semantically ranked results are rescored based on freshness.
 
 ## Enable scoring profiles in semantic configuration
 
