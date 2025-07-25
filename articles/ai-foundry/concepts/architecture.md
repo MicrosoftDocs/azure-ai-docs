@@ -80,7 +80,7 @@ Users can optionally connect their own Azure Storage accounts. Foundry tools can
 * **Customer-Managed Key Encryption:**
   By default, Azure services use Microsoft-managed encryption keys to encrypt data in transit and at rest. Data is encrypted and decrypted using FIPS 140-2 compliant 256-bit AES encryption. Encryption and decryption are transparent, meaning encryption and access are managed for you. Your data is secure by default and you don't need to modify your code or applications to take advantage of encryption.
 
-  When using customer-managed keys, your data on Microsoft-managed infrastructure is encrypted using your keys for encryption.
+  When using customer-managed keys, your data on Microsoft-managed infrastructure is encrypted using your keys.
   
   To learn more about data encryption, see [customer-managed keys for encryption with Azure AI Foundry](encryption-keys-portal.md).
 
