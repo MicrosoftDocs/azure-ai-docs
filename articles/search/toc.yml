@@ -55,21 +55,9 @@ items:
     - name: Other query types
       href: search-query-overview.md
   - name: Relevance
-    items:
-    - name: Semantic ranking
-      href: semantic-search-overview.md
-    - name: BM25 ranking
-      href: index-similarity-and-scoring.md
-    - name: Vector ranking
-      href: vector-search-ranking.md
-    - name: Hybrid ranking (RRF)
-      href: hybrid-search-ranking.md
+    href: search-relevance-overview.md
   - name: Security
-    items:
-    - name: Security overview
-      href: search-security-overview.md
-    - name: Secure access to external data
-      href: search-indexer-securing-resources.md
+    href: search-security-overview.md
 - name: Quickstarts
   items:
   - name: Connect to a search service
@@ -457,12 +445,24 @@ items:
           href: search-query-fuzzy.md
     - name: Hybrid search
       href: hybrid-search-how-to-query.md
-    - name: Ranking and relevance
+  - name: Ranking and relevance
+    items:
+    - name: BM25 ranking
       items:
-      - name: Add a scoring profile
-        href: index-add-scoring-profiles.md
+      - name: BM25 ranking overview
+        href: index-similarity-and-scoring.md
       - name: Configure BM25 ranking
         href: index-ranking-similarity.md
+    - name: Vector ranking
+      href: vector-search-ranking.md
+    - name: Hybrid ranking (RRF)
+      href: hybrid-search-ranking.md
+    - name: Add a scoring profile
+      href: index-add-scoring-profiles.md
+    - name: Semantic ranking
+      items:
+      - name: Semantic ranking overview
+        href: semantic-search-overview.md
       - name: Enable or disable semantic ranker
         href: semantic-how-to-enable-disable.md
       - name: Configure semantic ranker
@@ -499,6 +499,8 @@ items:
         href: search-security-api-keys.md
     - name: Outbound connections
       items:
+      - name: Secure access to external data
+        href: search-indexer-securing-resources.md
       - name: Configure a managed identity
         href: search-howto-managed-identities-data-sources.md
       - name: Connect using a managed identity
