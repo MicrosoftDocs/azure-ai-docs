@@ -50,19 +50,23 @@ The examples used in article use the [AzAPI](#link-to-do) Terraform provider. Si
 
 1. Create a file named `providers.tf` and insert the following code.
 
-    :::code language="Terraform" source="~/terraform_samples/quickstart/101-azure-ai-foundry/providers.tf":::
+    :::code language="Terraform" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup-terraform/
+    15a-private-network-standard-agent-setup/code/providers.tf":::
 
 1. Create a file named `main.tf` and insert the following code.
 
-    :::code language="Terraform" source="~/terraform_samples/quickstart/101-azure-ai-foundry/main.tf":::
+    :::code language="Terraform" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup-terraform/
+    15a-private-network-standard-agent-setup/code/main.tf":::
 
 1. Create a file named `variables.tf` and insert the following code.
 
-    :::code language="Terraform" source="~/terraform_samples/quickstart/101-azure-ai-foundry/variables.tf":::
+    :::code language="Terraform" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup-terraform/
+    15a-private-network-standard-agent-setup/code/variables.tf":::
 
 1. Create a file named `outputs.tf` and insert the following code.
     
-    :::code language="Terraform" source="~/terraform_samples/quickstart/101-azure-ai-foundry/outputs.tf":::
+    :::code language="Terraform" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup-terraform/
+    15a-private-network-standard-agent-setup/code/outputs.tf":::
 
 ## Initialize Terraform
 
