@@ -1,5 +1,5 @@
 ---
-title: How relevance scoring works
+title: Relevance
 titleSuffix: Azure AI Search
 description: Describes how the scoring and ranking algorithms work in Azure AI Search and how to use them together.
 
@@ -13,7 +13,7 @@ ms.date: 07/23/2025
 
 # Relevance in Azure AI Search
 
-In a query operation, the relevance of any given result is measured by a ranking algorithm that determines the strength of a match based on how closely it aligns in content or characteristics. An algorithm assigns a score, and results are rank ordered by that score, with the most relevant matches returned in the response. 
+In a query operation, the relevance of any given result is measured by a ranking algorithm that determines the strength of a match based on how closely the result aligns with the query’s content or characteristics. An algorithm assigns a score, and results are rank ordered by that score, with the most relevant matches returned in the response. 
 
 Ranking occurs whenever the query request includes full text or vector queries. It doesn't occur if the query invokes strict pattern matching, such as a filter-only query or a specialized query form like autocomplete, suggestions, geospatial search, fuzzy search, or regular expression search. A uniform search score of 1.0 indicates the absence of a ranking algorithm.
 
@@ -26,8 +26,8 @@ This section describes the levels of scoring operations. For an illustration of 
 | Level | Description |
 |-------|-------------|
 | Level&nbsp;1&nbsp;(L1) | Initial search score (`@search.score`). <br>For text queries matching on tokenized strings, results are always initially ranked using the [BM25 ranking algorithm](index-similarity-and-scoring.md). <br>For vector queries, results are ranked using either [Hierarchical Navigable Small World (HNSW) or exhaustive K-nearest neighbor (KNN)](vector-search-ranking.md). Image search or multimodal searches are based on vector queries and scored using the L1 vector ranking algorithms. |
-| Fused&nbsp;L1 | Scoring from multiple queries using the [Reciprocal Ranking Fusion (RRF) algorithm](hybrid-search-ranking.md). RRF is used for hybrid queries that include text and vector components. RRF is also used when multiple vector queries execute in parallel. A search score from RRF is reflected in `@search.score` over a different range.|
-| Level&nbsp;2&nbsp;(L2) | [Semantic ranking score (`@search.reRankerScore`)](semantic-search-overview.md) applies machine reading comprehension to textual content. Semantic ranking is a premium feature that bills for use of the semantic ranking models. It's optional for text queries and vector queries that contain text, but required for [agentic retrieval (preview)](search-agentic-retrieval-concept.md). Although agentic retrieval sends multiple queries to the query engine, the ranking algorithm for agentic retrieval is the semantic ranker. |
+| Fused&nbsp;L1 | Scoring from multiple queries using the [Reciprocal Ranking Fusion (RRF) algorithm](hybrid-search-ranking.md). RRF is used for hybrid queries that include text and vector components. RRF is also used when multiple vector queries execute in parallel. A search score from RRF is reflected in `@search.score` [over a different range](#types-of-search-scores).|
+| Level&nbsp;2&nbsp;(L2) | [Semantic ranking score (`@search.reRankerScore`)](semantic-search-overview.md) applies machine reading comprehension to the textual content retrieved by L1 ranking, rescoring the L1 results to better match the semantic intent of the query. L2 reranks L1 results because doing so saves time and money; it would be prohibitive to use semantic ranking as an L1 ranking system. Semantic ranking is a premium feature that bills for usage of the semantic ranking models. It's optional for text queries and vector queries that contain text, but required for [agentic retrieval (preview)](search-agentic-retrieval-concept.md). Although agentic retrieval sends multiple queries to the query engine, the ranking algorithm for agentic retrieval is the semantic ranker. |
 
 ## Custom boosting logic using scoring profiles
 
@@ -58,7 +58,7 @@ Scored results are indicated for each match in the query response. This table li
 | `@search.score` | 0.333 - 1.00 | [HNSW or exhaustive KNN algorithm](vector-search-ranking.md#scores-in-a-vector-search-results) for vector search |
 | `@search.score` | 0 through an upper limit determined by the number of queries | [RRF algorithm](hybrid-search-ranking.md#scores-in-a-hybrid-search-results) |
 | `@search.rerankerScore` | 0.00 - 4.00 | [Semantic ranking algorithm](semantic-search-overview.md#how-results-are-scored) for L2 ranking |
-| `@search.rerankerScoreBoosted` | 0.00 - 4.00 | Semantic ranking algorithm for L2 ranking and custom boosting through a scoring profile |
+| `@search.rerankerScoreBoosted` | 0 through unlimited  | [Semantic ranking with scoring profile boosting](semantic-how-to-enable-scoring-profiles.md) (scores can be significantly higher than 4) |
 
 ## Diagram of ranking algorithms
 
