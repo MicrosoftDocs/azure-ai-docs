@@ -1214,6 +1214,16 @@ groups:
     title: Python 
   - id: rest-api
     title: REST API
+- id: selection-deep-research
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: csharp
+    title: C#
+  - id: python
+    title: Python
+  - id: typescript
+    title: TypeScript
 # owner: aahi
 - id: selection-fabric-data-agent
   title: Selections
