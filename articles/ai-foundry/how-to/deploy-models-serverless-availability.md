@@ -22,7 +22,7 @@ In this article, you learn about which regions are available for each of the mod
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
 
-Certain models in the model catalog can be deployed as a serverless API. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription. This article lists a selection of model offerings and their capabilities, excluding [deprecated and legacy models](../../concepts/model-lifecycle-retirement.md#deprecated). 
+Certain models in the model catalog can be deployed as a serverless API. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription. This article lists a selection of model offerings and their capabilities, excluding [deprecated and legacy models](../concepts/model-lifecycle-retirement.md#deprecated). 
 
 ## Region availability
 
