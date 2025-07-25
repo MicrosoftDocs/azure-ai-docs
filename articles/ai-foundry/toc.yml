@@ -853,6 +853,8 @@ items:
       href: openai/how-to/spillover-traffic-management.md?context=/azure/ai-foundry/context/context
     - name: Azure OpenAI PTU updates
       href: ./openai/concepts/provisioned-migration.md
+  - name: Service architecture
+    href: concepts/architecture.md
 - name: Security & Governance
   items:
   - name: Identity & access management
@@ -1050,8 +1052,6 @@ items:
     href: whats-new-azure-ai-foundry.md
   - name: Azure AI FAQ
     href: faq.yml
-  - name: Azure AI Foundry architecture
-    href: concepts/architecture.md
   - name: Support & help options
     href: ../ai-services/cognitive-services-support-options.md?context=/azure/ai-foundry/context/context
   - name: Use Azure AI Foundry with a screen reader

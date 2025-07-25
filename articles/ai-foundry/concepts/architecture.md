@@ -22,7 +22,7 @@ This article is intended to provide IT security teams with details on the Azure 
 
 ## Azure AI resource types and providers
 
-Within the Azure AI product family, we distinguish three [Azure resource providers](https://learn.microsoft.com/azure/azure-resource-manager/management/resource-providers-and-types) supporting user needs at different layers in the stack.
+Within the Azure AI product family, we distinguish three [Azure resource providers](../../azure-resource-manager/management/resource-providers-and-types) supporting user needs at different layers in the stack.
 
 | Resource provider | Purpose | Supports resource type kinds |
 | --- | --- | --- |
@@ -30,11 +30,11 @@ Within the Azure AI product family, we distinguish three [Azure resource provide
 | Microsoft.Search | Support knowledge retrieval over your data | Azure AI Search | 
 | Microsoft.MachineLearningServices | Train, deploy and operate custom and open source machine learning models | Azure AI Hub (and its projects); Azure Machine Learning Workspace | 
 
-Azure AI Foundry resource is the primary resource for Azure AI and is recommended for most use cases. It is built on the same [Azure resource provider and resource type](https://learn.microsoft.com/azure/azure-resource-manager/management/resource-providers-and-types) as Azure OpenAI service, Azure Speech, Azure Vision, and Azure Language service. It provides access to the superset of capabilities from each individual services combined.
+Azure AI Foundry resource is the primary resource for Azure AI and is recommended for most use cases. It is built on the same [Azure resource provider and resource type](../../azure-resource-manager/management/resource-providers-and-types) as Azure OpenAI service, Azure Speech, Azure Vision, and Azure Language service. It provides access to the superset of capabilities from each individual services combined.
 
 [!INCLUDE [Resource provider kinds](../includes/resource-provider-kinds.md)]
 
-Resource types under the same provider namespace share the same control plane, hence use similar [Azure RBAC](https://learn.microsoft.com/azure/role-based-access-control/) actions, networking configurations and aliases for Azure Policy configuration. If you are upgrading from Azure OpenAI to Azure AI Foundry, this means your existing custom Azure policies and Azure RBAC options apply. 
+Resource types under the same provider namespace share the same control plane, hence use similar [Azure RBAC](../../role-based-access-control/) actions, networking configurations and aliases for Azure Policy configuration. If you are upgrading from Azure OpenAI to Azure AI Foundry, this means your existing custom Azure policies and Azure RBAC options apply. 
 
 ## Security-driven separation of concerns
 
@@ -42,7 +42,7 @@ Azure AI Foundry enforces a clear separation between management and development 
 
 - **Top-Level Resource Governance:** Management operations—such as configuring security, establishing connectivity with other Azure services, and managing deployments—are scoped to the top-level Azure AI Foundry resource. Development activities are isolated within dedicated project containers, which encapsulate use cases and provide boundaries for access control, files, agents, and evaluations.
 
-- **Role-Based Access Control (RBAC):** Azure RBAC actions are designed to reflect this separation of concerns. Control plane actions (e.g., creating deployments and projects) are distinct from data plane actions (e.g., building agents, running evaluations, uploading files). RBAC assignments can be scoped at both the top-level resource and individual project level. [Managed identities](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview) can be assigned at either scope to support secure automation and service access.
+- **Role-Based Access Control (RBAC):** Azure RBAC actions are designed to reflect this separation of concerns. Control plane actions (e.g., creating deployments and projects) are distinct from data plane actions (e.g., building agents, running evaluations, uploading files). RBAC assignments can be scoped at both the top-level resource and individual project level. [Managed identities](../../../entra/identity/managed-identities-azure-resources/overview) can be assigned at either scope to support secure automation and service access.
 
 - **Monitoring and Observability:** Azure Monitor metrics are segmented by scope. Management and usage metrics are available at the top-level resource, while project-specific metrics—such as evaluation performance or agent activity—are scoped to the individual project containers.
 
