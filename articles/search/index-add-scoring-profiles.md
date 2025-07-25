@@ -122,7 +122,7 @@ Scoring profiles can be defined in the Azure portal as shown in the following sc
     "functions": (optional) [  
       {   
         "type": "magnitude | freshness | distance | tag",   
-        "boost": # (positive number used as multiplier for raw score != 1),   
+        "boost": # (positive or negative number used as multiplier for raw score != 1),   
         "fieldName": "(...)",   
         "interpolation": "constant | linear (default) | quadratic | logarithmic",   
 
@@ -186,8 +186,12 @@ Use functions when simple relative weights are insufficient or don't apply, as i
 |-|-|
 | distance  | Boost by proximity or geographic location. This function can only be used with `Edm.GeographyPoint` fields. | Use for "find near me" scenarios. |
 | freshness | Boost by values in a datetime field (`Edm.DateTimeOffset`). [Set boostingDuration](#set-boostingduration-for-freshness-function) to specify a value representing a timespan over which boosting occurs. | Use when you want to boost by newer or older dates. Rank items like calendar events with future dates such that items closer to the present can be ranked higher than items further in the future. One end of the range is fixed to the current time. To boost a range of times in the past, use a positive boostingDuration. To boost a range of times in the future, use a negative boostingDuration. |
-| magnitude | Magnitude is the computed distance between the document’s value (such as a date or location) and the reference point (such as "now" or a target location). It’s the input to the scoring function and determines how much boost is applied. Alter rankings based on the range of values for a numeric field. The value must be an integer or floating-point number. For star ratings of 1 through 4, this would be 1. For margins over 50%, this would be 50. This function can only be used with `Edm.Double` and `Edm.Int` fields. For the magnitude function, you can reverse the range, high to low, if you want the inverse pattern (for example, to boost lower-priced items more than higher-priced items). Given a range of prices from $100 to $1, you would set `boostingRangeStart` at 100 and `boostingRangeEnd` at 1 to boost the lower-priced items. | Use when you want to boost by profit margin, ratings, clickthrough counts, number of downloads, highest price, lowest price, or a count of downloads. When two items are relevant, the item with the higher rating is displayed first. |
+| magnitude | Alter rankings based on the range of values for a numeric field. The value must be an integer or floating-point number. For star ratings of 1 through 4, this would be 1. For margins over 50%, this would be 50. This function can only be used with `Edm.Double` and `Edm.Int` fields. For the magnitude function, you can reverse the range, high to low, if you want the inverse pattern (for example, to boost lower-priced items more than higher-priced items). Given a range of prices from $100 to $1, you would set `boostingRangeStart` at 100 and `boostingRangeEnd` at 1 to boost the lower-priced items. | Use when you want to boost by profit margin, ratings, clickthrough counts, number of downloads, highest price, lowest price, or a count of downloads. When two items are relevant, the item with the higher rating is displayed first. |
 | tag  | Boost by tags that are common to both search documents and query strings. Tags are provided in a `tagsParameter`. This function can only be used with search fields of type `Edm.String` and `Collection(Edm.String)`. | Use when you have tag fields. If a given tag within the list is itself a comma-delimited list, you can [use a text normalizer](search-normalizers.md) on the field to strip out the commas at query time (map the comma character to a space). This approach "flattens" the list so that all terms are a single, long string of comma-delimited terms. | 
+
+Magnitude is the computed distance between a field's value (such as a date or location) and a reference point (such as "now" or a target location). It's the input to the scoring function and determines how much boost is applied. 
+
+Freshness and distance scoring are special cases of magnitude-based scoring, where the magnitude is automatically computed from a datetime or geographic field. For intuitive boosting that promotes newer or closer values over older or farther values, use a negative boost value (see the [example](#example-boosting-by-freshness-or-distance) for more details).
 
 ### Rules for using functions
 
@@ -198,14 +202,16 @@ Use functions when simple relative weights are insufficient or don't apply, as i
 
 ### Set interpolations
 
-Interpolations set the shape of the slope used for boosting freshness and distance. Because scoring is high to low, the slope is always decreasing, but the interpolation determines the curve of the downward slope and how aggressively the boost score changes as document dates get older. The following interpolations can be used:  
+Interpolations set the shape of the slope used for boosting freshness and distance. 
+
+When the boost value is positive, scoring is high to low, and the slope is always decreasing. With negative boosts, the slope is increasing (newer documents get higher scores). The interpolation values determines the curve of the upward or downward slope and how aggressively the boost score changes in response to date or distance changes. The following interpolations can be used:  
 
 | Interpolation | Description |  
 |-|-|  
-|`linear`|Penalizes older documents proportionally. Good for gradual decay in relevance. Linear is the default interpolation for a scoring profile.|  
-|`constant`|Applies the same negative boost to all documents within the range. Use this when you want a flat penalty regardless of age.|  
-|`quadratic`|Penalizes older documents increasingly more as they age. Use this when you want to strongly favor the most recent documents and sharply demote older ones. This interpolation option isn't allowed in the tag scoring function.|  
-|`logarithmic` |Penalizes older documents more sharply at first, then tapers off. Ideal when you want strong preference for very recent content but less sensitivity as documents age. This interpolation option isn't allowed in the tag scoring function.|  
+|`linear`|For items that are within the max and min range, boosting is applied in a constantly decreasing amount. A negative boost penalizes older documents proportionally. Good for gradual decay in relevance. Linear is the default interpolation for a scoring profile.|  
+|`constant`|For items that are within the start and ending range, a constant boost is applied to the rank results. For freshness and distance, applies the same negative boost to all documents within the range. Use this when you want a flat penalty regardless of age.|  
+|`quadratic`|Quadratic initially decreases at smaller pace and then as it approaches the end range, it decreases at a much higher interval. For negative boosting, it penalizes older documents increasingly more as they age. Use this when you want to strongly favor the most recent documents and sharply demote older ones. This interpolation option isn't allowed in the tag scoring function.|  
+|`logarithmic` |Logarithmic initially decreases at higher pace and then as it approaches the end range, it decreases at a much smaller interval. For negative boosting, it penalizes older documents more sharply at first, then tapers off. Ideal when you want strong preference for very recent content but less sensitivity as documents age. This interpolation option isn't allowed in the tag scoring function.|  
 
 <!--  ![Constant, linear, quadratic, log10 lines on graph](media/scoring-profiles/azuresearch_scorefunctioninterpolationgrapht.png "AzureSearch_ScoreFunctionInterpolationGrapht") -->
   
