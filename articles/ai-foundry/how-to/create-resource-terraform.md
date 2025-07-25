@@ -75,7 +75,7 @@ The examples used in article use the [AzAPI](/azure/developer/terraform/overview
 
 To help meet security and compliance requirements, AI Foundry lets you customize security configurations and bring your own storage resources. For example, when using the Agent service, you may opt to bring your own Azure CosmosDB database, Azure AI Search instance, and Azure Storage Account to store your threads and messages.
 
-See the [Azure AI Foundry Samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup-terraform) repository with example Teraform configurations for the most common enterprise security configurations.
+See the [Azure AI Foundry Samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup-terraform) repository with example Terraform configurations for the most common enterprise security configurations.
 
 ## Clean up resources
 
