@@ -30,11 +30,11 @@ Within the Azure AI product family, we distinguish three [Azure resource provide
 | Microsoft.Search | Support knowledge retrieval over your data | Azure AI Search | 
 | Microsoft.MachineLearningServices | Train, deploy and operate custom and open source machine learning models | Azure AI Hub (and its projects); Azure Machine Learning Workspace | 
 
-Azure AI Foundry resource is the primary resource for Azure AI and is recommended for most use cases. It is built on the same [Azure resource provider and resource type](https://learn.microsoft.com/azure/azure-resource-manager/management/resource-providers-and-types) as Azure OpenAI service, Azure Speech, Azure Vision, and Azure Language service. It provides access to the superset of capabilities from each individual services combined.
+Azure AI Foundry resource is the primary resource for Azure AI and is recommended for most use cases. It's built on the same [Azure resource provider and resource type](https://learn.microsoft.com/azure/azure-resource-manager/management/resource-providers-and-types) as Azure OpenAI service, Azure Speech, Azure Vision, and Azure Language service. It provides access to the superset of capabilities from each individual services combined.
 
 [!INCLUDE [Resource provider kinds](../includes/resource-provider-kinds.md)]
 
-Resource types under the same provider namespaces share the same control plane, hence use similar [Azure Role Based Access Control](https://learn.microsoft.com/azure/role-based-access-control/overview) actions, networking configurations and aliases for Azure Policy configuration. If you are upgrading from Azure OpenAI to Azure AI Foundry, your existing custom Azure policies and Azure Role Based Access Control actions continue to apply.
+Resource types under the same provider namespaces share the same control plane, hence use similar [Azure Role Based Access Control](https://learn.microsoft.com/azure/role-based-access-control/overview) actions, networking configurations and aliases for Azure Policy configuration. If you're upgrading from Azure OpenAI to Azure AI Foundry, your existing custom Azure policies and Azure Role Based Access Control actions continue to apply.
 
 ## Security-driven separation of concerns
 
