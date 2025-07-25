@@ -26,7 +26,7 @@ The examples used in article use the [AzAPI](/azure/developer/terraform/overview
 
 > [!div class="checklist"]
 > * Create a resource group
-> * Create AI Foundry
+> * Create an AI Foundry resource.
 > * Configure projects.
 > * Configure deployments.
 > * Configure a connection to other resources.
