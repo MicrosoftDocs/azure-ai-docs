@@ -60,12 +60,11 @@ You can import a CLU JSON into the service.
 
 You can download a CLU project as a **config.json** file:
 
-* Navigate to your project home page.
-* At the top of the page, select your project from the right page ribbon area.
-* Select **Download config file**.
-[text](../media/create-project/download-config-json.png)
+1. Navigate to your project home page.
+1. At the top of the page, select your project from the right page ribbon area.
+1. Select **Download config file**.
 
-  :::image type="content" source="../media/create-project/download-config-json.png" alt-text="Screenshot of project drop-down menu with the download config file hyperlink in the Azure AI Foundry.":::
+    :::image type="content" source="../media/create-project/download-config-json.png" alt-text="Screenshot of project drop-down menu with the download config file hyperlink in the Azure AI Foundry.":::
 
 ### [REST APIs](#tab/rest-api)
 
@@ -81,12 +80,12 @@ You can export a CLU project as a JSON file at any time.
 
 * On the project Home page, information about the project is found in the **Project details** section.
 * To view project settings, select **Management center** from the bottom of the left navigation pane, then select one of the following tabs:
- *  **Overview** to view project details.
- *  **Users** to manage users and roles.
- *  **Models + endpoints** to manage deployments of your models and services.
- *  **Connected resources to manage connected resources for the project.
+   *  **Overview** to view project details.
+   *  **Users** to manage users and roles.
+   *  **Models + endpoints** to manage deployments of your models and services.
+   *  **Connected resources** to manage connected resources for the project.
 
-  :::image type="content" source="../media/create-project/project-details.png" alt-text="Screenshot of the project details list in the Azure AI Foundry.":::
+   :::image type="content" source="../media/create-project/project-details.png" alt-text="Screenshot of the project details list in the Azure AI Foundry.":::
 
 ### [REST APIs](#tab/rest-api)
 
