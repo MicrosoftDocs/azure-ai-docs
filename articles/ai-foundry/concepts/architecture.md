@@ -86,7 +86,7 @@ Users can optionally connect their own Azure Storage accounts. Foundry tools can
 
 ## Next steps
 
-* [Azure AI Foundry Rollout Across My Organization](planning.md)
+* [Azure AI Foundry rollout across my organization](planning.md)
 * [Customer-managed keys for encryption with Azure AI Foundry](encryption-keys-portal.md)
 * [How to configure a private link for Azure AI Foundry](../how-to/configure-private-link.md)
 * [Bring-your-own resources with Agent service](../agents/how-to/use-your-own-resources.md)
