@@ -407,7 +407,7 @@ Page numbers are one indexed. The bounding polygon describes a sequence of point
 
 The following example shows the complete JSON response structure from analyzing a document. This JSON represents the full output from Content Understanding when processing a PDF document with multiple element types:
 
-:::image type="content" source="../media/document/demo-pdf-screenshot.png" alt-text="Screenshot of the demo PDF document showing example content including checkboxes, barcodes, formulas, images, and tables.":::
+:::image type="content" source="../media/document/demo-pdf-screenshot.png" alt-text="Screenshot of the demo PDF document showing example content including checkboxes, barcodes, formulas, images, and tables." lightbox="../media/document/demo-pdf-screenshot.png":::
 
 ```json
 {
