@@ -58,11 +58,7 @@ The examples used in article use the [AzAPI](../../developer/terraform/overview-
 
 1. Create a file named `variables.tf` and insert the following code.
 
-    :::code language="Terraform" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup-terraform/15a-private-network-standard-agent-setup/code/variables.tf":::
-
-1. Create a file named `outputs.tf` and insert the following code.
-    
-    :::code language="Terraform" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup-terraform/15a-private-network-standard-agent-setup/code/outputs.tf":::
+    :::code language="Terraform" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup-terraform/15a-private-network-standard-agent-setup/code/variables.tf"::: 
 
 ## Initialize Terraform
 
