@@ -82,7 +82,7 @@ Users can optionally connect their own Azure Storage accounts. Foundry tools can
 
   When using customer-managed keys, your data on Microsoft-managed infrastructure is encrypted using your keys for encryption.
   
-  To learn more about data encryption, see customer-managed keys for encryption with Azure AI Foundry](encryption-keys-portal.md).
+  To learn more about data encryption, see [customer-managed keys for encryption with Azure AI Foundry](encryption-keys-portal.md).
 
 ## Next steps
 
