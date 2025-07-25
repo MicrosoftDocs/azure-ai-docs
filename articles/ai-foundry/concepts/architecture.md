@@ -56,7 +56,7 @@ Azure AI Foundry applies a flexible compute architecture to support diverse [mod
   1. [Deployment to serverless API endpoints in Azure AI Hub resources](deployments-overview.md#serverless-api-endpoint)
   1. [Deployment to managed computes in Azure AI Hub resources](deployments-overview.md#managed-compute)
 
-  For an overview of data, privacy and security considerations with these deployment options, see [Data, privacy, and security for use of models](../how-to/concept-data-privacy.md)
+  For an overview of data, privacy, and security considerations with these deployment options, see [Data, privacy, and security for use of models](../how-to/concept-data-privacy.md)
 
 - **Workload Execution:** Agents, Evaluations, and Batch jobs are executed as managed container compute, fully managed by Microsoft. 
 
@@ -67,7 +67,7 @@ Azure AI Foundry applies a flexible compute architecture to support diverse [mod
 Azure AI Foundry provides flexible and secure data storage options to support a wide range of AI workloads.
 
 * **Managed storage for file upload**:
-In the default setup, Azure AI Foundry uses Microsoft-managed storage accounts, that are logically separated, and support direct file uploads for select use cases—such as OpenAI models, Assistants, and Agents, without requiring a customer-provided storage account.
+In the default setup, Azure AI Foundry uses Microsoft-managed storage accounts that are logically separated and support direct file uploads for select use cases, such as OpenAI models, Assistants, and Agents, without requiring a customer-provided storage account.
 
 * **Bring Your Own Storage (Optional)**:
 Users can optionally connect their own Azure Storage accounts. Foundry tools can read inputs from and write outputs to these accounts, depending on the tool and use case.
@@ -75,18 +75,18 @@ Users can optionally connect their own Azure Storage accounts. Foundry tools can
 * **Bring-your-own storage for storing Agent state:**
 
   * In the basic configuration, the Agent service stores threads, messages, and files in Microsoft-managed multi-tenant storage, with logical separation.
-  * With the [Agent standard setup](../agents/how-to/use-your-own-resources.md), you may bring your own storage for thread and message data. In this configuration, data is isolated by project within the customer’s storage account.
+  * With the [Agent standard setup](../agents/how-to/use-your-own-resources.md), you can bring your own storage for thread and message data. In this configuration, data is isolated by project within the customer’s storage account.
 
 * **Customer-Managed Key Encryption:**
   By default, Azure services use Microsoft-managed encryption keys to encrypt data in transit and at rest. Data is encrypted and decrypted using FIPS 140-2 compliant 256-bit AES encryption. Encryption and decryption are transparent, meaning encryption and access are managed for you. Your data is secure by default and you don't need to modify your code or applications to take advantage of encryption.
 
-  When using customer-managed keys, your data on Microsoft-managed infrastructure is encrypted using your keys for encryption.
+  When using customer-managed keys, your data on Microsoft-managed infrastructure is encrypted using your keys.
   
   To learn more about data encryption, see [customer-managed keys for encryption with Azure AI Foundry](encryption-keys-portal.md).
 
 ## Next steps
 
-* [Azure AI Foundry Rollout Across My Organization](planning.md)
+* [Azure AI Foundry rollout across my organization](planning.md)
 * [Customer-managed keys for encryption with Azure AI Foundry](encryption-keys-portal.md)
 * [How to configure a private link for Azure AI Foundry](../how-to/configure-private-link.md)
-* [Bring-your-own resources with Agent service](../agents/how-to/use-your-own-resources.md)
+* [Bring-your-own resources with the Agent service](../agents/how-to/use-your-own-resources.md)

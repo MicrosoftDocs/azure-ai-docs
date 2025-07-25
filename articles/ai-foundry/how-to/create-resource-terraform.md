@@ -20,23 +20,23 @@ ai-usage: ai-assisted
 
 In this article, you use Terraform to create an [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) resource. You learn how to use Terraform to create AI Foundry management configurations including projects, deployments, and connections. 
 
-The examples used in article use the [AzAPI](https://learn.microsoft.com/azure/developer/terraform/overview-azapi-provider) Terraform provider. Similar [AzureRM](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/ai_services) provider support is available via the classic `AzureRM_AIServices` module (using `aiservices` kind as value), but is limited in functionality to resource and deployment creation.
+The examples used in article use the [AzAPI](/azure/developer/terraform/overview-azapi-provider) Terraform provider. Similar [AzureRM](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/ai_services) provider support is available via the classic `AzureRM_AIServices` module (using the `aiservices` kind as its value), but is limited in functionality to resource and deployment creation.
 
 [!INCLUDE [About Terraform](~/azure-dev-docs-pr/articles/terraform/includes/abstract.md)]
 
 > [!div class="checklist"]
 > * Create a resource group
-> * Create AI Foundry
+> * Create an AI Foundry resource.
 > * Configure projects.
 > * Configure deployments.
 > * Configure a connection to other resources.
-> * Configure capability host to bring your own storage with Agent service
+> * Configure capability host to bring your own storage with Agent service.
 
 ## Prerequisites
 
 - Create an Azure account with an active subscription. You can [create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
-- [Install and configure Terraform](/azure/developer/terraform/quickstart-configure)
+- [Install and configure Terraform](/azure/developer/terraform/quickstart-configure).
 
 ## Implement a basic AI Foundry configuration using Terraform code
 
