@@ -48,9 +48,9 @@ In this scenario, a scoring profile is used twice.
 
 1. First, the scoring profile defined in your index is used during the initial L1 ranking phase, boosting results from:
 
-  - Text-based queries (BM25 or RRF)
-  - The text portion of vector queries
-  - Hybrid queries that combine both types
+   - Text-based queries (BM25 or RRF)
+   - The text portion of vector queries
+   - Hybrid queries that combine both types
 
 1. Next, the semantic ranker rescores the top 50 results, promoting more semantically relevant matches to the top. This step can erase the benefit of the scoring profile. For example, if you boosted based on freshness, then semantic reordering replaces that boost with its own logic of what is most relevant.
 
