@@ -14,7 +14,7 @@ ms.topic: conceptual
 ms.date: 02/28/2025
 ---
 
-# Security overview for Azure AI Search
+# Security in Azure AI Search
 
 This article describes the security features in Azure AI Search that protect data and operations.
 

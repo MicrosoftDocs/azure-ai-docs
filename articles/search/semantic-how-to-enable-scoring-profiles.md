@@ -2,35 +2,43 @@
 title: Use Scoring Profiles with Semantic Ranking
 titleSuffix: Azure AI Search
 description: Learn how to combine scoring profiles with semantic ranking in Azure AI Search to optimize final document relevance.
-author: gmndrg
-ms.author: gimondra
+author: HeidiSteen
+ms.author: heidist
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to
-ms.date: 06/10/2025
+ms.date: 07/22/2025
 ---
 
 # Use scoring profiles with semantic ranker in Azure AI Search
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-Integrating [scoring profiles](index-add-scoring-profiles.md) with [semantic ranker](semantic-search-overview.md) is supported in newer Azure AI Search API versions and Azure SDK packages. Semantic ranker adds a new field, `@search.rerankerBoostedScore`, to help you maintain consistent relevance and greater control over final ranking outcomes in your search pipeline.
+Integrating [scoring profiles](index-add-scoring-profiles.md) with [semantic ranker](semantic-search-overview.md) is supported in newer Azure AI Search preview REST API versions and Azure SDK preview packages. Semantic ranker adds a new response field, `@search.rerankerBoostedScore`, that applies scoring profile logic on semantically ranked results. In search results that include `@search.score` from level 1 ranking, `@search.rerankerScore` from semantic ranker, and `@search.reRankerBoostedScore`, results are sorted by `@search.reRankerBoostedScore`.
 
-Before this integration, scoring profiles only influenced the initial L1 ranking phase of [BM25-ranked](index-similarity-and-scoring.md) and [RRF-ranked](hybrid-search-ranking.md) search results. However, once the semantic L2 ranker re-ranked the results, those boosts no longer had any effect. The semantic reranking process ignored scoring profiles entirely.
-
-Integrating scoring profiles with semantic ranker addresses this behavior by applying scoring profiles to L2-ranked results, ensuring that the boosts are taken into account.
+If you're using a stable API version or an earlier preview, scoring profiles are used upstream, before the semantic ranking step. For a diagram of the scoring workflow, see [Relevance in Azure AI Search](search-relevance-overview.md).
 
 ## Prerequisites
 
 - [Azure AI Search](search-create-service-portal.md), Basic pricing tier or higher, with [semantic ranker enabled](semantic-how-to-enable-disable.md).
 
-- REST API version `2025-05-01-preview` or a prerelease Azure SDK package that provides the new APIs. For all preview features, we recommend reviewing the Azure SDK change logs for feature availability: [Python SDK change log](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [.NET SDK change log](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md), [Java SDK change log](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [JavaScript SDK change log](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md).
+- [REST API version `2025-05-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) or a prerelease Azure SDK package that provides the new APIs. Currently, there's no Azure portal (Search Explorer) support for this feature so use a REST client or an IDE.
+
+  For all preview features, we recommend reviewing the Azure SDK change logs to check for feature availability: [Python SDK change log](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [.NET SDK change log](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md), [Java SDK change log](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [JavaScript SDK change log](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md).
+
+- A search index with a semantic configuration that specifies `"rankingOrder": "boostedReRankerScore"` and a scoring profile that specifies [functions](index-add-scoring-profiles.md#use-functions).
+
+- A semantic query includes the scoring profile.
+
+## Limitations
+
+Boosting of semantically ranked results applies to scoring profile functions only. There's no boosting if the scoring profile consists of just weighted text fields.
 
 ## How does semantic configuration with scoring profiles work?
 
 When you execute a semantic query associated with a scoring profile, a third search score, `@search.rerankerBoostedScore` value, is generated for every document in your search results. This boosted score, calculated by applying the scoring profile to the existing reranker score, doesn't have a guaranteed range (0–4) like a normal reranker score, and scores can be significantly higher than 4.
 
-Starting in API version `2025-05-01-preview`, semantic results are sorted by `@search.rerankerBoostedScore` by default. If the `rankingOrder` property isn't specified, then `boostedReRankerScore` is the default value in the semantic configuration.
+Starting in API version `2025-05-01-preview`, semantic results are sorted by `@search.rerankerBoostedScore` by default if a scoring profile exists. If the `rankingOrder` property isn't specified, then `BoostedReRankerScore` is the default value in the semantic configuration.
 
 When this capability is enabled, the scoring profile defined in your index applies during the initial ranking phase.
 It boosts results from:
@@ -64,7 +72,7 @@ PUT https://{service-name}.search.windows.com/indexes/{index-name}?api-version=2
 To opt out of sorting by semantic reranker boosted score, set the `rankingOrder` field to `reRankerScore` value in the semantic configuration.
 
 ```json
-PUT https://{service-name}.search.windows.com/indexes/{index-name}?api-version=2024-05-01-Preview
+PUT https://{service-name}.search.windows.com/indexes/{index-name}?api-version=2025-05-01-Preview
 {
   "semantic": {
     "configurations": [
