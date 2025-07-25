@@ -16,9 +16,9 @@ author: sdgilley
 
 # Azure AI Foundry architecture 
 
-Azure AI Foundry provides a comprehensive set of tools to support development teams in building, customizing, evaluating and operating AI Agents and its composing models and tools.
+Azure AI Foundry provides a comprehensive set of tools to support development teams in building, customizing, evaluating, and operating AI Agents and its composing models and tools.
 
-This article is intended to provide IT security teams with details on the Azure service architecture, its components, and its relation with related Azure resource types. Use this information to guide how to [customize](../how-to/configure-private-link.md) your Foundry deployment to your organization's requirements. For additional guidance on how to roll out AI Foundry in your organization, see [Azure AI Foundry Rollout](planning.md).
+This article is intended to provide IT security teams with details on the Azure service architecture, its components, and its relation with related Azure resource types. Use this information to guide how to [customize](../how-to/configure-private-link.md) your Foundry deployment to your organization's requirements. For more information on how to roll out AI Foundry in your organization, see [Azure AI Foundry Rollout](planning.md).
 
 ## Azure AI resource types and providers
 
@@ -26,7 +26,7 @@ Within the Azure AI product family, we distinguish three [Azure resource provide
 
 | Resource provider | Purpose | Supports resource type kinds |
 | --- | --- | --- |
-| Microsoft.CognitiveServices | Supports Agentic and GenAI application development composing and customizing pre-built models. | Azure AI Foundry; Azure OpenAI service; Azure Speech; Azure Vision | 
+| Microsoft.CognitiveServices | Supports Agentic and GenAI application development composing and customizing prebuilt models. | Azure AI Foundry; Azure OpenAI service; Azure Speech; Azure Vision | 
 | Microsoft.Search | Support knowledge retrieval over your data | Azure AI Search | 
 | Microsoft.MachineLearningServices | Train, deploy and operate custom and open source machine learning models | Azure AI Hub (and its projects); Azure Machine Learning Workspace | 
 
@@ -34,7 +34,7 @@ Azure AI Foundry resource is the primary resource for Azure AI and is recommende
 
 [!INCLUDE [Resource provider kinds](../includes/resource-provider-kinds.md)]
 
-Resource types under the same provider namespace share the same control plane, hence use similar [Azure RBAC](https://learn.microsoft.com/azure/role-based-access-control/overview) actions, networking configurations and aliases for Azure Policy configuration. If you are upgrading from Azure OpenAI to Azure AI Foundry, this means your existing custom Azure policies and Azure RBAC options apply. 
+Resource types under the same provider namespaces share the same control plane, hence use similar [Azure Role Based Access Control](https://learn.microsoft.com/azure/role-based-access-control/overview) actions, networking configurations and aliases for Azure Policy configuration. If you are upgrading from Azure OpenAI to Azure AI Foundry, your existing custom Azure policies and Azure Role Based Access Control actions continue to apply.
 
 ## Security-driven separation of concerns
 
@@ -42,13 +42,13 @@ Azure AI Foundry enforces a clear separation between management and development 
 
 - **Top-Level Resource Governance:** Management operations—such as configuring security, establishing connectivity with other Azure services, and managing deployments—are scoped to the top-level Azure AI Foundry resource. Development activities are isolated within dedicated project containers, which encapsulate use cases and provide boundaries for access control, files, agents, and evaluations.
 
-- **Role-Based Access Control (RBAC):** Azure RBAC actions are designed to reflect this separation of concerns. Control plane actions (e.g., creating deployments and projects) are distinct from data plane actions (e.g., building agents, running evaluations, uploading files). RBAC assignments can be scoped at both the top-level resource and individual project level. [Managed identities](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview) can be assigned at either scope to support secure automation and service access.
+- **Role-Based Access Control (RBAC):** Azure RBAC actions are designed to reflect this separation of concerns. Control plane actions (for example creating deployments and projects) are distinct from data plane actions (for example building agents, running evaluations, uploading files). RBAC assignments can be scoped at both the top-level resource and individual project level. [Managed identities](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview) can be assigned at either scope to support secure automation and service access.
 
 - **Monitoring and Observability:** Azure Monitor metrics are segmented by scope. Management and usage metrics are available at the top-level resource, while project-specific metrics—such as evaluation performance or agent activity—are scoped to the individual project containers.
 
 ## Computing infrastructure
 
-Azure AI Foundry leverages a flexible compute architecture to support diverse [model access](../concepts/foundry-models-overview.md) and workload execution scenarios. 
+Azure AI Foundry applies a flexible compute architecture to support diverse [model access](../concepts/foundry-models-overview.md) and workload execution scenarios. 
 
 - Model Hosting Architecture: Foundry models can be accessed in different ways:
   
@@ -58,7 +58,7 @@ Azure AI Foundry leverages a flexible compute architecture to support diverse [m
 
   For an overview of data, privacy and security considerations with these deployment options, see [Data, privacy, and security for use of models](../how-to/concept-data-privacy.md)
 
-- **Workload Execution:** Agents, Evaluations and Batch jobs are executed as managed container compute, fully managed by Microsoft. 
+- **Workload Execution:** Agents, Evaluations, and Batch jobs are executed as managed container compute, fully managed by Microsoft. 
 
 - **Networking Integration:** For enhanced security and compliance when your Agents connect with external systems, [container injection](../agents/how-to/virtual-networks.md) allows the platform network to host APIs and inject a subnet into your network, enabling local communication of your Azure resources within the same virtual network. 
 
@@ -74,7 +74,7 @@ Users can optionally connect their own Azure Storage accounts. Foundry tools can
 
 * **Agent Data Storage:**
 
-  * In the basic configuration, the Agent service stores threads, messages, and files in Microsoft-managed multi-tenant storage, with logical separatation.
+  * In the basic configuration, the Agent service stores threads, messages, and files in Microsoft-managed multi-tenant storage, with logical separation.
   * With the [Agent standard setup](../agents/how-to/use-your-own-resources.md), you may bring your own storage for thread and message data. In this configuration, data is isolated by project within the customer’s storage account.
 
 * **Customer-Managed Key Encryption:**
