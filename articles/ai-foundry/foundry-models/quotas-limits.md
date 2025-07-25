@@ -19,13 +19,14 @@ This article contains a quick reference and a detailed description of the quotas
 
 ## Quotas and limits reference
 
-Azure uses quotas and limits to prevent budget overruns due to fraud, and to honor Azure capacity constraints. Consider these limits as you scale for production workloads. The following sections provide you with a quick guide to the default quotas and limits that apply to Azure AI model's inference service in Azure AI services:
+Azure uses quotas and limits to prevent budget overruns due to fraud, and to honor Azure capacity constraints. Consider these limits as you scale for production workloads. The following sections provide you with a quick guide to the default quotas and limits that apply to Azure AI model's inference service in Azure AI Foundry:
 
 ### Resource limits
 
 | Limit name | Limit value |
 |--|--|
-| Azure AI services resources per region per Azure subscription | 30 |
+| Azure AI Foundry resources per region per Azure subscription | 30 |
+| Max projects per resource | 250 |
 | Max deployments per resource | 32 | 
 
 ### Rate limits

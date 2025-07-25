@@ -50,14 +50,14 @@ Use this article to learn how to use the Deep Research tool with the Azure AI Pr
 
     Save this endpoint to an environment variable named `BING_RESOURCE_NAME`. 
 
-* The names of your `o3-deep-research-model` deployment name and Azure OpenAI GPT model deployment name. You can find them in **Models + Endpoints** in the left navigation menu. 
+* The deployment names of your `o3-deep-research-model` and `gpt-4o` models. You can find them in **Models + Endpoints** in the left navigation menu.
 
-    :::image type="content" source="../../media/tools/deep-research/model-deployments.png" alt-text="A screenshot showing the model deployment screen the AI Foundry portal." lightbox="../../media/tools/deep-research/model-deployments.png":::
+   :::image type="content" source="../../media/tools/deep-research/model-deployments.png" alt-text="A screenshot showing the model deployment screen the AI Foundry portal." lightbox="../../media/tools/deep-research/model-deployments.png":::
     
-    Save the name of your `o3-deep-research-model` deployment name as an environment variable named `DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME` and Azure OpenAI GPT model deployment name as an environment variable named `MODEL_DEPLOYMENT_NAME`. 
+    Save the name of your `o3-deep-research` deployment name as an environment variable named `DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME` and the `gpt-4o` deployment name as an environment variable named `MODEL_DEPLOYMENT_NAME`.
 
 > [!NOTE]
-> Limitation: The Deep Research tool is currently recommended only in nonstreaming scenarios. Using it with streaming can work, but it might occasionally time out and is therefore not recommended.
+> Other GPT-series models including GPT-4o-mini and the GPT-4.1 series are not supported for scope clarification.
 
 ## Create an agent with the Deep Research tool
 
@@ -196,6 +196,9 @@ with project_client:
         agents_client.delete_agent(agent.id)
         print("Deleted agent")
 ```
+
+> [!NOTE]
+> Limitation: The Deep Research tool is currently recommended only in nonstreaming scenarios. Using it with streaming can work, but it might occasionally time out and is therefore not recommended.
 
 ## Next steps
 

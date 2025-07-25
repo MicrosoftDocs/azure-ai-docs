@@ -773,7 +773,7 @@ client = AzureOpenAI(
 )
 
 
-# Upload a file with a purpose of "batch"
+# Upload a file with a purpose of "assistants"
 file = client.files.create(
   file=open("nucleus_sampling.pdf", "rb"), # This assumes a .pdf file in the same directory as the executing script
   purpose="assistants"

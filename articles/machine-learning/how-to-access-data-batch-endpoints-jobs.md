@@ -59,7 +59,7 @@ Use the Azure Machine Learning SDK for Python to sign in:
 from azure.ai.ml import MLClient
 from azure.identity import DefaultAzureCredential
 
-ml_client = MLClient.from_config(DefaultAzureCredential())
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 ```
 
 If your configuration runs outside an Azure Machine Learning compute instance, you need to specify the workspace where the endpoint is deployed:

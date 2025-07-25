@@ -31,7 +31,6 @@ The Responsible AI text dashboard is a customizable, interoperable toolbox where
 
   - [The Azure Machine Learning studio UI](how-to-responsible-ai-insights-ui.md)
   - [YAML and Python via a pipeline job](how-to-responsible-ai-insights-sdk-cli.md)
-  - A preconfigured sample Jupyter notebook like [Financial_News_Text_classifier.ipynb](https://github.com/Azure/azureml-examples/blob/main/sdk/python/responsible-ai/text/responsibleaidashboard-text-classification-financial-news/responsibleaidashboard-text-classification-financial-news.ipynb)
 
   To open the Responsible AI text dashboard in Machine Learning studio, select your registered model in the **Models** list, select **Responsible AI** at the top of the model page, and then select the name of your Responsible AI text dashboard from the list.
 

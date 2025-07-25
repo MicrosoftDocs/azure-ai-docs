@@ -73,7 +73,7 @@ The Foundry Agent Service provides the following built-in tools. You can use the
 |[Azure AI Search](azure-ai-search.md)     | Use an existing Azure AI Search index to ground agents with data in the index, and chat with your data.        |
 |[Azure Functions](azure-functions.md)     | Leverage your Azure Functions to create intelligent, event-driven applications.        |
 |[Code Interpreter](code-interpreter.md)     | Enable agents to write and run Python code in a sandboxed execution environment.         |
-|[Deep Research](./deep-research.md) | Use OpenAI's advanced agentic research capability for analysis and reasoning. | 
+|[Deep Research (preview)](./deep-research.md) | Use OpenAI's advanced agentic research capability for analysis and reasoning. | 
 |[File Search](file-search.md)     | Augment agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.          |
 |[Function calling](function-calling.md)     |Describe the structure of functions you create to an agent and have them be called when appropriate during the agent's interactions with users.         |
 |[Grounding with Bing Search](bing-grounding.md)     | Enable your agent to use Grounding with Bing Search to access and return information from the internet.         |
@@ -99,7 +99,7 @@ The following tools are authored by third-party partners. Use the links below to
 | [LexisNexis](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/getting-started-agents/3p-tools/LexisNexis) | Seamless access to LexisNexis content. |
 | [MiHCM](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/getting-started-agents/3p-tools/MiHCM) | seamless integration with MiHCM's HR functionalities |
 | [Morningstar](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/getting-started-agents/3p-tools/Morningstar) | Access up-to-date investment research and data such as analyst research, expert commentary, and essential Morningstar data. |
-| [Trademo](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/getting-started-agents/3p-tools/Trademo_Glocal_trade) | Provide latest duties and past shipment data for trade between multiple countries |
+| [Trademo](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/getting-started-agents/3p-tools/Trademo_Global_trade) | Provide latest duties and past shipment data for trade between multiple countries |
 | [Tripadvisor](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/getting-started-agents/3p-tools/Tripadvisor) | Get travel data, guidance and reviews |
 
 ## Best Practices
