@@ -20,7 +20,7 @@ ai-usage: ai-assisted
 
 In this article, you use Terraform to create an [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) resource. You learn how to use Terraform to create AI Foundry management configurations including projects, deployments, and connections. 
 
-The examples used in article use the [AzAPI](https://learn.microsoft.com/azure/developer/terraform/overview-azapi-provider) Terraform provider. Similar [AzureRM](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/ai_services) provider support is available via the classic `AzureRM_AIServices` module (using `aiservices` kind as value), but is limited in functionality to resource and deployment creation.
+The examples used in article use the [AzAPI](/azure/developer/terraform/overview-azapi-provider) Terraform provider. Similar [AzureRM](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/ai_services) provider support is available via the classic `AzureRM_AIServices` module (using the `aiservices` kind as its value), but is limited in functionality to resource and deployment creation.
 
 [!INCLUDE [About Terraform](~/azure-dev-docs-pr/articles/terraform/includes/abstract.md)]
 
