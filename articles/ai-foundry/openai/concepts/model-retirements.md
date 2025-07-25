@@ -1,7 +1,7 @@
 ---
-title: Azure OpenAI in Azure AI Foundry Models model retirements
+title: Azure OpenAI in Azure AI Foundry Model Retirements
 titleSuffix: Azure OpenAI
-description: Learn about the model deprecations and retirements in Azure OpenAI.
+description: Learn about model deprecations and retirements in Azure OpenAI.
 ms.service: azure-ai-openai
 ms.topic: conceptual
 ms.date: 07/16/2025
@@ -12,7 +12,7 @@ ms.author: mbullwin
 recommendations: false
 ---
 
-# Azure OpenAI in Azure AI Foundry Models model deprecations and retirements
+# Azure OpenAI in Azure AI Foundry model deprecations and retirements
 
 ## Overview
 
@@ -20,12 +20,12 @@ Azure OpenAI models are continually refreshed with newer and more capable models
 
 ### Terminology
 
-**Deprecation**: When a model is deprecated, it's no longer available for new customers. It continues to be available for use by customers with existing deployments until the model is retired.
-**Retirement**: When a model is retired, it's no longer available for use. Azure OpenAI deployments of a retired model always return error responses.
+- **Deprecation**: When a model is deprecated, it's no longer available for new customers. It continues to be available for use by customers with existing deployments until the model is retired.
+- **Retirement**: When a model is retired, it's no longer available for use. Azure OpenAI deployments of a retired model always return error responses.
 
 ## Notifications
 
-Azure OpenAI notifies customers of active Azure OpenAI deployments for models with upcoming retirements. We notify customers of upcoming retirements as follows for each deployment:
+Azure OpenAI notifies customers of active Azure OpenAI deployments for models with upcoming retirements. We notify customers of upcoming retirements for each deployment in the following ways:
 
 - We notify customers at model launch by programmatically designating a *not sooner than* retirement date. For preview models, it's between 90-120 days from launch. For generally available models, it's 365 days from launch.
 - We provide customers with at least 60 days notice before model retirement for generally available models.
@@ -33,23 +33,23 @@ Azure OpenAI notifies customers of active Azure OpenAI deployments for models wi
 
 Retirements are done on a rolling basis, region by region. There's no schedule for when a specific region or SKU is upgraded.
 
-### Who is notified of upcoming retirements
+### Notifications of upcoming retirements
 
 Azure OpenAI notifies customers via two methods:
 
-- **Azure Resource Health**: Anyone with **reader** permissions or higher can see Azure health alerts and configure personalized alerts via email, SMS, etc. See [Create service health alerts](/azure/service-health/alerts-activity-log-service-notifications-portal).
+- **Azure Resource Health**: Anyone with **reader** permissions or higher can see Azure health alerts and configure personalized alerts via email, SMS, etc. See [Create Service Health alerts](/azure/service-health/alerts-activity-log-service-notifications-portal).
 - **Email**: Email notifications are automatically sent to subscription owners. However, any individual with **reader** permissions can configure their own alerts by following the previous guidance.
 
 #### Azure Service Health filter configuration
 
-Services is `azure OpenAI service`. (The casing reflects the current UX experience).
+The service is `azure OpenAI service`. (The casing reflects the current UX experience).
 
 Event types include:
 
-- `Health advisories = Upgrade, Deprecation, & Retirement Notifications`
-- `Service issue = Outages` (We recommend this event type only if you want to be notified of outages)
+- `Health advisories = Upgrade, Deprecation, & Retirement Notifications`.
+- `Service issue = Outages`. (We recommend this event type only if you want to be notified of outages.)
 
-If you want to receive SMS text-based alerts rather than just emails, select **Create action group**. Then, under **Notification type**, select **Email/SMS message/Push/Voice** and configure your phone number.
+If you want to receive SMS text-based alerts versus just emails, select **Create action group**. Then, under **Notification type**, select **Email/SMS message/Push/Voice** and configure your phone number.
 
 ## Model availability
 
@@ -74,14 +74,14 @@ Be aware of the following information:
 
 - Global standard deployments aren't available in government clouds.
 - Not all models or model versions available in commercial and public clouds will be available in government clouds.
-- In the Azure Government clouds, we intend to support only one version of a given model at a time. For example, only one version of `gpt-35-turbo 0125` and `gpt-4o (2024-05-13)`.
-- However, there's a 30-day overlap between new model versions, when more than two will be available. For example, if `gpt-35-turbo 0125` or `gpt-4o (2024-05-13)` is updated to a future version, or for model family changes beyond version updates, such as when moving from `gpt-4 1106-preview` to `gpt-4o (2024-05-13)`.
+- In Azure Government clouds, we intend to support only one version of a given model at a time. For example, only one version of `gpt-35-turbo 0125` and `gpt-4o (2024-05-13)`.
+- However, there's a 30-day overlap between new model versions, when more than two will be available. For example, `gpt-35-turbo 0125` or `gpt-4o (2024-05-13)` is updated to a future version, or for model family changes beyond version updates, such as when moving from `gpt-4 1106-preview` to `gpt-4o (2024-05-13)`.
 
-## How to get ready for model retirements and version upgrades
+## Preparation for model retirements and version upgrades
 
 To prepare for model retirements and version upgrades, we recommend that customers test their applications with the new models and versions and evaluate their behavior. We also recommend that customers update their applications to use the new models and versions before the retirement date.
 
-For more information on the model evaluation process, see the [Getting started with model evaluation guide](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/how-to-evaluate-amp-upgrade-model-versions-in-the-azure-openai/ba-p/4218880).
+For more information on the model evaluation process, see the [Getting started with model evaluation](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/how-to-evaluate-amp-upgrade-model-versions-in-the-azure-openai/ba-p/4218880) guide.
 
 For information on the model upgrade process, see [How to upgrade to a new model or version](./model-versions.md).
 
@@ -100,6 +100,6 @@ These models are currently available for use in Azure OpenAI.
 
 ## Retirement and deprecation history
 
-To track individual updates to this article refer to the [Git History](https://github.com/MicrosoftDocs/azure-ai-docs/commits/main/articles/ai-foundry/openai/includes/retirement/models.md)
+To track individual updates to this article, refer to the [Git History](https://github.com/MicrosoftDocs/azure-ai-docs/commits/main/articles/ai-foundry/openai/includes/retirement/models.md)
 
 For a list of retired models, refer to the [retired models page](./legacy-models.md).

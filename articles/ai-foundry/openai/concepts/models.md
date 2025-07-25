@@ -26,8 +26,8 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 | [`GPT-4.1 series`](#gpt-41-series) | The latest model release from Azure OpenAI. |
 | [`model-router`](#model-router) | A model that intelligently selects from a set of underlying chat models to respond to a given prompt. |
 | [`computer-use-preview`](#computer-use-preview) | An experimental model trained for use with the Responses API computer use tool. |
-| [`o-series models`](#o-series-models) |[`Reasoning models`](../how-to/reasoning.md) with advanced problem-solving and increased focus and capability. |
-| [`GPT-4o, GPT-4o mini, and GPT-4 Turbo`](#gpt-4o-and-gpt-4-turbo) | The latest most capable Azure OpenAI models with multimodal versions, which can accept both text and images as input. |
+| [`o-series models`](#o-series-models) |[`Reasoning models`](../how-to/reasoning.md) with advanced problem solving and increased focus and capability. |
+| [`GPT-4o, GPT-4o mini, and GPT-4 Turbo`](#gpt-4o-and-gpt-4-turbo) | The latest, most capable Azure OpenAI models with multimodal versions, which can accept both text and images as input. |
 | [`GPT-4`](#gpt-4) | A set of models that improve on GPT-3.5 and can understand and generate natural language and code. |
 | [`GPT-3.5`](#gpt-35) | A set of models that improve on GPT-3 and can understand and generate natural language and code. |
 | [Embeddings](#embeddings) | A set of models that can convert text into numerical vector form to facilitate text similarity. |
@@ -48,9 +48,9 @@ Learn about capabilities in the following table.
 
 |  Model ID  | Description | Context window | Max output tokens | Training data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
-| `gpt-4.1` (2025-04-14)   | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> Structured outputs (chat completions)   | - 1,047,576 <br> - 128,000 (provisioned managed deployments) <br> - 300,000 (batch deployments) | 32,768 | May 31, 2024 |
-| `gpt-4.1-nano` (2025-04-14) | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> Structured outputs (chat completions)   | - 1,047,576  <br> - 128,000 (provisioned managed deployments) <br> - 300,000 (batch deployments)  | 32,768 | May 31, 2024 |
-| `gpt-4.1-mini` (2025-04-14) | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> Structured outputs (chat completions)   | - 1,047,576  <br> - 128,000 (provisioned managed deployments) <br> - 300,000 (batch deployments)  | 32,768 | May 31, 2024 |
+| `gpt-4.1` (2025-04-14)   | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576 <br> - 128,000 (provisioned managed deployments) <br> - 300,000 (batch deployments) | 32,768 | May 31, 2024 |
+| `gpt-4.1-nano` (2025-04-14) | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576  <br> - 128,000 (provisioned managed deployments) <br> - 300,000 (batch deployments)  | 32,768 | May 31, 2024 |
+| `gpt-4.1-mini` (2025-04-14) | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576  <br> - 128,000 (provisioned managed deployments) <br> - 300,000 (batch deployments)  | 32,768 | May 31, 2024 |
 
 ## model-router
 
@@ -66,13 +66,15 @@ Learn about capabilities in the following table.
 
 |  Model ID  | Description | Context window | Max output tokens | Training data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
-| `model-router` (2025-05-19) | A model that intelligently selects from a set of underlying chat models to respond to a given prompt. | 200,000* | 32768 (GPT-4.1 series)</br> 100 K (o4-mini) | May 31, 2024 |
+| `model-router` (2025-05-19) | A model that intelligently selects from a set of underlying chat models to respond to a given prompt. | 200,000 | 32768 (GPT-4.1 series)</br> 100K (o4-mini) | May 31, 2024 |
 
--Larger context windows are compatible with *some* of the underlying models. That means an API call with a larger context succeeds only if the prompt happens to be routed to the right model. Otherwise, the call fails.
+Larger context windows are compatible with *some* of the underlying models. That means an API call with a larger context succeeds only if the prompt happens to be routed to the right model. Otherwise, the call fails.
 
 ## computer-use-preview
 
-An experimental model trained for use with the [Responses API](../how-to/responses.md) computer use tool. It can be used with third-party libraries to allow the model to control mouse and keyboard input while getting context from screenshots of the current environment.
+An experimental model trained for use with the [Responses API](../how-to/responses.md) computer use tool.
+
+It can be used with third-party libraries to allow the model to control mouse and keyboard input, while getting context from screenshots of the current environment.
 
 > [!CAUTION]
 > We don't recommend using preview models in production. We'll upgrade all deployments of preview models to either future preview versions or to the latest stable, generally available version. Models that are designated preview don't follow the standard Azure OpenAI model lifecycle.
@@ -91,7 +93,7 @@ Learn about capabilities in the following table.
 
 |  Model ID  | Description | Context window | Max output tokens | Training data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
-| `computer-use-preview` (2025-03-11)  | Specialized model for use with the [Responses API](../how-to/responses.md) computer use tool <br> <br>-Tools <br>-Streaming<br>-Text(input/output)<br>- Image(input)   | 8,192 | 1,024 | October 2023 |
+| `computer-use-preview` (2025-03-11)  | Specialized model for use with the [Responses API](../how-to/responses.md) computer use tool <br> <br>- Tools <br>- Streaming<br>- Text (input/output)<br>- Image (input)   | 8,192 | 1,024 | October 2023 |
 
 ## o-series models
 
@@ -100,13 +102,13 @@ The Azure OpenAI o-series models are designed to tackle reasoning and problem-so
 |  Model ID  | Description | Max request (tokens) | Training data (up to)  |
 |  --- |  :--- |:--- |:---: |
 | `codex-mini` (2025-05-16) | Fine-tuned version of `o4-mini`. <br> - [Responses API](../how-to/responses.md). <br>- Structured outputs.<br> - Text and image processing. <br> - Functions and tools.<br> [Full summary of capabilities](../how-to/reasoning.md). | Input: 200,000 <br> Output: 100,000 | May 31, 2024 |
-| `o3-pro` (2025-06-10) | - [Responses API](../how-to/responses.md). <br>- Structured outputs.<br> - Text, image processing. <br> - Functions and tools.<br> [Full summary of capabilities](../how-to/reasoning.md). | Input: 200,000 <br> Output: 100,000 | May 31, 2024 |
-| `o4-mini` (2025-04-16) | - *New* reasoning model, offering [enhanced reasoning abilities](../how-to/reasoning.md). <br><br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br>- Structured outputs.<br> - Text, image processing. <br> - Functions and tools.<br> [Full summary of capabilities](../how-to/reasoning.md). | Input: 200,000 <br> Output: 100,000 | May 31, 2024 |
-| `o3` (2025-04-16) | - *New* reasoning model, offering [enhanced reasoning abilities](../how-to/reasoning.md). <br>  <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> [Full summary of capabilities](../how-to/reasoning.md). | Input: 200,000 <br> Output: 100,000 | May 31, 2024 |
-| `o3-mini` (2025-01-31) | - [Enhanced reasoning abilities](../how-to/reasoning.md). <br> - Structured outputs<br> - Text-only processing <br> - Functions/Tools | Input: 200,000 <br> Output: 100,000 | October 2023 |  
-| `o1` (2024-12-17) | - [Enhanced reasoning abilities](../how-to/reasoning.md). <br> - Structured outputs<br> - Text, image processing <br> - Functions/Tools | Input: 200,000 <br> Output: 100,000 | October 2023 |  
-|`o1-preview` (2024-09-12) | Older preview version | Input: 128,000  <br> Output: 32,768 | October 2023 |
-| `o1-mini` (2024-09-12) | A faster and more cost-efficient option in the o1 series, ideal for coding tasks requiring speed and lower resource consumption. <br><br> Global standard deployment available by default. <br> <br> Standard (regional) deployments are currently only available for select customers who received access as part of the `o1-preview` limited access release.  | Input: 128,000  <br> Output: 65,536 | October 2023 |
+| `o3-pro` (2025-06-10) | - [Responses API](../how-to/responses.md). <br>- Structured outputs.<br> - Text and image processing. <br> - Functions and tools.<br> [Full summary of capabilities](../how-to/reasoning.md). | Input: 200,000 <br> Output: 100,000 | May 31, 2024 |
+| `o4-mini` (2025-04-16) | - *New* reasoning model, offering [enhanced reasoning abilities](../how-to/reasoning.md). <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br>- Structured outputs.<br> - Text and image processing. <br> - Functions and tools.<br> [Full summary of capabilities](../how-to/reasoning.md). | Input: 200,000 <br> Output: 100,000 | May 31, 2024 |
+| `o3` (2025-04-16) | - *New* reasoning model, offering [enhanced reasoning abilities](../how-to/reasoning.md). <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> [Full summary of capabilities](../how-to/reasoning.md). | Input: 200,000 <br> Output: 100,000 | May 31, 2024 |
+| `o3-mini` (2025-01-31) | - [Enhanced reasoning abilities](../how-to/reasoning.md). <br> - Structured outputs.<br> - Text-only processing. <br> - Functions and tools. | Input: 200,000 <br> Output: 100,000 | October 2023 |  
+| `o1` (2024-12-17) | - [Enhanced reasoning abilities](../how-to/reasoning.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions and tools. | Input: 200,000 <br> Output: 100,000 | October 2023 |  
+|`o1-preview` (2024-09-12) | Older preview version. | Input: 128,000  <br> Output: 32,768 | October 2023 |
+| `o1-mini` (2024-09-12) | A faster and more cost-efficient option in the o1 series, ideal for coding tasks requiring speed and lower resource consumption. <br> - Global standard deployment available by default. <br> - Standard (regional) deployments are currently only available for select customers who received access as part of the `o1-preview` limited access release.  | Input: 128,000  <br> Output: 65,536 | October 2023 |
 
 To learn more about the advanced `o-series` models, see [Getting started with reasoning models](../how-to/reasoning.md).
 
@@ -129,16 +131,16 @@ GPT-4o integrates text and images in a single model, which enables it to handle 
 
 ### How do I access the GPT-4o and GPT-4o mini models?
 
-GPT-4o and GPT-4o mini are available for **standard** and **global-standard** model deployment.
+GPT-4o and GPT-4o mini are available for Standard and Global Standard model deployment.
 
-You need to [create](../how-to/create-resource.md) or use an existing resource in a [supported standard](#gpt-4-and-gpt-4-turbo-model-availability) or [global standard](#global-standard-model-availability) region where the model is available.
+You need to [create](../how-to/create-resource.md) or use an existing resource in a [supported Standard](#gpt-4-and-gpt-4-turbo-model-availability) or [Global Standard](#global-standard-model-availability) region where the model is available.
 
 When your resource is created, you can [deploy](../how-to/create-resource.md#deploy-a-model) the GPT-4o models. If you're performing a programmatic deployment, the model names are:
 
-- `gpt-4o` *Version* `2024-11-20`
-- `gpt-4o` *Version* `2024-08-06`
-- `gpt-4o` *Version* `2024-05-13`
-- `gpt-4o-mini` *Version* `2024-07-18`
+- `gpt-4o` *version* `2024-11-20`
+- `gpt-4o` *version* `2024-08-06`
+- `gpt-4o` *version* `2024-05-13`
+- `gpt-4o-mini` *version* `2024-07-18`
 
 ### GPT-4 Turbo
 
@@ -156,10 +158,10 @@ See [Model versions](../concepts/model-versions.md) to learn about how Azure Ope
 
 |  Model ID  | Description | Max request (tokens) | Training data (up to)  |
 |  --- |  :--- |:--- |:---: |
-| `gpt-4o` (2024-11-20) <br> **GPT-4o (Omni)**  | **Latest large GA model** <br> - Structured outputs<br> - Text, image processing <br> - JSON Mode <br> - parallel function calling <br> - Enhanced accuracy and responsiveness <br> - Parity with English text and coding tasks compared to GPT-4 Turbo with Vision <br> - Superior performance in non-English languages and in vision tasks. <br> - **Enhanced creative writing ability** | Input: 128,000  <br> Output: 16,384 | October 2023 |
-|`gpt-4o` (2024-08-06) <br> **GPT-4o (Omni)** | - Structured outputs<br> - Text, image processing <br> - JSON Mode <br> - parallel function calling <br> - Enhanced accuracy and responsiveness <br> - Parity with English text and coding tasks compared to GPT-4 Turbo with Vision <br> - Superior performance in non-English languages and in vision tasks |Input: 128,000  <br> Output: 16,384 | October 2023 |
-|`gpt-4o-mini` (2024-07-18) <br> **GPT-4o mini** | **Latest small GA model** <br> - Fast, inexpensive, capable model ideal for replacing GPT-3.5 Turbo series models. <br> - Text, image processing <br>- JSON Mode <br> - parallel function calling | Input: 128,000 <br> Output: 16,384  | October 2023 |
-|`gpt-4o` (2024-05-13) <br> **GPT-4o (Omni)** | Text, image processing <br> - JSON Mode <br> - parallel function calling <br> - Enhanced accuracy and responsiveness <br> - Parity with English text and coding tasks compared to GPT-4 Turbo with Vision <br> - Superior performance in non-English languages and in vision tasks |Input: 128,000  <br> Output: 4,096| October 2023 |
+| `gpt-4o` (2024-11-20) <br> GPT-4o (Omni)  | Latest large GA model <br> - Structured outputs.<br> - Text and image processing. <br> - JSON Mode. <br> - Parallel function calling. <br> - Enhanced accuracy and responsiveness. <br> - Parity with English text and coding tasks compared to GPT-4 Turbo with Vision. <br> - Superior performance in non-English languages and in vision tasks. <br> - Enhanced creative writing ability. | Input: 128,000  <br> Output: 16,384 | October 2023 |
+|`gpt-4o` (2024-08-06) <br> GPT-4o (Omni) | - Structured outputs.<br> - Text and image processing. <br> - JSON Mode. <br> - Parallel function calling. <br> - Enhanced accuracy and responsiveness. <br> - Parity with English text and coding tasks compared to GPT-4 Turbo with Vision. <br> - Superior performance in non-English languages and in vision tasks. |Input: 128,000  <br> Output: 16,384 | October 2023 |
+|`gpt-4o-mini` (2024-07-18) <br> GPT-4o mini | Latest small GA model. <br> - Fast, inexpensive, capable model ideal for replacing GPT-3.5 Turbo series models. <br> - Text and image processing. <br>- JSON Mode. <br> - Parallel function calling. | Input: 128,000 <br> Output: 16,384  | October 2023 |
+|`gpt-4o` (2024-05-13) <br> GPT-4o (Omni) | - Text and image processing. <br> - JSON Mode. <br> - Parallel function calling. <br> - Enhanced accuracy and responsiveness. <br> - Parity with English text and coding tasks compared to GPT-4 Turbo with Vision. <br> - Superior performance in non-English languages and in vision tasks. |Input: 128,000  <br> Output: 4,096| October 2023 |
 | `gpt-4` (turbo-2024-04-09) <br>GPT-4 Turbo with Vision | New generally available model. <br> - Replacement for all previous GPT-4 preview models (`vision-preview`, `1106-Preview`, `0125-Preview`). <br> - [Feature availability](#gpt-4o-and-gpt-4-turbo) is currently different, depending on the method of input and the deployment type. | Input: 128,000  <br> Output: 4,096  | Dec 2023 |
 
 > [!CAUTION]
@@ -171,7 +173,7 @@ GPT-3.5 models can understand and generate natural language or code. The most ca
 
 |  Model ID   | Description | Max request (tokens) | Training data (up to) |
 |  --------- |:---|:------:|:----:|
-| `gpt-35-turbo` (0125) *new* | Latest generally available mode. <br> - JSON Mode. <br> - Parallel function calling. <br> - Reproducible output (preview). <br> - Higher accuracy when it responds in requested formats. <br> - Includes a fix for a bug that caused a text-encoding issue for non-English language function calls.  | Input: 16,385<br> Output: 4,096  | Sep 2021 |
+| `gpt-35-turbo` (0125) *new* | Latest generally available model. <br> - JSON Mode. <br> - Parallel function calling. <br> - Reproducible output (preview). <br> - Higher accuracy when it responds in requested formats. <br> - Includes a fix for a bug that caused a text-encoding issue for non-English language function calls.  | Input: 16,385<br> Output: 4,096  | Sep 2021 |
 | `gpt-35-turbo` (1106) | Older generally available model. <br> - JSON Mode. <br> - Parallel function calling. <br> - Reproducible output (preview). | Input: 16,385<br> Output: 4,096 |  Sep 2021|
 | `gpt-35-turbo-instruct` (0914) | *Completions endpoint only*. <br> - Replacement for [legacy completions models](./legacy-models.md). | 4,097 |Sep 2021 |
 
@@ -194,7 +196,7 @@ OpenAI reports that testing shows that both the large and small third generation
 | MIRACL average | 31.4 | 44.0 | 54.9 |
 | MTEB average | 61.0 | 62.3 | 64.6 |
 
-The third generation embeddings models support reducing the size of the embedding via a new `dimensions` parameter. Typically, larger embeddings are more expensive from a compute, memory, and storage perspective. Being able to adjust the number of dimensions allows more control over overall cost and performance. The `dimensions` parameter isn't supported in all versions of the OpenAI 1.x Python library. To take advantage of this parameter, we recommend that you upgrade to the latest version: `pip install openai --upgrade`.
+The third generation embeddings models support reducing the size of the embedding via a new `dimensions` parameter. Typically, larger embeddings are more expensive from a compute, memory, and storage perspective. When you can adjust the number of dimensions, you gain more control over overall cost and performance. The `dimensions` parameter isn't supported in all versions of the OpenAI 1.x Python library. To take advantage of this parameter, we recommend that you upgrade to the latest version: `pip install openai --upgrade`.
 
 OpenAI's MTEB benchmark testing found that even when the third generation model's dimensions are reduced to less than the 1,536 dimensions of `text-embeddings-ada-002`, performance remains slightly better.
 
@@ -229,7 +231,7 @@ Audio models in Azure OpenAI are available via the `realtime`, `completions`, an
 
 ### GPT-4o audio models
 
-The GPT-4o audio models are part of the GPT-4o model family and support either low-latency, "speech in, speech out" conversational interactions or audio generation.
+The GPT-4o audio models are part of the GPT-4o model family and support either low-latency, *speech in, speech out* conversational interactions or audio generation.
 
 > [!CAUTION]
 > We don't recommend using preview models in production. We'll upgrade all deployments of preview models to either future preview versions or to the latest stable, generally available version. Models that are designated preview don't follow the standard Azure OpenAI model lifecycle.
@@ -238,11 +240,11 @@ Details about maximum request tokens and training data are available in the foll
 
 |  Model ID  | Description | Max request (tokens) | Training data (up to)  |
 |---|---|---|---|
-|`gpt-4o-mini-audio-preview` (2024-12-17) <br> **GPT-4o audio** | **Audio model** for audio and text generation. |Input: 128,000  <br> Output: 16,384 | September 2023 |
-|`gpt-4o-audio-preview` (2024-12-17) <br> **GPT-4o audio** | **Audio model** for audio and text generation. |Input: 128,000  <br> Output: 16,384 | September 2023 |
-|`gpt-4o-realtime-preview` (2025-06-03) <br> **GPT-4o audio** | **Audio model** for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
-|`gpt-4o-realtime-preview` (2024-12-17) <br> **GPT-4o audio** | **Audio model** for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
-|`gpt-4o-mini-realtime-preview` (2024-12-17) <br> **GPT-4o audio** | **Audio model** for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
+|`gpt-4o-mini-audio-preview` (2024-12-17) <br> GPT-4o audio | Audio model for audio and text generation. |Input: 128,000  <br> Output: 16,384 | September 2023 |
+|`gpt-4o-audio-preview` (2024-12-17) <br> GPT-4o audio | Audio model for audio and text generation. |Input: 128,000  <br> Output: 16,384 | September 2023 |
+|`gpt-4o-realtime-preview` (2025-06-03) <br> GPT-4o audio | Audio model for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
+|`gpt-4o-realtime-preview` (2024-12-17) <br> GPT-4o audio | Audio model for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
+|`gpt-4o-mini-realtime-preview` (2024-12-17) <br> GPT-4o audio | Audio model for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
 
 To compare the availability of GPT-4o audio models across all regions, refer to the [models table](#global-standard-model-availability).
 

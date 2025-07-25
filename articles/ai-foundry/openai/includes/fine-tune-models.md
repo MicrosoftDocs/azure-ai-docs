@@ -1,5 +1,5 @@
 ---
-title: Fine-tuning model guidance
+title: Fine-Tuning Model Guidance
 titleSuffix: Azure OpenAI
 description: Describes the models that support fine-tuning and the regions where fine-tuning is available.
 author: mrbullwinkle
@@ -30,7 +30,7 @@ ms.custom:
 | `o4-mini` <br> (2025-04-16) | East US2 <br> Sweden Central | - | Input: 128,000 <br> Output: 16,384 <br> Training example context length: 65,536 | May 2024 | Text to text |
 
 > [!NOTE]
-> **Global** training (in public preview) provides [more affordable](https://aka.ms/aoai-pricing) training per token, but does not offer [data residency](https://aka.ms/data-residency). It's currently available to Azure OpenAI resources in the following regions, with more regions coming soon:
+> Global training (in public preview) provides [more affordable](https://aka.ms/aoai-pricing) training per token, but does not offer [data residency](https://aka.ms/data-residency). It's currently available to Azure OpenAI resources in the following regions, with more regions coming soon:
 >
 >- Australia East
 >- Brazil South

@@ -1,7 +1,7 @@
 ---
-title: Model retirement table 
+title: Model Retirement Table 
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
-description: Model retirement table for  Azure OpenAI in Azure AI Foundry Models
+description: Model retirement table for Azure OpenAI in Azure AI Foundry models.
 manager: nitinme
 ms.date: 06/25/2025
 ms.service: azure-ai-openai
@@ -89,7 +89,7 @@ Fine-tuned models retire in two phases: *training* and *deployment*.
 
 All fine-tuned models follow their equivalent base model for *training* retirement. Once retired, a given model is no longer available for fine tuning.
 
-For fine-tuned models made generally available since `gpt-4o-2024-08-06`, *deployment* retirement occurs 1 year after **training** retirement. At deployment retirement, inference and deployment return error responses.
+For fine-tuned models made generally available since `gpt-4o-2024-08-06`, *deployment* retirement occurs 1 year after *training* retirement. At deployment retirement, inference and deployment return error responses.
 
 | Model            | Version     | Training retirement date  | Deployment retirement date       |
 | -----------------|-------------|---------------------------|----------------------------------|
@@ -106,5 +106,5 @@ For fine-tuned models made generally available since `gpt-4o-2024-08-06`, *deplo
 
 | Model | Current default version | New default version | Default upgrade date |
 |---|---|---|---|
-| `gpt-35-turbo` | 0301 | 0125 | Deployments of versions `0301`, `0613`, and `1106` set to [**Auto-update to default**](/azure/ai-services/openai/how-to/working-with-models?tabs=powershell#auto-update-to-default) will be automatically upgraded to version: `0125`, starting on January 21, 2025.|
+| `gpt-35-turbo` | 0301 | 0125 | Deployments of versions `0301`, `0613`, and `1106` set to [auto-update to default](/azure/ai-services/openai/how-to/working-with-models?tabs=powershell#auto-update-to-default) will be automatically upgraded to version `0125`, starting on January 21, 2025.|
 |  `gpt-4o` | 2024-08-06 | - | - |

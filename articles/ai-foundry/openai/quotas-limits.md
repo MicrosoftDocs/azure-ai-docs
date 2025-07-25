@@ -17,15 +17,15 @@ ms.custom:
 
 This article contains a quick reference and a detailed description of the quotas and limits for Azure OpenAI.
 
-**Scope of quota**:
+## Scope of quota
 
-- Quotas and limits are not enforced at the tenant level.
-- Instead, the highest level of quota restrictions are scoped at the Azure subscription level.
+Quotas and limits are not enforced at the tenant level. Instead, the highest level of quota restrictions are scoped at the Azure subscription level.
 
-**Regional quota allocation:**
+## Regional quota allocation
 
-- Tokens per minute (TPM) and requests per minute (RPM) limits are defined **per region, per subscription, and per model/deployment type**.
-- For example, if the `gpt-4.1` global standard model is listed with a quota of **5 million TPM and 5,000 RPM**, then *each region* where that [model/deployment type is available](./concepts/models.md) has its own dedicated pool of quota of that amount for **each of your Azure subscriptions**. So within a single Azure subscription, it is possible to use a larger quantity of total TPM/RPM quota for a given model/deployment type, as long as you have resources/model deployments spread across multiple regions.
+Tokens per minute (TPM) and requests per minute (RPM) limits are defined *per region*, *per subscription*, and *per model or deployment type*.
+
+For example, if the `gpt-4.1` global standard model is listed with a quota of *5 million TPM* and *5,000 RPM*, then *each region* where that [model or deployment type is available](./concepts/models.md) has its own dedicated quota pool of that amount for *each* of your Azure subscriptions. Within a single Azure subscription, it's possible to use a larger quantity of total TPM and RPM quota for a given model and deployment type, as long as you have resources and model deployments spread across multiple regions.
 
 ## Quotas and limits reference
 
@@ -38,7 +38,7 @@ The following sections provide you with a quick guide to the default quotas and 
 | Default DALL-E 3 quota limits| 2 capacity units (6 requests per minute).|
 | Default GPT-image-1 quota limits | 2 capacity units (6 requests per minute). |
 | Default Sora quota limits | 60 requests per minute. |
-| Default speech to text audio API quota limits | 3 requests per minute. |
+| Default speech-to-text audio API quota limits | 3 requests per minute. |
 | Maximum prompt tokens per request | Varies per model. For more information, see [Azure OpenAI models](./concepts/models.md).|
 | Maximum standard deployments per resource | 32. |
 | Maximum fine-tuned model deployments | 5. |
@@ -57,7 +57,7 @@ The following sections provide you with a quick guide to the default quotas and 
 | Maximum number of provisioned throughput units per deployment | 100,000. |
 | Maximum files per assistant or thread | 10,000 when using the API or the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).|
 | Maximum file size for assistants and fine-tuning | 512 MB<br/><br/>200 MB via the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). |
-| Maximum file upload requests per resource | 30 requests per second |
+| Maximum file upload requests per resource | 30 requests per second. |
 | Maximum size for all uploaded files for assistants |200 GB. |
 | Assistants token limit | 2,000,000 token limit. |
 | `GPT-4o` and `GPT-4.1` maximum images per request (number of images in the messages array or conversation history) | 50. |
@@ -79,30 +79,30 @@ The following sections provide you with a quick guide to the default quotas and 
 
 | Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
-| `gpt-4.5` | Enterprise and MCA-E | 200 K | 200 |
-| `gpt-4.5` | Default | 150 K | 150 |
+| `gpt-4.5` | Enterprise and MCA-E | 200K | 200 |
+| `gpt-4.5` | Default | 150K | 150 |
 
 ### GPT-4.1 series global standard
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|
-| `gpt-4.1` (2025-04-14) | Enterprise and MCA-E | 5 M | 5 K |
-| `gpt-4.1` (2025-04-14) | Default | 1 M | 1 K |
-| `gpt-4.1-nano` (2025-04-14) | Enterprise and MCA-E | 150 M | 150 K |
-| `gpt-4.1-nano` (2025-04-14) | Default | 5 M | 5 K |
-| `gpt-4.1-mini` (2025-04-14) | Enterprise and MCA-E | 150 M | 150 K |
-| `gpt-4.1-mini` (2025-04-14) | Default | 5 M | 5 K |
+| `gpt-4.1` (2025-04-14) | Enterprise and MCA-E | 5M | 5K |
+| `gpt-4.1` (2025-04-14) | Default | 1M | 1K |
+| `gpt-4.1-nano` (2025-04-14) | Enterprise and MCA-E | 150M | 150K |
+| `gpt-4.1-nano` (2025-04-14) | Default | 5M | 5K |
+| `gpt-4.1-mini` (2025-04-14) | Enterprise and MCA-E | 150M | 150K |
+| `gpt-4.1-mini` (2025-04-14) | Default | 5M | 5K |
 
 ### GPT-4.1 series data zone standard
 
 | Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|
-| `gpt-4.1` (2025-04-14) | Enterprise and MCA-E | 2 M | 2 K |
-| `gpt-4.1` (2025-04-14) | Default | 300 K | 300 |
-| `gpt-4.1-nano` (2025-04-14) | Enterprise and MCA-E | 50 M | 50 K |
-| `gpt-4.1-nano` (2025-04-14) | Default | 2 M | 2 K |
-| `gpt-4.1-mini` (2025-04-14) | Enterprise and MCA-E | 50 M | 50 K |
-| `gpt-4.1-mini` (2025-04-14) | Default | 2 M | 2 K |
+| `gpt-4.1` (2025-04-14) | Enterprise and MCA-E | 2M | 2K |
+| `gpt-4.1` (2025-04-14) | Default | 300K | 300 |
+| `gpt-4.1-nano` (2025-04-14) | Enterprise and MCA-E | 50M | 50K |
+| `gpt-4.1-nano` (2025-04-14) | Default | 2M | 2K |
+| `gpt-4.1-mini` (2025-04-14) | Enterprise and MCA-E | 50M | 50K |
+| `gpt-4.1-mini` (2025-04-14) | Default | 2M | 2K |
 
 ### GPT-4 Turbo
 
@@ -110,22 +110,22 @@ The following sections provide you with a quick guide to the default quotas and 
 
 | Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
-|`gpt-4` (turbo-2024-04-09) | Enterprise and MCA-E | 2 M | 12 K |
-|`gpt-4` (turbo-2024-04-09) | Default | 450 K | 2.7 K |
+|`gpt-4` (turbo-2024-04-09) | Enterprise and MCA-E | 2M | 12K |
+|`gpt-4` (turbo-2024-04-09) | Default | 450K | 2.7K |
 
 ## model-router rate limits
 
 | Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
-| `model-router` (2025-05-19) | Enterprise and MCA-E | 10 M | 10 K |
-| `model-router` (2025-05-19) | Default         | 1 M | 1 K |
+| `model-router` (2025-05-19) | Enterprise and MCA-E | 10M | 10K |
+| `model-router` (2025-05-19) | Default         | 1M | 1K |
 
 ## computer-use-preview global standard rate limits
 
 | Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
-| `computer-use-preview`| Enterprise and MCA-E | 30 M | 300 K |
-| `computer-use-preview`| Default         | 450 K | 4.5 K |
+| `computer-use-preview`| Enterprise and MCA-E | 30M | 300K |
+| `computer-use-preview`| Default         | 450K | 4.5K |
 
 ## o-series rate limits
 
@@ -134,52 +134,52 @@ The following sections provide you with a quick guide to the default quotas and 
 >
 > | Model                  | Capacity   | Requests per minute (RPM)  | Tokens per minute (TPM) |
 > |------------------------|:----------:|:--------------------------:|:-----------------------:|
-> | **Older chat models:** | 1 unit     | 6 RPM                      | 1,000 TPM               |
-> | **o1 and o1-preview:**   | 1 unit     | 1 RPM                      | 6,000 TPM               |
-> | **o3**                 | 1 unit     | 1 RPM                      | 1,000 TPM               |
-> | **o4-mini**            | 1 unit     | 1 RPM                      | 1,000 TPM               |
-> | **o3-mini:**           | 1 unit     | 1 RPM                      | 10,000 TPM              |
-> | **o1-mini:**           | 1 unit     | 1 RPM                      | 10,000 TPM              |
-> | **o3-pro:**            | 1 unit     | 1 RPM                      | 10,000 TPM              |
+> | Older chat models | 1 unit     | 6 RPM                      | 1,000 TPM               |
+> | `o1` and `o1-preview`   | 1 unit     | 1 RPM                      | 6,000 TPM               |
+> | `o3`                 | 1 unit     | 1 RPM                      | 1,000 TPM               |
+> | `o4-mini`            | 1 unit     | 1 RPM                      | 1,000 TPM               |
+> | `o3-mini`           | 1 unit     | 1 RPM                      | 10,000 TPM              |
+> | `o1-mini`           | 1 unit     | 1 RPM                      | 10,000 TPM              |
+> | `o3-pro`            | 1 unit     | 1 RPM                      | 10,000 TPM              |
 >
-> This concept is important for programmatic model deployment, because changes in the requests per minute to tokens per minute ratio can result in accidental misallocation of quota.
+> This concept is important for programmatic model deployment, because changes in the RPM to TPM ratio can result in accidental misallocation of quota.
 
 ### o-series global standard
 
 | Model              |Tier                    | Quota limit in tokens per minute | Requests per minute |
 |--------------------|------------------------|:--------------------------------------:|:---:  |
-| `codex-mini`       | Enterprise and MCA-E   | 10 M                                   | 10 K  |
-| `o3-pro`           | Enterprise and MCA-E   | 16 M                                   | 1.6 K |
-| `o4-mini`          | Enterprise and MCA-E   | 10 M                                   | 10 K  |
-| `o3`               | Enterprise and MCA-E   | 10 M                                   | 10 K  |
-| `o3-mini`          | Enterprise and MCA-E   | 50 M                                   | 5 K   |
-| `o1` and `o1-preview`| Enterprise and MCA-E   | 30 M                                   | 5 K   |
-| `o1-mini`          | Enterprise and MCA-E   | 50 M                                   | 5 K   |
-| `codex-mini`       | Default                | 1 M                                    | 1 K   |
-| `o3-pro`           | Default                | 1.6 M                                  | 160   |
-| `o4-mini`          | Default                | 1 M                                    | 1 K   |
-| `o3`               | Default                | 1 M                                    | 1 K   |
-| `o3-mini`          | Default                | 5 M                                    | 500   |
-| `o1` and `o1-preview`| Default                | 3 M                                    | 500   |
-| `o1-mini`          | Default                | 5 M                                    | 500   |
+| `codex-mini`       | Enterprise and MCA-E   | 10M                                   | 10K  |
+| `o3-pro`           | Enterprise and MCA-E   | 16M                                   | 1.6K |
+| `o4-mini`          | Enterprise and MCA-E   | 10M                                   | 10K  |
+| `o3`               | Enterprise and MCA-E   | 10M                                   | 10K  |
+| `o3-mini`          | Enterprise and MCA-E   | 50M                                   | 5K   |
+| `o1` and `o1-preview`| Enterprise and MCA-E   | 30M                                   | 5K   |
+| `o1-mini`          | Enterprise and MCA-E   | 50M                                   | 5K   |
+| `codex-mini`       | Default                | 1M                                    | 1K   |
+| `o3-pro`           | Default                | 1.6M                                  | 160   |
+| `o4-mini`          | Default                | 1M                                    | 1K   |
+| `o3`               | Default                | 1M                                    | 1K   |
+| `o3-mini`          | Default                | 5M                                    | 500   |
+| `o1` and `o1-preview`| Default                | 3M                                    | 500   |
+| `o1-mini`          | Default                | 5M                                    | 500   |
 
 ### o-series data zone standard
 
 | Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
-| `o3-mini` | Enterprise and MCA-E | 20 M | 2 K  |
-| `o3-mini` | Default | 2 M | 200 |
-| `o1` | Enterprise and MCA-E | 6 M | 1 K |
-| `o1` | Default | 600 K | 100 |
+| `o3-mini` | Enterprise and MCA-E | 20M | 2K  |
+| `o3-mini` | Default | 2M | 200 |
+| `o1` | Enterprise and MCA-E | 6M | 1K |
+| `o1` | Default | 600K | 100 |
 
 ### o1-preview and o1-mini standard
 
 | Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
-| `o1-preview` | Enterprise and MCA-E | 600 K | 100 |
-| `o1-mini`| Enterprise and MCA-E |  1 M | 100 |
-| `o1-preview` | Default | 300 K | 50 |
-| `o1-mini`| Default | 500 K | 50 |
+| `o1-preview` | Enterprise and MCA-E | 600K | 100 |
+| `o1-mini`| Enterprise and MCA-E |  1M | 100 |
+| `o1-preview` | Default | 300K | 50 |
+| `o1-mini`| Default | 500K | 50 |
 
 ## gpt-4o rate limits
 
@@ -189,34 +189,28 @@ The following sections provide you with a quick guide to the default quotas and 
 
 | Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
-|`gpt-4o`|Enterprise and MCA-E | 30 M | 180 K |
-|`gpt-4o-mini` | Enterprise and MCA-E | 50 M | 300 K |
-|`gpt-4o` |Default | 450 K | 2.7 K |
-|`gpt-4o-mini` | Default | 2 M | 12 K  |
-
-M = million | K = thousand
+|`gpt-4o`|Enterprise and MCA-E | 30M | 180K |
+|`gpt-4o-mini` | Enterprise and MCA-E | 50M | 300K |
+|`gpt-4o` |Default | 450K | 2.7K |
+|`gpt-4o-mini` | Default | 2M | 12K  |
 
 ### gpt-4o data zone standard
 
 | Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
-|`gpt-4o`|Enterprise and MCA-E | 10 M | 60 K |
-|`gpt-4o-mini` | Enterprise and MCA-E | 20 M | 120 K |
-|`gpt-4o` |Default | 300 K | 1.8 K |
-|`gpt-4o-mini` | Default | 1 M | 6 K  |
-
-M = million | K = thousand
+|`gpt-4o`|Enterprise and MCA-E | 10M | 60K |
+|`gpt-4o-mini` | Enterprise and MCA-E | 20M | 120K |
+|`gpt-4o` |Default | 300K | 1.8K |
+|`gpt-4o-mini` | Default | 1M | 6K  |
 
 ### gpt-4o standard
 
 | Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
-|`gpt-4o`|Enterprise and MCA-E | 1 M | 6 K |
-|`gpt-4o-mini` | Enterprise and MCA-E | 2 M | 12 K |
-|`gpt-4o`|Default | 150 K | 900 |
-|`gpt-4o-mini` | Default | 450 K | 2.7 K |
-
-M = million | K = thousand
+|`gpt-4o`|Enterprise and MCA-E | 1M | 6K |
+|`gpt-4o-mini` | Enterprise and MCA-E | 2M | 12K |
+|`gpt-4o`|Default | 150K | 900 |
+|`gpt-4o-mini` | Default | 450K | 2.7K |
 
 ### gpt-4o audio
 
@@ -224,12 +218,10 @@ The rate limits for each `gpt-4o` audio model deployment are 100,000 tokens per 
 
 | Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
-|`gpt-4o-audio-preview` | Default | 450 K | 1 K |
-|`gpt-4o-realtime-preview` | Default | 800 K | 1 K |
-|`gpt-4o-mini-audio-preview` | Default | 2 M | 1 K |
-|`gpt-4o-mini-realtime-preview` | Default | 800 K | 1 K |
-
-M = million | K = thousand
+|`gpt-4o-audio-preview` | Default | 450K | 1K |
+|`gpt-4o-realtime-preview` | Default | 800K | 1K |
+|`gpt-4o-mini-audio-preview` | Default | 2M | 1K |
+|`gpt-4o-mini-realtime-preview` | Default | 800K | 1K |
 
 ## GPT-image-1 rate limits
 
@@ -270,12 +262,12 @@ If your Azure subscription is linked to certain [offer types](https://azure.micr
 
 |Tier| Quota limit in tokens per minute |
 |---|:---|
-|`Azure for Students` | 1 K (all models) <br>Exception o-series, GPT-4.1, and GPT 4.5 Preview: 0|
-| `MSDN` | GPT-4o-mini: 200 K <br> GPT 3.5 Turbo Series: 200 K <br> GPT-4 series: 50 K <br>computer-use-preview: 8 K <br> gpt-4o-realtime-preview: 1 K <br> o-series: 0 <br> GPT 4.5 Preview: 0 <br> GPT-4.1: 50 K <br> GPT-4.1-nano: 200 K  |
-|`Standard` | GPT-4o-mini: 200 K <br> GPT 3.5 Turbo Series: 200 K <br> GPT-4 series: 50 K <br>computer-use-preview: 30 K <br> o-series: 0 <br> GPT 4.5 Preview: 0  <br> GPT-4.1: 50 K <br> GPT-4.1-nano: 200 K  |
-| `Azure_MS-AZR-0111P`  <br> `Azure_MS-AZR-0035P` <br> `Azure_MS-AZR-0025P` <br> `Azure_MS-AZR-0052P` <br>| GPT-4o-mini: 200 K <br> GPT 3.5 Turbo Series: 200 K <br> GPT-4 series: 50 K |
+|`Azure for Students` | 1K (all models) <br>Exception o-series, GPT-4.1, and GPT 4.5 Preview: 0|
+| `MSDN` | GPT-4o-mini: 200K <br> GPT 3.5 Turbo Series: 200K <br> GPT-4 series: 50K <br>computer-use-preview: 8K <br> gpt-4o-realtime-preview: 1K <br> o-series: 0 <br> GPT 4.5 Preview: 0 <br> GPT-4.1: 50K <br> GPT-4.1-nano: 200K  |
+|`Standard` | GPT-4o-mini: 200K <br> GPT 3.5 Turbo Series: 200K <br> GPT-4 series: 50K <br>computer-use-preview: 30K <br> o-series: 0 <br> GPT 4.5 Preview: 0  <br> GPT-4.1: 50K <br> GPT-4.1-nano: 200K  |
+| `Azure_MS-AZR-0111P`  <br> `Azure_MS-AZR-0035P` <br> `Azure_MS-AZR-0025P` <br> `Azure_MS-AZR-0052P` <br>| GPT-4o-mini: 200K <br> GPT 3.5 Turbo Series: 200K <br> GPT-4 series: 50K |
 | `CSP Integration Sandbox` <sup>*</sup> | All models: 0 |
-| `Lightweight trial`<br>`Free Trials`<br>`Azure Pass`  | All models: 0 |
+| `Lightweight trial`<br>`Free trials`<br>`Azure Pass`  | All models: 0 |
 
 <sup>*</sup>This limit applies to only a small number of legacy CSP sandbox subscriptions. Use the following query to determine what `quotaId` is associated with your subscription.
 
@@ -283,7 +275,7 @@ To determine the offer type associated with your subscription, you can check you
 
 # [REST](#tab/REST)
 
-[API reference](/rest/api/subscription/subscriptions/get)
+See the [API reference](/rest/api/subscription/subscriptions/get).
 
 ```bash
 az login
@@ -328,7 +320,7 @@ az rest --method GET --uri "https://management.azure.com/subscriptions/{sub-id}?
 | MSDN | `MSDN_2014-09-01` |
 | CSP Integration Sandbox | `CSPDEVTEST_2018-05-01` |
 | Azure for Students | `AzureForStudents_2018-01-01` |
-| Free Trial    | `FreeTrial_2014-09-01` |
+| Free trial    | `FreeTrial_2014-09-01` |
 | Azure Pass             | `AzurePass_2014-09-01` |
 | Azure_MS-AZR-0111P            | `AzureInOpen_2014-09-01` |
 | Azure_MS-AZR-0150P  | `LightweightTrial_2016-09-01` |
@@ -345,7 +337,7 @@ To minimize issues related to rate limits, it's a good idea to use the following
 - Test different load increase patterns.
 - Increase the quota assigned to your deployment. Move quota from another deployment, if necessary.
 
-## How to request quota increases
+## Request quota increases
 
 Quota increase requests can be submitted via the [quota increase request form](https://aka.ms/oai/stuquotarequest). Due to high demand, quota increase requests are being accepted and filled in the order they're received. Priority is given to customers who generate traffic that consumes the existing quota allocation. Your request might be denied if this condition isn't met.
 
@@ -358,9 +350,9 @@ You can view quota availability by region for your subscription in the [Azure AI
 To view quota capacity by region for a specific model or version, you can query the [capacity API](/rest/api/aiservices/accountmanagement/model-capacities/list) for your subscription. Provide a `subscriptionId`, `model_name`, and `model_version` and the API returns the available capacity for that model across all regions and deployment types for your subscription.
 
 > [!NOTE]
-> Currently both the Azure AI Foundry portal and the capacity API return quota/capacity information for models that are [retired](./concepts/model-retirements.md) and no longer available.
+> Currently, both the Azure AI Foundry portal and the capacity API return quota/capacity information for models that are [retired](./concepts/model-retirements.md) and no longer available.
 
-[API Reference](/rest/api/aiservices/accountmanagement/model-capacities/list)
+See the [API reference](/rest/api/aiservices/accountmanagement/model-capacities/list).
 
 ```python
 import requests
