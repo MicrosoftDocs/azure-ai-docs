@@ -35,7 +35,7 @@ You can use scoring profiles in [keyword search](search-lucene-query-architectur
 
 You can have up to 100 scoring profiles within an index (see [service Limits](search-limits-quotas-capacity.md)), but you can only specify one profile at time in any given query.
 
-You can use [semantic ranker](semantic-how-to-query-request.md) with scoring profiles. When multiple ranking or relevance features are in play, semantic ranking is the last step. [How search scoring works](search-relevance-overview.md#diagram-of-ranking-algorithms) provides an illustration.
+You can use [semantic ranker](semantic-how-to-query-request.md) with scoring profiles. Currently in preview, you can apply a [scoring profile after semantic ranking](semantic-how-to-enable-scoring-profiles.md). Otherwise, when multiple ranking or relevance features are in play, semantic ranking is the last step. [How search scoring works](search-relevance-overview.md#diagram-of-ranking-algorithms) provides an illustration.
 
 [Extra rules](#rules-for-using-functions) apply specifically to functions.
 

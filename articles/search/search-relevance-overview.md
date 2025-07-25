@@ -25,27 +25,9 @@ This section describes the levels of scoring operations. For an illustration of 
 
 | Level | Description |
 |-------|-------------|
-| Level 1 (L1) | Initial search score. For text queries matching on tokenized strings, results are always initially ranked using the [BM25 ranking algorithm](index-similarity-and-scoring.md). For vector queries, results are ranked using either [Hierarchical Navigable Small World (HNSW) or exhaustive K-nearest neighbor (KNN)](vector-search-ranking.md). Image search or multimodal searches are based on vector queries and scored using the vector L2 ranking algorithms. |
-| Fused L1 | Unifies the search results from multiple queries and applies the [Reciprocal Ranking Fusion (RRF) algorithm](hybrid-search-ranking.md). RRF is used for hbrid queries that include text and vector components. RRF is also used when multiple vector queries execute in parallel. |
-| Level 2 (L2) | [Semantic ranker](semantic-search-overview.md) applies machine reading comprehension to textual content. Semantic ranking is a premium feature that bills for use of the semantic ranking models. It's optional for text queries and vector queries that contain text, but required for [agentic retrieval (preview)](search-agentic-retrieval-concept.md). Although agentic retrieval sends multiple queries to the query engine, the ranking algorithm for agentic retrieval is the semantic ranker. |
-
-<!-- ### Level 1 (L1) ranking
-
-Assuming the query engine performs a scoring operation, the initial search score varies by query type.
-
-+ Text queries, which match on tokenized strings, are always initially ranked using the [BM25 ranking algorithm](index-similarity-and-scoring.md).
-
-+ Vector query L1 ranking is either [Hierarchical Navigable Small World (HNSW) or exhaustive K-nearest neighbor (KNN)](vector-search-ranking.md). Image search or multimodal searches are based on vector queries and scored using the vector L2 ranking algorithms.
-
-### Fused L1 ranking
-
-Hybrid queries that include text and vector components are ranked using the [Reciprocal Ranking Fusion (RRF) algorithm](hybrid-search-ranking.md) that's used for merging the results of multiple queries. RRF is also used if multiple vector queries execute in parallel.
-
-### Level 2 (L2) ranking
-
-The L2 ranking feature in Azure AI Search is the [semantic ranker](semantic-search-overview.md) that applies machine reading comprehension to textual content. Semantic ranking is a premium feature that incurs extra charges for use of the semantic ranking models. 
-
-It's optional for text queries and vector queries that contain text, but required for [agentic retrieval (preview)](search-agentic-retrieval-concept.md). Although agentic retrieval sends multiple queries to the query engine, the ranking algorithm for agentic retrieval is the L2 ranker. -->
+| Level&nbsp;1&nbsp;(L1) | Initial search score (`@search.score`). <br>For text queries matching on tokenized strings, results are always initially ranked using the [BM25 ranking algorithm](index-similarity-and-scoring.md). <br>For vector queries, results are ranked using either [Hierarchical Navigable Small World (HNSW) or exhaustive K-nearest neighbor (KNN)](vector-search-ranking.md). Image search or multimodal searches are based on vector queries and scored using the L1 vector ranking algorithms. |
+| Fused&nbsp;L1 | Scoring from multiple queries using the [Reciprocal Ranking Fusion (RRF) algorithm](hybrid-search-ranking.md). RRF is used for hybrid queries that include text and vector components. RRF is also used when multiple vector queries execute in parallel. A search score from RRF is reflected in `@search.score` over a different range.|
+| Level&nbsp;2&nbsp;(L2) | [Semantic ranking score (`@search.reRankerScore`)](semantic-search-overview.md) applies machine reading comprehension to textual content. Semantic ranking is a premium feature that bills for use of the semantic ranking models. It's optional for text queries and vector queries that contain text, but required for [agentic retrieval (preview)](search-agentic-retrieval-concept.md). Although agentic retrieval sends multiple queries to the query engine, the ranking algorithm for agentic retrieval is the semantic ranker. |
 
 ## Custom boosting logic using scoring profiles
 
@@ -87,28 +69,63 @@ The following diagram illustrates how the ranking algorithms work together.
 > [!NOTE]
 > This workflow diagram currently omits `@search.rerankerScoreBoosted` and a step for semantic ranking with boosting from a scoring profile. If you use semantic ranking with scoring profile, the scoring profile is applied after L2 ranking, and the final score is based on `@search.rerankerScoreBoosted`.
 
-A query that generates the previous workflow might look like the following example. Because the latest preview REST API is used, this hybrid semantic query is scored using RRF (based on L1 scores for text and vectors), semantic ranking, and scoring profiles. The `@search.rerankerScoreBoosted` score determines the order.
+## Example query inclusive of all ranking algorithms
+
+A query that generates the previous workflow might look like the following example. This hybrid semantic query is scored using RRF (based on L1 scores for text and vectors), and semantic ranking.
 
 ```http
 POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2025-05-01-preview
-Content-Type: application/json
-api-key: {{admin-api-key}}
+
 {
-   "queryType":"semantic",
-   "search":"what is a hello world application",
-   "searchFields":"field_a, field_b",
-   "vectorQueries": [
-       {
-           "kind":"vector",
-           "vector": [1.0, 2.0, 3.0],
-           "fields": "field_c, field_d"
-       },
-       {
-           "kind":"vector",
-           "vector": [4.0, 5.0, 6.0],
-           "fields": "field_d, field_e"
-       }
-   ],
-   "scoringProfile":"my_scoring_profile"
+  "search": "cloud formation over water",
+  "count": true,
+  "vectorQueries": [
+    {
+      "kind": "text",
+      "text": "cloud formation over water",
+      "fields": "text_vector,image_vector"
+    }
+  ],
+  "queryType": "semantic",
+  "semanticConfiguration": "my-semantic-configuration",
+  "select": "title,chunk",
+  "top": 5
 }
+```
+
+A response for the above query includes the original RRF `@search.core` and the `@search.rerankerScore`.
+
+```json
+  "value": [
+    {
+      "@search.score": 0.03177805617451668,
+      "@search.rerankerScore": 2.6919238567352295,
+      "chunk": "A\nT\n\nM\nO\n\nS\nP\n\nH\nE\n\nR\nE\n\nE\nA\n\nR\nT\n\nH\n\n32\n\nFraming an Iceberg\nSouth Atlantic Ocean\n\nIn June 2016, the Suomi NPP satellite captured this image of various cloud formations in the South Atlantic Ocean. Note how low \n\nstratus clouds framed a hole over iceberg A-56 as it drifted across the sea. \n\nThe exact reason for the hole in the clouds is somewhat of a mystery. It could have formed by chance, although imagery from the \n\ndays before and after this date suggest something else was at work. It could be that the relatively unobstructed path of the clouds \n\nover the ocean surface was interrupted by thermal instability created by the iceberg. In other words, if an obstacle is big enough,  \n\nit can divert the low-level atmospheric flow of air around it, a phenomenon often caused by islands.",
+      "title": "page-39.pdf",
+    },
+    {
+      "@search.score": 0.030621785670518875,
+      "@search.rerankerScore": 2.557225465774536,
+      "chunk": "A\nT\n\nM\nO\n\nS\nP\n\nH\nE\n\nR\nE\n\nE\nA\n\nR\nT\n\nH\n\n24\n\nMaking Tracks\nPacific Ocean\n\nShips steaming across the Pacific Ocean left this cluster of bright cloud trails lingering in the atmosphere in February 2012. The \n\nnarrow clouds, known as ship tracks, form when water vapor condenses around tiny particles of pollution from ship exhaust. The \n\ncrisscrossing clouds off the coast of California stretched for many hundreds of kilometers from end to end. The narrow ends of the \n\nclouds are youngest, while the broader, wavier ends are older.\n\nSome of the pollution particles generated by ships (especially sulfates) are soluble in water and can serve as the seeds around which \n\ncloud droplets form. Clouds infused with ship exhaust have more and smaller droplets than unpolluted clouds. As a result, light \n\nhitting the ship tracks scatters in many directions, often making them appear brighter than other types of marine clouds, which are \n\nusually seeded by larger, naturally occurring particles like sea salt.",
+      "title": "page-31.pdf",
+    },
+    {
+      "@search.score": 0.013698630034923553,
+      "@search.rerankerScore": 2.515575408935547,
+      "chunk": "A\nT\n\nM\nO\n\nS\nP\n\nH\nE\n\nR\nE\n\nE\nA\n\nR\nT\n\nH\n\n16\n\nRiding the Waves\nMauritania\n\nYou cannot see it directly, but air masses from Africa and the Atlantic Ocean are colliding in this Landsat 8 image from August 2016. \n\nThe collision off the coast of Mauritania produces a wave structure in the atmosphere. \n\nCalled an undular bore or solitary wave, this cloud formation was created by the interaction between cool, dry air coming off the \n\ncontinent and running into warm, moist air over the ocean. The winds blowing out from the land push a wave of air ahead like a  \n\nbow wave moving ahead of a boat. \n\nParts of these waves are favorable for cloud formation, while other parts are not. The dust blowing out from Africa appears to be \n\nriding these waves. Dust has been known to affect cloud growth, but it probably has little to do with the cloud pattern observed here.",
+      "title": "page-23.pdf",
+    },
+    {
+      "@search.score": 0.028949543833732605,
+      "@search.rerankerScore": 2.4990925788879395,
+      "chunk": "A\nT\n\nM\nO\n\nS\nP\n\nH\nE\n\nR\nE\n\nE\nA\n\nR\nT\n\nH\n\n14\n\nBering Streets\nArctic Ocean\n\nWinds from the northeast pushed sea ice southward and formed cloud streets—parallel rows of clouds—over the Bering Strait in \n\nJanuary 2010. The easternmost reaches of Russia, blanketed in snow and ice, appear in the upper left. To the east, sea ice spans \n\nthe Bering Strait. Along the southern edge of the ice, wavy tendrils of newly formed, thin sea ice predominate.\n\nThe cloud streets run in the direction of the northerly wind that helps form them. When wind blows out from a cold surface like sea \n\nice over the warmer, moister air near the open ocean, cylinders of spinning air may develop. Clouds form along the upward cycle in \n\nthe cylinders, where air is rising, and skies remain clear along the downward cycle, where air is falling. The cloud streets run toward \n\nthe southwest in this image from the Terra satellite.",
+      "title": "page-21.pdf",
+    },
+    {
+      "@search.score": 0.027637723833322525,
+      "@search.rerankerScore": 2.4686081409454346,
+      "chunk": "A\nT\n\nM\nO\n\nS\nP\n\nH\nE\n\nR\nE\n\nE\nA\n\nR\nT\n\nH\n\n38\n\nLofted Over Land\nMadagascar\n\nAlong the muddy Mania River, midday clouds form over the forested land but not the water. In the tropical rainforests of Madagascar, \n\nthere is ample moisture for cloud formation. Sunlight heats the land all day, warming that moist air and causing it to rise high into the \n\natmosphere until it cools and condenses into water droplets. Clouds generally form where air is ascending (over land in this case), \n\nbut not where it is descending (over the river). Landsat 8 acquired this image in January 2015.",
+      "title": "page-45.pdf",
+    }
+  ]
 ```
