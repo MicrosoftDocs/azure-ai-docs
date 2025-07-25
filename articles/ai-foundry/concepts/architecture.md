@@ -52,9 +52,9 @@ Azure AI Foundry applies a flexible compute architecture to support diverse [mod
 
 - Model Hosting Architecture: Foundry models access is provided in different ways:
   
-  1. [Standard deployment in Azure AI Foundry resources](deployments-overview.md#standard-deployment-in-azure-ai-foundry-resources)
-  1. [Deployment to serverless API endpoints in Azure AI Hub resources](deployments-overview.md#serverless-api-endpoint)
-  1. [Deployment to managed computes in Azure AI Hub resources](deployments-overview.md#managed-compute)
+  - [Standard deployment in Azure AI Foundry resources](deployments-overview.md#standard-deployment-in-azure-ai-foundry-resources)
+  - [Deployment to serverless API endpoints in Azure AI Hub resources](deployments-overview.md#serverless-api-endpoint)
+  - [Deployment to managed computes in Azure AI Hub resources](deployments-overview.md#managed-compute)
 
   For an overview of data, privacy, and security considerations with these deployment options, see [Data, privacy, and security for use of models](../how-to/concept-data-privacy.md)
 
