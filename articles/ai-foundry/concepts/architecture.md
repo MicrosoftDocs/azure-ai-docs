@@ -50,11 +50,11 @@ Azure AI Foundry enforces a clear separation between management and development 
 
 Azure AI Foundry applies a flexible compute architecture to support diverse [model access](../concepts/foundry-models-overview.md) and workload execution scenarios. 
 
-- Model Hosting Architecture: Foundry models can be accessed in different ways:
+- Model Hosting Architecture: Foundry models access is provided in different ways:
   
   1. [Standard deployment in Azure AI Foundry resources](deployments-overview.md#standard-deployment-in-azure-ai-foundry-resources)
-  1. [Deployment to serverless API endpoints](deployments-overview.md#serverless-api-endpoint)
-  1. [Deployment to managed computes](deployments-overview.md#managed-compute)
+  1. [Deployment to serverless API endpoints in Azure AI Hub resources](deployments-overview.md#serverless-api-endpoint)
+  1. [Deployment to managed computes in Azure AI Hub resources](deployments-overview.md#managed-compute)
 
   For an overview of data, privacy and security considerations with these deployment options, see [Data, privacy, and security for use of models](../how-to/concept-data-privacy.md)
 
@@ -66,19 +66,23 @@ Azure AI Foundry applies a flexible compute architecture to support diverse [mod
 
 Azure AI Foundry provides flexible and secure data storage options to support a wide range of AI workloads.
 
-* **Managed Storage**:
-In the default setup, Azure AI Foundry uses Microsoft-managed storage accounts, that are logically separated, and support direct file uploads for select use cases—such as OpenAI models, Assistants, and Agents—without requiring a customer-provided storage account.
+* **Managed storage for file upload**:
+In the default setup, Azure AI Foundry uses Microsoft-managed storage accounts, that are logically separated, and support direct file uploads for select use cases—such as OpenAI models, Assistants, and Agents, without requiring a customer-provided storage account.
 
 * **Bring Your Own Storage (Optional)**:
 Users can optionally connect their own Azure Storage accounts. Foundry tools can read inputs from and write outputs to these accounts, depending on the tool and use case.
 
-* **Agent Data Storage:**
+* **Bring-your-own storage for storing Agent state:**
 
   * In the basic configuration, the Agent service stores threads, messages, and files in Microsoft-managed multi-tenant storage, with logical separation.
   * With the [Agent standard setup](../agents/how-to/use-your-own-resources.md), you may bring your own storage for thread and message data. In this configuration, data is isolated by project within the customer’s storage account.
 
 * **Customer-Managed Key Encryption:**
-  When using customer-managed keys, data remains stored in Microsoft-managed multi-tenant infrastructure, encrypted using the customer’s keys. To support in-product search and optimized query performance, a dedicated Azure Search instance is provisioned for metadata indexing.
+  By default, Azure services use Microsoft-managed encryption keys to encrypt data in transit and at rest. Data is encrypted and decrypted using FIPS 140-2 compliant 256-bit AES encryption. Encryption and decryption are transparent, meaning encryption and access are managed for you. Your data is secure by default and you don't need to modify your code or applications to take advantage of encryption.
+
+  When using customer-managed keys, your data on Microsoft-managed infrastructure is encrypted using your keys for encryption.
+  
+  To learn more about data encryption, see customer-managed keys for encryption with Azure AI Foundry](encryption-keys-portal.md).
 
 ## Next steps
 
