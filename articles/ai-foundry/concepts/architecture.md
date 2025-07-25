@@ -34,7 +34,7 @@ Azure AI Foundry resource is the primary resource for Azure AI and is recommende
 
 [!INCLUDE [Resource provider kinds](../includes/resource-provider-kinds.md)]
 
-Resource types under the same provider namespaces share the same control plane, hence use similar [Azure Role Based Access Control](https://learn.microsoft.com/azure/role-based-access-control/overview) actions, networking configurations and aliases for Azure Policy configuration. If you're upgrading from Azure OpenAI to Azure AI Foundry, your existing custom Azure policies and Azure Role Based Access Control actions continue to apply.
+Resource types under the same provider namespaces share the same management APIs, and use similar [Azure Role Based Access Control](https://learn.microsoft.com/azure/role-based-access-control/overview) actions, networking configurations and aliases for Azure Policy configuration. If you're upgrading from Azure OpenAI to Azure AI Foundry, your existing custom Azure policies and Azure Role Based Access Control actions continue to apply.
 
 ## Security-driven separation of concerns
 
