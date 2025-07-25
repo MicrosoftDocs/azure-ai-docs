@@ -28,9 +28,9 @@ Within the Azure AI product family, we distinguish three [Azure resource provide
 | --- | --- | --- |
 | Microsoft.CognitiveServices | Supports Agentic and GenAI application development composing and customizing prebuilt models. | Azure AI Foundry; Azure OpenAI service; Azure Speech; Azure Vision | 
 | Microsoft.Search | Support knowledge retrieval over your data | Azure AI Search | 
-| Microsoft.MachineLearningServices | Train, deploy and operate custom and open source machine learning models | Azure AI Hub (and its projects); Azure Machine Learning Workspace | 
+| Microsoft.MachineLearningServices | Train, deploy, and operate custom and open source machine learning models | Azure AI Hub (and its projects); Azure Machine Learning Workspace | 
 
-Azure AI Foundry resource is the primary resource for Azure AI and is recommended for most use cases. It's built on the same [Azure resource provider and resource type](https://learn.microsoft.com/azure/azure-resource-manager/management/resource-providers-and-types) as Azure OpenAI service, Azure Speech, Azure Vision, and Azure Language service. It provides access to the superset of capabilities from each individual services combined.
+The Azure AI Foundry resource is the primary resource for Azure AI and is recommended for most use cases. It's built on the same [Azure resource provider and resource type](/azure/azure-resource-manager/management/resource-providers-and-types) as the Azure OpenAI, Azure Speech, Azure Vision, and Azure Language services. It provides access to the superset of capabilities from each of the individual services combined.
 
 [!INCLUDE [Resource provider kinds](../includes/resource-provider-kinds.md)]
 
@@ -40,9 +40,9 @@ Resource types under the same provider namespaces share the same management APIs
 
 Azure AI Foundry enforces a clear separation between management and development operations to ensure secure and scalable AI workloads.
 
-- **Top-Level Resource Governance:** Management operations—such as configuring security, establishing connectivity with other Azure services, and managing deployments—are scoped to the top-level Azure AI Foundry resource. Development activities are isolated within dedicated project containers, which encapsulate use cases and provide boundaries for access control, files, agents, and evaluations.
+- **Top-Level Resource Governance:** Management operations, such as configuring security, establishing connectivity with other Azure services, and managing deployments, are scoped to the top-level Azure AI Foundry resource. Development activities are isolated within dedicated project containers, which encapsulate use cases and provide boundaries for access control, files, agents, and evaluations.
 
-- **Role-Based Access Control (RBAC):** Azure RBAC actions are designed to reflect this separation of concerns. Control plane actions (for example creating deployments and projects) are distinct from data plane actions (for example building agents, running evaluations, uploading files). RBAC assignments can be scoped at both the top-level resource and individual project level. [Managed identities](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview) can be assigned at either scope to support secure automation and service access.
+- **Role-Based Access Control (RBAC):** Azure RBAC actions are designed to reflect this separation of concerns. Control plane actions (for example creating deployments and projects) are distinct from data plane actions (for example building agents, running evaluations, and uploading files). RBAC assignments can be scoped at both the top-level resource and individual project level. [Managed identities](/entra/identity/managed-identities-azure-resources/overview) can be assigned at either scope to support secure automation and service access.
 
 - **Monitoring and Observability:** Azure Monitor metrics are segmented by scope. Management and usage metrics are available at the top-level resource, while project-specific metrics—such as evaluation performance or agent activity—are scoped to the individual project containers.
 

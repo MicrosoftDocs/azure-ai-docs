@@ -16,7 +16,7 @@ ms.custom:
 
 |Resource type|Resource provider and type|Kind|Supported capabilities|
 |---|---|---|
-|Azure AI Foundry|`Microsoft.CognitiveServices/account`|`AIServices`|Agents, Evaluations, Azure OpenAI, Speech, Vision, Language, Content Understanding|
+|Azure AI Foundry|`Microsoft.CognitiveServices/account`|`AIServices`|Agents, Evaluations, Azure OpenAI, Speech, Vision, Language, and Content Understanding|
 |Azure AI Foundry project|`Microsoft.CognitiveServices/account/project`|`AIServices`| **Subresource to the above** |
 |Azure AI Speech|`Microsoft.CognitiveServices/account`|`Speech`|Speech|
 |Azure AI Language|`Microsoft.CognitiveServices/account`|`Language`|Language|
