@@ -40,7 +40,7 @@ Resource types under the same provider namespaces share the same control plane, 
 
 Azure AI Foundry enforces a clear separation between management and development operations to ensure secure and scalable AI workloads.
 
-- **Top-Level Resource Governance:** Management operations—such as configuring security, establishing connectivity with other Azure services, and managing deployments—are scoped to the top-level Azure AI Foundry resource. Development activities are isolated within dedicated project containers, which encapsulate use cases and provide boundaries for access control, files, agents, and evaluations.
+- **Top-Level Resource Governance:** Management operations, such as configuring security, establishing connectivity with other Azure services, and managing deployments, are scoped to the top-level Azure AI Foundry resource. Development activities are isolated within dedicated project containers, which encapsulate use cases and provide boundaries for access control, files, agents, and evaluations.
 
 - **Role-Based Access Control (RBAC):** Azure RBAC actions are designed to reflect this separation of concerns. Control plane actions (for example creating deployments and projects) are distinct from data plane actions (for example building agents, running evaluations, and uploading files). RBAC assignments can be scoped at both the top-level resource and individual project level. [Managed identities](/entra/identity/managed-identities-azure-resources/overview) can be assigned at either scope to support secure automation and service access.
 
