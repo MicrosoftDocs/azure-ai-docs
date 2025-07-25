@@ -19,7 +19,7 @@ This article contains a quick reference and a detailed description of the quotas
 
 ## Scope of quota
 
-Quotas and limits are not enforced at the tenant level. Instead, the highest level of quota restrictions are scoped at the Azure subscription level.
+Quotas and limits aren't enforced at the tenant level. Instead, the highest level of quota restrictions is scoped at the Azure subscription level.
 
 ## Regional quota allocation
 

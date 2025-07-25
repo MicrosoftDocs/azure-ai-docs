@@ -18,7 +18,7 @@ ms.date: 02/12/2025
 
 ## Batch quota
 
-The table shows the batch quota limit. Quota values for global batch are represented in terms of enqueued tokens. When you submit a file for batch processing, the number of tokens present in the file are counted. Until the batch job reaches a terminal state, those tokens will count against your  total enqueued token limit.
+The table shows the batch quota limit. Quota values for global batch are represented in terms of enqueued tokens. When you submit a file for batch processing, the number of tokens present in the file are counted. Until the batch job reaches a terminal state, those tokens count against your total enqueued token limit.
 
 ### Global batch
 
