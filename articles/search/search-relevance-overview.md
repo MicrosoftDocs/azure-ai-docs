@@ -17,7 +17,7 @@ In a query operation, the relevance of any given result is measured by a ranking
 
 Ranking occurs whenever the query request includes full text or vector queries. It doesn't occur if the query invokes strict pattern matching, such as a filter-only query or a specialized query form like autocomplete, suggestions, geospatial search, fuzzy search, or regular expression search. A uniform search score of 1.0 indicates the absence of a ranking algorithm.
 
-***Relevance tuning*** is primarily centered on textual content, applying scoring profiles or semantic ranking to enhance the quality of results. For vectors, you can experiment between Hierarchical Navigable Small World (HNSW) and exhaustive K-nearest neighbors (KNN) to see if one algorithm outperforms the other for your scenario. HNSW graphing with an exhaustive KNN override at query time is the most flexible approach for testing. You can also experiment with various embedding models to see which ones produce higher quality results.
+***Relevance tuning*** is primarily directed at textual content, applying scoring profiles or semantic ranking to enhance the quality of search results. For vector content, there's no explicit relevance tuning capabilities, but you can experiment between Hierarchical Navigable Small World (HNSW) and exhaustive K-nearest neighbors (KNN) to see if one algorithm outperforms the other for your scenario. HNSW graphing with an exhaustive KNN override at query time is the most flexible approach for comparison testing. You can also experiment with various embedding models to see which ones produce higher quality results.
 
 ## Levels of ranking
 
