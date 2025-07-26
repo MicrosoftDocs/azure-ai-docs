@@ -34,6 +34,7 @@ For customers without an existing virtual network, the Standard Setup with Priva
 ### Known limitations
 
 - **Subnet IP address limitation**: both subnets must have IP ranges under `172.16.0.0/12` or `192.168.0.0/16`, i.e. class B or C address ranges reserved for private networking.
+- **Agent subnet exclusivity**: The agent subnet cannot be shared by multiple Azure AI Foundry resources. Each AI Foundry must use a dedicated agent subnet.
 - **All Foundry workspace resources must be deployed in the same region as the virtual network (VNet)**. This includes Cosmos DB, Storage Account, AI Search, Foundry Account, Project, and Managed Identity.  
     - **Exception:** You may connect your Foundry Project to models deployed in a different region (on another AI Foundry or Azure OpenAI resource) by configuring an appropriate AI Services connection on the Project's [capability host](/azure/templates/microsoft.cognitiveservices/accounts/projects/capabilityhosts).
 - **Region availability**:
