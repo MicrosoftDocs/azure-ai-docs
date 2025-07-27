@@ -122,7 +122,8 @@ This example illustrates how the document access rules are resolved based on the
 | 6 | ["user1", "user2"] | ["group1"] | Empty | User1, user2, or any member of group1 | |
 | 7 | ["user1", "user2"] | [] | Empty | User1, user2, or any user with RBAC permissions to container1 | |
 
-## Next steps
+## See also
 
+- [Connect to Azure AI Search using roles](search-security-rbac.md)
 - [Query-Time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md)
 - [azure-search-python-samples/Quickstart-Document-Permissions-Push-API](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Quickstart-Document-Permissions-Push-API)
