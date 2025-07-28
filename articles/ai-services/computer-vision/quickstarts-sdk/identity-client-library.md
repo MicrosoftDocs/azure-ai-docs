@@ -23,7 +23,7 @@ feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 [!INCLUDE [Gate notice](../includes/identity-gate-notice.md)]
 
 
-::: zone pivot="programming-language-studio"
+::: zone pivot="foundry-portal"
 
 [!INCLUDE [Studio quickstart](../includes/identity-studio-quickstart.md)]
 
