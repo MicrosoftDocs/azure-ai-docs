@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Use Multimodal Embeddings and Document Extraction Skill for Multimodal Indexing'
+title: 'Tutorial: Vectorize images and text'
 titleSuffix: Azure AI Search
 description: Learn how to extract, index, and search multimodal content using the Document Extraction skill for chunking and Azure AI Vision for embeddings.
 
@@ -13,8 +13,8 @@ ms.topic: tutorial
 ms.date: 06/11/2025
 
 ---
-
-# Tutorial: Index mixed content using multimodal embeddings and the Document Extraction skill
+<!-- # Tutorial: Index mixed content using multimodal embeddings and the Document Extraction skill -->
+# Tutorial: Vectorize images and text
 
 Azure AI Search can extract and index both text and images from PDF documents stored in Azure Blob Storage. This tutorial shows you how to build a multimodal indexing pipeline by embedding both text and images into a unified semantic search index.
 
@@ -22,9 +22,9 @@ In this tutorial, you use:
 
 + A 36-page PDF document that combines rich visual content, such as charts, infographics, and scanned pages, with traditional text.
 
-+ The [Document Extraction skill](cognitive-search-skill-document-extraction.md) for extracting text and normalized images.
++ Extract text and normalized images using the [Document Extraction skill](cognitive-search-skill-document-extraction.md).
 
-+ Vectorization using the [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md), which generates embeddings for both text and images.
++ Vectorize text and images using the [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md).
 
 + A search index configured to store text and image embeddings and support for vector-based similarity search.
 
@@ -33,7 +33,7 @@ This tutorial demonstrates a lower-cost approach for indexing multimodal content
 For a more comprehensive solution that includes structured text layout and spatial metadata, see [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and Document Layout skill](tutorial-document-layout-image-verbalization.md).
 
 > [!NOTE]
-> Setting `imageAction` to `generateNormalizedImages` as is required for this tutorial incurs an additional charge for image extraction according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/).
+> Setting `imageAction` to `generateNormalizedImages` results in image extraction, which is an extra charge. For more information, see [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/) for image extraction pricing.
 
 Using a REST client and the [Search REST APIs](/rest/api/searchservice/) you will:
 
@@ -46,13 +46,11 @@ Using a REST client and the [Search REST APIs](/rest/api/searchservice/) you wil
 
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
-
-+ [Azure Storage](/azure/storage/common/storage-account-create).
++ [Azure Storage](/azure/storage/common/storage-account-create), used for storing sample data.
 
 + An [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills) for image vectorization. Image vectorization requires Azure AI Vision multimodal embeddings. For an updated list of regions, see the [Azure AI Vision documentation](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
 
-+ [Azure AI Search](search-what-is-azure-search.md), with a managed identity. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription.  
++ [Azure AI Search](search-create-service-portal.md), with a managed identity. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription.  
   > Your service must be on the Basic tier or higher—this tutorial isn't supported on the Free tier. It must also be in the same region as your multi-service account.
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).

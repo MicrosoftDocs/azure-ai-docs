@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2025
 ms.topic: concept-article
-ms.date: 04/28/2025
+ms.date: 07/28/2025
 ---
 
 # Best practices - GenAI Prompt skill

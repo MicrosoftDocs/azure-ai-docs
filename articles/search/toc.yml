@@ -138,14 +138,24 @@ items:
       href: tutorial-adls-gen2-indexer-acls.md
   - name: Multimodal indexing tutorials
     items:
-    - name: Use document extraction and multimodal embeddings
+    - name: Vectorize from any document
       href: tutorial-document-extraction-multimodal-embeddings.md
-    - name: Use document extraction and image verbalizations
-      href: tutorial-document-extraction-image-verbalization.md
-    - name: Use semantic chunking and multimodal embeddings
+    - name: Vectorize from a structured document
       href: tutorial-document-layout-multimodal-embeddings.md
-    - name: Use semantic chunking and image verbalizations
-      href: tutorial-document-layout-image-verbalization.md      
+    - name: Verbalize images from any document
+      href: tutorial-document-extraction-image-verbalization.md
+    - name: Verbalize images from a structured document
+      href: tutorial-document-layout-image-verbalization.md
+  - name: Multimodal indexing tutorials
+    items:
+    - name: Vectorize images and text
+      href: 
+    - name: Verbalize images
+      href: 
+    - name: Vectorize from a structured document layout
+      href: 
+    - name: Verbalize images from a structured document layout
+      href:     
   - name: RAG tutorials
     items:
     - name: Build a RAG solution
@@ -364,17 +374,21 @@ items:
         href: cognitive-search-output-field-mapping.md
       - name: Process image files
         href: cognitive-search-concept-image-scenarios.md
-      - name: Configure an enrichment cache
-        href: enrichment-cache-how-to-configure.md
-      - name: Manage an enrichment cache
-        href: enrichment-cache-how-to-manage.md
-      - name: Best practices - GenAI Prompt skill
-        href: responsible-ai-best-practices-genai-prompt-skill.md
-      - name: GenAI Prompt Skill - Example Usage Guide
-        href: chat-completion-skill-example-usage.md
+      - name: Enrichment cache
+        items:
+        - name: Configure an enrichment cache
+          href: enrichment-cache-how-to-configure.md
+        - name: Manage an enrichment cache
+          href: enrichment-cache-how-to-manage.md
+      - name: Generative AI skills
+        items:
+        - name: Add AI-generated content (GenAI Prompt skill)
+          href: chat-completion-skill-example-usage.md
+        - name: Best practices using GenAI Prompt skill
+          href: responsible-ai-best-practices-genai-prompt-skill.md
       - name: Custom skills
         items:
-        - name: Integrate custom skills
+        - name: Add custom skills
           href: cognitive-search-custom-skill-interface.md
         - name: Scale out custom skills
           href: cognitive-search-custom-skill-scale.md
