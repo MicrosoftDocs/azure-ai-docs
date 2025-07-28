@@ -61,7 +61,7 @@ Deploy the Bicep file using either the Azure CLI or Azure PowerShell.
 
 ```azurecli
 az group create --name exampleRG --location eastus
-az deployment group create --resource-group exampleRG --template-file main.bicep --parameters aiServicesName=myai aiProjectName=myai-proj 
+az deployment group create --resource-group exampleRG --template-file main.bicep --parameters aiFoundryName=myai aiProjectName=myai-proj 
 ```
 
 # [Azure PowerShell](#tab/powershell)
