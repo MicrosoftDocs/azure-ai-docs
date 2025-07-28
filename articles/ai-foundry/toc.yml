@@ -857,6 +857,8 @@ items:
     items:
     - name: Role-based access control in Azure AI Foundry portal
       href: concepts/rbac-azure-ai-foundry.md
+    - name: Configure key-less authentication
+      href: foundry-models/how-to/configure-entra-id.md
   - name: Network security
     items:
     - name: Configure private link
@@ -874,12 +876,10 @@ items:
         href: how-to/troubleshoot-secure-connection-project.md
   - name: Data protection & encryption
     items:
-    - name: Configure key-less authentication
-      href: foundry-models/how-to/configure-entra-id.md
     - name: Configure customer-managed keys
       href: concepts/encryption-keys-portal.md
     - name: Rotate keys
-      href: ../ai-services/rotate-keys.md?context=/azure/ai-foundry/context/context
+      href: how-to/rotate-keys.md
     - name: Disable shared key access to storage
       href: how-to/disable-local-auth.md
   - name: Azure policies
