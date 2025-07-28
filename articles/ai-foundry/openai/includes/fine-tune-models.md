@@ -26,13 +26,15 @@ ms.custom:
 | `gpt-4o` (2024-08-06) | East US2 <br> North Central US <br> Sweden Central | - | Input: 128,000 <br> Output: 16,384  <br> Training example context length: 65,536 | Oct 2023 | Text & Vision to Text |
 | `gpt-4.1` (2025-04-14) | North Central US <br> Sweden Central | ✅ | Input: 128,000 <br> Output: 16,384 <br> Training example context length: 65,536 | May 2024 | Text & Vision to Text |
 | `gpt-4.1-mini` (2025-04-14) | North Central US <br> Sweden Central | ✅ | Input: 128,000 <br> Output: 16,384 <br> Training example context length: 65,536 | May 2024 | Text to Text |
-| `gpt-4.1-nano` (2025-04-14) | North Central US <br> Sweden Central | - | Input: 128,000 <br> Output: 16,384 <br> Training example context length: 32,768 | May 2024 | Text to Text |
+| `gpt-4.1-nano` (2025-04-14) | North Central US <br> Sweden Central | ✅ | Input: 128,000 <br> Output: 16,384 <br> Training example context length: 32,768 | May 2024 | Text to Text |
 | `o4-mini` (2025-04-16) | East US2 <br> Sweden Central | - | Input: 128,000 <br> Output: 16,384 <br> Training example context length: 65,536 | May 2024 | Text to Text |
 
 > [!NOTE]
 > **Global** training (in Public Preview) provides [more affordable](https://aka.ms/aoai-pricing) training per-token, but does not offer [data residency](https://aka.ms/data-residency). It is currently available to Azure OpenAI resources in the following regions, with more regions coming soon:
 >- Australia East
 >- Brazil South
+>- Canada Central
+>- Canada East
 >- East US
 >- East US2
 >- France Central
@@ -42,10 +44,11 @@ ms.custom:
 >- Korea Central
 >- North Central US
 >- Norway East
->- Poland Central
+>- Poland Central _(no 4.1-nano support)_
 >- Southeast Asia
 >- South Africa North
 >- South Central US
+>- South India
 >- Spain Central
 >- Sweden Central
 >- Switzerland West

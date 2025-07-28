@@ -2,8 +2,8 @@
 title: Control AI model deployment with custom policies
 titleSuffix: Azure Machine Learning
 description: "Learn how to use custom Azure Policies to control Azure AI services and Azure OpenAI model deployment with Azure Machine Learning."
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.service: azure-machine-learning
 ms.topic: how-to #Don't change
 ms.date: 02/19/2025

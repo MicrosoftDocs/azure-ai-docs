@@ -5,7 +5,7 @@ author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 02/24/2025
+ms.date: 07/23/2025
 ms.author: mbullwin
 recommendations: false
 ---
@@ -62,8 +62,7 @@ A user with only this role assigned would be unable to:
 ❌ Upload datasets for fine-tuning <br>
 ❌ View, query, filter Stored completions data <br>
 ❌ Access quota <br>
-❌ Create customized content filters <br>
-❌ Add a data source for the use your data feature
+❌ Create customized content filters
 
 ### Cognitive Services OpenAI Contributor
 
@@ -73,7 +72,8 @@ This role has all the permissions of Cognitive Services OpenAI User and is also 
 ✅ Upload datasets for fine-tuning <br>
 ✅ View, query, filter Stored completions data <br>
 ✅ Create new model deployments or edit existing model deployments **[Added Fall 2023]** <br>
-✅ Add data sources to Azure OpenAI On Your Data. **You must also have the [Cognitive Services Contributor](#cognitive-services-contributor) role as well**.
+✅ Grant access to the Assistants API <br> 
+✅ Add data sources to Azure OpenAI On Your Data.
 
 A user with only this role assigned would be unable to:
 
@@ -81,7 +81,6 @@ A user with only this role assigned would be unable to:
 ❌ View/Copy/Regenerate keys under **Keys and Endpoint** <br>
 ❌ Access quota <br>
 ❌ Create customized content filters <br>
-❌ Add a data source for Azure OpenAI On Your Data
 
 ### Cognitive Services Contributor
 
@@ -94,7 +93,7 @@ This role is typically granted access at the resource group level for a user in 
 ✅ Ability to view what models are available for deployment in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) <br>
 ✅ Use the Chat, Completions, and DALL-E (preview) playground experiences to generate text and images with any models that have already been deployed to this Azure OpenAI resource <br>
 ✅ Create customized content filters <br>
-✅ Add data sources to Azure OpenAI On Your Data. **You must also have the [Cognitive Services OpenAI Contributor](#cognitive-services-openai-contributor) role as well**.
+✅ Add data sources to Azure OpenAI On Your Data. <br>
 ✅ Create new model deployments or edit existing model deployments (via API) <br>
 ✅ Create custom fine-tuned models **[Added Fall 2023]**<br>
 ✅ Upload datasets for fine-tuning **[Added Fall 2023]**<br>
@@ -151,7 +150,7 @@ All the capabilities of Cognitive Services Contributor plus the ability to:
 |Create new Azure OpenAI resources|❌|❌|✅| ➖ |
 |View/Copy/Regenerate keys under “Keys and Endpoint”|❌|❌|✅| ➖ |
 |Create customized content filters|❌|❌|✅| ➖ |
-|Add a data source for the “on your data” feature|❌|❌|✅| ➖ |
+|Add a data source for the "on your data" feature|✅|✅|✅| ➖ |
 |Access quota|❌|❌|❌|✅|
 |Make inference API calls with Microsoft Entra ID| ✅ | ✅ | ❌ |  ➖ | 
 ## Common Issues

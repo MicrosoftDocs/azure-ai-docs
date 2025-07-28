@@ -5,12 +5,14 @@ description: Learn how to set up Automated ML training jobs for tabular data wit
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: automl
-author: ssalgadodev
-ms.author: ssalgado
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: manashg
 ms.date: 07/15/2024
 ms.topic: how-to
-ms.custom: automl
+ms.custom:
+  - automl
+  - sfi-image-nochange
 
 #customer intent: As a developer, I want to use Automated ML in Azure Machine Learning studio so that I can to set up machine learning training jobs without writing any code. 
 ---

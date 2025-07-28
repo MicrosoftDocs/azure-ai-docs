@@ -28,6 +28,7 @@ This article provides a summary of the latest releases and major documentation u
 
 ## June 2025
 
+
 ### codex-mini & o3-pro models released
 
 - `codex-mini` and `o3-pro` are now available. To learn more, see the [getting started with reasoning models page](./how-to/reasoning.md)
@@ -114,7 +115,7 @@ In addition to the deployment-level content filtering configuration, we now also
 
 The latest GPT model that excels at diverse text and image tasks is now available on Azure OpenAI.
 
-For more information on model capabilities, and region availability see the [models documentation](./concepts/models.md#gpt-45-preview).
+For more information on model capabilities, and region availability see the [models documentation](./concepts/models.md).
 
 ### Stored completions API
 

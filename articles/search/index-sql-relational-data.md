@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 01/18/2025
+ms.date: 07/25/2025
 ---
 
 # How to model relational SQL data for import and indexing in Azure AI Search

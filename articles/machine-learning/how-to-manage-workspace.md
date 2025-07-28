@@ -5,12 +5,20 @@ description: Learn how to manage Azure Machine Learning workspaces in the Azure 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: fsolomon
 ms.date: 03/05/2025
 ms.topic: how-to
-ms.custom: fasttrack-edit, FY21Q4-aml-seo-hack, contperf-fy21q4, sdkv2, event-tier1-build-2022, ignite-2022, devx-track-python
+ms.custom:
+  - fasttrack-edit
+  - FY21Q4-aml-seo-hack
+  - contperf-fy21q4
+  - sdkv2
+  - event-tier1-build-2022
+  - ignite-2022
+  - devx-track-python
+  - sfi-image-nochange
 ---
 
 # Manage Azure Machine Learning workspaces in the portal or with the Python SDK (v2)

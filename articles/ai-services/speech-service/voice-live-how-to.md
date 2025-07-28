@@ -1,7 +1,7 @@
 ﻿---
-title: How to use the Voice Live API (Preview)
+title: How to use the voice live API (Preview)
 titleSuffix: Azure AI services
-description: Learn how to use the Voice Live API for real-time voice agents.
+description: Learn how to use the voice live API for real-time voice agents.
 manager: nitinme
 author: eric-urban
 ms.author: eur
@@ -9,35 +9,35 @@ ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 7/1/2025
 ms.custom: references_regions
-# Customer intent: As a developer, I want to learn how to use the Voice Live API for real-time voice agents.
+# Customer intent: As a developer, I want to learn how to use the voice live API for real-time voice agents.
 ---
 
-# How to use the Voice Live API (Preview)
+# How to use the voice live API (Preview)
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-The Voice Live API provides a capable WebSocket interface compared to the [Azure OpenAI Realtime API](../../ai-foundry/openai/how-to/realtime-audio.md).
+The voice live API provides a capable WebSocket interface compared to the [Azure OpenAI Realtime API](../../ai-foundry/openai/how-to/realtime-audio.md).
 
-Unless otherwise noted, the Voice Live API uses the same events as the [Azure OpenAI Realtime API](/azure/ai-services/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context). This document provides a reference for the event message properties that are specific to the Voice Live API.
+Unless otherwise noted, the voice live API uses the same events as the [Azure OpenAI Realtime API](/azure/ai-services/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context). This document provides a reference for the event message properties that are specific to the voice live API.
 
 ## Supported models and regions
 
-For a table of supported models and regions, see the [Voice Live API overview](./voice-live.md#supported-models-and-regions).
+For a table of supported models and regions, see the [voice live API overview](./voice-live.md#supported-models-and-regions).
 
 ## Authentication
 
-An [Azure AI Foundry resource](../multi-service-resource.md) is required to access the Voice Live API.
+An [Azure AI Foundry resource](../multi-service-resource.md) is required to access the voice live API.
 
 ### WebSocket endpoint
 
-The WebSocket endpoint for the Voice Live API is `wss://<your-ai-foundry-resource-name>.cognitiveservices.azure.com/voice-live/realtime?api-version=2025-05-01-preview`.
+The WebSocket endpoint for the voice live API is `wss://<your-ai-foundry-resource-name>.cognitiveservices.azure.com/voice-live/realtime?api-version=2025-05-01-preview`.
 The endpoint is the same for all models. The only difference is the required `model` query parameter.
 
 For example, an endpoint for a resource with a custom domain would be `wss://<your-ai-foundry-resource-name>.cognitiveservices.azure.com/voice-live/realtime?api-version=2025-05-01-preview&model=gpt-4o-mini-realtime-preview`
 
 ### Credentials
 
-The Voice Live API supports two authentication methods:
+The voice live API supports two authentication methods:
 
 - **Microsoft Entra** (recommended): Use token-based authentication for an Azure AI Foundry resource. Apply a retrieved authentication token using a `Bearer` token with the `Authorization` header.
 - **API key**: An `api-key` can be provided in one of two ways:
@@ -52,7 +52,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Session configuration
 
-Often, the first event sent by the caller on a newly established Voice Live API session is the [`session.update`](../openai/realtime-audio-reference.md?context=/azure/ai-services/speech-service/context/context#realtimeclienteventsessionupdate) event. This event controls a wide set of input and output behavior, with output and response generation properties then later overridable using the [`response.create`](../openai/realtime-audio-reference.md?context=/azure/ai-services/speech-service/context/context#realtimeclienteventresponsecreate) event.
+Often, the first event sent by the caller on a newly established voice live API session is the [`session.update`](../openai/realtime-audio-reference.md?context=/azure/ai-services/speech-service/context/context#realtimeclienteventsessionupdate) event. This event controls a wide set of input and output behavior, with output and response generation properties then later overridable using the [`response.create`](../openai/realtime-audio-reference.md?context=/azure/ai-services/speech-service/context/context#realtimeclienteventresponsecreate) event.
 
 Here's an example `session.update` message that configures several aspects of the session, including turn detection, input audio processing, and voice output. Most session parameters are optional and can be omitted if not needed.
 
@@ -88,7 +88,7 @@ The server responds with a [`session.updated`](../openai/realtime-audio-referenc
 The following sections describe the properties of the `session` object that can be configured in the `session.update` message.
 
 > [!TIP]
-> For comprehensive descriptions of supported events and properties, see the [Azure OpenAI Realtime API events reference documentation](../openai/realtime-audio-reference.md?context=/azure/ai-services/speech-service/context/context). This document provides a reference for the event message properties that are enhancements via the Voice Live API.
+> For comprehensive descriptions of supported events and properties, see the [Azure OpenAI Realtime API events reference documentation](../openai/realtime-audio-reference.md?context=/azure/ai-services/speech-service/context/context). This document provides a reference for the event message properties that are enhancements via the voice live API.
 
 ### Input audio properties
 
@@ -134,11 +134,11 @@ Server echo cancellation enhances the input audio quality by removing the echo f
 
 ## Conversational enhancements
 
-The Voice Live API offers conversational enhancements to provide robustness to the natural end-user conversation flow.
+The voice live API offers conversational enhancements to provide robustness to the natural end-user conversation flow.
 
 ### Turn Detection Parameters
 
-Turn detection is the process of detecting when the end-user started or stopped speaking. The Voice Live API builds on the Azure OpenAI Realtime API `turn_detection` property to configure turn detection. The `azure_semantic_vad` type is one differentiator between the Voice Live API and the Azure OpenAI Realtime API.
+Turn detection is the process of detecting when the end-user started or stopped speaking. The voice live API builds on the Azure OpenAI Realtime API `turn_detection` property to configure turn detection. The `azure_semantic_vad` type is one differentiator between the voice live API and the Azure OpenAI Realtime API.
 
 | Property | Type | Required or optional | Description |
 |----------|----------|----------|------------|
@@ -146,7 +146,7 @@ Turn detection is the process of detecting when the end-user started or stopped 
 | `threshold` | number | Optional | A higher threshold requires a higher confidence signal of the user trying to speak. |
 | `prefix_padding_ms` | integer | Optional  | The amount of audio, measured in milliseconds, to include before the start of speech detection signal. |
 | `silence_duration_ms` | integer  | Optional | The duration of user's silence, measured in milliseconds, to detect the end of speech. |
-| `end_of_utterance_detection` | object | Optional | Configuration for end of utterance detection. The Voice Live API offers advanced end-of-turn detection to indicate when the end-user stopped speaking while allowing for natural pauses. End of utterance detection can significantly reduce premature end-of-turn signals without adding user-perceivable latency. End of utterance detection is only available when using `azure_semantic_vad`.<br/><br/>Properties of `end_of_utterance_detection` include:<br/>-`model`: The model to use for end of utterance detection. The supported value is `semantic_detection_v1`.<br/>- `threshold`: Threshold to determine the end of utterance (0.0 to 1.0). The default value is 0.01.<br/>- `timeout`: Timeout in seconds. The default value is 2 seconds.|
+| `end_of_utterance_detection` | object | Optional | Configuration for end of utterance detection. The voice live API offers advanced end-of-turn detection to indicate when the end-user stopped speaking while allowing for natural pauses. End of utterance detection can significantly reduce premature end-of-turn signals without adding user-perceivable latency. End of utterance detection is only available when using `azure_semantic_vad`.<br/><br/>Properties of `end_of_utterance_detection` include:<br/>-`model`: The model to use for end of utterance detection. The supported value is `semantic_detection_v1`.<br/>- `threshold`: Threshold to determine the end of utterance (0.0 to 1.0). The default value is 0.01.<br/>- `timeout`: Timeout in seconds. The default value is 2 seconds.|
 
 Here's an example of end of utterance detection in a session object:
 
@@ -174,20 +174,21 @@ Here's an example of end of utterance detection in a session object:
 
 ### Phrase list
 
-Use phrase list for lightweight just-in-time customization on audio input. To configure phrase list, you can set the phrase_list in the `session.update` message. 
+Use phrase list for lightweight just-in-time customization on audio input. To configure phrase list, you can set the phrase_list in the `session.update` message.
 
 ```json
-{ 
-    "session": { 
-        "input_audio": { 
-            "phrase_list": ["Neo QLED TV", "TUF Gaming", "AutoQuote Explorer"] 
-        } 
-    } 
-} 
+{
+    "session": {
+        "input_audio_transcription": {
+            "model": "azure-fast-transcription",
+            "phrase_list": ["Neo QLED TV", "TUF Gaming", "AutoQuote Explorer"]
+        }
+    }
+}
 ```
 
 > [!NOTE]
-> Phrase list currently doesn't support gpt-4o-realtime-preview, gpt-4o-mini-realtime-preview, and phi4-mm-realtime. To learn more about phrase list, see [phrase list for speech to text](./improve-accuracy-phrase-list.md).  
+> Phrase list currently doesn't support gpt-4o-realtime-preview, gpt-4o-mini-realtime-preview, and phi4-mm-realtime. To learn more about phrase list, see [phrase list for speech to text](./improve-accuracy-phrase-list.md).
 
 ## Audio output through Azure text to speech
 
@@ -247,36 +248,36 @@ You can use a custom voice for audio output. For information about how to create
 }
 ```
 
-### Custom lexicon 
+### Custom lexicon
 
 Use the `custom_lexicon_url` string property to customize pronunciation for both standard Azure text to speech voices and custom voices. To learn more about how to format the custom lexicon (the same as Speech Synthesis Markup Language (SSML)), see [custom lexicon for text to speech](./speech-synthesis-markup-pronunciation.md#custom-lexicon).
 
 ```json
-{ 
-  "voice": { 
-    "name": "en-US-Ava:DragonHDLatestNeural", 
-    "type": "azure-standard", 
-    "temperature": 0.8, // optional 
-    "custom_lexicon_url": "<custom lexicon url>" 
-  } 
-} 
+{
+  "voice": {
+    "name": "en-US-Ava:DragonHDLatestNeural",
+    "type": "azure-standard",
+    "temperature": 0.8, // optional
+    "custom_lexicon_url": "<custom lexicon url>"
+  }
+}
 ```
 
-### Speaking rate 
+### Speaking rate
 
-Use the `rate` string property to adjust the speaking speed for any standard Azure text to speech voices and custom voices.  
+Use the `rate` string property to adjust the speaking speed for any standard Azure text to speech voices and custom voices.
 
-The rate value should range from 0.5 to 1.5, with higher values indicating faster speeds. 
+The rate value should range from 0.5 to 1.5, with higher values indicating faster speeds.
 
 ```json
-{ 
-  "voice": { 
-    "name": "en-US-Ava:DragonHDLatestNeural", 
-    "type": "azure-standard", 
-    "temperature": 0.8, // optional 
-    "rate": "1.2" 
-  } 
-} 
+{
+  "voice": {
+    "name": "en-US-Ava:DragonHDLatestNeural",
+    "type": "azure-standard",
+    "temperature": 0.8, // optional
+    "rate": "1.2"
+  }
+}
 ```
 
 ### Audio timestamps
@@ -444,5 +445,5 @@ Then you can connect the avatar with the server SDP.
 
 ## Related content
 
-- Try out the [Voice Live API quickstart](./voice-live-quickstart.md)
+- Try out the [voice live API quickstart](./voice-live-quickstart.md)
 - See the [audio events reference](/azure/ai-services/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context)

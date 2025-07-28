@@ -117,7 +117,7 @@ This section supplements the [skill reference](cognitive-search-defining-skillse
 Once the basic framework of your skillset is created and Azure AI services is configured, you can focus on each individual image skill, defining inputs and source context, and mapping outputs to fields in either an index or knowledge store.
 
 > [!NOTE]
-> For an example skillset that combines image processing with downstream natural language processing, see [REST Tutorial: Use REST and AI to generate searchable content from Azure blobs](cognitive-search-tutorial-blob.md). It shows how to feed skill imaging output into entity recognition and key phrase extraction.
+> For an example skillset that combines image processing with downstream natural language processing, see [REST Tutorial: Use REST and AI to generate searchable content from Azure blobs](tutorial-skillset.md). It shows how to feed skill imaging output into entity recognition and key phrase extraction.
 
 ### Example inputs for image processing
 

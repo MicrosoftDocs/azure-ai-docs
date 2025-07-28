@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI's advanced o3-mini, o1, & o1-mini rea
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 06/17/2025
+ms.date: 07/08/2025
 author: mrbullwinkle    
 ms.author: mbullwin
 ---
@@ -41,14 +41,14 @@ Azure OpenAI `o-series` models are designed to tackle reasoning and problem-solv
 
 | **Feature**  | **codex-mini**, **2025-05-16**  | **o3-pro**, **2025-06-10**   | **o4-mini**, **2025-04-16**  | **o3**, **2025-04-16** | **o3-mini**, **2025-01-31**  |**o1**, **2024-12-17**   | **o1-preview**, **2024-09-12**   | **o1-mini**, **2024-09-12**   |
 |:-------------------|:--------------------------:|:------:|:--------|:-----:|:-------:|:--------------------------:|:-------------------------------:|:---:|
-| **API Version** | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   | `2025-04-01-preview`  & [v1 preview](../api-version-lifecycle.md#api-evolution)  | `2025-04-01-preview`   | `2025-04-01-preview`   | `2024-12-01-preview` or later <br> `2025-03-01-preview` (Recommended)   | `2024-12-01-preview` or later <br> `2025-03-01-preview` (Recommended) | `2024-09-01-preview` or later <br> `2025-03-01-preview` (Recommended)    | `2024-09-01-preview` or later <br> `2025-03-01-preview` (Recommended)    |
+| **API Version** | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   | `2025-04-01-preview`  & [v1 preview](../api-version-lifecycle.md#api-evolution)  | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   |  `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   |  `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution) | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)    | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)  |
 | **[Developer Messages](#developer-messages)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | - |
 | **[Structured Outputs](./structured-outputs.md)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | - |
 | **[Context Window](../concepts/models.md#o-series-models)** |  Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 128,000  <br> Output: 32,768 | Input: 128,000  <br> Output: 65,536 |
 | **[Reasoning effort](#reasoning-effort)** | ✅| ✅| ✅| ✅ |✅ | ✅ | - | - |
 | **[Image input](./gpt-with-vision.md)** | ✅ | ✅ | ✅ | ✅ | - | ✅ | - | - |
 | Chat Completions API | - | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Responses API | ✅  | ✅  | ✅ | ✅  | - | - | - | - |
+| Responses API | ✅  | ✅  | ✅ | ✅  | ✅ | ✅ | - | - |
 | Functions/Tools | ✅ | ✅ |✅ | ✅ | ✅  | ✅  |  - | - |
 | Parallel Tool Calls | - | - | - | - | -  | -  |  - | - |
 | `max_completion_tokens` <sup>1</sup> |  ✅ | ✅ | ✅ | ✅ |✅ |✅ |✅ | ✅ |

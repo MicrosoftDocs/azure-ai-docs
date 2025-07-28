@@ -187,7 +187,7 @@ In the following example, replace `output` with the output of the function you w
 ```console
 curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/threads/thread_abc123/runs/run_123/submit_tool_outputs?api-version=2024-07-01-preview \
   -H "Content-Type: application/json" \
-  -H "api-key: 851c6e0b83744d8c8fc2a07eab098376" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
   -d '{
     "tool_outputs": [{
       "tool_call_id": "call_123",

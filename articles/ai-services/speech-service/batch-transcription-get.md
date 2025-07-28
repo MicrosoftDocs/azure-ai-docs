@@ -92,9 +92,9 @@ You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/637d9333-6559-47a6-b8de-c7d732c1ddf3",
+  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/bbbbcccc-1111-dddd-2222-eeee3333ffff",
   "model": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/aaa321e9-5a4e-4db1-88a2-f251bbe7b555"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "links": {
     "files": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/637d9333-6559-47a6-b8de-c7d732c1ddf3/files"
@@ -212,7 +212,7 @@ You should receive a response body in the following format:
 {
   "values": [
     {
-      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/637d9333-6559-47a6-b8de-c7d732c1ddf3/files/2dd180a1-434e-4368-a1ac-37350700284f",
+      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/637d9333-6559-47a6-b8de-c7d732c1ddf3/files/aaaabbbb-6666-cccc-7777-dddd8888eeee",
       "name": "contenturl_0.json",
       "kind": "Transcription",
       "properties": {
@@ -224,7 +224,7 @@ You should receive a response body in the following format:
       }
     },
     {
-      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/637d9333-6559-47a6-b8de-c7d732c1ddf3/files/c027c6a9-2436-4303-b64b-e98e3c9fc2e3",
+      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/637d9333-6559-47a6-b8de-c7d732c1ddf3/files/ffffaaaa-5555-bbbb-6666-cccc7777dddd",
       "name": "contenturl_1.json",
       "kind": "Transcription",
       "properties": {
@@ -236,7 +236,7 @@ You should receive a response body in the following format:
       }
     },
     {
-      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/637d9333-6559-47a6-b8de-c7d732c1ddf3/files/faea9a41-c95c-4d91-96ff-e39225def642",
+      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/transcriptions/637d9333-6559-47a6-b8de-c7d732c1ddf3/files/aaaabbbb-6666-cccc-7777-dddd8888eeee",
       "name": "report.json",
       "kind": "TranscriptionReport",
       "properties": {

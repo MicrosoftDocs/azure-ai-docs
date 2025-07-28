@@ -1,6 +1,4 @@
 items:
-- name: Azure AI Foundry Agent Service Documentation
-  href: index.yml
 - name: Overview
   expanded: true
   items:
@@ -35,28 +33,6 @@ items:
         - name: Tool Overview
           href: how-to/tools/overview.md
           displayName: tools
-        - name: Grounding with Bing Search
-          items:
-          - name: Overview
-            href: how-to/tools/bing-grounding.md
-            displayName: bing, grounding with bing  
-          - name: How to use Grounding with Bing Search
-            href: how-to/tools/bing-code-samples.md
-      
-        - name: Use Grounding with Bing Custom Search
-          items:
-          - name: Overview
-            href: how-to/tools/bing-custom-search.md
-            displayName: bing, grounding with bing custom search
-          - name: How to use Grounding with Bing Custom Search
-            href: how-to/tools/bing-custom-search-samples.md
-        - name: File search
-          items:
-          - name: Overview
-            displayName: file search, upload
-            href: how-to/tools/file-search.md
-          - name: How to upload files
-            href: how-to/tools/file-search-upload-files.md
         - name: Azure AI Search
           items:
           - name: Overview
@@ -64,12 +40,13 @@ items:
             displayName: azure ai search, search
           - name: How to use Azure AI Search
             href: how-to/tools/azure-ai-search-samples.md
-        - name: Microsoft Fabric
-          href: how-to/tools/fabric.md
-        - name: Logic apps
-          href: how-to/tools/logic-apps.md
-        - name: Function calling
-          href: how-to/tools/function-calling.md
+        - name: Azure Functions
+          items:
+            - name: Overview
+              href: how-to/tools/azure-functions.md
+              displayName: azure functions, functions
+            - name: How to use Azure Functions
+              href: how-to/tools/azure-functions-samples.md
         - name: Code interpreter
           items:
             - name: Overview
@@ -77,7 +54,49 @@ items:
               displayName: code interpreter
             - name: How to use code interpreter
               href: how-to/tools/code-interpreter-samples.md
-        - name: Use OpenAPI defined tools
+        - name: Deep Research (preview)
+          items:
+            - name: Overview
+              href: how-to/tools/deep-research.md
+              displayName: deep research
+            - name: How to use Deep Research
+              href: how-to/tools/deep-research-samples.md
+        - name: File search
+          items:
+          - name: Overview
+            displayName: file search, upload
+            href: how-to/tools/file-search.md
+          - name: How to upload files
+            href: how-to/tools/file-search-upload-files.md
+        - name: Function calling
+          href: how-to/tools/function-calling.md
+        - name: Grounding with Bing Search
+          items:
+          - name: Overview
+            href: how-to/tools/bing-grounding.md
+            displayName: bing, grounding with bing  
+          - name: How to use Grounding with Bing Search
+            href: how-to/tools/bing-code-samples.md
+        - name: Grounding with Bing Custom Search (preview)
+          items:
+          - name: Overview
+            href: how-to/tools/bing-custom-search.md
+            displayName: bing, grounding with bing custom search
+          - name: How to use Grounding with Bing Custom Search
+            href: how-to/tools/bing-custom-search-samples.md
+        - name: Logic apps
+          href: how-to/tools/logic-apps.md
+        - name: Microsoft Fabric (preview)
+          href: how-to/tools/fabric.md
+        - name: Model Context Protocol (preview)
+          items:
+            - name: Overview
+              href: how-to/tools/model-context-protocol.md
+              displayName: model context protocol, mcp
+            - name: How to use Model Context Protocol
+              displayName: model context protocol, mcp samples
+              href: how-to/tools/model-context-protocol-samples.md
+        - name: OpenAPI defined tools
           items:
             - name: Overview
               href: how-to/tools/openapi-spec.md
@@ -86,21 +105,6 @@ items:
               href: how-to/tools/openapi-spec-samples.md
             - name: Invoke an OpenAPI App Service web app
               href: /azure/app-service/invoke-openapi-web-app-from-azure-ai-agent-service?context=/azure/ai-services/agents/context/context
-        - name: Model Context Protocol (MCP)
-          items:
-            - name: Overview
-              href: how-to/tools/model-context-protocol.md
-              displayName: model context protocol, mcp
-            - name: How to use Model Context Protocol
-              displayName: model context protocol, mcp samples
-              href: how-to/tools/model-context-protocol-samples.md
-        - name: Azure Functions
-          items:
-            - name: Overview
-              href: how-to/tools/azure-functions.md
-              displayName: azure functions, functions
-            - name: How to use Azure Functions
-              href: how-to/tools/azure-functions-samples.md
         - name: SharePoint
           items:
             - name: Overview
@@ -116,14 +120,14 @@ items:
           href: ../../ai-services/openai/how-to/content-filters.md?context=/azure/ai-services/agents/context/context
         - name: Use virtual networks
           href: how-to/virtual-networks.md
+        - name: Capability hosts
+          href: concepts/capability-hosts.md
     - name: Multi-agent workflows
       items:
         - name: Connected agents
           href: how-to/connected-agents.md
         - name: Processes
           href: /semantic-kernel/frameworks/process/process-framework
-    - name: Agent catalog
-      href: concepts/agent-catalog.md
 - name: How-to
   items:
     - name: Trigger an agent using Logic Apps
@@ -142,23 +146,3 @@ items:
       href: ../../ai-foundry/responsible-ai/agents/transparency-note.md
     - name: Data, privacy, and security For Azure AI Foundry Agent Service
       href: ../../ai-foundry/responsible-ai/agents/data-privacy-security.md
-- name: Reference
-  items:
-    - name: REST API
-      href: /rest/api/aifoundry/aiagents
-    - name: SDK
-      items:
-      - name: C#
-        href: /dotnet/api/overview/azure/ai.agents.persistent-readme
-      - name: Python
-        href: https://aka.ms/azsdk/azure-ai-projects/python/reference
-      - name: JavaScript
-        href: /javascript/api/overview/azure/ai-projects-readme
-    - name: Data monitoring reference
-      href: reference/monitor-service.md
-- name: Resources
-  items: 
-    - name: Support and help options
-      href: ../../ai-services/cognitive-services-support-options.md?context=/azure/ai-services/agents/context/context
-    - name: Terms of use
-      href: https://www.microsoft.com/licensing/terms/productoffering/MicrosoftAzure/MCA#ServiceSpecificTerms

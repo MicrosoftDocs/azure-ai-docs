@@ -6,7 +6,7 @@ author: sdgilley
 ms.author: sgilley
 manager: scottpolly
 ms.reviewer: dantaylo
-ms.date: 06/30/2025
+ms.date: 07/03/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:

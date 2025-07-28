@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: reference
 
-author: fbsolo-ms1
-ms.author: franksolomon
+author: s-polly
+ms.author: scottpolly
 ms.date: 05/25/2023
 ms.reviewer: ambadal
 ---

@@ -3,8 +3,8 @@ title: How to manage compute sessions
 titleSuffix: Azure Machine Learning
 description: Use the session management panel to manage the active notebook and terminal sessions running on a compute instance.
 services: machine-learning
-author: sdgilley
-ms.author: sgilley
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: lebaro
 ms.service: azure-machine-learning
 ms.subservice: compute

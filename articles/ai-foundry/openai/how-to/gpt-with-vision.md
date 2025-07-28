@@ -37,7 +37,7 @@ Send a POST request to `https://{RESOURCE_NAME}.openai.azure.com/openai/deployme
 - `api-key`: {API_KEY} 
 
 **Body**: 
-The following is a sample request body. The format is the same as the chat completions API for GPT-4, except that the message content can be an array containing text and images (either a valid HTTP or HTTPS URL to an image, or a base-64-encoded image). 
+The following is a sample request body. The format is the same as the chat completions API for GPT-4, except that the message content can be an array containing text and images (either a valid publicly accessible HTTP or HTTPS URL to an image, or a base-64-encoded image).
 
 > [!IMPORTANT]
 > Remember to set a `"max_tokens"` value, or the return output will be cut off.

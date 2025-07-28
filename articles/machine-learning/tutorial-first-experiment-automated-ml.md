@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: tutorial
-author: ssalgadodev
-ms.author: ssalgado
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: manashg
 ms.date: 09/30/2024
 ms.custom: automl, build-2023

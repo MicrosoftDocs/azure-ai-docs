@@ -8,10 +8,10 @@ ms.custom:
   - build-2024
   - code01
 ms.topic: concept-article
-ms.date: 05/14/2025
+ms.date: 07/14/2025
 ms.reviewer: keli19
-ms.author: sgilley
-author: sdgilley
+ms.author: ssalgado
+author: ssalgadodev
 #customer intent: As a developer, I want to learn what it means to fine-tune a model.
 ---
 

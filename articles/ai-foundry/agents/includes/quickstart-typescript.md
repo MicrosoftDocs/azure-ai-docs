@@ -4,7 +4,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: include
-ms.date: 03/28/2025
+ms.date: 07/16/2025
 ms.custom: devx-track-ts
 ---
 
@@ -52,17 +52,17 @@ Next, to authenticate your API requests and run the program, use the [az login](
 az login
 ```
 
-Use the following code to create and run an agent which uploads [a CSV file](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-agents/data/nifty500QuarterlyResults.csv) of data then generates a bar chart from that data. To run this code, you'll need to get the endpoint for your project. This string is in the format:
+Use the following code to create and run an agent which uploads [a CSV file](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-agents/data/syntheticCompanyQuarterlyResults.csv) of data then generates a bar chart from that data. To run this code, you'll need to get the endpoint for your project. This string is in the format:
 
 `https://<AIFoundryResourceName>.services.ai.azure.com/api/projects/<ProjectName>`
 
 [!INCLUDE [endpoint-string-portal](endpoint-string-portal.md)]
 
-For example, your endpoint looks something like:
-
-`https://myresource.services.ai.azure.com/api/projects/myproject`
-
 Set this endpoint as an environment variable named `PROJECT_ENDPOINT` in a `.env` file.
+
+[!INCLUDE [model-name-portal](model-name-portal.md)]
+
+Save the name of your model deployment name as an environment variable named `MODEL_DEPLOYMENT_NAME`. 
 
 > [!IMPORTANT] 
 > * This quickstart code uses environment variables for sensitive configuration. Never commit your `.env` file to version control by making sure `.env` is listed in your `.gitignore` file.

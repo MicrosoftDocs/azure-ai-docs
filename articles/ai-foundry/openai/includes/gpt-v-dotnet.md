@@ -100,10 +100,14 @@ To run the quickstart, follow these steps:
     
     var imageUrl = "YOUR_IMAGE_URL";
     
+    var textPart = ChatMessageContentPart.CreateTextPart("Describe this picture:");
+    var imgPart = ChatMessageContentPart.CreateImagePart(imageUrl); 
+
     var chatMessages = new List<ChatMessage>
     {
         new SystemChatMessage("You are a helpful assistant."),
-        new UserChatMessage($"Describe this picture: {imageUrl}")
+        new UserChatMessage(textPart, imgPart)
+
     };
         
     ChatCompletion chatCompletion = await chatClient.CompleteChatAsync(chatMessages);
@@ -111,6 +115,8 @@ To run the quickstart, follow these steps:
     Console.WriteLine($"[ASSISTANT]:");
     Console.WriteLine($"{chatCompletion.Content[0].Text}");
     ```
+
+1. Replace `YOUR_IMAGE_URL` with the publicly accessible of the image you want to upload.
 
 1. Run the application using the `dotnet run` command or the run button at the top of Visual Studio:
 

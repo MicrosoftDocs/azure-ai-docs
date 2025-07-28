@@ -33,7 +33,7 @@ Three top-level fields: `input`, `preferred_output` and `non_preferred_output`
 ```json
 {  
   "input": {  
-    "messages": {"role": "system", "content": ...},  
+    "messages": [{"role": "system", "content": ...}],  
     "tools": [...],  
     "parallel_tool_calls": true  
   },  

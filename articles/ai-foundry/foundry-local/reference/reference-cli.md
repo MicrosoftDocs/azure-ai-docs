@@ -8,10 +8,10 @@ ms.subservice: foundry-local
 ms.custom: build-2025
 ms.author: jburchel
 ms.reviewer: samkemp
-author: jburchel
+author: jonburchel
 reviewer: samuel100
 ms.topic: concept-article
-ms.date: 05/20/2025
+ms.date: 07/03/2025
 ---
 
 # Foundry Local CLI Reference

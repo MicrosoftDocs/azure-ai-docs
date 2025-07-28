@@ -246,7 +246,7 @@ The following headers are included with each Document translation API request:
             "inProgress": 1,
             "notYetStarted": 0,
             "cancelled": 0,
-            "totalCharacterCharged": 0,
+            "totalCharacterCharged": 1355,
             "totalImageScansSucceeded": 2,
             "totalImageScansFailed": 0
         }

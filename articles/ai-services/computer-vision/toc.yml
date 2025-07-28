@@ -305,39 +305,13 @@ items:
     - name: Client-side
       items:
       - name: Kotlin (Android)
-        href: https://aka.ms/azure-ai-vision-face-liveness-client-sdk-android-api-reference
+        href: https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main/docs/face
       - name: Swift (iOS)
-        href: https://aka.ms/azure-ai-vision-face-liveness-client-sdk-ios-api-reference
+        href: https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main/docs/face
       - name: JavaScript (Web)
         href: https://aka.ms/azure-ai-vision-face-liveness-client-sdk-web-api-reference
       - name: Understand the liveness versions
         href: sdk/understand-the-liveness-sdk-versions.md
-- name: Video Retrieval
-  items:
-  - name: Video Retrieval overview
-    href: intro-to-spatial-analysis-public-preview.md
-  - name: Responsible use of AI
-    items:
-    - name: Transparency note
-      href: ../../ai-foundry/responsible-ai/computer-vision/transparency-note-spatial-analysis.md
-    - name: Integration and responsible use
-      items:
-      - name: Responsible use in AI deployment 
-        href: ../../ai-foundry/responsible-ai/computer-vision/responsible-use-deployment.md
-      - name: Disclosure design guidelines
-        href: ../../ai-foundry/responsible-ai/computer-vision/disclosure-design.md
-      - name: Research insights
-        href: ../../ai-foundry/responsible-ai/computer-vision/research-insights.md
-    - name: Data, privacy, and security
-      href: ../../ai-foundry/responsible-ai/computer-vision/compliance-privacy-security-2.md
-  - name: How-to guides
-    items:
-    - name: Call the Video Retrieval APIs
-      href: how-to/video-retrieval.md
-  - name: Reference
-    items:
-    - name: Video Retrieval REST API
-      href: reference-video-search.md
 - name: Optical character recognition (OCR) (legacy)
   items:
   - name: OCR overview

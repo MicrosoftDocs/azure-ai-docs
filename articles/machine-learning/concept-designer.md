@@ -9,7 +9,9 @@ ms.author: lagayhar
 ms.reviewer: lagayhar
 author: lgayhardt
 ms.date: 05/21/2024
-ms.custom: designer
+ms.custom:
+  - designer
+  - sfi-image-nochange
 ---
 
 # What is Designer (v2) in Azure Machine Learning?

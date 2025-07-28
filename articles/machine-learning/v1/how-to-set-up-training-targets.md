@@ -3,8 +3,8 @@ title: Configure a training job
 titleSuffix: Azure Machine Learning
 description: Train your machine learning model on various training environments (compute targets). You can easily switch between training environments. 
 services: machine-learning
-author: sdgilley
-ms.author: sgilley
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: sgilley
 ms.service: azure-machine-learning
 ms.subservice: training

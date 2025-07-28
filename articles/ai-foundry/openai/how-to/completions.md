@@ -5,7 +5,7 @@ description: Learn how to generate or manipulate text, including code by using t
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 03/26/2025
+ms.date: 07/02/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false

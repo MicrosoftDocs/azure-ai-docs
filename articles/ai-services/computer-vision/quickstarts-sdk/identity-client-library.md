@@ -47,6 +47,12 @@ feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 
 ::: zone-end
 
+::: zone pivot="programming-language-typescript"
+
+[!INCLUDE [TypeScript quickstart](../includes/quickstarts-sdk/identity-typescript-sdk.md)]
+
+::: zone-end
+
 ::: zone pivot="programming-language-rest-api"
 
 [!INCLUDE [cURL quickstart](../includes/identity-curl-quickstart.md)]

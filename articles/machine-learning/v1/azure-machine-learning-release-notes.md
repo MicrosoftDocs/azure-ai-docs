@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: core
 ms.custom: UpdateFrequency5, devx-track-python
 ms.topic: reference
-ms.author: larryfr
-author: BlackMist
+ms.author: scottpolly
+author: s-polly
 ms.date: 11/12/2024
 ---
 

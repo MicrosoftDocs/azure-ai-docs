@@ -417,9 +417,59 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/computer-vision/use-case-queue-time.md",
-      "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
+       "redirect_url": "/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/includes/video-retrieval-deprecation.md",
+      "redirect_url": "/azure/ai-services/content-understanding/video/overview",
       "redirect_document_id": false
     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/intro-to-spatial-analysis-public-preview.md",
+       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-foundry/responsible-ai/computer-vision/transparency-note-spatial-analysis.md",
+       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-foundry/responsible-ai/computer-vision/responsible-use-deployment.md",
+       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-foundry/responsible-ai/computer-vision/disclosure-design.md",
+       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-foundry/responsible-ai/computer-vision/research-insights.md",
+       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-foundry/responsible-ai/computer-vision/compliance-privacy-security-2.md",
+       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/reference-video-search.md",
+       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/video-retrieval.md",
+       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/includes/video-retrieval-input.md",
+       "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+       "redirect_document_id": false
+     },
     {
       "source_path_from_root": "/articles/ai-services/document-intelligence/concept-document-intelligence-studio.md",
       "redirect_url": "/azure/ai-services/document-intelligence/studio-overview",
@@ -427,72 +477,77 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/quickstart-custom-commands-application.md",
-      "redirect_url": "/azure/ai-services/speech-service/custom-commands",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-develop-custom-commands-application.md",
-      "redirect_url": "/azure/ai-services/speech-service/custom-commands",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-commands-setup-speech-sdk.md",
-      "redirect_url": "/azure/ai-services/speech-service/custom-commands",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-commands-send-activity-to-client.md",
-      "redirect_url": "/azure/ai-services/speech-service/custom-commands",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-commands-setup-web-endpoints.md",
-      "redirect_url": "/azure/ai-services/speech-service/custom-commands",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-commands-update-command-from-client.md",
-      "redirect_url": "/azure/ai-services/speech-service/custom-commands",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-commands-update-command-from-web-endpoint.md",
-      "redirect_url": "/azure/ai-services/speech-service/custom-commands",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-commands-deploy-cicd.md",
-      "redirect_url": "/azure/ai-services/speech-service/custom-commands",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-commands-developer-flow-test.md",
-      "redirect_url": "/azure/ai-services/speech-service/custom-commands",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-commands-debug-build-time.md",
-      "redirect_url": "/azure/ai-services/speech-service/custom-commands",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-commands-debug-runtime.md",
-      "redirect_url": "/azure/ai-services/speech-service/custom-commands",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/custom-commands-references.md",
-      "redirect_url": "/azure/ai-services/speech-service/custom-commands",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/custom-commands-encryption-of-data-at-rest.md",
-      "redirect_url": "/azure/ai-services/speech-service/custom-commands",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/faq-voice-assistants.yml",
-      "redirect_url": "/azure/ai-services/speech-service/custom-commands",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/custom-commands.md",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
       "redirect_document_id": false
     },
     {
@@ -1156,6 +1211,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/ai-services/speech-service/voice-assistants.md",
+      "redirect_url": "/azure/ai-services/speech-service/voice-live",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/content-understanding/concepts/capabilities.md",
       "redirect_url": "/azure/ai-services/content-understanding/concepts/analyzer-templates",
       "redirect_document_id": true
@@ -1173,7 +1233,7 @@
     {
       "source_path_from_root": "/articles/ai-services/openai/concepts/content-filter-personal-information.md",
       "redirect_url": "/azure/ai-services/openai/concepts/content-filter",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/agents/concepts/agent-catalog.md",
@@ -2709,6 +2769,12 @@
       "source_path_from_root": "/articles/ai-services/openai/whisper-quickstart.md",
       "redirect_url": "/azure/ai-foundry/openai/whisper-quickstart",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/qnamaker/tutorials/integrate-with-power-virtual-assistant-fallback-topic.md",
+      "redirect_url": "/azure/ai-services/language-service/tutorials/power-automate",
+      "redirect_document_id": true
     }
+
   ]
 }

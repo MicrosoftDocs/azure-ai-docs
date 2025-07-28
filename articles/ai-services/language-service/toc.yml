@@ -7,6 +7,9 @@ items:
   - name: What is Azure AI Language?
     href: overview.md
     displayName: overview, introduction
+  - name: What's new
+    href: whats-new.md
+    displayName: release notes, updates, new features, changelog
   - name: Pricing
     href: https://aka.ms/unifiedLanguagePricing
   - name: Language support
@@ -18,9 +21,6 @@ items:
   - name: Quotas and limits
     href: concepts/data-limits.md
     displayName: service limits, rate, usage
-  - name: What's new
-    href: whats-new.md
-    displayName: release notes, updates, new features, changelog
 - name: Azure AI Language capabilities
   items:
   - name: Custom text classification
@@ -148,7 +148,7 @@ items:
             href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
           - name: Azure AI containers overview
             href: ../cognitive-services-container-support.md
-        - name: Create projects
+        - name: Create a CLU Foundry project 
           href: conversational-language-understanding/how-to/create-project.md
           displayName: creation, clu project, setup
         - name: Build a schema
@@ -160,7 +160,7 @@ items:
         - name: Train a model
           href: conversational-language-understanding/how-to/train-model.md
           displayName: training, clu training, conversational model training
-        - name: Configure Azure resources
+        - name: Configure Azure and CLU resources
           href: conversational-language-understanding/how-to/configure-azure-resources.md
           displayName: configuration, fine-tuning, azure ai foundry, azure portal 
         - name: View your model's performance
@@ -564,7 +564,7 @@ items:
         href: question-answering/how-to/chit-chat.md
       - name: Change default answer
         href: question-answering/how-to/change-default-answer.md
-      - name: Configure Azure resources
+      - name: Configure your environment and Azure resources
         href: question-answering/how-to/configure-azure-resources.md
         displayName: configuration, fine-tuning, azure ai foundry, azure portal 
       - name: Analytics
@@ -839,8 +839,14 @@ items:
       items:
       - name: C#
         items:
-        - name: Text analysis
-          href: /dotnet/api/overview/azure/ai.textanalytics-readme?view=azure-dotnet-preview&preserve-view=true
+        - name: Language Text
+          href: /dotnet/api/overview/azure/ai.language.text-readme?view=azure-dotnet-preview&preserve-view=true
+        - name: Conversational Language Understanding
+          href: /dotnet/api/overview/azure/ai.language.conversations-readme?view=azure-dotnet-preview&preserve-view=true
+        - name: Conversations Authoring
+          href: /dotnet/api/overview/azure/ai.language.conversations.authoring-readme?view=azure-dotnet-preview&preserve-view=true
+        - name: Text Authoring
+          href: /dotnet/api/overview/azure/ai.language.text.authoring-readme?view=azure-dotnet-preview&preserve-view=true
         - name: Custom question answering
           href: /dotnet/api/overview/azure/ai.language.questionanswering-readme?view=azure-dotnet-preview&preserve-view=true
       - name: Python

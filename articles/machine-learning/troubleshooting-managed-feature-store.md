@@ -5,8 +5,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.custom: build-2023, ignite-2023
-author: fbsolo-ms1
-ms.author: franksolomon
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: qiax
 ms.topic: troubleshooting-general 
 ms.date: 10/29/2024

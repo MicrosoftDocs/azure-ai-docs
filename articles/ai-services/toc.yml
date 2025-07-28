@@ -138,7 +138,7 @@ items:
   - name: Azure Government
     href: /azure/azure-government/compare-azure-government-global-azure
   - name: Videos
-    href: https://azure.microsoft.com/resources/videos/index/?services=cognitive-services
+    href: https://azure.microsoft.com/resources/videos/?services=cognitive-services
   - name: Azure Blog
     href: https://azure.microsoft.com/blog/
   - name: Artificial Intelligence and Machine Learning Blog

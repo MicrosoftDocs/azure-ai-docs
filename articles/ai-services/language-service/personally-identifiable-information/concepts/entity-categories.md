@@ -8,7 +8,9 @@ ms.service: azure-ai-language
 ms.topic: conceptual
 ms.date: 06/04/2025
 ms.author: lajanuar
-ms.custom: language-service-pii
+ms.custom:
+  - language-service-pii
+  - sfi-ropc-nochange
 ---
 
 # Supported PII entities

@@ -7,6 +7,7 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
   - ignite-2024
@@ -260,7 +261,7 @@ SearchResults<Hotel> response = await searchClient.SearchAsync<Hotel>(
 
 Only the top 50 matches from the initial results can be semantically ranked. As with all queries, a response is composed of all fields marked as retrievable, or just those fields listed in the `select` parameter. A response includes the original relevance score, and might also include a count, or batched results, depending on how you formulated the request.
 
-In semantic ranking, the response has more elements: a new [semantically ranked relevance score](semantic-search-overview.md#how-ranking-is-scored), an optional caption in plain text and with highlights, and an optional [answer](semantic-answers.md). If your results don't include these extra elements, then your query might be misconfigured. As a first step towards troubleshooting the problem, check the semantic configuration to ensure it's specified in both the index definition and query.
+In semantic ranking, the response has more elements: a new [semantically ranked relevance score](semantic-search-overview.md#how-results-are-scored), an optional caption in plain text and with highlights, and an optional [answer](semantic-answers.md). If your results don't include these extra elements, then your query might be misconfigured. As a first step towards troubleshooting the problem, check the semantic configuration to ensure it's specified in both the index definition and query.
 
 In a client app, you can structure the search page to include a caption as the description of the match, rather than the entire contents of a specific field. This approach is useful when individual fields are too dense for the search results page.
 
@@ -356,4 +357,4 @@ If you anticipate consistent throughput requirements near, at, or higher than th
 Semantic ranking can be used in hybrid queries that combine keyword search and vector search into a single request and a unified response.
 
 > [!div class="nextstepaction"]
-> [Hybrid query with semantic ranker](hybrid-search-how-to-query.md#semantic-hybrid-search)
+> [Hybrid query with semantic ranker](hybrid-search-how-to-query.md#example-semantic-hybrid-search)
