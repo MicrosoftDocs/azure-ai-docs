@@ -65,6 +65,16 @@ Users can use preference fine tuning with base models as well as models that hav
 4. Select hyperparameters, defaults are recommended for initial experimentation.
 5. Review the selections and create a fine tuning job.
 
+## Direct preference optimization - REST API
+
+```bash
+curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs'
+-H "api-key: $AZURE_OPENAI_API_KEY" 
+-H 'Content-Type: application/json' 
+-H 'task_type: chat' 
+--data '{ "model": "gpt-4.1-mini-2025-04-14", "training_file": "file-d02c607351994d29987aece550ac81c0", "validation_file": "file-d02c607351994d29987aece550ac81c0", "prompt_loss_weight": 0.1, "suffix": "Pause_Resume", "method":{ "type":"dpo", "dpo":{ "beta":0.1, "l2_multiplier":0.1 }}}'
+
+```
 
 ## Next steps
 
