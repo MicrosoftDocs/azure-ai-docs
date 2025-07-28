@@ -1,7 +1,7 @@
 ---
 title: Create a CLU project with REST API
 titleSuffix: Azure AI services
- description: This article shows you how to createa CLU project using the REST API
+description: This article shows you how to create a CLU project using the REST API
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
