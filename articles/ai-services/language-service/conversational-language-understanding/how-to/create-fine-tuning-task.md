@@ -98,8 +98,6 @@ In this guide, we walk you through configuring a fine-tuning workspace in the Az
 
 ## Delete a project
 
-### [Azure AI Foundry](#tab/azure-ai-foundry)
-
 If you no longer need your project, you can delete it from the Azure AI Foundry.
 
 1. Navigate to the [Azure AI Foundry](https://ai.azure.com/) home page. Initiate the authentication process by signing in, unless you already completed this step and your session is active.
@@ -122,4 +120,7 @@ To delete the hub along with all its projects:
 
 ## Next steps
 
-After you create your fine-tuning workspace, you can start your task by defining your intents and entities and adding them to your schema. For more information, *see* [Build your fine-tuning schema](build-schema.md)
+After you create your fine-tuning workspace, you can start your task by defining your intents and entities and adding them to your schema. 
+
+* [Build your fine-tuning schema](build-schema.md)
+* [Label utterances](tag-utterances.md)
