@@ -1215,6 +1215,8 @@ Generates a batch of images from a text caption on a given DALLE or gpt-image-1 
 | output_compression | integer | The compression level (0-100%) for the generated images. This parameter is only supported for gpt-image-1 with the jpeg output format. | No | 100 |
 | output_format | [imagesOutputFormat](#imagesoutputformat) | The file format in which the generated images are returned. Only supported for gpt-image-1. | No | png |
 | prompt | string | A text description of the desired image(s). The maximum length is 32000 characters for gpt-image-1 and 4000 characters for dall-e-3 | Yes |  |
+|partial_images| integer | The number of partial images to generate. This parameter is used for streaming responses that return partial images. Value must be between 0 and 3. When set to 0, the response will be a single image sent in one streaming event. Note that the final image may be sent before the full number of partial images are generated if the full image is generated more quickly. | 0 |
+| stream | boolean | Edit the image in streaming mode. | no | `false` |
 | quality | [imageQuality](#imagequality) | The quality of the image that will be generated. | No | auto |
 | response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which the generated images are returned. This parameter isn't supported for `gpt-image-1` which will always return base64-encoded images.<br>Possible values: `url`, `b64_json`. | No | url |
 | size | [imageSize](#imagesize) | The size of the generated images. | No | auto |
@@ -1349,10 +1351,13 @@ Edits an image from a text caption on a given gpt-image-1 model deployment
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | image | string or array | The image(s) to edit. Must be a supported image file or an array of images. Each image should be a png, or jpg file less than 50MB. | Yes |  |
+| input_fidelity| string | Control how much effort the model will exert to match the style and features, especially facial features, of input images. This parameter is only supported for gpt-image-1. Supports `high` and `low`. | no |  `low`. | 
 | mask | string | An additional image whose fully transparent areas (e.g., where alpha is zero) indicate where the image should be edited. If there are multiple images provided, the mask will be applied to the first image. Must be a valid PNG file, less than 4MB, and have the same dimensions as the image. | No |  |
 | n | integer | The number of images to generate.  Must be between 1 and 10. | No | 1 |
 | prompt | string | A text description of the desired image(s). The maximum length is 32000 characters. | Yes |  |
 | quality | [imageQuality](#imagequality) | The quality of the image that will be generated. | No | auto |
+|partial_images| The number of partial images to generate. This parameter is used for streaming responses that return partial images. Value must be between 0 and 3. When set to 0, the response will be a single image sent in one streaming event. Note that the final image may be sent before the full number of partial images are generated if the full image is generated more quickly. |
+| stream | boolean | Edit the image in streaming mode. | no | `false` |
 | response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which the generated images are returned. | No | url |
 | size | [imageSize](#imagesize) | The size of the generated images. | No | auto |
 | user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
