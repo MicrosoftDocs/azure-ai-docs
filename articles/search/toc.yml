@@ -18,28 +18,22 @@ items:
   items:
   - name: Data
     items:
+    - name: Data import strategies
+      href: search-what-is-data-import.md
     - name: Search index
       href: search-what-is-an-index.md
     - name: Vector index
       href: vector-store.md
     - name: Knowledge store
       href: knowledge-store-concept-intro.md
-    - name: Data import strategies
-      href: search-what-is-data-import.md
     - name: Indexers
       href: search-indexer-overview.md
   - name: Applied AI
     items:
-    - name: Multimodal search
-      href: multimodal-search-overview.md
-    - name: Built-in vectorization
-      href: vector-search-integrated-vectorization.md
     - name: AI enrichment during indexing
       href: cognitive-search-concept-intro.md
-    - name: Enrichment cache
-      href: cognitive-search-incremental-indexing-conceptual.md
-    - name: Skillsets
-      href: cognitive-search-working-with-skillsets.md
+    - name: Built-in vectorization
+      href: vector-search-integrated-vectorization.md
   - name: Retrieval
     items:
     - name: Agentic search
@@ -50,6 +44,8 @@ items:
       href: vector-search-overview.md
     - name: Hybrid search
       href: hybrid-search-overview.md
+    - name: Multimodal search
+      href: multimodal-search-overview.md
     - name: Retrieval Augmented Generation (RAG)
       href: retrieval-augmented-generation-overview.md
     - name: Other query types
@@ -348,8 +344,12 @@ items:
         href: search-howto-index-sharepoint-online.md
     - name: Skillsets (indexers)
       items:
+      - name: Skillsets overview
+        href: cognitive-search-working-with-skillsets.md
       - name: Create a skillset
         href: cognitive-search-defining-skillset.md
+      - name: Design tips
+        href: cognitive-search-concept-troubleshooting.md
       - name: Attach an Azure AI resource
         href: cognitive-search-attach-cognitive-services.md
       - name: Define an index projection
@@ -364,10 +364,10 @@ items:
         href: cognitive-search-output-field-mapping.md
       - name: Process image files
         href: cognitive-search-concept-image-scenarios.md
-      - name: Cache (incremental) enrichment
-        href: search-howto-incremental-index.md
-      - name: Design tips
-        href: cognitive-search-concept-troubleshooting.md
+      - name: Configure an enrichment cache
+        href: enrichment-cache-how-to-configure.md
+      - name: Manage an enrichment cache
+        href: enrichment-cache-how-to-manage.md
       - name: Best practices - GenAI Prompt skill
         href: responsible-ai-best-practices-genai-prompt-skill.md
       - name: GenAI Prompt Skill - Example Usage Guide

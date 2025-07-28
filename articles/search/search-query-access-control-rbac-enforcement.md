@@ -76,7 +76,7 @@ Content-Type: application/json
 }
 ```
 
-## Related content
+## See also
 
 - [Tutorial: Index ADLS Gen2 permission metadata](tutorial-adls-gen2-indexer-acls.md) 
 

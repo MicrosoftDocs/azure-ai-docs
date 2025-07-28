@@ -50,7 +50,7 @@ This article supplements [**Index data from ADLS  Gen2**](search-howto-index-azu
   + [Custom Web API skill](cognitive-search-custom-skill-web-api.md)
   + [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)
   + [Knowledge store](knowledge-store-concept-intro.md)
-  + [Indexer enrichment cache](search-howto-incremental-index.md)
+  + [Indexer enrichment cache](enrichment-cache-how-to-configure.md)
   + [Debug sessions](cognitive-search-debug-session.md)
 
 ## Support for the permission model
@@ -298,3 +298,8 @@ Choose one of the following mechanisms, depending on how many items changed:
 
 To effectively manage blob deletion, ensure that you have enabled [deletion tracking](search-howto-index-changed-deleted-blobs.md) before your indexer runs for the first time. This feature allows the system to detect deleted blobs from your source and have them deleted from the index.
 
+## See also
+
++ [Connect to Azure AI Search using roles](search-security-rbac.md)
++ [Query-Time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md)
++ [azure-search-python-samples/Quickstart-Document-Permissions-Push-API](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Quickstart-Document-Permissions-Push-API)

@@ -13,13 +13,18 @@ ms.date: 07/23/2025
 
 # Relevance in Azure AI Search
 
-In a query operation, the relevance of any given result is measured by a ranking algorithm that determines the strength of a match based on how closely the result aligns with the query’s content or characteristics. An algorithm assigns a score, and results are rank ordered by that score, with the most relevant matches returned in the response. 
+In a query operation, the relevance of any given result is determined by a ranking algorithm that evaluates the strength of a match based on how closely the indexed content and the query align. An algorithm assigns a score, and results are ranked by that score and returned in the response. 
 
 Ranking occurs whenever the query request includes full text or vector queries. It doesn't occur if the query invokes strict pattern matching, such as a filter-only query or a specialized query form like autocomplete, suggestions, geospatial search, fuzzy search, or regular expression search. A uniform search score of 1.0 indicates the absence of a ranking algorithm.
 
-The query engine in Azure AI Search supports a multi-level approach to ranking search results, where there's a built-in ranking modality for each query type, plus extra ranking capabilities for extended relevance tuning.
+***Relevance tuning*** can be used to boost search scores based on extra criteria such as freshness or proximity. In Azure AI Search, relevance tuning is primarily directed at textual and numeric (nonvector) content when you apply a [scoring profile](#custom-boosting-logic-using-scoring-profiles) or invoke the [semantic ranker](semantic-search-overview.md). 
+
+> [!NOTE]
+> In Azure AI Search, there's no explicit relevance tuning capabilities for vector content, but you can experiment between Hierarchical Navigable Small World (HNSW) and exhaustive K-nearest neighbors (KNN) to see if one algorithm outperforms the other for your scenario. HNSW graphing with an exhaustive KNN override at query time is the most flexible approach for comparison testing. You can also experiment with various embedding models to see which ones produce higher quality results.
 
 ## Levels of ranking
+
+The query engine in Azure AI Search supports a multi-level approach to ranking search results, where there's a built-in ranking modality for each query type, plus extra ranking capabilities for extended relevance tuning.
 
 This section describes the levels of scoring operations. For an illustration of how they work together, see the [diagram](#diagram-of-ranking-algorithms) in this article. A [comparison of all search score types and ranges](#types-of-search-scores) is also provided in this article.
 
@@ -31,7 +36,7 @@ This section describes the levels of scoring operations. For an illustration of 
 
 ## Custom boosting logic using scoring profiles
 
-[Scoring profiles](index-add-scoring-profiles.md) are an optional feature for boosting scores based on extra user-defined criteria. Criteria can include weighted fields, or functions that boost by freshness, proximity, magnitude, or range. There's no extra charge for using a scoring profile. To use a scoring profile, you define it in an index and then specify it on a query. 
+[Scoring profiles](index-add-scoring-profiles.md) are an optional feature for boosting scores based on extra user-defined criteria. Criteria can include weighted fields where a match found in a specific field is given more weight than the same match found in a different field. Criteria can also be defined through functions that boost by freshness, proximity, magnitude, or range. There's no extra costs associated with scoring profiles. To use a scoring profile, you define it in an index and then specify it on a query. 
 
 Scoring logic applies to text and numeric nonvector content. You can use scoring profiles with:
 
