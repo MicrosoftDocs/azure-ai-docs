@@ -218,6 +218,10 @@ Use the *output_format* parameter to specify the format of the generated image. 
 
 Use the *output_compression* parameter to specify the compression level for the generated image. Input an integer between `0` and `100`, where `0` is no compression and `100` is maximum compression. The default is `100`.
 
+#### Streaming 
+
+Use the *stream* parameter to enable streaming responses. When set to `true`, the API returns partial images as they are generated. This provides faster visual feedback for users and improves perceived latency. Set the *partial_images* parameter to control how many partial images are generated (1-3).
+
 
 #### [DALL-E 3](#tab/dalle-3)
 
@@ -327,11 +331,20 @@ The following API body parameters are available for image editing models, in add
 
 The *image* value indicates the image file you want to edit.
 
+#### Input fidelity 
+
+The *input_fidelity* parameter controls how much effort the model will exert to match the style and features, especially facial features, of input images 
+
+This allows you to make subtle edits to an image without altering unrelated areas. When you use high input fidelity, faces are preserved more accurately than in standard mode. 
+
 
 #### Mask
 
 The *mask* parameter is the same type as the main *image* input parameter. It defines the area of the image that you want the model to edit, using fully transparent pixels (alpha of zero) in those areas. The mask must be a PNG file and have the same dimensions as the input image.
 
+#### Streaming 
+
+Use the *stream* parameter to enable streaming responses. When set to `true`, the API returns partial images as they are generated. This provides faster visual feedback for users and improves perceived latency. Set the *partial_images* parameter to control how many partial images are generated (1-3).
 
 #### [DALL-E 3](#tab/dalle-3)
 
