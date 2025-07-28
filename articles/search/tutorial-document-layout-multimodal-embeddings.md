@@ -27,7 +27,7 @@ In this tutorial, you use:
 
 + The [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) to vectorize text and images.
 
-+ A search index configured to store text and image embeddings and support for vector-based similarity search.
++ A search index configured to store extracted text and image verbalizations. Some content is vectorized for vector-based similarity search.
 
 <!-- Using a REST client and the [Search REST APIs](/rest/api/searchservice/), you will:
 

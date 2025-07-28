@@ -28,7 +28,7 @@ In this tutorial, you use:
 
 + The [GenAI Prompt skill (preview)](cognitive-search-skill-genai-prompt.md) that calls a chat completion model to create descriptions of visual content.
 
-+ A search index configured to store text and image embeddings and support for vector-based similarity search.
++ A search index configured to store extracted text and image verbalizations. Some content is vectorized for vector-based similarity search.
 
 <!-- Using a REST client and the [Search REST APIs](/rest/api/searchservice/), you will:
 
