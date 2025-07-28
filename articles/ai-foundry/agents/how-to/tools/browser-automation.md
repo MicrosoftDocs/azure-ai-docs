@@ -12,16 +12,16 @@ ms.author: aahi
 ms.custom: azure-ai-agents
 ---
 
-## Browser automation (preview)
+# Browser automation (preview)
 
 > [!CUATION]
-> We strongly recommend using the Browser Automation Tool on a low privilege virtual machine with no access to sensitive data.
+> We strongly recommend using the browser automation Tool on a low privilege virtual machine with no access to sensitive data.
 
-Browser Automation tool enables users to perform real-world browser tasks through natural language prompts. Powered by [Microsoft Playwright Workspaces (preview)](/azure/playwright-testing/overview-what-is-microsoft-playwright-testing), it facilitates multi-turn conversations to automate browser-based workflows such as searching, navigating, filling forms, and booking.
+Browser automation tool enables users to perform real-world browser tasks through natural language prompts. Powered by [Microsoft Playwright Workspaces (preview)](/azure/playwright-testing/overview-what-is-microsoft-playwright-testing), it facilitates multi-turn conversations to automate browser-based workflows such as searching, navigating, filling forms, and booking.
 
 ## How it works
 
-The interaction begins when the user sends a user query to an agent connected to the browser automation tool. For example, *"Show me all available yoga classes this week from the following url <url>".* Upon receiving the request, Azure AI Foundry Agent Service creates an isolated browser session using your own provisioned Playwright workspace. Each session is sandboxed for privacy and security. The browser session mimics a real user browsing experience, enabling interaction with complex web UIs (for example, class schedules, filters, or booking pages). The browser performs Playwright-driven actions, such as navigating to relevent pages, and applying filters or parameters based on user preferences (such as time, location, instructor).  Combining the model with Playwright allows the model to see the browser screen by parsing the HTML or XML pages into DOM documents, make decisions, and perform actions like clicking, typing, and navigating websites. You should exercise caution when using this tool.
+The interaction begins when the user sends a user query to an agent connected to the browser automation tool. For example, *"Show me all available yoga classes this week from the following url \<url\>".* Upon receiving the request, Azure AI Foundry Agent Service creates an isolated browser session using your own provisioned Playwright workspace. Each session is sandboxed for privacy and security. The browser session mimics a real user browsing experience, enabling interaction with complex web UIs (for example, class schedules, filters, or booking pages). The browser performs Playwright-driven actions, such as navigating to relevent pages, and applying filters or parameters based on user preferences (such as time, location, instructor).  Combining the model with Playwright allows the model to see the browser screen by parsing the HTML or XML pages into DOM documents, make decisions, and perform actions like clicking, typing, and navigating websites. You should exercise caution when using this tool.
 
 An example flow would be:
 
@@ -44,8 +44,6 @@ The browser automation tool supports multi-turn conversations, allowing the user
 - Product Discovery: Navigate ecommerce or review sites, search by criteria, and extract summaries.
 
 ## Setup
-
-## Playwright workspace resource setup:
 
 1. Create a [Playwright Workspace](https://aka.ms/pww/docs/manage-workspaces) resource.
 
