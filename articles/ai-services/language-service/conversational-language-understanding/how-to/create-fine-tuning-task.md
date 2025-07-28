@@ -80,7 +80,7 @@ In this guide, we walk you through configuring a fine-tuning workspace in the Az
 
 1. Once the task creation is complete, select the task from the AI Service fine-tuning window to arrive at the Getting started with fine-tuning page.
 
-   :::image type="content" source="../media/create-project/getting-started-fine-tuning.png" alt-text="Screenshot of the getting started with fine-tuning page in the Azure AI Foundry." lightbox="../media/create-project/getting-started-fine-tuning.png:::
+   :::image type="content" source="../media/create-project/getting-started-fine-tuning.png" alt-text="Screenshot of the getting started with fine-tuning page in the Azure AI Foundry." lightbox="../media/create-project/getting-started-fine-tuning.png":::
 
 ## View and manage project details
 
