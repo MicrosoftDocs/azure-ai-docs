@@ -18,6 +18,14 @@ ms.custom:
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
+## July 2025 
+
+### GPT-image-1 update (preview)
+
+- Input fidelity parameter: The `input_fidelity` parameter in the image edits API lets you control how closely the model conveys the style and features of the subjects in the original (input) image.
+
+- Partial image streaming: The image generation and image edits APIs support partial image streaming, where they return images with partially rendered content throughout the image generation process. Display these images to the user to provide earlier visual feedback and show the progress of the image generation operation. 
+
 ## June 2025
 
 ### codex-mini & o3-pro models released
