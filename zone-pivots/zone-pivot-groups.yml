@@ -1451,7 +1451,7 @@ groups:
   prompt: Choose a project type
   pivots:
   - id: fdp-project
-    title: Foundry project
+    title: Foundry project (recommended)
   - id: hub-project
     title: Hub based project 
 # Owner: sgilley
