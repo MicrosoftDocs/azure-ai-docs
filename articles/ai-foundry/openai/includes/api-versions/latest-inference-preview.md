@@ -1216,7 +1216,7 @@ Generates a batch of images from a text caption on a given DALLE or gpt-image-1 
 | output_format | [imagesOutputFormat](#imagesoutputformat) | The file format in which the generated images are returned. Only supported for gpt-image-1. | No | png |
 | prompt | string | A text description of the desired image(s). The maximum length is 32000 characters for gpt-image-1 and 4000 characters for dall-e-3 | Yes |  |
 | quality | [imageQuality](#imagequality) | The quality of the image that will be generated. | No | auto |
-| response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which the generated images are returned. | No | url |
+| response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which the generated images are returned. This parameter isn't supported for `gpt-image-1` which will always return base64-encoded images.<br>Possible values: `url`, `b64_json`. | No | url |
 | size | [imageSize](#imagesize) | The size of the generated images. | No | auto |
 | style | [imageStyle](#imagestyle) | The style of the generated images. Only supported for dall-e-3. | No | vivid |
 | user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
@@ -1348,9 +1348,9 @@ Edits an image from a text caption on a given gpt-image-1 model deployment
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| image | string or array | The image(s) to edit. Must be a supported image file or an array of images. Each image should be a png, or jpg file less than 25MB. | Yes |  |
+| image | string or array | The image(s) to edit. Must be a supported image file or an array of images. Each image should be a png, or jpg file less than 50MB. | Yes |  |
 | mask | string | An additional image whose fully transparent areas (e.g., where alpha is zero) indicate where the image should be edited. If there are multiple images provided, the mask will be applied to the first image. Must be a valid PNG file, less than 4MB, and have the same dimensions as the image. | No |  |
-| n | integer | The number of images to generate. | No | 1 |
+| n | integer | The number of images to generate.  Must be between 1 and 10. | No | 1 |
 | prompt | string | A text description of the desired image(s). The maximum length is 32000 characters. | Yes |  |
 | quality | [imageQuality](#imagequality) | The quality of the image that will be generated. | No | auto |
 | response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which the generated images are returned. | No | url |
@@ -6237,7 +6237,7 @@ Allows to set transparency for the background of the generated image(s). This pa
 | output_format | [imagesOutputFormat](#imagesoutputformat) | The file format in which the generated images are returned. Only supported for gpt-image-1. | No | png |
 | prompt | string | A text description of the desired image(s). The maximum length is 32000 characters for gpt-image-1 and 4000 characters for dall-e-3 | Yes |  |
 | quality | [imageQuality](#imagequality) | The quality of the image that will be generated. | No | auto |
-| response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which the generated images are returned. | No | url |
+| response_format | [imagesResponseFormat](#imagesresponseformat) | The format in which the generated images are returned. Only supported for dall-e-3. | No | url |
 | size | [imageSize](#imagesize) | The size of the generated images. | No | auto |
 | style | [imageStyle](#imagestyle) | The style of the generated images. Only supported for dall-e-3. | No | vivid |
 | user | string | A unique identifier representing your end-user, which can help to monitor and detect abuse. | No |  |
