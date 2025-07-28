@@ -348,6 +348,8 @@ items:
         href: cognitive-search-working-with-skillsets.md
       - name: Create a skillset
         href: cognitive-search-defining-skillset.md
+      - name: Design tips
+        href: cognitive-search-concept-troubleshooting.md
       - name: Attach an Azure AI resource
         href: cognitive-search-attach-cognitive-services.md
       - name: Define an index projection
@@ -362,12 +364,10 @@ items:
         href: cognitive-search-output-field-mapping.md
       - name: Process image files
         href: cognitive-search-concept-image-scenarios.md
-      - name: Enrichment cache
-        href: cognitive-search-incremental-indexing-conceptual.md
-      - name: Cache (incremental) enrichment
-        href: search-howto-incremental-index.md
-      - name: Design tips
-        href: cognitive-search-concept-troubleshooting.md
+      - name: Configure an enrichment cache
+        href: enrichment-cache-how-to-configure.md
+      - name: Manage an enrichment cache
+        href: enrichment-cache-how-to-manage.md
       - name: Best practices - GenAI Prompt skill
         href: responsible-ai-best-practices-genai-prompt-skill.md
       - name: GenAI Prompt Skill - Example Usage Guide

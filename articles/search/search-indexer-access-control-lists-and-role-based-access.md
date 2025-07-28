@@ -50,7 +50,7 @@ This article supplements [**Index data from ADLS  Gen2**](search-howto-index-azu
   + [Custom Web API skill](cognitive-search-custom-skill-web-api.md)
   + [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)
   + [Knowledge store](knowledge-store-concept-intro.md)
-  + [Indexer enrichment cache](search-howto-incremental-index.md)
+  + [Indexer enrichment cache](enrichment-cache-how-to-configure.md)
   + [Debug sessions](cognitive-search-debug-session.md)
 
 ## Support for the permission model

@@ -1,29 +1,33 @@
 ---
-title: Incremental enrichment concepts (preview)
+title: Manage enrichment caching
 titleSuffix: Azure AI Search
 description: Cache intermediate content and incremental changes from AI enrichment pipeline in Azure Storage to preserve investments in existing processed documents. This feature is currently in public preview.
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
-ms.topic: conceptual
-ms.date: 07/11/2025
+ms.topic: how-to
+ms.date: 07/28/2025
 ms.custom:
   - ignite-2023
   - sfi-ropc-nochange
 ---
 
-# Incremental enrichment and caching in Azure AI Search
+# Manage an enrichment cache
 
 > [!IMPORTANT] 
 > This feature is in public preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [preview REST API](/rest/api/searchservice/search-service-api-versions#preview-versions) supports this feature.
 
-*Incremental enrichment* refers to the use of cached enrichments during [skillset execution](cognitive-search-working-with-skillsets.md) so that only new and changed skills and documents incur standard processing charges for API calls to Azure AI services. The cache contains the output from [document cracking](search-indexer-overview.md#document-cracking), plus the outputs of each skill for every document. Although caching is billable (it uses Azure Storage), the overall cost of enrichment is reduced because the costs of storage are less than image extraction and AI processing.
+An *enrichment cache* is an optional feature that stores reusable enriched content created during [skillset execution](cognitive-search-working-with-skillsets.md) so that only new and changed skills and documents incur standard processing charges during future indexer and skillset processing. 
 
-To ensure synchronization between your data source data and your index, it's important to understand your unique [data source](search-data-sources-gallery.md) change and deletion tracking prerequisites. This guide specifically addresses how to manage incremental modifications in terms of your skills processing and how to utilize cache for this purpose.
+The cache contains the output from [document cracking](search-indexer-overview.md#document-cracking), plus the outputs of each skill for every document. Although caching is billable (it uses Azure Storage), the overall cost of enrichment is reduced because the costs of storage are less than image extraction and AI processing.
 
-When you enable caching, the indexer evaluates your updates to determine whether existing enrichments can be pulled from the cache. Image and text content from the document cracking phase, plus skill outputs that are upstream or orthogonal to your edits, are likely to be reusable.
+If you have configured an enrichment cache, this article explains how to manage skill and data source updates so that you get maximum utility from cached enrichments.
 
-After skillset processing is finished, the refreshed results are written back to the cache, and also to the search index or knowledge store.
+## Prerequisites
+
++ An [indexer](search-indexer-overview.md) and [skillset](cognitive-search-working-with-skillsets.md)
+
++ An [enrichment cache](search-howto-incremental-index.md)
 
 ## Limitations
 
@@ -32,13 +36,13 @@ After skillset processing is finished, the refreshed results are written back to
 
 ## Cache configuration
 
-Physically, the cache is stored in a blob container in your Azure Storage account, one per indexer. Each indexer is assigned a unique and immutable cache identifier that corresponds to the container it's using.
+Physically, the cache is stored in a blob container or table in your Azure Storage account, one per indexer. Each indexer is assigned a unique and immutable cache identifier that corresponds to the container it's using.
 
 The cache is created when you specify the "cache" property and run the indexer. Only enriched content can be cached. If your indexer doesn't have an attached skillset, then caching doesn't apply. 
 
-The following example illustrates an indexer with caching enabled. See [Enable enrichment caching](search-howto-incremental-index.md) for full instructions. 
+The following example illustrates an indexer with caching enabled. See [Configure enrichment caching](search-howto-incremental-index.md) for full instructions. 
 
-To use the cache property, you can use 2020-06-30-preview or later when you [create or update an indexer](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true). We recommend the latest preview API.
+To set the cache property, use a preview REST API [Create or Update Indexer](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) or a preview Azure SDK package that provides the feature. You can also enable enrichment caching in the Import data wizard in the Azure portal.
 
 ```json
 POST https://[YOUR-SEARCH-SERVICE-NAME].search.windows.net/indexers?api-version=2025-05-01-preview
@@ -180,7 +184,7 @@ Incremental processing evaluates your skillset definition and determines which s
 
 ## APIs used for caching
 
-REST API version `2020-06-30-Preview` or later provides incremental enrichment through extra properties on indexers. We recommend the latest preview API.
+Preview APIs provide extra properties on indexers. We recommend the latest preview API.
 
 Skillsets and data sources can use the generally available version. In addition to the reference documentation, see  [Configure caching for incremental enrichment](search-howto-incremental-index.md) for details about order of operations.
 
@@ -191,10 +195,3 @@ Skillsets and data sources can use the generally available version. In addition 
 + [Create or Update Skillset (api-version=2025-05-01-preview)](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) (New URI parameter on the request)
 
 + [Create or Update Data Source (api-version=2025-05-01-preview)](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true), when called with a preview API version, provides a new parameter named "ignoreResetRequirement", which should be set to true when your update action shouldn't invalidate the cache. Use "ignoreResetRequirement" sparingly as it could lead to unintended inconsistency in your data that won't be detected easily.
-
-## Next steps
-
-Incremental enrichment is a powerful feature that extends change tracking to skillsets and AI enrichment. Incremental enrichment enables reuse of existing processed content as you iterate over skillset design. As a next step, enable caching on your indexers.
-
-> [!div class="nextstepaction"]
-> [Enable caching for incremental enrichment](search-howto-incremental-index.md)
