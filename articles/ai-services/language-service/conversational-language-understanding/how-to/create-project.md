@@ -1,7 +1,7 @@
 ---
-title: Create Projects in Conversational Language Understanding
+title: Create a CLU project with REST API
 titleSuffix: Azure AI services
-description: This article shows you how to create projects in conversational language understanding (CLU).
+ description: This article shows you how to createa CLU project using the REST API
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
@@ -11,9 +11,9 @@ ms.author: lajanuar
 ms.custom: language-service-clu
 ---
 
-# Create a CLU project in Azure AI Foundry
+# Create a CLU project REST API
 
-Azure AI Foundry projects help you organize your work when exploring new ideas or developing prototypes for specific use cases. A Foundry project is created on an Azure AI Foundry resource. This type of project offers an easy setup and provides access to agents and Azure AI models.
+Azure Conversational Language Understanding (CLU) projects enable the development of custom natural language understanding models designed to extract intents and entities from conversational text. These models can be integrated into conversational AI applications and systems that require intelligent processing and response to natural language inputs.
 
 If you already have an Azure AI Language or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Language resources within the Azure AI Foundry portal. For more information, see [How to use Azure AI services in the Azure AI Foundry portal](../../../../ai-services/connect-services-ai-foundry-portal.md).
 
@@ -27,105 +27,39 @@ If you already have an Azure AI Language or multi-service resource—whether use
 
 ## Create a CLU project
 
- An Azure AI Foundry project is created using an Azure AI Foundry resource. Projects are designed to help you organize your work. They offer various tools and resources that support the development, customization, and management of AI applications all within a centralized environment.
-
-### [Azure AI Foundry](#tab/azure-ai-foundry)
-
- To learn how to create a CLU Foundry project, *see* [Create an AI Foundry project](../../../../ai-foundry/how-to/create-projects.md).
-
-
-### [REST APIs](#tab/rest-api)
+Projects are designed to help you organize your work. They offer various tools and resources that support the development, customization, and management of AI applications all within a centralized environment.
 
 [!INCLUDE [create project](../includes/rest-api/create-project.md)]
 
----
 
 ## Import an existing Azure AI project
 
-### [Azure AI Foundry](#tab/azure-ai-foundry)
-
-To import an existing Azure AI services project with Azure AI Foundry, you need to create a connection to the Azure AI services resource within your Azure AI Foundry project. For more information, *see* [Connect Azure AI Services projects to Azure AI Foundry](../../../../ai-services/connect-services-ai-foundry-portal.md)
-
-### [REST APIs](#tab/rest-api)
-
-You can import a CLU JSON into the service.
+You can import your CLU config.json file. Importing the configuration file allows you to bring your existing settings directly into the platform, making it easier to set up and customize your service based on your predefined preferences.
 
 [!INCLUDE [Import project](../includes/rest-api/import-project.md)]
 
----
 
 ## Export a project
 
-### [Azure AI Foundry](#tab/azure-ai-foundry)
-
-You can download a CLU project as a **config.json** file:
-
-1. Navigate to your project home page.
-1. At the top of the page, select your project from the right page ribbon area.
-1. Select **Download config file**.
-
-    :::image type="content" source="../media/create-project/download-config-json.png" alt-text="Screenshot of project drop-down menu with the download config file hyperlink in the Azure AI Foundry.":::
-
-### [REST APIs](#tab/rest-api)
-
-You can export a CLU project as a JSON file at any time.
+You can export a CLU project as a config.json file. Exporting your configuration file enables you to save the current state of your project's settings and structure, making it easy to back up or transfer your project as needed.
 
 [!INCLUDE [Export project](../includes/rest-api/export-project.md)]
 
----
-
 ## View and manage project details
 
-### [Azure AI Foundry](#tab/azure-ai-foundry)
-
-* On the project Home page, information about the project is found in the **Project details** section.
-* To view project settings, select **Management center** from the bottom of the left navigation pane, then select one of the following tabs:
-   *  **Overview** to view project details.
-   *  **Users** to manage users and roles.
-   *  **Models + endpoints** to manage deployments of your models and services.
-   *  **Connected resources** to manage connected resources for the project.
-
-   :::image type="content" source="../media/create-project/project-details.png" alt-text="Screenshot of the project details list in the Azure AI Foundry.":::
-
-### [REST APIs](#tab/rest-api)
+You have the ability to access, view, and manage all of your project details by utilizing the REST API. You can retrieve up-to-date information about your projects, make any necessary changes, and oversee project management tasks efficiently through API endpoints.
 
 [!INCLUDE [REST APIs project details](../includes/rest-api/project-details.md)]
 
----
-
 ## Delete a project
 
-### [Azure AI Foundry](#tab/azure-ai-foundry)
-
-
-If you no longer need your project, you can delete it from the Azure AI Foundry.
-
-1. Navigate to the [Azure AI Foundry](https://ai.azure.com/) home page. Initiate the authentication process by signing in, unless you already completed this step and your session is active.
-1. Select the project that you want to delete from the **Keep building with Azure AI Foundry**
-1. Select **Management center**.
-1. Select **Delete project**.
-
-   :::image type="content" source="../media/create-project/delete-project.png" alt-text="Screenshot of the Delete project button in the Azure AI Foundry.":::
-
-To delete the hub along with all its projects:
-
-1. Navigate to the **Overview** tab inn the **Hub** section.
-
-   :::image type="content" source="../media/create-project/hub-details.png" alt-text="Screenshot of the hub details list in the Azure AI Foundry.":::
-
-1. On the right, select **Delete hub**. 
-1. The link opens the Azure portal for you to delete the hub there.
-
-   :::image type="content" source="../media/create-project/delete-hub.png" alt-text="Screenshot of the Delete hub button in the Azure AI Foundry.":::
-
-### [REST APIs](#tab/rest-api)
-
-If you no longer need your project, delete it using the REST API.
+If your project is no longer required, you can delete it using the REST API. This process ensures that the project and all of its associated data are permanently removed from the system. To proceed, access the REST API and follow the documented steps for project deletion to complete this action.
 
 [!INCLUDE [Delete project](../includes/rest-api/delete-project.md)]
 
----
+
 
 ## Related content
 
 - [Build schema](./build-schema.md)
+

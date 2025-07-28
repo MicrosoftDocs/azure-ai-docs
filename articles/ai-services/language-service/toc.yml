@@ -148,10 +148,10 @@ items:
             href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
           - name: Azure AI containers overview
             href: ../cognitive-services-container-support.md
-        - name: Create a CLU Foundry project 
+        - name: Create a fine-tuning task
           href: conversational-language-understanding/how-to/create-project.md
           displayName: creation, clu project, setup
-        - name: Build a schema
+        - name: Build a fine-tuning schema
           href: conversational-language-understanding/how-to/build-schema.md
           displayName: design, intents, entities, conversational model
         - name: Label utterances
@@ -175,6 +175,9 @@ items:
         - name: Back up and recover your models
           href: conversational-language-understanding/how-to/fail-over.md
           displayName: disaster recovery, failover, clu
+        - name: Create a CLU project with REST API
+          href: conversational-language-understanding/how-to/create-project.md
+          displayName: rest api, project creation, clu 
         - name: Migrate from LUIS
           href: conversational-language-understanding/how-to/migrate-from-luis.md
           displayName: language understanding, luis to clu
