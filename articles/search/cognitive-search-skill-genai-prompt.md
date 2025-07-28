@@ -17,7 +17,7 @@ ms.date: 07/28/2025
 
 The **GenAI (Generative AI) Prompt** skill executes a *chat completion* request against a Large Language Model (LLM) deployed in Azure AI Foundry or Azure OpenAI in Azure AI Foundry Models. Use this capability to create new information that can be indexed and stored as searchable content.
 
-Here are some examples of content generation:
+Here are some examples of how the GenAI prompt skill can help you create content:
 
 - verbalize images
 - summarize large passages of text
@@ -27,10 +27,10 @@ Here are some examples of content generation:
 The GenAI Prompt skill is available in the [2025-05-01-preview REST API](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2025-05-01-preview&preserve-view=true) only. The skill supports text, image, and multimodal content such as a PDF that contains text and images. 
 
 > [!TIP]
-> It's common to use this skill combined with a data chunking skill. The following tutorials demonstrate the image verbalization scenarios with two different data chunking techniques:
+> It's common to use this skill combined with a data chunking skill. The following tutorials demonstrate image verbalization with two different data chunking techniques:
 >
-> - [Tutorial: Index mixed content using image verbalizations and the Document Layout skill](tutorial-document-layout-image-verbalization.md)
-> - [Tutorial: Index mixed content using image verbalizations and the Document Extraction skill](tutorial-document-extraction-image-verbalization.md)
+> - [Tutorial: Verbalize images using generative AI](tutorial-document-extraction-image-verbalization.md)
+> - [Tutorial: Verbalize images from a structured document layout](tutorial-document-layout-image-verbalization.md)
 >
 
 ## Supported models

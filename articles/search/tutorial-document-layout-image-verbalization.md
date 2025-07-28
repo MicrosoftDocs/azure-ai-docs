@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Use Image Verbalization and Document Layout Skill for Multimodal Indexing'
+title: 'Tutorial: Verbalize images from a structured document layout'
 titleSuffix: Azure AI Search
 description: Learn how to extract, index, and search multimodal content using the Document Layout skill for chunking and GenAI Prompt skill for image verbalizations.
 
@@ -14,7 +14,7 @@ ms.date: 05/29/2025
 
 ---
 
-# Tutorial: Index mixed content using image verbalizations and the Document Layout skill
+# Tutorial: Verbalize images from a structured document layout
 
 In this Azure AI Search tutorial, learn how to build a multimodal indexing pipeline that chunks data based on document structure and uses image verbalization to describe images. Cropped images are stored in a knowledge store, and visual content is described in natural language and ingested alongside text in a searchable index.
 
@@ -26,7 +26,7 @@ In this tutorial, you use:
 
 + The [Document Layout skill (preview)](cognitive-search-skill-document-intelligence-layout.md) for extracting text and normalized images with its locationMetadata from various documents, such as page numbers or bounding regions.
 
-  The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) has limited regional availability, is bound to Azure AI services, and requires a [billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. For a lower-cost solution to indexing multimodal content, see [Index multimodal content using image verbalization and Document Extraction skill](tutorial-document-extraction-image-verbalization.md).
+  The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) has limited regional availability, is bound to Azure AI services, and requires a [billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. For a lower-cost solution to indexing multimodal content, see [Tutorial: Verbalize images using generative AI](tutorial-document-extraction-image-verbalization.md).
 
 + The [GenAI Prompt skill (preview)](cognitive-search-skill-genai-prompt.md) to generate image captions, which are text-based descriptions of visual content, for search and grounding.
 

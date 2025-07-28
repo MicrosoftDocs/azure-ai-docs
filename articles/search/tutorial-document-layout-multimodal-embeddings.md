@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Use Multimodal Embeddings and Document Layout Skill for Multimodal Indexing'
+title: 'Tutorial: Vectorize from a structured document layout'
 titleSuffix: Azure AI Search
 description: Learn how to extract, index, and search multimodal content using the Document Layout skill for chunking and Azure AI Vision for embeddings.
 
@@ -14,7 +14,7 @@ ms.date: 06/11/2025
 
 ---
 
-# Tutorial: Index mixed content using multimodal embeddings and the Document Layout skill
+# Tutorial: Vectorize from a structured document layout
 
 <!-- Multimodal plays an essential role in generative AI apps and the user experience as it enables the extraction of information not only from text but also from complex images embedded within documents.  -->
 In this Azure AI Search tutorial, learn how to build a multimodal indexing pipeline that chunks data based on document structure, and uses a multimodal embedding model to vectorize text and images in a searchable index.
@@ -25,7 +25,7 @@ In this tutorial, you use:
 
 + The [Document Layout skill (preview)](cognitive-search-skill-document-intelligence-layout.md) for extracting text and normalized images with its locationMetadata from various documents, such as page numbers or bounding regions.
 
-  The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) has limited regional availability, is bound to Azure AI services, and requires a [billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. For a lower-cost solution to indexing multimodal content, see [Index multimodal content using image verbalization and Document Extraction skill](tutorial-document-extraction-image-verbalization.md).
+  The [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) has limited regional availability, is bound to Azure AI services, and requires a [billable resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. For a lower-cost solution to indexing multimodal content, see [Tutorial: Verbalize images using generative AI](tutorial-document-extraction-image-verbalization.md).
 
 + Vectorization using the [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md), which generates embeddings for both text and images.
 
@@ -614,4 +614,4 @@ Now that you're familiar with a sample implementation of a multimodal indexing s
 + [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md)
 + [Vectors in Azure AI Search](vector-search-overview.md)
 + [Semantic ranking in Azure AI Search](semantic-search-overview.md)
-+ [Index multimodal content using embeddings and Document Extraction skill](tutorial-document-extraction-multimodal-embeddings.md)
++ [Tutorial: Vectorize images and text](tutorial-document-extraction-multimodal-embeddings.md)

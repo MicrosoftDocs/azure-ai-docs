@@ -30,7 +30,7 @@ In this tutorial, you use:
 
 This tutorial demonstrates a lower-cost approach for indexing multimodal content using Document Extraction skill and image captioning. It enables extraction and search over both text and images from documents in Azure Blob Storage. However, it doesn't include locational metadata for text, such as page numbers or bounding regions.
 
-For a more comprehensive solution that includes structured text layout and spatial metadata, see [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and Document Layout skill](tutorial-document-layout-image-verbalization.md).
+For a more comprehensive solution that includes structured text layout and spatial metadata, see [Tutorial: Verbalize images from a structured document layout](tutorial-document-layout-image-verbalization.md).
 
 > [!NOTE]
 > Setting `imageAction` to `generateNormalizedImages` results in image extraction, which is an extra charge. For more information, see [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/) for image extraction pricing.
@@ -710,4 +710,4 @@ Now that you're familiar with a sample implementation of a multimodal indexing s
 * [AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md)
 * [Vectors in Azure AI Search](vector-search-overview.md)
 * [Semantic ranking in Azure AI Search](semantic-search-overview.md)
-* [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and Document Layout skill](tutorial-document-layout-image-verbalization.md)
+* [Tutorial: Verbalize images from a structured document layout](tutorial-document-layout-image-verbalization.md)

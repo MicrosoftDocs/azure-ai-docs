@@ -138,24 +138,14 @@ items:
       href: tutorial-adls-gen2-indexer-acls.md
   - name: Multimodal indexing tutorials
     items:
-    - name: Vectorize from any document
-      href: tutorial-document-extraction-multimodal-embeddings.md
-    - name: Vectorize from a structured document
-      href: tutorial-document-layout-multimodal-embeddings.md
-    - name: Verbalize images from any document
-      href: tutorial-document-extraction-image-verbalization.md
-    - name: Verbalize images from a structured document
-      href: tutorial-document-layout-image-verbalization.md
-  - name: Multimodal indexing tutorials
-    items:
     - name: Vectorize images and text
-      href: 
-    - name: Verbalize images
-      href: 
+      href: tutorial-document-extraction-multimodal-embeddings.md
+    - name: Verbalize images using generative AI
+      href: tutorial-document-extraction-image-verbalization.md
     - name: Vectorize from a structured document layout
-      href: 
+      href: tutorial-document-layout-multimodal-embeddings.md
     - name: Verbalize images from a structured document layout
-      href:     
+      href: tutorial-document-layout-image-verbalization.md
   - name: RAG tutorials
     items:
     - name: Build a RAG solution

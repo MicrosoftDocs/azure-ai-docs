@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Use Image Verbalization and Document Extraction Skill for Multimodal Indexing'
+title: 'Tutorial: Verbalize images using generative AI'
 titleSuffix: Azure AI Search
 description: Learn how to extract, index, and search multimodal content using the Document Extraction skill for chunking and GenAI Prompt skill for image verbalizations.
 
@@ -14,7 +14,7 @@ ms.date: 05/29/2025
 
 ---
 
-# Tutorial: Index mixed content using image verbalizations and the Document Extraction skill
+# Tutorial: Verbalize images using generative AI
 
 Azure AI Search can extract and index both text and images from PDF documents stored in Azure Blob Storage. This tutorial shows you how to build a multimodal indexing pipeline by describing visual content in natural language and embedding it alongside document text.
 
@@ -32,7 +32,7 @@ In this tutorial, you use:
 
 This tutorial demonstrates a lower-cost approach for indexing multimodal content using Document Extraction skill and image captioning. It enables extraction and search over both text and images from documents in Azure Blob Storage. However, it doesn't include locational metadata for text, such as page numbers or bounding regions.
 
-For a more comprehensive solution that includes structured text layout and spatial metadata, see [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and Document Layout skill](tutorial-document-layout-image-verbalization.md).
+For a more comprehensive solution that includes structured text layout and spatial metadata, see [Tutorial: Verbalize images from a structured document layout](tutorial-document-layout-image-verbalization.md).
 
 > [!NOTE]
 > Setting `imageAction` to `generateNormalizedImages` is required for this tutorial and incurs an additional charge for image extraction according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/).
@@ -752,4 +752,4 @@ Now that you're familiar with a sample implementation of a multimodal indexing s
 * [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md)
 * [Vectors in Azure AI Search](vector-search-overview.md)
 * [Semantic ranking in Azure AI Search](semantic-search-overview.md)
-* [Indexing blobs with text and images for multimodal RAG scenarios using image verbalization and Document Layout skill](tutorial-document-layout-image-verbalization.md)
+* [Tutorial: Verbalize images from a structured document layout](tutorial-document-layout-image-verbalization.md)
