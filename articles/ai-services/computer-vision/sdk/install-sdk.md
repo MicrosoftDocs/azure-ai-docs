@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: quickstart
-ms.date: 06/01/2024
+ms.date: 07/28/2025
 ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.update-cycle: 365-days
 ms.author: pafarley
