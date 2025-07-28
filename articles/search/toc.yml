@@ -140,10 +140,10 @@ items:
     items:
     - name: Vectorize images and text
       href: tutorial-document-extraction-multimodal-embeddings.md
-    - name: Verbalize images using generative AI
-      href: tutorial-document-extraction-image-verbalization.md
     - name: Vectorize from a structured document layout
       href: tutorial-document-layout-multimodal-embeddings.md
+    - name: Verbalize images using generative AI
+      href: tutorial-document-extraction-image-verbalization.md
     - name: Verbalize images from a structured document layout
       href: tutorial-document-layout-image-verbalization.md
   - name: RAG tutorials
@@ -384,6 +384,8 @@ items:
           href: cognitive-search-custom-skill-scale.md
         - name: Example - Bing Entity Search
           href: cognitive-search-create-custom-skill-example.md
+        - name: Azure AI Search Power Skills
+          href: https://github.com/Azure-Samples/azure-search-power-skills
   - name: Retrieval
     items:
     - name: Agentic retrieval

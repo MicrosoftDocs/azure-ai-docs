@@ -2,8 +2,8 @@
 title: Utilize the content generation capabilities of language models as part of content ingestion pipeline
 titleSuffix: Azure AI Search
 description: Use language models to caption your images and facilitate an image search through your data.
-author: amitkalay
-ms.author: amitkalay
+author: gmndrg
+ms.author: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 07/28/2025

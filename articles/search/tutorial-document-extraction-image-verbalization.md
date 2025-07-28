@@ -26,7 +26,7 @@ In this tutorial, you use:
 
 + The [Document Extraction skill](cognitive-search-skill-document-extraction.md) for extracting normalized images and text.
 
-+ The [GenAI Prompt skill (preview)](cognitive-search-skill-genai-prompt.md) to generate image captions, which are text-based descriptions of visual content, for search and grounding.
++ The [GenAI Prompt skill (preview)](cognitive-search-skill-genai-prompt.md) that calls a chat completion model to create descriptions of visual content.
 
 + A search index configured to store text and image embeddings and support for vector-based similarity search.
 
@@ -35,9 +35,9 @@ This tutorial demonstrates a lower-cost approach for indexing multimodal content
 For a more comprehensive solution that includes structured text layout and spatial metadata, see [Tutorial: Verbalize images from a structured document layout](tutorial-document-layout-image-verbalization.md).
 
 > [!NOTE]
-> Setting `imageAction` to `generateNormalizedImages` is required for this tutorial and incurs an additional charge for image extraction according to [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/).
+> Setting `imageAction` to `generateNormalizedImages` results in image extraction, which is an extra charge. For more information, see [Azure AI Search pricing](https://azure.microsoft.com/pricing/details/search/) for image extraction.
 
-Using a REST client and the [Search REST APIs](/rest/api/searchservice/) you will:
+<!-- Using a REST client and the [Search REST APIs](/rest/api/searchservice/) you will:
 
 > [!div class="checklist"]
 > + Set up sample data and configure an `azureblob` data source
@@ -45,18 +45,19 @@ Using a REST client and the [Search REST APIs](/rest/api/searchservice/) you wil
 > + Define a skillset with extraction, captioning, and embedding steps
 > + Create and run an indexer to process and index content
 > + Search the index you just created
+ -->
 
 ## Prerequisites
 
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
-+ [Azure Storage](/azure/storage/common/storage-account-create).
++ [Azure Storage](/azure/storage/common/storage-account-create), used for storing sample data.
 
 + [Azure AI Search](search-what-is-azure-search.md), Basic pricing tier or higher, with a managed identity. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription.  
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
-### Download files
+## Prepare data
 
 Download the following sample PDF:
 
