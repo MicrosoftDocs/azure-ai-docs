@@ -65,7 +65,7 @@ The following list is a full enumeration of the outbound requests for which you 
 | Operation | Scenario |
 | ----------| -------- |
 | Indexers | Connect to external data sources to retrieve data. For more information, see [Indexer access to content protected by Azure network security](search-indexer-securing-resources.md). |
-| Indexers | Connect to Azure Storage to persist [knowledge stores](knowledge-store-concept-intro.md), [cached enrichments](cognitive-search-incremental-indexing-conceptual.md), [debug sessions](cognitive-search-debug-session.md). |
+| Indexers | Connect to Azure Storage to persist [knowledge stores](knowledge-store-concept-intro.md), [cached enrichments](enrichment-cache-how-to-configure.md), [debug sessions](cognitive-search-debug-session.md). |
 | Custom skills | Connect to Azure functions, Azure web apps, or other apps running external code that's hosted off-service. The request for external processing is sent during skillset execution. |
 | Indexers and [integrated vectorization](vector-search-integrated-vectorization.md) | Connect to Azure OpenAI and a deployed embedding model, or it goes through a custom skill to connect to an embedding model that you provide. The search service sends text to embedding models for vectorization during indexing. |
 | Vectorizers | Connect to Azure OpenAI or other embedding models at query time to [convert user text strings to vectors](vector-search-how-to-configure-vectorizer.md) for vector search. |
@@ -167,7 +167,7 @@ When you set up a search service, you choose a region that determines where cust
 
 Currently, the only external resource that a search service writes to is Azure Storage. The storage account is one that you provide, and it could be in any region. A search service writes to Azure Storage if you use any of the following features:
 
-+ [enrichment cache](cognitive-search-incremental-indexing-conceptual.md)
++ [enrichment cache](enrichment-cache-how-to-configure.md)
 + [debug session](cognitive-search-debug-session.md)
 + [knowledge store](knowledge-store-concept-intro.md)
 
