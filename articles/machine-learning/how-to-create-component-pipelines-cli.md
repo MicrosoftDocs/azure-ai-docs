@@ -5,8 +5,8 @@ description: Create and run machine learning pipelines by using the Azure Machin
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-author: s-polly
-ms.author: scottpolly
+author: lgayhardt
+ms.author: lagayhar
 ms.reviewer: zhanxia
 ms.date: 06/11/2025
 ms.topic: how-to

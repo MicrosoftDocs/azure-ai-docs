@@ -6,9 +6,9 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: concept-article
-ms.author: scottpolly
+ms.author: lagayhar
 ms.reviewer: lagayhar
-author: s-polly
+author: lgayhardt
 ms.date: 05/22/2024
 ms.custom: UpdateFrequency5, designer, training
 ---

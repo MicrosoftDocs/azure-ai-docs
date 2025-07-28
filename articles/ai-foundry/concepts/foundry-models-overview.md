@@ -8,7 +8,7 @@ ms.custom:
   - build-2025
   - ai-learning-hub
 ms.topic: how-to
-ms.date: 05/12/2025
+ms.date: 07/06/2025
 ms.reviewer: jcioffi
 ms.author: ssalgado
 author: ssalgadodev

@@ -1,6 +1,16 @@
 {
     "redirections": [
         {
+            "source_path_from_root": "/articles/search/cognitive-search-incremental-indexing-conceptual.md",
+            "redirect_url": "/azure/search/enrichment-cache-how-to-manage",
+            "redirect_document_id": true
+        },
+                {
+            "source_path_from_root": "/articles/search/search-howto-incremental-index.md",
+            "redirect_url": "/azure/search/enrichment-cache-how-to-configure",
+            "redirect_document_id": true
+        },
+        {
             "source_path_from_root": "/articles/search/search-security-network-security-perimiter.md",
             "redirect_url": "/azure/search/search-security-network-security-perimeter",
             "redirect_document_id": true

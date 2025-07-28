@@ -1,9 +1,9 @@
 ---
 title: Monitor Azure AI Search
 description: Start here to learn how to monitor Azure AI Search.
-ms.date: 01/27/2025
+ms.date: 07/25/2025
 ms.custom: horz-monitor
-ms.topic: conceptual
+ms.topic: concept-article
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
@@ -93,6 +93,7 @@ AzureDiagnostics
 [!INCLUDE [horz-monitor-alerts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-alerts.md)]
 
 ### Azure AI Search alert rules
+
 The following table lists common and recommended alert rules for Azure AI Search. On a search service, throttling or query latency that exceeds a given threshold are the most commonly used alerts, but you might also want to be notified if a search service is deleted.
 
 | Alert type | Condition | Description  |
