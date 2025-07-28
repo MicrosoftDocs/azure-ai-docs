@@ -47,6 +47,11 @@ items:
               displayName: azure functions, functions
             - name: How to use Azure Functions
               href: how-to/tools/azure-functions-samples.md
+        - name: Browser automation
+          items:
+          - name: Overview
+            href: how-to/tools/browser-automation.md
+            displayName: browser automation, web automation
         - name: Code interpreter
           items:
             - name: Overview
