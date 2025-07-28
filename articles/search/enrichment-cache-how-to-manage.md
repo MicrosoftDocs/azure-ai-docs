@@ -27,12 +27,12 @@ If you have configured an enrichment cache, this article explains how to manage 
 
 + An [indexer](search-indexer-overview.md) and [skillset](cognitive-search-working-with-skillsets.md)
 
-+ An [enrichment cache](search-howto-incremental-index.md)
++ An [enrichment cache](enrichment-cache-how-to-configure.md)
 
 ## Limitations
 
 > [!CAUTION]
-> If you're using the [SharePoint Online indexer (Preview)](search-howto-index-sharepoint-online.md), you should avoid incremental enrichment. Under certain circumstances, the cache becomes invalid, requiring an [indexer reset and run](search-howto-run-reset-indexers.md), should you choose to reload it.
+> If you're using the [SharePoint Online indexer (Preview)](search-howto-index-sharepoint-online.md), you should avoid incremental enrichment. Under certain circumstances, the cache becomes invalid, requiring an [indexer reset and full rebuild](search-howto-run-reset-indexers.md), should you choose to reload it.
 
 ## Cache configuration
 
@@ -40,7 +40,7 @@ Physically, the cache is stored in a blob container or table in your Azure Stora
 
 The cache is created when you specify the "cache" property and run the indexer. Only enriched content can be cached. If your indexer doesn't have an attached skillset, then caching doesn't apply. 
 
-The following example illustrates an indexer with caching enabled. See [Configure enrichment caching](search-howto-incremental-index.md) for full instructions. 
+The following example illustrates an indexer with caching enabled. See [Configure enrichment caching](enrichment-cache-how-to-configure.md) for full instructions. 
 
 To set the cache property, use a preview REST API [Create or Update Indexer](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) or a preview Azure SDK package that provides the feature. You can also enable enrichment caching in the Import data wizard in the Azure portal.
 
@@ -186,7 +186,7 @@ Incremental processing evaluates your skillset definition and determines which s
 
 Preview APIs provide extra properties on indexers. We recommend the latest preview API.
 
-Skillsets and data sources can use the generally available version. In addition to the reference documentation, see  [Configure caching for incremental enrichment](search-howto-incremental-index.md) for details about order of operations.
+Skillsets and data sources can use the generally available version. In addition to the reference documentation, see  [Configure caching for incremental enrichment](enrichment-cache-how-to-configure.md) for details about order of operations.
 
 + [Create or Update Indexer (api-version=2025-05-01-preview)](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) 
 
