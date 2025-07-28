@@ -657,4 +657,4 @@ When building projections of different types, file and object projections are ge
 The example in this article demonstrates common patterns on how to create projections. Now that you have a good understanding of the concepts, you're better equipped to build projections for your specific scenario.
 
 > [!div class="nextstepaction"]
-> [Configure caching for incremental enrichment](search-howto-incremental-index.md)
+> [Configure caching for incremental enrichment](enrichment-cache-how-to-configure.md)

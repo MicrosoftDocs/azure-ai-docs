@@ -17,7 +17,7 @@ In a query operation, the relevance of any given result is determined by a ranki
 
 Ranking occurs whenever the query request includes full text or vector queries. It doesn't occur if the query invokes strict pattern matching, such as a filter-only query or a specialized query form like autocomplete, suggestions, geospatial search, fuzzy search, or regular expression search. A uniform search score of 1.0 indicates the absence of a ranking algorithm.
 
-You can enhance the quality of ranked results through ***relevance tuning*** that boosts search scores based on extra criteria or analysis. In Azure AI Search, relevance tuning is primarily directed at textual and numeric (nonvector) content when you apply a [scoring profile](#custom-boosting-logic-using-scoring-profiles) or invoke the [semantic ranker](semantic-search-overview.md). 
+***Relevance tuning*** can be used to boost search scores based on extra criteria such as freshness or proximity. In Azure AI Search, relevance tuning is primarily directed at textual and numeric (nonvector) content when you apply a [scoring profile](#custom-boosting-logic-using-scoring-profiles) or invoke the [semantic ranker](semantic-search-overview.md). 
 
 > [!NOTE]
 > In Azure AI Search, there's no explicit relevance tuning capabilities for vector content, but you can experiment between Hierarchical Navigable Small World (HNSW) and exhaustive K-nearest neighbors (KNN) to see if one algorithm outperforms the other for your scenario. HNSW graphing with an exhaustive KNN override at query time is the most flexible approach for comparison testing. You can also experiment with various embedding models to see which ones produce higher quality results.
