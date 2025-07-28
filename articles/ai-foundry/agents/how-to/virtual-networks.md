@@ -78,13 +78,9 @@ For customers without an existing virtual network, the Standard Setup with Priva
 ## Configure a new network-secured environment 
 
 > [!NOTE]
-> Programmatic deployment is required to set up a network-secured environment for Azure AI Foundry Agent Service. Deployment through the Azure Portal is currently not supported.
-
-> [!NOTE]
-> If you want to delete your Foundry resource and Standard Agent with secured network set-up, delete your AI Foundry resource and virtual network last. Before deleting the virtual network, ensure to delete and [purge](../../../ai-services/recover-purge-resources.md#purge-a-deleted-resource) your AI Foundry resource.
-
-> [!NOTE]
-> In the Standard Setup, agents use customer-owned, single-tenant resources. You have full control and visibility over these resources, but you incur costs based on your usage.
+> - Programmatic deployment is required to set up a network-secured environment for Azure AI Foundry Agent Service. Deployment through the Azure portal is currently not supported.
+> - If you want to delete your Foundry resource and Standard Agent with secured network set-up, delete your AI Foundry resource and virtual network last. Before deleting the virtual network, ensure to delete and [purge](../../../ai-services/recover-purge-resources.md#purge-a-deleted-resource) your AI Foundry resource.
+> - In the Standard Setup, agents use customer-owned, single-tenant resources. You have full control and visibility over these resources, but you incur costs based on your usage.
 
 You can deploy and customize the Standard Setup with Private Networking using either Bicep or Terraform. The provided samples allow you to bring your own virtual network and customize the deployment to meet your specific requirements:
 
