@@ -177,7 +177,7 @@ Substitute your endpoint for the `endpoint` in this code:
 
 # [TypeScript](#tab/typescript)
 
-:::code language="typescript" source="~/foundry-samples-main/samples/microsoft/typescript/mslearn-resources/quickstart/src/quickstart.js" id="chat_completion":::
+:::code language="typescript" source="~/foundry-samples-main/samples/microsoft/typescript/mslearn-resources/quickstart/src/quickstart.ts" id="chat_completion":::
 
 
 # [C#](#tab/csharp)
@@ -221,7 +221,7 @@ Substitute your endpoint for the `endpoint` in this code:
 
 # [TypeScript](#tab/typescript)
 
-:::code language="typescript" source="~/foundry-samples-main/samples/microsoft/typescript/mslearn-resources/quickstart/src/quickstart.js" id="create_and_run_agent" :::
+:::code language="typescript" source="~/foundry-samples-main/samples/microsoft/typescript/mslearn-resources/quickstart/src/quickstart.ts" id="create_and_run_agent" :::
 
 # [C#](#tab/csharp)
 
@@ -271,7 +271,7 @@ Substitute your endpoint for the `endpoint` in this code:
 
 # [TypeScript](#tab/typescript)
 
-:::code language="typescript" source="~/foundry-samples-main/samples/microsoft/typescript/mslearn-resources/quickstart/src/quickstart.js" id="create_filesearch_agent":::
+:::code language="typescript" source="~/foundry-samples-main/samples/microsoft/typescript/mslearn-resources/quickstart/src/quickstart.ts" id="create_filesearch_agent":::
 
 # [C#](#tab/csharp)
 
