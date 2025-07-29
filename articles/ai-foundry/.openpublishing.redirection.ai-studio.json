@@ -151,6 +151,11 @@
             "redirect_document_id": false
           },
           {
+            "source_path_from_root": "/articles/ai-foundry/foundry-models/overview.md",
+            "redirect_url": "/ai-foundry/foundry-models/concepts/models",
+            "redirect_document_id": false
+          },
+          {
             "source_path_from_root": "/azure/ai-foundry/how-to/deploy-models-gretel-navigator.md",
             "redirect_url": "/azure/ai-foundry/concepts/models-inference-examples#gretel-navigator",
             "redirect_document_id": false
