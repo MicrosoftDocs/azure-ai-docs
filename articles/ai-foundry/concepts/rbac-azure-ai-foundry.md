@@ -1,5 +1,5 @@
 ---
-title: Role-based access control
+title: Role-based access control for Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: This article introduces role-based access control in Azure AI Foundry portal.
 manager: scottpolly
@@ -16,7 +16,7 @@ author: jonburchel
 zone_pivot_groups: project-type
 ---
 
-# Role-based access control
+# Role-based access control for Azure AI Foundry
 
 In this article, you learn how to manage access (authorization) to your [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) resources. Azure role-based access control (Azure RBAC) is used to manage access to Azure resources, such as the ability to create new resources or use existing ones. Users in your Microsoft Entra ID are assigned specific roles, which grant access to resources. Azure provides both built-in roles and the ability to create custom roles.
 
