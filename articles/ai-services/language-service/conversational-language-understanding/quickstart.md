@@ -16,13 +16,13 @@ zone_pivot_groups: usage-custom-language-features
 
 Use this article to get started with Conversational Language understanding using Azure AI Foundry and the REST API. Follow these steps to try out an example.
 
-::: zone pivot="language-studio"
+::: zone pivot="Azure AI Foundry"
 
 [!INCLUDE [Language Studio quickstart](includes/quickstarts/language-studio.md)]
 
 ::: zone-end
 
-::: zone pivot="rest-api"
+::: zone pivot="REST API"
 
 [!INCLUDE [REST API quickstart](includes/quickstarts/rest-api.md)]
 
