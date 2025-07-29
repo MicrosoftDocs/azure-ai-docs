@@ -12,8 +12,8 @@
         },
         {
             "source_path_from_root": "/articles/ai-foundry/how-to/deploy-models-mistral-open.md",
-            "redirect_url": "/azure/ai-foundry/foundry-models/concepts/models",
-            "redirect_document_id": true
+            "redirect_url": "/azure/ai-foundry/foundry-models/concepts/models#mistral-ai",
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-gretel-navigator.md",
