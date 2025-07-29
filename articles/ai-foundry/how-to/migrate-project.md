@@ -104,7 +104,7 @@ Most Azure AI Foundry users already have an 'AI Foundry' (formerly called 'AI Se
 1.  In [Azure portal](https://portal.azure.com), select the resource group that contains your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
 1.  Locate your resource with 'Azure AI Foundry' resource type. (This resource type used to be shown as 'AI Services.')
 
-:::image type="content" source="../media/migrate-project/resource-azure-portal.png" alt-text="Screenshot of Azure AI Foundry resource in Azure portal.":::
+    :::image type="content" source="../media/migrate-project/resource-azure-portal.png" alt-text="Screenshot of Azure AI Foundry resource in Azure portal.":::
 
 1. Follow the link to open the Foundry resource overview page.
 
