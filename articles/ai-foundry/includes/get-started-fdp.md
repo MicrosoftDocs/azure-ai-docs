@@ -104,12 +104,12 @@ No installation is necessary to use the Azure AI Foundry portal.
 
 1. [Install Node.js and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-javascript)
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your JavaScript scripts.
-1. Download [package.json](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/javascript/mslearn-resources/quickstart/package.json).
+1. Download [package.json](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/typescript/mslearn-resources/quickstart/package.json).
 1. Install packages with `npm install`
 1. [!INCLUDE [find-endpoint](find-endpoint.md)]
 1. Set these environment variables to use in your scripts:
 
-    :::code language="plaintext" source="~/foundry-samples-main/samples/microsoft/javascript/mslearn-resources/quickstart/.env.template":::
+    :::code language="plaintext" source="~/foundry-samples-main/samples/microsoft/typescript/mslearn-resources/quickstart/.env.template":::
 
 
 > [!NOTE]
