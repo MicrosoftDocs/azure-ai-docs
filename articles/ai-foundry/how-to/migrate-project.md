@@ -1,5 +1,5 @@
 ---
-title: Migrate from hub-based to Foundry projects
+title: Migrate From Hub based to Foundry Projects
 description: Learn how to migrate from existing hub-based projects to new Azure AI Foundry projects to access the latest platform capabilities, unified workflows, and enhanced governance features.
 author: sdgilley
 ms.topic: how-to
