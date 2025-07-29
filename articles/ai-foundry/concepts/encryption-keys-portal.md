@@ -130,12 +130,6 @@ Customer-managed key encryption is configured via Azure portal in a similar way 
 
 1. Continue creating your resource as normal.
 
-## Limitations
-
-* The customer-managed key for encryption can only be updated to keys in the same Azure Key Vault instance.
-* After deployment, your [!INCLUDE [fdp](../includes/fdp-project-name.md)] can't switch from customer-managed keys to Microsoft managed keys.
-* Azure charges for the AI Foundry resource will continue to accrue during the soft delete retention period. Charges for projects don't continue to accrue during the soft delete retention period.
-
 ::: zone-end
 
 ::: zone pivot="hub-project"
