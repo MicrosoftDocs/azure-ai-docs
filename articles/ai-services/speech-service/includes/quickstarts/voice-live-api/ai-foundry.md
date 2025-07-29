@@ -16,7 +16,7 @@ In this article, you learn how to use voice live with generative AI and Azure AI
 ## Prerequisites
 
 - An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
-- An [Azure AI Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [Voice Live API overview documentation](../../../voice-live.md).
+- An [Azure AI Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [voice live overview documentation](../../../voice-live.md).
 
 > [!TIP]
 > To use voice live, you don't need to deploy an audio model with your Azure AI Foundry resource. Voice live is fully managed, and the model is automatically deployed for you. For more information about models availability, see the [voice live overview documentation](../../../voice-live.md).
@@ -43,7 +43,7 @@ To try out the voice live demo, follow these steps:
 1. Select a new generative AI model from the drop-down list via **Configuration** > **GenAI** > **Generative AI model**. 
 
    > [!NOTE]
-   > You can also select an agent that you configured in the **Agents** playground.
+   > You can also select an agent that you configured in the **Agents** playground. For more information, see the [voice live with Foundry agents quickstart](/azure/ai-services/speech-service/voice-live-agents-quickstart).
 
    :::image type="content" source="../../../media/voice-live/foundry-portal/casual-chat-generative-ai-select.png" alt-text="Screenshot of the casual chat example scenario in the Speech playground." lightbox="../../../media/voice-live/foundry-portal/casual-chat-generative-ai-select.png":::
 
