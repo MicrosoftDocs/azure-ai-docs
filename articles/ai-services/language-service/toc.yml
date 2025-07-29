@@ -187,7 +187,7 @@ items:
           href: conversational-language-understanding/concepts/multiple-languages.md
           displayName: multiple languages, international, localization
         - name: Entity components
-          href: conversational-language-understanding/concepts/entity-components.mdclu
+          href: conversational-language-understanding/concepts/entity-components.md
           displayName: entities, extraction, ner components
         - name: Evaluation metrics
           href: conversational-language-understanding/concepts/evaluation-metrics.md
