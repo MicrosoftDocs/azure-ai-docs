@@ -114,10 +114,6 @@ items:
         href: concepts/model-catalog-content-safety.md
       - name: Inference examples for serverless deployments
         href: concepts/models-inference-examples.md
-      - name: Gretel Navigator model
-        href: how-to/deploy-models-gretel-navigator.md
-      - name: Mistral-7B and Mixtral models
-        href: how-to/deploy-models-mistral-open.md
   - name: Azure OpenAI in Foundry Models
     items:
     - name: Azure OpenAI 
