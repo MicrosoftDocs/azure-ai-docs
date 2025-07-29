@@ -83,7 +83,7 @@ This table summarizes features available in the two project types:
 | Evaluations | ✅ | ✅ |
 | Playground | ✅ | ✅ |
 | Prompt flow |  | ✅ |
-| Content understanding  |  | ✅ |
+| Content understanding  | ✅ | ✅ |
 | Project files (directly upload files and start experimenting) | ✅ | |
 | Project-level isolation of files and outputs | ✅ | ✅|
 | Required Azure dependencies | - | Azure Storage account, Azure Key Vault |

@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 01/15/2025
+ms.date: 07/25/2025
 ms.custom:
   - ignite-2023
   - sfi-image-nochange

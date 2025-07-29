@@ -34,11 +34,11 @@ A custom AI that uses AI models in conjunction with tools.
 
 ## Threads
 
-Threads are conversation sessions between an agent and a user. They store messages and automatically handle truncation to fit content into a model’s context. When you create a thread, you can append new messages to it as users respond.
+Threads are conversation sessions between an agent and a user. They store messages and automatically handle truncation to fit content into a model’s context. When you create a thread, you can append new messages (maximum of 100,000 per thread) to it as users respond.
 
 ## Messages
 
-Messages are the individual pieces of communication within a thread. They can be created by either the agent or the user and can include text, or other files. Messages are stored as a list within the thread, allowing for a structured and organized conversation flow.
+Messages are the individual pieces of communication within a thread. They can be created by either the agent or the user and can include text, or other files. Messages are stored as a list within the thread, allowing for a structured and organized conversation flow. You can attach up to 100,000 messages to a single thread.
 
 ## Runs
 
