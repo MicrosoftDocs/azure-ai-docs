@@ -11,8 +11,8 @@
           "redirect_document_id": false
         },
         {
-            "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-mistral-open.md",
-            "redirect_url": "/azure/ai-foundry/how-to/deploy-models-mistral-open",
+            "source_path_from_root": "/articles/ai-foundry/how-to/deploy-models-mistral-open.md",
+            "redirect_url": "/azure/ai-foundry/concepts/models-inference-examples",
             "redirect_document_id": true
         },
         {
