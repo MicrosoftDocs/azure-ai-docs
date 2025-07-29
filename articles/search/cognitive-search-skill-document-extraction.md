@@ -19,9 +19,9 @@ The **Document Extraction** skill extracts content from a file within the enrich
 
 For [vector](vector-search-overview.md) and [multimodal search](multimodal-search-overview.md), Document Extraction combined with the [Text Split skill](cognitive-search-skill-textsplit.md) is more affordable than other [data chunking approaches](vector-search-how-to-chunk-documents.md). The following tutorials demonstrate skill usage for different scenarios:
 
-+ [Tutorial: Index mixed content using multimodal embeddings and the Document Extraction skill](tutorial-document-extraction-multimodal-embeddings.md)
++ [Tutorial: Vectorize images and text](tutorial-document-extraction-multimodal-embeddings.md)
 
-+ [Tutorial: Index mixed content using image verbalizations and the Document Extraction skill](tutorial-document-extraction-image-verbalization.md)
++ [Tutorial: Verbalize images using generative AI](tutorial-document-extraction-image-verbalization.md)
 
 > [!NOTE]
 > This skill isn't bound to Azure AI services and has no Azure AI services key requirement.
