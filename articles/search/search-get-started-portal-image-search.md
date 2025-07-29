@@ -465,7 +465,7 @@ This quickstart uses billable Azure resources. If you no longer need the resourc
 
 This quickstart introduced you to the **Import and vectorize data** wizard, which creates all of the necessary objects for multimodal search. To explore each step in detail, see the following tutorials:
 
-+ [Tutorial: Image verbalization and Document Extraction skill](tutorial-document-extraction-image-verbalization.md)
-+ [Tutorial: Image verbalization and Document Layout skill](tutorial-document-layout-image-verbalization.md)
-+ [Tutorial: Multimodal embeddings and Document Extraction skill](tutorial-document-extraction-multimodal-embeddings.md)
-+ [Tutorial: Multimodal embeddings and Document Layout skill](tutorial-document-layout-multimodal-embeddings.md)
++ [Tutorial: Verbalize images using generative AI](tutorial-document-extraction-image-verbalization.md)
++ [Tutorial: Verbalize images from a structured document layout](tutorial-document-layout-image-verbalization.md)
++ [Tutorial: Vectorize images and text](tutorial-document-extraction-multimodal-embeddings.md)
++ [Tutorial: Vectorize from a structured document layout](tutorial-document-layout-multimodal-embeddings.md)
