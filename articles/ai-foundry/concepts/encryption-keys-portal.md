@@ -88,6 +88,7 @@ You must use Azure Key Vault to store your customer-managed keys. You can either
 - You must enable both the **Soft Delete** and **Do Not Purge** properties on the key vault.
 - If you use the [Key Vault firewall](/azure/key-vault/general/access-behind-firewall), you must allow trusted Microsoft services to access the key vault.
 - You must grant your [!INCLUDE [fdp](../includes/fdp-project-name.md)] system-assigned managed identity the following permissions on your key vault: *get key*, *wrap key*, *unwrap key*.
+- Only RSA and RSA-HSM keys of size 2048 are supported. For more information about keys, see **Key Vault keys** in [About Azure Key Vault keys, secrets, and certificates](/azure/key-vault/general/about-keys-secrets-certificates).
 
 ::: zone-end
 
@@ -99,12 +100,8 @@ To enable customer-managed keys, the key vault containing your keys must meet th
 
 - You must enable both the **Soft Delete** and **Do Not Purge** properties on the key vault.
 - If you use the [Key Vault firewall](/azure/key-vault/general/access-behind-firewall), you must allow trusted Microsoft services to access the key vault.
-- You must grant your hub and Azure AI Services resource's system-assigned managed identity the following permissions on your key vault: *get key*, *wrap key*, *unwrap key*.
-
-The following limitations hold for Azure AI Foundry:
-- Only Azure Key Vault with [legacy access policies](/azure/key-vault/general/assign-access-policy) are supported.
-- Only RSA and RSA-HSM keys of size 2048 are supported with Azure AI services encryption. For more information about keys, see **Key Vault keys** in [About Azure Key Vault keys, secrets, and certificates](/azure/key-vault/general/about-keys-secrets-certificates).
-- Updates from Customer-Managed keys to Microsoft-managed keys are currently not supported for project sub-resources. Projects will keep referencing your encryption keys if updated.
+- You must grant your hub and Azure AI Foundry resource's system-assigned managed identity the following permissions on your key vault: *get key*, *wrap key*, *unwrap key*.
+- Only RSA and RSA-HSM keys of size 2048 are supported. For more information about keys, see **Key Vault keys** in [About Azure Key Vault keys, secrets, and certificates](/azure/key-vault/general/about-keys-secrets-certificates).
 
 ### Enable your Azure AI Foundry resource's managed identity
 
@@ -188,7 +185,7 @@ How to Rotate Encryption Keys
 ## Limitations
 
 * The customer-managed key for encryption can only be updated to keys in the same Azure Key Vault instance.
-* After deployment, you can't switch from Customer-managed keys to Microsoft managed keys.
+* While project sub-resources exist, you can't switch AI Foundry resources from Customer-managed keys to Microsoft managed keys.
 * [Azure AI Foundry Customer-Managed Key Request Form](https://aka.ms/cogsvc-cmk) is required to use customer-managed keys in combination with Azure Speech and Content Moderator capabilities.
 * [Azure AI Foundry Customer-Managed Key Request Form](https://aka.ms/cogsvc-cmk) is required for Speech and Content Moderator.
 * If your AI Foundry resource is in a soft-deleted state, any additional Azure charges will continue to accrue during the soft delete retention period.
