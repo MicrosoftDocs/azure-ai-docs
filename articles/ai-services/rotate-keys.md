@@ -32,4 +32,4 @@ You can rotate keys using the following procedure:
 
 ## See also
 
-* [Configure key-less authentication](foundry-models/how-to/configure-entra-id.md)
+* [Configure key-less authentication](../ai-foundry/foundry-models/how-to/configure-entra-id.md)
