@@ -231,6 +231,9 @@ There are some reasons you might want to keep hubs and [!INCLUDE [hub-project-na
 1. Select the link for the **Azure AI hub** resource.
 1. Select **Delete** to delete the hub and all its associated projects.
 
+> [!CAUTION]
+> Make sure you don't delete the Azure AI Foundry resource.   
+
 # [Bicep](#tab/bicep)
 
 1. Keep *CognitiveServices/account/kind=AIServices* resource type. This is your Foundry resource.
@@ -240,6 +243,8 @@ There are some reasons you might want to keep hubs and [!INCLUDE [hub-project-na
 1. Use alternative methods for resource deletion, since this isn't supported via Bicep.
 
 ---
+
+
 
 ## Learn more
 

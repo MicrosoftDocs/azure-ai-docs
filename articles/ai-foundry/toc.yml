@@ -777,6 +777,8 @@ items:
     href: concepts/planning.md
   - name: Choose a resource type
     href: concepts/resource-types.md
+  - name: Migrate from hub based to Foundry project
+    href: how-to/migrate-project.md
   - name: Manage AI Foundry resources
     items:
     - name: Create your first resource
