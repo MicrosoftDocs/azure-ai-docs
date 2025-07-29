@@ -857,10 +857,10 @@ items:
     items:
     - name: Role-based access control in Azure AI Foundry portal
       href: concepts/rbac-azure-ai-foundry.md
-    - name: Configure key-less authentication
-      href: foundry-models/how-to/configure-entra-id.md
     - name: Rotate API access keys
       href: ../ai-services/rotate-keys.md?context=/azure/ai-foundry/context/context
+    - name: Configure key-less authentication
+      href: foundry-models/how-to/configure-entra-id.md
   - name: Network security
     items:
     - name: Configure private link
