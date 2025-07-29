@@ -236,11 +236,13 @@ items:
          href: video-translation-get-started.md
 - name: Voice live (preview)
   items:
-    - name: Voice live API overview
+    - name: Voice live overview
       href: voice-live.md
-    - name: Voice live API quickstart
+    - name: Voice live quickstart
       href: voice-live-quickstart.md
-    - name: How to use Voice live API
+    - name: Voice live agents quickstart
+      href: voice-live-agents-quickstart.md
+    - name: How to use voice live
       href: voice-live-how-to.md
     - name: Audio events reference
       href: /azure/ai-services/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context
