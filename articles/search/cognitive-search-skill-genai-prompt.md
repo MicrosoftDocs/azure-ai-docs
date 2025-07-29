@@ -19,10 +19,10 @@ The **GenAI (Generative AI) Prompt** skill executes a *chat completion* request 
 
 Here are some examples of how the GenAI prompt skill can help you create content:
 
-- verbalize images
-- summarize large passages of text
-- simplify complex content
-- perform any other task that you can articulate in a prompt
+- Verbalize images
+- Summarize large passages of text
+- Simplify complex content
+- Perform any other task that you can articulate in a prompt
 
 The GenAI Prompt skill is available in the [2025-05-01-preview REST API](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2025-05-01-preview&preserve-view=true) only. The skill supports text, image, and multimodal content such as a PDF that contains text and images. 
 
