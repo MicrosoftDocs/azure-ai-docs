@@ -58,6 +58,17 @@ Azure OpenAI in Azure AI Foundry Models offers a diverse set of models with diff
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=aoai).
 
+### Black Forest Labs models sold directly by Azure
+
+The Black Forest Labs collection of image generation models include FLUX.1 Kontext (pro) for in-context generation and editing and FLUX1.1 (pro) for text-to-image generation. 
+
+| Model  | Type | Capabilities | Project type |
+| ------ | ---- | ------------ | ------------ |
+| FLUX.1 Kontext [pro] | Image generation | - **Input:** text and image (5000 tokens and 1 image)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats**: Image (PNG and JPG) | Foundry, Hub-based |
+| FLUX1.1 [pro] | Image generation | - **Input:** text (5000 tokens)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) | Hub-based |
+
+
+See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=blackforestlabs).
 
 ### DeepSeek models sold directly by Azure
 
@@ -108,17 +119,6 @@ xAI's Grok 3 and Grok 3 Mini models are designed to excel in various enterprise 
 
 See [the xAI model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=xai).
 
-### Black Forest Labs
-
-The Black Forest Labs collection of image generation models include Black Forest Labs’ FLUX.1 Kontext [pro] (in-context gen & editing) + FLUX1.1 [pro] (text-to-image). 
-
-| Model  | Type | Capabilities | Project type |
-| ------ | ---- | ------------ | ------------ |
-| FLUX.1 Kontext [pro] | Image generation | - **Input:** text and image (5000 tokens and 1 image)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats**: Image (PNG and JPG) | Foundry, Hub-based |
-| FLUX1.1 [pro] | Image generation | - **Input:** text (5000 tokens)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) | Hub-based |
-
-
-See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=blackforestlabs).
 
 ## Models from partners and community
 
