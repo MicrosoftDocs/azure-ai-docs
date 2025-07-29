@@ -31,22 +31,13 @@ In this tutorial, you use:
 
 + A search index configured to store extracted text and image verbalizations. Some content is vectorized for vector-based similarity search.
 
-<!-- Using a REST client and the [Search REST APIs](/rest/api/searchservice/), you will:
-
-> [!div class="checklist"]
-> + Set up sample data and configure an `azureblob` data source
-> + Create an index with support for text and image embeddings
-> + Define a skillset with extraction, embedding and knowleage store file projection steps
-> + Create and run an indexer to process and index content
-> + Search the index you just created -->
-
 ## Prerequisites
 
-+ [Azure Storage](/azure/storage/common/storage-account-create), used for storing sample data.
++ [Azure AI Search](search-create-service-portal.md). [Configure your search service](search-manage.md) for role-based access control and a managed identity. Your service must be on the Basic tier or higher. This tutorial isn't supported on the Free tier. It must also be in the same region as your multi-service account.
+
++ [Azure Storage](/azure/storage/common/storage-account-create), used for storing sample data and for creating a [knowledge store](knowledge-store-concept-intro.md).
 
 + An [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills) that provides Azure AI Vision for multimodal embeddings. You must use an Azure AI multi-service account for this task. For an updated list of regions that provide multimodal embeddings, see the [Azure AI Vision documentation](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
-
-+ [Azure AI Search](search-what-is-azure-search.md), with a managed identity. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. Your service must be on the Basic tier or higher—this tutorial isn't supported on the Free tier. It must also be in the same region as your multi-service account.
 
 + [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 

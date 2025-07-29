@@ -17,10 +17,15 @@ In a query operation, the relevance of any given result is determined by a ranki
 
 Ranking occurs whenever the query request includes full text or vector queries. It doesn't occur if the query invokes strict pattern matching, such as a filter-only query or a specialized query form like autocomplete, suggestions, geospatial search, fuzzy search, or regular expression search. A uniform search score of 1.0 indicates the absence of a ranking algorithm.
 
-***Relevance tuning*** can be used to boost search scores based on extra criteria such as freshness or proximity. In Azure AI Search, relevance tuning is primarily directed at textual and numeric (nonvector) content when you apply a [scoring profile](#custom-boosting-logic-using-scoring-profiles) or invoke the [semantic ranker](semantic-search-overview.md). 
+## Relevance tuning
 
-> [!NOTE]
-> In Azure AI Search, there's no explicit relevance tuning capabilities that apply to vector fields, but you can experiment between Hierarchical Navigable Small World (HNSW) and exhaustive K-nearest neighbors (KNN) to see if one algorithm outperforms the other for your scenario. HNSW graphing with an exhaustive KNN override at query time is the most flexible approach for comparison testing. You can also experiment with various embedding models to see which ones produce higher quality results. Finally, remember that a hybrid query or a vector query on documents that include nonvector fields are in-scope for relevance tuning, so it's just the vector fields themselves that can't participate in a relevance tuning effort.
+***Relevance tuning*** is a technique for boosting search scores based on extra criteria such as weighted fields, freshness, or proximity. In Azure AI Search, relevance tuning options vary based on query type:
+
++ For textual and numeric (nonvector) content in keyword or hybrid search, you can tune relevance through [scoring profiles](#custom-boosting-logic-using-scoring-profiles) or invoking the [semantic ranker](semantic-search-overview.md).
+
++ For vector content in a hybrid query, you can [weight a vector field](hybrid-search-ranking.md#weighted-scores) to boost the importance of the vector component relative to the text component of the hybrid query.
+
++ For pure vector queries, you can experiment between Hierarchical Navigable Small World (HNSW) and exhaustive K-nearest neighbors (KNN) to see if one algorithm outperforms the other for your scenario. HNSW graphing with an exhaustive KNN override at query time is the most flexible approach for comparison testing. You can also experiment with various embedding models to see which ones produce higher quality results. Finally, remember that a hybrid query or a vector query on documents that include nonvector fields are in-scope for relevance tuning, so it's just the vector fields themselves that can't participate in a relevance tuning effort.
 
 ## Levels of ranking
 
