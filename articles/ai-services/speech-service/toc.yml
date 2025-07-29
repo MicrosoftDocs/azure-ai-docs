@@ -240,7 +240,7 @@ items:
       href: voice-live.md
     - name: Voice live quickstart
       href: voice-live-quickstart.md
-    - name: Voice live agents quickstart
+    - name: Voice live with Foundry agents quickstart
       href: voice-live-agents-quickstart.md
     - name: How to use voice live
       href: voice-live-how-to.md

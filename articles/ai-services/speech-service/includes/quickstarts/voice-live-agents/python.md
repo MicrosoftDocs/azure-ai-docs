@@ -7,7 +7,7 @@ ms.topic: include
 ms.date: 7/31/2025
 ---
 
-In this article, you learn how to use voice live with agents and Azure AI Speech using Python code. 
+In this article, you learn how to use voice live with [Azure AI Foundry Agent Service](/azure/ai-foundry/agents/overview) and [Azure AI Speech](/azure/ai-services/speech-service/overview) using Python code. 
 
 [!INCLUDE [Introduction](intro.md)]
 
@@ -16,6 +16,7 @@ In this article, you learn how to use voice live with agents and Azure AI Speech
 - An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
 - <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>. We recommend using Python 3.10 or later, but having at least Python 3.8 is required. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
 - An [Azure AI Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [Voice Live API overview documentation](../../../voice-live.md).
+- An Azure AI Foundry agent created in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). For more information about creating an agent, see the [Create an agent quickstart](/azure/ai-foundry/agents/quickstart).
 
 > [!TIP]
 > To use voice live, you don't need to deploy an audio model with your Azure AI Foundry resource. Voice live is fully managed, and the model is automatically deployed for you. For more information about models availability, see the [voice live overview documentation](../../../voice-live.md).
@@ -136,13 +137,11 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     async def main() -> None:
         # Set environment variables or edit the corresponding values here.
         endpoint = os.environ.get("AZURE_VOICE_LIVE_ENDPOINT") or "https://contoso-proj-agentic-foundry-res.cognitiveservices.azure.com/"
+        agent_id = os.environ.get("AI_FOUNDRY_AGENT_ID") or "your-agent-id"
+        project_name = os.environ.get("AI_FOUNDRY_PROJECT_NAME") or "your-project-name"
         api_version = os.environ.get("AZURE_VOICE_LIVE_API_VERSION") or "2025-05-01-preview"
         api_key = os.environ.get("AZURE_VOICE_LIVE_API_KEY") or "your_api_key"
         
-        # Agent-specific configuration for Azure AI Foundry projects
-        agent_id = os.environ.get("AI_FOUNDRY_AGENT_ID") or "your-agent-id"
-        project_name = os.environ.get("AI_FOUNDRY_PROJECT_NAME") or "your-project-name"
-    
         # For the recommended keyless authentication, get and
         # use the Microsoft Entra token instead of api_key:
         scopes = "https://ai.azure.com/.default"

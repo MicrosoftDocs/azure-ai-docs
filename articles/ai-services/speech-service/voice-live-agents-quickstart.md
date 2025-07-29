@@ -1,5 +1,5 @@
 ---
-title: 'How to use voice live with agents for real-time voice agents with Azure AI Speech'
+title: Get started with Azure AI Speech voice live and Azure AI Foundry Agent Service
 titleSuffix: Azure AI services
 description: Learn how to use voice live with agents for real-time voice agents with Azure AI Speech.
 manager: nitinme
@@ -13,7 +13,7 @@ ms.custom: build-2025
 recommendations: false
 ---
 
-# Quickstart: Voice live with agents quickstart (Preview)
+# Quickstart: Create a voice live real-time voice agent with Azure AI Foundry Agent Service (Preview)
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
