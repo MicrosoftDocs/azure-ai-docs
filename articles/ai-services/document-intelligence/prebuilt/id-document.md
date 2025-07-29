@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 02/10/2025
+ms.date: 07/29/2025
 ms.author: lajanuar
 ms.custom: references.regions
 ---
@@ -34,12 +34,12 @@ ms.custom: references.regions
 
 > [!NOTE]
 >
-> Document Intelligence `v4.0 2024-11-30 (GA)` API for ID prebuilt model now supports all the world map IDs with expanded regions across United States, Asia, Europe, Africa and Oceania. 
+> Document Intelligence `v4.0 2024-11-30 (GA)` API for the prebuilt Identity document (ID) model now supports identification documents from all regions worldwide, including expanded coverage across the United States, Asia, Europe, Africa, and Oceania.
 >
 
-> [!NOTE]: 
-
-Document Intelligence Identity document (ID) model combines Optical Character Recognition (OCR) with deep learning models to analyze and extract key information from identity documents. The API analyzes identity documents (including the following) and returns a structured JSON data representation.
+> [!NOTE]
+>
+> Document Intelligence Identity document (ID) model combines Optical Character Recognition (OCR) with deep learning models to analyze and extract key information from identity documents. The API analyzes identity documents (including the following) and returns a structured JSON data representation.
 
 | Region | Document types |
 |--------|----------------|
