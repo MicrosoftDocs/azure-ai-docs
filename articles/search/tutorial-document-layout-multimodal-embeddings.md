@@ -23,6 +23,8 @@ In this tutorial, you use:
 
 + A 36-page PDF document that combines rich visual content, such as charts, infographics, and scanned pages, with traditional text.
 
++ An indexer and skillset to create an indexing pipeline that includes AI enrichment through skills.
+
 + The [Document Layout skill (preview)](cognitive-search-skill-document-intelligence-layout.md) for extracting text and normalized images with its `locationMetadata` from various documents, such as page numbers or bounding regions.
 
 + The [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) to vectorize text and images.
@@ -298,7 +300,7 @@ Key points:
 
 ## Create a skillset
 
-[Create Skillset (REST)](/rest/api/searchservice/skillsets/create) creates a search index on your search service. An index specifies all the parameters and their attributes.
+[Create Skillset (REST)](/rest/api/searchservice/skillsets/create) creates a skillset on your search service. A skillset defines the operations that chunk and embed content prior to indexing. This skillset uses the Document Layout skill to extract text and images, preserving location metadata which is useful for citations in RAG applications. It uses Azure AI Vision multimodal embeddings skill to vectorize image and text content.
 
 ```http
 ### Create a skillset
