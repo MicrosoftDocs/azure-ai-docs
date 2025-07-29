@@ -22,15 +22,21 @@ Customer-managed keys (CMKs) in [Azure AI Foundry portal](https://ai.azure.com/?
 
 ## About encryption in Azure AI Foundry
 
-Azure AI Foundry is a service in the Microsoft Azure cloud. By default,  services use Microsoft-managed encryption keys to encrypt data in transit and at rest.
+Azure AI Foundry is a service in the Microsoft Azure cloud. By default, services use Microsoft-managed encryption keys to encrypt data in transit and at rest.
 
 ::: zone pivot="hub-project"
 
-Hub and [!INCLUDE [hub](../includes/hub-project-name.md)] resources are implementations of the Azure Machine Learning workspace and encrypt data in transit and at rest. For details, see [Data encryption with Azure Machine Learning](../../machine-learning/concept-data-encryption.md).
+Azure AI Hub resource takes a dependency on Azure AI Foundry resource as a dependency. Both resources are managed in your Azure subscription. You must configure customer-managed key encryption on both.
+
+*  AI Foundry resources, data is encrypted and decrypted using [FIPS 140-2](https://en.wikipedia.org/wiki/FIPS_140-2) compliant [256-bit AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) encryption. Encryption and decryption are transparent, meaning encryption and access are managed for you. Your data is secure by default and you don't need to modify your code or applications to take advantage of encryption.
+
+* AI Hub resources, and [!INCLUDE [hub](../includes/hub-project-name.md)] resources are implementations of the Azure Machine Learning workspace and encrypt data in transit and at rest. For details, see [Data encryption with Azure Machine Learning](../../machine-learning/concept-data-encryption.md). 
 
 ::: zone-end
 
 ::: zone pivot="fdp-project"
+
+When an Azure AI Foundry resource is created, you can update from Microsoft-managed keys to customer-managed keys. However, you cannot switch back from customer-managed keys to Microsoft-managed keys.
 
 Data is encrypted and decrypted using [FIPS 140-2](https://en.wikipedia.org/wiki/FIPS_140-2) compliant [256-bit AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) encryption. Encryption and decryption are transparent, meaning encryption and access are managed for you. Your data is secure by default and you don't need to modify your code or applications to take advantage of encryption.
 
@@ -130,7 +136,7 @@ Customer-managed key encryption is configured via Azure portal in a similar way 
 ## Limitations
 
 * The customer-managed key for encryption can only be updated to keys in the same Azure Key Vault instance.
-* After deployment, your [!INCLUDE [fdp](../includes/fdp-project-name.md)] can't switch from Microsoft-managed keys to customer-managed keys or vice versa.
+* After deployment, your [!INCLUDE [fdp](../includes/fdp-project-name.md)] can't switch from customer-managed keys to Microsoft managed keys.
 * Azure charges for the AI Foundry resource will continue to accrue during the soft delete retention period. Charges for projects don't continue to accrue during the soft delete retention period.
 
 ::: zone-end
@@ -149,16 +155,46 @@ Alternatively, use infrastructure-as-code options for automation. Example Bicep 
 1. [CMK encryption for hub](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aifoundry-cmk).
 1. [Service-side CMK encryption preview for hub](https://github.com/azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aistudio-cmk-service-side-encryption).
 
+::: zone-end
+
+## Encryption Key Rotation
+
+If you're using [customer-managed key encryption](../concepts/encryption-keys-portal.md), Azure AI Foundry allows you to rotate the encryption key used to protect your data. This applies to data stored in Microsoft-managed infrastructure, encrypted using your Azure Key Vault key.
+
+Rotation Limitations
+
+* **Same Key Vault Requirement**
+
+  You can only rotate encryption keys to another key within the same Azure Key Vault instance. Cross-vault key rotation is not supported.
+
+* **Scope of Rotation**
+
+  The new key must be compatible with the existing encryption configuration. Ensure that the new key is properly configured with the necessary access policies and permissions.
+
+* **Updating from customer-managed to Microsoft-managed**
+  
+  When an Azure AI Foundry resource or/and AI Hub is created, you can update from Microsoft-managed keys to customer-managed keys. However, you cannot switch back from customer-managed keys to Microsoft-managed keys.
+
+How to Rotate Encryption Keys
+
+* In your Azure Key Vault, create or identify the new key you want to use for encryption.
+
+* From Azure Portal or template options, update the resource configuration to reference the new key within the same Key Vault.
+
+* Your resource will take a few minutes to wrap data using your new encryption key. During this period, certain service operations are available.
+
+* The service will begin using the new key for encryption of newly stored data. Existing data remains encrypted with the previous key unless reprocessed.
+
 ## Limitations
 
 * The customer-managed key for encryption can only be updated to keys in the same Azure Key Vault instance.
-* After deployment, hubs can't switch from Microsoft-managed keys to Customer-managed keys or vice versa.
+* After deployment, you can't switch from Customer-managed keys to Microsoft managed keys.
 * [Azure AI Foundry Customer-Managed Key Request Form](https://aka.ms/cogsvc-cmk) is required to use customer-managed keys in combination with Azure Speech and Content Moderator capabilities.
-* [Azure AI Foundry Customer-Managed Key Request Form](https://aka.ms/cogsvc-cmk) is still required for Speech and Content Moderator.
-* If your AI Foundry resource is in a soft-deleted state(#preview-service-side-storage-of-encrypted-data-when-using-customer-managed-keys), any additional Azure charges will continue to accrue during the soft delete retention period.
+* [Azure AI Foundry Customer-Managed Key Request Form](https://aka.ms/cogsvc-cmk) is required for Speech and Content Moderator.
+* If your AI Foundry resource is in a soft-deleted state, any additional Azure charges will continue to accrue during the soft delete retention period.
 
-::: zone-end
+## Learn more
 
-## Related content
-
+* [Customer-managed key encryption](../concepts/encryption-keys-portal.md)
+* [Disable local auth](disable-local-auth.md)
 * [What is Azure Key Vault](/azure/key-vault/general/overview)?
