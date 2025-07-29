@@ -1,5 +1,5 @@
 ---
-title: Role-based access control in Azure AI Foundry portal
+title: Role-based access control
 titleSuffix: Azure AI Foundry
 description: This article introduces role-based access control in Azure AI Foundry portal.
 manager: scottpolly

@@ -855,7 +855,7 @@ items:
   items:
   - name: Identity & access management
     items:
-    - name: Role-based access control in Azure AI Foundry portal
+    - name: Role-based access control
       href: concepts/rbac-azure-ai-foundry.md
     - name: Rotate API access keys
       href: ../ai-services/rotate-keys.md?context=/azure/ai-foundry/context/context
