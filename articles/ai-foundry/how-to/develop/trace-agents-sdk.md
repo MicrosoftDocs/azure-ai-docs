@@ -6,14 +6,10 @@ author: lgayhardt
 ms.author: lagayhar
 manager: scottpolly
 ms.reviewer: amibp
-ms.date: 05/19/2025
+ms.date: 07/29/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.custom:
-  - build-2024
-  - ignite-2024
-  - build-aifnd
-  - build-2025
+
 ---
 
 # Trace your AI agents using Azure AI Foundry SDK (preview)
