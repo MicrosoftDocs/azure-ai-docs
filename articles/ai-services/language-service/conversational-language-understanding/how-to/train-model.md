@@ -103,7 +103,9 @@ Use the evaluation scores to guide your decisions. There may be times where a sp
 
    :::image type="content" source="../media/select-project.png" alt-text="Screenshot of conversational language understanding tab in the Azure AI Foundry.":::
 
-1. In **Create CLU fine tuning task** window, complete the **Name** and **Language** fields. If you're using the free **Standard Training** mode, select **English** for the language field.
+1. In **Create CLU fine tuning task** window, select your **Connected service** from the drop-down menu, then complete the **Name** and **Language** fields. If you're using the free **Standard Training** mode, select **English** for the language field.
+
+1. Select the  **Create** button. It may take a few minutes for the create operation to complete.
 
     > [!NOTE]
     >
