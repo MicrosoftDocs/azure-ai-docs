@@ -208,8 +208,8 @@ The following table is an example of how to set up role-based access control for
 | Team lead/Lead developer | Azure AI Project Manager on Foundry resource | Lead developers can create projects for their team and start building in the projects. After project creation, project owners can invite other members and assign the Azure AI User role.                                   |
 | Team members/developers  | Azure AI User on Foundry resource         | Developers can build agents within a project.                             |
 
->[INFORMATION]
->Users with Contributor role can deploy models in AI Foundry.
+> [!IMPORTANT]
+> Users with the Contributor role can deploy models in Azure AI Foundry.
 
 ## Access to resources created outside of AI Foundry
 
@@ -218,7 +218,7 @@ When you create a Foundry resource, the built-in role-based access control permi
 - The resource you're trying to use has permissions set up to allow you to access it.
 - Your Foundry account resource is allowed to access it.
 
-For example, if you're trying to consume a new Blob storage, you need to ensure that the Foundry account resource's managed identity is added to the Blob Storage Reader role for the Blob. If you're trying to use a new Azure AI Search source, you might need to add the Foundry to the Azure AI Search's role assignments.
+For example, if you're trying to consume a new Blob storage, you need to ensure that the Foundry account resource's managed identity is added to the Blob Storage Reader role for the Blob. If you're trying to use a new Azure AI Search source, you might need to add the foundry to the Azure AI Search's role assignments.
 
 
 ## Manage access with roles
