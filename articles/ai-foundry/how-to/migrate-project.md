@@ -232,7 +232,7 @@ There are some reasons you might want to keep hubs and [!INCLUDE [hub-project-na
 1. Select **Delete** to delete the hub and all its associated projects.
 
 > [!CAUTION]
-> Make sure you don't delete the Azure AI Foundry resource.   
+> Make sure you don't delete the Azure AI Foundry (AI Services) resource, since this is contains your existing deployments, files, fine-tuning jobs, and going forward will manage your Foundry projects.
 
 # [Bicep](#tab/bicep)
 
