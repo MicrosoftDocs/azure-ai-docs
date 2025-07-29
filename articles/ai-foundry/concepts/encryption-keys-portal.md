@@ -187,5 +187,5 @@ How to Rotate Encryption Keys
 ## Learn more
 
 * [Customer-managed key encryption](../concepts/encryption-keys-portal.md)
-* [Disable local auth](disable-local-auth.md)
+* [Disable local auth](../how-to/disable-local-auth.md)
 * [What is Azure Key Vault](/azure/key-vault/general/overview)?
