@@ -324,7 +324,12 @@ And a `response.audio_timestamp.done` message is sent when all timestamps are re
 
 ### Viseme
 
+A viseme is the visual description of a phoneme in spoken language. It defines the position of the face and mouth while a person is speaking.
+
 You can use Azure standard voice or Azure custom voice with `animation.outputs` set to `{"viseme_id"}`. The service returns the `response.animation_viseme.delta` in the response and `response.animation_viseme.done` when all viseme messages are returned.
+
+> [!TIP]
+> Fore more information about viseme via Speech Synthesis Markup Language (SSML), see [viseme element documentation](speech-synthesis-markup-voice#viseme-element).
 
 To configure the viseme, you can set the `animation.outputs` in the `session.update` message. The `animation.outputs` parameter is optional. It configures which animation outputs should be returned. Currently, it only supports `viseme_id`.
 
