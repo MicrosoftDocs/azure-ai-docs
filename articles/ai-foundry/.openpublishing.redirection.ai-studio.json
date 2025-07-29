@@ -17,7 +17,7 @@
         },
         {
             "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-gretel-navigator.md",
-            "redirect_url": "/azure/ai-foundry/concepts/models-inference-examples"
+            "redirect_url": "/azure/ai-foundry/concepts/models-inference-examples",
             "redirect_document_id": true
         },
         {
