@@ -66,7 +66,7 @@ The browser automation tool supports multi-turn conversations, allowing the user
 
     For more information on creating a connection, see [Create a connection](../../../how-to/connections-add.md?pivots=fdp-project).
 
-1. Create a browser automation tool with your connection ID
+1. Create a browser automation tool with your connection ID.
 
 ## Transparency note
 

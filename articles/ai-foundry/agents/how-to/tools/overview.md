@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 06/17/2025
+ms.date: 07/29/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
@@ -72,6 +72,7 @@ The Foundry Agent Service provides the following built-in tools. You can use the
 |---------|---------|
 |[Azure AI Search](azure-ai-search.md)     | Use an existing Azure AI Search index to ground agents with data in the index, and chat with your data.        |
 |[Azure Functions](azure-functions.md)     | Leverage your Azure Functions to create intelligent, event-driven applications.        |
+|[Browser Automation](browser-automation.md)     | Perform real-world browser tasks through natural language prompts.         |
 |[Code Interpreter](code-interpreter.md)     | Enable agents to write and run Python code in a sandboxed execution environment.         |
 |[Deep Research (preview)](./deep-research.md) | Use OpenAI's advanced agentic research capability for analysis and reasoning. | 
 |[File Search](file-search.md)     | Augment agents with knowledge from outside its model, such as proprietary product information or documents provided by your users.          |
