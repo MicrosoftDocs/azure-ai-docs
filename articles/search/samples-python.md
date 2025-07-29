@@ -54,6 +54,14 @@ Code samples from the Azure AI Search team demonstrate features and workflows. M
 
 [**aisearch-openai-rag-audio**](https://github.com/Azure-Samples/aisearch-openai-rag-audio) is "voice to RAG". This sample demonstrates a simple architecture for voice-based generative AI applications that enables Azure AI Search RAG on top of the real-time audio API with full-duplex audio streaming from client devices, while securely handling access to both the model and retrieval system. Backend code is written in Python, while frontend code is written in JavaScript. For an introduction, watch this [video](https://www.youtube.com/watch?v=vXJka8xZ9Ko).
 
+## Accelerators
+
+An accelerator is an end-to-end solution that includes code and documentation that you can adapt for your own implementation of a specific scenario.
+
+| Repository | Description |
+|------------|-------------|
+| [RAG Experiment Accelerator](https://github.com/microsoft/rag-experiment-accelerator) | Conduct experiments and evaluations using Azure AI Search and the RAG pattern. This accelerator has code for loading multiple data sources, using a variety of models, and creating a variety of search indexes and queries. |
+
 ## Other samples
 
 The following samples are also published by the Azure AI Search team but aren't referenced in documentation. Associated readme files provide usage instructions.

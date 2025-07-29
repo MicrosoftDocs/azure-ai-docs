@@ -29,7 +29,6 @@ Foundry Models in the model catalog belong to two main categories:
 * [Models sold directly by Azure](#models-sold-directly-by-azure)
 * [Models from partners and community](#models-from-partners-and-community)
 
-To learn more about these two categories, and [Models from Partners and Community](../../concepts/foundry-models-overview.md#models-from-partners-and-community).
 
 ## Models sold directly by Azure
 
@@ -112,7 +111,7 @@ See [the xAI model collection in Azure AI Foundry portal](https://ai.azure.com/e
 
 ## Models from partners and community
 
-Models from partners and community constitute the majority of the Azure AI Foundry Models and are provided by trusted third-party organizations, partners, research labs, and community contributors. To learn more about these models, see [Models from Partners and Community](#models-from-partners-and-community).
+Models from partners and community constitute the majority of the Azure AI Foundry Models and are provided by trusted third-party organizations, partners, research labs, and community contributors. To learn more about these models, see [Models from Partners and Community](../../concepts/foundry-models-overview.md#models-from-partners-and-community).
 
 
 ### Cohere
@@ -178,7 +177,7 @@ Microsoft models include various model groups such as MAI models, Phi models, he
 | [Phi-4-reasoning](https://aka.ms/azureai/landing/Phi-4-reasoning) | chat-completion with reasoning content | - **Input:** text (32,768 tokens) <br /> - **Output:** text (32,768 tokens) <br /> - **Languages:** `en` <br /> - **Tool calling:** No <br /> - **Response formats:** Text | Foundry, Hub-based |
 | [Phi-4-mini-reasoning](https://aka.ms/azureai/landing/Phi-4-mini-reasoning) | chat-completion with reasoning content | - **Input:** text (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` <br /> - **Tool calling:** No <br /> - **Response formats:** Text | Foundry, Hub-based |
 
-See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi).  There are also several Microsoft models available as [models sold directly by Azure](#microsoft-models-sold-directly-by-azure).
+See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi).  There are also Microsoft models available as [models sold directly by Azure](#microsoft-models-sold-directly-by-azure).
 
 ### Mistral AI
 

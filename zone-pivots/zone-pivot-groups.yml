@@ -896,6 +896,8 @@ groups:
   title: Programming languages
   prompt: Choose a programming language
   pivots:
+  - id: foundry-portal
+    title: AI Foundry portal
   - id: programming-language-csharp
     title: C#
   - id: programming-language-java
@@ -1451,7 +1453,7 @@ groups:
   prompt: Choose a project type
   pivots:
   - id: fdp-project
-    title: Foundry project
+    title: Foundry project (recommended)
   - id: hub-project
     title: Hub based project 
 # Owner: sgilley
