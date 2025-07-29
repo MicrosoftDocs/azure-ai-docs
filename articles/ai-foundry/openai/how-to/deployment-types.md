@@ -160,7 +160,7 @@ You can use the following policy to disable access to any Azure AI Foundry deplo
 > [!IMPORTANT]
 > Data stored at rest remains in the designated Azure geography, while data may be processed for inferencing in any Azure AI Foundry location. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
 
-**SKU name in code:** `Developer`
+**SKU name in code:** `DeveloperTier`
 
 Fine-tuned models support a Developer deployment specifically designed to support custom model evaluation. It offers no data residency guarantees nor does it offer an SLA. To learn more about using the Developer deployment type, see the [fine-tuning guide](./fine-tune-test.md).
 
