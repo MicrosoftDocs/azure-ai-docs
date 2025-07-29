@@ -20,7 +20,7 @@ Azure AI Content Understanding is available in preview. Public preview releases 
 
 ## Overview
 
-The document analysis capabilities in Azure AI Content Understanding  help you transform unstructured document data into structured, machine-readable information. You can precisely identify and extract document elements while you preserve their structural relationships. Then you can build powerful document processing workflows for a wide range of applications.
+The document analysis capabilities in Azure AI Content Understanding help you transform unstructured document data into structured, machine-readable information. You can precisely identify and extract document elements while you preserve their structural relationships. Then you can build powerful document processing workflows for a wide range of applications.
 
 This article explains the document analysis features that you can use to extract meaningful content from your documents, preserve document structures, and unlock the full potential of your document data.
 
@@ -42,12 +42,11 @@ You can extract the following document elements through content extraction:
   * [Tables](#tables)
   * [Sections](#sections)
 
-> [!NOTE]
-> Not all content and layout elements are applicable or currently supported by all document file types.
+Not all content and layout elements are applicable or currently supported by all document file types.
 
 ### Markdown content elements
 
-Content Understanding generates richly formatted markdown that preserves the original document's structure. For this reason, large language models can better comprehend document context and hierarchical relationships for AI-powered analysis and generation tasks. In addition to words, selection marks, barcodes, formulas, and images as content, the markdown also includes sections, tables, and page metadata for both visual rendering and machine processing. Learn more about how Content Understanding represents [content and layout elements in markdown](markdown.md).
+Content Understanding generates richly formatted Markdown that preserves the original document's structure. For this reason, large language models can better comprehend document context and hierarchical relationships for AI-powered analysis and generation tasks. In addition to words, selection marks, barcodes, formulas, and images as content, the Markdown also includes sections, tables, and page metadata for both visual rendering and machine processing. Learn more about how Content Understanding represents [content and layout elements in Markdown](markdown.md).
 
 #### Words
 
@@ -57,7 +56,7 @@ A *word* is a content element composed of a sequence of characters. [Unicode Sta
 
 #### Selection marks
 
-A *selection mark* is a content element that represents a visual glyph that indicates the state of a selection. Selection marks might appear in the document as checkboxes, check marks, or buttons. You can select or clear a selection mark, with different visual representation to indicate the state. Selection marks are encoded as words in the document analysis result by using `☒` (selected) and `☐` (cleared).
+A *selection mark* is a content element that represents a visual glyph that indicates the state of a selection. Selection marks might appear in the document as checkboxes, check marks, or buttons. You can select or clear a selection mark, with different visual representation to indicate the state. Selection marks are encoded as words in the document analysis result by using the Unicode characters `☒` (selected) and `☐` (cleared).
 
 Content Understanding detects check marks inside a table cell as selection marks in the selected state. It doesn't detect empty table cells as selection marks in the cleared state.
 
@@ -65,7 +64,7 @@ Content Understanding detects check marks inside a table cell as selection marks
 
 #### Barcodes
 
-A *barcode* is a content element that describes both linear (for example, UPC or EAN) and two-dimensional (for example, `QR` or `MaxiCode`) barcodes. Content Understanding represents barcodes by using their detected types and extracted values. The following barcode formats are currently accepted:
+A *barcode* is a content element that describes both linear (for example, UPC or EAN) and two-dimensional (for example, QR or MaxiCode) barcodes. Content Understanding represents barcodes by using their detected types and extracted values. The following barcode formats are currently accepted:
 
 * QR Code
 * Code 39
@@ -83,7 +82,7 @@ A *barcode* is a content element that describes both linear (for example, UPC or
 
 #### Formulas
 
-A *formula* is a content element that represents mathematical expressions in the document. It might be an `inline` formula embedded with other text or a `display` formula that takes up an entire line. Multiline formulas are represented as multiple `display` formula elements grouped into paragraphs to preserve mathematical relationships.
+A *formula* is a content element that represents mathematical expressions in the document. It might be an inline formula embedded with other text or a display formula that takes up an entire line. Multiline formulas are represented as multiple display formula elements grouped into paragraphs to preserve mathematical relationships.
 
 #### Images
 
@@ -95,10 +94,9 @@ Document *layout elements* are visual and structural components, such as pages, 
 
 #### Pages
 
-A *page* is a grouping of content that typically corresponds to one side of a sheet of paper. A rendered page is characterized via `width` and `height` in the specified `unit`. In general, images use pixels while PDFs use inches. The `angle` property describes the overall text angle in degrees for pages that might be rotated.
+A *page* is a grouping of content that typically corresponds to one side of a sheet of paper. A rendered page is characterized via width and height in the specified unit. In general, images use pixels while PDFs use inches. The `angle` property describes the overall text angle in degrees for pages that might be rotated.
 
-> [!NOTE]
-> For spreadsheets like Excel, each sheet is mapped to a page. For presentations, like PowerPoint, each slide is mapped to a page. For file formats like HTML or Word documents, which lack a native page concept without rendering, the entire main content is treated as a single page.
+For spreadsheets like Excel, each sheet is mapped to a page. For presentations, like PowerPoint, each slide is mapped to a page. For file formats like HTML or Word documents, which lack a native page concept without rendering, the entire main content is treated as a single page.
 
 #### Paragraphs
 
@@ -124,8 +122,7 @@ A table caption specifies content that explains the table. A table can also have
 
 A table might span across consecutive pages of a document. In this situation, table continuations in subsequent pages generally maintain the same column count, width, and styling. They often repeat the column headers. Typically, no intervening content comes between the initial table and its continuations except for page headers, footers, and page numbers.
 
-> [!NOTE]
-> The span for tables covers only the core content and excludes associated caption and footnotes.
+The span for tables covers only the core content and excludes associated captions and footnotes.
 
 :::image type="content" source="../media/document/table.png" alt-text="Screenshot that shows a table by using the layout feature.":::
 
@@ -160,4 +157,4 @@ Page numbers are 1-indexed. The bounding polygon describes a sequence of points 
 * Try processing your document content by using Content Understanding in [Azure AI Foundry](https://aka.ms/cu-landing).
 * Learn to analyze document content [analyzer templates](../quickstart/use-ai-foundry.md).
 * Review code samples with [visual document search](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python/blob/main/notebooks/search_with_visual_document.ipynb).
-* Review code sample [analyzer templates](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
+* Review the code sample [analyzer templates](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
