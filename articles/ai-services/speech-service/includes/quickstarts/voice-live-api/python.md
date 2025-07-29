@@ -141,7 +141,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
         # For the recommended keyless authentication, get and
         # use the Microsoft Entra token instead of api_key:
-        scopes = "https://cognitiveservices.azure.com/.default"
+        scopes = "https://ai.azure.com/.default"
         credential = DefaultAzureCredential()
         token = await credential.get_token(scopes)
 
