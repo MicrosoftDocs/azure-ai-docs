@@ -88,31 +88,31 @@ Most Azure AI Foundry users already have an 'AI Foundry' (formerly called 'AI Se
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
-- In [Azure AI Foundry portal](https://ai.azure.com), open your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
-- In the left pane, select **Management center**.
-- Select **Connected resources** under the **Hub** section.
-- Find the **AI Foundry models** connection, and select the link to view its details.
+1.  In [Azure AI Foundry portal](https://ai.azure.com), open your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
+1.  In the left pane, select **Management center**.
+1.  Select **Connected resources** under the **Hub** section.
+1.  Find the **AI Foundry models** connection, and select the link to view its details.
 
-:::image type="content" source="../media/migrate-project/find-resource.png" alt-text="Screenshot of AI Foundry connection details.":::
+    :::image type="content" source="../media/migrate-project/find-resource.png" alt-text="Screenshot of AI Foundry connection details.":::
 
-- Follow the link in the connection details to open your Foundry resource overview page.
+1.  Follow the link in the connection details to open your Foundry resource overview page.
 
-:::image type="content" source="../media/migrate-project/resource-details.png" alt-text="Screenshot of Foundry resource in management center.":::
+    :::image type="content" source="../media/migrate-project/resource-details.png" alt-text="Screenshot of Foundry resource in management center.":::
 
 # [Azure portal](#tab/azure)
 
-- In [Azure portal](https://portal.azure.com), select the resource group that contains your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
-- Locate your resource with 'Azure AI Foundry' resource type. (This resource type used to be shown as 'AI Services.')
+1.  In [Azure portal](https://portal.azure.com), select the resource group that contains your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
+1.  Locate your resource with 'Azure AI Foundry' resource type. (This resource type used to be shown as 'AI Services.')
 
 :::image type="content" source="../media/migrate-project/resource-azure-portal.png" alt-text="Screenshot of Azure AI Foundry resource in Azure portal.":::
 
-- Follow the link to open the Foundry resource overview page.
+1. Follow the link to open the Foundry resource overview page.
 
 # [Bicep](#tab/bicep)
 
-- If you use infrastructure-as-code templates such as Bicep (or Azure Resource Manager template, or Terraform), your template typically contains multiple Azure resources.
+1. If you use infrastructure-as-code templates such as Bicep (or Azure Resource Manager template, or Terraform), your template typically contains multiple Azure resources.
 
-- Locate the resource of the *type CognitiveServices/account/kind=AIServices*. This resource is your 'AI Foundry resource,' as it's displayed in Azure AI Foundry portal or Azure portal.
+1. Locate the resource of the *type CognitiveServices/account/kind=AIServices*. This resource is your 'AI Foundry resource,' as it's displayed in Azure AI Foundry portal or Azure portal.
 
 --- 
 
@@ -130,7 +130,7 @@ You can create a new project in one of two ways:
     1. Select **Overview** under the **Resource** section.
     1. Select **New project** to create a project in this resource.  This will create a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)].
     
-    :::image type="content" source="../media/migrate-project/create-project.png" alt-text="Screenshot of creating a project in management center.":::
+        :::image type="content" source="../media/migrate-project/create-project.png" alt-text="Screenshot of creating a project in management center.":::
     
     1. Once the project is created, in the left pane, select **Go to project**.
 
@@ -139,7 +139,7 @@ You can create a new project in one of two ways:
     1. In the left pane, select **Agents**
     1. Since the resource doesn't yet have a project, you are prompted to create one.
 
-    :::image type="content" source="../media/migrate-project/create-from-agent.png" alt-text="Screenshot of Agents tab prompting to create a new Foundry project.":::
+        :::image type="content" source="../media/migrate-project/create-from-agent.png" alt-text="Screenshot of Agents tab prompting to create a new Foundry project.":::
 
 # [Azure portal](#tab/azure)
 
@@ -232,7 +232,7 @@ There are some reasons you might want to keep hubs and [!INCLUDE [hub-project-na
 1. Select **Delete** to delete the hub and all its associated projects.
 
 > [!CAUTION]
-> Make sure you don't delete the Azure AI Foundry (AI Services) resource, since this is contains your existing deployments, files, fine-tuning jobs, and going forward will manage your Foundry projects.
+> Make sure you don't delete the Azure AI Foundry (AI Services) resource, since this contains your existing deployments, files, fine-tuning jobs, and going forward will manage your Foundry projects.
 
 # [Bicep](#tab/bicep)
 
