@@ -483,6 +483,8 @@ items:
     items:
     - name: What is the Speech service?
       href: ../ai-services/speech-service/overview.md?context=/azure/ai-foundry/context/context
+    - name: Voice live
+      href: ../ai-services/speech-service/voice-live-quickstart.md?context=/azure/ai-foundry/context/context
     - name: Real-time speech to text
       href: ../ai-services/speech-service/get-started-speech-to-text.md?context=/azure/ai-foundry/context/context
     - name: Fast transcription
@@ -499,6 +501,8 @@ items:
       href: ../ai-services/speech-service/pronunciation-assessment-tool.md?context=/azure/ai-foundry/context/context
     - name: Speech translation
       href: ../ai-services/speech-service/get-started-speech-translation.md?context=/azure/ai-foundry/context/context
+    - name: Video translation
+      href: ../ai-services/speech-service/video-translation-get-started.md?context=/azure/ai-foundry/context/context
   - name:  Translator
     items:
     - name: What is Azure AI Translator?

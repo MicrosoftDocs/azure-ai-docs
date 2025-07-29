@@ -118,7 +118,25 @@ Azure AI Foundry offers a unified platform where you can easily build, manage, a
 
    :::image type="content" source="../media/configure-resources/connect-language-resource.png" alt-text="Screenshot of connect search resource selector in the Azure AI Foundry.":::
 
-1. Your resources are now set up properly. Continue with setting up the fine-tuning task and customizing your CLU project.
+## Import an existing Azure AI project
+
+Azure AI Foundry allows you to connect to your existing Azure AI services resources. This means you can establish a connection within your Azure AI Foundry project to the Azure AI Language resource where your custom models are stored.
+
+To import an existing Azure AI services project with Azure AI Foundry, you need to create a connection to the Azure AI services resource within your Azure AI Foundry project. For more information, *see* [Connect Azure AI Services projects to Azure AI Foundry](../../../../ai-services/connect-services-ai-foundry-portal.md)
+
+## Export a project
+
+You can download a CLU project as a **config.json** file:
+
+1. Navigate to your project home page.
+1. At the top of the page, select your project from the right page ribbon area.
+1. Select **Download config file**.
+
+    :::image type="content" source="../media/create-project/download-config-json.png" alt-text="Screenshot of project drop-down menu with the download config file hyperlink in the Azure AI Foundry.":::
+
+
+
+That's it! Your resources are now set up properly. Continue with setting up the fine-tuning task and customizing your CLU project.
 
 ## Next Steps
 
