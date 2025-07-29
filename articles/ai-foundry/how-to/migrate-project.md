@@ -47,7 +47,7 @@ New capabilities include:
 - **Projects are now child resources**; they might be assigned their own admin controls like Azure RBAC, but by default share common settings from their parent resource. This principle aims to take IT admins out of the day-to-day loop. Once security, resource connectivity and governance are established at the resource level, as developer you can create your own project as a folder to organize your work.
 
 > [!IMPORTANT]
-> Foundry projects feature set aren't yet on full parity with hub-based projects. For an up-to-date view on supported features, see [this support matrix](/azure/ai-foundry/what-is-azure-ai-foundry#which-type-of-project-do-i-need).
+> Foundry projects feature set aren't yet on full parity with [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s. For an up-to-date view on supported features, see [this support matrix](/azure/ai-foundry/what-is-azure-ai-foundry#which-type-of-project-do-i-need).
 
 ## How to switch to Foundry project
 
