@@ -7,7 +7,7 @@ reviewer: santiagxf
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: concept-article
-ms.date: 04/16/2025
+ms.date: 07/29/2025
 ms.author: scottpolly
 ms.reviewer: fasantia
 ms.custom: references_regions, tool_generated
