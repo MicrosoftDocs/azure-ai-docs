@@ -7,6 +7,10 @@ ms.topic: include
 ms.date: 7/31/2025
 ---
 
+In this article, you learn how to use voice live with agents and Azure AI Speech using Python code. 
+
+[!INCLUDE [Introduction](intro.md)]
+
 ## Prerequisites
 
 - An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
