@@ -7,7 +7,7 @@ ms.author: mopeakande
 manager: scottpolly
 reviewer: santiagxf
 ms.reviewer: fasantia
-ms.date: 07/11/2025
+ms.date: 07/29/2025
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.custom:
