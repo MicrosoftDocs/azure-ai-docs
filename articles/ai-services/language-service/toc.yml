@@ -175,9 +175,6 @@ items:
         - name: Back up and recover your models
           href: conversational-language-understanding/how-to/fail-over.md
           displayName: disaster recovery, failover, clu
-        - name: Create a CLU project with REST API
-          href: conversational-language-understanding/how-to/create-project.md
-          displayName: rest api, project creation, clu 
         - name: Migrate from LUIS
           href: conversational-language-understanding/how-to/migrate-from-luis.md
           displayName: language understanding, luis to clu
@@ -190,7 +187,7 @@ items:
           href: conversational-language-understanding/concepts/multiple-languages.md
           displayName: multiple languages, international, localization
         - name: Entity components
-          href: conversational-language-understanding/concepts/entity-components.md
+          href: conversational-language-understanding/concepts/entity-components.mdclu
           displayName: entities, extraction, ner components
         - name: Evaluation metrics
           href: conversational-language-understanding/concepts/evaluation-metrics.md
