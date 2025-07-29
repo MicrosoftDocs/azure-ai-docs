@@ -103,7 +103,7 @@ No installation is necessary to use the Azure AI Foundry portal.
 # [TypeScript](#tab/typescript)
 
 1. [Install Node.js and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-javascript)
-1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your JavaScript scripts.
+1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your TypeScript scripts.
 1. Download [package.json](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/typescript/mslearn-resources/quickstart/package.json).
 1. Install packages with `npm install`
 1. [!INCLUDE [find-endpoint](find-endpoint.md)]
@@ -113,7 +113,7 @@ No installation is necessary to use the Azure AI Foundry portal.
 
 
 > [!NOTE]
-> All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/javascript/mslearn-resources/quickstart).
+> All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/typescript/mslearn-resources/quickstart).
 
 # [C#](#tab/csharp)
 
