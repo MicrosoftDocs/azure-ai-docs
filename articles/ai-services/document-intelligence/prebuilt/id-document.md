@@ -32,6 +32,13 @@ ms.custom: references.regions
 
 ::: moniker range=">=doc-intel-3.0.0"
 
+> [!NOTE]
+>
+> Document Intelligence `v4.0 2024-11-30 (GA)` API for ID prebuilt model now supports all the world map IDs with expanded regions across United States, Asia, Europe, Africa and Oceania. 
+>
+
+> [!NOTE]: 
+
 Document Intelligence Identity document (ID) model combines Optical Character Recognition (OCR) with deep learning models to analyze and extract key information from identity documents. The API analyzes identity documents (including the following) and returns a structured JSON data representation.
 
 | Region | Document types |
