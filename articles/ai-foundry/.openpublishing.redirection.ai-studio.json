@@ -12,7 +12,7 @@
         },
         {
             "source_path_from_root": "/articles/ai-foundry/how-to/deploy-models-mistral-open.md",
-            "redirect_url": "/azure/ai-foundry/concepts/models-inference-examples",
+            "redirect_url": "/azure/ai-foundry/foundry-models/concepts/models",
             "redirect_document_id": true
         },
         {
