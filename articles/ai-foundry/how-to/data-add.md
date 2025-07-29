@@ -34,7 +34,7 @@ Data can help when you need these capabilities:
 
 [!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 
-## Adding new data
+## Add new data
 
 You are charged for the storage used by your data. To help estimate the cost, you can use the [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/). The data is stored in a container called `workspaceblobstore` in your project's Azure Storage account. 
 
@@ -118,8 +118,8 @@ When a data resource is erroneously created - for example, with an incorrect nam
 |The **name** is incorrect     |  [Archive the data](#archive-data)       |
 |The team **no longer uses** the data | [Archive the data](#archive-data) |
 |It **clutters the data listing** | [Archive the data](#archive-data) |
-|The **path** is incorrect     |  Create a *new version* of the data (same name) with the correct path. For more information, visit [Create data](#create-data).       |
-|It has an incorrect **type**  |  Currently, Azure AI doesn't allow the creation of a new version with a *different* type compared to the initial version.<br>(1) [Archive the data](#archive-data)<br>(2) [Create a new data](#create-data) under a different name with the correct type.    |
+|The **path** is incorrect     |  Create a *new version* of the data (same name) with the correct path. For more information, visit [Add new data](#add-new-data).       |
+|It has an incorrect **type**  |  Currently, Azure AI doesn't allow the creation of a new version with a *different* type compared to the initial version.<br>(1) [Archive the data](#archive-data)<br>(2) [Add new data](#add-new-data) under a different name with the correct type.    |
 
 ### Archive data
 
