@@ -73,7 +73,7 @@ A file (`uri_file`) data resource type points to a *single file* on storage (for
 
 A Folder (`uri_folder`) data source type points to a *folder* on a storage resource (for example, a folder containing several subfolders of images).
 
-A Table ('uri_table') data source type points to a *table* on a storage resource (for example, a folder that contains tabular data).
+A Table (`uri_table`) data source type points to a *table* on a storage resource (for example, a folder that contains tabular data).
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
