@@ -39,7 +39,7 @@ This tutorial demonstrates a lower-cost approach for indexing multimodal content
 
 + [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills). This account provides access to the Azure AI Vision multimodal embedding model used in this tutorial. You must use an Azure AI multi-service account for skillset access to this resource.
 
-+ [Azure AI Search](search-create-service-portal.md). [Configure your search service](search-manage.md) for role-based access control and a managed identity for connections to Azure Storage and Azure AI Vision. Your service must be on the Basic tier or higher. This tutorial isn't supported on the Free tier. The search service must also be in the same region as your multi-service account.
++ [Azure AI Search](search-create-service-portal.md). [Configure your search service](search-manage.md) for role-based access control and a managed identity for connections to Azure Storage and Azure AI Vision. Your service must be on the Basic tier or higher. This tutorial isn't supported on the Free tier. 
 
 + [Azure Storage](/azure/storage/common/storage-account-create), used for storing sample data and for creating a [knowledge store](knowledge-store-concept-intro.md).
 
@@ -47,7 +47,7 @@ This tutorial demonstrates a lower-cost approach for indexing multimodal content
 
 ## Limitations
 
-+ The [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) also has limited regional availability. For an updated list of regions that provide multimodal embeddings, see the [Azure AI Vision documentation](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
++ The [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) has limited regional availability. When you install the multi-service account, choose a region that provides multimodal embeddings. For an updated list of regions that provide multimodal embeddings, see the [Azure AI Vision documentation](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
 
 ## Prepare data
 
@@ -61,7 +61,7 @@ The following instructions apply to Azure Storage which provides the sample data
 
 1. [Create role assignments and specify a managed identity in a connection string](search-howto-managed-identities-storage.md):
 
-   1. Assign **Storage Blob Data Reader** for data retrieval by the indexer and **Storage Blob Data Contributor** to create and load the knowledge store. You can use either a system-assigned managed identity or a user-assigned managed identity for your search service role assignment.
+   1. Assign **Storage Blob Data Reader** for data retrieval by the indexer. Assign **Storage Blob Data Contributor** and **Storage Table Data Contributor** to create and load the knowledge store. You can use either a system-assigned managed identity or a user-assigned managed identity for your search service role assignment.
 
    1. For connections made using a system-assigned managed identity, get a connection string that contains a ResourceId, with no account key or password. The ResourceId must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name. The connection string is similar to the following example:
 
@@ -101,20 +101,19 @@ This tutorial assumes you have an existing Azure AI multiservice account through
 
 For this tutorial, your local REST client connection to Azure AI Search requires an endpoint and an API key. You can get these values from the Azure portal. For alternative connection methods, see [Connect to a search service](search-get-started-rbac.md).
 
-For other authenticated connections, the search service uses the role assignments you previously defined.
+For authenticated connections that occur during indexer and skillset processing, the search service uses the role assignments you previously defined.
 
 1. Start Visual Studio Code and create a new file.
 
-1. Provide values for variables used in the request.
+1. Provide values for variables used in the request. For `@storageConnection`, make sure your connection string doesn't have a trailing semicolon or quotation marks. For `@imageProjectionContainer`, provide a container name that's unique in blob storage. Azure AI Search creates this container for you during skills processing.
 
    ```http
-   @searchUrl = PUT-YOUR-SEARCH-SERVICE-ENDPOINT-HERE
-   @searchsearchApiKey = PUT-YOUR-ADMIN-API-KEY-HERE
-   @storageConnection = PUT-YOUR-STORAGE-CONNECTION-STRING-HERE
-   @cognitiveServicesUrl = PUT-YOUR-COGNITIVE-SERVICES-URL-HERE
-   @cognitiveServicesKey= PUT-YOUR-COGNITIVE-SERVICES-URL-KEY-HERE
-   @modelVersion = PUT-YOUR-VECTORIZE-MODEL-VERSION-HERE
-   @imageProjectionContainer=PUT-YOUR-IMAGE-PROJECTION-CONTAINER-HERE (Azure AI Search creates this container for you during skills processing)
+    @searchUrl = PUT-YOUR-SEARCH-SERVICE-ENDPOINT-HERE
+    @searchApiKey = PUT-YOUR-ADMIN-API-KEY-HERE
+    @storageConnection = PUT-YOUR-STORAGE-CONNECTION-STRING-HERE
+    @cognitiveServicesUrl = PUT-YOUR-AZURE-AI-MULTI-SERVICE-ENDPOINT-HERE
+    @modelVersion = 2023-04-15
+    @imageProjectionContainer=sustainable-ai-pdf-images
    ```
 
 1. Save the file using a `.rest` or `.http` file extension. For help with the REST client, see [Quickstart: Full-text search using REST](search-get-started-text.md).
@@ -132,28 +131,27 @@ To get the Azure AI Search endpoint and API key:
 [Create Data Source (REST)](/rest/api/searchservice/data-sources/create) creates a data source connection that specifies what data to index.
 
 ```http
-### Create a data source
 POST {{searchUrl}}/datasources?api-version=2025-05-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{searchApiKey}}
 
-  {
-    "name": "doc-extraction-multimodal-embedding-ds",
-    "description": null,
-    "type": "azureblob",
-    "subtype": null,
-    "credentials": {
-      "connectionString":  "{{storageConnection}}"
-    },
-    "container": {
-      "name": "doc-extraction-multimodality-container",
-      "query": null
-    },
-    "dataChangeDetectionPolicy": null,
-    "dataDeletionDetectionPolicy": null,
-    "encryptionKey": null,
-    "identity": null
-  }
+{
+   "name":"doc-extraction-multimodal-embedding-ds",
+   "description":null,
+   "type":"azureblob",
+   "subtype":null,
+   "credentials":{
+      "connectionString":"{{storageConnection}}"
+   },
+   "container":{
+      "name":"sustainable-ai-pdf",
+      "query":null
+   },
+   "dataChangeDetectionPolicy":null,
+   "dataDeletionDetectionPolicy":null,
+   "encryptionKey":null,
+   "identity":null
+}
 ```
 
 Send the request. The response should look like:
@@ -174,7 +172,7 @@ Connection: close
 
 {
   "name": "doc-extraction-multimodal-embedding-ds",
-  "description": "A test datasource",
+  "description": null,
   "type": "azureblob",
   "subtype": null,
   "indexerPermissionOptions": [],
@@ -182,7 +180,7 @@ Connection: close
     "connectionString": null
   },
   "container": {
-    "name": "doc-extraction-multimodality-container",
+    "name": "sustainable-ai-pdf",
     "query": null
   },
   "dataChangeDetectionPolicy": null,
@@ -288,7 +286,7 @@ POST {{searchUrl}}/indexes?api-version=2025-05-01-preview   HTTP/1.1
             {
                 "name": "hnsw",
                 "algorithm": "defaulthnsw",
-                "vectorizer": "{{vectorizer}}"
+                "vectorizer": "demo-vectorizer"
             }
         ],
         "algorithms": [
@@ -304,11 +302,11 @@ POST {{searchUrl}}/indexes?api-version=2025-05-01-preview   HTTP/1.1
         ],
         "vectorizers": [
             {
-                "name": "{{ vectorizer }}",
+                "name": "demo-vectorizer",
                 "kind": "aiServicesVision",
                 "aiServicesVisionParameters": {
                     "resourceUri": "{{cognitiveServicesUrl}}",
-                    "searchApiKey": "{{cognitiveServicesKey}}",
+                    "authIdentity": null,
                     "modelVersion": "{{modelVersion}}"
                 }
             }
@@ -451,7 +449,7 @@ POST {{searchUrl}}/skillsets?api-version=2025-05-01-preview   HTTP/1.1
     {
       "@odata.type": "#Microsoft.Skills.Util.ShaperSkill",
       "name": "shaper-skill",
-      "description": "Shaper skill to reshape the data to fit the index schema"
+      "description": "Shaper skill to reshape the data to fit the index schema",
       "context": "/document/normalized_images/*",
       "inputs": [
         {
@@ -493,9 +491,9 @@ POST {{searchUrl}}/skillsets?api-version=2025-05-01-preview   HTTP/1.1
     }  
   ],
   "cognitiveServices": {
-    "@odata.type": "#Microsoft.Azure.Search.AIServicesByKey",
+    "@odata.type": "#Microsoft.Azure.Search.AIServicesByIdentity",
     "subdomainUrl": "{{cognitiveServicesUrl}}",
-    "key": "{{cognitiveServicesKey}}"
+    "identity": null
   },
   "indexProjections": {
       "selectors": [
@@ -548,6 +546,7 @@ POST {{searchUrl}}/skillsets?api-version=2025-05-01-preview   HTTP/1.1
   },
   "knowledgeStore": {
     "storageConnectionString": "{{storageConnection}}",
+    "identity": null,
     "projections": [
       {
         "files": [
@@ -583,6 +582,7 @@ POST {{searchUrl}}/indexers?api-version=2025-05-01-preview   HTTP/1.1
   api-key: {{searchApiKey}}
 
 {
+  "name": "doc-extraction-multimodal-embedding-indexer",
   "dataSourceName": "doc-extraction-multimodal-embedding-ds",
   "targetIndexName": "doc-extraction-multimodal-embedding-index",
   "skillsetName": "doc-extraction-multimodal-embedding-skillset",
