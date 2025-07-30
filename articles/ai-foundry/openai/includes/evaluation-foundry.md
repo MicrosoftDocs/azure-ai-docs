@@ -12,7 +12,7 @@ ms.topic: include
 
 ## Create evaluation
 
-1. Select the **Azure OpenAI Evaluation (PREVIEW)** within [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). To see this view as an option may need to first select an existing Azure OpenAI resource in a supported region.
+1. Select the **Azure OpenAI Evaluation (PREVIEW)** within [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). To see this view as an option, first select an existing Azure OpenAI resource in a supported region.
 2. Select **+ New evaluation**
 
     :::image type="content" source="../media/how-to/evaluations/new-evaluation.png" alt-text="Screenshot of the Azure OpenAI evaluation UX with new evaluation selected." lightbox="../media/how-to/evaluations/new-evaluation.png":::
@@ -29,7 +29,7 @@ ms.topic: include
 
     :::image type="content" source="../media/how-to/evaluations/upload-data-2.png" alt-text="Screenshot of data upload with example selection." lightbox="../media/how-to/evaluations/upload-data-2.png":::
 
-   If you need a sample test file, you can use this sample `.jsonl` text. This sample contains sentences of various technical content, and we are going to be assessing semantic similarity across these sentences.
+   If you need a sample test file, you can use this sample `.jsonl` text. This sample contains sentences of various pieces of technical content, and we are going to be assessing semantic similarity across these sentences.
 
     ```jsonl
     {"input": [{"role": "system", "content": "Provide a clear and concise summary of the technical content, highlighting key concepts and their relationships. Focus on the main ideas and practical implications."}, {"role": "user", "content": "Tokenization is a key step in preprocessing for natural language processing, involving the division of text into smaller components called tokens. These can be words, subwords, or characters, depending on the method chosen. Word tokenization divides text at word boundaries, while subword techniques like Byte Pair Encoding (BPE) or WordPiece can manage unknown words by breaking them into subunits. Character tokenization splits text into individual characters, useful for multiple languages and misspellings. The tokenization method chosen greatly affects model performance and its capacity to handle various languages and vocabularies."}], "output": "Tokenization divides text into smaller units (tokens) for NLP applications, using word, subword (e.g., BPE), or character methods. Each has unique benefits, impacting model performance and language processing capabilities."}      
@@ -44,7 +44,7 @@ ms.topic: include
     {"input": [{"role": "system", "content": "Provide a precise and informative summary that distills the key technical concepts while maintaining their relationships and practical importance."}, {"role": "user", "content": "Ensemble methods combine multiple machine learning models to create a more robust and accurate predictor. Common techniques include bagging (training models on random data subsets), boosting (sequentially training models to correct earlier errors), and stacking (using a meta-model to combine base model predictions). Random Forests, a popular bagging method, create multiple decision trees using random feature subsets. Gradient Boosting builds trees sequentially, with each tree correcting the errors of previous ones. These methods often outperform single models by reducing overfitting and variance while capturing different data aspects."}], "output": "Ensemble methods enhance prediction accuracy by combining multiple models through techniques like bagging, boosting, and stacking. Popular implementations include Random Forests (using multiple trees with random features) and Gradient Boosting (sequential error correction), offering better performance than single models."}
     ```
     
-5. If you would like to create new responses using inputs from your test data, you can select 'Generate new responses'. This will inject the input fields from our evaluation file into individual prompts for a model of your choice to generate output.
+5. If you would like to create new responses using inputs from your test data, you can select **Generate new responses**. This will inject the input fields from our evaluation file into individual prompts for a model of your choice to generate output.
 
 :::image type="content" source="../media/how-to/evaluations/eval-generate-1.png" alt-text="Screenshot of the UX showing selected import test data." lightbox="../media/how-to/evaluations/eval-generate-1.png":::
    
@@ -64,7 +64,7 @@ You will select the model of your choice. If you do not have a model, you can cr
 
 7. Select **Add** to add this testing criteria. If you would like to add additional testing criteria, you can add them at this step.
 
-8. You are ready to create your Evaluation. Provide your Evaluation name, review everything looks correct, and **Submit** to create the Evaluation job. You'll be taken to a status page for your evaluation job, which will show the status as "Waiting".
+8. You are ready to create your Evaluation. Provide your Evaluation name, review everything looks correct, and **Submit** to create the Evaluation job. You'll be taken to a status page for your evaluation job, which will show the status as **Waiting**.
 
 :::image type="content" source="../media/how-to/evaluations/eval-submit-job.png" alt-text="Screenshot of the evaluation job submit UX." lightbox="../media/how-to/evaluations/eval-submit-job.png":::
 :::image type="content" source="../media/how-to/evaluations/eval-submit-job-2.png" alt-text="Screenshot of the evaluation job submit UX, with a status of waiting." lightbox="../media/how-to/evaluations/eval-submit-job-2.png":::
