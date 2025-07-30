@@ -114,10 +114,6 @@ items:
         href: concepts/model-catalog-content-safety.md
       - name: Inference examples for serverless deployments
         href: concepts/models-inference-examples.md
-      - name: Gretel Navigator model
-        href: how-to/deploy-models-gretel-navigator.md
-      - name: Mistral-7B and Mixtral models
-        href: how-to/deploy-models-mistral-open.md
   - name: Azure OpenAI in Foundry Models
     items:
     - name: Azure OpenAI 
@@ -483,6 +479,8 @@ items:
     items:
     - name: What is the Speech service?
       href: ../ai-services/speech-service/overview.md?context=/azure/ai-foundry/context/context
+    - name: Voice live
+      href: ../ai-services/speech-service/voice-live-quickstart.md?context=/azure/ai-foundry/context/context
     - name: Real-time speech to text
       href: ../ai-services/speech-service/get-started-speech-to-text.md?context=/azure/ai-foundry/context/context
     - name: Fast transcription
@@ -499,6 +497,8 @@ items:
       href: ../ai-services/speech-service/pronunciation-assessment-tool.md?context=/azure/ai-foundry/context/context
     - name: Speech translation
       href: ../ai-services/speech-service/get-started-speech-translation.md?context=/azure/ai-foundry/context/context
+    - name: Video translation
+      href: ../ai-services/speech-service/video-translation-get-started.md?context=/azure/ai-foundry/context/context
   - name:  Translator
     items:
     - name: What is Azure AI Translator?
@@ -810,6 +810,8 @@ items:
     items:
     - name: Create a project
       href: how-to/create-projects.md
+    - name: Migrate from hub based to Foundry project
+      href: how-to/migrate-project.md
     - name: Create a project using a Bicep template
       href: how-to/create-azure-ai-project-template.md
   - name: Management center
