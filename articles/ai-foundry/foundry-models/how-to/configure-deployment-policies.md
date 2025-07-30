@@ -8,9 +8,8 @@ ms.topic: how-to #Don't change
 ms.date: 07/31/2025
 ms.author: jburchel 
 author: jonburchel 
-reviewer: santiagxf
-ms.reviewer: fasantia
-
+ms.reviewer: aashishb
+reviewer: aashishb_microsoft
 ---
 
 # Control model deployment with custom policies

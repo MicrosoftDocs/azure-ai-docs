@@ -7,7 +7,8 @@ author: jonburchel
 ms.service: azure-ai-foundry
 ms.topic: how-to #Don't change
 ms.date: 07/31/2025
-
+ms.reviewer: aashishb
+reviewer: aashishb_microsoft
 #customer intent: As an admin, I want control what Managed AI Services (serverless API deployment) and Model-as-a-Platform (MaaP) AI models can be deployed by my developers.
 
 ---

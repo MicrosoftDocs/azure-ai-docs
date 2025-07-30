@@ -7,6 +7,8 @@ author: jonburchel
 ms.date: 07/31/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
+ms.reviewer: aashishb
+reviewer: aashishb_microsoft
 # Customer Intent: As an admin, I want to understand how I can use Azure Policy to audit and govern Azure AI Foundry Services so that I can ensure compliance with my organization's requirements.
 ---
 
