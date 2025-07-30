@@ -82,22 +82,31 @@ The following instructions apply to Azure Storage which provides the sample data
       }
       ```
 
-### Copy a search service URL and API key
+## Prepare models
+
+This tutorial assumes you have an existing Azure OpenAI resource through which the skills call the text embedding model and chat completion models. The search service connects to the models during skillset processing and during query execution using its managed identity. This section gives you guidance and links for assigning roles for authorized access.
+
+1. Sign in to the Azure portal (not the Foundry portal) and find the Azure OpenAI resource.
+
+1. Select **Access control (IAM)**.
+
+1. Select **Add** and then **Add role assignment**.
+
+1. Search for **Cognitive Services OpenAI User** and then select it.
+
+1. Choose **Managed identity** and then assign your [search service managed identity](search-howto-managed-identities-data-sources.md).
+
+For more information, see [Role-based access control for Azure OpenAI in Azure AI Foundry Models](/azure/ai-foundry/openai/how-to/role-based-access-control).
+
+## Set up your REST file
 
 For this tutorial, your local REST client connection to Azure AI Search requires an endpoint and an API key. You can get these values from the Azure portal. For alternative connection methods, see [Connect to a search service](search-get-started-rbac.md).
 
-1. Sign in to the [Azure portal](https://portal.azure.com), navigate to the search service **Overview** page, and copy the URL. An example endpoint might look like `https://mydemo.search.windows.net`.
-
-1. Under **Settings** > **Keys**, copy an admin key. Admin keys are used to add, modify, and delete objects. There are two interchangeable admin keys. Copy either one.
-
-   :::image type="content" source="media/search-get-started-rest/get-url-key.png" alt-text="Screenshot of the URL and API keys in the Azure portal.":::
-
-## Set up your REST file
+For other authenticated connections, the search service uses the role assignments you previously defined.
 
 1. Start Visual Studio Code and create a new file.
 
 1. Provide values for variables used in the request.
-
    ```http
    @searchUrl = PUT-YOUR-SEARCH-SERVICE-ENDPOINT-HERE
    @searchApiKey = PUT-YOUR-ADMIN-API-KEY-HERE
@@ -109,9 +118,15 @@ For this tutorial, your local REST client connection to Azure AI Search requires
    @imageProjectionContainer=PUT-YOUR-IMAGE-PROJECTION-CONTAINER-HERE (Azure AI Search creates this container for you during skills processing)
    ```
 
-1. Save the file using a `.rest` or `.http` file extension.
+1. Save the file using a `.rest` or `.http` file extension. For help with the REST client, see [Quickstart: Full-text search using REST](search-get-started-text.md).
 
-For help with the REST client, see [Quickstart: Full-text search using REST](search-get-started-text.md).
+To get the Azure AI Search endpoint and API key:
+
+1. Sign in to the [Azure portal](https://portal.azure.com), navigate to the search service **Overview** page, and copy the URL. An example endpoint might look like `https://mydemo.search.windows.net`.
+
+1. Under **Settings** > **Keys**, copy an admin key. Admin keys are used to add, modify, and delete objects. There are two interchangeable admin keys. Copy either one.
+
+   :::image type="content" source="media/search-get-started-rest/get-url-key.png" alt-text="Screenshot of the URL and API keys in the Azure portal.":::
 
 ## Create a data source
 

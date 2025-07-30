@@ -101,7 +101,7 @@ This tutorial assumes you have an existing Azure AI multiservice account through
 
 For this tutorial, your local REST client connection to Azure AI Search requires an endpoint and an API key. You can get these values from the Azure portal. For alternative connection methods, see [Connect to a search service](search-get-started-rbac.md).
 
-For other connections, the search service uses the role assignments you previously defined.
+For other authenticated connections, the search service uses the role assignments you previously defined.
 
 1. Start Visual Studio Code and create a new file.
 
