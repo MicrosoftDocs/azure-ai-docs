@@ -110,7 +110,7 @@ items:
       - name: Service limits
         href: custom-text-classification/service-limits.md
         displayName: quotas, restrictions, service boundaries
-  - name: "Conversational language understanding (CLU)""
+  - name: "Conversational language understanding (CLU)"
     items:
     - name: CLU overview
       href: conversational-language-understanding/overview.md
