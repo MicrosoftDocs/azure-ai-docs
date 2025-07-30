@@ -1583,11 +1583,11 @@ groups:
     title: REST
  # Owner: laujan
  - id: language-clu-quickstart
-  title: API methods and platforms
-  prompt: Choose an API
-  pivots:
-  - id: azure ai foundry
+   title: API methods and platforms
+   prompt: Choose an API
+   pivots:
+   - id: azure ai foundry
     title: Azure AI Foundry
-  - id: rest api
+   - id: rest api
     title: REST API
  
