@@ -180,7 +180,7 @@ Users now visit or refresh the [Audio Content Creation](https://aka.ms/audiocont
 
 If they can't find the available Speech resource, they can check to ensure that they're in the right directory. To do so, they select the account profile at the upper right and then select **Switch** next to **Current directory**. If there's more than one directory available, it means they have access to multiple directories. They can switch to different directories and go to **Settings** to see whether the right Speech resource is available. 
 
-Users who are in the same Speech resource see each other's work in the Audio Content Creation tool. If you want each individual user to have a unique and private workplace in Audio Content Creation, [create a new Speech resource](#step-2-create-a-speech-resource) for each user and give each user the unique access to the Speech resource.
+Users who are in the same Speech resource see each other's work in the Audio Content Creation tool. If you want each individual user to have a unique and private workplace in Audio Content Creation, create a new Speech resource.
 
 ### Remove users from a Speech resource
 
