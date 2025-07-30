@@ -71,7 +71,7 @@ items:
       tocHref: /azure/ai-services/content-understanding/
       topicHref: /azure/ai-services/content-understanding/
     - name: Content Understanding
-      tocHref: /ai-foundry/responsible-ai/content-understanding/
+      tocHref: /azure/ai-foundry/responsible-ai/content-understanding/
       topicHref: /azure/ai-services/content-understanding/
     - name: Agent Service
       tocHref: /azure/ai-services/agents/
