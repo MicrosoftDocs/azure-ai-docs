@@ -7,7 +7,7 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 7/1/2025
+ms.date: 7/31/2025
 ms.custom: references_regions
 # Customer intent: As a developer, I want to learn about the voice live API for real-time voice agents.
 ---
