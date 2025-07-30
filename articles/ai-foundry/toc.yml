@@ -479,8 +479,10 @@ items:
     items:
     - name: What is the Speech service?
       href: ../ai-services/speech-service/overview.md?context=/azure/ai-foundry/context/context
-    - name: Voice live
+    - name: Voice live with Foundry models quickstart
       href: ../ai-services/speech-service/voice-live-quickstart.md?context=/azure/ai-foundry/context/context
+    - name: Voice live with Foundry agents quickstart
+      href: ../ai-services/speech-service/voice-live-agents-quickstart.md?context=/azure/ai-foundry/context/context
     - name: Real-time speech to text
       href: ../ai-services/speech-service/get-started-speech-to-text.md?context=/azure/ai-foundry/context/context
     - name: Fast transcription
