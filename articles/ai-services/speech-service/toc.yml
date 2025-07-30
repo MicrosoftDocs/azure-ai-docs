@@ -238,7 +238,7 @@ items:
   items:
     - name: Voice live overview
       href: voice-live.md
-    - name: Voice live quickstart
+    - name: Voice live with Foundry models quickstart
       href: voice-live-quickstart.md
     - name: Voice live with Foundry agents quickstart
       href: voice-live-agents-quickstart.md

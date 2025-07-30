@@ -7,14 +7,14 @@ ms.topic: include
 ms.date: 7/31/2025
 ---
 
-In this article, you learn how to use voice live with [Azure AI Foundry Agent Service](/azure/ai-foundry/agents/overview) and [Azure AI Speech](/azure/ai-services/speech-service/overview) using Python code. 
+In this article, you learn how to use Azure AI Speech voice live with [Azure AI Foundry Agent Service](/azure/ai-foundry/agents/overview) using Python code. 
 
 [!INCLUDE [Introduction](intro.md)]
 
 ## Prerequisites
 
 - An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
-- <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>. We recommend using Python 3.10 or later, but having at least Python 3.8 is required. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
+- <a href="https://www.python.org/" target="_blank">Python 3.10 or later version</a>. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
 - An [Azure AI Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [voice live overview documentation](../../../voice-live.md).
 - An Azure AI Foundry agent created in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). For more information about creating an agent, see the [Create an agent quickstart](/azure/ai-foundry/agents/quickstart).
 
@@ -102,6 +102,31 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 
 ## Start a conversation
+
+The sample code in this quickstart uses Microsoft Entra ID for the recommended keyless authentication. If you prefer to use an API key, you can set the `api_key` variable instead of the `token` variable.
+
+#### [Microsoft Entra ID](#tab/keyless)
+
+```python
+client = AsyncAzureVoiceLive(
+    azure_endpoint = endpoint,
+    api_version = api_version,
+    token = token.token,
+    #api_key = api_key,
+)
+```
+
+#### [API key](#tab/api-key)
+
+```python
+client = AsyncAzureVoiceLive(
+    azure_endpoint = endpoint,
+    api_version = api_version,
+    #token = token.token,
+    api_key = api_key,
+)
+```
+---
 
 1. Create the `voice-live-agents-quickstart.py` file with the following code:
 
