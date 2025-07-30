@@ -2,14 +2,14 @@
 title: Azure OpenAI Embedding skill
 titleSuffix: Azure AI Search
 description: Connects to a deployed model on your Azure OpenAI resource.
-author: dharun1995
-ms.author: dhanasekars
+author: gmndrg
+ms.author: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: reference
-ms.date: 05/08/2025
+ms.date: 07/29/2025
 ---
 
 #	Azure OpenAI Embedding skill
@@ -20,7 +20,7 @@ The **Azure OpenAI Embedding** skill connects to a deployed embedding model on y
 
 Your Azure OpenAI in Azure AI Foundry Models resource must have an associated [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains). If the service was created through the Azure portal, this subdomain is automatically generated as part of your service setup. Ensure that your service includes a custom subdomain before using it with the Azure AI Search integration.
 
-Azure OpenAI resources (with access to embedding models) that were created in Azure AI Foundry portal aren't supported. Only the Azure OpenAI resources created in the Azure portal are compatible with the **Azure OpenAI Embedding** skill integration.
+If you create an AI Service using Azure AI Foundry, it will automatically generate an endpoint with the domain cognitiveservices.azure.com. When you deploy an Azure OpenAI embedding model in this service, you can replace the endpoint domain with openai.azure.com domain, when using it in this skill. For example, change your endpoint from `https://<yourendpoint>.cognitiveservices.azure.com` to `https://<yourendpoint>.openai.azure.com`. Use this updated endpoint as the value for the `resourceUri` property for this skill.
 
 The [Import and vectorize data wizard](search-get-started-portal-import-vectors.md) in the Azure portal uses the **Azure OpenAI Embedding** skill to vectorize content. You can run the wizard and review the generated skillset to see how the wizard builds the skill for embedding models.
 
