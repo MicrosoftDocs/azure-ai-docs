@@ -61,7 +61,7 @@ Here's a table of some of the available connection types in Azure AI Foundry por
 | Custom                        |         |                                        | Custom connections allow you to securely store and access keys while storing related properties, such as targets and versions. Custom connections are useful when you have many targets or cases where you wouldn't need a credential to access. LangChain scenarios are a good example where you would use custom service connections. Custom connections don't manage authentication, so you have to manage authentication on your own. |
 | Serverless Model              |    ✅    |                                        | Serverless Model connections allow you to serverless API deployment.                                                                                                                     |
 | Azure Databricks              |    ✅    |                                        | Azure Databricks connector allows you to connect your Azure AI Foundry Agents to Azure Databricks to access workflows and Genie Spaces during runtime. It supports three connection types - __Jobs__, __Genie__, and __Other__. You can pick the Job or Genie space you want associated with this connection while setting up the connection in the Foundry UI. You can also use the Other connection type and allow your agent to access workspace operations in Azure Databricks. Authentication is handled through Microsoft Entra ID for users or service principals. For examples of using this connector, see [Jobs](https://github.com/Azure-Samples/AI-Foundry-Connections/blob/main/src/samples/python/sample_agent_adb_job.py) and [Genie](https://github.com/Azure-Samples/AI-Foundry-Connections/blob/main/src/samples/python/sample_agent_adb_genie.py). Note: Usage of this connection is available only via the Foundry SDK in code and is integrated into agents as a FunctionTool (please see the samples above for details). Usage of this connection in AI Foundry Playground is currently not supported.|
-| Azure Key Vault| ✅ | | Azure service for securely storing and accessing secrets. AI Foundry stores connections details in a managed Azure Key Vault if no Key Vault connection is created. Users that prefer to manage their secrets themselves can bring their own Azure Key Vault via a connection. (See [limitations](#limits)) |
+
 
 ## Agent knowledge tool connections
 
@@ -74,18 +74,6 @@ To help AI Agents make well-informed decisions with confidence, knowledge serves
 
 To learn more about Agent Knowledge tools, see [Knowledge tool overview](https://aka.ms/AgentToolOverviewDoc).
 
-## <a name="limits"></a> Azure Key Vault limitations
-
-All Azure AI Foundry projects use a managed Azure Key Vault, not shown in your subscription. Enterprise customers who prefer to bring their own Azure Key Vault should consider the these limitations:
-
-- After an Azure Key Vault connection is created, it cannot be switched back to a managed Key Vault.
-- Only one Azure Key Vault connection per AI Foundry resource is allowed at a given time.
-- You can't delete an Azure Key Vault connection, as that would break the AI Foundry resource.
-- You shouldn't delete the underlying Azure Key Vault, since that would break the AI Foundry resource as well.
-- You shouldn't delete the Foundry resource's underlying connection secrets stored on the Azure Key Vault, since that may break connections to other services.
-
-> [!NOTE]
-> You can update the Azure Key Vault connection from Azure Key Vault 1 to Azure Key Vault 2, secret migration is handled by AI Foundry.
 
 ::: zone-end
 
