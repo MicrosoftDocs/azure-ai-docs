@@ -7,7 +7,7 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-content-understanding
 ms.topic: article
-ms.date: 03/10/2025
+ms.date: 07/29/2025
 ---
 
 # Transparency note: Content Understanding
