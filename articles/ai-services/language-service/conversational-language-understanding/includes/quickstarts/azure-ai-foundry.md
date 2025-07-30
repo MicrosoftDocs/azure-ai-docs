@@ -28,3 +28,20 @@ Azure AI Foundry offers a unified platform for building, managing, and deploying
 1. If you aren't already signed in, the portal prompts you to do so with your Azure credentials.
 1. Once signed in, you can create or access your existing projects within Azure AI Foundry.
 1. If you're not already at your project for this task, select it.
+1. On the left side navigation pane, select **Playgrounds**, navigate to the **Language playground card**, and then choose the **Try the Language playground** button.
+
+  :::image type="content" source="../../media/quickstarts/playground.png" alt-text="Screenshot of the playgrounds selection in Azure AI Foundry.":::
+
+## Import project
+For this quickstart, you can download this sample project file and import it. This project can predict the intended commands from user input, such as: reading emails, deleting emails, and attaching a document to an email.
+
+## Try CLU in the Foundry playground
+
+The top section of the Language playground is where you can view and select the available Language services. For CLU you can select **Fine-tune models**. For more information, *see* [Create a fine-tuning task project ](../../how-to/create-project.md).
+
+
+
+## Clean up resources
+
+
+

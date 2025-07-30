@@ -110,23 +110,23 @@ items:
       - name: Service limits
         href: custom-text-classification/service-limits.md
         displayName: quotas, restrictions, service boundaries
-  - name: Conversational language understanding
+  - name: "Conversational language understanding (CLU)""
     items:
-    - name: Conversational language understanding overview
+    - name: CLU overview
       href: conversational-language-understanding/overview.md
       displayName: clu, conversational ai, intent recognition, entity extraction
-    - name: Conversational language understanding quickstart
+    - name: CLU quickstart
       href: conversational-language-understanding/quickstart.md
       displayName: getting started, tutorial, conversational ai setup
-    - name: Conversational language understanding language support
+    - name: CLU language support
       href: conversational-language-understanding/language-support.md
       displayName: clu languages, supported languages, multilingual, international support
-    - name: Conversational language understanding FAQ
+    - name: CLU FAQ
       href: conversational-language-understanding/faq.md
       displayName: frequently asked questions, troubleshooting, common issues
     - name: Responsible use of AI
       items:
-      - name: Transparency note for conversational language understanding
+      - name: Transparency note for CLU
         href: /legal/cognitive-services/language-service/clu-transparency-note?context=/azure/ai-services/language-service/context/context
       - name: Integration and responsible use
         href: /legal/cognitive-services/language-service/guidance-integration-responsible-use?context=/azure/ai-services/language-service/context/context
@@ -464,7 +464,7 @@ items:
           href: conversational-language-understanding/concepts/app-architecture.md
     - name: Tutorials
       items:
-        - name: Connect conversational language understanding and custom question answering
+        - name: Connect CLU and custom question answering
           href: orchestration-workflow/tutorials/connect-services.md
           displayName: clu integration, qna integration, orchestration workflow, connect services
     - name: Reference
