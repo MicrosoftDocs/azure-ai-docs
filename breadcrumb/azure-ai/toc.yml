@@ -60,7 +60,7 @@ items:
       topicHref: /azure/ai-foundry/openai/overview
     - name: Azure OpenAI
       tocHref: /azure/ai-foundry/responsible-ai/openai/
-      topicHref: /azure/ai-services/openai/overview
+      topicHref: /azure/ai-foundry/openai/overview
     - name: QnA Maker
       tocHref: /azure/ai-services/qnamaker/
       topicHref: /azure/ai-services/qnamaker/
