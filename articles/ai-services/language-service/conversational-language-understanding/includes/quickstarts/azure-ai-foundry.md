@@ -32,16 +32,29 @@ Azure AI Foundry offers a unified platform for building, managing, and deploying
 
   :::image type="content" source="../../media/quickstarts/playground.png" alt-text="Screenshot of the playgrounds selection in Azure AI Foundry.":::
 
-## Import project
-For this quickstart, you can download this sample project file and import it. This project can predict the intended commands from user input, such as: reading emails, deleting emails, and attaching a document to an email.
-
 ## Try CLU in the Foundry playground
 
 The top section of the Language playground is where you can view and select the available Language services. For CLU you can select **Fine-tune models**. For more information, *see* [Create a fine-tuning task project ](../../how-to/create-project.md).
 
-
-
 ## Clean up resources
 
+If you no longer need your project, you can delete it from the Azure AI Foundry.
 
+1. Navigate to the [Azure AI Foundry](https://ai.azure.com/) home page. Initiate the authentication process by signing in, unless you already completed this step and your session is active.
+1. Select the project that you want to delete from the **Keep building with Azure AI Foundry**
+1. Select **Management center**.
+1. Select **Delete project**.
+
+   :::image type="content" source="../../media/create-project/delete-project.png" alt-text="Screenshot of the Delete project button in the Azure AI Foundry.":::
+
+To delete the hub along with all its projects:
+
+1. Navigate to the **Overview** tab inn the **Hub** section.
+
+   :::image type="content" source="../../media/create-project/hub-details.png" alt-text="Screenshot of the hub details list in the Azure AI Foundry.":::
+
+1. On the right, select **Delete hub**.
+1. The link opens the Azure portal for you to delete the hub there.
+
+   :::image type="content" source="../../media/create-project/delete-hub.png" alt-text="Screenshot of the Delete hub button in the Azure AI Foundry.":::
 

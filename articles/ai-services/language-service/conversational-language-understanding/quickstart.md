@@ -30,4 +30,4 @@ Use this article to get started with Conversational Language understanding using
 
 ## Next steps
 
-* [Learn about entity components](concepts/entity-components.md)
+* [Build a fine-tuning schema](how-to/build-schema.md)
