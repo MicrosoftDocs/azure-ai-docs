@@ -123,7 +123,7 @@ Customer-managed key encryption is configured via Azure portal (or alternatively
 
 ## Encryption Key Rotation
 
-If you're using [customer-managed key encryption](../concepts/encryption-keys-portal.md), Azure AI Foundry allows you to rotate the encryption key used to protect your data. This applies to data stored in Microsoft-managed infrastructure, encrypted using your Azure Key Vault key.
+You can rotate a customer-managed key in Key Vault according to your compliance policies. When the key is rotated, you must update the Azure AI Foundry resource to use the new key URI. Rotating the key doesn't trigger re-encryption of data in the resource.
 
 Rotation Limitations
 
@@ -141,13 +141,37 @@ Rotation Limitations
 
 How to Rotate Encryption Keys
 
-* In your Azure Key Vault, create or identify the new key you want to use for encryption.
+* In your Azure Key Vault, create or identify the new key you want to use for new data encryption.
 
 * From Azure Portal or template options, update the resource configuration to reference the new key within the same Key Vault.
 
-* Your resource will take a few minutes to wrap data using your new encryption key. During this period, certain service operations are available.
+* Your resource will take a few minutes to configure wrapping data using your new encryption key. During this period, certain service operations are available.
 
 * The service will begin using the new key for encryption of newly stored data. Existing data remains encrypted with the previous key unless reprocessed.
+
+## Revoke a customer-managed key
+
+You can revoke a customer-managed encryption key by changing the access policy, by changing the permissions on the key vault, or by deleting the key.
+
+To change the access policy of the managed identity that your registry uses, run the [az-keyvault-delete-policy](/cli/azure/keyvault#az-keyvault-delete-policy) command:
+
+```azurecli
+az keyvault delete-policy \
+  --resource-group <resource-group-name> \
+  --name <key-vault-name> \
+  --key_id <key-vault-key-id>
+```
+
+To delete the individual versions of a key, run the [az-keyvault-key-delete](/cli/azure/keyvault/key#az-keyvault-key-delete) command. This operation requires the *keys/delete* permission.
+
+```azurecli
+az keyvault key delete  \
+  --vault-name <key-vault-name> \
+  --id <key-ID>                     
+```
+
+> [!IMPORTANT]
+> Revoking access to an active customer-managed key while CMK is still enabled will prevent downloading of training data and results files, fine-tuning new models, and deploying fine-tuned models. However, previously deployed fine-tuned models will continue to operate and serve traffic until those deployments are deleted.
 
 ## Additional Azure cost when using customer-managed keys
 
@@ -155,6 +179,8 @@ When using customer-managed keys, generally your data is stored using document-l
 
 ## Limitations
 
+* AI Foundry resources may be updated from Microsoft-managed keys to customer-managed keys, but not from customer-managed keys to Microsoft-managed keys.
+* AI Foundry hub resources cannot be updated from Microsoft-managed keys to customer-managed keys, or vice versa, post-creation.
 * The customer-managed key for encryption can only be updated to keys in the same Azure Key Vault instance.
 * Azure OpenAI assistants service does not support CMK encryption.
 * While project sub-resources exist, you can't switch AI Foundry resources from Customer-managed keys to Microsoft managed keys.
