@@ -17,7 +17,7 @@ ms.custom:
 - Read the [When to use Azure OpenAI fine-tuning guide](../concepts/fine-tuning-considerations.md).
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 - An [Azure AI project](../../../ai-foundry/how-to/create-projects.md) in Azure AI Foundry portal.
-- An [Azure OpenAI connection](/azure/ai-foundry/how-to/connections-add?tabs=azure-openai#connection-details) to a resource in a [region where fine-tuning is supported](/azure/ai-services/openai/concepts/models#fine-tuning-models).
+- An [Azure OpenAI connection](/azure/ai-foundry/how-to/connections-add?tabs=azure-openai#connection-details) to a resource in a [region where fine-tuning is supported](/azure/ai-foundry/openai/concepts/models#fine-tuning-models).
     > [!NOTE]
     > The supported regions might vary if you use Azure OpenAI models in an Azure AI Foundry project versus outside a project.
 - Fine-tuning access requires **Cognitive Services OpenAI Contributor** role on the Azure OpenAI resource.

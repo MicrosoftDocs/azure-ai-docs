@@ -16,8 +16,8 @@ Use this article to get started using [Azure AI Foundry](https://ai.azure.com/?c
 ## Prerequisites
 
 - An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
-- Once you have your Azure subscription, <a href="/azure/ai-services/openai/how-to/create-resource?pivots=web-portal"  title="Create an Azure OpenAI resource."  target="_blank">create an Azure OpenAI resource </a>.
- For more information about resource creation, see the [resource deployment guide](/azure/ai-services/openai/how-to/create-resource).
+- Once you have your Azure subscription, <a href="/azure/ai-foundry/openai/how-to/create-resource?pivots=web-portal"  title="Create an Azure OpenAI resource."  target="_blank">create an Azure OpenAI resource </a>.
+ For more information about resource creation, see the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource).
 - An [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects) with your Azure OpenAI resource added as a connection. 
 
 ## Prepare your media
@@ -31,7 +31,7 @@ You need an image to complete this quickstart. You can use this sample image or 
 1. Browse to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and sign in with the credentials associated with your Azure OpenAI resource. During or after the sign-in workflow, select the appropriate directory, Azure subscription, and Azure OpenAI resource.
 1. Select the project you'd like to work in.
 1. On the left nav menu, select **Models + endpoints** and select **+ Deploy model**.
-1. Choose an image-capable deployment by selecting model name: **gpt-4o** or **gpt-4o-mini**. In the window that appears, select a name and deployment type. Make sure your Azure OpenAI resource is connected. For more information about model deployment, see the [resource deployment guide](/azure/ai-services/openai/how-to/create-resource).
+1. Choose an image-capable deployment by selecting model name: **gpt-4o** or **gpt-4o-mini**. In the window that appears, select a name and deployment type. Make sure your Azure OpenAI resource is connected. For more information about model deployment, see the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource).
 1. Select **Deploy**.
 1. Next, select your new model and select **Open in playground**. In the chat playground, the deployment you created should be selected in the **Deployment** dropdown.
 
@@ -41,7 +41,7 @@ You need an image to complete this quickstart. You can use this sample image or 
 
 In this chat session, you instruct the assistant to aid you in understanding images that you input.
 
-For general help with assistant setup, chat sessions, settings, and panels, refer to the [Chat quickstart](/azure/ai-services/openai/chatgpt-quickstart?tabs=command-line&pivots=programming-language-studio). 
+For general help with assistant setup, chat sessions, settings, and panels, refer to the [Chat quickstart](/azure/ai-foundry/openai/chatgpt-quickstart?tabs=command-line&pivots=programming-language-studio). 
 
 
 ## Start a chat session to analyze images

@@ -61,7 +61,7 @@ If you have an __existing Azure AI Foundry hub__ that isn't configured to use a 
 
 Depending on your configuration, you might use an Azure AI services resource that also includes Azure OpenAI or a standalone Azure OpenAI resource. The steps in this section configure an AI services resource. The same steps apply to an Azure OpenAI resource.
 
-1. If you don't have an existing Azure AI services resource for your Azure AI Foundry hub, [create one](/azure/ai-services/openai/how-to/create-resource?pivots=web-portal).
+1. If you don't have an existing Azure AI services resource for your Azure AI Foundry hub, [create one](/azure/ai-foundry/openai/how-to/create-resource?pivots=web-portal).
 1. From the Azure portal, select the AI services resource, then select __Resource Management, __Identity__, and __System assigned__. 
 1. To create a managed identity for the AI services resource, set the __Status__ to __On__. Select __Save__ to apply the changes.
 
@@ -222,7 +222,7 @@ Now, the data you add to Azure AI Foundry is secured to the isolated network pro
 
 ## Deploy web apps
 
-For information on configuring web app deployments, visit the [Use Azure OpenAI on your data securely](/azure/ai-services/openai/how-to/use-your-data-securely#web-app) article.
+For information on configuring web app deployments, visit the [Use Azure OpenAI on your data securely](/azure/ai-foundry/openai/how-to/on-your-data-configuration#web-app) article.
 
 ## Limitations
 
