@@ -67,7 +67,7 @@ In addition to standard deployments, Azure OpenAI Service offers deployment opti
 
 ### Augmenting prompts to "ground" generated results "on your data"
 
-The Azure OpenAI "on your data" feature lets you connect data sources to ground the generated results with your data. The data remains stored in the data source and location you designate; Azure OpenAI Service does not create a duplicate data store. When a user prompt is received, the service retrieves relevant data from the connected data source and augments the prompt. The model processes this augmented prompt and the generated content is returned as described above. Learn more about [how to use the On Your Data feature securely](/azure/ai-foundry/openai/how-to/use-your-data-securely).
+The Azure OpenAI "on your data" feature lets you connect data sources to ground the generated results with your data. The data remains stored in the data source and location you designate; Azure OpenAI Service does not create a duplicate data store. When a user prompt is received, the service retrieves relevant data from the connected data source and augments the prompt. The model processes this augmented prompt and the generated content is returned as described above. Learn more about [how to use the On Your Data feature securely](/azure/ai-foundry/openai/how-to/on-your-data-configuration).
 
 ### Data storage for Azure OpenAI Service features 
 

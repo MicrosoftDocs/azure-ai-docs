@@ -222,7 +222,7 @@ Now, the data you add to Azure AI Foundry is secured to the isolated network pro
 
 ## Deploy web apps
 
-For information on configuring web app deployments, visit the [Use Azure OpenAI on your data securely](/azure/ai-foundry/openai/how-to/use-your-data-securely#web-app) article.
+For information on configuring web app deployments, visit the [Use Azure OpenAI on your data securely](/azure/ai-foundry/openai/how-to/on-your-data-configuration#web-app) article.
 
 ## Limitations
 

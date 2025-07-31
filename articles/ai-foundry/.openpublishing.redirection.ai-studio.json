@@ -945,7 +945,7 @@
         },
         {
             "source_path_from_root": "/articles/ai-studio/quickstarts/assistants.md",
-            "redirect_url": "/azure/ai-foundry/openai/assistants-quickstart",
+            "redirect_url": "/azure/ai-foundry/openai/how-to/assistant",
             "redirect_document_id": true
         },
         {
