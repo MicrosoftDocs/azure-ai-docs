@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - references_regions
 ms.topic: how-to
-ms.date: 06/30/2025
+ms.date: 07/25/2025
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
@@ -28,10 +28,19 @@ In this article, you learn how to holistically generate high-quality datasets. Y
 
 ## Get started
 
+[!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
+
 Install and import the simulator package (preview) from the Azure AI Evaluation SDK:
 
 ```python
-pip install azure-ai-evaluation
+pip install azure-identity azure-ai-evaluation
+```
+
+You will also need the following packages:
+
+```python
+pip install promptflow-azure
+pip install wikipedia openai
 ```
 
 ## Generate synthetic data and simulate non-adversarial tasks
