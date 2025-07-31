@@ -9,7 +9,7 @@ ms.author: haileytapia
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to
-ms.date: 06/11/2025
+ms.date: 07/31/2025
 ms.custom:
   - references_regions
   - build-2024
@@ -104,7 +104,7 @@ If you use multiple Azure services, putting all of them in the same region minim
 
 In most cases, choose a region near you, unless any of the following apply:
 
-+ Your nearest region is [at capacity](search-sku-tier.md#region-availability-by-tier). The Azure portal has the advantage of hiding unavailable regions and tiers during resource setup.
++ Your nearest region is [at capacity](search-region-support.md), which is indicated by the footnotes of each table. The Azure portal has the advantage of hiding unavailable regions and tiers during resource setup.
 
 + You want to use integrated data chunking and vectorization or built-in skills for AI enrichment. Integrated operations have region requirements.
 
