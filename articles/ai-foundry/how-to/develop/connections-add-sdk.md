@@ -201,7 +201,7 @@ wps_connection = WorkspaceConnection(
     name=name,
     type="azure_data_lake_gen2",
     target=target,
-    credentials=None
+    credentials=sp_config
     
 )
 ml_client.connections.create_or_update(workspace_connection=wps_connection)

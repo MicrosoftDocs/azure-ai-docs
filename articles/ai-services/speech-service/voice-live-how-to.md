@@ -18,7 +18,7 @@ ms.custom: references_regions
 
 The voice live API provides a capable WebSocket interface compared to the [Azure OpenAI Realtime API](../../ai-foundry/openai/how-to/realtime-audio.md).
 
-Unless otherwise noted, the voice live API uses the same events as the [Azure OpenAI Realtime API](/azure/ai-services/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context). This document provides a reference for the event message properties that are specific to the voice live API.
+Unless otherwise noted, the voice live API uses the same events as the [Azure OpenAI Realtime API](/azure/ai-foundry/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context). This document provides a reference for the event message properties that are specific to the voice live API.
 
 ## Supported models and regions
 
@@ -324,7 +324,12 @@ And a `response.audio_timestamp.done` message is sent when all timestamps are re
 
 ### Viseme
 
+A viseme is the visual description of a phoneme in spoken language. It defines the position of the face and mouth while a person is speaking.
+
 You can use Azure standard voice or Azure custom voice with `animation.outputs` set to `{"viseme_id"}`. The service returns the `response.animation_viseme.delta` in the response and `response.animation_viseme.done` when all viseme messages are returned.
+
+> [!TIP]
+> For more information about viseme via Speech Synthesis Markup Language (SSML), see [viseme element documentation](speech-synthesis-markup-voice.md#viseme-element).
 
 To configure the viseme, you can set the `animation.outputs` in the `session.update` message. The `animation.outputs` parameter is optional. It configures which animation outputs should be returned. Currently, it only supports `viseme_id`.
 
@@ -446,4 +451,4 @@ Then you can connect the avatar with the server SDP.
 ## Related content
 
 - Try out the [voice live API quickstart](./voice-live-quickstart.md)
-- See the [audio events reference](/azure/ai-services/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context)
+- See the [audio events reference](/azure/ai-foundry/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context)

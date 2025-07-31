@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: responsible-ai
 ms.topic:  how-to
-ms.author: scottpolly
-author: s-polly
+ms.author: lagayhar
+author: lgayhardt
 ms.reviewer: mesameki
 ms.date: 03/17/2025
 ms.custom: responsible-ml

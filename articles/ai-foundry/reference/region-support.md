@@ -5,7 +5,7 @@ description: This article lists Azure AI Foundry feature availability across clo
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 04/28/2025
+ms.date: 07/30/2025
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
@@ -90,7 +90,7 @@ Available to US government entities and their partners only. See more informatio
     - Content filters
     - Profanity blocklist (preview)
   - Management center
-- **Unsupported features:**
+- **Unsupported features in Azure Government regions:**
   - Serverless endpoints  
   - Content Understanding
   - Agents playground

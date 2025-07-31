@@ -47,6 +47,9 @@ When a custom model or base model expires, it's no longer available for transcri
 
 ## Get base model expiration dates
 
+> [!TIP]
+> Bring your custom speech models from [Speech Studio](https://speech.microsoft.com) to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). In Azure AI Foundry portal, you can pick up where you left off by connecting to your existing Speech resource. For more information about connecting to an existing Speech resource, see [Connect to an existing Speech resource](../../ai-studio/ai-services/how-to/connect-ai-services.md#connect-azure-ai-services-after-you-create-a-project).
+
 The last date that you could use the base model for training was shown when you created the custom model. For more information, see [Train a custom speech model](how-to-custom-speech-train-model.md).
 
 Follow these instructions to get the transcription expiration date for a base model:
@@ -75,6 +78,8 @@ Follow these instructions to get the transcription expiration date for a base mo
 
 ::: zone pivot="speech-cli"
 
+Before proceeding, make sure that you have the [Speech CLI](./spx-basics.md) installed and configured.
+
 To get the training and transcription expiration dates for a base model, use the `spx csr model status` command. Construct the request parameters according to the following instructions:
 
 - Set the `url` property to the URI of the base model that you want to get. You can run the `spx csr list --base` command to get available base models for all locales.
@@ -82,8 +87,11 @@ To get the training and transcription expiration dates for a base model, use the
 Here's an example Speech CLI command to get the training and transcription expiration dates for a base model:
 
 ```azurecli-interactive
-spx csr model status --api-version v3.1 --model https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/models/base/b0bbc1e0-78d5-468b-9b7c-a5a43b2bb83f
+spx csr model status --api-version v3.2 --model https://eastus.api.cognitive.microsoft.com/speechtotext/v3.1/models/base/b0bbc1e0-78d5-468b-9b7c-a5a43b2bb83f
 ```
+
+> [!IMPORTANT]
+> You must set `--api-version v3.2`. The Speech CLI uses the REST API, but doesn't yet support versions later than `v3.2`.
 
 In the response, take note of the date in the `adaptationDateTime` property. This property is the last date that you can use the base model for training. Also take note of the date in the `transcriptionDateTime` property. This date is the last date that you can use the base model for transcription.
 
@@ -196,6 +204,8 @@ You can also follow these instructions to get the transcription expiration date 
 
 ::: zone pivot="speech-cli"
 
+Before proceeding, make sure that you have the [Speech CLI](./spx-basics.md) installed and configured.
+
 To get the transcription expiration date for your custom model, use the `spx csr model status` command. Construct the request parameters according to the following instructions:
 
 - Set the `url` property to the URI of the model that you want to get. Replace `YourModelId` with your model ID and replace `YourServiceRegion` with your Speech resource region.
@@ -203,8 +213,11 @@ To get the transcription expiration date for your custom model, use the `spx csr
 Here's an example Speech CLI command to get the transcription expiration date for your custom model:
 
 ```azurecli-interactive
-spx csr model status --api-version v3.1 --model https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.1/models/YourModelId
+spx csr model status --api-version v3.2 --model https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.1/models/YourModelId
 ```
+
+> [!IMPORTANT]
+> You must set `--api-version v3.2`. The Speech CLI uses the REST API, but doesn't yet support versions later than `v3.2`.
 
 In the response, take note of the date in the `transcriptionDateTime` property. This date is the last date that you can use your custom model for transcription. The `adaptationDateTime` property isn't applicable, since custom models aren't used to train other custom models.
 

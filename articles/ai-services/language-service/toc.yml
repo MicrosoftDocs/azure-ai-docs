@@ -148,10 +148,10 @@ items:
             href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
           - name: Azure AI containers overview
             href: ../cognitive-services-container-support.md
-        - name: Create projects
+        - name: Create a fine-tuning task project
           href: conversational-language-understanding/how-to/create-project.md
           displayName: creation, clu project, setup
-        - name: Build a schema
+        - name: Build a fine-tuning schema
           href: conversational-language-understanding/how-to/build-schema.md
           displayName: design, intents, entities, conversational model
         - name: Label utterances
@@ -160,7 +160,7 @@ items:
         - name: Train a model
           href: conversational-language-understanding/how-to/train-model.md
           displayName: training, clu training, conversational model training
-        - name: Configure Azure resources
+        - name: Configure Azure and CLU resources
           href: conversational-language-understanding/how-to/configure-azure-resources.md
           displayName: configuration, fine-tuning, azure ai foundry, azure portal 
         - name: View your model's performance
@@ -564,7 +564,7 @@ items:
         href: question-answering/how-to/chit-chat.md
       - name: Change default answer
         href: question-answering/how-to/change-default-answer.md
-      - name: Configure Azure resources
+      - name: Configure your environment and Azure resources
         href: question-answering/how-to/configure-azure-resources.md
         displayName: configuration, fine-tuning, azure ai foundry, azure portal 
       - name: Analytics
