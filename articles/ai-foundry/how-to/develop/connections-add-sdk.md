@@ -7,6 +7,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
   - ignite-2024
+  - hub-only
 ms.topic: how-to
 ms.date: 07/22/2025
 ms.reviewer: dantaylo
