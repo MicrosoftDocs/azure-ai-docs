@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 06/05/2025
+ms.date: 07/31/2025
 ---
 ## Prerequisites
 
@@ -17,7 +17,8 @@ ms.date: 06/05/2025
   - We recommend using the Basic tier or higher.
   - [Enable semantic ranking](../../semantic-how-to-enable-disable.md).
 - [Visual Studio Code](https://code.visualstudio.com/download).
-- [Node.JS with LTS](https://nodejs.org/en/download/).
+- [Java 21 (LTS)](/java/openjdk/install).
+- [Maven](https://maven.apache.org/download.cgi).
 
 
 ## Configure access
@@ -194,48 +195,14 @@ In the remaining sections, you set up API calls to Azure OpenAI and Azure AI Sea
 
 ## Set up environment variables for local development
 
-1. Create a `.env` file.
-1. Add the following environment variables to the `.env` file, replacing the values with your own service endpoints and keys.
+Define environment variables by using the following commands. Replace the placeholders with your actual values.
 
-   ```plaintext
-   AZURE_SEARCH_ENDPOINT=<YOUR AZURE AI SEARCH ENDPOINT>
-   AZURE_SEARCH_INDEX_NAME=hotels-sample-index
-
-   AZURE_OPENAI_ENDPOINT=<YOUR AZURE OPENAI ENDPOINT>
-   AZURE_OPENAI_VERSION=<YOUR AZURE OPENAI API VERSION>
-   AZURE_DEPLOYMENT_MODEL=<YOUR DEPLOYMENT NAME>
-   ```
-
-## Set up the Node.JS project
-
-Set up project with Visual Studio Code and TypeScript.
-
-1. Start Visual Studio Code in a new directory.
-
-   ```bash
-   mkdir rag-quickstart && cd rag-quickstart
-   code .
-   ```
-1. Create a new package for ESM modules in your project directory.
-
-   ```bash
-   npm init -y
-   npm pkg set type=module
-   ```
-
-   This creates a `package.json` file with default values.
-
-1. Install the following npm packages.
-
-   ```bash
-   npm install @azure/identity @azure/search-documents openai dotenv 
-   ```
-
-1. Create a `src` directory in your project directory.
-
-   ```bash
-   mkdir src
-   ```
+```bash
+export AZURE_SEARCH_ENDPOINT=<YOUR AZURE AI SEARCH ENDPOINT>
+export AZURE_SEARCH_INDEX_NAME=hotels-sample-index
+export AZURE_OPENAI_ENDPOINT=<YOUR AZURE OPENAI ENDPOINT>
+export AZURE_DEPLOYMENT_MODEL=<YOUR DEPLOYMENT NAME>
+```
 
 ## Sign in to Azure
 
@@ -253,45 +220,178 @@ az login --tenant <PUT YOUR TENANT ID HERE>
 
 You should now be logged in to Azure from your local device.
 
+## Set up the Java project
+
+Set up a Maven project with the required dependencies.
+
+1. Create a new directory and navigate to it:
+
+   ```bash
+   mkdir rag-quickstart && cd rag-quickstart
+   ```
+
+1. Create a Maven project structure:
+
+   ```bash
+   mkdir -p src/main/java/com/example/rag
+   ```
+
+1. Create a `pom.xml` file with the following content:
+
+   ```xml
+   <?xml version="1.0" encoding="UTF-8"?>
+   <project xmlns="http://maven.apache.org/POM/4.0.0"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+            http://maven.apache.org/xsd/maven-4.0.0.xsd">
+       <modelVersion>4.0.0</modelVersion>
+       
+       <groupId>com.example.rag</groupId>
+       <artifactId>rag-quickstart</artifactId>
+       <version>1.0-SNAPSHOT</version>
+       
+       <properties>
+           <maven.compiler.source>21</maven.compiler.source>
+           <maven.compiler.target>21</maven.compiler.target>
+           <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+       </properties>
+       
+       <dependencies>
+           <dependency>
+               <groupId>com.azure</groupId>
+               <artifactId>azure-search-documents</artifactId>
+               <version>11.6.4</version>
+           </dependency>
+           <dependency>
+               <groupId>com.azure</groupId>
+               <artifactId>azure-ai-openai</artifactId>
+               <version>1.0.0-beta.8</version>
+           </dependency>
+           <dependency>
+               <groupId>com.azure</groupId>
+               <artifactId>azure-identity</artifactId>
+               <version>1.11.4</version>
+           </dependency>
+       </dependencies>
+   </project>
+   ```
+
 ## Set up query and chat thread
 
 Create a query script that uses the Azure AI Search index and the chat model to generate responses based on grounding data. The following steps guide you through setting up the query script.
 
-1. Create a `query.js` file in the `src` directory with the following code.
+1. Create a `Query.java` file in the `src/main/java/com/example/rag` directory with the following code:
+
+    ```java
+    package com.example.rag;
     
-    :::code language="javascript" source="~/azure-search-javascript-samples/quickstart-rag-js/src/query.js" :::
+    import com.azure.ai.openai.OpenAIClient;
+    import com.azure.ai.openai.OpenAIClientBuilder;
+    import com.azure.ai.openai.models.ChatCompletions;
+    import com.azure.ai.openai.models.ChatCompletionsOptions;
+    import com.azure.ai.openai.models.ChatRequestSystemMessage;
+    import com.azure.ai.openai.models.ChatRequestUserMessage;
+    import com.azure.identity.DefaultAzureCredentialBuilder;
+    import com.azure.search.documents.SearchClient;
+    import com.azure.search.documents.SearchClientBuilder;
+    import com.azure.search.documents.models.SearchOptions;
+    import com.azure.search.documents.models.SearchResult;
+    
+    import java.util.List;
+    
+    public class Query {
+        private static SearchClient getSearchClient() {
+            String searchEndpoint = System.getenv("AZURE_SEARCH_ENDPOINT");
+            String searchIndex = System.getenv("AZURE_SEARCH_INDEX_NAME");
+    
+            return new SearchClientBuilder()
+                    .endpoint(searchEndpoint)
+                    .indexName(searchIndex)
+                    .credential(new DefaultAzureCredentialBuilder().build())
+                    .buildClient();
+        }
+    
+        private static OpenAIClient getOpenAIClient() {
+            String openaiEndpoint = System.getenv("AZURE_OPENAI_ENDPOINT");
+    
+            return new OpenAIClientBuilder()
+                    .endpoint(openaiEndpoint)
+                    .credential(new DefaultAzureCredentialBuilder().build())
+                    .buildClient();
+        }
+    
+        private static List<SearchResult> searchDocuments(SearchClient searchClient, String query) {
+            var searchOptions = new SearchOptions()
+                    .setTop(5)
+                    .setQueryType(com.azure.search.documents.models.QueryType.SEMANTIC)
+                    .setSemanticSearchOptions(new com.azure.search.documents.models.SemanticSearchOptions()
+                            .setSemanticConfigurationName("semantic-config"));
+    
+            return searchClient.search(query, searchOptions, null)
+                    .stream()
+                    .limit(5)
+                    .toList();
+        }
+    
+        private static String queryOpenAI(OpenAIClient openAIClient, String userQuery, List<SearchResult> sources) {
+            String deploymentModel = System.getenv("AZURE_DEPLOYMENT_MODEL");
+    
+            String sourcesText = sources.stream()
+                    .map(source -> source.getDocument(Object.class).toString())
+                    .collect(java.util.stream.Collectors.joining("\n"));
+    
+            var messages = List.of(
+                    new ChatRequestSystemMessage("You are an assistant that recommends hotels based on search results."),
+                    new ChatRequestUserMessage("Can you recommend a few hotels that offer " + userQuery + "? Here are the search results:\n"     + sourcesText)
+            );
+    
+            var chatOptions = new ChatCompletionsOptions(messages);
+            ChatCompletions response = openAIClient.getChatCompletions(deploymentModel, chatOptions);
+    
+            return response.getChoices().get(0).getMessage().getContent();
+        }
+    
+        public static void main(String[] args) {
+            SearchClient searchClient = getSearchClient();
+            OpenAIClient openAIClient = getOpenAIClient();
+    
+            String userQuery = "complimentary breakfast";
+            List<SearchResult> sources = searchDocuments(searchClient, userQuery);
+            String response = queryOpenAI(openAIClient, userQuery, sources);
+    
+            System.out.println(response);
+        }
+    }
+    ```
 
     The preceding code does the following:
-    - Imports the necessary libraries for Azure AI Search and Azure OpenAI.
-    - Uses environment variables to configure the Azure AI Search and Azure OpenAI clients.
-    - Defines a function to get the clients for Azure AI Search and Azure OpenAI, using environment variables for configuration.
-    - Defines a function to query Azure AI Search for sources based on the user query.
-    - Defines a function to query Azure OpenAI for a response based on the user query and the sources retrieved from Azure AI Search.
-    - The `main` function orchestrates the flow by calling the search and OpenAI functions, and then prints the response.    
-     
+    - Loads environment variables using `System.getenv`.
+    - Configures Azure AI Search and Azure OpenAI clients using role-based authentication.
+    - Queries Azure AI Search for hotels with complimentary breakfast using semantic search.
+    - Sends the search results to Azure OpenAI as context for a chat completion.
+    - Prints the model's response.
+
 1. Run the following command in a terminal to execute the query script:
 
     ```bash
-    node -r dotenv/config query.js
+    mvn compile exec:java -Dexec.mainClass="com.example.rag.Query"
     ```
-
-    The `.env` is passed into the runtime using the `-r dotenv/config`. 
 
 1. View the output, which consists of recommendations for several hotels. Here's an example of what the output might look like:
-    
+
     ```
     Sure! Here are a few hotels that offer complimentary breakfast:
-    
+
     - **Head Wind Resort**
     - Complimentary continental breakfast in the lobby
     - Free Wi-Fi throughout the hotel
-    
+
     - **Double Sanctuary Resort**
     - Continental breakfast included
-    
+
     - **White Mountain Lodge & Suites**
     - Continental breakfast available
-    
+
     - **Swan Bird Lake Inn**
     - Continental-style breakfast each morning with a variety of food and drinks 
         such as caramel cinnamon rolls, coffee, orange juice, milk, cereal, 
@@ -310,7 +410,7 @@ Otherwise, to experiment further, change the query and rerun the last step to be
 
 You can also modify the prompt to change the tone or structure of the output.
 
-You might also try the query without semantic ranking by setting `use_semantic_reranker=False` in the query parameters step. Semantic ranking can noticably improve the relevance of query results and the ability of the LLM to return useful information. Experimentation can help you decide whether it makes a difference for your content.
+You might also try the query without semantic ranking by removing the semantic search options in the query parameters step. Semantic ranking can noticeably improve the relevance of query results and the ability of the LLM to return useful information. Experimentation can help you decide whether it makes a difference for your content.
 
 ## Send a complex RAG query
 
@@ -323,25 +423,102 @@ Can you recommend a few hotels that offer complimentary breakfast?
 Tell me their description, address, tags, and the rate for one room that sleeps 4 people.
 ```
 
-1. Create a new file `queryComplex.js`. 
+1. Create a new file `QueryComplex.java` in the `src/main/java/com/example/rag` directory.
 1. Copy the following code to the file:
 
-    :::code language="javascript" source="~/azure-search-javascript-samples/quickstart-rag-js/src/queryComplex.js" :::
-
+    ```java
+    package com.example.rag;
+    
+    import com.azure.ai.openai.OpenAIClient;
+    import com.azure.ai.openai.OpenAIClientBuilder;
+    import com.azure.ai.openai.models.ChatCompletions;
+    import com.azure.ai.openai.models.ChatCompletionsOptions;
+    import com.azure.ai.openai.models.ChatRequestSystemMessage;
+    import com.azure.ai.openai.models.ChatRequestUserMessage;
+    import com.azure.identity.DefaultAzureCredentialBuilder;
+    import com.azure.search.documents.SearchClient;
+    import com.azure.search.documents.SearchClientBuilder;
+    import com.azure.search.documents.models.SearchOptions;
+    import com.azure.search.documents.models.SearchResult;
+    
+    import java.util.List;
+    
+    public class QueryComplex {
+        private static SearchClient getSearchClient() {
+            String searchEndpoint = System.getenv("AZURE_SEARCH_ENDPOINT");
+            String searchIndex = System.getenv("AZURE_SEARCH_INDEX_NAME");
+    
+            return new SearchClientBuilder()
+                    .endpoint(searchEndpoint)
+                    .indexName(searchIndex)
+                    .credential(new DefaultAzureCredentialBuilder().build())
+                    .buildClient();
+        }
+    
+        private static OpenAIClient getOpenAIClient() {
+            String openaiEndpoint = System.getenv("AZURE_OPENAI_ENDPOINT");
+    
+            return new OpenAIClientBuilder()
+                    .endpoint(openaiEndpoint)
+                    .credential(new DefaultAzureCredentialBuilder().build())
+                    .buildClient();
+        }
+    
+        private static List<SearchResult> searchDocuments(SearchClient searchClient, String query) {
+            var searchOptions = new SearchOptions()
+                    .setTop(5)
+                    .setQueryType(com.azure.search.documents.models.QueryType.SEMANTIC)
+                    .setSemanticSearchOptions(new com.azure.search.documents.models.SemanticSearchOptions()
+                            .setSemanticConfigurationName("semantic-config"));
+    
+            return searchClient.search(query, searchOptions, null)
+                    .stream()
+                    .limit(5)
+                    .toList();
+        }
+    
+        private static String queryOpenAI(OpenAIClient openAIClient, String userQuery, List<SearchResult> sources) {
+            String deploymentModel = System.getenv("AZURE_DEPLOYMENT_MODEL");
+    
+            String sourcesText = sources.stream()
+                    .map(source -> source.getDocument(Object.class).toString())
+                    .collect(java.util.stream.Collectors.joining("\n"));
+    
+            var messages = List.of(
+                    new ChatRequestSystemMessage("You are an assistant that recommends hotels based on search results."),
+                    new ChatRequestUserMessage("Can you recommend a few hotels that offer " + userQuery + "? Tell me their description,     address, tags, and the rate for one room that sleeps 4 people. Here are the search results:\n" + sourcesText)
+            );
+    
+            var chatOptions = new ChatCompletionsOptions(messages);
+            ChatCompletions response = openAIClient.getChatCompletions(deploymentModel, chatOptions);
+    
+            return response.getChoices().get(0).getMessage().getContent();
+        }
+    
+        public static void main(String[] args) {
+            SearchClient searchClient = getSearchClient();
+            OpenAIClient openAIClient = getOpenAIClient();
+    
+            String userQuery = "complimentary breakfast";
+            List<SearchResult> sources = searchDocuments(searchClient, userQuery);
+            String response = queryOpenAI(openAIClient, userQuery, sources);
+    
+            System.out.println(response);
+        }
+    }
+    ```
 
 1. Run the following command in a terminal to execute the query script:
 
     ```bash
-    node -r dotenv/config queryComplex.js
+    mvn compile exec:java -Dexec.mainClass="com.example.rag.QueryComplex"
     ```
-
-    The `.env` is passed into the runtime using the `-r dotenv/config`. 
 
 1. View the output from Azure OpenAI, and it adds content from complex types.
-    
+
     ```
     Here are a few hotels that offer complimentary breakfast and have rooms that sleep 4 people:
-    
+
     1. **Head Wind Resort**
        - **Description:** The best of old town hospitality combined with views of the river and 
        cool breezes off the prairie. Enjoy a complimentary continental breakfast in the lobby, 
@@ -349,7 +526,7 @@ Tell me their description, address, tags, and the rate for one room that sleeps 
        - **Address:** 7633 E 63rd Pl, Tulsa, OK 74133, USA
        - **Tags:** Coffee in lobby, free Wi-Fi, view
        - **Room for 4:** Suite, 2 Queen Beds (Amenities) - $254.99
-    
+
     2. **Double Sanctuary Resort**
        - **Description:** 5-star Luxury Hotel - Biggest Rooms in the city. #1 Hotel in the area 
        listed by Traveler magazine. Free WiFi, Flexible check in/out, Fitness Center & espresso 
@@ -357,14 +534,14 @@ Tell me their description, address, tags, and the rate for one room that sleeps 
        - **Address:** 2211 Elliott Ave, Seattle, WA 98121, USA
        - **Tags:** View, pool, restaurant, bar, continental breakfast
        - **Room for 4:** Suite, 2 Queen Beds (Amenities) - $254.99
-    
+
     3. **Swan Bird Lake Inn**
        - **Description:** Continental-style breakfast featuring a variety of food and drinks. 
        Locally made caramel cinnamon rolls are a favorite.
        - **Address:** 1 Memorial Dr, Cambridge, MA 02142, USA
        - **Tags:** Continental breakfast, free Wi-Fi, 24-hour front desk service
        - **Room for 4:** Budget Room, 2 Queen Beds (City View) - $85.99
-    
+
     4. **Gastronomic Landscape Hotel**
        - **Description:** Known for its culinary excellence under the management of William Dough, 
        offers continental breakfast.
@@ -374,13 +551,29 @@ Tell me their description, address, tags, and the rate for one room that sleeps 
     ...
        - **Tags:** Pool, continental breakfast, free parking
        - **Room for 4:** Budget Room, 2 Queen Beds (Amenities) - $60.99
-    
+
     Enjoy your stay! Let me know if you need any more information.
     ```
 
 ## Troubleshooting errors
 
-To debug Azure SDK errors, set the environment variable `AZURE_LOG_LEVEL` to one of the following: `verbose`, `info`, `warning`, `error`. This will enable detailed logging for the Azure SDK, which can help identify [issues with authentication](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/TROUBLESHOOTING.md#enable-and-configure-logging), network connectivity, or other problems.
+To debug Azure SDK errors, you can enable logging by adding the following dependency to your `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-simple</artifactId>
+    <version>2.0.7</version>
+</dependency>
+```
+
+Then set the following system properties when running your application:
+
+```bash
+mvn compile exec:java -Dexec.mainClass="com.example.rag.Query" -Dorg.slf4j.simpleLogger.defaultLogLevel=debug
+```
+
+This will enable detailed logging for the Azure SDK, which can help identify [issues with authentication](https://github.com/Azure/azure-sdk-for-java/wiki/Azure-Identity-Troubleshooting), network connectivity, or other problems.
 
 Rerun the query script. You should now get informational statements from the SDKs in the output that provide more detail about any issues.
 
