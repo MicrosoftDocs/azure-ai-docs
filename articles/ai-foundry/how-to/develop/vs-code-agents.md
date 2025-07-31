@@ -8,7 +8,7 @@ content_well_notification:
   - AI-contribution
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 07/10/2025
+ms.date: 07/31/2025
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
@@ -28,7 +28,7 @@ Azure AI Foundry developers can stay productive by developing, testing, and depl
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-###    Create and edit Azure AI Agents within the designer view
+## Create and edit Azure AI Agents within the designer view
 
 Follow these steps to create an Azure AI Agent:
 
@@ -62,7 +62,7 @@ After you choose your save location, both the agent .yaml file and the Designer 
  
     1. To save the .yaml file, select **File** > **Save** in the VS Code menu bar.
 
-###    Explore the Azure AI Agent YAML definition
+### Explore the Azure AI Agent YAML definition
 
 Your AI Agent .yaml file was opened at the same time the designer was. This file contains the details and setup information for your agent, similar to the following .yaml file example: 
 
@@ -88,37 +88,23 @@ instructions: Instructions for the agent
 tools: []
 ```
 
-### Add tools to the Azure AI Agent
+## Add tools to the Azure AI Agent
 
+Azure AI Agent Service has a set of tools that you can use to interact with your data sources. 
 
-Azure AI Agent Service has a set of knowledge and action tools that you can use to interact with your data sources. 
+#### Available tools for Azure AI Agents in the Azure AI Foundry VS Code extension
 
+The following tools are available in the Azure AI Foundry VS Code extension:
 
-#### Available tools for Azure AI Agents
-
-The following tools are available:
-
-- Knowledge tools:
   - [Grounding with Bing search](/azure/ai-services/agents/how-to/tools/bing-grounding?tabs=python&pivots=overview)
-  - [File search]( /azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview)
-  - [Azure AI Search](/azure/ai-services/agents/how-to/tools/azure-ai-search?tabs=pythonsdk&pivots=overview)   
-  - [Microsoft Fabric](/azure/ai-services/agents/how-to/tools/fabric?pivots=portal)
+  - [File search](/azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview) 
+  - [Code interpreter](/azure/ai-services/agents/how-to/tools/code-interpreter?tabs=python&pivots=overview)
+  - [OpenAPI Specified tools](/azure/ai-services/agents/how-to/tools/openapi-spec?tabs=python&pivots=overview)
 
-- Action tools:
-  - [Azure AI Agents function calling](/azure/ai-services/agents/how-to/tools/function-calling?pivots=python)
-
-Azure AI Foundry Agent Service has a set of knowledge and action tools that you can use to interact with your data sources, such as:
- - [Grounding with Bing search](/azure/ai-services/agents/how-to/tools/bing-grounding?tabs=python&pivots=overview)
- - [Azure AI Search](/azure/ai-services/agents/how-to/tools/azure-ai-search?tabs=pythonsdk&pivots=overview) 
- - [Azure Functions](/azure/ai-services/agents/how-to/tools/azure-functions?tabs=python&pivots=overview) 
- - [File search](/azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview) 
- - [Code interpreter](/azure/ai-services/agents/how-to/tools/code-interpreter?tabs=python&pivots=overview)
- - [OpenAPI Specified tools](/azure/ai-services/agents/how-to/tools/openapi-spec?tabs=python&pivots=overview)
- - [SharePoint](/azure/ai-services/agents/how-to/tools/sharepoint?tabs=python&pivots=overview)
 
 #### Configure the tools YAML file
 
-The Agent Designer adds tools to an AI Agent via .yaml files. 
+The Agent Designer adds the **Grounding With Bing Search tool** and **OpenAPI Specified tool** to an AI Agent via .yaml files.
 
 Create a tool configuration .yaml file using the following steps:
 
@@ -149,6 +135,19 @@ Add a tool to the AI Agent with the following steps:
 1. Select the **Add tool** button in the top-right corner of the **TOOL** section in the designer to show the dropdown. Choose the tool you want to add.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-tool-plus.png" alt-text="Screenshot of the Agent designer TOOL section with the plus icon highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/agent-tool-plus.png":::
+
+
+ Your experience might vary depending on the tool you selected. For example, if you select the **Code interpreter** or **File upload** tool, the designer displays the appropriate pane to configure the tool, as in the following images:
+
+Code interpreter tool dialog box:
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-ci-tool-dialog.png" alt-text="Screenshot of the Code interpreter tool dialog box." lightbox="../../media/how-to/get-started-projects-vs-code/agent-ci-tool-dialog.png":::
+
+File upload tool dialog box:
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-fs-tool-dialog.png" alt-text="Screenshot of the Code interpreter tool dialog box." lightbox="../../media/how-to/get-started-projects-vs-code/agent-fs-tool-dialog.png":::
+
+After entering the required information, select the **Upload and save** button in the bottom-left corner.
+
+If you select the **Grounding with Bing Search** or **OpenAPI 3.0 Specified** tools, a dialog box appears to configure the tool connection. 
 
 1. In the file explorer that appears, select the .yaml tool file to use. Select the **Select a tool file** button to add the tool to the agent.
 
