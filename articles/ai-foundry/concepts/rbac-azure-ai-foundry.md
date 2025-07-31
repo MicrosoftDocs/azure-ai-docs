@@ -590,7 +590,7 @@ When using Microsoft Entra ID authenticated connections in the chat playground, 
 
 ## Scenario: Use an existing Azure OpenAI resource
 
-When you create a connection to an existing Azure OpenAI resource, you must also assign roles to your users so they can access the resource. You should assign either the **Cognitive Services OpenAI User** or **Cognitive Services OpenAI Contributor** role, depending on the tasks they need to perform. For information on these roles and the tasks they enable, see [Azure OpenAI roles](/azure/ai-services/openai/how-to/role-based-access-control#azure-openai-roles).
+When you create a connection to an existing Azure OpenAI resource, you must also assign roles to your users so they can access the resource. You should assign either the **Cognitive Services OpenAI User** or **Cognitive Services OpenAI Contributor** role, depending on the tasks they need to perform. For information on these roles and the tasks they enable, see [Azure OpenAI roles](/azure/ai-foundry/openai/how-to/role-based-access-control#azure-openai-roles).
 
 ## Scenario: Use Azure Container Registry
 
@@ -615,7 +615,7 @@ Azure Application Insights is an optional dependency for Azure AI Foundry hub. T
 
 ## Scenario: Provisioned throughput unit procurer
 
-The following example defines a custom role that can procure [provisioned throughput units (PTU)](/azure/ai-services/openai/concepts/provisioned-throughput).
+The following example defines a custom role that can procure [provisioned throughput units (PTU)](/azure/ai-foundry/openai/concepts/provisioned-throughput).
 
 ```json
 {
@@ -659,7 +659,7 @@ The following example defines a custom role that can procure [provisioned throug
 
 ## Scenario: Azure OpenAI Assistants API
 
-The following example defines a role for a developer using [Azure OpenAI Assistants](/azure/ai-services/openai/how-to/assistant).
+The following example defines a role for a developer using [Azure OpenAI Assistants](/azure/ai-foundry/openai/how-to/assistant).
 
 ```json
 {

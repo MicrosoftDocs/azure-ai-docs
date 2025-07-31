@@ -4,6 +4,8 @@ titleSuffix: Azure AI Foundry
 description: Learn how to configure an Azure AI Foundry managed network to securely allow access to your on-premises resources.
 manager: mcleans
 ms.service: azure-ai-foundry
+ms.custom:
+  - hub-only
 ms.topic: how-to
 ms.date: 07/31/2025
 ms.reviewer: meerakurup 

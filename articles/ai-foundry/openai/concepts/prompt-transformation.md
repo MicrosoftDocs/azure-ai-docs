@@ -69,4 +69,4 @@ Output Content:
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Image generation quickstart](/azure/ai-services/openai/dall-e-quickstart)
+> [Image generation quickstart](/azure/ai-foundry/openai/dall-e-quickstart)

@@ -55,7 +55,7 @@ Use this article to learn how to automate resource deployment for Azure OpenAI O
     - `Location`: The Azure region where your resources are deployed.
 
     > [!NOTE]
-    > * The sample `azd` template deploys a `gpt-4o-mini` model. A recommended region for this template is East US, because different Azure regions support different OpenAI models. For more details about model support by region, go to the [Azure OpenAI Models](/azure/ai-services/openai/concepts/models) support page.
+    > * The sample `azd` template deploys a `gpt-4o-mini` model. A recommended region for this template is East US, because different Azure regions support different OpenAI models. For more details about model support by region, go to the [Azure OpenAI Models](/azure/ai-foundry/openai/concepts/models) support page.
     > * If you want to deploy a different model, you can edit the variables in the `infra/main.bicep` file.
 
     The provisioning process might take several minutes. Wait for the task to finish before you proceed to the next steps.

@@ -1003,13 +1003,13 @@ items:
         - name: SDK 
           items:
           - name: C#
-            href: /dotnet/api/overview/azure/ai.openai.assistants-readme?context=/azure/ai-services/openai/context/context
+            href: /dotnet/api/overview/azure/ai.openai.assistants-readme?context=/azure/ai-foundry/openai/context/context
           - name: Go
             href: https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/ai/azopenai
           - name: Java
-            href: /java/api/overview/azure/ai-openai-assistants-readme?context=/azure/ai-services/openai/context/context
+            href: /java/api/overview/azure/ai-openai-assistants-readme?context=/azure/ai-foundry/openai/context/context
           - name: JavaScript
-            href: /javascript/api/overview/azure/openai-assistants-readme?context=/azure/ai-services/openai/context/context
+            href: /javascript/api/overview/azure/openai-assistants-readme?context=/azure/ai-foundry/openai/context/context
           - name: Python
             href: https://platform.openai.com/docs/api-reference/assistants
           
@@ -1039,7 +1039,7 @@ items:
     - name: Java
       href: /java/api/com.azure.ai.openai?view=azure-java-preview&preserve-view=true
     - name: JavaScript
-      href: /azure/ai-services/openai/supported-languages?tabs=dotnet-secure%2Csecure%2Cpython-secure%2Ccommand&pivots=programming-language-javascript
+      href: /azure/ai-foundry/openai/supported-languages?tabs=dotnet-secure%2Csecure%2Cpython-secure%2Ccommand&pivots=programming-language-javascript
     - name: .NET 
       href: /dotnet/api/azure.ai.openai?view=azure-dotnet-preview&preserve-view=true
     - name: REST API (fine-tuning)

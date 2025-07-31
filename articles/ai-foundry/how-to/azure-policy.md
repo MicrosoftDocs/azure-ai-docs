@@ -6,6 +6,8 @@ ms.author: jburchel
 author: jonburchel 
 ms.date: 07/31/2025
 ms.service: azure-ai-foundry
+ms.custom:
+  - hub-only
 ms.topic: how-to
 ms.reviewer: aashishb
 reviewer: aashishb_microsoft
