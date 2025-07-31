@@ -18,7 +18,7 @@ ms.custom: references_regions
 
 The voice live API provides a capable WebSocket interface compared to the [Azure OpenAI Realtime API](../../ai-foundry/openai/how-to/realtime-audio.md).
 
-Unless otherwise noted, the voice live API uses the same events as the [Azure OpenAI Realtime API](/azure/ai-services/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context). This document provides a reference for the event message properties that are specific to the voice live API.
+Unless otherwise noted, the voice live API uses the same events as the [Azure OpenAI Realtime API](/azure/ai-foundry/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context). This document provides a reference for the event message properties that are specific to the voice live API.
 
 ## Supported models and regions
 
@@ -451,4 +451,4 @@ Then you can connect the avatar with the server SDP.
 ## Related content
 
 - Try out the [voice live API quickstart](./voice-live-quickstart.md)
-- See the [audio events reference](/azure/ai-services/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context)
+- See the [audio events reference](/azure/ai-foundry/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context)

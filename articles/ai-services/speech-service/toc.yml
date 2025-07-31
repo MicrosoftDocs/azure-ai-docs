@@ -245,7 +245,7 @@ items:
     - name: How to use voice live
       href: voice-live-how-to.md
     - name: Audio events reference
-      href: /azure/ai-services/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context
+      href: /azure/ai-foundry/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context
 - name: Keyword recognition
   items:
     - name: Keyword recognition overview
