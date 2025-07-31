@@ -4,7 +4,7 @@ description: Announcements of new and enhanced features, including a service ren
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 05/15/2025
+ms.date: 07/31/2025
 ms.service: azure-ai-search
 ms.topic: overview
 ms.custom:
@@ -19,6 +19,15 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 
 > [!NOTE]
 > Preview features are announced here, but we also maintain a [preview features list](search-api-preview.md) so you can find them in one place.
+
+## July 2025
+
+| Item | Type | Description |
+|-----------------------------|------|--------------|
+| [Search Management 2025-05-01](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2025-05-01) | REST | Stable release of the REST APIs for the control plane operations described in this table. For migration guidance, see [Upgrade to the latest REST API in Azure AI Search](search-api-migration.md). |
+| [Service upgrade](search-how-to-upgrade.md) | Service | Now generally available through [Upgrade Service (REST API)](/rest/api/searchmanagement/services/upgrade?view=rest-searchmanagement-2025-05-01&preserve-view=true) and the Azure portal. |
+| [Pricing tier change](search-capacity-planning.md#change-your-pricing-tier) | Service | Now generally available through the `sku` property in [Update Service (REST API)](/rest/api/searchmanagement/services/update?view=rest-searchmanagement-2025-05-01&preserve-view=true) and the Azure portal. |
+| [User-assigned managed identity](search-howto-managed-identities-data-sources.md) | Security | Now generally available through the `identity` property in [Update Service (REST API)](/rest/api/searchmanagement/services/update?view=rest-searchmanagement-2025-05-01&preserve-view=true) and the Azure portal. |
 
 ## May 2025
 
