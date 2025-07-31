@@ -14,10 +14,10 @@ ms.custom: azure-ai-agents
 
 # Browser automation (preview)
 
-> [!CUATION]
-> We strongly recommend using the browser automation Tool on a low privilege virtual machine with no access to sensitive data.
+> [!WARNING]
+> The browser automation tool comes with significant security risks. Both errors in judgment by the AI and the presence of malicious or confusing instructions on web pages which the AI encounters may cause it to execute commands you or others do not intend, which could compromise the security of your or other users' browsers, computers, and any accounts to which the browser or AI has access, including personal, financial, or enterprise systems. By using the browser automation tool, you are acknowledging that you bear responsibility and liability for any use of it and of any resulting agents you create with it, including with respect to any other users to whom you make Browser Automation Tool functionality available.  
 
-Browser automation tool enables users to perform real-world browser tasks through natural language prompts. Powered by [Microsoft Playwright Workspaces (preview)](/azure/playwright-testing/overview-what-is-microsoft-playwright-testing), it facilitates multi-turn conversations to automate browser-based workflows such as searching, navigating, filling forms, and booking.
+Browser automation tool enables users to perform real-world browser tasks through natural language prompts. Powered by [Microsoft Playwright Workspaces](/azure/playwright-testing/overview-what-is-microsoft-playwright-testing), it facilitates multi-turn conversations to automate browser-based workflows such as searching, navigating, filling forms, and booking.
 
 ## How it works
 
@@ -73,5 +73,3 @@ The browser automation tool supports multi-turn conversations, allowing the user
 Review the [transparency note](/azure/ai-foundry/responsible-ai/agents/transparency-note#enabling-autonomous-actions-with-or-without-human-input-through-action-tools) when using this tool. The browser automation tool is a tool that can perform real-world browser tasks through natural language prompts, enabling automated browsing activities without human intervention.
 
 Review the [responsible AI considerations](/azure/ai-foundry/responsible-ai/agents/transparency-note#considerations-when-choosing-a-use-case) when using this tool.
-
-The browser automation tool carries substantial security risks and user responsibility: Errors in AI judgment or malicious and misleading instructions on web pages can lead the AI to execute unintended commands, potentially compromising the security of your browser, computer, or any linked accounts, including personal, financial, or enterprise systems. By using the browser automation tool, you accept full responsibility and liability for its use and for any agents you create with it, including any impact on other users who gain access to the tool's functionality through your agents.

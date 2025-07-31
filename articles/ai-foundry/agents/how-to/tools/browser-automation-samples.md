@@ -25,14 +25,16 @@ Use this article to find step-by-step instructions and code samples for using th
 
     Save this endpoint to an environment variable named `PROJECT_ENDPOINT`.
 
-
-[!INCLUDE [model-name-portal](../../includes/model-name-portal.md)]
-
-    
 * Your playwright connection ID. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Then select **Connected resources**.
     
+    <!--
     :::image type="content" source="../../media/tools/deep-research/bing-resource-name.png" alt-text="A screenshot showing the Playwright connection. " lightbox="../../media/tools/deep-research/bing-resource-name.png":::
+    -->
+    Save this name to an environment variable named `PLAYWRIGHT_CONNECTION_NAME`.
 
+* [!INCLUDE [model-name-portal](../../includes/model-name-portal.md)]
+
+    Save this name to an environment variable named `MODEL_DEPLOYMENT_NAME`.
 
 
 ```python
@@ -42,7 +44,7 @@ from azure.ai.agents import AgentsClient
 from azure.ai.agents.models import MessageRole
 from azure.ai.projects import AIProjectClient
 
-project_endpoint = "https://<your-ai-services-resource-name>.services.ai.azure.com/api/projects/<your-project-name>"
+project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT environment variable is set
 
 project_client = AIProjectClient(
     endpoint=project_endpoint,
@@ -50,13 +52,13 @@ project_client = AIProjectClient(
 )
 
 playwright_connection = project_client.connections.get(
-    name="connection-1-microsoft-playwright"
+    name=os.environ["PLAYWRIGHT_CONNECTION_NAME"]
 )
 print(playwright_connection.id)
 
 with project_client:
     agent = project_client.agents.create_agent(
-        model="gpt-4o", 
+        model=os.environ["MODEL_DEPLOYMENT_NAME"], 
         name="my-agent", 
         instructions="use the tool to respond", 
         tools=[{
