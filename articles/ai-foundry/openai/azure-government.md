@@ -42,11 +42,7 @@ Data zone deployments are available in the same Azure OpenAI resource as all oth
 | usgovvirginia  | - | ✅ | ✅ | -  | ✅ | - | - | ✅ |
 | USGov DataZone |✅| ✅ | - | -  | - | - | - | - |
 
-To request quota increases for these models, submit a request at [https://aka.ms/AOAIGovQuota](https://aka.ms/AOAIGovQuota). Note the following maximum quota limits allowed via that form:
-
-| **gpt-4o** | **gpt-4o-mini** | **gpt-35-turbo** | **text-embedding-3-large** | **text-embedding-ada-002**|
-|:----------:|:---------------:|:----------------:|:--------------------------:|:-------------------------:|
-|    300k    |      600k       |      500k        |            700k            |           700k            |
+To request quota increases for these models, submit a request at [https://aka.ms/AOAIGovQuota](https://aka.ms/AOAIGovQuota). 
 
 <br>
 
