@@ -110,11 +110,9 @@ For authenticated connections that occur during indexer and skillset processing,
    @searchUrl = PUT-YOUR-SEARCH-SERVICE-ENDPOINT-HERE
    @searchApiKey = PUT-YOUR-ADMIN-API-KEY-HERE
    @storageConnection = PUT-YOUR-STORAGE-CONNECTION-STRING-HERE
-   @openAIResourceUri = PUT-YOUR-OPENAI-URI-HERE
-   @openAIKey = PUT-YOUR-OPENAI-KEY-HERE
-   @chatCompletionResourceUri = PUT-YOUR-CHAT-COMPLETION-URI-HERE
-   @chatCompletionKey = PUT-YOUR-CHAT-COMPLETION-KEY-HERE
-   @imageProjectionContainer=PUT-YOUR-IMAGE-PROJECTION-CONTAINER-HERE
+   @cognitiveServicesUrl = PUT-YOUR-AZURE-AI-MULTI-SERVICE-ENDPOINT-HERE
+   @modelVersion = 2023-04-15
+   @imageProjectionContainer=sustainable-ai-pdf-images
    ```
 
 1. Save the file using a `.rest` or `.http` file extension. For help with the REST client, see [Quickstart: Full-text search using REST](search-get-started-text.md).
@@ -288,7 +286,7 @@ POST {{searchUrl}}/indexes?api-version=2025-05-01-preview   HTTP/1.1
             {
                 "name": "hnsw",
                 "algorithm": "defaulthnsw",
-                "vectorizer": "{{vectorizer}}"
+                "vectorizer": "demo-vectorizer"
             }
         ],
         "algorithms": [
@@ -304,11 +302,11 @@ POST {{searchUrl}}/indexes?api-version=2025-05-01-preview   HTTP/1.1
         ],
         "vectorizers": [
             {
-                "name": "{{ vectorizer }}",
+                "name": "demo-vectorizer",
                 "kind": "aiServicesVision",
                 "aiServicesVisionParameters": {
                     "resourceUri": "{{cognitiveServicesUrl}}",
-                    "searchApiKey": "{{cognitiveServicesKey}}",
+                    "authIdentity": null,
                     "modelVersion": "{{modelVersion}}"
                 }
             }
@@ -452,7 +450,7 @@ POST {{searchUrl}}/skillsets?api-version=2025-05-01-preview   HTTP/1.1
    "indexProjections": {
       "selectors": [
         {
-          "targetIndexName": "{{index}}",
+          "targetIndexName": "doc-intelligence-multimodal-embedding-index",
           "parentKeyFieldName": "text_document_id",
           "sourceContext": "/document/text_sections/*",
           "mappings": [    
@@ -501,9 +499,15 @@ POST {{searchUrl}}/skillsets?api-version=2025-05-01-preview   HTTP/1.1
       "parameters": {
         "projectionMode": "skipIndexingParentDocuments"
       }
-  },  
+  },
+  "cognitiveServices": {
+    "@odata.type": "#Microsoft.Azure.Search.AIServicesByIdentity",
+    "subdomainUrl": "{{cognitiveServicesUrl}}",
+    "identity": null
+  },
   "knowledgeStore": {
     "storageConnectionString": "",
+    "identity": null,
     "projections": [
       {
         "files": [

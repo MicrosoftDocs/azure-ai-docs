@@ -136,7 +136,7 @@ For authenticated connections that occur during indexer and skillset processing,
    @openAIKey = PUT-YOUR-OPENAI-KEY-HERE
    @chatCompletionResourceUri = PUT-YOUR-CHAT-COMPLETION-URI-HERE
    @chatCompletionKey = PUT-YOUR-CHAT-COMPLETION-KEY-HERE
-   @imageProjectionContainer=PUT-YOUR-IMAGE-PROJECTION-CONTAINER-HERE
+   @imageProjectionContainer=sustainable-ai-pdf-images
    ```
 
 1. Save the file using a `.rest` or `.http` file extension. For help with the REST client, see [Quickstart: Full-text search using REST](search-get-started-text.md).
@@ -311,7 +311,7 @@ POST {{searchUrl}}/indexes?api-version=2025-05-01-preview   HTTP/1.1
             {
                 "name": "hnsw",
                 "algorithm": "defaulthnsw",
-                "vectorizer": "{{vectorizer}}"
+                "vectorizer": "demo-vectorizer"
             }
         ],
         "algorithms": [
@@ -327,12 +327,12 @@ POST {{searchUrl}}/indexes?api-version=2025-05-01-preview   HTTP/1.1
         ],
         "vectorizers": [
             {
-              "name": "{{vectorizer}}",
+              "name": "demo-vectorizer",
               "kind": "azureOpenAI",    
               "azureOpenAIParameters": {
                 "resourceUri": "{{openAIResourceUri}}",
                 "deploymentId": "text-embedding-3-large",
-                "searchApiKey": "{{openAIKey}}",
+                "apiKey": "{{openAIKey}}",
                 "modelName": "text-embedding-3-large"
               }
             }
@@ -381,6 +381,7 @@ POST {{searchUrl}}/skillsets?api-version=2025-05-01-preview   HTTP/1.1
   api-key: {{searchApiKey}}
 
 {
+  "name": "doc-intelligence-image-verbalization-skillset",
   "description": "A sample skillset for multi-modality using image verbalization",
   "skills": [
     {
@@ -432,7 +433,7 @@ POST {{searchUrl}}/skillsets?api-version=2025-05-01-preview   HTTP/1.1
     ],
     "resourceUri": "{{openAIResourceUri}}",
     "deploymentId": "text-embedding-3-large",
-    "searchApiKey": "",
+    "apiKey": "{{openAIKey}}",
     "dimensions": 3072,
     "modelName": "text-embedding-3-large"
     },
@@ -440,7 +441,7 @@ POST {{searchUrl}}/skillsets?api-version=2025-05-01-preview   HTTP/1.1
     "@odata.type": "#Microsoft.Skills.Custom.ChatCompletionSkill",
     "uri": "{{chatCompletionResourceUri}}",
     "timeout": "PT1M",
-    "searchApiKey": "",
+    "apiKey": "{{chatCompletionKey}}",
     "name": "genAI-prompt-skill",
     "description": "GenAI Prompt skill for image verbalization",
     "context": "/document/normalized_images/*",
@@ -485,7 +486,7 @@ POST {{searchUrl}}/skillsets?api-version=2025-05-01-preview   HTTP/1.1
     ],
     "resourceUri": "{{openAIResourceUri}}",
     "deploymentId": "text-embedding-3-large",
-    "searchApiKey": "",
+    "apiKey": "{{openAIKey}}",
     "dimensions": 3072,
     "modelName": "text-embedding-3-large"
     },
@@ -516,7 +517,7 @@ POST {{searchUrl}}/skillsets?api-version=2025-05-01-preview   HTTP/1.1
    "indexProjections": {
       "selectors": [
         {
-          "targetIndexName": "{{index}}",
+          "targetIndexName": "doc-intelligence-image-verbalization-index",
           "parentKeyFieldName": "text_document_id",
           "sourceContext": "/document/text_sections/*",
           "mappings": [    
@@ -539,7 +540,7 @@ POST {{searchUrl}}/skillsets?api-version=2025-05-01-preview   HTTP/1.1
           ]
         },        
         {
-          "targetIndexName": "{{index}}",
+          "targetIndexName": "doc-intelligence-image-verbalization-index",
           "parentKeyFieldName": "image_document_id",
           "sourceContext": "/document/normalized_images/*",
           "mappings": [    
@@ -572,6 +573,7 @@ POST {{searchUrl}}/skillsets?api-version=2025-05-01-preview   HTTP/1.1
   },  
   "knowledgeStore": {
     "storageConnectionString": "{{storageConnection}}",
+    "identity": null,
     "projections": [
       {
         "files": [
