@@ -133,7 +133,7 @@
     {
       "source_path_from_root": "/articles/ai-services/openai/how-to/prepare-dataset.md",
       "redirect_url": "/azure/ai-foundry/openai/concepts/fine-tuning-considerations",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/how-to/audio-real-time.md",
@@ -183,7 +183,7 @@
     {
       "source_path_from_root": "/articles/ai-services/openai/api-version-deprecation.md",
       "redirect_url": "/azure/ai-foundry/openai/api-version-lifecycle",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-voice-talent.md",
@@ -973,7 +973,7 @@
     {
       "source_path_from_root": "/articles/ai-services/openai/how-to/integrate-synapseml.md",
       "redirect_url": "/azure/ai-foundry/openai/overview",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/ai-services-and-ecosystem.md",
@@ -1193,7 +1193,7 @@
     {
       "source_path_from_root": "/articles/ai-services/openai/assistants-reference.md",
       "redirect_url": "/azure/ai-foundry/openai/reference-preview#list---assistants",
-      "redirect_document_id": true
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/meeting-transcription.md",
