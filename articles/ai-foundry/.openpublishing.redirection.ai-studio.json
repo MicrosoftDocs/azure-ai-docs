@@ -946,7 +946,7 @@
         {
             "source_path_from_root": "/articles/ai-studio/quickstarts/assistants.md",
             "redirect_url": "/azure/ai-foundry/openai/how-to/assistant",
-            "redirect_document_id": true
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/ai-studio/how-to/prompt-flow-tools/vector-db-lookup-tool.md",
