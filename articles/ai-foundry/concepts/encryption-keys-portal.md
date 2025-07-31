@@ -115,7 +115,7 @@ Customer-managed key encryption is configured via Azure portal (or alternatively
 
 1. Create a new Azure resource in Azure portal.
 1. Under the encryption tab, select your encryption key.
-1. For Azure AI Hub, check or uncheck 'Service-side encryption' to select your prefered data storage option. Service-side encryption is recommended for any new workload.
+1. For Azure AI Hub, check or uncheck 'Service-side encryption' to select your preferred data storage option. Service-side encryption is recommended for any new workload.
 
    :::image type="content" source="../../machine-learning/media/concept-customer-managed-keys/cmk-service-side-encryption.png" alt-text="Screenshot of the encryption tab with the option for service side encryption selected." lightbox="../../machine-learning/media/concept-customer-managed-keys/cmk-service-side-encryption.png":::
 
@@ -143,7 +143,7 @@ How to Rotate Encryption Keys
 
 * In your Azure Key Vault, create or identify the new key you want to use for new data encryption.
 
-* From Azure Portal or template options, update the resource configuration to reference the new key within the same Key Vault.
+* From Azure portal or template options, update the resource configuration to reference the new key within the same Key Vault.
 
 * Your resource takes a few minutes to configure wrapping data using your new encryption key. During this period, certain service operations are available.
 
