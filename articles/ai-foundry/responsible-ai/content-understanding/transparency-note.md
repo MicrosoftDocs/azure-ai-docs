@@ -24,7 +24,7 @@ Microsoft's Transparency Notes are part of a broader effort at Microsoft to put 
 
 ### Introduction
 
-Azure AI Content Understanding ingests unstructured content in any modality such as documents, images, videos, and audio to produce structured outputs from prebuilt or user-defined schemas to best represent task specific scenarios from the content. This output can then be consumed by downstream applications, such as saving it in a database, sending the output to a customer-developed system for reasoning with LLMs (i.e, Retrieval Augmented Generation or RAG), building specific AI/ML models on the data, or used in workflows to automate business processes. Content Understanding will expand the scope of [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview?view=doc-intel-4.0.0&preserve-view=true) and leverage capabilities from [Azure Open AI Service](/azure/ai-services/openai/overview), [Azure AI Speech](/azure/ai-services/speech-service/overview), and [Azure AI Vision](/azure/ai-services/computer-vision/overview) to support single-modal and multimodal scenarios. 
+Azure AI Content Understanding ingests unstructured content in any modality such as documents, images, videos, and audio to produce structured outputs from prebuilt or user-defined schemas to best represent task specific scenarios from the content. This output can then be consumed by downstream applications, such as saving it in a database, sending the output to a customer-developed system for reasoning with LLMs (i.e, Retrieval Augmented Generation or RAG), building specific AI/ML models on the data, or used in workflows to automate business processes. Content Understanding will expand the scope of [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview?view=doc-intel-4.0.0&preserve-view=true) and leverage capabilities from [Azure Open AI Service](/azure/ai-foundry/openai/overview), [Azure AI Speech](/azure/ai-services/speech-service/overview), and [Azure AI Vision](/azure/ai-services/computer-vision/overview) to support single-modal and multimodal scenarios. 
 
 
 ### Key terms
@@ -69,7 +69,7 @@ Azure Content Understanding service includes a content filtering system that det
 
 >[!NOTE]
 >
-> * Disabling the content filter may prevent the service from effectively blocking harmful content, including, but not limited to, *hate and fairness-related*, *sexual*, *violence* and *self-harm* categories. For more information, *see* [Content filtering](/azure/ai-services/openai/concepts/content-filter).
+> * Disabling the content filter may prevent the service from effectively blocking harmful content, including, but not limited to, *hate and fairness-related*, *sexual*, *violence* and *self-harm* categories. For more information, *see* [Content filtering](/azure/ai-foundry/openai/concepts/content-filter).
 >
 > * Disabling Indirect Attack Prompt Shield could potentially expose the system to vulnerabilities, wherein third parties may embed malicious instructions within documents accessible to and processed by the Generative AI system. Analogous vulnerabilities may arise from jailbreak attempts that directly seek to circumvent and to override built-in safeguards through specific prompts.
 
@@ -310,7 +310,7 @@ When you're getting ready to integrate Content Understanding to your product or 
 
 ## Learn more about Content Understanding
 
-- [Azure OpenAI overview](/azure/ai-services/openai/overview )
+- [Azure OpenAI overview](/azure/ai-foundry/openai/overview )
 - [Azure AI Document Intelligence overview](/azure/ai-services/document-intelligence/overview?view=doc-intel-4.0.0&preserve-view=true)
 - [Azure AI Speech overview](/azure/ai-services/speech-service/overview )
 - [Azure AI Vision overview](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0 )

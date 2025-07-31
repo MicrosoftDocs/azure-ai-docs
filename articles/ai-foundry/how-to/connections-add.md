@@ -142,7 +142,7 @@ For more on how to set private endpoints to your connected resources, see the fo
 | Azure Storage         | [Use private endpoints](/azure/storage/common/storage-private-endpoints)                                       |
 | Azure Cosmos DB        | [Configure Azure Private Link for Azure Cosmos DB](/azure/cosmos-db/how-to-configure-private-endpoints?tabs=arm-bicep) |
 | Azure AI Search       | [Create a private endpoint for a secure connection](/azure/search/service-create-private-endpoint)             |
-| Azure OpenAI          | [Securing Azure OpenAI inside a virtual network with private endpoints](/azure/ai-services/openai/how-to/network) |
+| Azure OpenAI          | [Securing Azure OpenAI inside a virtual network with private endpoints](/azure/ai-foundry/openai/how-to/network) |
 | Application Insights  | [Use Azure Private Link to connect networks to Azure Monitor](/azure/azure-monitor/logs/private-link-security) |
 
 
