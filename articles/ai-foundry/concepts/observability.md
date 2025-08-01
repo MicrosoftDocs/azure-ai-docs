@@ -88,7 +88,7 @@ To learn more, see [Risk and safety evaluators](./evaluation-evaluators/risk-saf
 | Evaluator | Purpose | Inputs |
 |--|--|--|
 | Intent Resolution | Measures how accurately the agent identifies and addresses user intentions.| Query, response |
-| Task Adherence | Measures how well the agent follows through on identified tasks. | Query, response |
+| Task Adherence | Measures how well the agent follows through on identified tasks. | Query, response,  (optional) tool_definitions |
 | Tool Call Accuracy | Measures how well the agent selects and calls the correct tools to.| Query, either response or tool calls, tool definitions |
 
 To learn more, see [Agent evaluators](./evaluation-evaluators/agent-evaluators.md).
