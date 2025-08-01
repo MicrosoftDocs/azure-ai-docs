@@ -8,7 +8,7 @@ content_well_notification:
   - AI-contribution
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 07/10/2025
+ms.date: 07/31/2025
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
@@ -48,7 +48,20 @@ Before using the Azure AI Foundry for Visual Studio Code extension, you must:
 
 After you install Visual Studio Code, you need to install the Azure AI Foundry for Visual Studio Code extension.
 
-To install the Azure AI Foundry for Visual Studio Code extension:
+To install the Azure AI Foundry for Visual Studio Code extension, you can either use the Visual Studio Code Marketplace or install it directly from within Visual Studio Code.
+
+### Install from the Visual Studio Code Marketplace
+To install the Azure AI Foundry for Visual Studio Code extension from the Visual Studio Code Marketplace, follow these steps:
+
+1. Open the [Azure AI Foundry for Visual Studio Code extension page](https://marketplace.visualstudio.com/items?itemName=AzureAIFoundry.azure-ai-foundry-vscode).
+1. Click the **Install** button.
+1. Follow the prompts to install the extension in Visual Studio Code.
+1. After installation, open Visual Studio Code and verify the extension is installed successfully from the status messages.
+1. The extension should now be visible in the primary navigation bar on the left side of Visual Studio Code.
+
+### Install from within Visual Studio Code
+
+To install the Azure AI Foundry for Visual Studio Code extension in Visual Studio Code, follow these steps:
 
 1. Open Visual Studio Code.
 
@@ -69,7 +82,6 @@ Get started with the Azure AI Foundry extension by using the following steps.
 > [!NOTE]
 > For a full list of features available in the extension, use the Command Palette. Select <kbd>F1</kbd> to open the command palette and search **Azure AI Foundry**. The following screenshot shows some of the actions for Azure AI Foundry.
 >     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/visual-studio-command-palette-small.png" alt-text="A screenshot of the Visual Studio Code command palette for Azure AI Foundry." lightbox="../../media/how-to/get-started-projects-vs-code/visual-studio-command-palette-small.png":::
-
 
 ### Sign in to your resources
 
