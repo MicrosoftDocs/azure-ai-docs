@@ -144,7 +144,7 @@ Your experience might vary depending on the tool you selected.
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-ci-tool-dialog.png" alt-text="Screenshot of the Code interpreter tool dialog box." lightbox="../../media/how-to/get-started-projects-vs-code/agent-ci-tool-dialog.png":::
     
     File upload tool dialog box:
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-fs-tool-dialog.png" alt-text="Screenshot of the File upload tool dialog box." lightbox="../../media/how-to/get-started-projects-vs-code/agent-fs-tool-dialog.png":::
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-file-search-tool-dialog.png" alt-text="Screenshot of the File upload tool dialog box." lightbox="../../media/how-to/get-started-projects-vs-code/agent-file-search-tool-dialog.png":::
     
     1. After entering the required information, select the **Upload and save** button in the bottom-left corner.
 
