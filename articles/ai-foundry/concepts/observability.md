@@ -6,7 +6,7 @@ author: lgayhardt
 ms.author: lagayhar
 manager: scottpolly
 ms.reviewer: mithigpe
-ms.date: 07/11/2025
+ms.date: 07/31/2025
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.custom:
@@ -32,7 +32,7 @@ This is where evaluators become essential. These specialized tools measure both 
 
 Evaluators are specialized tools that measure the quality, safety, and reliability of AI responses. By implementing systematic evaluations throughout the AI development lifecycle, teams can identify and address potential issues before they impact users. The following supported evaluators provide comprehensive assessment capabilities across different AI application types and concerns:
 
-### General Purpose
+### General purpose
 
 | Evaluator | Purpose | Inputs |
 |--|--|--|
@@ -42,7 +42,7 @@ Evaluators are specialized tools that measure the quality, safety, and reliabili
 
 To learn more, see [General purpose evaluators](./evaluation-evaluators/general-purpose-evaluators.md).
 
-### Textual Similarity
+### Textual similarity
 
 | Evaluator | Purpose | Inputs |
 |--|--|--|
@@ -55,7 +55,7 @@ To learn more, see [General purpose evaluators](./evaluation-evaluators/general-
 
 To learn more, see [Textual similarity evaluators](./evaluation-evaluators/textual-similarity-evaluators.md)
 
-### RAG (Retrieval Augmented Generation)
+### RAG (retrieval augmented generation)
 
 | Evaluator | Purpose | Inputs |
 |--|--|--|
@@ -68,7 +68,7 @@ To learn more, see [Textual similarity evaluators](./evaluation-evaluators/textu
 
 To learn more, see [Retrieval-augmented Generation (RAG) evaluators](./evaluation-evaluators/rag-evaluators.md).
 
-### Safety and Security (preview)
+### Safety and security (preview)
 
 | Evaluator | Purpose | Inputs |
 |--|--|--|
@@ -93,7 +93,7 @@ To learn more, see [Risk and safety evaluators](./evaluation-evaluators/risk-saf
 
 To learn more, see [Agent evaluators](./evaluation-evaluators/agent-evaluators.md).
 
-### Azure OpenAI Graders (preview) (./evaluation-evaluators/azure-openai-graders.md)
+### Azure OpenAI graders (preview)
 
 | Evaluator | Purpose |  Inputs |
 |--|--|--|
