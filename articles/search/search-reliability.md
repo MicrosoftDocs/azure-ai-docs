@@ -28,12 +28,11 @@ In Azure AI Search, you can achieve reliability by:
 
 For production workloads, we recommend using a [billable tier](search-sku-tier.md) with at least [two replicas](search-capacity-planning.md#add-or-remove-partitions-and-replicas). This configuration makes your search service more resilient to transient faults and maintenance operations. It also meets the [service-level agreement](#service-level-agreement) for Azure AI Search, which requires two replicas for read-only workloads and three or more replicas for read-write workloads.
 
-Azure AI Search doesn't provide a service-level agreement for the Free tier, which is strongly discouraged for production use.
+Azure AI Search doesn't provide a service-level agreement for the Free tier, which is limited to one replica and is strongly discouraged for production use.
 
 ## Transient faults
 
 [!INCLUDE [Transient fault description](includes/reliability-transient-fault-description-include.md)]
-
 
 Search services might experience transient faults during standard, unscheduled maintenance operations. Azure AI Search doesn't provide advance notification or allow scheduling of maintenance at specific times. Although every effort is made to minimize downtime, even for single-replica services, brief interruptions can still occur. To improve resiliency against these transient faults, we recommend that you use two or more replicas.
 
@@ -41,12 +40,12 @@ Search services might experience transient faults during standard, unscheduled m
 
 [!INCLUDE [Availability zone support description](includes/reliability-availability-zone-description-include.md)]
 
-Azure AI Search is zone-redundant, which means that your replicas are distributed across multiple availability zones within the service region.
+Azure AI Search is zone redundant, which means that your replicas are distributed across multiple availability zones within the service region.
 
 When you add two or more replicas to your service, Azure AI Search attempts to place each replica in a different availability zone. For services with more replicas than available zones, replicas are distributed across zones as evenly as possible.
 
 > [!IMPORTANT]
-> Azure AI Search doesn't guarantee the exact placement of replicas, which are subject to capacity constraints, scaling operations, and other factors.
+> Azure AI Search doesn't guarantee the exact placement of replicas, which is subject to capacity constraints, scaling operations, and other factors.
 
 ### Region support
 
@@ -57,7 +56,7 @@ Support for availability zones depends on infrastructure and storage. For a list
 Zone redundancy is automatically enabled when your search service:
 
 + Is in a [region that has availability zones](search-region-support.md).
-+ Is on the [Basic tier or higher](search-sku-tier.md).
++ Is on the [Basic tier or higher](search-sku-tier.md). Zone redundancy isn't available for the Free tier.
 + Has [multiple replicas](search-capacity-planning.md#add-or-remove-partitions-and-replicas).
 
 ### Considerations
@@ -110,15 +109,13 @@ When you follow this approach, you must synchronize indexes across regions to re
 
 Because AI Search isn't a primary data storage solution, it doesn't offer self-service backup and restore options. However, you can use the `index-backup-restore` sample for [.NET](https://github.com/Azure-Samples/azure-search-dotnet-utilities/tree/main/index-backup-restore) or [Python](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python/code/utilities/index-backup-restore) to back up your index definition and its documents to a series of JSON files, which are then used to restore the index.
 
-However, if you don't maintain a backup of the index, and it's accidentally deleted, you can then [rebuild the index](search-howto-reindex.md). Rebuilding involves recreating the index in your search service, and the reloading it from your primary data store.
-
-
+However, if you accidentally delete the index and don't have a backup, you can [rebuild the index](search-howto-reindex.md). Rebuilding involves recreating the index on your search service and then reloading it by retrieving data from your primary data store.
 
 ## Service-level agreement
 
 The service-level agreement (SLA) for Azure AI Search describes the expected availability of the service and the conditions that must be met to achieve that availability expectation. For more information, see the [SLA for Azure AI Search](https://azure.microsoft.com/support/legal/sla/search/v1_0/).
 
-SLA coverage applies to search services on billable tiers with at least two replicas. In Azure AI Search, a replica is a copy of your index. Each service can have between 1 and 12 replicas.  When you [adding replica](search-capacity-planning.md#add-or-remove-partitions-and-replicas), AI Search can then perform maintenance on one replica while queries continue to execute on other replicas.
+SLA coverage applies to search services on billable tiers with at least two replicas. In Azure AI Search, a replica is a copy of your index. Each service can have between 1 and 12 replicas. When you [add replicas](search-capacity-planning.md#add-or-remove-partitions-and-replicas), Azure AI Search can then perform maintenance on one replica while queries continue to execute on other replicas.
 
 Microsoft guarantees at least 99.9% availability of:
 
