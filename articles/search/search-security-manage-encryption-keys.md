@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/31/2025
+ms.date: 08/01/2025
 ms.custom:
   - references_regions
   - ignite-2023
@@ -92,25 +92,13 @@ We recommend using a managed identity and roles. You can use either a system-man
 
 ### [**System-managed identity**](#tab/managed-id-sys)
 
-Enable the system assigned managed identity for your search service. It's a two-click operation: enable and save.
+Enable the system-assigned managed identity for your search service. It's a two-click operation: enable and save.
 
 ![Screenshot of turn on system assigned managed identity.](media/search-managed-identities/turn-on-system-assigned-identity.png "Screenshot showing how to turn on the system-assigned managed identity.")
 
 ### [**User-managed identity**](#tab/managed-id-user)
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
-
-1. In the upper-left corner of your dashboard, select **Create a resource**.
-
-1. Use the search box to find **User Assigned Managed Identity**, and then select **Create**.
-
-1. Select the subscription, resource group, and region. Give the identity a descriptive name.
-
-1. Select **Create** and wait for the resource to finish deploying.
-
-   It takes several minutes before you can use the identity.
-
-1. Use the portal or Search Management REST APIs to assign the identity to your search service. For assignment steps, see [Create a user-assigned managed identity](search-howto-managed-identities-data-sources.md#create-a-user-assigned-managed-identity).
+You can use the Azure portal or Search Management REST APIs to create a user-assigned managed identity and assign the identity to your search service. For more information, see [Create a user-assigned managed identity](search-howto-managed-identities-data-sources.md#create-a-user-assigned-managed-identity).
 
 ### [**Register an app**](#tab/register-app)
 

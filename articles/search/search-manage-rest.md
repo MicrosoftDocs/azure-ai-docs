@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 03/26/2025
+ms.date: 08/01/2025
 ---
 
 # Manage your Azure AI Search service using REST APIs
@@ -147,7 +147,7 @@ PUT https://management.azure.com/subscriptions/{{subscription-id}}/resourceGroup
 
 ## Upgrade a service
 
-Some Azure AI Search capabilities are only available to new services. To avoid service recreation and bring these capabilities to an existing service, you can [upgrade your service](search-how-to-upgrade.md).
+Some Azure AI Search capabilities are only available to new services. To avoid service recreation and bring these capabilities to an existing service, you might be able to [upgrade your service](search-how-to-upgrade.md).
 
 ```http
 ### Upgrade a search service
@@ -161,14 +161,14 @@ POST https://management.azure.com/subscriptions/{{subscription-id}}/resourceGrou
 
 ## Change pricing tiers
 
-If you need more <!-- or less-->capacity, you can [switch to a higher pricing tier](search-capacity-planning.md#change-your-pricing-tier). Currently, you can only move up between Basic and Standard (S1, S2, and S3) tiers. Use the `sku` property to specify the higher <!-- your new -->tier.
+If you need more or less capacity, you can [switch to a different pricing tier](search-capacity-planning.md#change-your-pricing-tier). Currently, you can only switch between Basic and Standard (S1, S2, and S3) tiers. Use the `sku` property to specify the new tier.
 
 ```http
 ### Change pricing tiers
 @resource-group = PUT-YOUR-RESOURCE-GROUP-NAME-HERE
 @search-service = PUT-YOUR-SEARCH-SERVICE-NAME-HERE
 
-PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}?api-version=2025-02-01-preview HTTP/1.1
+PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}?api-version=2025-05-01 HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}
 
