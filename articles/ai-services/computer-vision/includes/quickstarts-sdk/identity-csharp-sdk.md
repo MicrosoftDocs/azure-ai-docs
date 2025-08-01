@@ -29,15 +29,15 @@ Get started with facial recognition using the Face client library for .NET. The 
 
 ## Identify and verify faces
 
-1. Create a new C# application
+1. Create a new C# application.
 
     #### [Visual Studio IDE](#tab/visual-studio)
 
-    Using Visual Studio, create a new .NET Core application. 
+    Using Visual Studio, create a new .NET Console App. 
 
     ### Install the client library 
 
-    Once you've created a new project, install the client library by right-clicking on the project solution in the **Solution Explorer** and selecting **Manage NuGet Packages**. In the package manager that opens select **Browse**, check **Include prerelease**, and search for `Azure.AI.Vision.Face`. Select the latest version, and then **Install**. 
+    Once you've created a new project, install the client library by right-clicking the project in  **Solution Explorer** and selecting **Manage NuGet Packages**. In the package manager that opens, select **Browse**, select **Include prerelease**, and search for `Azure.AI.Vision.Face`. Select the latest version, and then select **Install**. 
 
     #### [CLI](#tab/cli)
 
@@ -72,10 +72,10 @@ Get started with facial recognition using the Face client library for .NET. The 
     ```
 
     ---
-1. Add the following code into the *Program.cs* file.
+1. Add the following code into the *Program.cs* file, replacing the existing code.
 
     > [!NOTE]
-    > If you haven't received access to the Face service using the [intake form](https://aka.ms/facerecognition), some of these functions won't work.
+    > If you haven't received access to the Face service by using the [intake form](https://aka.ms/facerecognition), some of these functions won't work.
     
     [!code-csharp[](~/cognitive-services-quickstart-code/dotnet/Face/Quickstart.cs?name=snippet_single)]
 
@@ -84,7 +84,7 @@ Get started with facial recognition using the Face client library for .NET. The 
 
     #### [Visual Studio IDE](#tab/visual-studio)
 
-    Run the application by clicking the **Debug** button at the top of the IDE window.
+    Run the application by selecting the **Debug** button at the top of the IDE window.
 
     #### [CLI](#tab/cli)
 
