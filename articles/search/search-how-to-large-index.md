@@ -10,7 +10,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 03/21/2025
+ms.date: 08/01/2025
 ---
 
 # Index large data sets in Azure AI Search
@@ -46,7 +46,7 @@ Because the optimal batch size depends on your index and your data, the best app
 
 ### Manage threads and a retry strategy
 
-Indexers have built-in thread management, but when you're using the push APIs, your application code needs to manage threads. Make sure there are sufficient threads to make full use of the available capacity, especially if you recently [upgraded your service](search-how-to-upgrade.md), [switched to a higher tier](search-capacity-planning.md#change-your-pricing-tier), or [increased partitions](search-capacity-planning.md#add-or-remove-partitions-and-replicas).
+Indexers have built-in thread management, but when you're using the push APIs, your application code needs to manage threads. Make sure there are sufficient threads to make full use of the available capacity, especially if you recently [upgraded your service](search-how-to-upgrade.md), [switched to a higher pricing tier](search-capacity-planning.md#change-your-pricing-tier), or [increased partitions](search-capacity-planning.md#add-or-remove-partitions-and-replicas).
 
 1. [Increase the number of concurrent threads](tutorial-optimize-indexing-push-api.md#use-multiple-threadsworkers) in your client code.
 
