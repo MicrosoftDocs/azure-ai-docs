@@ -7,7 +7,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: conceptual
-ms.date: 07/16/2025
+ms.date: 08/01/2025
 ms.custom: azure-ai-agents, references_regions
 ---
 
