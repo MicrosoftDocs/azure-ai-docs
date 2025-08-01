@@ -8,6 +8,7 @@ ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
+  - hub-only
 ms.topic: how-to
 ms.date: 06/18/2025
 ms.reviewer: lebaro
