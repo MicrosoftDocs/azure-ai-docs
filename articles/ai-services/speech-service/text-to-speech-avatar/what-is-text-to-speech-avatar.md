@@ -5,14 +5,14 @@ description: Get an overview of the Text to speech avatar feature of speech serv
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 4/28/2025
+ms.date: 7/31/2025
 ms.reviewer: eur
 ms.author: eur
 author: eric-urban
 ms.custom: references_regions
 ---
 
-# Text to speech avatar overview
+# What is Text to speech avatar?
 
 Text to speech avatar converts text into a digital video of a photorealistic human (either a standard avatar or a [custom text to speech avatar](#custom-text-to-speech-avatar)) speaking with a natural-sounding voice. The text to speech avatar video can be synthesized asynchronously or in real time. Developers can build applications integrated with text to speech avatar through an API, or use a content creation tool on Speech Studio to create video content without coding.
 

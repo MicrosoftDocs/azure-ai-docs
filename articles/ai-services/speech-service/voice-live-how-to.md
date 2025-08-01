@@ -7,7 +7,7 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 7/1/2025
+ms.date: 7/31/2025
 ms.custom: references_regions
 # Customer intent: As a developer, I want to learn how to use the voice live API for real-time voice agents.
 ---
@@ -98,7 +98,7 @@ You can use input audio properties to configure the input audio stream.
 |----------|----------|----------|------------|
 | `input_audio_sampling_rate` | integer  | Optional | The sampling rate of the input audio.<br/><br/>The supported values are `16000` and `24000`. The default value is `24000`. |
 | `input_audio_echo_cancellation` | object   | Optional | Enhances the input audio quality by removing the echo from the model's own voice without requiring any client-side echo cancellation.<br/><br/>Set the `type` property of `input_audio_echo_cancellation` to enable echo cancellation.<br/><br/>The supported value for `type` is `server_echo_cancellation`, which is used when the model's voice is played back to the end-user through a speaker, and the microphone picks up the model's own voice.  |
-| `input_audio_noise_reduction`   | object   | Optional | Enhances the input audio quality by suppressing or removing environmental background noise.<br/><br/>Set the `type` property of `input_audio_noise_reduction` to enable noise suppression.<br/><br/>The supported value for `type` is `azure_deep_noise_suppression`, which optimizes for speakers closest to the microphone. |
+| `input_audio_noise_reduction`   | object   | Optional | Enhances the input audio quality by suppressing or removing environmental background noise.<br/><br/>Set the `type` property of `input_audio_noise_reduction` to enable noise suppression.<br/><br/>The supported value for `type` is `azure_deep_noise_suppression`, which optimizes for speakers closest to the microphone.<br/><br/>You can set this property to `near_field` or `far_field` if you're using the [Azure OpenAI Realtime API](../../ai-foundry/openai/realtime-audio-reference.md#realtimeaudioinputaudionoisereductionsettings). |
 
 Here's an example of input audio properties is a session object:
 
@@ -142,10 +142,11 @@ Turn detection is the process of detecting when the end-user started or stopped 
 
 | Property | Type | Required or optional | Description |
 |----------|----------|----------|------------|
-| `type` | string   | Optional | The type of turn detection system to use. Type `server_vad` detects start and end of speech based on audio volume.<br/><br/>Type `azure_semantic_vad` detects start and end of speech based on semantic meaning. Azure semantic voice activity detection (VAD) improves turn detection by removing filler words to reduce the false alarm rate. The current list of filler words are `['ah', 'umm', 'mm', 'uh', 'huh', 'oh', 'yeah', 'hmm']`. The service ignores these words when there's an ongoing response. Remove feature words feature assumes the client plays response audio as soon as it receives them.<br/><br/>The default value is `server_vad`. |
+| `type` | string   | Optional | The type of turn detection system to use. Type `server_vad` detects start and end of speech based on audio volume.<br/><br/>Type `azure_semantic_vad` detects start and end of speech based on semantic meaning. Azure semantic voice activity detection (VAD) improves turn detection by removing filler words to reduce the false alarm rate. The `remove_filler_words` property must be set to `true`. The current list of filler words are `['ah', 'umm', 'mm', 'uh', 'huh', 'oh', 'yeah', 'hmm']`. The service ignores these words when there's an ongoing response. Remove feature words feature assumes the client plays response audio as soon as it receives them.<br/><br/>The default value is `server_vad`. |
 | `threshold` | number | Optional | A higher threshold requires a higher confidence signal of the user trying to speak. |
 | `prefix_padding_ms` | integer | Optional  | The amount of audio, measured in milliseconds, to include before the start of speech detection signal. |
 | `silence_duration_ms` | integer  | Optional | The duration of user's silence, measured in milliseconds, to detect the end of speech. |
+| `remove_filler_words` | boolean | Determines whether to remove filler words to reduce the false alarm rate. This property must be set to `true` when using `azure_semantic_vad`.<br/><br/>The default value is `false`. |
 | `end_of_utterance_detection` | object | Optional | Configuration for end of utterance detection. The voice live API offers advanced end-of-turn detection to indicate when the end-user stopped speaking while allowing for natural pauses. End of utterance detection can significantly reduce premature end-of-turn signals without adding user-perceivable latency. End of utterance detection is only available when using `azure_semantic_vad`.<br/><br/>Properties of `end_of_utterance_detection` include:<br/>-`model`: The model to use for end of utterance detection. The supported value is `semantic_detection_v1`.<br/>- `threshold`: Threshold to determine the end of utterance (0.0 to 1.0). The default value is 0.01.<br/>- `timeout`: Timeout in seconds. The default value is 2 seconds.|
 
 Here's an example of end of utterance detection in a session object:

@@ -5,7 +5,7 @@ author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 04/30/2025
+ms.date: 07/31/2025
 ms.author: mbullwin
 ---
 
