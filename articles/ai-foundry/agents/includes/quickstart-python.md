@@ -43,13 +43,15 @@ Use the following code to create and run an agent. To run this code, you will ne
 
 `https://<AIFoundryResourceName>.services.ai.azure.com/api/projects/<ProjectName>`
 
+[!INCLUDE [connection-string-deprecation](connection-string-deprecation.md)]
+
 [!INCLUDE [endpoint-string-portal](endpoint-string-portal.md)]
 
-For example, your endpoint may look something like:
-
-`https://myresource.services.ai.azure.com/api/projects/myproject`
-
 Set this endpoint as an environment variable named `PROJECT_ENDPOINT`.
+
+[!INCLUDE [model-name-portal](model-name-portal.md)]
+
+Save the name of your model deployment name as an environment variable named `MODEL_DEPLOYMENT_NAME`. 
 
 ```python
 import os
@@ -65,7 +67,6 @@ project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT
 project_client = AIProjectClient(
     endpoint=project_endpoint,
     credential=DefaultAzureCredential(),  # Use Azure Default Credential for authentication
-    api_version="latest",
 )
 
 code_interpreter = CodeInterpreterTool()

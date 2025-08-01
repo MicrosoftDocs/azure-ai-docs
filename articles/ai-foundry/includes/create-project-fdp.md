@@ -4,7 +4,7 @@ description: Include file
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: deeikele
-ms.date: 05/05/2025
+ms.date: 07/03/2025
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.custom:
@@ -25,6 +25,7 @@ ms.custom:
     * Models sold directly by Azure - Azure OpenAI, DeepSeek, xAI, etc.
     * Partner & Community Models sold through Marketplace - Stability, Bria, Cohere, etc. 
     * Project files (directly upload files and start experimenting)
+    * Project-level isolation of files and outputs 
     * Evaluations
     * Fine-tuning
     * Playgrounds
@@ -46,7 +47,9 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 - [Set up your development environment](../how-to/develop/install-cli-sdk.md?tabs=python)
 - Authenticate with `az login` or `az login --use-device-code` in your environment before running code.
 - Complete these steps to start your Python script:
-    1. Install packages: `pip install azure-identity azure-mgmt-cognitiveservices`. If in a notebook cell, use `%pip install azure-identity azure-mgmt-cognitiveservices`.
+    1. Install packages: `pip install azure-identity azure-mgmt-cognitiveservices~=13.7.0b1
+`. If in a notebook cell, use `%pip install` instead
+`.
     1. Use `pip show azure-mgmt-cognitiveservices` to verify your version is 13.7 or greater.
     1. Start your script with the following code to create the `client` connection and variables used throughout this article.  This example creates the project in East US:
     
@@ -177,6 +180,19 @@ az cognitiveservices account connection show --name {my_project_name} --resource
 ```
 
 ---
+
+## Delete projects
+
+1. In [Azure AI Foundry portal](https://ai.azure.com), open your [!INCLUDE [fdp-project-name](fdp-project-name.md)]. 
+1. Select **Management center**.
+1. Select **Overview** under the **Resource** section.
+1. Select any projects you no longer want to keep.
+1. Select **Delete project**.
+
+To delete the AI Foundry resource along with all its projects:
+
+1. From the Management center, select the resource name from the Overview section to go to Azure portal.
+1. From Azure portal, select **Delete** to delete the resource and all its associated projects. 
 
 ## Related content
 

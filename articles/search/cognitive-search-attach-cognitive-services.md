@@ -5,11 +5,12 @@ description: Learn how to attach an Azure AI services resource to an AI enrichme
 author: eric-urban 
 ms.author: eur 
 ms.service: azure-ai-search
+ms.topic: how-to
+ms.date: 06/11/2025
 ms.custom:
   - ignite-2023
   - ignite-2024
-ms.topic: how-to
-ms.date: 06/11/2025
+  - sfi-image-nochange
 ---
 
 # Attach an Azure AI services resource to a skillset in Azure AI Search
@@ -34,7 +35,7 @@ To attach an Azure AI multi-service resource, you must provide connection inform
 ## Prerequisites
 
 + Connectivity over a public endpoint, unless your search service meets the creation date, tier, and region requirements for private connections to an Azure AI services multi-service resource.
-+ [Azure AI multi-service resource](/azure/ai-services/multi-service-resource) created via the [Azure portal[(https://portal.azure.com) only.
++ [Azure AI multi-service resource](/azure/ai-services/multi-service-resource) created via the [Azure portal](https://portal.azure.com) only.
 
 > [!NOTE]
 > If your Azure AI resource is configured to use a private endpoint, Azure AI Search can connect [using a shared private link](search-indexer-howto-access-private.md) For more information, see the [requirements and limits for using shared private links](search-limits-quotas-capacity.md#shared-private-link-resource-limits).
@@ -320,7 +321,7 @@ A [query-time vectorizer](vector-search-how-to-configure-vectorizer.md) backed b
 Image extraction is an Azure AI Search operation that occurs when documents are cracked prior to enrichment. Image extraction is billable on all tiers, except for 20 free daily extractions on the free tier. Image extraction costs apply to image files inside blobs, embedded images in other files (PDF and other app files), and for images extracted using [Document Extraction](cognitive-search-skill-document-extraction.md). For image extraction pricing, see the [Azure AI Search pricing page](https://azure.microsoft.com/pricing/details/search/).
 
 > [!TIP]
-> To lower the cost of skillset processing, enable [incremental enrichment](cognitive-search-incremental-indexing-conceptual.md) to cache and reuse any enrichments that are unaffected by changes made to a skillset. Caching requires Azure Storage (see [pricing](https://azure.microsoft.com/pricing/details/storage/blobs/) but the cumulative cost of skillset execution is lower if existing enrichments can be reused, especially for skillsets that use image extraction and analysis.
+> To lower the cost of skillset processing, enable [incremental enrichment](enrichment-cache-how-to-configure.md) to cache and reuse any enrichments that are unaffected by changes made to a skillset. Caching requires Azure Storage (see [pricing](https://azure.microsoft.com/pricing/details/storage/blobs/) but the cumulative cost of skillset execution is lower if existing enrichments can be reused, especially for skillsets that use image extraction and analysis.
 
 ## Example: Estimate costs
 

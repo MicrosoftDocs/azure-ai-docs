@@ -18,7 +18,7 @@ Speech to text offers an array of formatting features to ensure that the transcr
 
 ## ITN
 
-Inverse Text Normalization (ITN) is a process that converts spoken words into their written form. For example, the spoken word "four" is converted to the written form "4". The speech to text service completes this process and it's not configurable. Some of the supported text formats include dates, times, decimals, currencies, addresses, emails, and phone numbers. You can speak naturally, and the service formats text as expected. The following table shows the ITN rules that are applied to the text output.
+Inverse Text Normalization (ITN) is a process that converts verbalized forms into their corresponding symbolic written forms. For example, the spoken word "four" is converted to the written form "4". The speech to text service completes this process and it's not configurable. Some of the supported text formats include dates, times, decimals, currencies, addresses, emails, and phone numbers. You can speak naturally, and the service formats text as expected. The following table shows the ITN rules that are applied to the text output.
 
 |Recognized speech|Display text|
 |---|---|

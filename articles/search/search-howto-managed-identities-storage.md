@@ -12,6 +12,7 @@ ms.date: 02/18/2025
 ms.custom:
   - subject-rbac-steps
   - ignite-2023
+  - sfi-ropc-nochange
 ---
 
 # Connect to Azure Storage using a managed identity (Azure AI Search)
@@ -44,7 +45,7 @@ You can use a system-assigned managed identity or a user-assigned managed identi
    | Table indexing using an indexer | Add **Storage Table Data Reader** |
    | File indexing using an indexer | Add **Reader and Data Access** |
    | Write to a [knowledge store](knowledge-store-concept-intro.md) | Add **Storage Blob Data Contributor** for object and file projections, and **Reader and Data Access** for table projections. |
-   | Write to an [enrichment cache](cognitive-search-incremental-indexing-conceptual.md) | Add **Storage Blob Data Contributor** and **Storage Table Data Reader** |
+   | Write to an [enrichment cache](enrichment-cache-how-to-configure.md) | Add **Storage Blob Data Contributor** and **Storage Table Data Contributor** |
    | Save [debug session state](cognitive-search-debug-session.md) | Add **Storage Blob Data Contributor**  |
 
 1. Select **Next**.

@@ -10,7 +10,9 @@ ms.reviewer: vkann
 reviewer: kvijaykannan
 ms.author: mopeakande
 author: msakande
-ms.custom: references_regions
+ms.custom: 
+  - references_regions
+  - hub-only
 
 #customer intent: As a data scientist using a managed compute, I want to learn how to fine-tune models to improve model performance for specific tasks. 
 ---

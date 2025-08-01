@@ -1,11 +1,11 @@
----
+﻿---
 title: Create an AI Foundry resource
 titleSuffix: Azure AI services
 description: Create and manage an AI Foundry resource.
 author: eric-urban
 ms.author: eur
 manager: nitinme
-ms.date: 5/19/2025
+ms.date: 7/16/2025
 ms.service: azure-ai-services
 ms.topic: quickstart
 ms.custom:
@@ -25,7 +25,7 @@ Azure AI Foundry is the next version and renaming of former 'Azure AI Services'.
 
 Looking to use AI Foundry with advanced security settings? See [advanced AI Foundry creation options](../ai-foundry/how-to/create-resource-template.md)
 
-Looking to use Azure AI Search skills? See classic [Azure AI multi-services resource](#azure-ai-multi-services-resource-for-azure-ai-search-skills).
+Looking to use [Azure AI Search skills?](../search/tutorial-skillset.md) See classic [Azure AI multi-services resource](#azure-ai-multi-services-resource-for-azure-ai-search-skills).
 
 ::: zone pivot="azportal"
 
@@ -66,7 +66,7 @@ The AI Foundry resource enables access to the following Azure AI services with a
 | --- | --- | --- |
 | ![Azure AI Foundry icon](~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg) [Azure AI Foundry Agent Service](./agents/index.yml) | Combine the power of generative AI models with tools that allow agents to access and interact with real-world data sources. | `AIServices` |
 | ![Azure AI Foundry icon](~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg) [Azure AI Model Inference](../ai-foundry/model-inference/index.yml) | Performs model inference for flagship models in the Azure AI Foundry model catalog. | `AIServices` |
-| ![Azure OpenAI in Azure AI Foundry Models icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure-openai.svg) [Azure OpenAI](./openai/index.yml) | Perform a wide variety of natural language tasks. | `AIServices`<br/>`OpenAI` |
+| ![Azure OpenAI in Azure AI Foundry Models icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure-openai.svg) [Azure OpenAI](../ai-foundry/openai/index.yml) | Perform a wide variety of natural language tasks. | `AIServices`<br/>`OpenAI` |
 | ![Content Safety icon](~/reusable-content/ce-skilling/azure/media/ai-services/content-safety.svg) [Content Safety](./content-safety/index.yml) | An AI service that detects unwanted contents. | `AIServices`<br/>`ContentSafety` |
 | ![Custom Vision icon](~/reusable-content/ce-skilling/azure/media/ai-services/custom-vision.svg) [Custom Vision](./custom-vision-service/index.yml) | Customize image recognition for your business. | `CustomVision.Prediction` (Prediction only)<br/>`CustomVision.Training` (Training only) |
 | ![Document Intelligence icon](~/reusable-content/ce-skilling/azure/media/ai-services/document-intelligence.svg) [Document Intelligence](./document-intelligence/index.yml) | Turn documents into intelligent data-driven solutions. | `AIServices`<br/>`FormRecognizer` |
@@ -78,13 +78,13 @@ The AI Foundry resource enables access to the following Azure AI services with a
 
 ## Azure AI multi-services resource for Azure AI Search skills
 
-Azure AI Search skills don't support the AI Foundry resource as described previously in this article. You must create a different kind of multi-service resource for Azure AI Search skills. 
+[Azure AI Search skills](../search/tutorial-skillset.md) don't support the AI Foundry resource as described previously in this article. You must create a different kind of multi-service resource for Azure AI Search skills. 
 
 The multi-service resource that you can use with Azure AI Search skills is listed under **AI Foundry** > **Classic AI services** > **Azure AI services multi-service account (classic)** in the portal. Look for the logo as shown here:
 
 :::image type="content" source="./media/cognitive-services-resource-portal.png" alt-text="Screenshot of the Azure AI services multi-service account in the Azure portal." lightbox="./media/cognitive-services-resource-portal.png":::
 
-To create a multi-service resource for Azure AI Search follow these instructions:
+To create a multi-service resource for Azure AI Search skills follow these instructions:
 1. Select this link to create an **Azure AI services multi-service account (classic)** resource: [https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne](https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne)
 
 1. On the **Create** page, provide the following information:

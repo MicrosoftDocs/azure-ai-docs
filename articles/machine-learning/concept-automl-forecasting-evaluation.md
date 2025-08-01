@@ -3,8 +3,8 @@ title: Inference and evaluation of forecasting models
 titleSuffix: Azure Machine Learning
 description: Learn about different ways to inference and evaluate forecasting models using Azure Machine Learning.
 services: machine-learning
-author: ssalgadodev
-ms.author: ssalgado
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: erwright
 ms.service: azure-machine-learning
 ms.subservice: automl

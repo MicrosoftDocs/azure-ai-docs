@@ -5,8 +5,8 @@ description: Learn to deploy your MLflow model progressively using MLflow SDK.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: fasantia
 ms.date: 03/31/2022
 ms.topic: how-to
@@ -317,19 +317,6 @@ So far, the endpoint is empty. There are no deployments on it. Let's create the 
         model=model,
         instance_type="Standard_DS2_v2",
         instance_count=1,
-    )
-    ```
-
-    If your endpoint doesn't have egress connectivity, use [model packaging (preview)](how-to-package-models.md) by including the argument `with_package=True`:
-
-    ```python
-    blue_deployment = ManagedOnlineDeployment(
-        name=blue_deployment_name,
-        endpoint_name=endpoint_name,
-        model=model,
-        instance_type="Standard_DS2_v2",
-        instance_count=1,
-        with_package=True,
     )
     ```
     

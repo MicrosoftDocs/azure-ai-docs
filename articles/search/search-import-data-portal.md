@@ -11,6 +11,7 @@ ms.topic: concept-article
 ms.custom:
   - ignite-2024
   - build-2025
+  - sfi-image-nochange
 ---
 
 # Import data wizards in the Azure portal

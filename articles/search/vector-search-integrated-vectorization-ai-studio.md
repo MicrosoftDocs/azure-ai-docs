@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 05/30/2025
+ms.date: 07/17/2025
 ---
 
 # Use embedding models from Azure AI Foundry model catalog for integrated vectorization
@@ -35,15 +35,13 @@ After the model is deployed, you can use it for [integrated vectorization](vecto
 
 Integrated vectorization and the [Import and vectorize data wizard](search-import-data-portal.md) support the following embedding models in the model catalog:
 
-For text embeddings:
+| Embedding type | Supported models |
+|--|--|
+| Text | Cohere-embed-v3-english<br>Cohere-embed-v3-multilingual |
+| Image | Facebook-DinoV2-Image-Embeddings-ViT-Base<br>Facebook-DinoV2-Image-Embeddings-ViT-Giant |
+| Text and image (multimodal) | Cohere-embed-v4 <sup>1</sup> |
 
-+ Cohere-embed-v3-english
-+ Cohere-embed-v3-multilingual
-
-For image embeddings:
-
-+ Facebook-DinoV2-Image-Embeddings-ViT-Base
-+ Facebook-DinoV2-Image-Embeddings-ViT-Giant
+<sup>1</sup> At this time, you can only specify `embed-v-4-0` programmatically through the [AML skill](cognitive-search-aml-skill.md) or [Azure AI Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md), not through the Azure portal. However, you can use the portal to manage the skillset or vectorizer afterward.
 
 ## Deploy an embedding model from the Azure AI Foundry model catalog
 
@@ -174,18 +172,17 @@ The URI and key are generated when you deploy the model from the catalog. For mo
 
 ### [**Cohere embedding models**](#tab/cohere)
 
-This AML skill payload works with the following text embedding models from Azure AI Foundry:
+This AML skill payload works with the following embedding models from Azure AI Foundry:
 
 + Cohere-embed-v3-english
 + Cohere-embed-v3-multilingual
++ Cohere-embed-v4
 
 It assumes that you're chunking your content using the Text Split skill and therefore your text to be vectorized is in the `/document/pages/*` path. If your text comes from a different path, update all references to the `/document/pages/*` path accordingly.
 
-You must add the `/v1/embed` path onto the end of the URL that you copied from your Azure AI Foundry deployment. You might also change the values for the `input_type`, `truncate` and `embedding_types` inputs to better fit your use case. For more information on the available options, review the [Cohere Embed API reference](/azure/ai-foundry/how-to/deploy-models-cohere-embed).
+You must add the `/v1/embed` path onto the end of the URL that you copied from your Azure AI Foundry deployment. You might also change the values for the `input_type`, `truncate`, and `embedding_types` inputs to better fit your use case. For more information on the available options, review the [Cohere Embed API reference](/azure/ai-foundry/how-to/deploy-models-cohere-embed).
 
 The URI and key are generated when you deploy the model from the catalog. For more information about these values, see [How to deploy Cohere Embed models with Azure AI Foundry](/azure/ai-foundry/how-to/deploy-models-cohere-embed).
-
-Note that image URIs aren't supported by this integration at this time.
 
 ```json
 {
@@ -220,9 +217,9 @@ Note that image URIs aren't supported by this integration at this time.
 }
 ```
 
-In addition, the output of the Cohere model isn't the embeddings array directly, but rather a JSON object that contains it. You need to select it appropriately when mapping it to the index definition via `indexProjections` or `outputFieldMappings`. Here's a sample `indexProjections` payload that would allow you to do implement this mapping. 
+In addition, the output of the Cohere model isn't the embeddings array directly, but rather a JSON object that contains it. You need to select it appropriately when mapping it to the index definition via `indexProjections` or `outputFieldMappings`. Here's a sample `indexProjections` payload that would allow you to do implement this mapping.
 
-If you selected a different `embedding_types` in your skill definition that you have to change `float` in the `source` path to the appropriate type that you did select instead.
+If you selected a different `embedding_types` in your skill definition, change `float` in the `source` path to the type you selected.
 
 ```json
 "indexProjections": {
@@ -276,6 +273,9 @@ If you can't use key-based authentication, you can instead configure the AML ski
 "resourceId": "subscriptions/<YOUR_SUBSCRIPTION_ID_HERE>/resourceGroups/<YOUR_RESOURCE_GROUP_NAME_HERE>/providers/Microsoft.MachineLearningServices/workspaces/<YOUR_AML_WORKSPACE_NAME_HERE>/onlineendpoints/<YOUR_AML_ENDPOINT_NAME_HERE>",
 "region": "westus", // Only need if AML project lives in different region from search service
 ```
+
+> [!NOTE]
+> Token authentication is not currently supported for Cohere models for this integration; only key authentication is available at this time.  
 
 ## Next steps
 

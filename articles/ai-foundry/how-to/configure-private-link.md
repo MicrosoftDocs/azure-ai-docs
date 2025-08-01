@@ -1,16 +1,16 @@
----
+﻿---
 
 title: How to configure a private link for an Azure AI Foundry hub
 titleSuffix: Azure AI Foundry
 description: Learn how to configure a private link for Azure AI Foundry hubs. A private link is used to secure communication with the Azure AI Foundry hub.
-manager: scottpolly
+manager: mcleans
 ms.service: azure-ai-foundry
 ms.custom: ignite-2023, devx-track-azurecli, build-2024, ignite-2024
 ms.topic: how-to
-ms.date: 05/06/2025
+ms.date: 07/31/2025
 ms.reviewer: meerakurup
-ms.author: larryfr
-author: Blackmist
+ms.author: jburchel 
+author: jonburchel 
 zone_pivot_groups: project-type
 # Customer intent: As an admin, I want to configure a private link for hub so that I can secure my hubs.
 
@@ -47,8 +47,6 @@ You get several hub default resources in your resource group. You need to config
 
     > [!IMPORTANT]
     > We don't recommend using the 172.17.0.0/16 IP address range for your VNet. This is the default subnet range used by the Docker bridge network on-premises.
-
-* Disable network policies for private endpoints before adding the private endpoint.
 
 :::zone pivot="fdp-project"
 
@@ -424,7 +422,7 @@ If your storage account is private (uses a private endpoint to communicate with 
     |--|--|--|--|--|
     | `Reader` | Azure AI Foundry project | Private endpoint of the storage account | Read data from the private storage account. | 
     | `Storage File Data Privileged Contributor` | Azure AI Foundry project | Storage Account | Read/Write prompt flow data. | [Prompt flow doc](/azure/machine-learning/prompt-flow/how-to-secure-prompt-flow#secure-prompt-flow-with-workspace-managed-virtual-network) |
-    | `Storage Blob Data Contributor` | Azure AI Service | Storage Account | Read from input container, write to preprocess result to output container. | [Azure OpenAI Doc](../../ai-services/openai/how-to/managed-identity.md) |
+    | `Storage Blob Data Contributor` | Azure AI Service | Storage Account | Read from input container, write to preprocess result to output container. | [Azure OpenAI Doc](../openai/how-to/managed-identity.md) |
     | `Storage Blob Data Contributor` | Azure AI Search | Storage Account | Read blob and write knowledge store | [Search doc](/azure/search/search-howto-managed-identities-data-sources). |
 
     > [!TIP]
@@ -524,7 +522,7 @@ If you need to configure custom DNS server without DNS forwarding, use the follo
 * `<instance-name>-22.<region>.instances.azureml.ms` - Only used by the `az ml compute connect-ssh` command to connect to computers in a managed virtual network. Not needed if you aren't using a managed network or SSH connections.
 
 * `<managed online endpoint name>.<region>.inference.ml.azure.com` - Used by managed online endpoints
-* `models.ai.azure.com` - Used for standard deployment
+* `models.ai.azure.com` - Used for serverless API deployment
 
 To find the private IP addresses for your A records, see the [Azure Machine Learning custom DNS](/azure/machine-learning/how-to-custom-dns#find-the-ip-addresses) article.
 

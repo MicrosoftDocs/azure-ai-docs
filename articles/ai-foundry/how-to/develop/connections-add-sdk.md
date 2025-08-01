@@ -1,5 +1,5 @@
 ---
-title: How to add a new connection in Azure AI Foundry portal using the Azure Machine Learning SDK
+title: How to add a new connection using the Azure Machine Learning SDK
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to add connections to other resources using the Azure Machine Learning SDK.
 manager: scottpolly
@@ -7,11 +7,12 @@ ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
   - ignite-2024
+  - hub-only
 ms.topic: how-to
-ms.date: 05/12/2025
+ms.date: 07/22/2025
 ms.reviewer: dantaylo
-ms.author: larryfr
-author: Blackmist
+ms.author: sgilley
+author: sdgilley
 ---
 
 # Add a new connection using the Azure Machine Learning SDK
@@ -201,7 +202,7 @@ wps_connection = WorkspaceConnection(
     name=name,
     type="azure_data_lake_gen2",
     target=target,
-    credentials=None
+    credentials=sp_config
     
 )
 ml_client.connections.create_or_update(workspace_connection=wps_connection)

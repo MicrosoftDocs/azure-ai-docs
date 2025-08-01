@@ -6,11 +6,15 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.reviewer: None
-ms.author: sgilley
-author: sdgilley
+ms.author: scottpolly
+author: s-polly
 ms.date: 08/16/2022
 ms.topic: how-to
-ms.custom: UpdateFrequency5, data4ml, sdkv1
+ms.custom:
+  - UpdateFrequency5
+  - data4ml
+  - sdkv1
+  - sfi-image-nochange
 ---
 # Collect data from models in production
 

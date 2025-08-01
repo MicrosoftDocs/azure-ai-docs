@@ -84,13 +84,13 @@ When developing with the OpenAI SDK, you can instrument your code so traces are 
     OpenAIInstrumentor().instrument()
     ```
 
-1. Get the connection string to the Azure Application Insights resource associated with your project:
+1. Get the connection string to the Azure Application Insights resource associated with your project. The following line uses the Azure AI Project client, which requires the use of Microsoft Entra ID for authentication:
 
     ```python
     from azure.ai.projects import AIProjectClient
     from azure.identity import DefaultAzureCredential
 
-    project_client = AIProjectClient.from_connection_string(
+    project_client = AIProjectClient(
         credential=DefaultAzureCredential(),
         endpoint="https://<your-resource>.services.ai.azure.com/api/projects/<your-project>",
     )
@@ -116,7 +116,7 @@ When developing with the OpenAI SDK, you can instrument your code so traces are 
 1. Use the OpenAI SDK as usual:
 
     ```python
-    client = project_client.get_azure_openai_client()
+    client = project_client.inference.get_azure_openai_client()
 
     response = client.chat.completions.create(
         model="deepseek-v3-0324",
@@ -194,7 +194,7 @@ When developing with the OpenAI SDK, you can instrument your code so traces are 
 
 ## Trace to console
 
-It may be useful to also trace your application and send the traces to the local execution console. Such approach may result beneficial when running unit tests or integration tests in your application using an automated CI/CD pipeline. Traces can be sent to the console and captured by your CI/CD tool to further analysis.
+It may be useful to also trace your application and send the traces to the local execution console. Such approach may be beneficial when running unit tests or integration tests in your application using an automated CI/CD pipeline. Traces can be sent to the console and captured by your CI/CD tool to further analysis.
 
 Configure tracing as follows:
 

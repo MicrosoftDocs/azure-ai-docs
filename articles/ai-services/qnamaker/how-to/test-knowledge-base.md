@@ -7,7 +7,7 @@ ms.author: lajanuar
 author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
-ms.date: 06/12/2025
+ms.date: 07/16/2025
 ---
 # Test your knowledge base in QnA Maker
 
@@ -85,7 +85,7 @@ Use the batch testing tool when you want to:
 
 ### Sign into QnA Maker portal
 
-[Sign in](https://www.qnamaker.ai/) to the QnA Maker portal.
+Sign in to the QnA Maker portal.
 
 ### Create a new knowledge base from the multi-turn sample.docx file
 

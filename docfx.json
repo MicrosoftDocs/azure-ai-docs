@@ -412,6 +412,8 @@
         "articles/ai-studio/**/*.yml": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
         "articles/ai-foundry/**/*.md": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
         "articles/ai-foundry/**/*.yml": "ce-skilling-ai-copilot, ce-skilling-fresh-tier0",
+        "articles/ai-foundry/responsible-ai/**/*.md": "rai-skilling-ai-copilot, ce-skilling-fresh-tier2",
+        "articles/ai-foundry/responsible-ai/**/*.yml": "rai-skilling-ai-copilot, ce-skilling-fresh-tier2",
         "articles/search/**/*.md": "ce-skilling-ai-copilot",
         "articles/search/**/*.yml": "ce-skilling-ai-copilot",
         "articles/machine-learning/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
@@ -456,7 +458,11 @@
         "articles/machine-learning/component-reference/*.yml": "365-days",
         "articles/machine-learning/component-reference-v2/*.md": "365-days",
         "articles/machine-learning/component-reference-v2/*.yml": "365-days",
-        "articles/machine-learning/v1/*.md": "365-days"
+        "articles/open-datasets/**/*.md": "365-days", 
+        "articles/open-datasets/**/*.yml": "365-days", 
+        "articles/machine-learning/v1/*.md": "365-days",
+        "articles/search/*.md": "365-days",
+        "articles/search/*.yml": "365-days"
       },
       "ms.custom": {
         "articles/machine-learning/v1/*.md": "UpdateFrequency5"
@@ -478,8 +484,11 @@
         "articles/machine-learning/**/*.md": "azureml-api-2",
         "articles/machine-learning/v1/**/*.md": "azureml-api-1"
       },
+      "open_to_public_contributors": {
+        "articles/ai-foundry/responsible-ai/**.*": false
+      },
       "recommendations": {
-        "articles/ai-services/Translator/**/*.md": false
+        "articles/ai-services/translator/**/*.md": false
       },
       "titleSuffix": {
         "articles/ai-studio/**/*.md": "Azure AI Foundry",

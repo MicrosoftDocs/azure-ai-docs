@@ -1,30 +1,29 @@
----
-title: "Azure AI Services docs: What's new for May 2025"
-description: "What's new in the Azure AI Services docs for May 2025."
+﻿---
+title: "Azure AI Services docs: What's new for July 2025"
+description: Discover key changes and updates in Azure AI Services documentation for July 2025.
 ms.author: smcdowell
 author: skpmcdowell
 ms.topic: whats-new
 ms.subject: ai-services
-ms.custom: May-2025
-ms.date: 06/02/2025
+ms.custom: July-2025
+ms.date: 07/02/2025
 ---
 
-# Azure AI Services docs: What's new for May 2025
+# What's new in Azure AI Services documentation?
 
-Welcome to what's new in the Azure AI Services docs for May 2025. This article lists some of the major changes to docs during this period.
+Welcome! This article highlights key changes and updates in Azure AI Services documentation for July 2025.
+
+## New articles
+
+- [Azure AI Speech known issues](../ai-services/speech-service/known-issues.md)
+- [Configure your environment for Azure AI resources](../ai-services/language-service/question-answering/how-to/configure-azure-resources.md)
+- [Configure your environment for Azure AI resources and permissions](../ai-services/language-service/conversational-language-understanding/how-to/configure-azure-resources.md)
 
 ## Updated articles
 
-- [Azure AI Agents function calling](../ai-services/agents/how-to/tools/function-calling.md)
-- [Azure AI Content Understanding documentation](../ai-services/content-understanding/index.yml)
-- [Azure AI Content Understanding video solutions (preview)](../ai-services/content-understanding/video/overview.md)
-- [Azure OpenAI Responses API (Preview)](../ai-services/openai/how-to/responses.md)
-- [Computer Use (preview) in Azure OpenAI](../ai-services/openai/how-to/computer-use.md) 
-- [Content Understanding audio solutions (preview)](../ai-services/content-understanding/audio/overview.md) 
-- [Content Understanding region and language support](../ai-services/content-understanding/language-region-support.md) 
-- [Content Understanding service quotas and limits](../ai-services/content-understanding/service-limits.md)
-- [Quickstart: Azure AI Content Understanding REST APIs](../ai-services/content-understanding/quickstart/use-rest-api.md)
-- [Realtime events reference](../ai-services/openai/realtime-audio-reference.md)
-- [Use an existing AI Search index with the Azure AI Search tool](../ai-services/agents/how-to/tools/azure-ai-search.md)
-- [Use the fast transcription API with Azure AI Speech](../ai-services/speech-service/fast-transcription-create.md) 
-- [Use the Microsoft Fabric data agent](../ai-services/agents/how-to/tools/fabric.md)
+- [Use the Voice Live API (Preview)](../ai-services/speech-service/voice-live-how-to.md)
+- [Label your utterances in Azure AI Foundry](../ai-services/language-service/conversational-language-understanding/how-to/tag-utterances.md) 
+- [Supported PII entities](../ai-services/language-service/personally-identifiable-information/concepts/entity-categories.md)
+- [Train a conversational language understanding model](../ai-services/language-service/conversational-language-understanding/how-to/train-model.md)
+- [Use voice Live API for real-time voice agents (Preview)](../ai-services/speech-service/voice-live.md) 
+- [Learn what's new in Azure AI Language?](../ai-services/language-service/whats-new.md) 

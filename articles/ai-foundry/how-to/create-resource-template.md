@@ -2,11 +2,11 @@
 title: "Quickstart: Create an AI Foundry resource using Bicep"
 titleSuffix: Azure AI Foundry
 description: Learn how to use a Bicep file (template) to create an Azure AI Foundry resource in your Azure subscription.
-author: deeikele
-ms.author: larryfr
+ms.author: sgilley
+author: sdgilley
 manager: scottpolly
 reviewer: deeikele
-ms.date: 05/18/2025
+ms.date: 07/22/2025
 ms.service: azure-ai-foundry
 ms.topic: quickstart-bicep
 ms.custom:
@@ -17,8 +17,6 @@ ms.custom:
 ---
 
 # Quickstart: Create an Azure AI Foundry resource using a Bicep file
-
-[!INCLUDE [hub-only-alt](../includes/uses-hub-only-alt.md)]
 
 Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) file (template) to create an [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) resource. A template makes it easy to create resources as a single, coordinated operation. A Bicep file is a text document that defines the resources that are needed for a deployment. It might also specify deployment parameters. Parameters are used to provide input values when using the file to deploy resources.
 
@@ -64,14 +62,14 @@ Deploy the Bicep file using either the Azure CLI or Azure PowerShell.
 
 ```azurecli
 az group create --name exampleRG --location eastus
-az deployment group create --resource-group exampleRG --template-file main.bicep --parameters aiServicesName=myai aiProjectName=myai-proj 
+az deployment group create --resource-group exampleRG --template-file main.bicep --parameters aiFoundryName=myai aiProjectName=myai-proj 
 ```
 
 # [Azure PowerShell](#tab/powershell)
 
 ```azurepowershell
 New-AzResourceGroup -Name exampleRG -Location eastus
-New-AzResourceGroupDeployment -ResourceGroupName exampleRG -TemplateFile main.bicep -aiHubName myai -aiProjectName myai-proj
+New-AzResourceGroupDeployment -ResourceGroupName exampleRG -TemplateFile main.bicep -aiFoundryName myai -aiProjectName myai-proj
 ```
 
 ---

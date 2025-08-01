@@ -9,8 +9,8 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 01/27/2025
+ms.topic: concept-article
+ms.date: 07/25/2025
 ---
 
 # Monitor query requests in Azure AI Search

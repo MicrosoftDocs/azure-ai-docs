@@ -7,6 +7,7 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
@@ -79,7 +80,7 @@ In semantic ranking, the query subsystem passes search results as an input to su
 
    As of November 2024, the maximum length of each generated summary string passed to the semantic ranker is 2,048 tokens. Previously, it was 256 tokens.
 
-### How ranking is scored
+## How results are scored
 
 Scoring is done over the caption, and any other content from the summary string that fills out the 2,048 token length.
 

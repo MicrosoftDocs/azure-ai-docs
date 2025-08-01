@@ -10,6 +10,7 @@ ms.topic: how-to
 ms.date: 06/12/2025
 ms.author: lajanuar
 keywords: on-premises, Docker, container
+ms.custom: sfi-image-nochange
 ---
 
 # Install and run Docker containers for LUIS

@@ -7,10 +7,12 @@ ms.author: gimondra
 manager: nitinme
 
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: how-to
 ms.date: 02/24/2025
+ms.custom:
+  - ignite-2023
+  - sfi-image-nochange
+  - sfi-ropc-nochange
 ---
 
 # Change and delete detection using indexers for Azure Storage in Azure AI Search
@@ -41,7 +43,7 @@ For this deletion detection approach, Azure AI Search depends on the [native blo
 
 ### Requirements for native soft delete
 
-+ Blobs must be in an Azure Blob Storage container. The Azure AI Search native blob soft delete policy isn't supported for blobs in ADLS Gen2 or Azure Files.
++ Blobs must be in an Azure Blob Storage container, including ADLS Gen2 Blob container. The Azure AI Search native blob soft delete policy isn't supported for Azure Files.
 
 + [Enable soft delete for blobs](/azure/storage/blobs/soft-delete-blob-enable).
 

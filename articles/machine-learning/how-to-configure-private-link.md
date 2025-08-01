@@ -6,11 +6,16 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
-ms.custom: devx-track-azurecli, sdkv2, FY25Q1-Linter, ignite-2024
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: meerakurup
 ms.date: 05/22/2025
+ms.custom:
+  - devx-track-azurecli
+  - sdkv2
+  - FY25Q1-Linter
+  - ignite-2024
+  - sfi-image-nochange
 # Customer Intent: As an admin, I want to understand how to use private links to secure communications between my Azure Machine Learning workspace and my virtual network.
 ---
 
@@ -50,6 +55,7 @@ Azure Private Link enables you to restrict connections to your workspace to an A
 * If you're using Mozilla Firefox, you might encounter problems trying to access the private endpoint for your workspace. This problem might be related to DNS over HTTPS in Mozilla Firefox. We recommend using Microsoft Edge or Google Chrome.
 * Using a private endpoint doesn't affect Azure control plane (management operations) such as deleting the workspace or managing compute resources. For example, creating, updating, or deleting a compute target. These operations are performed over the public Internet as normal. Data plane operations, such as using Azure Machine Learning studio, APIs (including published pipelines), or the SDK use the private endpoint.
 * When you create a compute instance or compute cluster in a workspace with a private endpoint, the compute instance and compute cluster must be in the same Azure region as the workspace.
+* If you enable or disable Private Link for an Azure Machine Learning workspace after creating compute resources, those existing computes will not automatically update to reflect the new Private Link configuration. To ensure proper connectivity and avoid service disruptions, you must recreate the compute resources after making any changes to the workspace’s private link setting.
 * When you attach an Azure Kubernetes Service cluster to a workspace with a private endpoint, the cluster must be in the same region as the workspace.
 * When you use a workspace with multiple private endpoints, one of the private endpoints must be in the same virtual network as the following dependency services:
 

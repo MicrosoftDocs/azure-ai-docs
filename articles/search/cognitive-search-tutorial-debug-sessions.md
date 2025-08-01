@@ -7,10 +7,11 @@ author: HeidiSteen
 ms.author: heidist
 manager: nitinme
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: tutorial
 ms.date: 03/31/2025
+ms.custom:
+  - ignite-2023
+  - sfi-image-nochange
 ---
 
 # Tutorial: Fix a skillset using Debug Sessions
@@ -269,4 +270,4 @@ This tutorial touched on various aspects of skillset definition and processing. 
 
 + [Skillsets in Azure AI Search](cognitive-search-working-with-skillsets.md)
 
-+ [How to configure caching for incremental enrichment](cognitive-search-incremental-indexing-conceptual.md)
++ [How to configure caching for incremental enrichment](enrichment-cache-how-to-configure.md)

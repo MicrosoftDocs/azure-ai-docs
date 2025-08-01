@@ -2,8 +2,8 @@
 title: Hubs and hub-based project overview
 titleSuffix: Azure AI Foundry
 description: This article introduces concepts about Azure AI Foundry hubs for your Azure AI Foundry projects.
-author: Blackmist
-ms.author: larryfr
+ms.author: sgilley
+author: sdgilley
 manager: scottpolly
 ms.reviewer: deeikele
 ms.date: 04/28/2025
@@ -90,6 +90,6 @@ If not provided by you, the following dependent resources are automatically crea
 ## Next steps
 
 - [Create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]](../how-to/create-projects.md?pivots=hub-project)
-- [Quickstart: Analyze images and video in the chat playground](/azure/ai-services/openai/gpt-v-quickstart)
+- [Quickstart: Analyze images and video in the chat playground](/azure/ai-foundry/openai/gpt-v-quickstart)
 - [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
 - [Learn more about projects](../how-to/create-projects.md?pivots=hub-project)

@@ -6,7 +6,7 @@ author: sdgilley
 ms.author: sgilley
 manager: scottpolly
 ms.reviewer: deeikele
-ms.date: 05/20/2025
+ms.date: 07/03/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:
@@ -174,6 +174,21 @@ In addition, many resources are only accessible by users in your project workspa
 
 > [!NOTE]
 > Storage connections aren't created directly with the project when your storage account has public network access set to disabled. These are created instead when a first user accesses Azure AI Foundry over a private network connection. [Troubleshoot storage connections](troubleshoot-secure-connection-project.md#troubleshoot-configurations-on-connecting-to-storage)
+
+## Delete projects
+
+1. In [Azure AI Foundry portal](https://ai.azure.com), open your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]. 
+
+1. Select **Management center**.
+1. Select **Overview** under the **Hub** section.
+1. Select any projects you no longer want to keep.
+1. Select **Delete project**.
+
+To delete the hub along with all its projects:
+
+1. In the **Hub properties** section on the right, select **Delete hub**. 
+1. The link will open the Azure portal for you to delete the hub there.
+
 
 ## Related content
 

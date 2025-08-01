@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 04/11/2025
+ms.date: 07/11/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
@@ -48,8 +48,7 @@ project_endpoint = os.environ["PROJECT_ENDPOINT"]
 # Initialize the AIProjectClient
 project_client = AIProjectClient(
     endpoint=project_endpoint,
-    credential=DefaultAzureCredential(exclude_interactive_browser_credential=False),
-    api_version="latest",
+    credential=DefaultAzureCredential(exclude_interactive_browser_credential=False)
 )
 ```
 

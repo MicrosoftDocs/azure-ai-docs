@@ -33,8 +33,14 @@ For customers without an existing virtual network, the Standard Setup with Priva
 :::image type="content" source="../media\private-network-isolation.png" alt-text="A diagram showing virtual network architecture.":::
 ### Known limitations
 
-- Subnet IP address limitation: only class B and C are supported
-- Azure Blob Storage: Using Azure Blob Storage files with the File Search tool isn't supported.
+- **Subnet IP address limitation**: both subnets must have IP ranges under `172.16.0.0/12` or `192.168.0.0/16`, i.e. class B or C address ranges reserved for private networking.
+- **Agent subnet exclusivity**: The agent subnet cannot be shared by multiple Azure AI Foundry resources. Each AI Foundry must use a dedicated agent subnet.
+- **All Foundry workspace resources must be deployed in the same region as the virtual network (VNet)**. This includes Cosmos DB, Storage Account, AI Search, Foundry Account, Project, and Managed Identity.  
+    - **Exception:** You may connect your Foundry Project to models deployed in a different region (on another AI Foundry or Azure OpenAI resource) by configuring an appropriate AI Services connection on the Project's [capability host](/azure/templates/microsoft.cognitiveservices/accounts/projects/capabilityhosts).
+- **Region availability**:
+  - For supported regions for Foundry workspace resources, see: [Azure AI Foundry project region availability](../../reference/region-support.md#azure-ai-foundry-projects).
+  - For supported regions for model deployments, see: [Azure OpenAI model region support](../concepts/model-region-support.md#azure-openai-models).
+- **Azure Blob Storage**: using Azure Blob Storage files with the File Search tool isn't supported.
 
 ## Prerequisites
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
@@ -63,85 +69,33 @@ For customers without an existing virtual network, the Standard Setup with Priva
        az provider register --namespace 'Microsoft.Storage'
        az provider register --namespace 'Microsoft.MachineLearningServices'
        az provider register --namespace 'Microsoft.Search'
+       az provider register --namespace 'Microsoft.Network'
+       az provider register --namespace 'Microsoft.App'
+       az provider register --namespace 'Microsoft.ContainerService'
        # only to use Grounding with Bing Search tool
        az provider register --namespace 'Microsoft.Bing'
     ```
 
 ## Configure a new network-secured environment 
 
-**Network secured setup**: Agents use customer-owned, single-tenant search and storage resources. With this setup, you have full control and visibility over these resources, but you incur costs based on your usage. The following bicep template provides:
+> [!NOTE]
+> - Programmatic deployment is required to set up a network-secured environment for Azure AI Foundry Agent Service. Deployment through the Azure portal is currently not supported.
+> - If you want to delete your Foundry resource and Standard Agent with secured network set-up, delete your AI Foundry resource and virtual network last. Before deleting the virtual network, ensure to delete and [purge](../../../ai-services/recover-purge-resources.md#purge-a-deleted-resource) your AI Foundry resource.
+> - In the Standard Setup, agents use customer-owned, single-tenant resources. You have full control and visibility over these resources, but you incur costs based on your usage.
 
-* An account and project are created. 
-* A gpt-4o model is deployed. 
+You can deploy and customize the Standard Setup with Private Networking using either Bicep or Terraform. The provided samples allow you to bring your own virtual network and customize the deployment to meet your specific requirements:
+
+* Foundry account and Foundry project are created.
+* A gpt-4o model is deployed.
 * Azure resources for storing customer data — Azure Storage, Azure Cosmos DB, and Azure AI Search — are automatically created if existing resources are not provided. 
-* These resources are connected to your project to store files, threads, and vector data. 
-* A Microsoft-managed key vault is used by default. 
+* These resources are connected to your project to store files, threads, and vector data.
+* Microsoft-managed encryption keys for Storage Account and Cognitive Account (AI Foundry) are used by default.
+ 
+Select one of the available deployment methods:
 
+- **Bicep templates**: follow instructions in [this sample from GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/15-private-network-standard-agent-setup).
 
-### Manually deploy the bicep template
-
-> [!NOTE]
-> Using the Bicep template is the only way to deploy a network secured environment for Azure AI Foundry Agent Service.
-
-1. To deploy and customize the bicep templates, [download the template from GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/15-private-network-standard-agent-setup). Download the following from the `private-network-standard-agent-setup` folder:
-    1. `main-create.bicep`
-    1. `azuredeploy.parameters.json`
-    1. `modules-network-secured folder`
-1. To authenticate to your Azure subscription from the Azure CLI, use the following command: 
-
-    ```console
-    az login
-    ```
-
-1. Create a resource group:
-
-    ```console
-    az group create --name {my_resource_group} --location eastus
-    ```
-
-    Make sure you have the Azure AI Developer role for the resource group you created. 
-
-1. Using the resource group you created in the previous step and one of the template files (`private-network-standard-agent-setup`), run one of the following commands: 
-
-    1. To use default resource names, run:
-
-        ```console
-        az deployment group create --resource-group {my_resource_group} --template-file main-create.bicep
-        ```
-
-1. Run the CheckCapabilityHostReadiness.ps1 and edit the command to add your subscription ID, resource group name, and your newly deployed AI Services account resource name.
-   
-   ```
-   .\CheckCapabilityHostReadiness.ps1 -subscriptionId "<your-sub-id>" -resourcegroup "<new-rg-name>" -accountname "<your-aiservices-name>"
-   ```
-   
-   If you don't want to run the PowerShell script, you can run a bash script instead, from the file CheckCapabilityHostReadiness.sh. Run the following two commands:
-   
-      ```
-      chmod +x CheckCapabilityHostReadiness.sh
-      ./CheckCapabilityHostReadiness.sh "<your-sub-id>" "<new-rg-name>" "<your-aiservices-name>"
-      ```
-      
-1. Deploy the main-project-caphost-create.bicep
-   
-   ```
-   az deployment group create --resource-group <new-rg-name> --template-file main-project-caphost-create.bicep
-   ```
-   
-   After running this script, you're required to input the following values:
-   
-   ```
-   Please provide string value for 'accountName' (? for help): <your-account-name>
-   Please provide string value for 'projectName' (? for help): <your-project-name>
-   Please provide string value for 'aiSearchName' (? for help): <your-search-name>
-   Please provide string value for 'azureStorageName' (? for help): <your-storage-name>
-   Please provide string value for 'cosmosDBName' (? for help): <your-cosmosdb-name>
-   ```
-
-For more details, see the [README](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/15-private-network-standard-agent-setup).
-
-> [!NOTE]
-> If you want to delete your Foundry resource and Standard Agent with secured network set-up, delete your AI Foundry resource and virtual network last. Before deleting the virutal network, ensure to delete and purge your AI Foundry resource. Navigate to __Manage deleted resources__, then select your subscription and the Foundry resource you would like to purge. 
+- **Terraform configuration**: follow instructions in [this sample from GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup-terraform/15b-private-network-standard-agent-setup-byovnet).
 
 ## Deep Dive Standard Setup with Private Networking Template
 When you use the Standard Setup with Private Networking Agent Template, the following will automatically be provisioned, unless you bring your own: 
@@ -164,10 +118,12 @@ The following DNS zones are configured:
 ### Virtual network (Vnet) capabilities
 Virtual networks enable you to specify which endpoints can make API calls to your resources. The Azure service automatically rejects API calls from devices outside your defined network. You can establish allowed networks using either formula-based definitions or by creating an exhaustive list of permitted endpoints. This security layer can be combined with other security measures for enhanced protection.
 
+> [!NOTE]
+> If you bring your existing virtual network and subnet with the *Microsoft.App/environments* delegation, the minimize size of your subnet should be /27 (32 addresses). We recommend a subnet size of /24 (256 addresses) and is the default subnet size set in the network secured template. 
 
 ### Network rules
 
-All accounts and their corresponding projects are protected by default with **deny-by-default network rules**, requiring explicit configuration to allow access through private endpoints.
+All accounts and their corresponding projects are protected by default with **Public network access Disabled flag**, requiring explicit configuration to allow access through private endpoints.
 
 These rules apply to **all protocols**, including REST and WebSocket. Even internal testing tools like Azure portal's test consoles require explicit permission to access your account and its child resources—ensuring complete security across all agent projects.
 

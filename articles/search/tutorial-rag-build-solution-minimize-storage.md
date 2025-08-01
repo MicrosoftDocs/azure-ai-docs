@@ -7,8 +7,10 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.topic: tutorial
 ms.date: 02/05/2025
+ms.custom: sfi-ropc-nochange
 
 ---
 
@@ -332,7 +334,7 @@ Consider revisiting the [queries from the previous tutorial](tutorial-rag-build-
 
 ## Next step
 
-There are code samples in all of the Azure SDKs that provide Azure AI Search programmability. You can also review vector sample code for specific use cases and technology combinations.
+We recommend this accelerator for you next step:
 
 > [!div class="nextstepaction"]
-> [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples)
+> [RAG Experiment Accelerator](https://github.com/microsoft/rag-experiment-accelerator)

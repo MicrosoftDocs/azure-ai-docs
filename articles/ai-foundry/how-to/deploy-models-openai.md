@@ -1,4 +1,4 @@
----
+﻿---
 title: How to deploy Azure OpenAI models with Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: Learn how to deploy Azure OpenAI models with Azure AI Foundry.
@@ -22,7 +22,7 @@ author: msakande
 
 In this article, you learn to create Azure OpenAI model deployments in Azure AI Foundry portal.
 
-Azure OpenAI in Azure AI Foundry Models offers a diverse set of models with different capabilities and price points. When you deploy Azure OpenAI models in Azure AI Foundry portal, you can consume the deployments, using prompt flow or another tool. Model availability varies by region. To learn more about the details of each model see [Azure OpenAI models](../../ai-services/openai/concepts/models.md).
+Azure OpenAI in Azure AI Foundry Models offers a diverse set of models with different capabilities and price points. When you deploy Azure OpenAI models in Azure AI Foundry portal, you can consume the deployments, using prompt flow or another tool. Model availability varies by region. To learn more about the details of each model see [Azure OpenAI models](../openai/concepts/models.md).
 
 To modify and interact with an Azure OpenAI model in the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) playground, first you need to deploy a base Azure OpenAI model to your project. Once the model is deployed and available in your project, you can consume its REST API endpoint as-is or customize further with your own data and other components (embeddings, indexes, and more).  
 
@@ -74,11 +74,11 @@ To perform inferencing on the deployed model, you can use the playground or code
 For more examples of how to consume the deployed model in your application, see the following Azure OpenAI quickstarts:
 
 - [Get started with Assistants and code interpreter in the playground](../../ai-services/openai/assistants-quickstart.md?context=/azure/ai-studio/context/context)
-- [Chat quickstart](../../ai-services/openai/chatgpt-quickstart.md)
+- [Chat quickstart](../openai/chatgpt-quickstart.md)
 
 ## Regional availability and quota limits of a model
 
-For Azure OpenAI models, the default quota for models varies by model and region. Certain models might only be available in some regions. For more information on availability and quota limits, see [Azure OpenAI quotas and limits](/azure/ai-services/openai/quotas-limits).
+For Azure OpenAI models, the default quota for models varies by model and region. Certain models might only be available in some regions. For more information on availability and quota limits, see [Azure OpenAI quotas and limits](/azure/ai-foundry/openai/quotas-limits).
 
 ## Quota for deploying and inferencing a model
 

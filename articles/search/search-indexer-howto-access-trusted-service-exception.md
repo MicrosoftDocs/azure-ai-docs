@@ -7,10 +7,11 @@ manager: nitinme
 author: arv100kri
 ms.author: arjagann
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: how-to
 ms.date: 05/29/2025
+ms.custom:
+  - ignite-2023
+  - sfi-image-nochange
 ---
 
 # Make indexer connections to Azure Storage as a trusted service
@@ -65,7 +66,7 @@ A system managed identity is a Microsoft Entra service principal. The assignment
 
 1. Add **Storage Blob Data Contributor** if write access is required.
 
-   Features that require write access include [enrichment caching](cognitive-search-incremental-indexing-conceptual.md), [debug sessions](cognitive-search-debug-session.md), and [knowledge store](knowledge-store-concept-intro.md).
+   Features that require write access include [enrichment caching](enrichment-cache-how-to-configure.md), [debug sessions](cognitive-search-debug-session.md), and [knowledge store](knowledge-store-concept-intro.md).
 
 ## Set up and test the connection
 

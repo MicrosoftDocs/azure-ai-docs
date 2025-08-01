@@ -7,10 +7,11 @@ manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.topic: conceptual
+ms.date: 07/25/2025
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 01/15/2025
+  - sfi-image-nochange
 ---
 
 # Search over Azure Blob Storage content
@@ -50,7 +51,7 @@ You can start directly in your Storage Account portal page.
 
 1. Use [Search explorer](search-explorer.md) in the search portal page to query your content.
 
-The wizard is the best place to start, but you'll discover more flexible options when you [configure a blob indexer](search-howto-indexing-azure-blob-storage.md) yourself. You can use a [REST client](search-get-started-rest.md). [Tutorial: Index and search semi-structured data (JSON blobs)](search-semi-structured-data.md) walks you through the steps of calling the REST API.
+The wizard is the best place to start, but you'll discover more flexible options when you [configure a blob indexer](search-howto-indexing-azure-blob-storage.md) yourself. You can use a [REST client](search-get-started-text.md). [Tutorial: Index and search semi-structured data (JSON blobs)](search-semi-structured-data.md) walks you through the steps of calling the REST API.
 
 ## How blobs are indexed
 

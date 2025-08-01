@@ -6,8 +6,10 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
+  - update-code
+  - hub-only
 ms.topic: tutorial
-ms.date: 04/07/2025
+ms.date: 06/27/2025
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
