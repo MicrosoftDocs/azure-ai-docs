@@ -40,7 +40,7 @@ Search services might experience transient faults during standard, unscheduled m
 
 ## Availability zone support
 
-Availability zones are physically separate groups of datacenters within each Azure region. When one zone fails, services can fail over to one of the remaining zones. For more information, see [What are availability zones?](/azure/reliability/availability-zones-overview)
+[!INCLUDE [Availability zone support description](includes/reliability-availability-zone-description-include.md)]
 
 Azure AI Search is a zone-redundant service that spreads your replicas across availability zones. A search service runs in one region, while its replicas run in zones within that region.
 
