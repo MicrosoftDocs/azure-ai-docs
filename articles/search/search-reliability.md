@@ -16,7 +16,7 @@ ms.custom:
 
 This article describes reliability support in Azure AI Search, covering intra-regional resiliency via [availability zones](#availability-zone-support) and [multi-region deployments](#multi-region-support).
 
-Reliability is a shared responsibility between you and Microsoft, so this article also covers ways for you to create a resilient solution that meets your needs.
+[!INCLUDE [Shared responsibility description](includes/reliability-shared-responsibility-include.md)]
 
 In Azure AI Search, you can achieve reliability by:
 
