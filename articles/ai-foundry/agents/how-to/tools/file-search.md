@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 07/17/2025
+ms.date: 08/01/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
@@ -29,6 +29,11 @@ File search augments agents with knowledge from outside its model, such as propr
 - Azure Blob Storage
 
 ### Usage support
+
+> [!NOTE]
+> The file search tool is currently unavailable in the following regions:
+>    * Italy north
+>    * Brazil south
 
 |Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
