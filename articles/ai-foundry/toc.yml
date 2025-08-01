@@ -900,6 +900,9 @@ items:
       href: how-to/built-in-policy-model-deployment.md
     - name: Custom policy to allow specific models
       href: foundry-models/how-to/configure-deployment-policies.md
+    - name: Azure Policy built-ins
+      displayName: samples, policies, definitions
+      href: ../ai-services/policy-reference.md?context=/azure/ai-foundry/context/context
   - name: Vulnerability management
     href: concepts/vulnerability-management.md
   - name: Disaster recovery
@@ -1078,7 +1081,5 @@ items:
     href: https://azure.microsoft.com/support/legal/sla/cognitive-services/v1_1/
   - name: Azure Government
     href: /azure/azure-government/compare-azure-government-global-azure
-  - name: Azure Policy built-ins
-    displayName: samples, policies, definitions
-    href: ../ai-services/policy-reference.md?context=/azure/ai-foundry/context/context
+
 
