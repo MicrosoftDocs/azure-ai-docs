@@ -61,7 +61,7 @@ To learn more, see [Textual similarity evaluators](./evaluation-evaluators/textu
 |--|--|--|
 | Retrieval | Measures how effectively the system retrieves relevant information. | Query , context |
 | Document Retrieval | Measures accuracy in retrieval results given ground truth. | Ground truth , retrieved documents,  |
-| Groundedness | Measures how consistent the response is with respect to the retrieved context. | (optional) Query, context, response |
+| Groundedness | Measures how consistent the response is with respect to the retrieved context. |  Query (optional), context, response |
 | Groundedness Pro | Measures whether the response is consistent with respect to the retrieved context. | Query, context, response |
 | Relevance | Measures how relevant the response is with respect to the query. | Query, response|
 | Response Completeness | Measures to what extent the response is complete (not missing critical information) with respect to the ground truth. | Response, ground truth |
@@ -88,7 +88,7 @@ To learn more, see [Risk and safety evaluators](./evaluation-evaluators/risk-saf
 | Evaluator | Purpose | Inputs |
 |--|--|--|
 | Intent Resolution | Measures how accurately the agent identifies and addresses user intentions.| Query, response |
-| Task Adherence | Measures how well the agent follows through on identified tasks. | Query, response,  (optional) tool_definitions |
+| Task Adherence | Measures how well the agent follows through on identified tasks. | Query, response, tool definitions (optional) |
 | Tool Call Accuracy | Measures how well the agent selects and calls the correct tools to.| Query, either response or tool calls, tool definitions |
 
 To learn more, see [Agent evaluators](./evaluation-evaluators/agent-evaluators.md).
