@@ -96,6 +96,10 @@ items:
       - name: Build a retrieval-augmented solution
         displayName: RAG, retrieval, augmented, generation, knowledge, base, search, index, vector
         href: tutorial/build-rag-solution.md
+  - name: Samples
+    items:
+      - name: Data extraction using Content Understanding
+        href: https://github.com/Azure-Samples/data-extraction-using-azure-content-understanding
   - name: Responsible AI
     items:
       - name: Transparency note

@@ -19,7 +19,7 @@ Vision-enabled chat models are large multimodal models (LMM) developed by OpenAI
 The vision-enabled models can answer general questions about what's present in the images you upload.
 
 > [!TIP]
-> To use vision-enabled models, you call the Chat Completion API on a supported model that you have deployed. If you're not familiar with the Chat Completion API, see the [Vision-enabled chat how-to guide](/azure/ai-services/openai/how-to/chatgpt?tabs=python&pivots=programming-language-chat-completions).
+> To use vision-enabled models, you call the Chat Completion API on a supported model that you have deployed. If you're not familiar with the Chat Completion API, see the [Vision-enabled chat how-to guide](/azure/ai-foundry/openai/how-to/chatgpt?tabs=python&pivots=programming-language-chat-completions).
 
 ## Call the Chat Completion APIs
 

@@ -55,7 +55,7 @@ const client = new ModelClient(
 );
 ```
 
-Explore our [samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples) and read the [API reference documentation](/azure/ai-services/openai/gpt-v-quickstart) to get yourself started.
+Explore our [samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples) and read the [API reference documentation](/azure/ai-foundry/openai/gpt-v-quickstart) to get yourself started.
 
 # [C#](#tab/csharp)
 

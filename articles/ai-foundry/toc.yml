@@ -114,10 +114,6 @@ items:
         href: concepts/model-catalog-content-safety.md
       - name: Inference examples for serverless deployments
         href: concepts/models-inference-examples.md
-      - name: Gretel Navigator model
-        href: how-to/deploy-models-gretel-navigator.md
-      - name: Mistral-7B and Mixtral models
-        href: how-to/deploy-models-mistral-open.md
   - name: Azure OpenAI in Foundry Models
     items:
     - name: Azure OpenAI 
@@ -483,6 +479,10 @@ items:
     items:
     - name: What is the Speech service?
       href: ../ai-services/speech-service/overview.md?context=/azure/ai-foundry/context/context
+    - name: Voice live with Foundry models quickstart
+      href: ../ai-services/speech-service/voice-live-quickstart.md?context=/azure/ai-foundry/context/context
+    - name: Voice live with Foundry agents quickstart
+      href: ../ai-services/speech-service/voice-live-agents-quickstart.md?context=/azure/ai-foundry/context/context
     - name: Real-time speech to text
       href: ../ai-services/speech-service/get-started-speech-to-text.md?context=/azure/ai-foundry/context/context
     - name: Fast transcription
@@ -499,6 +499,8 @@ items:
       href: ../ai-services/speech-service/pronunciation-assessment-tool.md?context=/azure/ai-foundry/context/context
     - name: Speech translation
       href: ../ai-services/speech-service/get-started-speech-translation.md?context=/azure/ai-foundry/context/context
+    - name: Video translation
+      href: ../ai-services/speech-service/video-translation-get-started.md?context=/azure/ai-foundry/context/context
   - name:  Translator
     items:
     - name: What is Azure AI Translator?
@@ -783,6 +785,8 @@ items:
       href: ../ai-services/multi-service-resource.md?context=/azure/ai-foundry/context/context
     - name: Create using Bicep template
       href: how-to/create-resource-template.md
+    - name: Create using Terraform template
+      href: how-to/create-resource-terraform.md
     - name: Recover or purge deleted resources
       href: ../ai-services/recover-purge-resources.md?context=/azure/ai-foundry/context/context
   - name: Manage AI Hub resources
@@ -808,6 +812,8 @@ items:
     items:
     - name: Create a project
       href: how-to/create-projects.md
+    - name: Migrate from hub based to Foundry project
+      href: how-to/migrate-project.md
     - name: Create a project using a Bicep template
       href: how-to/create-azure-ai-project-template.md
   - name: Management center
@@ -851,12 +857,18 @@ items:
       href: openai/how-to/spillover-traffic-management.md?context=/azure/ai-foundry/context/context
     - name: Azure OpenAI PTU updates
       href: ./openai/concepts/provisioned-migration.md
+  - name: Service architecture
+    href: concepts/architecture.md
 - name: Security & Governance
   items:
   - name: Identity & access management
     items:
-    - name: Role-based access control in Azure AI Foundry portal
+    - name: Role-based access control
       href: concepts/rbac-azure-ai-foundry.md
+    - name: Rotate API access keys
+      href: ../ai-services/rotate-keys.md?context=/azure/ai-foundry/context/context
+    - name: Configure key-less authentication
+      href: foundry-models/how-to/configure-entra-id.md
   - name: Network security
     items:
     - name: Configure private link
@@ -874,12 +886,8 @@ items:
         href: how-to/troubleshoot-secure-connection-project.md
   - name: Data protection & encryption
     items:
-    - name: Configure key-less authentication
-      href: foundry-models/how-to/configure-entra-id.md
     - name: Configure customer-managed keys
       href: concepts/encryption-keys-portal.md
-    - name: Rotate keys
-      href: ../ai-services/rotate-keys.md?context=/azure/ai-foundry/context/context
     - name: Disable shared key access to storage
       href: how-to/disable-local-auth.md
   - name: Azure policies
@@ -914,7 +922,6 @@ items:
     href: foundry-models/concepts/default-safety-policies.md
   - name: Use blocklists
     href: foundry-models/how-to/use-blocklists.md
-
   - name: Transparency notes for Azure AI Services
     href: ../ai-services/responsible-use-of-ai-overview.md?context=/azure/ai-foundry/context/context
   - name: Limited Access features
@@ -996,13 +1003,13 @@ items:
         - name: SDK 
           items:
           - name: C#
-            href: /dotnet/api/overview/azure/ai.openai.assistants-readme?context=/azure/ai-services/openai/context/context
+            href: /dotnet/api/overview/azure/ai.openai.assistants-readme?context=/azure/ai-foundry/openai/context/context
           - name: Go
             href: https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/ai/azopenai
           - name: Java
-            href: /java/api/overview/azure/ai-openai-assistants-readme?context=/azure/ai-services/openai/context/context
+            href: /java/api/overview/azure/ai-openai-assistants-readme?context=/azure/ai-foundry/openai/context/context
           - name: JavaScript
-            href: /javascript/api/overview/azure/openai-assistants-readme?context=/azure/ai-services/openai/context/context
+            href: /javascript/api/overview/azure/openai-assistants-readme?context=/azure/ai-foundry/openai/context/context
           - name: Python
             href: https://platform.openai.com/docs/api-reference/assistants
           
@@ -1032,7 +1039,7 @@ items:
     - name: Java
       href: /java/api/com.azure.ai.openai?view=azure-java-preview&preserve-view=true
     - name: JavaScript
-      href: /azure/ai-services/openai/supported-languages?tabs=dotnet-secure%2Csecure%2Cpython-secure%2Ccommand&pivots=programming-language-javascript
+      href: /azure/ai-foundry/openai/supported-languages?tabs=dotnet-secure%2Csecure%2Cpython-secure%2Ccommand&pivots=programming-language-javascript
     - name: .NET 
       href: /dotnet/api/azure.ai.openai?view=azure-dotnet-preview&preserve-view=true
     - name: REST API (fine-tuning)
@@ -1049,8 +1056,6 @@ items:
     href: whats-new-azure-ai-foundry.md
   - name: Azure AI FAQ
     href: faq.yml
-  - name: Azure AI Foundry architecture
-    href: concepts/architecture.md
   - name: Support & help options
     href: ../ai-services/cognitive-services-support-options.md?context=/azure/ai-foundry/context/context
   - name: Use Azure AI Foundry with a screen reader

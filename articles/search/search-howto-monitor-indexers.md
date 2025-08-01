@@ -10,8 +10,8 @@ ms.service: azure-ai-search
 ms.custom:
   - devx-track-dotnet
   - ignite-2023
-ms.topic: conceptual
-ms.date: 01/17/2025
+ms.topic: concept-article
+ms.date: 07/25/2025
 ---
 
 # Monitor indexer status and results in Azure AI Search

@@ -341,7 +341,7 @@ To minimize issues related to rate limits, it's a good idea to use the following
 
 Quota increase requests can be submitted via the [quota increase request form](https://aka.ms/oai/stuquotarequest). Due to high demand, quota increase requests are being accepted and filled in the order they're received. Priority is given to customers who generate traffic that consumes the existing quota allocation. Your request might be denied if this condition isn't met.
 
-For other rate limits, [submit a service request](../../ai-services/cognitive-services-support-options.md?context=/azure/ai-services/openai/context/context).
+For other rate limits, [submit a service request](../../ai-services/cognitive-services-support-options.md?context=/azure/ai-foundry/openai/context/context).
 
 ## Regional quota capacity limits
 

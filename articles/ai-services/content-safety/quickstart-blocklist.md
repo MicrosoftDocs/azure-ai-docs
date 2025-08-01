@@ -37,6 +37,12 @@ Get started using Azure AI Content Safety to create a custom text blocklist and 
 
 ::: zone-end
 
+::: zone pivot="programming-language-java"
+
+[!INCLUDE [Java SDK quickstart](./includes/quickstarts/java-quickstart-blocklist.md)]
+
+::: zone-end
+
 ::: zone pivot="programming-language-python"
 
 [!INCLUDE [Python SDK quickstart](./includes/quickstarts/python-quickstart-blocklist.md)]

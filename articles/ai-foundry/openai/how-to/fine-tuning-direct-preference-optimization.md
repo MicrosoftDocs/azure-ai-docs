@@ -57,7 +57,7 @@ Users can use preference fine tuning with base models as well as models that hav
 
 ## How to use direct preference optimization fine-tuning
 
-   :::image type="content" border="true" source="/azure/ai-services/openai/media/fine-tuning/preference-optimization.gif" alt-text="GIF of preference optimization fine-tuning steps.":::
+   :::image type="content" border="true" source="/azure/ai-foundry/openai/media/fine-tuning/preference-optimization.gif" alt-text="GIF of preference optimization fine-tuning steps.":::
 
 1. Prepare `jsonl` datasets in the [preference format](#direct-preference-optimization-dataset-format).
 2. Select the model and then select the method of customization **Direct Preference Optimization**.

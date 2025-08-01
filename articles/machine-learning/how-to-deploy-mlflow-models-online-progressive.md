@@ -319,19 +319,6 @@ So far, the endpoint is empty. There are no deployments on it. Let's create the 
         instance_count=1,
     )
     ```
-
-    If your endpoint doesn't have egress connectivity, use [model packaging (preview)](how-to-package-models.md) by including the argument `with_package=True`:
-
-    ```python
-    blue_deployment = ManagedOnlineDeployment(
-        name=blue_deployment_name,
-        endpoint_name=endpoint_name,
-        model=model,
-        instance_type="Standard_DS2_v2",
-        instance_count=1,
-        with_package=True,
-    )
-    ```
     
     # [Python (MLflow SDK)](#tab/mlflow)
 

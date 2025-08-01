@@ -2,8 +2,8 @@
 title: "Train a No-Code Regression Model in Designer"
 titleSuffix: Azure Machine Learning
 description: Train a regression model that predicts car prices using the Azure Machine Learning designer.
-author: s-polly
-ms.author: scottpolly
+author: lgayhardt
+ms.author: lagayhar
 ms.reviewer: keli19
 services: machine-learning
 ms.service: azure-machine-learning
