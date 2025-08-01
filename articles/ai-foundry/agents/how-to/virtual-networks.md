@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 05/12/2025
+ms.date: 08/01/2025
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
@@ -38,7 +38,7 @@ For customers without an existing virtual network, the Standard Setup with Priva
     - **Exception:** You may connect your Foundry Project to models deployed in a different region (on another AI Foundry or Azure OpenAI resource) by configuring an appropriate AI Services connection on the Project's [capability host](/azure/templates/microsoft.cognitiveservices/accounts/projects/capabilityhosts).
 - **Region availability**:
   - For supported regions for Foundry workspace resources, see: [Azure AI Foundry project region availability](../../reference/region-support.md#azure-ai-foundry-projects).
-  - For supported regions for model deployments, see: [Azure OpenAI model region support](../concepts/model-region-support.md#azure-openai-models).
+  - For supported regions for model deployments, see: [Azure OpenAI model region support](../concepts/model-region-support.md#available-models).
 - **Azure Blob Storage**: using Azure Blob Storage files with the File Search tool isn't supported.
 
 ## Prerequisites
