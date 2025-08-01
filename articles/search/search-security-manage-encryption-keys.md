@@ -8,7 +8,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 04/07/2025
+ms.date: 08/01/2025
 ms.custom:
   - references_regions
   - ignite-2023
@@ -92,58 +92,13 @@ We recommend using a managed identity and roles. You can use either a system-man
 
 ### [**System-managed identity**](#tab/managed-id-sys)
 
-Enable the system assigned managed identity for your search service. It's a two-click operation, enable and save.
+Enable the system-assigned managed identity for your search service. It's a two-click operation: enable and save.
 
 ![Screenshot of turn on system assigned managed identity.](media/search-managed-identities/turn-on-system-assigned-identity.png "Screenshot showing how to turn on the system-assigned managed identity.")
 
-### [**User-managed identity (preview)**](#tab/managed-id-user)
+### [**User-managed identity**](#tab/managed-id-user)
 
-> [!IMPORTANT] 
-> User-managed identity support for CMK is in public preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
-> 
-> 2021-04-01-Preview of the [Management REST API](/rest/api/searchmanagement/) introduced this feature.
-
-1. Sign in to the [Azure portal](https://portal.azure.com).
-
-1. Select **Create a new resource**.
-
-1. In the "Search services and marketplace" search bar, search for "User Assigned Managed Identity" and then select **Create**.
-
-1. Give the identity a descriptive name.
-
-1. Next, assign the user-managed identity to the search service. This can be done using the latest preview [2025-05-01-preview](/rest/api/searchmanagement/management-api-versions) management API or the previous preview.
-
-    The identity property takes a type and one or more fully qualified user-assigned identities:
-  
-    * **type** is the type of identity used for the resource. The type 'SystemAssigned, UserAssigned' includes both an identity created by the system and a set of user assigned identities. The type 'None' removes all identities from the service.
-    * **userAssignedIdentities** includes the details of the user-managed identity.
-        * User-managed identity format: 
-            * /subscriptions/**subscription ID**/resourcegroups/**resource group name**/providers/Microsoft.ManagedIdentity/userAssignedIdentities/**managed identity name**
-  
-    Example of how to assign a user-managed identity to a search service:
-  
-    ```http
-    PUT https://management.azure.com/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Search/searchServices/[search service name]?api-version=2025-05-01-preview
-    Content-Type: application/json
-
-    {
-      "location": "<your-region>",
-      "sku": {
-        "name": "<your-sku>"
-      },
-      "properties": {
-        "replicaCount": <your-replica-count>,
-        "partitionCount": <your-partition count>,
-        "hostingMode": "default"
-      },
-      "identity": {
-        "type": "UserAssigned",
-        "userAssignedIdentities": {
-          "/subscriptions/<your-subscription-ID>/resourcegroups/<your-resource-group-name>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<your-managed-identity-name>": {}
-        }
-      }
-    } 
-    ```
+You can use the Azure portal or Search Management REST APIs to create a user-assigned managed identity and assign the identity to your search service. For more information, see [Create a user-assigned managed identity](search-howto-managed-identities-data-sources.md#create-a-user-assigned-managed-identity).
 
 ### [**Register an app**](#tab/register-app)
 
@@ -322,7 +277,7 @@ Azure policies help to enforce organizational standards and to assess compliance
 | Effect | Effect if enabled|
 |--------|------------------|
 | [**AuditIfNotExists**](/azure/governance/policy/concepts/effect-audit-if-not-exists) | Checks for policy compliance: do objects have a customer-managed key defined, and is the content encrypted. This effect applies to existing services with content. It's evaluated each time an object is created or updated, or [per the evaluation schedule](/azure/governance/policy/overview#understand-evaluation-outcomes). [Learn more...](https://portal.azure.com/#view/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F356da939-f20a-4bb9-86f8-5db445b0e354) |
-| [**Deny**](/azure/governance/policy/concepts/effect-deny) | Checks for policy enforcement: does the search service have [SearchEncryptionWithCmk](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2023-11-01&tabs=HTTP#searchencryptionwithcmk&preserve-view=true) set to `Enabled`. This effect applies to new services only, which must be created with encryption enabled. Existing services remain operational but you can't update them unless you patch the service. None of the tools used for provisioning services expose this property, so be aware that setting the policy limits you to [programmatic set up](#enable-cmk-policy-enforcement).|
+| [**Deny**](/azure/governance/policy/concepts/effect-deny) | Checks for policy enforcement: does the search service have [SearchEncryptionWithCmk](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2025-05-01&tabs=HTTP&preserve-view=true#searchencryptionwithcmk) set to `Enabled`. This effect applies to new services only, which must be created with encryption enabled. Existing services remain operational but you can't update them unless you patch the service. None of the tools used for provisioning services expose this property, so be aware that setting the policy limits you to [programmatic set up](#enable-cmk-policy-enforcement).|
 
 ### Assign a policy
 
@@ -346,19 +301,19 @@ A policy that's assigned to a resource group in your subscription is effective i
 
 #### Create a compliant search service
 
-For new search services, create them with [SearchEncryptionWithCmk](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2023-11-01&tabs=HTTP#searchencryptionwithcmk&preserve-view=true) set to `Enabled`. 
+For new search services, create them with [SearchEncryptionWithCmk](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2025-05-01&tabs=HTTP&preserve-view=true#searchencryptionwithcmk) set to `Enabled`.
 
 Neither the Azure portal nor the command line tools (the Azure CLI and Azure PowerShell) provide this property natively, but you can use [Management REST API](/rest/api/searchmanagement/services/create-or-update) to provision a search service with a CMK policy definition.
 
 ### [**Management REST API**](#tab/mgmt-rest-create)
 
-This example is from [Manage your Azure AI Search service with REST APIs](search-manage-rest.md), modified to include the [SearchEncryptionWithCmk](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2023-11-01&tabs=HTTP#searchencryptionwithcmk&preserve-view=true) property.
+This example is from [Manage your Azure AI Search service with REST APIs](search-manage-rest.md), modified to include the [SearchEncryptionWithCmk](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2025-05-01&tabs=HTTP&preserve-view=true#searchencryptionwithcmk) property.
 
 ```rest
 ### Create a search service (provide an existing resource group)
 @resource-group = my-rg
 @search-service-name = my-search
-PUT https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2023-11-01 HTTP/1.1
+PUT https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2025-05-01 HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}
 
@@ -397,7 +352,7 @@ For existing search services that are now non-compliant, patch them using [Servi
 ### [**Management REST API**](#tab/mgmt-rest-update)
 
 ```http
-PATCH https://management.azure.com/subscriptions/<your-subscription-Id>/resourceGroups/<your-resource-group-name>/providers/Microsoft.Search/searchServices/<your-search-service-name>?api-version=2023-11-01
+PATCH https://management.azure.com/subscriptions/<your-subscription-Id>/resourceGroups/<your-resource-group-name>/providers/Microsoft.Search/searchServices/<your-search-service-name>?api-version=2025-05-01
 
 {
   "properties": {

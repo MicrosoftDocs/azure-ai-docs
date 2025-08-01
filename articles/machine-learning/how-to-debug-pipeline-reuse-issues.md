@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: how-to
 ms.reviewer: None
-author: s-polly
-ms.author: scottpolly
+author: lgayhardt
+ms.author: lagayhar
 ms.date: 4/28/2023
 ms.custom: sfi-image-nochange
 ---

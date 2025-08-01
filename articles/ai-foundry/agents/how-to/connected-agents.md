@@ -230,7 +230,7 @@ To create a multi-agent setup, follow these steps:
     ```python
     import os
     from azure.ai.projects import AIProjectClient
-    from azure.ai.projects.models import ConnectedAgentTool, MessageRole
+    from azure.ai.agents.models import ConnectedAgentTool, MessageRole
     from azure.identity import DefaultAzureCredential
     
     
@@ -255,7 +255,7 @@ To create a multi-agent setup, follow these steps:
     
     ```python
     connected_agent = ConnectedAgentTool(
-        id=stock_price_agent.id, name=connected_agent_name, description="Gets the stock price of a company"
+        id=stock_price_agent.id, name=stock_price_agent.name, description="Gets the stock price of a company"
     )
     ```
 

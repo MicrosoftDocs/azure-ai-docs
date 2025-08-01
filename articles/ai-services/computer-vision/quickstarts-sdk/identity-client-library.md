@@ -22,6 +22,13 @@ feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 [!INCLUDE [GDPR-related guidance](../includes/identity-data-notice.md)]
 [!INCLUDE [Gate notice](../includes/identity-gate-notice.md)]
 
+
+::: zone pivot="foundry-portal"
+
+[!INCLUDE [Studio quickstart](../includes/identity-studio-quickstart.md)]
+
+::: zone-end
+
 ::: zone pivot="programming-language-csharp"
 
 [!INCLUDE [C# quickstart](../includes/quickstarts-sdk/identity-csharp-sdk.md)]
@@ -44,6 +51,12 @@ feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ::: zone pivot="programming-language-javascript"
 
 [!INCLUDE [JavaScript quickstart](../includes/quickstarts-sdk/identity-javascript-sdk.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-typescript"
+
+[!INCLUDE [TypeScript quickstart](../includes/quickstarts-sdk/identity-typescript-sdk.md)]
 
 ::: zone-end
 

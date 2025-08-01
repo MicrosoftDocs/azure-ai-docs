@@ -8,7 +8,7 @@ ms.subservice: foundry-local
 ms.custom: build-2025
 ms.author: jburchel
 ms.reviewer: samkemp
-author: jburchel
+author: jonburchel
 reviewer: samuel100
 ms.topic: concept-article
 ms.date: 07/03/2025
