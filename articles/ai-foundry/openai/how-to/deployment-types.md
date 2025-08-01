@@ -11,7 +11,7 @@ ms.custom:
   - build-2025
 ---
 
-# Deployment types for Azure AI Foundry models
+# Deployment types for Azure AI Foundry Models
 
 Azure AI Foundry makes models available by using the model deployment concept in Azure AI Foundry Services (formerly known as Azure AI Services). Model deployments are also Azure resources and, when created, give access to a given model under certain configurations. Such a configuration includes the infrastructure required to process the requests.
 

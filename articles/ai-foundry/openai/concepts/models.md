@@ -36,6 +36,8 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 ## GPT-4.1 series
 
+### Region availability
+
 For region availability, see the following table.
 
 | Model | Region |
@@ -43,6 +45,8 @@ For region availability, see the following table.
 | `gpt-4.1` (2025-04-14) |  See the [models table](#model-summary-table-and-region-availability). |
 | `gpt-4.1-nano` (2025-04-14) |  See the [models table](#model-summary-table-and-region-availability).|
 | `gpt-4.1-mini` (2025-04-14) |  See the [models table](#model-summary-table-and-region-availability).|
+
+### Capabilities
 
 Learn about capabilities in the following table.
 
@@ -56,11 +60,15 @@ Learn about capabilities in the following table.
 
 A model that intelligently selects from a set of underlying chat models to respond to a given prompt.
 
+### Region availability
+
 For region availability, see the following table.
 
 | Model | Region |
 |---|---|
 | `model-router` (2025-05-19) | East US 2 (Global Standard), Sweden Central (Global Standard)|
+
+### Capabilities
 
 Learn about capabilities in the following table.
 
@@ -83,11 +91,15 @@ Registration is required to access `computer-use-preview`. Access is granted bas
 
 To request access, go to [`computer-use-preview` limited access model application](https://aka.ms/oai/cuaaccess). Once access is granted, you need to create a deployment for the model.
 
+### Region availability
+
 For region availability, see the following table.
 
 | Model | Region |
 |---|---|
 | `computer-use-preview` |  See the [models table](#model-summary-table-and-region-availability). |
+
+### Capabilities
 
 Learn about capabilities in the following table.
 
@@ -111,6 +123,8 @@ The Azure OpenAI o-series models are designed to tackle reasoning and problem-so
 | `o1-mini` (2024-09-12) | A faster and more cost-efficient option in the o1 series, ideal for coding tasks requiring speed and lower resource consumption. <br> - Global standard deployment available by default. <br> - Standard (regional) deployments are currently only available for select customers who received access as part of the `o1-preview` limited access release.  | Input: 128,000  <br> Output: 65,536 | October 2023 |
 
 To learn more about the advanced `o-series` models, see [Getting started with reasoning models](../how-to/reasoning.md).
+
+### Region availability
 
 For region availability, see the following table.
 
@@ -208,6 +222,8 @@ Registration is required to access `gpt-image-1`. Access is granted based on Mic
 
 To request access, go to [`gpt-image-1` limited access model application](https://aka.ms/oai/gptimage1access). Once access is granted, you need to create a deployment for the model.
 
+### Region availability
+
 For region availability, see the following table.
 
 | Model | Region |
@@ -218,6 +234,8 @@ For region availability, see the following table.
 ## Video generation models
 
 Sora is an AI model from OpenAI that can create realistic and imaginative video scenes from text instructions. Sora is in preview.
+
+### Region availability
 
 For region availability, see the following table.
 
@@ -289,7 +307,7 @@ All deployments can perform the exact same inference operations, but the billing
 
 # [Global standard](#tab/global-standard)
 
-## Global standard model availability
+### Global standard model availability
 
 [!INCLUDE [Standard Global](../includes/model-matrix/standard-global.md)]
 
@@ -298,19 +316,19 @@ All deployments can perform the exact same inference operations, but the billing
 
 # [Global provisioned managed](#tab/global-ptum)
 
-## Global provisioned managed model availability
+### Global provisioned managed model availability
 
 [!INCLUDE [Provisioned Managed Global](../includes/model-matrix/provisioned-global.md)]
 
 # [Global Batch](#tab/global-batch)
 
-## Global batch model availability
+### Global batch model availability
 
 [!INCLUDE [Global batch](../includes/model-matrix/global-batch.md)]
 
 # [Data Zone Standard](#tab/datazone-standard)
 
-## Data zone standard model availability
+### Data zone standard model availability
 
 [!INCLUDE [Data zone standard](../includes/model-matrix/datazone-standard.md)]
 
@@ -321,19 +339,19 @@ All deployments can perform the exact same inference operations, but the billing
 
 # [Data Zone Provisioned Managed](#tab/datazone-provisioned-managed)
 
-## Data zone provisioned managed model availability
+### Data zone provisioned managed model availability
 
 [!INCLUDE [Global data zone provisioned managed](../includes/model-matrix/datazone-provisioned-managed.md)]
 
 # [Data Zone Batch](#tab/datazone-batch)
 
-## Data zone batch model availability
+### Data zone batch model availability
 
 [!INCLUDE [Data zone batch](../includes/model-matrix/global-batch-datazone.md)]
 
 # [Standard](#tab/standard)
 
-## Standard deployment model availability
+### Standard deployment model availability
 
 [!INCLUDE [Standard Models](../includes/model-matrix/standard-models.md)]
 
@@ -342,7 +360,7 @@ All deployments can perform the exact same inference operations, but the billing
 >
 > Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time, access to `o1-mini` standard (regional) deployments isn't being expanded.
 
-## [Provisioned managed](#tab/provisioned)
+# [Provisioned managed](#tab/provisioned)
 
 ### Provisioned deployment model availability
 
@@ -359,7 +377,7 @@ This table doesn't include fine-tuning regional availability information. Consul
 
 ### Standard deployment (regional) models by endpoint
 
-## [Chat completions](#tab/standard-chat-completions)
+# [Chat completions](#tab/standard-chat-completions)
 
 ### Chat completions
 
@@ -376,7 +394,7 @@ This table doesn't include fine-tuning regional availability information. Consul
 
 See [model versions](../concepts/model-versions.md) to learn about how Azure OpenAI handles model version upgrades. See [working with models](../how-to/working-with-models.md) to learn how to view and configure the model version settings of your GPT-3.5 Turbo deployments.
 
-## [Embeddings](#tab/standard-embeddings)
+# [Embeddings](#tab/standard-embeddings)
 
 ### Embeddings models
 
@@ -397,7 +415,7 @@ These models can be used only with Embedding API requests.
 > [!NOTE]
 > When you send an array of inputs for embedding, the maximum number of input items in the array per call to the embedding endpoint is 2,048.
 
-## [Image generation](#tab/standard-image-generations)
+# [Image generation](#tab/standard-image-generations)
 
 ### Image generation models
 
@@ -408,7 +426,7 @@ These models can be used only with Embedding API requests.
 | `gpt-image-1` | 4,000 |
 | `dall-e-3`  | 4,000 |
 
-## [Video generation](#tab/standard-video-generations)
+# [Video generation](#tab/standard-video-generations)
 
 ### Video generation models
 
@@ -420,13 +438,13 @@ These models can be used only with Embedding API requests.
 |  --- | :---: |
 | sora | 4,000 |
 
-## [Audio](#tab/standard-audio)
+# [Audio](#tab/standard-audio)
 
 ### Audio models
 
 [!INCLUDE [Audio](../includes/model-matrix/standard-audio.md)]
 
-## [Completions (legacy)](#tab/standard-completions)
+# [Completions (legacy)](#tab/standard-completions)
 
 ### Completions models
 
