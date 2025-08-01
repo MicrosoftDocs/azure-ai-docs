@@ -6,7 +6,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: reliability-article
-ms.date: 07/11/2025
+ms.date: 08/01/2025
 ms.custom:
   - subject-reliability
   - ignite-2023
