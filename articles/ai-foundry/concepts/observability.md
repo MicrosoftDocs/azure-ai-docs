@@ -97,10 +97,10 @@ To learn more, see [Agent evaluators](./evaluation-evaluators/agent-evaluators.m
 
 | Evaluator | Purpose |  Inputs |
 |--|--|--|
-| Label grader| Classifies content using custom guidelines and labels. | Query, response, ground truth |
-| String Checker | Performs flexible text validations and pattern matching. | Query |
+| Model Labeler| Classifies content using custom guidelines and labels. | Query, response, ground truth |
+| String Checker | Performs flexible text validations and pattern matching. | Response |
 | Text Similarity | Evaluates the quality of text or determine semantic closeness. | Response, ground truth |
-| General grader| Generates numerical scores (customized range) for content based on custom guidelines. | |
+| Model Scorer| Generates numerical scores (customized range) for content based on custom guidelines. | Query, response, ground truth |
 
 To learn more, see [Azure OpenAI Graders](./evaluation-evaluators/azure-openai-graders.md).
 
