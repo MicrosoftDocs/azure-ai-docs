@@ -32,7 +32,7 @@ Azure AI Search doesn't provide a service-level agreement for the Free tier, whi
 
 ## Transient faults
 
-Transient faults are short, intermittent failures in components. They occur frequently in a distributed environment like the cloud, and they're a normal part of operations. They correct themselves after a short period of time. It's important that your applications handle transient faults, usually by retrying affected requests.
+[!INCLUDE [Transient fault description](includes/reliability-transient-fault-description-include.md)]
 
 All cloud-hosted applications should follow the Azure transient fault handling guidance when communicating with any cloud-hosted APIs, databases, and other components. For more information, see [Recommendations for handing transient faults](/azure/well-architected/design-guides/handle-transient-faults).
 
