@@ -59,10 +59,6 @@ Zone redundancy is automatically enabled when your search service:
 + Is on the [Basic tier or higher](search-sku-tier.md). Zone redundancy isn't available for the Free tier.
 + Has [multiple replicas](search-capacity-planning.md#add-or-remove-partitions-and-replicas).
 
-### Considerations
-
-Zone redundancy doesn't change the terms of the [service-level agreement](#service-level-agreement) for Azure AI Search. For high availability of read-write workloads, you still need at least three replicas.
-
 ### Cost
 
 Each search service starts with one replica. Zone redundancy requires two or more replicas, which increases the cost of running the service. To understand the billing implications of replicas, use the [pricing calculator](https://azure.microsoft.com/pricing/calculator/).
