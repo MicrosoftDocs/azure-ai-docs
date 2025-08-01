@@ -4,7 +4,7 @@ description: Learn how to use Azure AI Foundry deployment types | Global-Standar
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 04/30/2025
+ms.date: 7/31/2025
 ms.service: azure-ai-openai
 ms.topic: how-to
 ms.custom:
