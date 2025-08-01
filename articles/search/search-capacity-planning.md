@@ -110,7 +110,7 @@ To increase or decrease the capacity of your service, you have two options:
 ### Change your pricing tier
 
 > [!NOTE]
-> The Azure portal supports changes between Basic and Standard (S1, S2, and S3) tiers.  Currently, you can only switch from a lower tier to a higher tier, such as going from Basic to S1. Your region also can't have [capacity constraints on the higher tier](search-region-support.md).
+> The Azure portal supports changes between Basic and Standard (S1, S2, and S3) tiers. Currently, you can only use the portal to switch from a lower tier to a higher tier, such as switching from Basic to S1. Your region also can't have [capacity constraints on the higher tier](search-region-support.md).
 
 <!-- You can upgrade or downgrade tiers, provided your current service configuration doesn't exceed the [limits of the target tier](search-limits-quotas-capacity.md). Your region also can't have [capacity constraints on the target tier](search-region-support.md). -->
 
@@ -164,7 +164,7 @@ The following table lists the causes and solutions for errors that can occur dur
 | Error message | Cause | Solution |
 |--|--|--|
 | "Service update operations aren't allowed at this time because we're processing a previous request." | Another scaling operation is already in progress. | Check the **Overview** page in the Azure portal or use the [Search Management REST API](/rest/api/searchmanagement/services/get), [Azure PowerShell](search-manage-powershell.md#get-search-service-information), or [Azure CLI](search-manage-azure-cli.md#get-search-service-information) to get the status of your search service. If the status is "Provisioning," wait until it becomes "Succeeded" or "Failed" before trying again. <sup>1, 2</sup> |
-| "Failed to scale search service *servicename*. Error: *Object* count *ActualCount* exceeds allowable limit: *MaximumCount*." | Your current service configuration exceeds the limits of the target pricing tier. | Check that your storage usage, vector usage, indexes, indexers, and other objects fit within the lower tier's [service limits](search-limits-quotas-capacity.md). For example, the Basic tier supports up to 15 indexes, so you can't switch from S1 to Basic if you have 16 or more indexes. Adjust your resources before trying again. |
+<!-- | "Failed to scale search service *servicename*. Error: *Object* count *ActualCount* exceeds allowable limit: *MaximumCount*." | Your current service configuration exceeds the limits of the target pricing tier. | Check that your storage usage, vector usage, indexes, indexers, and other objects fit within the lower tier's [service limits](search-limits-quotas-capacity.md). For example, the Basic tier supports up to 15 indexes, so you can't switch from S1 to Basic if you have 16 or more indexes. Adjust your resources before trying again. | -->
 
 <sup>1</sup> There's no status for backups, which are internal operations that are unlikely to disrupt a scaling exercise.
 

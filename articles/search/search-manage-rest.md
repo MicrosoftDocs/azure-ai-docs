@@ -89,7 +89,7 @@ If you're not familiar with the REST client for Visual Studio Code, this section
 
    ```http
     ### List search services
-    GET https://management.azure.com/subscriptions/{{subscription-id}}/providers/Microsoft.Search/searchServices?api-version=2025-05-01
+    GET https://management.azure.com/subscriptions/{{subscription-id}}/providers/Microsoft.Search/searchServices?api-version=2025-05-01  HTTP/1.1
          Content-type: application/json
          Authorization: Bearer {{token}}
     ```
@@ -168,7 +168,7 @@ If you need more or less capacity, you can [switch to a different pricing tier](
 @resource-group = PUT-YOUR-RESOURCE-GROUP-NAME-HERE
 @search-service = PUT-YOUR-SEARCH-SERVICE-NAME-HERE
 
-PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}?api-version=2025-05-01 HTTP/1.1
+PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}?api-version=2025-05-01  HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}
 
@@ -181,7 +181,7 @@ PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourceGro
 
 ## Create an S3HD service
 
-To create an [S3HD](search-sku-tier.md#tier-descriptions) service, set `sku.name` to `standard3` and `properties.hostingMode` to `HighDensity`.
+To create an [S3HD](search-sku-tier.md#tier-descriptions) service, use a combination of `sku` and `hostingMode` properties. Set `sku` to `standard3` and "hostingMode" to `HighDensity`.
 
 ```http
 ### Create an S3HD service

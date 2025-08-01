@@ -42,7 +42,7 @@ The free plan is capped at 1,000 queries per month. After the first 1,000 querie
 
 ### [**REST**](#tab/enable-rest)
 
-To enable semantic ranker, you can use [Services - Create Or Update (REST API)](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2025-05-01&tabs=HTTP#searchsemanticsearch).
+To enable semantic ranker, you can use [Services - Create Or Update (REST API)](/rest/api/searchmanagement/services/create-or-update?view=rest-searchmanagement-2025-05-01&tabs=HTTP&preserve-view=true#searchsemanticsearch).
 
 Management REST API calls are authenticated through Microsoft Entra ID. For instructions on how to authenticate, see [Manage your Azure AI Search service with REST APIs](search-manage-rest.md).
 

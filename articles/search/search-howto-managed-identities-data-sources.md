@@ -29,7 +29,7 @@ To use roles on an outbound connection, first configure your search service to u
 
 ## Supported scenarios
 
-Azure AI Search can connect to other Azure resources under its system-assigned or a user-assigned managed identity.
+Azure AI Search can connect to other Azure resources under its system-assigned managed identity or a user-assigned managed identity.
 
 + Search service configuration of a managed identity, whether system-assigned or user-assigned, is generally available.
 
@@ -100,10 +100,8 @@ For more information, see [Create a search service with a system-assigned manage
 
 ### [**REST API**](#tab/rest-sys)
 
-Use [Services - Create Or Update (REST API)](/rest/api/searchmanagement/services/create-or-update#searchcreateorupdateservicewithidentity) to formulate the request.
-
 ```http
-PUT https://management.azure.com/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Search/searchServices/mysearchservice?api-version=2025-05-01  HTTP/1.1
+PUT https://management.azure.com/subscriptions/[subscription ID]/resourceGroups/[name of resource group]/providers/Microsoft.Search/searchServices/[name of search service]?api-version=2025-05-01  HTTP/1.1
 {
   "location": "[region]",
   "sku": {
@@ -119,6 +117,8 @@ PUT https://management.azure.com/subscriptions/subid/resourceGroups/rg1/provider
   }
 } 
 ```
+
+For more information, see [Services - Create Or Update (REST API)](/rest/api/searchmanagement/services/create-or-update#searchcreateorupdateservicewithidentity).
 
 ---
 
