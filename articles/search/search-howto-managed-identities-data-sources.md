@@ -100,8 +100,10 @@ For more information, see [Create a search service with a system-assigned manage
 
 ### [**REST API**](#tab/rest-sys)
 
+Use [Services - Create Or Update (REST API)](/rest/api/searchmanagement/services/create-or-update#searchcreateorupdateservicewithidentity) to formulate the request.
+
 ```http
-PUT https://management.azure.com/subscriptions/[subscription ID]/resourceGroups/[name of resource group]/providers/Microsoft.Search/searchServices/[name of search service]?api-version=2025-05-01  HTTP/1.1
+PUT https://management.azure.com/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Search/searchServices/mysearchservice?api-version=2025-05-01  HTTP/1.1
 {
   "location": "[region]",
   "sku": {
@@ -118,15 +120,13 @@ PUT https://management.azure.com/subscriptions/[subscription ID]/resourceGroups/
 } 
 ```
 
-For more information, see [Services - Create Or Update (REST API)](/rest/api/searchmanagement/services/create-or-update#searchcreateorupdateservicewithidentity).
+The response includes a confirmation and an object identifier for the system-assigned managed identity.
 
 ---
 
 ## Create a user-assigned managed identity
 
-A user-assigned managed identity is an Azure resource that can be scoped to subscriptions, resource groups, or resource types.
-
-You can create multiple user-assigned managed identities if you want more granularity in role assignments. For example, you might want separate identities for different applications and scenarios.
+A user-assigned managed identity is an Azure resource that can be scoped to subscriptions, resource groups, or resource types. You can create multiple user-assigned managed identities for more granularity in role assignments. For example, you might want separate identities for different applications and scenarios.
 
 The steps are as follows:
 
@@ -169,7 +169,7 @@ Instead of the Azure portal, you can use the Search Management REST APIs to assi
 1. Use [Services - Update (REST API)](/rest/api/searchmanagement/services/update?view=rest-searchmanagement-2025-05-01&preserve-view=true#identity) to formulate the request.
 
     ```http
-    PUT https://management.azure.com/subscriptions/[subscription ID]/resourceGroups/[name of resource group]/providers/Microsoft.Search/searchServices/[name of search service]?api-version=2025-05-01  HTTP/1.1
+    PUT https://management.azure.com/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Search/searchServices/mysearchservice?api-version=2025-05-01  HTTP/1.1
     {
       "location": "[region]",
       "sku": {
