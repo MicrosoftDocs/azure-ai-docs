@@ -6,7 +6,7 @@ author: mrbullwinkle
 ms.author: mbullwin
 ms.service: azure-ai-openai
 ms.topic: overview
-ms.date: 04/16/2025
+ms.date: 07/31/2025
 ms.custom: build-2023, build-2023-dataai
 recommendations: false
 ---
@@ -130,7 +130,7 @@ Once you create an Azure OpenAI Resource, you must deploy a model before you can
 
 ### Prompt engineering
 
-The GPT-3, GPT-3.5, and GPT-4 models from OpenAI are prompt-based. With prompt-based models, the user interacts with the model by entering a text prompt, to which the model responds with a text completion. This completion is the model’s continuation of the input text.
+The GPT-3.5, and GPT-4 models from OpenAI are prompt-based. With prompt-based models, the user interacts with the model by entering a text prompt, to which the model responds with a text completion. This completion is the model’s continuation of the input text.
 
 While these models are powerful, their behavior is also sensitive to the prompt. This makes [prompt engineering](./concepts/prompt-engineering.md) an important skill to develop.
 
