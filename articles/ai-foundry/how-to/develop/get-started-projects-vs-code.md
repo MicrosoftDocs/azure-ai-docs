@@ -53,7 +53,7 @@ To install the Azure AI Foundry for Visual Studio Code extension, you can either
 ### Install from the Visual Studio Code Marketplace
 To install the Azure AI Foundry for Visual Studio Code extension from the Visual Studio Code Marketplace, follow these steps:
 
-1. Open the [Azure AI Foundry for Visual Studio Code extension page](https://marketplace.visualstudio.com/items?itemName=AzureAIFoundry.azure-ai-foundry-vscode).
+1. Open the [Azure AI Foundry for Visual Studio Code extension page](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry).
 1. Click the **Install** button.
 1. Follow the prompts to install the extension in Visual Studio Code.
 1. After installation, open Visual Studio Code and verify the extension is installed successfully from the status messages.
