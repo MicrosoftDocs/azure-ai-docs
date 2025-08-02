@@ -25,7 +25,7 @@ Quotas and limits aren't enforced at the tenant level. Instead, the highest leve
 
 Tokens per minute (TPM) and requests per minute (RPM) limits are defined *per region*, *per subscription*, and *per model or deployment type*.
 
-For example, if the `gpt-4.1` global standard model is listed with a quota of *5 million TPM* and *5,000 RPM*, then *each region* where that [model or deployment type is available](./concepts/models.md) has its own dedicated quota pool of that amount for *each* of your Azure subscriptions. Within a single Azure subscription, it's possible to use a larger quantity of total TPM and RPM quota for a given model and deployment type, as long as you have resources and model deployments spread across multiple regions.
+For example, if the `gpt-4.1` Global Standard model is listed with a quota of *5 million TPM* and *5,000 RPM*, then *each region* where that [model or deployment type is available](./concepts/models.md) has its own dedicated quota pool of that amount for *each* of your Azure subscriptions. Within a single Azure subscription, it's possible to use a larger quantity of total TPM and RPM quota for a given model and deployment type, as long as you have resources and model deployments spread across multiple regions.
 
 ## Quotas and limits reference
 
@@ -75,16 +75,16 @@ The following sections provide you with a quick guide to the default quotas and 
 
 ## GPT-4 rate limits
 
-### GPT-4.5 preview global standard
+### GPT-4.5 preview Global Standard
 
 | Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
 | `gpt-4.5` | Enterprise and MCA-E | 200K | 200 |
 | `gpt-4.5` | Default | 150K | 150 |
 
-### GPT-4.1 series global standard
+### GPT-4.1 series Global Standard
 
-| Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
+| Model|Tier| Quota limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|
 | `gpt-4.1` (2025-04-14) | Enterprise and MCA-E | 5M | 5K |
 | `gpt-4.1` (2025-04-14) | Default | 1M | 1K |
@@ -93,9 +93,9 @@ The following sections provide you with a quick guide to the default quotas and 
 | `gpt-4.1-mini` (2025-04-14) | Enterprise and MCA-E | 150M | 150K |
 | `gpt-4.1-mini` (2025-04-14) | Default | 5M | 5K |
 
-### GPT-4.1 series data zone standard
+### GPT-4.1 series Data Zone Standard
 
-| Model|Tier| Quota Limit in tokens per minute (TPM) | Requests per minute |
+| Model|Tier| Quota limit in tokens per minute (TPM) | Requests per minute |
 |---|---|:---:|:---:|
 | `gpt-4.1` (2025-04-14) | Enterprise and MCA-E | 2M | 2K |
 | `gpt-4.1` (2025-04-14) | Default | 300K | 300 |
@@ -120,7 +120,7 @@ The following sections provide you with a quick guide to the default quotas and 
 | `model-router` (2025-05-19) | Enterprise and MCA-E | 10M | 10K |
 | `model-router` (2025-05-19) | Default         | 1M | 1K |
 
-## computer-use-preview global standard rate limits
+## computer-use-preview Global Standard rate limits
 
 | Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
@@ -144,7 +144,7 @@ The following sections provide you with a quick guide to the default quotas and 
 >
 > This concept is important for programmatic model deployment, because changes in the RPM to TPM ratio can result in accidental misallocation of quota.
 
-### o-series global standard
+### o-series Global Standard
 
 | Model              |Tier                    | Quota limit in tokens per minute | Requests per minute |
 |--------------------|------------------------|:--------------------------------------:|:---:  |
@@ -163,7 +163,7 @@ The following sections provide you with a quick guide to the default quotas and 
 | `o1` and `o1-preview`| Default                | 3M                                    | 500   |
 | `o1-mini`          | Default                | 5M                                    | 500   |
 
-### o-series data zone standard
+### o-series Data Zone Standard
 
 | Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
@@ -172,7 +172,7 @@ The following sections provide you with a quick guide to the default quotas and 
 | `o1` | Enterprise and MCA-E | 6M | 1K |
 | `o1` | Default | 600K | 100 |
 
-### o1-preview and o1-mini standard
+### o1-preview and o1-mini Standard
 
 | Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
@@ -185,7 +185,7 @@ The following sections provide you with a quick guide to the default quotas and 
 
 `gpt-4o` and `gpt-4o-mini` have rate limit tiers with higher limits for certain customer types.
 
-### gpt-4o global standard
+### gpt-4o Global Standard
 
 | Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
@@ -194,7 +194,7 @@ The following sections provide you with a quick guide to the default quotas and 
 |`gpt-4o` |Default | 450K | 2.7K |
 |`gpt-4o-mini` | Default | 2M | 12K  |
 
-### gpt-4o data zone standard
+### gpt-4o Data Zone Standard
 
 | Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
@@ -203,7 +203,7 @@ The following sections provide you with a quick guide to the default quotas and 
 |`gpt-4o` |Default | 300K | 1.8K |
 |`gpt-4o-mini` | Default | 1M | 6K  |
 
-### gpt-4o standard
+### gpt-4o Standard
 
 | Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
@@ -225,7 +225,7 @@ The rate limits for each `gpt-4o` audio model deployment are 100,000 tokens per 
 
 ## GPT-image-1 rate limits
 
-### GPT0-image-1 global standard
+### GPT0-image-1 Global Standard
 
 | Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
@@ -234,14 +234,14 @@ The rate limits for each `gpt-4o` audio model deployment are 100,000 tokens per 
 
 ## Usage tiers
 
-Global standard deployments use the global infrastructure of Azure. They dynamically route customer traffic to the data center with the best availability for the customer’s inference requests. Similarly, data zone standard deployments allow you to use the global infrastructure of Azure to dynamically route traffic to the data center within the Microsoft-defined data zone with the best availability for each request. This practice enables more consistent latency for customers with low to medium levels of traffic. Customers with high sustained levels of usage might see greater variability in response latency.
+Global Standard deployments use the global infrastructure of Azure. They dynamically route customer traffic to the data center with the best availability for the customer’s inference requests. Similarly, Data Zone Standard deployments allow you to use the global infrastructure of Azure to dynamically route traffic to the data center within the Microsoft-defined data zone with the best availability for each request. This practice enables more consistent latency for customers with low to medium levels of traffic. Customers with high sustained levels of usage might see greater variability in response latency.
 
 The usage limit determines the level of usage above which customers might see larger variability in response latency. A customer's usage is defined per model. It's the total number of tokens consumed across all deployments in all subscriptions in all regions for a given tenant.
 
 > [!NOTE]
-> Usage tiers apply only to standard, data zone standard, and global standard deployment types. Usage tiers don't apply to global batch and provisioned throughput deployments.
+> Usage tiers apply only to Standard, Data Zone Standard, and Global Standard deployment types. Usage tiers don't apply to global batch and provisioned throughput deployments.
 
-### Global standard, data zone standard, and standard
+### Global Standard, Data Zone Standard, and Standard
 
 |Model| Usage tiers per month |
 |----|:----|
