@@ -49,7 +49,7 @@ For region availability, see the following table:
 ### Capabilities
 
 > [!IMPORTANT]
-> There is a known issue that is affecting all GPT 4.1 series models. Large tool or function call definitions that exceed 300,000 tokens will result in failures, even though the 1 million token context limit of the models has not been reached.
+> There's a known issue that is affecting all GPT 4.1 series models. Large tool or function call definitions that exceed 300,000 tokens will result in failures, even though the 1 million token context limit of the models hasn't been reached.
 >
 > The errors can vary based on API call and underlying payload characteristics.
 >
