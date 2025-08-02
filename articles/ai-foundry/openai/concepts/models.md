@@ -335,13 +335,13 @@ All deployments can perform the exact same inference operations, but the billing
 
 [!INCLUDE [Provisioned Managed Global](../includes/model-matrix/provisioned-global.md)]
 
-# [Global Batch](#tab/global-batch)
+# [Global batch](#tab/global-batch)
 
 ### Global batch model availability
 
 [!INCLUDE [Global batch](../includes/model-matrix/global-batch.md)]
 
-# [Data Zone Standard](#tab/datazone-standard)
+# [Data zone standard](#tab/datazone-standard)
 
 ### Data zone standard model availability
 
@@ -352,13 +352,13 @@ All deployments can perform the exact same inference operations, but the billing
 >
 > Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time, access to `o1-mini` standard (regional) deployments isn't being expanded.
 
-# [Data Zone Provisioned Managed](#tab/datazone-provisioned-managed)
+# [Data zone provisioned managed](#tab/datazone-provisioned-managed)
 
 ### Data zone provisioned managed model availability
 
 [!INCLUDE [Global data zone provisioned managed](../includes/model-matrix/datazone-provisioned-managed.md)]
 
-# [Data Zone Batch](#tab/datazone-batch)
+# [Data zone batch](#tab/datazone-batch)
 
 ### Data zone batch model availability
 
@@ -384,7 +384,7 @@ All deployments can perform the exact same inference operations, but the billing
 > [!NOTE]
 > The provisioned version of `gpt-4` version `turbo-2024-04-09` is currently limited to text only.
 
-For more information on Provisioned deployments, see our [Provisioned guidance](./provisioned-throughput.md).
+For more information on provisioned deployments, see [Provisioned guidance](./provisioned-throughput.md).
 
 ---
 
