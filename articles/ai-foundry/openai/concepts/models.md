@@ -135,7 +135,7 @@ The Azure OpenAI o-series models are designed to tackle reasoning and problem-so
 | `o3-mini` (2025-01-31) | - [Enhanced reasoning abilities](../how-to/reasoning.md). <br> - Structured outputs.<br> - Text-only processing. <br> - Functions and tools. | Input: 200,000 <br> Output: 100,000 | October 2023 |  
 | `o1` (2024-12-17) | - [Enhanced reasoning abilities](../how-to/reasoning.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions and tools. | Input: 200,000 <br> Output: 100,000 | October 2023 |  
 |`o1-preview` (2024-09-12) | Older preview version. | Input: 128,000  <br> Output: 32,768 | October 2023 |
-| `o1-mini` (2024-09-12) | A faster and more cost-efficient option in the o1 series, ideal for coding tasks that require speed and lower resource consumption. <br> - Global standard deployment available by default. <br> - Standard (regional) deployments are currently only available for select customers who received access as part of the `o1-preview` limited access release.  | Input: 128,000  <br> Output: 65,536 | October 2023 |
+| `o1-mini` (2024-09-12) | A faster and more cost-efficient option in the o1 series, ideal for coding tasks that require speed and lower resource consumption. <br> - Global Standard deployment available by default. <br> - Standard (regional) deployments are currently only available for select customers who received access as part of the `o1-preview` limited access release.  | Input: 128,000  <br> Output: 65,536 | October 2023 |
 
 To learn more about advanced o-series models, see [Getting started with reasoning models](../how-to/reasoning.md).
 
@@ -320,47 +320,47 @@ Azure OpenAI provides customers with choices on the hosting structure that fits 
 
 All deployments can perform the exact same inference operations, but the billing, scale, and performance are substantially different. To learn more about Azure OpenAI deployment types, see our [Deployment types guide](../how-to/deployment-types.md).
 
-# [Global standard](#tab/global-standard)
+# [Global Standard](#tab/global-standard)
 
-### Global standard model availability
+### Global Standard model availability
 
 [!INCLUDE [Standard Global](../includes/model-matrix/standard-global.md)]
 
 > [!NOTE]
 > `o3-deep-research` is currently only available with Azure AI Foundry Agent Service. To learn more, see the [Deep Research tool guidance](/azure/ai-foundry/agents/how-to/tools/deep-research).
 
-# [Global provisioned managed](#tab/global-ptum)
+# [Global Provisioned managed](#tab/global-ptum)
 
-### Global provisioned managed model availability
+### Global Provisioned managed model availability
 
 [!INCLUDE [Provisioned Managed Global](../includes/model-matrix/provisioned-global.md)]
 
-# [Global batch](#tab/global-batch)
+# [Global Batch](#tab/global-batch)
 
-### Global batch model availability
+### Global Batch model availability
 
 [!INCLUDE [Global batch](../includes/model-matrix/global-batch.md)]
 
-# [Data zone standard](#tab/datazone-standard)
+# [Data Zone Standard](#tab/datazone-standard)
 
-### Data zone standard model availability
+### Data Zone Standard model availability
 
 [!INCLUDE [Data zone standard](../includes/model-matrix/datazone-standard.md)]
 
 > [!NOTE]
-> `o1-mini` is currently available to all customers for global standard deployment.
+> `o1-mini` is currently available to all customers for Global Standard deployment.
 >
 > Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time, access to `o1-mini` standard (regional) deployments isn't being expanded.
 
-# [Data zone provisioned managed](#tab/datazone-provisioned-managed)
+# [Data Zone Provisioned managed](#tab/datazone-provisioned-managed)
 
-### Data zone provisioned managed model availability
+### Data Zone Provisioned managed model availability
 
 [!INCLUDE [Global data zone provisioned managed](../includes/model-matrix/datazone-provisioned-managed.md)]
 
-# [Data zone batch](#tab/datazone-batch)
+# [Data Zone Batch](#tab/datazone-batch)
 
-### Data zone batch model availability
+### Data Zone Batch model availability
 
 [!INCLUDE [Data zone batch](../includes/model-matrix/global-batch-datazone.md)]
 
@@ -371,7 +371,7 @@ All deployments can perform the exact same inference operations, but the billing
 [!INCLUDE [Standard Models](../includes/model-matrix/standard-models.md)]
 
 > [!NOTE]
-> `o1-mini` is currently available to all customers for global standard deployment.
+> `o1-mini` is currently available to all customers for Global Standard deployment.
 >
 > Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time, access to `o1-mini` standard (regional) deployments isn't being expanded.
 
@@ -399,7 +399,7 @@ This table doesn't include fine-tuning regional availability information. Consul
 [!INCLUDE [Chat Completions](../includes/model-matrix/standard-chat-completions.md)]
 
 > [!NOTE]
-> `o1-mini` is currently available to all customers for global standard deployment.
+> `o1-mini` is currently available to all customers for Global Standard deployment.
 >
 > Select customers were granted standard (regional) deployment access to `o1-mini` as part of the `o1-preview` limited access release. At this time, access to `o1-mini` standard (regional) deployments isn't being expanded.
 
@@ -473,7 +473,7 @@ These models can be used only with Embedding API requests.
 
 ## Assistants (preview)
 
-For Assistants, you need a combination of a supported model and a supported region. Certain tools and capabilities require the latest models. The following models are available in the Assistants API, SDK, and Azure AI Foundry. The following table is for standard deployment. For information on provisioned throughput unit availability, see [Provisioned throughput](./provisioned-throughput.md). The listed models and regions can be used with both Assistants v1 and v2. You can use [global standard models](#global-standard-model-availability) if they're supported in the following regions.
+For Assistants, you need a combination of a supported model and a supported region. Certain tools and capabilities require the latest models. The following models are available in the Assistants API, SDK, and Azure AI Foundry. The following table is for standard deployment. For information on provisioned throughput unit availability, see [Provisioned throughput](./provisioned-throughput.md). The listed models and regions can be used with both Assistants v1 and v2. You can use [Global Standard models](#global-standard-model-availability) if they're supported in the following regions.
 
 | Region   |  gpt-4o, 2024-05-13   | gpt-4o, 2024-08-06   | gpt-4o-mini, 2024-07-18   | gpt-4, 0613   | gpt-4, 1106-Preview   | gpt-4, 0125-Preview    | gpt-4, turbo-2024-04-09   | gpt-4-32k, 0613  | gpt-35-turbo, 0613   | gpt-35-turbo, 1106   | gpt-35-turbo, 0125   | gpt-35-turbo-16k, 0613   |
 |:-----------------|:--------------------------:|:--------------------------:|:-------------------------------:|:-------------------:|:---------------------------:|:---------------------------:|:-------------------------------:|:-----------------------:|:--------------------------:|:--------------------------:|:--------------------------:|:------------------------------:|
