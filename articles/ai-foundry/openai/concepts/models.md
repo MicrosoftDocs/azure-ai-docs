@@ -38,7 +38,7 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 ### Region availability
 
-For region availability, see the following table.
+For region availability, see the following table:
 
 | Model | Region |
 |---|---|
@@ -53,7 +53,7 @@ For region availability, see the following table.
 >
 > The errors can vary based on API call and underlying payload characteristics.
 >
-> See the following error messages for the chat completions API:
+> See the following error messages for the Chat Completions API:
 >
 > - `Error code: 400 - {'error': {'message': "This model's maximum context length is 300000 tokens. However, your messages resulted in 350564 tokens (100 in the messages, 350464 in the functions). Please reduce the length of the messages or functions.", 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}`
 >
@@ -63,9 +63,9 @@ For region availability, see the following table.
 >
 > - `Error code: 500 - {'error': {'message': 'The server had an error processing your request. Sorry about that! You can retry your request, or contact us through an Azure support request at: https://go.microsoft.com/fwlink/?linkid=2213926 if you keep seeing this error. (Please include the request ID d2008353-291d-428f-adc1-defb5d9fb109 in your email.)', 'type': 'server_error', 'param': None, 'code': None}}`
 
-Learn about capabilities in the following table.
+Learn about capabilities in the following table:
 
-|  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
+|  Model ID  | Description | Context window | Max output tokens | Training data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
 | `gpt-4.1` (2025-04-14)   | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576 <br> - 128,000 (provisioned managed deployments) <br> - 300,000 (batch deployments) | 32,768 | May 31, 2024 |
 | `gpt-4.1-nano` (2025-04-14) | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576  <br> - 128,000 (provisioned managed deployments) <br> - 300,000 (batch deployments)  | 32,768 | May 31, 2024 |
@@ -77,7 +77,7 @@ A model that intelligently selects from a set of underlying chat models to respo
 
 ### Region availability
 
-For region availability, see the following table.
+For region availability, see the following table:
 
 | Model | Region |
 |---|---|
@@ -85,11 +85,11 @@ For region availability, see the following table.
 
 ### Capabilities
 
-Learn about capabilities in the following table.
+Learn about capabilities in the following table:
 
 |  Model ID  | Description | Context window | Max output tokens | Training data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
-| `model-router` (2025-05-19) | A model that intelligently selects from a set of underlying chat models to respond to a given prompt. | 200,000 | 32768 (GPT-4.1 series)</br> 100K (o4-mini) | May 31, 2024 |
+| `model-router` (2025-05-19) | A model that intelligently selects from a set of underlying chat models to respond to a given prompt. | 200,000 | 32,768 (GPT-4.1 series)</br> 100,000 (o4-mini) | May 31, 2024 |
 
 Larger context windows are compatible with *some* of the underlying models. That means an API call with a larger context succeeds only if the prompt happens to be routed to the right model. Otherwise, the call fails.
 
@@ -108,7 +108,7 @@ To request access, go to [`computer-use-preview` limited access model applicatio
 
 ### Region availability
 
-For region availability, see the following table.
+For region availability, see the following table:
 
 | Model | Region |
 |---|---|
@@ -116,7 +116,7 @@ For region availability, see the following table.
 
 ### Capabilities
 
-Learn about capabilities in the following table.
+Learn about capabilities in the following table:
 
 |  Model ID  | Description | Context window | Max output tokens | Training data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
@@ -135,13 +135,13 @@ The Azure OpenAI o-series models are designed to tackle reasoning and problem-so
 | `o3-mini` (2025-01-31) | - [Enhanced reasoning abilities](../how-to/reasoning.md). <br> - Structured outputs.<br> - Text-only processing. <br> - Functions and tools. | Input: 200,000 <br> Output: 100,000 | October 2023 |  
 | `o1` (2024-12-17) | - [Enhanced reasoning abilities](../how-to/reasoning.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions and tools. | Input: 200,000 <br> Output: 100,000 | October 2023 |  
 |`o1-preview` (2024-09-12) | Older preview version. | Input: 128,000  <br> Output: 32,768 | October 2023 |
-| `o1-mini` (2024-09-12) | A faster and more cost-efficient option in the o1 series, ideal for coding tasks requiring speed and lower resource consumption. <br> - Global standard deployment available by default. <br> - Standard (regional) deployments are currently only available for select customers who received access as part of the `o1-preview` limited access release.  | Input: 128,000  <br> Output: 65,536 | October 2023 |
+| `o1-mini` (2024-09-12) | A faster and more cost-efficient option in the o1 series, ideal for coding tasks that require speed and lower resource consumption. <br> - Global standard deployment available by default. <br> - Standard (regional) deployments are currently only available for select customers who received access as part of the `o1-preview` limited access release.  | Input: 128,000  <br> Output: 65,536 | October 2023 |
 
-To learn more about the advanced `o-series` models, see [Getting started with reasoning models](../how-to/reasoning.md).
+To learn more about advanced o-series models, see [Getting started with reasoning models](../how-to/reasoning.md).
 
 ### Region availability
 
-For region availability, see the following table.
+For region availability, see the following table:
 
 | Model | Region |
 |---|---|
@@ -181,24 +181,24 @@ GPT-4 is the predecessor to GPT-4 Turbo. Both the GPT-4 and GPT-4 Turbo models h
 
 ## GPT-4 and GPT-4 Turbo models
 
-- These models can be used only with the Chat Completion API.
+- These models can be used only with the Chat Completions API.
 
 See [Model versions](../concepts/model-versions.md) to learn about how Azure OpenAI handles model version upgrades. See [Working with models](../how-to/working-with-models.md) to learn how to view and configure the model version settings of your GPT-4 deployments.
 
 |  Model ID  | Description | Max request (tokens) | Training data (up to)  |
 |  --- |  :--- |:--- |:---: |
-| `gpt-4o` (2024-11-20) <br> GPT-4o (Omni)  | Latest large GA model <br> - Structured outputs.<br> - Text and image processing. <br> - JSON Mode. <br> - Parallel function calling. <br> - Enhanced accuracy and responsiveness. <br> - Parity with English text and coding tasks compared to GPT-4 Turbo with Vision. <br> - Superior performance in non-English languages and in vision tasks. <br> - Enhanced creative writing ability. | Input: 128,000  <br> Output: 16,384 | October 2023 |
+| `gpt-4o` (2024-11-20) <br> GPT-4o (Omni)  | Latest large GA model. <br> - Structured outputs.<br> - Text and image processing. <br> - JSON Mode. <br> - Parallel function calling. <br> - Enhanced accuracy and responsiveness. <br> - Parity with English text and coding tasks compared to GPT-4 Turbo with Vision. <br> - Superior performance in non-English languages and in vision tasks. <br> - Enhanced creative writing ability. | Input: 128,000  <br> Output: 16,384 | October 2023 |
 |`gpt-4o` (2024-08-06) <br> GPT-4o (Omni) | - Structured outputs.<br> - Text and image processing. <br> - JSON Mode. <br> - Parallel function calling. <br> - Enhanced accuracy and responsiveness. <br> - Parity with English text and coding tasks compared to GPT-4 Turbo with Vision. <br> - Superior performance in non-English languages and in vision tasks. |Input: 128,000  <br> Output: 16,384 | October 2023 |
 |`gpt-4o-mini` (2024-07-18) <br> GPT-4o mini | Latest small GA model. <br> - Fast, inexpensive, capable model ideal for replacing GPT-3.5 Turbo series models. <br> - Text and image processing. <br>- JSON Mode. <br> - Parallel function calling. | Input: 128,000 <br> Output: 16,384  | October 2023 |
 |`gpt-4o` (2024-05-13) <br> GPT-4o (Omni) | - Text and image processing. <br> - JSON Mode. <br> - Parallel function calling. <br> - Enhanced accuracy and responsiveness. <br> - Parity with English text and coding tasks compared to GPT-4 Turbo with Vision. <br> - Superior performance in non-English languages and in vision tasks. |Input: 128,000  <br> Output: 4,096| October 2023 |
-| `gpt-4` (turbo-2024-04-09) <br>GPT-4 Turbo with Vision | New generally available model. <br> - Replacement for all previous GPT-4 preview models (`vision-preview`, `1106-Preview`, `0125-Preview`). <br> - [Feature availability](#gpt-4o-and-gpt-4-turbo) is currently different, depending on the method of input and the deployment type. | Input: 128,000  <br> Output: 4,096  | Dec 2023 |
+| `gpt-4` (turbo-2024-04-09) <br>GPT-4 Turbo with Vision | New generally available model. <br> - Replacement for all previous GPT-4 preview models (`vision-preview`, `1106-Preview`, `0125-Preview`). <br> - [Feature availability](#gpt-4o-and-gpt-4-turbo) is currently different, depending on the method of input and the deployment type. | Input: 128,000  <br> Output: 4,096  | December 2023 |
 
 > [!CAUTION]
 > We don't recommend that you use preview models in production. We'll upgrade all deployments of preview models to either future preview versions or to the latest stable, generally available version. Models that are designated preview don't follow the standard Azure OpenAI model lifecycle.
 
 ## GPT-3.5
 
-GPT-3.5 models can understand and generate natural language or code. The most capable and cost effective model in the GPT-3.5 family is GPT-3.5 Turbo, which is optimized for chat and works well for traditional completions tasks as well. GPT-3.5 Turbo is available for use with the Chat Completions API. GPT-3.5 Turbo Instruct has similar capabilities to `text-davinci-003` when you use the Completions API instead of the Chat Completions API. We recommend using GPT-3.5 Turbo and GPT-3.5 Turbo Instruct over [legacy GPT-3.5 and GPT-3 models](./legacy-models.md).
+GPT-3.5 models can understand and generate natural language or code. The most capable and cost effective model in the GPT-3.5 family is GPT-3.5 Turbo, which is optimized for chat and also works well for traditional completions tasks. GPT-3.5 Turbo is available for use with the Chat Completions API. GPT-3.5 Turbo Instruct has similar capabilities to `text-davinci-003` when you use the Completions API instead of the Chat Completions API. We recommend using GPT-3.5 Turbo and GPT-3.5 Turbo Instruct over [legacy GPT-3.5 and GPT-3 models](./legacy-models.md).
 
 |  Model ID   | Description | Max request (tokens) | Training data (up to) |
 |  --------- |:---|:------:|:----:|
@@ -239,7 +239,7 @@ To request access, go to [`gpt-image-1` limited access model application](https:
 
 ### Region availability
 
-For region availability, see the following table.
+For region availability, see the following table:
 
 | Model | Region |
 |---|---|
@@ -252,7 +252,7 @@ Sora is an AI model from OpenAI that can create realistic and imaginative video 
 
 ### Region availability
 
-For region availability, see the following table.
+For region availability, see the following table:
 
 | Model | Region |
 |---|---|
@@ -269,7 +269,7 @@ The GPT-4o audio models are part of the GPT-4o model family and support either l
 > [!CAUTION]
 > We don't recommend using preview models in production. We'll upgrade all deployments of preview models to either future preview versions or to the latest stable, generally available version. Models that are designated preview don't follow the standard Azure OpenAI model lifecycle.
 
-Details about maximum request tokens and training data are available in the following table.
+Details about maximum request tokens and training data are available in the following table:
 
 |  Model ID  | Description | Max request (tokens) | Training data (up to)  |
 |---|---|---|---|
