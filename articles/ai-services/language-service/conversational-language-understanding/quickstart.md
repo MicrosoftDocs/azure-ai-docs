@@ -31,3 +31,5 @@ Use this article to get started with Conversational Language understanding using
 ## Next steps
 
 * [Build a fine-tuning schema](how-to/build-schema.md)
+* [Label utterances](how-to/tag-utterances.md)
+* [Train a model](how-to/train-model.md)

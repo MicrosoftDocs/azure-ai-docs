@@ -112,16 +112,16 @@ items:
         displayName: quotas, restrictions, service boundaries
   - name: "Conversational language understanding (CLU)"
     items:
-    - name: CLU overview
+    - name: Overview
       href: conversational-language-understanding/overview.md
       displayName: clu, conversational ai, intent recognition, entity extraction
-    - name: CLU quickstart
+    - name: Quickstart
       href: conversational-language-understanding/quickstart.md
       displayName: getting started, tutorial, conversational ai setup
-    - name: CLU language support
+    - name: Language support
       href: conversational-language-understanding/language-support.md
       displayName: clu languages, supported languages, multilingual, international support
-    - name: CLU FAQ
+    - name: FAQ
       href: conversational-language-understanding/faq.md
       displayName: frequently asked questions, troubleshooting, common issues
     - name: Responsible use of AI
