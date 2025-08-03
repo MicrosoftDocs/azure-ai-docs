@@ -87,7 +87,7 @@ To create a model with datasets for training, use the `spx csr model create` com
 - Set the required `dataset` property to the ID of a dataset that you want used for training. To specify multiple datasets, set the `datasets` (plural) parameter and separate the IDs with a semicolon.
 - Set the required `language` property. The dataset locale must match the locale of the project. The locale can't be changed later. The Speech CLI `language` property corresponds to the `locale` property in the JSON request and response.
 - Set the required `name` property. This parameter is the name that is displayed in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). The Speech CLI `name` property corresponds to the `displayName` property in the JSON request and response.
-- Optionally, you can set the `base` property. For example: `--base 5988d691-0893-472c-851e-8e36a0fe7aaf`. If you don't specify the `base`, the default base model for the locale is used. The Speech CLI `base` property corresponds to the `baseModel` property in the JSON request and response.
+- Optionally, you can set the `base` property. For example: `--base bbbbcccc-1111-dddd-2222-eeee3333ffff`. If you don't specify the `base`, the default base model for the locale is used. The Speech CLI `base` property corresponds to the `baseModel` property in the JSON request and response.
 
 Here's an example Speech CLI command that creates a model with datasets for training:
 
@@ -102,13 +102,13 @@ You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/9e240dc1-3d2d-4ac9-98ec-1be05ba0e9dd",
+  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/aaaabbbb-0000-cccc-1111-dddd2222eeee",
   "baseModel": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/5988d691-0893-472c-851e-8e36a0fe7aaf"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "datasets": [
     {
-      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/23b6554d-21f9-4df1-89cb-f84510ac8d23"
+      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/ccccdddd-2222-eeee-3333-ffff4444aaaa"
     }
   ],
   "links": {
@@ -117,7 +117,7 @@ You should receive a response body in the following format:
     "files": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/9e240dc1-3d2d-4ac9-98ec-1be05ba0e9dd/files"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/ddddeeee-3333-ffff-4444-aaaa5555bbbb"
   },
   "properties": {
     "deprecationDates": {
@@ -166,21 +166,21 @@ To create a model with datasets for training, use the [Models_Create](/rest/api/
 - Set the required `datasets` property to the URI of the datasets that you want used for training.
 - Set the required `locale` property. The model locale must match the locale of the project and base model. The locale can't be changed later.
 - Set the required `displayName` property. This property is the name that is displayed in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
-- Optionally, you can set the `baseModel` property. For example: `"baseModel": {"self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/5988d691-0893-472c-851e-8e36a0fe7aaf"}`. If you don't specify the `baseModel`, the default base model for the locale is used. 
+- Optionally, you can set the `baseModel` property. For example: `"baseModel": {"self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/bbbbcccc-1111-dddd-2222-eeee3333ffff"}`. If you don't specify the `baseModel`, the default base model for the locale is used. 
 
 Make an HTTP POST request using the URI as shown in the following example. Replace `YourSpeechResoureKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, and set the request body properties as previously described.
 
 ```azurecli-interactive
 curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content-Type: application/json" -d '{
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/ddddeeee-3333-ffff-4444-aaaa5555bbbb"
   },
   "displayName": "My Model",
   "description": "My Model Description",
   "baseModel": null,
   "datasets": [
     {
-      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/23b6554d-21f9-4df1-89cb-f84510ac8d23"
+      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/ccccdddd-2222-eeee-3333-ffff4444aaaa"
     }
   ],
   "locale": "en-US"
@@ -194,13 +194,13 @@ You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/9e240dc1-3d2d-4ac9-98ec-1be05ba0e9dd",
+  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/aaaabbbb-0000-cccc-1111-dddd2222eeee",
   "baseModel": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/5988d691-0893-472c-851e-8e36a0fe7aaf"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "datasets": [
     {
-      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/23b6554d-21f9-4df1-89cb-f84510ac8d23"
+      "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/ccccdddd-2222-eeee-3333-ffff4444aaaa"
     }
   ],
   "links": {
@@ -209,7 +209,7 @@ You should receive a response body in the following format:
     "files": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/9e240dc1-3d2d-4ac9-98ec-1be05ba0e9dd/files"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/ddddeeee-3333-ffff-4444-aaaa5555bbbb"
   },
   "properties": {
     "deprecationDates": {
@@ -301,9 +301,9 @@ You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/9df35ddb-edf9-4e91-8d1a-576d09aabdae",
+  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/eeeeffff-4444-aaaa-5555-bbbb6666cccc",
   "baseModel": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/eb5450a7-3ca2-461a-b2d7-ddbb3ad96540"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ffffaaaa-5555-bbbb-6666-cccc7777dddd"
   },
   "links": {
     "manifest": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/9df35ddb-edf9-4e91-8d1a-576d09aabdae/manifest",
@@ -376,7 +376,7 @@ You should receive a response body in the following format:
 ```json
 {
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/ddddeeee-3333-ffff-4444-aaaa5555bbbb"
   },
 }
 ```
@@ -400,7 +400,7 @@ Make an HTTP PATCH request using the URI as shown in the following example. Use 
 ```azurecli-interactive
 curl -v -X PATCH -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content-Type: application/json" -d '{
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/ddddeeee-3333-ffff-4444-aaaa5555bbbb"
   },
 }'  "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/models"
 ```
@@ -410,7 +410,7 @@ You should receive a response body in the following format:
 ```json
 {
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/ddddeeee-3333-ffff-4444-aaaa5555bbbb"
   },
 }
 ```
