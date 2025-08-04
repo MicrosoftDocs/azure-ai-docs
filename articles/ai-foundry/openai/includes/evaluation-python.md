@@ -23,8 +23,11 @@ async def create_eval():
     response = await asyncio.to_thread(
         requests.post,
         f'{API_ENDPOINT}/openai/v1/evals',
-        params={'api-version': f"{API_VERSION}"},
-        headers={'api-key': API_KEY},
+        params={'api-version': "preview"},
+        headers={
+            'api-key': API_KEY,
+            'aoai-evals': 'preview'
+        },
         json={
             'name': 'My Evaluation',
             'data_source_config': {
@@ -88,8 +91,11 @@ import json
 response = await asyncio.to_thread(
     requests.post,
     f'{API_ENDPOINT}/openai/v1/evals/{eval_id}/runs',
-    params={'api-version': f"{API_VERSION}"},
-    headers={'api-key': API_KEY},
+    params={'api-version': "preview"},
+    headers={
+        'api-key': API_KEY,
+        'aoai-evals': 'preview'
+    },
     json={
         "name": "No sample",
         "metadata": {
@@ -120,8 +126,11 @@ async def update_eval():
     response = await asyncio.to_thread(
         requests.post,
         f'{API_ENDPOINT}/openai/v1/evals/{eval_id}',
-        params={'api-version': f"{API_VERSION}"},
-        headers={'api-key': API_KEY},
+        params={'api-version': "preview"},
+        headers={
+            'api-key': API_KEY,
+            'aoai-evals': 'preview'
+        },
         json={
             "name": "Updated Eval Name",
             "metadata": {
@@ -147,8 +156,11 @@ async def get_eval():
     response = await asyncio.to_thread(
         requests.get,
         f'{API_ENDPOINT}/openai/v1/evals/{eval_id}',
-        params={'api-version': f"{API_VERSION}"},
-        headers={'api-key': API_KEY}
+        params={'api-version': "preview"},
+        headers={
+            'api-key': API_KEY,
+            'aoai-evals': 'preview'
+        })
 
     print(response.status_code)
     print(response.json())
@@ -167,8 +179,11 @@ async def get_eval_run():
     response = await asyncio.to_thread(
         requests.get,
         f'{API_ENDPOINT}/openai/v1/evals/eval_67fd95c864f08190817f0dff5f42f49e/runs/evalrun_67fe987a6c548190ba6f33f7cd89343d',
-        params={'api-version': f"{API_VERSION}"},
-        headers={'api-key': API_KEY})
+        params={'api-version': "preview"},
+        headers={
+            'api-key': API_KEY,
+            'aoai-evals': 'preview'
+        })
 
     print(response.status_code)
     print(json.dumps(response.json(), indent=2))
@@ -200,8 +215,11 @@ async def get_eval_list():
     response = await asyncio.to_thread(
         requests.get,
         f'{API_ENDPOINT}/openai/v1/evals',
-        params={'api-version': f"{API_VERSION}"},
-        headers={'api-key': API_KEY})
+        params={'api-version': "preview"},
+        headers={
+            'api-key': API_KEY,
+            'aoai-evals': 'preview'
+        })
 
     print(response.status_code)
     print(json.dumps(response.json(), indent=2))
@@ -220,8 +238,11 @@ async def get_eval_output_item_list():
     response = await asyncio.to_thread(
         requests.get,
         f'{API_ENDPOINT}/openai/v1/evals/eval_67fd95c864f08190817f0dff5f42f49e/runs/evalrun_67fe987a6c548190ba6f33f7cd89343d/output_items',
-        params={'api-version': f"{API_VERSION}"},
-        headers={'api-key': API_KEY})
+        params={'api-version': "preview"},
+        headers={
+            'api-key': API_KEY,
+            'aoai-evals': 'preview'
+        })
 
     print(response.status_code)
     print(json.dumps(response.json(), indent=2))
