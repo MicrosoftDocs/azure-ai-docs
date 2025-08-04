@@ -95,7 +95,7 @@ When developing with the OpenAI SDK, you can instrument your code so traces are 
         endpoint="https://<your-resource>.services.ai.azure.com/api/projects/<your-project>",
     )
 
-    connection_string = project_client.telemetry.get_connection_string()
+    connection_string = project_client.telemetry.get_application_insights_connection_string()
     ```
 
     > [!TIP]
