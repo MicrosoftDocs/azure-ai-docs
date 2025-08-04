@@ -1,7 +1,7 @@
 ---
 title: Azure OpenAI in Azure AI Foundry Models
 titleSuffix: Azure OpenAI
-description: Learn about the different model capabilities that are available with Azure OpenAI.
+description: Learn about the model capabilities that are available with Azure OpenAI.
 author: mrbullwinkle #ChrisHMSFT
 ms.author: mbullwin #chrhoder#
 manager: nitinme
@@ -38,8 +38,6 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 ### Region availability
 
-For region availability, see the following table:
-
 | Model | Region |
 |---|---|
 | `gpt-4.1` (2025-04-14) |  See the [models table](#model-summary-table-and-region-availability). |
@@ -49,17 +47,17 @@ For region availability, see the following table:
 ### Capabilities
 
 > [!IMPORTANT]
-> There's a known issue that is affecting all GPT 4.1 series models. Large tool or function call definitions that exceed 300,000 tokens will result in failures, even though the 1 million token context limit of the models hasn't been reached.
+> A known issue is affecting all GPT 4.1 series models. Large tool or function call definitions that exceed 300,000 tokens will result in failures, even though the 1 million token context limit of the models wasn't reached.
 >
 > The errors can vary based on API call and underlying payload characteristics.
 >
-> See the following error messages for the Chat Completions API:
+> Here are the error messages for the Chat Completions API:
 >
 > - `Error code: 400 - {'error': {'message': "This model's maximum context length is 300000 tokens. However, your messages resulted in 350564 tokens (100 in the messages, 350464 in the functions). Please reduce the length of the messages or functions.", 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}`
 >
 > - `Error code: 400 - {'error': {'message': "Invalid 'tools[0].function.description': string too long. Expected a string with maximum length 1048576, but got a string with length 2778531 instead.", 'type': 'invalid_request_error', 'param': 'tools[0].function.description', 'code': 'string_above_max_length'}}`
 >
-> See the following error message for the Responses API:
+> Here's the error message for the Responses API:
 >
 > - `Error code: 500 - {'error': {'message': 'The server had an error processing your request. Sorry about that! You can retry your request, or contact us through an Azure support request at: https://go.microsoft.com/fwlink/?linkid=2213926 if you keep seeing this error. (Please include the request ID d2008353-291d-428f-adc1-defb5d9fb109 in your email.)', 'type': 'server_error', 'param': None, 'code': None}}`
 
@@ -76,8 +74,6 @@ Learn about capabilities in the following table:
 A model that intelligently selects from a set of underlying chat models to respond to a given prompt.
 
 ### Region availability
-
-For region availability, see the following table:
 
 | Model | Region |
 |---|---|
@@ -104,11 +100,9 @@ It can be used with third-party libraries to allow the model to control mouse an
 
 Registration is required to access `computer-use-preview`. Access is granted based on Microsoft's eligibility criteria. Customers who have access to other limited access models still need to request access for this model.
 
-To request access, go to [`computer-use-preview` limited access model application](https://aka.ms/oai/cuaaccess). Once access is granted, you need to create a deployment for the model.
+To request access, go to [`computer-use-preview` limited access model application](https://aka.ms/oai/cuaaccess). When access is granted, you need to create a deployment for the model.
 
 ### Region availability
-
-For region availability, see the following table:
 
 | Model | Region |
 |---|---|
@@ -140,8 +134,6 @@ The Azure OpenAI o-series models are designed to tackle reasoning and problem-so
 To learn more about advanced o-series models, see [Getting started with reasoning models](../how-to/reasoning.md).
 
 ### Region availability
-
-For region availability, see the following table:
 
 | Model | Region |
 |---|---|
@@ -212,7 +204,7 @@ To learn more about how to interact with GPT-3.5 Turbo and the Chat Completions 
 
 ## Embeddings
 
- `text-embedding-3-large` is the latest and most capable embedding model. You can't upgrade between embeddings models. In order to move from using `text-embedding-ada-002` to `text-embedding-3-large`, you would need to generate new embeddings.
+ `text-embedding-3-large` is the latest and most capable embedding model. You can't upgrade between embeddings models. To move from using `text-embedding-ada-002` to `text-embedding-3-large`, you need to generate new embeddings.
 
 - `text-embedding-3-large`
 - `text-embedding-3-small`
@@ -235,11 +227,9 @@ The image generation models generate images from text prompts that the user prov
 
 Registration is required to access `gpt-image-1`. Access is granted based on Microsoft's eligibility criteria. Customers who have access to other limited access models still need to request access for this model.
 
-To request access, go to [`gpt-image-1` limited access model application](https://aka.ms/oai/gptimage1access). Once access is granted, you need to create a deployment for the model.
+To request access, go to [`gpt-image-1` limited access model application](https://aka.ms/oai/gptimage1access). When access is granted, you need to create a deployment for the model.
 
 ### Region availability
-
-For region availability, see the following table:
 
 | Model | Region |
 |---|---|
@@ -251,8 +241,6 @@ For region availability, see the following table:
 Sora is an AI model from OpenAI that can create realistic and imaginative video scenes from text instructions. Sora is in preview.
 
 ### Region availability
-
-For region availability, see the following table:
 
 | Model | Region |
 |---|---|
@@ -407,7 +395,7 @@ This table doesn't include fine-tuning regional availability information. Consul
 
 ### GPT-3.5 models
 
-See [model versions](../concepts/model-versions.md) to learn about how Azure OpenAI handles model version upgrades. See [working with models](../how-to/working-with-models.md) to learn how to view and configure the model version settings of your GPT-3.5 Turbo deployments.
+To learn about how Azure OpenAI handles model version upgrades, see [Model versions](../concepts/model-versions.md). To learn how to view and configure the model version settings of your GPT-3.5 Turbo deployments, see [Working with models](../how-to/working-with-models.md).
 
 # [Embeddings](#tab/standard-embeddings)
 
@@ -418,7 +406,7 @@ See [model versions](../concepts/model-versions.md) to learn about how Azure Ope
 These models can be used only with Embedding API requests.
 
 > [!NOTE]
-> `text-embedding-3-large` is the latest and most capable embedding model. You can't upgrade between embedding models. In order to migrate from using `text-embedding-ada-002` to `text-embedding-3-large`, you need to generate new embeddings.  
+> `text-embedding-3-large` is the latest and most capable embedding model. You can't upgrade between embedding models. To migrate from using `text-embedding-ada-002` to `text-embedding-3-large`, you need to generate new embeddings.  
 
 |  Model ID | Max request (tokens) | Output dimensions |Training data (up to)
 |---|---| :---:|:---:|:---:|
@@ -498,4 +486,4 @@ For the latest information on model retirements, refer to the [model retirement 
 - [Model retirement and deprecation](./model-retirements.md)
 - [Learn more about working with Azure OpenAI models](../how-to/working-with-models.md)
 - [Learn more about Azure OpenAI](../overview.md)
-- [Learn more about fine tuning Azure OpenAI models](../how-to/fine-tuning.md)
+- [Learn more about fine-tuning Azure OpenAI models](../how-to/fine-tuning.md)
