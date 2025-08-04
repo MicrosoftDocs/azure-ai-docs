@@ -5,8 +5,8 @@ description: Learn how Azure Machine Learning pipelines ingest data, and how to 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
-ms.author: scottpolly
-author: s-polly
+ms.author: lagayhar
+author: lgayhardt
 ms.reviewer: keli19
 ms.date: 06/24/2025
 ms.topic: how-to

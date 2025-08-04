@@ -67,7 +67,7 @@ The following preview features were released at the Build 2019 Conference:
 
 ### 2019 Build videos
 
-* [Deliver the Right Experiences & Content like Xbox with Azure AI Personalizer](https://azure.microsoft.com/resources/videos/build-2019-deliver-the-right-experiences-and-content-with-cognitive-services-personalizer/)
+* [Deliver the Right Experiences & Content like Xbox with Azure AI Personalizer](https://www.youtube.com/watch?v=agaJr25Y8Ek)
 
 ## Service updates
 

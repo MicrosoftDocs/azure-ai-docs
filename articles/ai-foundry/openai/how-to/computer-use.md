@@ -521,15 +521,15 @@ async def handle_action(page, action):
 
 This function attempts to handle various types of actions. We need to translate between the commands that the `computer-use-preview` will generate and the Playwright library which will execute the actions. For more information refer to the reference documentation for `ComputerAction`.
 
-- [Click](/azure/ai-services/openai/reference-preview#click)
-- [DoubleClick](/azure/ai-services/openai/reference-preview#doubleclick)
-- [Drag](/azure/ai-services/openai/reference-preview#drag)
-- [KeyPress](/azure/ai-services/openai/reference-preview#keypress)
-- [Move](/azure/ai-services/openai/reference-preview#move)
-- [Screenshot](/azure/ai-services/openai/reference-preview#screenshot)
-- [Scroll](/azure/ai-services/openai/reference-preview#scroll)
-- [Type](/azure/ai-services/openai/reference-preview#type)
-- [Wait](/azure/ai-services/openai/reference-preview#wait)
+- [Click](/azure/ai-foundry/openai/reference-preview#click)
+- [DoubleClick](/azure/ai-foundry/openai/reference-preview#doubleclick)
+- [Drag](/azure/ai-foundry/openai/reference-preview#drag)
+- [KeyPress](/azure/ai-foundry/openai/reference-preview#keypress)
+- [Move](/azure/ai-foundry/openai/reference-preview#move)
+- [Screenshot](/azure/ai-foundry/openai/reference-preview#screenshot)
+- [Scroll](/azure/ai-foundry/openai/reference-preview#scroll)
+- [Type](/azure/ai-foundry/openai/reference-preview#type)
+- [Wait](/azure/ai-foundry/openai/reference-preview#wait)
 
 ### Screenshot capture
 
@@ -717,7 +717,7 @@ In this section we have added code that:
 - Handles potential safety checks requiring user confirmation.
 - Executes the requested action.
 - Captures a new screenshot.
-- Sends the updated state back to the model and defines the [`ComputerTool`](/azure/ai-services/openai/reference-preview#computertool).
+- Sends the updated state back to the model and defines the [`ComputerTool`](/azure/ai-foundry/openai/reference-preview#computertool).
 - Repeats this process for multiple iterations.
 
 ### Main function

@@ -261,24 +261,24 @@ You can configure your application to send telemetry to Azure Application Insigh
         application_insights_connection_string = "instrumentation...."
         ```
 
-2. Using the Azure AI Foundry SDK and the project connection string (**[!INCLUDE [hub-project-name](../../includes/hub-project-name.md)]s only**).
+2. Using the Azure AI Foundry SDK and the Foundry Project endpoint:
 
     1. Ensure you have the package `azure-ai-projects` installed in your environment.
 
     2. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
     
-    3. Copy your project's connection string and set it the following code:
+    3. Copy your Azure AI Foundry project endpoint URL and set it in the following code:
 
         ```python
         from azure.ai.projects import AIProjectClient
         from azure.identity import DefaultAzureCredential
         
-        project_client = AIProjectClient.from_connection_string(
+        project_client = AIProjectClient(
             credential=DefaultAzureCredential(),
-            conn_str="<your-project-connection-string>",
+            endpoint="<your-foundry-project-endpoint-url>",
         )
         
-        application_insights_connection_string = project_client.telemetry.get_connection_string()
+        application_insights_connection_string = project_client.telemetry.get_application_insights_connection_string()
         ```
 
 ### Configure tracing for Azure AI Foundry

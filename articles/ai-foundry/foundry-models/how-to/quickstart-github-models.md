@@ -91,7 +91,7 @@ Azure AI Foundry Models supports additional features not available in GitHub Mod
 * Configure [content filtering](../../model-inference/how-to/configure-content-filters.md).
 * Configure rate limiting (for specific models).
 * Explore additional [deployment SKUs (for specific models)](../../model-inference/concepts/deployment-types.md).
-* Configure [private networking](../../../ai-services/cognitive-services-virtual-networks.md?context=/azure/ai-services/openai/context/context).
+* Configure [private networking](../../../ai-services/cognitive-services-virtual-networks.md?context=/azure/ai-foundry/openai/context/context).
 
 ## Got troubles?
 

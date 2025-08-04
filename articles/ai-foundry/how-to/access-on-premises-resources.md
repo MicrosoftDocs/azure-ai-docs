@@ -2,10 +2,12 @@
 title: How to access on-premises resources
 titleSuffix: Azure AI Foundry
 description: Learn how to configure an Azure AI Foundry managed network to securely allow access to your on-premises resources.
-manager: scottpolly
+manager: mcleans
 ms.service: azure-ai-foundry
+ms.custom:
+  - hub-only
 ms.topic: how-to
-ms.date: 05/08/2025
+ms.date: 07/31/2025
 ms.reviewer: meerakurup 
 ms.author: jburchel 
 author: jonburchel 

@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.topic: troubleshooting
 ms.reviewer: None
-ms.author: scottpolly
-author: s-polly
+ms.author: lagayhar
+author: lgayhardt
 ms.date: 06/03/2025
 ms.custom:
   - UpdateFrequency5

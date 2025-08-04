@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic:  how-to
 ms.reviewer: None
-ms.author: scottpolly
-author: s-polly
+ms.author: lagayhar
+author: lgayhardt
 ms.date: 03/29/2024
 ms.custom: responsible-ml, devx-track-python
 ---

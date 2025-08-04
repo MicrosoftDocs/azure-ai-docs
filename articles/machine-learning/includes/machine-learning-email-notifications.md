@@ -1,9 +1,9 @@
 ---
-author: s-polly 
+author: lgayhardt 
 ms.service: azure-machine-learning
 ms.topic: include
 ms.date: 09/12/2022
-ms.author: scottpolly
+ms.author: lagayhar
 ---
 
 ## How to configure emails in the studio

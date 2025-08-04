@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 2/7/2025
+ms.date: 7/31/2025
 ms.author: eur
 ---
 
@@ -23,52 +23,31 @@ The tool is based on [Speech Synthesis Markup Language (SSML)](speech-synthesis-
 
 You have easy access to a broad portfolio of [languages and voices](language-support.md?tabs=tts). These voices include state-of-the-art standard voices and your custom voice, if you built one.
 
-## Get started
+## Prerequisites
 
-The Audio Content Creation tool in Speech Studio is free to access, but you pay for Speech service usage. To work with the tool, you need to sign in with an Azure account and create a Speech resource. 
-
-The next sections cover how to create an Azure account and get a Speech resource.
-
-### Step 1: Create an Azure account
-
-To work with Audio Content Creation, you need a [Microsoft account](https://account.microsoft.com/account) and an [Azure account](https://azure.microsoft.com/free/ai/). 
-
-[The Azure portal](https://portal.azure.com/) is the centralized place for you to manage your Azure account. You can create the Speech resource, manage the product access, and monitor everything from simple web apps to complex cloud deployments.
-
-### Step 2: Create a Speech resource
-
-After you sign up for the Azure account, you need to create a Speech resource in your Azure account to access Speech services. Create a Speech resource on the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesSpeechServices). For more information, see [Create an AI Foundry resource](../multi-service-resource.md?pivots=azportal).
-
-It takes a few moments to deploy your new Speech resource. After the deployment is complete, you can start using the Audio Content Creation tool.
+- An active Azure subscription. [Create one for free](https://azure.microsoft.com/free/ai-services).
+- Permission to create resources in your subscription.
+- A Speech resource. Create one in the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesSpeechServices) or [Speech Studio](https://aka.ms/speechstudio).
 
 > [!NOTE]
-> If you plan to use neural voices, make sure that you create your resource in [a region that supports neural voices](regions.md#regions).
+> The [AI Foundry resource type](../multi-service-resource.md) isn't supported in Speech Studio. 
 
-### Step 3: Sign in to Audio Content Creation with your Azure account and Speech resource
+Sign in with your Azure account to use the Audio Content Creation tool. The tool is free to access; you pay only for Speech service usage.
 
-1. After you get the Azure account and the Speech resource, sign in to [Speech Studio](https://aka.ms/speechstudio/), and then select **Audio Content Creation**.
-    
-1. Select the Azure subscription and the Speech resource you want to work with, and then select **Use resource**. 
-
-The next time you sign in to Audio Content Creation, you're linked directly to the audio work files under the current Speech resource. You can check your Azure subscription details and status in the [Azure portal](https://portal.azure.com/).  
-
-If you don't have an available Speech resource and you're the owner or admin of an Azure subscription, you can create a Speech resource in Speech Studio by selecting **Create a new resource**. 
-
-If you have a user role for a certain Azure subscription, you might not have permissions to create a new Speech resource. To get access, contact your admin. 
-
-To switch your Speech resource at any time, select **Settings** at the top of the page.
-
-To switch directories, select **Settings** or go to your profile. 
-
-## Use the tool
+## Use the Audio Content Creation tool
 
 The following diagram displays the process for fine-tuning the text to speech outputs. 
 
 :::image type="content" source="media/audio-content-creation/audio-content-creation-diagram.jpg" alt-text="Diagram of the sequence of steps for fine-tuning text to speech outputs.":::
 
-Each step in the preceding diagram is described here:
+To use the Audio Content Creation tool, do the following:
 
-1. Choose the Speech resource you want to work with.
+1. Sign in to [Speech Studio](https://aka.ms/speechstudio/), and then select **Audio Content Creation**.
+
+1. Select the Azure subscription and the Speech resource you want to work with, and then select **Use resource**. 
+
+   > [!NOTE]
+   > If you're returning to Audio Content Creation, you can select a different Speech resource that you want to work with. Go to your account settings at the top right corner of the page.
 
 1. [Create an audio tuning file](#create-an-audio-tuning-file) by using plain text or SSML scripts. Enter or upload your content into Audio Content Creation.
 1. Choose the voice and the language for your script content. Audio Content Creation includes all of the [standard text to speech voices](language-support.md?tabs=tts). You can use standard voices or a custom voice.
@@ -162,7 +141,7 @@ After you review your audio output and are satisfied with your tuning and adjust
    
 If you lose access permission to your Bring Your Own Storage (BYOS), you can't view, create, edit, or delete files. To resume your access, you need to remove the current storage and reconfigure the BYOS in the [Azure portal](https://portal.azure.com/#allservices). To learn more about how to configure BYOS, see [Mount Azure Storage as a local share in App Service](/azure/app-service/configure-connect-to-azure-storage?pivots=container-linux&tabs=portal). 
 
-After configuring the BYOS permission, you need to configure anonymous public read access for related containers and blobs. Otherwise, blob data isn't available for public access and your lexicon file in the blob is inaccessible. By default, a container’s public access setting is disabled. To grant anonymous users read access to a container and its blobs, first set **Allow Blob public access** to **Enabled** to allow public access for the storage account, then set the container's (named **acc-public-files**) public access level (**anonymous read access for blobs only**). To learn more about how to configure anonymous public read access, see [Configure anonymous public read access for containers and blobs](/azure/storage/blobs/anonymous-read-access-configure?tabs=portal). 
+After configuring the BYOS permission, you need to configure anonymous public read access for related containers and blobs. Otherwise, blob data isn't available for public access and your lexicon file in the blob is inaccessible. By default, a container’s public access setting is disabled. To grant anonymous users read access to a container and its blobs, first set **Allow Blob anonymous access** to **Enabled** to allow public access for the storage account, then set the container's (named **acc-public-files**) public access level (**anonymous read access for blobs only**). To learn more about how to configure anonymous public read access, see [Configure anonymous public read access for containers and blobs](/azure/storage/blobs/anonymous-read-access-configure?tabs=portal). 
    
 ## Add or remove Audio Content Creation users
 
@@ -201,7 +180,7 @@ Users now visit or refresh the [Audio Content Creation](https://aka.ms/audiocont
 
 If they can't find the available Speech resource, they can check to ensure that they're in the right directory. To do so, they select the account profile at the upper right and then select **Switch** next to **Current directory**. If there's more than one directory available, it means they have access to multiple directories. They can switch to different directories and go to **Settings** to see whether the right Speech resource is available. 
 
-Users who are in the same Speech resource see each other's work in the Audio Content Creation tool. If you want each individual user to have a unique and private workplace in Audio Content Creation, [create a new Speech resource](#step-2-create-a-speech-resource) for each user and give each user the unique access to the Speech resource.
+Users who are in the same Speech resource see each other's work in the Audio Content Creation tool. If you want each individual user to have a unique and private workplace in Audio Content Creation, create a new Speech resource.
 
 ### Remove users from a Speech resource
 

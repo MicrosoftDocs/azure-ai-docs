@@ -5,7 +5,7 @@ description: This article lists Azure AI Foundry feature availability across clo
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 04/28/2025
+ms.date: 07/30/2025
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
@@ -54,7 +54,7 @@ The following table lists the availability of Azure AI Foundry features across A
 
 | Service                        | Description                                                                                                                                          | Link                                                                                                      |
 |--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
-| Azure OpenAI                   | Note that some models might not be available within the Azure AI Foundry model catalog.                                                              | [Azure OpenAI quotas and limits](/azure/ai-services/openai/quotas-limits)
+| Azure OpenAI                   | Note that some models might not be available within the Azure AI Foundry model catalog.                                                              | [Azure OpenAI quotas and limits](/azure/ai-foundry/openai/quotas-limits)
 | Speech capabilities            | Azure AI Speech capabilities including custom neural voice vary in regional availability due to underlying hardware availability.                     | [Speech service supported regions](../../ai-services/speech-service/regions.md)                           |
 | Standard deployment     | Some models in the model catalog can be deployed as a standard deployment.                                                      | [Region availability for models in standard deployment](../how-to/deploy-models-serverless-availability.md) |
 | Azure AI Content Safety        | To use the Content Safety APIs, you must create your Azure AI Content Safety resource in a supported region.                                           | [What is Azure AI Content Safety?](../../ai-services/content-safety/overview.md#region-availability)       |
@@ -90,7 +90,7 @@ Available to US government entities and their partners only. See more informatio
     - Content filters
     - Profanity blocklist (preview)
   - Management center
-- **Unsupported features:**
+- **Unsupported features in Azure Government regions:**
   - Serverless endpoints  
   - Content Understanding
   - Agents playground
