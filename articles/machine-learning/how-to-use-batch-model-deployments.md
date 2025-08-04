@@ -643,19 +643,19 @@ Once you've identified the data store you want to use, configure the output as f
 
 ## Overwrite deployment configuration for each job
 
-When you invoke a batch endpoint, some settings can be overwritten to make best use of the compute resources and to improve performance. This is useful when you need different settings for different jobs without modifying the deployment permanently.
+When you invoke a batch endpoint, some settings can be overwritten to make best use of the compute resources and improve performance. This capability is useful when you need different settings for different jobs without permanently modifying the deployment.
 
 ### Which settings can be overridden?
 
-The following settings can be configured on a per-job basis:
+You can configure the following settings on a per-job basis:
 
 | Setting | When to use | Example scenario |
 |---------|-------------|-------------------|
-| __Instance count__ | When you have varying data volumes | Use more instances for larger datasets (e.g., 10 instances for 1M files vs 2 instances for 100K files) |
-| __Mini-batch size__ | When you need to balance throughput and memory | Smaller batches (10-50 files) for large images, larger batches (100-500 files) for small text files |
-| __Max retries__ | When data quality varies | Higher retries (5-10) for noisy data, lower retries (1-3) for clean data |
-| __Timeout__ | When processing time varies by data type | Longer timeout (300s) for complex models, shorter timeout (30s) for simple models |
-| __Error threshold__ | When you need different failure tolerance | Strict threshold (-1) for critical jobs, lenient threshold (10%) for experimental jobs |
+| __Instance count__ | When you have varying data volumes | Use more instances for larger datasets (10 instances for 1M files vs. 2 instances for 100K files) |
+| __Mini-batch size__ | When you need to balance throughput and memory usage | Smaller batches (10-50 files) for large images; larger batches (100-500 files) for small text files |
+| __Max retries__ | When data quality varies | Higher retries (5-10) for noisy data; lower retries (1-3) for clean data |
+| __Timeout__ | When processing time varies by data type | Longer timeout (300s) for complex models; shorter timeout (30s) for simple models |
+| __Error threshold__ | When you need different failure tolerance levels | Strict threshold (-1) for critical jobs; lenient threshold (10%) for experimental jobs |
 
 ### How to override settings
 
@@ -681,7 +681,7 @@ The following settings can be configured on a per-job basis:
 
 1. Select the option __Override deployment settings__.
 
-1. Configure the job parameters. Only the current job execution will be affected by this configuration.
+1. Configure the job parameters. Only the current job execution is affected by this configuration.
 
 1. Select __Next__.
 
