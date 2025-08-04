@@ -61,7 +61,7 @@ Let's begin instrumenting our agent with OpenTelemetry tracing, by starting off 
 ```python
 from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
-project_client = AIProjectClient.from_connection_string(
+project_client = AIProjectClient(
     credential=DefaultAzureCredential(),
     endpoint=os.environ["PROJECT_ENDPOINT"],
 )
@@ -71,12 +71,8 @@ Next, retrieve the connection string from the Application Insights resource conn
 
 ```python
 from azure.monitor.opentelemetry import configure_azure_monitor
-connection_string = project_client.telemetry.get_connection_string()
 
-if not connection_string:
-    print("Application Insights is not enabled. Enable by going to Tracing in your Azure AI Foundry project.")
-    exit()
-
+connection_string = project_client.telemetry.get_application_insights_connection_string()
 configure_azure_monitor(connection_string=connection_string) #enable telemetry collection
 ```
 
@@ -92,11 +88,11 @@ with tracer.start_as_current_span("example-tracing"):
         name="my-assistant",
         instructions="You are a helpful assistant"
     )
-    thread = project_client.agents.create_thread()
-    message = project_client.agents.create_message(
+    thread = project_client.agents.threads.create()
+    message = project_client.agents.messages.create(
         thread_id=thread.id, role="user", content="Tell me a joke"
     )
-    run = project_client.agents.create_run(thread_id=thread.id, agent_id=agent.id)
+    run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
 ```
 
 After running your agent, you can go begin to [view traces in Azure AI Foundry Portal](#view-traces-in-azure-ai-foundry-portal).
@@ -108,7 +104,8 @@ To connect to [Aspire Dashboard](https://aspiredashboard.com/#start) or another 
 ```bash
 pip install azure-core-tracing-opentelemetry opentelemetry-exporter-otlp opentelemetry-sdk
 ```
-Next, you want to configure tracing for your application.
+
+Next, configure tracing for console output:
 
 ```python
 from azure.core.settings import settings
@@ -124,18 +121,16 @@ tracer_provider = TracerProvider()
 tracer_provider.add_span_processor(SimpleSpanProcessor(span_exporter))
 trace.set_tracer_provider(tracer_provider)
 ```
-Use `enable_telemetry` to begin collecting telemetry. 
+
+Or modify the above code, based on [Aspire Dashboard](https://aspiredashboard.com/#start), to trace to a local OTLP viewer.
+
+Now enable Agent instrumentation and run your Agent:
 
 ```python
-from azure.ai.projects import enable_telemetry
-enable_telemetry(destination=sys.stdout)
+from azure.ai.agents.telemetry import AIAgentsInstrumentor
+AIAgentsInstrumentor().instrument()
 
-# Logging to an OTLP endpoint, change the destination to
-# enable_telemetry(destination="http://localhost:4317")
-```
-```python
 # Start tracing
-from opentelemetry import trace
 tracer = trace.get_tracer(__name__)
 
 with tracer.start_as_current_span("example-tracing"):
@@ -144,11 +139,11 @@ with tracer.start_as_current_span("example-tracing"):
         name="my-assistant",
         instructions="You are a helpful assistant"
     )
-    thread = project_client.agents.create_thread()
-    message = project_client.agents.create_message(
+    thread = project_client.agents.threads.create()
+    message = project_client.agents.messages.create(
         thread_id=thread.id, role="user", content="Tell me a joke"
     )
-    run = project_client.agents.create_run(thread_id=thread.id, agent_id=agent.id)
+    run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
 ```
 
 ## Trace custom functions

@@ -45,8 +45,8 @@ import os, json
 from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
 
-project_client = AIProjectClient.from_connection_string(
-    credential=DefaultAzureCredential(), conn_str=os.environ["PROJECT_CONNECTION_STRING"]
+project_client = AIProjectClient(
+    credential=DefaultAzureCredential(), endpoint=os.environ["PROJECT_ENDPOINT"]
 )
 
 agent = project_client.agents.create_agent(
@@ -95,7 +95,7 @@ project_client.evaluation.create_agent_evaluation(
         thread=thread.id,  
         run=run.id,   
         evaluators=evaluators,
-        appInsightsConnectionString = project_client.telemetry.get_connection_string(),
+        appInsightsConnectionString = project_client.telemetry.get_application_insights_connection_string(),
     )
 )
 
@@ -189,7 +189,7 @@ project_client.evaluation.create_agent_evaluation(
         run=run.id,   
         evaluators=evaluators,  
         samplingConfiguration = sampling_config,  
-        appInsightsConnectionString = project_client.telemetry.get_connection_string(),
+        appInsightsConnectionString = project_client.telemetry.get_application_insights_connection_string(),
     )
 )
 ```
