@@ -34,31 +34,6 @@ Use batch endpoints for model deployment when:
 
 In this article, you use a batch endpoint to deploy a machine learning model that solves the classic MNIST (Modified National Institute of Standards and Technology) digit recognition problem. Your deployed model then performs batch inferencing over large amounts of data—in this case, image files. You begin by creating a batch deployment of a model that was created using Torch. This deployment becomes the default one in the endpoint. Later, you [create a second deployment](#add-deployments-to-an-endpoint) of a mode that was created with TensorFlow (Keras), test the second deployment, and then set it as the endpoint's default deployment.
 
-## Key concepts and configurations
-
-Review the sections below to understand the key concepts and configurations used in this article. 
-
-### Data flow overview
-- __Input data__: Files or folders in Azure Storage (blob storage, data lake, or registered datasets)
-- __Processing__: Your model processes data in configurable mini-batches
-- __Output results__: Prediction files stored in Azure blob storage (configurable location)
-
-### Key configuration options
-
-| Option | Purpose | Common values |
-|--------|---------|---------------|
-| `mini_batch_size` | Files per batch (affects memory usage) | 10-50 for large files, 100-500 for small files |
-| `instance_count` | Number of compute instances | 1-10 depending on data volume |
-| `max_concurrency_per_instance` | Parallel processes per instance | 1 for memory-intensive models, 2-4 for lightweight models |
-| `timeout` | Max time per mini-batch (seconds) | 30-300 depending on model complexity |
-| `output_action` | How to organize results | `append_row` (combine all results) or `summary_only` |
-
-### Common parameters for job invocation
-- __Azure CLI__: Use `--input`, `--output-path`, `--set` for overrides
-- __Python SDK__: Use `Input()` for data, `params_override` for settings
-- __Studio__: Use the web interface to configure inputs, outputs, and deployment settings
-
-To follow along with the code samples and files needed to run the commands in this article locally, see the __[Clone the examples repository](#clone-the-examples-repository)__ section. The code samples and files are contained in the [azureml-examples](https://github.com/azure/azureml-examples) repository.
 
 ## Prerequisites
 
@@ -611,7 +586,9 @@ Use `output-path` to configure any folder in an Azure Machine Learning registere
 
 # [Python](#tab/python)
 
-**Understanding `params_override`**: The `params_override` parameter allows you to modify deployment settings for a specific job without changing the deployment configuration permanently. This is useful for adjusting settings like output location, mini-batch size, or instance count for individual jobs.
+The `params_override` parameter allows you to modify deployment settings for a specific job without changing the deployment configuration permanently. This is useful for adjusting settings like output location, mini-batch size, or instance count for individual jobs.
+
+The `params_override` parameter values correspond to deployment configuration settings that can be temporarily modified for individual jobs. These parameters come from your deployment's YAML schema settings, datastore configurations (like output paths), and runtime variables you define in your code.
 
 Use `params_override` to configure any folder in an Azure Machine Learning registered data store. Only registered data stores are supported as output paths. In this example you use the default data store:
 
@@ -620,24 +597,6 @@ Use `params_override` to configure any folder in an Azure Machine Learning regis
 Once you've identified the data store you want to use, configure the output as follows:
 
 [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/mnist-classifier/mnist-batch.ipynb?name=start_batch_scoring_job_set_output)]
-
-__Example `params_override` usage__:
-
-The `params_override` parameter values correspond to deployment configuration settings that can be temporarily modified for individual jobs. These parameters come from your deployment's YAML schema settings, datastore configurations (like output paths), and runtime variables you define in your code.
-
-```python
-# Override multiple settings for this specific job
-job = ml_client.batch_endpoints.invoke(
-    endpoint_name=endpoint_name,
-    input=Input(path="azureml://datastores/workspaceblobstore/paths/my-input-data/"),
-    params_override=[
-        {"output_file_name": "custom_results.csv"},
-        {"mini_batch_size": 50},
-        {"instance_count": 4},
-        {"max_retries": 2}
-    ]
-)
-```
 
 > [!TIP]
 > Use `params_override` when you need different settings for different jobs without modifying your deployment. This is especially useful for handling varying data sizes or experimenting with performance settings.
