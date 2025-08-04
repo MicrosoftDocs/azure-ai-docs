@@ -61,8 +61,6 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 >
 > - `Error code: 500 - {'error': {'message': 'The server had an error processing your request. Sorry about that! You can retry your request, or contact us through an Azure support request at: https://go.microsoft.com/fwlink/?linkid=2213926 if you keep seeing this error. (Please include the request ID d2008353-291d-428f-adc1-defb5d9fb109 in your email.)', 'type': 'server_error', 'param': None, 'code': None}}`
 
-Learn about capabilities in the following table:
-
 |  Model ID  | Description | Context window | Max output tokens | Training data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
 | `gpt-4.1` (2025-04-14)   | - Text and image input <br> - Text output <br> - Chat completions API <br>- Responses API <br> - Streaming <br> - Function calling <br> - Structured outputs (chat completions)   | - 1,047,576 <br> - 128,000 (provisioned managed deployments) <br> - 300,000 (batch deployments) | 32,768 | May 31, 2024 |
@@ -80,8 +78,6 @@ A model that intelligently selects from a set of underlying chat models to respo
 | `model-router` (2025-05-19) | East US 2 (Global Standard), Sweden Central (Global Standard)|
 
 ### Capabilities
-
-Learn about capabilities in the following table:
 
 |  Model ID  | Description | Context window | Max output tokens | Training data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
@@ -109,8 +105,6 @@ To request access, go to [`computer-use-preview` limited access model applicatio
 | `computer-use-preview` |  See the [models table](#model-summary-table-and-region-availability). |
 
 ### Capabilities
-
-Learn about capabilities in the following table:
 
 |  Model ID  | Description | Context window | Max output tokens | Training data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
@@ -173,7 +167,7 @@ GPT-4 is the predecessor to GPT-4 Turbo. Both the GPT-4 and GPT-4 Turbo models h
 
 ## GPT-4 and GPT-4 Turbo models
 
-- These models can be used only with the Chat Completions API.
+These models can be used only with the Chat Completions API.
 
 See [Model versions](../concepts/model-versions.md) to learn about how Azure OpenAI handles model version upgrades. See [Working with models](../how-to/working-with-models.md) to learn how to view and configure the model version settings of your GPT-4 deployments.
 
