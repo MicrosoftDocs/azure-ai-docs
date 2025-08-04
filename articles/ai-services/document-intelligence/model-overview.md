@@ -46,33 +46,33 @@ ms.custom: sfi-image-nochange
 
 ## Model overview
 
-The following table shows the available models for each stable API.
+The following table shows the generally available (GA) models for each stable API.
 
 |Model type| Model|[2024-11-30 (GA)](/rest/api/aiservices/operation-groups?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true)|[2023-07-31 (GA)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)|[2022-08-31 (GA)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)|[v2.1 (GA)](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)|
 |----------------|-----------|---|--|---|---|
 |Document analysis models|[Read](prebuilt/read.md)                                  | ✔️| ✔️| ✔️| Not available|
 |Document analysis models|[Layout](prebuilt/layout.md)                              | ✔️| ✔️| ✔️| ✔️|
 |Document analysis models|[General document**](prebuilt/general-document.md)          |Supported in<br>layout model| ✔️| ✔️| Not available|
-|Prebuilt models|[Bank Check](concept-bank-check.md)   | ✔️| Not available| Not available| Not available|
-|Prebuilt models|[Bank Statement](concept-bank-statement.md)   | ✔️| Not available| Not available| Not available|
-|Prebuilt models|[Paystub](concept-pay-stub.md)   | ✔️| Not available| Not available| Not available|
+|Prebuilt models|[Bank check](concept-bank-check.md)   | ✔️| Not available| Not available| Not available|
+|Prebuilt models|[Bank statement](concept-bank-statement.md)   | ✔️| Not available| Not available| Not available|
+|Prebuilt models|[payStub](concept-pay-stub.md)   | ✔️| Not available| Not available| Not available|
 |Prebuilt models|[Contract](prebuilt/contract.md)                          | ✔️| ✔️| Not available| Not available|
 |Prebuilt models|[Health insurance card](prebuilt/health-insurance-card.md)| ✔️| ✔️| ✔️| Not available|
 |Prebuilt models|[ID document](prebuilt/id-document.md)                    | ✔️| ✔️| ✔️| ✔️|
 |Prebuilt models|[Invoice](prebuilt/invoice.md)                            | ✔️| ✔️| ✔️| ✔️|
 |Prebuilt models|[Receipt](prebuilt/receipt.md)                            | ✔️| ✔️| ✔️| ✔️|
-|Prebuilt models|[US Unified Tax*](prebuilt/tax-document.md)                   | ✔️| Not available| Not available| Not available|
-|Prebuilt models|[US 1040 Tax*](prebuilt/tax-document.md)                   | ✔️| ✔️| Not available| Not available|
-|Prebuilt models|[US 1095 Tax*](prebuilt/tax-document.md)                    | ✔️| Not available| Not available| Not available|
-|Prebuilt models|[US 1098 Tax*](prebuilt/tax-document.md)                   | ✔️| Not available| Not available| Not available|
-|Prebuilt models|[US 1099 Tax*](prebuilt/tax-document.md)                 | ✔️| Not available| Not available| Not available|
-|Prebuilt models|[US W2 Tax](prebuilt/tax-document.md)                     | ✔️| ✔️| ✔️| Not available|
-|Prebuilt models|[US W4 Tax](prebuilt/tax-document.md)                      | ✔️| Not available| Not available| Not available|
-|Prebuilt models|[US Mortgage 1003 URLA](concept-mortgage-documents.md)    | ✔️| Not available| Not available| Not available|
-|Prebuilt models|[US Mortgage 1004 URAR](concept-mortgage-documents.md)    | ✔️| Not available| Not available| Not available|
-|Prebuilt models|[US Mortgage 1005](concept-mortgage-documents.md)    | ✔️| Not available| Not available| Not available|
-|Prebuilt models|[US Mortgage 1008 Summary](concept-mortgage-documents.md)       | ✔️| Not available| Not available| Not available|
-|Prebuilt models|[US Mortgage closing disclosure](concept-mortgage-documents.md)   | ✔️| Not available| Not available| Not available|
+|Prebuilt models|[US unified tax*](prebuilt/tax-document.md)                   | ✔️| Not available| Not available| Not available|
+|Prebuilt models|[US 1040 tax*](prebuilt/tax-document.md)                   | ✔️| ✔️| Not available| Not available|
+|Prebuilt models|[US 1095 tax*](prebuilt/tax-document.md)                    | ✔️| Not available| Not available| Not available|
+|Prebuilt models|[US 1098 tax*](prebuilt/tax-document.md)                   | ✔️| Not available| Not available| Not available|
+|Prebuilt models|[US 1099 tax*](prebuilt/tax-document.md)                 | ✔️| Not available| Not available| Not available|
+|Prebuilt models|[US W2 tax](prebuilt/tax-document.md)                     | ✔️| ✔️| ✔️| Not available|
+|Prebuilt models|[US W4 tax](prebuilt/tax-document.md)                      | ✔️| Not available| Not available| Not available|
+|Prebuilt models|[US mortgage 1003 URLA](concept-mortgage-documents.md)    | ✔️| Not available| Not available| Not available|
+|Prebuilt models|[US mortgage 1004 URAR](concept-mortgage-documents.md)    | ✔️| Not available| Not available| Not available|
+|Prebuilt models|[US mortgage 1005](concept-mortgage-documents.md)    | ✔️| Not available| Not available| Not available|
+|Prebuilt models|[US mortgage 1008 summary](concept-mortgage-documents.md)       | ✔️| Not available| Not available| Not available|
+|Prebuilt models|[US mortgage closing disclosure](concept-mortgage-documents.md)   | ✔️| Not available| Not available| Not available|
 |Prebuilt models|[Marriage certificate](concept-marriage-certificate.md)   | ✔️| Not available| Not available| Not available|
 |Prebuilt models|[Credit card](concept-credit-card.md)   | ✔️| Not available| Not available| Not available|
 |Prebuilt models|[Business card](concept-business-card.md)                | deprecated|✔️|✔️|✔️ |
@@ -83,15 +83,15 @@ The following table shows the available models for each stable API.
 |All models|[Add-on capabilities](concept-add-on-capabilities.md)    | ✔️| ✔️| Not available| Not available|
 
 \* Contains submodels. See the model-specific information for supported variations and subtypes.</br>
-\** All the capabilities for the General document model are available in the Layout model. The General model is no longer supported.
+\** All the capabilities for the general document model are available in the layout model. The general model is no longer supported.
 
 ### Latency
 
-Latency is the amount of time it takes for an API server to handle and process an incoming request and deliver the outgoing response to the client. The time to analyze a document depends on the size (for example, number of pages) and associated content on each page. Document Intelligence is a multitenant service where latency for similar documents is comparable but not always identical. Occasional variability in latency and performance is inherent in any microservice-based, stateless, asynchronous service that processes images and large documents at scale. Although we're continuously scaling up the hardware and capacity and scaling capabilities, you might still have latency issues at runtime.
+Latency is the amount of time it takes for an API server to handle and process an incoming request and deliver the outgoing response to the client. The time to analyze a document depends on the size (for example, number of pages) and associated content on each page. Document Intelligence is a multitenant asynchronous service where latency for similar documents is comparable but not always identical. Occasional variability in latency and performance is inherent in any microservice-based, stateless service that processes images and large documents at scale. Although we're continuously scaling up the hardware and capacity and scaling capabilities, you might still have latency issues at runtime.
 
 ### Add-on capability
 
-The following add-on capabilities are available for Document Intelligence. For all models except the Business card model, Document Intelligence now supports add-on capabilities to allow for more sophisticated analysis. You can enable and disable these optional capabilities depending on the scenario of the document extraction. Seven add-on capabilities are available for the 2023-07-31 (GA) and later API version:
+The following add-on capabilities are available for Document Intelligence. For all models except the business card model, Document Intelligence now supports add-on capabilities to allow for more sophisticated analysis. You can enable and disable these optional capabilities depending on the scenario of the document extraction. Seven add-on capabilities are available for the 2023-07-31 (GA) and later API version:
 
 * [`ocrHighResolution`](concept-add-on-capabilities.md#high-resolution-extraction)
 * [`formulas`](concept-add-on-capabilities.md#formula-extraction)
@@ -157,7 +157,7 @@ This sample document was processed by using [Document Intelligence Studio](https
 :::image type="content" source="media/studio/form-recognizer-studio-read-v3p2.png" alt-text="Screenshot that shows a sample document processed by using Document Intelligence Studio Read.":::
 
 > [!div class="nextstepaction"]
-> [Learn more: read model](prebuilt/read.md)
+> [Learn more: Read model](prebuilt/read.md)
 
 ### Layout analysis
 
@@ -171,7 +171,7 @@ This sample document was processed by using [Document Intelligence Studio](https
 
 > [!div class="nextstepaction"]
 >
-> [Learn more: layout model](prebuilt/layout.md)
+> [Learn more: Layout model](prebuilt/layout.md)
 
 ### Health insurance card
 
@@ -217,8 +217,8 @@ The US mortgage document models analyze and extract key fields that include borr
 
   |Model|Description|Model ID|
   |---|---|---|
-  |1003 End-User License Agreement (EULA)|Extract loan, borrower, property details.|`prebuilt-mortgage.us.1003`|
-  |1004 Uniform Residential Appraisal Report (URAR))|Extract loan, borrower, property details.|`prebuilt-mortgage.us.1004`|
+  |1003 End-User License Agreement|Extract loan, borrower, property details.|`prebuilt-mortgage.us.1003`|
+  |1004 Uniform Residential Appraisal Report (URAR)|Extract loan, borrower, property details.|`prebuilt-mortgage.us.1004`|
   |1005 Verification of employment|Extract loan, borrower, property details.|`prebuilt-mortgage.us.1005`|
   |1008 Summary document|Extract borrower, seller, property, mortgage, and underwriting details.|`prebuilt-mortgage.us.1008`|
   |Closing Disclosure|Extract closing, transaction costs, and loan details.|`prebuilt-mortgage.us.closingDisclosure`|
@@ -241,7 +241,7 @@ This sample contract was processed by using [Document Intelligence Studio](https
 :::image type="content" source="media/studio/analyze-contract.png" alt-text="Screenshot that shows contract model extraction using Document Intelligence Studio.":::
 
 > [!div class="nextstepaction"]
-> [Learn more: contract model](prebuilt/contract.md)
+> [Learn more: Contract model](prebuilt/contract.md)
 
 ### US bank check
 
@@ -254,7 +254,7 @@ This bank check sample was processed by using [Document Intelligence Studio](htt
 :::image type="content" source="media/studio/analyze-bank-check.png" alt-text="Screenshot that shows bank check model extraction by using Document Intelligence Studio.":::
 
 > [!div class="nextstepaction"]
-> [Learn more: contract model](prebuilt/bank-check.md)
+> [Learn more: Contract model](prebuilt/bank-check.md)
 
 ### US bank statement
 
@@ -267,7 +267,7 @@ This sample bank statement was processed by using [Document Intelligence Studio]
 :::image type="content" source="media/studio/analyze-bank-statement.png" alt-text="Screenshot that shows bank statement model extraction by using Document Intelligence Studio.":::
 
 > [!div class="nextstepaction"]
-> [Learn more: contract model](prebuilt/bank-statement.md)
+> [Learn more: Contract model](prebuilt/bank-statement.md)
 
 ### payStub
 
@@ -280,7 +280,7 @@ This sample pay stub was processed by using [Document Intelligence Studio](https
 :::image type="content" source="media/studio/analyze-pay-stub.png" alt-text="Screenshot that shows payStub model extraction by using Document Intelligence Studio.":::
 
 > [!div class="nextstepaction"]
-> [Learn more: contract model](prebuilt/pay-stub.md)
+> [Learn more: Contract model](prebuilt/pay-stub.md)
 
 ### Invoice
 
@@ -293,7 +293,7 @@ This sample invoice was processed by using [Document Intelligence Studio](https:
 :::image type="content" source="./media/studio/analyze-invoice.png" alt-text="Screenshot that shows a sample invoice." lightbox="./media/overview-invoices.jpg":::
 
 > [!div class="nextstepaction"]
-> [Learn more: invoice model](prebuilt/invoice.md)
+> [Learn more: Invoice model](prebuilt/invoice.md)
 
 ### Receipt
 
@@ -306,7 +306,7 @@ This sample receipt was processed by using [Document Intelligence Studio](https:
 :::image type="content" source="./media/studio/analyze-receipt.png" alt-text="Screenshot that shows a sample receipt." lightbox="./media/overview-receipt.jpg":::
 
 > [!div class="nextstepaction"]
-> [Learn more: receipt model](prebuilt/receipt.md)
+> [Learn more: Receipt model](prebuilt/receipt.md)
 
 ### Identity document
 
@@ -319,7 +319,7 @@ This sample US driver's license was processed by using [Document Intelligence St
 :::image type="content" source="./media/studio/analyze-drivers-license.png" alt-text="Screenshot that shows a sample identification card." lightbox="./media/overview-id.jpg":::
 
 > [!div class="nextstepaction"]
-> [Learn more: identity document model](prebuilt/id-document.md)
+> [Learn more: Identity document model](prebuilt/id-document.md)
 
 ### Marriage certificate
 
@@ -332,7 +332,7 @@ This sample US marriage certificate was processed by using [Document Intelligenc
 :::image type="content" source="./media/studio/marriage-certificate.png" alt-text="Screenshot that shows a sample marriage certificate." lightbox="./media/studio/marriage-certificate.png":::
 
 > [!div class="nextstepaction"]
-> [Learn more: identity document model](concept-marriage-certificate.md)
+> [Learn more: Identity document model](concept-marriage-certificate.md)
 
 ### Credit card
 
@@ -345,7 +345,7 @@ This sample credit card was processed by using [Document Intelligence Studio](ht
 :::image type="content" source="./media/studio/credit-card.png" alt-text="Screenshot that shows a sample credit card." lightbox="./media/studio/credit-card.png":::
 
 > [!div class="nextstepaction"]
-> [Learn more: identity document model](concept-credit-card.md)
+> [Learn more: Identity document model](concept-credit-card.md)
 
 ### Custom models
 
@@ -364,7 +364,7 @@ This sample custom template was processed by using [Document Intelligence Studio
 :::image type="content" source="media/studio/train-model.png" alt-text="Screenshot that shows Document Intelligence analyzing a custom form.":::
 
 > [!div class="nextstepaction"]
-> [Learn more: custom model](train/custom-model.md)
+> [Learn more: Custom model](train/custom-model.md)
 
 #### Custom extraction
 
@@ -377,10 +377,10 @@ This sample custom extraction was processed by using [Document Intelligence Stud
 :::image type="content" source="media/studio/custom-extraction-models.png" alt-text="Screenshot that shows custom extraction model analysis in Document Intelligence Studio.":::
 
 > [!div class="nextstepaction"]
-> [Learn more: custom template model](train/custom-template.md)
+> [Learn more: Custom template model](train/custom-template.md)
 
 > [!div class="nextstepaction"]
-> [Learn more: custom neural model](./train/custom-neural.md)
+> [Learn more: Custom neural model](./train/custom-neural.md)
 
 #### Custom classifier
 
@@ -389,18 +389,18 @@ This sample custom extraction was processed by using [Document Intelligence Stud
 With the custom classification model, you can identify the document type before you invoke the extraction model. The classification model is available starting with the 2023-07-31 (GA) API. Training a custom classification model requires at least two distinct classes and a minimum of five samples per class.
 
 > [!div class="nextstepaction"]
-> [Learn more: custom classification model](train/custom-classifier.md)
+> [Learn more: Custom classification model](train/custom-classifier.md)
 
 #### Composed models
 
-A composed model is created by taking a collection of custom models and assigning them to a single model built from your form types. You can assign multiple custom models to a composed model called with a single model ID. You can assign up to 200 trained custom models to a single composed model.
+A composed model is created by taking a collection of custom models and assigning them to a single model built from your form types. You can assign multiple custom models to a composed model that are called with a single model ID. You can assign up to 200 trained custom models to a single composed model.
 
 This sample composed model is in [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/customform/projects).
 
 :::image type="content" source="media/studio/composed-model.png" alt-text="Screenshot that shows the Document Intelligence Studio Compose custom model pane.":::
 
 > [!div class="nextstepaction"]
-> [Learn more: custom model](train/custom-model.md)
+> [Learn more: Custom model](train/custom-model.md)
 
 ## Input requirements
 
@@ -440,7 +440,7 @@ This sample document was processed by using the [Sample Labeling tool](https://f
 
 > [!div class="nextstepaction"]
 >
-> [Learn more: layout model](prebuilt/layout.md)
+> [Learn more: Layout model](prebuilt/layout.md)
 
 ### Invoice
 
@@ -451,7 +451,7 @@ This sample invoice was processed by using the [Sample Labeling tool](https://fo
 :::image type="content" source="./media/overview-invoices.jpg" alt-text="Screenshot that shows a sample invoice analysis by using the Sample Labeling tool.":::
 
 > [!div class="nextstepaction"]
-> [Learn more: invoice model](prebuilt/invoice.md)
+> [Learn more: Invoice model](prebuilt/invoice.md)
 
 ### Receipt
 
@@ -462,7 +462,7 @@ This sample receipt was processed by using the [Sample Labeling tool](https://fo
 :::image type="content" source="./media/receipts-example.jpg" alt-text="Screenshot that shows a sample receipt." lightbox="./media/overview-receipt.jpg":::
 
 > [!div class="nextstepaction"]
-> [Learn more: receipt model](prebuilt/receipt.md)
+> [Learn more: Receipt model](prebuilt/receipt.md)
 
 ### ID document
 
@@ -476,7 +476,7 @@ This sample US driver's license was processed by using the [Sample Labeling tool
 :::image type="content" source="./media/id-example-drivers-license.jpg" alt-text="Screenshot that shows a sample identification card.":::
 
 > [!div class="nextstepaction"]
-> [Learn more: identity document model](prebuilt/id-document.md)
+> [Learn more: Identity document model](prebuilt/id-document.md)
 
 ### Business card
 
@@ -487,7 +487,7 @@ This sample business card was processed by using the [Sample Labeling tool](http
 :::image type="content" source="./media/business-card-example.jpg" alt-text="Screenshot that shows a sample business card.":::
 
 > [!div class="nextstepaction"]
-> [Learn more: business card model](concept-business-card.md)
+> [Learn more: Business card model](concept-business-card.md)
 
 ### Custom
 
@@ -498,7 +498,7 @@ This sample custom model was processed by using the [Sample Labeling tool](https
 :::image type="content" source="media/overview-custom.jpg" alt-text="Screenshot that shows the Document Intelligence tool analyzing a custom form pane.":::
 
 > [!div class="nextstepaction"]
-> [Learn more: custom model](train/custom-model.md)
+> [Learn more: Custom model](train/custom-model.md)
 
 #### Composed custom model
 
@@ -509,7 +509,7 @@ This composed model pane was processed by using the [Sample Labeling tool](https
 :::image type="content" source="media/custom-model-compose.png" alt-text="Screenshot that shows the Document Intelligence Studio Compose custom model pane.":::
 
 > [!div class="nextstepaction"]
-> [Learn more: custom model](train/custom-model.md)
+> [Learn more: Custom model](train/custom-model.md)
 
 ## Model data extraction
 
