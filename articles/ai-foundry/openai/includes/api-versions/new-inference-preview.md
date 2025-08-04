@@ -6393,6 +6393,7 @@ Fine-tuning job event object
 ### OpenAI.FunctionTool
 
 Defines a function in your own code the model can choose to call. 
+
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
 | description | string | A description of the function. Used by the model to determine whether or not to call the function. | No |  |
