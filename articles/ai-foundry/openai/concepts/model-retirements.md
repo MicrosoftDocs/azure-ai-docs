@@ -40,11 +40,11 @@ Azure OpenAI notifies customers via two methods:
 
 #### Azure Service Health filter configuration
 
-The service is `azure OpenAI service`. (The casing reflects the current UX experience).
+The service is `azure OpenAI service`. (The casing reflects the current UX experience.)
 
 Event types include:
 
-- `Health advisories = Upgrade, Deprecation, & Retirement Notifications.`
+- `Health advisories = Upgrade, Deprecation, & Retirement Notifications`.
 - `Service issue = Outages`. (We recommend this event type only if you want to be notified of outages.)
 
 If you want to receive SMS text-based alerts versus just emails, select **Create action group**. Then, under **Notification type**, select **Email/SMS message/Push/Voice** and configure your phone number.
