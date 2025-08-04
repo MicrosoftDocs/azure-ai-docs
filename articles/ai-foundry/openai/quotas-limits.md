@@ -29,7 +29,7 @@ For example, if the `gpt-4.1` Global Standard model is listed with a quota of *5
 
 ## Quotas and limits reference
 
-The following sections provide you with a quick guide to the default quotas and limits that apply to Azure OpenAI:
+The following section provides you with a quick guide to the default quotas and limits that apply to Azure OpenAI:
 
 | Limit name | Limit value |
 |--|--|
@@ -234,7 +234,7 @@ The rate limits for each `gpt-4o` audio model deployment are 100,000 tokens per 
 
 ## Usage tiers
 
-Global Standard deployments use the global infrastructure of Azure. They dynamically route customer traffic to the data center with the best availability for the customer’s inference requests. Similarly, Data Zone Standard deployments allow you to use the global infrastructure of Azure to dynamically route traffic to the data center within the Microsoft-defined data zone with the best availability for each request. This practice enables more consistent latency for customers with low to medium levels of traffic. Customers with high sustained levels of usage might see greater variability in response latency.
+Global Standard deployments use the global infrastructure of Azure. They dynamically route customer traffic to the data center with the best availability for the customer's inference requests. Similarly, Data Zone Standard deployments allow you to use the global infrastructure of Azure to dynamically route traffic to the data center within the Microsoft-defined data zone with the best availability for each request. This practice enables more consistent latency for customers with low to medium levels of traffic. Customers with high sustained levels of usage might see greater variability in response latency.
 
 The usage limit determines the level of usage above which customers might see larger variability in response latency. A customer's usage is defined per model. It's the total number of tokens consumed across all deployments in all subscriptions in all regions for a given tenant.
 
@@ -269,9 +269,9 @@ If your Azure subscription is linked to certain [offer types](https://azure.micr
 | `CSP Integration Sandbox` <sup>*</sup> | All models: 0 |
 | `Lightweight trial`<br>`Free trials`<br>`Azure Pass`  | All models: 0 |
 
-<sup>*</sup>This limit applies to only a small number of legacy CSP sandbox subscriptions. Use the following query to determine what `quotaId` is associated with your subscription.
+<sup>*</sup>This limit applies to only a small number of legacy CSP sandbox subscriptions. Use the following query to determine what `quotaId` value is associated with your subscription.
 
-To determine the offer type associated with your subscription, you can check your `quotaId`. If your `quotaId` isn't listed in this table, your subscription qualifies for default quota.
+To determine the offer type associated with your subscription, you can check your `quotaId` value. If your `quotaId` value isn't listed in this table, your subscription qualifies for the default quota.
 
 # [REST](#tab/REST)
 
@@ -339,9 +339,9 @@ To minimize issues related to rate limits, it's a good idea to use the following
 
 ## Request quota increases
 
-Quota increase requests can be submitted via the [quota increase request form](https://aka.ms/oai/stuquotarequest). Due to high demand, quota increase requests are being accepted and filled in the order they're received. Priority is given to customers who generate traffic that consumes the existing quota allocation. Your request might be denied if this condition isn't met.
+Quota increase requests can be submitted via the [quota increase request form](https://aka.ms/oai/stuquotarequest). Due to high demand, quota increase requests are accepted and filled in the order they're received. Priority is given to customers who generate traffic that consumes the existing quota allocation. Your request might be denied if this condition isn't met.
 
-For other rate limits, [submit a service request](../../ai-services/cognitive-services-support-options.md?context=/azure/ai-foundry/openai/context/context).
+You can [submit a service request](../../ai-services/cognitive-services-support-options.md?context=/azure/ai-foundry/openai/context/context) for other rate limits.
 
 ## Regional quota capacity limits
 
