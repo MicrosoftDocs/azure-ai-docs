@@ -10,34 +10,52 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 06/11/2025
+ms.date: 08/04/2025
 ---
 
 # Generate embeddings for search queries and documents
 
-Azure AI Search doesn't host embedding models, so one of your challenges is creating vectors for query inputs and outputs. You can use any supported embedding model, but this article assumes Azure OpenAI embedding models for illustration.
+Azure AI Search doesn't host embedding models, so you're responsible for creating vectors for query inputs and outputs. Choose one of the following approaches:
 
-We recommend [integrated vectorization](vector-search-integrated-vectorization.md), which provides built-in data chunking and vectorization. Integrated vectorization takes a dependency on indexers, skillsets, and built-in or custom skills that point to a model that executes externally from Azure AI Search. Several built-in skills point to embedding models in Azure AI Foundry, which makes integrated vectorization your easiest solution for solving the embedding challenge.
+| Approach | Description |
+| --- | --- |
+| [Integrated vectorization](vector-search-integrated-vectorization.md) | Use built-in data chunking and vectorization in Azure AI Search. This approach takes a dependency on indexers, skillsets, and built-in or custom skills that point to external embedding models, such as those in Azure AI Foundry. |
+| Manual vectorization | Manage data chunking and vectorization yourself. For indexing, you [push prevectorized documents](vector-search-how-to-create-index.md#load-vector-data-for-indexing) into vector fields in a search index. For queries, you provide precomputed vectors to the search engine. For demos of this approach, see the [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples/tree/main) GitHub repository. |
 
-If you want to handle data chunking and vectorization yourself, we provide demos in the [sample repository](https://github.com/Azure/azure-search-vector-samples/tree/main) that show you how to integrate with other community solutions.
+We recommend integrated vectorization for most scenarios and use it for illustration in this article. Although you can use any supported embedding model, this article assumes Azure OpenAI embedding models.
 
 ## How embedding models are used in vector queries
 
-+ Query inputs are either vectors, or text or images that are converted to vectors during query processing. The built-in solution in Azure AI Search is to use a vectorizer. 
+Embedding models are used to generate vectors for both [query inputs](#query-inputs) and [query outputs](#query-outputs).
 
-  Alternatively, you can also handle the conversion yourself by passing the query input to an embedding model of your choice. To avoid [rate limiting](/azure/ai-services/openai/quotas-limits), you can implement retry logic in your workload. For the Python demo, we used [tenacity](https://pypi.org/project/tenacity/).
+### Query inputs
 
-+ Query outputs are any matching documents found in a search index. Your search index must have been previously loaded with documents having one or more vector fields with embeddings. Whatever embedding model you used for indexing, use that same model for queries.
+Query inputs are one of the following:
+
++ Text or images that are converted to vectors during query processing. With integrated vectorization, a [vectorizer](vector-search-how-to-configure-vectorizer.md) handles this task.
+
++ Precomputed vectors. You can generate these vectors by passing the query input to an embedding model of your choice. To avoid [rate limiting](/azure/ai-services/openai/quotas-limits), implement retry logic in your workload. We use [tenacity](https://pypi.org/project/tenacity/) in our Python demo.
+
+### Query outputs
+
+Query outputs are the matching documents retrieved from a search index based on the query input.
+
+Your search index must have been previously loaded with documents containing one or more vector fields with embeddings. These embeddings can be generated using either integrated or manual vectorization. To ensure accurate results, use the same embedding model for both indexing and querying.
 
 ## Create resources in the same region
 
 Although integrated vectorization with Azure OpenAI embedding models doesn't require resources to be in the same region, using the same region can improve performance and reduce latency.
 
-1. [Check regions for a text embedding model](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability).
+To use the same region for your resources:
 
-1. [Find the same region for Azure AI Search](search-region-support.md). 
+1. Check the [regional availability of text embedding models](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability).
 
-1. To support hybrid queries that include [semantic ranking](semantic-how-to-query-request.md), or if you want to try machine learning model integration using a [custom skill](cognitive-search-custom-skill-interface.md) in an [AI enrichment pipeline](cognitive-search-concept-intro.md), select an Azure AI Search region that provides those features.
+1. Check the [regional availability of Azure AI Search](search-region-support.md).
+
+1. Create an Azure OpenAI resource and Azure AI Search service in the same region.
+
+> [!NOTE]
+> To use [semantic ranking](semantic-how-to-query-request.md) for hybrid queries or machine learning models for [AI enrichment](cognitive-search-concept-intro.md), choose an Azure AI Search region that provides those features.
 
 ## Generate an embedding for an improvised query
 
@@ -85,7 +103,7 @@ Your model must already be deployed and you must have permission to access it. F
 
 + **Choose the right embedding model:** Select an appropriate model for your specific use case, such as word embeddings for text-based searches or image embeddings for visual searches. Consider using pretrained models like **text-embedding-ada-002** from OpenAI or **Image Retrieval** REST API from [Azure AI Computer Vision](/azure/ai-services/computer-vision/how-to/image-retrieval).
 
-+ **Normalize Vector lengths**: Ensure that the vector lengths are normalized before storing them in the search index to improve the accuracy and performance of similarity search. Most pretrained models already are normalized but not all. 
++ **Normalize Vector lengths**: Ensure that the vector lengths are normalized before storing them in the search index to improve the accuracy and performance of similarity search. Most pretrained models already are normalized but not all.
 
 + **Fine-tune the model**: If needed, fine-tune the selected model on your domain-specific data to improve its performance and relevance to your search application.
 
