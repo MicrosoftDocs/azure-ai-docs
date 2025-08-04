@@ -72,7 +72,7 @@ The top section of the Language playground is where you can view and select the 
 
 After project creation, the next steps are [schema construction](../../how-to/build-schema.md) and [utterance labeling](../../how-to/tag-utterances.md). For this quickstart, these steps are preconfigured in the sample project. Therefore, you can go ahead and initiate a training job by selecting **Train model** from the **Getting Started** menu to generate your model.
 
-    :::image type="content" source="../../media/quickstarts/getting-started-menu.png" alt-text="Screenshot of the getting started with fine-tuning menu in the Azure AI Foundry.":::
+  :::image type="content" source="../../media/quickstarts/getting-started-menu.png" alt-text="Screenshot of the getting started with fine-tuning menu in the Azure AI Foundry.":::
 
 1. Select the **➕Train model button** from the **Train your model** window.
 
