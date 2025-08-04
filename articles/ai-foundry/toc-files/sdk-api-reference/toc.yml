@@ -29,10 +29,10 @@ items:
   href: /rest/api/azureml
 - name: Azure AI services SDKs
   displayName: client library libraries development kit
-  href: ../../../../ai-services/reference/sdk-package-resources.md?context=/azure/ai-foundry/context/context
+  href: ../../../ai-services/reference/sdk-package-resources.md?context=/azure/ai-foundry/context/context
 - name: Azure AI services REST APIs
   displayName: swagger http
-  href: ../../../../ai-services/reference/rest-api-resources.md?context=/azure/ai-foundry/context/context
+  href: ../../../ai-services/reference/rest-api-resources.md?context=/azure/ai-foundry/context/context
 - name: Azure AI Model Inference API
   items:
   - name: What's the Model Inference API?

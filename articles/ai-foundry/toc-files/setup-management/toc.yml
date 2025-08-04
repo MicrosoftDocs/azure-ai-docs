@@ -6,13 +6,13 @@ items:
 - name: Manage AI Foundry resources
   items:
   - name: Create your first resource
-    href: ../../../../ai-services/multi-service-resource.md?context=/azure/ai-foundry/context/context
+    href: ../../../ai-services/multi-service-resource.md?context=/azure/ai-foundry/context/context
   - name: Create using Bicep template
     href: ../../how-to/create-resource-template.md
   - name: Create using Terraform template
     href: ../../how-to/create-resource-terraform.md
   - name: Recover or purge deleted resources
-    href: ../../../../ai-services/recover-purge-resources.md?context=/azure/ai-foundry/context/context
+    href: ../../../ai-services/recover-purge-resources.md?context=/azure/ai-foundry/context/context
 - name: Manage AI Hub resources
   items:
   - name: Hubs overview
@@ -67,7 +67,7 @@ items:
   - name: Manage quotas and limits for Foundry Models
     href: ../../foundry-models/quotas-limits.md
   - name: Azure OpenAI quotas and limits
-    href: ../../../../ai-services/openai/quotas-limits.md?context=/azure/ai-foundry/context/context
+    href: ../../../ai-services/openai/quotas-limits.md?context=/azure/ai-foundry/context/context
   - name: What is the Provisioned Throughput offering (PTU)?
     href: ../../openai/concepts/provisioned-throughput.md?context=/azure/ai-foundry/context/context
     displayName: PTU, provisioned, provisioned throughput units

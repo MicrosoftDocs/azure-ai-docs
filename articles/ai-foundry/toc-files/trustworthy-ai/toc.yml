@@ -18,8 +18,8 @@ items:
    - name: Use blocklists
      href: ../../foundry-models/how-to/use-blocklists.md
 - name: Transparency notes for Azure AI Services
-  href: ../../../../ai-services/responsible-use-of-ai-overview.md?context=/azure/ai-foundry/context/context
+  href: ../../../ai-services/responsible-use-of-ai-overview.md?context=/azure/ai-foundry/context/context
 - name: Limited Access features
-  href: ../../../../ai-services/cognitive-services-limited-access.md?context=/azure/ai-foundry/context/context
+  href: ../../../ai-services/cognitive-services-limited-access.md?context=/azure/ai-foundry/context/context
 - name: System message templates
   href: ../../openai/concepts/system-message.md?context=/azure/ai-foundry/context/context

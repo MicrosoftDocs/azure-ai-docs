@@ -4,7 +4,7 @@ items:
   - name: Role-based access control
     href: ../../concepts/rbac-azure-ai-foundry.md
   - name: Rotate API access keys
-    href: ../../../../ai-services/rotate-keys.md?context=/azure/ai-foundry/context/context
+    href: ../../../ai-services/rotate-keys.md?context=/azure/ai-foundry/context/context
   - name: Configure key-less authentication
     href: ../../foundry-models/how-to/configure-entra-id.md
 - name: Network security
@@ -40,7 +40,7 @@ items:
     href: ../../foundry-models/how-to/configure-deployment-policies.md
   - name: Built-in policy definitions
     displayName: samples, policies, definitions, Azure Policy
-    href: ../../../../ai-services/policy-reference.md?context=/azure/ai-foundry/context/context
+    href: ../../../ai-services/policy-reference.md?context=/azure/ai-foundry/context/context
 - name: Vulnerability management
   href: ../../concepts/vulnerability-management.md
 - name: Disaster recovery
