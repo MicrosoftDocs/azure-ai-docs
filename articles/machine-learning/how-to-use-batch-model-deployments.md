@@ -10,6 +10,7 @@ author: s-polly
 ms.author: scottpolly
 ms.reviewer: cacrest
 ms.date: 08/04/2025
+ai-usage: ai-assisted
 ms.custom:
   - how-to
   - devplatv2
@@ -621,6 +622,9 @@ Once you've identified the data store you want to use, configure the output as f
 [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/mnist-classifier/mnist-batch.ipynb?name=start_batch_scoring_job_set_output)]
 
 __Example `params_override` usage__:
+
+The `params_override` parameter values correspond to deployment configuration settings that can be temporarily modified for individual jobs. These parameters come from your deployment's YAML schema settings, datastore configurations (like output paths), and runtime variables you define in your code.
+
 ```python
 # Override multiple settings for this specific job
 job = ml_client.batch_endpoints.invoke(
