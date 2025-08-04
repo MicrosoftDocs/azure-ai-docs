@@ -41,9 +41,11 @@ Azure AI Foundry Agent Service supports the following Azure OpenAI models in the
 | eastus           | ✅                         | ✅                         | ✅                         | ✅                              | ✅                  | ✅                              |
 | eastus2          | ✅                         | ✅                         | ✅                         | ✅                              | ✅                  | ✅                              |
 | francecentral    | ✅                         | ✅                         | ✅                         | ✅                              | ✅                  | ✅                              |
+| germanywestcentral| ✅                        | ✅                         | ✅                         | ✅                              | ✅                  | ✅                              |
 | italynorth       |  -                          |  -                         | ✅                         | ✅                              |  -                   | -                               |
 | japaneast        | ✅                         | ✅                         | ✅                         | ✅                              | ✅                  | ✅                              |
 | norwayeast       | ✅                         | ✅                         | ✅                         | ✅                              | ✅                  | ✅                              |
+| southcentralus   | ✅                         | ✅                         | ✅                         | ✅                              | ✅                  | ✅                              |
 | southindia       | ✅                         | ✅                         | ✅                         | ✅                              | ✅                  | ✅                              |
 | swedencentral    | ✅                         | ✅                         | ✅                         | ✅                              | ✅                  | ✅                              |
 | switzerlandnorth | ✅                         | ✅                         | ✅                         | ✅                              | ✅                  | ✅                              |
@@ -61,8 +63,10 @@ Azure AI Foundry Agent Service supports the following Azure OpenAI models in the
 | eastus             | ✅                       | ✅                       | ✅                       | ✅                            |
 | eastus2            | ✅                       | ✅                       | ✅                       | ✅                            |
 | francecentral      | ✅                       | ✅                       | ✅                       | ✅                            |
+| germanywestcentral|  ✅                       | ✅                       | ✅                       | ✅                            |
 | italynorth         | ✅                       | ✅                       | ✅                       | ✅                            |
 | japaneast          | ✅                       | ✅                       | ✅                       | ✅                            |
+| southcentralus     | ✅                       | ✅                       | ✅                       | ✅                            |
 | southeastasia      | ✅                       | ✅                       | ✅                       | ✅                            |
 | southindia         | ✅                       | ✅                       | ✅                       | ✅                            |
 | swedencentral      | ✅                       | ✅                       | ✅                       | ✅                            |
@@ -82,6 +86,7 @@ Azure AI Foundry Agent Service supports the following Azure OpenAI models in the
 | francecentral    | -                            | -                  | -                  | ✅                  | -                       | ✅           | -                       | ✅               | ✅                  | ✅                  |
 | japaneast        | -                            | -                  | -                  | ✅                  | -                       | -           | -                       | -               | -                  | ✅                  |
 | norwayeast       | ✅                            | -                  | -                  | ✅                  | -                       | -           | -                       | -               | -                  | -                  |  
+| southcentralus   | ✅                           | ✅                | ✅                 | ✅                  | ✅                     | ✅          | ✅                      | -             | -                  | ✅                |
 | southindia       | -                            | -                  | -                  | ✅                  | -                       | -           | -                       | -               | ✅                  | ✅                  |  
 | swedencentral    | -                            | ✅                  | ✅                  | ✅                  | ✅                       | ✅           | ✅                       | ✅               | ✅                  | ✅                  |  
 | switzerlandnorth | -                            | -                  | -                  | ✅                  | -                       | ✅           | -                       | ✅               | -                  | ✅                  |  
@@ -100,7 +105,9 @@ Azure AI Foundry Agent Service supports the following Azure OpenAI models in the
 | eastus           | ✅                  | ✅                  | ✅                  | ✅                       | ✅           | ✅                       | ✅               | ✅                  | ✅                  |
 | eastus2          | ✅                  | ✅                  | ✅                  | ✅                       | ✅           | ✅                       | ✅               | ✅                  | ✅                  |
 | francecentral    | ✅                  | ✅                  | -                  | ✅                       | ✅           | -                       | ✅               | -                  | ✅                  |
+| germanywestcentral|  ✅                | ✅                  | ✅                  |  -                      |✅             | -                      | ✅                | ✅                |              |
 | japaneast        | ✅                  | ✅                  | ✅                  | ✅                       | -           | ✅                       | -               | -                  | ✅                  |
+| southcentralus   | -                   | ✅                  | ✅                  | ✅                       | ✅          | ✅                      | ✅                 | ✅                | ✅                  | 
 | southeastasia    | -                   | ✅                  | ✅                  | ✅                       | -           | -                       | -               | -                  | -                  |                    
 | southindia       | ✅                  | ✅                  | ✅                  | ✅                       | ✅           | -                       | ✅               | ✅                  | ✅                  |  
 | swedencentral    | ✅                  | ✅                  | ✅                  | ✅                       | ✅           | ✅                       | ✅               | ✅                  | ✅                  |  
