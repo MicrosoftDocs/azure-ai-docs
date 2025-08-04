@@ -467,7 +467,7 @@
           },
           {
             "source_path_from_root": "/articles/ai-foundry/foundry-models/supported-languages-openai.md",
-            "redirect_url": "/azure/ai-services/openai/supported-languages",
+            "redirect_url": "/azure/ai-foundry/openai/supported-languages",
             "redirect_document_id": false
           },
           {
@@ -945,8 +945,8 @@
         },
         {
             "source_path_from_root": "/articles/ai-studio/quickstarts/assistants.md",
-            "redirect_url": "/azure/ai-services/openai/assistants-quickstart",
-            "redirect_document_id": true
+            "redirect_url": "/azure/ai-foundry/openai/how-to/assistant",
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/ai-studio/how-to/prompt-flow-tools/vector-db-lookup-tool.md",
@@ -1110,7 +1110,7 @@
           },
           {
             "source_path_from_root": "/articles/ai-studio/quickstarts/multimodal-vision.md",
-            "redirect_url": "/azure/ai-services/openai/gpt-v-quickstart",
+            "redirect_url": "/azure/ai-foundry/openai/gpt-v-quickstart",
             "redirect_document_id": false
           },
           {

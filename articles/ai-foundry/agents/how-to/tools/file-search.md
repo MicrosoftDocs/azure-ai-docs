@@ -6,10 +6,10 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 07/17/2025
+ms.date: 08/01/2025
 author: aahill
 ms.author: aahi
-ms.custom: azure-ai-agents
+ms.custom: azure-ai-agents, references_regions
 ---
 
 # Azure AI Foundry Agent Service file search tool
@@ -29,6 +29,11 @@ File search augments agents with knowledge from outside its model, such as propr
 - Azure Blob Storage
 
 ### Usage support
+
+> [!NOTE]
+> The file search tool is currently unavailable in the following regions:
+>    * Italy north
+>    * Brazil south
 
 |Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
@@ -74,7 +79,7 @@ Vector store objects give the file search tool the ability to search your files.
 Similarly, these files can be removed from a vector store by either:
 
 * Deleting the vector store file object or,
-* By deleting the underlying file object, which removes the file it from all vector_store and code_interpreter configurations across all agents and threads in your organization
+* By deleting the underlying file object, which removes the file from all vector_store and code_interpreter configurations across all agents and threads in your organization
 
 The maximum file size is 512 MB. Each file should contain no more than 5,000,000 tokens per file (computed automatically when you attach a file).
 
