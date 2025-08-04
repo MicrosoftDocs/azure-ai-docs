@@ -7,7 +7,7 @@ ms.author: mopeakande
 manager: scottpolly
 reviewer: santiagxf
 ms.reviewer: fasantia
-ms.date: 07/11/2025
+ms.date: 08/04/2025
 ms.service: azure-ai-model-inference
 ms.topic: how-to
 ms.custom:
@@ -60,15 +60,15 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 ### Black Forest Labs models sold directly by Azure
 
-The Black Forest Labs collection of image generation models include FLUX.1 Kontext (pro) for in-context generation and editing and FLUX1.1 (pro) for text-to-image generation. 
+The Black Forest Labs collection of image generation models include FLUX.1 Kontext [pro] for in-context generation and editing and FLUX1.1 [pro] for text-to-image generation. 
 
 | Model  | Type | Capabilities | Project type |
 | ------ | ---- | ------------ | ------------ |
-| FLUX.1 Kontext [pro] | Image generation | - **Input:** text and image (5000 tokens and 1 image)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats**: Image (PNG and JPG) | Foundry, Hub-based |
-| FLUX1.1 [pro] | Image generation | - **Input:** text (5000 tokens)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) | Hub-based |
+| [FLUX.1-Kontext-pro](https://ai.azure.com/explore/models/FLUX.1-Kontext-pro/version/1/registry/azureml-blackforestlabs) | Image generation | - **Input:** text and image (5000 tokens and 1 image)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats**: Image (PNG and JPG) | Foundry, Hub-based |
+| [FLUX-1.1-pro](https://ai.azure.com/explore/models/FLUX-1.1-pro/version/1/registry/azureml-blackforestlabs) | Image generation | - **Input:** text (5000 tokens)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) | Hub-based |
 
 
-See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=blackforestlabs).
+See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Black+Forest+Labs).
 
 ### DeepSeek models sold directly by Azure
 
