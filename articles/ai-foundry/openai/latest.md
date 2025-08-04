@@ -74,7 +74,8 @@ Create the structure of an evaluation that can be used to test a model's perform
 
 An evaluation is a set of testing criteria and a datasource. After creating an evaluation, you can run it on different models and model parameters. We support several types of graders and datasources.
 
-NOTE: This Azure OpenAI API is in preview and subject to change.
+> [!NOTE]
+> This Azure OpenAI API is in preview and subject to change.
 
 ### URI Parameters
 
@@ -132,7 +133,9 @@ GET {endpoint}/openai/v1/evals/{eval_id}?api-version=v1
 Retrieve an evaluation by its ID.
 Retrieves an evaluation by its ID.
 
-NOTE: This Azure OpenAI API is in preview and subject to change.
+> [!NOTE]
+> This Azure OpenAI API is in preview and subject to change.
+
 ### URI Parameters
 
 | Name | In | Required | Type | Description |
@@ -178,7 +181,9 @@ POST {endpoint}/openai/v1/evals/{eval_id}?api-version=v1
 
 Update select, mutable properties of a specified evaluation.
 
-NOTE: This Azure OpenAI API is in preview and subject to change.
+> [!NOTE]
+> This Azure OpenAI API is in preview and subject to change.
+
 ### URI Parameters
 
 | Name | In | Required | Type | Description |
@@ -232,7 +237,9 @@ DELETE {endpoint}/openai/v1/evals/{eval_id}?api-version=v1
 
 Delete a specified evaluation.
 
-NOTE: This Azure OpenAI API is in preview and subject to change.
+> [!NOTE]
+> This Azure OpenAI API is in preview and subject to change.
+
 ### URI Parameters
 
 | Name | In | Required | Type | Description |
@@ -278,7 +285,9 @@ GET {endpoint}/openai/v1/evals/{eval_id}/runs?api-version=v1
 
 Retrieve a list of runs for a specified evaluation.
 
-NOTE: This Azure OpenAI API is in preview and subject to change.
+> [!NOTE]
+> This Azure OpenAI API is in preview and subject to change.
+
 ### URI Parameters
 
 | Name | In | Required | Type | Description |
@@ -328,7 +337,9 @@ POST {endpoint}/openai/v1/evals/{eval_id}/runs?api-version=v1
 
 Create a new evaluation run, beginning the grading process.
 
-NOTE: This Azure OpenAI API is in preview and subject to change.
+> [!NOTE]
+> This Azure OpenAI API is in preview and subject to change.
+
 ### URI Parameters
 
 | Name | In | Required | Type | Description |
@@ -384,7 +395,9 @@ GET {endpoint}/openai/v1/evals/{eval_id}/runs/{run_id}?api-version=v1
 
 Retrieve a specific evaluation run by its ID.
 
-NOTE: This Azure OpenAI API is in preview and subject to change.
+> [!NOTE]
+> This Azure OpenAI API is in preview and subject to change.
+
 ### URI Parameters
 
 | Name | In | Required | Type | Description |
@@ -431,7 +444,9 @@ POST {endpoint}/openai/v1/evals/{eval_id}/runs/{run_id}?api-version=v1
 
 Cancel a specific evaluation run by its ID.
 
-NOTE: This Azure OpenAI API is in preview and subject to change.
+> [!NOTE]
+> This Azure OpenAI API is in preview and subject to change.
+
 ### URI Parameters
 
 | Name | In | Required | Type | Description |
@@ -478,7 +493,9 @@ DELETE {endpoint}/openai/v1/evals/{eval_id}/runs/{run_id}?api-version=v1
 
 Delete a specific evaluation run by its ID.
 
-NOTE: This Azure OpenAI API is in preview and subject to change.
+> [!NOTE]
+> This Azure OpenAI API is in preview and subject to change.
+
 ### URI Parameters
 
 | Name | In | Required | Type | Description |
@@ -525,7 +542,9 @@ GET {endpoint}/openai/v1/evals/{eval_id}/runs/{run_id}/output_items?api-version=
 
 Get a list of output items for a specified evaluation run.
 
-NOTE: This Azure OpenAI API is in preview and subject to change.
+> [!NOTE]
+> This Azure OpenAI API is in preview and subject to change.
+
 ### URI Parameters
 
 | Name | In | Required | Type | Description |
@@ -576,7 +595,9 @@ GET {endpoint}/openai/v1/evals/{eval_id}/runs/{run_id}/output_items/{output_item
 
 Retrieve a specific output item from an evaluation run by its ID.
 
-NOTE: This Azure OpenAI API is in preview and subject to change.
+> [!NOTE]
+> This Azure OpenAI API is in preview and subject to change.
+
 ### URI Parameters
 
 | Name | In | Required | Type | Description |
@@ -2935,7 +2956,8 @@ A tool that can be used to generate a response.
 
 ### OpenAI.WebSearchPreviewTool
 
-Note: web_search is not yet available via Azure OpenAI.
+> [!NOTE]
+> web_search is not yet available via Azure OpenAI.
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
