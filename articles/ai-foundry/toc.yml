@@ -894,12 +894,17 @@ items:
       href: how-to/disable-local-auth.md
   - name: Azure policies
     items:
-    - name: Audit and manage hubs using Azure Policy
+    - name: Audit and manage hubs
       href: how-to/azure-policy.md
-    - name: Built-in policy to allow specific models
+      displayName: Azure Policy
+    - name: Built-in policies for model deployment
       href: how-to/built-in-policy-model-deployment.md
-    - name: Custom policy to allow specific models
+      displayName: Azure Policy
+    - name: Custom policies for model deployment
       href: foundry-models/how-to/configure-deployment-policies.md
+    - name: Built-in policy definitions
+      displayName: samples, policies, definitions, Azure Policy
+      href: ../ai-services/policy-reference.md?context=/azure/ai-foundry/context/context
   - name: Vulnerability management
     href: concepts/vulnerability-management.md
   - name: Disaster recovery
@@ -1078,7 +1083,5 @@ items:
     href: https://azure.microsoft.com/support/legal/sla/cognitive-services/v1_1/
   - name: Azure Government
     href: /azure/azure-government/compare-azure-government-global-azure
-  - name: Azure Policy built-ins
-    displayName: samples, policies, definitions
-    href: ../ai-services/policy-reference.md?context=/azure/ai-foundry/context/context
+
 
