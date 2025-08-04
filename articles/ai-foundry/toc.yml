@@ -896,11 +896,11 @@ items:
     items:
     - name: Audit and manage hubs using Azure Policy
       href: how-to/azure-policy.md
-    - name: Built-in policy to allow specific models
+    - name: Control model deployment with built-in policies
       href: how-to/built-in-policy-model-deployment.md
-    - name: Custom policy to allow specific models
+    - name: Control model deployment with custom policies
       href: foundry-models/how-to/configure-deployment-policies.md
-    - name: Azure Policy built-ins
+    - name: Built-in policy definitions
       displayName: samples, policies, definitions
       href: ../ai-services/policy-reference.md?context=/azure/ai-foundry/context/context
   - name: Vulnerability management
