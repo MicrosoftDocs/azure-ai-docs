@@ -18,7 +18,9 @@ The following diagram displays the process for fine-tuning the text to speech ou
 
 :::image type="content" source="../../../media/audio-content-creation/audio-content-creation-diagram.jpg" alt-text="Diagram of the sequence of steps for fine-tuning text to speech outputs." lightbox="../../../media/audio-content-creation/audio-content-creation-diagram.jpg":::
 
-To use the Audio content creation tool, follow these steps:
+### Access the tool
+
+To access the audio content creation tool in Azure AI Foundry, follow these steps:
 
 1. Go to your project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). 
 1. Select **Playgrounds** from the left pane.
@@ -26,6 +28,10 @@ To use the Audio content creation tool, follow these steps:
 1. Select **Text to speech** > **Audio content creation**. You might need to scroll to find the tile. 
 
    :::image type="content" source="../../../media/voice-live/foundry-portal/capabilities-by-scenario.png" alt-text="Screenshot of filtering Speech service capabilities by scenario." lightbox="../../../media/voice-live/foundry-portal/capabilities-by-scenario.png":::
+
+### Workflow overview
+
+Once you have access to the tool, follow this general workflow:
 
 1. [Create an audio tuning file](#create-an-audio-tuning-file) by using plain text or SSML scripts. Enter or upload your content into audio content creation.
 1. Choose the voice and the language for your script content. Audio content creation includes all of the [standard text to speech voices](../../../language-support.md?tabs=tts). You can use standard voices or a custom voice.
