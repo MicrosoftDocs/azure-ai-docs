@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 7/31/2025
+ms.date: 8/5/2025
 ms.author: eur
 zone_pivot_groups: foundry-speech-studio
 ---

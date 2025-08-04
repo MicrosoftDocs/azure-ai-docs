@@ -3,7 +3,7 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 7/31/2025
+ms.date: 8/5/2025
 ---
 
 ## Prerequisites
