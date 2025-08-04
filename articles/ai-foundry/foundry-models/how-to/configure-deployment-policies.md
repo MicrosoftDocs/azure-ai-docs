@@ -2,15 +2,14 @@
 title: Control model deployment with custom policies
 titleSuffix: Azure AI Foundry
 description: "Learn how to use custom Azure Policies to control Azure AI Foundry and Azure OpenAI in Foundry Models deployment with Azure AI Foundry."
-manager: scottpolly
+manager: mcleans
 ms.service: azure-ai-foundry
 ms.topic: how-to #Don't change
-ms.date: 05/05/2025
+ms.date: 07/31/2025
 ms.author: jburchel 
 author: jonburchel 
-reviewer: santiagxf
-ms.reviewer: fasantia
-
+ms.reviewer: aashishb
+reviewer: aashishb_microsoft
 ---
 
 # Control model deployment with custom policies

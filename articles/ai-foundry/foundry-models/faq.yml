@@ -12,7 +12,7 @@ metadata:
   author: santiagxf
 title: Foundry Models frequently asked questions
 summary: |
-  If you can't find answers to your questions in this document, and still need help check the [Azure AI Foundry services (formerly known Azure AI Services) support options guide](../../ai-services/cognitive-services-support-options.md?context=/azure/ai-services/openai/context/context).
+  If you can't find answers to your questions in this document, and still need help check the [Azure AI Foundry services (formerly known Azure AI Services) support options guide](../../ai-services/cognitive-services-support-options.md?context=/azure/ai-foundry/openai/context/context).
 sections:
   - name: General
     questions:

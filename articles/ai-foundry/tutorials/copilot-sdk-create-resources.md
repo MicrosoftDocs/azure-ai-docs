@@ -7,6 +7,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
   - update-code
+  - hub-only
 ms.topic: tutorial
 ms.date: 06/27/2025
 ms.reviewer: lebaro

@@ -4,7 +4,7 @@ description: Learn how to use Azure AI Foundry deployment types | Global-Standar
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 04/30/2025
+ms.date: 7/31/2025
 ms.service: azure-ai-openai
 ms.topic: how-to
 ms.custom:
@@ -36,7 +36,7 @@ Data zone deployments leverage Azure's global infrastructure to dynamically rout
 
 If the Azure AI Foundry resource used in your Data Zone deployment is located in the United States, the data will be processed within the United States. If the Azure AI Foundry resource used in your Data Zone deployment is located in a European Union Member Nation, the data will be processed within the European Union Member Nation geographies. For all Azure AI Foundry deployment types, any data stored at rest will continue to remain in the geography of the Azure AI Foundry resource. Azure data processing and compliance commitments remain applicable.
 
-For any [deployment type](/azure/ai-services/openai/how-to/deployment-types) labeled 'Global,' prompts and responses may be processed in any geography where the relevant Azure AI Foundry model is deployed (learn more about [region availability of models](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For any deployment type labeled as 'DataZone,' prompts and responses may be processed in any geography within the specified data zone, as defined by Microsoft. If you create a DataZone deployment in an Azure AI Foundry resource located in the United States, prompts and responses may be processed anywhere within the United States. If you create a DataZone deployment in an Azure AI Foundry resource located in a European Union Member Nation, prompts and responses may be processed in that or any other European Union Member Nation. For both Global and DataZone deployment types, any data stored at rest, such as uploaded data, is stored in the customer-designated geography. Only the location of processing is affected when a customer uses a Global deployment type or DataZone deployment type in Azure AI Foundry resource; Azure data processing and compliance commitments remain applicable.
+For any [deployment type](/azure/ai-foundry/openai/how-to/deployment-types) labeled 'Global,' prompts and responses may be processed in any geography where the relevant Azure AI Foundry model is deployed (learn more about [region availability of models](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability)). For any deployment type labeled as 'DataZone,' prompts and responses may be processed in any geography within the specified data zone, as defined by Microsoft. If you create a DataZone deployment in an Azure AI Foundry resource located in the United States, prompts and responses may be processed anywhere within the United States. If you create a DataZone deployment in an Azure AI Foundry resource located in a European Union Member Nation, prompts and responses may be processed in that or any other European Union Member Nation. For both Global and DataZone deployment types, any data stored at rest, such as uploaded data, is stored in the customer-designated geography. Only the location of processing is affected when a customer uses a Global deployment type or DataZone deployment type in Azure AI Foundry resource; Azure data processing and compliance commitments remain applicable.
 
 > [!NOTE]
 > With Global standard and Data zone standard deployment types if the primary region experiences an interruption in service all traffic that is initially routed to this region will be impacted. To learn more, consult the [business continuity and disaster recovery guide](../how-to/business-continuity-disaster-recovery.md).
@@ -95,7 +95,7 @@ Key use cases include:
 
 Data zone standard deployments are available in the same Azure AI Foundry resource as all other Azure AI Foundry deployment types but allow you to leverage Azure global infrastructure to dynamically route traffic to the data center within the Microsoft defined data zone with the best availability for each request. Data zone standard provides higher default quotas than our Azure geography-based deployment types. 
 
-Customers with high consistent volume may experience greater latency variability. The threshold is set per model. See the [Quotas and limits](/azure/ai-services/openai/quotas-limits#usage-tiers) page to learn more. For workloads that require low latency variance at large volume, we recommend leveraging the provisioned deployment offerings. 
+Customers with high consistent volume may experience greater latency variability. The threshold is set per model. See the [Quotas and limits](/azure/ai-foundry/openai/quotas-limits#usage-tiers) page to learn more. For workloads that require low latency variance at large volume, we recommend leveraging the provisioned deployment offerings. 
 
 ## Data zone provisioned
 

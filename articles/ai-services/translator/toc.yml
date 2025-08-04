@@ -231,7 +231,7 @@ items:
   - name: Azure AI Foundry for beginners
     displayName: use case,usage,train,training,bleu,tuning,tune
     href: custom-translator/azure-ai-foundry/beginners-guide.md
-  - name: Custom translation FAQ
+  - name: FAQ
     href: custom-translator/azure-ai-foundry/faq.md
   - name: How-to guides
     items:

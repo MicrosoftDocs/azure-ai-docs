@@ -158,6 +158,26 @@ curl -X GET $AZURE_OPENAI_ENDPOINT/openai/fine_tuning/jobs/<YOUR-JOB-ID>?api-ver
   -H "api-key: $AZURE_OPENAI_API_KEY"
 ```
 
+## Pause and resume
+
+During the training you can view the logs and metrics and pause the job as needed. Pausing can be useful, if metrics aren't converging or if you feel model isn't learning at the right pace. Once the training job is paused, a deployable checkpoint will be created once safety evals are complete. This checkpoint available for you to deploy and use for inference or resume the job further to completion. Pause operation is only applicable for jobs which have been trained for at least one step and are in *Running* state.
+
+### Pause
+
+```bash
+curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/pause \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" 
+```
+
+### Resume
+
+```bash
+curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/resume \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" 
+```
+
 ### List fine-tuning events
 
 To examine the individual fine-tuning events that were generated during training:
