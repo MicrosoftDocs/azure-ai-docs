@@ -33,6 +33,30 @@ Use batch endpoints for model deployment when:
 
 In this article, you use a batch endpoint to deploy a machine learning model that solves the classic MNIST (Modified National Institute of Standards and Technology) digit recognition problem. Your deployed model then performs batch inferencing over large amounts of data—in this case, image files. You begin by creating a batch deployment of a model that was created using Torch. This deployment becomes the default one in the endpoint. Later, you [create a second deployment](#add-deployments-to-an-endpoint) of a mode that was created with TensorFlow (Keras), test the second deployment, and then set it as the endpoint's default deployment.
 
+## Quick reference: Inputs, outputs, and configuration options
+
+Before diving into the details, here's a quick reference to help you understand the key concepts:
+
+### Data flow overview
+- __Input data__: Files or folders in Azure Storage (blob storage, data lake, or registered datasets)
+- __Processing__: Your model processes data in configurable mini-batches
+- __Output results__: Prediction files stored in Azure blob storage (configurable location)
+
+### Key configuration options
+
+| Option | Purpose | Common values |
+|--------|---------|---------------|
+| `mini_batch_size` | Files per batch (affects memory usage) | 10-50 for large files, 100-500 for small files |
+| `instance_count` | Number of compute instances | 1-10 depending on data volume |
+| `max_concurrency_per_instance` | Parallel processes per instance | 1 for memory-intensive models, 2-4 for lightweight models |
+| `timeout` | Max time per mini-batch (seconds) | 30-300 depending on model complexity |
+| `output_action` | How to organize results | `append_row` (combine all results) or `summary_only` |
+
+### Common parameters for job invocation
+- __Azure CLI__: Use `--input`, `--output-path`, `--set` for overrides
+- __Python SDK__: Use `Input()` for data, `params_override` for settings
+- __Studio__: Use the web interface to configure inputs, outputs, and deployment settings
+
 To follow along with the code samples and files needed to run the commands in this article locally, see the __[Clone the examples repository](#clone-the-examples-repository)__ section. The code samples and files are contained in the [azureml-examples](https://github.com/azure/azureml-examples) repository.
 
 ## Prerequisites
@@ -448,6 +472,21 @@ A model deployment is a set of resources required for hosting the model that doe
     
 ## Run batch endpoints and access results
 
+### Understanding the data flow
+
+Before running your batch endpoint, it's important to understand how data flows through the system:
+
+__Inputs__: Data you want to process (score). This can be:
+- Files stored in Azure Storage (blob storage, data lake)
+- Folders containing multiple files
+- Registered datasets in Azure Machine Learning
+
+__Processing__: Your deployed model processes the input data in batches (mini-batches) and generates predictions.
+
+__Outputs__: Results from your model, stored as files in Azure Storage. By default, outputs are saved to your workspace's default blob storage, but you can specify a different location.
+
+### Invoke a batch endpoint
+
 Invoking a batch endpoint triggers a batch scoring job. The job `name` is returned from the invoke response and can be used to track the batch scoring progress. When running models for scoring in batch endpoints, you need to specify the path to the input data so that the endpoints can find the data you want to score. The following example shows how to start a new job over a sample data of the MNIST dataset stored in an Azure Storage Account.
 
 You can run and invoke a batch endpoint using Azure CLI, Azure Machine Learning SDK, or REST endpoints. For more details about these options, see [Create jobs and input data for batch endpoints](how-to-access-data-batch-endpoints-jobs.md).
@@ -571,6 +610,8 @@ Use `output-path` to configure any folder in an Azure Machine Learning registere
 
 # [Python](#tab/python)
 
+**Understanding `params_override`**: The `params_override` parameter allows you to modify deployment settings for a specific job without changing the deployment configuration permanently. This is useful for adjusting settings like output location, mini-batch size, or instance count for individual jobs.
+
 Use `params_override` to configure any folder in an Azure Machine Learning registered data store. Only registered data stores are supported as output paths. In this example you use the default data store:
 
 [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/mnist-classifier/mnist-batch.ipynb?name=get_data_store)]
@@ -578,6 +619,24 @@ Use `params_override` to configure any folder in an Azure Machine Learning regis
 Once you've identified the data store you want to use, configure the output as follows:
 
 [!notebook-python[] (~/azureml-examples-main/sdk/python/endpoints/batch/deploy-models/mnist-classifier/mnist-batch.ipynb?name=start_batch_scoring_job_set_output)]
+
+__Example `params_override` usage__:
+```python
+# Override multiple settings for this specific job
+job = ml_client.batch_endpoints.invoke(
+    endpoint_name=endpoint_name,
+    input=Input(path="azureml://datastores/workspaceblobstore/paths/my-input-data/"),
+    params_override=[
+        {"output_file_name": "custom_results.csv"},
+        {"mini_batch_size": 50},
+        {"instance_count": 4},
+        {"max_retries": 2}
+    ]
+)
+```
+
+> [!TIP]
+> Use `params_override` when you need different settings for different jobs without modifying your deployment. This is especially useful for handling varying data sizes or experimenting with performance settings.
 
 # [Studio](#tab/azure-studio)
 
@@ -621,11 +680,21 @@ Once you've identified the data store you want to use, configure the output as f
 
 ## Overwrite deployment configuration for each job
 
-When you invoke a batch endpoint, some settings can be overwritten to make best use of the compute resources and to improve performance. The following settings can be configured on a per-job basis:
+When you invoke a batch endpoint, some settings can be overwritten to make best use of the compute resources and to improve performance. This is useful when you need different settings for different jobs without modifying the deployment permanently.
 
-* __Instance count__: use this setting to overwrite the number of instances to request from the compute cluster. For example, for larger volume of data inputs, you might want to use more instances to speed up the end to end batch scoring.
-* __Mini-batch size__: use this setting to overwrite the number of files to include in each mini-batch. The number of mini batches is decided by the total input file counts and mini-batch size. A smaller mini-batch size generates more mini batches. Mini batches can be run in parallel, but there might be extra scheduling and invocation overhead.
-* Other settings, such as __max retries__, __timeout__, and __error threshold__ can be overwritten. These settings might impact the end-to-end batch scoring time for different workloads.
+### Which settings can be overridden?
+
+The following settings can be configured on a per-job basis:
+
+| Setting | When to use | Example scenario |
+|---------|-------------|-------------------|
+| __Instance count__ | When you have varying data volumes | Use more instances for larger datasets (e.g., 10 instances for 1M files vs 2 instances for 100K files) |
+| __Mini-batch size__ | When you need to balance throughput and memory | Smaller batches (10-50 files) for large images, larger batches (100-500 files) for small text files |
+| __Max retries__ | When data quality varies | Higher retries (5-10) for noisy data, lower retries (1-3) for clean data |
+| __Timeout__ | When processing time varies by data type | Longer timeout (300s) for complex models, shorter timeout (30s) for simple models |
+| __Error threshold__ | When you need different failure tolerance | Strict threshold (-1) for critical jobs, lenient threshold (10%) for experimental jobs |
+
+### How to override settings
 
 # [Azure CLI](#tab/cli)
 
