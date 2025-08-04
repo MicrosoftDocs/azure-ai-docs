@@ -33,9 +33,9 @@ Use batch endpoints for model deployment when:
 
 In this article, you use a batch endpoint to deploy a machine learning model that solves the classic MNIST (Modified National Institute of Standards and Technology) digit recognition problem. Your deployed model then performs batch inferencing over large amounts of data—in this case, image files. You begin by creating a batch deployment of a model that was created using Torch. This deployment becomes the default one in the endpoint. Later, you [create a second deployment](#add-deployments-to-an-endpoint) of a mode that was created with TensorFlow (Keras), test the second deployment, and then set it as the endpoint's default deployment.
 
-## Quick reference: Inputs, outputs, and configuration options
+## Key concepts and configurations
 
-Before diving into the details, here's a quick reference to help you understand the key concepts:
+Review the sections below to understand the key concepts and configurations used in this article. 
 
 ### Data flow overview
 - __Input data__: Files or folders in Azure Storage (blob storage, data lake, or registered datasets)
@@ -90,7 +90,7 @@ The workspace is the top-level resource for Azure Machine Learning, providing a 
 
     ```python
     from azure.ai.ml import MLClient, Input, load_component
-    from azure.ai.ml.entities import BatchEndpoint, ModelBatchDeployment, ModelBatchDeploymentSettings, PipelineComponentBatchDeployment, Model, AmlCompute, Data, BatchRetrySettings, CodeConfiguration, Environment, Data
+    from azure.ai.ml.entities import BatchEndpoint, ModelBatchDeployment, ModelBatchDeploymentSettings, PipelineComponentBatchDeployment, Model, AmlCompute, Data, BatchRetrySettings, CodeConfiguration, Environment
     from azure.ai.ml.constants import AssetTypes, BatchDeploymentOutputAction
     from azure.ai.ml.dsl import pipeline
     from azure.identity import DefaultAzureCredential
