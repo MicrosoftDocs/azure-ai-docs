@@ -896,12 +896,14 @@ items:
     items:
     - name: Audit and manage hubs
       href: how-to/azure-policy.md
-    - name: Built-in model deployment
+      displayName: Azure Policy
+    - name: Built-in policies for model deployment
       href: how-to/built-in-policy-model-deployment.md
-    - name: Custom model deployment
+      displayName: Azure Policy
+    - name: Custom policies for model deployment
       href: foundry-models/how-to/configure-deployment-policies.md
     - name: Built-in policy definitions
-      displayName: samples, policies, definitions
+      displayName: samples, policies, definitions, Azure Policy
       href: ../ai-services/policy-reference.md?context=/azure/ai-foundry/context/context
   - name: Vulnerability management
     href: concepts/vulnerability-management.md
