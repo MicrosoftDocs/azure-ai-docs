@@ -32,7 +32,7 @@ For standard deployments, there are three deployment-type options to choose from
 
 ### Global deployments
 
-Global deployments use the global infrastructure of Azure to dynamically route customer traffic to the data center with the best availability for the customer’s inference requests. This means that global offers the highest initial throughput limits and best model availability, but still provides our uptime SLA and low latency. For high-volume workloads above the specified usage tiers on Standard and Global Standard, you might experience increased latency variation. For customers that require the lower latency variance at large workload usage, we recommend using our provisioned deployment types.
+Global deployments use the global infrastructure of Azure to dynamically route customer traffic to the datacenter with the best availability for the customer's inference requests. This means that global offers the highest initial throughput limits and best model availability, but still provides our uptime SLA and low latency. For high-volume workloads above the specified usage tiers on Standard and Global Standard, you might experience increased latency variation. For customers that require the lower latency variance at large workload usage, we recommend using our provisioned deployment types.
 
 Our global deployments are the first location for all new models and features. Depending on call volume, customers with large volume and low latency variance requirements should consider our provisioned deployment types.
 
@@ -45,7 +45,7 @@ For any deployment type labeled as **DataZone**, prompts and responses might be 
 For both **Global** and **DataZone** deployment types, any data stored at rest, such as uploaded data, is stored in the customer-designated geography. Only the location of processing is affected when a customer uses a **Global** or **DataZone** deployment type in an Azure AI Foundry resource; Azure data processing and compliance commitments remain applicable.
 
 > [!NOTE]
-> With Global Standard and Data Zone Standard deployment types, if the primary region experiences an interruption in service, all traffic that is initially routed to this region is impacted. To learn more, consult the [business continuity and disaster recovery guide](../how-to/business-continuity-disaster-recovery.md).
+> With Global Standard and Data Zone Standard deployment types, if the primary region experiences an interruption in service, all traffic that is initially routed to this region is affected. To learn more, consult the [business continuity and disaster recovery guide](../how-to/business-continuity-disaster-recovery.md).
 
 ## Global Standard
 
@@ -54,7 +54,7 @@ For both **Global** and **DataZone** deployment types, any data stored at rest, 
 > [!IMPORTANT]
 > Data stored at rest remains in the designated Azure geography. However, data might be processed for inferencing in any Azure AI Foundry location. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
 
-Global deployments are available in the same Azure AI Foundry resources as non-global deployment types. However, they allow you to use the global infrastructure of Azure to dynamically route traffic to the data center with the best availability for each request. Global Standard provides the highest default quota and eliminates the need to load balance across multiple resources.  
+Global deployments are available in the same Azure AI Foundry resources as non-global deployment types. However, they allow you to use the global infrastructure of Azure to dynamically route traffic to the datacenter with the best availability for each request. Global Standard provides the highest default quota and eliminates the need to load balance across multiple resources.  
 
 Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more, see the [Quotas page](./quota.md). For applications that require lower latency variance at large workload usage, we recommend purchasing provisioned throughput.
 
@@ -65,7 +65,7 @@ Customers with high consistent volume might experience greater latency variabili
 > [!IMPORTANT]
 > Data stored at rest remains in the designated Azure geography. However, data might be processed for inferencing in any Azure AI Foundry location. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
 
-Global deployments are available in the same Azure AI Foundry resources as non-global deployment types. However, they allow you to use the global infrastructure of Azure to dynamically route traffic to the data center with the best availability for each request. Global Provisioned deployments provide reserved model processing capacity for high and predictable throughput by using Azure global infrastructure.  
+Global deployments are available in the same Azure AI Foundry resources as non-global deployment types. However, they allow you to use the global infrastructure of Azure to dynamically route traffic to the datacenter with the best availability for each request. Global Provisioned deployments provide reserved model processing capacity for high and predictable throughput by using Azure global infrastructure.  
 
 ## Global Batch
 
@@ -93,7 +93,7 @@ Key use cases include:
 > [!IMPORTANT]
 > Data stored at rest remains in the designated Azure geography. However, data might be processed for inferencing in any Azure AI Foundry location within the Microsoft-specified data zone. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
 
-Data Zone Standard deployments are available in the same Azure AI Foundry resource as all other Azure AI Foundry deployment types. However, they allow you to use the global infrastructure of Azure to dynamically route traffic to the data center within the Microsoft-defined data zone with the best availability for each request. Data Zone Standard provides higher default quotas than our Azure geography-based deployment types.
+Data Zone Standard deployments are available in the same Azure AI Foundry resource as all other Azure AI Foundry deployment types. However, they allow you to use the global infrastructure of Azure to dynamically route traffic to the datacenter within the Microsoft-defined data zone with the best availability for each request. Data Zone Standard provides higher default quotas than our Azure geography-based deployment types.
 
 Customers with high consistent volume might experience greater latency variability. The threshold is set per model. To learn more, see the [quotas and limits page](/azure/ai-foundry/openai/quotas-limits#usage-tiers). For workloads that require low latency variance at large volume, we recommend using the provisioned deployment offerings.
 
@@ -104,7 +104,7 @@ Customers with high consistent volume might experience greater latency variabili
 > [!IMPORTANT]
 > Data stored at rest remains in the designated Azure geography. However, data might be processed for inferencing in any Azure AI Foundry location within the Microsoft-specified data zone. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
 
-Data Zone Provisioned deployments are available in the same Azure AI Foundry resource as all other Azure AI Foundry deployment types. However, they allow you to use the global infrastructure of Azure to dynamically route traffic to the data center within the Microsoft-specified data zone with the best availability for each request. Data Zone Provisioned deployments provide reserved model processing capacity for high and predictable throughput by using Azure infrastructure within the Microsoft-specified data zone.  
+Data Zone Provisioned deployments are available in the same Azure AI Foundry resource as all other Azure AI Foundry deployment types. However, they allow you to use the global infrastructure of Azure to dynamically route traffic to the datacenter within the Microsoft-specified data zone with the best availability for each request. Data Zone Provisioned deployments provide reserved model processing capacity for high and predictable throughput by using Azure infrastructure within the Microsoft-specified data zone.  
 
 ## Data Zone Batch
 
@@ -113,7 +113,7 @@ Data Zone Provisioned deployments are available in the same Azure AI Foundry res
 > [!IMPORTANT]
 > Data stored at rest remains in the designated Azure geography. However, data might be processed for inferencing in any Azure AI Foundry location within the Microsoft-specified data zone. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
 
-Data Zone Batch deployments provide all the same functionality as [Global Batch deployments](./batch.md). However, they allow you to use the global infrastructure of Azure to dynamically route traffic to only data centers within the Microsoft-defined data zone with the best availability for each request.
+Data Zone Batch deployments provide all the same functionality as [Global Batch deployments](./batch.md). However, they allow you to use the global infrastructure of Azure to dynamically route traffic to only datacenters within the Microsoft-defined data zone with the best availability for each request.
 
 ## Standard
 
