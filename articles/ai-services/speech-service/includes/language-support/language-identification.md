@@ -1,7 +1,7 @@
 ---
 author: eric-urban
 ms.service: azure-ai-speech
-ms.date: 2/13/2025
+ms.date: 8/1/2025
 ms.topic: include
 ms.author: eur
 ---

@@ -20,8 +20,9 @@ feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 # Quickstart: Use the Face service
 
 [!INCLUDE [GDPR-related guidance](../includes/identity-data-notice.md)]
-[!INCLUDE [Gate notice](../includes/identity-gate-notice.md)]
 
+> [!CAUTION]
+> Face service access is limited based on eligibility and usage criteria in order to support our Responsible AI principles. Face service is only available to Microsoft managed customers and partners. Use the [Face Recognition intake form](https://aka.ms/facerecognition) to apply for access. To complete the steps in this quickstart, request the **[Face API] Facial Identification (1:N or 1:1 matching) with optional facial liveness detection for touchless access control** use case. For more information, see the [Face limited access](/azure/ai-foundry/responsible-ai/computer-vision/limited-access-identity) page.
 
 ::: zone pivot="foundry-portal"
 

@@ -22,8 +22,7 @@ Use Azure AI Foundry portal to detect faces in an image.
 
 Go to the [Azure AI Foundry portal](https://ai.azure.com/), and sign in with your Azure account that has the AI Foundry resource.
 
-On the left nav, select **AI Services**. On the next page, select **Vision + Document**. Go to the **Face** tab and select **Detect faces in an image**.
-
+Select **Azure AI Foundry** in the top-left corner, scroll down and select **Explore Azure AI Services**, and then select **Vision + Document**. On the **Face** tab, select **Detect faces in an image**.
 
 ## Detect faces
 
@@ -33,7 +32,7 @@ Select an image from the available set, or upload your own. The service will det
 
 ## Next steps
 
-In this quickstart, you did face detection using the Azure AI Foundry portal. Next, learn about the different face detection models and how to specify the right model for your use case.
+In this quickstart, you did face detection by using the Azure AI Foundry portal. Next, learn about the different face detection models and how to specify the right model for your use case.
 
 > [!div class="nextstepaction"]
 > [Specify a face detection model version](../how-to/specify-detection-model.md)

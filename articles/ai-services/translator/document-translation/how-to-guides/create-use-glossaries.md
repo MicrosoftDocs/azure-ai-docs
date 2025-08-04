@@ -6,7 +6,7 @@ ms.service: azure-ai-translator
 manager: nitinme
 ms.author: lajanuar
 author: laujan
-ms.date: 04/14/2025
+ms.date: 07/29/2025
 ---
 
 # Use glossaries with Document translation
@@ -18,6 +18,14 @@ A glossary is a list of terms with definitions that you create for the Document 
 * **No translation**. For example, you can restrict Document translation from translating product name brands by using a glossary with the same source and target text.
 
 * **Specified translations for ambiguous words**. Choose a specific translation for poly&#8203;semantic words.
+
+Translation glossaries are critical tools for maintaining content accuracy across multiple target languages and localization projects. When a glossary is applied during translation, the terms it contains are rendered according to the specified source and target language pair. This process can sometimes affect the overall quality of the translated sentences. Using a glossary may result in the simplification of complex ideas or the omission of subtle nuances, which could lead to misunderstandings or an unintended loss of meaning. To maintain accuracy and consistency in your glossary, it's important to follow these specific steps that ensure the glossary is well-defined and regularly updated:
+
+*    Explicitly specify the source and target languages for each glossary term, along with any relevant localization requirements.
+*    Conduct regular reviews of the glossary to verify term accuracy and relevance, updating entries as necessary.
+*    Provide precise and comprehensive definitions for each term, with particular attention to technical or specialized vocabulary.
+
+
 
 ## Create, upload, and use a glossary file
 

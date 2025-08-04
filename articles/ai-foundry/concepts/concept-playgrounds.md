@@ -245,3 +245,4 @@ By using the images playground, you can explore and validate the following as yo
 
 - [Use the chat playground in Azure AI Foundry portal](../quickstarts/get-started-playground.md)
 - [Quickstart: Create a new agent (Preview)](../../ai-services/agents/quickstart.md)
+- [Basic Azure AI Foundry chat reference architecture](/azure/architecture/ai-ml/architecture/basic-azure-ai-foundry-chat)

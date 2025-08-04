@@ -6,6 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
+  - hub-only
 ms.topic: how-to
 ms.date: 06/19/2025
 ms.reviewer: none
