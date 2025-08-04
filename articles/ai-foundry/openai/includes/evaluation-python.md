@@ -193,7 +193,7 @@ In addition to the parameters in the examples above, you can optionally add thes
 
 | Name      | In    | Required | Type    | Description |
 |-----------|-------|----------|---------|-------------|
-| endpoint  | path  | Yes      | string  | Supported Azure OpenAI endpoints (protocol and hostname, for example: https://aoairesource.openai.azure.com. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
+| endpoint  | path  | Yes      | string  | Supported Azure OpenAI endpoints (protocol and hostname, for example: `https://aoairesource.openai.azure.com`. Replace "aoairesource" with your Azure OpenAI resource name). https://{your-resource-name}.openai.azure.com |
 | eval-id   | path  | Yes      | string  | The ID of the evaluation to retrieve runs for. |
 | run-id    | path  | Yes      | string  | The ID of the run to retrieve output items for. |
 | after     | query | No       | string  | Identifier for the last output item from the previous pagination request. |
