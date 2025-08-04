@@ -13,7 +13,10 @@ zone_pivot_groups: foundry-speech-studio
 
 # Text to speech with the Audio Content Creation tool
 
-You can use the Audio Content Creation tool in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) or [Speech Studio](https://speech.microsoft.com/portal/audiocontentcreation) for text to speech without writing any code. The Audio Content Creation tool might provide the final speech audio that you want. You can use the output audio as-is, or as a starting point for further customization.
+You can use the Audio Content Creation tool in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) or [Speech Studio](https://speech.microsoft.com/portal/audiocontentcreation) for text to speech without writing any code. 
+
+> [!TIP]
+> Select **Foundry portal** or **Speech Studio** at the top of this article. 
 
 Build highly natural audio content for various scenarios, such as audiobooks, news broadcasts, video narrations, and chat bots. With Audio Content Creation, you can efficiently fine-tune text to speech voices and design customized audio experiences. 
 

@@ -19,7 +19,7 @@ ms.date: 7/31/2025
 
 The following diagram displays the process for fine-tuning the text to speech outputs. 
 
-:::image type="content" source="../../../media/audio-content-creation/audio-content-creation-diagram.jpg" alt-text="Diagram of the sequence of steps for fine-tuning text to speech outputs." lightbox="../../../media/audio-content-creation/audio-content-creation-diagram.png":::
+:::image type="content" source="../../../media/audio-content-creation/audio-content-creation-diagram.jpg" alt-text="Diagram of the sequence of steps for fine-tuning text to speech outputs." lightbox="../../../media/audio-content-creation/audio-content-creation-diagram.jpg":::
 
 To use the Audio Content Creation tool, do the following:
 
@@ -31,7 +31,7 @@ To use the Audio Content Creation tool, do the following:
    > If you're returning to Audio Content Creation, you can select a different Speech resource that you want to work with. Go to your account settings at the top right corner of the page.
 
 1. [Create an audio tuning file](#create-an-audio-tuning-file) by using plain text or SSML scripts. Enter or upload your content into Audio Content Creation.
-1. Choose the voice and the language for your script content. Audio Content Creation includes all of the [standard text to speech voices](language-support.md?tabs=tts). You can use standard voices or a custom voice.
+1. Choose the voice and the language for your script content. Audio Content Creation includes all of the [standard text to speech voices](../../../language-support.md?tabs=tts). You can use standard voices or a custom voice.
 
    > [!NOTE]
    > Custom voice access is [limited](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access) based on eligibility and usage criteria. Request access on the [intake form](https://aka.ms/customneural).
@@ -170,7 +170,7 @@ To remove a user's permission from a Speech resource, do the following:
 1. Select **Access control (IAM)**, and then select the **Role assignments** tab to view all the role assignments for this Speech resource.
 1. Select the users you want to remove, select **Remove**, and then select **OK**.
 
-   :::image type="content" source="media/audio-content-creation/remove-user.png" alt-text="Screenshot of the 'Remove' button on the 'Remove role assignments' pane.":::
+   :::image type="content" source="../../../media/audio-content-creation/remove-user.png" alt-text="Screenshot of the 'Remove' button on the 'Remove role assignments' pane." lightbox="../../../media/audio-content-creation/remove-user.png":::
 
 ### Enable users to grant access to others
 

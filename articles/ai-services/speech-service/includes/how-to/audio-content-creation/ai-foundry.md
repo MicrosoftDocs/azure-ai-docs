@@ -16,14 +16,14 @@ ms.date: 7/31/2025
 
 The following diagram displays the process for fine-tuning the text to speech outputs. 
 
-:::image type="content" source="../../../media/audio-content-creation/audio-content-creation-diagram.jpg" alt-text="Diagram of the sequence of steps for fine-tuning text to speech outputs." lightbox="../../../media/audio-content-creation/audio-content-creation-diagram.png":::
+:::image type="content" source="../../../media/audio-content-creation/audio-content-creation-diagram.jpg" alt-text="Diagram of the sequence of steps for fine-tuning text to speech outputs." lightbox="../../../media/audio-content-creation/audio-content-creation-diagram.jpg":::
 
 To use the Audio Content Creation tool, do the following:
 
 1. Sign in to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), and then go to **Audio Content Creation** in the Speech playground. 
 
 1. [Create an audio tuning file](#create-an-audio-tuning-file) by using plain text or SSML scripts. Enter or upload your content into Audio Content Creation.
-1. Choose the voice and the language for your script content. Audio Content Creation includes all of the [standard text to speech voices](language-support.md?tabs=tts). You can use standard voices or a custom voice.
+1. Choose the voice and the language for your script content. Audio Content Creation includes all of the [standard text to speech voices](../../../language-support.md?tabs=tts). You can use standard voices or a custom voice.
 
    > [!NOTE]
    > Custom voice access is [limited](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access) based on eligibility and usage criteria. Request access on the [intake form](https://aka.ms/customneural).
