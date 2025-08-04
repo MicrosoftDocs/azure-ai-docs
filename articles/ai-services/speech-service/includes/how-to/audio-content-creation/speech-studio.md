@@ -15,23 +15,23 @@ ms.date: 7/31/2025
 > [!NOTE]
 > The [AI Foundry resource type](../../../../multi-service-resource.md) isn't supported in Speech Studio. 
 
-## Use the Audio Content Creation tool
+## Use the audio content creation tool
 
 The following diagram displays the process for fine-tuning the text to speech outputs. 
 
 :::image type="content" source="../../../media/audio-content-creation/audio-content-creation-diagram.jpg" alt-text="Diagram of the sequence of steps for fine-tuning text to speech outputs." lightbox="../../../media/audio-content-creation/audio-content-creation-diagram.jpg":::
 
-To use the Audio Content Creation tool, do the following:
+To use the audio content creation tool, do the following:
 
 1. Sign in to [Speech Studio](https://aka.ms/speechstudio/), and then select **Audio Content Creation**.
 
 1. Select the Azure subscription and the Speech resource you want to work with, and then select **Use resource**. 
 
    > [!NOTE]
-   > If you're returning to Audio Content Creation, you can select a different Speech resource that you want to work with. Go to your account settings at the top right corner of the page.
+   > If you're returning to audio content creation, you can select a different Speech resource that you want to work with. Go to your account settings at the top right corner of the page.
 
-1. [Create an audio tuning file](#create-an-audio-tuning-file) by using plain text or SSML scripts. Enter or upload your content into Audio Content Creation.
-1. Choose the voice and the language for your script content. Audio Content Creation includes all of the [standard text to speech voices](../../../language-support.md?tabs=tts). You can use standard voices or a custom voice.
+1. [Create an audio tuning file](#create-an-audio-tuning-file) by using plain text or SSML scripts. Enter or upload your content into audio content creation.
+1. Choose the voice and the language for your script content. Audio content creation includes all of the [standard text to speech voices](../../../language-support.md?tabs=tts). You can use standard voices or a custom voice.
 
    > [!NOTE]
    > Custom voice access is [limited](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access) based on eligibility and usage criteria. Request access on the [intake form](https://aka.ms/customneural).
@@ -50,7 +50,7 @@ To use the Audio Content Creation tool, do the following:
 
 ## Create an audio tuning file
 
-You can get your content into the Audio Content Creation tool in either of two ways:
+You can get your content into the audio content creation tool in either of two ways:
 
 ### Option 1: Create a new audio tuning file
 
@@ -80,7 +80,7 @@ You can get your content into the Audio Content Creation tool in either of two w
    Here's a plain text example:
 
    ```txt
-   Welcome to use Audio Content Creation to customize audio output for your products.
+   Welcome to use audio content creation to customize audio output for your products.
    ```
 
    Here's an SSML example:
@@ -88,7 +88,7 @@ You can get your content into the Audio Content Creation tool in either of two w
    ```xml
    <speak xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="http://www.w3.org/2001/mstts" version="1.0" xml:lang="en-US">
       <voice name="en-US-AvaMultilingualNeural">
-      Welcome to use Audio Content Creation <break time="10ms" />to customize audio output for your products.
+      Welcome to use audio content creation <break time="10ms" />to customize audio output for your products.
       </voice>
    </speak>
    ```
@@ -124,15 +124,15 @@ If you lose access permission to your Bring Your Own Storage (BYOS), you can't v
 
 After configuring the BYOS permission, you need to configure anonymous public read access for related containers and blobs. Otherwise, blob data isn't available for public access and your lexicon file in the blob is inaccessible. By default, a container’s public access setting is disabled. To grant anonymous users read access to a container and its blobs, first set **Allow Blob anonymous access** to **Enabled** to allow public access for the storage account, then set the container's (named **acc-public-files**) public access level (**anonymous read access for blobs only**). To learn more about how to configure anonymous public read access, see [Configure anonymous public read access for containers and blobs](/azure/storage/blobs/anonymous-read-access-configure?tabs=portal). 
    
-## Add or remove Audio Content Creation users
+## Add or remove audio content creation users
 
-If more than one user wants to use Audio Content Creation, you can grant them access to the Azure subscription and the Speech resource. If you add users to an Azure subscription, they can access all the resources under the Azure subscription. But if you add users to a Speech resource only, they only have access to the Speech resource and not to other resources under this Azure subscription. Users with access to the Speech resource can use the Audio Content Creation tool.
+If more than one user wants to use audio content creation, you can grant them access to the Azure subscription and the Speech resource. If you add users to an Azure subscription, they can access all the resources under the Azure subscription. But if you add users to a Speech resource only, they only have access to the Speech resource and not to other resources under this Azure subscription. Users with access to the Speech resource can use the audio content creation tool.
 
 The users you grant access to need to set up a [Microsoft account](https://account.microsoft.com/account). If they don' have a Microsoft account, they can create one in just a few minutes. They can use their existing email and link it to a Microsoft account, or they can create and use an Outlook email address as a Microsoft account.
 
 ### Add users to a Speech resource
 
-To add users to a Speech resource so that they can use Audio Content Creation, do the following:
+To add users to a Speech resource so that they can use audio content creation, do the following:
 
 1. In the [Azure portal](https://portal.azure.com/), select **All services** from the left pane, and then search for **Azure AI services** or **Speech**.
 1. Select your Speech resource.
@@ -157,11 +157,11 @@ Here's what happens next:
 1. They're then redirected to the Azure portal. They don't need to take further action in the Azure portal. 
 1. After a few moments, users are assigned the role at the Speech resource scope, which gives them access to this Speech resource. 
 
-Users now visit or refresh the [Audio Content Creation](https://aka.ms/audiocontentcreation) product page, and sign in with their Microsoft account. They select **Audio Content Creation** block among all speech products. They choose the Speech resource in the pop-up window or in the settings at the upper right. 
+Users now visit or refresh the [audio content creation](https://aka.ms/audiocontentcreation) product page, and sign in with their Microsoft account. They select **Audio Content Creation** block among all speech products. They choose the Speech resource in the pop-up window or in the settings at the upper right. 
 
 If they can't find the available Speech resource, they can check to ensure that they're in the right directory. To do so, they select the account profile at the upper right and then select **Switch** next to **Current directory**. If there's more than one directory available, it means they have access to multiple directories. They can switch to different directories and go to **Settings** to see whether the right Speech resource is available. 
 
-Users who are in the same Speech resource see each other's work in the Audio Content Creation tool. If you want each individual user to have a unique and private workplace in Audio Content Creation, create a new Speech resource.
+Users who are in the same Speech resource see each other's work in the audio content creation tool. If you want each individual user to have a unique and private workplace in audio content creation, create a new Speech resource.
 
 ### Remove users from a Speech resource
 

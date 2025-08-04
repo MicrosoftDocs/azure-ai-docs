@@ -12,18 +12,23 @@ ms.date: 7/31/2025
 - Permission to create resources in your subscription.
 - An Azure AI Foundry project. For more information, see [Create an Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects).
 
-## Use the Audio Content Creation tool
+## Use the audio content creation tool
 
 The following diagram displays the process for fine-tuning the text to speech outputs. 
 
 :::image type="content" source="../../../media/audio-content-creation/audio-content-creation-diagram.jpg" alt-text="Diagram of the sequence of steps for fine-tuning text to speech outputs." lightbox="../../../media/audio-content-creation/audio-content-creation-diagram.jpg":::
 
-To use the Audio Content Creation tool, do the following:
+To use the Audio content creation tool, follow these steps:
 
-1. Sign in to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), and then go to **Audio Content Creation** in the Speech playground. 
+1. Go to your project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). 
+1. Select **Playgrounds** from the left pane.
+1. In the **Speech playground** tile, select **Try the Speech playground**.
+1. Select **Text to speech** > **Audio content creation**. You might need to scroll to find the tile. 
 
-1. [Create an audio tuning file](#create-an-audio-tuning-file) by using plain text or SSML scripts. Enter or upload your content into Audio Content Creation.
-1. Choose the voice and the language for your script content. Audio Content Creation includes all of the [standard text to speech voices](../../../language-support.md?tabs=tts). You can use standard voices or a custom voice.
+   :::image type="content" source="../../../media/voice-live/foundry-portal/capabilities-by-scenario.png" alt-text="Screenshot of filtering Speech service capabilities by scenario." lightbox="../../../media/voice-live/foundry-portal/capabilities-by-scenario.png":::
+
+1. [Create an audio tuning file](#create-an-audio-tuning-file) by using plain text or SSML scripts. Enter or upload your content into audio content creation.
+1. Choose the voice and the language for your script content. Audio content creation includes all of the [standard text to speech voices](../../../language-support.md?tabs=tts). You can use standard voices or a custom voice.
 
    > [!NOTE]
    > Custom voice access is [limited](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access) based on eligibility and usage criteria. Request access on the [intake form](https://aka.ms/customneural).
@@ -40,7 +45,7 @@ To use the Audio Content Creation tool, do the following:
 
 ## Create an audio tuning file
 
-You can get your content into the Audio Content Creation tool in either of two ways:
+You can get your content into the audio content creation tool in either of two ways:
 
 ### Option 1: Create a new audio tuning file
 
@@ -70,7 +75,7 @@ You can get your content into the Audio Content Creation tool in either of two w
    Here's a plain text example:
 
    ```txt
-   Welcome to use Audio Content Creation to customize audio output for your products.
+   Welcome to use audio content creation to customize audio output for your products.
    ```
 
    Here's an SSML example:
@@ -78,7 +83,7 @@ You can get your content into the Audio Content Creation tool in either of two w
    ```xml
    <speak xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="http://www.w3.org/2001/mstts" version="1.0" xml:lang="en-US">
       <voice name="en-US-AvaMultilingualNeural">
-      Welcome to use Audio Content Creation <break time="10ms" />to customize audio output for your products.
+      Welcome to use audio content creation <break time="10ms" />to customize audio output for your products.
       </voice>
    </speak>
    ```
