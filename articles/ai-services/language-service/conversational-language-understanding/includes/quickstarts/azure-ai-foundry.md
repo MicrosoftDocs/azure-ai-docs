@@ -7,6 +7,10 @@ ms.date: 08/03/2025
 ms.author: lajanuar
 ---
 
+Azure AI Foundry offers a unified platform for building, managing, and deploying AI solutions with a wide array of models and tools. Azure AI Foundry playgrounds are interactive environments within the Azure AI Foundry portal designed for exploring, testing, and prototyping with various AI models and tools.
+
+Use this article to get started with Conversational Language understanding using Azure AI Foundry or the REST API.
+
 > [!NOTE]
 >
 > * If you already have an Azure AI Language or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Language resources within the Azure AI Foundry portal. 
@@ -15,16 +19,18 @@ ms.author: lajanuar
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have one, you can [create one for free](https://azure.microsoft.com/free/cognitive-services).
+* **Azure subscription**. If you don't have one, you can [create one for free](https://azure.microsoft.com/free/cognitive-services).
 * **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Azure AI Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](/azure/ai-foundry/openai/how-to/role-based-access-control#cognitive-services-contributor).
-*  An [Azure AI Foundry multi-service resource](/azure/ai-services/multi-service-resource). For more information, *see* [Configure an Azure AI Foundry resource](../../how-to/configure-azure-resources.md).md#option-1-configure-an-azure-ai-foundry-resource). Alternately, you can use an [Azure AI Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
-* A Foundry project created in the Azure AI Foundry. For more information, *see* [Create an AI Foundry project](/azure/ai-foundry/how-to/create-projects).
+*  [Azure AI Foundry multi-service resource](/azure/ai-services/multi-service-resource). For more information, *see* [Configure an Azure AI Foundry resource](../../how-to/configure-azure-resources.md).md#option-1-configure-an-azure-ai-foundry-resource). Alternately, you can use an [Azure AI Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
+* Foundry project created in the Azure AI Foundry. For more information, *see* [Create an AI Foundry project](/azure/ai-foundry/how-to/create-projects).
 
 ## Get started with Azure AI Foundry
 
-To complete this quickstart, you need a Conversational Language Understanding (CLU) fine-tuning task project that includes a [defined schema](../../how-to/build-schema.md) and [labeled utterances](../../how-to/tag-utterances.md). You can download our [**sample project file**](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/language-service/CLU/EmailAppDemo.json), which comes preconfigured with both a schema and labeled utterances. This project enables the prediction of user intent for commands such as reading emails, deleting emails, and attaching documents to emails.
+To complete this quickstart, you need a Conversational Language Understanding (CLU) fine-tuning task project that includes a [defined schema](../../how-to/build-schema.md) and [labeled utterances](../../how-to/tag-utterances.md). 
 
-Azure AI Foundry offers a unified platform for building, managing, and deploying AI solutions with a wide array of models and tools. Azure AI Foundry playgrounds are interactive environments within the Azure AI Foundry portal designed for exploring, testing, and prototyping with various AI models and tools. Let's begin:
+You can download our [**sample project file**](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/language-service/CLU/EmailAppDemo.json), which comes preconfigured with both a schema and labeled utterances. This project enables the prediction of user intent for commands such as reading emails, deleting emails, and attaching documents to emails.
+
+Let's begin:
 
 1. Navigate to the [Azure AI Foundry](https://ai.azure.com/).
 1. If you aren't already signed in, the portal prompts you to do so with your Azure credentials.
@@ -34,25 +40,25 @@ Azure AI Foundry offers a unified platform for building, managing, and deploying
 
   :::image type="content" source="../../media/quickstarts/try-playground.png" alt-text="Screenshot of the Try Language Playground selection in Azure AI Foundry.":::
 
-## Try Foundry Language playground
+## Try the Language playground
 
 The top section of the Language playground is where you can view and select the available Language services. 
 
-1. Select the **Conversational language understanding Fine-tuning** card.
+1. Select the **Conversational language understanding** card.
 
-  :::image type="content" source="../../media/quickstarts/language-playground.png" alt-text="Screenshot of the language playground homepage in Azure AI Foundry.":::
+    :::image type="content" source="../../media/quickstarts/language-playground.png" alt-text="Screenshot of the language playground homepage in Azure AI Foundry.":::
 
-1. Next scroll to and select the **Fine-tune** button.
+1. Next, scroll to and select the **Fine-tune** button.
 
    :::image type="content" source="../../media/quickstarts/fine-tune-button.png" alt-text="Screenshot of the fine-tune button on the language playground homepage in Azure AI Foundry.":::
 
-1. From **Create service fine-tuning** window that opens, choose the **Conversational language understanding** card, then select **Next**.
+1. From **Create service fine-tuning** window, choose the **Conversational language understanding** card. Then select **Next**.
 
-   :::image type="content" source="../../media/select-project.png" alt-text="Screenshot of conversational language understanding selection card in the Azure AI Foundry.":::
+    :::image type="content" source="../../media/select-project.png" alt-text="Screenshot of conversational language understanding selection card in the Azure AI Foundry.":::
 
-1. In **Create CLU fine tuning task** window, select **Import an existing project**, then select your **Connected service** from the drop-down menu and complete the **Name** field.
+1. In **Create CLU fine tuning task** window, select **Import an existing project**, then choose your **Connected service** from the drop-down menu and complete the **Name** field.
 
-  :::image type="content" source="../../media/quickstarts/select-import-existing-project.png" alt-text="Screenshot of the import an existing project selection in Azure AI Foundry.":::
+    :::image type="content" source="../../media/quickstarts/select-import-existing-project.png" alt-text="Screenshot of the import an existing project selection in Azure AI Foundry.":::
 
 1. Next, add the [sample project file](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/language-service/CLU/EmailAppDemo.json) that you downloaded earlier to the upload area.
 
@@ -64,35 +70,35 @@ The top section of the Language playground is where you can view and select the 
 
 ## Train your model
 
-After project creation, the next steps are schema construction and utterance labeling. However, for this quickstart, since we already preconfigured these steps—go ahead and initiate a training job by selecting **Train model** from the **Getting Started** menu to generate your model.
+After project creation, the next steps are [schema construction](../../how-to/build-schema.md) and [utterance labeling](../../how-to/tag-utterances.md). For this quickstart, these steps have already been preconfigured in the sample project.Therefore, you can go ahead and initiate a training job by selecting **Train model** from the **Getting Started** menu to generate your model.
 
-   :::image type="content" source="../../media/quickstarts/getting-started-menu.png" alt-text="Screenshot of the getting started with fine-tuning menu in the Azure AI Foundry.":::
+    :::image type="content" source="../../media/quickstarts/getting-started-menu.png" alt-text="Screenshot of the getting started with fine-tuning menu in the Azure AI Foundry.":::
 
-1. Select the **➕ Train model button** from the **Train you model** window.
+1. Select the **➕Train model button** from the **Train your model** window.
 
-   :::image type="content" source="../../media/quickstarts/train-your-model-button.png" alt-text="Screenshot of the train your model button in the Azure AI Foundry.":::
+    :::image type="content" source="../../media/quickstarts/train-your-model-button.png" alt-text="Screenshot of the train your model button in the Azure AI Foundry.":::
 
-1. Complete **Select a mode** form but completing the **Model name** field and selecting a **Training mode**. For this quickstart, select the free **Standard training** mode.
-For more information, *see* [Training modes](../../how-to/train-model.md#training-modes).
+1. Complete the **Select a mode** form by completing the **Model name** field and selecting a **Training mode**. For this quickstart, select the free **Standard training** mode. For more information, *see* [Training modes](../../how-to/train-model.md#training-modes).
 
-1. Choose a **training version** from the drop-down menu, then select the **Next** button.
+1. Choose a **Training version** from the drop-down menu, then select the **Next** button.
 
-1. Check your selections in the **Review** window and select the **Create** button
+1. Check your selections in the **Review** window, then select the **Create** button
 
-   :::image type="content" source="../../media/quickstarts/review-selections.png" alt-text="Screenshot of the review selections window in the Azure AI Foundry.":::
+    :::image type="content" source="../../media/quickstarts/review-selections.png" alt-text="Screenshot of the review selections window in the Azure AI Foundry.":::
 
 ## Deploy model
 
-Typically, after training a model, you review its evaluation details. In this quickstart, however, you can just deploy your model and make it available to test in the Language playground, or by calling the [prediction API](https://aka.ms/clu-apis). However, if you wish, you can take a moment to select **Evaluate your model** from the left-side menu and explore the in-depth telemetry for your model.
+Typically, after training a model, you review its evaluation details. For this quickstart, you can just deploy your model and make it available to test in the Language playground, or by calling the [prediction API](https://aka.ms/clu-apis). However, if you wish, you can take a moment to select **Evaluate your model** from the left-side menu and explore the in-depth telemetry for your model. Complete the following steps to deploy your model within Azure AI Foundry:
 
-1. To deploy your model within Azure AI Foundry, select **Deploy model** from the left-side menu.
-1. Next, select **➕ Deploy a trained model** from the **Deploy your model** window.
+1. Select **Deploy model** from the left-side menu.
+1. Next, select **➕Deploy a trained model** from the **Deploy your model** window.
 
-   :::image type="content" source="../../media/quickstarts/deploy-trained-model.png" alt-text="Screenshot of the deploy your model window in Azure AI Foundry.":::
+    :::image type="content" source="../../media/quickstarts/deploy-trained-model.png" alt-text="Screenshot of the deploy your model window in Azure AI Foundry.":::
 
 1. Make sure the **Create a new deployment** button is selected.
 
-1. Complete the **Deploy a trained model** window:
+1. Complete the **Deploy a trained model** window fields:
+
    * Create a deployment name. 
    * Select your trained model from the **Assign a model** drop-down menu.
    * Select a subscription from the **Subscription** drop-down menu.
@@ -100,26 +106,29 @@ Typically, after training a model, you review its evaluation details. In this qu
    * Select a resource from the **Resource** drop-down menu. The resource must be in the same deployment region.
 
 
-      :::image type="content" source="../../media/quickstarts/deploy-model-configuration.png" alt-text="Screenshot of the deploy your model configuration in Azure AI Foundry.":::
+       :::image type="content" source="../../media/quickstarts/deploy-model-configuration.png" alt-text="Screenshot of the deploy your model configuration in Azure AI Foundry.":::
 
-1. Select the **Create** button. It may take a few minutes for your model to deploy.
-1. After successful deployment, you can view the deployment status on the **Deploy your model** page. The expiration date that appears marks the date when your deployed model becomes unavailable to be used for prediction. This date is 18 months after a training configuration is deployed.
+1. Finally, select the **Create** button. It may take a few minutes for your model to deploy.
+
+1. After successful deployment, you can view your model's deployment status on the **Deploy your model** page. The expiration date that appears marks the date when your deployed model becomes unavailable for prediction tasks. This date is usually 18 months after a training configuration is deployed.
 
     :::image type="content" source="../../media/quickstarts/deployed-model-succeeded.png" alt-text="Screenshot of your successfully deployed model status page in Azure AI Foundry.":::
-1. From the far-left menu, navigate to the Language playground. **Playgrounds** → **Language playground (Try the Language playground)**.
+
+1. From the far-left menu, navigate to the Language playground.<br>
+   **Playgrounds** → **Language playground (Try the Language playground)**.
 1. Select the **Conversational language understanding** card.
-1. A Configuration window with your deployed model should be in the main/center window.
-1. In the text box, enter an utterance to test. For example, if you used our [sample project](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/language-service/CLU/EmailAppDemo.json) application for email-related utterances you could enter **Check email**.
+1. A **Configuration** window with your deployed model should appear in the main/center window.
+1. In the text box, enter an utterance to test. For example, if you used our [sample project](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/language-service/CLU/EmailAppDemo.json) application for email-related utterances you could enter ***Check email***.
 1. After you enter your test text, select the **Run** button.
 
-   :::image type="content" source="../../media/quickstarts/deployed-model-succeeded.png" alt-text="Screenshot of your successfully deployed model status page in Azure AI Foundry.":::
+    :::image type="content" source="../../media/quickstarts/deployed-model-succeeded.png" alt-text="Screenshot of your successfully deployed model status page in Azure AI Foundry.":::
 1. After you run the test, you should see the response of the model in the result. 
 
-   :::image type="content" source="../../media/quickstarts/language-playground-test.png" alt-text="Screenshot of deployed model testing in Azure AI Foundry language playground.":::
+    :::image type="content" source="../../media/quickstarts/language-playground-test.png" alt-text="Screenshot of deployed model testing in Azure AI Foundry language playground.":::
 
 1. You can view the results in a text or JSON format view.
 
-   :::image type="content" source="../../media/quickstarts/language-playground-test-results.png" alt-text="Screenshot of deployed model test results in Azure AI Foundry language playground.":::
+    :::image type="content" source="../../media/quickstarts/language-playground-test-results.png" alt-text="Screenshot of deployed model test results in Azure AI Foundry language playground.":::
 
 That's it, congratulations!
 

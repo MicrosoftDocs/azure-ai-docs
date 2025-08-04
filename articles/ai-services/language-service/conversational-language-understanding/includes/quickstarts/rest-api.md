@@ -7,6 +7,8 @@ ms.date: 05/23/2025
 ms.author: lajanuar
 ---
 
+Use this article to get started with Conversational Language understanding using Azure AI Foundry or the REST API.
+
 ## Prerequisites
 
 * Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).

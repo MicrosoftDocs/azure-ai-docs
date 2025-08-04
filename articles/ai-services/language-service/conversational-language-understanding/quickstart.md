@@ -14,8 +14,6 @@ zone_pivot_groups: language-clu-quickstart
 
 # Quickstart: Conversational language understanding 
 
-Use this article to get started with Conversational Language understanding using Azure AI Foundry or the REST API.
-
 ::: zone pivot="azure-ai-foundry"
 
 [!INCLUDE [Azure AI Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]
