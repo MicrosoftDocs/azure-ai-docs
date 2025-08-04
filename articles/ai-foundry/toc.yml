@@ -894,11 +894,11 @@ items:
       href: how-to/disable-local-auth.md
   - name: Azure policies
     items:
-    - name: Audit and manage hubs using Azure Policy
+    - name: Audit and manage hubs
       href: how-to/azure-policy.md
-    - name: Control model deployment with built-in policies
+    - name: Built-in model deployment
       href: how-to/built-in-policy-model-deployment.md
-    - name: Control model deployment with custom policies
+    - name: Custom model deployment
       href: foundry-models/how-to/configure-deployment-policies.md
     - name: Built-in policy definitions
       displayName: samples, policies, definitions
