@@ -194,8 +194,6 @@ GPT-3.5 models can understand and generate natural language or code. The most ca
 
 To learn more about how to interact with GPT-3.5 Turbo and the Chat Completions API, check out our [in-depth how-to article](../how-to/chatgpt.md).
 
-**<sup>1</sup>** This model accepts requests greater than 4,096 tokens. We don't recommend that you exceed the 4,096 input token limit, because the newer version of the model is capped at 4,096 tokens. If you encounter issues when you exceed 4,096 input tokens with this model, this configuration isn't officially supported.
-
 ## Embeddings
 
  `text-embedding-3-large` is the latest and most capable embedding model. You can't upgrade between embeddings models. To move from using `text-embedding-ada-002` to `text-embedding-3-large`, you need to generate new embeddings.
