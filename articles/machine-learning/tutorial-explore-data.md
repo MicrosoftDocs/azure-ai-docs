@@ -173,26 +173,9 @@ An Azure Machine Learning datastore is a *reference* to an *existing* storage ac
 
 ## Access your data in a notebook
 
-You want to create data assets for frequently accessed data. You can access the data using the URI as shown below.  However, as mentioned previously, it can become difficult to remember these URIs. Additionally, you still need to substitute the datastore name, folder, and filename values for your specific resources.
+You want to create data assets for frequently accessed data. You can access the data using the URI as described in [Access data from a datastore URI, like a filesystem](how-to-access-data-interactive.md#access-data-from-a-datastore-uri-like-a-filesystem).  However, as mentioned previously, it can become difficult to remember these URIs. 
 
-This example shows how to read a CSV file from an Azure Machine Learning datastore using the same configuration values from your `ml_client`:
-
-```python
-import pandas as pd
-
-# Using the same values from ml_client configuration
-subscription_id = ml_client.subscription_id
-resource_group = ml_client.resource_group_name  
-workspace_name = ml_client.workspace_name
-datastore_name = 'workspaceblobstore' #this is the default datastore
-path_on_datastore = my_path
-
-# Construct the datastore URI
-datastore_uri = f"azureml://subscriptions/{subscription_id}/resourcegroups/{resource_group}/workspaces/{workspace_name}/datastores/{datastore_name}/paths/{path_on_datastore}"
-df = pd.read_csv(datastore_uri)
-```
-
- An alternative is to use the `azureml-fsspec` library, which provides a file system interface for Azure Machine Learning datastores. Here's an easier way to access the CSV file in Pandas:
+ An alternative is to use the `azureml-fsspec` library, which provides a file system interface for Azure Machine Learning datastores. This is an easier way to access the CSV file in Pandas:
 
 > [!IMPORTANT]
 > In a notebook cell, execute this code to install the `azureml-fsspec` Python library in your Jupyter kernel:
