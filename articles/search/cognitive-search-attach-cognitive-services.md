@@ -2,8 +2,8 @@
 title: Attach Azure AI services to a skillset
 titleSuffix: Azure AI Search
 description: Learn how to attach an Azure AI services resource to an AI enrichment pipeline in Azure AI Search.
-author: eric-urban 
-ms.author: eur 
+author: HeidiSteen 
+ms.author: heidist 
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 06/11/2025
