@@ -43,7 +43,7 @@ On your Azure AI Foundry resource data is encrypted and decrypted using [FIPS 14
 ::: zone-end
 
 > [!IMPORTANT]
-> If you [connect AI Foundry with other Azure tools](../how-to/connections-add.md), CMK encryption must be configured on every top level Azure resource.
+> If you [connect AI Foundry with other Azure tools](../how-to/connections-add.md), CMK encryption is recommended to be configured on every other Azure resource to optimize security.
 
 ::: zone pivot="hub-project"
 ## Data storage options with Azure AI Hub CMK encryption
