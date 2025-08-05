@@ -52,6 +52,7 @@ This service makes several different types of analysis available. The following 
 | Custom categories (rapid) API (preview) | Lets you define emerging harmful content patterns and scan text and images for matches. | [Custom categories concepts](/azure/ai-services/content-safety/concepts/custom-categories)| [How-to guide](./how-to/custom-categories-rapid.md) |
 | [Analyze text](/rest/api/contentsafety/text-operations/analyze-text) API   | Scans text for sexual content, violence, hate, and self harm with multi-severity levels. | [Harm categories](/azure/ai-services/content-safety/concepts/harm-categories)| [Quickstart](/azure/ai-services/content-safety/quickstart-text) |
 | [Analyze image](/rest/api/contentsafety/image-operations/analyze-image) API  | Scans images for sexual content, violence, hate, and self harm with multi-severity levels. | [Harm categories](/azure/ai-services/content-safety/concepts/harm-categories)| [Quickstart](/azure/ai-services/content-safety/quickstart-image) |
+<!--- TBD add task content when ready -->
 
 
 ## Content Safety Studio
@@ -141,7 +142,8 @@ See the following list for the input requirements for each feature.
   - Default minimum length: 110 characters (for scanning LLM completions, not user prompts).
 - **Custom categories (standard) API (preview)**:
   - Maximum inference input length: 1K characters.
-
+- **Task adherence (preview)**:
+  - Maximum input length: 100K characters.
 
 ### Language support
 
