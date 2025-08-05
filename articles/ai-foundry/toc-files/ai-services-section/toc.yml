@@ -82,6 +82,8 @@ items:
     href: ../../../ai-services/speech-service/get-started-speech-translation.md?context=/azure/ai-foundry/context/context
   - name: Video translation
     href: ../../../ai-services/speech-service/video-translation-get-started.md?context=/azure/ai-foundry/context/context
+  - name: Audio content creation
+    href: ../../../ai-services/speech-service/how-to-audio-content-creation.md?context=/azure/ai-foundry/context/context
 - name:  Translator
   items:
   - name: What is Azure AI Translator?
