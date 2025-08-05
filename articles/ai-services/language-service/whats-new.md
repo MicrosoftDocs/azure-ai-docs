@@ -27,8 +27,9 @@ Azure AI Language is updated on an ongoing basis. Bookmark this page to stay up 
     * `2025-15-05-preview` (latest/default)
     * `2023-04-01`
     * `2023-04-15-preview`
-    *  `2024-11-15-preview`<br>
-    For more information, *see* [Azure AI Language REST API reference](/rest/api/language/).
+    * `2024-11-15-preview`<br><br>
+
+  For more information, *see* [Azure AI Language REST API reference](/rest/api/language/).
 
 
 ## June 2025
