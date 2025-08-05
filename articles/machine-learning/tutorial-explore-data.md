@@ -153,7 +153,7 @@ except:
     print(f"Data asset created. Name: {my_data.name}, version: {my_data.version}")
 ```
 
-To examine the uploaded data, select **Data** on the left. The data is uploaded and a data asset is created:
+To examine the uploaded data, select **Data** in the **Assets** section of the left-hand navigation menu. The data is uploaded and a data asset is created:
 
 :::image type="content" source="media/tutorial-explore-data/access-and-explore-data.png" alt-text="Screenshot shows the data in studio.":::
 
@@ -173,17 +173,24 @@ An Azure Machine Learning datastore is a *reference* to an *existing* storage ac
 
 ## Access your data in a notebook
 
-Pandas directly supports URIs. This example shows how to read a CSV file from an Azure Machine Learning datastore:
+You want to create data assets for frequently accessed data. You can access the data using the URI as shown below.  However, as mentioned previously, it can become difficult to remember these URIs. Additionally, you still need to substitute the datastore name, folder, and filename values for your specific resources.
+
+This example shows how to read a CSV file from an Azure Machine Learning datastore using the same configuration values from your `ml_client`:
 
 ```python
 import pandas as pd
 
-df = pd.read_csv("azureml://subscriptions/<subid>/resourcegroups/<rgname>/workspaces/<workspace_name>/datastores/<datastore_name>/paths/<folder>/<filename>.csv")
+# Using the same values from ml_client configuration
+subscription_id = ml_client.subscription_id
+resource_group = ml_client.resource_group_name  
+workspace_name = ml_client.workspace_name
+
+# Construct the datastore URI
+datastore_uri = f"azureml://subscriptions/{subscription_id}/resourcegroups/{resource_group}/workspaces/{workspace_name}/datastores/<datastore_name>/paths/<folder>/<filename>.csv"
+df = pd.read_csv(datastore_uri)
 ```
 
-However, as mentioned previously, it can become difficult to remember these URIs. Additionally, you must manually substitute all **<_substring_>** values in the **pd.read_csv** command with the real values for your resources.
-
-You want to create data assets for frequently accessed data. Here's an easier way to access the CSV file in Pandas:
+ An alternative is to use the `azureml-fsspec` library, which provides a file system interface for Azure Machine Learning datastores. Here's an easier way to access the CSV file in Pandas:
 
 > [!IMPORTANT]
 > In a notebook cell, execute this code to install the `azureml-fsspec` Python library in your Jupyter kernel:
