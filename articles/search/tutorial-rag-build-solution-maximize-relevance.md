@@ -2,7 +2,6 @@
 title: 'RAG tutorial: Tune relevance'
 titleSuffix: Azure AI Search
 description: Learn how to use the relevance tuning capabilities to return high quality results for generative search.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist

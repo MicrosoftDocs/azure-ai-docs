@@ -2,13 +2,12 @@
 title: Connect through a shared private link
 titleSuffix: Azure AI Search
 description: Configure indexer connections to access content from other Azure resources that are protected through a shared private link.
-
 manager: nitinme
 author: mrcarter8
 ms.author: mcarter
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/01/2025
+ms.date: 07/31/2025
 ms.custom:
   - ignite-2024
   - sfi-image-nochange
@@ -30,7 +29,7 @@ Shared private link is a premium feature that's billed by usage. When you set up
 Azure AI Search makes outbound calls to other Azure resources in the following scenarios:
 
 + Knowledge agent connections to Azure OpenAI for agentic retrieval workflows
-+ Indexer or query connections to Azure OpenAI, Azure AI Vision, or the Azure AI Foundry model catalog for vectorization
++ Indexer or query connections to Azure OpenAI or Azure AI Vision for vectorization
 + Indexer connections to supported data sources
 + Indexer (skillset) connections to Azure Storage for caching enrichments, debug session sate, or writing to a knowledge store
 + Indexer (skillset) connections to Azure AI services for billing purposes
@@ -127,7 +126,7 @@ You can create a shared private link for the following resources.
 
 <sup>5</sup> See [Create a shared private link for a SQL Managed Instance](search-indexer-how-to-access-private-sql.md) for instructions.
 
-<sup>6</sup> The `Microsoft.CognitiveServices/accounts` resource type is used for vectorizer and indexer connections to Azure OpenAI embedding models when implementing [integrated Vectorization](vector-search-integrated-vectorization.md). As of November 19, 2024, there's now support for shared private link to embedding models in the Azure AI Foundry model catalog or to the Azure AI Vision multimodal API.
+<sup>6</sup> The `Microsoft.CognitiveServices/accounts` resource type is used for vectorizer and indexer connections to Azure OpenAI embedding models when implementing [integrated Vectorization](vector-search-integrated-vectorization.md). As of November 19, 2024, there's now support for shared private link to support the Azure AI Vision multimodal embeddings via [AI Services multi-service account](/azure/ai-services/multi-service-resource).
 
 <sup>7</sup> Shared private link for Azure OpenAI is only supported in public cloud and [Microsoft Azure Government](https://azure.microsoft.com/explore/global-infrastructure/government/). Other cloud offerings don't have support for shared private links for `openai_account` Group ID.
 
@@ -206,17 +205,17 @@ Because it's easy and quick, this section uses Azure CLI steps for getting a bea
     @service-name = PASTE-HERE
     @token = PASTE-TOKEN-HERE
 
-    GET https://https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups/{{rg-name}}/providers/Microsoft.Search/searchServices/{{service-name}}/sharedPrivateLinkResources?api-version=2023-11-01 HTTP/1.1
+    GET https://https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups/{{rg-name}}/providers/Microsoft.Search/searchServices/{{service-name}}/sharedPrivateLinkResources?api-version=2025-05-01 HTTP/1.1
       Content-type: application/json
       Authorization: Bearer {{token}}
     ```
 
 1. Send the request. You should get a list of all shared private link resources that exist for your search service. Make sure there's no existing shared private link for the resource and subresource combination.
 
-1. Formulate a PUT request to [Create or Update Shared Private Link](/rest/api/searchmanagement/shared-private-link-resources/create-or-update) for the Azure PaaS resource. 
+1. Formulate a PUT request to [Create or Update Shared Private Link](/rest/api/searchmanagement/shared-private-link-resources/create-or-update) for the Azure PaaS resource.
 
     ```http
-    PUT https://https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups/{{rg-name}}/providers/Microsoft.Search/searchServices/{{service-name}}/sharedPrivateLinkResources/{{shared-private-link-name}}?api-version=2023-11-01 HTTP/1.1
+    PUT https://https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups/{{rg-name}}/providers/Microsoft.Search/searchServices/{{service-name}}/sharedPrivateLinkResources/{{shared-private-link-name}}?api-version=2025-05-01 HTTP/1.1
       Content-type: application/json
       Authorization: Bearer {{token}}
 

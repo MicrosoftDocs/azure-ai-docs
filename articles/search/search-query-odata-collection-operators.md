@@ -2,7 +2,6 @@
 title: OData collection operator reference
 titleSuffix: Azure AI Search
 description: When creating filter expressions in Azure AI Search queries, use "any" and "all" operators in lambda expressions when the filter is on a collection or complex collection field.
-
 manager: nitinme
 author: bevloh
 ms.author: beloh

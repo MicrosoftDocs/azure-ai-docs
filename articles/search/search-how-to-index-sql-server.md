@@ -5,7 +5,6 @@ description: Enable encrypted connections and configure the firewall to allow co
 author: gmndrg
 ms.author: gimondra
 manager: nitinme
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

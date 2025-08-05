@@ -12,7 +12,7 @@ ms.author: pafarley
 
 # Use a blocklist with Azure OpenAI
 
-The [configurable content filters](/azure/ai-services/openai/how-to/content-filters) available in Azure OpenAI are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case. For this, you can use custom blocklists.
+The [configurable content filters](/azure/ai-foundry/openai/how-to/content-filters) available in Azure OpenAI are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case. For this, you can use custom blocklists.
 
 ## Prerequisites
 
@@ -62,7 +62,7 @@ The response code should be `201` (created a new list) or `200` (updated an exis
 
 ### Apply a blocklist to a content filter
 
-If you haven't yet created a content filter, you can do so in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). See [Content filtering](/azure/ai-services/openai/how-to/content-filters#create-a-content-filter-in-azure-ai-foundry).
+If you haven't yet created a content filter, you can do so in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). See [Content filtering](/azure/ai-foundry/openai/how-to/content-filters#create-a-content-filter-in-azure-ai-foundry).
 
 To apply a **completion** blocklist to a content filter, use the following cURL command: 
 
@@ -134,7 +134,7 @@ The response code should be `200`.
 
 ### Analyze text with a blocklist
 
-Now you can test out your deployment that has the blocklist. For instructions on calling the Azure OpenAI endpoints, visit the [Quickstart](/azure/ai-services/openai/quickstart). 
+Now you can test out your deployment that has the blocklist. For instructions on calling the Azure OpenAI endpoints, visit the [Quickstart](/azure/ai-foundry/openai/quickstart). 
 
 In the below example, a GPT-35-Turbo deployment with a blocklist is blocking the prompt. The response returns a `400` error. 
 
@@ -260,6 +260,6 @@ If the completion itself is blocked, the response returns `200`, as the completi
 
 - Learn more about Responsible AI practices for Azure OpenAI: [Overview of Responsible AI practices for Azure OpenAI models](/azure/ai-foundry/responsible-ai/openai/overview). 
 
-- Read more about [content filtering categories and severity levels](/azure/ai-services/openai/concepts/content-filter?tabs=python) with Azure OpenAI in Azure AI Foundry Models. 
+- Read more about [content filtering categories and severity levels](/azure/ai-foundry/openai/concepts/content-filter?tabs=python) with Azure OpenAI in Azure AI Foundry Models. 
 
-- Learn more about red teaming from our: [Introduction to red teaming large language models (LLMs)](/azure/ai-services/openai/concepts/red-teaming) article. 
+- Learn more about red teaming from our: [Introduction to red teaming large language models (LLMs)](/azure/ai-foundry/openai/concepts/red-teaming) article. 

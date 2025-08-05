@@ -17,7 +17,7 @@ ms.custom:
   - no-code-deployment
   - devx-track-azurecli
   - cliv2
-  - update-code2
+  - update-code3
   - sfi-image-nochange
 # customer intent: As a developer, I want to see how to deploy an MLflow model to an online endpoint so that I can use the model to make predictions in real time.
 ---
@@ -35,8 +35,6 @@ For no-code-deployment, Azure Machine Learning:
     * The [`azureml-inference-server-http`](how-to-inference-server-http.md) package
     * The [`mlflow-skinny`](https://github.com/mlflow/mlflow/blob/master/skinny/README_SKINNY.md) package
     * A scoring script for inferencing
-
-[!INCLUDE [mlflow-model-package-for-workspace-without-egress](includes/mlflow-model-package-for-workspace-without-egress.md)]
 
 ## Prerequisites
 
@@ -419,19 +417,6 @@ version = registered_model.version
     )
     ```
 
-    Alternatively, if your endpoint doesn't have egress connectivity, use [model packaging (preview)](how-to-package-models.md) by including the argument `with_package=True`:
-
-    ```python
-    blue_deployment = ManagedOnlineDeployment(
-        name="blue",
-        endpoint_name=endpoint_name,
-        model=model,
-        instance_type="Standard_F4s_v2",
-        instance_count=1,
-        with_package=True,
-    )
-    ```
-
     # [Python (MLflow SDK)](#tab/mlflow)
 
     ```python
@@ -473,10 +458,8 @@ version = registered_model.version
     
     :::code language="azurecli" source="~/azureml-examples-main/cli/deploy-managed-online-endpoint-ncd.sh" ID="create_sklearn_deployment":::
 
-    If your endpoint doesn't have egress connectivity, use model packaging (preview) by including the flag `--package-model`:
-
     ```azurecli
-    az ml online-deployment create --package-model --name sklearn-deployment --endpoint $ENDPOINT_NAME -f endpoints/online/ncd/sklearn-deployment.yaml --all-traffic
+    az ml online-deployment create --name sklearn-deployment --endpoint $ENDPOINT_NAME -f endpoints/online/ncd/sklearn-deployment.yaml --all-traffic
     ```
 
     # [Python (Azure Machine Learning SDK)](#tab/sdk)

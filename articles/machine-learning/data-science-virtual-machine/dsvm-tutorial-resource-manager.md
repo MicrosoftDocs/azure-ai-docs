@@ -28,7 +28,7 @@ If your environment meets the prerequisites and you know how to use ARM template
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/services/machine-learning/) before you begin.
+* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/products/machine-learning/) before you begin.
 
 * You need the [Azure CLI](/cli/azure/install-azure-cli) to use the CLI commands in this document from your **local environment**.
 

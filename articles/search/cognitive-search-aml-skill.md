@@ -2,7 +2,6 @@
 title: Custom AML skill in skillsets
 titleSuffix: Azure AI Search
 description: Extend capabilities of Azure AI Search skillsets with Azure Machine Learning models.
-
 author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search

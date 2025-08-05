@@ -24,7 +24,7 @@ The deep research tool is a **code-only release** and available for use using th
 
 |Azure AI foundry portal  | Python SDK |	C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
-|  | ✔️ |  |  |  | ✔️  | ✔️ |
+|  | ✔️ | ✔️ | ✔️ |  | ✔️  | ✔️ |
 
 > [!NOTE]
 > Once the agent is running, some elements of the agent and thread runs can show up in the Azure AI Foundry user interface.
@@ -47,11 +47,14 @@ The Deep Research tool is supported in the following regions where the deep rese
 |---------|---------|
 | ✔️ | ✔️ | 
 
-## GPT model for clarifying research scope
+## GPT-4o model for clarifying research scope
 
-The Deep Research tool uses a GPT model to clarify the question contained in the user prompt, gather additional context if needed, and precisely scope the research task. This model is deployed during configuration of the Deep Research tool and can be one of the GPT-series models including GPT-4o, **except** the GPT-4.1 family, The 4.1 family is not supported by the Agents service.
+The Deep Research tool uses the `gpt-4o` model to clarify the question contained in the user prompt, gather additional context if needed, and precisely scope the research task. This model is deployed during configuration of the Deep Research tool. 
 
-## Deep research model for deep analysis
+> [!NOTE]
+> Other GPT-series models including GPT-4o-mini and the GPT-4.1 series are not supported for scope clarification.
+
+## Deep research model for analysis
 
 - **Model name**: `o3-deep-research`
 - **Deployment type**: Global Standard
@@ -64,7 +67,7 @@ The Deep Research tool uses a GPT model to clarify the question contained in the
 - [Grounding with Bing Search tool](./bing-grounding.md) resource for connecting to your Azure AI Foundry project.
 - [Model deployments](../../../model-inference/how-to/create-model-deployments.md) for the following models
     - `o3-deep-research` version `2025-06-26`. This model is available in `West US` and `Norway East`.
-    - Any Azure OpenAI GPT model like `gpt-4o` for intent clarification. Deploy in the same regions.
+    - The `gpt-4o` model for intent clarification. Deploy this model in the same region.
 
 ## Research tool setup 
 

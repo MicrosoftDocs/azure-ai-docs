@@ -2,7 +2,6 @@
 title: OData full-text search function reference
 titleSuffix: Azure AI Search
 description: OData full-text search functions, search.ismatch and search.ismatchscoring, in Azure AI Search queries.
-
 manager: nitinme
 author: bevloh
 ms.author: beloh

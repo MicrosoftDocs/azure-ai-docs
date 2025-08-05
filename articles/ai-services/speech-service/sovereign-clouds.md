@@ -35,7 +35,6 @@ Available to US government entities and their partners only. See more informatio
     - Neural voice
   - Speech translation
 - **Unsupported features:**
-  - Custom commands
   - Custom voice
   - Personal voice
   - Text to speech avatar
@@ -123,7 +122,6 @@ Available to organizations with a business presence in China. See more informati
     - Neural voice
   - Speech translator
 - **Unsupported features:**
-  - Custom commands
   - Custom voice
   - Personal voice
   - Text to speech avatar

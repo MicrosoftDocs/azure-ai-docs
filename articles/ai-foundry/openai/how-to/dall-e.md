@@ -21,13 +21,13 @@ OpenAI's image generation models render images based on user-provided text promp
 ## Prerequisites
 
 - An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=ai-services).
-- An Azure OpenAI resource created in a supported region. See [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability).
-- Deploy a `dall-e-3` or `gpt-image-1` model with your Azure OpenAI resource. For more information on deployments, see [Create a resource and deploy a model with Azure OpenAI](/azure/ai-services/openai/how-to/create-resource).
+- An Azure OpenAI resource created in a supported region. See [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability).
+- Deploy a `dall-e-3` or `gpt-image-1` model with your Azure OpenAI resource. For more information on deployments, see [Create a resource and deploy a model with Azure OpenAI](/azure/ai-foundry/openai/how-to/create-resource).
     - GPT-image-1 is the newer model and features a number of improvements over DALL-E 3. It's available in limited access: apply for access with [this form](https://aka.ms/oai/gptimage1access).
 
 ## Call the Image Generation API
 
-The following command shows the most basic way to use an image model with code. If this is your first time using these models programmatically, we recommend starting with the [quickstart](/azure/ai-services/openai/dall-e-quickstart).
+The following command shows the most basic way to use an image model with code. If this is your first time using these models programmatically, we recommend starting with the [quickstart](/azure/ai-foundry/openai/dall-e-quickstart).
 
 
 #### [GPT-image-1](#tab/gpt-image-1)
@@ -121,9 +121,10 @@ The response from a successful image generation API call looks like the followin
     ]
 } 
 ```
+> [!NOTE]
+> `response_format` parameter is not supported for GPT-image-1 which always returns base64-encoded images.
 
 #### [DALL-E 3](#tab/dalle-3)
-
 
 The response from a successful image generation API call looks like the following example. The `url` field contains a URL where you can download the generated image. The URL stays active for 24 hours.
 
@@ -138,6 +139,7 @@ The response from a successful image generation API call looks like the followin
     ]
 } 
 ```
+---
 
 ---
 
@@ -178,7 +180,7 @@ Your prompts should describe the content you want to see in the image, and the v
 When you write prompts, consider that the Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it doesn't generate an image. For more information, see [Content filtering](../concepts/content-filter.md).
 
 > [!TIP]
-> For a thorough look at how you can tweak your text prompts to generate different kinds of images, see the [Image prompt engineering guide](/azure/ai-services/openai/concepts/gpt-4-v-prompt-engineering).
+> For a thorough look at how you can tweak your text prompts to generate different kinds of images, see the [Image prompt engineering guide](/azure/ai-foundry/openai/concepts/gpt-4-v-prompt-engineering).
 
 
 ### Specify API options
@@ -218,6 +220,10 @@ Use the *output_format* parameter to specify the format of the generated image. 
 #### Compression
 
 Use the *output_compression* parameter to specify the compression level for the generated image. Input an integer between `0` and `100`, where `0` is no compression and `100` is maximum compression. The default is `100`.
+
+#### Streaming 
+
+Use the *stream* parameter to enable streaming responses. When set to `true`, the API returns partial images as they are generated. This provides faster visual feedback for users and improves perceived latency. Set the *partial_images* parameter to control how many partial images are generated (1-3).
 
 
 #### [DALL-E 3](#tab/dalle-3)
@@ -264,10 +270,11 @@ The format in which DALL-E 3 generated images are returned. Must be one of `url`
 
 The Image Edit API allows you to modify existing images based on text prompts you provide. The API call is similar to the image generation API call, but you also need to provide an input image.
 
-> [!IMPORTANT]
-> The input image must be less than 20 MB in size and must be a PNG or JPG file.
 
 #### [GPT-image-1](#tab/gpt-image-1)
+
+> [!IMPORTANT]
+> The input image must be less than 50 MB in size and must be a PNG or JPG file.
 
 Send a POST request to:
 
@@ -326,11 +333,20 @@ The following API body parameters are available for image editing models, in add
 
 The *image* value indicates the image file you want to edit.
 
+#### Input fidelity 
+
+The *input_fidelity* parameter controls how much effort the model will exert to match the style and features, especially facial features, of input images 
+
+This allows you to make subtle edits to an image without altering unrelated areas. When you use high input fidelity, faces are preserved more accurately than in standard mode. 
+
 
 #### Mask
 
 The *mask* parameter is the same type as the main *image* input parameter. It defines the area of the image that you want the model to edit, using fully transparent pixels (alpha of zero) in those areas. The mask must be a PNG file and have the same dimensions as the input image.
 
+#### Streaming 
+
+Use the *stream* parameter to enable streaming responses. When set to `true`, the API returns partial images as they are generated. This provides faster visual feedback for users and improves perceived latency. Set the *partial_images* parameter to control how many partial images are generated (1-3).
 
 #### [DALL-E 3](#tab/dalle-3)
 
@@ -342,8 +358,8 @@ DALL-E models don't support the Image Edit API.
 
 * [What is Azure OpenAI?](../overview.md)
 * [Quickstart: Generate images with Azure OpenAI](../dall-e-quickstart.md)
-* [Image API reference](/azure/ai-services/openai/reference#image-generation)
-* [Image API (preview) reference](/azure/ai-services/openai/reference-preview)
+* [Image API reference](/azure/ai-foundry/openai/reference#image-generation)
+* [Image API (preview) reference](/azure/ai-foundry/openai/reference-preview)
 
 
 <!-- OAI HT guide https://platform.openai.com/docs/guides/images/usage

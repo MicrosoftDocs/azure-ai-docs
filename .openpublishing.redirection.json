@@ -6,6 +6,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "articles/ai-foundry/how-to/develop/vscode.md",
+      "redirect_url": "/azure/ai-foundry/how-to/develop/get-started-projects-vs-code",
+      "redirect_document_id": false
+    },
+        {
       "source_path": "articles/ai-foundry/azure-openai-in-azure-ai-foundry.md",
       "redirect_url": "/azure/ai-foundry/what-is-azure-ai-foundry",
       "redirect_document_id": false
@@ -488,6 +493,26 @@
     {
       "source_path": "articles/ai-foundry/model-inference/index.yml",
       "redirect_url": "../foundry-models/index",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/machine-learning/concept-package-models.md",
+      "redirect_url": "/azure/machine-learning/concept-endpoints",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/machine-learning/how-to-package-models-moe.md",
+      "redirect_url": "/azure/machine-learning/concept-endpoints",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/machine-learning/how-to-package-models-app-service.md",
+      "redirect_url": "/azure/machine-learning/concept-endpoints",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/machine-learning/how-to-package-models.md",
+      "redirect_url": "/azure/machine-learning/concept-endpoints",
       "redirect_document_id": false
     }
   ]

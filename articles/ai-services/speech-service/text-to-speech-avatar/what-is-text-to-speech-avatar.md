@@ -5,14 +5,14 @@ description: Get an overview of the Text to speech avatar feature of speech serv
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 4/28/2025
+ms.date: 7/31/2025
 ms.reviewer: eur
 ms.author: eur
 author: eric-urban
 ms.custom: references_regions
 ---
 
-# Text to speech avatar overview
+# What is Text to speech avatar?
 
 Text to speech avatar converts text into a digital video of a photorealistic human (either a standard avatar or a [custom text to speech avatar](#custom-text-to-speech-avatar)) speaking with a natural-sounding voice. The text to speech avatar video can be synthesized asynchronously or in real time. Developers can build applications integrated with text to speech avatar through an API, or use a content creation tool on Speech Studio to create video content without coding.
 
@@ -67,7 +67,7 @@ Sample code for text to speech avatar is available on [GitHub](https://github.co
 * [Batch synthesis (REST)](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/batch-avatar)
 * [Real-time synthesis (SDK)](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar)
 * [Live chat with Azure OpenAI in behind (SDK)](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar#chat-sample)
-* To create a live chat APP with Azure OpenAI [On Your Data](/azure/ai-services/openai/concepts/use-your-data), you can refer to [this sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/browser/avatar/README.md) (search "On Your Data")
+* To create a live chat APP with Azure OpenAI [On Your Data](/azure/ai-foundry/openai/concepts/use-your-data), you can refer to [this sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/browser/avatar/README.md) (search "On Your Data")
 
 ## Pricing
 

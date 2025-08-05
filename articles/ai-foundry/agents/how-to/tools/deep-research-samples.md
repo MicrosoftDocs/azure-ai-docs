@@ -10,6 +10,7 @@ ms.date: 07/10/2025
 author: aahill
 ms.author: aahi
 ms.custom: references_regions
+zone_pivot_groups: selection-deep-research
 ---
 
 # How to use the Deep Research tool
@@ -23,43 +24,415 @@ Use this article to learn how to use the Deep Research tool with the Azure AI Pr
 ## Prerequisites
 
 * The requirements in the [Deep Research overview](./deep-research.md).
-* The Deep Research tool requires the latest prerelease versions of the `azure-ai-projects` library. First we recommend creating a [virtual environment](https://docs.python.org/3/library/venv.html) to work in:
-
-    ```console
-    python -m venv env
-    # after creating the virtual environment, activate it with:
-    .\env\Scripts\activate
-    ```
-
-    You can install the package with the following command:
-
-    ```console
-    pip install --pre azure-ai-projects
-    ```
-
 * Your Azure AI Foundry Project endpoint.
 
     
     [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]
 
-    Save this endpoint to an environment variable named `PROJECT_ENDPOINT`. 
+    Save this endpoint to an environment variable named `PROJECT_ENDPOINT`.
 
-* The name of your Grounding with Bing Search resource name. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Then selecting **Connected resources**.
+* The deployment names of your `o3-deep-research-model` and `gpt-4o` models. You can find them in **Models + Endpoints** in the left navigation menu.
+
+   :::image type="content" source="../../media/tools/deep-research/model-deployments.png" alt-text="A screenshot showing the model deployment screen the AI Foundry portal." lightbox="../../media/tools/deep-research/model-deployments.png":::
+    
+    Save the name of your `o3-deep-research` deployment name as an environment variable named `DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME` and the `gpt-4o` deployment name as an environment variable named `MODEL_DEPLOYMENT_NAME`.
+
+> [!NOTE]
+> Other GPT-series models including GPT-4o-mini and the GPT-4.1 series are not supported for scope clarification.
+
+:::zone pivot="csharp"
+
+* The connection ID for your Grounding with Bing Search resource. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Then selecting **Connected resources**. Then select your bing resource.
+    
+    :::image type="content" source="../../media/tools/deep-research/bing-resource-name.png" alt-text="A screenshot showing the Grounding with Bing Search resource name. " lightbox="../../media/tools/deep-research/bing-resource-name.png":::
+
+    Copy the ID, and save it to an environment variable named `AZURE_BING_CONECTION_ID`. 
+
+    :::image type="content" source="../../media/tools/deep-research/bing-id.png" alt-text="A screenshot showing the Grounding with Bing Search ID. " lightbox="../../media/tools/deep-research/bing-id.png":::
+
+## Create an agent with the Deep Research tool
+
+>[!NOTE]
+> You need version `1.1.0-beta.4` or later of the `Azure.AI.Agents.Persistent` package, and the `Azure.Identity` package.
+
+```csharp
+using Azure;
+using Azure.AI.Agents.Persistent;
+using Azure.Identity;
+using System.Collections.Generic;
+using System.Text;
+
+var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+var deepResearchModelDeploymentName = System.Environment.GetEnvironmentVariable("DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME");
+var connectionId = System.Environment.GetEnvironmentVariable("AZURE_BING_CONECTION_ID");
+PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
+
+// DeepResearchToolDefinition should be initialized with the name of deep research model and the Bing connection ID,
+// needed to perform the search in the internet.
+
+DeepResearchToolDefinition deepResearch = new(
+    new DeepResearchDetails(
+        model: deepResearchModelDeploymentName,
+        bingGroundingConnections: [
+            new DeepResearchBingGroundingConnection(connectionId)
+        ]
+    )
+);
+
+// NOTE: To reuse existing agent, fetch it with get_agent(agent_id)
+PersistentAgent agent = client.Administration.CreateAgent(
+    model: modelDeploymentName,
+    name: "Science Tutor",
+    instructions: "You are a helpful Agent that assists in researching scientific topics.",
+    tools: [deepResearch]
+);
+
+//Create a thread and run and wait for the run to complete.
+
+PersistentAgentThreadCreationOptions threadOp = new();
+threadOp.Messages.Add(new ThreadMessageOptions(
+        role: MessageRole.User,
+        content: "Research the current state of studies on orca intelligence and orca language, " +
+        "including what is currently known about orcas' cognitive capabilities, " +
+        "communication systems and problem-solving reflected in recent publications in top thier scientific " +
+        "journals like Science, Nature and PNAS."
+    ));
+ThreadAndRunOptions opts = new()
+{
+    ThreadOptions = threadOp,
+};
+ThreadRun run = client.CreateThreadAndRun(
+    assistantId: agent.Id,
+    options: opts
+);
+
+Console.WriteLine("Start processing the message... this may take a few minutes to finish. Be patient!");
+do
+{
+    Thread.Sleep(TimeSpan.FromMilliseconds(500));
+    run = client.Runs.GetRun(run.ThreadId, run.Id);
+}
+while (run.Status == RunStatus.Queued
+    || run.Status == RunStatus.InProgress);
+
+// We will create a helper function PrintMessagesAndSaveSummary, which prints the response from the agent,
+// and replaces the reference placeholders by links in Markdown format.
+// It also saves the research summary in the file for convenience.
+
+static void PrintMessagesAndSaveSummary(IEnumerable<PersistentThreadMessage> messages, string summaryFilePath)
+{
+    string lastAgentMessage = default;
+    foreach (PersistentThreadMessage threadMessage in messages)
+    {
+        StringBuilder sbAgentMessage = new();
+        Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
+        foreach (MessageContent contentItem in threadMessage.ContentItems)
+        {
+            if (contentItem is MessageTextContent textItem)
+            {
+                string response = textItem.Text;
+                if (textItem.Annotations != null)
+                {
+                    foreach (MessageTextAnnotation annotation in textItem.Annotations)
+                    {
+                        if (annotation is MessageTextUriCitationAnnotation uriAnnotation)
+                        {
+                            response = response.Replace(uriAnnotation.Text, $" [{uriAnnotation.UriCitation.Title}]({uriAnnotation.UriCitation.Uri})");
+                        }
+                    }
+                }
+                if (threadMessage.Role == MessageRole.Agent)
+                    sbAgentMessage.Append(response);
+                Console.Write($"Agent response: {response}");
+            }
+            else if (contentItem is MessageImageFileContent imageFileItem)
+            {
+                Console.Write($"<image from ID: {imageFileItem.FileId}");
+            }
+            Console.WriteLine();
+        }
+        if (threadMessage.Role == MessageRole.Agent)
+            lastAgentMessage = sbAgentMessage.ToString();
+    }
+    if (!string.IsNullOrEmpty(lastAgentMessage))
+    {
+        File.WriteAllText(
+            path: summaryFilePath,
+            contents: lastAgentMessage);
+    }
+}
+
+//List the messages, print them and save the result in research_summary.md file.
+//The file will be saved next to the compiled executable.
+
+Pageable<PersistentThreadMessage> messages
+    = client.Messages.GetMessages(
+        threadId: run.ThreadId, order: ListSortOrder.Ascending);
+PrintMessagesAndSaveSummary([.. messages], "research_summary.md");
+
+// NOTE: Comment out these two lines if you want to delete the agent.
+client.Threads.DeleteThread(threadId: run.ThreadId);
+client.Administration.DeleteAgent(agentId: agent.Id);
+```
+
+:::zone-end 
+
+:::zone pivot="typescript"
+
+* The name of your Grounding with Bing Search resource name. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Select **Connected resources**, then select your Grounding with Bing Search resource.
+    
+    :::image type="content" source="../../media/tools/deep-research/bing-resource-name.png" alt-text="A screenshot showing the Grounding with Bing Search resource name. " lightbox="../../media/tools/deep-research/bing-resource-name.png":::
+
+
+    Copy the ID, and save it to an environment variable named `AZURE_BING_CONECTION_ID`. 
+
+    :::image type="content" source="../../media/tools/deep-research/bing-id.png" alt-text="A screenshot showing the Grounding with Bing Search resource ID. " lightbox="../../media/tools/deep-research/bing-id.png":::
+
+    Save this endpoint to an environment variable named `BING_RESOURCE_NAME`. 
+
+## Create an agent with the Deep Research tool
+
+> [!NOTE]
+> You need the latest preview version of the `@azure/ai-projects` package.
+
+```typescript
+import type {
+  MessageTextContent,
+  ThreadMessage,
+  DeepResearchToolDefinition,
+  MessageTextUrlCitationAnnotation,
+} from "@azure/ai-agents";
+import { AgentsClient, isOutputOfType } from "@azure/ai-agents";
+import { DefaultAzureCredential } from "@azure/identity";
+
+import "dotenv/config";
+
+const projectEndpoint = process.env["PROJECT_ENDPOINT"] || "<project endpoint>";
+const modelDeploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "gpt-4o";
+const deepResearchModelDeploymentName =
+  process.env["DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME"] || "gpt-4o";
+const bingConnectionId = process.env["AZURE_BING_CONNECTION_ID"] || "<connection-id>";
+
+/**
+ * Fetches and prints new agent response from the thread
+ * @param threadId - The thread ID
+ * @param client - The AgentsClient instance
+ * @param lastMessageId - The ID of the last message processed
+ * @returns The ID of the newest message, or undefined if no new message
+ */
+async function fetchAndPrintNewAgentResponse(
+  threadId: string,
+  client: AgentsClient,
+  lastMessageId?: string,
+): Promise<string | undefined> {
+  const messages = client.messages.list(threadId);
+  let latestMessage: ThreadMessage | undefined;
+  for await (const msg of messages) {
+    if (msg.role === "assistant") {
+      latestMessage = msg;
+      break;
+    }
+  }
+
+  if (!latestMessage || latestMessage.id === lastMessageId) {
+    return lastMessageId;
+  }
+
+  console.log("\nAgent response:");
+
+  // Print text content
+  for (const content of latestMessage.content) {
+    if (isOutputOfType<MessageTextContent>(content, "text")) {
+      console.log(content.text.value);
+    }
+  }
+
+  const urlCitations = getUrlCitationsFromMessage(latestMessage);
+  if (urlCitations.length > 0) {
+    console.log("\nURL Citations:");
+    for (const citation of urlCitations) {
+      console.log(`URL Citations: [${citation.title}](${citation.url})`);
+    }
+  }
+
+  return latestMessage.id;
+}
+
+/**
+ * Extracts URL citations from a thread message
+ * @param message - The thread message
+ * @returns Array of URL citations
+ */
+function getUrlCitationsFromMessage(message: ThreadMessage): Array<{ title: string; url: string }> {
+  const citations: Array<{ title: string; url: string }> = [];
+
+  for (const content of message.content) {
+    if (isOutputOfType<MessageTextContent>(content, "text")) {
+      for (const annotation of content.text.annotations) {
+        if (isOutputOfType<MessageTextUrlCitationAnnotation>(annotation, "url_citation")) {
+          citations.push({
+            title: annotation.urlCitation.title || annotation.urlCitation.url,
+            url: annotation.urlCitation.url,
+          });
+        }
+      }
+    }
+  }
+
+  return citations;
+}
+
+/**
+ * Creates a research summary from the final message
+ * @param message - The thread message containing the research results
+ * @param filepath - The file path to write the summary to
+ */
+function createResearchSummary(message: ThreadMessage): void {
+  if (!message) {
+    console.log("No message content provided, cannot create research summary.");
+    return;
+  }
+
+  let content = "";
+
+  // Write text summary
+  const textSummaries: string[] = [];
+  for (const contentItem of message.content) {
+    if (isOutputOfType<MessageTextContent>(contentItem, "text")) {
+      textSummaries.push(contentItem.text.value.trim());
+    }
+  }
+  content += textSummaries.join("\n\n");
+
+  // Write unique URL citations, if present
+  const urlCitations = getUrlCitationsFromMessage(message);
+  if (urlCitations.length > 0) {
+    content += "\n\n## References\n";
+    const seenUrls = new Set<string>();
+    for (const citation of urlCitations) {
+      if (!seenUrls.has(citation.url)) {
+        content += `- [${citation.title}](${citation.url})\n`;
+        seenUrls.add(citation.url);
+      }
+    }
+  }
+
+  // writeFileSync(filepath, content, "utf-8");
+  console.log(`Research summary created:\n${content}`);
+  // console.log(`Research summary written to '${filepath}'.`);
+}
+
+export async function main(): Promise<void> {
+  // Create an Azure AI Client
+  const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());
+
+  // Create Deep Research tool definition
+  const deepResearchTool: DeepResearchToolDefinition = {
+    type: "deep_research",
+    deepResearch: {
+      deepResearchModel: deepResearchModelDeploymentName,
+      deepResearchBingGroundingConnections: [
+        {
+          connectionId: bingConnectionId,
+        },
+      ],
+    },
+  };
+
+  // Create agent with the Deep Research tool
+  const agent = await client.createAgent(modelDeploymentName, {
+    name: "my-agent",
+    instructions: "You are a helpful Agent that assists in researching scientific topics.",
+    tools: [deepResearchTool],
+  });
+  console.log(`Created agent, ID: ${agent.id}`);
+
+  // Create thread for communication
+  const thread = await client.threads.create();
+  console.log(`Created thread, ID: ${thread.id}`);
+
+  // Create message to thread
+  const message = await client.messages.create(
+    thread.id,
+    "user",
+    "Research the current scientific understanding of orca intelligence and communication, focusing on recent (preferably past 5 years) peer-reviewed studies, comparisons with other intelligent species such as dolphins or primates, specific cognitive abilities like problem-solving and social learning, and detailed analyses of vocal and non-vocal communication systems—please include notable authors or landmark papers if applicable.",
+  );
+  console.log(`Created message, ID: ${message.id}`);
+
+  console.log("Start processing the message... this may take a few minutes to finish. Be patient!");
+
+  // Create and poll the run
+  const run = await client.runs.create(thread.id, agent.id);
+  let lastMessageId: string | undefined;
+
+  // Poll the run status
+  let currentRun = run;
+  while (currentRun.status === "queued" || currentRun.status === "in_progress") {
+    await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait 1 second
+    currentRun = await client.runs.get(thread.id, run.id);
+
+    lastMessageId = await fetchAndPrintNewAgentResponse(thread.id, client, lastMessageId);
+    console.log(`Run status: ${currentRun.status}`);
+  }
+
+  console.log(`Run finished with status: ${currentRun.status}, ID: ${currentRun.id}`);
+
+  if (currentRun.status === "failed") {
+    console.log(`Run failed: ${currentRun.lastError}`);
+  }
+
+  // Fetch the final message from the agent and create a research summary
+  const messages = client.messages.list(thread.id, { order: "desc", limit: 10 });
+  let finalMessage: ThreadMessage | undefined;
+
+  for await (const msg of messages) {
+    if (msg.role === "assistant") {
+      finalMessage = msg;
+      break;
+    }
+  }
+
+  if (finalMessage) {
+    createResearchSummary(finalMessage);
+  }
+
+  // Clean-up and delete the agent once the run is finished
+  await client.deleteAgent(agent.id);
+  console.log("Deleted agent");
+}
+
+main().catch((err) => {
+  console.error("The sample encountered an error:", err);
+});
+```
+
+:::zone-end 
+
+:::zone pivot="python"
+
+* The name of your Grounding with Bing Search resource name. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Then select **Connected resources**.
     
     :::image type="content" source="../../media/tools/deep-research/bing-resource-name.png" alt-text="A screenshot showing the Grounding with Bing Search resource name. " lightbox="../../media/tools/deep-research/bing-resource-name.png":::
 
     Save this endpoint to an environment variable named `BING_RESOURCE_NAME`. 
 
-* The names of your `o3-deep-research-model` deployment name and Azure OpenAI GPT model deployment name. You can find them in **Models + Endpoints** in the left navigation menu. 
-
-    :::image type="content" source="../../media/tools/deep-research/model-deployments.png" alt-text="A screenshot showing the model deployment screen the AI Foundry portal." lightbox="../../media/tools/deep-research/model-deployments.png":::
-    
-    Save the name of your `o3-deep-research-model` deployment name as an environment variable named `DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME` and Azure OpenAI GPT model deployment name as an environment variable named `MODEL_DEPLOYMENT_NAME`. 
-
-> [!NOTE]
-> Limitation: The Deep Research tool is currently recommended only in nonstreaming scenarios. Using it with streaming can work, but it might occasionally time out and is therefore not recommended.
-
 ## Create an agent with the Deep Research tool
+
+The Deep Research tool requires the latest prerelease versions of the `azure-ai-projects` library. First we recommend creating a [virtual environment](https://docs.python.org/3/library/venv.html) to work in:
+
+```console
+python -m venv env
+# after creating the virtual environment, activate it with:
+.\env\Scripts\activate
+```
+
+You can install the package with the following command:
+
+```console
+pip install --pre azure-ai-projects
+```
+
 
 ```python
 import os, time
@@ -196,6 +569,11 @@ with project_client:
         agents_client.delete_agent(agent.id)
         print("Deleted agent")
 ```
+
+:::zone-end 
+
+> [!NOTE]
+> Limitation: The Deep Research tool is currently recommended only in nonstreaming scenarios. Using it with streaming can work, but it might occasionally time out and is therefore not recommended.
 
 ## Next steps
 

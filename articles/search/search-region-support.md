@@ -5,7 +5,7 @@ description: Shows supported regions and feature availability across regions for
 author: haileytap
 ms.author: haileytapia
 manager: nitinme
-ms.date: 06/12/2025
+ms.date: 07/31/2025
 ms.service: azure-ai-search
 ms.update-cycle: 90-days
 ms.topic: conceptual
@@ -45,8 +45,8 @@ You can create an Azure AI Search service in any of the following Azure public r
 | Canada Central​​ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Canada East​​ ​|  |  | ✅ | ✅ |  |
 | ​Central US​​ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| East US​ | ✅ | ✅ | ✅ | ✅ |  |
-| East US 2 ​<sup>1</sup>  | ✅ | ✅ | ✅ | ✅ | ✅ |
+| East US​ <sup>1</sup> | ✅ | ✅ | ✅ | ✅ |  |
+| East US 2 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Mexico Central |  | ✅ |  |  |  |
 | North Central US​ ​| ✅ |  | ✅ | ✅ | ✅ |
 | South Central US​ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -55,18 +55,17 @@ You can create an Azure AI Search service in any of the following Azure public r
 | West US 3​ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | West Central US​ ​ | ✅ |  | ✅ | ✅ |  |
 
-<sup>1</sup> This region has capacity constraints on the following tiers: S2, S3, L1, and L2.
+<sup>1</sup> This region has capacity constraints on all tiers.
 
 ### Europe
 
 | Region | AI enrichment | Availability zones | Agentic retrieval | Semantic ranker | Query rewrite |
 |--|--|--|--|--|--|
-| North Europe​​ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| West Europe​​ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | France Central​​ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Germany West Central​ ​| ✅ | ✅ | ✅ | ✅ |  |
 | Italy North​​ |  | ✅ | ✅ | ✅ |  |
 | Norway East​​ | ✅ | ✅ |  |  |  |
+| North Europe​​ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Poland Central​​ |  |  | ✅ | ✅ |  |
 | Spain Central <sup>1</sup> |  | ✅ |  |  |  |
 | Sweden Central​​ | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -74,6 +73,7 @@ You can create an Azure AI Search service in any of the following Azure public r
 | Switzerland West​ | ✅ | ✅ | ✅ | ✅ |  |
 | UK South​ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | UK West​ ​|  |  | ✅ | ✅ |  |
+| West Europe​​ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 <sup>1</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) aren't available in this region. If you want higher limits, choose a different region.
 
@@ -99,16 +99,19 @@ You can create an Azure AI Search service in any of the following Azure public r
 |--|--|--|--|--|--|
 | Australia East​ ​| ✅ | ✅ | ✅ | ✅ | ✅ |
 | Australia Southeast​​​ |  |  | ✅ | ✅ |  |
-| East Asia​ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Southeast Asia​​ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Central India | ✅ | ✅ | ✅ | ✅ | ✅ |
+| East Asia​ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Indonesia Central |  | ✅ |  |  |  |
 | Jio India West​​ | ✅ |  | ✅ | ✅ | ✅ |
-| South India |  | ✅ |  |  |  |
+| Jio India Central​​ |  |  |  |  |  |
 | Japan East | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Japan West​ | ✅ |  | ✅ | ✅ |  |
 | Korea Central | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Korea South​​ |  |  | ✅ | ✅ |  |
-| Indonesia Central |  | ✅ |  |  |  |
+| Malaysia West |  | ✅ |  |  |  |  |
+| New Zealand North |  | ✅ |  |  |  |
+| South India |  | ✅ |  |  |  |
+| Southeast Asia​​ | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 ## Azure Government regions
 

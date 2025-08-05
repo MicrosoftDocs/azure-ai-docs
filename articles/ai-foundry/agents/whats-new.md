@@ -7,7 +7,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: overview
-ms.date: 06/26/2025
+ms.date: 08/04/2025
 ms.custom: azure-ai-agents
 ---
 
@@ -15,6 +15,19 @@ ms.custom: azure-ai-agents
 
 This article provides a summary of the latest releases and major documentation updates for Azure AI Foundry Agent Service.
 
+## August 2025
+
+### Browser Automation tool
+
+The [Browser Automation tool](./how-to/tools/browser-automation.md) is now available in Public Preview. This tool enables you to perform real-world browser tasks through natural language prompts in an isolated browser session using your own provisioned [Microsoft Playwright Workspaces](/azure/playwright-testing/overview-what-is-microsoft-playwright-testing).
+
+### New regional availability
+
+The Azure AI Foundry Agent Service is now available in the following [regions](./concepts/model-region-support.md#available-models):
+* Brazil south
+* Germany west central
+* Italy north
+* South central US
 ## June 2025
 
 ### Deep Research tool

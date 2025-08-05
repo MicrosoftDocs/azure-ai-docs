@@ -5,8 +5,8 @@ description: Understand and manage inputs and outputs of pipeline components and
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.author: scottpolly
-author: s-polly
+ms.author: lagayhar
+author: lgayhardt
 ms.reviewer: zhanxia
 ms.date:  09/13/2024
 ms.topic: how-to
