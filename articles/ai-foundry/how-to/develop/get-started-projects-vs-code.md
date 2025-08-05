@@ -8,7 +8,7 @@ content_well_notification:
   - AI-contribution
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 07/31/2025
+ms.date: 08/05/2025
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
@@ -113,6 +113,9 @@ The Azure AI Foundry Extension opens in its own view, with the Azure AI Foundry 
 - **Resources**: This section contains the resources you have access to in your Azure AI Foundry project. The **Resources** section is the main view for interacting with your Azure AI Foundry Services. It contains the following subsections:
   - **Models**: This section contains the models you can use to build and deploy your AI applications. The **Models** view is where you can find your deployed models in your Azure AI Foundry project.  
   - **Agents**: This section contains your deployed agents in your Azure AI Foundry project.
+  - **Assets**: This section contains the assets you have in your Azure AI Foundry project.
+      - Connections: This subsection contains the connections you have in your Azure AI Foundry project. for example, Bing Grounding connections.
+      - Vector Stores: This subsection contains the vector stores you have in your Azure AI Foundry project.
   - **Threads**: This section contains the threads and runs from a deployed agent in your Azure AI Foundry project.
 
 - **Tools**: This section contains the tools you can use to build and deploy your AI applications. The **Tools** view is where you can find the tools available to deploy and then work with your deployed models and agents. It contains the following subsections:
@@ -225,21 +228,24 @@ Deploy a selected model in the model catalog using the following steps:
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/deploy-from-model-catalog.png" alt-text="Screenshot of the highlighted Deploy in Azure link of the selected model." lightbox="../../media/how-to/get-started-projects-vs-code/deploy-from-model-catalog.png":::
 
-1. In the top center, select the AI service to use in the **Choose an AI service** dropdown and press Enter.
+1. The **Model deployment** page is displayed.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/choose-ai-service.png" alt-text="Screenshot of the Choose an AI service dropdown." lightbox="../../media/how-to/get-started-projects-vs-code/choose-ai-service.png":::
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/model-deployment-page.png" alt-text="Screenshot of the **Model deployment** page in VS Code." lightbox="../../media/how-to/get-started-projects-vs-code/model-deployment-page.png":::
 
-1. In the top center, select the model version to use in the **Choose model version** dropdown and press Enter.
-
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-model-version.png" alt-text="Screenshot of the Choose model version dropdown." lightbox="../../media/how-to/get-started-projects-vs-code/select-model-version.png":::
-
-1. In the top center, select the deployment type to use in the **Choose deployment type** dropdown and press Enter.
-
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-deployment-type.png" alt-text="Screenshot of the Choose deployment type dropdown." lightbox="../../media/how-to/get-started-projects-vs-code/select-deployment-type.png":::
-
-1. In the top center, enter the model deployment name to use in the **Enter deployment name** textbox and press Enter.
+1. Enter the model deployment name to use in the **Enter deployment name** textbox and press Enter.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/enter-deployment-name.png" alt-text="Screenshot of the Enter deployment name textbox." lightbox="../../media/how-to/get-started-projects-vs-code/enter-deployment-name.png":::
+1. Select the deployment type to use in the **Deployment type** dropdown and press Enter.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-deployment-type.png" alt-text="Screenshot of the Deployment type dropdown." lightbox="../../media/how-to/get-started-projects-vs-code/select-deployment-type.png":::
+
+1. Select the model version to use in the **Model version** dropdown and press Enter.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-model-version.png" alt-text="Screenshot of the Model version dropdown." lightbox="../../media/how-to/get-started-projects-vs-code/select-model-version.png":::
+
+1. (Optional) Select the tokens per minute to use in the **Tokens per minute** slider and press Enter.
+
+1. In the bottom-left corner, select the **Deploy in Azure AI Foundry** button to deploy the model.
 
 1. A confirmation dialog box appears. Select the **Deploy** button to deploy the model to your project.
 
