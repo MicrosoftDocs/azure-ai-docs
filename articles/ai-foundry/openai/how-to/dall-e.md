@@ -141,7 +141,6 @@ The response from a successful image generation API call looks like the followin
 ```
 ---
 
----
 
 ### API call rejection
 
