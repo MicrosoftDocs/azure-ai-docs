@@ -36,6 +36,8 @@ PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCreden
 
 ```
 
+## Create the MCP tool definition
+
 Create the MCP tool definition and configure allowed tools.
 
 ```csharp
@@ -104,11 +106,6 @@ while (run.Status == RunStatus.Queued || run.Status == RunStatus.InProgress || r
         }
     }
 }
-
-Assert.AreEqual(
-    RunStatus.Completed,
-    run.Status,
-    run.LastError?.Message);
 ```
 
 ## Print the messages
