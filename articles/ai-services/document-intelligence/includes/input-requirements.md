@@ -2,7 +2,7 @@
 author: laujan
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 11/19/2024
+ms.date: 08/05/2025
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD041 -->
@@ -34,6 +34,6 @@ Supported file formats:
 
 * For custom extraction model training, the total size of training data is 50 MB for template model and `1` GB for the neural model.
 
-* For custom classification model training, the total size of training data is `1` GB  with a maximum of 10,000 pages. For 2024-11-30 (GA), the total size of training data is `2` GB with a maximum of 10,000 pages.
+* For custom classification model training, the total size of training data is `1` GB  with a maximum of 10,000 pages. For `2024-11-30` (GA), the total size of training data is `2` GB with a maximum of 10,000 pages.
     
-* For office file types (docx, xlsx, pptx), there is a maximum string length limit of 8000000.
+* For office file types (docx, xlsx, pptx), there's a maximum string length limit of 8,000,000 characters.
