@@ -5,7 +5,6 @@ description: Explore query examples that demonstrate the Lucene query syntax for
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

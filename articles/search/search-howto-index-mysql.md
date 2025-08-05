@@ -5,7 +5,6 @@ description: Learn how to set up a search indexer to index data stored in Azure 
 author: gmndrg
 ms.author: gimondra
 manager: nitinme
-
 ms.devlang: rest-api
 ms.service: azure-ai-search
 ms.topic: how-to

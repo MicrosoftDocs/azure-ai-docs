@@ -5,7 +5,6 @@ description: Explains what is a search index in Azure AI Search and describes co
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

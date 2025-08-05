@@ -2,7 +2,6 @@
 title: Add scoring profiles
 titleSuffix: Azure AI Search
 description: Boost search relevance scores for Azure AI Search results by adding scoring profiles to a search index.
-
 manager: nitinme
 author: shmed
 ms.author: ramero
