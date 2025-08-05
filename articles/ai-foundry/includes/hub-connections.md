@@ -20,12 +20,16 @@ There are various authentication methods for the different connection types. Whe
 
 [!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
+### Microsoft resource connections
+
+Connect to other Microsoft resources.
+
 ## [Azure OpenAI](#tab/aoai)
 
 The following example uses the [AzureOpenAIConnection](/python/api/azure-ai-ml/azure.ai.ml.entities.azureopenaiconnection) class to create an Azure OpenAI in Azure AI Foundry Models connection.
 
 > [!TIP]
-> To connect to Azure OpenAI and more AI services with one connection, you can use the [AI services connection](#tab/ai-services) instead.
+> To connect to Azure OpenAI and more AI services with one connection, you can use the AI services connection instead.
 
 ```python
 from azure.ai.ml.entities import AzureOpenAIConnection
@@ -159,7 +163,7 @@ wps_connection = AzureBlobStoreConnection(
 ml_client.connections.create_or_update(wps_connection)
 ```
 
-## [Azure Data Lake Storage Gen 2](#tab/adl2)
+## [ADL Gen 2](#tab/adl2)
 
 The following example creates Azure Data Lake Storage Gen 2 connection. This connection is authenticated with a Service Principal:
 
@@ -218,6 +222,10 @@ wps_connection = MicrosoftOneLakeWorkspaceConnection(
 )
 ml_client.connections.create_or_update(workspace_connection=wps_connection)
 ```
+
+---
+
+### Other connections
 
 ## [Serp](#tab/serp)
 
