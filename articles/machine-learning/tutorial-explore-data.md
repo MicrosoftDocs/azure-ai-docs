@@ -9,7 +9,7 @@ ms.topic: tutorial
 ms.reviewer: None
 author: s-polly
 ms.author: scottpolly
-ms.date: 07/25/2024
+ms.date: 08/05/2025
 #Customer intent: As a data scientist, I want to know how to prototype and develop machine learning models on a cloud workstation.
 ---
 
@@ -17,7 +17,7 @@ ms.date: 07/25/2024
 
 [!INCLUDE [sdk v2](includes/machine-learning-sdk-v2.md)]
 
-In this tutorial, you learn how to:
+In this tutorial, you:
 
 > [!div class="checklist"]
 > * Upload your data to cloud storage
@@ -43,7 +43,7 @@ A machine learning project typically starts with exploratory data analysis (EDA)
 
 ## Download the data used in this tutorial
 
-For data ingestion, Azure Data Explorer handles raw data in [these formats](/azure/data-explorer/ingestion-supported-formats). This tutorial uses a [CSV-format credit card client data sample](https://azuremlexamples.blob.core.windows.net/datasets/credit_card/default_of_credit_card_clients.csv). The steps take place in an Azure Machine Learning resource. In that resource, you'll create a local folder with the suggested name of **data**, directly under the folder where this notebook is located.
+For data ingestion, Azure Data Explorer handles raw data in [these formats](/azure/data-explorer/ingestion-supported-formats). This tutorial uses a [CSV-format credit card client data sample](https://azuremlexamples.blob.core.windows.net/datasets/credit_card/default_of_credit_card_clients.csv). The steps take place in an Azure Machine Learning resource. In that resource, you create a local folder with the suggested name of **data**, directly under the folder where this notebook is located.
 
 > [!NOTE]
 > This tutorial depends on data placed in an Azure Machine Learning resource folder location. For this tutorial, 'local' means a folder location in that Azure Machine Learning resource.
@@ -72,7 +72,7 @@ For more information about the data in the UC Irvine Machine Learning Repository
 
 ## Create a handle to the workspace
 
-Before you explore the code, you need a way to reference your workspace. You'll create `ml_client` as a handle to the workspace. You then use `ml_client` to manage resources and jobs.
+Before you explore the code, you need a way to reference your workspace. You create `ml_client` as a handle to the workspace. You then use `ml_client` to manage resources and jobs.
 
 In the next cell, enter your Subscription ID, Resource Group name, and Workspace name. To find these values:
 
@@ -99,7 +99,7 @@ ml_client = MLClient(
 ```
 
 > [!NOTE]
-> Creating MLClient will not connect to the workspace. The client initialization is lazy and waits for the first time it needs to make a call. This happens in the next code cell.
+> Creating MLClient won't connect to the workspace. The client initialization is lazy and waits for the first time it needs to make a call. This happens in the next code cell.
 
 ## Upload data to cloud storage
 
@@ -117,11 +117,11 @@ Data asset creation also creates a *reference* to the data source location, alon
 
 The next notebook cell creates the data asset. The code sample uploads the raw data file to the designated cloud storage resource.
 
-Each time you create a data asset, you need a unique version for it. If the version already exists, you'll get an error. In this code, you use "initial" for the first read of the data. If that version already exists, the code doesn't recreate it.
+Each time you create a data asset, you need a unique version for it. If the version already exists, you get an error. In this code, you use "initial" for the first read of the data. If that version already exists, the code doesn't recreate it.
 
 You can also omit the **version** parameter. In this case, a version number is generated for you, starting with 1 and incrementing from there.
 
-This tutorial uses the name "initial" as the first version. The [Create production machine learning pipelines](tutorial-pipeline-python-sdk.md) tutorial also uses this version of the data, so you use a value that you'll see again in that tutorial.
+This tutorial uses the name "initial" as the first version. The [Create production machine learning pipelines](tutorial-pipeline-python-sdk.md) tutorial also uses this version of the data, so you use a value that you see again in that tutorial.
 
 ```python
 from azure.ai.ml.entities import Data
@@ -183,7 +183,7 @@ df = pd.read_csv("azureml://subscriptions/<subid>/resourcegroups/<rgname>/worksp
 
 However, as mentioned previously, it can become difficult to remember these URIs. Additionally, you must manually substitute all **<_substring_>** values in the **pd.read_csv** command with the real values for your resources.
 
-You'll want to create data assets for frequently accessed data. Here's an easier way to access the CSV file in Pandas:
+You want to create data assets for frequently accessed data. Here's an easier way to access the CSV file in Pandas:
 
 > [!IMPORTANT]
 > In a notebook cell, execute this code to install the `azureml-fsspec` Python library in your Jupyter kernel:
