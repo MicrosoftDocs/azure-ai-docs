@@ -70,9 +70,21 @@ Get started with Foundry Local quickly:
     You should see a response from the model in the terminal:
     :::image type="content" source="media/get-started-output.png" alt-text="Screenshot of output from foundry local run command." lightbox="media/get-started-output.png":::
 
-
 > [!TIP]
 > You can replace `phi-3.5-mini` with any model name from the catalog (see `foundry model list` for available models). Foundry Local downloads the model variant that best matches your system's hardware and software configuration. For example, if you have an NVIDIA GPU, it downloads the CUDA version of the model. If you have a Qualcomm NPU, it downloads the NPU variant. If you have no GPU or NPU, it downloads the CPU version.
+
+## Run the latest OpenAI open-source model
+
+To run the latest OpenAI open-source model - `GPT-OSS-20B` - use the following command:
+
+```bash
+foundry model run gpt-oss-20b
+```
+
+> [!IMPORTANT]
+> Requirements for running GPT-OSS-20B:
+> - Nvidia GPU with 16GB VRAM or more.
+> - Foundry Local version 0.6.0 or above.
 
 ## Explore commands
 

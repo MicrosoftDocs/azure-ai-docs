@@ -5,7 +5,6 @@ description: Learn how to set up an indexer connection to an Azure Storage accou
 author: gmndrg
 ms.author: gimondra
 manager: vinodva
-
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 02/18/2025

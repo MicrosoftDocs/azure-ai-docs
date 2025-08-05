@@ -2,7 +2,6 @@
 title: 'Tutorial: Vectorize images and text'
 titleSuffix: Azure AI Search
 description: Learn how to extract, index, and search multimodal content using the Document Extraction skill for chunking and Azure AI Vision for embeddings.
-
 manager: arjagann
 author: mdonovan
 ms.author: mdonovan

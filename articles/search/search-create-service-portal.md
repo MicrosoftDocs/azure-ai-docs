@@ -2,7 +2,6 @@
 title: 'Create a Search Service in the Azure Portal'
 titleSuffix: Azure AI Search
 description: Learn how to set up an Azure AI Search resource in the Azure portal. Choose resource groups, regions, and a pricing tier.
-
 manager: nitinme
 author: haileytap
 ms.author: haileytapia

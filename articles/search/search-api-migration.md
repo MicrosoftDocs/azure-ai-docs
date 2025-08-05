@@ -2,7 +2,6 @@
 title: Upgrade REST API versions
 titleSuffix: Azure AI Search
 description: Review differences in API versions and learn about the REST API lifecycle and the steps for migrating code to the newer versions.
-
 manager: nitinme
 author: bevloh
 ms.author: beloh
