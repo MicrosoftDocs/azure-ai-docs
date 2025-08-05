@@ -110,7 +110,7 @@ Azure Machine Learning uses Uniform Resource Identifiers (URIs), which point to 
 
 An Azure Machine Learning data asset is similar to web browser bookmarks (favorites). Instead of remembering long storage paths (URIs) that point to your most frequently used data, you can create a data asset and then access that asset with a friendly name.
 
-Data asset creation also creates a *reference* to the data source location, along with a copy of its metadata. Because the data remains in its existing location, you incur no extra storage cost and don't risk data source integrity. You can create data assets from Azure Machine Learning datastores, Azure Storage, public URLs, and local files.
+Data asset creation also creates a _reference_ to the data source location, along with a copy of its metadata. Because the data remains in its existing location, you incur no extra storage cost and don't risk data source integrity. You can create data assets from Azure Machine Learning datastores, Azure Storage, public URLs, and local files.
 
 > [!TIP]
 > For smaller data uploads, Azure Machine Learning data asset creation works well for uploading data from local machine resources to cloud storage. This approach avoids the need for extra tools or utilities. However, larger data uploads might require a dedicated tool or utility - for example, **azcopy**. The azcopy command-line tool moves data to and from Azure Storage. For more information about azcopy, see [Get started with AzCopy](/azure/storage/common/storage-use-azcopy-v10).
