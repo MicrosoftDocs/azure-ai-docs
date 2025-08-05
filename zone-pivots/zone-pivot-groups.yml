@@ -1190,6 +1190,8 @@ groups:
     title: Python
   - id: programming-language-typescript
     title: TypeScript
+  - id: programming-language-java
+    title: Java
   - id: rest-api
     title: REST API
 # owner: aahi
