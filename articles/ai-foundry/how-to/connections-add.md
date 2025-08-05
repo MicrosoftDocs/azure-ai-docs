@@ -77,7 +77,7 @@ To learn more about Agent Knowledge tools, see [Knowledge tool overview](https:/
 
 ::: zone-end
 
-## Create a new connection in Azure AI Foundry portal
+## <a name="create-a-new-connection"></a> Create a new connection in Azure AI Foundry portal
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
