@@ -62,6 +62,7 @@ Set this endpoint in an environment variable named `ProjectEndpoint`.
 
 Save the name of your model deployment name as an environment variable named `ModelDeploymentName`. 
 
+## Code example
 
 ```java
 package com.example.agents;
