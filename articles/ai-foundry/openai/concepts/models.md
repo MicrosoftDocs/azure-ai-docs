@@ -22,6 +22,7 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 | Models | Description |
 |--|--|
+| [gpt-oss](#gpt-oss) | **NEW** open-weight reasoning models |
 | [`codex-mini`](#o-series-models) | Fine-tuned version of o4-mini. |  
 | [`GPT-4.1 series`](#gpt-41-series) | The latest model release from Azure OpenAI. |
 | [`model-router`](#model-router) | A model that intelligently selects from a set of underlying chat models to respond to a given prompt. |
@@ -33,6 +34,17 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 | [Embeddings](#embeddings) | A set of models that can convert text into numerical vector form to facilitate text similarity. |
 | [`Image generation`](#image-generation-models) | A series of models that can generate original images from natural language. |
 | [`Audio`](#audio-models) | A series of models for speech to text, translation, and text to speech. GPT-4o audio models support either low latency *speech in, speech out* conversational interactions or audio generation. |
+
+## gpt-oss
+
+### Capabilities
+
+|  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
+|  --- |  :--- |:--- |:---|:---: |
+| `gpt-oss-120b` (Preview)   | - Text in/text out only <br> - Responses API <br> - Streaming <br> - Function calling <br> Structured outputs <br> Reasoning model <br> Available for direct deployment<sup>1</sup> and via [managed compute](../../how-to/deploy-models-managed.md)  | 131,072 | 131,072 | May 31, 2024 |
+| `gpt-oss-20b` (Preview) | - Text in/text out only <br> - Responses API <br> - Streaming <br> - Function calling <br> Structured outputs <br> Reasoning model <br> Available via [managed compute only](../../how-to/deploy-models-managed.md) | 131,072 | 131,072 | May 31, 2024 |
+
+<sup>1</sup> Unlike other Azure OpenAI models `gpt-oss-120b` requires an [Azure AI Foundry project](/azure/ai-foundry/quickstarts/get-started-code?tabs=azure-ai-foundry&pivots=fdp-project).
 
 ## GPT-4.1 series
 
