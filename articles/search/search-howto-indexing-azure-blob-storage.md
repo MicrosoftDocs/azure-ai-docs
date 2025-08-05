@@ -5,7 +5,6 @@ description: Set up an Azure blob indexer to automate indexing of blob content f
 author: gmndrg
 ms.author: gimondra
 manager: vinodva
-
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 05/08/2025

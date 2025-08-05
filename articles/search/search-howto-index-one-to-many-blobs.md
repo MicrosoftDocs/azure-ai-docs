@@ -5,7 +5,6 @@ description: Crawl Azure blobs for text content using the Azure blob indexer, wh
 manager: nitinme
 author: arv100kri
 ms.author: arjagann
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

@@ -5,7 +5,6 @@ description: Set up a search indexer to index data stored in Azure Table Storage
 manager: nitinme
 author: mgottein
 ms.author: magottei
-
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 05/08/2025
