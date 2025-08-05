@@ -36,6 +36,7 @@ To streamline workflows with your AI agent with capabilities to take actions. Th
 - **MCP tool**: Bring an existing Model Context Protocol (MCP) endpoint that you want to add to your AI agent.
 - **Function calling**: Write your own custom, stateless functions to define the expected behaviors.
 - **Azure Functions**: Write and manage your own custom, stateful functions. 
+- **Browser Automation**: Perform real-world browser tasks through natural language prompts.
 
 ## How does a tool work in the Foundry Agent Service?
 

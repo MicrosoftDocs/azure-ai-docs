@@ -17,6 +17,10 @@ This article provides a summary of the latest releases and major documentation u
 
 ## August 2025
 
+### Browser Automation tool
+
+The [Browser Automation tool](./how-to/tools/browser-automation.md) is now available in Public Preview. This tool enables you to perform real-world browser tasks through natural language prompts in an isolated browser session using your own provisioned [Microsoft Playwright Workspaces](/azure/playwright-testing/overview-what-is-microsoft-playwright-testing).
+
 ### New regional availability
 
 The Azure AI Foundry Agent Sevice is now available in the following [regions](./concepts/model-region-support.md#available-models):
