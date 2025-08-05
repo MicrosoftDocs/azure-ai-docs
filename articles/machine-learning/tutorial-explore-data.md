@@ -184,9 +184,11 @@ import pandas as pd
 subscription_id = ml_client.subscription_id
 resource_group = ml_client.resource_group_name  
 workspace_name = ml_client.workspace_name
+datastore_name = 'workspaceblobstore' #this is the default datastore
+path_on_datastore = my_path
 
 # Construct the datastore URI
-datastore_uri = f"azureml://subscriptions/{subscription_id}/resourcegroups/{resource_group}/workspaces/{workspace_name}/datastores/<datastore_name>/paths/<folder>/<filename>.csv"
+datastore_uri = f"azureml://subscriptions/{subscription_id}/resourcegroups/{resource_group}/workspaces/{workspace_name}/datastores/{datastore_name}/paths/{path_on_datastore}"
 df = pd.read_csv(datastore_uri)
 ```
 
