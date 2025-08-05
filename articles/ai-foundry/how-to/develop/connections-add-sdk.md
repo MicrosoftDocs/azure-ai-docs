@@ -7,6 +7,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
   - ignite-2024
+  - hub-only
 ms.topic: how-to
 ms.date: 07/22/2025
 ms.reviewer: dantaylo
@@ -201,7 +202,7 @@ wps_connection = WorkspaceConnection(
     name=name,
     type="azure_data_lake_gen2",
     target=target,
-    credentials=None
+    credentials=sp_config
     
 )
 ml_client.connections.create_or_update(workspace_connection=wps_connection)
@@ -319,5 +320,5 @@ ml_client.connections.delete(name)
 ## Related content
 
 - [Get started building a chat app using the prompt flow SDK](../../quickstarts/get-started-code.md)
-- [Work with projects in VS Code](vscode.md)
+- [Work with the Azure AI Foundry for Visual Studio Code extension (Preview)](get-started-projects-vs-code.md)
 

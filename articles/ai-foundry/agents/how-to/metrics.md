@@ -1,7 +1,7 @@
 ---
 title: Monitor Azure AI Foundry Agent Service
 description: Start here to learn how to use Azure Monitor to capture and analyze metrics for your Azure AI Foundry Agent Service.
-ms.date: 07/23/2025
+ms.date: 06/02/2025
 ms.custom: horz-monitor, subject-monitoring
 ms.topic: conceptual
 author: aahill
@@ -47,17 +47,17 @@ For a list of all metrics it's possible to gather for all resources in Azure Mon
 ## Azure AI Foundry Agent Service metrics
 Azure AI Foundry Agent Service has commonality with a subset of Azure AI services. Here's a list of currently available metrics on Azure Monitor:
 
-| Metric              | Description                                                                             | Name in REST API         | Unit        | Aggregation                            | Dimensions                                                      | Time Grains| DS Export |
-|---------------------|-----------------------------------------------------------------------------------------|--------------------------|-------------|----------------------------------------|-----------------------------------------------------------------|-----------|
-| Agent Events        | Number of events (create, delete, update) for AI Agents in this project                 | `AgentEvents`            | Count       | Average, Maximum, Minimum, Total (Sum) | `EventType`                                                     | PT1M      | No |
-| Indexed Files Read  | Number of indexed files read by AI agents via file search in this project               | `AgentIndexedFilesRead`  | Count       | Average, Maximum, Minimum, Total (Sum) | `ErrorCode`, `Status`, `VectorStoreId`, `AgentId`               | PT1M      | No |
-| Runs                | Number of runs by AI Agents in this project                                             | `AgentRuns`              | Count       | Average, Maximum, Minimum, Total (Sum) | `AgentId`, `RunStatus`, `StatusCode`, `StreamType`, `ThreadId`  | PT1M      | No |
-| User Message Events | Number of events (create, update delete) for user messages to AI Agents in this project | `AgentUserMessageEvents` | Count       | Average, Maximum, Minimum, Total (Sum) | `EventType`, `AgentId`, `ThreadId`                              | PT1M      | No |
-| Thread Events       | Number of events (create, delete) for AI Agent threads in this project                  | `AgentThreadEvents`      | Count       | Average, Maximum, Minimum, Total (Sum) | `AgentId`, `EventType`                                          | PT1M      | No |
-| Input Tokens        | Number of prompt tokens processed (input) by AI Agents in this project                  | `AgentInputTokens`       | Count       | Average, Maximum, Minimum, Total (Sum) | `AgentId`, `ModelName`, `ModelVersion`                          | PT1M      | No |
-| Output Tokens       | Number of tokens generated (output) by AI Agents in this project                        | `AgentOutputTokens`      | Count       | Average, Maximum, Minimum, Total (Sum) | `AgentId`, `ModelName`, `ModelVersion`                          | PT1M      | No |
-| Total Tokens        | Sum of tokens processed (input) and generated (output) by AI Agents in this project     | `AgentTotalTokens`       | Count       | Average, Maximum, Minimum, Total (Sum) | `AgentId`, `ModelName`, `ModelVersion`                          | PT1M      | No |
-| Tool Calls          | Number of tool calls made by AI Agents in this project                                  | `AgentToolCalls`         | Count       | Average, Maximum, Minimum, Total (Sum) | `AgentId`, `ToolName`                                           | PT1M      | No |
+| **Metric**      | **Name in REST API** | **Unit** | **Aggregation**                            | **Dimensions**                                         | **Time Grains** | **DS Export** |
+|-----------------|----------------------|----------|--------------------------------------------|--------------------------------------------------------|-----------------|---------------|
+| Agents          | `Agents`             | Count    | Average, Maximum, Minimum, Total (Sum)     | `EventType`                                            | PT1M            | No            |
+| IndexedFiles    | `IndexedFiles`       | Count    | Average, Maximum, Minimum, Total (Sum)     | `ErrorCode`, `Status`, `VectorStoreId`                | PT1M            | No            |
+| Messages        | `Messages`           | Count    | Average, Maximum, Minimum, Total (Sum)     | `EventType`, `ThreadId`                               | PT1M            | No            |
+| Runs            | `Runs`               | Count    | Average, Maximum, Minimum, Total (Sum)     | `AgentId`, `RunStatus`, `StatusCode`, `StreamType`    | PT1M            | No            |
+| Threads         | `Threads`            | Count    | Average, Maximum, Minimum, Total (Sum)     | `EventType`                                            | PT1M            | No            |
+| Tokens          | `Tokens`             | Count    | Average, Maximum, Minimum, Total (Sum)     | `AgentId`, `TokenType`                                | PT1M            | No            |
+| ToolCalls       | `ToolCalls`          | Count    | Average, Maximum, Minimum, Total (Sum)     | `AgentId`, `ToolName`                                 | PT1M            | No            |
+
+
 
 ## Analyze monitoring data
 

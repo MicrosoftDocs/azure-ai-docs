@@ -2,7 +2,6 @@
 title: Security overview
 titleSuffix: Azure AI Search
 description: Learn about the security features in Azure AI Search to protect endpoints, content, and operations.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -11,7 +10,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 07/26/2025
+ms.date: 08/01/2025
 ---
 
 # Security in Azure AI Search
@@ -240,7 +239,7 @@ CMK support was rolled out in two phases. If you created your search service dur
 
 + The second rollout on May 13, 2021 added encryption for temporary disks and extended CMK encryption to [all supported regions](search-region-support.md).
 
-  If you're using CMK from a service created during the first rollout and you also want CMK encryption over temporary disks, you need to create a new search service in your region of choice and redeploy your content. To determine your service creation date, see [How to check service creation date](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date).
+  If you're using CMK from a service created during the first rollout and you also want CMK encryption over temporary disks, you need to create a new search service in your region of choice and redeploy your content. To determine your service creation date, see [Check your service creation or upgrade date](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date).
 
 Enabling CMK encryption will increase index size and degrade query performance. Based on observations to date, you can expect to see an increase of 30-60 percent in query times, although actual performance will vary depending on the index definition and types of queries. Because of the negative performance impact, we recommend that you only enable this feature on indexes that really require it. For more information, see [Configure customer-managed encryption keys in Azure AI Search](search-security-manage-encryption-keys.md).
 

@@ -2,7 +2,6 @@
 title: Build a RAG solution
 titleSuffix: Azure AI Search
 description: Learn how to build a generative search (RAG) app using LLMs and your proprietary grounding data in Azure AI Search.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
