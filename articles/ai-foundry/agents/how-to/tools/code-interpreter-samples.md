@@ -66,7 +66,7 @@ project_client = AIProjectClient(
 The sample uploads a data file for analysis:
 
 ```python
-file = project_client.agents.upload_file_and_poll(
+file = project_client.agents.files.upload_and_poll(
     file_path="nifty_500_quarterly_results.csv", 
     purpose=FilePurpose.AGENTS
 )
@@ -122,7 +122,7 @@ messages = project_client.agents.messages.list(thread_id=thread.id)
 for image_content in messages.image_contents:
     file_id = image_content.image_file.file_id
     file_name = f"{file_id}_image_file.png"
-    project_client.agents.save_file(file_id=file_id, file_name=file_name)
+    project_client.agents.files.save(file_id=file_id, file_name=file_name)
 
 # Process file path annotations
 for file_path_annotation in messages.file_path_annotations:
@@ -136,7 +136,7 @@ for file_path_annotation in messages.file_path_annotations:
 After completing the interaction, the code properly cleans up resources:
 
 ```python
-project_client.agents.delete_file(file.id)
+project_client.agents.files.delete(file.id)
 project_client.agents.delete_agent(agent.id)
 ```
 
