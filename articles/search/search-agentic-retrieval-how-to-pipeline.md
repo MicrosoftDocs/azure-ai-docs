@@ -203,7 +203,7 @@ def agentic_retrieval() -> str:
         Be sure to use the same format in your agent's response
     """
     # Take the last 5 messages in the conversation
-    messages = project_client.agents.list_messages(thread.id, limit=5, order=ListSortOrder.DESCENDING)
+    messages = project_client.agents.messages.list(thread.id, limit=5, order=ListSortOrder.DESCENDING)
     # Reverse the order so the most recent message is last
     messages.data.reverse()
     retrieval_result = retrieval_result = agent_client.retrieve(
