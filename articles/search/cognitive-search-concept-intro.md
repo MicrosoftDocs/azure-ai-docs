@@ -2,7 +2,6 @@
 title: AI enrichment concepts
 titleSuffix: Azure AI Search
 description: Content extraction, natural language processing (NLP), and image processing can create searchable content in Azure AI Search indexes.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist

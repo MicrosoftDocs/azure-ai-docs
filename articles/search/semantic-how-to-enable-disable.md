@@ -2,7 +2,6 @@
 title: Enable or disable semantic ranker
 titleSuffix: Azure AI Search
 description: Learn how to turn semantic ranker on or off in Azure AI Search, and how to prevent others from enabling it.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist

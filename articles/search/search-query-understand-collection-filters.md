@@ -2,7 +2,6 @@
 title: OData collection filters
 titleSuffix: Azure AI Search
 description: Learn the mechanics of how OData collection filters work in Azure AI Search queries, including limitations and behaviors unique to collections.
-
 author: bevloh
 ms.author: beloh
 ms.service: azure-ai-search

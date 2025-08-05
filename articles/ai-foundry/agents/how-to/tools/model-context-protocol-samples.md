@@ -139,7 +139,7 @@ Create the run, check the output, and examine what tools were called during the 
 
 ## Perform cleanup
 
-After the interaction is complete, the script performs cleanup by deleting the created agent resource via `agents_client.delete_agent()` to avoid leaving unused resources. It also fetches and prints the entire message history from the thread by using `agents_client.list_messages()` for review or logging.
+After the interaction is complete, the script performs cleanup by deleting the created agent resource via `agents_client.delete_agent()` to avoid leaving unused resources. It also fetches and prints the entire message history from the thread by using `agents_client.messages.list()` for review or logging.
 
 ```python
         # Delete the agent resource to clean up

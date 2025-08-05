@@ -2,10 +2,8 @@
 title: OCR skill
 titleSuffix: Azure AI Search
 description: Extract text from image files using optical character recognition (OCR) in an enrichment pipeline in Azure AI Search.
-
 author: gmndrg
 ms.author: gimondra
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

@@ -320,5 +320,5 @@ ml_client.connections.delete(name)
 ## Related content
 
 - [Get started building a chat app using the prompt flow SDK](../../quickstarts/get-started-code.md)
-- [Work with projects in VS Code](vscode.md)
+- [Work with the Azure AI Foundry for Visual Studio Code extension (Preview)](get-started-projects-vs-code.md)
 
