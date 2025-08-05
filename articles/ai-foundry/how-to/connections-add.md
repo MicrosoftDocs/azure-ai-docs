@@ -1,8 +1,8 @@
 ---
 
-title: How to add a new connection in Azure AI Foundry portal
+title: How to add a new connection in your project
 titleSuffix: Azure AI Foundry
-description: Learn how to add a new connection in Azure AI Foundry portal.
+description: Learn how to add a new connection in your hub based or Foundry project.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
@@ -10,16 +10,16 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 07/08/2025
+ms.date: 08/05/2025
 ms.reviewer: sgilley
 ms.author: sgilley
 author: sdgilley
 zone_pivot_groups: project-type
-# Customer Intent: As an admin or developer, I want to understand how to add new connections in Azure AI Foundry portal.
+# Customer Intent: As an admin or developer, I want to understand how to add new connections in my project.
 
 ---
 
-# How to add a new connection in Azure AI Foundry portal
+# How to add a new connection in your project
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -77,7 +77,7 @@ To learn more about Agent Knowledge tools, see [Knowledge tool overview](https:/
 
 ::: zone-end
 
-## Create a new connection
+## Create a new connection in Azure AI Foundry portal
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
@@ -102,6 +102,14 @@ Follow these steps to create a new connection that's only available for the curr
     :::image type="content" source="../media/data-connections/connection-add-azure-ai-search-connect-entra-id.png" alt-text="Screenshot of the page to select the Azure AI Search service that you want to connect to." lightbox="../media/data-connections/connection-add-azure-ai-search-connect-entra-id.png":::
 
 1. After the service is connected, select __Close__.
+
+::: zone pivot="hub-project"
+
+## Create a new connection with Azure Machine Learning SDK
+
+[!INCLUDE [hub-connections](../includes/hub-connections.md)]
+
+::: zone-end 
 
 ## Network isolation
 
