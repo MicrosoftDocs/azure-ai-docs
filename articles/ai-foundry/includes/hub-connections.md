@@ -20,7 +20,7 @@ There are various authentication methods for the different connection types. Whe
 
 [!INCLUDE [Azure Key Vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
-### Microsoft resource connections
+### Model and service connections
 
 Connect to other Microsoft resources.
 
@@ -139,6 +139,10 @@ wps_connection = ServerlessConnection(
 )
 ml_client.connections.create_or_update(wps_connection)
 ```
+
+---
+
+### Data and storage connections
 
 ## [Blob Storage](#tab/blob)
 
