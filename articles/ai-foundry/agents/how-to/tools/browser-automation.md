@@ -15,7 +15,7 @@ ms.custom: azure-ai-agents
 # Browser Automation (preview)
 
 > [!WARNING]
-> The browser automation tool comes with significant security risks. Both errors in judgment by the AI and the presence of malicious or confusing instructions on web pages which the AI encounters may cause it to execute commands you or others do not intend, which could compromise the security of your or other users' browsers, computers, and any accounts to which the browser or AI has access, including personal, financial, or enterprise systems. By using the Browser Automation Tool, you are acknowledging that you bear responsibility and liability for any use of it and of any resulting agents you create with it, including with respect to any other users to whom you make Browser Automation tool functionality available, including through resulting agents. We strongly recommend using the Browser Automation Tool on low-privilege virtual machines with no access to sensitive data or critical resources.
+> The Browser Automation tool comes with significant security risks. Both errors in judgment by the AI and the presence of malicious or confusing instructions on web pages which the AI encounters may cause it to execute commands you or others do not intend, which could compromise the security of your or other users' browsers, computers, and any accounts to which the browser or AI has access, including personal, financial, or enterprise systems. By using the Browser Automation tool, you are acknowledging that you bear responsibility and liability for any use of it and of any resulting agents you create with it, including with respect to any other users to whom you make Browser Automation tool functionality available, including through resulting agents. We strongly recommend using the Browser Automation tool on low-privilege virtual machines with no access to sensitive data or critical resources.
 
 
 The Browser Automation tool enables users to perform real-world browser tasks through natural language prompts. Powered by [Microsoft Playwright Workspaces](/azure/playwright-testing/overview-what-is-microsoft-playwright-testing), it facilitates multi-turn conversations to automate browser-based workflows such as searching, navigating, filling forms, and booking.
@@ -28,15 +28,15 @@ An example flow would be:
 
 1. A user sends a request to the model that includes a call to the Browser Automation tool with the URL you want to go to.
 
-1. The Browser Automation Tool receives a response from the model. If the response has action items, those items contain suggested actions to make progress toward the specified goal. For example an action might be a screenshot so the model can assess the current state with an updated screenshot or click with X/Y coordinates indicating where the mouse should be moved.
+1. The Browser Automation tool receives a response from the model. If the response has action items, those items contain suggested actions to make progress toward the specified goal. For example an action might be a screenshot so the model can assess the current state with an updated screenshot or click with X/Y coordinates indicating where the mouse should be moved.
 
-1. The Browser Automation Tool executes the action in a sandboxed environment.
+1. The Browser Automation tool executes the action in a sandboxed environment.
 
-1. After executing the action, The Browser Automation Tool captures the updated state of the environment as a screenshot.
+1. After executing the action, The Browser Automation tool captures the updated state of the environment as a screenshot.
 
 1. The tool sends a new request with the updated state, and repeats this loop until the model stops requesting actions or the user decides to stop.
 
-    The Browser Automation Tool supports multi-turn conversations, allowing the user to refine their request and complete a booking.
+    The Browser Automation tool supports multi-turn conversations, allowing the user to refine their request and complete a booking.
 
 ## Example scenarios:
 

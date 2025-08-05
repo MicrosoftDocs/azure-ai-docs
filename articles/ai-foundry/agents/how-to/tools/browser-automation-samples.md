@@ -1,5 +1,5 @@
 ---
-title: How to use the browser automation tool with the Azure AI Foundry Agent Service
+title: How to use the Browser Automation tool with the Azure AI Foundry Agent Service
 titleSuffix: Azure AI Foundry
 description: Learn how to automate browser use and interact with websites using AI Agents.
 services: azure-ai-agent-service
@@ -12,13 +12,13 @@ ms.author: aahi
 ms.custom: azure-ai-agents
 ---
 
-# How to use the browser automation tool (preview)
+# How to use the Browser Automation tool (preview)
 
-Use this article to find step-by-step instructions and code samples for using the browser automation tool in the Azure AI Foundry Agent Service.
+Use this article to find step-by-step instructions and code samples for using the Browser Automation tool in the Azure AI Foundry Agent Service.
 
 ## Prerequisites
 
-* The requirements in the [browser automation overview](./deep-research.md).
+* The requirements in the [Browser Automation overview](./deep-research.md).
 * Your Azure AI Foundry Project endpoint.
     
     [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]
@@ -36,6 +36,7 @@ Use this article to find step-by-step instructions and code samples for using th
 
     Save this name to an environment variable named `MODEL_DEPLOYMENT_NAME`.
 
+## Example code
 
 ```python
 import os

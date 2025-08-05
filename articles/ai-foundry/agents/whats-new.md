@@ -23,7 +23,7 @@ The [Browser Automation tool](./how-to/tools/browser-automation.md) is now avail
 
 ### New regional availability
 
-The Azure AI Foundry Agent Sevice is now available in the following [regions](./concepts/model-region-support.md#available-models):
+The Azure AI Foundry Agent Service is now available in the following [regions](./concepts/model-region-support.md#available-models):
 * Brazil south
 * Germany west central
 * Italy north
