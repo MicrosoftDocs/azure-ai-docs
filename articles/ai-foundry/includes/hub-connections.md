@@ -22,8 +22,6 @@ There are various authentication methods for the different connection types. Whe
 
 ### Model and service connections
 
-Connect to other Microsoft resources.
-
 ## [Azure OpenAI](#tab/aoai)
 
 The following example uses the [AzureOpenAIConnection](/python/api/azure-ai-ml/azure.ai.ml.entities.azureopenaiconnection) class to create an Azure OpenAI in Azure AI Foundry Models connection.
