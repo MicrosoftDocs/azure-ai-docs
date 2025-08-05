@@ -20,9 +20,9 @@ Azure AI Search doesn't host embedding models, so you're responsible for creatin
 | Approach | Description |
 | --- | --- |
 | [Integrated vectorization](vector-search-integrated-vectorization.md) | Use built-in data chunking and vectorization in Azure AI Search. This approach takes a dependency on indexers, skillsets, and built-in or custom skills that point to external embedding models, such as those in Azure AI Foundry. |
-| Manual vectorization | Manage data chunking and vectorization yourself. For indexing, you [push prevectorized documents](vector-search-how-to-create-index.md#load-vector-data-for-indexing) into vector fields in a search index. For querying, you provide precomputed vectors to the search engine. For demos of this approach, see the [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples/tree/main) GitHub repository. |
+| Manual vectorization | Manage data chunking and vectorization yourself. For indexing, you [push prevectorized documents](vector-search-how-to-create-index.md#load-vector-data-for-indexing) into vector fields in a search index. For querying, you [provide precomputed vectors](#generate-an-embedding-for-an-improvised-query) to the search engine. For demos of this approach, see the [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples/tree/main) GitHub repository. |
 
-We recommend integrated vectorization for most scenarios. Although you can use any supported embedding model, this article uses Azure OpenAI embedding models for illustration.
+We recommend integrated vectorization for most scenarios. Although you can use any supported embedding model, this article uses Azure OpenAI models for illustration.
 
 ## How embedding models are used in vector queries
 
@@ -30,7 +30,7 @@ Embedding models generate vectors for both [query inputs](#query-inputs) and [qu
 
 ### Query inputs
 
-Query inputs include the following:
+Query inputs include:
 
 + **Text or images that are converted to vectors during query processing**. As part of integrated vectorization, a [vectorizer](vector-search-how-to-configure-vectorizer.md) performs this task.
 
@@ -46,11 +46,11 @@ Your search index must already contain documents with one or more vector fields 
 
 + **Identify use cases**. Evaluate specific use cases where embedding model integration for vector search features adds value to your search solution. Examples include [multimodal search](multimodal-search-overview.md) or matching image content with text content, multilingual search, and similarity search.
 
-+ **Design a chunking strategy**. Embedding models have limits on the number of tokens they accept, so data chunking is necessary for large files. For more information, see [Chunk large documents for vector search solutions](vector-search-how-to-chunk-documents.md).
++ **Design a chunking strategy**. Embedding models have limits on the number of tokens they accept, so [data chunking](vector-search-how-to-chunk-documents.md) is necessary for large files.
 
 + **Optimize cost and performance**. Vector search is resource intensive and subject to maximum limits, so vectorize only the fields that contain semantic meaning. [Reduce vector size](vector-search-how-to-configure-compression-storage.md) to store more vectors for the same price.
 
-+ **Choose the right embedding model**. Select a model for your use case, such as word embeddings for text-based searches or image embeddings for visual searches. Consider pretrained models, such as text-embedding-ada-002 from OpenAI or the Image Retrieval REST API from [Azure AI Computer Vision](/azure/ai-services/computer-vision/how-to/image-retrieval).
++ **Choose the right embedding model**. Select a model for your use case, such as word embeddings for text-based searches or image embeddings for visual searches. Consider pretrained models, such as text-embedding-ada-002 from OpenAI or the Image Retrieval REST API from [Azure AI Vision](/azure/ai-services/computer-vision/how-to/image-retrieval).
 
 + **Normalize vector lengths**. To improve the accuracy and performance of similarity search, normalize vector lengths before you store them in a search index. Most pretrained models are already normalized.
 
@@ -79,8 +79,8 @@ When you add knowledge to an agent workflow in the [Azure AI Foundry portal](htt
 
 One step involves selecting an embedding model to vectorize your plain text content. The following models are supported:
 
-+ text-embedding-3-large
 + text-embedding-3-small
++ text-embedding-3-large
 + text-embedding-ada-002
 + Cohere-embed-v3-english
 + Cohere-embed-v3-multilingual
@@ -236,6 +236,8 @@ POST https://YOUR-OPENAI-RESOURCE.openai.azure.com/openai/deployments/text-embed
     "input": "How do I use REST APIs in VS Code?"
   }
 ```
+
+---
 
 The output is a vector array of 1,536 dimensions.
 
