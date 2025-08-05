@@ -1,5 +1,5 @@
 ---
-title: 'How to use browser automation in Azure AI Foundry Agent Service'
+title: 'How to use Browser Automation in Azure AI Foundry Agent Service'
 titleSuffix: Azure AI Foundry
 description: Learn how to automate browser tasks using AI agents.
 services: cognitive-services
@@ -12,30 +12,31 @@ ms.author: aahi
 ms.custom: azure-ai-agents
 ---
 
-# Browser automation (preview)
+# Browser Automation (preview)
 
 > [!WARNING]
-> The browser automation tool comes with significant security risks. Both errors in judgment by the AI and the presence of malicious or confusing instructions on web pages which the AI encounters may cause it to execute commands you or others do not intend, which could compromise the security of your or other users' browsers, computers, and any accounts to which the browser or AI has access, including personal, financial, or enterprise systems. By using the browser automation tool, you are acknowledging that you bear responsibility and liability for any use of it and of any resulting agents you create with it, including with respect to any other users to whom you make Browser Automation Tool functionality available.  
+> The browser automation tool comes with significant security risks. Both errors in judgment by the AI and the presence of malicious or confusing instructions on web pages which the AI encounters may cause it to execute commands you or others do not intend, which could compromise the security of your or other users' browsers, computers, and any accounts to which the browser or AI has access, including personal, financial, or enterprise systems. By using the Browser Automation Tool, you are acknowledging that you bear responsibility and liability for any use of it and of any resulting agents you create with it, including with respect to any other users to whom you make Browser Automation tool functionality available, including through resulting agents. We strongly recommend using the Browser Automation Tool on low-privilege virtual machines with no access to sensitive data or critical resources.
 
-Browser automation tool enables users to perform real-world browser tasks through natural language prompts. Powered by [Microsoft Playwright Workspaces](/azure/playwright-testing/overview-what-is-microsoft-playwright-testing), it facilitates multi-turn conversations to automate browser-based workflows such as searching, navigating, filling forms, and booking.
+
+The Browser Automation tool enables users to perform real-world browser tasks through natural language prompts. Powered by [Microsoft Playwright Workspaces](/azure/playwright-testing/overview-what-is-microsoft-playwright-testing), it facilitates multi-turn conversations to automate browser-based workflows such as searching, navigating, filling forms, and booking.
 
 ## How it works
 
-The interaction begins when the user sends a user query to an agent connected to the browser automation tool. For example, *"Show me all available yoga classes this week from the following url \<url\>".* Upon receiving the request, Azure AI Foundry Agent Service creates an isolated browser session using your own provisioned Playwright workspace. Each session is sandboxed for privacy and security. The browser session mimics a real user browsing experience, enabling interaction with complex web UIs (for example, class schedules, filters, or booking pages). The browser performs Playwright-driven actions, such as navigating to relevent pages, and applying filters or parameters based on user preferences (such as time, location, instructor).  Combining the model with Playwright allows the model to see the browser screen by parsing the HTML or XML pages into DOM documents, make decisions, and perform actions like clicking, typing, and navigating websites. You should exercise caution when using this tool.
+The interaction begins when the user sends a user query to an agent connected to the Browser Automation tool. For example, *"Show me all available yoga classes this week from the following url \<url\>."* Upon receiving the request, Azure AI Foundry Agent Service creates an isolated browser session using your own provisioned Playwright workspace. Each session is sandboxed for privacy and security. The browser session mimics a real user browsing experience, enabling interaction with complex web UIs (for example, class schedules, filters, or booking pages). The browser performs Playwright-driven actions, such as navigating to relevant pages, and applying filters or parameters based on user preferences (such as time, location, instructor). Combining the model with Playwright allows the model to see the browser screen by parsing the HTML or XML pages into DOM documents, make decisions, and perform actions like clicking, typing, and navigating websites. You should exercise caution when using this tool.
 
 An example flow would be:
 
-1. A user sends a request to the model that includes a call to the browser automation tool with the URL you want to go to.
+1. A user sends a request to the model that includes a call to the Browser Automation tool with the URL you want to go to.
 
-1. The tool receives a response from the model. If the response has actions for it to take, those steps contain suggested actions to make progress toward the specified goal. For example an action might be a screenshot so the model can assess the current state with an updated screenshot or click with X/Y coordinates indicating where the mouse should be moved.
+1. The Browser Automation Tool receives a response from the model. If the response has action items, those items contain suggested actions to make progress toward the specified goal. For example an action might be a screenshot so the model can assess the current state with an updated screenshot or click with X/Y coordinates indicating where the mouse should be moved.
 
-1. The tool executes the action in a sandboxed environment.
+1. The Browser Automation Tool executes the action in a sandboxed environment.
 
-1. After executing the action, the tool captures the updated state of the environment as a screenshot.
+1. After executing the action, The Browser Automation Tool captures the updated state of the environment as a screenshot.
 
 1. The tool sends a new request with the updated state, and repeats this loop until the model stops requesting actions or the user decides to stop.
 
-The browser automation tool supports multi-turn conversations, allowing the user to refine their request and complete a task, such as booking a flight.
+    The Browser Automation Tool supports multi-turn conversations, allowing the user to refine their request and complete a booking.
 
 ## Example scenarios:
 
@@ -66,10 +67,10 @@ The browser automation tool supports multi-turn conversations, allowing the user
 
     For more information on creating a connection, see [Create a connection](../../../how-to/connections-add.md?pivots=fdp-project).
 
-1. Create a browser automation tool with your connection ID.
+1. Create a Browser Automation tool with your connection ID.
 
 ## Transparency note
 
-Review the [transparency note](/azure/ai-foundry/responsible-ai/agents/transparency-note#enabling-autonomous-actions-with-or-without-human-input-through-action-tools) when using this tool. The browser automation tool is a tool that can perform real-world browser tasks through natural language prompts, enabling automated browsing activities without human intervention.
+Review the [transparency note](/azure/ai-foundry/responsible-ai/agents/transparency-note#enabling-autonomous-actions-with-or-without-human-input-through-action-tools) when using this tool. The Browser Automation tool is a tool that can perform real-world browser tasks through natural language prompts, enabling automated browsing activities without human intervention.
 
 Review the [responsible AI considerations](/azure/ai-foundry/responsible-ai/agents/transparency-note#considerations-when-choosing-a-use-case) when using this tool.
