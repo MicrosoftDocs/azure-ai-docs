@@ -14,6 +14,14 @@ ms.author: lajanuar
 
 Azure AI Language is updated on an ongoing basis. Bookmark this page to stay up to date with release notes, feature enhancements, and our newest documentation.
 
+## July 2025
+
+**.NET SDK** support for text and conversation authoring API. The following .NET SDKs are now available for the authoring APIs with the latest REST API version `2025-15-05-preview` (default) in addition to `2023-04-01`, `2023-04-15-preview`, and `2024-11-15-preview`.
+
+  * [**Azure.AI.Language.Text.Authoring `1.0.0-beta.2`**](https://www.nuget.org/packages/Azure.AI.Language.Text.Authoring/1.0.0-beta.2) now supports the project import with raw JSON string for custom NER and custom text classification.
+
+  * [**Azure.AI.Language.Conversation.Authoring `1.0.0-beta.2`**](https://www.nuget.org/packages/Azure.AI.Language.Conversations.Authoring/1.0.0-beta.2) provides new authoring features in 2025-15-05-preview API, including LLM-based CLU intent authoring and quick-deploy option, multi-turn CLU model training with auto-generated synthetic data, etc.
+
 ## June 2025
 
 **New version of the Conversational Language Understanding (CLU) training configuration**. This new version is aimed at minimizing overpredictions of the [None intent](conversational-language-understanding/concepts/none-intent.md)—particularly in multilingual contexts—is now available via the REST API using **trainingConfigVersion 2025-07-01-preview**. For more information, *see* [Train your model: request body data](conversational-language-understanding/how-to/train-model.md?tabs=rest-api#request-body).
