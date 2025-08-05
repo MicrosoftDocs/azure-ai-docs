@@ -2,7 +2,6 @@
 title: Azure table indexer
 titleSuffix: Azure AI Search
 description: Set up a search indexer to index data stored in Azure Table Storage for vector and full text search in Azure AI Search.
-
 manager: nitinme
 author: mgottein
 ms.author: magottei

@@ -2,7 +2,6 @@
 title: Create a knowledge agent
 titleSuffix: Azure AI Search
 description: Learn how to create a knowledge agent for agentic retrieval workloads in Azure AI Search.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist

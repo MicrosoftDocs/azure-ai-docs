@@ -2,7 +2,6 @@
 title: Load an index
 titleSuffix: Azure AI Search
 description: Import and refresh data in a search index using the Azure portal, REST APIs, or an Azure SDK.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist

@@ -2,7 +2,6 @@
 title: Map fields in indexers
 titleSuffix: Azure AI Search
 description: Configure field mappings in an indexer to account for differences in field names and data representations.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist

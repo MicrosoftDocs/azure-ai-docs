@@ -2,7 +2,6 @@
 title: 'RAG tutorial: Minimize storage and costs'
 titleSuffix: Azure AI Search
 description: Compress vectors using narrow data types and scalar quantization. Remove extra copies of stored vectors to further save on space.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
