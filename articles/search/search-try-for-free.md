@@ -2,7 +2,6 @@
 title: 'Try Azure AI Search for free'
 titleSuffix: Azure AI Search
 description: Learn how to create a trial subscription and use credits for trying advanced features.
-
 manager: nitinme
 author: haileytap
 ms.author: haileytapia

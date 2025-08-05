@@ -2,7 +2,6 @@
 title: Monitor indexer status and results
 titleSuffix: Azure AI Search
 description: Monitor the status, progress, and results of Azure AI Search indexers in the Azure portal, using the REST API, or the Azure SDKs.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist

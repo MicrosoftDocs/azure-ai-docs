@@ -2,7 +2,6 @@
 title: Create a full text query 
 titleSuffix: Azure AI Search
 description: Learn how to construct a query request for full text search in Azure AI Search.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist

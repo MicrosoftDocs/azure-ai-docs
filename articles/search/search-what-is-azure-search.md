@@ -2,7 +2,6 @@
 title: Introduction to Azure AI Search
 titleSuffix: Azure AI Search
 description: Azure AI Search is an AI-powered information retrieval platform, helps developers build rich search experiences and generative AI apps that combine large language models with enterprise data.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist

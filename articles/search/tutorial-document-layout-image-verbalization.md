@@ -2,7 +2,6 @@
 title: 'Tutorial: Verbalize images from a structured document layout'
 titleSuffix: Azure AI Search
 description: Learn how to extract, index, and search multimodal content using the Document Layout skill for chunking and GenAI Prompt skill for image verbalizations.
-
 manager: arjagann
 author: rawan    
 ms.author: rawan
