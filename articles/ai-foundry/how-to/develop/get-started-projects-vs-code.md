@@ -127,6 +127,7 @@ The Azure AI Foundry Extension opens in its own view, with the Azure AI Foundry 
     - **Documentation**: The link to the Azure AI Foundry Extension documentation.
     - **GitHub**: The link to the Azure AI Foundry extension GitHub repository.
     - **Microsoft Privacy Statement**: The link to the Microsoft Privacy Statement.
+    - **Join the Foundry Community: Discord + Forum**: The link to the Azure AI Foundry community Discord server.
 
 >[!NOTE]
 > To learn more about working with Agents and Threads in the Azure AI Foundry Extension, see the [Work with Azure AI Foundry Agent Service in Visual Studio Code](./vs-code-agents.md) article. 
