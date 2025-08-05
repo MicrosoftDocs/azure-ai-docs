@@ -2,7 +2,6 @@
 title: Security overview
 titleSuffix: Azure AI Search
 description: Learn about the security features in Azure AI Search to protect endpoints, content, and operations.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist

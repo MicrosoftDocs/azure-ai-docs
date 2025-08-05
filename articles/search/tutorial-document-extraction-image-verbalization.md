@@ -2,7 +2,6 @@
 title: 'Tutorial: Verbalize images using generative AI'
 titleSuffix: Azure AI Search
 description: Learn how to extract, index, and search multimodal content using the Document Extraction skill for chunking and GenAI Prompt skill for image verbalizations.
-
 manager: arjagann
 author: mdonovan
 ms.author: mdonovan

@@ -2,7 +2,6 @@
 title: 'Tutorial: Vectorize from a structured document layout'
 titleSuffix: Azure AI Search
 description: Learn how to extract, index, and search multimodal content using the Document Layout skill for chunking and Azure AI Vision for embeddings.
-
 manager: arjagann
 author: rawan
 ms.author: rawan

@@ -7,7 +7,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: conceptual
-ms.date: 08/01/2025
+ms.date: 08/04/2025
 ms.custom: azure-ai-agents, references_regions
 ---
 
@@ -26,6 +26,7 @@ Azure AI Foundry Agent Service supports the following Azure OpenAI models in the
 
 > [!NOTE]
 > * [Hub based projects](../../what-is-azure-ai-foundry.md#project-types) are limited to the following models: gpt-4o, gpt-4o-mini, gpt-4, gpt-35-turbo
+> * For information on class A subnet support, see the setup guide on [GitHub](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/15-private-network-standard-agent-setup).
 > * The [file search tool](../how-to/tools/file-search.md) is currently unavailable in the following regions:
 >     * Italy north
 >     * Brazil south 

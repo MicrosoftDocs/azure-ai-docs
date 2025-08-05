@@ -2,7 +2,6 @@
 title: Add search to ASP.NET Core MVC
 titleSuffix: Azure AI Search
 description: In this Azure AI Search tutorial, learn how to add search to an ASP.NET Core (Model-View-Controller) application.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
