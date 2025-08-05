@@ -5,7 +5,6 @@ description: Configure an indexer to automate data import and indexing from Azur
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 06/17/2025

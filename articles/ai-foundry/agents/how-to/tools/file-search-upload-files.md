@@ -136,7 +136,7 @@ if run.status == "failed":
 project_client.agents.vector_stores.delete(vector_store.id)
 print("Deleted vector store")
 
-project_client.agents.delete_file(file_id=file.id)
+project_client.agents.files.delete(file_id=file.id)
 print("Deleted file")
 
 project_client.agents.delete_agent(agent.id)

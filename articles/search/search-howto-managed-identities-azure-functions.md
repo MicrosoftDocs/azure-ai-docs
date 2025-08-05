@@ -4,7 +4,6 @@ titleSuffix: Azure AI Search
 description: Learn how to set up an indexer connection to an Azure Function using built-in authentication also known as "Easy Auth".
 author: arv100kri
 ms.author: arjagann
-
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 01/20/2025

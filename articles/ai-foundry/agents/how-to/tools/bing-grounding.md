@@ -89,7 +89,7 @@ When you add the Grounding with Bing Search tool to your agent, you can pass the
 According to Grounding with Bing's [terms of use and use and display requirements](https://www.microsoft.com/en-us/bing/apis/grounding-legal#use-and-display-requirements), you need to display both website URLs and Bing search query URLs in your custom interface. You can find website URLs through `annotations` parameter in API response and Bing search query URLs through `runstep` details. To render the webpage, we recommend you replace the endpoint of Bing search query URLs with `www.bing.com` and your Bing search query URL would look like "https://www.bing.com/search?q={search query}"
 
 ```python
-run_steps = project_client.agents.list_run_steps(run_id=run.id, thread_id=thread.id)
+run_steps = project_client.agents.runs_steps.list(run_id=run.id, thread_id=thread.id)
 run_steps_data = run_steps['data']
 print(f"Last run step detail: {run_steps_data}")
 ```

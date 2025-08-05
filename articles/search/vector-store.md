@@ -2,7 +2,6 @@
 title: Vector store database
 titleSuffix: Azure AI Search
 description: Describes concepts behind vector storage in Azure AI Search.
-
 author: robertklee
 ms.author: robertlee
 ms.service: azure-ai-search

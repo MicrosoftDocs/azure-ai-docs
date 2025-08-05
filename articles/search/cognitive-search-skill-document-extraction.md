@@ -2,10 +2,8 @@
 title: Document Extraction cognitive skill
 titleSuffix: Azure AI Search
 description: Extracts content from a file within the enrichment pipeline.
-
 author: gmndrg
 ms.author: gimondra
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023

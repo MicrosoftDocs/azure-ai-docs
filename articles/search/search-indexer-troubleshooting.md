@@ -2,7 +2,6 @@
 title: Indexer troubleshooting
 titleSuffix: Azure AI Search
 description: Provides indexer problem and resolution guidance for cases when no error messages are returned from the service search.
-
 author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
