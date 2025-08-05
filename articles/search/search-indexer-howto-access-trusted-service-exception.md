@@ -2,13 +2,12 @@
 title: Connect as trusted service
 titleSuffix: Azure AI Search
 description: Enable secure data access to Azure Storage from an indexer in Azure AI Search 
-
 manager: nitinme
 author: arv100kri
 ms.author: arjagann
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/29/2025
+ms.date: 08/04/2025
 ms.custom:
   - ignite-2023
   - sfi-image-nochange
@@ -38,7 +37,7 @@ In Azure AI Search, indexers that access Azure blobs can use the [trusted servic
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
-1. On the **Identity** page, make sure that a [system assigned identity is enabled](search-howto-managed-identities-data-sources.md). Remember that user-assigned managed identities, currently in preview, won't work for a trusted service connection.
+1. On the **Identity** page, make sure that a [system assigned identity is enabled](search-howto-managed-identities-data-sources.md). Remember that user-assigned managed identities won't work for a trusted service connection.
 
    :::image type="content" source="media/search-managed-identities/system-assigned-identity-object-id.png" alt-text="Screenshot of a system identity object identifier." border="true":::
 
@@ -66,7 +65,7 @@ A system managed identity is a Microsoft Entra service principal. The assignment
 
 1. Add **Storage Blob Data Contributor** if write access is required.
 
-   Features that require write access include [enrichment caching](cognitive-search-incremental-indexing-conceptual.md), [debug sessions](cognitive-search-debug-session.md), and [knowledge store](knowledge-store-concept-intro.md).
+   Features that require write access include [enrichment caching](enrichment-cache-how-to-configure.md), [debug sessions](cognitive-search-debug-session.md), and [knowledge store](knowledge-store-concept-intro.md).
 
 ## Set up and test the connection
 

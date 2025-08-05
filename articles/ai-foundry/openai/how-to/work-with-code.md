@@ -13,7 +13,7 @@ ms.author: mbullwin
 # Completion models and code with Azure OpenAI in Azure AI Foundry Models
 
 > [!IMPORTANT]
-> This article was authored and tested against the [legacy code generation models](/azure/ai-services/openai/concepts/legacy-models). These models use the completions API, and its prompt/completion style of interaction. If you wish to test the techniques described in this article verbatim we recommend using the `gpt-35-turbo-instruct` model which allows access to the completions API. However, for code generation the chat completions API and the latest GPT-4o and o-series models will yield the best results. To use these newer models these prompts would need to be converted to the conversational style specific to interacting with those models.
+> This article was authored and tested against the [legacy code generation models](/azure/ai-foundry/openai/concepts/legacy-models). These models use the completions API, and its prompt/completion style of interaction. If you wish to test the techniques described in this article verbatim we recommend using the `gpt-35-turbo-instruct` model which allows access to the completions API. However, for code generation the chat completions API and the latest GPT-4o and o-series models will yield the best results. To use these newer models these prompts would need to be converted to the conversational style specific to interacting with those models.
 
 The Codex model series was a descendant of our GPT-3 series that's been trained on both natural language and billions of lines of code. It's most capable in Python and proficient in over a dozen languages including C#, JavaScript, Go, Perl, PHP, Ruby, Swift, TypeScript, SQL, and even Shell.
 

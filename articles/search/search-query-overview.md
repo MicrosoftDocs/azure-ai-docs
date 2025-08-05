@@ -2,7 +2,6 @@
 title: Query types
 titleSuffix: Azure AI Search
 description: Learn about the types of queries supported in Azure AI Search, including vector and hybrid queries, free text, filter, autocomplete and suggestions, geospatial search, system queries, and document lookup.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist

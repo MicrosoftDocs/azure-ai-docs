@@ -9,7 +9,7 @@ ms.subservice: foundry-local
 ms.topic: quickstart
 ms.reviewer: samkemp
 ms.author: jburchel
-author: jburchel
+author: jonburchel
 reviewer: samuel100
 ms.custom:
   - build-2025
@@ -35,7 +35,7 @@ Your system must meet the following requirements to run Foundry Local:
 - **Operating System**: Windows 10 (x64), Windows 11 (x64/ARM), Windows Server 2025, macOS.
 - **Hardware**: Minimum 8GB RAM, 3GB free disk space. Recommended 16GB RAM, 15GB free disk space.
 - **Network**: Internet connection for initial model download (optional for offline use)
-- **Acceleration (optional)**: NVIDIA GPU (2,000 series or newer), AMD GPU (6,000 series or newer), Qualcomm Snapdragon X Elite (8GB or more of memory), or Apple silicon.
+- **Acceleration (optional)**: NVIDIA GPU (2,000 series or newer), AMD GPU (6,000 series or newer), Intel iGPU, Qualcomm Snapdragon X Elite (8GB or more of memory), or Apple silicon.
 
 Also, ensure you have administrative privileges to install software on your device.
 
@@ -70,9 +70,21 @@ Get started with Foundry Local quickly:
     You should see a response from the model in the terminal:
     :::image type="content" source="media/get-started-output.png" alt-text="Screenshot of output from foundry local run command." lightbox="media/get-started-output.png":::
 
-
 > [!TIP]
 > You can replace `phi-3.5-mini` with any model name from the catalog (see `foundry model list` for available models). Foundry Local downloads the model variant that best matches your system's hardware and software configuration. For example, if you have an NVIDIA GPU, it downloads the CUDA version of the model. If you have a Qualcomm NPU, it downloads the NPU variant. If you have no GPU or NPU, it downloads the CPU version.
+
+## Run the latest OpenAI open-source model
+
+To run the latest OpenAI open-source model - `GPT-OSS-20B` - use the following command:
+
+```bash
+foundry model run gpt-oss-20b
+```
+
+> [!IMPORTANT]
+> Requirements for running GPT-OSS-20B:
+> - Nvidia GPU with 16GB VRAM or more.
+> - Foundry Local version 0.6.0 or above.
 
 ## Explore commands
 

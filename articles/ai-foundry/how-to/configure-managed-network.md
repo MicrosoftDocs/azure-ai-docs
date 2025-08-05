@@ -4,7 +4,12 @@ titleSuffix: Azure AI Foundry
 description: Learn how to configure a managed network for Azure AI Foundry hubs. A managed network secures your computing resources.
 manager: scottpolly
 ms.service: azure-ai-foundry
-ms.custom: ignite-2023, build-2024, devx-track-azurecli, ignite-2024
+ms.custom: 
+  - ignite-2023
+  - build-2024
+  - devx-track-azurecli
+  - ignite-2024
+  - hub-only
 ms.topic: how-to
 ms.date: 04/30/2025
 ms.reviewer: meerakurup

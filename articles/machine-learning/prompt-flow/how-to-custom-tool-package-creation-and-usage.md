@@ -9,8 +9,8 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: how-to
-author: s-polly
-ms.author: scottpolly
+author: lgayhardt
+ms.author: lagayhar
 ms.reviewer: keli19
 ms.date: 11/26/2024
 ---
