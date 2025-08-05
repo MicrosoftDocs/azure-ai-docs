@@ -125,7 +125,7 @@ Add a tool to the AI Agent with the following steps:
     OpenAPI 3.0 Specified dialog box:
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-openapi-tool-dialog.png" alt-text="Screenshot of the OpenAPI 3.0 Specified tool dialog box." lightbox="../../media/how-to/get-started-projects-vs-code/agent-openapi-tool-dialog.png":::
 
-    1. After entering the required information, select the **Upload and save** button in the bottom-left corner.
+1. After entering the required information, select the **Upload and save** button in the bottom-left corner.
  
 > [!NOTE]
 > When you add a tool, you can also add any new assets it needs. For example, if you add a File Search tool, you can use an existing vector store asset or make a new asset for your vector store to host your uploaded files.
