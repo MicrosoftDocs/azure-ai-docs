@@ -1286,6 +1286,8 @@ groups:
     title: JavaScript
   - id: python
     title: Python
+  - id: java
+    title: Java
   - id: rest
     title: REST API
 - id: selection-connected-agents

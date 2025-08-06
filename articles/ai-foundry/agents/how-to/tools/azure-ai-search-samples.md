@@ -535,3 +535,150 @@ curl --request GET \
 ```
 
 :::zone-end
+
+:::zone pivot="java"
+
+```java
+package com.example.agents;
+
+import com.azure.ai.agents.persistent.FilesClient;
+import com.azure.ai.agents.persistent.MessagesClient;
+import com.azure.ai.agents.persistent.PersistentAgentsAdministrationClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClientBuilder;
+import com.azure.ai.agents.persistent.RunsClient;
+import com.azure.ai.agents.persistent.ThreadsClient;
+import com.azure.ai.agents.persistent.models.AISearchIndexResource;
+import com.azure.ai.agents.persistent.models.AzureAISearchToolDefinition;
+import com.azure.ai.agents.persistent.models.AzureAISearchToolResource;
+import com.azure.ai.agents.persistent.models.CodeInterpreterToolDefinition;
+import com.azure.ai.agents.persistent.models.CreateAgentOptions;
+import com.azure.ai.agents.persistent.models.CreateRunOptions;
+import com.azure.ai.agents.persistent.models.FileDetails;
+import com.azure.ai.agents.persistent.models.FileInfo;
+import com.azure.ai.agents.persistent.models.FilePurpose;
+import com.azure.ai.agents.persistent.models.MessageAttachment;
+import com.azure.ai.agents.persistent.models.MessageImageFileContent;
+import com.azure.ai.agents.persistent.models.MessageRole;
+import com.azure.ai.agents.persistent.models.MessageTextContent;
+import com.azure.ai.agents.persistent.models.PersistentAgent;
+import com.azure.ai.agents.persistent.models.PersistentAgentThread;
+import com.azure.ai.agents.persistent.models.RunStatus;
+import com.azure.ai.agents.persistent.models.ThreadMessage;
+import com.azure.ai.agents.persistent.models.ThreadRun;
+import com.azure.ai.agents.persistent.models.ToolResources;
+import com.azure.ai.agents.persistent.models.UploadFileRequest;
+import com.azure.ai.agents.persistent.models.MessageContent;
+import com.azure.core.http.rest.PagedIterable;
+import com.azure.core.util.BinaryData;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+
+import java.net.URL;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.util.Arrays;
+
+public class AgentExample {
+
+    public static void main(String[] args) throws FileNotFoundException, URISyntaxException {
+
+        // variables for authenticating requests to the agent service 
+        String projectEndpoint = "https://aahi-may-resource.services.ai.azure.com/api/projects/aahi-may";//System.getenv("PROJECT_ENDPOINT");
+        String modelName = "gpt-4o";//System.getenv("MODEL_DEPLOYMENT_NAME");
+        String aiSearchConnectionId = "/subscriptions/1f790876-6c63-4bc6-9fc6-62780b3d3e05/resourceGroups/rg-aahi-8164/providers/Microsoft.CognitiveServices/accounts/aahi-may-resource/connections/aahisearchservice"; //System.getenv("AZURE_AI_CONNECTION_ID");
+        String indexName = "my-index";
+        
+        PersistentAgentsClientBuilder clientBuilder = new PersistentAgentsClientBuilder().endpoint(projectEndpoint)
+            .credential(new DefaultAzureCredentialBuilder().build());
+        PersistentAgentsClient agentsClient = clientBuilder.buildClient();
+        PersistentAgentsAdministrationClient administrationClient = agentsClient.getPersistentAgentsAdministrationClient();
+        ThreadsClient threadsClient = agentsClient.getThreadsClient();
+        MessagesClient messagesClient = agentsClient.getMessagesClient();
+        RunsClient runsClient = agentsClient.getRunsClient();
+
+        AISearchIndexResource indexResource = new AISearchIndexResource()
+            .setIndexConnectionId(aiSearchConnectionId)
+            .setIndexName(indexName);
+        ToolResources toolResources = new ToolResources()
+            .setAzureAISearch(new AzureAISearchToolResource()
+                .setIndexList(Arrays.asList(indexResource)));
+
+        String agentName = "ai_search_example";
+        CreateAgentOptions createAgentOptions = new CreateAgentOptions(modelName)
+            .setName(agentName)
+            .setInstructions("You are a helpful agent")
+            .setTools(Arrays.asList(new AzureAISearchToolDefinition()))
+            .setToolResources(toolResources);
+        PersistentAgent agent = administrationClient.createAgent(createAgentOptions);
+
+        PersistentAgentThread thread = threadsClient.createThread();
+        ThreadMessage createdMessage = messagesClient.createMessage(
+            thread.getId(),
+            MessageRole.USER,
+            "<question about information in search index>");
+
+        try {
+            //run agent
+            CreateRunOptions createRunOptions = new CreateRunOptions(thread.getId(), agent.getId())
+                .setAdditionalInstructions("");
+            ThreadRun threadRun = runsClient.createRun(createRunOptions);
+
+            waitForRunCompletion(thread.getId(), threadRun, runsClient);
+            printRunMessages(messagesClient, thread.getId());
+
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally {
+            //cleanup
+            threadsClient.deleteThread(thread.getId());
+            administrationClient.deleteAgent(agent.getId());
+        }
+    }
+    // A helper function to print messages from the agent
+    public static void printRunMessages(MessagesClient messagesClient, String threadId) {
+
+        PagedIterable<ThreadMessage> runMessages = messagesClient.listMessages(threadId);
+        for (ThreadMessage message : runMessages) {
+            System.out.print(String.format("%1$s - %2$s : ", message.getCreatedAt(), message.getRole()));
+            for (MessageContent contentItem : message.getContent()) {
+                if (contentItem instanceof MessageTextContent) {
+                    System.out.print((((MessageTextContent) contentItem).getText().getValue()));
+                } else if (contentItem instanceof MessageImageFileContent) {
+                    String imageFileId = (((MessageImageFileContent) contentItem).getImageFile().getFileId());
+                    System.out.print("Image from ID: " + imageFileId);
+                }
+                System.out.println();
+            }
+        }
+    }
+
+    // a helper function to wait until a run has completed running
+    public static void waitForRunCompletion(String threadId, ThreadRun threadRun, RunsClient runsClient)
+        throws InterruptedException {
+
+        do {
+            Thread.sleep(500);
+            threadRun = runsClient.getRun(threadId, threadRun.getId());
+        }
+        while (
+            threadRun.getStatus() == RunStatus.QUEUED
+                || threadRun.getStatus() == RunStatus.IN_PROGRESS
+                || threadRun.getStatus() == RunStatus.REQUIRES_ACTION);
+
+        if (threadRun.getStatus() == RunStatus.FAILED) {
+            System.out.println(threadRun.getLastError().getMessage());
+        }
+    }
+    private static Path getFile(String fileName) throws FileNotFoundException, URISyntaxException {
+        URL resource = AgentExample.class.getClassLoader().getResource(fileName);
+        if (resource == null) {
+            throw new FileNotFoundException("File not found");
+        }
+        File file = new File(resource.toURI());
+        return file.toPath();
+    }
+}
+```
+:::zone-end
