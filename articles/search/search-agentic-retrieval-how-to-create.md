@@ -106,7 +106,7 @@ You can use API keys if you don't have permission to create role assignments.
    # List Indexes
    GET https://{{search-url}}/indexes?api-version=2025-05-01-preview
       Content-Type: application/json
-      @api-key: {{search-api-ke}}
+      @api-key: {{search-api-key}}
    ```
 
 ## Check for existing knowledge agents
