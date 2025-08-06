@@ -29,16 +29,6 @@
             <artifactId>azure-identity</artifactId>
             <version>1.17.0-beta.1</version>
         </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.32</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.7.32</version>
-        </dependency>
     </dependencies>
     ```
 
@@ -56,122 +46,118 @@ Use the following code to create and run an agent. To run this code, you will ne
 
 [!INCLUDE [endpoint-string-portal](endpoint-string-portal.md)]
 
-Set this endpoint in an environment variable named `ProjectEndpoint`.
+Set this endpoint in an environment variable named `PROJECT_ENDPOINT`.
 
 [!INCLUDE [model-name-portal](model-name-portal.md)]
 
-Save the name of your model deployment name as an environment variable named `ModelDeploymentName`. 
+Save the name of your model deployment name as an environment variable named `MODEL_DEPLOYMENT_NAME`. 
 
 ## Code example
 
 ```java
 package com.example.agents;
 
+import com.azure.ai.agents.persistent.MessagesClient;
+import com.azure.ai.agents.persistent.PersistentAgentsAdministrationClient;
 import com.azure.ai.agents.persistent.PersistentAgentsClient;
 import com.azure.ai.agents.persistent.PersistentAgentsClientBuilder;
-import com.azure.ai.agents.persistent.PersistentAgentsAdministrationClient;
+import com.azure.ai.agents.persistent.RunsClient;
+import com.azure.ai.agents.persistent.ThreadsClient;
+import com.azure.ai.agents.persistent.models.CodeInterpreterToolDefinition;
 import com.azure.ai.agents.persistent.models.CreateAgentOptions;
-import com.azure.ai.agents.persistent.models.CreateThreadAndRunOptions;
+import com.azure.ai.agents.persistent.models.CreateRunOptions;
+import com.azure.ai.agents.persistent.models.MessageImageFileContent;
+import com.azure.ai.agents.persistent.models.MessageRole;
+import com.azure.ai.agents.persistent.models.MessageTextContent;
 import com.azure.ai.agents.persistent.models.PersistentAgent;
+import com.azure.ai.agents.persistent.models.PersistentAgentThread;
+import com.azure.ai.agents.persistent.models.RunStatus;
+import com.azure.ai.agents.persistent.models.ThreadMessage;
 import com.azure.ai.agents.persistent.models.ThreadRun;
-import com.azure.core.credential.TokenCredential;
-import com.azure.core.exception.HttpResponseException;
-import com.azure.core.util.logging.ClientLogger;
+import com.azure.ai.agents.persistent.models.MessageContent;
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.identity.DefaultAzureCredentialBuilder;
+import java.util.Arrays;
 
 public class Main {
-    private static final ClientLogger logger = new ClientLogger(Main.class);
 
+    public static void printRunMessages(MessagesClient messagesClient, String threadId) {
+
+        PagedIterable<ThreadMessage> runMessages = messagesClient.listMessages(threadId);
+        for (ThreadMessage message : runMessages) {
+            System.out.print(String.format("%1$s - %2$s : ", message.getCreatedAt(), message.getRole()));
+            for (MessageContent contentItem : message.getContent()) {
+                if (contentItem instanceof MessageTextContent) {
+                    System.out.print((((MessageTextContent) contentItem).getText().getValue()));
+                } else if (contentItem instanceof MessageImageFileContent) {
+                    String imageFileId = (((MessageImageFileContent) contentItem).getImageFile().getFileId());
+                    System.out.print("Image from ID: " + imageFileId);
+                }
+                System.out.println();
+            }
+        }
+    }
+    public static void waitForRunCompletion(String threadId, ThreadRun threadRun, RunsClient runsClient)
+        throws InterruptedException {
+
+        // BEGIN: com.azure.ai.agents.persistent.SampleUtils.waitForRunCompletion
+
+        do {
+            Thread.sleep(500);
+            threadRun = runsClient.getRun(threadId, threadRun.getId());
+        }
+        while (
+            threadRun.getStatus() == RunStatus.QUEUED
+                || threadRun.getStatus() == RunStatus.IN_PROGRESS
+                || threadRun.getStatus() == RunStatus.REQUIRES_ACTION);
+
+        if (threadRun.getStatus() == RunStatus.FAILED) {
+            System.out.println(threadRun.getLastError().getMessage());
+        }
+
+        // END: com.azure.ai.agents.persistent.SampleUtils.waitForRunCompletion
+    }
     public static void main(String[] args) {
-        // Load environment variables with better error handling, supporting both .env and system environment variables
-        String endpoint = System.getenv("AZURE_ENDPOINT");
+
         String projectEndpoint = System.getenv("PROJECT_ENDPOINT");
         String modelName = System.getenv("MODEL_DEPLOYMENT_NAME");
-        String agentName = System.getenv("AGENT_NAME");
-        String instructions = "You are a helpful assistant that provides clear and concise information.";     
 
-        // Check for required endpoint configuration
-        if (projectEndpoint == null && endpoint == null) {
-            String errorMessage = "Environment variables not configured. Required: either PROJECT_ENDPOINT or AZURE_ENDPOINT must be set.";
-            logger.error("ERROR: {}", errorMessage);
-            logger.error("Please set your environment variables or create a .env file. See README.md for details.");
-            return;
-        }
-        
-        // Use AZURE_ENDPOINT as fallback if PROJECT_ENDPOINT not set
-        if (projectEndpoint == null) {
-            projectEndpoint = endpoint;
-            logger.info("Using AZURE_ENDPOINT as PROJECT_ENDPOINT: {}", projectEndpoint);
-        }
+        PersistentAgentsClientBuilder clientBuilder = new PersistentAgentsClientBuilder()
+            .endpoint(projectEndpoint)
+            .credential(new DefaultAzureCredentialBuilder().build());
+        PersistentAgentsClient agentsClient = clientBuilder.buildClient();
+        PersistentAgentsAdministrationClient administrationClient = agentsClient.getPersistentAgentsAdministrationClient();
+        ThreadsClient threadsClient = agentsClient.getThreadsClient();
+        MessagesClient messagesClient = agentsClient.getMessagesClient();
+        RunsClient runsClient = agentsClient.getRunsClient();
 
-        // Set defaults for optional parameters with informative logging
-        if (modelName == null) {
-            modelName = "gpt-4o";
-            logger.info("No MODEL_DEPLOYMENT_NAME provided, using default: {}", modelName);
-        }
-        if (agentName == null) {
-            agentName = "java-quickstart-agent";
-            logger.info("No AGENT_NAME provided, using default: {}", agentName);
-        }
-        if (instructions == null) {
-            instructions = "You are a helpful assistant that provides clear and concise information.";
-            logger.info("No AGENT_INSTRUCTIONS provided, using default instructions");
-        }
+        String agentName = "my-agent";
+        CreateAgentOptions createAgentOptions = new CreateAgentOptions(modelName)
+            .setName(agentName)
+            .setInstructions("You are a helpful agent")
+            .setTools(Arrays.asList(new CodeInterpreterToolDefinition()));
+        PersistentAgent agent = administrationClient.createAgent(createAgentOptions);
 
-        // Create Azure credential with DefaultAzureCredentialBuilder
-        // This supports multiple authentication methods including environment variables,
-        // managed identities, and interactive browser login
-        logger.info("Building DefaultAzureCredential");
-        TokenCredential credential = new DefaultAzureCredentialBuilder().build();
+        PersistentAgentThread thread = threadsClient.createThread();
+        ThreadMessage createdMessage = messagesClient.createMessage(
+            thread.getId(),
+            MessageRole.USER,
+            "I need to solve the equation `3x + 11 = 14`. Can you help me?");
 
         try {
-            // Build the general agents client
-            logger.info("Creating PersistentAgentsClient with endpoint: {}", projectEndpoint);
-            PersistentAgentsClient agentsClient = new PersistentAgentsClientBuilder()
-                .endpoint(projectEndpoint)
-                .credential(credential)
-                .buildClient();
+            //run agent
+            CreateRunOptions createRunOptions = new CreateRunOptions(thread.getId(), agent.getId())
+                .setAdditionalInstructions("");
+            ThreadRun threadRun = runsClient.createRun(createRunOptions);
 
-            // Derive the administration client
-            logger.info("Getting PersistentAgentsAdministrationClient");
-            PersistentAgentsAdministrationClient adminClient =
-                agentsClient.getPersistentAgentsAdministrationClient();
-
-            // Create an agent
-            logger.info("Creating agent with name: {}, model: {}", agentName, modelName);
-            PersistentAgent agent = adminClient.createAgent(
-                new CreateAgentOptions(modelName)
-                    .setName(agentName)
-                    .setInstructions(instructions)
-            );
-            logger.info("Agent created: ID={}, Name={}", agent.getId(), agent.getName());
-            logger.info("Agent model: {}", agent.getModel());
-
-            // Start a thread/run on the general client
-            logger.info("Creating thread and run with agent ID: {}", agent.getId());
-            ThreadRun runResult = agentsClient.createThreadAndRun(
-                new CreateThreadAndRunOptions(agent.getId())
-            );
-            logger.info("ThreadRun created: ThreadId={}", runResult.getThreadId());
-
-            // List available getters on ThreadRun for informational purposes
-            logger.info("\nAvailable getters on ThreadRun:");
-            for (var method : ThreadRun.class.getMethods()) {
-                if (method.getName().startsWith("get")) {
-                    logger.info(" - {}", method.getName());
-                }
-            }
-
-            logger.info("\nDemo completed successfully!");
-            
-        } catch (HttpResponseException e) {
-            // Handle service-specific errors with detailed information
-            int statusCode = e.getResponse().getStatusCode();
-            logger.error("Service error {}: {}", statusCode, e.getMessage());
-            logger.error("Refer to the Azure AI Agents documentation for troubleshooting information.");
-        } catch (Exception e) {
-            // Handle general exceptions
-            logger.error("Error in agent sample: {}", e.getMessage(), e);
+            waitForRunCompletion(thread.getId(), threadRun, runsClient);
+            printRunMessages(messagesClient, thread.getId());
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally {
+            //cleanup
+            threadsClient.deleteThread(thread.getId());
+            administrationClient.deleteAgent(agent.getId());
         }
     }
 }
