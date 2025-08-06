@@ -541,7 +541,6 @@ curl --request GET \
 ```java
 package com.example.agents;
 
-import com.azure.ai.agents.persistent.FilesClient;
 import com.azure.ai.agents.persistent.MessagesClient;
 import com.azure.ai.agents.persistent.PersistentAgentsAdministrationClient;
 import com.azure.ai.agents.persistent.PersistentAgentsClient;
@@ -551,13 +550,8 @@ import com.azure.ai.agents.persistent.ThreadsClient;
 import com.azure.ai.agents.persistent.models.AISearchIndexResource;
 import com.azure.ai.agents.persistent.models.AzureAISearchToolDefinition;
 import com.azure.ai.agents.persistent.models.AzureAISearchToolResource;
-import com.azure.ai.agents.persistent.models.CodeInterpreterToolDefinition;
 import com.azure.ai.agents.persistent.models.CreateAgentOptions;
 import com.azure.ai.agents.persistent.models.CreateRunOptions;
-import com.azure.ai.agents.persistent.models.FileDetails;
-import com.azure.ai.agents.persistent.models.FileInfo;
-import com.azure.ai.agents.persistent.models.FilePurpose;
-import com.azure.ai.agents.persistent.models.MessageAttachment;
 import com.azure.ai.agents.persistent.models.MessageImageFileContent;
 import com.azure.ai.agents.persistent.models.MessageRole;
 import com.azure.ai.agents.persistent.models.MessageTextContent;
@@ -567,10 +561,8 @@ import com.azure.ai.agents.persistent.models.RunStatus;
 import com.azure.ai.agents.persistent.models.ThreadMessage;
 import com.azure.ai.agents.persistent.models.ThreadRun;
 import com.azure.ai.agents.persistent.models.ToolResources;
-import com.azure.ai.agents.persistent.models.UploadFileRequest;
 import com.azure.ai.agents.persistent.models.MessageContent;
 import com.azure.core.http.rest.PagedIterable;
-import com.azure.core.util.BinaryData;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 
 import java.net.URL;
