@@ -2,16 +2,16 @@
 title: 'RAG tutorial: Build an indexing pipeline'
 titleSuffix: Azure AI Search
 description: Create an indexer-driven pipeline that loads, chunks, embeds, and ingests content for RAG solutions on Azure AI Search.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
-ms.custom:
-  - ignite-2024
 ms.topic: tutorial
 ms.date: 06/11/2025
+ms.custom:
+  - ignite-2024
+  - sfi-ropc-nochange
 ---
 
 # Tutorial: Build an indexing pipeline for RAG on Azure AI Search

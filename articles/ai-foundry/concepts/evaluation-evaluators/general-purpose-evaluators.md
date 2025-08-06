@@ -6,7 +6,7 @@ author: lgayhardt
 ms.author: lagayhar
 manager: scottpolly
 ms.reviewer: changliu2
-ms.date: 05/19/2025
+ms.date: 07/16/2025
 ms.service: azure-ai-foundry
 ms.topic: reference
 ms.custom:
@@ -16,7 +16,10 @@ ms.custom:
 
 # General purpose evaluators
 
-AI systems might generate textual responses that are incoherent, or lack the general writing quality you might desire beyond minimum grammatical correctness. To address these issues, use [Coherence](#coherence) and [Fluency](#fluency).
+AI systems might generate textual responses that are incoherent, or lack the general writing quality you might desire beyond minimum grammatical correctness. To address these issues, we support evaluating:
+
+- [Coherence](#coherence)
+- [Fluency](#fluency)
 
 If you have a question-answering (QA) scenario with both `context` and `ground truth` data in addition to `query` and `response`, you can also use our [QAEvaluator](#question-answering-composite-evaluator) a composite evaluator that uses relevant evaluators for judgment.
 
@@ -32,14 +35,22 @@ load_dotenv()
 
 model_config = AzureOpenAIModelConfiguration(
     azure_endpoint=os.environ["AZURE_ENDPOINT"],
-    api_key=os.environ.get["AZURE_API_KEY"],
+    api_key=os.environ.get("AZURE_API_KEY"),
     azure_deployment=os.environ.get("AZURE_DEPLOYMENT_NAME"),
     api_version=os.environ.get("AZURE_API_VERSION"),
 )
 ```
 
-> [!TIP]
-> We recommend using `o3-mini` for a balance of reasoning capability and cost efficiency.
+### Evaluator model support
+
+We support AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the LLM-judge depending on the evaluators:
+
+| Evaluators | Reasoning Models as Judge (example: o-series models from Azure OpenAI / OpenAI) | Non-reasoning models as Judge (example: gpt-4.1, gpt-4o, etc.) | To enable |
+|------------|-----------------------------------------------------------------------------|-------------------------------------------------------------|-------|
+| `Intent Resolution`, `Task Adherence`, `Tool Call Accuracy`, `Response Completeness` | Supported | Supported | Set additional parameter `is_reasoning_model=True` in initializing evaluators |
+| Other quality evaluators| Not Supported | Supported | -- |
+
+For complex evaluation that requires refined reasoning, we recommend a strong reasoning model like `o3-mini` and o-series mini models released afterwards with a balance of reasoning performance and cost efficiency.
 
 ## Coherence
 
@@ -59,7 +70,7 @@ coherence(
 
 ### Coherence output
 
-The numerical score on a likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
+The numerical score on a Likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
 
 ```python
 {
@@ -88,7 +99,7 @@ fluency(
 
 ### Fluency output
 
-The numerical score on a likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
+The numerical score on a Likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
 
 ```python
 {
@@ -127,7 +138,7 @@ qa_eval(
 
 ### QA output
 
-While F1 score outputs a numerical score on 0-1 float scale, the other evaluators output numerical scores on a likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
+While F1 score outputs a numerical score on 0-1 float scale, the other evaluators output numerical scores on a Likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
 
 ```python
 {

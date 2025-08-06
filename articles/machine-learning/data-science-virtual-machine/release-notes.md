@@ -4,8 +4,8 @@ titleSuffix: Azure Data Science Virtual Machine
 description: Release notes for the Azure Data Science Virtual Machine
 ms.service: azure-data-science-virtual-machines
 ms.custom: linux-related-content
-author: fbsolo-ms1 
-ms.author: franksolomon 
+author: s-polly 
+ms.author: scottpolly 
 ms.reviewer: jcioffi
 ms.date: 05/21/2024
 ms.topic: reference

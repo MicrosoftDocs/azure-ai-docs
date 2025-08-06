@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.date: 12/02/2024
 ms.reviewer: cacrest
 ms.custom:
@@ -59,7 +59,7 @@ Use the Azure Machine Learning SDK for Python to sign in:
 from azure.ai.ml import MLClient
 from azure.identity import DefaultAzureCredential
 
-ml_client = MLClient.from_config(DefaultAzureCredential())
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 ```
 
 If your configuration runs outside an Azure Machine Learning compute instance, you need to specify the workspace where the endpoint is deployed:

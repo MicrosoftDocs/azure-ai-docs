@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: concept-article
 ms.reviewer: franksolomon
-author: ssalgadodev
+author: s-polly
 ms.author: xunwan
 ms.date: 03/01/2024
 ms.custom: UpdateFrequency5, data4ml

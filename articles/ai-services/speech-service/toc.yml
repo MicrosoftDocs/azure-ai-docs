@@ -236,14 +236,16 @@ items:
          href: video-translation-get-started.md
 - name: Voice live (preview)
   items:
-    - name: Voice live API overview
+    - name: Voice live overview
       href: voice-live.md
-    - name: Voice live API quickstart
+    - name: Voice live with Foundry models quickstart
       href: voice-live-quickstart.md
-    - name: How to use Voice live API
+    - name: Voice live with Foundry agents quickstart
+      href: voice-live-agents-quickstart.md
+    - name: How to use voice live
       href: voice-live-how-to.md
     - name: Audio events reference
-      href: /azure/ai-services/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context
+      href: /azure/ai-foundry/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context
 - name: Keyword recognition
   items:
     - name: Keyword recognition overview
@@ -477,9 +479,9 @@ items:
           href: /rest/api/batchtexttospeech/operation-groups
         - name: Batch avatar REST API
           href: /rest/api/batchavatar/operation-groups
-- name: Retired features and migration
+- name: Retiring features and migration
   items:
-  - name: Retiring Features
+  - name: Retiring features
     displayName: migrate,migration,deprecate,retire,sunset
     items:
       - name: Speaker recognition
@@ -500,9 +502,6 @@ items:
             href: get-started-intent-recognition-clu.md
           - name: Recognize speech intents with LUIS (deprecated)
             href: get-started-intent-recognition.md
-      - name: Custom commands
-        href: custom-commands.md
-        displayName: migrate,migration,deprecate,retire,sunset
   - name: Speech to text REST API migration
     items:
     - name: From Speech to text v3.2 to 2024-11-15

@@ -2,7 +2,6 @@
 title: OData geo-spatial function reference
 titleSuffix: Azure AI Search
 description: Syntax and reference documentation for using OData geo-spatial functions, geo.distance and geo.intersects, in Azure AI Search queries.
-
 manager: nitinme
 author: bevloh
 ms.author: beloh

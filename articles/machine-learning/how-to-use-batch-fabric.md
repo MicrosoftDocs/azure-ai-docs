@@ -6,13 +6,14 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.date: 10/10/2023
 ms.reviewer: cacrest
 ms.custom:
   - devplatv2
   - ignite-2023
+  - sfi-image-nochange
 ---
 
 # Run Azure Machine Learning models from Fabric, using batch endpoints (preview)

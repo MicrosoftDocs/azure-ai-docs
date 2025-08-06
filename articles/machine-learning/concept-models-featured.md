@@ -2,13 +2,13 @@
 title: Featured models of Azure AI model catalog
 titleSuffix: Azure Machine Learning
 description: Explore various models available within the Azure AI model catalog.
-author: msakande
+author: s-polly
 reviewer: santiagxf
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: concept-article
-ms.date: 04/16/2025
-ms.author: mopeakande
+ms.date: 07/29/2025
+ms.author: scottpolly
 ms.reviewer: fasantia
 ms.custom: references_regions, tool_generated
 ms.collection: ce-skilling-ai-copilot 
@@ -255,7 +255,7 @@ See [the Microsoft model collection in the Azure AI model catalog](https://ai.az
 Mistral AI offers two categories of models, namely: 
 
 - _Premium models_: These include Mistral Large, Mistral Small, Mistral-OCR-2503, Mistral Medium 3 (25.05), and Ministral 3B models, and are available as serverless APIs with pay-as-you-go token-based billing.  
-- _Open models_: These include Mistral-small-2503, Codestral, and Mistral Nemo (that are available as serverless APIs with pay-as-you-go token-based billing), and [Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01](../ai-foundry/how-to/deploy-models-mistral-open.md?context=/azure/machine-learning/context/context)(that are available to download and run on self-hosted managed endpoints).
+- _Open models_: These include Mistral-small-2503, Codestral, and Mistral Nemo (that are available as serverless APIs with pay-as-you-go token-based billing), and [Mixtral-8x7B-Instruct-v01, Mixtral-8x7B-v01, Mistral-7B-Instruct-v01, and Mistral-7B-v01](../ai-foundry/concepts/models-inference-examples.md#mistral-ai)(that are available to download and run on self-hosted managed endpoints).
 
 | Model  | Type | Capabilities |
 | ------ | ---- | --- | 

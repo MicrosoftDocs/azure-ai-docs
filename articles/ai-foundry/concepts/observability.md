@@ -6,7 +6,7 @@ author: lgayhardt
 ms.author: lagayhar
 manager: scottpolly
 ms.reviewer: mithigpe
-ms.date: 05/19/2025
+ms.date: 07/31/2025
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.custom:
@@ -32,71 +32,79 @@ This is where evaluators become essential. These specialized tools measure both 
 
 Evaluators are specialized tools that measure the quality, safety, and reliability of AI responses. By implementing systematic evaluations throughout the AI development lifecycle, teams can identify and address potential issues before they impact users. The following supported evaluators provide comprehensive assessment capabilities across different AI application types and concerns:
 
+### General purpose
 
-[**RAG (Retrieval Augmented Generation)**:](./evaluation-evaluators/rag-evaluators.md)
+| Evaluator | Purpose | Inputs |
+|--|--|--|
+| Coherence | Measures logical consistency and flow of responses.| Query, response |
+| Fluency | Measures natural language quality and readability. | Response  |
+| QA | Measures comprehensively various quality aspects in question-answering.| Query, context, response, ground truth |
 
-| Evaluator | Purpose |
-|--|--|
-| Retrieval | Measures how effectively the system retrieves relevant information. |
-| Document Retrieval | Measures accuracy in retrieval results given ground truth. |
-| Groundedness | Measures how consistent the response is with respect to the retrieved context. |
-| Groundedness Pro | Measures whether the response is consistent with respect to the retrieved context. |
-| Relevance | Measures how relevant the response is with respect to the query. |
-| Response Completeness | Measures to what extent the response is complete (not missing critical information) with respect to the ground truth. |
+To learn more, see [General purpose evaluators](./evaluation-evaluators/general-purpose-evaluators.md).
 
+### Textual similarity
 
-[**Agents (preview):**](./evaluation-evaluators/agent-evaluators.md)
+| Evaluator | Purpose | Inputs |
+|--|--|--|
+| Similarity | AI-assisted textual similarity measurement. | Query, context, ground truth |
+| F1 Score | Harmonic mean of precision and recall in token overlaps between response and ground truth. | Response, ground truth |
+| BLEU | Bilingual Evaluation Understudy score for translation quality measures overlaps in n-grams between response and ground truth. | Response, ground truth |
+| GLEU | Google-BLEU variant for sentence-level assessment measures overlaps in n-grams between response and ground truth. | Response, ground truth |
+| ROUGE | Recall-Oriented Understudy for Gisting Evaluation measures overlaps in n-grams between response and ground truth. | Response, ground truth |
+| METEOR | Metric for Evaluation of Translation with Explicit Ordering measures overlaps in n-grams between response and ground truth. | Response, ground truth |
 
-| Evaluator | Purpose |
-|--|--|
-| Intent Resolution | Measures how accurately the agent identifies and addresses user intentions.|
-| Task Adherence | Measures how well the agent follows through on identified tasks. |
-| Tool Call Accuracy | Measures how well the agent selects and calls the correct tools to.|
+To learn more, see [Textual similarity evaluators](./evaluation-evaluators/textual-similarity-evaluators.md)
 
+### RAG (retrieval augmented generation)
 
-[**General Purpose:**](./evaluation-evaluators/general-purpose-evaluators.md)
+| Evaluator | Purpose | Inputs |
+|--|--|--|
+| Retrieval | Measures how effectively the system retrieves relevant information. | Query , context |
+| Document Retrieval | Measures accuracy in retrieval results given ground truth. | Ground truth , retrieved documents,  |
+| Groundedness | Measures how consistent the response is with respect to the retrieved context. |  Query (optional), context, response |
+| Groundedness Pro | Measures whether the response is consistent with respect to the retrieved context. | Query, context, response |
+| Relevance | Measures how relevant the response is with respect to the query. | Query, response|
+| Response Completeness | Measures to what extent the response is complete (not missing critical information) with respect to the ground truth. | Response, ground truth |
 
-| Evaluator | Purpose |
-|--|--|
-| Fluency | Measures natural language quality and readability. |
-| Coherence | Measures logical consistency and flow of responses.|
-| QA | Measures comprehensively various quality aspects in question-answering.|
+To learn more, see [Retrieval-augmented Generation (RAG) evaluators](./evaluation-evaluators/rag-evaluators.md).
 
+### Safety and security (preview)
 
-[**Safety and Security (preview):**](./evaluation-evaluators/risk-safety-evaluators.md)
+| Evaluator | Purpose | Inputs |
+|--|--|--|
+| Hate and Unfairness | Identifies biased, discriminatory, or hateful content. | Query, response |
+| Sexual | Identifies inappropriate sexual content. | Query, response |
+| Violence | Detects violent content or incitement. | Query, response |
+| Self-Harm | Detects content promoting or describing self-harm.| Query, response |
+| Content Safety | Comprehensive assessment of various safety concerns. | Query, response |
+| Protected Materials | Detects unauthorized use of copyrighted or protected content. | Query, response |
+| Code Vulnerability | Identifies security issues in generated code. |  Query, response |
+| Ungrounded Attributes | Detects fabricated or hallucinated information inferred from user interactions. | Query, context, response |
 
-| Evaluator | Purpose |
-|--|--|
-| Violence | Detects violent content or incitement. |
-| Sexual | Identifies inappropriate sexual content. |
-| Self-Harm | Detects content promoting or describing self-harm.|
-| Hate and Unfairness | Identifies biased, discriminatory, or hateful content. |
-| Ungrounded Attributes | Detects fabricated or hallucinated information inferred from user interactions. |
-| Code Vulnerability | Identifies security issues in generated code. |
-| Protected Materials | Detects unauthorized use of copyrighted or protected content. |
-| Content Safety | Comprehensive assessment of various safety concerns. |
+To learn more, see [Risk and safety evaluators](./evaluation-evaluators/risk-safety-evaluators.md).
 
+### Agents (preview)
 
-[**Textual Similarity:**](./evaluation-evaluators/textual-similarity-evaluators.md)
+| Evaluator | Purpose | Inputs |
+|--|--|--|
+| Intent Resolution | Measures how accurately the agent identifies and addresses user intentions.| Query, response |
+| Task Adherence | Measures how well the agent follows through on identified tasks. | Query, response, tool definitions (optional) |
+| Tool Call Accuracy | Measures how well the agent selects and calls the correct tools to.| Query, either response or tool calls, tool definitions |
 
-| Evaluator | Purpose |
-|--|--|
-| Similarity | AI-assisted textual similarity measurement. |
-| F1 Score | Harmonic mean of precision and recall in token overlaps between response and ground truth. |
-| BLEU | Bilingual Evaluation Understudy score for translation quality measures overlaps in n-grams between response and ground truth. |
-| GLEU | Google-BLEU variant for sentence-level assessment measures overlaps in n-grams between response and ground truth. |
-| ROUGE | Recall-Oriented Understudy for Gisting Evaluation measures overlaps in n-grams between response and ground truth. |
-| METEOR | Metric for Evaluation of Translation with Explicit Ordering measures overlaps in n-grams between response and ground truth. |
+To learn more, see [Agent evaluators](./evaluation-evaluators/agent-evaluators.md).
 
+### Azure OpenAI graders (preview)
 
-[**Azure OpenAI Graders (preview):**](./evaluation-evaluators/azure-openai-graders.md)
+| Evaluator | Purpose |  Inputs |
+|--|--|--|
+| Model Labeler| Classifies content using custom guidelines and labels. | Query, response, ground truth |
+| String Checker | Performs flexible text validations and pattern matching. | Response |
+| Text Similarity | Evaluates the quality of text or determine semantic closeness. | Response, ground truth |
+| Model Scorer| Generates numerical scores (customized range) for content based on custom guidelines. | Query, response, ground truth |
 
-| Evaluator | Purpose |
-|--|--|
-| Model Labeler | Classifies content using custom guidelines and labels. |
-| Model Scorer | Generates numerical scores (customized range) for content based on custom guidelines. |
-| String Checker | Performs flexible text validations and pattern matching. |
-| Textual Similarity | Evaluates the quality of text or determine semantic closeness. |
+To learn more, see [Azure OpenAI Graders](./evaluation-evaluators/azure-openai-graders.md).
+
+### Evaluators in the development lifecycle
 
 By using these evaluators strategically throughout the development lifecycle, teams can build more reliable, safe, and effective AI applications that meet user needs while minimizing potential risks.
 
@@ -187,7 +195,6 @@ Observability features such as Risk and Safety Evaluations and Continuous Evalua
 
 ## Related content
 
-- [Evaluate your generative AI apps via the playground](../how-to/evaluate-prompts-playground.md)
 - [Evaluate with the Azure AI evaluate SDK](../how-to/develop/evaluate-sdk.md)
 - [Evaluate your generative AI apps with the Azure AI Foundry portal](../how-to/evaluate-generative-ai-app.md)
 - [View the evaluation results](../how-to/evaluate-results.md)

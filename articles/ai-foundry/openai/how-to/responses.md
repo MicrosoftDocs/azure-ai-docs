@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI's new stateful Responses API.
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 07/08/2025
+ms.date: 07/30/2025
 ms.service: azure-ai-openai
 ms.topic: include
 ms.custom:
@@ -65,12 +65,12 @@ Not every model is available in the regions supported by the responses API. Chec
 > - Images can't be uploaded as a file and then referenced as input. Coming soon.
 >
 > There's a known issue with the following:
-> - PDF as an input file is not yet supported.
+> - PDF as an input file [is now supported](#file-input), but setting file upload purpose to `user_data` is not currently supported.
 > - Performance when background mode is used with streaming. The issue is expected to be resolved soon.
 
 ### Reference documentation
 
-- [Responses API reference documentation](/azure/ai-services/openai/reference-preview-latest?#responses-api---create)
+- [Responses API reference documentation](/azure/ai-foundry/openai/reference-preview-latest?#create-response)
 
 ## Getting started with the responses API
 
@@ -497,7 +497,6 @@ for event in response:
 
 ```
 
-
 ## Function calling
 
 The responses API supports function calling.
@@ -563,6 +562,113 @@ second_response = client.responses.create(
 print(second_response.model_dump_json(indent=2)) 
 
 ```
+
+## Code Interpreter
+
+The Code Interpreter tool enables models to write and execute Python code in a secure, sandboxed environment. It supports a range of advanced tasks, including:
+
+* Processing files with varied data formats and structures
+* Generating files that include data and visualizations (for example, graphs)
+* Iteratively writing and running code to solve problems—models can debug and retry code until successful
+* Enhancing visual reasoning in supported models (for example, o3, o4-mini) by enabling image transformations such as cropping, zooming, and rotation
+* This tool is especially useful for scenarios involving data analysis, mathematical computation, and code generation.
+
+```bash
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -d '{
+        "model": "gpt-4.1",
+        "tools": [
+            { "type": "code_interpreter", "container": {"type": "auto"} }
+        ],
+        "instructions": "You are a personal math tutor. When asked a math question, write and run code using the python tool to answer the question.",
+        "input": "I need to solve the equation 3x + 11 = 14. Can you help me?"
+    }'
+```
+
+```python
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = AzureOpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  azure_ad_token_provider=token_provider,
+  api_version="preview"
+)
+
+instructions = "You are a personal math tutor. When asked a math question, write and run code using the python tool to answer the question."
+
+response = client.responses.create(
+    model="gpt-4.1",
+    tools=[
+        {
+            "type": "code_interpreter",
+            "container": {"type": "auto"}
+        }
+    ],
+    instructions=instructions,
+    input="I need to solve the equation 3x + 11 = 14. Can you help me?",
+)
+
+print(response.output)
+```
+
+### Containers
+
+> [!IMPORTANT]
+> Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token based fees for Azure OpenAI usage. If your Responses API calls Code Interpreter simultaneously in two different threads, two code interpreter sessions are created. Each session is active by default for 1 hour with an idle timeout of 30 minutes.
+
+The Code Interpreter tool requires a container—a fully sandboxed virtual machine where the model can execute Python code. Containers can include uploaded files or files generated during execution.
+
+To create a container, specify `"container": { "type": "auto", "files": ["file-1", "file-2"] }` in the tool configuration when creating a new Response object. This automatically creates a new container or reuses an active one from a previous code_interpreter_call in the model’s context. The `code_interpreter_call` in the output of the APIwill contain the `container_id` that was generated. This container expires if it is not used for 20 minutes.
+
+### File inputs and outputs
+
+When running Code Interpreter, the model can create its own files. For example, if you ask it to construct a plot, or create a CSV, it creates these images directly on your container. It will cite these files in the annotations of its next message.
+
+Any files in the model input get automatically uploaded to the container. You do not have to explicitly upload it to the container.
+
+### Supported Files
+
+|File format|MIME type|
+|---|---|
+|`.c`|text/x-c|
+|`.cs`|text/x-csharp|
+|`.cpp`|text/x-c++|
+|`.csv`|text/csv|
+|`.doc`|application/msword|
+|`.docx`|application/vnd.openxmlformats-officedocument.wordprocessingml.document|
+|`.html`|text/html|
+|`.java`|text/x-java|
+|`.json`|application/json|
+|`.md`|text/markdown|
+|`.pdf`|application/pdf|
+|`.php`|text/x-php|
+|`.pptx`|application/vnd.openxmlformats-officedocument.presentationml.presentation|
+|`.py`|text/x-python|
+|`.py`|text/x-script.python|
+|`.rb`|text/x-ruby|
+|`.tex`|text/x-tex|
+|`.txt`|text/plain|
+|`.css`|text/css|
+|`.js`|text/JavaScript|
+|`.sh`|application/x-sh|
+|`.ts`|application/TypeScript|
+|`.csv`|application/csv|
+|`.jpeg`|image/jpeg|
+|`.jpg`|image/jpeg|
+|`.gif`|image/gif|
+|`.pkl`|application/octet-stream|
+|`.png`|image/png|
+|`.tar`|application/x-tar|
+|`.xlsx`|application/vnd.openxmlformats-officedocument.spreadsheetml.sheet|
+|`.xml`|application/xml or "text/xml"|
+|`.zip`|application/zip|
 
 ## List input items
 
@@ -693,6 +799,181 @@ response = client.responses.create(
 
 print(response)
 ```
+
+## File input
+
+Models with vision capabilities support PDF input. PDF files can be provided either as Base64-encoded data or as file IDs. To help models interpret PDF content, both the extracted text and an image of each page are included in the model’s context. This is useful when key information is conveyed through diagrams or non-textual content.
+
+> [!NOTE]
+> - All extracted text and images are put into the model's context. Make sure you understand the pricing and token usage implications of using PDFs as input.
+>
+> - You can upload up to 100 pages and 32MB of total content in a single request to the API, across multiple file inputs.
+>
+> - Only models that support both text and image inputs, such as `gpt-4o`, `gpt-4o-mini`, or `o1`, can accept PDF files as input.
+>
+> - A `purpose` of `user_data` is currently not supported. As a temporary workaround you will need to set purpose to `assistants`.
+
+### Convert PDF to Base64 and analyze
+
+
+
+```python
+import base64
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = AzureOpenAI(  
+  base_url = "https://YOUR-RESOURCE=NAME.openai.azure.com/openai/v1/",
+  azure_ad_token_provider=token_provider,
+  api_version="preview"
+)
+
+with open("PDF-FILE-NAME.pdf", "rb") as f: # assumes PDF is in the same directory as the executing script
+    data = f.read()
+
+base64_string = base64.b64encode(data).decode("utf-8")
+
+response = client.responses.create(
+    model="gpt-4o-mini", # model deployment name
+    input=[
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "input_file",
+                    "filename": "PDF-FILE-NAME.pdf",
+                    "file_data": f"data:application/pdf;base64,{base64_string}",
+                },
+                {
+                    "type": "input_text",
+                    "text": "Summarize this PDF",
+                },
+            ],
+        },
+    ]
+)
+
+print(response.output_text)
+```
+
+### Upload PDF and analyze
+
+Upload the PDF file. A `purpose` of `user_data` is currently not supported. As a workaround you will need to set purpose to `assistants`.
+
+```python
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = AzureOpenAI(
+  azure_endpoint = "https://YOUR-RESOURCE=NAME.openai.azure.com/", 
+  azure_ad_token_provider=token_provider,
+  api_version="2024-10-21"
+)
+
+
+# Upload a file with a purpose of "assistants"
+file = client.files.create(
+  file=open("nucleus_sampling.pdf", "rb"), # This assumes a .pdf file in the same directory as the executing script
+  purpose="assistants"
+)
+
+print(file.model_dump_json(indent=2))
+file_id = file.id
+```
+
+**Output:**
+
+```
+{
+  "id": "assistant-KaVLJQTiWEvdz8yJQHHkqJ",
+  "bytes": 4691115,
+  "created_at": 1752174469,
+  "filename": "nucleus_sampling.pdf",
+  "object": "file",
+  "purpose": "assistants",
+  "status": "processed",
+  "expires_at": null,
+  "status_details": null
+}
+```
+
+You will then take the value of the `id` and pass that to a model for processing under `file_id`:
+
+```python
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = AzureOpenAI(  
+  base_url = "https://YOUR-RESOURCE=NAME.openai.azure.com/openai/v1",
+  azure_ad_token_provider=token_provider,
+  api_version="preview"
+)
+
+
+response = client.responses.create(
+    model="gpt-4o-mini",
+    input=[
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "input_file",
+                    "file_id":"assistant-KaVLJQTiWEvdz8yJQHHkqJ"
+                },
+                {
+                    "type": "input_text",
+                    "text": "Summarize this PDF",
+                },
+            ],
+        },
+    ]
+)
+
+print(response.output_text)
+```
+
+```bash
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/files?api-version=2024-10-21 \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -F purpose="assistants" \
+  -F file="@your_file.pdf" \
+
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -d '{
+        "model": "gpt-4.1",
+        "input": [
+            {
+                "role": "user",
+                "content": [
+                    {
+                        "type": "input_file",
+                        "file_id": "assistant-123456789"
+                    },
+                    {
+                        "type": "input_text",
+                        "text": "ASK SOME QUESTION RELATED TO UPLOADED PDF"
+                    }
+                ]
+            }
+        ]
+    }'
+```
+
+
 
 ## Using remote MCP servers
 
@@ -886,7 +1167,7 @@ print(response.output_text)
 
 ## Background tasks
 
-Background mode allows you to run long-running tasks asynchronously using models like o3 and o1-pro. This is especially useful for complex reasoning tasks that may take several minutes to complete, such as those handled by agents like Codex or Deep Research.
+Background mode allows you to run long-running tasks asynchronously using models like o3 and o1-pro. This is especially useful for complex reasoning tasks that can take several minutes to complete, such as those handled by agents like Codex or Deep Research.
 
 By enabling background mode, you can avoid timeouts and maintain reliability during extended operations. When a request is sent with `"background": true`, the task is processed asynchronously, and you can poll for its status over time.
 
@@ -963,7 +1244,7 @@ while response.status in {"queued", "in_progress"}:
 print(f"Final status: {response.status}\nOutput:\n{response.output_text}")
 ```
 
-You can cancel an in-progress background task using the cancel endpoint. Canceling is idempotent—subsequent calls will return the final response object.
+You can cancel an in-progress background task using the `cancel` endpoint. Canceling is idempotent—subsequent calls will return the final response object.
 
 ```bash
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_1234567890/cancel?api-version=preview \

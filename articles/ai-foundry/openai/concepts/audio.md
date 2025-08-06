@@ -6,7 +6,7 @@ author: eric-urban
 ms.author: eur
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 4/15/2025
+ms.date: 7/12/2025
 ms.custom: template-concept
 manager: nitinme
 ---

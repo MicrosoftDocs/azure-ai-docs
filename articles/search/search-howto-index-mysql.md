@@ -5,14 +5,14 @@ description: Learn how to set up a search indexer to index data stored in Azure 
 author: gmndrg
 ms.author: gimondra
 manager: nitinme
-
 ms.devlang: rest-api
 ms.service: azure-ai-search
 ms.topic: how-to
+ms.date: 05/29/2025
 ms.custom:
   - kr2b-contr-experiment
   - ignite-2023
-ms.date: 05/29/2025
+  - sfi-ropc-nochange
 ---
 
 # Index data from Azure Database for MySQL Flexible Server

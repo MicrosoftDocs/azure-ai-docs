@@ -2,12 +2,12 @@
 title: Connect to SQL Managed Instance
 titleSuffix: Azure AI Search
 description: Configure an indexer connection to access content in an Azure SQL Managed instance that's protected through a private endpoint.
-
 author: mattgotteiner
 ms.author: magottei
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 01/27/2025
+ms.custom: sfi-ropc-nochange
 ---
 
 # Create a shared private link for a SQL managed instance from Azure AI Search

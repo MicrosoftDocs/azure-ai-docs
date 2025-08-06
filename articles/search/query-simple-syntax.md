@@ -2,7 +2,6 @@
 title: Simple query syntax
 titleSuffix: Azure AI Search
 description: Reference for the simple query syntax used for full text search queries in Azure AI Search.
-
 manager: nitinme
 author: bevloh
 ms.author: beloh

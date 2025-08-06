@@ -4,12 +4,14 @@ titleSuffix: Azure AI Search
 description: Learn how to set up an Azure AI Search indexer connection to an Azure SQL Managed Instance using a managed identity
 author: gmndrg
 ms.author: gimondra
-
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: conceptual
 ms.date: 06/04/2025
+ms.custom:
+  - ignite-2023
+  - sfi-image-nochange
+  - sfi-ga-nochange
+  - sfi-ropc-nochange
 ---
 
 # Set up an indexer connection to Azure SQL Managed Instance using a managed identity

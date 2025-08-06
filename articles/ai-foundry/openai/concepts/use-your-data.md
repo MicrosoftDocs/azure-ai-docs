@@ -7,7 +7,7 @@ ms.service: azure-ai-openai
 ms.topic: quickstart
 author: aahill
 ms.author: aahi
-ms.date: 06/30/2025
+ms.date: 07/16/2025
 recommendations: false
 ms.custom: references_regions, ignite-2024
 ---
@@ -236,7 +236,7 @@ Using [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), you can up
 
 You can paste URLs and the service will store the webpage content, using it when generating responses from the model. The content in URLs/web addresses that you use need to have the following characteristics to be properly ingested:
 
-* A public website, such as [Using your data with Azure OpenAI in Azure AI Foundry Models - Azure OpenAI | Microsoft Learn](/azure/ai-services/openai/concepts/use-your-data?tabs=ai-search). You can't add a URL/Web address with access control, such as ones with a password.
+* A public website, such as [Using your data with Azure OpenAI in Azure AI Foundry Models - Azure OpenAI | Microsoft Learn](/azure/ai-foundry/openai/concepts/use-your-data?tabs=ai-search). You can't add a URL/Web address with access control, such as ones with a password.
 * An HTTPS website.
 * The size of content in each URL is smaller than 5 MB.  
 * The website can be downloaded as one of the [supported file types](#data-formats-and-file-types).
@@ -390,7 +390,7 @@ A Teams app lets you bring conversational experience to your users in Teams to i
 - Sign in to your [Microsoft 365 developer account](/microsoftteams/platform/concepts/build-and-test/prepare-your-o365-tenant) (using this link to get a test account: [Developer program](https://developer.microsoft.com/microsoft-365/dev-program)).
     - Enable **custom Teams apps** and turn on **custom app uploading** in your account (instructions [here](/microsoftteams/platform/concepts/build-and-test/prepare-your-o365-tenant#enable-custom-teams-apps-and-turn-on-custom-app-uploading))
 - [Azure command-line interface (CLI)](/cli/azure/install-azure-cli) installed. This is a cross-platform command-line tool to connect to Azure and execute administrative commands on Azure resources. For more information on setting up environment variables, see the [Azure SDK documentation](https://github.com/Azure/azure-sdk-for-go/wiki/Set-up-Your-Environment-for-Authentication).
-- Your Azure account has been assigned **Cognitive Services OpenAI user** or **Cognitive Services OpenAI Contributor** role of the Azure OpenAI resource you're using, allowing your account to make Azure OpenAI API calls. For more information, see [Azure OpenAI On Your data configuration](../how-to/on-your-data-configuration.md#using-the-api) and [Add role assignment to an Azure OpenAI resource](/azure/ai-services/openai/how-to/role-based-access-control#add-role-assignment-to-an-azure-openai-resource) for instructions on setting this role in the Azure portal. 
+- Your Azure account has been assigned **Cognitive Services OpenAI user** or **Cognitive Services OpenAI Contributor** role of the Azure OpenAI resource you're using, allowing your account to make Azure OpenAI API calls. For more information, see [Azure OpenAI On Your data configuration](../how-to/on-your-data-configuration.md#using-the-api) and [Add role assignment to an Azure OpenAI resource](/azure/ai-foundry/openai/how-to/role-based-access-control#add-role-assignment-to-an-azure-openai-resource) for instructions on setting this role in the Azure portal. 
 
 
 You can deploy to a standalone Teams app directly from [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). Follow the steps below: 
@@ -401,7 +401,7 @@ You can deploy to a standalone Teams app directly from [Azure AI Foundry portal]
 
 1. Extract the .zip file and open the folder in Visual Studio Code.
 
-1. If you chose **API key** in the data connection step, manually copy and paste your Azure AI Search key into the `src\prompts\chat\config.json` file. Your Azure AI Search Key can be found in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) Playground by selecting the **View code** button with the key located under Azure Search Resource Key. If you chose **System assigned managed identity**, you can skip this step. Learn more about different data connection options in the [Data connection](/azure/ai-services/openai/concepts/use-your-data?tabs=ai-search#data-connection) section.
+1. If you chose **API key** in the data connection step, manually copy and paste your Azure AI Search key into the `src\prompts\chat\config.json` file. Your Azure AI Search Key can be found in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) Playground by selecting the **View code** button with the key located under Azure Search Resource Key. If you chose **System assigned managed identity**, you can skip this step. Learn more about different data connection options in the [Data connection](/azure/ai-foundry/openai/concepts/use-your-data?tabs=ai-search#data-connection) section.
 
 1. Open the Visual Studio Code terminal and log into Azure CLI, selecting the account that you assigned **Cognitive Service OpenAI User** role to. Use the `az login` command in the terminal to log in.
 
@@ -722,6 +722,7 @@ Each user message can translate to multiple search queries, all of which get sen
 > * o1 models
 > * o3 models
 > * model-router
+> * GPT 4.1 models
 
 | Region | `gpt-35-turbo-16k (0613)` | `gpt-35-turbo (1106)` | `gpt-4-32k (0613)` | `gpt-4 (1106-preview)` | `gpt-4 (0125-preview)` | `gpt-4 (0613)`  | `gpt-4o`\*\* | `gpt-4 (turbo-2024-04-09)` |
 |------|---|---|---|---|---|----|----|----|

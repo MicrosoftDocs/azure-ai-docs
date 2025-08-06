@@ -1,8 +1,7 @@
 ---
-title: Vector query how-to
+title: Create a Vector Query
 titleSuffix: Azure AI Search
 description: Learn how to build queries for vector search.
-
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
@@ -15,14 +14,14 @@ ms.date: 06/19/2025
 
 # Create a vector query in Azure AI Search
 
-In Azure AI Search, if you have a [vector index](vector-search-how-to-create-index.md), this article explains how to:
+If you have a [vector index](vector-search-how-to-create-index.md) in Azure AI Search, this article explains how to:
 
 > [!div class="checklist"]
-> + [Query vector fields](#vector-query-request).
-> + [Query multiple vector fields at once](#multiple-vector-fields).
-> + [Set vector weights](#vector-weighting).
-> + [Query with integrated vectorization](#query-with-integrated-vectorization).
-> + [Set thresholds to exclude low-scoring results (preview)](#set-thresholds-to-exclude-low-scoring-results-preview).
+> + [Query vector fields](#vector-query-request)
+> + [Query multiple vector fields at once](#multiple-vector-fields)
+> + [Set vector weights](#vector-weighting)
+> + [Query with integrated vectorization](#query-with-integrated-vectorization)
+> + [Set thresholds to exclude low-scoring results (preview)](#set-thresholds-to-exclude-low-scoring-results-preview)
 
 This article uses REST for illustration. After you understand the basic workflow, continue with the Azure SDK code samples in the [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples) repo, which provides end-to-end solutions that include vector queries.
 
@@ -177,6 +176,7 @@ api-key: {{admin-api-key}}
 
         }
     ]
+}
 ```
 
 ### [**Azure portal**](#tab/portal-vector-query)
@@ -525,17 +525,6 @@ POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?
       ]
     }
 ```
-
- <!-- Keep H2 as-is. Direct link from a blog post. Bulk of maxtextsizerecall has moved to hybrid query doc-->
-## MaxTextSizeRecall for hybrid search (preview)
-
-Vector queries are often used in hybrid constructs that include nonvector fields. If you discover that BM25-ranked results are over or under represented in a hybrid query results, you can [set `maxTextRecallSize`](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode) to increase or decrease the BM25-ranked results provided for hybrid ranking.
-
-You can only set this property in hybrid requests that include both `search` and `vectorQueries` components.
-
-This parameter is in preview. We recommend the  [2024-05-01-preview](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-05-01-preview&preserve-view=true) REST API version.
-
-For more information, see [Set maxTextRecallSize - Create a hybrid query](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode).
 
 ## Next steps
 

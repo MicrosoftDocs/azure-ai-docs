@@ -14,7 +14,7 @@ manager: nitinme
 
 Vision-enabled chat models are large multimodal models (LMM) developed by OpenAI that can analyze images and provide textual responses to questions about them. They incorporate both natural language processing and visual understanding. This guide provides details on their capabilities and limitations. To see which models support image input, see the [Models page](./models.md).
 
-To try out vision-enabled chat models, see the [quickstart](/azure/ai-services/openai/gpt-v-quickstart).
+To try out vision-enabled chat models, see the [quickstart](/azure/ai-foundry/openai/gpt-v-quickstart).
 
 ## Vision-enabled chats
 
@@ -42,7 +42,7 @@ Base Pricing for GPT-4 Turbo with Vision is:
 - Input: $0.01 per 1000 tokens
 - Output: $0.03 per 1000 tokens
 
-See the [Tokens section of the overview](/azure/ai-services/openai/overview#tokens) for information on how text and images translate to tokens.
+See the [Tokens section of the overview](/azure/ai-foundry/openai/overview#tokens) for information on how text and images translate to tokens.
 
 
 ### Example image price calculation
@@ -55,7 +55,7 @@ For a typical use case, take an image with both visible objects and text and a 1
 | Item        | Detail        |  Cost   |
 |-----------------|-----------------|--------------|
 | Text prompt input | 100 text tokens | $0.001 |
-| Example image input (see [Image tokens](/azure/ai-services/openai/overview#image-tokens-gpt-4-turbo-with-vision)) | 170 + 85 image tokens | $0.00255 |
+| Example image input (see [Image tokens](/azure/ai-foundry/openai/overview#image-tokens-gpt-4-turbo-with-vision)) | 170 + 85 image tokens | $0.00255 |
 | Enhanced add-on features for OCR | $1.50 / 1000 transactions | $0.0015 |
 | Enhanced add-on features for Object Grounding | $1.50 / 1000 transactions | $0.0015 | 
 | Output Tokens      | 100 tokens (assumed)    | $0.003       |
@@ -92,6 +92,6 @@ Additionally, there's a one-time indexing cost of $0.15 to generate the Video Re
 
 ## Next steps
 
-- Get started using vision-enabled models by following the [quickstart](/azure/ai-services/openai/gpt-v-quickstart).
+- Get started using vision-enabled models by following the [quickstart](/azure/ai-foundry/openai/gpt-v-quickstart).
 - For a more in-depth look at the APIs, follow the [how-to guide](../how-to/gpt-with-vision.md).
 - See the [completions and embeddings API reference](../reference.md)

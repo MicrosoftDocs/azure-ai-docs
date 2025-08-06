@@ -9,7 +9,11 @@ ms.author: lagayhar
 author: lgayhardt
 ms.date: 03/31/2025
 ms.topic: troubleshooting
-ms.custom: UpdateFrequency5, troubleshooting, sdkv1
+ms.custom:
+  - UpdateFrequency5
+  - troubleshooting
+  - sdkv1
+  - sfi-ropc-blocked
 #Customer intent: As a data scientist, I want to figure out why my pipeline doesn't run so that I can fix it.
 ---
 

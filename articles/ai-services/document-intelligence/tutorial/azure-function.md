@@ -9,7 +9,11 @@ ms.service: azure-ai-document-intelligence
 ms.topic: tutorial
 ms.date: 03/19/2025
 ms.author: lajanuar
-ms.custom: VS Code-azure-extension-update-completed, devx-track-python
+ms.custom:
+  - VS Code-azure-extension-update-completed
+  - devx-track-python
+  - sfi-image-nochange
+  - sfi-ropc-nochange
 ---
 
 

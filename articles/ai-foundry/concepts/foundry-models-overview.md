@@ -8,7 +8,7 @@ ms.custom:
   - build-2025
   - ai-learning-hub
 ms.topic: how-to
-ms.date: 05/12/2025
+ms.date: 07/06/2025
 ms.reviewer: jcioffi
 ms.author: ssalgado
 author: ssalgadodev
@@ -37,7 +37,7 @@ Understanding the distinction between these categories helps you choose the righ
  
 ## Models Sold Directly by Azure 
  
-These are models that are hosted and sold by Microsoft under Microsoft Product Terms. These models have undergone rigorous evaluation and are deeply integrated into Azure’s AI ecosystem. The models come from a variety of top providers and they offer enhanced integration, optimized performance, and direct Microsoft support, including enterprise-grade Service Level Agreements (SLAs).
+These are models that are hosted and sold by Microsoft under Microsoft Product Terms. These models have undergone rigorous evaluation and are deeply integrated into Azure's AI ecosystem. The models come from a variety of top providers and they offer enhanced integration, optimized performance, and direct Microsoft support, including enterprise-grade Service Level Agreements (SLAs).
  
 Characteristics of models sold directly by Azure: 
 
@@ -51,7 +51,9 @@ These Models also have the benefit of fungible Provisioned Throughput, meaning y
 
 ## Models from Partners and Community
 
-These models constitute the vast majority of the Azure AI Foundry Models. These models are provided by trusted third-party organizations, partners, research labs, and community contributors. These models offer specialized and diverse AI capabilities, covering a wide array of scenarios, industries, and innovations.
+These models constitute the vast majority of the Azure AI Foundry Models and are provided by trusted third-party organizations, partners, research labs, and community contributors. These models offer specialized and diverse AI capabilities, covering a wide array of scenarios, industries, and innovations.
+
+Examples of models from Partners and community are **Open models from the Hugging Face hub**. These include hundreds of models from the Hugging Face hub for real-time inference with managed compute. Hugging Face creates and maintains models listed in this collection. For help with the Hugging Face models, use the [Hugging Face forum](https://discuss.huggingface.co) or [Hugging Face support](https://huggingface.co/support). Learn how to deploy Hugging Face models in [Deploy open models with Azure AI Foundry](../how-to/deploy-models-managed.md).
 
 Characteristics of Models from Partners and Community: 
 * Developed and supported by external partners and community contributors 
@@ -60,25 +62,20 @@ Characteristics of Models from Partners and Community:
 * Community-driven innovation and rapid availability of cutting-edge models 
 * Standard Azure AI integration, with support and maintenance managed by the respective providers 
 
-Models are deployable as Managed Compute or serverless API deployment options. The model provider selects how the models are deployable.   
- 
+Models from Partners and Community are deployable as Managed Compute or serverless API deployment options. The model provider selects how the models are deployable.   
+
+### Requesting a model to be included in the model catalog
+
+You can request that we add a model to the model catalog, right from the model catalog page in the Azure AI Foundry portal. From the search bar of the model catalog page, a search for a model that doesn't exist in the catalog, such as *mymodel*, returns the **Request a model** button. Select this button to open up a form where you can share details about the model you're requesting.
+
+:::image type="content" source="../media/explore/model-request-button-in-catalog.png" alt-text="A screenshot showing where to request inclusion of a model in the model catalog." lightbox="../media/explore/model-request-button-in-catalog.png":::
+
 ## Choosing Between direct models and partner & community models 
 
 When selecting models from Azure AI Foundry Models, consider the following: 
 * **Use Case and Requirements**: Models sold directly by Azure are ideal for scenarios requiring deep Azure integration, guaranteed support, and enterprise SLAs. Models from Partners and Community excel in specialized use cases and innovation-led scenarios. 
 * **Support Expectations**: Models sold directly by Azure come with robust Microsoft-provided support and maintenance. These models are supported by their providers, with varying levels of SLA and support structures. 
 * **Innovation and Specialization**: Models from Partners and Community offer rapid access to specialized innovations and niche capabilities often developed by leading research labs and emerging AI providers.
-
-
-## Model collections
-
-The model catalog organizes models into different collections, including:
-
-* **Azure OpenAI models exclusively available on Azure**: Flagship Azure OpenAI models available through an integration with Azure OpenAI in Foundry Models. Microsoft supports these models and their use according to the product terms and [SLA for Azure OpenAI](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services).
-
-* **Open models from the Hugging Face hub**: Hundreds of models from the Hugging Face hub for real-time inference with managed compute. Hugging Face creates and maintains models listed in this collection. For help, use the [Hugging Face forum](https://discuss.huggingface.co) or [Hugging Face support](https://huggingface.co/support). Learn more in [Deploy open models with Azure AI Foundry](../how-to/deploy-models-managed.md).
-
-You can submit a request to add a model to the model catalog by using [this form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR_frVPkg_MhOoQxyrjmm7ZJUM09WNktBMURLSktOWEdDODBDRjg2NExKUy4u).
 
 ## Overview of Model Catalog capabilities
 
@@ -239,7 +236,7 @@ To set the public network access flag for the Azure AI Foundry hub:
 
 * If you have an Azure AI Foundry hub with MaaS deployments created before July 11, 2024, and you enable a private endpoint on this hub, the existing serverless API deployments won't follow the hub's networking configuration. For serverless API deployments in the hub to follow the hub's networking configuration, you need to create the deployments again.
 
-* Currently, [Azure OpenAI On Your Data](/azure/ai-services/openai/concepts/use-your-data) support isn't available for serverless API deployments in private hubs, because private hubs have the public network access flag disabled.
+* Currently, [Azure OpenAI On Your Data](/azure/ai-foundry/openai/concepts/use-your-data) support isn't available for serverless API deployments in private hubs, because private hubs have the public network access flag disabled.
 
 * Any network configuration change (for example, enabling or disabling the public network access flag) might take up to five minutes to propagate.
   

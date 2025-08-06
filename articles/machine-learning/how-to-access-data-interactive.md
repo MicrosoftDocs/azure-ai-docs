@@ -6,11 +6,13 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: how-to
-author: fbsolo-ms1
-ms.author: franksolomon
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: samkemp
 ms.date: 07/24/2024
-ms.custom: sdkv2
+ms.custom:
+  - sdkv2
+  - sfi-image-nochange
 #Customer intent: As a professional data scientist, I want to know how to build and deploy a model with Azure Machine Learning by using Python in a Jupyter Notebook.
 ---
 
@@ -653,7 +655,7 @@ df.head()
 > [!TIP]
 > Pandas is not designed to handle large datasets. Pandas can only process data that can fit into the memory of the compute instance.
 >
-> For large datasets, we recommend use of Azure Machine Learning managed Spark. This provides the [PySpark Pandas API](https://spark.apache.org/docs/latest/api/python/user_guide/pandas_on_spark/index.html).
+> For large datasets, we recommend use of Azure Machine Learning managed Spark. This provides the [PySpark Pandas API](https://spark.apache.org/docs/3.5.3/api/python/user_guide/pandas_on_spark/index.html).
 
 You might want to iterate quickly on a smaller subset of a large dataset before scaling up to a remote asynchronous job. `mltable` provides in-built functionality to get samples of large data using the [take_random_sample](/python/api/mltable/mltable.mltable.mltable#mltable-mltable-mltable-take-random-sample) method:
 

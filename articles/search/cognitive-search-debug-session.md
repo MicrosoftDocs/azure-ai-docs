@@ -2,7 +2,6 @@
 title: Debug Sessions concepts
 titleSuffix: Azure AI Search
 description: Debug Sessions, accessed through the Azure portal, provides an IDE-like environment where you can identify and fix errors, validate changes, and push changes to skillsets in an Azure AI Search enrichment pipeline.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist

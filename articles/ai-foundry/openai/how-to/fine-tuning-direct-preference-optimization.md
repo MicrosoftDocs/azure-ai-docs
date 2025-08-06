@@ -33,7 +33,7 @@ Three top-level fields: `input`, `preferred_output` and `non_preferred_output`
 ```json
 {  
   "input": {  
-    "messages": {"role": "system", "content": ...},  
+    "messages": [{"role": "system", "content": ...}],  
     "tools": [...],  
     "parallel_tool_calls": true  
   },  
@@ -57,7 +57,7 @@ Users can use preference fine tuning with base models as well as models that hav
 
 ## How to use direct preference optimization fine-tuning
 
-   :::image type="content" border="true" source="/azure/ai-services/openai/media/fine-tuning/preference-optimization.gif" alt-text="GIF of preference optimization fine-tuning steps.":::
+   :::image type="content" border="true" source="/azure/ai-foundry/openai/media/fine-tuning/preference-optimization.gif" alt-text="GIF of preference optimization fine-tuning steps.":::
 
 1. Prepare `jsonl` datasets in the [preference format](#direct-preference-optimization-dataset-format).
 2. Select the model and then select the method of customization **Direct Preference Optimization**.
@@ -65,6 +65,16 @@ Users can use preference fine tuning with base models as well as models that hav
 4. Select hyperparameters, defaults are recommended for initial experimentation.
 5. Review the selections and create a fine tuning job.
 
+## Direct preference optimization - REST API
+
+```bash
+curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs'
+-H "api-key: $AZURE_OPENAI_API_KEY" 
+-H 'Content-Type: application/json' 
+-H 'task_type: chat' 
+--data '{ "model": "gpt-4.1-mini-2025-04-14", "training_file": "file-d02c607351994d29987aece550ac81c0", "validation_file": "file-d02c607351994d29987aece550ac81c0", "prompt_loss_weight": 0.1, "suffix": "Pause_Resume", "method":{ "type":"dpo", "dpo":{ "beta":0.1, "l2_multiplier":0.1 }}}'
+
+```
 
 ## Next steps
 

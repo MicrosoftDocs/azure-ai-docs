@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 07/02/2025
+ms.date: 07/11/2025
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-bing-grounding-code
@@ -58,8 +58,7 @@ project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT
 # Initialize the AIProjectClient
 project_client = AIProjectClient(
     endpoint=project_endpoint,
-    credential=DefaultAzureCredential(exclude_interactive_browser_credential=False),  # Use Azure Default Credential for authentication
-    api_version="latest",
+    credential=DefaultAzureCredential(exclude_interactive_browser_credential=False)  # Use Azure Default Credential for authentication
 )
 ```
 
@@ -137,7 +136,7 @@ if run.status == "failed":
 project_client.agents.vector_stores.delete(vector_store.id)
 print("Deleted vector store")
 
-project_client.agents.delete_file(file_id=file.id)
+project_client.agents.files.delete(file_id=file.id)
 print("Deleted file")
 
 project_client.agents.delete_agent(agent.id)
