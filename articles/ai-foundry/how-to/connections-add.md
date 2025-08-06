@@ -1,8 +1,8 @@
 ---
 
-title: How to add a new connection in your project
+title: Add a new connection to your project
 titleSuffix: Azure AI Foundry
-description: Learn how to add a new connection in your hub based or Foundry project.
+description: Learn how to add a new connection to your hub based or Foundry project.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
@@ -19,7 +19,7 @@ zone_pivot_groups: project-type
 
 ---
 
-# How to add a new connection in your project
+# Add a new connection to your project
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
