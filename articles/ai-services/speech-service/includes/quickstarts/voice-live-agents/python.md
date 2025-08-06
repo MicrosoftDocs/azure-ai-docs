@@ -785,7 +785,9 @@ Both logs are complementary - conversation logs for conversation analysis and te
 
 The quickstart uses AI Foundry projects instead of hub-based projects. If you have a hub-based project, you can still use the quickstart with some modifications.
 
-To use the quickstart with a hub-based project, you need to retrieve the connection string for your agent and use it instead of the <project-name>. You can find the connection string in the Azure portal under your AI Foundry project > **Overview**.
+To use the quickstart with a hub-based project, you need to retrieve the connection string for your agent and use it instead of the ```project-name```. You can find the connection string in the Azure portal under your AI Foundry project > 
+
+**Overview**.
 
 For hub-based projects, use the connection string directly in the URL.
 
