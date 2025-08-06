@@ -84,7 +84,10 @@ foundry model run gpt-oss-20b
 > [!IMPORTANT]
 > Requirements for running GPT-OSS-20B:
 > - Nvidia GPU with 16GB VRAM or more.
-> - Foundry Local version 0.6.0 or above.
+> - Foundry Local version **0.6.87** or above. Any version below this will not support the model. You can check your Foundry Local version by running:
+> ```bash
+> foundry --version
+> ```
 
 ## Explore commands
 

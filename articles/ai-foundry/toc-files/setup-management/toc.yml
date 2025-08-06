@@ -46,8 +46,6 @@ items:
   items:
   - name: Create a connection
     href: ../../how-to/connections-add.md
-  - name: Create a connection using the Azure Machine Learning SDK
-    href: ../../how-to/develop/connections-add-sdk.md
     displayName: code
   - name: Connect and manage data
     href: ../../how-to/data-add.md
