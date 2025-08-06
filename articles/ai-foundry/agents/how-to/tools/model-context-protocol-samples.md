@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 07/14/2025
+ms.date: 08/05/2025
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-mcp-code
@@ -16,6 +16,133 @@ ms.custom: azure-ai-agents-code
 # Code samples for the Model Context Protocol tool (preview)
 
 Use this article to find code samples for connecting Azure AI Foundry Agent Service with Model Context Protocol (MCP) servers.
+
+:::zone pivot="csharp"
+
+## Create a project client
+
+Create a client object that contains the endpoint for connecting to your AI project and other resources.
+
+> [!NOTE]
+> You can find an asynchronous example on [GitHub](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/samples/Sample26_PersistentAgents_MCP.md)
+
+```csharp
+var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("MODEL_DEPLOYMENT_NAME");
+var mcpServerUrl = System.Environment.GetEnvironmentVariable("MCP_SERVER_URL");
+var mcpServerLabel = System.Environment.GetEnvironmentVariable("MCP_SERVER_LABEL");
+
+PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCredential());
+
+```
+
+## Create the MCP tool definition
+
+Create the MCP tool definition and configure allowed tools.
+
+```csharp
+// Create MCP tool definition
+MCPToolDefinition mcpTool = new(mcpServerLabel, mcpServerUrl);
+
+// Configure allowed tools (optional)
+string searchApiCode = "search_azure_rest_api_code";
+mcpTool.AllowedTools.Add(searchApiCode);
+```
+
+Use the `MCPToolDefinition` during the agent initialization.
+
+```csharp
+PersistentAgent agent = agentClient.Administration.CreateAgent(
+   model: modelDeploymentName,
+   name: "my-mcp-agent",
+   instructions: "You are a helpful agent that can use MCP tools to assist users. Use the available MCP tools to answer questions and perform tasks.",
+   tools: [mcpTool]);
+```
+
+## Create a thread and add a message
+
+Create the thread, add the message containing a question for agent and start the run with MCP tool resources.
+
+```csharp
+PersistentAgentThread thread = agentClient.Threads.CreateThread();
+
+// Create message to thread
+PersistentThreadMessage message = agentClient.Messages.CreateMessage(
+    thread.Id,
+    MessageRole.User,
+    "Please summarize the Azure REST API specifications Readme");
+
+MCPToolResource mcpToolResource = new(mcpServerLabel);
+mcpToolResource.UpdateHeader("SuperSecret", "123456");
+ToolResources toolResources = mcpToolResource.ToToolResources();
+
+// Run the agent with MCP tool resources
+ThreadRun run = agentClient.Runs.CreateRun(thread, agent, toolResources);
+
+// Handle run execution and tool approvals
+while (run.Status == RunStatus.Queued || run.Status == RunStatus.InProgress || run.Status == RunStatus.RequiresAction)
+{
+    Thread.Sleep(TimeSpan.FromMilliseconds(1000));
+    run = agentClient.Runs.GetRun(thread.Id, run.Id);
+
+    if (run.Status == RunStatus.RequiresAction && run.RequiredAction is SubmitToolApprovalAction toolApprovalAction)
+    {
+        var toolApprovals = new List<ToolApproval>();
+        foreach (var toolCall in toolApprovalAction.SubmitToolApproval.ToolCalls)
+        {
+            if (toolCall is RequiredMcpToolCall mcpToolCall)
+            {
+                Console.WriteLine($"Approving MCP tool call: {mcpToolCall.Name}, Arguments: {mcpToolCall.Arguments}");
+                toolApprovals.Add(new ToolApproval(mcpToolCall.Id, approve: true)
+                {
+                    Headers = { ["SuperSecret"] = "123456" }
+                });
+            }
+        }
+
+        if (toolApprovals.Count > 0)
+        {
+            run = agentClient.Runs.SubmitToolOutputsToRun(thread.Id, run.Id, toolApprovals: toolApprovals);
+        }
+    }
+}
+```
+
+## Print the messages
+
+```csharp
+Pageable<PersistentThreadMessage> messages = agentClient.Messages.GetMessages(
+    threadId: thread.Id,
+    order: ListSortOrder.Ascending
+);
+
+foreach (PersistentThreadMessage threadMessage in messages)
+{
+    Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
+    foreach (MessageContent contentItem in threadMessage.ContentItems)
+    {
+        if (contentItem is MessageTextContent textItem)
+        {
+            Console.Write(textItem.Text);
+        }
+        else if (contentItem is MessageImageFileContent imageFileItem)
+        {
+            Console.Write($"<image from ID: {imageFileItem.FileId}>");
+        }
+        Console.WriteLine();
+    }
+}
+```
+
+## Optional: Delete the agent
+
+When you are done with your agent, you can delete it with:
+
+```csharp
+agentClient.Threads.DeleteThread(threadId: thread.Id);
+agentClient.Administration.DeleteAgent(agentId: agent.Id);
+```
+:::zone-end
 
 :::zone pivot="python"
 
@@ -139,7 +266,7 @@ Create the run, check the output, and examine what tools were called during the 
 
 ## Perform cleanup
 
-After the interaction is complete, the script performs cleanup by deleting the created agent resource via `agents_client.delete_agent()` to avoid leaving unused resources. It also fetches and prints the entire message history from the thread by using `agents_client.list_messages()` for review or logging.
+After the interaction is complete, the script performs cleanup by deleting the created agent resource via `agents_client.delete_agent()` to avoid leaving unused resources. It also fetches and prints the entire message history from the thread by using `agents_client.messages.list()` for review or logging.
 
 ```python
         # Delete the agent resource to clean up

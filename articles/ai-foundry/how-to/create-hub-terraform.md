@@ -9,7 +9,9 @@ manager: scottpolly
 ms.reviewer: andyaviles 
 ms.author: sgilley
 author: sdgilley
-ms.custom: devx-track-terraform
+ms.custom: 
+  - devx-track-terraform
+  - hub-only
 content_well_notification: 
   - AI-contribution
 ai-usage: ai-assisted

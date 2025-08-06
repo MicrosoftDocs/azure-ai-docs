@@ -264,5 +264,5 @@ We recommend the following workflow:
     * [Python reference documentation](https://github.com/openai/openai-python?tab=readme-ov-file#retries)
     * [.NET reference documentation](/dotnet/api/overview/azure/ai.openai-readme)
     * [Java reference documentation](/java/api/com.azure.ai.openai.openaiclientbuilder?view=azure-java-preview&preserve-view=true#com-azure-ai-openai-openaiclientbuilder-retryoptions(com-azure-core-http-policy-retryoptions))
-    * [JavaScript reference documentation](/azure/ai-services/openai/supported-languages?tabs=dotnet-secure%2Csecure%2Cpython-secure%2Ccommand&pivots=programming-language-javascript)
+    * [JavaScript reference documentation](/azure/ai-foundry/openai/supported-languages?tabs=dotnet-secure%2Csecure%2Cpython-secure%2Ccommand&pivots=programming-language-javascript)
     * [GO reference documentation](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/ai/azopenai#ChatCompletionsOptions)

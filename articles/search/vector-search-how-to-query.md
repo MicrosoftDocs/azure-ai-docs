@@ -2,7 +2,6 @@
 title: Create a Vector Query
 titleSuffix: Azure AI Search
 description: Learn how to build queries for vector search.
-
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search

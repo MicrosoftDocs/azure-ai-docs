@@ -5,8 +5,8 @@ description: Integrate prompt flow with DevOps to enhance your LLM-based applica
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
 ms.topic: how-to
-author: s-polly
-ms.author: scottpolly
+author: lgayhardt
+ms.author: lagayhar
 ms.reviewer: chenlujiao
 ms.date: 11/01/2024
 ms.custom:

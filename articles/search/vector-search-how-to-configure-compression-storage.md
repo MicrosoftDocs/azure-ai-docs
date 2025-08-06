@@ -2,7 +2,6 @@
 title: Choose vector optimization
 titleSuffix: Azure AI Search
 description: Learn about the vector compression options in Azure AI Search, and how to reduce storage through narrow data types, built-in scalar or quantization, truncated dimensions, and elimination of redundant storage.
-
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search

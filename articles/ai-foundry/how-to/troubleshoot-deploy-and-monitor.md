@@ -8,6 +8,7 @@ ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
+  - hub-only
 ms.topic: how-to
 ms.date: 04/23/2025
 ms.reviewer: fasantia
@@ -38,7 +39,7 @@ This error means that you might not have access to the particular Azure OpenAI m
 For more information about managing quota, see:
 
 - [Quota for deploying and inferencing a model](../how-to/deploy-models-openai.md#quota-for-deploying-and-inferencing-a-model)
-- [Manage Azure OpenAI in Azure AI Foundry Models quota documentation](/azure/ai-services/openai/how-to/quota?tabs=rest)
+- [Manage Azure OpenAI in Azure AI Foundry Models quota documentation](/azure/ai-foundry/openai/how-to/quota?tabs=rest)
 - [Manage and increase quotas for resources with Azure AI Foundry](quota.md)
 
 ### Error: `ToolLoadError`

@@ -78,7 +78,7 @@ For more examples of how to consume the deployed model in your application, see 
 
 ## Regional availability and quota limits of a model
 
-For Azure OpenAI models, the default quota for models varies by model and region. Certain models might only be available in some regions. For more information on availability and quota limits, see [Azure OpenAI quotas and limits](/azure/ai-services/openai/quotas-limits).
+For Azure OpenAI models, the default quota for models varies by model and region. Certain models might only be available in some regions. For more information on availability and quota limits, see [Azure OpenAI quotas and limits](/azure/ai-foundry/openai/quotas-limits).
 
 ## Quota for deploying and inferencing a model
 
