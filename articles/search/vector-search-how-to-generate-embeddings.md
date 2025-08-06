@@ -10,7 +10,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 08/05/2025
+ms.date: 08/06/2025
 ---
 
 # Generate embeddings for search queries and documents
@@ -26,17 +26,11 @@ We recommend integrated vectorization for most scenarios. Although you can use a
 
 ## How embedding models are used in vector queries
 
-Embedding models generate vectors for both [query inputs](#query-inputs) and [query outputs](#query-outputs).
-
-### Query inputs
-
-Query inputs include:
+Embedding models generate vectors for both query inputs and query outputs. Query inputs include:
 
 + **Text or images that are converted to vectors during query processing**. As part of integrated vectorization, a [vectorizer](vector-search-how-to-configure-vectorizer.md) performs this task.
 
 + **Precomputed vectors**. You can generate these vectors by passing the query input to an embedding model of your choice. To avoid [rate limiting](/azure/ai-services/openai/quotas-limits), implement retry logic in your workload. Our [Python demo](https://github.com/Azure/azure-search-vector-samples/tree/93c839591bf92c2f10001d287871497b0f204a7c/demo-python) uses [tenacity](https://pypi.org/project/tenacity/).
-
-### Query outputs
 
 Based on the query input, the search engine retrieves matching documents from your search index. These documents are the query outputs.
 
