@@ -80,7 +80,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     sounddevice==0.5.1
     typing_extensions==4.13.2
     urllib3==2.4.0
-    websockets==15.0.1
+    websocket-client==1.8.0
     ```
 
 1. Install the packages:
@@ -107,21 +107,21 @@ The sample code in this quickstart uses Microsoft Entra ID for the recommended k
 #### [Microsoft Entra ID](#tab/keyless)
 
 ```python
-client = AsyncAzureVoiceLive(
+client = AzureVoiceLive(
     azure_endpoint = endpoint,
     api_version = api_version,
     token = token.token,
-    #api_key = api_key,
+    # api_key = api_key,
 )
 ```
 
 #### [API key](#tab/api-key)
 
 ```python
-client = AsyncAzureVoiceLive(
+client = AzureVoiceLive(
     azure_endpoint = endpoint,
     api_version = api_version,
-    #token = token.token,
+    # token = token.token,
     api_key = api_key,
 )
 ```
@@ -130,139 +130,181 @@ client = AsyncAzureVoiceLive(
 1. Create the `voice-live-quickstart.py` file with the following code:
 
     ```python
-    from __future__ import annotations
-
+    #Speech example to test the Azure Voice Live API
     import os
     import uuid
     import json
-    import asyncio
+    import time
     import base64
     import logging
     import threading
     import numpy as np
     import sounddevice as sd
-
+    import queue
+    import signal
+    import sys
+    
     from collections import deque
     from dotenv import load_dotenv
+    from azure.core.credentials import TokenCredential
     from azure.identity import DefaultAzureCredential
-    from azure.core.credentials_async import AsyncTokenCredential
-    from azure.identity.aio import DefaultAzureCredential, get_bearer_token_provider
     from typing import Dict, Union, Literal, Set
-    from typing_extensions import AsyncIterator, TypedDict, Required
-    from websockets.asyncio.client import connect as ws_connect
-    from websockets.asyncio.client import ClientConnection as AsyncWebsocket
-    from websockets.asyncio.client import HeadersLike
-    from websockets.typing import Data
-    from websockets.exceptions import WebSocketException
-
+    from typing_extensions import Iterator, TypedDict, Required
+    import websocket
+    from websocket import WebSocketApp
+    from datetime import datetime
+    
+    # Global variables for thread coordination
+    stop_event = threading.Event()
+    connection_queue = queue.Queue()
+    
     # This is the main function to run the Voice Live API client.
-
-    async def main() -> None:
+    def main() -> None: 
         # Set environment variables or edit the corresponding values here.
-        endpoint = os.environ.get("AZURE_VOICE_LIVE_ENDPOINT") or "https://your-endpoint.azure.com/"
-        model = os.environ.get("VOICE_LIVE_MODEL") or "gpt-4o"
+        endpoint = os.environ.get("AZURE_VOICE_LIVE_ENDPOINT") or "<https://your-endpoint.azure.com/>"
+        model = os.environ.get("AZURE_VOICE_LIVE_MODEL") or "<your_model>"
         api_version = os.environ.get("AZURE_VOICE_LIVE_API_VERSION") or "2025-05-01-preview"
-        api_key = os.environ.get("AZURE_VOICE_LIVE_API_KEY") or "your_api_key"
-
+        api_key = os.environ.get("AZURE_VOICE_LIVE_API_KEY") or "<your_api_key>"
+    
         # For the recommended keyless authentication, get and
         # use the Microsoft Entra token instead of api_key:
-        scopes = "https://ai.azure.com/.default"
         credential = DefaultAzureCredential()
-        token = await credential.get_token(scopes)
-
-        client = AsyncAzureVoiceLive(
+        scopes = "https://ai.azure.com/.default"
+        token = credential.get_token(scopes)
+    
+        client = AzureVoiceLive(
             azure_endpoint = endpoint,
             api_version = api_version,
             token = token.token,
-            #api_key = api_key,
+            # api_key = api_key,
         )
-        async with client.connect(model = model) as connection:
-            session_update = {
-                "type": "session.update",
-                "session": {
-                    "instructions": "You are a helpful AI assistant responding in natural, engaging language.",
-                    "turn_detection": {
-                        "type": "azure_semantic_vad",
-                        "threshold": 0.3,
-                        "prefix_padding_ms": 200,
-                        "silence_duration_ms": 200,
-                        "remove_filler_words": False,
-                        "end_of_utterance_detection": {
-                            "model": "semantic_detection_v1",
-                            "threshold": 0.01,
-                            "timeout": 2,
-                        },
-                    },
-                    "input_audio_noise_reduction": {
-                        "type": "azure_deep_noise_suppression"
-                    },
-                    "input_audio_echo_cancellation": {
-                        "type": "server_echo_cancellation"
-                    },
-                    "voice": {
-                        "name": "en-US-Ava:DragonHDLatestNeural",
-                        "type": "azure-standard",
-                        "temperature": 0.8,
+        
+        connection = client.connect(model = model)
+        
+        session_update = {
+            "type": "session.update",
+            "session": {
+                "instructions": "You are a helpful AI assistant responding in natural, engaging language.",
+                "turn_detection": {
+                    "type": "azure_semantic_vad",
+                    "threshold": 0.3,
+                    "prefix_padding_ms": 200,
+                    "silence_duration_ms": 200,
+                    "remove_filler_words": False,
+                    "end_of_utterance_detection": {
+                        "model": "semantic_detection_v1",
+                        "threshold": 0.01,
+                        "timeout": 2,
                     },
                 },
-                "event_id": ""
-            }
-            await connection.send(json.dumps(session_update))
-            print("Session created: ", json.dumps(session_update))
-
-            send_task = asyncio.create_task(listen_and_send_audio(connection))
-            receive_task = asyncio.create_task(receive_audio_and_playback(connection))
-            keyboard_task = asyncio.create_task(read_keyboard_and_quit())
-
-            print("Starting the chat ...")
-            await asyncio.wait([send_task, receive_task, keyboard_task], return_when=asyncio.FIRST_COMPLETED)
-
-            send_task.cancel()
-            receive_task.cancel()
-            print("Chat done.")
-
+                "input_audio_noise_reduction": {
+                    "type": "azure_deep_noise_suppression"
+                },
+                "input_audio_echo_cancellation": {
+                    "type": "server_echo_cancellation"
+                },
+                "voice": {
+                    "name": "en-US-Ava:DragonHDLatestNeural",
+                    "type": "azure-standard",
+                    "temperature": 0.8,
+                },
+            },
+            "event_id": ""
+        }
+        connection.send(json.dumps(session_update))
+        print("Session created: ", json.dumps(session_update))
+    
+        # Create and start threads
+        send_thread = threading.Thread(target=listen_and_send_audio, args=(connection,))
+        receive_thread = threading.Thread(target=receive_audio_and_playback, args=(connection,))
+        keyboard_thread = threading.Thread(target=read_keyboard_and_quit)
+    
+        print("Starting the chat ...")
+        
+        send_thread.start()
+        receive_thread.start()
+        keyboard_thread.start()
+        
+        # Wait for any thread to complete (usually the keyboard thread when user quits)
+        keyboard_thread.join()
+        
+        # Signal other threads to stop
+        stop_event.set()
+        
+        # Wait for other threads to finish
+        send_thread.join(timeout=2)
+        receive_thread.join(timeout=2)
+        
+        connection.close()
+        print("Chat done.")
+    
     # --- End of Main Function ---
-
+    
     logger = logging.getLogger(__name__)
     AUDIO_SAMPLE_RATE = 24000
-
-    class AsyncVoiceLiveConnection:
-        _connection: AsyncWebsocket
-
-        def __init__(self, url: str, additional_headers: HeadersLike) -> None:
+    
+    class VoiceLiveConnection:
+        def __init__(self, url: str, headers: dict) -> None:
             self._url = url
-            self._additional_headers = additional_headers
-            self._connection = None
-
-        async def __aenter__(self) -> AsyncVoiceLiveConnection:
+            self._headers = headers
+            self._ws = None
+            self._message_queue = queue.Queue()
+            self._connected = False
+    
+        def connect(self) -> None:
+            def on_message(ws, message):
+                self._message_queue.put(message)
+            
+            def on_error(ws, error):
+                logger.error(f"WebSocket error: {error}")
+            
+            def on_close(ws, close_status_code, close_msg):
+                logger.info("WebSocket connection closed")
+                self._connected = False
+            
+            def on_open(ws):
+                logger.info("WebSocket connection opened")
+                self._connected = True
+    
+            self._ws = websocket.WebSocketApp(
+                self._url,
+                header=self._headers,
+                on_message=on_message,
+                on_error=on_error,
+                on_close=on_close,
+                on_open=on_open
+            )
+            
+            # Start WebSocket in a separate thread
+            self._ws_thread = threading.Thread(target=self._ws.run_forever)
+            self._ws_thread.daemon = True
+            self._ws_thread.start()
+            
+            # Wait for connection to be established
+            timeout = 10  # seconds
+            start_time = time.time()
+            while not self._connected and time.time() - start_time < timeout:
+                time.sleep(0.1)
+            
+            if not self._connected:
+                raise ConnectionError("Failed to establish WebSocket connection")
+    
+        def recv(self) -> str:
             try:
-                self._connection = await ws_connect(self._url, additional_headers=self._additional_headers)
-            except WebSocketException as e:
-                raise ValueError(f"Failed to establish a WebSocket connection: {e}")
-            return self
-
-        async def __aexit__(self, exc_type, exc_value, traceback) -> None:
-            if self._connection:
-                await self._connection.close()
-                self._connection = None
-
-        enter = __aenter__
-        close = __aexit__
-
-        async def __aiter__(self) -> AsyncIterator[Data]:
-             async for data in self._connection:
-                 yield data
-
-        async def recv(self) -> Data:
-            return await self._connection.recv()
-
-        async def recv_bytes(self) -> bytes:
-            return await self._connection.recv()
-
-        async def send(self, message: Data) -> None:
-            await self._connection.send(message)
-
-    class AsyncAzureVoiceLive:
+                return self._message_queue.get(timeout=1)
+            except queue.Empty:
+                return None
+    
+        def send(self, message: str) -> None:
+            if self._ws and self._connected:
+                self._ws.send(message)
+    
+        def close(self) -> None:
+            if self._ws:
+                self._ws.close()
+                self._connected = False
+    
+    class AzureVoiceLive:
         def __init__(
             self,
             *,
@@ -271,32 +313,31 @@ client = AsyncAzureVoiceLive(
             token: str | None = None,
             api_key: str | None = None,
         ) -> None:
-
+    
             self._azure_endpoint = azure_endpoint
             self._api_version = api_version
             self._token = token
             self._api_key = api_key
             self._connection = None
-
-        def connect(self, model: str) -> AsyncVoiceLiveConnection:
+    
+        def connect(self, model: str) -> VoiceLiveConnection:
             if self._connection is not None:
                 raise ValueError("Already connected to the Voice Live API.")
             if not model:
                 raise ValueError("Model name is required.")
-
-            url = f"{self._azure_endpoint.rstrip('/')}/voice-live/realtime?api-version={self._api_version}&model={model}"
-            url = url.replace("https://", "wss://")
-
+    
+            azure_ws_endpoint = self._azure_endpoint.rstrip('/').replace("https://", "wss://")
+    
+            url = f"{azure_ws_endpoint}/voice-live/realtime?api-version={self._api_version}&model={model}"
+    
             auth_header = {"Authorization": f"Bearer {self._token}"} if self._token else {"api-key": self._api_key}
             request_id = uuid.uuid4()
             headers = {"x-ms-client-request-id": str(request_id), **auth_header}
-
-            self._connection = AsyncVoiceLiveConnection(
-                url,
-                additional_headers=headers,
-            )
+    
+            self._connection = VoiceLiveConnection(url, headers)
+            self._connection.connect()
             return self._connection
-
+    
     class AudioPlayerAsync:
         def __init__(self):
             self.queue = deque()
@@ -309,7 +350,7 @@ client = AsyncAzureVoiceLive(
                 blocksize=2400,
             )
             self.playing = False
-
+    
         def callback(self, outdata, frames, time, status):
             if status:
                 logger.warning(f"Stream status: {status}")
@@ -324,108 +365,148 @@ client = AsyncAzureVoiceLive(
                 if len(data) < frames:
                     data = np.concatenate((data, np.zeros(frames - len(data), dtype=np.int16)))
             outdata[:] = data.reshape(-1, 1)
-
+    
         def add_data(self, data: bytes):
             with self.lock:
                 np_data = np.frombuffer(data, dtype=np.int16)
                 self.queue.append(np_data)
-                if not self.playing and len(self.queue) > 10:
+                if not self.playing and len(self.queue) > 0:
                     self.start()
-
+    
         def start(self):
             if not self.playing:
                 self.playing = True
                 self.stream.start()
-
+    
         def stop(self):
             with self.lock:
                 self.queue.clear()
             self.playing = False
             self.stream.stop()
-
+    
         def terminate(self):
             with self.lock:
                 self.queue.clear()
             self.stream.stop()
             self.stream.close()
-
-    async def listen_and_send_audio(connection: AsyncVoiceLiveConnection) -> None:
+    
+    def listen_and_send_audio(connection: VoiceLiveConnection) -> None:
         logger.info("Starting audio stream ...")
-
+    
         stream = sd.InputStream(channels=1, samplerate=AUDIO_SAMPLE_RATE, dtype="int16")
         try:
             stream.start()
             read_size = int(AUDIO_SAMPLE_RATE * 0.02)
-            while True:
+            while not stop_event.is_set():
                 if stream.read_available >= read_size:
                     data, _ = stream.read(read_size)
                     audio = base64.b64encode(data).decode("utf-8")
                     param = {"type": "input_audio_buffer.append", "audio": audio, "event_id": ""}
+                    # print("sending - ", param)
                     data_json = json.dumps(param)
-                    await connection.send(data_json)
+                    connection.send(data_json)
+                else:
+                    time.sleep(0.001)  # Small sleep to prevent busy waiting
         except Exception as e:
             logger.error(f"Audio stream interrupted. {e}")
         finally:
             stream.stop()
             stream.close()
             logger.info("Audio stream closed.")
-
-    async def receive_audio_and_playback(connection: AsyncVoiceLiveConnection) -> None:
+    
+    def receive_audio_and_playback(connection: VoiceLiveConnection) -> None:
         last_audio_item_id = None
         audio_player = AudioPlayerAsync()
-
+    
         logger.info("Starting audio playback ...")
         try:
-            while True:
-                async for raw_event in connection:
+            while not stop_event.is_set():
+                raw_event = connection.recv()
+                if raw_event is None:
+                    continue
+                    
+                try:
                     event = json.loads(raw_event)
                     print(f"Received event:", {event.get("type")})
-
+    
                     if event.get("type") == "session.created":
                         session = event.get("session")
                         logger.info(f"Session created: {session.get('id')}")
-
+    
                     elif event.get("type") == "response.audio.delta":
                         if event.get("item_id") != last_audio_item_id:
                             last_audio_item_id = event.get("item_id")
-
+    
                         bytes_data = base64.b64decode(event.get("delta", ""))
+                        if bytes_data:
+                            logger.debug(f"Received audio data of length: {len(bytes_data)}")   
                         audio_player.add_data(bytes_data)
-
+    
+                    elif event.get("type") == "input_audio_buffer.speech_started":
+                        print("Speech started")
+                        audio_player.stop()
+    
                     elif event.get("type") == "error":
                         error_details = event.get("error", {})
                         error_type = error_details.get("type", "Unknown")
                         error_code = error_details.get("code", "Unknown")
                         error_message = error_details.get("message", "No message provided")
                         raise ValueError(f"Error received: Type={error_type}, Code={error_code}, Message={error_message}")
-
+                except json.JSONDecodeError as e:
+                    logger.error(f"Failed to parse JSON event: {e}")
+                    continue
+    
         except Exception as e:
             logger.error(f"Error in audio playback: {e}")
         finally:
             audio_player.terminate()
             logger.info("Playback done.")
-
-    async def read_keyboard_and_quit() -> None:
+    
+    def read_keyboard_and_quit() -> None:
         print("Press 'q' and Enter to quit the chat.")
-        while True:
-            # Run input() in a thread to avoid blocking the event loop
-            user_input = await asyncio.to_thread(input)
-            if user_input.strip().lower() == 'q':
-                print("Quitting the chat...")
+        while not stop_event.is_set():
+            try:
+                user_input = input()
+                if user_input.strip().lower() == 'q':
+                    print("Quitting the chat...")
+                    stop_event.set()
+                    break
+            except EOFError:
+                # Handle case where input is interrupted
                 break
-
+    
     if __name__ == "__main__":
         try:
+            # Change to the directory where this script is located
+            os.chdir(os.path.dirname(os.path.abspath(__file__)))
+            # Add folder for logging
+            if not os.path.exists('logs'):
+                os.makedirs('logs')
+            # Add timestamp for logfiles
+            timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+            # Set up logging
             logging.basicConfig(
-                filename='voicelive.log',
+                filename=f'logs/{timestamp}_voicelive.log',
                 filemode="w",
                 level=logging.DEBUG,
                 format='%(asctime)s:%(name)s:%(levelname)s:%(message)s'
             )
-            load_dotenv()
-            asyncio.run(main())
+            # Load environment variables from .env file
+            load_dotenv("./.env", override=True)
+            
+            # Set up signal handler for graceful shutdown
+            def signal_handler(signum, frame):
+                print("\nReceived interrupt signal, shutting down...")
+                stop_event.set()
+                sys.exit(0)
+            
+            signal.signal(signal.SIGINT, signal_handler)
+            signal.signal(signal.SIGTERM, signal_handler)
+            
+            main()
         except Exception as e:
             print(f"Error: {e}")
+            stop_event.set()
     ```
 
 1. Sign in to Azure with the following command:
@@ -483,11 +564,11 @@ Received event: {'response.audio.delta'}
 Chat done.
 ```
 
-The script that you ran creates a log file named `voicelive.log` in the same directory as the script.
+The script that you ran creates a log file named `<timestamp>_voicelive.log` in the in the `logs` folder.
 
 ```python
 logging.basicConfig(
-    filename='voicelive.log',
+    filename=f'logs/{timestamp}_voicelive.log',
     filemode="w",
     level=logging.DEBUG,
     format='%(asctime)s:%(name)s:%(levelname)s:%(message)s'

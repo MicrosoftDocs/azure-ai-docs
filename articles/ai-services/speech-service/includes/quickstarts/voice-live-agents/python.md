@@ -131,158 +131,189 @@ client = AsyncAzureVoiceLive(
 1. Create the `voice-live-agents-quickstart.py` file with the following code:
 
     ```python
-    from __future__ import annotations
-
+    #Speech example to test the Azure Voice Live API
     import os
     import uuid
     import json
-    import asyncio
+    import time
     import base64
     import logging
     import threading
     import numpy as np
     import sounddevice as sd
-    from datetime import datetime
+    import queue
+    import signal
+    import sys
     
     from collections import deque
     from dotenv import load_dotenv
+    from azure.core.credentials import TokenCredential
     from azure.identity import DefaultAzureCredential
-    from azure.core.credentials_async import AsyncTokenCredential
-    from azure.identity.aio import DefaultAzureCredential, get_bearer_token_provider
     from typing import Dict, Union, Literal, Set
-    from typing_extensions import AsyncIterator, TypedDict, Required
-    from websockets.asyncio.client import connect as ws_connect
-    from websockets.asyncio.client import ClientConnection as AsyncWebsocket
-    from websockets.asyncio.client import HeadersLike
-    from websockets.typing import Data
-    from websockets.exceptions import WebSocketException
+    from typing_extensions import Iterator, TypedDict, Required
+    import websocket
+    from websocket import WebSocketApp
+    from datetime import datetime
+    
+    # Global variables for thread coordination
+    stop_event = threading.Event()
+    connection_queue = queue.Queue()
     
     # This is the main function to run the Voice Live API client.
-    
-    async def main() -> None:
+    def main() -> None: 
         # Set environment variables or edit the corresponding values here.
-        endpoint = os.environ.get("AZURE_VOICE_LIVE_ENDPOINT") or "https://your-ai-foundry-resource.cognitiveservices.azure.com/"
-        agent_id = os.environ.get("AI_FOUNDRY_AGENT_ID") or "your-agent-id"
-        project_name = os.environ.get("AI_FOUNDRY_PROJECT_NAME") or "your-project-name"
+        endpoint = os.environ.get("AZURE_VOICE_LIVE_ENDPOINT") or "<https://your-endpoint.azure.com/>"
+        agent_id = os.environ.get("AI_FOUNDRY_AGENT_ID") or "<your-agent-id>"
+        project_name = os.environ.get("AI_FOUNDRY_PROJECT_NAME") or "<your-project-name>"
         api_version = os.environ.get("AZURE_VOICE_LIVE_API_VERSION") or "2025-05-01-preview"
-        api_key = os.environ.get("AZURE_VOICE_LIVE_API_KEY") or "your_api_key"
-        
+        api_key = os.environ.get("AZURE_VOICE_LIVE_API_KEY") or "<your-api-key>"
+    
         # For the recommended keyless authentication, get and
         # use the Microsoft Entra token instead of api_key:
-        scopes = "https://ai.azure.com/.default"
         credential = DefaultAzureCredential()
-        token = await credential.get_token(scopes)
+        scopes = "https://ai.azure.com/.default"
+        token = credential.get_token(scopes)
     
-        client = AsyncAzureVoiceLive(
+        client = AzureVoiceLive(
             azure_endpoint = endpoint,
             api_version = api_version,
             token = token.token,
-            #api_key = api_key,
+            # api_key = api_key,
+        )
+        
+        connection = client.connect(
+            project_name=project_name,
+            agent_id=agent_id,
+            agent_access_token=token.token
         )
     
-        print(f"Using agent: {agent_id}")
-        print(f"Project name: {project_name}")
-        
-        # Log agent usage to conversation log
-        await write_conversation_log(f'Using agent: {agent_id}')
-        await write_conversation_log(f'Project name: {project_name}')
-        
-        async with client.connect_agent(
-            project_name=project_name, 
-            agent_id=agent_id, 
-            agent_access_token=token.token, 
-            debug=True
-        ) as connection:
-            session_update = {
-                "type": "session.update",
-                "session": {
-                    "turn_detection": {
-                        "type": "azure_semantic_vad",
-                        "threshold": 0.3,
-                        "prefix_padding_ms": 200,
-                        "silence_duration_ms": 200,
-                        "remove_filler_words": True,
-                        "end_of_utterance_detection": {
-                            "model": "semantic_detection_v1",
-                            "threshold": 0.1,
-                            "timeout": 4,
-                        },
+        session_update = {
+            "type": "session.update",
+            "session": {
+                "turn_detection": {
+                    "type": "azure_semantic_vad",
+                    "threshold": 0.3,
+                    "prefix_padding_ms": 200,
+                    "silence_duration_ms": 200,
+                    "remove_filler_words": False,
+                    "end_of_utterance_detection": {
+                        "model": "semantic_detection_v1",
+                        "threshold": 0.01,
+                        "timeout": 2,
                     },
-                    "input_audio_noise_reduction": {
-                        "type": "azure_deep_noise_suppression"
-                    },
-                    "input_audio_echo_cancellation": {
-                        "type": "server_echo_cancellation"
-                    },
-                    "voice": {
-                        "name": "en-US-Aria:DragonHDLatestNeural",
-                        "type": "azure-standard",
-                        "temperature": 0.8,
-                    },
-                    "output_audio_timestamp_types": ["word"], 
-                    "modalities": ["text", "audio"],
                 },
-                "event_id": ""
-            }
-            await connection.send(json.dumps(session_update))
-            print("Session created: ", json.dumps(session_update))
-            
-            # Log session configuration
-            await write_conversation_log(f'Session Config: {json.dumps(session_update)}')
+                "input_audio_noise_reduction": {
+                    "type": "azure_deep_noise_suppression"
+                },
+                "input_audio_echo_cancellation": {
+                    "type": "server_echo_cancellation"
+                },
+                "voice": {
+                    "name": "en-US-Ava:DragonHDLatestNeural",
+                    "type": "azure-standard",
+                    "temperature": 0.8,
+                },
+            },
+            "event_id": ""
+        }
+        connection.send(json.dumps(session_update))
+        print("Session created: ", json.dumps(session_update))
     
-            send_task = asyncio.create_task(listen_and_send_audio(connection))
-            receive_task = asyncio.create_task(receive_audio_and_playback(connection))
-            keyboard_task = asyncio.create_task(read_keyboard_and_quit())
+        
+        # Log session configuration
+        write_conversation_log(f'Session Config: {json.dumps(session_update)}')
     
-            print("Starting the chat ...")
-            await asyncio.wait([send_task, receive_task, keyboard_task], return_when=asyncio.FIRST_COMPLETED)
+        # Create and start threads
+        send_thread = threading.Thread(target=listen_and_send_audio, args=(connection,))
+        receive_thread = threading.Thread(target=receive_audio_and_playback, args=(connection,))
+        keyboard_thread = threading.Thread(target=read_keyboard_and_quit)
     
-            send_task.cancel()
-            receive_task.cancel()
-            print("Chat done.")
+        print("Starting the chat ...")
+        
+        send_thread.start()
+        receive_thread.start()
+        keyboard_thread.start()
+        
+        # Wait for any thread to complete (usually the keyboard thread when user quits)
+        keyboard_thread.join()
+        
+        # Signal other threads to stop
+        stop_event.set()
+        
+        # Wait for other threads to finish
+        send_thread.join(timeout=2)
+        receive_thread.join(timeout=2)
+        
+        connection.close()
+        print("Chat done.")
     
     # --- End of Main Function ---
     
     logger = logging.getLogger(__name__)
     AUDIO_SAMPLE_RATE = 24000
     
-    class AsyncVoiceLiveConnection:
-        _connection: AsyncWebsocket
-    
-        def __init__(self, url: str, additional_headers: HeadersLike) -> None:
+    class VoiceLiveConnection:
+        def __init__(self, url: str, headers: dict) -> None:
             self._url = url
-            self._additional_headers = additional_headers
-            self._connection = None
+            self._headers = headers
+            self._ws = None
+            self._message_queue = queue.Queue()
+            self._connected = False
     
-        async def __aenter__(self) -> AsyncVoiceLiveConnection:
+        def connect(self) -> None:
+            def on_message(ws, message):
+                self._message_queue.put(message)
+            
+            def on_error(ws, error):
+                logger.error(f"WebSocket error: {error}")
+            
+            def on_close(ws, close_status_code, close_msg):
+                logger.info("WebSocket connection closed")
+                self._connected = False
+            
+            def on_open(ws):
+                logger.info("WebSocket connection opened")
+                self._connected = True
+    
+            self._ws = websocket.WebSocketApp(
+                self._url,
+                header=self._headers,
+                on_message=on_message,
+                on_error=on_error,
+                on_close=on_close,
+                on_open=on_open
+            )
+            
+            # Start WebSocket in a separate thread
+            self._ws_thread = threading.Thread(target=self._ws.run_forever)
+            self._ws_thread.daemon = True
+            self._ws_thread.start()
+            
+            # Wait for connection to be established
+            timeout = 10  # seconds
+            start_time = time.time()
+            while not self._connected and time.time() - start_time < timeout:
+                time.sleep(0.1)
+            
+            if not self._connected:
+                raise ConnectionError("Failed to establish WebSocket connection")
+    
+        def recv(self) -> str:
             try:
-                self._connection = await ws_connect(self._url, additional_headers=self._additional_headers)
-            except WebSocketException as e:
-                raise ValueError(f"Failed to establish a WebSocket connection: {e}")
-            return self
+                return self._message_queue.get(timeout=1)
+            except queue.Empty:
+                return None
     
-        async def __aexit__(self, exc_type, exc_value, traceback) -> None:
-            if self._connection:
-                await self._connection.close()
-                self._connection = None
+        def send(self, message: str) -> None:
+            if self._ws and self._connected:
+                self._ws.send(message)
     
-        enter = __aenter__
-        close = __aexit__
+        def close(self) -> None:
+            if self._ws:
+                self._ws.close()
+                self._connected = False
     
-        async def __aiter__(self) -> AsyncIterator[Data]:
-             async for data in self._connection:
-                 yield data
-    
-        async def recv(self) -> Data:
-            return await self._connection.recv()
-    
-        async def recv_bytes(self) -> bytes:
-            return await self._connection.recv()
-    
-        async def send(self, message: Data) -> None:
-            await self._connection.send(message)
-    
-    class AsyncAzureVoiceLive:
+    class AzureVoiceLive:
         def __init__(
             self,
             *,
@@ -298,26 +329,7 @@ client = AsyncAzureVoiceLive(
             self._api_key = api_key
             self._connection = None
     
-        def connect(self, model: str) -> AsyncVoiceLiveConnection:
-            if self._connection is not None:
-                raise ValueError("Already connected to the Voice Live API.")
-            if not model:
-                raise ValueError("Model name is required.")
-    
-            url = f"{self._azure_endpoint.rstrip('/')}/voice-live/realtime?api-version={self._api_version}&model={model}"
-            url = url.replace("https://", "wss://")
-    
-            auth_header = {"Authorization": f"Bearer {self._token}"} if self._token else {"api-key": self._api_key}
-            request_id = uuid.uuid4()
-            headers = {"x-ms-client-request-id": str(request_id), **auth_header}
-    
-            self._connection = AsyncVoiceLiveConnection(
-                url,
-                additional_headers=headers,
-            )
-            return self._connection
-    
-        def connect_agent(self, project_name: str, agent_id: str, agent_access_token: str, debug: bool = False) -> AsyncVoiceLiveConnection:
+        def connect(self, project_name: str, agent_id: str, agent_access_token: str) -> VoiceLiveConnection:
             if self._connection is not None:
                 raise ValueError("Already connected to the Voice Live API.")
             if not project_name:
@@ -328,18 +340,15 @@ client = AsyncAzureVoiceLive(
                 raise ValueError("Agent access token is required.")
     
             azure_ws_endpoint = self._azure_endpoint.rstrip('/').replace("https://", "wss://")
-            debug_uri = "&debug=on" if debug else ""
-            
-            url = f"{azure_ws_endpoint}/voice-live/realtime?api-version={self._api_version}&agent-project-name={project_name}&agent-id={agent_id}&agent-access-token={agent_access_token}{debug_uri}"
+                    
+            url = f"{azure_ws_endpoint}/voice-live/realtime?api-version={self._api_version}&agent-project-name={project_name}&agent-id={agent_id}&agent-access-token={agent_access_token}"
     
             auth_header = {"Authorization": f"Bearer {self._token}"} if self._token else {"api-key": self._api_key}
             request_id = uuid.uuid4()
             headers = {"x-ms-client-request-id": str(request_id), **auth_header}
     
-            self._connection = AsyncVoiceLiveConnection(
-                url,
-                additional_headers=headers,
-            )
+            self._connection = VoiceLiveConnection(url, headers)
+            self._connection.connect()
             return self._connection
     
     class AudioPlayerAsync:
@@ -374,7 +383,7 @@ client = AsyncAzureVoiceLive(
             with self.lock:
                 np_data = np.frombuffer(data, dtype=np.int16)
                 self.queue.append(np_data)
-                if not self.playing and len(self.queue) > 10:
+                if not self.playing and len(self.queue) > 0:
                     self.start()
     
         def start(self):
@@ -394,20 +403,23 @@ client = AsyncAzureVoiceLive(
             self.stream.stop()
             self.stream.close()
     
-    async def listen_and_send_audio(connection: AsyncVoiceLiveConnection) -> None:
+    def listen_and_send_audio(connection: VoiceLiveConnection) -> None:
         logger.info("Starting audio stream ...")
     
         stream = sd.InputStream(channels=1, samplerate=AUDIO_SAMPLE_RATE, dtype="int16")
         try:
             stream.start()
             read_size = int(AUDIO_SAMPLE_RATE * 0.02)
-            while True:
+            while not stop_event.is_set():
                 if stream.read_available >= read_size:
                     data, _ = stream.read(read_size)
                     audio = base64.b64encode(data).decode("utf-8")
                     param = {"type": "input_audio_buffer.append", "audio": audio, "event_id": ""}
+                    # print("sending - ", param)
                     data_json = json.dumps(param)
-                    await connection.send(data_json)
+                    connection.send(data_json)
+                else:
+                    time.sleep(0.001)  # Small sleep to prevent busy waiting
         except Exception as e:
             logger.error(f"Audio stream interrupted. {e}")
         finally:
@@ -415,55 +427,54 @@ client = AsyncAzureVoiceLive(
             stream.close()
             logger.info("Audio stream closed.")
     
-    async def receive_audio_and_playback(connection: AsyncVoiceLiveConnection) -> None:
+    def receive_audio_and_playback(connection: VoiceLiveConnection) -> None:
         last_audio_item_id = None
         audio_player = AudioPlayerAsync()
     
         logger.info("Starting audio playback ...")
         try:
-            while True:
-                async for raw_event in connection:
+            while not stop_event.is_set():
+                raw_event = connection.recv()
+                if raw_event is None:
+                    continue
+                    
+                try:
                     event = json.loads(raw_event)
-                    print(f"Received event:", {event.get("type")})
+                    event_type = event.get("type")
+                    print(f"Received event:", {event_type})
     
-                    if event.get("type") == "session.created":
+                    if event_type == "session.created":
                         session = event.get("session")
                         logger.info(f"Session created: {session.get('id')}")
-                        await write_conversation_log(f'SessionID: {session.get("id")}')
+                        write_conversation_log(f"SessionID: {session.get('id')}")
     
-                    elif event.get("type") == "session.updated":
-                        session = event.get("session")
-                        print(f"Session updated: {session.get('id')}")
-                        logger.info(f"Session updated: {session.get('id')}")
-    
-                    elif event.get("type") == "input_audio_buffer.speech_started":
-                        print("User started speaking")
-                        audio_player.stop()  # Clear buffered audio when user starts speaking
-    
-                    elif event.get("type") == "conversation.item.input_audio_transcription.completed":
-                        user_transcript = f'User Input: {event.get("transcript", "")}'
+                    elif event_type == "conversation.item.input_audio_transcription.completed":
+                        user_transcript = f'User Input:\t{event.get("transcript", "")}'
                         print(f'\n\t{user_transcript}\n')
-                        await write_conversation_log(user_transcript)
+                        write_conversation_log(user_transcript)
     
-                    elif event.get("type") == "response.audio.delta":
+                    elif event_type == "response.text.done":
+                        agent_text = f'Agent Text Response:\t{event.get("text", "")}'
+                        print(f'\n\t{agent_text}\n')
+                        write_conversation_log(agent_text)
+    
+                    elif event_type == "response.audio_transcript.done":
+                        agent_audio = f'Agent Audio Response:\t{event.get("transcript", "")}'
+                        print(f'\n\t{agent_audio}\n')
+                        write_conversation_log(agent_audio)
+    
+                    elif event_type == "response.audio.delta":
                         if event.get("item_id") != last_audio_item_id:
                             last_audio_item_id = event.get("item_id")
     
                         bytes_data = base64.b64decode(event.get("delta", ""))
+                        if bytes_data:
+                            logger.debug(f"Received audio data of length: {len(bytes_data)}")   
                         audio_player.add_data(bytes_data)
     
-                    elif event.get("type") == "response.text.done":
-                        agent_text_response = f'Agent Text Response: {event.get("text", "")}'
-                        print(f'\n\t{agent_text_response}\n')
-                        await write_conversation_log(agent_text_response)
-    
-                    elif event.get("type") == "response.audio_transcript.done":
-                        agent_audio_response = f'Agent Audio Response: {event.get("transcript", "")}'
-                        print(f'\n\t{agent_audio_response}\n')
-                        await write_conversation_log(agent_audio_response)
-    
-                    elif event.get("type") == "response.done":
-                        logger.info("Response done.")
+                    elif event.get("type") == "input_audio_buffer.speech_started":
+                        print("Speech started")
+                        audio_player.stop()
     
                     elif event.get("type") == "error":
                         error_details = event.get("error", {})
@@ -471,6 +482,9 @@ client = AsyncAzureVoiceLive(
                         error_code = error_details.get("code", "Unknown")
                         error_message = error_details.get("message", "No message provided")
                         raise ValueError(f"Error received: Type={error_type}, Code={error_code}, Message={error_message}")
+                except json.JSONDecodeError as e:
+                    logger.error(f"Failed to parse JSON event: {e}")
+                    continue
     
         except Exception as e:
             logger.error(f"Error in audio playback: {e}")
@@ -478,47 +492,57 @@ client = AsyncAzureVoiceLive(
             audio_player.terminate()
             logger.info("Playback done.")
     
-    async def read_keyboard_and_quit() -> None:
+    def read_keyboard_and_quit() -> None:
         print("Press 'q' and Enter to quit the chat.")
-        while True:
-            # Run input() in a thread to avoid blocking the event loop
-            user_input = await asyncio.to_thread(input)
-            if user_input.strip().lower() == 'q':
-                print("Quitting the chat...")
+        while not stop_event.is_set():
+            try:
+                user_input = input()
+                if user_input.strip().lower() == 'q':
+                    print("Quitting the chat...")
+                    stop_event.set()
+                    break
+            except EOFError:
+                # Handle case where input is interrupted
                 break
     
-    # Global variable for log filename (will be set in main)
-    logfilename = ""
-    
-    async def write_conversation_log(message: str) -> None:
+    def write_conversation_log(message: str) -> None:
         """Write a message to the conversation log."""
-        try:
-            with open(f'logs/{logfilename}', 'a', encoding='utf-8') as conversation_log:
-                conversation_log.write(message + "\n")
-        except Exception as e:
-            logger.error(f"Failed to write to conversation log: {e}")
+        with open(f'logs/{logfilename}', 'a') as conversation_log:
+            conversation_log.write(message + "\n")
     
     if __name__ == "__main__":
         try:
-            # Set up conversation/session logging
+            # Change to the directory where this script is located
+            os.chdir(os.path.dirname(os.path.abspath(__file__)))
+            # Add folder for logging
             if not os.path.exists('logs'):
                 os.makedirs('logs')
+            # Add timestamp for logfiles
             timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-            logfilename = f'session_{timestamp}.log'
-            with open(f'logs/{logfilename}', 'w', encoding='utf-8') as conversation_log:
-                conversation_log.write("Agent Session Log:\n")
-            
-            # Set up technical logging
+            logfilename = f"{timestamp}_conversation.log"
+            # Set up logging
             logging.basicConfig(
-                filename='logs/voicelive.log',
+                filename=f'logs/{timestamp}_voicelive.log',
                 filemode="w",
                 level=logging.DEBUG,
                 format='%(asctime)s:%(name)s:%(levelname)s:%(message)s'
             )
-            load_dotenv()
-            asyncio.run(main())
+            # Load environment variables from .env file
+            load_dotenv("./.env", override=True)
+            
+            # Set up signal handler for graceful shutdown
+            def signal_handler(signum, frame):
+                print("\nReceived interrupt signal, shutting down...")
+                stop_event.set()
+                sys.exit(0)
+            
+            signal.signal(signal.SIGINT, signal_handler)
+            signal.signal(signal.SIGTERM, signal_handler)
+            
+            main()
         except Exception as e:
             print(f"Error: {e}")
+            stop_event.set()
     ```
 
 1. Sign in to Azure with the following command:
@@ -630,11 +654,11 @@ Quitting the chat...
 Chat done.
 ```
 
-The script that you ran creates a log file named `voicelive.log` in the same directory as the script.
+The script that you ran creates a log file named `<timestamp>_voicelive.log` in the in the `logs` folder.
 
 ```python
 logging.basicConfig(
-    filename='voicelive.log',
+    filename=f'logs/{timestamp}_voicelive.log',
     filemode="w",
     level=logging.DEBUG,
     format='%(asctime)s:%(name)s:%(levelname)s:%(message)s'
@@ -679,7 +703,7 @@ REDACTED FOR BREVITY
 2025-07-29 09:44:47,690:websockets.client:DEBUG:x closing TCP connection
 ```
 
-A session log file is created in the `logs` folder with the name `session_<session_id>.log`. This file contains detailed information about the session, including the request and response data.
+Further a session log file is created in the `logs` folder with the name `<timestamp>_conversation.log`. This file contains detailed information about the session, including the request and response data.
 
 ```text
 Agent Session Log:
@@ -705,9 +729,9 @@ User Input: Stop.
 Agent Audio Response: Alright, I've stopped. If you need anything else or have any questions, feel free to ask!
 ```
 
-Here are the key differences between the [technical log](#technical-log) and the [session log](#session-log):
+Here are the key differences between the [technical log](#technical-log) and the [conversation log](#conversation-log):
 
-| Aspect | Session Log | Technical Log |
+| Aspect | Conversation Log | Technical Log |
 |--------|-------------|---------------|
 | **Audience** | Business users, content reviewers | Developers, IT operations |
 | **Content** | What was said in conversations | How the system is working |
@@ -716,9 +740,9 @@ Here are the key differences between the [technical log](#technical-log) and the
 
 **Example**: If your agent wasn't responding, you'd check:
 - **voicelive.log** → "WebSocket connection failed" or "Audio stream error"
-- **session log** → "Did the user actually say anything?"
+- **conversation.log** → "Did the user actually say anything?"
 
-Both logs are complementary - session logs for conversation analysis, technical logs for system diagnostics!
+Both logs are complementary - conversation logs for conversation analysis and testing, technical logs for system diagnostics!
 
 ### Technical log
 **Purpose**: Technical debugging and system monitoring
@@ -739,7 +763,7 @@ Both logs are complementary - session logs for conversation analysis, technical 
 - Troubleshooting audio issues
 - Developer/operations analysis
 
-### Session log
+### Conversation log
 **Purpose**: Conversation transcript and user experience tracking
 
 **Contents**:
@@ -761,11 +785,35 @@ Both logs are complementary - session logs for conversation analysis, technical 
 
 The quickstart uses AI Foundry projects instead of hub-based projects. If you have a hub-based project, you can still use the quickstart with some modifications.
 
-To use the quickstart with a hub-based project, you need to retrieve the connection string for your agent. You can find the connection string in the Azure portal under your AI Foundry project > **Overview**.
+To use the quickstart with a hub-based project, you need to retrieve the connection string for your agent and use it instead of the <project-name>. You can find the connection string in the Azure portal under your AI Foundry project > **Overview**.
 
 For hub-based projects, use the connection string directly in the URL.
 
-Replace the following line in the code:
+Further you must obtain a separate authentication token from scope 'https://ml.azure.com/.default'.
+
+Replace the following lines in the code to change the authentication:
+
+```python
+connection = client.connect(
+    project_name=project_name,
+    agent_id=agent_id,
+    agent_access_token=token.token
+)
+```
+Use the following line:
+
+```python
+agent_scopes = "https://ml.azure.com/.default"
+agent_token = credential.get_token(agent_scopes)
+agent_access_token = agent_token.token
+connection = client.connect(
+    agent_connection_string=agent_connection_string,
+    agent_id=agent_id,
+    agent_access_token=agent_access_token
+)
+```
+
+Replace the following lines in the code to change the url:
 
 ```python
 url = f"{azure_ws_endpoint}/voice-live/realtime?api-version={self._api_version}&agent-project-name={project_name}&agent-id={agent_id}&agent-access-token={agent_access_token}{debug_uri}"
@@ -774,164 +822,200 @@ url = f"{azure_ws_endpoint}/voice-live/realtime?api-version={self._api_version}&
 Use the following line:
 
 ```python
-url = f"{azure_ws_endpoint}/voice-live/realtime?api-version={self._api_version}&agent-connection-string={agent_connection_string}&agent-id={agent_id}&agent-access-token={agent_access_token}{debug_uri}"
+url = f"{azure_ws_endpoint}/voice-live/realtime?api-version={self._api_version}&agent-connection-string={agent_connection_string}&agent-id={agent_id}&agent-access-token={agent_access_token}"
 ```
 
 Here's the complete code snippet for hub-based projects:
 
 ```python
-from __future__ import annotations
-
+#speech example to test the Azure Voice Live API
 import os
 import uuid
 import json
-import asyncio
+import time
 import base64
 import logging
 import threading
 import numpy as np
 import sounddevice as sd
-from datetime import datetime
+import queue
+import signal
+import sys
 
 from collections import deque
 from dotenv import load_dotenv
+from azure.core.credentials import TokenCredential
 from azure.identity import DefaultAzureCredential
-from azure.core.credentials_async import AsyncTokenCredential
-from azure.identity.aio import DefaultAzureCredential, get_bearer_token_provider
 from typing import Dict, Union, Literal, Set
-from typing_extensions import AsyncIterator, TypedDict, Required
-from websockets.asyncio.client import connect as ws_connect
-from websockets.asyncio.client import ClientConnection as AsyncWebsocket
-from websockets.asyncio.client import HeadersLike
-from websockets.typing import Data
-from websockets.exceptions import WebSocketException
+from typing_extensions import Iterator, TypedDict, Required
+import websocket
+from websocket import WebSocketApp
+from datetime import datetime
+
+# Global variables for thread coordination
+stop_event = threading.Event()
+connection_queue = queue.Queue()
 
 # This is the main function to run the Voice Live API client.
-
-async def main() -> None:
+def main() -> None: 
     # Set environment variables or edit the corresponding values here.
-    endpoint = os.environ.get("AZURE_VOICE_LIVE_ENDPOINT") or "https://your-ai-foundry-resource.cognitiveservices.azure.com/"
-    agent_id = os.environ.get("AI_FOUNDRY_AGENT_ID") or "your-agent-id"
-    connection_string = os.environ.get("AI_FOUNDRY_CONNECTION_STRING") or "your-connection-string"
+    endpoint = os.environ.get("AZURE_VOICE_LIVE_ENDPOINT") or "<https://your-endpoint.azure.com/>"
+    agent_id = os.environ.get("AI_FOUNDRY_AGENT_ID") or "<your-agent-id>"
+    agent_connection_string = os.environ.get("AI_FOUNDRY_AGENT_CONNECTION_STRING") or "<your-agent-connection-string>"
     api_version = os.environ.get("AZURE_VOICE_LIVE_API_VERSION") or "2025-05-01-preview"
-    api_key = os.environ.get("AZURE_VOICE_LIVE_API_KEY") or "your_api_key"
-    
+    api_key = os.environ.get("AZURE_VOICE_LIVE_API_KEY") or "<your-api-key>"
+
     # For the recommended keyless authentication, get and
     # use the Microsoft Entra token instead of api_key:
-    scopes = "https://ai.azure.com/.default"
     credential = DefaultAzureCredential()
-    token = await credential.get_token(scopes)
+    scopes = "https://ai.azure.com/.default"
+    token = credential.get_token(scopes)
 
-    client = AsyncAzureVoiceLive(
+    client = AzureVoiceLive(
         azure_endpoint = endpoint,
         api_version = api_version,
         token = token.token,
-        #api_key = api_key,
+        # api_key = api_key,
+    )
+    
+    # For the recommended keyless authentication, get and
+    # use the Microsoft Entra token instead of api_key:
+    agent_scopes = "https://ml.azure.com/.default"
+    agent_token = credential.get_token(agent_scopes)
+    agent_access_token = agent_token.token
+    connection = client.connect(
+        agent_connection_string=agent_connection_string,
+        agent_id=agent_id,
+        agent_access_token=agent_access_token
     )
 
-    print(f"Using agent: {agent_id}")
-    print(f"Connection string: {connection_string}")
-    
-    # Log agent usage to conversation log
-    await write_conversation_log(f'Using agent: {agent_id}')
-    await write_conversation_log(f'Connection string: {connection_string}')
-    
-    async with client.connect_agent(
-        agent_connection_string=connection_string, 
-        agent_id=agent_id, 
-        agent_access_token=token.token,
-        debug=True
-    ) as connection:
-        session_update = {
-            "type": "session.update",
-            "session": {
-                "turn_detection": {
-                    "type": "azure_semantic_vad",
-                    "threshold": 0.3,
-                    "prefix_padding_ms": 200,
-                    "silence_duration_ms": 200,
-                    "remove_filler_words": True,
-                    "end_of_utterance_detection": {
-                        "model": "semantic_detection_v1",
-                        "threshold": 0.1,
-                        "timeout": 4,
-                    },
+    session_update = {
+        "type": "session.update",
+        "session": {
+            "turn_detection": {
+                "type": "azure_semantic_vad",
+                "threshold": 0.3,
+                "prefix_padding_ms": 200,
+                "silence_duration_ms": 200,
+                "remove_filler_words": False,
+                "end_of_utterance_detection": {
+                    "model": "semantic_detection_v1",
+                    "threshold": 0.01,
+                    "timeout": 2,
                 },
-                "input_audio_noise_reduction": {
-                    "type": "azure_deep_noise_suppression"
-                },
-                "input_audio_echo_cancellation": {
-                    "type": "server_echo_cancellation"
-                },
-                "voice": {
-                    "name": "en-US-Aria:DragonHDLatestNeural",
-                    "type": "azure-standard",
-                    "temperature": 0.8,
-                },
-                "output_audio_timestamp_types": ["word"], 
-                "modalities": ["text", "audio"],
             },
-            "event_id": ""
-        }
-        await connection.send(json.dumps(session_update))
-        print("Session created: ", json.dumps(session_update))
-        
-        # Log session configuration
-        await write_conversation_log(f'Session Config: {json.dumps(session_update)}')
+            "input_audio_noise_reduction": {
+                "type": "azure_deep_noise_suppression"
+            },
+            "input_audio_echo_cancellation": {
+                "type": "server_echo_cancellation"
+            },
+            "voice": {
+                "name": "en-US-Ava:DragonHDLatestNeural",
+                "type": "azure-standard",
+                "temperature": 0.8,
+            },
+        },
+        "event_id": ""
+    }
+    connection.send(json.dumps(session_update))
+    print("Session created: ", json.dumps(session_update))
 
-        send_task = asyncio.create_task(listen_and_send_audio(connection))
-        receive_task = asyncio.create_task(receive_audio_and_playback(connection))
-        keyboard_task = asyncio.create_task(read_keyboard_and_quit())
+    
+    # Log session configuration
+    write_conversation_log(f'Session Config: {json.dumps(session_update)}')
 
-        print("Starting the chat ...")
-        await asyncio.wait([send_task, receive_task, keyboard_task], return_when=asyncio.FIRST_COMPLETED)
+    # Create and start threads
+    send_thread = threading.Thread(target=listen_and_send_audio, args=(connection,))
+    receive_thread = threading.Thread(target=receive_audio_and_playback, args=(connection,))
+    keyboard_thread = threading.Thread(target=read_keyboard_and_quit)
 
-        send_task.cancel()
-        receive_task.cancel()
-        print("Chat done.")
+    print("Starting the chat ...")
+    
+    send_thread.start()
+    receive_thread.start()
+    keyboard_thread.start()
+    
+    # Wait for any thread to complete (usually the keyboard thread when user quits)
+    keyboard_thread.join()
+    
+    # Signal other threads to stop
+    stop_event.set()
+    
+    # Wait for other threads to finish
+    send_thread.join(timeout=2)
+    receive_thread.join(timeout=2)
+    
+    connection.close()
+    print("Chat done.")
 
 # --- End of Main Function ---
 
 logger = logging.getLogger(__name__)
 AUDIO_SAMPLE_RATE = 24000
 
-class AsyncVoiceLiveConnection:
-    _connection: AsyncWebsocket
-
-    def __init__(self, url: str, additional_headers: HeadersLike) -> None:
+class VoiceLiveConnection:
+    def __init__(self, url: str, headers: dict) -> None:
         self._url = url
-        self._additional_headers = additional_headers
-        self._connection = None
+        self._headers = headers
+        self._ws = None
+        self._message_queue = queue.Queue()
+        self._connected = False
 
-    async def __aenter__(self) -> AsyncVoiceLiveConnection:
+    def connect(self) -> None:
+        def on_message(ws, message):
+            self._message_queue.put(message)
+        
+        def on_error(ws, error):
+            logger.error(f"WebSocket error: {error}")
+        
+        def on_close(ws, close_status_code, close_msg):
+            logger.info("WebSocket connection closed")
+            self._connected = False
+        
+        def on_open(ws):
+            logger.info("WebSocket connection opened")
+            self._connected = True
+
+        self._ws = websocket.WebSocketApp(
+            self._url,
+            header=self._headers,
+            on_message=on_message,
+            on_error=on_error,
+            on_close=on_close,
+            on_open=on_open
+        )
+        
+        # Start WebSocket in a separate thread
+        self._ws_thread = threading.Thread(target=self._ws.run_forever)
+        self._ws_thread.daemon = True
+        self._ws_thread.start()
+        
+        # Wait for connection to be established
+        timeout = 10  # seconds
+        start_time = time.time()
+        while not self._connected and time.time() - start_time < timeout:
+            time.sleep(0.1)
+        
+        if not self._connected:
+            raise ConnectionError("Failed to establish WebSocket connection")
+
+    def recv(self) -> str:
         try:
-            self._connection = await ws_connect(self._url, additional_headers=self._additional_headers)
-        except WebSocketException as e:
-            raise ValueError(f"Failed to establish a WebSocket connection: {e}")
-        return self
+            return self._message_queue.get(timeout=1)
+        except queue.Empty:
+            return None
 
-    async def __aexit__(self, exc_type, exc_value, traceback) -> None:
-        if self._connection:
-            await self._connection.close()
-            self._connection = None
+    def send(self, message: str) -> None:
+        if self._ws and self._connected:
+            self._ws.send(message)
 
-    enter = __aenter__
-    close = __aexit__
+    def close(self) -> None:
+        if self._ws:
+            self._ws.close()
+            self._connected = False
 
-    async def __aiter__(self) -> AsyncIterator[Data]:
-            async for data in self._connection:
-                yield data
-
-    async def recv(self) -> Data:
-        return await self._connection.recv()
-
-    async def recv_bytes(self) -> bytes:
-        return await self._connection.recv()
-
-    async def send(self, message: Data) -> None:
-        await self._connection.send(message)
-
-class AsyncAzureVoiceLive:
+class AzureVoiceLive:
     def __init__(
         self,
         *,
@@ -947,26 +1031,7 @@ class AsyncAzureVoiceLive:
         self._api_key = api_key
         self._connection = None
 
-    def connect(self, model: str) -> AsyncVoiceLiveConnection:
-        if self._connection is not None:
-            raise ValueError("Already connected to the Voice Live API.")
-        if not model:
-            raise ValueError("Model name is required.")
-
-        url = f"{self._azure_endpoint.rstrip('/')}/voice-live/realtime?api-version={self._api_version}&model={model}"
-        url = url.replace("https://", "wss://")
-
-        auth_header = {"Authorization": f"Bearer {self._token}"} if self._token else {"api-key": self._api_key}
-        request_id = uuid.uuid4()
-        headers = {"x-ms-client-request-id": str(request_id), **auth_header}
-
-        self._connection = AsyncVoiceLiveConnection(
-            url,
-            additional_headers=headers,
-        )
-        return self._connection
-
-    def connect_agent(self, agent_connection_string: str, agent_id: str, agent_access_token: str, debug: bool = False) -> AsyncVoiceLiveConnection:
+    def connect(self, agent_connection_string: str, agent_id: str, agent_access_token: str) -> VoiceLiveConnection:
         if self._connection is not None:
             raise ValueError("Already connected to the Voice Live API.")
         if not agent_connection_string:
@@ -977,19 +1042,15 @@ class AsyncAzureVoiceLive:
             raise ValueError("Agent access token is required.")
 
         azure_ws_endpoint = self._azure_endpoint.rstrip('/').replace("https://", "wss://")
-        debug_uri = "&debug=on" if debug else ""
-        
-        # For hub-based projects, use the connection string directly in the URL
-        url = f"{azure_ws_endpoint}/voice-live/realtime?api-version={self._api_version}&agent-connection-string={agent_connection_string}&agent-id={agent_id}&agent-access-token={agent_access_token}{debug_uri}"
+
+        url = f"{azure_ws_endpoint}/voice-live/realtime?api-version={self._api_version}&agent-connection-string={agent_connection_string}&agent-id={agent_id}&agent-access-token={agent_access_token}"
 
         auth_header = {"Authorization": f"Bearer {self._token}"} if self._token else {"api-key": self._api_key}
         request_id = uuid.uuid4()
         headers = {"x-ms-client-request-id": str(request_id), **auth_header}
 
-        self._connection = AsyncVoiceLiveConnection(
-            url,
-            additional_headers=headers,
-        )
+        self._connection = VoiceLiveConnection(url, headers)
+        self._connection.connect()
         return self._connection
 
 class AudioPlayerAsync:
@@ -1024,7 +1085,7 @@ class AudioPlayerAsync:
         with self.lock:
             np_data = np.frombuffer(data, dtype=np.int16)
             self.queue.append(np_data)
-            if not self.playing and len(self.queue) > 10:
+            if not self.playing and len(self.queue) > 0:
                 self.start()
 
     def start(self):
@@ -1044,20 +1105,23 @@ class AudioPlayerAsync:
         self.stream.stop()
         self.stream.close()
 
-async def listen_and_send_audio(connection: AsyncVoiceLiveConnection) -> None:
+def listen_and_send_audio(connection: VoiceLiveConnection) -> None:
     logger.info("Starting audio stream ...")
 
     stream = sd.InputStream(channels=1, samplerate=AUDIO_SAMPLE_RATE, dtype="int16")
     try:
         stream.start()
         read_size = int(AUDIO_SAMPLE_RATE * 0.02)
-        while True:
+        while not stop_event.is_set():
             if stream.read_available >= read_size:
                 data, _ = stream.read(read_size)
                 audio = base64.b64encode(data).decode("utf-8")
                 param = {"type": "input_audio_buffer.append", "audio": audio, "event_id": ""}
+                # print("sending - ", param)
                 data_json = json.dumps(param)
-                await connection.send(data_json)
+                connection.send(data_json)
+            else:
+                time.sleep(0.001)  # Small sleep to prevent busy waiting
     except Exception as e:
         logger.error(f"Audio stream interrupted. {e}")
     finally:
@@ -1065,55 +1129,54 @@ async def listen_and_send_audio(connection: AsyncVoiceLiveConnection) -> None:
         stream.close()
         logger.info("Audio stream closed.")
 
-async def receive_audio_and_playback(connection: AsyncVoiceLiveConnection) -> None:
+def receive_audio_and_playback(connection: VoiceLiveConnection) -> None:
     last_audio_item_id = None
     audio_player = AudioPlayerAsync()
 
     logger.info("Starting audio playback ...")
     try:
-        while True:
-            async for raw_event in connection:
+        while not stop_event.is_set():
+            raw_event = connection.recv()
+            if raw_event is None:
+                continue
+                
+            try:
                 event = json.loads(raw_event)
-                print(f"Received event:", {event.get("type")})
+                event_type = event.get("type")
+                print(f"Received event:", {event_type})
 
-                if event.get("type") == "session.created":
+                if event_type == "session.created":
                     session = event.get("session")
                     logger.info(f"Session created: {session.get('id')}")
-                    await write_conversation_log(f'SessionID: {session.get("id")}')
+                    write_conversation_log(f"SessionID: {session.get('id')}")
 
-                elif event.get("type") == "session.updated":
-                    session = event.get("session")
-                    print(f"Session updated: {session.get('id')}")
-                    logger.info(f"Session updated: {session.get('id')}")
-
-                elif event.get("type") == "input_audio_buffer.speech_started":
-                    print("User started speaking")
-                    audio_player.stop()  # Clear buffered audio when user starts speaking
-
-                elif event.get("type") == "conversation.item.input_audio_transcription.completed":
-                    user_transcript = f'User Input: {event.get("transcript", "")}'
+                elif event_type == "conversation.item.input_audio_transcription.completed":
+                    user_transcript = f'User Input:\t{event.get("transcript", "")}'
                     print(f'\n\t{user_transcript}\n')
-                    await write_conversation_log(user_transcript)
+                    write_conversation_log(user_transcript)
 
-                elif event.get("type") == "response.audio.delta":
+                elif event_type == "response.text.done":
+                    agent_text = f'Agent Text Response:\t{event.get("text", "")}'
+                    print(f'\n\t{agent_text}\n')
+                    write_conversation_log(agent_text)
+
+                elif event_type == "response.audio_transcript.done":
+                    agent_audio = f'Agent Audio Response:\t{event.get("transcript", "")}'
+                    print(f'\n\t{agent_audio}\n')
+                    write_conversation_log(agent_audio)
+
+                elif event_type == "response.audio.delta":
                     if event.get("item_id") != last_audio_item_id:
                         last_audio_item_id = event.get("item_id")
 
                     bytes_data = base64.b64decode(event.get("delta", ""))
+                    if bytes_data:
+                        logger.debug(f"Received audio data of length: {len(bytes_data)}")   
                     audio_player.add_data(bytes_data)
 
-                elif event.get("type") == "response.text.done":
-                    agent_text_response = f'Agent Text Response: {event.get("text", "")}'
-                    print(f'\n\t{agent_text_response}\n')
-                    await write_conversation_log(agent_text_response)
-
-                elif event.get("type") == "response.audio_transcript.done":
-                    agent_audio_response = f'Agent Audio Response: {event.get("transcript", "")}'
-                    print(f'\n\t{agent_audio_response}\n')
-                    await write_conversation_log(agent_audio_response)
-
-                elif event.get("type") == "response.done":
-                    logger.info("Response done.")
+                elif event.get("type") == "input_audio_buffer.speech_started":
+                    print("Speech started")
+                    audio_player.stop()
 
                 elif event.get("type") == "error":
                     error_details = event.get("error", {})
@@ -1121,6 +1184,9 @@ async def receive_audio_and_playback(connection: AsyncVoiceLiveConnection) -> No
                     error_code = error_details.get("code", "Unknown")
                     error_message = error_details.get("message", "No message provided")
                     raise ValueError(f"Error received: Type={error_type}, Code={error_code}, Message={error_message}")
+            except json.JSONDecodeError as e:
+                logger.error(f"Failed to parse JSON event: {e}")
+                continue
 
     except Exception as e:
         logger.error(f"Error in audio playback: {e}")
@@ -1128,45 +1194,55 @@ async def receive_audio_and_playback(connection: AsyncVoiceLiveConnection) -> No
         audio_player.terminate()
         logger.info("Playback done.")
 
-async def read_keyboard_and_quit() -> None:
+def read_keyboard_and_quit() -> None:
     print("Press 'q' and Enter to quit the chat.")
-    while True:
-        # Run input() in a thread to avoid blocking the event loop
-        user_input = await asyncio.to_thread(input)
-        if user_input.strip().lower() == 'q':
-            print("Quitting the chat...")
+    while not stop_event.is_set():
+        try:
+            user_input = input()
+            if user_input.strip().lower() == 'q':
+                print("Quitting the chat...")
+                stop_event.set()
+                break
+        except EOFError:
+            # Handle case where input is interrupted
             break
 
-# Global variable for log filename (will be set in main)
-logfilename = ""
-
-async def write_conversation_log(message: str) -> None:
+def write_conversation_log(message: str) -> None:
     """Write a message to the conversation log."""
-    try:
-        with open(f'logs/{logfilename}', 'a', encoding='utf-8') as conversation_log:
-            conversation_log.write(message + "\n")
-    except Exception as e:
-        logger.error(f"Failed to write to conversation log: {e}")
+    with open(f'logs/{logfilename}', 'a') as conversation_log:
+        conversation_log.write(message + "\n")
 
 if __name__ == "__main__":
     try:
-        # Set up conversation/session logging
+        # Change to the directory where this script is located
+        os.chdir(os.path.dirname(os.path.abspath(__file__)))
+        # Add folder for logging
         if not os.path.exists('logs'):
             os.makedirs('logs')
+        # Add timestamp for logfiles
         timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-        logfilename = f'session_{timestamp}.log'
-        with open(f'logs/{logfilename}', 'w', encoding='utf-8') as conversation_log:
-            conversation_log.write("Agent Session Log:\n")
-        
-        # Set up technical logging
+        logfilename = f"{timestamp}_conversation.log"
+        # Set up logging
         logging.basicConfig(
-            filename='logs/voicelive.log',
+            filename=f'logs/{timestamp}_voicelive.log',
             filemode="w",
             level=logging.DEBUG,
             format='%(asctime)s:%(name)s:%(levelname)s:%(message)s'
         )
-        load_dotenv()
-        asyncio.run(main())
+        # Load environment variables from .env file
+        load_dotenv("./.env", override=True)
+        
+        # Set up signal handler for graceful shutdown
+        def signal_handler(signum, frame):
+            print("\nReceived interrupt signal, shutting down...")
+            stop_event.set()
+            sys.exit(0)
+        
+        signal.signal(signal.SIGINT, signal_handler)
+        signal.signal(signal.SIGTERM, signal_handler)
+        
+        main()
     except Exception as e:
         print(f"Error: {e}")
+        stop_event.set()
 ```
