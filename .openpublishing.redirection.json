@@ -6,6 +6,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "articles/ai-foundry/how-to/develop/connections-add-sdk.md",
+      "redirect_url": "/azure/ai-foundry/how-to/connections-add?pivots=hub-project",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/ai-foundry/how-to/develop/vscode.md",
       "redirect_url": "/azure/ai-foundry/how-to/develop/get-started-projects-vs-code",
       "redirect_document_id": false
