@@ -73,6 +73,12 @@ The following section provides you with a quick guide to the default quotas and 
 
 [!INCLUDE [Quota](./includes/global-batch-limits.md)]
 
+## gpt-oss
+
+| Model          | Tokens per minute (TPM) | Requests per minute (RPM) |
+|----------------|-------------------|---------------------------------|
+| `gpt-oss-120b` | 5 M               | 5 K                             |
+
 ## GPT-4 rate limits
 
 ### GPT-4.5 preview Global Standard
