@@ -44,19 +44,18 @@ Azure OpenAI in Azure AI Foundry Models offers a diverse set of models with diff
 
 | Models | Description |
 |--|--|
-| [gpt-oss](../../openai/concepts/models.md#gpt-oss) | **NEW** open-weight reasoning models |
-| [`codex-mini`](../../openai/concepts/models.md#o-series-models) | Fine-tuned version of o4-mini. |  
-| [GPT-4.1 series](../../openai/concepts/models.md#gpt-41-series) | Latest model release from Azure OpenAI |
+| [gpt-oss](../../openai/concepts/models.md#gpt-oss) | Open-weight reasoning models |
+| [codex-mini](../../openai/concepts/models.md#o-series-models) | Fine-tuned version of o4-mini. |  
+| [GPT-4.1 series](../../openai/concepts/models.md#gpt-41-series) | The latest model release from Azure OpenAI. |
 | [model-router](../../openai/concepts/models.md#model-router) | A model that intelligently selects from a set of underlying chat models to respond to a given prompt. |
 | [computer-use-preview](../../openai/concepts/models.md#computer-use-preview) | An experimental model trained for use with the Responses API computer use tool. |
-| [GPT-4.5 Preview](../../openai/concepts/models.md#gpt-45-preview) |The latest GPT model that excels at diverse text and image tasks.  |
-| [o-series models](../../openai/concepts/models.md#o-series-models) |[Reasoning models](../../../ai-services/openai/how-to/reasoning.md) with advanced problem-solving and increased focus and capability.  |
-| [GPT-4o & GPT-4o mini & GPT-4 Turbo](../../openai/concepts/models.md#gpt-4o-and-gpt-4-turbo) | The latest most capable Azure OpenAI models with multimodal versions, which can accept both text and images as input. |
+| [o-series models](../../openai/concepts/models.md#o-series-models) |[Reasoning models](../../openai/how-to/reasoning.md) with advanced problem solving and increased focus and capability. |
+| [GPT-4o, GPT-4o mini, and GPT-4 Turbo](../../openai/concepts/models.md#gpt-4o-and-gpt-4-turbo) | The latest, most capable Azure OpenAI models with multimodal versions, which can accept both text and images as input. |
 | [GPT-4](../../openai/concepts/models.md#gpt-4) | A set of models that improve on GPT-3.5 and can understand and generate natural language and code. |
 | [GPT-3.5](../../openai/concepts/models.md#gpt-35) | A set of models that improve on GPT-3 and can understand and generate natural language and code. |
-| [Embeddings](../../openai/concepts/models.md#embeddings-models) | A set of models that can convert text into numerical vector form to facilitate text similarity. |
+| [Embeddings](../../openai/concepts/models.md#embeddings) | A set of models that can convert text into numerical vector form to facilitate text similarity. |
 | [Image generation](../../openai/concepts/models.md#image-generation-models) | A series of models that can generate original images from natural language. |
-| [Audio](../../openai/concepts/models.md#audio-models) | A series of models for speech to text, translation, and text to speech. GPT-4o audio models support either low-latency, "speech in, speech out" conversational interactions or audio generation. |
+| [Audio](../../openai/concepts/models.md#audio-models) | A series of models for speech to text, translation, and text to speech. GPT-4o audio models support either low latency *speech in, speech out* conversational interactions or audio generation. |
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=aoai).
 
