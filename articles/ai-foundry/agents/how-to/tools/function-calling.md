@@ -728,8 +728,8 @@ public class AgentExample {
     public static void main(String[] args) throws FileNotFoundException, URISyntaxException {
 
         // variables for authenticating requests to the agent service 
-        String projectEndpoint = "https://aahi-may-resource.services.ai.azure.com/api/projects/aahi-may";//System.getenv("PROJECT_ENDPOINT");
-        String modelName = "gpt-4o";//System.getenv("MODEL_DEPLOYMENT_NAME");
+        String projectEndpoint = System.getenv("PROJECT_ENDPOINT");
+        String modelName = System.getenv("MODEL_DEPLOYMENT_NAME");
         
         PersistentAgentsClientBuilder clientBuilder = new PersistentAgentsClientBuilder().endpoint(projectEndpoint)
             .credential(new DefaultAzureCredentialBuilder().build());
