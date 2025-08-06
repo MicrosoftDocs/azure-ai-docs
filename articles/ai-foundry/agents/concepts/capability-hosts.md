@@ -96,7 +96,6 @@ When creating capability hosts, be aware of these important constraints to avoid
 
 **How to avoid:**
 - **Monitor operation status** before making new requests
-- **Implement retry logic** with exponential backoff
 - **Wait for operations to complete** before starting new ones
 
 ### Best practices to prevent conflicts
@@ -109,33 +108,7 @@ Always check for existing capability hosts before attempting to create new ones:
 GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/capabilityHosts?api-version=2025-06-01
 ```
 
-**For project-level capability hosts:**
-```http
-GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/capabilityHosts?api-version=2025-06-01
-```
-
-#### 2. **Implement proper retry logic**
-For 409 conflicts due to concurrent operations, implement exponential backoff:
-
-```python
-import time
-import random
-
-def create_capability_host_with_retry(max_retries=3):
-    for attempt in range(max_retries):
-        try:
-            return create_capability_host()
-        except requests.HTTPError as e:
-            if e.response.status_code == 409 and "currently in non creating" in e.response.text:
-                wait_time = (2 ** attempt) + random.uniform(0, 1)
-                time.sleep(wait_time)
-                continue
-            else:
-                raise  # Different type of conflict, don't retry
-    raise Exception("Max retries exceeded")
-```
-
-#### 3. **Monitor long-running operations**
+#### 2. **Monitor long-running operations**
 Capability host operations are asynchronous. Always monitor operation status:
 
 ```http
