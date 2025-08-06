@@ -564,7 +564,7 @@ Received event: {'response.audio.delta'}
 Chat done.
 ```
 
-The script that you ran creates a log file named `<timestamp>_voicelive.log` in the in the `logs` folder.
+The script that you ran creates a log file named `<timestamp>_voicelive.log` in the `logs` folder.
 
 ```python
 logging.basicConfig(
