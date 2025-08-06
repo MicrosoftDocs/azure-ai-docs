@@ -79,8 +79,9 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import java.util.Arrays;
 
-public class Main {
+public class AgentSample {
 
+    // A helper function to print messages from the agent
     public static void printRunMessages(MessagesClient messagesClient, String threadId) {
 
         PagedIterable<ThreadMessage> runMessages = messagesClient.listMessages(threadId);
@@ -97,10 +98,10 @@ public class Main {
             }
         }
     }
+
+    // a helper function to wait until a run has completed running
     public static void waitForRunCompletion(String threadId, ThreadRun threadRun, RunsClient runsClient)
         throws InterruptedException {
-
-        // BEGIN: com.azure.ai.agents.persistent.SampleUtils.waitForRunCompletion
 
         do {
             Thread.sleep(500);
@@ -114,14 +115,14 @@ public class Main {
         if (threadRun.getStatus() == RunStatus.FAILED) {
             System.out.println(threadRun.getLastError().getMessage());
         }
-
-        // END: com.azure.ai.agents.persistent.SampleUtils.waitForRunCompletion
     }
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
+        // variables for authenticating requests to the agent service 
         String projectEndpoint = System.getenv("PROJECT_ENDPOINT");
         String modelName = System.getenv("MODEL_DEPLOYMENT_NAME");
 
+        // initialize clients to manage various aspects of agent runtime
         PersistentAgentsClientBuilder clientBuilder = new PersistentAgentsClientBuilder()
             .endpoint(projectEndpoint)
             .credential(new DefaultAzureCredentialBuilder().build());
@@ -130,11 +131,12 @@ public class Main {
         ThreadsClient threadsClient = agentsClient.getThreadsClient();
         MessagesClient messagesClient = agentsClient.getMessagesClient();
         RunsClient runsClient = agentsClient.getRunsClient();
-
-        String agentName = "my-agent";
+        
+        
+        String agentName = "my-agent"; // the name of the agent
         CreateAgentOptions createAgentOptions = new CreateAgentOptions(modelName)
             .setName(agentName)
-            .setInstructions("You are a helpful agent")
+            .setInstructions("You are a helpful agent") // system insturctions
             .setTools(Arrays.asList(new CodeInterpreterToolDefinition()));
         PersistentAgent agent = administrationClient.createAgent(createAgentOptions);
 
@@ -142,20 +144,20 @@ public class Main {
         ThreadMessage createdMessage = messagesClient.createMessage(
             thread.getId(),
             MessageRole.USER,
-            "I need to solve the equation `3x + 11 = 14`. Can you help me?");
+            "I need to solve the equation `3x + 11 = 14`. Can you help me?"); // The message to the agent
 
         try {
-            //run agent
+            //run the agent
             CreateRunOptions createRunOptions = new CreateRunOptions(thread.getId(), agent.getId())
                 .setAdditionalInstructions("");
             ThreadRun threadRun = runsClient.createRun(createRunOptions);
-
+            // wait for the run to complete before printing the message
             waitForRunCompletion(thread.getId(), threadRun, runsClient);
             printRunMessages(messagesClient, thread.getId());
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         } finally {
-            //cleanup
+            //cleanup - remove or comment out these lines if you want to keep the agent
             threadsClient.deleteThread(thread.getId());
             administrationClient.deleteAgent(agent.getId());
         }
