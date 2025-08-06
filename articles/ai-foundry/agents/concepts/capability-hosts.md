@@ -61,7 +61,7 @@ When creating capability hosts, be aware of these important constraints to avoid
 
 ### Common 409 conflict scenarios
 
-#### 1. **Multiple capability hosts per scope** ?
+#### 1. **Multiple capability hosts per scope**
 
 **What happens:** You try to create a capability host with a different name when one already exists at the same scope (account or project level).
 
@@ -76,11 +76,11 @@ When creating capability hosts, be aware of these important constraints to avoid
 ```
 
 **How to avoid:**
-- ? **Check existing capability hosts first** before creating new ones
-- ? **Use consistent naming** across all requests for the same scope
-- ? **Query existing resources** to understand current state
+- **Check existing capability hosts first** before creating new ones
+- **Use consistent naming** across all requests for the same scope
+- **Query existing resources** to understand current state
 
-#### 2. **Concurrent operations** ?
+#### 2. **Concurrent operations** 
 
 **What happens:** You try to create a capability host while another operation (update, delete, modify) is in progress at the same scope.
 
@@ -95,9 +95,9 @@ When creating capability hosts, be aware of these important constraints to avoid
 ```
 
 **How to avoid:**
-- ? **Monitor operation status** before making new requests
-- ? **Implement retry logic** with exponential backoff
-- ? **Wait for operations to complete** before starting new ones
+- **Monitor operation status** before making new requests
+- **Implement retry logic** with exponential backoff
+- **Wait for operations to complete** before starting new ones
 
 ### Best practices to prevent conflicts
 
@@ -144,9 +144,9 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Micros
 
 #### 4. **Handle idempotent requests correctly**
 The system supports idempotent create requests:
-- ? **Same name + same configuration** = Returns existing resource (success)
-- ? **Same name + different configuration** = Returns 400 Bad Request
-- ? **Different name** = Returns 409 Conflict
+- **Same name + same configuration** = Returns existing resource (success)
+- **Same name + different configuration** = Returns 400 Bad Request
+- **Different name** = Returns 409 Conflict
 
 ### Configuration update limitations
 
