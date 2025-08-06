@@ -6,6 +6,7 @@ manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
+  - hub-only
 ms.topic: how-to
 ms.date: 06/19/2025
 ms.reviewer: none
@@ -174,4 +175,4 @@ In some cases, you might want to export the trace data to your deployed OpenTele
 ## Related content
 
 - [Get started building a chat app by using the prompt flow SDK](../../quickstarts/get-started-code.md)
-- [Work with projects in Visual Studio Code](vscode.md)
+- [Work with the Azure AI Foundry for Visual Studio Code extension (Preview)](get-started-projects-vs-code.md)

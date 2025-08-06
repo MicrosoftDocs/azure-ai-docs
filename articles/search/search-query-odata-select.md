@@ -2,7 +2,6 @@
 title: OData select reference
 titleSuffix: Azure AI Search
 description: Syntax and language reference for explicit selection of fields to return in the search results of Azure AI Search queries.
-
 manager: nitinme
 author: bevloh
 ms.author: beloh

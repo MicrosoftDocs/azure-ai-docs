@@ -6,7 +6,7 @@ author: sdgilley
 ms.author: sgilley
 manager: scottpolly
 ms.reviewer: dantaylo
-ms.date: 07/03/2025
+ms.date: 07/03/2025 
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:
@@ -17,6 +17,7 @@ ms.custom:
   - update-code5
   - build-aifnd
   - build-2025
+  - peer-review-program
 zone_pivot_groups: project-type
 # customer intent: As a developer, I want to start using the Azure AI Foundry portal and client libraries.
 ---

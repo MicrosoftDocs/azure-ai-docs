@@ -2,7 +2,6 @@
 title: 'Tutorial: Debug Skillsets'
 titleSuffix: Azure AI Search
 description: Practice creating and completing a debug session on an Azure AI Search skillset. This tutorial provides a buggy sample skillset that you resolve in a debug session.
-
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
@@ -270,4 +269,4 @@ This tutorial touched on various aspects of skillset definition and processing. 
 
 + [Skillsets in Azure AI Search](cognitive-search-working-with-skillsets.md)
 
-+ [How to configure caching for incremental enrichment](cognitive-search-incremental-indexing-conceptual.md)
++ [How to configure caching for incremental enrichment](enrichment-cache-how-to-configure.md)

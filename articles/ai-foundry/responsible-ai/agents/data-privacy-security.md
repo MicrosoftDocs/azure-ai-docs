@@ -73,7 +73,7 @@ To use the Azure AI Agent Service, you must create an Azure OpenAI Service resou
 
 ## Preventing harmful content generation 
 
-To reduce the risk of harmful use of the Azure AI Agent Service, the Service includes [content filtering](/azure/ai-services/openai/concepts/content-filter) support. The outputs processed by the Azure AI Agent Service will be filtered in accordance with any content filtering that has been applied to the model deployment used by your agent.
+To reduce the risk of harmful use of the Azure AI Agent Service, the Service includes [content filtering](/azure/ai-foundry/openai/concepts/content-filter) support. The outputs processed by the Azure AI Agent Service will be filtered in accordance with any content filtering that has been applied to the model deployment used by your agent.
 
 ## See also 
 

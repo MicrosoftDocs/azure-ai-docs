@@ -2,14 +2,13 @@
 title: Vector store database
 titleSuffix: Azure AI Search
 description: Describes concepts behind vector storage in Azure AI Search.
-
 author: robertklee
 ms.author: robertlee
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 06/20/2025
+ms.date: 08/01/2025
 ---
 
 # Vector indexes in Azure AI Search
@@ -195,7 +194,7 @@ Vector index limits and estimations are covered in [another article](vector-sear
 
 + [Check the creation date of your search service](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date). If it was created before April 3, 2024, you might be able to [upgrade your service](search-how-to-upgrade.md) for greater capacity.
 
-+ [Choose a scalable tier](search-sku-tier.md) if you anticipate fluctuations in vector storage requirements. For older search services, the Basic tier is fixed at one partition. Consider Standard 1 (S1) and higher for more flexibility and faster performance. In the 2025-02-01-preview, you can also [switch from a lower tier to a higher tier](search-capacity-planning.md#change-your-pricing-tier).
++ [Choose a scalable tier](search-sku-tier.md) if you anticipate fluctuations in vector storage requirements. For older search services, the Basic tier is fixed at one partition. Consider Standard 1 (S1) and higher for more flexibility and faster performance. You can also [switch between Basic and Standard (S1, S2, and S3) tiers](search-capacity-planning.md#change-your-pricing-tier).
 
 ## Basic operations and interaction
 

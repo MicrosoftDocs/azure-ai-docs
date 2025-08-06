@@ -15,11 +15,11 @@ ms.custom:
 # Default Guidelines & controls policies
 
 
-Azure OpenAI in Azure AI Foundry Models includes default safety policies applied to all models, excluding Azure OpenAI Whisper. These configurations provide you with a responsible experience by default, including [content filtering models](/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cpython-new), blocklists, prompt transformation, [content credentials](/azure/ai-services/openai/concepts/content-credentials), and others.
+Azure OpenAI in Azure AI Foundry Models includes default safety policies applied to all models, excluding Azure OpenAI Whisper. These configurations provide you with a responsible experience by default, including [content filtering models](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new), blocklists, prompt transformation, [content credentials](/azure/ai-foundry/openai/concepts/content-credentials), and others.
 
-Default safety aims to mitigate risks in different categories such as hate and fairness, sexual, violence, self-harm, protected material content, and user prompt injection attacks. To learn more about content filtering, visit our documentation describing [categories and severity levels](/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cpython-new).
+Default safety aims to mitigate risks in different categories such as hate and fairness, sexual, violence, self-harm, protected material content, and user prompt injection attacks. To learn more about content filtering, visit our documentation describing [categories and severity levels](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new).
 
-All safety policies are configurable. To learn more about configurability, see the documentation on [configuring content filtering](/azure/ai-services/openai/how-to/content-filters).
+All safety policies are configurable. To learn more about configurability, see the documentation on [configuring content filtering](/azure/ai-foundry/openai/how-to/content-filters).
 
 ## Text models
 

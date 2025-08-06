@@ -5,7 +5,6 @@ description: Learn how to set up an indexer connection to an Azure Storage accou
 author: gmndrg
 ms.author: gimondra
 manager: vinodva
-
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 02/18/2025
@@ -45,7 +44,7 @@ You can use a system-assigned managed identity or a user-assigned managed identi
    | Table indexing using an indexer | Add **Storage Table Data Reader** |
    | File indexing using an indexer | Add **Reader and Data Access** |
    | Write to a [knowledge store](knowledge-store-concept-intro.md) | Add **Storage Blob Data Contributor** for object and file projections, and **Reader and Data Access** for table projections. |
-   | Write to an [enrichment cache](cognitive-search-incremental-indexing-conceptual.md) | Add **Storage Blob Data Contributor** and **Storage Table Data Reader** |
+   | Write to an [enrichment cache](enrichment-cache-how-to-configure.md) | Add **Storage Blob Data Contributor** and **Storage Table Data Contributor** |
    | Save [debug session state](cognitive-search-debug-session.md) | Add **Storage Blob Data Contributor**  |
 
 1. Select **Next**.

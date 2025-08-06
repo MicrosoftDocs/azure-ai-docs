@@ -4,9 +4,13 @@ titleSuffix: Azure AI Foundry
 description: Learn how to use Azure Policy with Azure AI Foundry to make sure your hubs and projects are compliant with your requirements.
 ms.author: jburchel 
 author: jonburchel 
-ms.date: 05/01/2025
+ms.date: 07/31/2025
 ms.service: azure-ai-foundry
+ms.custom:
+  - hub-only
 ms.topic: how-to
+ms.reviewer: aashishb
+reviewer: aashishb_microsoft
 # Customer Intent: As an admin, I want to understand how I can use Azure Policy to audit and govern Azure AI Foundry Services so that I can ensure compliance with my organization's requirements.
 ---
 

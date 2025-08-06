@@ -4,7 +4,6 @@ titleSuffix: Azure AI Search
 description: Learn how to set up an Azure AI Search indexer connection to an Azure SQL Managed Instance using a managed identity
 author: gmndrg
 ms.author: gimondra
-
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 06/04/2025
