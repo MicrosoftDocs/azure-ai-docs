@@ -81,42 +81,6 @@ import java.util.Arrays;
 
 public class AgentSample {
 
-    // A helper function to print messages from the agent
-    public static void printRunMessages(MessagesClient messagesClient, String threadId) {
-
-        PagedIterable<ThreadMessage> runMessages = messagesClient.listMessages(threadId);
-        for (ThreadMessage message : runMessages) {
-            System.out.print(String.format("%1$s - %2$s : ", message.getCreatedAt(), message.getRole()));
-            for (MessageContent contentItem : message.getContent()) {
-                if (contentItem instanceof MessageTextContent) {
-                    System.out.print((((MessageTextContent) contentItem).getText().getValue()));
-                } else if (contentItem instanceof MessageImageFileContent) {
-                    String imageFileId = (((MessageImageFileContent) contentItem).getImageFile().getFileId());
-                    System.out.print("Image from ID: " + imageFileId);
-                }
-                System.out.println();
-            }
-        }
-    }
-
-    // a helper function to wait until a run has completed running
-    public static void waitForRunCompletion(String threadId, ThreadRun threadRun, RunsClient runsClient)
-        throws InterruptedException {
-
-        do {
-            Thread.sleep(500);
-            threadRun = runsClient.getRun(threadId, threadRun.getId());
-        }
-        while (
-            threadRun.getStatus() == RunStatus.QUEUED
-                || threadRun.getStatus() == RunStatus.IN_PROGRESS
-                || threadRun.getStatus() == RunStatus.REQUIRES_ACTION);
-
-        if (threadRun.getStatus() == RunStatus.FAILED) {
-            System.out.println(threadRun.getLastError().getMessage());
-        }
-    }
-
     public static void main(String[] args) {
         // variables for authenticating requests to the agent service 
         String projectEndpoint = System.getenv("PROJECT_ENDPOINT");
@@ -160,6 +124,42 @@ public class AgentSample {
             //cleanup - remove or comment out these lines if you want to keep the agent
             threadsClient.deleteThread(thread.getId());
             administrationClient.deleteAgent(agent.getId());
+        }
+    }
+
+    // A helper function to print messages from the agent
+    public static void printRunMessages(MessagesClient messagesClient, String threadId) {
+
+        PagedIterable<ThreadMessage> runMessages = messagesClient.listMessages(threadId);
+        for (ThreadMessage message : runMessages) {
+            System.out.print(String.format("%1$s - %2$s : ", message.getCreatedAt(), message.getRole()));
+            for (MessageContent contentItem : message.getContent()) {
+                if (contentItem instanceof MessageTextContent) {
+                    System.out.print((((MessageTextContent) contentItem).getText().getValue()));
+                } else if (contentItem instanceof MessageImageFileContent) {
+                    String imageFileId = (((MessageImageFileContent) contentItem).getImageFile().getFileId());
+                    System.out.print("Image from ID: " + imageFileId);
+                }
+                System.out.println();
+            }
+        }
+    }
+
+    // a helper function to wait until a run has completed running
+    public static void waitForRunCompletion(String threadId, ThreadRun threadRun, RunsClient runsClient)
+        throws InterruptedException {
+
+        do {
+            Thread.sleep(500);
+            threadRun = runsClient.getRun(threadId, threadRun.getId());
+        }
+        while (
+            threadRun.getStatus() == RunStatus.QUEUED
+                || threadRun.getStatus() == RunStatus.IN_PROGRESS
+                || threadRun.getStatus() == RunStatus.REQUIRES_ACTION);
+
+        if (threadRun.getStatus() == RunStatus.FAILED) {
+            System.out.println(threadRun.getLastError().getMessage());
         }
     }
 }

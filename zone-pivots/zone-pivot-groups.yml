@@ -1216,6 +1216,8 @@ groups:
     title: JavaScript
   - id: python
     title: Python 
+  - id: java
+    title: Java
   - id: rest-api
     title: REST API
 - id: selection-deep-research
