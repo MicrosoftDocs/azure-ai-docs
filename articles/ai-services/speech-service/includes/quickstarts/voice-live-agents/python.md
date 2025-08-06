@@ -818,7 +818,7 @@ connection = client.connect(
 Replace the following lines in the code to change the url:
 
 ```python
-url = f"{azure_ws_endpoint}/voice-live/realtime?api-version={self._api_version}&agent-project-name={project_name}&agent-id={agent_id}&agent-access-token={agent_access_token}{debug_uri}"
+url = f"{azure_ws_endpoint}/voice-live/realtime?api-version={self._api_version}&agent-project-name={project_name}&agent-id={agent_id}&agent-access-token={agent_access_token}"
 ```
 
 Use the following line:
