@@ -26,9 +26,13 @@ Large language models (LLMs) are known for their few-shot and zero-shot learning
 
 In this article, you learn how to holistically generate high-quality datasets. You can use these datasets to evaluate the quality and safety of your application by using LLMs and Azure AI safety evaluators.
 
-## Get started
+## Prerequisites
 
 [!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
+
+## Get started
+
+To run the the full example see [Simulate Queries and Responses from input text notebook](https://github.com/Azure-Samples/azureai-samples/blob/main/scenarios/evaluate/Simulators/Simulate_Context-Relevant_Data/Simulate_From_Input_Text/Simulate_From_Input_Text.ipynb).
 
 Install and import the simulator package (preview) from the Azure AI Evaluation SDK:
 
@@ -43,6 +47,42 @@ pip install promptflow-azure
 pip install wikipedia openai
 ```
 
+### Connect to your project
+
+Initialize variables to connect to an LLM and create a config file with your project details.
+
+```python
+
+import os
+import json
+from pathlib import Path
+
+# project details
+azure_openai_api_version = "<your-api-version>"
+azure_openai_endpoint = "<your-endpoint>"
+azure_openai_deployment = "gpt-4o-mini"  # replace with your deployment name, if different
+
+# Optionally set the azure_ai_project to upload the evaluation results to Azure AI Studio.
+azure_ai_project = {
+    "subscription_id": "<your-subscription-id>",
+    "resource_group": "<your-resource-group>",
+    "workspace_name": "<your-workspace-name>",
+}
+
+os.environ["AZURE_OPENAI_ENDPOINT"] = azure_openai_endpoint
+os.environ["AZURE_OPENAI_DEPLOYMENT"] = azure_openai_deployment
+os.environ["AZURE_OPENAI_API_VERSION"] = azure_openai_api_version
+
+model_config = {
+    "azure_endpoint": azure_openai_endpoint,
+    "azure_deployment": azure_openai_deployment,
+    "api_version": azure_openai_api_version,
+}
+
+# JSON mode supported model preferred to avoid errors ex. gpt-4o-mini, gpt-4o, gpt-4 (1106)
+```
+
+
 ## Generate synthetic data and simulate non-adversarial tasks
 
 The Azure AI Evaluation SDK `Simulator` (preview) class provides an end-to-end synthetic data generation capability to help developers test their application's response to typical user queries in the absence of production data. AI developers can use an index or text-based query generator and fully customizable simulator to create robust test datasets around non-adversarial tasks specific to their application. The `Simulator` class is a powerful tool designed to generate synthetic conversations and simulate task-based interactions. This capability is useful for:
@@ -55,6 +95,8 @@ The `Simulator` class automates the creation of synthetic data to help streamlin
 
 ```python
 from azure.ai.evaluation.simulator import Simulator
+
+simulator = Simulator(model_config=model_config)
 ```
 
 ### Generate text or index-based synthetic data as input
@@ -62,11 +104,11 @@ from azure.ai.evaluation.simulator import Simulator
 You can generate query response pairs from a text blob like the following Wikipedia example:
 
 ```python
-import asyncio
-from azure.identity import DefaultAzureCredential
-import wikipedia
-import os
 from typing import List, Dict, Any, Optional
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import wikipedia
+
 # Prepare the text to send to the simulator.
 wiki_search_term = "Leonardo da vinci"
 wiki_title = wikipedia.search(wiki_search_term)[0]
@@ -82,12 +124,12 @@ Prepare the text for generating the input to the simulator:
 
 ### Specify the application Prompty file
 
-The following `application.prompty` file specifies how a chat application behaves:
+The following `user_override.prompty` file specifies how a chat application behaves:
 
 ```yaml
 ---
-name: ApplicationPrompty
-description: Chat RAG application
+name: TaskSimulatorWithPersona
+description: Simulates a user to complete a conversation
 model:
   api: chat
   parameters:
@@ -96,27 +138,29 @@ model:
     presence_penalty: 0
     frequency_penalty: 0
     response_format:
-      type: text
- 
+        type: json_object
+
 inputs:
+  task:
+    type: string
   conversation_history:
     type: dict
-  context:
+  mood:
     type: string
-  query:
-    type: string
- 
+    default: neutral
+
 ---
 system:
-You are a helpful assistant and you're helping with the user's query. Keep the conversation engaging and interesting.
+You must behave as a user who wants accomplish this task: {{ task }} and you continue to interact with a system that responds to your queries. If there is a message in the conversation history from the assistant, make sure you read the content of the message and include it your first response. Your mood is {{ mood }}
+Make sure your conversation is engaging and interactive.
+Output must be in JSON format
+Here's a sample output:
+{
+  "content": "Here is my follow-up question.",
+  "role": "user"
+}
 
-Keep your conversation grounded in the provided context: 
-{{ context }}
-
-Output with a string that continues the conversation, responding to the latest message from the user query:
-{{ query }}
-
-given the conversation history:
+Output with a json object that continues the conversation, given the conversation history:
 {{ conversation_history }}
 ```
 
@@ -175,11 +219,19 @@ With the simulator initialized, you can now run it to generate synthetic convers
     }
     simulator = Simulator(model_config=model_config)
     
-    outputs = await simulator(
-        target=callback,
-        text=text,
-        num_queries=1,  # Minimal number of queries.
-    )
+outputs = await simulator(
+    target=callback,
+    text=text,
+    num_queries=4, # Minimal number of queries.
+    max_conversation_turns=3,
+    tasks=[
+        f"I am a student and I want to learn more about {wiki_search_term}",
+        f"I am a teacher and I want to teach my students about {wiki_search_term}",
+        f"I am a researcher and I want to do a detailed research on {wiki_search_term}",
+        f"I am a statistician and I want to do a detailed table of factual data concerning {wiki_search_term}",
+    ],
+)
+
     
 ```
 
@@ -269,21 +321,32 @@ print(json.dumps(outputs, indent=2))
 
 We provide a dataset of 287 query/context pairs in the SDK. To use this dataset as the conversation starter with your `Simulator`, use the previous `callback` function defined previously.
 
+To run a full example see [Evaluating Model Groundedness notebook](https://github.com/Azure-Samples/azureai-samples/blob/main/scenarios/evaluate/Simulators/Simulate_Evaluate_Groundedness/Simulate_Evaluate_Groundedness.ipynb).
+
 ```python
+from typing import Any, Dict, List, Optional
+import json
+from pathlib import Path
+
+from azure.ai.evaluation import evaluate
+from azure.ai.evaluation import GroundednessEvaluator
+from azure.ai.evaluation.simulator import Simulator
+from openai import AzureOpenAI
 import importlib.resources as pkg_resources
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
-grounding_simulator = Simulator(model_config=model_config)
-
-package = "azure.ai.evaluation.simulator._data_sources"
 resource_name = "grounding.json"
+package = "azure.ai.evaluation.simulator._data_sources"
 conversation_turns = []
 
-with pkg_resources.path(package, resource_name) as grounding_file:
-    with open(grounding_file, "r") as file:
-        data = json.load(file)
+with pkg_resources.path(package, resource_name) as grounding_file, Path(grounding_file).open("r") as file:
+    data = json.load(file)
 
 for item in data:
     conversation_turns.append([item])
+    if len(conversation_turns) == 2:
+        break
+
 
 outputs = asyncio.run(grounding_simulator(
     target=callback,
