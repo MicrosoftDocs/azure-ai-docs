@@ -17,6 +17,18 @@ This article provides a summary of the latest releases and major documentation u
 
 ## August 2025
 
+### Java SDK Availability
+
+The public preview of the Azure AI Agent Service Java SDK is available. See the following articles for code samples:
+
+* [quickstart](./quickstart.md?pivots=programming-language-java)
+* [Azure AI Search](./how-to/tools/azure-ai-search-samples.md?pivots=java)
+* [Azure Functions](./how-to/tools/azure-functions-samples.md?pivots=java) 
+* [Code interpreter](./how-to/tools/code-interpreter-samples.md?pivots=java) 
+* [File search](./how-to/tools/file-search-upload-files.md?pivots=java)
+* [Grounding with Bing Search](./how-to/tools/bing-code-samples.md?pivots=java)
+* [OpenAPI based tools](./how-to/tools/openapi-spec-samples.md?pivots=java)
+
 ### Browser Automation tool
 
 The [Browser Automation tool](./how-to/tools/browser-automation.md) is now available in Public Preview. This tool enables you to perform real-world browser tasks through natural language prompts in an isolated browser session using your own provisioned [Microsoft Playwright Workspaces](/azure/playwright-testing/overview-what-is-microsoft-playwright-testing).
