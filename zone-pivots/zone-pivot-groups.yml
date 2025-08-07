@@ -1349,32 +1349,18 @@ groups:
     title: Python
   - id: rest
     title: REST API
-- id: selection-function-calling-samples
-  title: Selections
-  prompt: What would you like to see?
-  pivots:
-  - id: python
-    title: Python
-  - id: csharp
-    title: C#
-  - id: typescript
-    title: TypeScript
-  - id: java
-    title: Java
-  - id: rest
-    title: REST API
 - id: selection-function-calling
   title: Selections
   prompt: Choose a usage method
   pivots:
-  - id: csharp
-    title: C#
-  - id: java
-    title: Java
-  - id: javascript
-    title: JavaScript
   - id: python
     title: Python
+  - id: csharp
+    title: C#
+  - id: javascript
+    title: JavaScript
+  - id: java
+    title: Java
   - id: rest
     title: REST API
 # owner: sgilley
