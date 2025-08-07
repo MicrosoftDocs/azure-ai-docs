@@ -15,7 +15,7 @@
 | Message   | A message created by an agent or a user. Messages can include text, images, and other files. Messages are stored as a list on the Thread.                                                                                                 |
 | Run       | Activation of an agent to begin running based on the contents of Thread. The agent uses its configuration and Thread’s Messages to perform tasks by calling models and tools. As part of a Run, the agent appends Messages to the Thread. |
 
-1. Create a New Java Console project. You will need the following dependencies to run the code:
+First, create a New Java console project. You will need the following dependencies to run the code:
     
     ```xml
     <dependencies>
