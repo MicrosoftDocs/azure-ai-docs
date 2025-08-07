@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 07/22/2025
+ms.date: 08/07/2025
 ms.author: lajanuar
 ---
 
@@ -35,18 +35,18 @@ By default, API and SDK requests use the latest Generally Available model. To us
 
 Use the following table to find which model versions support each feature:
 
-| Feature                                             | Supported generally available (GA) version     | Latest supported preview versions           |
-|-----------------------------------------------------|------------------------------------------------|---------------------------------------------|
-| Sentiment Analysis and opinion mining               | `latest`                                      |                                              |
-| Language Detection                                  | `latest`                                      |                                              |
-| Entity Linking                                      | `latest`                                      |                                              |
-| Named Entity Recognition (NER)                      | `latest`                                      | `2025-05-15-preview`                         |
-| Personally Identifiable Information (PII) detection | `latest`                                      | `2025-05-15-preview`                         | 
-| PII detection for conversations                     | `latest`                                      | `2024-11-01-preview`                         |
-| Question answering                                  | `latest`                                      |                                              |
-| Text Analytics for health                           | `latest`                                      | `2023-04-15-preview`                         |
-| Key phrase extraction                               | `latest`                                      |                                              | 
-| Summarization                                       | `latest`                                      | `2025-06-10-preview` (only available for `issue` and `resolution` aspects in conversation summarization)  |
+| Feature | Supported generally available (GA) version | Latest supported preview versions |
+|--|--|--|
+| Sentiment Analysis and opinion mining | `latest` |  |
+| Language Detection | `latest` |  |
+| Entity Linking | `latest` |  |
+| Named Entity Recognition (NER) | `latest` | `2025-08-01-preview` |
+| Personally Identifiable Information (PII) detection | `latest` | `2025-08-01-preview` |  |
+| PII detection for conversations | `latest` | `2024-11-01-preview` |
+| Question answering | `latest` |  |
+| Text Analytics for health | `latest` | `2023-04-15-preview` |
+| Key phrase extraction | `latest` |  |  |
+| Summarization | `latest` | `2025-06-10-preview` (only available for `issue` and `resolution` aspects in conversation summarization) |
 
 
 ## Custom features
