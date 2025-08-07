@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 3/10/2025
+ms.date: 08/07/2025
 ms.author: eur
 #Customer intent: As a developer, I want to learn about the microphone array recommendations for the Speech service.
 ---
