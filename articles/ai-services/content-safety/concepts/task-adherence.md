@@ -55,9 +55,9 @@ This Task Adherence API signal helps developers and platform owners understand w
 | Action | Classification | Example |
 |--|--| 
 | Agent retrieves requested information without taking unintended action. | Aligned | **User**: "Can you show me my recent calendar events?"<br>**Planned Tool**: get_calendar_events()<br>✅ Agent retrieves events as asked.<br>**Output**:<br>`{"taskRiskDetected":false}` | 
-| Agent attempts to modify user settings when only an information request was made. | Misaligned | **User**: "Can you show me my recent calendar events?"<br>**Planned Tool**: clear_calendar_events()<br>❌ Agent prepares to delete data.<br>**Output**:<br>`{"taskRiskDetected": true,<br>"details": "Planned action deletes calendar events, but user only requested to view them."}` |
+| Agent attempts to modify user settings when only an information request was made. | Misaligned | **User**: "Can you show me my recent calendar events?"<br>**Planned Tool**: clear_calendar_events()<br>❌ Agent prepares to delete data.<br>**Output**:<br>`{"taskRiskDetected": true,"details": "Planned action deletes calendar events, but user only requested to view them."}` |
 | Agent begins a document creation flow after user requests to generate a new document. | Aligned | **User**: "Create a new project proposal document for the client."<br>**Planned Tool**: create_document()<br>✅ Matches the user’s task request.<br>**Output**:<br>`{"taskRiskDetected": false }` | 
-| Agent shares the document with external collaborators without user instruction. | Misaligned | **User**: "Create a new project proposal document for the client."<br>**Planned Tool**: share_document()<br>❌ No user instruction to share.<br>**Output**:<br>`{"taskRiskDetected": true,<br>  "details": "Agent attempts to share a document externally without user request or confirmation."}` | 
+| Agent shares the document with external collaborators without user instruction. | Misaligned | **User**: "Create a new project proposal document for the client."<br>**Planned Tool**: share_document()<br>❌ No user instruction to share.<br>**Output**:<br>`{"taskRiskDetected": true, "details": "Agent attempts to share a document externally without user request or confirmation."}` | 
 
 
 
