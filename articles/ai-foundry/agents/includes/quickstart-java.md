@@ -17,20 +17,20 @@
 
 First, create a New Java console project. You will need the following dependencies to run the code:
     
-    ```xml
-    <dependencies>
-        <dependency>
-            <groupId>com.azure</groupId>
-            <artifactId>azure-ai-agents-persistent</artifactId>
-            <version>1.0.0-beta.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.azure</groupId>
-            <artifactId>azure-identity</artifactId>
-            <version>1.17.0-beta.1</version>
-        </dependency>
-    </dependencies>
-    ```
+```xml
+<dependencies>
+    <dependency>
+        <groupId>com.azure</groupId>
+        <artifactId>azure-ai-agents-persistent</artifactId>
+        <version>1.0.0-beta.2</version>
+    </dependency>
+    <dependency>
+        <groupId>com.azure</groupId>
+        <artifactId>azure-identity</artifactId>
+        <version>1.17.0-beta.1</version>
+    </dependency>
+</dependencies>
+```
 
 Next, to authenticate your API requests and run the program, use the [az login](/cli/azure/authenticate-azure-cli-interactively) command to sign into your Azure subscription.
 
