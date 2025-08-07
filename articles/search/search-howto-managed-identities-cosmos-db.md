@@ -6,7 +6,7 @@ author: arv100kri
 ms.author: arjagann
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 01/06/2025
+ms.date: 08/07/2025
 ms.custom:
   - subject-rbac-steps
   - ignite-2023
@@ -31,7 +31,7 @@ Azure AI Search supports two mechanisms to connect to Azure Cosmos DB using mana
 
 * The _modern_ approach requires configuring the managed identity appropriate roles on the control and data plane of the target Azure Cosmos DB account. Azure AI Search will then request an access token to access the data in the Cosmos DB account. This approach works even if the Cosmos DB account has `"disableLocalAuth": true`.
 
-Indexers that connect to Azure Cosmos DB for NoSQL support both the _legacy_ and the _modern_ approach - the _modern_ approach is highly recommended.
+Indexers that connect to Azure Cosmos DB for NoSQL support both the _legacy_ and the _modern_ approach - the _modern_ approach is recommended.
 
 ## Limitations
 
@@ -104,7 +104,7 @@ When you're connecting with a system-assigned managed identity, the only change 
 Here's an example using the [Create Data Source](/rest/api/searchservice/data-sources/create) REST API that exercises the _modern_ approach.
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2024-11-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2024-07-01
 {
     "name": "my-cosmosdb-ds",
     "type": "cosmosdb",
@@ -118,14 +118,14 @@ POST https://[service name].search.windows.net/datasources?api-version=2024-11-0
 >[!NOTE]
 > If the `IdentityAuthType` property isn't part of the connection string, then Azure AI Search defaults to the _legacy_ approach to ensure backward compatibility.
 
-#### Connect through user-assigned identity
+#### Connect through user-assigned identity (preview)
 
 You need to add an "identity" property to the data source definition, where you specify the specific identity (out of several that can be assigned to the search service), that will be used to connect to the Azure Cosmos DB account.
 
 Here's an example using user-assigned identity via the _modern_ approach.
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2024-11-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2025-05-01-preview
 {
     "name": "[my-cosmosdb-ds]",
     "type": "cosmosdb",
@@ -157,7 +157,7 @@ Follow the same steps as before to assign the appropriate roles on the control p
 Here's an example to connect to MongoDB collections using system-assigned identity via the REST API
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2024-11-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2025-05-01-preview
 {
     "name": "my-cosmosdb-ds",
     "type": "cosmosdb",
@@ -172,7 +172,7 @@ POST https://[service name].search.windows.net/datasources?api-version=2024-11-0
 Here's an example to connect to Gremlin graphs using user-assigned identity.
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2024-11-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2025-05-01-preview
 {
     "name": "[my-cosmosdb-ds]",
     "type": "cosmosdb",
