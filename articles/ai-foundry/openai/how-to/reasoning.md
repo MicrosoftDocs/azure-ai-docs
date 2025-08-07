@@ -28,9 +28,9 @@ Azure OpenAI reasoning models are designed to tackle reasoning and problem-solvi
 
 | Model | Region | Limited access |
 |---|---|---|
-| `gpt-5` | East US2 & Sweden Central (Global Standard)  |  Request access: [gpt-5 series limited access model application](https://aka.ms/oai/gpt5access). If you already have `o3 access` no request is required    |
-| `gpt-5-mini` | East US2 & Sweden Central (Global Standard)  |  Request access: [gpt-5 series limited access model application](https://aka.ms/oai/gpt5access). If you already have `o3 access` no request is required    |
-| `gpt-5-nano` | East US2 & Sweden Central (Global Standard)  |  Request access: [gpt-5 series limited access model application](https://aka.ms/oai/gpt5access). If you already have `o3 access` no request is required    |
+| `gpt-5` | East US2 & Sweden Central (Global Standard)  |  Request access: [gpt-5 limited access model application](https://aka.ms/oai/gpt5access). If you already have `o3 access` no request is required    |
+| `gpt-5-mini` | East US2 & Sweden Central (Global Standard)  |  No access request needed to use the core capabilities of this model    |
+| `gpt-5-nano` | East US2 & Sweden Central (Global Standard)  |  No access request needed to use the core capabilities of this model    |
 | `o3-pro`  | East US2 & Sweden Central (Global Standard)    |  Request access: [o3 limited access model application](https://aka.ms/oai/o3access). If you already have `o3 access` no request is required. |
 | `codex-mini`  | East US2 & Sweden Central (Global Standard)    | No access request needed.    |
 | `o4-mini`  | [Model availability](../concepts/models.md#global-standard-model-availability)   | No access request needed to use the core capabilities of this model.<br><br> Request access: [o4-mini reasoning summary feature](https://aka.ms/oai/o3access)     |

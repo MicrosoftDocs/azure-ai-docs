@@ -30,7 +30,7 @@ If you select **Auto-update** at the deployment step (see [Manage models](/azure
 
 |Model router version|Underlying models| Model version
 |:---:|:---|:----:|
-| `2025-08-07` | `gpt-4.1` </br>`gpt-4.1-mini` </br>`gpt-4.1-nano` </br>`o4-mini` </br> `gpt-5`  <br> `gpt-5-mini`  <br> `gpt-5-nano`   | `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` |
+| `2025-08-07` | `gpt-4.1` </br>`gpt-4.1-mini` </br>`gpt-4.1-nano` </br>`o4-mini` </br> `gpt-5`  <br> `gpt-5-mini`  <br> `gpt-5-nano` <br> `gpt-5-chat`   | `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` |
 |`2025-05-19`| `gpt-4.1` </br>`gpt-4.1-mini` </br>`gpt-4.1-nano` </br>`o4-mini`  |  `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` |
 
 
