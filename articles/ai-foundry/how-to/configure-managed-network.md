@@ -637,7 +637,7 @@ To reduce the wait time and avoid potential timeout errors, we recommend manuall
 Alternatively, you can use the `provision_network_now` flag to provision the managed network as part of hub creation.
 
 > [!NOTE]
-> To create an online deployment, you must manually provision the managed network, or create a compute instance first. Creating a compute instance automatically provision it. 
+> To deploy a model to managed compute, you must manually provision the managed network, or create a compute instance first. Creating a compute instance automatically provisions it. 
 
 # [Azure portal](#tab/portal)
 
