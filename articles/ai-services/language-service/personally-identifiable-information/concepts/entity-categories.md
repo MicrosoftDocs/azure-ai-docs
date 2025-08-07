@@ -158,7 +158,9 @@ This category contains the following entity:
 
 This type contains the following entity:
 
-:::column span="":::
+
+:::row:::
+    :::column span="":::
         **Entity**
 
         LicensePlate
@@ -195,25 +197,26 @@ The **LicensePlate** entity isn't available in the current GA version.
 
 This type contains the following entity:
 
-:::column span="":::
-        **Entity**
-
-        SortCode
-
-    :::column-end:::
-    :::column span="2":::
-        **Details**
-
-        `SortCode` entity is a 6-digit number used in the UK to identify a specific bank and branch where a bank account is held.
-
-        To get this entity category, add `SortCode` to the `piiCategories` parameter. `SortCode` is returned in the API response if detected.
-
-    :::column-end:::
-
+:::row:::
     :::column span="":::
-      **Supported languages**
+            **Entity**
 
-      `en`
+            SortCode
+
+        :::column-end:::
+        :::column span="2":::
+            **Details**
+
+            `SortCode` entity is a 6-digit number used in the UK to identify a specific bank and branch where a bank account is held.
+
+            To get this entity category, add `SortCode` to the `piiCategories` parameter. `SortCode` is returned in the API response if detected.
+
+        :::column-end:::
+
+        :::column span="":::
+          **Supported languages**
+
+          `en`
 
    :::column-end:::
 :::row-end:::
