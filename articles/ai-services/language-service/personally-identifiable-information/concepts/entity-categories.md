@@ -179,7 +179,6 @@ This type contains the following entity:
       `en`
 
    :::column-end:::
-
 :::row-end:::
 
 # [GA API](#tab/ga-api)
@@ -217,7 +216,6 @@ This type contains the following entity:
       `en`
 
    :::column-end:::
-
 :::row-end:::
 
 # [GA API](#tab/ga-api)
