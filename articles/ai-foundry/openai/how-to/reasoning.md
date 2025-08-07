@@ -1,11 +1,11 @@
 ---
-title: Azure OpenAI reasoning models - o3-mini, o1, o1-mini
+title: Azure OpenAI reasoning models - GPT-5 series, o3-mini, o1, o1-mini
 titleSuffix: Azure OpenAI
-description: Learn how to use Azure OpenAI's advanced o3-mini, o1, & o1-mini reasoning models 
+description: Learn how to use Azure OpenAI's advanced GPT-5 series, o3-mini, o1, & o1-mini reasoning models 
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 07/08/2025
+ms.date: 08/06/2025
 author: mrbullwinkle    
 ms.author: mbullwin
 ---
@@ -13,9 +13,9 @@ ms.author: mbullwin
 
 # Azure OpenAI reasoning models
 
-Azure OpenAI `o-series` models are designed to tackle reasoning and problem-solving tasks with increased focus and capability. These models spend more time processing and understanding the user's request, making them exceptionally strong in areas like science, coding, and math compared to previous iterations.
+Azure OpenAI reasoning models are designed to tackle reasoning and problem-solving tasks with increased focus and capability. These models spend more time processing and understanding the user's request, making them exceptionally strong in areas like science, coding, and math compared to previous iterations.
 
-**Key capabilities of the o-series models:**
+**Key capabilities of reasoning models:**
 
 - Complex Code Generation: Capable of generating algorithms and handling advanced coding tasks to support developers.
 - Advanced Problem Solving: Ideal for comprehensive brainstorming sessions and addressing multifaceted challenges.
@@ -28,7 +28,10 @@ Azure OpenAI `o-series` models are designed to tackle reasoning and problem-solv
 
 | Model | Region | Limited access |
 |---|---|---|
-| `o3-pro`  | East US2 & Sweden Central (Global Standard)    |  Request access: [o3 limited access model application](https://aka.ms/oai/o3access). If you already have `o3 access` no request is required for `o3-pro`.    |
+| `gpt-5` | East US2 & Sweden Central (Global Standard)  |  Request access: [gpt-5 series limited access model application](https://aka.ms/oai/gpt5access). If you already have `o3 access` no request is required    |
+| `gpt-5-mini` | East US2 & Sweden Central (Global Standard)  |  Request access: [gpt-5 series limited access model application](https://aka.ms/oai/gpt5access). If you already have `o3 access` no request is required    |
+| `gpt-5-nano` | East US2 & Sweden Central (Global Standard)  |  Request access: [gpt-5 series limited access model application](https://aka.ms/oai/gpt5access). If you already have `o3 access` no request is required    |
+| `o3-pro`  | East US2 & Sweden Central (Global Standard)    |  Request access: [o3 limited access model application](https://aka.ms/oai/o3access). If you already have `o3 access` no request is required. |
 | `codex-mini`  | East US2 & Sweden Central (Global Standard)    | No access request needed.    |
 | `o4-mini`  | [Model availability](../concepts/models.md#global-standard-model-availability)   | No access request needed to use the core capabilities of this model.<br><br> Request access: [o4-mini reasoning summary feature](https://aka.ms/oai/o3access)     |
 | `o3` |  [Model availability](../concepts/models.md#global-standard-model-availability)  | Request access: [o3 limited access model application](https://aka.ms/oai/o3access)     |
@@ -39,27 +42,33 @@ Azure OpenAI `o-series` models are designed to tackle reasoning and problem-solv
 
 ## API & feature support
 
-| **Feature**  | **codex-mini**, **2025-05-16**  | **o3-pro**, **2025-06-10**   | **o4-mini**, **2025-04-16**  | **o3**, **2025-04-16** | **o3-mini**, **2025-01-31**  |**o1**, **2024-12-17**   | **o1-preview**, **2024-09-12**   | **o1-mini**, **2024-09-12**   |
-|:-------------------|:--------------------------:|:------:|:--------|:-----:|:-------:|:--------------------------:|:-------------------------------:|:---:|
-| **API Version** | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   | `2025-04-01-preview`  & [v1 preview](../api-version-lifecycle.md#api-evolution)  | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   |  `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   |  `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution) | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)    | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)  |
-| **[Developer Messages](#developer-messages)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | - |
-| **[Structured Outputs](./structured-outputs.md)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | - | - |
-| **[Context Window](../concepts/models.md#o-series-models)** |  Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 128,000  <br> Output: 32,768 | Input: 128,000  <br> Output: 65,536 |
-| **[Reasoning effort](#reasoning-effort)** | ✅| ✅| ✅| ✅ |✅ | ✅ | - | - |
-| **[Image input](./gpt-with-vision.md)** | ✅ | ✅ | ✅ | ✅ | - | ✅ | - | - |
-| Chat Completions API | - | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Responses API | ✅  | ✅  | ✅ | ✅  | ✅ | ✅ | - | - |
-| Functions/Tools | ✅ | ✅ |✅ | ✅ | ✅  | ✅  |  - | - |
-| Parallel Tool Calls | - | - | - | - | -  | -  |  - | - |
-| `max_completion_tokens` <sup>1</sup> |  ✅ | ✅ | ✅ | ✅ |✅ |✅ |✅ | ✅ |
-| System Messages <sup>2</sup> | ✅ | ✅| ✅ | ✅ | ✅ | ✅ | - | - |
-| [Reasoning summary](#reasoning-summary) <sup>3</sup> |  ✅ | - | ✅ | ✅ | -  | -  |  - | - |
-| Streaming <sup>4</sup>  | ✅ | - | ✅ | ✅| ✅ | - | - | - |
+# [GPT-5 Reasoning Models](#tab/gpt-5)
+
+# [O-Series Reasoning Models](#tab/o-series)
+
+| **Feature**  | **codex-mini**, **2025-05-16**  | **o3-pro**, **2025-06-10**   | **o4-mini**, **2025-04-16**  | **o3**, **2025-04-16** | **o3-mini**, **2025-01-31**  |**o1**, **2024-12-17**   |  **o1-mini**, **2024-09-12**   |
+|:-------------------|:--------------------------:|:------:|:--------|:-----:|:-------:|:--------------------------:|:---:|
+| **API Version** | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   | `2025-04-01-preview`  & [v1 preview](../api-version-lifecycle.md#api-evolution)  | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   |  `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   |  `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution) | | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)  |
+| **[Developer Messages](#developer-messages)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |  - |
+| **[Structured Outputs](./structured-outputs.md)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |  - |
+| **[Context Window](../concepts/models.md#o-series-models)** |  Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000  | Input: 128,000  <br> Output: 65,536 |
+| **[Reasoning effort](#reasoning-effort)** | ✅| ✅| ✅| ✅ |✅ | ✅ |  - |
+| **[Image input](./gpt-with-vision.md)** | ✅ | ✅ | ✅ | ✅ | - | ✅ |  - |
+| Chat Completions API | - | - | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Responses API | ✅  | ✅  | ✅ | ✅  | ✅ | ✅ |  - |
+| Functions/Tools | ✅ | ✅ |✅ | ✅ | ✅  | ✅  |  - |
+| Parallel Tool Calls | - | - | - | - | -  | -  |  - |
+| `max_completion_tokens` <sup>1</sup> |  ✅ | ✅ | ✅ | ✅ |✅ |✅ | ✅ |
+| System Messages <sup>2</sup> | ✅ | ✅| ✅ | ✅ | ✅ | ✅ | - |
+| [Reasoning summary](#reasoning-summary) <sup>3</sup> |  ✅ | - | ✅ | ✅ | -  | -  | - |
+| Streaming <sup>4</sup>  | ✅ | - | ✅ | ✅| ✅ | - | - |
 
 <sup>1</sup> Reasoning models will only work with the `max_completion_tokens` parameter. <br><br>
 <sup>2</sup> The latest o<sup>&#42;</sup> series model support system messages to make migration easier. When you use a system message with `o4-mini`, `o3`, `o3-mini`, and `o1` it will be treated as a developer message. You should not use both a developer message and a system message in the same API request.
 <sup>3</sup> Access to the chain-of-thought reasoning summary is limited access only for `o3` & `o4-mini`.
 <sup>4</sup> Streaming for `o3` is limited access only.
+
+---
 
 > [!NOTE]
 > - To avoid timeouts [background mode](./responses.md#background-tasks) is recommended for `o3-pro`.
