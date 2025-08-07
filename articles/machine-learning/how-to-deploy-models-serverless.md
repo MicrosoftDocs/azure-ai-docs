@@ -6,7 +6,7 @@ manager: scottpolly
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to
-ms.date: 07/19/2024
+ms.date: 08/07/2025
 ms.reviewer: fasantia
 reviewer: santiagxf
 ms.author: scottpolly
@@ -19,7 +19,7 @@ ms.custom: build-2024, serverless, devx-track-azurecli
 
 In this article, you learn how to deploy a model from the model catalog as a standard deployment.
 
-[Certain models in the model catalog](concept-endpoint-serverless-availability.md) can be deployed as a standard deployment with Standard billing. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription.
+[Certain models in the model catalog](concept-endpoint-serverless-availability.md) can be deployed as a standard deployment with Standard billing. This deployment type provides a way to consume models as an API without hosting them on your subscription, while maintaining the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription.
 
 This article uses a Meta Llama model deployment for illustration. However, you can use the same steps to deploy any of the [models in the model catalog that are available for standard deployment](concept-endpoint-serverless-availability.md).
 
@@ -96,12 +96,12 @@ This article uses a Meta Llama model deployment for illustration. However, you c
 
 1. Go to your workspace. To use the standard deployment offering, your workspace must belong to one of the [regions that are supported for serverless deployment](concept-endpoint-serverless-availability.md) for the particular model you want to deploy.
 
-1. Select **Model catalog** from the left sidebar and find the model card of the model you want to deploy. In this article, you select a **Meta-Llama-3-8B-Instruct** model. 
+1. Select **Model catalog** from the left sidebar and find the model card of the model you want to deploy. In this article, you select a **Bria-2.3-Fast** model. 
     
     1. If you're deploying the model using Azure CLI, Python SDK, or ARM, copy the **Model ID**.
 
     > [!IMPORTANT]
-    > Do not include the version when copying the **Model ID**. standard deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-meta/models/Meta-Llama-3-8B-Instruct/versions/3`, copy `azureml://registries/azureml-meta/models/Meta-Llama-3-8B-Instruct`.
+    > Do not include the version when copying the **Model ID**. Standard deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-bria/models/Bria-2.3-Fast/versions/1`, copy `azureml://registries/azureml-bria/models/Bria-2.3-Fast`.
 
     :::image type="content" source="media/how-to-deploy-models-serverless/model-card.png" alt-text="A screenshot showing a model's details page." lightbox="media/how-to-deploy-models-serverless/model-card.png":::
 
@@ -109,7 +109,7 @@ The next section covers the steps for subscribing your workspace to a model offe
 
 ## Subscribe your workspace to the model offering
 
-standard deployments can deploy both Microsoft and non-Microsoft offered models. For Microsoft models (such as Phi-3 models), you don't need to create an Azure Marketplace subscription and you can [deploy them to standard deployments directly](#deploy-the-model-to-a-standard-deployment) to consume their predictions. For non-Microsoft models, you need to create the subscription first. If it's your first time deploying the model in the workspace, you have to subscribe your workspace for the particular model offering from the Azure Marketplace. Each workspace has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending.
+Standard deployments can deploy both Microsoft and non-Microsoft offered models. For Microsoft models (such as Phi-3 models), you don't need to create an Azure Marketplace subscription and you can [deploy them to standard deployments directly](#deploy-the-model-to-a-standard-deployment) to consume their predictions. For non-Microsoft models, you need to create the subscription first. If it's your first time deploying the model in the workspace, you have to subscribe your workspace for the particular model offering from the Azure Marketplace. Each workspace has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending.
 
 > [!NOTE]
 > Models offered through the Azure Marketplace are available for deployment to standard deployments in specific regions. Check [Region availability for models in standard deployments](concept-endpoint-serverless-availability.md) to verify which models and regions are available. If the one you need is not listed, you can deploy to a workspace in a supported region and then [consume standard deployments from a different workspace](how-to-connect-models-serverless.md).
@@ -118,13 +118,12 @@ standard deployments can deploy both Microsoft and non-Microsoft offered models.
 
     # [Studio](#tab/azure-studio)
 
-    1. On the model's **Details** page, select **Deploy**. A **Deployment options** window opens up, giving you the choice between standard deployment and deployment using a managed compute.
+    1. On the model's **Details** page, select **Use this model**. A **Deployment options** window opens up, giving you the choice between standard deployment and deployment using a managed compute.
   
         > [!NOTE]
-        > For models that can be deployed only via standard deployment, the standard deployment wizard opens up right after you select **Deploy** from the model's details page.
+        > For models that can be deployed only via standard deployment, the standard deployment wizard opens up right after you select **Use this model** from the model's details page.
 
     1. Select **standard deployment with Azure AI Content Safety (preview)** to open the standard deployment wizard.
-    1. Select the checkbox to acknowledge the Microsoft purchase policy.    
 
         :::image type="content" source="media/how-to-deploy-models-serverless/deploy-pay-as-you-go.png" alt-text="A screenshot showing how to deploy a model with the standard deployment option." lightbox="media/how-to-deploy-models-serverless/deploy-pay-as-you-go.png":::
 
@@ -142,8 +141,8 @@ standard deployments can deploy both Microsoft and non-Microsoft offered models.
     __subscription.yml__
 
     ```yml
-    name: meta-llama3-8b-qwerty
-    model_id: azureml://registries/azureml-meta/models/Meta-Llama-3-8B-Instruct
+    name: bria-2.3-Fast
+    model_id: azureml://registries/azureml-bria/models/Bria-2.3-Fast
     ```
     
     Use the _subscription.yml_ file to create the subscription:    
@@ -155,7 +154,7 @@ standard deployments can deploy both Microsoft and non-Microsoft offered models.
     # [Python SDK](#tab/python)
 
     ```python
-    model_id="azureml://registries/azureml-meta/models/Meta-Llama-3-8B-Instruct"
+    model_id="azureml://registries/azureml-bria/models/Bria-2.3-Fast"
     subscription_name="Meta-Llama-3-8B-Instruct"
 
     marketplace_subscription = MarketplaceSubscription(
@@ -188,7 +187,7 @@ standard deployments can deploy both Microsoft and non-Microsoft offered models.
                 "type": "String"
             },
             "model_id": {
-                "defaultValue": "azureml://registries/azureml-meta/models/Meta-Llama-3-8B-Instruct",
+                "defaultValue": "azureml://registries/azureml-bria/models/Bria-2.3-Fast",
                 "type": "String"
             }
         },
@@ -250,15 +249,15 @@ standard deployments can deploy both Microsoft and non-Microsoft offered models.
 
 Once you've created a subscription for a non-Microsoft model, you can deploy the associated model to a standard deployment. For Microsoft models (such as Phi-3 models), you don't need to create a subscription.
 
-The standard deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance organizations need. This deployment option doesn't require quota from your subscription.
+The standard deployment provides a way to consume models as an API without hosting them on your subscription, while maintaining the enterprise security and compliance organizations need. This deployment option doesn't require quota from your subscription.
 
-In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
+In this section, you create an endpoint with the name **Bria-2.3-Fast**.
 
 1. Create the serverless endpoint
 
     # [Studio](#tab/azure-studio)
 
-    1. To deploy a Microsoft model that doesn't require subscribing to a model offering, select **Deploy** and then select **standard deployment with Azure AI Content Safety (preview)** to open the deployment wizard.
+    1. To deploy a Microsoft model that doesn't require subscribing to a model offering, select **Use this model** and then select **standard deployment with Azure AI Content Safety (preview)** to open the deployment wizard.
 
     1. Alternatively, for a non-Microsoft model that requires a model subscription, if you've just subscribed your workspace to the model offer in the previous section, continue to select **Deploy**. Alternatively, select **Continue to deploy** (if your deployment wizard had the note *You already have an Azure Marketplace subscription for this workspace*). 
 
@@ -277,8 +276,8 @@ In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
     __endpoint.yml__
 
     ```yml
-    name: meta-llama3-8b-qwerty
-    model_id: azureml://registries/azureml-meta/models/Meta-Llama-3-8B-Instruct
+    name: bria-2.3-Fast
+    model_id: azureml://registries/azureml-bria/models/Bria-2.3-Fast
     ```
 
     Use the _endpoint.yml_ file to create the endpoint:
@@ -290,7 +289,7 @@ In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
     # [Python SDK](#tab/python)
 
     ```python
-    endpoint_name="meta-llama3-8b-qwerty"
+    endpoint_name="bria-2.3-Fast"
     
     serverless_endpoint = ServerlessEndpoint(
         name=endpoint_name,
@@ -318,7 +317,7 @@ In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
                 "type": "String"
             },
             "endpoint_name": {
-                "defaultValue": "meta-llama3-8b-qwerty",
+                "defaultValue": "bria-2.3-Fast",
                 "type": "String"
             },
             "location": {
@@ -326,7 +325,7 @@ In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
                 "type": "String"
             },
             "model_id": {
-                "defaultValue": "azureml://registries/azureml-meta/models/Meta-Llama-3-8B-Instruct",
+                "defaultValue": "azureml://registries/azureml-bria/models/Bria-2.3-Fast",
                 "type": "String"
             }
         },
@@ -411,7 +410,7 @@ In this section, you create an endpoint with the name **meta-llama3-8b-qwerty**.
     # [Azure CLI](#tab/cli)
 
     ```azurecli
-    az ml serverless-endpoint get-credentials -n meta-llama3-8b-qwerty
+    az ml serverless-endpoint get-credentials -n bria-2.3-Fast
     ```
 
     # [Python SDK](#tab/python)
@@ -476,7 +475,7 @@ To delete a standard deployment:
 
 ```azurecli
 az ml serverless-endpoint delete \
-    --name "meta-llama3-8b-qwerty"
+    --name "bria-2.3-Fast"
 ```
 
 To delete the associated model subscription:
