@@ -37,18 +37,40 @@ Azure OpenAI reasoning models are designed to tackle reasoning and problem-solvi
 | `o3` |  [Model availability](../concepts/models.md#global-standard-model-availability)  | Request access: [o3 limited access model application](https://aka.ms/oai/o3access)     |
 | `o3-mini` | [Model availability](../concepts/models.md#global-standard-model-availability).  | Access is no longer restricted for this model.   |
 |`o1` | [Model availability](../concepts/models.md#global-standard-model-availability).  | Access is no longer restricted for this model.  |
-| `o1-preview` | [Model availability](../concepts/models.md#global-standard-model-availability). |This model is only available for customers who were granted access as part of the original limited access release. We're currently not expanding access to `o1-preview`. |
 | `o1-mini` | [Model availability](../concepts/models.md#global-standard-model-availability). | No access request needed for Global Standard deployments.<br><br>Standard (regional) deployments are currently only available to select customers who were previously granted access as part of the `o1-preview` release.|
 
 ## API & feature support
 
 # [GPT-5 Reasoning Models](#tab/gpt-5)
 
+
+| **Feature**  | **gpt-5**, **2025-08-07**  | **gpt-5-mini**, **2025-08-07**   | **gpt-5-nano**, **2025-08-07**  |
+|:-------------------|:--------------------------:|:------:|:--------:|
+| **API Version** | [v1 preview](../api-version-lifecycle.md#api-evolution) | [v1 preview](../api-version-lifecycle.md#api-evolution) | [v1 preview](../api-version-lifecycle.md#api-evolution) |
+| **[Developer Messages](#developer-messages)** | ✅ | ✅ | ✅ | 
+| **[Structured Outputs](./structured-outputs.md)** | ✅ | ✅ | ✅ |
+| **[Context Window](../concepts/models.md#o-series-models)** |  Input: 272,000 <br> Output: 128,000 | Input: 272,000 <br> Output: 128,000 | Input: 272,000 <br> Output: 128,000 |
+| **[Reasoning effort](#reasoning-effort)** | ✅| ✅| ✅|
+| **[Image input](./gpt-with-vision.md)** | ✅ | ✅ | ✅ |
+| Chat Completions API | ✅ | ✅ | ✅ |
+| Responses API | ✅  | ✅  | ✅ |
+| Functions/Tools | ✅ | ✅ |✅ |
+| Parallel Tool Calls<sup>1</sup> | ✅ | ✅ | ✅ |
+| `max_completion_tokens` <sup>2</sup> |  ✅ | ✅ | ✅ |
+| System Messages <sup>3</sup> | ✅ | ✅| ✅ |
+| [Reasoning summary](#reasoning-summary) <sup>4</sup> |  ✅ | ✅ | ✅ |
+| Streaming   | ✅ | ✅ | ✅|
+
+<sup>1</sup> Parallel tool calls are not supported when `reasoning_effort` is set to `minimal`<br><br>
+<sup>2</sup> Reasoning models will only work with the `max_completion_tokens` parameter. <br><br>
+<sup>3</sup> The latest reasoning models support system messages to make migration easier. You should not use both a developer message and a system message in the same API request.<br><br>
+<sup>4</sup> Access to the chain-of-thought reasoning summary is limited access only for `o3` & `o4-mini`.
+
 # [O-Series Reasoning Models](#tab/o-series)
 
 | **Feature**  | **codex-mini**, **2025-05-16**  | **o3-pro**, **2025-06-10**   | **o4-mini**, **2025-04-16**  | **o3**, **2025-04-16** | **o3-mini**, **2025-01-31**  |**o1**, **2024-12-17**   |  **o1-mini**, **2024-09-12**   |
 |:-------------------|:--------------------------:|:------:|:--------|:-----:|:-------:|:--------------------------:|:---:|
-| **API Version** | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   | `2025-04-01-preview`  & [v1 preview](../api-version-lifecycle.md#api-evolution)  | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   |  `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   |  `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution) | | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)  |
+| **API Version** | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   | `2025-04-01-preview`  & [v1 preview](../api-version-lifecycle.md#api-evolution)  | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   |  `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   |  `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution) | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)  |
 | **[Developer Messages](#developer-messages)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |  - |
 | **[Structured Outputs](./structured-outputs.md)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |  - |
 | **[Context Window](../concepts/models.md#o-series-models)** |  Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000  | Input: 128,000  <br> Output: 65,536 |
@@ -109,7 +131,7 @@ client = AzureOpenAI(
 )
 
 response = client.chat.completions.create(
-    model="o1-new", # replace with the model deployment name of your o1-preview, or o1-mini model
+    model="o1-new", # replace with your model deployment name 
     messages=[
         {"role": "user", "content": "What steps should I think about when writing my first Python API?"},
     ],
@@ -312,11 +334,11 @@ token_provider = get_bearer_token_provider(
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
   azure_ad_token_provider=token_provider,
-  api_version="2025-03-01-preview"
+  api_version="2025-04-01-preview"
 )
 
 response = client.chat.completions.create(
-    model="o1-new", # replace with the model deployment name of your o1-preview, or o1-mini model
+    model="o1-new", # replace with your model deployment name 
     messages=[
         {"role": "developer","content": "You are a helpful assistant."}, # optional equivalent to a system message for reasoning models 
         {"role": "user", "content": "What steps should I think about when writing my first Python API?"},
@@ -344,7 +366,7 @@ from openai import AzureOpenAI
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
   api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2025-03-01-preview"
+  api_version="2025-04-01-preview"
 )
 
 response = client.chat.completions.create(
@@ -397,7 +419,7 @@ Console.WriteLine($"{completion.Role}: {completion.Content[0].Text}");
 
 ## Reasoning summary
 
-When using the latest `o3` and `o4-mini` models with the [Responses API](./responses.md) you can use the reasoning summary parameter to receive summaries of the model's chain of thought reasoning. This parameter can be set to `auto`, `concise`, or `detailed`. Access to this feature requires you to [Request Access](https://aka.ms/oai/o3access).
+When using the latest reasoning models with the [Responses API](./responses.md) you can use the reasoning summary parameter to receive summaries of the model's chain of thought reasoning. This parameter can be set to `auto`, `concise`, or `detailed`. Access to this feature requires you to [Request Access](https://aka.ms/oai/o3access).
 
 > [!NOTE]
 > Even when enabled, reasoning summaries are not generated for every step/request. This is expected behavior.
