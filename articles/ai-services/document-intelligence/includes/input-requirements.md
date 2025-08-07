@@ -2,7 +2,7 @@
 author: laujan
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 11/19/2024
+ms.date: 08/05/2025
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD041 -->
@@ -25,6 +25,6 @@ Supported file formats:
 * **Password locks**: If your PDFs are password-locked, you must remove the lock before submission.
 * **Text height**: The minimum height of the text to be extracted is 12 pixels for a 1024 x 768-pixel image. This dimension corresponds to about 8-point text at 150 dots per inch.
 * **Custom model training**: The maximum number of pages for training data is 500 for the custom template model and 50,000 for the custom neural model.
-
-  * **Custom extraction model training**: The total size of training data is 50 MB for the template model and 1 GB for the neural model.
-  * **Custom classification model training**: The total size of training data is 1 GB with a maximum of 10,000 pages. For 2024-11-30 (GA), the total size of training data is 2 GB with a maximum of 10,000 pages.
+* **Custom extraction model training**: The total size of training data is 50 MB for template model and 1 GB for the neural model.
+* **Custom classification model training**: The total size of training data is 1 GB with a maximum of 10,000 pages. For 2024-11-30 (GA), the total size of training data is 2 GB with a maximum of 10,000 pages.
+* **Office file types (DOCX, XLSX, PPTX)**: The maximum string length limit is 8 million characters.

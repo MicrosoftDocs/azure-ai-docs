@@ -8,7 +8,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 5/25/2025
-ms.reviewer: alexeyo
+ms.reviewer: jagoerge
 #Customer intent: As a developer, I need to know how to get the session ID and transcription ID for speech to text so that I can debug issues with my application.
 ---
 

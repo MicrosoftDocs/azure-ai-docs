@@ -336,7 +336,7 @@ Here are a few factors to consider when you use the Document Intelligence bale e
 * Is the data that you want to extract presented as a table, and is the table structure meaningful?
 * Can the data fit in a two-dimensional grid if the data isn't in a table format?
 * Do your tables span multiple pages? If so, to avoid having to label all the pages, split the PDF into pages before you send it to Document Intelligence. After the analysis, post-process the pages to a single table.
-* See [Tabular fields](../train/custom-labels.md#tabular-fields), if you create custom models. Dynamic tables have a variable number of rows for each column. Fixed tables have a constant number of rows for each column.
+* See [Tabular fields](../train/custom-labels.md#tabular-fields) if you create custom models. Dynamic tables have a variable number of rows for each column. Fixed tables have a constant number of rows for each column.
 
 > [!NOTE]
 >
@@ -396,7 +396,7 @@ The layout API can output the extracted text in Markdown format. Use the `output
 
 > [!NOTE]
 > 
-> For v4.0 2024-11-30 (GA), the representation of tables is changed to HTML tables to enable rendering of items like merged cells and multirow headers. Another related change is to use the Unicode checkbox characters ☒ and ☐ for selection marks instead of `:selected:` and `:unselected:`. This update means that the content of selection-mark fields contains `:selected:` even though their spans refer to Unicode characters in the top-level span. For a full definition of Markdown elements, see [Markdown putput format](../concept/markdown-elements.md).
+> For v4.0 2024-11-30 (GA), the representation of tables is changed to HTML tables to enable rendering of items like merged cells and multirow headers. Another related change is to use the Unicode checkbox characters ☒ and ☐ for selection marks instead of `:selected:` and `:unselected:`. This update means that the content of selection-mark fields contains `:selected:` even though their spans refer to Unicode characters in the top-level span. For a full definition of Markdown elements, see [Markdown output format](../concept/markdown-elements.md).
 
 #### [Sample code](#tab/sample-code)
 
@@ -468,7 +468,7 @@ Figures (charts and images) in documents play a crucial role in complementing an
 - `boundingRegions`: The spatial locations of the figure on the document pages, including the page number and the polygon coordinates that outline the figure's boundary.
 - `spans`: The text spans related to the figure that specify their offsets and lengths within the document's text. This connection helps in associating the figure with its relevant textual context.
 - `elements`: The identifiers for text elements or paragraphs within the document that are related to or describe the figure.
-- `caption`: The description, if there is one.
+- `caption`: The description if there is one.
 
 When `output=figures` is specified during the initial analyze operation, the service generates cropped images for all detected figures that can be accessed via `/analyeResults/{resultId}/figures/{figureId}`. The `FigureId` is the ID included in each figure object, following an undocumented convention of `{pageNumber}.{figureIndex}` where `figureIndex` resets to one per page.
 
@@ -642,7 +642,7 @@ Supported file formats:
 
 * **Supported file formats**: JPEG, PNG, PDF, and TIFF.
 * **Supported number of pages**: For PDF and TIFF, up to 2,000 pages are processed. For free tier subscribers, only the first two pages are processed.
-* **Supported file size**: The file size must be less than 50 MB and the dimensions must be at least 50 x 50 pixels and at most 10,000 x 10,000 pixels.
+* **Supported file size**: The file size must be less than 50 MB, and the dimensions must be at least 50 x 50 pixels and at most 10,000 x 10,000 pixels.
 
 :::moniker-end
 
@@ -735,7 +735,7 @@ Document Intelligence v2.1 supports the following tools, applications, and libra
 
 ## Extract data
 
-The layout model extracts structural elements from your documents. The structural elements are described and then followed by guidance on how to extract them from your document input.
+The layout model extracts structural elements from your documents. The structural elements are described here, and the following guidance shows you how to extract them from your document input.
 
 * [Page](#page)
 * [Paragraph](#paragraph)
@@ -750,7 +750,7 @@ The layout model extracts structural elements from your documents. The structura
 
 ## Extract data
 
-The layout model extracts structural elements from your documents. The structural elements are described and then followed by guidance on how to extract them from your document input.
+The layout model extracts structural elements from your documents. The structural elements are described here, and the following guidance shows you how to extract them from your document input.
 
 * [Page](#page)
 * [Paragraph](#paragraph)

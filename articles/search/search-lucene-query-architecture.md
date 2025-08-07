@@ -266,7 +266,7 @@ Returning to our example, for the **title** field, the inverted index looks like
 | hotel | 1, 3 |
 | ocean | 4  |
 | playa | 3 |
-| resort | 3 |
+| resort | 2 |
 | retreat | 4 |
 
 In the title field, only *hotel* shows up in two documents: 1 and 3.

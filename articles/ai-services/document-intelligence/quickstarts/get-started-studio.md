@@ -34,7 +34,7 @@ There are added prerequisites for using custom models in Document Intelligence S
 
 Your organization can opt to disable local authentication and enforce Microsoft Entra (formerly Azure Active Directory) authentication for Document Intelligence resources and Azure Blob Storage.
 
-* Microsoft Entra authentication requires that key-based authorization is disabled. After key access is disabled, Microsoft Entra ID is the only available authorization method.
+* Microsoft Entra authentication requires key-based authorization to be disabled. After key access is disabled, Microsoft Entra ID is the only available authorization method.
 * Microsoft Entra allows granting minimum privileges and granular control for Azure resources.
 
 For more information, see the following guidance:
@@ -42,7 +42,7 @@ For more information, see the following guidance:
   * [Disable local authentication for Azure AI services](../../disable-local-auth.md)
   * [Prevent Shared Key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent)
 
-If local (key-based) authentication is disabled for your Document Intelligence service resource, be sure to obtain the Cognitive Services User role and your Azure Active Directory token to authenticate requests on Document Intelligence Studio. The Contributor role allows you to list only keys but doesn't give you permission to use the resource when key access is disabled.
+If local (key-based) authentication is disabled for your Document Intelligence service resource, be sure to obtain the Cognitive Services User role and your Azure Active Directory token to authenticate requests in Document Intelligence Studio. The Contributor role allows you to list only keys but doesn't give you permission to use the resource when key access is disabled.
 
 #### Designate role assignments
 
@@ -53,7 +53,7 @@ Document Intelligence Studio basic access requires the [Cognitive Services User]
    * ✔️ **Cognitive Services User**: You need this role for the Document Intelligence or Azure AI Foundry resource to enter the analyze page.
    * ✔️ **Contributor**: You need this role to create a resource group, Document Intelligence service, or Azure AI Foundry resource.
 * In Azure context, the Contributor role can perform actions only to control and manage the resource itself, including listing the access keys.
-* User accounts with a Contributor role can access the Document Intelligence service only by calling with access keys. When you set up access with Microsoft Entra ID, key access is disabled and the Cognitive Services User role is required for an account to use the resources.
+* User accounts with a Contributor role can access the Document Intelligence service only by calling with access keys. When you set up access with Microsoft Entra ID, key access is disabled, and the Cognitive Services User role is required for an account to use the resources.
 
 ### Authentication in Document Intelligence Studio
 
@@ -81,14 +81,14 @@ Go to [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/
 
 To learn more about the available Document Intelligence models, see [Document Intelligence model support](../studio-overview.md#document-intelligence-model-support).
 
-* After your resource is configured, you can try the different models that Document Intelligence Studio has to offer. Select any Document Intelligence model to use it with a no-code approach.
-* To test any of the document analysis or prebuilt models, select the model and use one of the sample documents or upload your own document to analyze. The analysis result appears in the pane on the right that shows content-result code.
-* Custom models must be trained on your documents. For an overview of custom models, see [Custom models overview](../train/custom-model.md).
-* After you validate the scenario in Document Intelligence Studio, use the [C#](get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), [Java](get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), [JavaScript](get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), or [Python](get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) client libraries or the [REST API](get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) to get started incorporating Document Intelligence models into your own applications.
+* Try the different models that Document Intelligence Studio has to offer after you configure your resource. Select any Document Intelligence model to use it with a no-code approach.
+* Test any of the document analysis or prebuilt models. Select the model, and use one of the sample documents or upload your own document to analyze. The analysis result appears in the pane on the right that shows content-result code.
+* Train the custom models on your documents. For an overview of custom models, see [Custom models overview](../train/custom-model.md).
+* Validate the scenario in Document Intelligence Studio. Then use the [C#](get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), [Java](get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), [JavaScript](get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true), or [Python](get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) client libraries or the [REST API](get-started-sdks-rest-api.md?view=doc-intel-3.0.0&preserve-view=true) to incorporate Document Intelligence models into your own applications.
 
 #### View resource details
 
- To view resource details such as name and pricing tier, select the **Settings** icon in the upper-right corner of the Document Intelligence Studio home page and select the **Resource** tab. If you have access to other resources, you can also switch resources.
+ To view resource details such as name and pricing tier, select the **Settings** icon in the upper-right corner of the Document Intelligence Studio home page, and then select the **Resource** tab. If you have access to other resources, you can also switch resources.
 
 :::image type="content" source="../media/studio/form-recognizer-studio-resource-page.png" lightbox="../media/studio/form-recognizer-studio-resource-page.png" alt-text="Screenshot that shows the Settings page Resource tab.":::
 
@@ -126,10 +126,10 @@ With Document Intelligence, you can quickly automate your data processing in app
 
 |Scenario     |Cause| Resolution|
 |-------------|------|----------|
-|You receive the error message</br> "Form Recognizer Not Found" when you open a custom project.|Your Document Intelligence resource, which is bound to the custom project, was deleted or moved to another resource group.| There are two ways to resolve this problem: </br>&bullet; Re-create the Document Intelligence resource under the same subscription and resource group with the same name.</br>&bullet; Re-create a custom project with the migrated Document Intelligence resource and specify the same storage account.|
-|You receive the error message</br> "PermissionDenied" when you use prebuilt apps or open a custom project.|The principal doesn't have access to the API or operation when it analyzes against prebuilt models or opens a custom project. It's likely the local (key-based) authentication is disabled for your Document Intelligence resource, and you don't have enough permission to access the resource.|To configure your access roles, see [Azure role assignments](try-document-intelligence-studio.md#azure-role-assignments).|
-|You receive the error message</br> "AuthorizationPermissionMismatch" when you open a custom project.|The request isn't authorized to perform the operation by using the designated permission. It's likely the local (key-based) authentication is disabled for your storage account, and you don't have the granted permission to access the blob data.|To configure your access roles, see [Azure role assignments](try-document-intelligence-studio.md#azure-role-assignments).|
-|You can't sign in to Document Intelligence Studio and receive the error message</br> "InteractionRequiredAuthError:login_required:AADSTS50058:A silent sign-request was sent but no user is signed in."|It's likely that your browser is blocking non-Microsoft cookies, so you can't successfully sign in.|To resolve, see [Manage non-Microsoft settings](#manage-non-microsoft-settings-for-document-intelligence-studio-access) for your browser.|
+|You receive the error message</br> `Form Recognizer Not Found` when you open a custom project.|Your Document Intelligence resource, which is bound to the custom project, was deleted or moved to another resource group.| There are two ways to resolve this problem: </br>&bullet; Re-create the Document Intelligence resource under the same subscription and resource group with the same name.</br>&bullet; Re-create a custom project with the migrated Document Intelligence resource and specify the same storage account.|
+|You receive the error message</br> `PermissionDenied` when you use prebuilt apps or open a custom project.|The principal doesn't have access to the API or operation when it analyzes against prebuilt models or opens a custom project. It's likely the local (key-based) authentication is disabled for your Document Intelligence resource, and you don't have enough permission to access the resource.|To configure your access roles, see [Azure role assignments](try-document-intelligence-studio.md#azure-role-assignments).|
+|You receive the error message</br> `AuthorizationPermissionMismatch` when you open a custom project.|The request isn't authorized to perform the operation by using the designated permission. It's likely the local (key-based) authentication is disabled for your storage account, and you don't have the granted permission to access the blob data.|To configure your access roles, see [Azure role assignments](try-document-intelligence-studio.md#azure-role-assignments).|
+|You can't sign in to Document Intelligence Studio and receive the error message</br> `InteractionRequiredAuthError:login_required:AADSTS50058:A silent sign-request was sent but no user is signed in`.|It's likely that your browser is blocking non-Microsoft cookies, so you can't successfully sign in.|To resolve this issue, see [Manage non-Microsoft settings](#manage-non-microsoft-settings-for-document-intelligence-studio-access) for your browser.|
 
 ## Related content
 
