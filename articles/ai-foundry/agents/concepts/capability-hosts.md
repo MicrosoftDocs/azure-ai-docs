@@ -50,7 +50,7 @@ Capability hosts follow a hierarchy where more specific configurations override 
 2. **Account-level capability host** - Provides shared defaults for all projects under the account.
 3. **Project-level capability host** - Overrides account-level and service defaults for that specific project. 
 
-## Understanding capability host constraints
+## Understand capability host constraints
 
 When creating capability hosts, be aware of these important constraints to avoid conflicts:
 
@@ -244,7 +244,7 @@ catch (HttpRequestException ex) when (ex.Message.Contains("409"))
 }
 ```
 
-#### 3. Understanding idempotent behavior
+#### 3. Understand idempotent behavior
 The system supports idempotent create requests:
 - **Same name + same configuration** → Returns existing resource (200 OK)
 - **Same name + different configuration** → Returns 400 Bad Request  
