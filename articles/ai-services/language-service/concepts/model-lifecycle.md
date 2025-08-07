@@ -45,7 +45,7 @@ Use the following table to find which model versions support each feature:
 | PII detection for conversations | `latest` | `2024-11-01-preview` |
 | Question answering | `latest` |  |
 | Text Analytics for health | `latest` | `2023-04-15-preview` |
-| Key phrase extraction | `latest` |  |  |
+| Key phrase extraction | `latest` |  |
 | Summarization | `latest` | `2025-06-10-preview` (only available for `issue` and `resolution` aspects in conversation summarization) |
 
 
