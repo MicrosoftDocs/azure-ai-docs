@@ -538,6 +538,8 @@ curl --request GET \
 
 :::zone pivot="java"
 
+## Code example
+
 ```java
 package com.example.agents;
 
