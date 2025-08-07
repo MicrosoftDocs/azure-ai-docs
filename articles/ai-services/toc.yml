@@ -17,6 +17,8 @@ items:
   items:
   - name: Create an AI Foundry resource
     href: multi-service-resource.md
+  - name: Create an AI Foundry resource using an ARM template
+    href: create-account-resource-manager-template.md
 - name: How-to
   items:
   - name: Plan and manage costs
