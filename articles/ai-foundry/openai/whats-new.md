@@ -18,6 +18,26 @@ ms.custom:
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
+## August 2025
+
+### GPT-5 models available
+
+- `gpt-5`, `gpt-5-mini`, `gpt-5-nano` To learn more, see the [getting started with reasoning models page](./how-to/reasoning.md).
+- `gpt-5-chat` is now available. To learn more, see the [models page](./concepts/models.md)
+
+- **[Registration is required for access to the gpt-5 model](https://aka.ms/oai/gpt5access).**
+
+- `gpt-5-mini`, `gpt-5-nano`, and `gpt-5-chat` do not require registration.
+
+### New version of model-router
+
+- Model router nows supports GPT-5 series models.
+
+-The latest version of model router is currently limited access only. You can request access using the `gpt-5 access` form: [gpt-5 limited access model application](https://aka.ms/oai/gpt5access). If you already have `o3 access` no request is required.
+
+- Model router for Azure AI Foundry is a deployable AI chat model that automatically selects the best underlying chat model to respond to a given prompt. For more information on how model router works and its advantages and limitations, see the [Model router concepts guide](./concepts/model-router.md). To use model router with the Completions API, follow the [How-to guide](./concepts/model-router.md).
+
+
 ## July 2025 
 
 ### GPT-image-1 update (preview)
