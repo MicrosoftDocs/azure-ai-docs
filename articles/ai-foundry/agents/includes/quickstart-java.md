@@ -1,3 +1,11 @@
+---
+manager: nitinme
+author: aahill
+ms.author: aahi
+ms.service: azure-ai-agent-service
+ms.topic: include
+ms.date: 08/07/2025
+---
 
 | [Reference documentation](/dotnet/api/overview/azure/ai.agents.persistent-readme) | [Samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/csharp/getting-started-agents) | [Library source code](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Agents.Persistent) | [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.Agents.Persistent) |
 
