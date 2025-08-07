@@ -7,7 +7,7 @@ ms.topic: how-to
 author: laujan
 ms.author: lajanuar
 recommendations: false
-ms.date: 06/21/2025
+ms.date: 08/07/2025
 ---
 # Export-import-refresh in custom question answering
 
@@ -19,7 +19,7 @@ You might want to create a copy of your custom question answering project or rel
 
 ## Prerequisites
 
-* If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/) before you begin.
+* An Azure subscription. You can [create one for free](https://azure.microsoft.com/free/cognitive-services/) before you begin.
 * A [language resource](https://aka.ms/create-language-resource) with the custom question answering feature enabled. Remember your Microsoft Entra ID, Subscription, language resource name you selected when you created the resource.
 
 ## Export a project
@@ -28,9 +28,9 @@ You might want to create a copy of your custom question answering project or rel
 
 2. Scroll down to the **Answer questions** section and select **Open custom question answering**.
 
-3. Select the project you wish to export > Select **Export** > You’ll have the option to export as an **Excel** or **TSV** file.
+3. Select the project you wish to export > Select **Export** > You can export the project as an **Excel** or **TSV** file.
 
-4. You’ll be prompted to save your exported file locally as a zip file.
+4. You're prompted to save your exported file locally as a zip file.
 
 ### Export a project programmatically
 
@@ -46,9 +46,9 @@ To automate the export process, use the [export functionality of the authoring A
 
 4. Select Choose File and browse to the local zipped copy of your project that you exported previously.
 
-5. Provide a unique name for the project you’re importing.
+5. Provide a unique name for the project you're importing.
 
-6. Remember that a project that has only been imported still needs to be deployed/published if you want it to be live.
+6. Remember that a project that is only imported still needs to be deployed/published if you want it to be live.
 
 ### Import a project programmatically
 
@@ -62,7 +62,7 @@ To automate the import process, use the [import functionality of the authoring A
 
 3. Select the project that contains the source you want to refresh > select manage sources.
 
-4. We recommend having a backup of your project/question answer pairs prior to running each refresh so that you can always roll-back if needed.
+4. We recommend having a backup of your project/question answer pairs before running each refresh so that you can always roll back if needed.
 
 5. Select a URL-based source to refresh > Select **Refresh URL**.
 6. Only one URL can be refreshed at a time.
@@ -75,7 +75,7 @@ The update sources example in the [Authoring API docs](./authoring.md#update-sou
 
 |Variable name | Value |
 |--------------------------|-------------|
-| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/`. If this was your endpoint in the following code sample, you would only need to add the region-specific portion of `southcentral` as the rest of the endpoint path is already present.|
+| `ENDPOINT`               | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. An example endpoint is: `https://southcentralus.cognitiveservices.azure.com/` and you only need to add the region-specific portion of `southcentral`. The endpoint path is already present.|
 | `API-KEY` | This value can be found in the **Keys & Endpoint** section when examining your resource from the Azure portal. You can use either Key1 or Key2. Always having two valid keys allows for secure key rotation with zero downtime. Alternatively you can find the value in **Language Studio** > **question answering** > **Deploy project** > **Get prediction URL**. The key value is part of the sample request.|
 | `PROJECT-NAME` | The name of project where you would like to update sources.|
 
@@ -95,7 +95,7 @@ curl -X PATCH -H "Ocp-Apim-Subscription-Key: {API-KEY}" -H "Content-Type: applic
 
 ## Export questions and answers
 
-It’s also possible to export/import a specific project of question and answers rather than the entire custom question answering project.
+It's also possible to export/import a specific project of question and answers rather than the entire custom question answering project.
 
 1. Sign in to the [Language Studio](https://language.azure.com/) with your Azure credentials.
 
@@ -105,16 +105,16 @@ It’s also possible to export/import a specific project of question and answers
 
 4. Select **Edit project**.
 
-5. To the right of show columns are `...` an ellipsis button. > Select the `...` > a dropdown will reveal the option to export/import questions and answers.
+5. To the right of show columns are `...` an ellipsis button. > Select the `...` > a dropdown reveals the option to export/import questions and answers.
 
-    Depending on the size of your web browser, you may experience the UI differently. Smaller browsers will see two separate ellipsis buttons.
+    Depending on the size of your web browser, you may experience the UI differently. Smaller browsers see two separate ellipsis buttons.
 
     > [!div class="mx-imgBorder"]
     > ![Screenshot of selecting multiple UI ellipsis buttons to get to import/export question and answer pair option](../media/export-import-refresh/export-questions.png)
 
 ## Import questions and answers
 
-It’s also possible to export/import a specific project of question and answers rather than the entire custom question answering project.
+It's also possible to export/import a specific project of question and answers rather than the entire custom question answering project.
 
 1. Sign in to the [Language Studio](https://language.azure.com/) with your Azure credentials.
 
@@ -124,9 +124,9 @@ It’s also possible to export/import a specific project of question and answers
 
 4. Select **Edit project**.
 
-5. To the right of show columns are `...` an ellipsis button. > Select the `...` > a dropdown will reveal the option to export/import questions and answers.
+5. To the right of show columns are `...` an ellipsis button. > Select the `...` > a dropdown reveals the option to export/import questions and answers.
 
-    Depending on the size of your web browser, you may experience the UI differently. Smaller browsers will see two separate ellipsis buttons.
+    Depending on the size of your web browser, you may experience the UI differently. Smaller browsers see two separate ellipsis buttons.
 
     > [!div class="mx-imgBorder"]
     > ![Screenshot of selecting multiple UI ellipsis buttons to get to import/export question and answer pair option](../media/export-import-refresh/export-questions.png)
