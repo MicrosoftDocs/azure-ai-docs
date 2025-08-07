@@ -59,45 +59,6 @@ When creating capability hosts, be aware of these important constraints to avoid
 > [!IMPORTANT]
 > **One capability host per scope**: Each account and each project can only have one active capability host. Attempting to create a second capability host with a different name at the same scope will result in a 409 conflict.
 
-### Common 409 conflict scenarios
-
-#### 1. **Multiple capability hosts per scope**
-
-**What happens:** You try to create a capability host with a different name when one already exists at the same scope (account or project level).
-
-**Error example:**
-```json
-{
-  "error": {
-    "code": "Conflict",
-    "message": "There is an existing Capability Host with name: existing-host, provisioning state: Succeeded for workspace: /subscriptions/.../workspaces/my-workspace, cannot create a new Capability Host with name: new-host for the same ClientId."
-  }
-}
-```
-
-**How to avoid:**
-- **Check existing capability hosts first** before creating new ones
-- **Use consistent naming** across all requests for the same scope
-- **Query existing resources** to understand current state
-
-#### 2. **Concurrent operations** 
-
-**What happens:** You try to create a capability host while another operation (update, delete, modify) is in progress at the same scope.
-
-**Error example:**
-```json
-{
-  "error": {
-    "code": "Conflict", 
-    "message": "Create: Capability Host my-host is currently in non creating, retry after its complete: /subscriptions/.../workspaces/my-workspace"
-  }
-}
-```
-
-**How to avoid:**
-- **Monitor operation status** before making new requests
-- **Wait for operations to complete** before starting new ones
-
 ### Best practices to prevent conflicts
 
 #### 1. **Pre-request validation**
@@ -159,7 +120,9 @@ A capability host must be configured with the following three properties at eith
 |----------|---------|------------------------|-------------|
 | `aiServicesConnections` | Use your own model deployments | Azure OpenAI | When you want to use models from your existing Azure OpenAI resource instead of the built-in account level ones. |
 
-**Account capability host**
+### Account capability host
+Create an account-level capability host that provides shared defaults:
+
 ```http
 PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/capabilityHosts/{name}?api-version=2025-06-01
 
@@ -169,7 +132,9 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
   }
 }
 ```
-**Project capability host**
+
+### Project capability host
+Create a project-level capability host that overrides service defaults and any account-level settings:
 
 ```http
 PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/capabilityHosts/{name}?api-version=2025-06-01
@@ -183,6 +148,18 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
     "aiServicesConnections": ["my-azure-openai-connection"]  // Optional
   }
 }
+```
+
+### Example URLs from your environment:
+
+**Account-level capability host:**
+```
+https://management.azure.com/subscriptions/b17253fa-f327-42d6-9686-f3e553e24763/resourceGroups/howie-cap-1/providers/Microsoft.CognitiveServices/accounts/foundyav3b/capabilityHosts/caphostaccount?api-version=2025-06-01
+```
+
+**Project-level capability host:**
+```
+https://management.azure.com/subscriptions/b17253fa-f327-42d6-9686-f3e553e24763/resourceGroups/howie-cap-1/providers/Microsoft.CognitiveServices/accounts/foundyav3b/projects/projectav3b/capabilityHosts/caphostproj?api-version=2025-06-01
 ```
 
 ### Optional: account-level defaults with project overrides
@@ -222,6 +199,125 @@ DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroup
 ```http
 DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/capabilityHosts/{name}?api-version=2025-06-01
 ```
+
+## Troubleshooting
+
+### Common 409 conflict scenarios
+
+#### 1. **Multiple capability hosts per scope**
+
+**What happens:** You try to create a capability host with a different name when one already exists at the same scope (account or project level).
+
+**Error example:**
+```json
+{
+  "error": {
+    "code": "Conflict",
+    "message": "There is an existing Capability Host with name: existing-host, provisioning state: Succeeded for workspace: /subscriptions/.../workspaces/my-workspace, cannot create a new Capability Host with name: new-host for the same ClientId."
+  }
+}
+```
+
+**How to avoid:**
+- **Check existing capability hosts first** before creating new ones
+- **Use consistent naming** across all requests for the same scope
+- **Query existing resources** to understand current state
+
+#### 2. **Concurrent operations** 
+
+**What happens:** You try to create a capability host while another operation (update, delete, modify) is in progress at the same scope.
+
+**Error example:**
+```json
+{
+  "error": {
+    "code": "Conflict", 
+    "message": "Create: Capability Host my-host is currently in non creating, retry after its complete: /subscriptions/.../workspaces/my-workspace"
+  }
+}
+```
+
+**How to avoid:**
+- **Monitor operation status** before making new requests
+- **Wait for operations to complete** before starting new ones
+
+### Error handling patterns
+
+#### For Application Developers:
+
+```csharp
+try 
+{
+    var response = await CreateCapabilityHostAsync(request);
+    return response;
+}
+catch (HttpRequestException ex) when (ex.Message.Contains("409"))
+{
+    if (ex.Message.Contains("existing Capability Host with name"))
+    {
+        // Different name conflict - check if existing resource meets your needs
+        var existing = await GetExistingCapabilityHostAsync();
+        if (IsAcceptable(existing))
+        {
+            return existing; // Use existing resource
+        }
+        else
+        {
+            throw new InvalidOperationException("Scope already has a capability host with different name");
+        }
+    }
+    else if (ex.Message.Contains("currently in non creating"))
+    {
+        // Resource busy - implement retry
+        await Task.Delay(TimeSpan.FromSeconds(30));
+        return await CreateCapabilityHostAsync(request); // Retry
+    }
+}
+```
+
+#### For CLI/PowerShell Users:
+
+```bash
+# Check for existing account-level capability hosts first
+az cognitiveservices account capability-host list \
+  --account-name myaccount \
+  --resource-group myrg
+
+# Check for existing project-level capability hosts
+az cognitiveservices account project capability-host list \
+  --account-name myaccount \
+  --project-name myproject \
+  --resource-group myrg
+
+# If none exist, create new one at account level
+az cognitiveservices account capability-host create \
+  --account-name myaccount \
+  --resource-group myrg \
+  --capability-host-name myhost \
+  --kind Agents
+
+# If creation fails with 409, check operation status
+az cognitiveservices account capability-host show \
+  --account-name myaccount \
+  --resource-group myrg \
+  --capability-host-name myhost
+```
+
+### Troubleshooting
+
+To minimize 409 conflicts when creating capability hosts:
+
+- **Check existing capability hosts** at both account and project levels before creating new ones
+- **Use consistent naming** within the same scope (account or project)
+- **Implement exponential backoff retry logic** for busy resources
+- **Monitor long-running operations** before making new requests
+- **Leverage idempotent behavior** for identical requests
+- **Don't attempt configuration updates** - delete and recreate instead
+- **Monitor operation status** using the operations API
+- **Handle error responses** appropriately based on conflict type
+- **Understand the scope** - account vs project level capability hosts serve different purposes
+
+Following these practices will significantly reduce 409 conflicts and provide a better experience for your users.
 
 ## Next steps
 - Learn more about the [Standard Agent Setup](standard-agent-setup.md) 
