@@ -320,12 +320,14 @@ Create a query script that uses the Azure AI Search index and the chat model to 
                     .buildClient();
         }
     
-        private static List<SearchResult> searchDocuments(SearchClient searchClient, String query) {
+        private static List<SearchResult> searchDocuments(
+            SearchClient searchClient, String query) {
             var searchOptions = new SearchOptions()
                     .setTop(5)
                     .setQueryType(com.azure.search.documents.models.QueryType.SEMANTIC)
                     .setSemanticSearchOptions(new com.azure.search.documents.models.SemanticSearchOptions()
-                            .setSemanticConfigurationName("semantic-config"));
+                            .setSemanticConfigurationName("semantic-config"))
+                    .setSelect("HotelName", "Description", "Tags");
     
             return searchClient.search(query, searchOptions, null)
                     .stream()
@@ -333,18 +335,23 @@ Create a query script that uses the Azure AI Search index and the chat model to 
                     .toList();
         }
     
-        private static String queryOpenAI(OpenAIClient openAIClient, String userQuery, List<SearchResult> sources) {
+        private static String queryOpenAI(OpenAIClient openAIClient, List<SearchResult> sources) {
             String deploymentModel = System.getenv("AZURE_DEPLOYMENT_MODEL");
-    
+
             String sourcesText = sources.stream()
                     .map(source -> source.getDocument(Object.class).toString())
                     .collect(java.util.stream.Collectors.joining("\n"));
-    
+
             var messages = List.of(
-                    new ChatRequestSystemMessage("You are an assistant that recommends hotels based on search results."),
-                    new ChatRequestUserMessage("Can you recommend a few hotels that offer " + userQuery + "? Here are the search results:\n"     + sourcesText)
+                    new ChatRequestSystemMessage("""
+                        You are an assistant that recommends hotels based on 
+                        search results."""),
+                    new ChatRequestUserMessage("""
+                        Can you recommend a few hotels that offer 
+                        complimentary breakfast? Here are the search results:
+                        %s""".formatted(sourcesText))
             );
-    
+
             var chatOptions = new ChatCompletionsOptions(messages);
             ChatCompletions response = openAIClient.getChatCompletions(deploymentModel, chatOptions);
     
@@ -355,8 +362,7 @@ Create a query script that uses the Azure AI Search index and the chat model to 
             SearchClient searchClient = getSearchClient();
             OpenAIClient openAIClient = getOpenAIClient();
     
-            String userQuery = "complimentary breakfast";
-            List<SearchResult> sources = searchDocuments(searchClient, userQuery);
+            List<SearchResult> sources = searchDocuments(searchClient);
             String response = queryOpenAI(openAIClient, userQuery, sources);
     
             System.out.println(response);
@@ -464,12 +470,14 @@ Tell me their description, address, tags, and the rate for one room that sleeps 
                     .buildClient();
         }
     
-        private static List<SearchResult> searchDocuments(SearchClient searchClient, String query) {
+        private static List<SearchResult> searchDocuments(
+            SearchClient searchClient, String query) {
             var searchOptions = new SearchOptions()
                     .setTop(5)
                     .setQueryType(com.azure.search.documents.models.QueryType.SEMANTIC)
                     .setSemanticSearchOptions(new com.azure.search.documents.models.SemanticSearchOptions()
-                            .setSemanticConfigurationName("semantic-config"));
+                            .setSemanticConfigurationName("semantic-config"))
+                    .setSelect("HotelName", "Description", "Address", "Rooms", "Tags");
     
             return searchClient.search(query, searchOptions, null)
                     .stream()
@@ -477,20 +485,28 @@ Tell me their description, address, tags, and the rate for one room that sleeps 
                     .toList();
         }
     
-        private static String queryOpenAI(OpenAIClient openAIClient, String userQuery, List<SearchResult> sources) {
+        private static String queryOpenAI(OpenAIClient openAIClient, List<SearchResult> sources) {
             String deploymentModel = System.getenv("AZURE_DEPLOYMENT_MODEL");
-    
+
             String sourcesText = sources.stream()
                     .map(source -> source.getDocument(Object.class).toString())
                     .collect(java.util.stream.Collectors.joining("\n"));
-    
+
             var messages = List.of(
-                    new ChatRequestSystemMessage("You are an assistant that recommends hotels based on search results."),
-                    new ChatRequestUserMessage("Can you recommend a few hotels that offer " + userQuery + "? Tell me their description,     address, tags, and the rate for one room that sleeps 4 people. Here are the search results:\n" + sourcesText)
+                    new ChatRequestSystemMessage("""
+                        You are an assistant that recommends hotels based on 
+                        search results."""),
+                    new ChatRequestUserMessage("""
+                        Can you recommend a few hotels that offer 
+                        complimentary breakfast? Tell me their description, 
+                        address, tags, and the rate for one room that sleeps 
+                        4 people. Here are the search results:
+                        %s""".formatted(sourcesText))
             );
-    
+
             var chatOptions = new ChatCompletionsOptions(messages);
-            ChatCompletions response = openAIClient.getChatCompletions(deploymentModel, chatOptions);
+            ChatCompletions response = openAIClient.getChatCompletions(
+                deploymentModel, chatOptions);
     
             return response.getChoices().get(0).getMessage().getContent();
         }
@@ -499,8 +515,7 @@ Tell me their description, address, tags, and the rate for one room that sleeps 
             SearchClient searchClient = getSearchClient();
             OpenAIClient openAIClient = getOpenAIClient();
     
-            String userQuery = "complimentary breakfast";
-            List<SearchResult> sources = searchDocuments(searchClient, userQuery);
+            List<SearchResult> sources = searchDocuments(searchClient);
             String response = queryOpenAI(openAIClient, userQuery, sources);
     
             System.out.println(response);
@@ -570,7 +585,8 @@ To debug Azure SDK errors, you can enable logging by adding the following depend
 Then set the following system properties when running your application:
 
 ```bash
-mvn compile exec:java -Dexec.mainClass="com.example.rag.Query" -Dorg.slf4j.simpleLogger.defaultLogLevel=debug
+mvn compile exec:java -Dexec.mainClass="com.example.rag.Query" \
+    -Dorg.slf4j.simpleLogger.defaultLogLevel=debug
 ```
 
 This will enable detailed logging for the Azure SDK, which can help identify [issues with authentication](https://github.com/Azure/azure-sdk-for-java/wiki/Azure-Identity-Troubleshooting), network connectivity, or other problems.
