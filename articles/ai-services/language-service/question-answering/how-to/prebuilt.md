@@ -30,7 +30,7 @@ Below is an example of a sample request:
 ## Sample request
 
 ```
-POST https://{Unique-to-your-endpoint}.api.cognitive.microsoft.com/language/:query-text
+POST https://{Unique-to-your-endpoint}.cognitiveservices.azure.com/language/:query-text
 ```
 
 ### Sample query over a single block of text
