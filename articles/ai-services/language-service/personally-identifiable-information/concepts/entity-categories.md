@@ -185,9 +185,9 @@ This type contains the following entity:
 
 # [GA API](#tab/ga-api)
 
-## Type: License Plate
+## License Plate
 
-The **LicensePlate** entity isn't available in the current GA version.
+The **LicensePlate** entity isn't available with the current GA version.
 
 ---
 
@@ -223,9 +223,9 @@ This type contains the following entity:
 
 # [GA API](#tab/ga-api)
 
-## Type: Sort Code
+## Sort Code
 
-The **SortCode** entity isn't available in the current GA version.
+The **SortCode** entity isn't available with the current GA version.
 
 ---
 
